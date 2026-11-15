@@ -131,3 +131,41 @@ for f_, name in [(1e3, "1 kHz"), (1e9, "1 GHz"), (1e12, "1 THz"), (6e14, "600 TH
 print("\n== 10. Cosmic graviton background if thermal at 0.9 K (hypothetical) ==")
 T = 0.9
 print(f"  sigma T^4 = {sci(sigma*T**4)} W/m^2; peak nu ~ 2.82 kT/h = {sci(2.82*kB*T/(2*math.pi*hbar))} Hz")
+
+print("\n== 11. Does matter reflect or refract gravitational waves? ==")
+# Refractive index of matter (Peters 1974): n - 1 = 2 pi G rho / w^2.
+# Elastic response adds a 'plasma-like' term: w^2 = c^2 k^2 + 16 pi G mu / c^2.
+# Normal-incidence power reflectivity of a slab much thicker than the
+# wavelength: R = ((n-1)/2)^2. Real walls are far thinner than the wavelength,
+# which lowers R further, so these are generous upper values.
+rho_steel, mu_steel = 7850.0, 8.0e10
+wg2 = 16*math.pi*G*mu_steel/c**2
+print(f"  steel: elastic 'cutoff' w_g = {sci(math.sqrt(wg2))} rad/s (period {sci(2*math.pi/math.sqrt(wg2)/yr)} yr)")
+for f_, name in [(1e3, "1 kHz"), (1e9, "1 GHz"), (1e13, "10 THz")]:
+    w = 2*math.pi*f_
+    n1 = 2*math.pi*G*rho_steel/w**2
+    el = wg2/(2*w*w)
+    print(f"  steel at {name:>6}: n-1 = {sci(n1)} (density term), {sci(el)} (elastic term);"
+          f" thick-slab reflectivity <= {sci((n1/2)**2)}")
+print("  for comparison a silvered mirror reflects ~0.95 of visible light")
+# deflection of a ray grazing a mass: 4GM/(b c^2)
+for M, b, name in [(M_earth, R_earth, "Earth limb"), (M_sun, R_sun, "Sun limb"), (1e3, 0.5, "1 t ball")]:
+    a = 4*G*M/(b*c*c)
+    print(f"  bending at {name}: {sci(a)} rad = {sci(math.degrees(a)*3600)} arcsec")
+
+print("\n== 12. Affordance numbers ==")
+R_core, R_inner = 3.480e6, 1.2215e6
+for R_, name in [(R_core, "outer core"), (R_inner, "inner core")]:
+    print(f"  Earth's {name} seen from the surface: {sci(2*math.degrees(math.asin(R_/R_earth)))} deg wide")
+print(f"  Sun's disc from Earth: {sci(2*math.degrees(math.asin(R_sun/AU)))} deg wide;"
+      f" inner 20% of its radius: {sci(2*math.degrees(math.asin(0.2*R_sun/AU)))} deg")
+print(f"  light-crossing time of the solar radius: {sci(R_sun/c)} s; Sun to Earth: {sci(AU/c/60)} min")
+print(f"  mass of 1 kWh of stored energy: {sci(3.6e6/c**2)} kg;"
+      f" Li-ion cell at 250 Wh/kg gains {sci(250*3600/c**2)} of its mass when charged")
+print(f"  1 kW laser beam: {sci(1e3/c/c**2)} kg per metre of beam")
+print(f"  3 T magnetic field: energy density {sci(9/(2*4e-7*math.pi))} J/m^3"
+      f" = {sci(9/(2*4e-7*math.pi)/c**2)} kg/m^3")
+print(f"  pressure as a source: 3p/c^2 for 200 bar = {sci(3*2e7/c**2)} kg/m^3")
+print(f"  mass current vs mass: v/c for 1 m/s flow = {sci(1/c)}")
+print(f"  person at 1 m vs Moon, tidal field ratio: {sci((2*G*70/1)/(2*G*M_moon/d_moon**3))}")
+print(f"  light in water travels at c/1.33: over 100 m it lags a gravitational signal by {sci(100*0.33/c*1e9)} ns")
