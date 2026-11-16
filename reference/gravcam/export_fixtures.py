@@ -36,14 +36,15 @@ from pathlib import Path
 
 import numpy as np
 
-from . import __version__, columns, constants, emission, tidal, waves
+from . import __version__, columns, constants, currents, emission, tidal, waves
 from .scene import Scene, load_scene
 
 REFERENCE_DIR = Path(__file__).resolve().parents[1]
 SCENES_DIR = REFERENCE_DIR.parent / "scenes"
 DEFAULT_SCENE = SCENES_DIR / "sun-at-midnight.scene.json"
 DEFAULT_OUT_DIR = REFERENCE_DIR / "fixtures"
-ROOM_SCENES = ("locked-safe", "full-or-empty", "blank-mirror", "closed-furnace", "honey-and-water", "which-way")
+ROOM_SCENES = ("locked-safe", "full-or-empty", "blank-mirror", "closed-furnace", "honey-and-water", "which-way",
+               "sealed-flywheel", "beam-in-the-dark")
 N_ROOM_RAYS = 160
 SENSOR_SPACING_M = 0.5            # the sensors: a 3 x 3 square in the x-y plane, centred on the observer
 SIGNIFICANT = 10                  # digits kept for values computed with log or atan
@@ -303,8 +304,11 @@ def build_room_fixture(scene_path, seed: int = SEED, n_rays: int = N_ROOM_RAYS) 
     column = columns.mass_column(scene, directions)
     tidal_column = columns.tidal_column(scene, directions)
     chord = columns.chords(scene, directions)
-    rays = [
-        {
+    spinning = any(o.spin is not None and o.spin.rate != 0 for o in scene.objects)
+    current = currents.current_column(scene, directions) if spinning else None
+    rays = []
+    for k, (label, _) in enumerate(labelled):
+        ray = {
             "label": label,
             "direction": directions[k].tolist(),
             "number_radiance": float(radiance[k]),
@@ -312,8 +316,9 @@ def build_room_fixture(scene_path, seed: int = SEED, n_rays: int = N_ROOM_RAYS) 
             "tidal_column": _rounded(float(tidal_column[k])),
             "chords": {object_id: float(chord[object_id][k]) for object_id in scene.ids},
         }
-        for k, (label, _) in enumerate(labelled)
-    ]
+        if current is not None:
+            ray["current_column"] = [_rounded(float(v)) for v in current[k]]
+        rays.append(ray)
 
     sensors = []
     for dy in (SENSOR_SPACING_M, 0.0, -SENSOR_SPACING_M):
@@ -393,6 +398,11 @@ def build_room_fixture(scene_path, seed: int = SEED, n_rays: int = N_ROOM_RAYS) 
         fixture["units"].update({"omega": "rad s^-1", "delta_inertia": "kg m^2", "power": "W", "wavelength": "m",
                                  "amplitude": "strain", "flux": "W m^-2"})
         fixture["rotors"] = rotor_block
+    if current is not None:
+        fixture["meta"]["notes"].append(
+            "current_column: integral of rho v dr / r beyond observer.exclusion (gravcam/currents.py), at time "
+            "zero, rounded like the tidal values.")
+        fixture["units"]["current_column"] = "kg m^-2 s^-1"
     return fixture
 
 

@@ -23,12 +23,20 @@ def test_file_is_byte_identical_to_a_fresh_export(case):
         f"fixtures/{name}.json is stale: run python -m gravcam.export_fixtures")
 
 
-def test_background_is_the_floor_and_walls(case):
+def test_background_is_what_can_be_subtracted(case):
+    """Background objects are roots without children (so subtracting them is
+    exact), every floor and wall is one, and something is left once they are
+    gone."""
     _, scene, text = case
     fixture = json.loads(text)
-    assert set(fixture["background"]) == {o.id for o in scene.objects if o.background}
-    for object_id in fixture["background"]:
-        assert "floor" in object_id or "wall" in object_id or object_id == "table"
+    background = set(fixture["background"])
+    assert background == {o.id for o in scene.objects if o.background}
+    for object_id in background:
+        assert scene[object_id].parent is None and not scene[object_id].children
+    for o in scene.objects:
+        if "floor" in o.id or "wall" in o.id:
+            assert o.id in background
+    assert any(o.id not in background for o in scene.objects)
 
 
 def test_rays_match_the_package_to_the_written_precision(case):

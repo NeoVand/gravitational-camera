@@ -7,7 +7,9 @@ export interface DemoEntry {
 		| 'blank-mirror'
 		| 'closed-furnace'
 		| 'honey-and-water'
-		| 'which-way';
+		| 'which-way'
+		| 'sealed-flywheel'
+		| 'beam-in-the-dark';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -73,16 +75,19 @@ export const demos: DemoEntry[] = [
 			'Three sealed drums, one still and two turning. The polarization of their gravitational waves tells which is which, and which way. Shown with light slowed down, and labelled so.'
 	},
 	{
+		slug: 'sealed-flywheel',
 		title: 'The sealed flywheel',
 		affordance: 'Spin and flow',
 		regime: 'near field',
-		summary: 'A smooth rotor looks the same spinning or still. Its gravitational field does not.'
+		summary:
+			'A smooth flywheel looks the same spinning or still, and pulls the same. The second half of each pixel, which sees moving mass, shows it turn.'
 	},
 	{
+		slug: 'beam-in-the-dark',
 		title: 'A beam in the dark',
 		affordance: 'Things that emit no light',
 		regime: 'near field',
 		summary:
-			'A laser beam crossing a vacuum cannot be seen from the side. Its energy still gravitates.'
+			'An infrared laser beam cannot be seen from the side. Its energy still gravitates, and the camera sees a line.'
 	}
 ];

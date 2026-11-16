@@ -33,3 +33,4 @@ export {
 	wavelength
 } from './waves';
 export type { PackedWaves, Rotor, Seen, WaveCamera } from './waves';
+export { currentColumn } from './currents';

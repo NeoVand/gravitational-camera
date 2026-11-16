@@ -1,0 +1,166 @@
+{
+  "name": "sealed-flywheel",
+  "title": "The sealed flywheel",
+  "description": "Two identical sealed housings, each holding a smooth steel flywheel. One turns at 3000 rpm; the other is still.",
+  "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
+  "environment": "room",
+  "observer": {
+    "position": [0, 1.5, 0],
+    "exclusion": 0.25
+  },
+  "materials": {
+    "concrete": {
+      "density": 2400,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.5, 0.38, 0.27],
+        "texture": "wood"
+      }
+    },
+    "plaster": {
+      "density": 1200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.6, 0.56],
+        "texture": "plaster"
+      }
+    },
+    "steel": {
+      "density": 7850,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.64, 0.67],
+        "texture": "metal"
+      }
+    },
+    "air": {
+      "density": 1.2,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.1, 0.1, 0.1]
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, -0.15, -4],
+        "size": [12, 0.3, 14]
+      },
+      "material": "concrete"
+    },
+    {
+      "id": "back-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, 3, -8.15],
+        "size": [12.6, 6, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "left-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [-6.15, 3, -2.5],
+        "size": [0.3, 6, 11.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "right-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [6.15, 3, -2.5],
+        "size": [0.3, 6, 11.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "housing-left",
+      "cutaway": true,
+      "shape": {
+        "type": "box",
+        "center": [-1.1, 0.5, -3.6],
+        "size": [1.0, 1.0, 1.0]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "housing-left-inside",
+      "parent": "housing-left",
+      "cutaway": true,
+      "shape": {
+        "type": "box",
+        "center": [-1.1, 0.5, -3.6],
+        "size": [0.94, 0.94, 0.94]
+      },
+      "material": "air"
+    },
+    {
+      "id": "flywheel-left",
+      "parent": "housing-left-inside",
+      "shape": {
+        "type": "sphere",
+        "center": [-1.1, 0.5, -3.6],
+        "radius": 0.35
+      },
+      "material": "steel",
+      "spin": {
+        "center": [-1.1, 0.5, -3.6],
+        "axis": [0, 0, 1],
+        "rate": 0.0
+      }
+    },
+    {
+      "id": "housing-right",
+      "cutaway": true,
+      "shape": {
+        "type": "box",
+        "center": [1.1, 0.5, -3.6],
+        "size": [1.0, 1.0, 1.0]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "housing-right-inside",
+      "parent": "housing-right",
+      "cutaway": true,
+      "shape": {
+        "type": "box",
+        "center": [1.1, 0.5, -3.6],
+        "size": [0.94, 0.94, 0.94]
+      },
+      "material": "air"
+    },
+    {
+      "id": "flywheel-right",
+      "parent": "housing-right-inside",
+      "shape": {
+        "type": "sphere",
+        "center": [1.1, 0.5, -3.6],
+        "radius": 0.35
+      },
+      "material": "steel",
+      "spin": {
+        "center": [1.1, 0.5, -3.6],
+        "axis": [0, 0, 1],
+        "rate": 50.0
+      }
+    }
+  ],
+  "assumptions": [
+    "Friction values are placeholders, as in the other scenes.",
+    "The flywheels are solid steel balls on frictionless bearings; the bearings and their supports are left out."
+  ]
+}

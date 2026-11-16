@@ -1,0 +1,152 @@
+{
+  "name": "beam-in-the-dark",
+  "title": "A beam in the dark",
+  "description": "A 100 kW infrared laser fires across a room into a beam dump. From the side the beam cannot be seen.",
+  "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
+  "environment": "room",
+  "observer": {
+    "position": [0, 1.5, 0],
+    "exclusion": 0.25
+  },
+  "materials": {
+    "concrete": {
+      "density": 2400,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.5, 0.38, 0.27],
+        "texture": "wood"
+      }
+    },
+    "plaster": {
+      "density": 1200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.6, 0.56],
+        "texture": "plaster"
+      }
+    },
+    "aluminium": {
+      "density": 2700,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.7, 0.72, 0.75],
+        "texture": "metal"
+      }
+    },
+    "graphite": {
+      "density": 2200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.12, 0.12, 0.13]
+      }
+    },
+    "beam": {
+      "density": 1.855700546098492e-17,
+      "temperature": 293,
+      "friction": 0.0,
+      "light": {
+        "color": [0.0, 0.0, 0.0],
+        "hidden": true
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, -0.15, -4],
+        "size": [12, 0.3, 14]
+      },
+      "material": "concrete"
+    },
+    {
+      "id": "back-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, 3, -8.15],
+        "size": [12.6, 6, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "left-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [-6.15, 3, -2.5],
+        "size": [0.3, 6, 11.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "right-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [6.15, 3, -2.5],
+        "size": [0.3, 6, 11.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "laser-stand",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [-2.0, 0.5375, -5.5],
+        "size": [0.3, 1.075, 0.3]
+      },
+      "material": "aluminium"
+    },
+    {
+      "id": "laser",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [-2.0, 1.2, -5.5],
+        "size": [0.6, 0.25, 0.25]
+      },
+      "material": "aluminium"
+    },
+    {
+      "id": "dump-stand",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [2.0, 0.5, -5.5],
+        "size": [0.3, 1.0, 0.3]
+      },
+      "material": "aluminium"
+    },
+    {
+      "id": "dump",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [2.0, 1.2, -5.5],
+        "size": [0.4, 0.4, 0.4]
+      },
+      "material": "graphite"
+    },
+    {
+      "id": "beam",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 1.2, -5.5],
+        "size": [3.4, 0.02, 0.02]
+      },
+      "material": "beam"
+    }
+  ],
+  "assumptions": [
+    "Friction values are placeholders, as in the other scenes.",
+    "The beam is a 2 cm square column of 100 kW light. Its density is its active gravitational mass, 2u/c^2 = 1.86e-17 kg/m^3 with u = P/(A c): to a static observer beside it, a beam of light pulls twice as hard as dust of the same energy (Tolman, Ehrenfest and Podolsky 1931)."
+  ]
+}

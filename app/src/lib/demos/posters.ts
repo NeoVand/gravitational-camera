@@ -8,5 +8,7 @@ export const posters: Record<string, string> = {
 	'blank-mirror': asset('posters/blank-mirror.jpg'),
 	'closed-furnace': asset('posters/closed-furnace.jpg'),
 	'honey-and-water': asset('posters/honey-and-water.jpg'),
-	'which-way': asset('posters/which-way.jpg')
+	'which-way': asset('posters/which-way.jpg'),
+	'sealed-flywheel': asset('posters/sealed-flywheel.jpg'),
+	'beam-in-the-dark': asset('posters/beam-in-the-dark.jpg')
 };

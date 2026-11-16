@@ -11,7 +11,8 @@ SCENE_PATH = REFERENCE_DIR.parent / "scenes" / "sun-at-midnight.scene.json"
 FIXTURE_PATH = REFERENCE_DIR / "fixtures" / "sun-at-midnight.json"
 SCENES_DIR = REFERENCE_DIR.parent / "scenes"
 FIXTURES_DIR = REFERENCE_DIR / "fixtures"
-ROOM_SCENES = ("locked-safe", "full-or-empty", "blank-mirror", "closed-furnace", "honey-and-water", "which-way")  # v1: boxes in a room
+ROOM_SCENES = ("locked-safe", "full-or-empty", "blank-mirror", "closed-furnace", "honey-and-water", "which-way",
+               "sealed-flywheel", "beam-in-the-dark")  # boxes in a room
 
 
 @pytest.fixture(scope="session")

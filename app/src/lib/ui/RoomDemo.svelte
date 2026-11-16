@@ -13,6 +13,7 @@
 		Image01Icon,
 		Layers01Icon,
 		Orbit01Icon,
+		Rotate01Icon,
 		Radar01Icon,
 		Sun03Icon,
 		TemperatureIcon
@@ -37,6 +38,8 @@
 	import Toggle from './controls/Toggle.svelte';
 	import { length, superscript, texLength, texSci } from './format';
 	import Tex from './Tex.svelte';
+	import FlowField from './FlowField.svelte';
+	import { C } from '../engine/physics/constants';
 	import { cutoff } from '../engine/resolution';
 
 	interface Props {
@@ -51,6 +54,9 @@
 		look?: { yaw: number; pitch: number; fov?: number };
 		/** Start with the empty room subtracted from the gravity view. */
 		subtract?: boolean;
+		/** Starting sensitivity (signal-to-noise as a power of ten) and exposure (decades). */
+		startSensitivity?: number;
+		startBrightness?: number;
 		intro: Snippet;
 		/** Lines about this scene for the end of the physics tab. */
 		physicsExtra?: Snippet;
@@ -64,6 +70,8 @@
 		// turned a little to the left, so the objects sit clear of the notes
 		look = { yaw: 13, pitch: -13 },
 		subtract = false,
+		startSensitivity = 20,
+		startBrightness = 0,
 		intro,
 		physicsExtra
 	}: Props = $props();
@@ -79,8 +87,10 @@
 	let showLight = $state(true);
 	let showGravity = $state(true);
 	/** Signal-to-noise ratio as a power of ten. */
-	let sensitivity = $state(20);
-	let brightness = $state(0);
+	// svelte-ignore state_referenced_locally
+	let sensitivity = $state(startSensitivity);
+	// svelte-ignore state_referenced_locally
+	let brightness = $state(startBrightness);
 	let display: 'image' | 'pixels' = $state('image');
 	// svelte-ignore state_referenced_locally
 	let sliceDepth = $state(subjectDistance);
@@ -92,6 +102,25 @@
 	const observer = $derived(scene.observer.position);
 	const exclusion = $derived(scene.observer.exclusion ?? 0.25);
 	const hasRoom = $derived(objects.some((o) => o.background));
+	const spinning = $derived(objects.filter((o) => o.spin && o.spin.rate !== 0));
+	let flow = $state(true);
+	// the flow signal is about v/c of the mass signal, so its blur is that of a
+	// camera less sensitive by that factor
+	const rimSpeed = $derived(
+		Math.max(
+			0,
+			...spinning.map(
+				(o) =>
+					2 *
+					Math.PI *
+					Math.abs(o.spin!.rate) *
+					(o.radius + Math.hypot(...o.center.map((v, k) => v - o.spin!.center[k])))
+			)
+		)
+	);
+	const flowDecades = $derived(Math.max(1, sensitivity + Math.log10(rimSpeed / C)));
+	const flowBlur = $derived(nearFieldBlur(flowDecades));
+	const split = $derived(showLight && showGravity ? divider : showLight ? 1 : 0);
 
 	// the near-field resolution law (paper, eq. resolution): full width at half
 	// maximum of the best reconstruction of a point, for a planar array
@@ -134,9 +163,17 @@
 			rightLabel={gravity === 'thermal'
 				? 'Gravity · thermal'
 				: display === 'image'
-					? 'Gravity · near field'
+					? spinning.length && flow
+						? 'Gravity · near field and flow'
+						: 'Gravity · near field'
 					: 'Gravity · tidal field'}
-		/>
+		>
+			{#snippet overlay()}
+				{#if gravity === 'near' && display === 'image' && flow && spinning.length}
+					<FlowField {objects} {observer} {view} {exclusion} blur={flowBlur / 2.355} {split} />
+				{/if}
+			{/snippet}
+		</SplitView>
 	{/snippet}
 
 	{#snippet controls()}
@@ -204,6 +241,14 @@
 					hint="A faint copy of the shapes in the light picture, to match masses to objects"
 					bind:checked={outline}
 				/>
+				{#if spinning.length && gravity === 'near'}
+					<Toggle
+						icon={Rotate01Icon}
+						label="Flow"
+						hint="The mass currents that the gravitomagnetic half of each pixel records, shown magnified"
+						bind:checked={flow}
+					/>
+				{/if}
 				{#if hasRoom}
 					<Toggle
 						icon={Home03Icon}

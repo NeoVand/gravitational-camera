@@ -240,6 +240,7 @@ export function packPrims(
 	const { nRef, sRef, glareAngle, subtractRoom = false, cutaway = false } = scales;
 	/** Whether the light view draws an object: a root, or, cut away, the first not cut away. */
 	const surface = (o: AnalyzedObject): boolean => {
+		if (o.light?.hidden) return false;
 		if (!cutaway) return o.parent < 0;
 		if (o.cutaway) return false;
 		for (let a = o.parent; a >= 0; a = objects[a].parent) if (!objects[a].cutaway) return false;

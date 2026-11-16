@@ -16,7 +16,9 @@ const slugs = [
 	'blank-mirror',
 	'closed-furnace',
 	'honey-and-water',
-	'which-way'
+	'which-way',
+	'sealed-flywheel',
+	'beam-in-the-dark'
 ];
 
 const browser = await chromium.launch({
@@ -25,7 +27,9 @@ const browser = await chromium.launch({
 });
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
 for (const slug of slugs) {
-	await page.goto(new URL(`demo/${slug}/?present=readback`, base).href, { waitUntil: 'networkidle' });
+	await page.goto(new URL(`demo/${slug}/?present=readback`, base).href, {
+		waitUntil: 'networkidle'
+	});
 	const frames = () =>
 		page.evaluate(() => Number(document.querySelector('canvas')?.dataset.frames ?? 0));
 	let last = -1;

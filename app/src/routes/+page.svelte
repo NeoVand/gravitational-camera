@@ -92,7 +92,12 @@
 			text: 'Even in a sealed box.',
 			href: resolve('/demo/which-way')
 		},
-		{ icon: FlashlightIcon, name: 'See what emits no light', text: 'All energy gravitates.' }
+		{
+			icon: FlashlightIcon,
+			name: 'See what emits no light',
+			text: 'All energy gravitates.',
+			href: resolve('/demo/beam-in-the-dark')
+		}
 	];
 </script>
 

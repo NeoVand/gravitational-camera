@@ -301,3 +301,28 @@ test('which way it turns: the polarization tells the sense of turning', async ({
 	await expect.poll(() => canvas.getAttribute('data-waves'), { timeout: 30_000 }).toBe('0');
 	await expect(page.locator('.tag.right')).toHaveText('Gravity · waves');
 });
+
+test('sealed flywheel: the flow of the turning wheel shows as an anticlockwise vortex', async ({
+	page
+}) => {
+	await page.goto('/demo/sealed-flywheel/?present=readback');
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · near field and flow');
+	await expect(page.getByText('Smallest detail at 3.8 m')).toBeVisible();
+	const arrows = page.locator('.flow g');
+	await expect.poll(() => arrows.count(), { timeout: 30_000 }).toBeGreaterThan(10);
+	// it turns toward the camera's left at the top: anticlockwise as seen
+	expect(await page.locator('.flow g.clockwise').count()).toBe(0);
+	await page.getByLabel('Flow').uncheck();
+	await expect(arrows).toHaveCount(0);
+});
+
+test('a beam in the dark: the beam shows in gravity as a line', async ({ page }) => {
+	const demo = await openDemo(page, '/demo/beam-in-the-dark/', { yaw: 0, pitch: -4 });
+	await expect(page.getByText('Smallest detail at 5.5 m')).toBeVisible();
+	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
+	const beam = sceneObject('beam-in-the-dark', 'beam').center;
+	const onBeam = await demo.at([-0.6, beam[1], beam[2]]);
+	const above = await demo.at([-0.6, beam[1] + 0.7, beam[2]]);
+	const sum = (c: number[]) => c[0] + c[1] + c[2];
+	expect(sum(onBeam), JSON.stringify({ onBeam, above })).toBeGreaterThan(sum(above) + 60);
+});

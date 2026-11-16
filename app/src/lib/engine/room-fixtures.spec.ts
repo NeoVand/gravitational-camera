@@ -8,16 +8,23 @@
  * stated tolerance.
  */
 import { describe, expect, it } from 'vitest';
+import beamFixture from '../../../../reference/fixtures/beam-in-the-dark.json';
 import mirrorFixture from '../../../../reference/fixtures/blank-mirror.json';
+import flywheelFixture from '../../../../reference/fixtures/sealed-flywheel.json';
+import wavesFixture from '../../../../reference/fixtures/which-way.json';
 import furnaceFixture from '../../../../reference/fixtures/closed-furnace.json';
 import tanksFixture from '../../../../reference/fixtures/full-or-empty.json';
 import honeyFixture from '../../../../reference/fixtures/honey-and-water.json';
 import safeFixture from '../../../../reference/fixtures/locked-safe.json';
+import beamJson from '../../../../scenes/beam-in-the-dark.scene.json';
 import mirrorJson from '../../../../scenes/blank-mirror.scene.json';
+import flywheelJson from '../../../../scenes/sealed-flywheel.scene.json';
+import wavesJson from '../../../../scenes/which-way.scene.json';
 import furnaceJson from '../../../../scenes/closed-furnace.scene.json';
 import tanksJson from '../../../../scenes/full-or-empty.scene.json';
 import honeyJson from '../../../../scenes/honey-and-water.scene.json';
 import safeJson from '../../../../scenes/locked-safe.scene.json';
+import { currentColumn } from './currents';
 import { analyzeScene, columnsAlong } from './scene';
 import { massPoints, tidalTensor } from './tidal';
 import type { Scene, Vec3 } from './types';
@@ -33,6 +40,7 @@ interface RoomFixture {
 		number_radiance: number;
 		mass_column: number;
 		tidal_column: number;
+		current_column?: number[];
 	}[];
 }
 
@@ -41,7 +49,10 @@ const cases: [string, unknown, unknown][] = [
 	['full-or-empty', tanksJson, tanksFixture],
 	['blank-mirror', mirrorJson, mirrorFixture],
 	['closed-furnace', furnaceJson, furnaceFixture],
-	['honey-and-water', honeyJson, honeyFixture]
+	['honey-and-water', honeyJson, honeyFixture],
+	['which-way', wavesJson, wavesFixture],
+	['sealed-flywheel', flywheelJson, flywheelFixture],
+	['beam-in-the-dark', beamJson, beamFixture]
 ];
 
 /** Close to `want` within a relative tolerance, or an absolute one set by `scale`. */
@@ -85,6 +96,24 @@ describe.each(cases)('%s', (_name, sceneJson, fixtureJson) => {
 			near(got.massColumn, ray.mass_column, 1e-9, scale.m, `${ray.label} mass column`);
 			// the fixture keeps 10 significant digits of the tidal column
 			near(got.tidalColumn, ray.tidal_column, 2e-9, scale.s, `${ray.label} tidal column`);
+		}
+	});
+
+	it('agrees on the current column where things turn', () => {
+		const rays = fixture.rays.filter((r) => r.current_column);
+		if (!rays.length) {
+			// nothing turns: no current anywhere
+			for (const ray of fixture.rays.slice(0, 20)) {
+				expect(currentColumn(objects, origin, ray.direction as Vec3, exclusion)).toEqual([0, 0, 0]);
+			}
+			return;
+		}
+		const scale = Math.max(...rays.map((r) => Math.hypot(...r.current_column!)));
+		for (const ray of rays) {
+			const got = currentColumn(objects, origin, ray.direction as Vec3, exclusion);
+			got.forEach((v, k) =>
+				near(v, ray.current_column![k], 2e-9, scale * 1e3, `${ray.label} J[${k}]`)
+			);
 		}
 	});
 
