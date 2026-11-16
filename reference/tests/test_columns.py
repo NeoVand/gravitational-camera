@@ -18,10 +18,11 @@ Tolerances for (1):
   ray through the crust).
 * boundary-refined sum: relative 1e-10. Each boundary is located to float64
   round-off: about 2e-9 m near the Earth and about 3e-5 m at the Sun (the
-  spacing of float64 at 1.5e11 m), amplified by 1 / cos(incidence), which is
-  at most 7 for the rays used here (the 0.99-radii limb). The worst ratio is
-  a few times 1e-3 m against the 3.9e7 m chord at that limb, 1e-10; elsewhere
-  the expected deviation is 1e-12 or less.
+  spacing of float64 at 1.5e11 m), amplified by 1 / cos(incidence). The worst
+  rays used here are the 0.99-radii limb of the Sun's core (amplification 7:
+  a few times 1e-3 m against a 3.9e7 m chord, 1e-10) and the shallow ray
+  through the crust (amplification 100: 1e-6 m against 1.3e5 m, 1e-11);
+  elsewhere the bound is 1e-12 or less. Observed: at most 3e-12.
 """
 import math
 
