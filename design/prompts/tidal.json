@@ -1,0 +1,26 @@
+{
+ "size": "1536x1024",
+ "figure": "A wide scientific figure in three panels side by side, lettered (a), (b), (c) at their top left, explaining what a gravitational detector feels: the tidal field, shown by its effect on a ring of free test masses.\n(a) Beside a mass: a large heavy sphere (a planet, labelled 'M') sits to the left. To its right floats a ring of twelve small free test masses, distorted into an ellipse that is stretched along the line pointing at the heavy sphere and squeezed across that line; the stretch is twice as large as the squeeze. A thin dashed circle shows the ring undisturbed. Small arrows on the beads point outward along the line to the mass and inward across it.\n(b) In a passing gravitational wave of 'plus' polarization, travelling straight out of the page toward the viewer: the same ring is stretched left-right and squeezed up-down by equal amounts, with a faint ghost of the opposite phase half a cycle later (squeezed left-right, stretched up-down). Dashed circle for the undisturbed ring. Label 'h+'.\n(c) The 'cross' polarization: exactly the pattern of (b) turned by 45 degrees. Label 'hx'.\nStretching is shown in orange, squeezing in blue. The only text is the panel letters and the labels 'M', 'h+', 'hx'.",
+ "variants": [
+  {
+   "name": "editorial vector",
+   "style": "Clean editorial science illustration, as in the best figures of Nature or Quanta Magazine: flat vector shapes on a pure white background, thin single dark hairlines, exactly two accent colours, a warm burnt orange (#b0560a) and a deep blue (#2a67ad), plus pale greys; no gradients, no drop shadows, no boxes or dividing lines between panels, generous whitespace, precise geometry, very little text."
+  },
+  {
+   "name": "monograph engraving",
+   "style": "Elegant line engraving in the manner of a classic physics monograph such as Misner, Thorne and Wheeler's Gravitation: fine black ink lines with delicate hatching for shading on white paper, a single warm orange accent and a single deep blue accent used sparingly for the meaning, crisp and exact, no clutter."
+  },
+  {
+   "name": "soft studio 3D",
+   "style": "Restrained, physically rendered 3D scientific visualization: polished small spheres and real materials with soft studio lighting and gentle contact shadows on a seamless white background, accents in burnt orange and deep blue only, calm, uncluttered, high-end museum-exhibit quality; labels minimal."
+  },
+  {
+   "name": "Swiss grid",
+   "style": "Minimal Swiss-style information graphic: strict alignment on a grid, geometric primitives, thin lines, flat burnt orange and deep blue on white, panels separated only by whitespace, a few small sans-serif labels, very calm and precise."
+  },
+  {
+   "name": "ink and wash",
+   "style": "A careful pen-and-watercolour drawing from a physicist's notebook, but precise: thin ink lines, light washes of burnt orange and deep blue on white paper, real objects drawn with character, rich yet uncluttered, small hand-lettered labels."
+  }
+ ]
+}

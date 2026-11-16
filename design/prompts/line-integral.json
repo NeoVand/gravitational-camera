@@ -1,0 +1,26 @@
+{
+ "size": "1536x1024",
+ "figure": "A wide scientific figure in two rows that share one scene, explaining two ways of forming a picture. A small camera at the left of each row looks to the right along a single straight line of sight that passes in turn through three real objects: a closed wooden door, then a closed steel furnace with a glowing hot iron block inside it, then a person standing behind it.\nTop row, labelled 'light': the line of sight stops at the front surface of the door, marked with one small dot, because the door is opaque; the furnace and the person behind it are drawn pale and ghosted, unseen.\nBottom row, labelled 'gravity': the same line passes straight through everything, because nothing absorbs gravitational radiation. The stretch of the line inside each object is drawn as a thicker orange segment whose brightness shows how strongly that object glows (faint in the cool door, strong in the hot iron, moderate in the warm person). At the right end, a small stacked bar shows the three contributions added together: the pixel reports their sum along the whole line.\nLight is shown in deep blue, gravity in burnt orange. The only text is 'light', 'gravity' and a small sum sign.",
+ "variants": [
+  {
+   "name": "editorial vector",
+   "style": "Clean editorial science illustration, as in the best figures of Nature or Quanta Magazine: flat vector shapes on a pure white background, thin single dark hairlines, exactly two accent colours, a warm burnt orange (#b0560a) and a deep blue (#2a67ad), plus pale greys; no gradients, no drop shadows, no boxes or dividing lines between panels, generous whitespace, precise geometry, very little text."
+  },
+  {
+   "name": "monograph engraving",
+   "style": "Elegant line engraving in the manner of a classic physics monograph such as Misner, Thorne and Wheeler's Gravitation: fine black ink lines with delicate hatching for shading on white paper, a single warm orange accent and a single deep blue accent used sparingly for the meaning, crisp and exact, no clutter."
+  },
+  {
+   "name": "soft studio 3D",
+   "style": "Restrained, physically rendered 3D scientific visualization: polished small spheres and real materials with soft studio lighting and gentle contact shadows on a seamless white background, accents in burnt orange and deep blue only, calm, uncluttered, high-end museum-exhibit quality; labels minimal."
+  },
+  {
+   "name": "Swiss grid",
+   "style": "Minimal Swiss-style information graphic: strict alignment on a grid, geometric primitives, thin lines, flat burnt orange and deep blue on white, panels separated only by whitespace, a few small sans-serif labels, very calm and precise."
+  },
+  {
+   "name": "ink and wash",
+   "style": "A careful pen-and-watercolour drawing from a physicist's notebook, but precise: thin ink lines, light washes of burnt orange and deep blue on white paper, real objects drawn with character, rich yet uncluttered, small hand-lettered labels."
+  }
+ ]
+}
