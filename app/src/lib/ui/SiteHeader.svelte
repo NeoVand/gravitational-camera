@@ -103,6 +103,13 @@
 		color: var(--accent);
 	}
 
+	/* the serif sets its capitals higher in the line than the sans of the other items:
+	   lower it so that its capitals are centred on the icons, as theirs are */
+	.brand span {
+		position: relative;
+		top: 0.11em;
+	}
+
 	nav {
 		display: flex;
 		align-items: center;

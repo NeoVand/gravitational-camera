@@ -16,12 +16,12 @@ export default async function () {
 	const [camera, door, furnace, person] = await Promise.all(
 		['camera', 'door', 'furnace', 'person'].map((n) => sprite(`/figures3d/sprites/${n}.png`))
 	);
-	const HD = 132, lineH = HD / 2;
+	const HD = 84, lineH = HD / 2;
 	const lens = camera.lensRow();
 	const size = { camera: lineH / (1 - lens), door: HD, furnace: lineH / BODY_CENTRE, person: (1.75 / 2.1) * HD };
-	const left = { camera: 22, door: 112, furnace: 204, person: 336 };
+	const left = { camera: 8, door: 64, furnace: 120, person: 196 };
 	const width = (s, h) => (h * s.w) / s.h;
-	const RH = HD + 16, W = 504, parts = [], labels = [];
+	const RH = HD + 14, W = 246, SUM = 30, parts = [], labels = [];
 	const across = (s, k, ground, y) => {
 		const h = size[k], sp = s.span(1 - (ground - y) / h);
 		return [left[k] + sp[0] * width(s, h), left[k] + sp[1] * width(s, h)];
@@ -32,15 +32,15 @@ export default async function () {
 	for (const [row, gravity] of [[0, false], [1, true]]) {
 		const ground = row * RH + RH - 6, y = ground - lineH;
 		const [, lensX] = across(camera, 'camera', ground, y);
-		parts.push(`<path d="M14,${ground}L${W - 10},${ground}" stroke="${RULE}" stroke-width="0.4"/>`);
+		parts.push(`<path d="M4,${ground}L${W - 4},${ground}" stroke="${RULE}" stroke-width="0.4"/>`);
 		parts.push(camera.place(left.camera, ground, size.camera));
 		parts.push(door.place(left.door, ground, size.door));
 		parts.push(furnace.place(left.furnace, ground, size.furnace, gravity ? 1 : 0.35));
 		parts.push(person.place(left.person, ground, size.person, gravity ? 1 : 0.35));
-		labels.push(tex(gravity ? '\\textit{gravity}' : '\\textit{light}', [8, row * RH + 8], 10, 'lt', gravity ? ACCENT : ACCENT2));
+		labels.push(tex(gravity ? '\\textit{gravity}' : '\\textit{light}', [4, row * RH + 4], 8.5, 'lt', gravity ? ACCENT : ACCENT2));
 		// the door: the line meets its face at the middle and leaves by its far side
 		const [dl, dr] = across(door, 'door', ground, y);
-		const E = dl + 0.5 * FACE * (dr - dl), E2 = dl + FACE * (dr - dl);
+		const E = dl + 0.5 * FACE * (dr - dl);
 		if (!gravity) {
 			parts.push(seg(lensX, E, y, false, ACCENT2, 1.0));
 			parts.push(dot(E, y, ACCENT2));
@@ -58,26 +58,21 @@ export default async function () {
 		parts.push(seg(fl, fr, y, true));           // through the furnace
 		parts.push(seg(fr, pl, y, false));
 		parts.push(seg(pl, pr, y, true));           // through the person
-		parts.push(seg(pr, pr + 26, y, false));
-		// the pixel's value: each body's glow times its length, added
-		const vals = [['door', 1.0 * (E2 - E)], ['iron', 5.0 * bw], ['person', 1.6 * (pr - pl)]];
-		const total = vals.reduce((s, [, v]) => s + v, 0);
-		const unit = 70 / total, w = 9;
-		let x = 390;
+		parts.push(seg(pr, Math.min(W - 6, pr + 26), y, false));
+		// the pixel's value: one bar, split into each body's glow times its length
+		const vals = [['door', 1.0 * (1 - FACE) * (dr - dl)], ['iron', 5.0 * bw], ['person', 1.6 * (pr - pl)]];   // the door only through its thickness
+		const total = vals.reduce((t, [, v]) => t + v, 0);
+		const x0 = 62, L = W - 8 - x0, top = 2 * RH + 8, h = 9;
+		labels.push(tex('N(\\hat n) =', [x0 - 5, top + h / 2], 8, 'rc'));
+		let x = x0;
 		vals.forEach(([k, v], i) => {
-			parts.push(`<rect x="${x}" y="${(ground - v * unit).toFixed(2)}" width="${w}" height="${(v * unit).toFixed(2)}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
-			labels.push(tex(`\\text{${k}}`, [x + w / 2, ground + 2], 6.5, 'ct', DIM));
+			const w = (v / total) * L;
+			parts.push(`<rect x="${x.toFixed(2)}" y="${top}" width="${w.toFixed(2)}" height="${h}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
+			labels.push(tex(`\\text{${k}}`, [i === 0 ? x : x + w / 2, top + h + 2], 6.5, i === 0 ? 'lt' : 'ct', DIM));
 			x += w;
-			labels.push(tex(i < 2 ? '+' : '=', [x + 6, ground - 10], 9, 'cc'));
-			x += 12;
 		});
-		let base = ground;
-		for (const [k, v] of vals) {
-			parts.push(`<rect x="${x}" y="${(base - v * unit).toFixed(2)}" width="${w + 3}" height="${(v * unit).toFixed(2)}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
-			base -= v * unit;
-		}
-		labels.push(tex('N(\\hat n)', [x + (w + 3) / 2, ground + 2], 7.5, 'ct'));
 	}
 	const lab = await Promise.all(labels);
-	return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}pt" height="${2 * RH + 8}pt" viewBox="0 0 ${W} ${2 * RH + 8}">${parts.join('')}${lab.join('')}</svg>`;
+	const Ht = 2 * RH + 8 + SUM;
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}pt" height="${Ht}pt" viewBox="0 0 ${W} ${Ht}">${parts.join('')}${lab.join('')}</svg>`;
 }
