@@ -32,6 +32,7 @@ import hand
 from bruteforce import BruteScene
 from conftest import SCENE_PATH
 from gravcam import camera, columns, emission
+from tolerances import crossing_slack, radial_roundoff
 
 EARTH_CHAIN = ["earth", "upper-mantle", "lower-mantle", "outer-core", "inner-core"]
 REFINED_RTOL = 1e-10
@@ -251,21 +252,17 @@ def test_own_region_paths_equal_signed_sums_of_chords(scene, raw_scene):
     paths = columns.own_region_paths(scene, directions)
     chord = columns.chords(scene, directions)
 
-    def crossing_slack(object_id, delta):
-        # Round-off delta in the radial position moves a sphere's crossings by
-        # delta * r / (half chord), at most sqrt(2 r delta) at tangency (see
-        # test_ray_sphere.py). The two sides of the identity use the crossings
-        # differently, so they may differ by that much per crossed sphere.
-        radius = scene[object_id].shape.radius
-        half = 0.5 * chord[object_id]
-        worst = math.sqrt(2.0 * radius * delta)
-        slack = np.where(half < 4.0 * worst, worst, 2.0 * radius * delta / np.maximum(half, worst))
-        return np.where(chord[object_id] > 0.0, 2.0 * slack, 0.0)
+    def slack(object_id, delta):
+        # The two sides of the identity use a sphere's two crossings
+        # differently, so they may differ by the round-off slack of both
+        # (tolerances.py); a sphere the ray misses contributes nothing.
+        per_crossing = crossing_slack(scene[object_id].shape.radius, 0.5 * chord[object_id], delta)
+        return np.where(chord[object_id] > 0.0, 2.0 * per_crossing, 0.0)
 
     for k, obj in enumerate(scene.objects):
         signed = chord[obj.id] - sum(chord[child] for child in obj.children)
-        delta = 16.0 * np.spacing(np.linalg.norm(scene.centers[k] - observer) + scene.radii[k])
-        tolerance = 4.0 * delta + sum(crossing_slack(i, delta) for i in (obj.id, *obj.children))
+        delta = radial_roundoff(np.linalg.norm(scene.centers[k] - observer) + scene.radii[k])
+        tolerance = 4.0 * delta + sum(slack(i, delta) for i in (obj.id, *obj.children))
         crossed = chord[obj.id] > 0.0
         assert np.all(np.abs(paths[:, k] - signed) <= tolerance)
         assert not paths[~crossed, k].any(), "no path inside an object the ray misses"
@@ -274,8 +271,8 @@ def test_own_region_paths_equal_signed_sums_of_chords(scene, raw_scene):
         assert np.median(tolerance[crossed] / chord[obj.id][crossed]) < 1e-10
 
     j_N = emission.number_emissivities(scene)
-    assert np.array_equal(columns.number_radiance(scene, directions), paths @ j_N)
-    assert np.array_equal(columns.mass_column(scene, directions), paths @ scene.densities)
+    assert columns.number_radiance(scene, directions) == pytest.approx(paths @ j_N, rel=1e-14, abs=0.0)
+    assert columns.mass_column(scene, directions) == pytest.approx(paths @ scene.densities, rel=1e-14, abs=0.0)
     assert np.all(paths >= 0.0)
 
 
@@ -291,6 +288,10 @@ def test_shapes_chunking_and_normalisation(scene):
     assert single.shape == () and float(single) == image[2, 3]
     unit = directions / np.linalg.norm(directions, axis=-1, keepdims=True)
     assert columns.number_radiance(scene, unit) == pytest.approx(image, rel=1e-12)
+    # a ray gives bit-identical results alone, in a small batch or in a large one
+    for index in np.ndindex(5, 4):
+        assert float(columns.number_radiance(scene, directions[index])) == image[index]
+        assert float(columns.mass_column(scene, directions[index])) == float(columns.mass_column(scene, directions)[index])
     assert columns.own_region_paths(scene, directions).shape == (5, 4, len(scene))
     assert columns.chords(scene, directions)["earth"].shape == (5, 4)
     # more rays than one internal block

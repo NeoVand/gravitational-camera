@@ -122,7 +122,8 @@ class Scene:
         best_depth = np.full(flat.shape[0], -1, dtype=np.int64)
         for k in range(len(self.objects)):
             offset = flat - self.centers[k]
-            inside = np.einsum("ij,ij->i", offset, offset) <= self.radii[k] ** 2
+            distance2 = offset[:, 0] ** 2 + offset[:, 1] ** 2 + offset[:, 2] ** 2
+            inside = distance2 <= self.radii[k] ** 2
             deeper = inside & (self.depths[k] > best_depth)
             best[deeper] = k
             best_depth[deeper] = self.depths[k]

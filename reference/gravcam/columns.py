@@ -26,6 +26,10 @@ What remains is the float64 resolution of a position, about 3e-5 m at 1 AU.
 It moves a crossing by that much times r / (half chord), so chords are exact
 to roughly 1e-12 relative except for rays that graze a surface, where no
 float64 method can do better (the direction vector itself is rounded).
+
+Sums over components, segments and objects are written out in a fixed order
+(no BLAS, no einsum), so a ray gives bit-identical results whether it is
+computed alone or inside a large image.
 """
 from __future__ import annotations
 
@@ -38,12 +42,17 @@ from .scene import Scene
 _CHUNK = 1 << 15
 
 
+def _dot(a, b):
+    """Dot product over the last axis, summed in a fixed order."""
+    return a[..., 0] * b[..., 0] + a[..., 1] * b[..., 1] + a[..., 2] * b[..., 2]
+
+
 def _unit_rays(directions):
     d = np.asarray(directions, dtype=np.float64)
     if d.ndim == 0 or d.shape[-1] != 3:
         raise ValueError("directions must have shape (..., 3)")
     flat = d.reshape(-1, 3)
-    norm = np.sqrt(np.einsum("ij,ij->i", flat, flat))
+    norm = np.sqrt(_dot(flat, flat))
     if not np.all(np.isfinite(norm)) or np.any(norm == 0.0):
         raise ValueError("directions must be finite and non-zero")
     return flat / norm[:, None], d.shape[:-1]
@@ -69,13 +78,13 @@ def _line_sphere(o, d, centers, radii):
     ``hit`` is False.
     """
     oc = centers - o                                           # (K, 3) origin -> centre
-    tca = d @ oc.T                                             # (R, K) closest approach
+    tca = _dot(d[:, None, :], oc[None, :, :])                  # (R, K) closest approach
     perp = oc[None, :, :] - tca[:, :, None] * d[:, None, :]    # (R, K, 3), orthogonal to d
-    p = np.sqrt(np.einsum("rkc,rkc->rk", perp, perp))          # impact parameter
+    p = np.sqrt(_dot(perp, perp))                              # impact parameter
     disc = (radii - p) * (radii + p)                           # r^2 - p^2
     hit = disc > 0.0
     half = np.sqrt(np.where(hit, disc, 0.0))
-    dist = np.sqrt(np.einsum("kc,kc->k", oc, oc))
+    dist = np.sqrt(_dot(oc, oc))
     product = (dist - radii) * (dist + radii)                  # near * far = |oc|^2 - r^2
     q = tca + np.copysign(half, tca)                           # the root of larger magnitude
     with np.errstate(divide="ignore", invalid="ignore"):
@@ -146,9 +155,11 @@ def _own_region_paths_block(scene: Scene, o, d):
     midpoint = 0.5 * (lower + upper)
     points = o + midpoint[:, :, None] * d[:, None, :]          # (R, 2K, 3)
     owner = scene.locate(points)                               # innermost object, -1 = vacuum
-    paths = np.empty((n_rays, n_objects), dtype=np.float64)
-    for k in range(n_objects):
-        paths[:, k] = np.where(owner == k, length, 0.0).sum(axis=1)
+    paths = np.zeros((n_rays, n_objects), dtype=np.float64)
+    rows = np.arange(n_rays)
+    for s in range(length.shape[1]):                           # segments in order of distance
+        inside = owner[:, s] >= 0
+        paths[rows[inside], owner[inside, s]] += length[inside, s]
     return paths
 
 
@@ -174,7 +185,11 @@ def line_integral(scene: Scene, values, directions, origin=None) -> np.ndarray:
     values = np.asarray(values, dtype=np.float64)
     if values.shape != (len(scene),):
         raise ValueError("values must hold one number per scene object")
-    return own_region_paths(scene, directions, origin) @ values
+    paths = own_region_paths(scene, directions, origin)
+    total = np.zeros(paths.shape[:-1], dtype=np.float64)
+    for k in range(len(scene)):                                # objects in scene order
+        total = total + paths[..., k] * values[k]
+    return total
 
 
 def number_radiance(scene: Scene, directions, origin=None) -> np.ndarray:

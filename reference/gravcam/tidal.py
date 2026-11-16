@@ -33,7 +33,7 @@ def _offset(point, center):
     x = np.asarray(point, dtype=np.float64) - np.asarray(center, dtype=np.float64)
     if x.shape[-1] != 3:
         raise ValueError("points must have shape (..., 3)")
-    return x, np.sqrt(np.einsum("...c,...c->...", x, x))
+    return x, np.sqrt(x[..., 0] ** 2 + x[..., 1] ** 2 + x[..., 2] ** 2)
 
 
 def _outer(n):

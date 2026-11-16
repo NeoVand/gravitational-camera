@@ -55,7 +55,8 @@ def ray_directions(yaw: float, pitch: float, fov: float, width: int, height: int
     forward, right, up = camera_basis(yaw, pitch)
     x, y, _ = _image_plane(fov, width, height)
     v = forward[None, None, :] + x[None, :, None] * right[None, None, :] + y[:, None, None] * up[None, None, :]
-    return v / np.sqrt(np.einsum("...c,...c->...", v, v))[..., None]
+    norm = np.sqrt(v[..., 0] ** 2 + v[..., 1] ** 2 + v[..., 2] ** 2)
+    return v / norm[..., None]
 
 
 def pixel_solid_angles(fov: float, width: int, height: int) -> np.ndarray:

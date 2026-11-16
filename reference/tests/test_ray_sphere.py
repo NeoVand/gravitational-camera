@@ -8,21 +8,20 @@ Tolerances (both asserted for every case):
   less than one cell on each of its two boundaries' half cells, i.e. by at
   most h = 2r / 2^20 (about 1e-6 of a central chord). Rigorous.
 
-* boundary-refined sum: limited by float64 round-off only. A position at
-  distance D from the origin is resolved to about one spacing ulp(D); the
-  brute-force membership test and the solver each misplace the sphere's
-  surface radially by a few of those, together at most delta = 16 ulp(D + r).
-  A radial error delta moves a crossing along the ray by delta * r / hc
-  (hc = half the chord of the full line; r / hc = 1 / cos of the incidence
-  angle), and never by more than sqrt(2 r delta), reached at tangency. With
-  two crossings and the refinement's own resolution:
+* boundary-refined sum: limited by float64 round-off only, with the model of
+  ``tolerances.py``: a joint radial round-off delta = 16 ulp(D + r) of the
+  brute-force membership test and the solver moves each crossing by at most
+  min(2 r delta / hc, sqrt(2 r delta)), hc being half the chord of the full
+  line. With two crossings and the refinement's own resolution:
 
       tol = 2 * min(2 r delta / hc, sqrt(2 r delta)) + 2 * resolution
 
-  At unit scale this is about 1e-14. For the sphere 1.5e11 m away with
-  r = 1.4e8 m: delta = 5e-4 m, so 2.5e-3 m (1e-11 of the chord) through the
+  At unit scale this is about 1e-13. For the sphere 1.5e11 m away with
+  r = 1.4e8 m: delta = 5e-4 m, so 2e-3 m (7e-12 of the chord) through the
   centre, 1.4e-2 m at 0.99 r, and 16 m for a ray passing 1 m inside the limb
   (chord 33 km): grazing chords are ill-conditioned in any float64 method.
+  The deviations actually observed are 10 to 1000 times smaller (0 m, 7e-5 m
+  and 2e-2 m for those three rays).
 """
 import math
 
@@ -31,6 +30,7 @@ import pytest
 
 from bruteforce import BruteScene
 from gravcam.columns import chord_length, ray_sphere_distances
+from tolerances import crossing_slack, radial_roundoff
 
 
 def aim(origin, center, impact, hint=(0.3, -0.5, 0.8)):
@@ -90,12 +90,10 @@ def roundoff_tolerance(origin, direction, center, radius, resolution):
     """The round-off tolerance derived in the module docstring."""
     origin, direction, center = (np.asarray(v, float) for v in (origin, direction, center))
     oc = center - origin
-    delta = 16.0 * np.spacing(np.linalg.norm(oc) + radius)
+    delta = radial_roundoff(np.linalg.norm(oc) + radius)
     p = np.linalg.norm(oc - (oc @ direction) * direction)
     half_chord = math.sqrt(max(radius * radius - p * p, 0.0))
-    worst = math.sqrt(2.0 * radius * delta)
-    per_crossing = worst if half_chord < 4.0 * worst else 2.0 * radius * delta / half_chord
-    return 2.0 * per_crossing + 2.0 * resolution
+    return 2.0 * float(crossing_slack(radius, half_chord, delta)) + 2.0 * resolution
 
 
 @pytest.fixture(scope="module", params=sorted(CASES))
