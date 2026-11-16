@@ -46,6 +46,10 @@ radiance along a ray from the observer is N = ∫ j_N ds
 - `light.finish` is `"matte"` (default), `"mirror"`, `"screen"` (a lit picture)
   or `"print"` (a page of text). It too affects only the ordinary-light view:
   images carry no mass.
+- `light.texture` is an optional surface pattern for the light view: `"wood"`,
+  `"metal"`, `"plaster"`, `"concrete"` or `"fabric"`. Appearance only: a floor
+  may look like oak boards over a concrete slab whose density is that of
+  concrete.
 - An object may set `"background": true` to mark it as part of the empty room
   (floor, walls, fixed furniture). The physics is unchanged; a view may offer
   to subtract these objects, which is exact because both the near field and the

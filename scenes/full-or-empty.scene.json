@@ -14,7 +14,8 @@
       "temperature": 293,
       "friction": 0.001,
       "light": {
-        "color": [0.42, 0.41, 0.39]
+        "color": [0.5, 0.38, 0.27],
+        "texture": "wood"
       }
     },
     "plaster": {
@@ -22,7 +23,8 @@
       "temperature": 293,
       "friction": 0.001,
       "light": {
-        "color": [0.62, 0.6, 0.56]
+        "color": [0.62, 0.6, 0.56],
+        "texture": "plaster"
       }
     },
     "steel": {
@@ -30,7 +32,8 @@
       "temperature": 293,
       "friction": 0.001,
       "light": {
-        "color": [0.33, 0.35, 0.38]
+        "color": [0.33, 0.35, 0.38],
+        "texture": "metal"
       }
     },
     "air": {

@@ -1,7 +1,7 @@
 {
   "name": "blank-mirror",
   "title": "The blank mirror",
-  "description": "A mirror, a television and a printed page on a wall, with a figure standing beside the mirror so that its reflection fills the glass.",
+  "description": "A mirror, a television and a printed page on a wall, with a bronze ball on a plinth beside the mirror, so that its reflection sits in the glass.",
   "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
   "environment": "room",
   "observer": {
@@ -14,7 +14,8 @@
       "temperature": 293,
       "friction": 0.001,
       "light": {
-        "color": [0.42, 0.41, 0.39]
+        "color": [0.5, 0.38, 0.27],
+        "texture": "wood"
       }
     },
     "plaster": {
@@ -22,7 +23,8 @@
       "temperature": 293,
       "friction": 0.001,
       "light": {
-        "color": [0.62, 0.6, 0.56]
+        "color": [0.62, 0.6, 0.56],
+        "texture": "plaster"
       }
     },
     "mirror": {
@@ -52,20 +54,22 @@
         "finish": "print"
       }
     },
-    "body": {
-      "density": 1000,
-      "temperature": 310,
+    "marble": {
+      "density": 2700,
+      "temperature": 293,
       "friction": 0.001,
       "light": {
-        "color": [0.55, 0.36, 0.27]
+        "color": [0.86, 0.85, 0.81],
+        "texture": "plaster"
       }
     },
-    "cloth": {
-      "density": 1000,
-      "temperature": 305,
+    "bronze": {
+      "density": 8700,
+      "temperature": 293,
       "friction": 0.001,
       "light": {
-        "color": [0.16, 0.23, 0.36]
+        "color": [0.62, 0.42, 0.22],
+        "texture": "metal"
       }
     }
   },
@@ -148,35 +152,26 @@
       "material": "screen"
     },
     {
-      "id": "figure-legs",
+      "id": "plinth",
       "shape": {
         "type": "box",
-        "center": [-2.5, 0.43, -5.5],
-        "size": [0.34, 0.86, 0.22]
+        "center": [-2.5, 0.5, -5.5],
+        "size": [0.5, 1.0, 0.5]
       },
-      "material": "cloth"
+      "material": "marble"
     },
     {
-      "id": "figure-torso",
-      "shape": {
-        "type": "box",
-        "center": [-2.5, 1.17, -5.5],
-        "size": [0.44, 0.62, 0.25]
-      },
-      "material": "cloth"
-    },
-    {
-      "id": "figure-head",
+      "id": "ball",
       "shape": {
         "type": "sphere",
-        "center": [-2.5, 1.62, -5.5],
-        "radius": 0.115
+        "center": [-2.5, 1.2, -5.5],
+        "radius": 0.2
       },
-      "material": "body"
+      "material": "bronze"
     }
   ],
   "assumptions": [
     "Friction values are placeholders, as in the other scenes.",
-    "The mirror (glass on a backing, 18 kg/m²) the television (mostly air, 14 kg/m²) and the page (a poster on foam board, 1 kg/m²) are given effective densities over their whole thickness."
+    "The mirror (glass on a backing, 18 kg/m\u00b2) the television (mostly air, 14 kg/m\u00b2) and the page (a poster on foam board, 1 kg/m\u00b2) are given effective densities over their whole thickness."
   ]
 }

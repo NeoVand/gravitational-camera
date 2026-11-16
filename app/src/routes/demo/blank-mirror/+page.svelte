@@ -20,7 +20,7 @@
 			On the wall hang a mirror, a printed page and a television. In <strong>light</strong> each
 			carries a picture: a reflection, a text, a landscape. A picture has no mass. In
 			<strong>gravity</strong> the three are thin, faint, blank slabs (raise the exposure to see them),
-			and the figure beside the mirror has no twin inside it.
+			and the bronze ball beside the mirror has no twin inside it.
 		</p>
 		<p>
 			This is what the camera cannot do, and also why it cannot be fooled: it cannot read, and an

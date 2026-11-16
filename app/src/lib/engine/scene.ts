@@ -202,6 +202,8 @@ export const FLAG_GLARE = 8;
 export const FLAG_MIRROR = 16;
 export const FLAG_SCREEN = 32;
 export const FLAG_PRINT = 64;
+/** Surface patterns of the light view, by name; must match TEX_* in wgsl/light.wgsl. */
+const TEXTURES: Record<string, number> = { wood: 1, metal: 2, plaster: 3, concrete: 4, fabric: 5 };
 export const SHAPE_SPHERE = 0;
 export const SHAPE_BOX = 1;
 
@@ -278,7 +280,7 @@ export function packPrims(
 		f[k + 4] = d2 - r2;
 		u[k + 5] = o.half ? SHAPE_BOX : SHAPE_SPHERE;
 		u[k + 6] = flags;
-		f[k + 7] = 0;
+		f[k + 7] = TEXTURES[o.light?.texture ?? ''] ?? 0;
 		f.set(o.half ?? [0, 0, 0], k + 8);
 		f[k + 12] = w * o.color[0] - wp * (p?.color[0] ?? 0);
 		f[k + 13] = w * o.color[1] - wp * (p?.color[1] ?? 0);

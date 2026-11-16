@@ -9,6 +9,8 @@ export interface LightMaterial {
 	emissive?: number;
 	/** How the surface looks: plain, a mirror, a lit picture, or a printed page. */
 	finish?: 'matte' | 'mirror' | 'screen' | 'print';
+	/** A surface pattern for the light view; appearance only. */
+	texture?: 'wood' | 'metal' | 'plaster' | 'concrete' | 'fabric';
 }
 
 export interface Material {

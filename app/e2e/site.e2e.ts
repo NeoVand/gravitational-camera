@@ -241,9 +241,9 @@ const distance = (a: number[], b: number[]) => Math.hypot(a[0] - b[0], a[1] - b[
 
 test('blank mirror: the reflection is there in light and absent in gravity', async ({ page }) => {
 	const demo = await openDemo(page, '/demo/blank-mirror/', { yaw: 13, pitch: -6 });
-	// where the figure's torso shows in the mirror, and a plain stretch of mirror beside it
-	const twin: Point = [-1.91, 1.25, -7.97];
-	const plain: Point = [-1.3, 1.25, -7.97];
+	// where the bronze ball shows in the mirror, and a plain stretch of mirror beside it
+	const twin: Point = [-1.91, 1.27, -7.97];
+	const plain: Point = [-1.3, 1.27, -7.97];
 
 	await demo.show(1, () => page.getByLabel('Gravity', { exact: true }).uncheck());
 	const light = { twin: await demo.at(twin), plain: await demo.at(plain) };

@@ -73,19 +73,21 @@ describe('subtracting the empty room', () => {
 		expect(columnsAlong(objects, observer, down).tidalColumn).toBeGreaterThan(100);
 		expect(columnsAlong(objects, observer, down, 0.25, true).tidalColumn).toBe(0);
 
-		const torso = byId(objects, 'figure-torso');
-		const dir = toward(observer, torso.center);
+		const ball = byId(objects, 'ball');
+		const dir = toward(observer, ball.center);
 		const full = columnsAlong(objects, observer, dir).tidalColumn;
 		const kept = columnsAlong(objects, observer, dir, 0.25, true).tidalColumn;
-		const alone = columnsAlong([{ ...torso, parent: -1 }], observer, dir).tidalColumn;
+		const alone = columnsAlong([{ ...ball, parent: -1 }], observer, dir).tidalColumn;
 		expect(kept).toBeCloseTo(alone, 9);
 		expect(full).toBeGreaterThan(kept);
 	});
 
 	it('sets the exposure from the objects, not the floor', () => {
-		const withRoom = referenceTidal(objects, observer);
-		const without = referenceTidal(objects, observer, 0.25, true);
-		expect(withRoom / without).toBeGreaterThan(5);
+		// without the room, the reference is the brightest object brought in: the ball
+		const ball = byId(objects, 'ball');
+		const toBall = columnsAlong(objects, observer, toward(observer, ball.center), 0.25, true);
+		expect(referenceTidal(objects, observer, 0.25, true)).toBeCloseTo(toBall.tidalColumn, 9);
+		expect(referenceTidal(objects, observer)).toBeGreaterThan(toBall.tidalColumn);
 	});
 
 	it('keeps background shapes for the light view but zeroes their pull and glow', () => {
