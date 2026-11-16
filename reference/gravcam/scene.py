@@ -1,0 +1,276 @@
+"""Scene loading: materials, the parent/child tree and own-region volumes.
+
+Implements the scene format v0 of ``scenes/README.md``. Only spheres exist so
+far. An object's *own region* is its shape minus its children; a point belongs
+to the innermost (deepest in the tree) object whose shape contains it.
+
+Choices where the contract is silent (all raise :class:`SceneError` rather
+than guess):
+
+* a child must lie entirely inside its parent (the contract says it does);
+* objects with the same parent (and root objects among themselves) must not
+  overlap, so that "innermost object containing a point" is unique;
+* ``density`` and ``temperature`` are required for every material.
+
+Points exactly on a surface count as inside (``distance <= radius``); surfaces
+have zero measure, so no integral depends on this.
+"""
+from __future__ import annotations
+
+import json
+import math
+from dataclasses import dataclass
+from pathlib import Path
+
+import numpy as np
+
+# Relative slack for the containment / overlap checks, so that spheres that
+# touch within rounding are accepted.
+_GEOMETRY_RTOL = 1e-12
+
+
+class SceneError(ValueError):
+    """The scene file does not satisfy the scene contract."""
+
+
+@dataclass(frozen=True)
+class Material:
+    name: str
+    density: float                    # kg/m^3
+    temperature: float                # K
+    friction: float | None = None     # Pa s (effective shear viscosity)
+    luminosity: float | None = None   # W (total graviton power of an object)
+    light: dict | None = None         # appearance to an ordinary camera
+
+
+@dataclass(frozen=True)
+class Sphere:
+    center: tuple[float, float, float]   # m
+    radius: float                        # m
+
+    @property
+    def volume(self) -> float:
+        return 4.0 / 3.0 * math.pi * self.radius**3
+
+
+@dataclass(frozen=True)
+class SceneObject:
+    id: str
+    shape: Sphere
+    material: Material
+    parent: str | None
+    children: tuple[str, ...]
+    depth: int            # 0 for a root object, parent's depth + 1 otherwise
+    own_volume: float     # m^3: shape volume minus the children's shape volumes
+
+
+class Scene:
+    """A loaded scene. Objects keep the order of the scene file."""
+
+    def __init__(self, name, observer, objects, materials, source=None):
+        self.name = name
+        self.observer = np.asarray(observer, dtype=np.float64)
+        self.objects: tuple[SceneObject, ...] = tuple(objects)
+        self.materials: dict[str, Material] = dict(materials)
+        self.source = source
+        self.ids: tuple[str, ...] = tuple(o.id for o in self.objects)
+        self._index = {o.id: k for k, o in enumerate(self.objects)}
+        # Arrays in object order, for the vectorised routines.
+        self.centers = np.array([o.shape.center for o in self.objects], dtype=np.float64).reshape(-1, 3)
+        self.radii = np.array([o.shape.radius for o in self.objects], dtype=np.float64)
+        self.depths = np.array([o.depth for o in self.objects], dtype=np.int64)
+        self.densities = np.array([o.material.density for o in self.objects], dtype=np.float64)
+        self.temperatures = np.array([o.material.temperature for o in self.objects], dtype=np.float64)
+        self.own_volumes = np.array([o.own_volume for o in self.objects], dtype=np.float64)
+
+    def __len__(self):
+        return len(self.objects)
+
+    def __getitem__(self, object_id: str) -> SceneObject:
+        return self.objects[self.index(object_id)]
+
+    def index(self, object_id: str) -> int:
+        try:
+            return self._index[object_id]
+        except KeyError:
+            raise KeyError(f"no object with id {object_id!r} in scene {self.name!r}") from None
+
+    @property
+    def roots(self) -> tuple[str, ...]:
+        return tuple(o.id for o in self.objects if o.parent is None)
+
+    def subtree(self, object_id: str) -> tuple[str, ...]:
+        """``object_id`` and all its descendants, in scene order."""
+        wanted = {object_id}
+        stack = [object_id]
+        while stack:
+            for child in self[stack.pop()].children:
+                wanted.add(child)
+                stack.append(child)
+        return tuple(i for i in self.ids if i in wanted)
+
+    def locate(self, points) -> np.ndarray:
+        """Index of the innermost object containing each point, -1 in vacuum.
+
+        ``points`` has shape (..., 3); the result has shape (...).
+        """
+        p = np.asarray(points, dtype=np.float64)
+        if p.shape[-1] != 3:
+            raise ValueError("points must have shape (..., 3)")
+        flat = p.reshape(-1, 3)
+        best = np.full(flat.shape[0], -1, dtype=np.int64)
+        best_depth = np.full(flat.shape[0], -1, dtype=np.int64)
+        for k in range(len(self.objects)):
+            offset = flat - self.centers[k]
+            inside = np.einsum("ij,ij->i", offset, offset) <= self.radii[k] ** 2
+            deeper = inside & (self.depths[k] > best_depth)
+            best[deeper] = k
+            best_depth[deeper] = self.depths[k]
+        return best.reshape(p.shape[:-1])
+
+    def object_at(self, point) -> SceneObject | None:
+        """The innermost object containing ``point``, or None in vacuum."""
+        k = int(self.locate(np.asarray(point, dtype=np.float64)))
+        return None if k < 0 else self.objects[k]
+
+
+def _number(value, what: str) -> float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise SceneError(f"{what} must be a number, got {value!r}")
+    value = float(value)
+    if not math.isfinite(value):
+        raise SceneError(f"{what} must be finite, got {value!r}")
+    return value
+
+
+def _vector(value, what: str) -> tuple[float, float, float]:
+    if not isinstance(value, (list, tuple)) or len(value) != 3:
+        raise SceneError(f"{what} must be a list of three numbers, got {value!r}")
+    return tuple(_number(v, what) for v in value)
+
+
+def _material(name: str, spec: dict) -> Material:
+    if not isinstance(spec, dict):
+        raise SceneError(f"material {name!r} must be an object")
+    for required in ("density", "temperature"):
+        if required not in spec:
+            raise SceneError(f"material {name!r} has no {required!r}")
+
+    def optional(key):
+        return None if spec.get(key) is None else _number(spec[key], f"material {name!r} {key}")
+
+    material = Material(
+        name=name,
+        density=_number(spec["density"], f"material {name!r} density"),
+        temperature=_number(spec["temperature"], f"material {name!r} temperature"),
+        friction=optional("friction"),
+        luminosity=optional("luminosity"),
+        light=spec.get("light"),
+    )
+    for key in ("density", "temperature", "friction", "luminosity"):
+        value = getattr(material, key)
+        if value is not None and value < 0:
+            raise SceneError(f"material {name!r} {key} must not be negative, got {value!r}")
+    return material
+
+
+def _shape(object_id: str, spec) -> Sphere:
+    if not isinstance(spec, dict) or "type" not in spec:
+        raise SceneError(f"object {object_id!r} needs a shape with a type")
+    if spec["type"] != "sphere":
+        raise SceneError(f"object {object_id!r}: unsupported shape type {spec['type']!r} (only 'sphere' in v0)")
+    if "center" not in spec or "radius" not in spec:
+        raise SceneError(f"object {object_id!r}: a sphere needs 'center' and 'radius'")
+    radius = _number(spec["radius"], f"object {object_id!r} radius")
+    if radius <= 0:
+        raise SceneError(f"object {object_id!r}: radius must be positive, got {radius!r}")
+    return Sphere(center=_vector(spec["center"], f"object {object_id!r} center"), radius=radius)
+
+
+def scene_from_dict(data: dict, source=None) -> Scene:
+    """Build a :class:`Scene` from parsed scene JSON, validating the contract."""
+    try:
+        observer = _vector(data["observer"]["position"], "observer.position")
+    except (KeyError, TypeError):
+        raise SceneError("scene has no observer.position") from None
+    if not isinstance(data.get("materials"), dict):
+        raise SceneError("scene has no materials")
+    if not isinstance(data.get("objects"), list):
+        raise SceneError("scene has no objects list")
+
+    materials = {name: _material(name, spec) for name, spec in data["materials"].items()}
+
+    shapes: dict[str, Sphere] = {}
+    parents: dict[str, str | None] = {}
+    object_materials: dict[str, Material] = {}
+    for spec in data["objects"]:
+        if not isinstance(spec, dict) or "id" not in spec:
+            raise SceneError(f"every object needs an id, got {spec!r}")
+        object_id = spec["id"]
+        if object_id in shapes:
+            raise SceneError(f"duplicate object id {object_id!r}")
+        shapes[object_id] = _shape(object_id, spec.get("shape"))
+        if spec.get("material") not in materials:
+            raise SceneError(f"object {object_id!r}: unknown material {spec.get('material')!r}")
+        object_materials[object_id] = materials[spec["material"]]
+        parents[object_id] = spec.get("parent")
+
+    for object_id, parent in parents.items():
+        if parent is not None and parent not in shapes:
+            raise SceneError(f"object {object_id!r}: unknown parent {parent!r}")
+
+    depths: dict[str, int] = {}
+    for object_id in shapes:
+        depth, node, seen = 0, object_id, {object_id}
+        while parents[node] is not None:
+            node = parents[node]
+            if node in seen:
+                raise SceneError(f"object {object_id!r}: the parent chain forms a cycle")
+            seen.add(node)
+            depth += 1
+        depths[object_id] = depth
+
+    children: dict[str, list[str]] = {object_id: [] for object_id in shapes}
+    for object_id, parent in parents.items():
+        if parent is not None:
+            children[parent].append(object_id)
+
+    for object_id, parent in parents.items():
+        if parent is None:
+            continue
+        child, outer = shapes[object_id], shapes[parent]
+        if math.dist(child.center, outer.center) + child.radius > outer.radius * (1 + _GEOMETRY_RTOL):
+            raise SceneError(f"object {object_id!r} does not lie entirely inside its parent {parent!r}")
+
+    siblings: dict[str | None, list[str]] = {}
+    for object_id, parent in parents.items():
+        siblings.setdefault(parent, []).append(object_id)
+    for parent, group in siblings.items():
+        for i, a in enumerate(group):
+            for b in group[i + 1:]:
+                gap = math.dist(shapes[a].center, shapes[b].center)
+                if gap < (shapes[a].radius + shapes[b].radius) * (1 - _GEOMETRY_RTOL):
+                    where = "root objects" if parent is None else f"children of {parent!r}"
+                    raise SceneError(f"{where} {a!r} and {b!r} overlap; the contract does not say which wins")
+
+    objects = []
+    for object_id, shape in shapes.items():
+        own_volume = shape.volume - sum(shapes[child].volume for child in children[object_id])
+        objects.append(SceneObject(
+            id=object_id,
+            shape=shape,
+            material=object_materials[object_id],
+            parent=parents[object_id],
+            children=tuple(children[object_id]),
+            depth=depths[object_id],
+            own_volume=own_volume,
+        ))
+    return Scene(name=data.get("name", ""), observer=observer, objects=objects, materials=materials, source=source)
+
+
+def load_scene(path) -> Scene:
+    """Load and validate a ``*.scene.json`` file."""
+    path = Path(path)
+    with path.open(encoding="utf-8") as handle:
+        data = json.load(handle)
+    return scene_from_dict(data, source=path)

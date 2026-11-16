@@ -1,0 +1,37 @@
+% The Gravitational Camera — working draft.
+%
+% This file is the single source for the paper. The website renders it with
+% pandoc, so stay inside the subset the site understands: sections, paragraphs,
+% equation/align with \label, figure, table, itemize/enumerate, \cite, \ref,
+% \eqref, \emph, \textbf, \footnote. No TikZ, no custom environments.
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx}
+\input{macros}
+
+\title{The Gravitational Camera}
+\author{}
+\date{Working draft, 16 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Suppose gravitational-wave detectors could be made arbitrarily small and
+arbitrarily sensitive, and a camera were built with one at every pixel. What
+would it see? We set out what such a pixel measures, show that the answer
+divides into three regimes with very different imaging properties, and give
+the first expected image of an everyday scene: the view straight down through
+the Earth at night, with the Sun's core beyond it. This is a thought
+experiment, not a proposal for an instrument. This draft is incomplete, and
+its claims of novelty are provisional until the literature has been read in
+full.
+\end{abstract}
+
+\input{sections/01-pixel}
+\input{sections/02-regimes}
+\input{sections/03-first-image}
+\input{sections/04-status}
+
+\bibliographystyle{unsrt}
+\bibliography{refs}
+\end{document}

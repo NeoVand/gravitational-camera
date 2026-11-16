@@ -1,0 +1,36 @@
+\section{What a pixel measures}\label{sec:pixel}
+
+A gravitational-wave detector does not measure the gravitational field at a
+point, which a freely falling observer cannot feel. It measures how that field
+differs between nearby points: the tidal field. For an observer at rest, with
+proper time $t$, the tidal field is the symmetric tensor
+\begin{equation}\label{eq:tidal}
+\tE_{ij} = R_{0i0j},
+\end{equation}
+where $R$ is the Riemann curvature tensor. Two free particles separated by a
+small vector $\xi^i$ accelerate relative to one another by
+\begin{equation}\label{eq:deviation}
+\frac{\dd^2 \xi^i}{\dd t^2} = -\tE_{ij}\,\xi^j .
+\end{equation}
+An interferometer such as LIGO reads one component of this tensor, twice
+integrated in time, over arms a few kilometres long.
+
+Two limits of Eq.~\eqref{eq:tidal} matter here. Close to slowly moving matter,
+the tidal field is the second derivative of the Newtonian potential $\Phi$:
+\begin{equation}\label{eq:newton}
+\tE_{ij} = \partial_i \partial_j \Phi .
+\end{equation}
+Far from its source, in a gravitational wave with strain $h_{ij}^{\TT}$,
+\begin{equation}\label{eq:wave}
+\tE_{ij} = -\tfrac{1}{2}\,\partial_t^2 h_{ij}^{\TT} .
+\end{equation}
+The same pixel therefore responds to the ordinary pull of a passing lorry and
+to a wave from a distant collision; nothing in the instrument tells them
+apart. That LIGO must keep people and vehicles away from its mirrors for this
+reason was worked out long ago \cite{ThorneWinstein1999}.
+
+An ideal pixel records all of $\tE_{ij}$, and also its magnetic counterpart
+$\tB_{ij}$, built from the components $R_{0ijk}$, which describes how the field
+drags gyroscopes \cite{Nichols2011}. In vacuum both are symmetric and
+trace-free, so a pixel yields ten numbers at each instant. We call an array of
+such pixels a gravitational camera.

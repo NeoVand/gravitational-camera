@@ -1,0 +1,128 @@
+{
+  "name": "sun-at-midnight",
+  "title": "The Sun at midnight",
+  "description": "An observer on Earth's night side looks down through the planet. Light shows dark ground and stars; thermal gravitational radiation shows Earth's layers and the Sun's core beyond.",
+  "frame": "Earth-centred, SI metres. +y points from Earth's centre to the observer.",
+  "observer": {
+    "position": [0, 6371002, 0]
+  },
+  "materials": {
+    "crust": {
+      "density": 2800,
+      "temperature": 700,
+      "friction": 0.001,
+      "light": {
+        "color": [0.22, 0.2, 0.17]
+      }
+    },
+    "upper-mantle": {
+      "density": 3400,
+      "temperature": 1700,
+      "friction": 0.001
+    },
+    "lower-mantle": {
+      "density": 4900,
+      "temperature": 2800,
+      "friction": 0.001
+    },
+    "outer-core": {
+      "density": 11000,
+      "temperature": 4500,
+      "friction": 0.001
+    },
+    "inner-core": {
+      "density": 12900,
+      "temperature": 5500,
+      "friction": 0.001
+    },
+    "sun-envelope": {
+      "density": 200,
+      "temperature": 2000000.0,
+      "friction": 0,
+      "light": {
+        "color": [1.0, 0.96, 0.9],
+        "emissive": 1
+      }
+    },
+    "sun-core": {
+      "density": 100000.0,
+      "temperature": 13000000.0,
+      "luminosity": 100000000.0
+    }
+  },
+  "objects": [
+    {
+      "id": "earth",
+      "shape": {
+        "type": "sphere",
+        "center": [0, 0, 0],
+        "radius": 6371000
+      },
+      "material": "crust"
+    },
+    {
+      "id": "upper-mantle",
+      "parent": "earth",
+      "shape": {
+        "type": "sphere",
+        "center": [0, 0, 0],
+        "radius": 6346000
+      },
+      "material": "upper-mantle"
+    },
+    {
+      "id": "lower-mantle",
+      "parent": "upper-mantle",
+      "shape": {
+        "type": "sphere",
+        "center": [0, 0, 0],
+        "radius": 5701000
+      },
+      "material": "lower-mantle"
+    },
+    {
+      "id": "outer-core",
+      "parent": "lower-mantle",
+      "shape": {
+        "type": "sphere",
+        "center": [0, 0, 0],
+        "radius": 3480000
+      },
+      "material": "outer-core"
+    },
+    {
+      "id": "inner-core",
+      "parent": "outer-core",
+      "shape": {
+        "type": "sphere",
+        "center": [0, 0, 0],
+        "radius": 1221500
+      },
+      "material": "inner-core"
+    },
+    {
+      "id": "sun",
+      "shape": {
+        "type": "sphere",
+        "center": [0, -114598600000, -96160400000],
+        "radius": 695700000
+      },
+      "material": "sun-envelope"
+    },
+    {
+      "id": "sun-core",
+      "parent": "sun",
+      "shape": {
+        "type": "sphere",
+        "center": [0, -114598600000, -96160400000],
+        "radius": 139140000
+      },
+      "material": "sun-core"
+    }
+  ],
+  "assumptions": [
+    "Friction is the effective shear viscosity at thermal frequencies. The Earth values (1e-3 Pa s everywhere) are placeholders, not measurements.",
+    "The Sun's graviton luminosity (1e8 W) is the order of magnitude found in the literature (0.6e8 to 1.3e8 W) and is spread uniformly over the inner 20% of the solar radius.",
+    "Layer radii, densities and temperatures are rounded textbook values."
+  ]
+}
