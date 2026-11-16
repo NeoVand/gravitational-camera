@@ -376,6 +376,25 @@
 		border-bottom-color: var(--line-strong);
 	}
 
+	/* small capitals for words only: maths keeps its letters (π is not Π) */
+	article :global(th .katex) {
+		text-transform: none;
+		letter-spacing: 0;
+		font-size: 1.25em;
+	}
+
+	article :global(th.right),
+	article :global(td.right) {
+		text-align: right;
+		padding: 0.6rem 0 0.6rem 1rem;
+		font-variant-numeric: tabular-nums;
+	}
+
+	article :global(th.center),
+	article :global(td.center) {
+		text-align: center;
+	}
+
 	article :global(ol.references) {
 		padding-left: 1.6rem;
 		font: 400 0.86rem/1.5 var(--font-sans);

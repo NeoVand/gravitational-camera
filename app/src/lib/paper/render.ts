@@ -197,9 +197,19 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 	};
 
 	const table = (n: Node, id: string): string => {
-		const [, caption, , head, bodies] = n.c;
+		const [, caption, colspecs, head, bodies] = n.c;
+		// column alignment from the LaTeX column spec (l, c, r)
+		const align = colspecs.map((spec: any) =>
+			spec[0].t === 'AlignRight'
+				? ' class="right"'
+				: spec[0].t === 'AlignCenter'
+					? ' class="center"'
+					: ''
+		);
 		const row = (r: any, tag: string) =>
-			`<tr>${r[1].map((cell: any) => `<${tag}>${blocksHtml(cell[4])}</${tag}>`).join('')}</tr>`;
+			`<tr>${r[1]
+				.map((cell: any, k: number) => `<${tag}${align[k] ?? ''}>${blocksHtml(cell[4])}</${tag}>`)
+				.join('')}</tr>`;
 		const headRows = head[1].map((r: any) => row(r, 'th')).join('');
 		const bodyRows = bodies
 			.flatMap((b: any) => [...b[2], ...b[3]])

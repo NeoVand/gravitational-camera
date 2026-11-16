@@ -13,3 +13,4 @@ export {
 	referenceTidal
 } from './scene';
 export type { AnalyzedObject, Scene, Vec3 } from './types';
+export { cutoff, nearFieldBlur, slicePointSpread, transfer } from './resolution';

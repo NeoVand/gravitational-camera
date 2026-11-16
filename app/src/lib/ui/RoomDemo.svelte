@@ -14,6 +14,7 @@
 		analyzeScene,
 		cameraBasis,
 		columnsAlong,
+		nearFieldBlur,
 		type Scene,
 		type View
 	} from '../engine';
@@ -71,8 +72,9 @@
 	const exclusion = $derived(scene.observer.exclusion ?? 0.25);
 	const hasRoom = $derived(objects.some((o) => o.background));
 
-	// the near-field resolution law: full width of the blur is pi / ln(SNR)
-	const blurAngle = $derived(Math.PI / (sensitivity * Math.LN10));
+	// the near-field resolution law (paper, eq. resolution): full width at half
+	// maximum of the best reconstruction of a point, for a planar array
+	const blurAngle = $derived(nearFieldBlur(sensitivity));
 	const blurSigma = $derived(blurAngle / 2.355);
 	const centre = $derived(
 		columnsAlong(objects, observer, cameraBasis(view).forward, exclusion, subtractRoom)

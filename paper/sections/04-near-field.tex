@@ -5,7 +5,7 @@
 anything in between, so it can see into a safe or weigh a lorry at a glance.
 But the feeling blurs with distance, the way a hand under a thick blanket
 shows only as a rough bump. Making the camera a million times more sensitive
-makes the picture only twice as sharp.
+makes the picture less than twice as sharp.
 \end{quote}
 
 In the near zone the camera measures the Newtonian tidal field of the scene as
@@ -55,26 +55,78 @@ fine detail dies away before it reaches the camera, and coarse detail
 survives. To reconstruct the scene the camera must multiply each pattern by
 $e^{kz}$, and its noise with it. If the largest features are recorded with
 signal-to-noise ratio $\SNR$, patterns with $e^{kz} > \SNR$ are lost in the
-noise. The finest surviving detail is
-\begin{equation}\label{eq:resolution}
-\Delta x \approx \frac{\pi z}{\ln \SNR},
-\qquad\text{an angle}\qquad
-\Delta\theta \approx \frac{\pi}{\ln \SNR} .
+noise, and detail finer than about $\pi z/\ln\SNR$ cannot be recovered.
+
+The estimate can be made exact. Let a flat array at distance $z$ from a sheet
+of sources with surface density $\sigma$ record $\tE_{zz}$, the tidal field
+along its normal, with white noise of spectral density $N_0$. In Fourier space
+across the array the data are
+\begin{equation}\label{eq:array-data}
+\hat d(\mathbf k) = 2\pi G\,k\,e^{-kz}\,\hat\sigma(\mathbf k) + \hat n(\mathbf k),
 \end{equation}
+and the factor $k$ says that a uniform sheet, which pulls evenly on every
+pixel, is invisible. Define the signal-to-noise ratio as the peak field of a
+point mass $m$, $2Gm/z^3$, over the noise of the field averaged across a patch
+of side $z$, $\sqrt{N_0}/z$: so $\SNR = 2Gm/(z^2\sqrt{N_0})$. Each Fourier
+component of a point mass then stands above its own noise by
+$S = \pi\,\SNR\;kz\,e^{-kz}$, and the best linear reconstruction (the Wiener
+filter) keeps it with weight
+\begin{equation}\label{eq:wiener}
+H(k) = \frac{S^2}{1 + S^2}, \qquad S = \pi\,\SNR\;kz\,e^{-kz}.
+\end{equation}
+$H$ is close to one for coarse patterns and falls through one half at
+$kz = q_c$, where
+\begin{equation}\label{eq:cutoff}
+q_c\,e^{-q_c} = \frac{1}{\pi\,\SNR},
+\qquad
+q_c \approx \ln\SNR + \ln\ln\SNR + \ln\pi .
+\end{equation}
+The image of a point is therefore close to the diffraction pattern of a round
+pupil of radius $q_c/z$, $2J_1(x)/x$ with $x = q_c r/z$. Its full width at half
+maximum, as an angle seen from the array, is
+\begin{equation}\label{eq:resolution}
+\Delta\theta = \frac{4.43}{q_c}
+\end{equation}
+to within three per cent for every $\SNR \ge 100$ (for a single row of
+sensors over a two-dimensional scene, $3.79/q_c$). Table~\ref{tab:resolution}
+gives values, computed without approximation by the reference implementation
+that accompanies the site.
+
 The angular blur does not depend on distance, wavelength or the size of the
-camera, only on the logarithm of its sensitivity. A signal-to-noise ratio of a
-thousand gives $26^\circ$; a million, $13^\circ$; $10^{30}$, still
-$2.6^\circ$. To match the sharpness of the human eye, one arcminute, would
-take a signal-to-noise ratio near $10^{4700}$.
-Figure~\ref{fig:nearfield} lets the reader try it.
+camera, only, through $q_c$, on the logarithm of its sensitivity. A
+signal-to-noise ratio of a thousand gives $24^\circ$; a million, $14^\circ$;
+$10^{30}$, still $3.4^\circ$. To match the sharpness of the human eye, one
+arcminute, would take a signal-to-noise ratio near $10^{6600}$. The first
+estimate $\pi/\ln\SNR$ is of the right size everywhere, but it runs sharp at
+high sensitivity, because the image of a point is wider than $\pi/q_c$.
+Figure~\ref{fig:nearfield} lets the reader try it, and the near-field
+demonstrations blur their images by Eq.~\eqref{eq:resolution}.
+
+\begin{table}
+\begin{tabular}{rrrrrr}
+$\SNR$ & $q_c$ & array & row & two points & $\pi/\ln\SNR$ \\ \hline
+$10^{3}$ & 10.4 & 24.0° & 20.7° & 24.5° & 26.1° \\
+$10^{6}$ & 17.8 & 14.1° & 12.1° & 14.6° & 13.0° \\
+$10^{10}$ & 27.5 & 9.2° & 7.9° & 9.5° & 7.8° \\
+$10^{20}$ & 51.1 & 5.0° & 4.2° & 5.1° & 3.9° \\
+$10^{30}$ & 74.5 & 3.4° & 2.9° & 3.5° & 2.6° \\
+$10^{60}$ & 144.3 & 1.8° & 1.5° & 1.8° & 1.3° \\
+\end{tabular}
+\caption{Blur of the near-field image. ``Array'': full width at half maximum
+of the reconstructed image of a point, for a flat array, Eq.~\eqref{eq:resolution}.
+``Row'': the same for a single row of sensors over a two-dimensional scene.
+``Two points'': the smallest separation at which two equal point masses show
+a dip between them in the array's image (Sparrow's criterion). The last column
+is the first estimate.}\label{tab:resolution}
+\end{table}
 
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{figures/nearfield.png}
 \caption{The near-field blur. Two masses lie at depth $z$ below a row of
 pixels (a two-dimensional slice). Top: what the pixels record, a single smooth
-bump. Bottom: the best reconstruction of the masses that the noise allows,
-Eq.~\eqref{eq:resolution}; its ripples are the price of discarding the
+bump. Bottom: the best reconstruction of the masses that the noise allows, the
+Wiener filter of Eq.~\eqref{eq:wiener}; its ripples are the price of discarding the
 detail that noise has swamped. In the live version, raise the sensitivity and
 watch the two masses separate, slowly.}\label{fig:nearfield}
 \end{figure}

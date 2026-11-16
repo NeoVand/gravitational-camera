@@ -139,10 +139,10 @@ test('near-field demo: gold shows through steel, and blurs away at low sensitivi
 		await settle();
 	};
 
-	await setSensitivity('40', 'blur 2.0°');
+	await setSensitivity('40', 'blur 2.6°');
 	const sharp = await levels();
 
-	await setSensitivity('2', 'blur 39.1°');
+	await setSensitivity('2', 'blur 31.5°');
 	const blurred = await levels();
 
 	// sharp: the gold is the brightest thing in view; blurred: it has melted away

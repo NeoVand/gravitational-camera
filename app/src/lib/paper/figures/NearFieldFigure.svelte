@@ -1,5 +1,6 @@
 <script lang="ts">
 	import './figure.css';
+	import { nearFieldBlur, slicePointSpread } from '../../engine/resolution';
 
 	/** Signal-to-noise ratio as a power of ten, and the separation of the masses over their depth. */
 	let decades = $state(6);
@@ -13,9 +14,9 @@
 	const samples = Array.from({ length: 321 }, (_, i) => -SPAN + (i / 320) * 2 * SPAN);
 
 	const sources = $derived([-separation / 2, separation / 2]);
-	const cutoff = $derived(decades * Math.LN10); // k_max * z = ln(SNR)
-	const blur = $derived(Math.PI / cutoff); // in units of the depth
-	const resolved = $derived(separation > blur);
+	// full width at half maximum of the reconstruction of one mass, in units of the depth
+	const blur = $derived(nearFieldBlur(decades, 'slice'));
+	const pointSpread = $derived(slicePointSpread(decades, 2 * SPAN + 1.6, 0.005));
 
 	/** Tidal field recorded at the sensors from line masses at depth 1 (a 2-D slice). */
 	const recorded = $derived.by(() => {
@@ -26,13 +27,21 @@
 		return v.map((q) => q / peak);
 	});
 
-	/** Best reconstruction: the masses with every pattern finer than the cutoff removed. */
+	/**
+	 * Best reconstruction (the Wiener filter): each pattern kept in proportion to
+	 * how far it stands above the noise, which removes the fine ones.
+	 */
 	const rebuilt = $derived.by(() => {
-		const sinc = (d: number) =>
-			Math.abs(d) < 1e-9 ? cutoff / Math.PI : Math.sin(cutoff * d) / (Math.PI * d);
-		const v = samples.map((u) => sources.reduce((s, c) => s + sinc(u - c), 0));
+		const v = samples.map((u) => sources.reduce((s, c) => s + pointSpread.at(u - c), 0));
 		const peak = Math.max(...v);
 		return v.map((q) => q / peak);
+	});
+
+	// told apart when the reconstruction dips between the two masses
+	const resolved = $derived.by(() => {
+		const between = sources.reduce((s, c) => s + pointSpread.at(c), 0);
+		const at = sources.reduce((s, c) => s + pointSpread.at(sources[1] - c), 0);
+		return between < 0.97 * at;
 	});
 
 	const path = (v: number[], base: number, height: number) =>
