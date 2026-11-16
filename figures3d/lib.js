@@ -300,6 +300,18 @@ export async function sprite(url) {
 			for (let y = 0; y < img.height; y++) for (let x = img.width - 1; x >= 0; x--) if (a(x, y) > 40) { if (x > best) { best = x; row = y; } break; }
 			return row / img.height;
 		},
+		/** The centre of the drawing's farthest reach to the right (fraction of the height): a lens. */
+		lensRow() {
+			const right = [];
+			for (let y = 0; y < img.height; y++) { let r = -1; for (let x = img.width - 1; x >= 0; x--) if (a(x, y) > 40) { r = x; break; } right.push(r); }
+			const max = Math.max(...right);
+			const rows = right.map((r, y) => [r, y]).filter(([r]) => r >= max - 0.06 * img.width).map(([, y]) => y);
+			// the lens is the largest run of rows reaching that far
+			let best = [], run = [];
+			for (let i = 0; i < rows.length; i++) { if (i && rows[i] !== rows[i - 1] + 1) { if (run.length > best.length) best = run; run = []; } run.push(rows[i]); }
+			if (run.length > best.length) best = run;
+			return (best[0] + best[best.length - 1]) / 2 / img.height;
+		},
 		/** The <image>, placed with its lower left at (x, y) points and `height` points tall. */
 		place(x, y, height, opacity = 1, opts = {}) {
 			const width = (height * img.width) / img.height;

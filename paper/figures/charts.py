@@ -77,7 +77,7 @@ def main() -> int:
 
 def quadrupole_chart():
     C = mf.C
-    fig, ax = plt.subplots(figsize=(3.9, 2.55))
+    fig, ax = plt.subplots(figsize=(266 / 72, 180 / 72))   # the height of the diagram beside it
     v = np.logspace(-1, math.log10(C), 200)
     ax.plot(v, (math.pi / 2) * C / v, color=mf.INK, lw=1.0)
     ax.axhline(1, color=mf.RULE, lw=0.5)
