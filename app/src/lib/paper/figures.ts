@@ -82,6 +82,8 @@ const THEME: Record<string, string> = {
 	'#b0560a': 'var(--accent)',
 	'#2a67ad': 'var(--accent-2)',
 	'#c9c4b8': 'var(--line-strong)',
+	// the page itself, where a figure clears a space around a mark
+	'#fffffe': 'var(--bg)',
 	// pale tints of the accents, mixed with the page
 	'#dce7f3': 'color-mix(in srgb, var(--accent-2) 16%, var(--bg))'
 };

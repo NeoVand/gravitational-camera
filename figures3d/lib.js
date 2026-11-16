@@ -28,7 +28,7 @@ const VIEW = new THREE.Vector3(0, 0, 1);
 
 const hex = (c) => '#' + c.getHexString();
 
-function shadeNormal(base, n, o = {}) {
+export function shadeNormal(base, n, o = {}) {
 	const { ambient = 0.3, key = 0.8, fill = 0.14, wrap = 0.3, spec = 0.3, shininess = 30, rim = 0 } = o;
 	const kd = Math.max(0, (n.dot(KEY) + wrap) / (1 + wrap));
 	const fd = Math.max(0, n.dot(FILL));
@@ -282,6 +282,11 @@ export async function sprite(url) {
 	const a = (x, y) => alpha[(y * img.width + x) * 4 + 3];
 	return {
 		href, w: img.width, h: img.height,
+		/** The pixels [r, g, b, a] of a row (fraction of the height). */
+		row(fy) {
+			const y = Math.min(img.height - 1, Math.max(0, Math.round(fy * (img.height - 1))));
+			return Array.from({ length: img.width }, (_, x) => Array.from(alpha.slice((y * img.width + x) * 4, (y * img.width + x) * 4 + 4)));
+		},
 		/** Leftmost and rightmost inked pixel in a row (fractions of the width), or null. */
 		span(fy) {
 			const y = Math.min(img.height - 1, Math.max(0, Math.round(fy * (img.height - 1))));
@@ -296,9 +301,71 @@ export async function sprite(url) {
 			return row / img.height;
 		},
 		/** The <image>, placed with its lower left at (x, y) points and `height` points tall. */
-		place(x, y, height, opacity = 1) {
+		place(x, y, height, opacity = 1, opts = {}) {
 			const width = (height * img.width) / img.height;
-			return `<image class="ink" href="${href}" x="${x.toFixed(2)}" y="${(y - height).toFixed(2)}" width="${width.toFixed(2)}" height="${height.toFixed(2)}"${opacity < 1 ? ` opacity="${opacity}"` : ''} preserveAspectRatio="none"/>`;
+			return `<image class="${opts.ink ? 'ink' : 'art'}" href="${href}" x="${x.toFixed(2)}" y="${(y - height).toFixed(2)}" width="${width.toFixed(2)}" height="${height.toFixed(2)}"${opacity < 1 ? ` opacity="${opacity}"` : ''} preserveAspectRatio="none"/>`;
 		}
 	};
 }
+
+
+/** A colour map (an equirectangular image) sampled by latitude and longitude, for colouring a globe's faces. */
+export async function globeMap(url) {
+	const img = new Image();
+	img.src = url;
+	await img.decode();
+	const c = document.createElement('canvas');
+	c.width = img.width; c.height = img.height;
+	const ctx = c.getContext('2d');
+	ctx.drawImage(img, 0, 0);
+	const d = ctx.getImageData(0, 0, img.width, img.height).data;
+	/** The colour at a point on the unit sphere, y toward the north pole, longitude measured from +x toward -z, shifted by `lon0`. */
+	return (p, lon0 = 0) => {
+		const n = p.clone().normalize();
+		const lat = Math.asin(Math.max(-1, Math.min(1, n.y)));
+		let lon = Math.atan2(-n.z, n.x) + lon0;
+		lon = ((lon + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+		const x = Math.min(img.width - 1, Math.floor(((lon + Math.PI) / (2 * Math.PI)) * img.width));
+		const y = Math.min(img.height - 1, Math.floor(((Math.PI / 2 - lat) / Math.PI) * img.height));
+		const i = (y * img.width + x) * 4;
+		return '#' + [d[i], d[i + 1], d[i + 2]].map((v) => v.toString(16).padStart(2, '0')).join('');
+	};
+}
+
+
+/** A lit sphere drawn as an image (for a textured globe), with the panel's exact projection: centre `c`,
+ * radius `R`, `colorAt(worldPoint)` its colour, `keep(worldPoint)` whether that part of the surface exists. */
+Panel.prototype.rasterSphere = function (c, R, colorAt, { keep = () => true, o = {}, density = 4, layer = -1 } = {}) {
+	const [cx, cy] = this.at(c);
+	const rp = R * this.scale;
+	const size = Math.ceil(2 * rp * density);
+	const canvas = document.createElement('canvas');
+	canvas.width = size; canvas.height = size;
+	const ctx = canvas.getContext('2d');
+	const img = ctx.createImageData(size, size);
+	const inv = this.rot.clone().invert();
+	const base = new THREE.Color();
+	for (let j = 0; j < size; j++) {
+		for (let i = 0; i < size; i++) {
+			const x = ((i + 0.5) / size) * 2 - 1, y = 1 - ((j + 0.5) / size) * 2;
+			const rr = x * x + y * y;
+			if (rr > 1) continue;
+			const n = new THREE.Vector3(x, y, Math.sqrt(1 - rr));          // camera space, toward the viewer
+			const w = n.clone().applyMatrix4(inv);                          // the same point on the unit sphere, world
+			const pw = w.clone().multiplyScalar(R).add(c);
+			if (!keep(pw)) continue;
+			base.set(colorAt(w));
+			const col = shadeNormal(base, n, o);
+			const k = (j * size + i) * 4;
+			const hx = col.getHex();                       // sRGB, as the page shows it (col is linear)
+			img.data[k] = (hx >> 16) & 255; img.data[k + 1] = (hx >> 8) & 255; img.data[k + 2] = hx & 255;
+			// soften the rim over half a pixel
+			img.data[k + 3] = 255 * Math.min(1, (1 - Math.sqrt(rr)) * size / 2);
+		}
+	}
+	ctx.putImageData(img, 0, 0);
+	const href = canvas.toDataURL('image/png');
+	this.items.push({ kind: 'raw', layer, depth: 0,
+		svg: `<image href="${href}" x="${(cx - rp).toFixed(2)}" y="${(cy - rp).toFixed(2)}" width="${(2 * rp).toFixed(2)}" height="${(2 * rp).toFixed(2)}"/>` });
+	return this;
+};

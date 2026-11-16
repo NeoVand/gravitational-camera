@@ -5,7 +5,7 @@
 // from straight down, 50 below the horizon, as in Fig. 1: exact. Schematic: the observer, the stars,
 // the Sun's size and distance. (b) Brightness against angle, from the reference implementation
 // (paper/figures/charts.py), in the shells' colours.
-import { THREE, Panel, v3, figure, inset, INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
+import { THREE, Panel, v3, figure, inset, globeMap, INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
 
 const SHELLS = ['#f1e9de', '#f1d9bd', '#ebc59c', '#e2a86f', '#d48a46'];
 const SURFACE = '#a9b0b8';
@@ -28,44 +28,32 @@ export default async function () {
 	const r = radii.map((x) => x / R);
 
 	const H = 206;
-	const P = new Panel({ x: 0, y: 0, w: 252, h: H, cx: 0.42, cy: -0.06, scale: 78, tilt: 12, turn: -40 });
-	// the far half of the globe, behind the cut
-	const back = new THREE.SphereGeometry(1, 72, 40, Math.PI, Math.PI);
-	P.mesh(back, SURFACE, { o: { spec: 0.12, shininess: 14, wrap: 0.4, ambient: 0.4 } });
-	// a graticule on it, every 20 degrees, drawn only where the surface faces us
-	const facing = (q) => P.cam(q).z > 0.02 || false;
-	const runs = (pts) => {
-		let run = [];
-		for (const q of pts) {
-			const n = q.clone().normalize().applyMatrix4(P.rot);
-			if (n.z > 0.03) run.push(q);
-			else { if (run.length > 1) P.curve(run, { color: '#6f7780', width: 0.3, layer: 0.5 }); run = []; }
+	const P = new Panel({ x: 0, y: 0, w: 252, h: H, cx: 0.34, cy: -0.07, scale: 76, tilt: 14, turn: -26 });
+	// three quarters of the globe: the quarter in front of the reader (x > 0, z > 0) is cut away
+	const earth = await globeMap('/figures3d/textures/earth.jpg');
+	P.rasterSphere(v3(0, 0, 0), 1, (q) => earth(q, 3.05), {
+		keep: (q) => !(q.x > 0 && q.z > 0), o: { spec: 0.1, shininess: 14, wrap: 0.45, ambient: 0.55, key: 0.6 }, density: 4, layer: -1
+	});
+	{
+		const [gx, gy] = P.at(v3(0, 0, 0));
+		P.items.push({ kind: 'raw', layer: -0.5, depth: 0, svg: `<circle cx="${gx.toFixed(2)}" cy="${gy.toFixed(2)}" r="${P.scale.toFixed(2)}" fill="none" stroke="${INK}" stroke-width="0.4"/>` });
+	}
+	// the two cut faces, each a half disc showing the shells: z = 0 for x > 0 (the lines of sight lie on it)
+	// and x = 0 for z > 0
+	const half = (rad, face) => {
+		const pts = [];
+		for (let k = 0; k <= 180; k++) {
+			const s = -Math.PI / 2 + (Math.PI * k) / 180;
+			pts.push(face === 'z' ? v3(rad * Math.cos(s), rad * Math.sin(s), 0) : v3(0, rad * Math.sin(s), rad * Math.cos(s)));
 		}
-		if (run.length > 1) P.curve(run, { color: '#6f7780', width: 0.3, layer: 0.5 });
+		return pts;
 	};
-	void facing;
-	for (let lon = 0; lon <= 180; lon += 20) {
-		const ph = Math.PI + (lon * Math.PI) / 180;
-		const pts = [];
-		for (let k = 0; k <= 90; k++) {
-			const th = (Math.PI * k) / 90;
-			pts.push(v3(-Math.cos(ph) * Math.sin(th), Math.cos(th), Math.sin(ph) * Math.sin(th)).multiplyScalar(1.002));
+	for (const face of ['x', 'z']) {
+		for (let i = 0; i < r.length; i++) {
+			const outer = half(r[i], face);
+			const inner = i + 1 < r.length ? half(r[i + 1], face).reverse() : [];
+			P.polygon([...outer, ...inner], { fill: SHELLS[i], stroke: INK, width: 0.4, layer: face === 'z' ? 1.2 : 1 });
 		}
-		runs(pts);
-	}
-	for (let lat = -80; lat <= 80; lat += 20) {
-		const th = Math.PI / 2 - (lat * Math.PI) / 180;
-		const pts = [];
-		for (let k = 0; k <= 90; k++) {
-			const ph = Math.PI + (Math.PI * k) / 90;
-			pts.push(v3(-Math.cos(ph) * Math.sin(th), Math.cos(th), Math.sin(ph) * Math.sin(th)).multiplyScalar(1.002));
-		}
-		runs(pts);
-	}
-	// the cut face: the shells, from the crust inward
-	for (let i = 0; i < r.length; i++) {
-		P.annulus(circle(r[i]), i + 1 < r.length ? circle(r[i + 1]).reverse() : null,
-			{ fill: SHELLS[i], stroke: INK, width: 0.4, layer: 1, depthBias: 0 });
 	}
 	// the camera, at the surface on the night side; every line of sight starts there
 	const O = v3(0, 1, 0);
@@ -80,7 +68,15 @@ export default async function () {
 		const end = O.clone().addScaledVector(d, 2 * Math.cos(al));
 		P.curve([O, end], { width: 0.45, layer: 2 });
 		// a faint leader carries the line out past the globe to its angle
-		const tip = end.clone().addScaledVector(d, 0.55 - 0.25 * Math.cos(al));
+		// out past the globe's outline (a circle of radius 1 seen from any side) before the label
+		let k = 0.1;
+		const c0 = P.cam(v3(0, 0, 0));
+		while (k < 3) {
+			const q = P.cam(end.clone().addScaledVector(d, k));
+			if (Math.hypot(q.x - c0.x, q.y - c0.y) > 1.1) break;
+			k += 0.02;
+		}
+		const tip = end.clone().addScaledVector(d, k);
 		P.curve([end, tip], { color: DIM, width: 0.35, dash: [0.8, 1.6], layer: 2 });
 		P.label(`${Math.round((al * 180) / Math.PI)}^\\circ`, tip.clone().addScaledVector(d, 0.1), { size: 7.5, anchor: 'cc' });
 	}
