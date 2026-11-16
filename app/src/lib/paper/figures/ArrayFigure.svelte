@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { RulerIcon } from '@hugeicons/core-free-icons';
+	import Slider from '../../ui/controls/Slider.svelte';
 	import './figure.css';
 
 	/** Width of the array in wavelengths; index 0 is a single pixel. */
@@ -44,6 +46,7 @@
 	const X1 = 700;
 	const BASE = 250;
 	const TOP = 60;
+	const HALF = (BASE + TOP) / 2;
 	const px = (deg: number) => X0 + ((deg + 90) / 180) * (X1 - X0);
 	const angles = Array.from({ length: 1441 }, (_, i) => -90 + i / 8);
 
@@ -100,6 +103,17 @@
 		{/each}
 		<path d="{path} L {X1} {BASE} L {X0} {BASE} Z" fill="var(--accent)" opacity="0.14" />
 		<path d={path} stroke="var(--accent)" stroke-width="2.2" fill="none" stroke-linejoin="round" />
+		<!-- the blur: the width of the curve at half its height -->
+		<path
+			class="ink"
+			stroke-width="1.4"
+			d="M {px(-fwhm / 2)} {HALF - 5} v 10 M {px(-fwhm / 2)} {HALF} H {px(fwhm / 2)} M {px(
+				fwhm / 2
+			)} {HALF - 5} v 10"
+		/>
+		<text class="small" x={Math.min(px(fwhm / 2) + 10, X1 - 96)} y={HALF + 4}>
+			blur {fwhm >= 10 ? fwhm.toFixed(0) : fwhm.toFixed(1)}° wide
+		</text>
 		<text x={(X0 + X1) / 2} y={BASE + 44} text-anchor="middle">angle away from the source</text>
 		<text
 			class="small"
@@ -110,14 +124,17 @@
 		</text>
 	</svg>
 
-	<div class="controls">
-		<label>
-			Width of the array
-			<input type="range" min="0" max={WIDTHS.length - 1} step="1" bind:value={index} />
-		</label>
-		<span class="readout">
-			{width === 0 ? 'a single pixel' : `${width} wavelength${width === 1 ? '' : 's'}`} · blur
-			{fwhm >= 10 ? fwhm.toFixed(0) : fwhm.toFixed(1)}° wide
-		</span>
+	<div class="controls single">
+		<Slider
+			id="array-width"
+			label="Width of the array"
+			icon={RulerIcon}
+			min={0}
+			max={WIDTHS.length - 1}
+			step={1}
+			bind:value={index}
+			readout={width === 0 ? 'a single pixel' : `${width} wavelength${width === 1 ? '' : 's'}`}
+			ends={['one pixel', '100 wavelengths']}
+		/>
 	</div>
 </div>

@@ -8,8 +8,9 @@
 	overflow-x: auto;
 }
 
-/* On a narrow screen a drawing keeps a readable size and scrolls sideways. */
-.gfig svg {
+/* On a narrow screen a drawing keeps a readable size and scrolls sideways.
+   Only the drawing itself: the icons in its controls keep their own size. */
+.gfig > svg {
 	display: block;
 	width: 100%;
 	min-width: 540px;
@@ -60,25 +61,34 @@
 	stroke-width: 1;
 }
 
+/* The live controls under a drawing: the demos' compact sliders, inked for the
+   page. They are left out of the printed figures. */
 .gfig .controls {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 0.6rem 1.6rem;
-	margin-top: 0.8rem;
+	--slider-track: color-mix(in srgb, var(--text) 16%, transparent);
+	--slider-thumb: var(--text);
+	--slider-shadow: 0 0 0 3px var(--bg-raised);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+	gap: 0.9rem 2rem;
+	margin: 1rem auto 0;
+	max-width: 36rem;
 	font-size: 0.82rem;
 	color: var(--text-dim);
 }
 
-.gfig .controls label {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.6rem;
+.gfig .controls.single {
+	max-width: 22rem;
 }
 
-.gfig .controls input[type='range'] {
-	width: min(15rem, 46vw);
-	accent-color: var(--accent);
+.gfig .note {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.3rem 1.2rem;
+	margin-top: 0.8rem;
+	font-size: 0.82rem;
+	color: var(--text-dim);
+	text-align: center;
 }
 
 .gfig .readout {

@@ -99,20 +99,22 @@
 		outline: none;
 	}
 
+	/* The track and thumb take their colours from the surroundings: pale on the
+	   demos' dark glass by default, the page's ink in the paper. */
 	input::-webkit-slider-runnable-track {
 		height: 3px;
 		border-radius: 3px;
 		background: linear-gradient(
 			to right,
 			var(--accent) var(--fill),
-			rgb(255 255 255 / 0.14) var(--fill)
+			var(--slider-track, rgb(255 255 255 / 0.14)) var(--fill)
 		);
 	}
 
 	input::-moz-range-track {
 		height: 3px;
 		border-radius: 3px;
-		background: rgb(255 255 255 / 0.14);
+		background: var(--slider-track, rgb(255 255 255 / 0.14));
 	}
 
 	input::-moz-range-progress {
@@ -127,11 +129,11 @@
 		height: 14px;
 		margin-top: -5.5px;
 		border-radius: 50%;
-		background: #f4f1ea;
+		background: var(--slider-thumb, #f4f1ea);
 		border: 0;
 		box-shadow:
 			0 0 0 4px rgb(232 164 90 / 0),
-			0 1px 4px rgb(0 0 0 / 0.5);
+			var(--slider-shadow, 0 1px 4px rgb(0 0 0 / 0.5));
 		transition: box-shadow 0.15s;
 	}
 
@@ -139,20 +141,20 @@
 		width: 14px;
 		height: 14px;
 		border-radius: 50%;
-		background: #f4f1ea;
+		background: var(--slider-thumb, #f4f1ea);
 		border: 0;
-		box-shadow: 0 1px 4px rgb(0 0 0 / 0.5);
+		box-shadow: var(--slider-shadow, 0 1px 4px rgb(0 0 0 / 0.5));
 	}
 
 	input:hover::-webkit-slider-thumb,
 	input:focus-visible::-webkit-slider-thumb {
 		box-shadow:
-			0 0 0 4px rgb(232 164 90 / 0.28),
-			0 1px 4px rgb(0 0 0 / 0.5);
+			0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent),
+			var(--slider-shadow, 0 1px 4px rgb(0 0 0 / 0.5));
 	}
 
 	input:focus-visible::-moz-range-thumb {
-		box-shadow: 0 0 0 4px rgb(232 164 90 / 0.35);
+		box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 35%, transparent);
 	}
 
 	.ends {

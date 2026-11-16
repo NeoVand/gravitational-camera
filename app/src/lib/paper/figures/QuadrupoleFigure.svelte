@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { DashboardSpeed01Icon } from '@hugeicons/core-free-icons';
+	import Slider from '../../ui/controls/Slider.svelte';
 	import './figure.css';
 
 	/** Speed of the moving parts, as log10 of metres per second. */
@@ -27,6 +29,30 @@
 		const r = RMAX * pattern(theta);
 		return `${i ? 'L' : 'M'} ${(CX + r * Math.sin(theta)).toFixed(1)} ${(CY - r * Math.cos(theta)).toFixed(1)}`;
 	}).join(' ');
+
+	/**
+	 * The mark for circular polarization: a clockwise arc with a gap, ending in an
+	 * arrowhead that follows the circle (the way the pair turns, seen from above).
+	 */
+	const turning = (() => {
+		const cx = CX + 50;
+		const cy = 44;
+		const r = 10;
+		const at = (deg: number, radius = r) => {
+			const a = (deg * Math.PI) / 180;
+			return [cx + radius * Math.cos(a), cy + radius * Math.sin(a)].map((v) => v.toFixed(2));
+		};
+		// from just above the right-hand side, clockwise round to the top left
+		const start = -25;
+		const base = start + 255;
+		const tip = base + 46;
+		const [sx, sy] = at(start);
+		const [bx, by] = at(base + 4);
+		return {
+			arc: `M ${sx} ${sy} A ${r} ${r} 0 1 1 ${bx} ${by}`,
+			head: `M ${at(tip).join(' ')} L ${at(base, r + 4.6).join(' ')} L ${at(base, r - 4.6).join(' ')} Z`
+		};
+	})();
 
 	// the two masses, circling in the horizontal plane, seen slightly from above
 	const orbit = $derived({ x: 26 * Math.cos(t * 2.4), y: 8 * Math.sin(t * 2.4) });
@@ -86,14 +112,10 @@
 		<circle cx={CX - orbit.x} cy={CY - orbit.y} r="5" fill="var(--text)" />
 
 		<!-- polarization glyphs: a turning arrow for circular, a double arrow for linear -->
-		<path
-			d="M {CX + 54} 46 a 11 11 0 1 1 -8 -5.6"
-			class="ink"
-			stroke-width="1.7"
-			marker-end="url(#quad-arrow)"
-		/>
-		<text class="small" x={CX + 68} y="46">strongest,</text>
-		<text class="small" x={CX + 68} y="61">circular</text>
+		<path d={turning.arc} class="ink" stroke-width="1.7" stroke-linecap="round" />
+		<path d={turning.head} fill="var(--text)" stroke="var(--text)" stroke-width="0.6" />
+		<text class="small" x={CX + 70} y="41">strongest,</text>
+		<text class="small" x={CX + 70} y="56">circular</text>
 		<line
 			class="ink"
 			x1={CX + 44}
@@ -118,17 +140,26 @@
 		<text class="small" x={Math.min(390 + sizePx + 10, 600)} y="243"
 			>the source, to the same scale</text
 		>
-		<text class="strong" x="540" y="290" text-anchor="middle">
+		<text class="strong" x="540" y="282" text-anchor="middle">
 			wavelength = {sci(ratio)} × the size of the source
+		</text>
+		<text class="small" x="540" y="302" text-anchor="middle">
+			for moving parts at {speedLabel}
 		</text>
 		<text class="strong" x="540" y="336" text-anchor="middle">Wavelength against size</text>
 	</svg>
 
-	<div class="controls">
-		<label>
-			Speed of the moving parts
-			<input type="range" min="0" max="8.3" step="0.05" bind:value={logSpeed} />
-		</label>
-		<span class="readout">{speedLabel}</span>
+	<div class="controls single">
+		<Slider
+			id="quadrupole-speed"
+			label="Speed of the moving parts"
+			icon={DashboardSpeed01Icon}
+			min={0}
+			max={8.3}
+			step={0.05}
+			bind:value={logSpeed}
+			readout={speedLabel}
+			ends={['1 m/s', 'two-thirds of light']}
+		/>
 	</div>
 </div>
