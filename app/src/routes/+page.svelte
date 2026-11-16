@@ -170,8 +170,8 @@
 		<SiteHeader overlay />
 
 		<div class="words">
-			<p class="kicker">A thought experiment, worked out and rendered</p>
 			<h1>Gravitational Camera</h1>
+			<p class="subtitle">A thought experiment</p>
 			<p class="lede">
 				What would a camera see if every pixel were a detector of gravitational waves?
 			</p>
@@ -337,14 +337,11 @@
 		pointer-events: auto;
 	}
 
-	.kicker {
-		margin: 0 0 1.1rem;
-		font-size: 0.74rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+	.subtitle {
+		margin: 0.55rem 0 0;
+		font: italic 400 clamp(1.35rem, 2.6vw, 1.9rem) / 1.2 var(--font-serif);
 		color: var(--accent);
-		text-shadow: 0 1px 12px rgb(0 0 0 / 0.9);
+		text-shadow: 0 1px 14px rgb(0 0 0 / 0.85);
 	}
 
 	h1 {

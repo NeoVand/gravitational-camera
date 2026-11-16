@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync } from 'node:fs';
-import { expect, test, type Page } from '@playwright/test';
+import { devices, expect, test, type Page } from '@playwright/test';
 import { screenPosition } from '../src/lib/engine/camera';
 
 test('landing page links to the demos and the paper', async ({ page }) => {
@@ -486,4 +486,30 @@ test('two black holes: the field turns, and stops when told to', async ({ page }
 	await page.waitForTimeout(400);
 	const d = await sample(page, 0.75, 0.5);
 	expect(distance(c, d), JSON.stringify({ c, d })).toBeLessThan(1);
+});
+
+test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
+	const context = await browser.newContext({ ...devices['iPhone 13'] });
+	const page = await context.newPage();
+	await page.goto('/demo/milky-way/?present=readback');
+	await page.getByRole('button', { name: 'Controls', exact: true }).click();
+	const slider = page.locator('#fov');
+	const box = (await slider.boundingBox())!;
+	// a finger is given a larger target
+	expect(box.height).toBeGreaterThanOrEqual(30);
+	const touch = await context.newCDPSession(page);
+	const y = box.y + box.height / 2;
+	const at = (f: number) => ({ x: box.x + box.width * f, y });
+	// a drag that starts away from the thumb
+	await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [at(0.1)] });
+	for (const f of [0.15, 0.25, 0.3]) {
+		await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [at(f)] });
+	}
+	await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+	await expect.poll(async () => Number(await slider.inputValue())).toBeLessThan(45);
+	// and a tap
+	await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [at(0.9)] });
+	await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+	await expect.poll(async () => Number(await slider.inputValue())).toBeGreaterThan(95);
+	await context.close();
 });

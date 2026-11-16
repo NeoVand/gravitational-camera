@@ -33,6 +33,49 @@
 	}: Props = $props();
 
 	const fill = $derived(Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100)));
+
+	/**
+	 * Touch: the value follows the finger anywhere along the track, not only
+	 * from the thumb (WebKit's own slider moves only when the thumb itself is
+	 * grabbed). A drag that starts mostly vertical is left to scroll the panel;
+	 * a tap sets the value where it lands. The mouse keeps the native slider.
+	 */
+	let touch: { id: number; x: number; y: number; sliding: boolean } | undefined;
+
+	function setFrom(input: HTMLInputElement, clientX: number) {
+		const r = input.getBoundingClientRect();
+		const thumb = parseFloat(getComputedStyle(input).getPropertyValue('--thumb')) || 14;
+		const t = Math.max(0, Math.min(1, (clientX - r.left - thumb / 2) / (r.width - thumb)));
+		const steps = Math.round((t * (max - min)) / step);
+		value = Math.max(min, Math.min(max, min + steps * step));
+	}
+
+	function down(e: PointerEvent) {
+		if (e.pointerType === 'mouse') return;
+		touch = { id: e.pointerId, x: e.clientX, y: e.clientY, sliding: false };
+	}
+
+	function move(e: PointerEvent) {
+		if (!touch || e.pointerId !== touch.id) return;
+		const input = e.currentTarget as HTMLInputElement;
+		if (!touch.sliding) {
+			const dx = Math.abs(e.clientX - touch.x);
+			const dy = Math.abs(e.clientY - touch.y);
+			if (dx < 4 || dy > dx) return;
+			touch.sliding = true;
+			input.setPointerCapture(e.pointerId);
+		}
+		e.preventDefault();
+		setFrom(input, e.clientX);
+	}
+
+	function up(e: PointerEvent) {
+		if (!touch || e.pointerId !== touch.id) return;
+		const input = e.currentTarget as HTMLInputElement;
+		const moved = Math.hypot(e.clientX - touch.x, e.clientY - touch.y);
+		if (touch.sliding || moved < 8) setFrom(input, e.clientX);
+		touch = undefined;
+	}
 </script>
 
 <div class="slider">
@@ -43,7 +86,19 @@
 		</label>
 		<output for={id}>{readout}</output>
 	</div>
-	<input {id} type="range" {min} {max} {step} bind:value style:--fill="{fill}%" />
+	<input
+		{id}
+		type="range"
+		{min}
+		{max}
+		{step}
+		bind:value
+		style:--fill="{fill}%"
+		onpointerdown={down}
+		onpointermove={move}
+		onpointerup={up}
+		onpointercancel={() => (touch = undefined)}
+	/>
 	{#if ends}
 		<div class="ends" aria-hidden="true"><span>{ends[0]}</span><span>{ends[1]}</span></div>
 	{/if}
@@ -87,12 +142,15 @@
 	}
 
 	input {
+		--thumb: 14px;
 		appearance: none;
 		width: 100%;
 		height: 18px;
 		margin: 0;
 		background: transparent;
 		cursor: pointer;
+		/* vertical swipes still scroll the panel; sideways ones move the slider */
+		touch-action: pan-y;
 	}
 
 	input:focus-visible {
@@ -163,5 +221,24 @@
 		font-size: 0.66rem;
 		color: var(--text-faint);
 		margin-top: -0.2rem;
+	}
+
+	/* fingers need a larger target than a pointer */
+	@media (pointer: coarse) {
+		input {
+			--thumb: 22px;
+			height: 32px;
+		}
+
+		input::-webkit-slider-thumb {
+			width: 22px;
+			height: 22px;
+			margin-top: -9.5px;
+		}
+
+		input::-moz-range-thumb {
+			width: 22px;
+			height: 22px;
+		}
 	}
 </style>

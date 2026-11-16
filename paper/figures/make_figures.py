@@ -805,11 +805,16 @@ def budget():
 # These replace pictures from the engine: each is the exact line integral of
 # the reference implementation, pixel by pixel, on a grid uniform in angle.
 
-def _on_image(text_artist):
-    """Light text with a dark edge, legible on any part of an image."""
-    import matplotlib.patheffects as pe
-    text_artist.set_color("#ffffff")
-    text_artist.set_path_effects([pe.withStroke(linewidth=1.6, foreground="#0b0c10")])
+def _on_image(text_artist, dark: bool = False):
+    """Plain text over an image: white on its darker parts, the page's ink on
+    its pale ones (with the leader line, if any, in the same colour)."""
+    # a dark that is not one of the theme colours the website swaps, so that
+    # on its dark theme the label stays dark against the pale image
+    colour = "#15140f" if dark else "#ffffff"
+    text_artist.set_color(colour)
+    arrow = getattr(text_artist, "arrow_patch", None)
+    if arrow is not None:
+        arrow.set_color(colour)
     return text_artist
 
 
@@ -966,7 +971,7 @@ def sun_at_midnight():
                         cmap=_colormap("thermal", ACCENT), vmin=low, vmax=high, interpolation="bilinear")
     _on_image(axes[1].annotate(r"Sun's core", (px + 0.03, py), xytext=(px + 0.34, py - 0.06),
                                fontsize=7, ha="left", va="center",
-                               arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff", shrinkA=2, shrinkB=4)))
+                               arrowprops=dict(arrowstyle="-", lw=0.6, shrinkA=2, shrinkB=4)), dark=True)
     # the horizon, which light shows as the edge of the ground
     y_h = math.tan(math.radians(-pitch)) / t
     axes[1].axhline(y_h, color="#ffffff", lw=0.5, ls=(0, (2, 2)), alpha=0.7)
@@ -980,7 +985,8 @@ def sun_at_midnight():
         inside = rows[(nadir[:, col] > lo) & (nadir[:, col] < hi)]
         if inside.size:
             y = 1 - 2 * (inside.mean() + 0.5) / h
-            _on_image(axes[1].text(-0.95, y, name, fontsize=6.5, ha="left", va="center"))
+            _on_image(axes[1].text(-0.95, y, name, fontsize=6.5, ha="left", va="center"),
+                      dark=(name == "lower mantle"))
     _panel(axes[0], "(a) light, long exposure")
     _panel(axes[1], "(b) thermal gravitons")
     _logscale_bar(fig, im, cax, low, high, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
@@ -1423,7 +1429,7 @@ def black_hole():
     _panel(axes[1], "(b) primordial gravitons")
     _on_image(axes[1].annotate("shadow", (0.1, -0.13), xytext=(0.42, -0.62), fontsize=7, ha="left",
                                va="center", arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff",
-                                                            shrinkA=2, shrinkB=2)))
+                                                            shrinkA=2, shrinkB=2)), dark=True)
     cb = fig.colorbar(im, cax=cax)
     cb.ax.tick_params(labelsize=6.5)
     cb.set_label(r"$T - %.3f\,\mathrm{K}$, in mK" % mean, fontsize=7, labelpad=2)
