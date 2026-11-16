@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "gravcam"
 description = "Independent Python reference implementation for The Gravitational Camera"
 requires-python = ">=3.11"
-dependencies = ["numpy>=1.26"]
+dependencies = ["numpy>=1.26", "scipy>=1.11"]
 dynamic = ["version"]
 
 [project.optional-dependencies]

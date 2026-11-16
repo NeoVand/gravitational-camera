@@ -881,8 +881,28 @@ def _blur(image, fov_deg, snr, dims=2):
     return fftconvolve(np.pad(image, reach, mode="edge"), kernel, mode="same")[reach:-reach, reach:-reach]
 
 
-def _logscale_bar(fig, im, ax, low, high, label):
-    cb = fig.colorbar(im, ax=ax, fraction=0.05, pad=0.03)
+def _panels(n, bar=False, aspect=9 / 16):
+    """A row of n picture panels of exactly the renders' shape (16:9), equal in
+    size, with room for titles and, if asked, a colour bar at the right.
+    Returns (fig, axes, colour-bar axes or None)."""
+    left, gap, title = 0.02, 0.07, 0.19
+    bottom = 0.07 if bar else 0.03
+    right = 0.66 if bar else 0.02
+    pw = (WIDTH - left - right - (n - 1) * gap) / n
+    ph = pw * aspect
+    height = bottom + ph + title
+    fig = plt.figure(figsize=(WIDTH, height))
+    axes = [fig.add_axes([(left + i * (pw + gap)) / WIDTH, bottom / height, pw / WIDTH, ph / height])
+            for i in range(n)]
+    cax = None
+    if bar:
+        x = left + n * pw + (n - 1) * gap + 0.09
+        cax = fig.add_axes([x / WIDTH, bottom / height, 0.075 / WIDTH, ph / height])
+    return fig, axes, cax
+
+
+def _logscale_bar(fig, im, cax, low, high, label):
+    cb = fig.colorbar(im, cax=cax)
     ticks = list(range(int(math.ceil(low)), int(math.floor(high)) + 1))
     cb.set_ticks(ticks)
     cb.set_ticklabels([f"$10^{{{t}}}$" for t in ticks])
@@ -908,7 +928,7 @@ def sun_at_midnight():
     t = math.tan(math.radians(fov) / 2)
     px = (sun_dir @ right) / (sun_dir @ forward) / (t * w / h)
     py = (sun_dir @ up) / (sun_dir @ forward) / t
-    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.62), gridspec_kw={"wspace": 0.04})
+    fig, axes, cax = _panels(2, bar=True)
     axes[0].imshow(_light("sun-at-midnight"), extent=(-1, 1, -1, 1), aspect="auto")
     # in light the Sun is hidden: mark where it is
     axes[0].add_patch(plt.Circle((px, py), 0.055, fill=False, ec="#ffffff", lw=0.8, ls=(0, (1.5, 1.5))))
@@ -938,8 +958,7 @@ def sun_at_midnight():
             _on_image(axes[1].text(-0.95, y, name, fontsize=6.5, ha="left", va="center"))
     _panel(axes[0], "(a) light, long exposure")
     _panel(axes[1], "(b) thermal gravitons")
-    _logscale_bar(fig, im, axes[1], low, high, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
-    fig.subplots_adjust(left=0.01, right=0.9, top=0.88, bottom=0.06)
+    _logscale_bar(fig, im, cax, low, high, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
     print(f"  Sun's core: N = {sun_N:.3g} per s m^2 sr, at ({px:.2f}, {py:.2f})")
     save(fig, "sun-at-midnight", web=True)
 
@@ -965,7 +984,7 @@ def locked_safe():
     blurred = _blur(S, 52, 1e20)
     labels = _first_surface(full, d)
     extent = (-1, 1, -1, 1)
-    fig, axes = plt.subplots(1, 3, figsize=(WIDTH, 1.18), gridspec_kw={"wspace": 0.04})
+    fig, axes, _ = _panels(3)
     axes[0].imshow(_light("locked-safe"), extent=extent, aspect="auto")
     top = np.percentile(S, 99.7)
     for ax, image in ((axes[1], S), (axes[2], blurred)):
@@ -975,7 +994,6 @@ def locked_safe():
     _panel(axes[0], "(a) light")
     _panel(axes[1], r"(b) tidal column $S$")
     _panel(axes[2], r"(c) blurred, $\mathrm{SNR} = 10^{20}$")
-    fig.subplots_adjust(left=0.005, right=0.995, top=0.85, bottom=0.02)
     save(fig, "locked-safe", web=True)
 
 
@@ -989,7 +1007,7 @@ def closed_furnace():
     N = columns.number_radiance(scene, d.reshape(-1, 3)).reshape(h, w)
     labels = _first_surface(scene, d)
     extent = (-1, 1, -1, 1)
-    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.62), gridspec_kw={"wspace": 0.04})
+    fig, axes, cax = _panels(2, bar=True)
     axes[0].imshow(_light("closed-furnace"), extent=extent, aspect="auto")
     hi = np.log10(N.max())
     im = axes[1].imshow(np.log10(np.clip(N, 10 ** (hi - 3), None)), extent=extent, aspect="auto",
@@ -999,8 +1017,7 @@ def closed_furnace():
     _on_image(axes[1].text(-0.47, -0.78, "293 K", ha="center", va="center", fontsize=7))
     _panel(axes[0], "(a) light")
     _panel(axes[1], "(b) thermal gravitons")
-    _logscale_bar(fig, im, axes[1], hi - 3, hi, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
-    fig.subplots_adjust(left=0.01, right=0.9, top=0.88, bottom=0.03)
+    _logscale_bar(fig, im, cax, hi - 3, hi, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
     save(fig, "closed-furnace", web=True)
 
 
@@ -1036,18 +1053,17 @@ def which_way():
     # colour from V/I, brightness from I, on the dark ground of the picture
     shade = np.sqrt(np.clip(I_map / I_map.max(), 0, 1))[..., None]
     composite = 0.043 * (1 - shade) + pol((ratio + 1) / 2)[..., :3] * shade
-    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.62), gridspec_kw={"wspace": 0.04})
+    fig, axes, cax = _panels(2, bar=True)
     axes[0].imshow(_light("which-way"), extent=extent, aspect="auto")
     axes[1].imshow(composite, extent=extent, aspect="auto", interpolation="bilinear")
     _outline(axes[1], labels, extent)
     _panel(axes[0], "(a) light")
     _panel(axes[1], r"(b) waves, coloured by $V/I$")
-    cb = fig.colorbar(ScalarMappable(norm=Normalize(-1, 1), cmap=pol), ax=axes[1], fraction=0.05, pad=0.03)
+    cb = fig.colorbar(ScalarMappable(norm=Normalize(-1, 1), cmap=pol), cax=cax)
     cb.set_ticks([-1, 0, 1])
     cb.set_ticklabels(["$-1$", "$0$", "$+1$"])
     cb.set_label(r"$V/I$", fontsize=7)
     cb.ax.tick_params(labelsize=6.5)
-    fig.subplots_adjust(left=0.01, right=0.9, top=0.88, bottom=0.03)
     save(fig, "which-way", web=True)
 
 
@@ -1123,11 +1139,364 @@ def tidal_field():
     save(fig, "tidal-field", web=True)
 
 
+def binary_field():
+    """A pair of black holes before they merge, in the plane of their orbit:
+    the changing part of the tidal field from the pair out to the waves,
+    from the exact linearized solution (gravcam/binary.py)."""
+    from gravcam import binary
+    from gravcam.constants import G as G_SI, M_sun
+    from matplotlib.colors import LinearSegmentedColormap
+    signed = LinearSegmentedColormap.from_list("signed", [ACCENT, "#f7f3ec", ACCENT2])
+    v = 0.1                                   # orbital speed of each hole, in units of c
+    m = 30 * M_sun
+    d = G_SI * 2 * m / (4 * v * v * C * C)    # the separation of a bound pair at that speed
+    pair = binary.Pair.bound(m, d)
+    lam = pair.wavelength
+    period = math.pi / pair.omega             # one period of the waves: half a turn
+    times = [0.0, period / 4, period / 2, 3 * period / 4]
+
+    def moving_zz(points):
+        """Cosine and amplitude of the changing part of E_zz at the points."""
+        snaps = []
+        for t in times:
+            parts = []
+            for chunk in np.array_split(points, max(1, len(points) // 8000)):
+                E, _ = binary.tidal(pair, t, chunk)
+                parts.append(E[:, 2, 2])
+            snaps.append(np.concatenate(parts))
+        a = 0.5 * (snaps[0] - snaps[2])
+        b = 0.5 * (snaps[1] - snaps[3])
+        amp = np.hypot(a, b)
+        return a / np.where(amp > 0, amp, 1), amp
+
+    fig = plt.figure(figsize=(WIDTH, 1.9))
+    grid = fig.add_gridspec(1, 3, width_ratios=[1, 1, 1.25], wspace=0.08)
+    axes = [fig.add_subplot(grid[0, i]) for i in range(3)]
+    for ax, half, title in ((axes[0], 8.0 * d, "(a) near the pair"), (axes[1], 3.6 * lam, "(b) out to the waves")):
+        n = 241
+        u = np.linspace(-half, half, n)
+        X, Y = np.meshgrid(u, u)
+        pts = np.stack([X.ravel(), Y.ravel(), np.zeros(X.size)], axis=-1)
+        r = np.linalg.norm(pts, axis=-1)
+        keep = r > 1.25 * d
+        shown = np.full(X.size, np.nan)
+        cosine, _ = moving_zz(pts[keep])
+        shown[keep] = cosine
+        ax.imshow(shown.reshape(X.shape), extent=(-half / d, half / d, -half / d, half / d), origin="lower",
+                  cmap=signed, vmin=-1, vmax=1, interpolation="bilinear")
+        # the pair at t = 0, and the edge of the near zone, r = lambda / 2 pi
+        for sx in (-0.5, 0.5):
+            ax.add_patch(Circle((sx, 0), 0.32 if half < 20 * d else 1.4, color=INK, lw=0, zorder=5))
+        t = np.linspace(0, 2 * np.pi, 300)
+        rn = lam / (2 * np.pi) / d
+        ax.plot(rn * np.cos(t), rn * np.sin(t), color=INK, lw=0.6, ls=(0, (2, 2)))
+        ax.set_xlim(-half / d, half / d)
+        ax.set_ylim(-half / d, half / d)
+        ax.set_aspect("equal")
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.set_title(title, fontsize=8, loc="left", pad=3)
+    # scale bars, in units of the separation and of the wavelength
+    axes[0].plot([3.0, 7.0], [-7.0, -7.0], color=INK, lw=0.8)
+    axes[0].text(5.0, -6.6, "$4d$", ha="center", va="bottom", fontsize=7)
+    span_l = lam / d
+    axes[1].plot([3.6 * span_l - 0.4 * span_l - span_l, 3.6 * span_l - 0.4 * span_l], [-3.2 * span_l] * 2,
+                 color=INK, lw=0.8)
+    axes[1].text(3.6 * span_l - 0.9 * span_l, -3.05 * span_l, r"$\lambda$", ha="center", va="bottom", fontsize=7)
+
+    # (c) how strongly the field changes, along a line in the plane
+    radii = np.geomspace(1.6 * d, 60 * lam, 160)
+    pts = np.stack([radii, np.zeros_like(radii), np.zeros_like(radii)], axis=-1)
+    _, amp = moving_zz(pts)
+    def amplitude(field):
+        snaps = [field(t, pts)[:, 2, 2] for t in times]
+        return np.hypot(0.5 * (snaps[0] - snaps[2]), 0.5 * (snaps[1] - snaps[3]))
+
+    newton = amplitude(pair.newtonian_tidal)
+    wave = amplitude(pair.wave_tidal)
+    wave_level = (radii * wave).max()
+    ax = axes[2]
+    x = radii / lam
+    low, high = 0.3, 3e3
+
+    def curve(y, **style):
+        y = y / wave_level
+        inside = (y >= low) & (y <= high)
+        ax.loglog(x[inside], y[inside], **style)
+
+    curve(radii * amp, color=INK, lw=1.2, zorder=4)
+    curve(radii * newton, color=ACCENT2, lw=0.9, ls=(0, (3, 2)))
+    curve(radii * wave, color=ACCENT, lw=0.9, ls=(0, (3, 2)))
+    ax.axvline(1 / (2 * np.pi), color=RULE, lw=0.6)
+    ax.text(1 / (2 * np.pi) * 1.15, 1500, r"$\lambda/2\pi$", fontsize=7, ha="left", va="top", color=DIM)
+    ax.set_xlim(x[0], x[-1])
+    ax.set_ylim(low, high)
+    ax.set_xlabel(r"distance $r/\lambda$", fontsize=7.5, labelpad=1)
+    ax.set_ylabel(r"$r\,|\delta \mathcal{E}_{zz}|$ (waves $=1$)", fontsize=7.5, labelpad=1)
+    ax.tick_params(labelsize=7, pad=1)
+    ax.yaxis.tick_right()
+    ax.yaxis.set_label_position("right")
+    ax.text(0.6, 0.4, "Newton", color=ACCENT2, fontsize=7, ha="left", va="center")
+    ax.text(3.0, 1.6, "waves", color=ACCENT, fontsize=7, ha="left")
+    ax.set_title("(c) strength", fontsize=8, loc="left", pad=3)
+    fig.subplots_adjust(left=0.01, right=0.9, top=0.9, bottom=0.17)
+    save(fig, "binary-field", web=True)
+
+
+STAR_TINT = np.array([1.0, 0.93, 0.84])     # old stars, a little warmer than white
+
+
+def _light_tone(light, top, decades):
+    """Light on a logarithmic scale of `decades` below `top`, per colour."""
+    v = (np.log10(np.clip(light * STAR_TINT / top, 1e-30, None)) + decades) / decades
+    return np.clip(v, 0, 1)
+
+
+def _star_texture(width=4096, seed=7):
+    """An all-sky (l, b) texture of stars for orientation in the light views:
+    random, crowded toward the plane of the Galaxy, a few bright and many faint."""
+    from scipy.ndimage import gaussian_filter
+    rng = np.random.default_rng(seed)
+    height = width // 2
+    n = 14000
+    l = rng.uniform(-np.pi, np.pi, 4 * n)
+    b = np.arcsin(rng.uniform(-1, 1, 4 * n))
+    keep = rng.uniform(0, 1, 4 * n) < 0.35 + 0.65 * np.exp(-np.abs(np.degrees(b)) / 10.0)
+    l, b = l[keep][:n], b[keep][:n]
+    flux = rng.uniform(0, 1, len(l)) ** -1.5
+    flux *= 1.2 / np.percentile(flux, 75)
+    warm = rng.uniform(0, 1, len(l))
+    colour = np.stack([0.85 + 0.15 * warm, 0.88 + 0.06 * warm, 1.0 - 0.25 * warm], axis=-1)
+    tex = np.zeros((height, width, 3))
+    i = np.clip(((np.pi / 2 - b) / np.pi * height).astype(int), 0, height - 1)
+    j = np.clip(((np.pi - l) / (2 * np.pi) * width).astype(int), 0, width - 1)
+    for k in range(3):
+        np.add.at(tex[..., k], (i, j), flux * colour[:, k])
+        tex[..., k] = gaussian_filter(tex[..., k], 0.7, mode="wrap")
+    return tex
+
+
+def _sample_sky_texture(tex, dirs):
+    from scipy.ndimage import map_coordinates
+    height, width = tex.shape[:2]
+    l = np.arctan2(dirs[..., 1], dirs[..., 0])
+    b = np.arcsin(np.clip(dirs[..., 2], -1, 1))
+    rows = (np.pi / 2 - b) / np.pi * height - 0.5
+    cols = (np.pi - l) / (2 * np.pi) * width - 0.5
+    return np.stack([map_coordinates(tex[..., k], [rows, cols], order=1, mode="grid-wrap")
+                     for k in range(3)], axis=-1)
+
+
+def milky_way():
+    """The Milky Way from the Sun, all sky, in light dimmed by dust and in the
+    gravitational waves of its white-dwarf pairs (gravcam/galaxy.py), on one
+    logarithmic scale of brightness."""
+    from gravcam import galaxy
+    from matplotlib.colors import LinearSegmentedColormap
+    w, h = 720, 360
+    l, b = galaxy.mollweide_grid(w, h)
+    inside = np.isfinite(l)
+    light = np.zeros((h, w, 3))
+    waves = np.full((h, w), np.nan)
+    lt, wv = galaxy.sky(galaxy.direction(l[inside], b[inside]), steps=900)
+    light[inside] = lt
+    waves[inside] = wv
+    top = np.nanmax(waves)
+    decades = 3.0
+    rgb = _light_tone(light, top, decades)
+    rgb[~inside] = 1.0
+    fig = plt.figure(figsize=(WIDTH, 4.75))
+    map_w, map_h = 4.15, 4.15 / 2
+    rows = [(0.06 + map_h + 0.32) / 4.75, 0.06 / 4.75]
+    axes = [fig.add_axes([0.02 / WIDTH, y, map_w / WIDTH, map_h / 4.75]) for y in rows]
+    extent = (-2 * math.sqrt(2), 2 * math.sqrt(2), -math.sqrt(2), math.sqrt(2))
+    axes[0].imshow(rgb, extent=extent, interpolation="bilinear")
+    shown = np.log10(np.clip(waves / top, 10 ** -decades, None))
+    thermal = _colormap("thermal", ACCENT)
+    im = axes[1].imshow(np.where(inside, shown, np.nan), extent=extent, cmap=thermal, vmin=-decades, vmax=0,
+                        interpolation="bilinear")
+    t = np.linspace(0, 2 * np.pi, 400)
+    for ax in axes:
+        ax.plot(2 * math.sqrt(2) * np.cos(t), math.sqrt(2) * np.sin(t), color=INK, lw=0.6)
+        ax.set_xlim(-2 * math.sqrt(2) - 0.03, 2 * math.sqrt(2) + 0.03)
+        ax.set_ylim(-math.sqrt(2) - 0.03, math.sqrt(2) + 0.03)
+        ax.set_axis_off()
+    axes[0].set_title("(a) light: the stars, seen through the dust", fontsize=8, loc="left", pad=3)
+    axes[1].set_title("(b) gravitational waves from white-dwarf pairs, near a millihertz", fontsize=8,
+                      loc="left", pad=3)
+    _on_image(axes[0].annotate("dust lane", (-0.55, 0.0), xytext=(-1.25, 0.72), fontsize=7, ha="center",
+                               va="center", arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff",
+                                                            shrinkA=2, shrinkB=2)))
+    _on_image(axes[1].annotate("the Galaxy's centre", (0.0, 0.0), xytext=(-1.25, 0.72), fontsize=7,
+                               ha="center", va="center", arrowprops=dict(arrowstyle="-", lw=0.6,
+                                                                         color="#ffffff", shrinkA=2,
+                                                                         shrinkB=4)))
+    grey = LinearSegmentedColormap.from_list("grey", ["#000000", "#ffffff"])
+    ticks = [-3, -2, -1, 0]
+    names = [r"$10^{-3}$", r"$10^{-2}$", r"$10^{-1}$", "1"]
+    for ax, cmap in ((axes[0], grey), (axes[1], thermal)):
+        pos = ax.get_position()
+        cax = fig.add_axes([pos.x1 + 0.1 / WIDTH, pos.y0 + 0.1 * pos.height, 0.075 / WIDTH, 0.8 * pos.height])
+        from matplotlib.cm import ScalarMappable
+        from matplotlib.colors import Normalize
+        cb = fig.colorbar(ScalarMappable(norm=Normalize(-decades, 0), cmap=cmap), cax=cax)
+        cb.set_ticks(ticks)
+        cb.set_ticklabels(names)
+        cb.ax.tick_params(labelsize=7)
+        cb.set_label("brightness", fontsize=7.5, labelpad=2)
+    print(f"  waves: centre / anticentre = {waves[h // 2, w // 2] / waves[h // 2, 3]:.0f}; "
+          f"light: {light[h // 2 + 3, w // 2, 1] / light[h // 2, 3, 1]:.2f}")
+    save(fig, "milky-way", web=True)
+
+
+def black_hole():
+    """A black hole against the sky, in light and in the primordial graviton
+    background: exact Schwarzschild rays (gravcam/schwarzschild.py)."""
+    from gravcam import galaxy, primordial, schwarzschild as sw
+    from matplotlib.colors import LinearSegmentedColormap
+    r_obs = 40.0
+    # the hole lies 9 degrees above the Galaxy's centre, as seen by the camera
+    lift = math.radians(9.0)
+    forward = np.array([math.cos(lift), 0.0, math.sin(lift)])
+    right = np.array([0.0, -1.0, 0.0])
+    up = np.cross(right, forward)
+    observer = -r_obs * forward
+    w, h = 640, 360
+    fov = math.radians(76.0)                         # across
+    tx = math.tan(fov / 2)
+    xs = (np.arange(w) + 0.5) / w * 2 - 1
+    ys = 1 - (np.arange(h) + 0.5) / h * 2
+    X, Y = np.meshgrid(xs * tx, ys * tx * h / w)
+    d = forward + X[..., None] * right + Y[..., None] * up
+    d /= np.linalg.norm(d, axis=-1, keepdims=True)
+    sky, shadow = sw.sky_directions(observer, d)
+    # (a) light: the model Galaxy and a field of stars, carried along the bent rays
+    light = np.zeros((h, w, 3))
+    lt, _ = galaxy.sky(sky[~shadow], steps=900)
+    light[~shadow] = lt
+    l_all, b_all = galaxy.mollweide_grid(360, 180)
+    ok = np.isfinite(l_all)
+    ref, _ = galaxy.sky(galaxy.direction(l_all[ok], b_all[ok]), steps=600)
+    x = light * STAR_TINT / np.percentile(ref[:, 1], 99.9)
+    rgb = np.clip(np.arcsinh(4 * x) / np.arcsinh(4) + _sample_sky_texture(_star_texture(), sky), 0, 1)
+    rgb[shadow] = 0.0
+    # (b) the graviton background, warmed by the depth of the well, with the dipole of our motion
+    T0 = primordial.graviton_temperature()
+    beta = primordial.DIPOLE_SPEED / C
+    T = sw.blueshift(r_obs) * primordial.doppler_temperature(T0, beta, sky @ primordial.dipole_direction())
+    mean = sw.blueshift(r_obs) * T0
+    dT = np.where(shadow, np.nan, (T - mean) * 1e3)
+    temp = LinearSegmentedColormap.from_list("temp", [ACCENT2, "#f7f3ec", ACCENT])
+    temp.set_bad("#0b0c10")
+    fig, axes, cax = _panels(2, bar=True)
+    axes[0].imshow(rgb, extent=(-1, 1, -1, 1), aspect="auto", interpolation="bilinear")
+    lim = 1e3 * beta * T0 * sw.blueshift(r_obs) * 1.02
+    im = axes[1].imshow(dT, extent=(-1, 1, -1, 1), aspect="auto", cmap=temp, vmin=-lim, vmax=lim,
+                        interpolation="bilinear")
+    _panel(axes[0], "(a) light")
+    _panel(axes[1], "(b) primordial gravitons")
+    _on_image(axes[1].annotate("shadow", (0.1, -0.13), xytext=(0.42, -0.62), fontsize=7, ha="left",
+                               va="center", arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff",
+                                                            shrinkA=2, shrinkB=2)))
+    cb = fig.colorbar(im, cax=cax)
+    cb.ax.tick_params(labelsize=6.5)
+    cb.set_label(r"$T - %.3f\,\mathrm{K}$, in mK" % mean, fontsize=7, labelpad=2)
+    print(f"  shadow radius {math.degrees(sw.shadow_radius(r_obs)):.1f} deg; mean T {mean:.4f} K")
+    save(fig, "black-hole", web=True)
+
+
+def sun_lens():
+    """The transparent Sun as a lens: bending and focal distance against the
+    impact parameter, inside and outside the Sun (gravcam/sunlens.py)."""
+    from gravcam import sunlens
+    AU = 1.495978707e11
+    b = np.concatenate([np.linspace(0.004, 0.99, 70), np.linspace(1.0, 3.0, 30)])
+    alpha = np.array([sunlens.deflection(x * sunlens.R_sun) for x in b])
+    arcsec = np.degrees(alpha) * 3600
+    focus = b * sunlens.R_sun / alpha / AU
+    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.95), gridspec_kw={"wspace": 0.42})
+    ax = axes[0]
+    ax.axvline(1, color=RULE, lw=0.6)
+    ax.plot(b, arcsec, color=ACCENT, lw=1.2)
+    ax.plot(b[b >= 1], 1.7512 / b[b >= 1], color=ACCENT, lw=1.2)
+    inner = (b < 1) & (1.7512 / b < 5.4)
+    ax.plot(b[inner], 1.7512 / b[inner], color=FAINT, lw=0.8, ls=(0, (3, 2)))
+    ax.set_xlim(0, 3)
+    ax.set_ylim(0, 5.5)
+    ax.set_xlabel(r"impact parameter $b/R_\odot$")
+    ax.set_ylabel("bending (arcseconds)")
+    ax.text(1.06, 5.3, "the Sun's surface", fontsize=6.5, color=DIM, ha="left", va="top")
+    ax.text(1.75, 1.55, r"$1.75''\,R_\odot/b$", fontsize=7, color=DIM, ha="left")
+    ax.text(0.13, 4.4, r"$4.2''$", fontsize=7, color=ACCENT, ha="center", va="bottom")
+    ax.annotate("a point mass", (0.45, 1.7512 / 0.45), xytext=(1.06, 4.3), fontsize=6.5, color=FAINT,
+                ha="left", va="center", arrowprops=dict(arrowstyle="-", lw=0.5, color=FAINT, shrinkA=1, shrinkB=2))
+    ax.set_title("(a) bending", fontsize=8, loc="left", pad=3)
+    ax = axes[1]
+    ax.axvline(1, color=RULE, lw=0.6)
+    ax.semilogy(b, focus, color=ACCENT2, lw=1.2)
+    ax.axhline(23.5, color=FAINT, lw=0.7, ls=(0, (3, 2)))
+    ax.text(2.95, 26, "23.5 AU, standard model", fontsize=6.5, color=DIM, ha="right", va="bottom")
+    ax.annotate(f"{focus[0]:.1f} AU at the centre", (0.02, focus[0]), xytext=(1.12, 15), fontsize=7,
+                color=ACCENT2, ha="left", va="center",
+                arrowprops=dict(arrowstyle="-", lw=0.5, color=ACCENT2, shrinkA=1, shrinkB=2))
+    ax.text(1.05, 548 / 1.6, "548 AU", fontsize=7, color=ACCENT2, ha="left", va="top")
+    ax.set_xlim(0, 3)
+    ax.set_ylim(10, 1e4)
+    ax.set_xlabel(r"impact parameter $b/R_\odot$")
+    ax.set_ylabel("focal distance (AU)")
+    ax.set_title("(b) where it focuses", fontsize=8, loc="left", pad=3)
+    for a in axes:
+        for side in ("top", "right"):
+            a.spines[side].set_visible(False)
+    fig.subplots_adjust(left=0.09, right=0.98, top=0.9, bottom=0.21)
+    peak = b[np.argmax(arcsec)]
+    print(f"  peak bending {arcsec.max():.2f} arcsec at b = {peak:.2f} R; shortest focus {focus[0]:.1f} AU")
+    save(fig, "sun-lens", web=True)
+
+
+def memory_patterns():
+    """What a burst leaves behind: the memory against the direction of the
+    camera, for a merger and for an explosion (gravcam/memory.py)."""
+    from gravcam import memory
+    angles = np.radians(np.linspace(1, 179, 120))
+    toward = lambda a: np.array([math.sin(a), 0.0, math.cos(a)])  # noqa: E731
+    merger = np.array([abs(memory.epstein(memory.binary_flux, toward(a))[0]) for a in angles])
+    ci = np.cos(angles)
+    wave = np.hypot((1 + ci * ci) / 2, ci)                 # amplitude of the oscillating wave
+    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.95), gridspec_kw={"wspace": 0.3})
+    deg = np.degrees(angles)
+    ax = axes[0]
+    ax.plot(deg, wave / wave.max(), color=ACCENT2, lw=1.1, label="oscillating wave")
+    ax.plot(deg, merger / merger.max(), color=ACCENT, lw=1.2, label="memory")
+    ax.legend(loc="lower center", bbox_to_anchor=(0.5, 0.02), fontsize=7, handlelength=1.6, labelspacing=0.2,
+              frameon=False)
+    ax.set_title("(a) a merger", fontsize=8, loc="left", pad=3)
+    ax.set_ylabel("strain (largest = 1)")
+    ax = axes[1]
+    one = 0.5 * (1 + ci)
+    ax.plot(deg, one, color=ACCENT, lw=1.2, label="one jet")
+    ax.plot(deg, np.full_like(deg, 0.5), color=ACCENT2, lw=1.1, label="two opposite jets")
+    ax.plot(deg, np.zeros_like(deg), color=INK, lw=1.1, ls=(0, (4, 2)), label="spherical")
+    ax.legend(loc="upper right", fontsize=7, handlelength=1.6, labelspacing=0.2, frameon=False)
+    ax.set_title("(b) an explosion", fontsize=8, loc="left", pad=3)
+    ax.set_ylabel(r"$\Delta h \,/\, (4GE/c^4 r)$")
+    for a in axes:
+        a.set_xlim(0, 180)
+        a.set_ylim(-0.04, 1.08)
+        a.set_xticks([0, 90, 180])
+        a.set_xlabel(r"angle from the axis (degrees)")
+        for side in ("top", "right"):
+            a.spines[side].set_visible(False)
+    fig.subplots_adjust(left=0.09, right=0.98, top=0.9, bottom=0.21)
+    save(fig, "memory", web=True)
+
+
 def main() -> int:
     setup_fonts()
     for draw in (tidal, tidal_field, regimes, sky_integral, nearfield, resolution_law, quadrupole,
                  polarization_curves, line_integral, earth_glow, array, budget,
-                 sun_at_midnight, locked_safe, which_way, closed_furnace):
+                 sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
+                 milky_way, black_hole, sun_lens, memory_patterns):
         draw()
     return 0
 

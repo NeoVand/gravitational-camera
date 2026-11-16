@@ -109,3 +109,41 @@ def tidal_tensors(R: np.ndarray):
     E = c * c * R[0, 1:, 0, 1:]
     B = 0.5 * c * c * np.einsum("ipq,pqj->ij", EPS, R[1:, 1:, 1:, 0])
     return E, B
+
+
+def riemann_many(h, points, step) -> np.ndarray:
+    """R_abcd at many events at once: as `riemann`, for a perturbation
+    h(x0, x) that takes arrays x0 of shape (N,) and x of shape (N, 3) and
+    returns (N, 4, 4). `points` is (N, 4) with x0 = c t first; `step` is a
+    scalar or one step per event. Returns (N, 4, 4, 4, 4)."""
+    points = np.atleast_2d(np.asarray(points, dtype=np.float64))
+    n = len(points)
+    step = np.broadcast_to(np.asarray(step, dtype=np.float64), (n,))
+    offsets = [(-2, 1.0 / 12), (-1, -8.0 / 12), (1, 8.0 / 12), (2, -1.0 / 12)]
+
+    def at(shift):
+        p = points + shift
+        return h(p[:, 0], p[:, 1:])
+
+    unit = np.eye(4)
+    second = np.zeros((n, 4, 4, 4, 4))   # second[:, a, b] = d_a d_b h
+    for a in range(4):
+        for b in range(a, 4):
+            acc = np.zeros((n, 4, 4))
+            for k, w in offsets:
+                for l, v in offsets:
+                    shift = (k * unit[a] + l * unit[b])[None, :] * step[:, None]
+                    acc += w * v * at(shift)
+            second[:, a, b] = second[:, b, a] = acc / (step * step)[:, None, None]
+    R = np.zeros((n, 4, 4, 4, 4))
+    for a, b, cc, d in itertools.product(range(4), repeat=4):
+        R[:, a, b, cc, d] = 0.5 * (second[:, b, cc, a, d] + second[:, a, d, b, cc]
+                                   - second[:, b, d, a, cc] - second[:, a, cc, b, d])
+    return R
+
+
+def tidal_tensors_many(R: np.ndarray):
+    """(E, B), each (N, 3, 3), from R of shape (N, 4, 4, 4, 4)."""
+    E = c * c * R[:, 0, 1:, 0, 1:]
+    B = 0.5 * c * c * np.einsum("ipq,npqj->nij", EPS, R[:, 1:, 1:, 1:, 0])
+    return E, B
