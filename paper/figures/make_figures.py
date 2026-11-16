@@ -1531,11 +1531,48 @@ def memory_patterns():
     save(fig, "memory", web=True)
 
 
+
+# --- Figure: how much a near-field picture holds -----------------------------
+
+def capacity():
+    """The information in a near-field picture against the sensitivity, per area z^2 of the scene: the exact
+    capacity of the channel, its closed form, and the number of patterns resolved (gravcam/capacity.py)."""
+    from gravcam import capacity as cap
+    snr = np.logspace(0.5, 70, 140)
+    exact = np.array([cap.near_field(s) for s in snr])
+    approx = np.array([cap.near_field_asymptotic(s) for s in snr])
+    modes = np.array([cap.near_field_modes(s) for s in snr])
+    fig, ax = plt.subplots(figsize=(COL, 2.35))
+    ax.plot(snr, exact, color=ACCENT, lw=1.1, label=r"bits, $C$")
+    ax.plot(snr, approx, color=INK, lw=0.7, ls=(0, (3, 2)), label=r"$(q_c^3/3 - q_c^2/2)/4\pi\ln 2$")
+    ax.plot(snr, modes, color=ACCENT2, lw=1.0, label=r"patterns resolved, $q_c^2/4\pi$")
+    # each value set above and to the left of its point, where the rising curves leave room
+    for s, label, (dx, dy) in ((1e3, r"38", (0, 11)), (1e30, r"$1.6\times10^{4}$", (-5, 7)),
+                               (1e70, r"$1.8\times10^{5}$", (-5, 7))):
+        c = cap.near_field(s)
+        ax.plot([s], [c], "o", ms=2.8, color=ACCENT, mec="none", zorder=5)
+        ax.annotate(label, (s, c), xytext=(dx, dy), textcoords="offset points", fontsize=7,
+                    ha="left" if dx > 0 else "right" if dx < 0 else "center", va="center")
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlim(3, 1e70)
+    ax.set_ylim(1, 1e6)
+    ax.set_xticks([1e10, 1e20, 1e30, 1e40, 1e50, 1e60, 1e70])
+    ax.set_yticks([1e1, 1e2, 1e3, 1e4, 1e5, 1e6])
+    ax.minorticks_off()
+    ax.set_xlabel(r"signal-to-noise ratio, $\mathrm{SNR}$")
+    ax.set_ylabel(r"per area $z^2$ of the scene")
+    ax.legend(loc="lower right", handlelength=1.6, labelspacing=0.25)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    fig.subplots_adjust(left=0.15, right=0.97, top=0.97, bottom=0.19)
+    save(fig, "capacity", web=True)
+
 def main() -> int:
     setup_fonts()
     # tidal, sky-integral, quadrupole, line-integral and earth-glow are modelled in 3D and drawn by
     # figures3d/ (node figures3d/render.mjs --final ...); their old versions here are no longer drawn
-    for draw in (tidal_field, regimes, nearfield, resolution_law,
+    for draw in (tidal_field, regimes, nearfield, resolution_law, capacity,
                  polarization_curves, array, budget,
                  sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
                  milky_way, black_hole, sun_lens, memory_patterns):

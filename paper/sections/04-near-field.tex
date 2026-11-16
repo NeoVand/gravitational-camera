@@ -196,6 +196,65 @@ is about $10^{70}$, a blur of $1.5^\circ$. On this estimate no near-field camera
 could draw a face; making the estimate rigorous needs the coupling, the
 resources and the discrimination task to be stated exactly.
 
+\paragraph{How much a picture holds.} The resolution law says how fine the
+detail of a near-field image can be. A different question, the one Shannon
+asked of a telegraph line \cite{Shannon1948}, is how much the image can say:
+how many bits the data carry about the scene. Equation~\eqref{eq:array-data}
+answers it with no further assumption. Each Fourier component of the scene
+reaches the array as a signal in additive Gaussian noise, standing above it by
+the ratio $s$ of Eq.~\eqref{eq:wiener}, and components with different
+$\mathbf k$ are independent. A real signal in Gaussian noise with power ratio
+$s^2$ carries at most $\tfrac12\log_2(1+s^2)$ bits, a bound reached when the
+signal is itself Gaussian, and a scene of area $A$ has $A\,\mathrm{d}^2k/(2\pi)^2$
+real components in each $\mathrm{d}^2k$. Per area $z^2$ of the scene, with
+$q = kz$, the data therefore hold
+\begin{equation}\label{eq:capacity-integral}
+C = \frac{1}{4\pi}\int_0^\infty q\,\log_2\!\left(1 + \pi^2\SNR^2 q^2 e^{-2q}\right)\mathrm{d}q
+\end{equation}
+bits about any scene with the spectrum of the prior of Eq.~\eqref{eq:wiener},
+and a scene made of point masses carries somewhat less. Where $s > 1$, which
+is for $q$ between about $1/\pi\SNR$ and $q_c$, the logarithm is close to
+$2\log_2 s$; elsewhere it is small. Integrating $2q\log_2 s$ over that range,
+with $\ln(\pi\SNR) = q_c - \ln q_c$ from Eq.~\eqref{eq:cutoff}, gives
+\begin{equation}\label{eq:capacity}
+C \approx \frac{q_c^3/3 - q_c^2/2}{4\pi\ln 2}
+\end{equation}
+to within three per cent for $\SNR \ge 10^3$ and half a per cent beyond
+$10^{10}$.
+
+The two terms have a plain reading. The patterns that survive the noise are
+the components with $q < q_c$, and there are $q_c^2/4\pi$ of them per area
+$z^2$; the rest of Eq.~\eqref{eq:capacity} is the number of bits each carries
+on average, $(q_c/3 - \tfrac12)/\ln 2$, the mean of $2\log_2 s$ over them.
+Greater sensitivity buys both more patterns and more bits in each, so with
+$q_c \approx \ln\SNR$ the information grows, eventually, as
+$(\ln\SNR)^3/12\pi\ln 2$: as the cube of the logarithm of the sensitivity. At
+$\SNR = 10^3$ a near-field picture holds 38 bits per area $z^2$, about nine
+patterns of four bits each. At $10^6$ it holds 200 bits; at $10^{30}$,
+$1.6\times10^4$. At the heuristic ceiling of the previous paragraph, a person
+watched for the age of the universe, it holds $1.8\times10^5$ bits, some 22
+kilobytes, spread over 2{,}200 patterns of 80 bits each: about the size of a
+thumbnail photograph, after sixty-seven orders of magnitude more sensitivity
+(Figure~\ref{fig:capacity}). This is also why a blurred image and a precise
+measurement are compatible. The data hold few bits, and a scene known to be
+simple spends them all on a few numbers.
+
+The camera's other channels scale differently, and the comparison shows what
+is peculiar to the near field. A wave camera of width $D$ at wavelength
+$\lambda$ resolves about $(D/\lambda)^2$ directions in each steradian, and each
+carries about $\log_2\SNR$ bits: the aperture fixes the number of patterns, and
+sensitivity adds bits only in proportion to its logarithm. In the near field
+there is no aperture to fix the number of patterns; sensitivity sets it
+through $e^{-kz}$, and that is why the power is three rather than one. A single
+pixel, at the other extreme, is limited by geometry rather than noise: from a
+sky of many overlapping sources it learns twenty-five numbers however
+sensitive it is (Section~\ref{sec:no-lens}). And the thermal glow, recorded by
+counting gravitons, is limited by their number: $N$ gravitons over $M$
+resolution cells carry at most about $N\log_2 M$ bits. A camera a metre square
+looking down at the Earth for a year counts about 1{,}750 of them in the model
+of Section~\ref{sec:first-image}, so its picture of the planet's interior holds
+a few kilobytes at any reasonable resolution.
+
 \begin{table}
 \centering
 \begin{tabular}{rrrrrr}
@@ -242,6 +301,19 @@ Eq.~\eqref{eq:wiener}, computed by the reference implementation; its ripples
 are the price of discarding the detail that noise has swamped. The bar is the
 blur, $0.21\,z$. On the website the sensitivity and the separation can be
 changed.}\label{fig:nearfield}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/capacity.pdf}
+\caption{How much a near-field picture holds, per area $z^2$ of the scene,
+against the signal-to-noise ratio. Orange: the bits the data carry about the
+scene, Eq.~\eqref{eq:capacity-integral}, computed by the reference
+implementation. Dashed: the closed form of Eq.~\eqref{eq:capacity}, which lies
+on it. Blue: the number of independent patterns resolved, $q_c^2/4\pi$. Raising
+the sensitivity by sixty-seven orders of magnitude, from $10^3$ to $10^{70}$,
+raises the information only from 38 bits to $1.8\times10^5$, about 22
+kilobytes.}\label{fig:capacity}
 \end{figure}
 
 The logarithmic limit is the central result for the whole subject. The near field
