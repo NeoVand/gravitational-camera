@@ -7,6 +7,7 @@
 		PlayIcon,
 		Clock01Icon,
 		ContrastIcon,
+		Moon02Icon,
 		Sun03Icon,
 		TemperatureIcon
 	} from '@hugeicons/core-free-icons';
@@ -16,9 +17,17 @@
 		chordThrough,
 		columnsAlong,
 		referenceRadiance,
+		type Vec3,
 		type View
 	} from '#lib/engine/index.js';
-	import { aim, formatClock, objectsAt, scene, sunDirection } from '#lib/demos/sun-at-midnight.js';
+	import {
+		aim,
+		formatClock,
+		moonCenter,
+		objectsAt,
+		scene,
+		sunDirection
+	} from '#lib/demos/sun-at-midnight.js';
 	import { km, superscript, texSci, texWait } from '#lib/ui/format.js';
 	import Tex from '#lib/ui/Tex.svelte';
 	import DemoShell from '#lib/ui/DemoShell.svelte';
@@ -82,6 +91,17 @@
 		columnsAlong(objects, observer, sun).numberRadiance / referenceRadiance(objects, observer)
 	);
 
+	/** Unit vector from here to the Moon's centre: a degree off its direction from the Earth's centre. */
+	const toMoon = $derived.by(() => {
+		const d = moonCenter(hours).map((v, i) => v - observer[i]);
+		const n = Math.hypot(...d);
+		return d.map((v) => v / n) as Vec3;
+	});
+	const moonAltitude = $derived(Math.asin(toMoon[1]) / DEG);
+	const moonRatio = $derived(
+		columnsAlong(objects, observer, toMoon).numberRadiance / referenceRadiance(objects, observer)
+	);
+
 	function lookDown() {
 		view = { ...DOWN };
 		decades = 0;
@@ -90,6 +110,14 @@
 	function findTheSun() {
 		view = { ...aim(sun), fov: 1.6 * DEG };
 		decades = -Math.log10(sunRatio);
+	}
+
+	/** Centre the Moon on the divider: light shows one half of it, gravity the other. */
+	function findTheMoon() {
+		view = { ...aim(toMoon), fov: 3 * DEG };
+		divider = 0.5;
+		// half a decade under the Earth's exposure, so the warmer core shows
+		decades = Math.min(3, -Math.log10(moonRatio) - 0.5);
 	}
 </script>
 
@@ -151,6 +179,9 @@
 				<button type="button" class="action" onclick={findTheSun}>
 					<HugeiconsIcon icon={Sun03Icon} size={16} strokeWidth={1.8} /> Find the Sun
 				</button>
+				<button type="button" class="action" onclick={findTheMoon}>
+					<HugeiconsIcon icon={Moon02Icon} size={16} strokeWidth={1.8} /> Find the Moon
+				</button>
 			</div>
 		</Group>
 		<Group title="Camera">
@@ -197,6 +228,14 @@
 				<dt>Sun’s core against Earth’s interior</dt>
 				<dd><Tex math={`${texSci(sunRatio)}\\times\\ \\text{brighter}`} /></dd>
 			</div>
+			<div>
+				<dt>Moon’s centre against Earth’s interior</dt>
+				<dd>
+					<Tex math={`${texSci(1 / moonRatio)}\\times\\ \\text{fainter}`} />, {Math.abs(
+						moonAltitude
+					).toFixed(0)}° {moonAltitude < 0 ? 'below' : 'above'} the horizon
+				</dd>
+			</div>
 		</dl>
 		<p class="fine">
 			This is the expected image, not a photograph: at these rates a real detector would count
@@ -224,6 +263,16 @@
 		<p>
 			so a line of sight through the hot core is the brightest, and the Sun's core, at fifteen
 			million kelvin, shines through the planet as a star.
+		</p>
+		<h4>The Moon</h4>
+		<p>
+			In light, the nearly full Moon is the brightest thing in the night sky, but none of that light
+			is its own: it is sunlight, reflected. In gravity the Moon shines only by its own warmth. Its
+			interior is cooler than the Earth's, about <Tex math={'1200\\text{–}1700\\,\\mathrm{K}'} /> against
+			up to
+			<Tex math={'5500\\,\\mathrm{K}'} />, and a line of sight through it is a quarter as long, so
+			its centre is about <Tex math={texSci(1 / moonRatio)} /> times fainter than the ground beneath your
+			feet. Find it, and the exposure is raised to show it.
 		</p>
 		<h4>How faint</h4>
 		<p>

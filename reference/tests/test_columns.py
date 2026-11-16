@@ -55,6 +55,8 @@ def brute_rays(scene, raw_scene):
     observer = scene.observer
     sun = hand.center_of(raw_scene, "sun-core")
     r_core = hand.radius_of(raw_scene, "sun-core")
+    moon = hand.center_of(raw_scene, "moon-core")
+    r_moon = hand.radius_of(raw_scene, "moon")
     rng = np.random.default_rng(3)
     downward = rng.standard_normal((2, 3))
     downward[:, 1] = -np.abs(downward[:, 1])
@@ -70,6 +72,8 @@ def brute_rays(scene, raw_scene):
         "random downward 1": downward[0],
         "random downward 2": downward[1],
         "straight up": np.array([0.0, 1.0, 0.0]),
+        "toward the Moon's core centre": toward(observer, moon),
+        "Moon's mantle only (0.5 Moon radii)": toward(observer, moon, 0.5 * r_moon),
     }
 
 
@@ -96,6 +100,8 @@ RAY_LABELS = [
     "random downward 1",
     "random downward 2",
     "straight up",
+    "toward the Moon's core centre",
+    "Moon's mantle only (0.5 Moon radii)",
 ]
 
 
@@ -133,6 +139,8 @@ def test_brute_force_rays_cover_the_scene(scene, raw_scene):
     assert beside[scene.index("outer-core")] > 0 and beside[scene.index("inner-core")] == 0
     envelope = by_label["Sun's envelope only (1.5 core radii)"]
     assert envelope[scene.index("sun")] > 0 and envelope[scene.index("sun-core")] == 0
+    mantle = by_label["Moon's mantle only (0.5 Moon radii)"]
+    assert mantle[scene.index("moon")] > 0 and mantle[scene.index("moon-core")] == 0
 
 
 # --- hand sums ---------------------------------------------------------------------
@@ -157,7 +165,8 @@ def test_straight_down_is_the_hand_sum_of_layers(scene, raw_scene):
     assert float(columns.number_radiance(scene, [0.0, -1.0, 0.0])) == pytest.approx(expected_radiance, rel=1e-13)
     paths = columns.own_region_paths(scene, [0.0, -1.0, 0.0])
     assert paths[: len(EARTH_CHAIN)] == pytest.approx(thickness, rel=1e-14)
-    assert paths[len(EARTH_CHAIN):].tolist() == [0.0, 0.0]          # the Sun is not straight down
+    # neither the Sun nor the Moon is straight down
+    assert paths[len(EARTH_CHAIN):].tolist() == [0.0] * (len(scene.objects) - len(EARTH_CHAIN))
 
 
 def test_ray_through_the_suns_core_centre_alone(scene, raw_scene):
@@ -245,9 +254,13 @@ def test_own_region_paths_equal_signed_sums_of_chords(scene, raw_scene):
                            for impact in 1.05 * r_sun * rng.uniform(0, 1, 3000)])
     near_the_horizon = np.array([camera.camera_basis(yaw, pitch)[0]
                                  for yaw, pitch in zip(rng.uniform(0, 6.28, 2000), rng.uniform(-0.05, 0.01, 2000))])
+    moon = np.array(hand.center_of(raw_scene, "moon"))
+    r_moon = hand.radius_of(raw_scene, "moon")
+    at_the_moon = np.array([toward(observer, moon, impact, hint=rng.standard_normal(3))
+                            for impact in 1.05 * r_moon * rng.uniform(0, 1, 2000)])
     into_the_core = np.array([camera.camera_basis(yaw, pitch)[0]
                               for yaw, pitch in zip(rng.uniform(0, 6.28, 2000), rng.uniform(-math.pi / 2, -0.9, 2000))])
-    directions = np.concatenate([everywhere, at_the_sun, near_the_horizon, into_the_core])
+    directions = np.concatenate([everywhere, at_the_sun, near_the_horizon, into_the_core, at_the_moon])
     directions /= np.linalg.norm(directions, axis=1, keepdims=True)
 
     paths = columns.own_region_paths(scene, directions)

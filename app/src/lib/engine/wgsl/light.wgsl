@@ -14,7 +14,9 @@ fn star_field(rd: vec3f) -> vec3f {
     let lit = step(select(0.93, 0.80, layer == 1), h.x);
     let mag = pow(h.y, select(6.0, 9.0, layer == 1)) * select(2.5, 0.9, layer == 1) + 0.04;
     let tint = mix(vec3f(1.0, 0.86, 0.72), vec3f(0.75, 0.85, 1.0), h.z);
-    acc += lit * mag * tint * smoothstep(0.16, 0.0, d);
+    // a star is a point: about a pixel and a half across however far one zooms
+    let size = min(0.16, 1.6 * frame.forward.w * scale);
+    acc += lit * mag * tint * smoothstep(size, 0.0, d);
   }
   return acc;
 }
@@ -300,6 +302,16 @@ fn light_view(rd: vec3f) -> vec3f {
     if ((p.flags & FLAG_EMISSIVE) != 0u) {
       // the Sun's disc, far brighter than anything else in view
       col += 40.0 * p.light.rgb;
+    } else if (t_near > 2.0e7) {
+      // a body in space (the Moon): lit by the Sun whatever the hour here, so
+      // its phase follows from the geometry, with darker seas on its face; it
+      // hides the stars behind it and shows through the daytime sky
+      let normal = prim_normal(p, t_near * rd);
+      let q = vec2f(normal.x + 0.6 * normal.z, normal.y - 0.4 * normal.z) * 2.6;
+      let sea = smoothstep(0.48, 0.62, fbm(q + 7.0));
+      let albedo = p.light.rgb * mix(1.0, 0.58, sea) * (0.9 + 0.2 * fbm(q * 6.0));
+      let lit = max(dot(normal, sun), 0.0) * 1.4;
+      col = albedo * lit + day * sky_color(rd, sun);
     } else {
       let pos = t_near * rd;
       let normal = prim_normal(p, pos);

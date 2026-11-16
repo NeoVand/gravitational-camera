@@ -95,6 +95,37 @@ test('demo draws frames and responds to its controls', async ({ page }) => {
 	expect(sum(after.light)).toBeGreaterThan(sum(before.light) + 30);
 });
 
+test('the Moon: lit grey in light, a faint warm glow in gravity', async ({ page }) => {
+	await page.goto('/demo/sun-at-midnight/?present=readback');
+	const canvas = page.locator('canvas');
+	await expect
+		.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
+		.toBeGreaterThan(0);
+	const frames = Number(await canvas.getAttribute('data-frames'));
+	await page.getByRole('button', { name: 'Find the Moon' }).click();
+	// the Moon sits on the divider: half of it in each picture
+	await expect
+		.poll(async () => Number(await canvas.getAttribute('data-split')), { timeout: 30_000 })
+		.toBeCloseTo(0.5, 2);
+	await expect
+		.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
+		.toBeGreaterThan(frames);
+	const [light, gravity, sky] = await page.evaluate(() => {
+		const c = document.querySelector('canvas')!;
+		const g = c.getContext('2d')!;
+		const at = (fx: number, fy: number) =>
+			Array.from(g.getImageData(Math.floor(c.width * fx), Math.floor(c.height * fy), 1, 1).data);
+		return [at(0.47, 0.5), at(0.53, 0.5), at(0.1, 0.5)];
+	});
+	const sum = (p: number[]) => p[0] + p[1] + p[2];
+	// moonlight is grey and far brighter than the night sky beside it
+	expect(sum(light)).toBeGreaterThan(sum(sky) + 200);
+	expect(Math.abs(light[0] - light[2])).toBeLessThan(40);
+	// the Moon's own warmth: dimmer, and red rather than grey
+	expect(sum(gravity)).toBeGreaterThan(60);
+	expect(gravity[0]).toBeGreaterThan(gravity[2] + 40);
+});
+
 test('near-field demo: gold shows through steel, and blurs away at low sensitivity', async ({
 	page
 }) => {

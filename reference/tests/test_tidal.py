@@ -135,13 +135,16 @@ def test_vectorised_over_points():
 # --- the scene: nested spheres by superposition ----------------------------------------
 
 def test_scene_mass_is_density_times_own_volume(scene):
-    for roots in (None, ["earth"], ["sun"], ["outer-core"]):
+    for roots in (None, ["earth"], ["sun"], ["moon"], ["outer-core"]):
         ids = scene.ids if roots is None else scene.subtree(roots[0])
         direct = math.fsum(scene[i].material.density * scene[i].own_volume for i in ids)
         assert tidal.scene_mass(scene, roots) == pytest.approx(direct, rel=1e-13)
-    assert tidal.scene_mass(scene) == pytest.approx(tidal.scene_mass(scene, ["earth"]) + tidal.scene_mass(scene, ["sun"]), rel=1e-15)
+    assert tidal.scene_mass(scene) == pytest.approx(
+        math.fsum(tidal.scene_mass(scene, [root]) for root in scene.roots), rel=1e-15)
     # the rounded textbook layers give the Earth's mass to better than 1 %
     assert tidal.scene_mass(scene, ["earth"]) == pytest.approx(5.9722e24, rel=1e-2)
+    # ... and the Moon's two layers give its mass (7.342e22 kg) closely
+    assert tidal.scene_mass(scene, ["moon"]) == pytest.approx(7.342e22, rel=2e-3)
     # ... but the Sun's rough densities do not give the solar mass
     assert tidal.scene_mass(scene, ["sun"]) == pytest.approx(1.41e30, rel=1e-2)
 

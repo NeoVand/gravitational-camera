@@ -33,7 +33,7 @@ def test_materials_are_resolved(scene, raw_scene):
 
 
 def test_tree(scene):
-    assert scene.roots == ("earth", "sun")
+    assert scene.roots == ("earth", "sun", "moon")
     for depth, (object_id, parent) in enumerate(zip(EARTH_CHAIN, [None] + EARTH_CHAIN[:-1])):
         assert scene[object_id].parent == parent
         assert scene[object_id].depth == depth
@@ -45,6 +45,7 @@ def test_tree(scene):
     assert scene.subtree("earth") == tuple(EARTH_CHAIN)
     assert scene.subtree("outer-core") == ("outer-core", "inner-core")
     assert scene.subtree("sun") == ("sun", "sun-core")
+    assert scene["moon-core"].parent == "moon" and scene["moon"].children == ("moon-core",)
 
 
 def test_own_volumes_are_shells(scene, raw_scene):
