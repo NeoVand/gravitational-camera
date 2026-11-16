@@ -21,8 +21,10 @@
 	}
 
 	// beside a mass: the mass drifts nearer and farther; the tide goes as 1/r^3
-	const massDistance = $derived(150 + 28 * Math.cos(t * 1.1));
+	const massDistance = $derived(146 + 24 * Math.cos(t * 1.1));
 	const tide = $derived(0.2 * (122 / massDistance) ** 3);
+	// the mass is drawn nearer than its distance in the formula, to fit the panel
+	const massX = $derived(-massDistance + 6);
 	const wave = $derived(0.24 * Math.sin(t * 2.2));
 
 	const beside = (a: number) => ({
@@ -49,9 +51,9 @@
 		{@attach animate}
 	>
 		<!-- beside a mass -->
-		<g transform="translate(150 112)">
+		<g transform="translate(205 112)">
 			<circle class="hair" r={R} stroke-dasharray="3 5" />
-			<circle cx={-massDistance + 20} cy="0" r="17" fill="var(--accent)" />
+			<circle cx={massX} cy="0" r="17" fill="var(--accent)" />
 			<line
 				class="hair"
 				x1={-massDistance + 40}
@@ -69,7 +71,7 @@
 		</g>
 
 		<!-- plus -->
-		<g transform="translate(400 112)">
+		<g transform="translate(440 112)">
 			<circle class="hair" r={R} stroke-dasharray="3 5" />
 			{#each dots as a (a)}
 				{@const p = plus(a)}
@@ -80,7 +82,7 @@
 		</g>
 
 		<!-- cross -->
-		<g transform="translate(600 112)">
+		<g transform="translate(628 112)">
 			<circle class="hair" r={R} stroke-dasharray="3 5" />
 			{#each dots as a (a)}
 				{@const p = cross(a)}

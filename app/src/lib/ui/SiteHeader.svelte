@@ -9,7 +9,13 @@
 		Sun03Icon
 	} from '@hugeicons/core-free-icons';
 
-	let { current }: { current?: 'paper' | 'demo' } = $props();
+	interface Props {
+		current?: 'paper' | 'demo';
+		/** Lay the header over a picture: no background, and no theme switch. */
+		overlay?: boolean;
+	}
+
+	let { current, overlay = false }: Props = $props();
 
 	function toggleTheme() {
 		const root = document.documentElement;
@@ -26,7 +32,7 @@
 	}
 </script>
 
-<header>
+<header class={{ overlay }}>
 	<a class="brand" href={resolve('/')}>The Gravitational Camera</a>
 	<nav aria-label="Site">
 		<a href={resolve('/paper')} aria-current={current === 'paper' ? 'page' : undefined}>
@@ -44,10 +50,12 @@
 		>
 			<HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.6} />
 		</a>
-		<button type="button" onclick={toggleTheme} aria-label="Switch between light and dark">
-			<span class="to-light"><HugeiconsIcon icon={Sun03Icon} size={18} strokeWidth={1.6} /></span>
-			<span class="to-dark"><HugeiconsIcon icon={Moon02Icon} size={18} strokeWidth={1.6} /></span>
-		</button>
+		{#if !overlay}
+			<button type="button" onclick={toggleTheme} aria-label="Switch between light and dark">
+				<span class="to-light"><HugeiconsIcon icon={Sun03Icon} size={18} strokeWidth={1.6} /></span>
+				<span class="to-dark"><HugeiconsIcon icon={Moon02Icon} size={18} strokeWidth={1.6} /></span>
+			</button>
+		{/if}
 	</nav>
 </header>
 
@@ -65,6 +73,18 @@
 		backdrop-filter: blur(10px);
 		border-bottom: 1px solid var(--line);
 		font-size: 0.86rem;
+	}
+
+	header.overlay {
+		position: absolute;
+		inset: 0 0 auto 0;
+		background: linear-gradient(rgb(0 0 0 / 0.55), transparent);
+		backdrop-filter: none;
+		border-bottom: 0;
+	}
+
+	header.overlay nav a:hover {
+		background: rgb(255 255 255 / 0.1);
 	}
 
 	.brand {

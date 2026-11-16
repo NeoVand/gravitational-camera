@@ -1,0 +1,122 @@
+{
+  "name": "locked-safe",
+  "title": "The locked safe",
+  "description": "Two identical steel safes in a room. One holds gold bars, the other is empty. In light they cannot be told apart.",
+  "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
+  "environment": "room",
+  "observer": {
+    "position": [0, 1.5, 0],
+    "exclusion": 0.25
+  },
+  "materials": {
+    "concrete": {
+      "density": 2400,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.42, 0.41, 0.39]
+      }
+    },
+    "plaster": {
+      "density": 1200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.6, 0.56]
+      }
+    },
+    "steel": {
+      "density": 7850,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.33, 0.35, 0.38]
+      }
+    },
+    "air": {
+      "density": 1.2,
+      "temperature": 293,
+      "friction": 0.001
+    },
+    "gold": {
+      "density": 19300,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.83, 0.62, 0.15]
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "shape": {
+        "type": "box",
+        "center": [0, -0.15, -4],
+        "size": [12, 0.3, 14]
+      },
+      "material": "concrete"
+    },
+    {
+      "id": "back-wall",
+      "shape": {
+        "type": "box",
+        "center": [0, 1.5, -8.15],
+        "size": [12, 3, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "safe-left",
+      "shape": {
+        "type": "box",
+        "center": [-1.1, 0.5, -3.5],
+        "size": [0.8, 1.0, 0.8]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "safe-left-cavity",
+      "parent": "safe-left",
+      "shape": {
+        "type": "box",
+        "center": [-1.1, 0.5, -3.5],
+        "size": [0.7, 0.9, 0.7]
+      },
+      "material": "air"
+    },
+    {
+      "id": "safe-left-gold",
+      "parent": "safe-left-cavity",
+      "shape": {
+        "type": "box",
+        "center": [-1.1, 0.13, -3.5],
+        "size": [0.3, 0.14, 0.4]
+      },
+      "material": "gold"
+    },
+    {
+      "id": "safe-right",
+      "shape": {
+        "type": "box",
+        "center": [1.1, 0.5, -3.5],
+        "size": [0.8, 1.0, 0.8]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "safe-right-cavity",
+      "parent": "safe-right",
+      "shape": {
+        "type": "box",
+        "center": [1.1, 0.5, -3.5],
+        "size": [0.7, 0.9, 0.7]
+      },
+      "material": "air"
+    }
+  ],
+  "assumptions": [
+    "Friction values are placeholders, as in the other scenes.",
+    "The left safe holds about 320 kg of gold; each safe's walls are 5 cm of steel."
+  ]
+}

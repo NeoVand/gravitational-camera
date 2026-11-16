@@ -33,3 +33,27 @@ With G, c, the Stefan–Boltzmann constant σ and Boltzmann's constant k:
 Matter is transparent, so the thermal image is a line integral: the number
 radiance along a ray from the observer is N = ∫ j_N ds
 (gravitons s⁻¹ m⁻² sr⁻¹), with no occlusion.
+
+## Additions in v1
+
+- `shape` may also be an axis-aligned box:
+  `{ "type": "box", "center": [x, y, z], "size": [sx, sy, sz] }`.
+  Volumes, containment and line integrals follow in the obvious way.
+- `observer.exclusion` (metres, default 0.25) is the radius around the observer
+  inside which matter is ignored by the near-field image.
+- `environment` is `"night-sky"` (default) or `"room"`; it only affects the
+  ordinary-light view.
+
+## Near-field image model
+
+The tidal field at the observer from all mass beyond the exclusion radius is
+
+    E_ij = G ∫ dΩ (δ_ij − 3 n_i n_j) S(n)
+
+with the *tidal column* along the unit vector n
+
+    S(n) = ∫ ρ(r n) dr / r        (kg/m³), from r = exclusion to infinity.
+
+S(n) is the sky map that a near-field camera reconstructs: mass along the line
+of sight, weighted by the inverse of its distance. For a ray that is inside a
+uniform region from r = a to r = b the contribution is ρ ln(b/a).

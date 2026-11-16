@@ -1,7 +1,25 @@
 <script lang="ts">
 	import { asset, resolve } from '$app/paths';
+	import { HugeiconsIcon } from '@hugeicons/svelte';
+	import {
+		ArrowRight02Icon,
+		BookOpen01Icon,
+		DropletIcon,
+		FlashlightIcon,
+		Layers01Icon,
+		MirrorIcon,
+		PlayCircleIcon,
+		Rotate01Icon,
+		SafeIcon,
+		TemperatureIcon,
+		TestTube01Icon,
+		ViewIcon,
+		WaveIcon,
+		WeightScale01Icon
+	} from '@hugeicons/core-free-icons';
 	import { objectsAt, scene, sunDirection } from '#lib/demos/sun-at-midnight.js';
 	import type { View } from '#lib/engine/index.js';
+	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import SplitView from '#lib/ui/SplitView.svelte';
 
 	const DEG = Math.PI / 180;
@@ -9,6 +27,47 @@
 	let divider = $state(0.46);
 	const objects = objectsAt(0);
 	const sun = sunDirection(0);
+
+	const regimes = [
+		{
+			icon: WeightScale01Icon,
+			name: 'The near field',
+			line: 'Mass itself, through any wall.',
+			text: 'At everyday speeds the camera feels the changing pull of whatever is near it. Nothing can be hidden, and everything can be weighed. The price is a blur that no sensitivity can remove.'
+		},
+		{
+			icon: WaveIcon,
+			name: 'Waves from motion',
+			line: 'Every moving thing is a point.',
+			text: 'Whatever spins, shakes or collides sends out waves far longer than itself. The camera cannot resolve it, but reads from the polarization which way it turns.'
+		},
+		{
+			icon: TemperatureIcon,
+			name: 'The thermal glow',
+			line: 'Sharp, transparent, faint.',
+			text: 'Warm matter glows in gravitational waves short enough for sharp pictures. Nothing blocks the glow of what lies behind, so the picture runs all the way through.'
+		}
+	];
+
+	const affordances = [
+		{
+			icon: ViewIcon,
+			name: 'See through anything',
+			text: 'The whole Earth is transparent.',
+			href: resolve('/demo/sun-at-midnight')
+		},
+		{ icon: SafeIcon, name: 'Find what is hidden', text: 'No shield or cloak exists.' },
+		{ icon: WeightScale01Icon, name: 'Weigh by looking', text: 'Brightness is mass, not surface.' },
+		{ icon: MirrorIcon, name: 'Ignore images', text: 'A mirror shows nothing.' },
+		{
+			icon: TemperatureIcon,
+			name: 'Read inside temperature',
+			text: 'Heat is seen through the walls.'
+		},
+		{ icon: DropletIcon, name: 'Tell materials by friction', text: 'Honey and water differ.' },
+		{ icon: Rotate01Icon, name: 'Read spin and its sense', text: 'Even in a sealed box.' },
+		{ icon: FlashlightIcon, name: 'See what emits no light', text: 'All energy gravitates.' }
+	];
 </script>
 
 <svelte:head>
@@ -34,41 +93,125 @@
 				poster={asset('posters/sun-at-midnight.jpg')}
 			/>
 		</div>
+		<SiteHeader overlay />
 
 		<div class="words">
+			<p class="kicker">A thought experiment, worked out and rendered</p>
 			<h1>The Gravitational Camera</h1>
 			<p class="lede">
 				What would a camera see if every pixel were a detector of gravitational waves?
 			</p>
 			<nav aria-label="Main">
-				<a class="primary" href={resolve('/demo')}>Open the demos</a>
-				<a href={resolve('/paper')}>Read the paper</a>
+				<a class="primary" href={resolve('/demo')}>
+					<HugeiconsIcon icon={PlayCircleIcon} size={20} strokeWidth={1.7} />
+					Open the demos
+				</a>
+				<a class="secondary" href={resolve('/paper')}>
+					<HugeiconsIcon icon={BookOpen01Icon} size={20} strokeWidth={1.7} />
+					Read the paper
+				</a>
 			</nav>
 		</div>
 
 		<p class="caption">
 			Midnight, looking down. Left, ordinary light: dark ground under the stars. Right, thermal
-			gravitational radiation: Earth's interior, and the Sun's core shining through the planet. Drag
+			gravitational radiation: Earth’s interior, and the Sun’s core shining through the planet. Drag
 			the divider.
 		</p>
 	</section>
 
+	<section class="band">
+		<header>
+			<h2>Three ways of seeing</h2>
+			<p>
+				A gravitational detector cannot tell a passing wave from the pull of a nearby object. What
+				its pixels receive depends on how fast the source moves and how far away it is, and falls
+				into three regimes with very different pictures.
+			</p>
+		</header>
+		<ol class="regimes">
+			{#each regimes as r (r.name)}
+				<li>
+					<span class="glyph"><HugeiconsIcon icon={r.icon} size={30} strokeWidth={1.4} /></span>
+					<h3>{r.name}</h3>
+					<p class="line">{r.line}</p>
+					<p>{r.text}</p>
+				</li>
+			{/each}
+		</ol>
+	</section>
+
+	<section class="band">
+		<header>
+			<h2>What it can do that light cannot</h2>
+			<p>
+				Gravity is produced by everything and stopped by nothing. Each consequence is a demo: one
+				half of the picture in light, the other in gravity.
+			</p>
+		</header>
+		<ul class="affordances">
+			{#each affordances as a (a.name)}
+				<li>
+					<span class="glyph small"
+						><HugeiconsIcon icon={a.icon} size={22} strokeWidth={1.5} /></span
+					>
+					<div>
+						{#if a.href}
+							<h3><a href={a.href}>{a.name}</a></h3>
+						{:else}
+							<h3>{a.name}</h3>
+						{/if}
+						<p>{a.text}</p>
+					</div>
+				</li>
+			{/each}
+		</ul>
+		<a class="more" href={resolve('/demo')}>
+			All demos <HugeiconsIcon icon={ArrowRight02Icon} size={18} strokeWidth={1.7} />
+		</a>
+	</section>
+
+	<section class="band doors">
+		<a href={resolve('/paper')}>
+			<span class="glyph"><HugeiconsIcon icon={BookOpen01Icon} size={30} strokeWidth={1.4} /></span>
+			<h3>The paper</h3>
+			<p>
+				The theory, written to be read at two levels: plain-language summaries for everyone,
+				derivations and live figures for physicists.
+			</p>
+		</a>
+		<a href={resolve('/demo')}>
+			<span class="glyph"><HugeiconsIcon icon={Layers01Icon} size={30} strokeWidth={1.4} /></span>
+			<h3>The engine</h3>
+			<p>
+				A WebGPU renderer that draws the same scene in light and in gravity, side by side, in your
+				browser.
+			</p>
+		</a>
+		<a href={resolve('/dev/selftest')}>
+			<span class="glyph"><HugeiconsIcon icon={TestTube01Icon} size={30} strokeWidth={1.4} /></span>
+			<h3>The checks</h3>
+			<p>
+				Every picture is computed twice, by the engine and by an independent reference. Run the
+				comparison on your own device.
+			</p>
+		</a>
+	</section>
+
 	<footer>
-		<span>A thought experiment, worked out and rendered. Work in progress.</span>
-		<a href="https://github.com/NeoVand/gravitational-camera">Source</a>
+		<span>Work in progress. The physics is standard; the claims of novelty are provisional.</span>
+		<a href="https://github.com/NeoVand/gravitational-camera">Source on GitHub</a>
 	</footer>
 </main>
 
 <style>
 	main {
 		min-height: 100svh;
-		display: grid;
-		grid-template-rows: 1fr auto;
 	}
 
 	.hero {
 		position: relative;
-		min-height: min(100svh, 60rem);
+		min-height: min(100svh, 58rem);
 		display: grid;
 		align-items: center;
 		overflow: hidden;
@@ -81,9 +224,9 @@
 
 	.words {
 		position: relative;
-		width: min(34rem, 100% - 2 * var(--gutter));
+		width: min(36rem, 100% - 2 * var(--gutter));
 		margin-left: var(--gutter);
-		padding-block: 4rem 6rem;
+		padding-block: 6rem 7rem;
 		pointer-events: none;
 	}
 
@@ -91,20 +234,29 @@
 		pointer-events: auto;
 	}
 
+	.kicker {
+		margin: 0 0 1.1rem;
+		font-size: 0.74rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+		text-shadow: 0 1px 12px rgb(0 0 0 / 0.9);
+	}
+
 	h1 {
 		margin: 0;
-		font: 400 clamp(2.6rem, 6.4vw, 4.6rem) / 1.02 var(--font-serif);
-		letter-spacing: -0.02em;
+		font: 400 clamp(2.8rem, 6.6vw, 4.9rem) / 1 var(--font-serif);
+		letter-spacing: -0.022em;
 		text-wrap: balance;
 		text-shadow: 0 2px 30px rgb(0 0 0 / 0.7);
 	}
 
 	.lede {
-		margin: 1.4rem 0 2.2rem;
-		max-width: 26rem;
-		font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+		margin: 1.5rem 0 2.3rem;
+		max-width: 27rem;
+		font-size: clamp(1.08rem, 1.6vw, 1.3rem);
 		line-height: 1.45;
-		color: var(--text);
 		text-wrap: pretty;
 		text-shadow: 0 1px 16px rgb(0 0 0 / 0.9);
 	}
@@ -112,32 +264,36 @@
 	nav {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.8rem 1.6rem;
-		align-items: center;
-		font-size: 0.95rem;
+		gap: 0.8rem;
+		font-size: 0.96rem;
 	}
 
 	nav a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		padding: 0.7em 1.25em;
+		border-radius: 999px;
 		text-decoration: none;
-		padding: 0.65em 0;
-		border-bottom: 1px solid var(--text-faint);
-	}
-
-	nav a:hover {
-		border-color: var(--accent);
+		font-weight: 500;
 	}
 
 	nav a.primary {
-		padding: 0.65em 1.3em;
-		border: 1px solid var(--text);
-		border-radius: 999px;
 		background: var(--text);
 		color: var(--bg);
-		font-weight: 500;
 	}
 
 	nav a.primary:hover {
 		background: #fff;
+	}
+
+	nav a.secondary {
+		border: 1px solid rgb(255 255 255 / 0.45);
+		background: rgb(8 10 14 / 0.45);
+		backdrop-filter: blur(6px);
+	}
+
+	nav a.secondary:hover {
 		border-color: #fff;
 	}
 
@@ -152,6 +308,147 @@
 		color: var(--text-dim);
 		text-shadow: 0 1px 10px rgb(0 0 0 / 0.9);
 		pointer-events: none;
+	}
+
+	.band {
+		max-width: 72rem;
+		margin: 0 auto;
+		padding: clamp(3.5rem, 8vw, 6rem) var(--gutter) 0;
+	}
+
+	.band > header {
+		max-width: 40rem;
+		margin-bottom: 2.4rem;
+	}
+
+	h2 {
+		margin: 0 0 0.8rem;
+		font: 400 clamp(1.9rem, 4vw, 2.7rem) / 1.08 var(--font-serif);
+		letter-spacing: -0.015em;
+		text-wrap: balance;
+	}
+
+	.band > header p {
+		margin: 0;
+		color: var(--text-dim);
+		font-size: 1.05rem;
+		text-wrap: pretty;
+	}
+
+	.glyph {
+		display: inline-grid;
+		place-items: center;
+		width: 3.4rem;
+		height: 3.4rem;
+		border-radius: 14px;
+		background: color-mix(in srgb, var(--accent) 14%, transparent);
+		color: var(--accent);
+	}
+
+	.glyph.small {
+		width: 2.6rem;
+		height: 2.6rem;
+		border-radius: 11px;
+		flex: none;
+	}
+
+	.regimes {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+		gap: 1.2rem;
+	}
+
+	.regimes li,
+	.doors a {
+		padding: 1.6rem 1.6rem 1.7rem;
+		background: var(--bg-raised);
+		border: 1px solid var(--line);
+		border-radius: 16px;
+	}
+
+	h3 {
+		margin: 1.1rem 0 0.3rem;
+		font: 500 1.35rem/1.2 var(--font-serif);
+	}
+
+	.line {
+		margin: 0 0 0.7rem;
+		color: var(--accent);
+		font-size: 0.92rem;
+	}
+
+	.regimes p:last-child,
+	.doors p {
+		margin: 0;
+		color: var(--text-dim);
+		font-size: 0.93rem;
+		line-height: 1.55;
+		text-wrap: pretty;
+	}
+
+	.affordances {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+		gap: 0.4rem 2rem;
+	}
+
+	.affordances li {
+		display: flex;
+		gap: 0.9rem;
+		align-items: flex-start;
+		padding: 1rem 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.affordances h3 {
+		margin: 0 0 0.15rem;
+		font: 500 1rem/1.3 var(--font-sans);
+	}
+
+	.affordances h3 a {
+		text-decoration-color: var(--accent);
+	}
+
+	.affordances p {
+		margin: 0;
+		color: var(--text-dim);
+		font-size: 0.86rem;
+	}
+
+	.more {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-top: 1.6rem;
+		color: var(--accent);
+		text-decoration: none;
+		font-size: 0.95rem;
+	}
+
+	.more:hover {
+		text-decoration: underline;
+	}
+
+	.doors {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+		gap: 1.2rem;
+		padding-bottom: clamp(3.5rem, 8vw, 6rem);
+	}
+
+	.doors a {
+		text-decoration: none;
+		transition: border-color 0.15s;
+	}
+
+	.doors a:hover {
+		border-color: var(--accent);
 	}
 
 	/* On a phone the words would sit across the divider, so stack them below. */
@@ -172,7 +469,7 @@
 
 		.caption {
 			position: static;
-			margin: 0 var(--gutter) 2rem;
+			margin: 0 var(--gutter) 1rem;
 		}
 	}
 
@@ -181,7 +478,7 @@
 		flex-wrap: wrap;
 		justify-content: space-between;
 		gap: 0.5rem 2rem;
-		padding: 1rem var(--gutter);
+		padding: 1.2rem var(--gutter);
 		border-top: 1px solid var(--line);
 		font-size: 0.78rem;
 		color: var(--text-faint);

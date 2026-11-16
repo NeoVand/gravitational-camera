@@ -103,19 +103,24 @@
 		font-optical-sizing: auto;
 	}
 
-	@media (min-width: 1180px) {
+	/* Wide screens: the text stays centred on the page and the contents sit in
+	   the left margin. */
+	@media (min-width: 1240px) {
 		.layout {
-			grid-template-columns: 15rem minmax(0, 44rem) minmax(0, 1fr);
+			grid-template-columns: minmax(0, 1fr) minmax(0, 44rem) minmax(0, 1fr);
 			column-gap: 3rem;
-			justify-content: center;
 		}
 
 		article {
+			grid-column: 2;
 			margin: 0;
 		}
 
 		.contents {
 			display: block;
+			grid-column: 1;
+			justify-self: end;
+			width: min(15rem, 100%);
 			position: sticky;
 			top: 4.5rem;
 			align-self: start;

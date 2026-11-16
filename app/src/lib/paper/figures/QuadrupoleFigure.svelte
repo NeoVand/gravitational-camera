@@ -63,6 +63,20 @@
 		aria-label="Radiation pattern of a rotating pair of masses, and the wavelength compared with the size of the source"
 		{@attach animate}
 	>
+		<defs>
+			<marker
+				id="quad-arrow"
+				viewBox="0 0 10 10"
+				refX="7"
+				refY="5"
+				markerWidth="6.5"
+				markerHeight="6.5"
+				orient="auto-start-reverse"
+			>
+				<path d="M 0 1 L 9 5 L 0 9 z" fill="var(--text)" />
+			</marker>
+		</defs>
+
 		<!-- radiation pattern -->
 		<line class="hair" x1={CX} y1="24" x2={CX} y2="320" stroke-dasharray="3 5" />
 		<path d={lobe} fill="var(--accent)" opacity="0.14" />
@@ -71,14 +85,27 @@
 		<circle cx={CX + orbit.x} cy={CY + orbit.y} r="5" fill="var(--text)" />
 		<circle cx={CX - orbit.x} cy={CY - orbit.y} r="5" fill="var(--text)" />
 
-		<!-- polarization glyphs -->
-		<circle class="ink" cx={CX + 44} cy="52" r="10" stroke-width="1.6" />
-		<path class="ink" d="M {CX + 54} 52 l -4 -6 m 4 6 l 5 -5" stroke-width="1.6" />
-		<text class="small" x={CX + 64} y="48">strongest,</text>
-		<text class="small" x={CX + 64} y="63">circular</text>
-		<line class="ink" x1={CX + 30} y1={CY - 12} x2={CX + 30} y2={CY + 12} stroke-width="1.8" />
-		<text class="small" x={CX + 40} y={CY - 2}>8× weaker,</text>
-		<text class="small" x={CX + 40} y={CY + 13}>linear</text>
+		<!-- polarization glyphs: a turning arrow for circular, a double arrow for linear -->
+		<path
+			d="M {CX + 54} 46 a 11 11 0 1 1 -8 -5.6"
+			class="ink"
+			stroke-width="1.7"
+			marker-end="url(#quad-arrow)"
+		/>
+		<text class="small" x={CX + 68} y="46">strongest,</text>
+		<text class="small" x={CX + 68} y="61">circular</text>
+		<line
+			class="ink"
+			x1={CX + 44}
+			y1={CY - 14}
+			x2={CX + 44}
+			y2={CY + 14}
+			stroke-width="1.7"
+			marker-start="url(#quad-arrow)"
+			marker-end="url(#quad-arrow)"
+		/>
+		<text class="small" x={CX + 56} y={CY - 2}>8× weaker,</text>
+		<text class="small" x={CX + 56} y={CY + 13}>linear</text>
 		<text class="small faint" x={CX - 10} y="20" text-anchor="end">axis of rotation</text>
 		<text class="strong" x={CX} y="336" text-anchor="middle">Power sent in each direction</text>
 

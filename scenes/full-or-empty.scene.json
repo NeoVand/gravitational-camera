@@ -1,0 +1,133 @@
+{
+  "name": "full-or-empty",
+  "title": "Full or empty",
+  "description": "Three identical steel tanks. One is empty, one holds water, one holds mercury.",
+  "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
+  "environment": "room",
+  "observer": {
+    "position": [0, 1.5, 0],
+    "exclusion": 0.25
+  },
+  "materials": {
+    "concrete": {
+      "density": 2400,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.42, 0.41, 0.39]
+      }
+    },
+    "plaster": {
+      "density": 1200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.6, 0.56]
+      }
+    },
+    "steel": {
+      "density": 7850,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.33, 0.35, 0.38]
+      }
+    },
+    "air": {
+      "density": 1.2,
+      "temperature": 293,
+      "friction": 0.001
+    },
+    "water": {
+      "density": 1000,
+      "temperature": 293,
+      "friction": 0.001
+    },
+    "mercury": {
+      "density": 13534,
+      "temperature": 293,
+      "friction": 0.001
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "shape": {
+        "type": "box",
+        "center": [0, -0.15, -4],
+        "size": [12, 0.3, 14]
+      },
+      "material": "concrete"
+    },
+    {
+      "id": "back-wall",
+      "shape": {
+        "type": "box",
+        "center": [0, 1.5, -8.15],
+        "size": [12, 3, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "tank-left",
+      "shape": {
+        "type": "sphere",
+        "center": [-1.5, 0.5, -3.5],
+        "radius": 0.5
+      },
+      "material": "steel"
+    },
+    {
+      "id": "tank-left-contents",
+      "parent": "tank-left",
+      "shape": {
+        "type": "sphere",
+        "center": [-1.5, 0.5, -3.5],
+        "radius": 0.49
+      },
+      "material": "air"
+    },
+    {
+      "id": "tank-middle",
+      "shape": {
+        "type": "sphere",
+        "center": [0, 0.5, -3.5],
+        "radius": 0.5
+      },
+      "material": "steel"
+    },
+    {
+      "id": "tank-middle-contents",
+      "parent": "tank-middle",
+      "shape": {
+        "type": "sphere",
+        "center": [0, 0.5, -3.5],
+        "radius": 0.49
+      },
+      "material": "water"
+    },
+    {
+      "id": "tank-right",
+      "shape": {
+        "type": "sphere",
+        "center": [1.5, 0.5, -3.5],
+        "radius": 0.5
+      },
+      "material": "steel"
+    },
+    {
+      "id": "tank-right-contents",
+      "parent": "tank-right",
+      "shape": {
+        "type": "sphere",
+        "center": [1.5, 0.5, -3.5],
+        "radius": 0.49
+      },
+      "material": "mercury"
+    }
+  ],
+  "assumptions": [
+    "Friction values are placeholders, as in the other scenes.",
+    "Tank walls are 1 cm of steel."
+  ]
+}

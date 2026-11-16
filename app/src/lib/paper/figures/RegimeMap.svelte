@@ -89,6 +89,19 @@
 		role="img"
 		aria-label="Map of sources by frequency and distance, divided into the near zone and the wave zone"
 	>
+		<defs>
+			<marker
+				id="regime-arrow"
+				viewBox="0 0 10 10"
+				refX="7"
+				refY="5"
+				markerWidth="7"
+				markerHeight="7"
+				orient="auto"
+			>
+				<path d="M 0 1 L 9 5 L 0 9 z" fill="var(--text)" />
+			</marker>
+		</defs>
 		<path d={nearZone} fill="var(--accent-2)" opacity="0.13" />
 		<path d={waveZone} fill="var(--accent)" opacity="0.11" />
 
@@ -134,10 +147,14 @@
 		{/each}
 
 		<!-- far off the top of the chart -->
-		<path
-			d="M {x(2)} {Y0 + 34} L {x(2)} {Y0 + 8} m -5 7 l 5 -7 l 5 7"
+		<line
+			x1={x(2)}
+			y1={Y0 + 36}
+			x2={x(2)}
+			y2={Y0 + 10}
 			class="ink"
-			stroke-width="1.4"
+			stroke-width="1.5"
+			marker-end="url(#regime-arrow)"
 		/>
 		<text class="small" x={x(2) + 9} y={Y0 + 30}>merging neutron stars,</text>
 		<text class="small" x={x(2) + 9} y={Y0 + 45}>10¹² times farther up</text>
