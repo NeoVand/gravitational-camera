@@ -26,7 +26,7 @@ export const demos: DemoEntry[] = [
 		title: 'The locked safe',
 		affordance: 'Nothing can hide',
 		summary:
-			'Mass has only one sign, so there is no shield, cloak or camouflage. What is inside a lead safe is as plain as what is outside.'
+			'Mass has only one sign, so there is no shield, cloak or camouflage. What is inside a steel safe is as plain as what is outside.'
 	},
 	{
 		slug: 'full-or-empty',
