@@ -1,0 +1,8 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{gcpaper}[2026/11/16 Typesetting details of The Gravitational Camera]
+% Kept out of main.tex because the website reads that file with pandoc.
+%
+% Paragraph columns of tables (p{...}) are set ragged right: a narrow justified
+% column opens wide gaps between words. Only the stretch of \rightskip changes,
+% so \\ still ends a row.
+\g@addto@macro\@arrayparboxrestore{\rightskip\z@\@plus 2em\relax}

@@ -465,6 +465,34 @@
 		text-align: center;
 	}
 
+	/* the outer cells sit on the edges of the table, so its text is centred
+	   between them */
+	article :global(th:last-child),
+	article :global(td:last-child) {
+		padding-right: 0;
+	}
+
+	article :global(th.right:first-child),
+	article :global(td.right:first-child) {
+		padding-left: 0;
+	}
+
+	/* a table of numbers keeps its own width, centred in the column */
+	article :global(figure.table.numeric table) {
+		width: auto;
+		margin-inline: auto;
+	}
+
+	article :global(figure.table.numeric th.right),
+	article :global(figure.table.numeric td.right) {
+		padding-left: clamp(0.7rem, 3vw, 1.6rem);
+	}
+
+	article :global(figure.table.numeric th.right:first-child),
+	article :global(figure.table.numeric td.right:first-child) {
+		padding-left: 0;
+	}
+
 	article :global(ol.references) {
 		padding-left: 1.6rem;
 		font: 400 0.86rem/1.5 var(--font-sans);

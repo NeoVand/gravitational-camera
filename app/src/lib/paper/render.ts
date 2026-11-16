@@ -216,8 +216,11 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 			.map((r: any) => row(r, 'td'))
 			.join('');
 		const number = labels.get(id) ?? '';
+		// a table of numbers keeps its natural width and is centred; one of
+		// prose fills the column
+		const kind = align.every((a: string) => a) ? 'table numeric' : 'table';
 		return (
-			`<figure class="table" id="${esc(id)}"><table>` +
+			`<figure class="${kind}" id="${esc(id)}"><table>` +
 			(headRows ? `<thead>${headRows}</thead>` : '') +
 			`<tbody>${bodyRows}</tbody></table>` +
 			`<figcaption><span class="label">Table ${number}.</span> ${blocksHtml(caption[1])}</figcaption></figure>`
