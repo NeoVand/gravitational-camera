@@ -5,7 +5,7 @@
 	 * tolerances; the double-precision physics is tested separately.
 	 */
 	import fixture from '../../../../../reference/fixtures/sun-at-midnight.json';
-	import { resolve } from '$app/paths';
+	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import {
 		Engine,
 		MODE_LIGHT,
@@ -124,8 +124,9 @@
 	<title>Self-test · The Gravitational Camera</title>
 </svelte:head>
 
+<SiteHeader />
+
 <main>
-	<a href={resolve('/')}>← The Gravitational Camera</a>
 	<h1>Engine self-test</h1>
 	<p>
 		Compares what this device's GPU computes with the independent Python reference. Result:
@@ -149,12 +150,6 @@
 		max-width: 46rem;
 		margin: 0 auto;
 		padding: 1.2rem var(--gutter) 4rem;
-	}
-
-	a {
-		font-size: 0.8rem;
-		color: var(--text-dim);
-		text-decoration: none;
 	}
 
 	h1 {
@@ -182,11 +177,11 @@
 	}
 
 	.pass {
-		color: #7bd88f;
+		color: var(--good);
 	}
 
 	.fail {
-		color: #ff7b72;
+		color: var(--bad);
 		font-weight: 600;
 	}
 </style>

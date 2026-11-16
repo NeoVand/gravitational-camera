@@ -1,9 +1,10 @@
 % The Gravitational Camera — working draft.
 %
 % This file is the single source for the paper. The website renders it with
-% pandoc, so stay inside the subset the site understands: sections, paragraphs,
-% equation/align with \label, figure, table, itemize/enumerate, \cite, \ref,
-% \eqref, \emph, \textbf, \footnote. No TikZ, no custom environments.
+% pandoc, so stay inside the subset the site understands: sections, \paragraph,
+% paragraphs, equation/align with \label, figure, table, quote (shown as a
+% plain-language aside), itemize/enumerate, \cite, \ref, \eqref, \emph,
+% \textbf, \footnote. No TikZ, no custom environments.
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,graphicx}
 \input{macros}
@@ -18,19 +19,29 @@
 \begin{abstract}
 Suppose gravitational-wave detectors could be made arbitrarily small and
 arbitrarily sensitive, and a camera were built with one at every pixel. What
-would it see? We set out what such a pixel measures, show that the answer
-divides into three regimes with very different imaging properties, and give
-the first expected image of an everyday scene: the view straight down through
-the Earth at night, with the Sun's core beyond it. This is a thought
-experiment, not a proposal for an instrument. This draft is incomplete, and
-its claims of novelty are provisional until the literature has been read in
-full.
+would it see? We work out what such a pixel measures and how an array of them
+forms an image. The answer divides into three regimes. At everyday frequencies
+the camera sees the changing pull of nearby mass, through any obstacle, but
+with a blur that shrinks only as the logarithm of its sensitivity. In the
+waves radiated by moving bodies, every body is an unresolved point. Only in the
+faint thermal radiation of matter are sharp images possible, and there the
+world is transparent and self-luminous. No lens, mirror or shadow exists for
+such a camera, so its images are computed, not focused. We give the first
+expected images of an everyday scene. This is a thought experiment, not a
+proposal for an instrument. The draft is incomplete, and its claims of novelty
+are provisional until the literature has been read in full.
 \end{abstract}
 
-\input{sections/01-pixel}
-\input{sections/02-regimes}
-\input{sections/03-first-image}
-\input{sections/04-status}
+\input{sections/01-introduction}
+\input{sections/02-pixel}
+\input{sections/03-regimes}
+\input{sections/04-near-field}
+\input{sections/05-waves}
+\input{sections/06-thermal}
+\input{sections/07-no-lens}
+\input{sections/08-first-image}
+\input{sections/09-affordances}
+\input{sections/10-status}
 
 \bibliographystyle{unsrt}
 \bibliography{refs}

@@ -1,9 +1,27 @@
 import type { Component } from 'svelte';
+import ArrayFigure from './figures/ArrayFigure.svelte';
+import BudgetFigure from './figures/BudgetFigure.svelte';
+import LineIntegralFigure from './figures/LineIntegralFigure.svelte';
+import NearFieldFigure from './figures/NearFieldFigure.svelte';
+import QuadrupoleFigure from './figures/QuadrupoleFigure.svelte';
+import RegimeMap from './figures/RegimeMap.svelte';
 import SunAtMidnightFigure from './figures/SunAtMidnightFigure.svelte';
+import TidalFigure from './figures/TidalFigure.svelte';
 
-/** Live versions of the paper's figures, by LaTeX label. */
-export const liveFigures: Record<string, Component> = {
+/** Live figures that are pictures from the engine; they take a still image to show while loading. */
+export const pictureFigures: Record<string, Component<{ poster?: string }>> = {
 	'fig:sun-at-midnight': SunAtMidnightFigure
+};
+
+/** Live figures that are drawings, by LaTeX label. */
+export const drawnFigures: Record<string, Component> = {
+	'fig:tidal': TidalFigure,
+	'fig:regimes': RegimeMap,
+	'fig:nearfield': NearFieldFigure,
+	'fig:quadrupole': QuadrupoleFigure,
+	'fig:line-integral': LineIntegralFigure,
+	'fig:array': ArrayFigure,
+	'fig:budget': BudgetFigure
 };
 
 /** The static images in /paper/figures, as URLs the site can serve. */

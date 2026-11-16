@@ -1,7 +1,7 @@
 <script lang="ts">
 	import 'katex/dist/katex.min.css';
-	import { resolve } from '$app/paths';
-	import { figureImage, liveFigures } from '#lib/paper/figures.js';
+	import { drawnFigures, figureImage, pictureFigures } from '#lib/paper/figures.js';
+	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -16,20 +16,33 @@
 	/>
 </svelte:head>
 
+<SiteHeader current="paper" />
+
 <!-- The HTML below is produced at build time from this repository's own LaTeX
      source (paper/), never from visitors, so rendering it as HTML is safe. -->
 <!-- eslint-disable svelte/no-at-html-tags -->
-<main>
-	<a class="home" href={resolve('/')}>← The Gravitational Camera</a>
+<div class="layout">
+	<nav class="contents" aria-label="Contents">
+		<p>Contents</p>
+		<ol>
+			{#each paper.contents as entry (entry.id)}
+				<li>
+					<a href="#{entry.id}"><span>{entry.number}</span>{@html entry.titleHtml}</a>
+				</li>
+			{/each}
+		</ol>
+	</nav>
 
 	<article>
 		<header>
+			<p class="kicker">Working draft</p>
 			<h1>{@html paper.title}</h1>
 			{#if paper.authors.length}<p class="authors">{@html paper.authors.join(', ')}</p>{/if}
 			<p class="date">{@html paper.date}</p>
 		</header>
 
 		<section class="abstract" aria-label="Abstract">
+			<h2>Abstract</h2>
 			{@html paper.abstractHtml}
 		</section>
 
@@ -37,14 +50,19 @@
 			{#if block.kind === 'html'}
 				{@html block.html}
 			{:else}
-				{@const Live = liveFigures[block.id]}
+				{@const Picture = pictureFigures[block.id]}
+				{@const Drawing = drawnFigures[block.id]}
 				{@const image = figureImage(block.image)}
 				<figure class="plate" id={block.id}>
-					{#if Live}
-						<Live poster={image} />
-					{:else if image}
-						<img src={image} alt="" />
-					{/if}
+					<div class="art">
+						{#if Picture}
+							<Picture poster={image} />
+						{:else if Drawing}
+							<Drawing />
+						{:else if image}
+							<img src={image} alt="" />
+						{/if}
+					</div>
 					<figcaption>
 						<span class="label">Figure {block.number}.</span>
 						{@html block.captionHtml}
@@ -64,37 +82,103 @@
 			</section>
 		{/if}
 	</article>
-</main>
+</div>
 
 <style>
-	main {
-		padding: 1.2rem var(--gutter) 6rem;
+	.layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		padding: 0 var(--gutter) 6rem;
 	}
 
-	.home {
-		font-size: 0.8rem;
-		color: var(--text-dim);
-		text-decoration: none;
-	}
-
-	.home:hover {
-		color: var(--text);
+	.contents {
+		display: none;
 	}
 
 	article {
+		width: 100%;
 		max-width: 44rem;
 		margin: 0 auto;
-		font: 400 1.16rem/1.62 var(--font-serif);
+		font: 400 1.17rem/1.64 var(--font-serif);
 		font-optical-sizing: auto;
 	}
 
+	@media (min-width: 1180px) {
+		.layout {
+			grid-template-columns: 15rem minmax(0, 44rem) minmax(0, 1fr);
+			column-gap: 3rem;
+			justify-content: center;
+		}
+
+		article {
+			margin: 0;
+		}
+
+		.contents {
+			display: block;
+			position: sticky;
+			top: 4.5rem;
+			align-self: start;
+			margin-top: 5.2rem;
+			max-height: calc(100vh - 6rem);
+			overflow: auto;
+			font-size: 0.82rem;
+		}
+	}
+
+	.contents p {
+		margin: 0 0 0.7rem;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-faint);
+	}
+
+	.contents ol {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border-left: 1px solid var(--line);
+	}
+
+	.contents a {
+		display: flex;
+		gap: 0.6rem;
+		padding: 0.32rem 0 0.32rem 0.9rem;
+		margin-left: -1px;
+		border-left: 1px solid transparent;
+		color: var(--text-dim);
+		text-decoration: none;
+		line-height: 1.35;
+	}
+
+	.contents a:hover {
+		color: var(--text);
+		border-left-color: var(--accent);
+	}
+
+	.contents a span {
+		color: var(--text-faint);
+		font-variant-numeric: tabular-nums;
+		min-width: 1.1em;
+	}
+
 	header {
-		margin: 4.5rem 0 2.5rem;
+		margin: 4rem 0 2.2rem;
+	}
+
+	.kicker {
+		margin: 0 0 0.9rem;
+		font: 600 0.72rem/1 var(--font-sans);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
 	}
 
 	h1 {
 		margin: 0 0 1rem;
-		font: 400 clamp(2.4rem, 6vw, 3.6rem) / 1.04 var(--font-serif);
+		font: 400 clamp(2.5rem, 6vw, 3.8rem) / 1.03 var(--font-serif);
 		letter-spacing: -0.02em;
 		text-wrap: balance;
 	}
@@ -108,10 +192,19 @@
 
 	.abstract {
 		margin: 0 0 3rem;
-		padding: 1.3rem 0;
-		border-block: 1px solid var(--line);
-		font-size: 1.06rem;
-		color: var(--text);
+		padding: 1.3rem 1.5rem 1.4rem;
+		background: var(--bg-raised);
+		border-radius: 10px;
+		font-size: 1.04rem;
+		line-height: 1.6;
+	}
+
+	.abstract h2 {
+		margin: 0 0 0.5rem;
+		font: 600 0.72rem/1 var(--font-sans);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-faint);
 	}
 
 	.abstract :global(p) {
@@ -119,9 +212,11 @@
 	}
 
 	article :global(h2) {
-		margin: 3.2rem 0 0.9rem;
-		font: 500 1.55rem/1.2 var(--font-serif);
+		margin: 3.6rem 0 1rem;
+		font: 500 1.7rem/1.2 var(--font-serif);
 		letter-spacing: -0.01em;
+		scroll-margin-top: 4.5rem;
+		text-wrap: balance;
 	}
 
 	article :global(h2 .number) {
@@ -130,8 +225,8 @@
 	}
 
 	article :global(h4.run-in) {
-		margin: 1.6rem 0 -1.1rem;
-		font: 600 0.78rem/1.4 var(--font-sans);
+		margin: 2rem 0 -0.9rem;
+		font: 600 0.76rem/1.4 var(--font-sans);
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--accent);
@@ -143,16 +238,56 @@
 		hanging-punctuation: first;
 	}
 
+	article :global(.nowrap) {
+		white-space: nowrap;
+	}
+
 	article :global(p.continued) {
 		margin-top: 0.6rem;
 	}
 
-	article :global(.equation) {
+	article :global(ul) {
 		margin: 1.1rem 0;
+		padding-left: 1.3rem;
+	}
+
+	article :global(li) {
+		margin: 0.5rem 0;
+	}
+
+	article :global(li p) {
+		margin: 0;
+	}
+
+	/* the plain-language summaries */
+	article :global(aside.plain) {
+		margin: 1.4rem 0 1.8rem;
+		padding: 1rem 1.3rem 1.05rem;
+		border-left: 3px solid var(--accent);
+		background: color-mix(in srgb, var(--accent) 9%, transparent);
+		border-radius: 0 10px 10px 0;
+		font: 400 1rem/1.58 var(--font-sans);
+	}
+
+	article :global(aside.plain p) {
+		margin: 0;
+	}
+
+	article :global(aside.plain strong) {
+		display: block;
+		margin-bottom: 0.3rem;
+		font-size: 0.72rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	article :global(.equation) {
+		margin: 1.2rem 0;
 		overflow-x: auto;
 		overflow-y: hidden;
 		font-size: 0.95em;
-		scroll-margin-top: 4rem;
+		scroll-margin-top: 5rem;
 	}
 
 	article :global(.katex) {
@@ -171,11 +306,15 @@
 	}
 
 	article :global(figure) {
-		margin: 2.4rem 0;
+		margin: 2.6rem 0;
+		scroll-margin-top: 4.5rem;
 	}
 
-	.plate {
-		margin-inline: clamp(-8rem, calc((44rem - 100vw) / 2 + var(--gutter)), 0rem);
+	.plate .art {
+		padding: clamp(0.8rem, 2.5vw, 1.4rem);
+		background: var(--bg-raised);
+		border: 1px solid var(--line);
+		border-radius: 12px;
 	}
 
 	.plate img {
@@ -186,10 +325,8 @@
 
 	article :global(figcaption) {
 		margin-top: 0.8rem;
-		font: 400 0.84rem/1.5 var(--font-sans);
+		font: 400 0.86rem/1.52 var(--font-sans);
 		color: var(--text-dim);
-		max-width: 44rem;
-		margin-inline: auto;
 	}
 
 	article :global(figcaption .label) {
@@ -225,6 +362,7 @@
 		font-size: 0.74rem;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
+		border-bottom-color: var(--line-strong);
 	}
 
 	article :global(ol.references) {
@@ -235,7 +373,7 @@
 
 	article :global(ol.references li) {
 		margin: 0.5rem 0;
-		scroll-margin-top: 4rem;
+		scroll-margin-top: 5rem;
 	}
 
 	article :global(ol.references p) {
@@ -243,7 +381,7 @@
 	}
 
 	article :global(:target) {
-		background: rgb(232 164 90 / 0.12);
-		outline: 6px solid rgb(232 164 90 / 0.12);
+		background: color-mix(in srgb, var(--accent) 14%, transparent);
+		outline: 6px solid color-mix(in srgb, var(--accent) 14%, transparent);
 	}
 </style>

@@ -33,6 +33,8 @@ export interface RenderedPaper {
 	blocks: (HtmlBlock | FigureBlock)[];
 	referencesHtml: string;
 	footnotesHtml: string;
+	/** Numbered top-level sections, for the table of contents. */
+	contents: { id: string; number: string; titleHtml: string }[];
 }
 
 const esc = (s: string) =>
@@ -153,7 +155,27 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 				throw new Error(`Paper: unsupported inline element "${n.t}"`);
 		}
 	};
-	const inlines = (list: Node[]): string => list.map(inline).join('');
+	/**
+	 * Punctuation that follows inline mathematics must not wrap onto the next
+	 * line by itself, so the two are kept together.
+	 */
+	const inlines = (list: Node[]): string => {
+		let html = '';
+		for (let i = 0; i < list.length; i++) {
+			const n = list[i];
+			const next = list[i + 1];
+			const trailing =
+				n.t === 'Math' && n.c[0].t === 'InlineMath' && next?.t === 'Str'
+					? String(next.c).match(/^[,.;:!?)\]]+/)?.[0]
+					: undefined;
+			if (trailing) {
+				html += `<span class="nowrap">${inline(n)}${esc(trailing)}</span>`;
+				html += esc(String(next.c).slice(trailing.length));
+				i += 1;
+			} else html += inline(n);
+		}
+		return html;
+	};
 
 	/** A paragraph may contain display equations, which cannot sit inside <p>. */
 	const paragraph = (list: Node[]): string => {
@@ -193,6 +215,7 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 	};
 
 	const out: (HtmlBlock | FigureBlock)[] = [];
+	const contents: RenderedPaper['contents'] = [];
 	let referencesHtml = '';
 	const push = (html: string) => {
 		if (!html) return;
@@ -212,6 +235,7 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 				if (level >= 3) return `<h4 class="run-in">${inlines(content)}</h4>`;
 				const number = labels.get(id);
 				const tag = level === 1 ? 'h2' : 'h3';
+				if (level === 1 && number) contents.push({ id, number, titleHtml: inlines(content) });
 				return `<${tag} id="${esc(id)}">${number ? `<span class="number">${number}</span> ` : ''}${inlines(content)}</${tag}>`;
 			}
 			case 'BulletList':
@@ -219,7 +243,8 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 			case 'OrderedList':
 				return `<ol>${n.c[1].map((item: Node[]) => `<li>${blocksHtml(item)}</li>`).join('')}</ol>`;
 			case 'BlockQuote':
-				return `<blockquote>${blocksHtml(n.c)}</blockquote>`;
+				// the LaTeX `quote` environment carries the plain-language summaries
+				return `<aside class="plain">${blocksHtml(n.c)}</aside>`;
 			case 'RawBlock': {
 				const src = String(n.c[1]).trim();
 				if (IGNORED_RAW.some((re) => re.test(src))) return '';
@@ -289,6 +314,7 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 		authors,
 		abstractHtml: meta('abstract'),
 		blocks: out,
+		contents,
 		referencesHtml,
 		footnotesHtml: footnotes.length
 			? `<ol class="footnotes">${footnotes

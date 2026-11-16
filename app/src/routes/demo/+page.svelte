@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { demos } from '#lib/demos/index.js';
+	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 </script>
 
 <svelte:head>
@@ -11,8 +12,9 @@
 	/>
 </svelte:head>
 
+<SiteHeader current="demo" />
+
 <main>
-	<a class="home" href={resolve('/')}>← The Gravitational Camera</a>
 	<h1>Demos</h1>
 	<p class="intro">
 		Each demo shows one thing a gravitational camera could do that no camera using light ever will.
@@ -42,18 +44,8 @@
 		padding: 1.2rem var(--gutter) 5rem;
 	}
 
-	.home {
-		font-size: 0.8rem;
-		color: var(--text-dim);
-		text-decoration: none;
-	}
-
-	.home:hover {
-		color: var(--text);
-	}
-
 	h1 {
-		margin: 3.5rem 0 1rem;
+		margin: 3rem 0 1rem;
 		font: 400 clamp(2.2rem, 5vw, 3.4rem) / 1.05 var(--font-serif);
 		letter-spacing: -0.02em;
 	}

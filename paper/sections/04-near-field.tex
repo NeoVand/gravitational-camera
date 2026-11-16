@@ -1,0 +1,68 @@
+\section{The near field: mass seen through walls}\label{sec:near-field}
+
+\begin{quote}
+\textbf{In plain words.} The camera feels every nearby mass directly, through
+anything in between, so it can see into a safe or weigh a lorry at a glance.
+But the feeling blurs with distance, the way a hand under a thick blanket
+shows only as a rough bump. Making the camera a million times more sensitive
+makes the picture only twice as sharp.
+\end{quote}
+
+In the near zone the camera measures the Newtonian tidal field of the scene as
+it changes. Three properties follow at once. The field passes through all
+matter, so nothing can be hidden from the camera. Its strength is set by mass,
+so the camera weighs what it sees. And it is present whether or not anything
+moves, so a perfectly still scene is visible too.
+
+\paragraph{How bright.} A body of mean density $\bar\rho$ and radius $R$ at
+distance $r$ produces a tidal field of magnitude
+\begin{equation}\label{eq:tidal-brightness}
+\frac{2GM}{r^{3}} = \frac{8\pi G}{3}\,\bar\rho\,\theta^{3},
+\qquad \theta = \frac{R}{r} .
+\end{equation}
+Tidal brightness is density times the cube of angular size. The Sun and the
+Moon span the same angle in the sky, and the Moon, being denser, raises the
+larger tide. A person one metre away spans a far larger angle than either,
+and outweighs the Moon in the camera's view some fifty thousand times.
+
+\paragraph{How sharp.} The space between scene and camera is empty, so the
+potential there obeys Laplace's equation. Consider a pattern in the scene that
+repeats across the line of sight with wavenumber $k$, at depth $z$ from the
+sensor. Laplace's equation forces it to fade with height as
+\begin{equation}\label{eq:evanescent}
+\Phi \propto \cos(kx)\,e^{-kz} :
+\end{equation}
+fine detail dies away before it reaches the camera, and coarse detail
+survives. To reconstruct the scene the camera must multiply each pattern by
+$e^{kz}$, and its noise with it. If the largest features are recorded with
+signal-to-noise ratio $\SNR$, patterns with $e^{kz} > \SNR$ are lost in the
+noise. The finest surviving detail is
+\begin{equation}\label{eq:resolution}
+\Delta x \approx \frac{\pi z}{\ln \SNR},
+\qquad\text{an angle}\qquad
+\Delta\theta \approx \frac{\pi}{\ln \SNR} .
+\end{equation}
+The angular blur does not depend on distance, wavelength or the size of the
+camera, only on the logarithm of its sensitivity. A signal-to-noise ratio of a
+thousand gives $26^\circ$; a million, $13^\circ$; $10^{30}$, still
+$2.6^\circ$. To match the sharpness of the human eye, one arcminute, would
+take a signal-to-noise ratio near $10^{4700}$.
+Figure~\ref{fig:nearfield} lets the reader try it.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{figures/nearfield.png}
+\caption{The near-field blur. Two masses lie at depth $z$ below a row of
+pixels (a two-dimensional slice). Top: what the pixels record, a single smooth
+bump. Bottom: the best reconstruction of the masses that the noise allows,
+Eq.~\eqref{eq:resolution}; its ripples are the price of discarding the
+detail that noise has swamped. In the live version, raise the sensitivity and
+watch the two masses separate, slowly.}\label{fig:nearfield}
+\end{figure}
+
+The same logarithmic limit is met wherever fields that obey Laplace's equation
+are continued back toward their sources, in geophysics and in near-field
+acoustics; references will be added once we have checked them at the source.
+Its consequence here is the central one for the whole subject. The near field
+is where everyday things are visible, and it can never be sharp. Sharp images
+need waves.

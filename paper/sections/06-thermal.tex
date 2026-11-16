@@ -1,0 +1,79 @@
+\section{The thermal glow: sharp, transparent, faint}\label{sec:thermal}
+
+\begin{quote}
+\textbf{In plain words.} Heat is molecules jostling, and jostling masses send
+out gravitational waves of very short wavelength, short enough for sharp
+pictures. Everything warm therefore glows, all the way through, and nothing
+blocks the glow of whatever lies behind it. The picture is like an X-ray taken
+by the object's own heat. It is also almost unimaginably faint.
+\end{quote}
+
+Sharp images need wavelengths shorter than the scene, and the only motion in
+ordinary matter fast enough is thermal. At room temperature it radiates at
+wavelengths of tens of micrometres, the same as thermal infrared light, so a
+gravitational camera working there could be as sharp as an infrared one.
+
+\paragraph{Absorption.} A gravitational wave crossing a medium shears it at
+the rate $\tfrac{1}{2}\dot h_{ij}$. A medium of shear viscosity $\eta$ resists
+with a stress $-\eta\,\dot h_{ij}$, which acts back on the wave as a source.
+The wave equation becomes
+\begin{equation}\label{eq:damped}
+\ddot h_{ij} + \frac{16\pi G\,\eta}{c^{2}}\,\dot h_{ij} - c^{2}\nabla^{2} h_{ij} = 0 ,
+\end{equation}
+so the wave's energy decays at the rate $16\pi G\eta/c^{2}$, the result found
+by Hawking \cite{Hawking1966}. Per unit length this is an absorption
+coefficient
+\begin{equation}\label{eq:alpha}
+\alpha = \frac{16\pi G\,\eta}{c^{3}} .
+\end{equation}
+For water, $\alpha \approx 10^{-37}\,\mathrm{m^{-1}}$. A wave would cross
+nearly $10^{21}$ light-years of water before losing much of its energy.
+
+\paragraph{Emission.} A medium that absorbs must also emit. With the Planck
+function $B_\omega(T)$, Kirchhoff's law gives the power radiated per unit
+volume, solid angle and frequency,
+\begin{equation}\label{eq:kirchhoff}
+j_\omega = \alpha\, B_\omega(T) .
+\end{equation}
+We have checked Eq.~\eqref{eq:kirchhoff} by a second route: computing the
+radiation directly from the thermal fluctuations of shear stress in a viscous
+fluid gives the same expression. For long wavelengths it is the known result
+that a thermal plasma radiates gravitational waves in proportion to its shear
+viscosity \cite{GhiglieriLaine2015}. What we add is its application to the
+matter around us.
+
+Three consequences shape the image.
+\begin{itemize}
+\item \emph{Matter is transparent.} With $\alpha$ so small, nothing absorbs or
+scatters. A pixel receives the sum of the glow of everything along its line of
+sight (Figure~\ref{fig:line-integral}), and there are no shadows.
+\item \emph{Brightness is temperature times friction.} What sets a material's
+glow is how strongly it resists being sheared, at the frequencies of heat.
+To the extent that everyday viscosity carries over to those frequencies,
+honey outshines water, and a lossy solid outshines a ringing one.
+\item \emph{The glow is faint.} A person radiates of order $10^{-35}\,\mathrm{W}$
+this way: at most one graviton in twenty million years.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{figures/line-integral.png}
+\caption{Two ways of forming a picture. Light stops at the first opaque
+surface, so a pixel reports one point. Gravitational radiation passes through
+everything, so a pixel reports the sum of the glow along its whole line of
+sight: each body adds its emissivity times the length of the path inside
+it.}\label{fig:line-integral}
+\end{figure}
+
+\paragraph{Open questions.} Equation~\eqref{eq:alpha} holds when the wave is
+slower than the collisions that produce viscosity. Real materials respond
+differently at different frequencies, so $\eta$ must be replaced by a
+frequency-dependent friction, and the spectrum of the glow then records the
+material's mechanical losses: a kind of gravitational colour, which we have
+not yet worked out. Separately, thermal radiation from the vibrations of a
+solid has been calculated before
+\cite{SchaeferDehnen1981,DehnenRomeroSchaefer1984}; for an elastic sphere
+without internal damping its strength was found to grow with the sphere's
+surface, not its volume. How that channel compares with the volume emission of
+Eq.~\eqref{eq:kirchhoff} decides whether a warm object appears as a glowing
+volume or a glowing outline, and is the next calculation to be done.

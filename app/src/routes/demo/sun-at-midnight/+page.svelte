@@ -78,7 +78,7 @@
 	/>
 </svelte:head>
 
-<main>
+<main class="always-dark">
 	<div class="stage">
 		<SplitView
 			{objects}

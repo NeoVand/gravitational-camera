@@ -20,6 +20,12 @@ importers:
       '@fontsource-variable/newsreader':
         specifier: ^5.3.0
         version: 5.3.0
+      '@hugeicons/core-free-icons':
+        specifier: ^4.4.0
+        version: 4.4.0
+      '@hugeicons/svelte':
+        specifier: ^1.1.5
+        version: 1.1.5(svelte@5.57.3(@typescript-eslint/types@8.72.2))
       '@playwright/test':
         specifier: ^1.60.0
         version: 1.65.1
@@ -145,6 +151,14 @@ packages:
 
   '@fontsource-variable/newsreader@5.3.0':
     resolution: {integrity: sha512-rrzYi43qMpbzwuFtf9OkWH8sxAPVPcQQQEwXpPtwaKYeJ8yVg5aLs5kawmo1f2Q1t1M38TLmEKCkGVDsYwgdFw==}
+
+  '@hugeicons/core-free-icons@4.4.0':
+    resolution: {integrity: sha512-7Mz8bmGoY6tZ6l3C2TXwNMLVSr0I8HPwjjFIERAuJFj3rWwLxdF2ZLkDqdrVuEE1dx5b/VXyIsP4WoSU6Q40KQ==}
+
+  '@hugeicons/svelte@1.1.5':
+    resolution: {integrity: sha512-aau7Z9kJWi3QtakeHeFBj+TqHl7NQBO6/BWbnBTete8On3+L/CD1iSmf4vFNs90fcpQeP+567hT4wImEMNd1Fg==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -1267,6 +1281,12 @@ snapshots:
   '@fontsource-variable/jetbrains-mono@5.3.0': {}
 
   '@fontsource-variable/newsreader@5.3.0': {}
+
+  '@hugeicons/core-free-icons@4.4.0': {}
+
+  '@hugeicons/svelte@1.1.5(svelte@5.57.3(@typescript-eslint/types@8.72.2))':
+    dependencies:
+      svelte: 5.57.3(@typescript-eslint/types@8.72.2)
 
   '@humanfs/core@0.19.2':
     dependencies:

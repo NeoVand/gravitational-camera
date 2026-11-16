@@ -1,0 +1,48 @@
+\section{Three regimes}\label{sec:regimes}
+
+\begin{quote}
+\textbf{In plain words.} Wave a magnet near a compass and the needle follows
+your hand at once; that is the near field. Far away, the only thing left of
+your waving is a radio wave. Gravity has the same two zones, and the boundary
+lies one sixth of a wavelength from the source. For anything that moves at
+human speeds the wavelength is enormous, so everyday life happens in the near
+field.
+\end{quote}
+
+What reaches a pixel depends on how the distance $r$ to the source compares
+with the wavelength $\lambda = c/f$ of the radiation it would emit at frequency
+$f$. Inside the \emph{near zone},
+\begin{equation}\label{eq:nearzone}
+r \ll \frac{\lambda}{2\pi} = \frac{c}{2\pi f},
+\end{equation}
+the field is the Newtonian one of Eq.~\eqref{eq:newton}, following the source
+almost instantaneously. Outside it the field is radiation, Eq.~\eqref{eq:wave},
+falling off as $1/r$. At $1\,\mathrm{Hz}$ the near zone reaches to
+$48{,}000\,\mathrm{km}$; at $1\,\mathrm{kHz}$, to $48\,\mathrm{km}$.
+Figure~\ref{fig:regimes} places familiar sources on this map.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{figures/regimes.png}
+\caption{Where sources lie. The diagonal is the edge of the near zone,
+Eq.~\eqref{eq:nearzone}. Everything that moves mechanically, from the tides to
+a calibration rotor beside a LIGO mirror, sits below it and is seen through
+its changing Newtonian pull. Only radiation at thermal frequencies, far to the
+right, reaches a nearby camera as waves short enough to form sharp
+images.}\label{fig:regimes}
+\end{figure}
+
+Sources of radiation divide again. Bodies in bulk motion radiate at the
+frequencies at which they move, which are low; hot matter radiates at the
+frequencies of its molecular motion, which are very high. This gives the three
+regimes of Table~\ref{tab:regimes}, taken in turn in the next three sections.
+
+\begin{table}
+\begin{tabular}{lll}
+Regime & What the pixel receives & What limits the image \\ \hline
+Near field & the changing Newtonian pull of nearby mass & blur grows with distance \\
+Waves from bulk motion & radiation from accelerating bodies & each body is an unresolved point \\
+Thermal glow & radiation from molecular motion & almost no gravitons arrive \\
+\end{tabular}
+\caption{The three regimes of a gravitational camera.}\label{tab:regimes}
+\end{table}

@@ -7,15 +7,46 @@ test('landing page links to the demos and the paper', async ({ page }) => {
 	await expect(page.getByRole('link', { name: 'Read the paper' })).toBeVisible();
 });
 
-test('paper renders its equations, cross-references and bibliography', async ({ page }) => {
+test('paper renders its equations, figures, cross-references and bibliography', async ({
+	page
+}) => {
 	await page.goto('/paper/');
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('The Gravitational Camera');
-	expect(await page.locator('.equation .katex').count()).toBeGreaterThanOrEqual(8);
+	expect(await page.locator('.equation .katex').count()).toBeGreaterThanOrEqual(15);
+	expect(await page.locator('aside.plain').count()).toBeGreaterThanOrEqual(6);
 	await expect(page.locator('a.xref').first()).toBeVisible();
-	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(5);
+	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
+	// every figure has something drawn in it
+	const figures = page.locator('figure.plate');
+	expect(await figures.count()).toBe(8);
+	for (const figure of await figures.all()) {
+		expect(await figure.locator('svg, canvas').count()).toBeGreaterThan(0);
+	}
 	// nothing from the LaTeX source may leak through unrendered
 	await expect(page.locator('article')).not.toContainText('\\ref');
 	await expect(page.locator('article')).not.toContainText('\\cite');
+});
+
+test('near-field figure responds: more sensitivity separates the two masses', async ({ page }) => {
+	await page.goto('/paper/');
+	const figure = page.locator('[id="fig:nearfield"]');
+	const sensitivity = figure.getByLabel('Sensitivity');
+	await sensitivity.fill('1');
+	await expect(figure).toContainText('merge into one');
+	await sensitivity.fill('40');
+	await expect(figure).toContainText('told apart');
+});
+
+test('theme switch changes the page colours and is remembered', async ({ page }) => {
+	await page.emulateMedia({ colorScheme: 'dark' });
+	await page.goto('/paper/');
+	const background = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+	const dark = await background();
+	await page.getByRole('button', { name: 'Switch between light and dark' }).click();
+	const light = await background();
+	expect(light).not.toBe(dark);
+	await page.reload();
+	expect(await background()).toBe(light);
 });
 
 test('GPU self-test agrees with the reference implementation', async ({ page }) => {

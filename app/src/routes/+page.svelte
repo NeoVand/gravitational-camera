@@ -19,7 +19,7 @@
 	/>
 </svelte:head>
 
-<main>
+<main class="always-dark">
 	<section class="hero">
 		<div class="picture">
 			<SplitView

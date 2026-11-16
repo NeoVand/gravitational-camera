@@ -1,0 +1,92 @@
+/* Shared look of the paper's drawn figures. Colours come from the theme. */
+.gfig {
+	font-family: var(--font-sans);
+	color: var(--text);
+}
+
+.gfig {
+	overflow-x: auto;
+}
+
+/* On a narrow screen a drawing keeps a readable size and scrolls sideways. */
+.gfig svg {
+	display: block;
+	width: 100%;
+	min-width: 540px;
+	height: auto;
+	overflow: visible;
+}
+
+.gfig text {
+	fill: var(--text-dim);
+	font-size: 14px;
+}
+
+.gfig text.strong {
+	fill: var(--text);
+	font-weight: 600;
+}
+
+.gfig text.small {
+	font-size: 12px;
+}
+
+.gfig text.faint {
+	fill: var(--text-faint);
+}
+
+.gfig text.accent {
+	fill: var(--accent);
+}
+
+.gfig text.accent2 {
+	fill: var(--accent-2);
+}
+
+.gfig .ink {
+	stroke: var(--text);
+	fill: none;
+}
+
+.gfig .hair {
+	stroke: var(--line-strong);
+	fill: none;
+	stroke-width: 1;
+}
+
+.gfig .grid {
+	stroke: var(--line);
+	fill: none;
+	stroke-width: 1;
+}
+
+.gfig .controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.6rem 1.6rem;
+	margin-top: 0.8rem;
+	font-size: 0.82rem;
+	color: var(--text-dim);
+}
+
+.gfig .controls label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.gfig .controls input[type='range'] {
+	width: min(15rem, 46vw);
+	accent-color: var(--accent);
+}
+
+.gfig .readout {
+	font-family: var(--font-mono);
+	font-size: 0.78rem;
+	color: var(--text);
+}
+
+.gfig .verdict {
+	font-weight: 600;
+}
