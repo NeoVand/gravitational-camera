@@ -1,7 +1,18 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { HugeiconsIcon } from '@hugeicons/svelte';
+	import {
+		Clock01Icon,
+		Orbit01Icon,
+		PlayIcon,
+		TemperatureIcon,
+		WavesIcon
+	} from '@hugeicons/core-free-icons';
 	import { demos } from '#lib/demos/index.js';
+	import { posters } from '#lib/demos/posters.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
+
+	const regimeIcons = { 'near field': Orbit01Icon, thermal: TemperatureIcon, waves: WavesIcon };
 </script>
 
 <svelte:head>
@@ -24,22 +35,48 @@
 
 	<ol>
 		{#each demos as demo (demo.title)}
-			<li class={{ soon: !demo.slug }}>
-				<p class="affordance">{demo.affordance}</p>
+			<li>
 				{#if demo.slug}
-					<h2><a href={resolve(`/demo/${demo.slug}`)}>{demo.title}</a></h2>
+					<a class="card" href={resolve(`/demo/${demo.slug}`)}>
+						<div class="thumb">
+							<img src={posters[demo.slug]} alt="" loading="lazy" />
+							<span class="play" aria-hidden="true">
+								<HugeiconsIcon icon={PlayIcon} size={18} strokeWidth={2} />
+							</span>
+						</div>
+						{@render text(demo)}
+					</a>
 				{:else}
-					<h2>{demo.title} <span class="badge">planned</span></h2>
+					<div class="card soon">
+						<div class="thumb empty">
+							<HugeiconsIcon icon={Clock01Icon} size={20} strokeWidth={1.6} />
+							<span>In progress</span>
+						</div>
+						{@render text(demo)}
+					</div>
 				{/if}
-				<p>{demo.summary}</p>
 			</li>
 		{/each}
 	</ol>
 </main>
 
+{#snippet text(demo: (typeof demos)[number])}
+	<div class="text">
+		<p class="meta">
+			<span class="affordance">{demo.affordance}</span>
+			<span class="regime">
+				<HugeiconsIcon icon={regimeIcons[demo.regime]} size={13} strokeWidth={1.8} />
+				{demo.regime}
+			</span>
+		</p>
+		<h2>{demo.title}</h2>
+		<p class="summary">{demo.summary}</p>
+	</div>
+{/snippet}
+
 <style>
 	main {
-		max-width: 62rem;
+		max-width: 72rem;
 		margin: 0 auto;
 		padding: 1.2rem var(--gutter) 5rem;
 	}
@@ -52,7 +89,7 @@
 
 	.intro {
 		max-width: 40rem;
-		margin: 0 0 3rem;
+		margin: 0 0 2.8rem;
 		color: var(--text-dim);
 		font-size: 1.05rem;
 		text-wrap: pretty;
@@ -63,58 +100,144 @@
 		margin: 0;
 		padding: 0;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
-		gap: 0;
-		border-top: 1px solid var(--line);
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+		gap: 2.2rem 1.6rem;
 	}
 
-	li {
-		padding: 1.5rem 1.5rem 1.7rem 0;
-		border-bottom: 1px solid var(--line);
+	.card {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.thumb {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		border-radius: 12px;
+		overflow: hidden;
+		background: #0b0d12;
+		box-shadow: 0 0 0 1px var(--line);
+	}
+
+	.thumb img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition:
+			transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+			filter 0.3s;
+	}
+
+	a.card:hover .thumb img,
+	a.card:focus-visible .thumb img {
+		transform: scale(1.04);
+		filter: brightness(1.06);
+	}
+
+	.play {
+		position: absolute;
+		right: 0.75rem;
+		bottom: 0.75rem;
+		display: grid;
+		place-items: center;
+		width: 2.4rem;
+		height: 2.4rem;
+		border-radius: 50%;
+		background: rgb(244 241 234 / 0.94);
+		color: #14161b;
+		box-shadow: 0 2px 10px rgb(0 0 0 / 0.35);
+		opacity: 0;
+		translate: 0 6px;
+		transition:
+			opacity 0.2s,
+			translate 0.2s;
+	}
+
+	a.card:hover .play,
+	a.card:focus-visible .play {
+		opacity: 1;
+		translate: 0 0;
+	}
+
+	a.card:focus-visible {
+		outline: none;
+	}
+
+	a.card:focus-visible .thumb {
+		box-shadow: 0 0 0 2px var(--accent);
+	}
+
+	.thumb.empty {
+		display: grid;
+		place-content: center;
+		justify-items: center;
+		gap: 0.5rem;
+		color: var(--text-faint);
+		font-size: 0.78rem;
+		background: repeating-linear-gradient(
+			-45deg,
+			transparent 0 10px,
+			rgb(127 127 127 / 0.05) 10px 20px
+		);
+		box-shadow: inset 0 0 0 1px var(--line);
+	}
+
+	.text {
+		padding: 0.95rem 0.15rem 0;
+	}
+
+	.meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.8rem;
+		margin: 0 0 0.4rem;
 	}
 
 	.affordance {
-		margin: 0 0 0.5rem;
-		font-size: 0.72rem;
-		letter-spacing: 0.08em;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
 		text-transform: uppercase;
 		color: var(--accent);
 	}
 
-	li.soon .affordance {
+	.soon .affordance {
 		color: var(--text-faint);
+	}
+
+	.regime {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.2rem 0.55rem;
+		border-radius: 999px;
+		border: 1px solid var(--line);
+		color: var(--text-dim);
+		font-size: 0.7rem;
+		white-space: nowrap;
 	}
 
 	h2 {
-		margin: 0 0 0.5rem;
+		margin: 0 0 0.4rem;
 		font: 400 1.45rem/1.2 var(--font-serif);
+		transition: color 0.2s;
 	}
 
-	h2 a {
-		text-decoration-color: var(--accent);
+	a.card:hover h2 {
+		color: var(--accent);
 	}
 
-	li p:last-child {
+	.soon h2 {
+		color: var(--text-dim);
+	}
+
+	.summary {
 		margin: 0;
 		font-size: 0.9rem;
+		line-height: 1.5;
 		color: var(--text-dim);
 		text-wrap: pretty;
-	}
-
-	li.soon h2 {
-		color: var(--text-dim);
-	}
-
-	.badge {
-		font: 500 0.62rem/1 var(--font-sans);
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--text-faint);
-		border: 1px solid var(--line);
-		border-radius: 999px;
-		padding: 0.3em 0.6em;
-		vertical-align: middle;
-		margin-left: 0.4em;
-		white-space: nowrap;
 	}
 </style>

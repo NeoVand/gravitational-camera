@@ -7,6 +7,7 @@
 	 * are slowed until the waves are centimetres long.
 	 */
 	import type { Snippet } from 'svelte';
+	import { posters } from '../demos/posters';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		ContrastIcon,
@@ -148,6 +149,7 @@
 		<span class="clock" {@attach clock}></span>
 		<SplitView
 			bind:this={splitView}
+			poster={posters[scene.name]}
 			cutaway={inside}
 			{objects}
 			{observer}

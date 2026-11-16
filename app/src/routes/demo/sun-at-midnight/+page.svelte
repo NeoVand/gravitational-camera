@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { asset } from '$app/paths';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		ArrowDown02Icon,
@@ -101,6 +102,7 @@
 		<span class="clock" {@attach clock}></span>
 		<SplitView
 			bind:this={splitView}
+			poster={asset('posters/sun-at-midnight.jpg')}
 			{objects}
 			{observer}
 			sunDirection={sun}

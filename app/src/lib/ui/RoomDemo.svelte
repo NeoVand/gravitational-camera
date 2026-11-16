@@ -5,6 +5,7 @@
 	 * sensitivity leaves.
 	 */
 	import type { Snippet } from 'svelte';
+	import { posters } from '../demos/posters';
 	import {
 		ContrastIcon,
 		DashedLineCircleIcon,
@@ -109,6 +110,7 @@
 	{#snippet stage()}
 		<SplitView
 			bind:this={splitView}
+			poster={posters[scene.name]}
 			{objects}
 			{observer}
 			sunDirection={[0, 1, 0]}
