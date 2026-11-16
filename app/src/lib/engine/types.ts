@@ -27,7 +27,14 @@ export interface SphereShape {
 	radius: number;
 }
 
-export type Shape = SphereShape;
+export interface BoxShape {
+	type: 'box';
+	center: Vec3;
+	/** Full extent along x, y and z; the box is aligned with the axes. */
+	size: Vec3;
+}
+
+export type Shape = SphereShape | BoxShape;
 
 export interface SceneObject {
 	id: string;
@@ -41,7 +48,10 @@ export interface Scene {
 	title: string;
 	description?: string;
 	frame?: string;
-	observer: { position: Vec3 };
+	/** `exclusion`: radius around the observer ignored by the near-field image, metres. */
+	observer: { position: Vec3; exclusion?: number };
+	/** Affects only the ordinary-light view. */
+	environment?: 'night-sky' | 'room';
 	materials: Record<string, Material>;
 	objects: SceneObject[];
 	assumptions?: string[];
@@ -53,7 +63,10 @@ export interface AnalyzedObject {
 	/** Index of the parent in the analyzed list, or -1. */
 	parent: number;
 	center: Vec3;
+	/** Sphere radius; for a box, the radius of the sphere that encloses it. */
 	radius: number;
+	/** Half extents of a box; undefined for a sphere. */
+	half?: Vec3;
 	density: number;
 	temperature: number;
 	/** Volume of the shape minus its children, m³. */

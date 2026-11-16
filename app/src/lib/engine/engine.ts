@@ -1,21 +1,25 @@
 /**
  * The WebGPU renderer. Framework-free: give it a canvas, packed primitives and
- * per-frame parameters. It also exposes a probe that evaluates the shader's
- * line integral for arbitrary rays, which the self-test compares with the
+ * per-frame parameters. It also exposes a probe that evaluates the shaders'
+ * line integrals for arbitrary rays, which the self-test compares with the
  * reference implementation.
  */
 import { cameraBasis, type View } from './camera';
 import { MAX_PRIMS, PRIM_STRIDE, type PackedPrims } from './scene';
 import type { Vec3 } from './types';
+import blurWgsl from './wgsl/blur.wgsl?raw';
 import frameWgsl from './wgsl/frame.wgsl?raw';
 import kernelsWgsl from './wgsl/kernels.wgsl?raw';
 import lightWgsl from './wgsl/light.wgsl?raw';
+import nearWgsl from './wgsl/near.wgsl?raw';
+import nearPassWgsl from './wgsl/nearpass.wgsl?raw';
 import probeWgsl from './wgsl/probe.wgsl?raw';
 import thermalWgsl from './wgsl/thermal.wgsl?raw';
 
 export const MODE_LIGHT = 0;
 export const MODE_THERMAL = 1;
-export type Mode = typeof MODE_LIGHT | typeof MODE_THERMAL;
+export const MODE_NEAR = 2;
+export type Mode = typeof MODE_LIGHT | typeof MODE_THERMAL | typeof MODE_NEAR;
 
 export interface FrameParams {
 	view: View;
@@ -30,26 +34,59 @@ export interface FrameParams {
 	/** Unit vector toward the Sun, for the light view. */
 	sunDirection: Vec3;
 	timeSeconds: number;
+	/** Brightness multiplier for the near-field view. */
+	nearExposure?: number;
+	/** Standard deviation of the near-field blur, radians. */
+	nearBlur?: number;
+	/** Radius around the observer left out of the near-field view, metres. */
+	exclusion?: number;
+	/** Light the ordinary view as a room instead of a night sky. */
+	room?: boolean;
+	/** Add a faint copy of the ordinary picture to the near-field view. */
+	nearOutline?: boolean;
 }
 
 export class EngineUnavailable extends Error {}
 
-const FRAME_BYTES = 112;
+const FRAME_BYTES = 128;
+const NEAR_FORMAT: GPUTextureFormat = 'rgba16float';
+
+async function compile(device: GPUDevice, label: string, parts: string[]) {
+	const module = device.createShaderModule({ label, code: parts.join('\n') });
+	const info = await module.getCompilationInfo();
+	const errors = info.messages.filter((m) => m.type === 'error');
+	if (errors.length) {
+		throw new Error(
+			`Shader "${label}" failed to compile: ` +
+				errors.map((m) => `${m.lineNum}:${m.linePos} ${m.message}`).join('; ')
+		);
+	}
+	return module;
+}
 
 export class Engine {
+	private primCount = 0;
+	private probePipeline: GPUComputePipeline | undefined;
+	// near-field targets, at reduced resolution; `a` holds the finished map
+	private near: { width: number; height: number; a: GPUTexture; b: GPUTexture } | undefined;
+	private frameGroup: GPUBindGroup | undefined;
+	private blurGroups: [GPUBindGroup, GPUBindGroup] | undefined;
+
 	private constructor(
 		private readonly device: GPUDevice,
 		private readonly context: GPUCanvasContext,
 		private readonly canvas: HTMLCanvasElement,
 		private readonly format: GPUTextureFormat,
-		private readonly pipeline: GPURenderPipeline,
+		private readonly framePipeline: GPURenderPipeline,
+		private readonly columnPipeline: GPURenderPipeline,
+		private readonly blurPipeline: GPURenderPipeline,
 		private readonly frameBuffer: GPUBuffer,
+		private readonly columnFrameBuffer: GPUBuffer,
+		private readonly blurBuffers: [GPUBuffer, GPUBuffer],
 		private readonly primBuffer: GPUBuffer,
-		private readonly bindGroup: GPUBindGroup
+		private readonly columnGroup: GPUBindGroup,
+		private readonly sampler: GPUSampler
 	) {}
-
-	private primCount = 0;
-	private probePipeline: GPUComputePipeline | undefined;
 
 	/** Whether this browser exposes WebGPU at all. */
 	static supported(): boolean {
@@ -71,51 +108,88 @@ export class Engine {
 		const format = navigator.gpu.getPreferredCanvasFormat();
 		context.configure({ device, format, alphaMode: 'opaque' });
 
-		const module = device.createShaderModule({
-			label: 'frame',
-			code: [kernelsWgsl, thermalWgsl, lightWgsl, frameWgsl].join('\n')
-		});
-		const info = await module.getCompilationInfo();
-		const errors = info.messages.filter((m) => m.type === 'error');
-		if (errors.length) {
-			throw new Error(
-				'Shader failed to compile: ' +
-					errors.map((m) => `${m.lineNum}:${m.linePos} ${m.message}`).join('; ')
-			);
-		}
-		const pipeline = device.createRenderPipeline({
+		const frameModule = await compile(device, 'frame', [
+			kernelsWgsl,
+			thermalWgsl,
+			lightWgsl,
+			nearWgsl,
+			frameWgsl
+		]);
+		const columnModule = await compile(device, 'near column', [
+			kernelsWgsl,
+			nearWgsl,
+			nearPassWgsl
+		]);
+		const blurModule = await compile(device, 'blur', [blurWgsl]);
+
+		const primitive: GPUPrimitiveState = { topology: 'triangle-list' };
+		const framePipeline = device.createRenderPipeline({
 			label: 'frame',
 			layout: 'auto',
-			vertex: { module, entryPoint: 'vs' },
-			fragment: { module, entryPoint: 'fs', targets: [{ format }] },
-			primitive: { topology: 'triangle-list' }
+			vertex: { module: frameModule, entryPoint: 'vs' },
+			fragment: { module: frameModule, entryPoint: 'fs', targets: [{ format }] },
+			primitive
 		});
-		const frameBuffer = device.createBuffer({
-			label: 'frame uniforms',
-			size: FRAME_BYTES,
-			usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
+		const columnPipeline = device.createRenderPipeline({
+			label: 'near column',
+			layout: 'auto',
+			vertex: { module: columnModule, entryPoint: 'vs' },
+			fragment: {
+				module: columnModule,
+				entryPoint: 'fs_column',
+				targets: [{ format: NEAR_FORMAT }]
+			},
+			primitive
 		});
+		const blurPipeline = device.createRenderPipeline({
+			label: 'blur',
+			layout: 'auto',
+			vertex: { module: blurModule, entryPoint: 'vs' },
+			fragment: { module: blurModule, entryPoint: 'fs', targets: [{ format: NEAR_FORMAT }] },
+			primitive
+		});
+
+		const uniform = (label: string, size: number) =>
+			device.createBuffer({
+				label,
+				size,
+				usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
+			});
+		const frameBuffer = uniform('frame uniforms', FRAME_BYTES);
+		const columnFrameBuffer = uniform('near column uniforms', FRAME_BYTES);
+		const blurBuffers: [GPUBuffer, GPUBuffer] = [uniform('blur x', 16), uniform('blur y', 16)];
 		const primBuffer = device.createBuffer({
 			label: 'primitives',
 			size: PRIM_STRIDE * MAX_PRIMS,
 			usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
 		});
-		const bindGroup = device.createBindGroup({
-			layout: pipeline.getBindGroupLayout(0),
+		const columnGroup = device.createBindGroup({
+			layout: columnPipeline.getBindGroupLayout(0),
 			entries: [
-				{ binding: 0, resource: { buffer: frameBuffer } },
+				{ binding: 0, resource: { buffer: columnFrameBuffer } },
 				{ binding: 1, resource: { buffer: primBuffer } }
 			]
+		});
+		const sampler = device.createSampler({
+			magFilter: 'linear',
+			minFilter: 'linear',
+			addressModeU: 'clamp-to-edge',
+			addressModeV: 'clamp-to-edge'
 		});
 		return new Engine(
 			device,
 			context,
 			canvas,
 			format,
-			pipeline,
+			framePipeline,
+			columnPipeline,
+			blurPipeline,
 			frameBuffer,
+			columnFrameBuffer,
+			blurBuffers,
 			primBuffer,
-			bindGroup
+			columnGroup,
+			sampler
 		);
 	}
 
@@ -124,7 +198,7 @@ export class Engine {
 		this.primCount = prims.count;
 	}
 
-	private writeFrame(p: FrameParams, width: number, height: number): void {
+	private frameData(p: FrameParams, width: number, height: number): ArrayBuffer {
 		const data = new ArrayBuffer(FRAME_BYTES);
 		const f = new Float32Array(data);
 		const u = new Uint32Array(data);
@@ -134,43 +208,114 @@ export class Engine {
 		f.set([...up, t], 4);
 		f.set([...forward, (2 * t) / height], 8);
 		f.set([width, height, p.divider * width, p.timeSeconds], 12);
-		f.set([p.exposure, p.glarePixels, 1, 0], 16);
+		f.set([p.exposure, p.glarePixels, 1, p.nearExposure ?? 1], 16);
 		f.set([...p.sunDirection, 0], 20);
-		u.set([this.primCount, p.left, p.right, 0], 24);
-		this.device.queue.writeBuffer(this.frameBuffer, 0, data);
+		f.set([p.exclusion ?? 0.25, 0, 0, 0], 24);
+		u.set([this.primCount, p.left, p.right, (p.room ? 1 : 0) | (p.nearOutline ? 2 : 0)], 28);
+		return data;
 	}
 
-	private draw(encoder: GPUCommandEncoder, target: GPUTextureView): void {
-		const pass = encoder.beginRenderPass({
-			colorAttachments: [
-				{
-					view: target,
-					loadOp: 'clear',
-					storeOp: 'store',
-					clearValue: { r: 0, g: 0, b: 0, a: 1 }
-				}
+	/** Make sure the reduced-resolution targets exist at this size. */
+	private ensureNear(width: number, height: number): void {
+		if (this.near?.width === width && this.near.height === height) return;
+		this.near?.a.destroy();
+		this.near?.b.destroy();
+		const make = (label: string) =>
+			this.device.createTexture({
+				label,
+				size: [width, height],
+				format: NEAR_FORMAT,
+				usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.TEXTURE_BINDING
+			});
+		const a = make('near a');
+		const b = make('near b');
+		this.near = { width, height, a, b };
+		const blurGroup = (buffer: GPUBuffer, source: GPUTexture) =>
+			this.device.createBindGroup({
+				layout: this.blurPipeline.getBindGroupLayout(0),
+				entries: [
+					{ binding: 0, resource: { buffer } },
+					{ binding: 1, resource: source.createView() },
+					{ binding: 2, resource: this.sampler }
+				]
+			});
+		// blur along x reads a and writes b; along y reads b and writes a
+		this.blurGroups = [blurGroup(this.blurBuffers[0], a), blurGroup(this.blurBuffers[1], b)];
+		this.frameGroup = this.device.createBindGroup({
+			layout: this.framePipeline.getBindGroupLayout(0),
+			entries: [
+				{ binding: 0, resource: { buffer: this.frameBuffer } },
+				{ binding: 1, resource: { buffer: this.primBuffer } },
+				{ binding: 2, resource: a.createView() },
+				{ binding: 3, resource: this.sampler }
 			]
 		});
-		pass.setPipeline(this.pipeline);
-		pass.setBindGroup(0, this.bindGroup);
+	}
+
+	private fullScreenPass(
+		encoder: GPUCommandEncoder,
+		target: GPUTextureView,
+		pipeline: GPURenderPipeline,
+		group: GPUBindGroup
+	): void {
+		const pass = encoder.beginRenderPass({
+			colorAttachments: [
+				{ view: target, loadOp: 'clear', storeOp: 'store', clearValue: { r: 0, g: 0, b: 0, a: 1 } }
+			]
+		});
+		pass.setPipeline(pipeline);
+		pass.setBindGroup(0, group);
 		pass.draw(3);
 		pass.end();
 	}
 
+	private draw(target: GPUTextureView, p: FrameParams, width: number, height: number): void {
+		const { device } = this;
+		const encoder = device.createCommandEncoder();
+		const wantsNear = p.left === MODE_NEAR || p.right === MODE_NEAR;
+
+		if (wantsNear) {
+			// The blur can span much of the picture, so it is done at reduced
+			// resolution: the wider the blur, the coarser the grid may be.
+			const pixelAngle = (2 * Math.tan(p.view.fov / 2)) / height;
+			const sigmaPixels = (p.nearBlur ?? 0) / pixelAngle;
+			const scale = Math.min(32, Math.max(2, Math.ceil(sigmaPixels / 8)));
+			const w = Math.max(1, Math.ceil(width / scale));
+			const h = Math.max(1, Math.ceil(height / scale));
+			this.ensureNear(w, h);
+			device.queue.writeBuffer(this.columnFrameBuffer, 0, this.frameData(p, w, h));
+			const sigma = sigmaPixels / scale;
+			device.queue.writeBuffer(this.blurBuffers[0], 0, new Float32Array([1, 0, sigma, 0]));
+			device.queue.writeBuffer(this.blurBuffers[1], 0, new Float32Array([0, 1, sigma, 0]));
+			const near = this.near!;
+			this.fullScreenPass(encoder, near.a.createView(), this.columnPipeline, this.columnGroup);
+			this.fullScreenPass(encoder, near.b.createView(), this.blurPipeline, this.blurGroups![0]);
+			this.fullScreenPass(encoder, near.a.createView(), this.blurPipeline, this.blurGroups![1]);
+		} else {
+			this.ensureNear(this.near?.width ?? 1, this.near?.height ?? 1);
+		}
+
+		device.queue.writeBuffer(this.frameBuffer, 0, this.frameData(p, width, height));
+		this.fullScreenPass(encoder, target, this.framePipeline, this.frameGroup!);
+		device.queue.submit([encoder.finish()]);
+	}
+
 	render(p: FrameParams): void {
-		this.writeFrame(p, this.canvas.width, this.canvas.height);
-		const encoder = this.device.createCommandEncoder();
-		this.draw(encoder, this.context.getCurrentTexture().createView());
-		this.device.queue.submit([encoder.finish()]);
+		this.draw(
+			this.context.getCurrentTexture().createView(),
+			p,
+			this.canvas.width,
+			this.canvas.height
+		);
 	}
 
 	/**
 	 * Draw a frame off screen and read it back: `width * height * 4` bytes, rows
-	 * from the top, in RGBA order whatever the canvas format is. For tests.
+	 * from the top, in RGBA order whatever the canvas format is. For tests and
+	 * for capturing stills.
 	 */
 	async readFrame(p: FrameParams, width: number, height: number): Promise<Uint8Array> {
 		const device = this.device;
-		this.writeFrame(p, width, height);
 		const texture = device.createTexture({
 			size: [width, height],
 			format: this.format,
@@ -181,8 +326,8 @@ export class Engine {
 			size: bytesPerRow * height,
 			usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST
 		});
+		this.draw(texture.createView(), p, width, height);
 		const encoder = device.createCommandEncoder();
-		this.draw(encoder, texture.createView());
 		encoder.copyTextureToBuffer({ texture }, { buffer, bytesPerRow }, [width, height]);
 		device.queue.submit([encoder.finish()]);
 		await buffer.mapAsync(GPUMapMode.READ);
@@ -206,18 +351,21 @@ export class Engine {
 	}
 
 	/**
-	 * Evaluate the shader's thermal line integral for the given unit directions.
-	 * Returns four floats per ray: colour-weighted rgb and the plain column, all
-	 * in units of the reference radiance the primitives were packed with.
+	 * Evaluate the shaders' line integrals for the given unit directions.
+	 * Returns four floats per ray: the thermal column in units of the reference
+	 * radiance, the tidal column in units of the reference tidal column, and two
+	 * zeros.
 	 */
-	async probe(directions: Float32Array): Promise<Float32Array> {
+	async probe(directions: Float32Array, exclusion = 0.25): Promise<Float32Array> {
 		const n = directions.length / 3;
 		const device = this.device;
 		if (!this.probePipeline) {
-			const module = device.createShaderModule({
-				label: 'probe',
-				code: [kernelsWgsl, thermalWgsl, probeWgsl].join('\n')
-			});
+			const module = await compile(device, 'probe', [
+				kernelsWgsl,
+				thermalWgsl,
+				nearWgsl,
+				probeWgsl
+			]);
 			this.probePipeline = await device.createComputePipelineAsync({
 				label: 'probe',
 				layout: 'auto',
@@ -239,10 +387,10 @@ export class Engine {
 			size: rays.byteLength,
 			usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST
 		});
-		// the probe only needs the primitive count from the frame block
+		// the probe needs the primitive count and the exclusion radius from the frame block
 		const frame = new ArrayBuffer(FRAME_BYTES);
-		new Float32Array(frame).set([1, 1, 1, 0], 16);
-		new Uint32Array(frame).set([this.primCount, 0, 0, 0], 24);
+		new Float32Array(frame).set([exclusion, 0, 0, 0], 24);
+		new Uint32Array(frame).set([this.primCount, 0, 0, 0], 28);
 		const frameBuffer = device.createBuffer({
 			size: FRAME_BYTES,
 			usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
@@ -274,8 +422,8 @@ export class Engine {
 	}
 
 	destroy(): void {
-		this.frameBuffer.destroy();
-		this.primBuffer.destroy();
+		this.near?.a.destroy();
+		this.near?.b.destroy();
 		this.device.destroy();
 	}
 }

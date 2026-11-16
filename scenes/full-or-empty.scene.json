@@ -63,8 +63,26 @@
       "id": "back-wall",
       "shape": {
         "type": "box",
-        "center": [0, 1.5, -8.15],
-        "size": [12, 3, 0.3]
+        "center": [0, 2.5, -8.15],
+        "size": [12.6, 5, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "left-wall",
+      "shape": {
+        "type": "box",
+        "center": [-6.15, 2.5, -4.0],
+        "size": [0.3, 5, 8.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "right-wall",
+      "shape": {
+        "type": "box",
+        "center": [6.15, 2.5, -4.0],
+        "size": [0.3, 5, 8.0]
       },
       "material": "plaster"
     },

@@ -5,14 +5,18 @@
 	 * tolerances; the double-precision physics is tested separately.
 	 */
 	import fixture from '../../../../../reference/fixtures/sun-at-midnight.json';
+	import safeJson from '../../../../../scenes/locked-safe.scene.json';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import {
 		Engine,
 		MODE_LIGHT,
 		MODE_THERMAL,
 		analyzeScene,
+		columnsAlong,
 		packPrims,
+		pixelDirection,
 		referenceRadiance,
+		referenceTidal,
 		type Scene
 	} from '#lib/engine/index.js';
 	import { scene, sunDirection } from '#lib/demos/sun-at-midnight.js';
@@ -35,7 +39,9 @@
 		const objects = analyzeScene(scene as Scene);
 		const observer = scene.observer.position;
 		const nRef = referenceRadiance(objects, observer);
-		engine.setPrims(packPrims(objects, observer, nRef, 0));
+		engine.setPrims(
+			packPrims(objects, observer, { nRef, sRef: referenceTidal(objects, observer), glareAngle: 0 })
+		);
 
 		// 1. the thermal line integral, ray by ray
 		const dirs = new Float32Array(rays.length * 3);
@@ -45,7 +51,7 @@
 		let worstGrazing = { label: '', error: 0 };
 		let failures = 0;
 		rays.forEach((r, i) => {
-			const value = gpu[i * 4 + 3] * nRef;
+			const value = gpu[i * 4] * nRef;
 			const grazing = /limb|horizon/.test(r.label);
 			// errors are judged against the larger of the ray's value and 0.1% of the scene scale
 			const error = Math.abs(value - r.number_radiance) / Math.max(r.number_radiance, 1e-3 * nRef);
@@ -99,6 +105,44 @@
 			name: 'Frame: night ground is dark in light, Earth glows in gravity',
 			pass: light < 60 && thermal > 60 && thermal > 2 * light,
 			detail: `mean level below the horizon: light ${light.toFixed(1)}, gravity ${thermal.toFixed(1)} (0–255)`
+		});
+
+		// 3. the near-field line integral in a room of boxes, against double precision
+		const room = safeJson as unknown as Scene;
+		const roomObjects = analyzeScene(room);
+		const eye = room.observer.position;
+		const exclusion = room.observer.exclusion ?? 0.25;
+		const sRef = referenceTidal(roomObjects, eye, exclusion);
+		engine.setPrims(
+			packPrims(roomObjects, eye, {
+				nRef: referenceRadiance(roomObjects, eye),
+				sRef,
+				glareAngle: 0
+			})
+		);
+		const roomView = { yaw: 0.23, pitch: -0.23, fov: 1.0 };
+		const GW = 32;
+		const GH = 18;
+		const roomDirs = new Float32Array(GW * GH * 3);
+		const expected: number[] = [];
+		for (let j = 0; j < GH; j++)
+			for (let i = 0; i < GW; i++) {
+				const d = pixelDirection(roomView, GW, GH, i, j);
+				roomDirs.set(d, (j * GW + i) * 3);
+				expected.push(columnsAlong(roomObjects, eye, d, exclusion).tidalColumn);
+			}
+		const tidal = await engine.probe(roomDirs, exclusion);
+		// A ray along an edge can fall inside a box in one arithmetic and outside
+		// it in the other, so a few large differences are allowed; the bulk must agree.
+		const errors = expected
+			.map((e, k) => Math.abs(tidal[k * 4 + 1] * sRef - e) / Math.max(e, 1e-2 * sRef))
+			.sort((a, b) => a - b);
+		const median = errors[Math.floor(errors.length / 2)];
+		const p98 = errors[Math.floor(errors.length * 0.98)];
+		out.push({
+			name: `Near-field line integral, ${expected.length} rays through a room of boxes`,
+			pass: median < 1e-4 && p98 < 2e-2,
+			detail: `relative error: median ${median.toExponential(1)}, 98th percentile ${p98.toExponential(1)}`
 		});
 
 		engine.destroy();

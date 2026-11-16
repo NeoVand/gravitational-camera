@@ -4,9 +4,13 @@
 
 @group(0) @binding(0) var<uniform> frame: Frame;
 @group(0) @binding(1) var<storage, read> prims: array<Prim>;
+// the blurred tidal column, made by the near-field passes
+@group(0) @binding(2) var near_map: texture_2d<f32>;
+@group(0) @binding(3) var near_sampler: sampler;
 
 const MODE_LIGHT: u32 = 0u;
 const MODE_THERMAL: u32 = 1u;
+const MODE_NEAR: u32 = 2u;
 
 @vertex
 fn vs(@builtin(vertex_index) vi: u32) -> @builtin(position) vec4f {
@@ -14,22 +18,33 @@ fn vs(@builtin(vertex_index) vi: u32) -> @builtin(position) vec4f {
   return vec4f(xy, 0.0, 1.0);
 }
 
-fn ray_direction(pixel: vec2f) -> vec3f {
-  let sx = (pixel.x / frame.viewport.x) * 2.0 - 1.0;
-  let sy = 1.0 - (pixel.y / frame.viewport.y) * 2.0;
+fn ray_direction(uv: vec2f) -> vec3f {
+  let sx = uv.x * 2.0 - 1.0;
+  let sy = 1.0 - uv.y * 2.0;
   return normalize(frame.forward.xyz + sx * frame.right.w * frame.right.xyz
                                      + sy * frame.up.w * frame.up.xyz);
 }
 
+fn near_view(uv: vec2f) -> vec3f {
+  let s = textureSampleLevel(near_map, near_sampler, uv, 0.0).r;
+  return mass_color(1.0 - exp(-frame.tone.w * max(s, 0.0)));
+}
+
 @fragment
 fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
-  let rd = ray_direction(pos.xy);
+  let uv = pos.xy / frame.viewport.xy;
   let mode = select(frame.counts.z, frame.counts.y, pos.x < frame.viewport.z);
   var col: vec3f;
   if (mode == MODE_THERMAL) {
-    col = thermal_view(rd);
+    col = thermal_view(ray_direction(uv));
+  } else if (mode == MODE_NEAR) {
+    col = near_view(uv);
+    if ((frame.counts.w & 2u) != 0u) {
+      // a faint copy of the ordinary picture, so shapes can be matched to masses
+      col += 0.16 * light_view(ray_direction(uv));
+    }
   } else {
-    col = light_view(rd);
+    col = light_view(ray_direction(uv));
   }
   let dither = (hash21(pos.xy + fract(frame.viewport.w) * 61.0) - 0.5) / 255.0;
   return vec4f(to_display(col) + dither, 1.0);

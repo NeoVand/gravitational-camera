@@ -3,6 +3,7 @@
 	 * A canvas showing two views of the same scene side by side, with a divider
 	 * the visitor can drag. Dragging the picture looks around; the wheel zooms.
 	 */
+	import type { Snippet } from 'svelte';
 	import {
 		Engine,
 		EngineUnavailable,
@@ -10,8 +11,10 @@
 		MODE_THERMAL,
 		packPrims,
 		referenceRadiance,
+		referenceTidal,
 		type AnalyzedObject,
 		type FrameParams,
+		type Mode,
 		type Vec3,
 		type View
 	} from '../engine';
@@ -25,13 +28,28 @@
 		divider?: number;
 		showLight?: boolean;
 		showGravity?: boolean;
-		/** Thermal brightness multiplier relative to the scene's reference radiance. */
+		/** What each side of the divider shows. */
+		leftMode?: Mode;
+		rightMode?: Mode;
+		/** Brightness multiplier relative to the scene's reference, for the gravity view. */
 		exposure?: number;
+		/** Standard deviation of the near-field blur, radians. */
+		nearBlur?: number;
+		/** Radius around the observer left out of the near-field view, metres. */
+		exclusion?: number;
+		/** Light the ordinary view as a room instead of a night sky. */
+		room?: boolean;
+		/** Add a faint copy of the ordinary picture to the near-field view. */
+		outline?: boolean;
 		interactive?: boolean;
 		leftLabel?: string;
 		rightLabel?: string;
 		/** Still image shown until the engine draws, and if it cannot start. */
 		poster?: string;
+		/** Drawn over the right-hand (gravity) side. */
+		overlay?: Snippet;
+		/** Darken the right-hand picture so an overlay reads clearly. */
+		dimRight?: boolean;
 	}
 
 	let {
@@ -42,11 +60,19 @@
 		divider = $bindable(0.5),
 		showLight = true,
 		showGravity = true,
+		leftMode = MODE_LIGHT,
+		rightMode = MODE_THERMAL,
 		exposure = 1.2,
+		nearBlur = 0,
+		exclusion = 0.25,
+		room = false,
+		outline = false,
 		interactive = true,
 		leftLabel = 'Light',
 		rightLabel = 'Gravity · thermal',
-		poster
+		poster,
+		overlay,
+		dimRight = false
 	}: Props = $props();
 
 	const MIN_FOV = (0.4 * Math.PI) / 180;
@@ -57,6 +83,7 @@
 	let message = $state('');
 
 	const nRef = $derived(referenceRadiance(objects, observer));
+	const sRef = $derived(referenceTidal(objects, observer, exclusion));
 	// where the divider sits once the on/off switches are taken into account
 	const split = $derived(showLight && showGravity ? divider : showLight ? 1 : 0);
 
@@ -91,6 +118,10 @@
 				view,
 				split,
 				exposure,
+				nearBlur,
+				outline,
+				leftMode,
+				rightMode,
 				sunDirection,
 				objects.map((o) => o.center),
 				width,
@@ -101,14 +132,19 @@
 			const params: FrameParams = {
 				view,
 				divider: split,
-				left: MODE_LIGHT,
-				right: MODE_THERMAL,
+				left: leftMode,
+				right: rightMode,
 				exposure,
 				glarePixels: 2.2,
 				sunDirection,
-				timeSeconds: (performance.now() - started) / 1000
+				timeSeconds: (performance.now() - started) / 1000,
+				nearExposure: exposure,
+				nearBlur,
+				exclusion,
+				room,
+				nearOutline: outline
 			};
-			engine.setPrims(packPrims(objects, observer, nRef, 2.5 * pixelAngle));
+			engine.setPrims(packPrims(objects, observer, { nRef, sRef, glareAngle: 2.5 * pixelAngle }));
 			if (ctx2d) {
 				busy = true;
 				const pixels = await engine.readFrame(params, width, height);
@@ -211,10 +247,15 @@
 		onpointerup={onPointerUp}
 		onpointercancel={onPointerUp}
 		onwheel={onWheel}
-		aria-label="Split view of the scene: ordinary light on the left, thermal gravitational radiation on the right"
+		aria-label="Split view of the scene: ordinary light on one side, the gravitational camera on the other"
 	></canvas>
 
 	{#if status === 'running'}
+		{#if showGravity && (overlay || dimRight)}
+			<div class={['right-side', { dim: dimRight }]} style:left="{split * 100}%">
+				{@render overlay?.()}
+			</div>
+		{/if}
 		{#if showLight && split > 0.12}
 			<span class="tag left" style:right="calc({(1 - split) * 100}% + 14px)">{leftLabel}</span>
 		{/if}
@@ -280,6 +321,19 @@
 
 	canvas.interactive:active {
 		cursor: grabbing;
+	}
+
+	.right-side {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		pointer-events: none;
+		transition: background-color 0.2s;
+	}
+
+	.right-side.dim {
+		background: rgb(4 6 10 / 0.62);
 	}
 
 	.tag {

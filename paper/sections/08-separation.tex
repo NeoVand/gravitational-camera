@@ -1,0 +1,68 @@
+\section{Telling waves from pull, and seeing in depth}\label{sec:separation}
+
+\begin{quote}
+\textbf{In plain words.} A wave from far away arrives at every pixel of the
+camera almost identically. The pull of a nearby object is different at every
+pixel, stronger at the ones nearer to it. So the camera can split what it
+records into the part its pixels share and the part in which they differ: the
+first is the wave, the second is the neighbourhood. The same differences tell
+how far away each thing is.
+\end{quote}
+
+Section~\ref{sec:pixel} ended with a difficulty: one pixel cannot tell a wave
+from the pull of a passing lorry. An ideal pixel can do better than LIGO, and
+an array can do much better. Three properties separate the two kinds of field.
+
+\paragraph{Shape.} A plane wave stretches and squeezes only across its
+direction of travel, so its tidal tensor has one vanishing eigenvalue and
+$\det\tE = 0$. The field of a single mass has eigenvalues in the ratio
+$-2 : 1 : 1$, and its determinant is never zero. One reading of one pixel
+therefore distinguishes a single wave from a single mass.
+
+\paragraph{The magnetic part.} In a wave the magnetic tidal tensor is as large
+as the electric one; it is the same pattern turned by $45^\circ$ about the
+direction of travel. Near slowly moving matter it is smaller by the ratio of
+the matter's speed to that of light,
+\begin{equation}\label{eq:magnetic-ratio}
+\frac{|\tB|}{|\tE|} = 1 \quad\text{(wave)},
+\qquad
+\frac{|\tB|}{|\tE|} \sim \frac{v}{c} \quad\text{(near field)} .
+\end{equation}
+Averaged over time, this holds for any mixture of waves, so the magnetic part
+is a detector of radiation that the pull of nearby objects hardly touches.
+
+\paragraph{Variation across the array.} A wave of wavelength $\lambda$ changes
+across an array of width $a$ by a fraction of order $2\pi a/\lambda$. The field
+of a mass at distance $r$, which falls as $1/r^{3}$, changes by a fraction of
+order $3a/r$. For a one-metre array, a wave at $100\,\mathrm{Hz}$ and a person
+three metres away, these are $2\times10^{-6}$ and $1$. To this accuracy the
+wave is the part of the signal common to all pixels, and the neighbourhood is
+the rest. Subtracting one leaves the other. Gravitational-wave observatories
+already plan arrays of sensors for exactly this purpose, to remove the changing
+pull of their surroundings \cite{Chaibi2016}; a camera simply keeps what they
+throw away. With two arrays far apart the separation is cleaner still: a wave
+appears in both, with a delay that gives its direction, while a nearby mass
+appears in one. The accompanying demonstrations show the raw readings of the
+pixels and their differences.
+
+\paragraph{Depth.} The same variation measures distance. For an isolated mass
+the tidal field goes as $M/r^{3}$ and its gradient as $M/r^{4}$, so their
+ratio gives $r$, and then $M$: a pixel and its neighbours locate and weigh a
+body with no need to move the camera. This is the principle by which a
+calibration rotor's distance from a detector's mirror is found from the ratio
+of two of its multipoles \cite{Inoue2018}. For waves, range comes from the
+curvature of the wavefront, which an array of width $D$ can sense out to the
+distance $D^{2}/\lambda$.
+
+\paragraph{Three dimensions.} The pixels need not lie in a plane. A closed
+shell of pixels sees the whole sky at once and has no blind side; pixels
+filling a volume sample the field itself and need no assumption about where
+its sources lie. And in the thermal regime the transparency of matter makes a
+further thing possible. Each image is then a set of line integrals, exactly
+the data of a medical tomograph. Images from several positions can be combined
+into a true three-dimensional map of emissivity, with nothing hidden behind
+anything else.
+
+These statements follow from the fields of
+Sections~\ref{sec:pixel}--\ref{sec:waves}; the estimates of how well each
+separation works in the presence of noise are still to be made.

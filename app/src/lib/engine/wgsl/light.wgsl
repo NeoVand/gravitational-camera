@@ -44,7 +44,46 @@ fn sky_color(rd: vec3f, sun: vec3f) -> vec3f {
   return col;
 }
 
+// Nearest opaque surface along a ray from `ro`; returns (distance, index) or a negative index.
+fn nearest_surface(ro: vec3f, rd: vec3f) -> vec2f {
+  var t_near = 1e30;
+  var hit = -1.0;
+  let n = frame.counts.x;
+  for (var i = 0u; i < n; i++) {
+    let p = prims[i];
+    if ((p.flags & FLAG_SURFACE) == 0u) { continue; }
+    let s = prim_hit_from(p, ro, rd);
+    if (s.z > 0.0 && s.x > 1e-4 && s.x < t_near) {
+      t_near = s.x;
+      hit = f32(i);
+    }
+  }
+  return vec2f(t_near, hit);
+}
+
+// An indoor scene: a key light from above and to one side, soft fill, and shadows.
+fn room_view(rd: vec3f) -> vec3f {
+  let key = normalize(vec3f(0.45, 0.8, 0.4));
+  let found = nearest_surface(vec3f(0.0), rd);
+  var col = mix(vec3f(0.045, 0.05, 0.06), vec3f(0.10, 0.105, 0.115), 0.5 + 0.5 * rd.y);
+  if (found.y >= 0.0) {
+    let p = prims[u32(found.y)];
+    let pos = found.x * rd;
+    let normal = prim_normal(p, pos);
+    let shadow = nearest_surface(pos + normal * 2e-3, key);
+    let lit = select(1.0, 0.0, shadow.y >= 0.0);
+    let grain = 0.92 + 0.16 * fbm(pos.xz * 3.0 + pos.y * 2.0);
+    let direct = max(dot(normal, key), 0.0) * lit * vec3f(1.0, 0.96, 0.9) * 1.5;
+    let fill = vec3f(0.30, 0.33, 0.38) * (0.6 + 0.4 * normal.y);
+    col = p.light.rgb * grain * (direct + fill);
+    // a little light glancing off surfaces seen edge-on
+    col += 0.03 * pow(1.0 - max(dot(normal, -rd), 0.0), 3.0);
+  }
+  return vec3f(1.0) - exp(-frame.tone.z * 1.4 * col);
+}
+
 fn light_view(rd: vec3f) -> vec3f {
+  if ((frame.counts.w & 1u) != 0u) { return room_view(rd); }
   let sun = frame.sun.xyz;
   let day = smoothstep(-0.10, 0.12, sun.y);
 
@@ -54,7 +93,7 @@ fn light_view(rd: vec3f) -> vec3f {
   for (var i = 0u; i < n; i++) {
     let p = prims[i];
     if ((p.flags & FLAG_SURFACE) == 0u) { continue; }
-    let s = sphere_hit(p, rd);
+    let s = prim_hit(p, rd);
     if (s.z > 0.0 && s.x > 0.0 && s.x < t_near) {
       t_near = s.x;
       hit = i32(i);
@@ -69,7 +108,7 @@ fn light_view(rd: vec3f) -> vec3f {
       col += 40.0 * p.light.rgb;
     } else {
       let pos = t_near * rd;
-      let normal = normalize(pos - p.center);
+      let normal = prim_normal(p, pos);
       let grain = 0.35 + 1.5 * fbm(pos.xz * 0.6) * (0.4 + fbm(pos.xz * 0.013 + 3.0));
       let albedo = p.light.rgb * grain;
       let direct = max(dot(normal, sun), 0.0) * day * vec3f(1.0, 0.95, 0.86) * 2.2;

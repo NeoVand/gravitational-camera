@@ -12,7 +12,8 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 }) => {
 	await page.goto('/paper/');
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('The Gravitational Camera');
-	expect(await page.locator('.equation .katex').count()).toBeGreaterThanOrEqual(15);
+	expect(await page.locator('.equation .katex').count()).toBeGreaterThanOrEqual(18);
+	expect(await page.locator('nav.contents li').count()).toBe(11);
 	expect(await page.locator('aside.plain').count()).toBeGreaterThanOrEqual(6);
 	await expect(page.locator('a.xref').first()).toBeVisible();
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
@@ -53,7 +54,7 @@ test('GPU self-test agrees with the reference implementation', async ({ page }) 
 	await page.goto('/dev/selftest/');
 	await expect(page.locator('#summary')).not.toHaveText('running', { timeout: 60_000 });
 	const report = await page.locator('main').innerText();
-	expect(report, report).toContain('all 2 passed');
+	expect(report, report).toContain('all 3 passed');
 });
 
 test('demo draws frames and responds to its controls', async ({ page }) => {
@@ -84,4 +85,68 @@ test('demo draws frames and responds to its controls', async ({ page }) => {
 		.toBeGreaterThan(frames);
 	const after = await sample();
 	expect(sum(after.light)).toBeGreaterThan(sum(before.light) + 30);
+});
+
+test('near-field demo: gold shows through steel, and blurs away at low sensitivity', async ({
+	page
+}) => {
+	await page.goto('/demo/locked-safe/?present=readback');
+	const canvas = page.locator('canvas');
+	const frames = async () => Number(await canvas.getAttribute('data-frames'));
+	await expect.poll(frames, { timeout: 60_000 }).toBeGreaterThan(0);
+
+	/** Wait until the picture has stopped changing. */
+	const settle = async () => {
+		let last = -1;
+		await expect
+			.poll(
+				async () => {
+					const now = await frames();
+					const steady = now === last;
+					last = now;
+					return steady;
+				},
+				{ intervals: [500], timeout: 20_000 }
+			)
+			.toBe(true);
+	};
+	/** Brightest and median level over the picture, 0 to 765. */
+	const levels = () =>
+		page.evaluate(() => {
+			const c = document.querySelector('canvas')!;
+			const data = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
+			const sums: number[] = [];
+			for (let i = 0; i < data.length; i += 4 * 97) sums.push(data[i] + data[i + 1] + data[i + 2]);
+			sums.sort((a, b) => a - b);
+			return { peak: sums[sums.length - 1], median: sums[Math.floor(sums.length / 2)] };
+		});
+
+	// hide the outline of the light picture so only the mass image is measured
+	await page.getByLabel('Outline').uncheck();
+	await page.getByLabel('Light', { exact: true }).uncheck();
+	const sensitivity = page.getByLabel('Sensitivity');
+
+	await sensitivity.fill('40');
+	await expect(page.locator('output[for="sensitivity"]')).toContainText('blur 2.0°');
+	await settle();
+	const sharp = await levels();
+
+	await sensitivity.fill('2');
+	await expect(page.locator('output[for="sensitivity"]')).toContainText('blur 39.1°');
+	await settle();
+	const blurred = await levels();
+
+	// sharp: the gold is the brightest thing in view; blurred: it has melted away
+	expect(sharp.peak, JSON.stringify({ sharp, blurred })).toBeGreaterThan(blurred.peak + 60);
+});
+
+test('near-field demo can show what the pixels record', async ({ page }) => {
+	await page.goto('/demo/full-or-empty/?present=readback');
+	await expect
+		.poll(async () => Number(await page.locator('canvas').getAttribute('data-frames')), {
+			timeout: 60_000
+		})
+		.toBeGreaterThan(0);
+	await page.getByRole('button', { name: 'Raw pixels' }).click();
+	await expect(page.locator('.field ellipse')).toHaveCount(77);
 });

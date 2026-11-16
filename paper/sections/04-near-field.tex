@@ -25,6 +25,25 @@ Moon span the same angle in the sky, and the Moon, being denser, raises the
 larger tide. A person one metre away spans a far larger angle than either,
 and outweighs the Moon in the camera's view some fifty thousand times.
 
+\paragraph{What the image is.} Summing Eq.~\eqref{eq:newton} over all the matter
+in view, and grouping it by direction, gives the tidal field at the camera as
+an integral over the sky,
+\begin{equation}\label{eq:tidal-column}
+\tE_{ij} = G \int \dd\Omega\,\bigl(\delta_{ij} - 3\,\hat n_i \hat n_j\bigr)\,S(\hat n),
+\qquad
+S(\hat n) = \int \rho(r\hat n)\,\frac{\dd r}{r} .
+\end{equation}
+The quantity $S$, which we call the \emph{tidal column}, is the mass along a
+line of sight with each part weighted by the inverse of its distance. It is
+the near-field camera's picture of the world. A single pixel measures only five
+numbers, the quadrupole of $S$ over the whole sky; an array, by comparing the
+field from pixel to pixel, recovers finer structure. The near-field
+demonstrations that accompany this paper show $S$, blurred as described next.
+One caution applies. The field outside a body does not fix the arrangement of
+mass inside it: a hollow shell and a solid ball of the same mass pull alike on
+a distant pixel. What an array at close range adds is the dependence on
+distance in Eq.~\eqref{eq:tidal-column}, which differs for the two.
+
 \paragraph{How sharp.} The space between scene and camera is empty, so the
 potential there obeys Laplace's equation. Consider a pattern in the scene that
 repeats across the line of sight with wavenumber $k$, at depth $z$ from the

@@ -6,7 +6,7 @@ fn thermal_column(rd: vec3f) -> vec4f {
   let n = frame.counts.x;
   for (var i = 0u; i < n; i++) {
     let p = prims[i];
-    acc += sphere_hit(p, rd).z * p.thermal;
+    acc += prim_hit(p, rd).z * p.thermal;
   }
   return acc;
 }

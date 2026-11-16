@@ -1,6 +1,15 @@
-export { Engine, EngineUnavailable, MODE_LIGHT, MODE_THERMAL } from './engine';
+export { Engine, EngineUnavailable, MODE_LIGHT, MODE_NEAR, MODE_THERMAL } from './engine';
 export type { FrameParams, Mode } from './engine';
 export { cameraBasis, pixelDirection } from './camera';
 export type { View } from './camera';
-export { analyzeScene, columnsAlong, packPrims, referenceRadiance, sphereChord } from './scene';
+export {
+	DEFAULT_EXCLUSION,
+	analyzeScene,
+	chordThrough,
+	columnsAlong,
+	crossing,
+	packPrims,
+	referenceRadiance,
+	referenceTidal
+} from './scene';
 export type { AnalyzedObject, Scene, Vec3 } from './types';

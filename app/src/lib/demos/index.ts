@@ -1,6 +1,6 @@
 /** The demo catalogue: one demo per thing the camera can do that light cannot. */
 export interface DemoEntry {
-	slug?: 'sun-at-midnight';
+	slug?: 'sun-at-midnight' | 'locked-safe' | 'full-or-empty';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -15,12 +15,14 @@ export const demos: DemoEntry[] = [
 			'Look down at night through the whole Earth: its layered interior glows, and the Sun’s core shines up through the planet.'
 	},
 	{
+		slug: 'locked-safe',
 		title: 'The locked safe',
 		affordance: 'Nothing can hide',
 		summary:
 			'Mass has only one sign, so there is no shield, cloak or camouflage. What is inside a lead safe is as plain as what is outside.'
 	},
 	{
+		slug: 'full-or-empty',
 		title: 'Full or empty',
 		affordance: 'Weigh by looking',
 		summary:

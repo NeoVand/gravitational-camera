@@ -56,8 +56,18 @@
 			text: 'The whole Earth is transparent.',
 			href: resolve('/demo/sun-at-midnight')
 		},
-		{ icon: SafeIcon, name: 'Find what is hidden', text: 'No shield or cloak exists.' },
-		{ icon: WeightScale01Icon, name: 'Weigh by looking', text: 'Brightness is mass, not surface.' },
+		{
+			icon: SafeIcon,
+			name: 'Find what is hidden',
+			text: 'No shield or cloak exists.',
+			href: resolve('/demo/locked-safe')
+		},
+		{
+			icon: WeightScale01Icon,
+			name: 'Weigh by looking',
+			text: 'Brightness is mass, not surface.',
+			href: resolve('/demo/full-or-empty')
+		},
 		{ icon: MirrorIcon, name: 'Ignore images', text: 'A mirror shows nothing.' },
 		{
 			icon: TemperatureIcon,

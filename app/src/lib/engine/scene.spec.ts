@@ -7,7 +7,7 @@
 import { describe, expect, it } from 'vitest';
 import fixture from '../../../../reference/fixtures/sun-at-midnight.json';
 import sceneJson from '../../../../scenes/sun-at-midnight.scene.json';
-import { analyzeScene, columnsAlong, referenceRadiance, sphereChord } from './scene';
+import { analyzeScene, chordThrough, columnsAlong, referenceRadiance } from './scene';
 import type { Scene, Vec3 } from './types';
 
 const scene = sceneJson as unknown as Scene;
@@ -64,7 +64,7 @@ describe('line integrals against the reference', () => {
 		for (const ray of rays) {
 			const tol = grazing(ray.label) ? 1e-6 : 1e-9;
 			for (const o of objects) {
-				const mine = sphereChord(o.center, o.radius, observer, ray.direction as Vec3);
+				const mine = chordThrough(o, observer, ray.direction as Vec3);
 				// 1 mm of slack: a grazing chord can differ by rounding alone
 				if (!close(mine, ray.chords[o.id], tol, 1e-3)) {
 					bad.push(`${ray.label} ${o.id}: ${mine} vs ${ray.chords[o.id]}`);
