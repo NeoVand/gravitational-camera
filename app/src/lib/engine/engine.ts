@@ -46,6 +46,8 @@ export interface FrameParams {
 	timeSeconds: number;
 	/** Brightness multiplier for the near-field view. */
 	nearExposure?: number;
+	/** Brightness multiplier for the light view (a long exposure at night). */
+	lightExposure?: number;
 	/** Standard deviation of the near-field blur, radians. */
 	nearBlur?: number;
 	/** Radius around the observer left out of the near-field view, metres. */
@@ -242,7 +244,7 @@ export class Engine {
 		f.set([...up, t], 4);
 		f.set([...forward, (2 * t) / height], 8);
 		f.set([width, height, p.divider * width, p.timeSeconds], 12);
-		f.set([p.exposure, p.glarePixels, 1, p.nearExposure ?? 1], 16);
+		f.set([p.exposure, p.glarePixels, p.lightExposure ?? 1, p.nearExposure ?? 1], 16);
 		f.set([...p.sunDirection, 0], 20);
 		f.set([p.exclusion ?? 0.25, this.waveCount, p.waveExposure ?? 1, 0], 24);
 		u.set([this.primCount, p.left, p.right, (p.room ? 1 : 0) | (p.nearOutline ? 2 : 0)], 28);

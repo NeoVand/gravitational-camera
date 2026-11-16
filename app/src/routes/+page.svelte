@@ -89,7 +89,7 @@
 		{
 			icon: DropletIcon,
 			name: 'Tell materials by friction',
-			text: 'Honey and water differ.',
+			text: 'Honey and water can differ.',
 			href: resolve('/demo/honey-and-water'),
 			poster: posters['honey-and-water']
 		},

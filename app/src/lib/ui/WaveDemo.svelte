@@ -44,7 +44,7 @@
 	import Segmented from './controls/Segmented.svelte';
 	import Slider from './controls/Slider.svelte';
 	import Toggle from './controls/Toggle.svelte';
-	import { length, sci, superscript, texLength, texSci } from './format';
+	import { length, sci, texLength, texSci } from './format';
 	import Tex from './Tex.svelte';
 
 	interface Props {
@@ -288,10 +288,10 @@
 				slowSpeed
 			)} shrinks these waves from {length(trueLambda).replace(' ', '\u00a0')} to {length(
 				slowLambda
-			)}, which the camera can resolve, and makes them about 10{superscript(
-				Math.round(5 * Math.log10(C / slowSpeed))
-			)} times stronger. The polarization, which tells the sense of turning, does not depend on it. “What
-			the pixels record” shows the pattern of stretching that passes over the camera from each drum.
+			)}, which the camera can resolve. It rescales the wavelength and nothing else, and brightness
+			is shown on a relative scale. The polarization, which tells the sense of turning, does not
+			depend on it. “What the pixels record” shows the pattern of stretching that passes over the
+			camera from each drum.
 		</p>
 	{/snippet}
 	{#snippet physics()}
@@ -338,9 +338,10 @@
 			<Tex math={texLength(trueLambda)} /> long: the room is deep inside their near zone. Slowing light
 			to <Tex math={`${slowSpeed}\\,\\mathrm{m/s}`} /> makes them <Tex
 				math={texLength(slowLambda)}
-			/> long and
-			<Tex math={`10^{${Math.round(5 * Math.log10(C / slowSpeed))}}`} /> times stronger, so that the camera
-			can show them. It is a teaching device and is labelled wherever it is on.
+			/> long, so that the camera can show them. It is a teaching device, labelled wherever it is on,
+			and not a consistent world: the moving masses can outrun the slowed light, and then the formula
+			above no longer holds. Brightness is therefore shown on a relative scale. The polarization, which
+			gives the sense of turning, does not depend on the speed of light at all.
 		</p>
 	{/snippet}
 </DemoShell>

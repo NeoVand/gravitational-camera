@@ -45,7 +45,9 @@ times fainter than the ground underfoot, because its interior is cooler,
 $1200$--$1700\,\mathrm{K}$ in our model, and a line of sight through it is a
 quarter as long.
 
-Two assumptions carry most of the uncertainty. The Earth's internal friction
+The shells' radii and densities are rounded from the Preliminary Reference
+Earth Model \cite{DziewonskiAnderson1981}. Two assumptions carry most of the
+uncertainty. The Earth's internal friction
 at thermal frequencies is not known to us, and is set to
 $\eta = 10^{-3}\,\mathrm{Pa\,s}$ throughout as a placeholder. The Sun's
 emission is spread uniformly over the inner fifth of its radius, where the
@@ -56,9 +58,30 @@ sets the numbers of gravitons emitted side by side, and Table~\ref{tab:budget}
 the numbers a camera would receive in each of the accompanying demonstrations.
 The Sun delivers about one graviton per square metre per second. The whole
 Earth below, in this model, delivers one every five hours, about $10^{5}$ per
-square metre in a lifetime: enough for a coarse picture of the planet's
-interior, if the assumed friction is right. Everyday objects in a room take
-millions of years for a single graviton.
+square metre in a lifetime. That is a coarse picture: picking out features of
+ten per cent contrast at five standard deviations takes about $2500$ counts
+each, so a lifetime's exposure resolves some forty picture elements, if the
+assumed friction is right. Everyday objects in a room take millions of years
+for a single graviton.
+
+\paragraph{Counting or recording.} These budgets count gravitons, while the
+array of Section~\ref{sec:no-lens} records the field at each pixel and
+combines the records afterwards. In the thermal regime the two are in
+tension. The radiation is so weak that each of its modes holds of order
+$10^{-30}$ gravitons on average, and any device that records both quadratures
+of a field at a pixel must add at least half a quantum of noise per mode
+\cite{Caves1982}; recorded pixel by pixel, a thermal gravitational image would
+be buried in that noise. Counting avoids the noise but loses the phase that
+Eq.~\eqref{eq:beam} needs. For weak thermal light the same tension is known:
+combining the pixels coherently before detection, as a lens does, extracts
+information in proportion to the occupation, whereas recording each pixel
+separately extracts it only in proportion to its square
+\cite{Tsang2011,CarneyDomckeRodd2024}. A thermal gravitational camera
+therefore needs either pixels joined coherently into one quantum receiver, or a
+converter that turns each graviton into a photon travelling the same way, as a
+strong magnetic field does, so that ordinary optics can focus it
+\cite{Dyson2013}. The near field, a static field rather than radiation, is not
+affected.
 
 \begin{table}
 \centering
@@ -72,10 +95,15 @@ Which way it turns: one turning pair, at $4.5\,\mathrm{m}$ & waves & $4\times10^
 The other demonstrations & near field & none needed \\
 \end{tabular}
 \caption{The graviton budget of the demonstrations, for a detector of one
-square metre, from the reference implementation. Thermal rates scale with the
-assumed internal friction. The near field is a static field, not radiation:
-what limits it is noise, Eq.~\eqref{eq:resolution}, not the number of
-gravitons.}\label{tab:budget}
+square metre that collects from every direction (a flat detector facing the
+ground would wait about $1.4$ times as long for the Earth), from the reference
+implementation. The thermal rates take each material's friction as listed in
+its scene file: the placeholder $10^{-3}\,\mathrm{Pa\,s}$, or for honey its
+everyday viscosity, which Section~\ref{sec:thermal} explains is an upper
+estimate at thermal frequencies. The turning pair is two steel balls of
+$33\,\mathrm{kg}$, $0.44\,\mathrm{m}$ apart, turning once a second and seen along
+their axis. The near field is a static field, not radiation: what limits it is
+noise, Eq.~\eqref{eq:resolution}, not the number of gravitons.}\label{tab:budget}
 \end{table}
 
 \begin{figure}

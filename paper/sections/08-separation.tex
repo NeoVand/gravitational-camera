@@ -2,11 +2,11 @@
 
 \begin{quote}
 \textbf{In plain words.} A wave from far away arrives at every pixel of the
-camera almost identically. The pull of a nearby object is different at every
-pixel, stronger at the ones nearer to it. So the camera can split what it
-records into the part its pixels share and the part in which they differ: the
-first is the wave, the second is the neighbourhood. The same differences tell
-how far away each thing is.
+camera almost identically, and so, nearly, does the pull of anything that is
+not very close. What gives the wave away is its other half: a wave twists
+spacetime as strongly as it stretches it, while still matter only stretches.
+Nearby objects pull differently on different pixels, and those differences
+tell how far away each thing is.
 \end{quote}
 
 Section~\ref{sec:pixel} ended with a difficulty: one pixel cannot tell a wave
@@ -17,7 +17,9 @@ an array can do much better. Three properties separate the two kinds of field.
 direction of travel, so its tidal tensor has one vanishing eigenvalue and
 $\det\tE = 0$. The field of a single mass has eigenvalues in the ratio
 $-2 : 1 : 1$, and its determinant is never zero. One reading of one pixel
-therefore distinguishes a single wave from a single mass.
+therefore distinguishes a single wave from a single mass. The test is for an
+isolated source: the fields of several masses, or of several waves, add, and
+their sum can have either form.
 
 \paragraph{The magnetic part.} In a wave the magnetic tidal tensor is as large
 as the electric one; it is the same pattern turned by $45^\circ$ about the
@@ -28,19 +30,42 @@ the matter's speed to that of light,
 \qquad
 \frac{|\tB|}{|\tE|} \sim \frac{v}{c} \quad\text{(near field)} .
 \end{equation}
-Averaged over time, this holds for any mixture of waves, so the magnetic part
-is a detector of radiation that the pull of nearby objects hardly touches.
+Averaged over time, the first holds for any mixture of waves from independent
+sources, so the magnetic part is a detector of radiation that the pull of
+nearby objects hardly touches. Coherent waves are an exception: in a standing
+wave the magnetic part vanishes where the electric part is largest.
 
 \paragraph{What the magnetic part sees nearby.} Small as it is, the near-field
-magnetic tensor carries its own picture. It is sourced by the momentum density
-$\rho\mathbf{v}$ as the electric tensor is by $\rho$, and a moving element at
-distance $r$ contributes in proportion to $1/r^{3}$. The argument of
-Eq.~\eqref{eq:tidal-column} then carries over: the magnetic half of the camera
-images the \emph{current column}
+magnetic tensor carries its own picture. To first order in $v/c$, a mass $M$ in
+direction $\hat n$ at distance $r$, moving with velocity $\mathbf{v}$, gives
+\begin{equation}\label{eq:magnetic-point}
+\tB_{ij} = \frac{3GM}{c\,r^{3}}\,\bigl[\hat n_i(\hat n\times\mathbf{v})_j
++ \hat n_j(\hat n\times\mathbf{v})_i\bigr],
+\end{equation}
+which we have checked against the curvature of the metric of moving masses,
+computed independently by finite differences. Grouping matter by direction
+as in Eq.~\eqref{eq:tidal-column} gives the magnetic counterpart of the sky
+integral,
 \begin{equation}\label{eq:current-column}
+\tB_{ij} = \frac{3G}{c}\int\dd\Omega\,\bigl[\hat n_i(\hat n\times\mathbf{J})_j
++ \hat n_j(\hat n\times\mathbf{J})_i\bigr],
+\qquad
 \mathbf{J}(\hat n) = \int \rho\,\mathbf{v}(r\hat n)\,\frac{\dd r}{r} ,
 \end{equation}
-with the same blur law at a signal-to-noise ratio smaller by about $v/c$. For a
+so the magnetic half of the camera images the \emph{current column}
+$\mathbf{J}$, with the same blur law at a signal-to-noise ratio smaller by
+about $v/c$. Three things follow. Only motion across the line of sight counts:
+$\hat n\times\mathbf{J}$ removes the radial part, so the magnetic channel is
+the opposite of a Doppler radar, blind to approach and sensitive to sideways
+motion. For a single moving mass $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ exactly, so
+one reading of one pixel gives a body's direction and, from $\tB$, its
+sideways velocity. And outside a spherical body spinning with angular momentum
+$\mathbf{L}$ the field is exactly that of a spin dipole,
+$\tB_{ij} = -(3G/cr^{4})[L_i\hat n_j + \hat n_iL_j
++ (\mathbf{L}\cdot\hat n)(\delta_{ij} - 5\hat n_i\hat n_j)]$: a hollow shell and
+a solid ball of equal mass, size and spin, whose electric fields are identical
+everywhere outside them, differ in $\tB$ by their moments of inertia, a factor
+$5/3$. For a
 ball turning at angular velocity $\boldsymbol\omega$ about a point $\mathbf{s}$,
 entered and left by the line of sight at distances $a$ and $b$, it is
 $\mathbf{J} = \rho\,[(\boldsymbol\omega\times\hat n)(b-a)
@@ -53,11 +78,15 @@ it.
 across an array of width $a$ by a fraction of order $2\pi a/\lambda$. The field
 of a mass at distance $r$, which falls as $1/r^{3}$, changes by a fraction of
 order $3a/r$. For a one-metre array, a wave at $100\,\mathrm{Hz}$ and a person
-three metres away, these are $2\times10^{-6}$ and $1$. To this accuracy the
-wave is the part of the signal common to all pixels, and the neighbourhood is
-the rest. Subtracting one leaves the other. Gravitational-wave observatories
-already plan arrays of sensors for exactly this purpose, to remove the changing
-pull of their surroundings \cite{Chaibi2016}; a camera simply keeps what they
+three metres away, these are $2\times10^{-6}$ and $1$. Subtracting the
+average over the array therefore removes the wave and keeps the variation of
+the neighbourhood. The reverse is harder: the average itself contains the pull
+of everything nearby, and the person alone adds $3\times10^{-10}\,\mathrm{s^{-2}}$
+to it, a million times the tidal field of the waves LIGO detects. To isolate
+the wave the camera must model the nearby masses from their variation and
+subtract them, which is how observatories plan to remove the changing pull of
+their surroundings \cite{Harms2019,Chaibi2016}, or use the magnetic part, or
+compare two arrays far apart; a camera simply keeps what the observatories
 throw away. With two arrays far apart the separation is cleaner still: a wave
 appears in both, with a delay that gives its direction, while a nearby mass
 appears in one. The accompanying demonstrations show the tidal tensor itself
@@ -70,13 +99,22 @@ ratio gives $r$, and then $M$: a pixel and its neighbours locate and weigh a
 body with no need to move the camera. This is the principle by which a
 calibration rotor's distance from a detector's mirror is found from the ratio
 of two of its multipoles \cite{Inoue2018}. For waves, range comes from the
-curvature of the wavefront, which an array of width $D$ can sense out to the
-distance $D^{2}/\lambda$.
+curvature of the wavefront, which across an array of width $D$ amounts to
+a phase of order one at the distance $D^{2}/\lambda$; beyond it range is still
+measured, with a fractional error of order $\lambda r/\mathcal{R}D^{2}$ at
+signal-to-noise ratio $\mathcal{R}$.
+
+\paragraph{Front and back.} A flat array that records only the normal
+component $\tE_{zz}$ cannot tell a mass in front of it from the mirror image of
+that mass behind it, because the two give the same $\tE_{zz}$ on the plane. The
+shear components $\tE_{xz}$ and $\tE_{yz}$ change sign between the two, so the
+full tensor separates the half-spaces: a camera with no housing to block
+gravity can still ignore the photographer standing behind it.
 
 \paragraph{Three dimensions.} The pixels need not lie in a plane. A closed
 shell of pixels sees the whole sky at once and has no blind side; pixels
-filling a volume sample the field itself and need no assumption about where
-its sources lie. And in the thermal regime the transparency of matter makes a
+filling a volume sample the field itself, although, as long as they stay
+outside the matter, the ambiguity of Section~\ref{sec:near-field} remains. And in the thermal regime the transparency of matter makes a
 further thing possible. Each image is then a set of line integrals, exactly
 the data of a medical tomograph. Images from several positions can be combined
 into a true three-dimensional map of emissivity, with nothing hidden behind

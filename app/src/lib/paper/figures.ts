@@ -8,23 +8,37 @@ import SunAtMidnightFigure from './figures/SunAtMidnightFigure.svelte';
 import TidalFigure from './figures/TidalFigure.svelte';
 import WhichWayFigure from './figures/WhichWayFigure.svelte';
 
-/** Live figures that are pictures from the engine; they take a still image to show while loading. */
-export const pictureFigures: Record<string, Component<{ poster?: string }>> = {
-	'fig:sun-at-midnight': SunAtMidnightFigure,
-	'fig:locked-safe': LockedSafeFigure,
-	'fig:closed-furnace': ClosedFurnaceFigure,
-	'fig:which-way': WhichWayFigure
-};
-
 /**
- * Interactive versions of some drawn figures, offered under the drawing itself
- * (which is the paper's, from paper/figures/make_figures.py).
+ * Interactive versions of some figures, offered under the figure itself (which
+ * is the paper's, from paper/figures/make_figures.py). The demonstration scenes
+ * open at once, beside ordinary light; they take a still from the engine to
+ * show while loading.
  */
-export const liveFigures: Record<string, { label: string; component: Component }> = {
-	'fig:tidal': { label: 'See it move', component: TidalFigure },
-	'fig:nearfield': { label: 'Try it: change the sensitivity', component: NearFieldFigure },
-	'fig:quadrupole': { label: 'Try it: change the speed', component: QuadrupoleFigure },
-	'fig:array': { label: 'Try it: change the width of the array', component: ArrayFigure }
+export type LiveFigure = { label: string } & (
+	{ picture: Component<{ poster?: string }>; open: true } | { drawing: Component }
+);
+
+export const liveFigures: Record<string, LiveFigure> = {
+	'fig:sun-at-midnight': {
+		label: 'Live: the same night, beside ordinary light',
+		picture: SunAtMidnightFigure,
+		open: true
+	},
+	'fig:locked-safe': {
+		label: 'Live: beside ordinary light',
+		picture: LockedSafeFigure,
+		open: true
+	},
+	'fig:closed-furnace': {
+		label: 'Live: beside ordinary light',
+		picture: ClosedFurnaceFigure,
+		open: true
+	},
+	'fig:which-way': { label: 'Live: beside ordinary light', picture: WhichWayFigure, open: true },
+	'fig:tidal': { label: 'See it move', drawing: TidalFigure },
+	'fig:nearfield': { label: 'Try it: change the sensitivity', drawing: NearFieldFigure },
+	'fig:quadrupole': { label: 'Try it: change the speed', drawing: QuadrupoleFigure },
+	'fig:array': { label: 'Try it: change the width of the array', drawing: ArrayFigure }
 };
 
 /** The static images in /paper/figures, as URLs the site can serve. */
@@ -43,9 +57,9 @@ const drawings = import.meta.glob<string>('../../../../paper/figures/*.svg', {
 
 const stem = (path: string) => (path.split('/').pop() ?? '').replace(/\.[a-z]+$/, '');
 
+/** A still image with the figure's name (whatever its extension), if there is one. */
 export function figureImage(source: string): string | undefined {
-	const name = source.split('/').pop();
-	const hit = Object.entries(images).find(([file]) => file.split('/').pop() === name);
+	const hit = Object.entries(images).find(([file]) => stem(file) === stem(source));
 	return hit?.[1];
 }
 

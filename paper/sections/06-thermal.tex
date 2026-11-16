@@ -26,14 +26,18 @@ coefficient
 \begin{equation}\label{eq:alpha}
 \alpha = \frac{16\pi G\,\eta}{c^{3}} .
 \end{equation}
-For water, $\alpha \approx 10^{-37}\,\mathrm{m^{-1}}$. A wave would cross
-nearly $10^{21}$ light-years of water before losing much of its energy.
+Here $\eta$ is the friction at the frequency of the wave; a viscosity measured
+by stirring says little about a material's response at the $10^{13}$ cycles a
+second of heat, as we discuss below. For water's everyday viscosity,
+$\alpha \approx 10^{-37}\,\mathrm{m^{-1}}$: a wave would cross nearly
+$10^{21}$ light-years of water before losing much of its energy.
 
 \paragraph{Emission.} A medium that absorbs must also emit. With the Planck
-function $B_\omega(T)$, Kirchhoff's law gives the power radiated per unit
-volume, solid angle and frequency,
+radiance $B_\omega(T) = \hbar\omega^3/[4\pi^3c^2(e^{\hbar\omega/k_BT} - 1)]$,
+summed over the two polarizations, Kirchhoff's law gives the power radiated per
+unit volume, solid angle and frequency,
 \begin{equation}\label{eq:kirchhoff}
-j_\omega = \alpha\, B_\omega(T) .
+j_\omega = \alpha(\omega)\, B_\omega(T) .
 \end{equation}
 We have checked Eq.~\eqref{eq:kirchhoff} by a second route: computing the
 radiation directly from the thermal fluctuations of shear stress in a viscous
@@ -47,10 +51,10 @@ Three consequences shape the image.
 \item \emph{Matter is transparent.} With $\alpha$ so small, nothing absorbs or
 scatters. A pixel receives the sum of the glow of everything along its line of
 sight (Figure~\ref{fig:line-integral}), and there are no shadows.
-\item \emph{Brightness is temperature times friction.} What sets a material's
-glow is how strongly it resists being sheared, at the frequencies of heat.
-To the extent that everyday viscosity carries over to those frequencies,
-honey outshines water, and a lossy solid outshines a ringing one.
+\item \emph{Brightness is temperature times high-frequency friction.} What
+sets a material's glow is how strongly it resists being sheared at the
+frequencies of heat, which can be very different from its everyday viscosity
+(see \emph{Gravitational colour}, below).
 \item \emph{The glow is faint.} A person radiates of order $10^{-35}\,\mathrm{W}$
 this way: at most one graviton in twenty million years.
 \end{itemize}
@@ -67,31 +71,67 @@ length $\ell_k$ of the path inside it.}\label{fig:line-integral}
 
 Figure~\ref{fig:closed-furnace} shows the first consequence at work. Two
 closed steel furnaces hold the same block of iron, one at room temperature and
-one at $1500\,\mathrm{K}$. They look the same, and weigh the same, so neither
-light nor the near field can tell them apart; the hot iron glows through the
-steel. At fixed friction the number of gravitons emitted grows as $T^3$, so the
-hot block outshines the cold one more than a hundredfold.
+one at $1500\,\mathrm{K}$. They look the same and, to within the mass of their
+heat ($\Delta U/c^2$, about $10^{-11}\,\mathrm{kg}$ per megajoule
+\cite{Tolman1930}), weigh the same, so neither light nor the near field can
+tell them apart at any ordinary sensitivity; the hot iron glows through the
+steel. If the friction depended neither on frequency nor on temperature, the
+number of gravitons emitted would grow as $T^3$ and the hot block would outshine
+the cold one more than a hundredfold; the next paragraph explains why this is
+an upper estimate.
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/closed-furnace.jpg}
-\caption{The closed furnace. Left of the divider, light. Right, the expected
-thermal gravitational image, Eq.~\eqref{eq:kirchhoff} integrated along each
-line of sight, with colour standing for temperature: the $1500\,\mathrm{K}$
-iron inside the right-hand furnace glows through its steel walls. The room
-itself glows faintly, brightest where a line of sight crosses the floor at a
-slant.}\label{fig:closed-furnace}
+\includegraphics[width=\linewidth]{figures/closed-furnace.pdf}
+\caption{The closed furnace, computed. Two closed steel furnaces
+hold the same block of iron, one at $293\,\mathrm{K}$ and one at
+$1500\,\mathrm{K}$. (a) Ordinary light: the two are identical. (b) The expected
+thermal number radiance, Eq.~\eqref{eq:column}, from the same camera, on a
+logarithmic scale, with the outlines that light shows. The hot iron glows
+through its steel; the cold block cannot be told from its surroundings. The
+room itself glows faintly, brightest where a line of sight crosses the floor
+at a slant. The values assume the placeholder friction discussed in the
+text.}\label{fig:closed-furnace}
 \end{figure}
 
-\paragraph{Open questions.} Equation~\eqref{eq:alpha} holds when the wave is
-slower than the collisions that produce viscosity. Real materials respond
-differently at different frequencies, so $\eta$ must be replaced by a
-frequency-dependent friction, and the spectrum of the glow then records the
-material's mechanical losses: a kind of gravitational colour, which we have
-not yet worked out. Separately, thermal radiation from the vibrations of a
-solid has been calculated before
-\cite{SchaeferDehnen1981,DehnenRomeroSchaefer1984}; for an elastic sphere
-without internal damping its strength was found to grow with the sphere's
-surface, not its volume. How that channel compares with the volume emission of
-Eq.~\eqref{eq:kirchhoff} decides whether a warm object appears as a glowing
-volume or a glowing outline, and is the next calculation to be done.
+\paragraph{Gravitational colour.} Equation~\eqref{eq:alpha} holds when the wave
+is slower than the processes that produce viscosity. At the frequencies of heat
+that is rarely so, and $\eta$ must be replaced by the dissipative part of the
+material's shear response at the frequency of the wave, the real part of its
+dynamic viscosity, $\mathrm{Re}\,\eta(\omega)$ \cite{BaymPatilPethick2017}. A
+simple model shows how much this matters. A liquid whose stresses relax in a
+time $\tau$ (Maxwell's model) has
+\begin{equation}\label{eq:maxwell}
+\mathrm{Re}\,\eta(\omega) = \frac{\eta_0}{1 + \omega^2\tau^2} ,
+\end{equation}
+so its everyday viscosity $\eta_0$ survives only below $\omega \approx 1/\tau$.
+Above it the friction falls as $\eta_0/(\omega\tau)^2 = G_\infty^2/\eta_0\omega^2$,
+where $G_\infty = \eta_0/\tau$ is the liquid's stiffness against sudden shear:
+at a given stiffness, the more viscous liquid glows the less. Honey is viscous
+because its molecules rearrange slowly; at the frequencies of heat that
+rearrangement is frozen, and honey need not outshine water at all. In dense
+matter the friction at those frequencies comes from much faster processes, and
+an order-of-magnitude guess is $10^{-4}$ to $10^{-3}\,\mathrm{Pa\,s}$, which is
+why we use $10^{-3}\,\mathrm{Pa\,s}$ as a placeholder. A crystal has no sound
+waves above its Debye frequency, so above its Debye temperature its glow grows
+more slowly than $T^3$ as well. The spectrum of the glow therefore records a
+material's mechanical losses, a kind of gravitational colour, and with a
+frequency-dependent friction the number emissivity must be computed as
+$j_N = \int \alpha(\omega)\,B_\omega\,\dd\omega/\hbar\omega$ rather than by
+dividing the power by $2.70\,k_BT$.
+
+Two consequences follow. The honey-and-water demonstration shows the contrast
+that everyday viscosity would give, and is labelled as such. And temperature
+cannot be read from the glow alone: a different temperature with a different
+friction spectrum gives the same $j_\omega$, so a thermal gravitational image
+measures temperature only when the material's response is known from elsewhere.
+
+\paragraph{A glowing volume or a glowing outline?} Thermal radiation from the
+vibrations of a solid has been calculated before
+\cite{SchaeferDehnen1981,SchaeferDehnen1981erratum,DehnenRomeroSchaefer1984};
+for an elastic sphere without internal damping its strength was found to grow
+with the sphere's surface, not its volume. Which channel wins should depend on
+how far a sound wave travels before it is damped: where that distance is much
+shorter than the body, as in most solids at room temperature, the volume
+emission of Eq.~\eqref{eq:kirchhoff} should dominate, while a cold, pure crystal
+might glow at its surface. We have not yet worked this out.

@@ -64,7 +64,7 @@ export const demos: DemoEntry[] = [
 		affordance: 'Internal friction',
 		regime: 'thermal',
 		summary:
-			'Thermal gravitational glow is set by how much a material resists flowing. Two sealed bottles tell themselves apart.'
+			'Thermal gravitational glow is set by how much a material resists shearing at the frequencies of heat. Two sealed bottles, shown with their everyday viscosities.'
 	},
 	{
 		slug: 'which-way',

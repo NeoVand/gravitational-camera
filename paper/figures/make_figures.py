@@ -17,6 +17,7 @@ line, arrow or marker; nothing off the edge; no curve cut off by its axes.
 from __future__ import annotations
 
 import math
+import os
 import re
 import pathlib
 import subprocess
@@ -218,7 +219,11 @@ def check_layout(fig, name):
             if out.any():
                 problems.append(f"a curve ({line.get_label()}) is cut off by the axes")
     if problems:
-        raise LayoutError(f"{name}:\n  " + "\n  ".join(dict.fromkeys(problems)))
+        report = f"{name}:\n  " + "\n  ".join(dict.fromkeys(problems))
+        if os.environ.get("FIGURES_DRAFT"):       # save anyway, to look at while fixing
+            print(report)
+            return
+        raise LayoutError(report)
 
 
 def svg_from_pdf(name: str) -> None:
@@ -365,12 +370,12 @@ def regimes():
 
 def nearfield():
     snr, sep = 1e6, 0.5
-    u = np.linspace(-2.2, 2.2, 881)
+    u = np.linspace(-3.6, 3.6, 1441)
     sources = (-sep / 2, sep / 2)
     rec = sum((1 - (u - c) ** 2) / ((u - c) ** 2 + 1) ** 2 for c in sources)
     rec = rec / rec.max()
     # the point-spread function of a row of sensors, tabulated once
-    grid = np.linspace(0, 2.2 + sep, 1201)
+    grid = np.linspace(0, 3.6 + sep, 1801)
     psf_values = resolution.psf(grid, snr, dims=1)
     psf_at = lambda x: np.interp(np.abs(x), grid, psf_values)  # noqa: E731
     rebuilt = sum(psf_at(u - c) for c in sources)
@@ -383,16 +388,16 @@ def nearfield():
     top.axhline(0.15, color=RULE, lw=0.5)
     top.fill_between(u, 0.15, 0.15 + 0.85 * rec, color=ACCENT2, alpha=0.12, lw=0)
     top.plot(u, 0.15 + 0.85 * rec, color=ACCENT2, lw=1.2)
-    top.plot(np.linspace(-2.2, 2.2, 33), np.zeros(33), "s", ms=2.6, color=FAINT, mec="none")
+    top.plot(np.linspace(-3.6, 3.6, 49), np.zeros(49), "s", ms=2.2, color=FAINT, mec="none")
     top.axhline(0, color=FAINT, lw=0.5)
     for c in sources:
         top.plot([c, c], [-1, 0], color=FAINT, lw=0.5, ls=(0, (2, 2)))
         top.plot([c], [-1], "o", ms=5, color=ACCENT, mec="none", zorder=4)
-    top.annotate("", xy=(-1.9, 0), xytext=(-1.9, -1), arrowprops=dict(arrowstyle="<->", lw=0.5, color=DIM))
-    top.text(-1.84, -0.5, r"$z$", va="center", color=DIM)
+    top.annotate("", xy=(-1.4, 0), xytext=(-1.4, -1), arrowprops=dict(arrowstyle="<->", lw=0.5, color=DIM))
+    top.text(-1.34, -0.5, r"$z$", va="center", color=DIM)
     top.text(sep / 2 + 0.1, -1, "two masses", va="center", fontsize=7.5)
-    top.text(2.2, -0.12, "row of pixels", ha="right", va="top", fontsize=7.5, color=DIM)
-    top.text(-2.2, 1.0, r"(a) recorded $\mathcal{E}_{zz}$", va="top", fontsize=8.5)
+    top.text(3.6, -0.12, "row of pixels", ha="right", va="top", fontsize=7.5, color=DIM)
+    top.text(-3.6, 1.0, r"(a) recorded, $-\mathcal{E}_{zz}$", va="top", fontsize=8.5)
     top.set_ylim(-1.25, 1.05)
     top.set_axis_off()
 
@@ -401,7 +406,7 @@ def nearfield():
     for c in sources:
         bottom.axvline(c, color=FAINT, lw=0.5, ls=(0, (2, 2)))
     bottom.plot(u, rebuilt, color=ACCENT, lw=1.2)
-    x1 = 2.15
+    x1 = 3.55
     bottom.plot([x1 - fwhm, x1], [0.78, 0.78], color=INK, lw=0.8)
     for x in (x1 - fwhm, x1):
         bottom.plot([x, x], [0.72, 0.84], color=INK, lw=0.8)
@@ -787,10 +792,342 @@ def budget():
     save(fig, "budget", web=True)
 
 
+# --- Computed images of the demonstration scenes --------------------------------
+#
+# These replace pictures from the engine: each is the exact line integral of
+# the reference implementation, pixel by pixel, on a grid uniform in angle.
+
+def _on_image(text_artist):
+    """Light text with a dark edge, legible on any part of an image."""
+    import matplotlib.patheffects as pe
+    text_artist.set_color("#ffffff")
+    text_artist.set_path_effects([pe.withStroke(linewidth=1.6, foreground="#0b0c10")])
+    return text_artist
+
+
+def _sci(value):
+    exponent = int(math.floor(math.log10(abs(value))))
+    mantissa = value / 10 ** exponent
+    return rf"{mantissa:.0f}\times10^{{{exponent}}}" if round(mantissa) != 1 else rf"10^{{{exponent}}}"
+
+
+def _colormap(name, ink):
+    from matplotlib.colors import LinearSegmentedColormap
+    return LinearSegmentedColormap.from_list(name, ["#0b0c10", ink, "#f6dcb5" if ink == ACCENT else "#cfe0f6", "#ffffff"])
+
+
+def _first_surface(scene, dirs):
+    """Index of the first root object each ray meets (-1 for none): the
+    outline of what light would show, drawn over the gravitational image."""
+    from gravcam.scene import Box
+    flat = dirs.reshape(-1, 3)
+    best = np.full(flat.shape[0], np.inf)
+    label = np.full(flat.shape[0], -1)
+    for k, obj in enumerate(scene.objects):
+        if obj.parent is not None:
+            continue
+        if isinstance(obj.shape, Box):
+            near, far = columns.ray_box_distances(scene.observer, flat, obj.shape.center, obj.shape.size)
+        else:
+            near, far = columns.ray_sphere_distances(scene.observer, flat, obj.shape.center, obj.shape.radius)
+        hit = (far > np.maximum(near, 0.0)) & (np.maximum(near, 0.0) < best)
+        best = np.where(hit, np.maximum(near, 0.0), best)
+        label = np.where(hit, k, label)
+    return label.reshape(dirs.shape[:-1])
+
+
+def _outline(ax, labels, extent):
+    edges = np.zeros(labels.shape, dtype=bool)
+    edges[1:, :] |= labels[1:, :] != labels[:-1, :]
+    edges[:, 1:] |= labels[:, 1:] != labels[:, :-1]
+    from matplotlib.colors import ListedColormap
+    ax.imshow(np.ma.masked_where(~edges, edges), cmap=ListedColormap(["#ffffff"]), alpha=0.55,
+              extent=extent, aspect="auto", interpolation="nearest", zorder=3)
+
+
+def _perspective(yaw_deg, pitch_deg, fov_deg, width, height):
+    """Ray directions of the demos' pinhole camera, shape (height, width, 3)."""
+    from gravcam import camera
+    return camera.ray_directions(math.radians(yaw_deg), math.radians(pitch_deg), math.radians(fov_deg),
+                                 width, height)
+
+
+def _light(name):
+    """The engine's picture of the scene in ordinary light, from the same camera
+    (captured by app/scripts/capture.mjs from the page /dev/render)."""
+    return plt.imread(OUT / "light" / f"{name}.png")[..., :3]
+
+
+def _panel(ax, title):
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_linewidth(0.4)
+    ax.set_title(title, fontsize=8, loc="left", pad=3)
+
+
+def _blur(image, fov_deg, snr, dims=2):
+    """Convolve with the near-field point spread at this SNR, in the image plane
+    (angle per pixel taken at the centre of the view)."""
+    from scipy.signal import fftconvolve
+    height = image.shape[0]
+    step = 2 * math.tan(math.radians(fov_deg) / 2) / height
+    reach = int(math.ceil(math.radians(8.0) / step))
+    ky, kx = np.mgrid[-reach:reach + 1, -reach:reach + 1]
+    radius = np.hypot(kx, ky) * step
+    grid = np.linspace(0, radius.max(), 400)
+    kernel = np.interp(radius, grid, resolution.psf(grid, snr, dims=dims))
+    kernel /= kernel.sum()
+    return fftconvolve(np.pad(image, reach, mode="edge"), kernel, mode="same")[reach:-reach, reach:-reach]
+
+
+def _logscale_bar(fig, im, ax, low, high, label):
+    cb = fig.colorbar(im, ax=ax, fraction=0.05, pad=0.03)
+    ticks = list(range(int(math.ceil(low)), int(math.floor(high)) + 1))
+    cb.set_ticks(ticks)
+    cb.set_ticklabels([f"$10^{{{t}}}$" for t in ticks])
+    cb.set_label(label, fontsize=7)
+    cb.ax.tick_params(labelsize=6.5)
+    return cb
+
+
+def sun_at_midnight():
+    """Figure 1: the demonstration's view at midnight, in light and in thermal
+    gravitons, computed pixel by pixel from the same camera."""
+    scene = load_scene(ROOT / "scenes" / "sun-at-midnight.scene.json")
+    yaw, pitch, fov = 0, -22, 80
+    w, h = 640, 360
+    d = _perspective(yaw, pitch, fov, w, h)
+    N = columns.number_radiance(scene, d.reshape(-1, 3)).reshape(h, w)
+    sun_dir = np.asarray(scene["sun-core"].shape.center) - scene.observer
+    sun_dir /= np.linalg.norm(sun_dir)
+    sun_N = float(columns.number_radiance(scene, sun_dir[None, :])[0])
+    # where the Sun's core lies in the picture
+    from gravcam import camera
+    forward, right, up = camera.camera_basis(math.radians(yaw), math.radians(pitch))
+    t = math.tan(math.radians(fov) / 2)
+    px = (sun_dir @ right) / (sun_dir @ forward) / (t * w / h)
+    py = (sun_dir @ up) / (sun_dir @ forward) / t
+    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.62), gridspec_kw={"wspace": 0.04})
+    axes[0].imshow(_light("sun-at-midnight"), extent=(-1, 1, -1, 1), aspect="auto")
+    # in light the Sun is hidden: mark where it is
+    axes[0].add_patch(plt.Circle((px, py), 0.055, fill=False, ec="#ffffff", lw=0.8, ls=(0, (1.5, 1.5))))
+    _on_image(axes[0].annotate("the Sun, behind\nthe Earth", (px, py), xytext=(px + 0.34, py - 0.06),
+                               fontsize=7, ha="left", va="center", linespacing=1.1,
+                               arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff", shrinkA=2, shrinkB=5)))
+    low, high = -7.0, -4.2
+    im = axes[1].imshow(np.log10(np.clip(N, 10 ** low, None)), extent=(-1, 1, -1, 1), aspect="auto",
+                        cmap=_colormap("thermal", ACCENT), vmin=low, vmax=high, interpolation="bilinear")
+    axes[1].plot([px], [py], "o", ms=6, mfc="none", mec="#ffffff", mew=0.9)
+    _on_image(axes[1].annotate(r"Sun's core", (px, py), xytext=(px + 0.34, py - 0.06),
+                               fontsize=7, ha="left", va="center",
+                               arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff", shrinkA=2, shrinkB=4)))
+    # the horizon, which light shows as the edge of the ground
+    y_h = math.tan(math.radians(-pitch)) / t
+    axes[1].axhline(y_h, color="#ffffff", lw=0.5, ls=(0, (2, 2)), alpha=0.7)
+    _on_image(axes[1].text(0.95, y_h + 0.04, "horizon", fontsize=6.5, ha="right", va="bottom"))
+    # the bands are the Earth's shells: name each where it crosses the left of the picture
+    nadir = np.degrees(np.arccos(np.clip(-d[..., 1], -1, 1)))
+    col = int(0.04 * w)
+    rows = np.arange(h)
+    edges = {"crust and upper mantle": (63.5, 90.0), "lower mantle": (33.1, 63.5)}
+    for name, (lo, hi) in edges.items():
+        inside = rows[(nadir[:, col] > lo) & (nadir[:, col] < hi)]
+        if inside.size:
+            y = 1 - 2 * (inside.mean() + 0.5) / h
+            _on_image(axes[1].text(-0.95, y, name, fontsize=6.5, ha="left", va="center"))
+    _panel(axes[0], "(a) light, long exposure")
+    _panel(axes[1], "(b) thermal gravitons")
+    _logscale_bar(fig, im, axes[1], low, high, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
+    fig.subplots_adjust(left=0.01, right=0.9, top=0.88, bottom=0.06)
+    print(f"  Sun's core: N = {sun_N:.3g} per s m^2 sr, at ({px:.2f}, {py:.2f})")
+    save(fig, "sun-at-midnight", web=True)
+
+
+def _without_room(scene_path):
+    """The scene with its background (floor and walls) left out."""
+    import json
+    from gravcam.scene import scene_from_dict
+    raw = json.loads(pathlib.Path(scene_path).read_text())
+    raw["objects"] = [o for o in raw["objects"] if not o.get("background")]
+    return scene_from_dict(raw)
+
+
+def locked_safe():
+    """The locked safe in light, and its tidal column with the room left out:
+    exact, and blurred by the near-field point spread at SNR 10^20."""
+    path = ROOT / "scenes" / "locked-safe.scene.json"
+    full = load_scene(path)
+    scene = _without_room(path)
+    w, h = 640, 360
+    d = _perspective(0, -14, 52, w, h)
+    S = columns.tidal_column(scene, d.reshape(-1, 3), origin=full.observer).reshape(h, w)
+    blurred = _blur(S, 52, 1e20)
+    labels = _first_surface(full, d)
+    extent = (-1, 1, -1, 1)
+    fig, axes = plt.subplots(1, 3, figsize=(WIDTH, 1.18), gridspec_kw={"wspace": 0.04})
+    axes[0].imshow(_light("locked-safe"), extent=extent, aspect="auto")
+    top = np.percentile(S, 99.7)
+    for ax, image in ((axes[1], S), (axes[2], blurred)):
+        ax.imshow(image, extent=extent, aspect="auto", cmap=_colormap("near", ACCENT2), vmin=0, vmax=top,
+                  interpolation="bilinear")
+        _outline(ax, labels, extent)
+    _panel(axes[0], "(a) light")
+    _panel(axes[1], r"(b) tidal column $S$")
+    _panel(axes[2], r"(c) blurred, $\mathrm{SNR} = 10^{20}$")
+    fig.subplots_adjust(left=0.005, right=0.995, top=0.85, bottom=0.02)
+    save(fig, "locked-safe", web=True)
+
+
+def closed_furnace():
+    """The closed furnace in light, and its thermal number radiance, room
+    included, on a logarithmic scale."""
+    path = ROOT / "scenes" / "closed-furnace.scene.json"
+    scene = load_scene(path)
+    w, h = 640, 360
+    d = _perspective(0, -14, 52, w, h)
+    N = columns.number_radiance(scene, d.reshape(-1, 3)).reshape(h, w)
+    labels = _first_surface(scene, d)
+    extent = (-1, 1, -1, 1)
+    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.62), gridspec_kw={"wspace": 0.04})
+    axes[0].imshow(_light("closed-furnace"), extent=extent, aspect="auto")
+    hi = np.log10(N.max())
+    im = axes[1].imshow(np.log10(np.clip(N, 10 ** (hi - 3), None)), extent=extent, aspect="auto",
+                        cmap=_colormap("thermal", ACCENT), vmin=hi - 3, vmax=hi, interpolation="bilinear")
+    _outline(axes[1], labels, extent)
+    _on_image(axes[1].text(0.47, -0.78, "1500 K", ha="center", va="center", fontsize=7))
+    _on_image(axes[1].text(-0.47, -0.78, "293 K", ha="center", va="center", fontsize=7))
+    _panel(axes[0], "(a) light")
+    _panel(axes[1], "(b) thermal gravitons")
+    _logscale_bar(fig, im, axes[1], hi - 3, hi, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
+    fig.subplots_adjust(left=0.01, right=0.9, top=0.88, bottom=0.03)
+    save(fig, "closed-furnace", web=True)
+
+
+def which_way():
+    """The which-way scene in light and in waves, in the teaching mode with
+    light slowed to 20 cm/s: each turning pair an Airy spot of a 1.5 m array,
+    coloured by its circular polarization V/I as the camera sees it."""
+    from gravcam import waves
+    from matplotlib.cm import ScalarMappable
+    from matplotlib.colors import LinearSegmentedColormap, Normalize
+    from scipy.special import j1
+    path = ROOT / "scenes" / "which-way.scene.json"
+    scene = load_scene(path)
+    c_slow, aperture = 0.2, 1.5
+    w, h = 640, 360
+    d = _perspective(0, 0, 50, w, h)
+    I_map = np.zeros((h, w))
+    V_map = np.zeros((h, w))
+    for rotor in waves.rotors(scene):
+        seen = waves.seen_from(rotor, scene.observer, c=c_slow)
+        to_source = -seen["direction"]
+        lam = rotor.wavelength(c_slow)
+        cosg = np.clip(d @ to_source, -1, 1)
+        x = math.pi * aperture / lam * np.sqrt(1 - cosg ** 2)
+        airy = np.where(x < 1e-9, 1.0, (2 * j1(np.maximum(x, 1e-9)) / np.maximum(x, 1e-9)) ** 2)
+        airy = np.where(cosg > 0, airy, 0.0)
+        I_map += seen["I"] * airy
+        V_map += seen["V"] * airy
+    labels = _first_surface(scene, d)
+    extent = (-1, 1, -1, 1)
+    ratio = V_map / np.maximum(I_map, 1e-300)
+    pol = LinearSegmentedColormap.from_list("pol", ["#2f9e44", "#f2f2f2", "#c2255c"])
+    # colour from V/I, brightness from I, on the dark ground of the picture
+    shade = np.sqrt(np.clip(I_map / I_map.max(), 0, 1))[..., None]
+    composite = 0.043 * (1 - shade) + pol((ratio + 1) / 2)[..., :3] * shade
+    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.62), gridspec_kw={"wspace": 0.04})
+    axes[0].imshow(_light("which-way"), extent=extent, aspect="auto")
+    axes[1].imshow(composite, extent=extent, aspect="auto", interpolation="bilinear")
+    _outline(axes[1], labels, extent)
+    _panel(axes[0], "(a) light")
+    _panel(axes[1], r"(b) waves, coloured by $V/I$")
+    cb = fig.colorbar(ScalarMappable(norm=Normalize(-1, 1), cmap=pol), ax=axes[1], fraction=0.05, pad=0.03)
+    cb.set_ticks([-1, 0, 1])
+    cb.set_ticklabels(["$-1$", "$0$", "$+1$"])
+    cb.set_label(r"$V/I$", fontsize=7)
+    cb.ax.tick_params(labelsize=6.5)
+    fig.subplots_adjust(left=0.01, right=0.9, top=0.88, bottom=0.03)
+    save(fig, "which-way", web=True)
+
+
+# --- Figure (new): the tidal field itself -------------------------------------
+
+def tidal_field():
+    """The tidal tensor drawn as the distortion of a small ring at each point
+    of a plane, over a map of one component, for one mass, two masses, and a
+    plane wave."""
+    from matplotlib.colors import LinearSegmentedColormap
+    signed = LinearSegmentedColormap.from_list("signed", [ACCENT, "#f7f3ec", ACCENT2])
+
+    def mass_field(masses, X, Z):
+        E = np.zeros(X.shape + (3, 3))
+        for m, (mx, mz) in masses:
+            rel = np.stack([X - mx, np.zeros_like(X), Z - mz], axis=-1)    # pixel minus mass
+            r = np.maximum(np.linalg.norm(rel, axis=-1), 1e-6)
+            n = -rel / r[..., None]                                         # toward the mass
+            E += (m / r ** 3)[..., None, None] * (np.eye(3) - 3 * n[..., :, None] * n[..., None, :])
+        return E
+
+    def wave_field(X, Z):
+        E = np.zeros(X.shape + (3, 3))
+        E[..., 0, 0] = np.cos(2 * np.pi * Z / 2.4)
+        E[..., 1, 1] = -E[..., 0, 0]
+        return E
+
+    fig, axes = plt.subplots(1, 3, figsize=(WIDTH, 1.95), gridspec_kw={"wspace": 0.06})
+    span = 2.4
+    fine = np.linspace(-span, span, 300)
+    FX, FZ = np.meshgrid(fine, fine)
+    coarse = np.linspace(-span * 0.86, span * 0.86, 9)
+    CX, CZ = np.meshgrid(coarse, coarse)
+    panels = [
+        ("(a) one mass", lambda X, Z: mass_field([(1.0, (0.0, 0.0))], X, Z), [(0.0, 0.0)]),
+        ("(b) two masses", lambda X, Z: mass_field([(1.0, (-0.8, 0.0)), (1.0, (0.8, 0.0))], X, Z),
+         [(-0.8, 0.0), (0.8, 0.0)]),
+        (r"(c) a wave, $h_+$, moving up", wave_field, []),
+    ]
+    for ax, (title, field, masses) in zip(axes, panels):
+        E = field(FX, FZ)
+        comp = E[..., 2, 2] if masses else E[..., 0, 0]
+        scale = np.abs(comp).max() if not masses else 1.0
+        shown = np.sign(comp) * (np.abs(comp) / scale) ** (1 / 3) if masses else comp / scale
+        away = np.ones(FX.shape, dtype=bool)
+        for mx, mz in masses:
+            away &= np.hypot(FX - mx, FZ - mz) > 0.5
+        lim = np.nanmax(np.abs(shown[away])) if masses else 1.0
+        ax.imshow(shown, extent=(-span, span, -span, span), origin="lower", cmap=signed, vmin=-lim, vmax=lim,
+                  interpolation="bilinear")
+        Ec = field(CX, CZ)
+        for i in range(CX.shape[0]):
+            for j in range(CX.shape[1]):
+                if masses and min(np.hypot(CX[i, j] - mx, CZ[i, j] - mz) for mx, mz in masses) < 0.5:
+                    continue
+                block = Ec[i, j][np.ix_([0, 2], [0, 2])]
+                vals, vecs = np.linalg.eigh(block)
+                # one strength scale for the whole panel, compressed for the masses' 1/r^3
+                strain = (np.sign(vals) * np.abs(vals) ** (1 / 3) * 0.38) if masses else vals * 0.35
+                axes_len = 0.19 * (1 - np.clip(strain, -0.6, 0.6))
+                angle = math.degrees(math.atan2(vecs[1, 0], vecs[0, 0]))
+                ax.add_patch(Ellipse((CX[i, j], CZ[i, j]), 2 * axes_len[0], 2 * axes_len[1], angle=angle,
+                                     fill=False, ec=INK, lw=0.6, zorder=4))
+        for mx, mz in masses:
+            ax.add_patch(Circle((mx, mz), 0.13, color=INK, lw=0, zorder=5))
+        ax.set_title(title, fontsize=8, loc="left", pad=3)
+        ax.set_xlim(-span, span)
+        ax.set_ylim(-span, span)
+        ax.set_aspect("equal")
+        ax.set_xticks([])
+        ax.set_yticks([])
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.9, bottom=0.02)
+    save(fig, "tidal-field", web=True)
+
+
 def main() -> int:
     setup_fonts()
-    for draw in (tidal, regimes, sky_integral, nearfield, resolution_law, quadrupole, polarization_curves,
-                 line_integral, earth_glow, array, budget):
+    for draw in (tidal, tidal_field, regimes, sky_integral, nearfield, resolution_law, quadrupole,
+                 polarization_curves, line_integral, earth_glow, array, budget,
+                 sun_at_midnight, locked_safe, which_way, closed_furnace):
         draw()
     return 0
 

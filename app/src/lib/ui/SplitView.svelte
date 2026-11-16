@@ -47,6 +47,8 @@
 		rightMode?: Mode;
 		/** Brightness multiplier relative to the scene's reference, for the gravity view. */
 		exposure?: number;
+		/** Brightness multiplier for the light view, as for a long exposure at night. */
+		lightExposure?: number;
 		/** Standard deviation of the near-field blur, radians. */
 		nearBlur?: number;
 		/** Radius around the observer left out of the near-field view, metres. */
@@ -92,6 +94,7 @@
 		leftMode = MODE_LIGHT,
 		rightMode = MODE_THERMAL,
 		exposure = 1.2,
+		lightExposure = 1,
 		nearBlur = 0,
 		exclusion = 0.25,
 		room = false,
@@ -188,6 +191,7 @@
 				view,
 				split,
 				exposure,
+				lightExposure,
 				nearBlur,
 				outline,
 				subtractRoom,
@@ -214,6 +218,7 @@
 				sunDirection,
 				timeSeconds: (performance.now() - started) / 1000,
 				nearExposure: exposure,
+				lightExposure,
 				nearBlur,
 				exclusion,
 				room,

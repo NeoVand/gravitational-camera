@@ -29,22 +29,32 @@ Earth has a focal length of fifteen thousand times the distance to the Sun,
 and a focal ratio near $10^{8}$. In each case the strength of the effect is
 set by the same number, the compactness $GM/Rc^{2}$ of the body, which is
 $7\times10^{-10}$ for the Earth and of order one only for a black hole. Bounds
-of this kind on absorption are known \cite{Loeb2020}. We expect a single
-statement to cover all four effects: no body much less compact than a black
-hole can focus, reflect, absorb or block gravitational waves appreciably.
-Proving it is part of this work. In the gravitational sky, only black holes
-cast shadows.
+of this kind on absorption are known for bound systems without resonances
+\cite{Loeb2020}, and we expect a single statement to cover focusing,
+reflection, absorption and shadowing: no body much less compact than a black
+hole provides useful broadband optics. Two exceptions show how it must be
+worded. A weak lens still focuses if one waits far enough behind it: the
+transparent Sun brings gravitational waves passing through its interior to a
+focus beyond $23.5\,\mathrm{AU}$ \cite{PatlaNemiroff2008}. And a narrow resonance can absorb
+strongly in a narrow band: stars may absorb at their oscillation frequencies
+\cite{McKernan2014}. Across a broad band, and for anything we could build,
+only black holes cast shadows; a rapidly spinning one even reflects some waves
+with gain \cite{TeukolskyPress1974}.
 
 \paragraph{The computed image.} The camera does not need optics, because its
 pixels record more than a light sensor does. A light sensor registers only
 the energy that arrives. A gravitational pixel registers the field itself,
-with its phase. Waves from a direction $\hat n$ reach different pixels at
-different times, and the image is made by undoing those delays and adding:
+with its phase. Waves from a direction $\hat n$ (pointing toward their source)
+reach different pixels at different times, and the image is made by undoing
+those delays and adding:
 \begin{equation}\label{eq:beam}
-I(\hat n) = \Bigl\langle\, \Bigl|\, \sum_{p} \tE\bigl(\mathbf{x}_p,\;
-t + \hat n\cdot\mathbf{x}_p/c\bigr) \Bigr|^{2} \Bigr\rangle ,
+I(\hat n) = \Bigl\langle\, \sum_{ij}\Bigl|\, \sum_{p} \Lambda_{ij,kl}(\hat n)\,
+\tE_{kl}\bigl(\mathbf{x}_p,\; t - \hat n\cdot\mathbf{x}_p/c\bigr) \Bigr|^{2}
+\Bigr\rangle ,
 \end{equation}
-where $\mathbf{x}_p$ is the position of pixel $p$. Waves from the chosen
+where $\mathbf{x}_p$ is the position of pixel $p$ and $\Lambda(\hat n)$ keeps
+the part of the tensor transverse to $\hat n$ and free of trace, the part a
+wave from that direction can carry. Waves from the chosen
 direction add in step; waves from elsewhere cancel. This is how arrays of
 radio telescopes form images, and it is what a lens does with glass. The
 sharpness is that of any aperture of width $D$,
@@ -60,12 +70,14 @@ Section~\ref{sec:near-field}.
 \includegraphics[width=\linewidth]{figures/array.pdf}
 \caption{How sharply a camera can tell directions apart: the
 response to a single distant source as the computed image is steered away from
-it, for a single pixel and for arrays $2$, $5$ and $30$ wavelengths wide, with
-the width of each at half height. A single pixel is not blind to direction,
-but it sees only the spherical harmonics of degree four and below, so its view
-of the sky is blurred over some fifty degrees, and it even responds negatively
-sixty degrees off. An array sharpens in proportion to its width in
-wavelengths, Eq.~\eqref{eq:diffraction}.}\label{fig:array}
+it, with the width of each curve at half height. For arrays $2$, $5$ and $30$
+wavelengths wide the curve is the power of Eq.~\eqref{eq:beam}, the pattern of
+a round aperture. For a single pixel it is instead the best linear estimate of
+the sky from the pixel's data, its projection onto the spherical harmonics of
+degree four and below; being an estimate rather than a power, it can be
+negative, as it is sixty degrees off. Either way a single pixel's view of the
+sky is blurred over some fifty degrees, and an array sharpens in proportion to
+its width in wavelengths, Eq.~\eqref{eq:diffraction}.}\label{fig:array}
 \end{figure}
 
 \paragraph{What one pixel knows.} A single LIGO cannot tell where a wave came
@@ -74,9 +86,16 @@ components of the field. For a single wave, the tensors $\tE_{ij}$ and
 $\tB_{ij}$ together fix the direction of travel. For a sky full of independent
 sources the pixel's data determine the brightness of the sky only in its
 broadest patterns: those of spherical-harmonic degree four or less,
-twenty-five numbers in all. It is the gravitational counterpart of the
-statement that a single antenna has a broad beam, and it is the precise sense
-in which one pixel is not yet a camera.
+twenty-five numbers in all. The even degrees, $0$, $2$ and $4$, come from the
+correlations of $\tE$ with itself and of $\tB$ with itself; the odd degrees
+need the cross-correlation of $\tE$ with $\tB$, and mix with the circular
+polarization unless the sky is unpolarized. It is the gravitational
+counterpart of the statement that a single antenna has a broad beam, and it is
+the precise sense in which one pixel is not yet a camera. The limit is known
+for the response of a single detector to an anisotropic background
+\cite{AllenOttewill1997,SetoCooray2004} and for spherical resonant antennas
+\cite{MerkowitzJohnson1995}; we give a short proof that covers all ten
+components.
 
 The proof is short. Independent waves add their second moments, so the
 pixel's data are integrals over the sky of the brightness $I(\hat n)$ and the

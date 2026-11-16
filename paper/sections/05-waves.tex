@@ -22,7 +22,7 @@ at angular velocity $\Omega$,
 P = \frac{8}{5}\,\frac{G m^{2} d^{4}\,\Omega^{6}}{c^{5}} .
 \end{equation}
 Two one-kilogram masses a metre apart, spun sixteen times a second, radiate
-$4\times10^{-41}\,\mathrm{W}$: one graviton every fifteen years.
+$4.5\times10^{-41}\,\mathrm{W}$: one graviton every fifteen years.
 
 \paragraph{Every body is a point.} The waves of Eq.~\eqref{eq:dumbbell} have
 twice the rotation frequency, so their wavelength is $\lambda = \pi c/\Omega$,
@@ -31,9 +31,15 @@ while the masses move at $v = \Omega d/2$. Hence
 \frac{\lambda}{d} = \frac{\pi}{2}\,\frac{c}{v} ,
 \end{equation}
 and the same holds, up to a factor of order one, for any body whose parts move
-at speed $v$. The wavelength exceeds the body by the factor by which light
-outruns it. No aperture can resolve an object smaller than the wavelength it
-is seen by, so each moving body is a point in its own radiation.
+at speed $v$ through distances comparable with its size. The wavelength then
+exceeds the body by the factor by which light outruns it. No aperture can
+resolve an object smaller than the wavelength it is seen by, so each such body
+is a point in its own radiation. The exceptions are sources whose motion is
+small compared with their size: in general the wave sent in direction $\hat n$
+at frequency $\omega$ is set by the Fourier transform of the stress,
+$\tilde T_{kl}(\omega, \mathbf k)$, at $\mathbf k = \omega\hat n/c$, and a large
+body vibrating with small amplitude, or many small sources driven in step, can
+be larger than its wavelength and show a form.
 
 \paragraph{What the point tells.} The radiation is not the same in all
 directions, and it is polarized (Figure~\ref{fig:quadrupole}). Along the axis
@@ -55,13 +61,15 @@ wavelength is millions of times the size of the body.}\label{fig:quadrupole}
 \end{figure}
 
 \paragraph{The sense of turning.} Let the rotor's angular velocity make the
-angle $\iota$ with the line of sight toward the camera. At twice the rotation
+angle $\iota$ with the direction from the rotor to the camera. At twice the rotation
 frequency the two polarizations of its wave have amplitudes
 \begin{equation}\label{eq:rotor-amplitudes}
 h_+ = A\,\frac{1 + \cos^2\iota}{2}, \qquad h_\times = A\cos\iota, \qquad
 A = \frac{4G\,\Delta I\,\Omega^2}{c^4 r},
 \end{equation}
-a quarter of a cycle apart, where $\Delta I$ is the difference between the two
+a quarter of a cycle apart, $h_+(t) = h_+\cos 2\Omega t'$ and
+$h_\times(t) = h_\times\sin 2\Omega t'$ with $t' = t - r/c$, where $\Delta I$ is the
+difference between the two
 principal moments of inertia in the plane of rotation ($md^2/2$ for the pair of
 Eq.~\eqref{eq:dumbbell}). The pattern of stretching that passes over the camera
 therefore turns, and the share of the signal that is circularly polarized,
@@ -103,19 +111,27 @@ demonstrations that accompany this paper therefore include a clearly labelled
 teaching mode in which light, and gravity with it, is slowed to twenty
 centimetres a second. The waves are then ten centimetres long, an array a metre
 and a half across resolves them to $4^\circ$, and each rotor appears as a spot.
-Slowing light makes the waves shorter and, by Eq.~\eqref{eq:dumbbell}, far
-stronger, but it leaves Eq.~\eqref{eq:circular} unchanged: what the spot's
-colour says about the sense of turning is the same at any speed
+The mode rescales the wavelength for display and nothing else; it is not a
+consistent world. The demonstration's balls move at $1.4\,\mathrm{m/s}$, seven
+times faster than the slowed light, where Eq.~\eqref{eq:dumbbell} would not
+hold. Brightness is shown on a relative scale, and the polarization is that of
+Eq.~\eqref{eq:circular}, which does not depend on the speed of light: what the
+spot's colour says about the sense of turning is the same at any speed
 (Figure~\ref{fig:which-way}).
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/which-way.jpg}
-\caption{Which way it turns. Three sealed steel drums; in two of them a pair of
-balls turns once a second, in opposite directions. Left of the divider, light:
-the drums are identical. Right, gravitational waves with light slowed to
-20\,cm/s (a labelled teaching mode): each turning pair is a spot coloured by
-its circular polarization, Eq.~\eqref{eq:circular}, magenta where the pattern
-turns anticlockwise as the camera sees it and green where it turns clockwise.
-The still pair is dark.}\label{fig:which-way}
+\includegraphics[width=\linewidth]{figures/which-way.pdf}
+\caption{Which way it turns, computed in the teaching mode with light
+slowed to $20\,\mathrm{cm/s}$, in which the waves are $10\,\mathrm{cm}$ long and
+an array $1.5\,\mathrm{m}$ wide can resolve the drums. Three sealed steel drums;
+in the top and middle ones a pair of balls turns once a second, in opposite
+senses, and the bottom pair is still. (a) Ordinary light, from the same
+camera: the drums are sealed and look the same. (b) The waves: each turning
+pair is an Airy spot, Eq.~\eqref{eq:diffraction}, and the still pair is dark;
+the colour is the circular share $V/I$ of Eq.~\eqref{eq:circular}, magenta
+where the pattern of stretching turns anticlockwise as the camera sees it and
+green where it turns clockwise. At the true speed of light the waves are
+$1.5\times10^{8}\,\mathrm{m}$ long and nothing is resolved, but the
+polarization still gives the sense of turning.}\label{fig:which-way}
 \end{figure}

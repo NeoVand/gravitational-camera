@@ -34,16 +34,30 @@ an integral over the sky,
 S(\hat n) = \int \rho(r\hat n)\,\frac{\dd r}{r} .
 \end{equation}
 The quantity $S$, which we call the \emph{tidal column}, is the mass along a
-line of sight with each part weighted by the inverse of its distance. It is
-the near-field camera's picture of the world. A single pixel measures only five
-numbers, the quadrupole of $S$ over the whole sky; an array, by comparing the
-field from pixel to pixel, recovers finer structure. The near-field
-demonstrations that accompany this paper show $S$, blurred as described next.
-Figure~\ref{fig:sky-integral} shows where the weighting comes from.
-One caution applies. The field outside a body does not fix the arrangement of
-mass inside it: a hollow shell and a solid ball of the same mass pull alike on
-a distant pixel. What an array at close range adds is the dependence on
-distance in Eq.~\eqref{eq:tidal-column}, which differs for the two.
+line of sight with each part weighted by the inverse of its distance;
+Figure~\ref{fig:sky-integral} shows where the weighting comes from. The
+integral starts a short distance $r_{\min}$ from the camera (a quarter of a
+metre in the demonstrations), since matter at the camera itself would make $S$
+diverge logarithmically, although not $\tE_{ij}$. A single pixel measures only
+five numbers, the quadrupole of $S$ over the whole sky; an array, by comparing
+the field from pixel to pixel, measures more.
+
+\paragraph{What the image cannot show.} An array outside the matter it views
+does not measure $S$ itself, because the field outside a body does not fix the
+arrangement of mass inside it. A hollow shell and a solid ball of equal mass
+produce the same field at every point outside both, however close. More
+generally, adding to a body the density $\delta\rho = \nabla^2\chi/4\pi G$,
+with $\chi$ any smooth function that vanishes outside it, changes the
+potential by $\chi$ and so changes nothing outside \cite{YurtseverMarzbanMeila2011};
+ordinary positive densities $\rho_0 \pm \epsilon\,\delta\rho$ make such pairs
+out of real matter. The tidal column is therefore a rendering of a known
+scene, the natural picture of what the camera responds to, and not a quantity
+the camera could reconstruct uniquely. The near-field demonstrations show $S$
+computed from the scene and blurred as described next. Other channels break
+the ambiguity: the thermal glow shows a shell as a ring; a spinning shell and a
+spinning ball of equal mass differ in $\tB_{ij}$ by the ratio of their moments
+of inertia, $5/3$ (Section~\ref{sec:separation}); and a tide applied from
+outside probes how the interior responds.
 
 \begin{figure}
 \centering
@@ -75,29 +89,33 @@ signal-to-noise ratio $\SNR$, patterns with $e^{kz} > \SNR$ are lost in the
 noise, and detail finer than about $\pi z/\ln\SNR$ cannot be recovered.
 
 The estimate can be made exact. Let a flat array at distance $z$ from a sheet
-of sources with surface density $\sigma$ record $\tE_{zz}$, the tidal field
-along its normal, with white noise of spectral density $N_0$. In Fourier space
-across the array the data are
+of sources with surface density $\sigma$ record the tidal field along its
+normal with white noise of spectral density $N_0$. With $\Phi = -GM/r$ the
+normal component above a mass is negative, a stretch, so we record
+$d = -\tE_{zz}$. In Fourier space across the array the data are
 \begin{equation}\label{eq:array-data}
 \hat d(\mathbf k) = 2\pi G\,k\,e^{-kz}\,\hat\sigma(\mathbf k) + \hat n(\mathbf k),
 \end{equation}
-and the factor $k$ says that a uniform sheet, which pulls evenly on every
-pixel, is invisible. Define the signal-to-noise ratio as the peak field of a
+and the factor $k$ says that a uniform sheet is invisible: its pull is the
+same at every pixel and at every height, so it has no tidal field at all. Define the signal-to-noise ratio as the peak field of a
 point mass $m$, $2Gm/z^3$, over the noise of the field averaged across a patch
 of side $z$, $\sqrt{N_0}/z$: so $\SNR = 2Gm/(z^2\sqrt{N_0})$. Each Fourier
 component of a point mass then stands above its own noise by
-$S = \pi\,\SNR\;kz\,e^{-kz}$, and the best linear reconstruction (the Wiener
-filter) keeps it with weight
+$s = \pi\,\SNR\;kz\,e^{-kz}$, and the best linear reconstruction (the Wiener
+filter, which assumes the scene is a sheet of independent point masses) keeps
+it with weight
 \begin{equation}\label{eq:wiener}
-H(k) = \frac{S^2}{1 + S^2}, \qquad S = \pi\,\SNR\;kz\,e^{-kz}.
+H(k) = \frac{s^2}{1 + s^2}, \qquad s = \pi\,\SNR\;kz\,e^{-kz}.
 \end{equation}
-$H$ is close to one for coarse patterns and falls through one half at
-$kz = q_c$, where
+$H$ vanishes for a uniform scene, $k \to 0$, is close to one for patterns
+between $kz \approx 1/\pi\SNR$ and $kz \approx 1$, and falls through one half
+at $kz = q_c$, where
 \begin{equation}\label{eq:cutoff}
 q_c\,e^{-q_c} = \frac{1}{\pi\,\SNR},
 \qquad
-q_c \approx \ln\SNR + \ln\ln\SNR + \ln\pi .
+q_c \approx L + \ln L, \quad L = \ln(\pi\,\SNR)
 \end{equation}
+(10.1 against the exact 10.4 at $\SNR = 10^3$).
 The image of a point is therefore close to the diffraction pattern of a round
 pupil of radius $q_c/z$, $2J_1(x)/x$ with $x = q_c r/z$. Its full width at half
 maximum, as an angle seen from the array, is
@@ -109,15 +127,60 @@ sensors over a two-dimensional scene, $3.79/q_c$). Table~\ref{tab:resolution}
 gives values, computed without approximation by the reference implementation
 that accompanies the site, and Figure~\ref{fig:resolution-law} shows the law.
 
-The angular blur does not depend on distance, wavelength or the size of the
-camera, only, through $q_c$, on the logarithm of its sensitivity. A
-signal-to-noise ratio of a thousand gives $24^\circ$; a million, $14^\circ$;
-$10^{30}$, still $3.4^\circ$. To match the sharpness of the human eye, one
-arcminute, would take a signal-to-noise ratio near $10^{6600}$. The first
-estimate $\pi/\ln\SNR$ is of the right size everywhere, but it runs sharp at
-high sensitivity, because the image of a point is wider than $\pi/q_c$.
-Figure~\ref{fig:nearfield} lets the reader try it, and the near-field
-demonstrations blur their images by Eq.~\eqref{eq:resolution}.
+For an array at least as wide as the scene is deep, the angular blur does
+not depend on distance or on the size of the array, only, through $q_c$, on the
+logarithm of its sensitivity. A signal-to-noise ratio of a thousand gives
+$24^\circ$; a million, $14^\circ$; $10^{30}$, still $3.4^\circ$. To match the
+sharpness of the human eye, one arcminute, would take a signal-to-noise ratio
+near $10^{6600}$. The first estimate $\pi/\ln\SNR$ is of the right size
+everywhere, but it runs sharp at high sensitivity, because the image of a point
+is wider than $\pi/q_c$. Figure~\ref{fig:nearfield} shows the reconstruction of
+two masses, and the near-field demonstrations blur their images by
+Eq.~\eqref{eq:resolution}. The same logarithmic limit is long familiar wherever
+fields that obey Laplace's equation are continued back toward their sources: in
+geophysics, where gravity and magnetic surveys are continued downward
+\cite{Clarke1969,Parker1973}, and in near-field acoustic holography
+\cite{MaynardWilliamsLee1985}.
+
+\paragraph{A hand-held camera.} A camera much smaller than its distance from
+the scene does worse. Inside a camera of width $D$, the part of the field that
+varies over the sky with angular degree $\ell$ changes across the camera by a
+factor $(D/2r)^{\ell-2}$ relative to the quadrupole, for a source at distance
+$r$. Detail of degree $\ell$ therefore needs $\SNR \gtrsim (2r/D)^{\ell-2}$, and
+\begin{equation}\label{eq:handheld}
+\ell_{\max} \approx 2 + \frac{\ln\SNR}{\ln(2r/D)}, \qquad
+\Delta\theta \approx \frac{\pi}{\ell_{\max}} .
+\end{equation}
+A camera ten centimetres across, looking at a lorry fifteen metres away with
+$\SNR = 10^6$, sees detail of about $40^\circ$, not $14^\circ$. A single pixel,
+$D \to 0$, sees the quadrupole alone. Widening the camera helps logarithmically
+until it is about as wide as the scene is deep; beyond that,
+Eq.~\eqref{eq:resolution} applies.
+
+\paragraph{A blurred image is not a vague measurement.} The blur limits what
+can be drawn of an arbitrary scene, not how precisely a simple one can be
+measured. If the scene is known to hold a single point mass at depth $z$, an
+infinite plane recording $\tE_{zz}$ with the noise above determines its
+position to within $\sqrt{2/5}\,z/\mathcal{R}$ across and $z/\mathcal{R}$ in
+depth, and its mass to within $\sqrt5/\mathcal{R}$ of itself, where
+$\mathcal{R} = (\sqrt{3\pi}/4)\,\SNR$ is the signal-to-noise ratio of the whole
+field pattern (the Cram\'er--Rao bounds, which we have checked by direct
+integration). At one metre and $\SNR = 10^3$ the mass is placed to within a
+millimetre, while its image is $24^\circ$ wide. Two equal masses, by contrast,
+can be told from one only when they are farther apart than about
+$z/\sqrt{\mathcal{R}}$, because the difference they make grows as the square
+of their separation. What limits the image is the variety of scenes allowed,
+not the precision of the data.
+
+\paragraph{How far can sensitivity go?} The premise of an arbitrarily sensitive
+camera eventually meets the rest of physics. A rough argument: a camera that
+fits within the distance $z$ to the scene, without becoming a black hole, has a
+mass below $zc^2/2G$, so its energy of interaction with a source of mass $M_s$
+is below about $M_s c^2$; and quantum mechanics limits how quickly a state can
+become distinguishable to a rate set by that energy. Over a time $\tau$, then,
+$\SNR \lesssim M_s c^2\tau/\hbar$, with $G$ and $z$ cancelling. For a person
+watched for the age of the universe this is about $10^{70}$, a blur of
+$1.5^\circ$: in the near field, no camera of any kind could draw a face.
 
 \begin{table}
 \centering
@@ -134,8 +197,9 @@ $10^{60}$ & 144.3 & 1.8° & 1.5° & 1.8° & 1.3° \\
 of the reconstructed image of a point, for a flat array, Eq.~\eqref{eq:resolution}.
 ``Row'': the same for a single row of sensors over a two-dimensional scene.
 ``Two points'': the smallest separation at which two equal point masses show
-a dip between them in the array's image (Sparrow's criterion). The last column
-is the first estimate.}\label{tab:resolution}
+a dip between them in the array's image (Sparrow's criterion); because the
+Wiener filter rolls off gradually, this slightly exceeds the full width, the
+reverse of a sharp-edged pupil. The last column is the first estimate.}\label{tab:resolution}
 \end{table}
 
 \begin{figure}
@@ -175,11 +239,15 @@ need waves.
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/locked-safe.jpg}
-\caption{The locked safe. Two identical steel safes; the right-hand one holds
-320\,kg of gold. Left of the divider, light. Right, the near-field image at a
-signal-to-noise ratio of $10^{20}$: the tidal column $S$ of
-Eq.~\eqref{eq:tidal-column}, blurred by Eq.~\eqref{eq:resolution}. The gold
-shows through the steel; the faint outline of the light picture is added so
-that shapes can be matched.}\label{fig:locked-safe}
+\includegraphics[width=\linewidth]{figures/locked-safe.pdf}
+\caption{The locked safe, computed. Two identical steel safes
+$3.5\,\mathrm{m}$ away; the right-hand one holds $320\,\mathrm{kg}$ of gold.
+(a) Ordinary light, from the same camera. (b) The tidal column $S(\hat n)$ of
+Eq.~\eqref{eq:tidal-column}, exact, with the empty room left out; white lines
+mark the outlines that light shows. (c) The same, blurred by the point spread
+of the Wiener reconstruction at a signal-to-noise ratio of $10^{20}$,
+Eq.~\eqref{eq:resolution}: the gold still stands out through the steel.
+Blurring $S$ in this way treats the scene as if it lay at a single depth; it
+shows what an array as wide as the scene is deep could resolve, not a
+reconstruction from simulated data (Section~\ref{sec:near-field}).}\label{fig:locked-safe}
 \end{figure}

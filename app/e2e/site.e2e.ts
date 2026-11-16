@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import { screenPosition } from '../src/lib/engine/camera';
 
@@ -49,11 +49,16 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 	expect(await page.locator('aside.plain').count()).toBeGreaterThanOrEqual(6);
 	await expect(page.locator('a.xref').first()).toBeVisible();
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
-	// every figure has something drawn in it
+	// every figure in the LaTeX source is on the page, with something drawn in it
+	const sections = new URL('../../paper/sections/', import.meta.url);
+	const inSource = readdirSync(sections)
+		.filter((f) => f.endsWith('.tex'))
+		.map((f) => readFileSync(new URL(f, sections), 'utf8').split('\\begin{figure}').length - 1)
+		.reduce((a, b) => a + b, 0);
 	const figures = page.locator('figure.plate');
-	expect(await figures.count()).toBe(15);
-	// the paper's drawings are inlined, in the theme's colours
-	expect(await page.locator('svg.drawing').count()).toBe(11);
+	expect(await figures.count()).toBe(inSource);
+	// the paper's figures are all drawings, inlined in the theme's colours
+	expect(await page.locator('svg.drawing').count()).toBe(inSource);
 	await expect(page.locator('svg.drawing [fill="var(--text)"]').first()).toBeAttached();
 	for (const figure of await figures.all()) {
 		expect(await figure.locator('svg, canvas, img').count()).toBeGreaterThan(0);

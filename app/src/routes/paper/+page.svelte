@@ -3,7 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import { Pdf01Icon } from '@hugeicons/core-free-icons';
-	import { figureDrawing, figureImage, liveFigures, pictureFigures } from '#lib/paper/figures.js';
+	import { figureDrawing, figureImage, liveFigures } from '#lib/paper/figures.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import type { PageProps } from './$types';
 
@@ -94,24 +94,27 @@
 			{#if block.kind === 'html'}
 				{@html block.html}
 			{:else}
-				{@const Picture = pictureFigures[block.id]}
 				{@const live = liveFigures[block.id]}
 				{@const drawing = figureDrawing(block.image)}
 				{@const image = figureImage(block.image)}
 				<figure class="plate" id={block.id}>
 					<div class="art">
-						{#if Picture}
-							<Picture poster={image} />
-						{:else if drawing}
+						{#if drawing}
 							{@html drawing}
 						{:else if image}
 							<img src={image} alt="" />
 						{/if}
 					</div>
 					{#if live}
-						<details class="live">
+						<details class="live" open={'picture' in live}>
 							<summary>{live.label}</summary>
-							<div class="art"><live.component /></div>
+							<div class="art">
+								{#if 'picture' in live}
+									<live.picture poster={image} />
+								{:else}
+									<live.drawing />
+								{/if}
+							</div>
 						</details>
 					{/if}
 					<figcaption>
