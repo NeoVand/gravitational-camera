@@ -6,6 +6,12 @@ struck through in later revisions of this file.
 
 ## The three we are working on
 
+All three are in the paper: Section IV, "How much a picture holds" (Fig. 8; `reference/gravcam/capacity.py`);
+Section IX, "Reading the layers back" (Fig. 17; `reference/gravcam/abel.py`); Section IV, "What the image does show"
+and "What breaks the tie" (Fig. 6), with Table V in Section X (`reference/gravcam/nullspace.py`). Still open from
+them: a demo of the nugget, the flush and the skin, and the magnetic part's null space stated as exactly as the
+electric part's.
+
 1. **How much a gravitational picture can hold.** The three regimes are three limits of one linear map from the
    scene to the pixels, with transfer functions $k e^{-kz}$ (near field), the aperture (waves) and the ramp $|k|$
    (thermal tomography). Their information capacities differ in kind: in the near field the bits per area $z^2$ grow

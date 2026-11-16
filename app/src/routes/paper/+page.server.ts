@@ -8,14 +8,14 @@ const PAPER_DIR = path.resolve('..', 'paper');
 
 /**
  * Read a LaTeX file with its \input files spliced in and comment lines removed.
- * Figures that span both columns of the PDF (figure*) become ordinary figures:
- * pandoc keeps the caption and label of `figure` only, and on the web every
- * figure spans the text anyway.
+ * Figures and tables that span both columns of the PDF (figure*, table*)
+ * become ordinary ones: pandoc keeps the caption and label of `figure` and
+ * `table` only, and on the web every figure and table spans the text anyway.
  */
 function readTex(file: string): string {
 	const text = readFileSync(path.join(PAPER_DIR, file), 'utf8')
 		.replace(/^%.*\n/gm, '')
-		.replace(/\\(begin|end)\{figure\*\}/g, '\\$1{figure}');
+		.replace(/\\(begin|end)\{(figure|table)\*\}/g, '\\$1{$2}');
 	return text.replace(/\\input\{([^}]+)\}/g, (_, name: string) =>
 		readTex(name.endsWith('.tex') ? name : `${name}.tex`)
 	);

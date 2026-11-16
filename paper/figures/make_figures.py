@@ -1652,6 +1652,68 @@ def earth_inverted():
     save(fig, "earth-inverted", web=True)
 
 
+# --- Figure: same outside, different inside -----------------------------------
+
+def same_outside():
+    """Three steel balls with the same field outside: one holds a gold nugget halfway to the wall; one holds the
+    nugget's harmonic projection, the least assuming interior a camera outside could draw; one has the nugget's mass
+    spread over its surface (its balayage). Outside each, the same equipotentials of the gold's share of the field
+    (gravcam/nullspace.py). Colours are drawn as one hue at varying opacity, so the figure works on any background."""
+    from gravcam import nullspace as ns
+    R, s, b = 1.0, 0.5, 0.15
+    m = 1.0
+    unit = m / (4 * math.pi * R ** 3)
+    peak = ns.harmonic_point_peak(m, s, R)
+    fig, axes = plt.subplots(1, 3, figsize=(COL, 1.66))
+    lim = 1.5
+    phi = np.linspace(0, 2 * np.pi, 721)
+    for k, ax in enumerate(axes):
+        ax.add_patch(Circle((0, 0), R, facecolor=INK, alpha=0.07, edgecolor="none", zorder=0))
+        # the gold's share of the potential outside: circles about the nugget, drawn only beyond the surface
+        for d in (0.72, 0.92, 1.16, 1.45):
+            x, y = d * np.sin(phi), s + d * np.cos(phi)
+            out = np.hypot(x, y) > R * 1.0
+            if k == 2:                                   # clear of the skin
+                cos = np.clip(y / np.maximum(np.hypot(x, y), 1e-9), -1, 1)
+                skin = 0.13 * ns.balayage_point(m, s, R, cos) / ns.balayage_point(m, s, R, 1.0)
+                out &= np.hypot(x, y) > R + skin + 0.02
+            xs, ys = np.where(out, x, np.nan), np.where(out, y, np.nan)
+            ax.plot(xs, ys, color=ACCENT2, lw=0.45, zorder=1)
+        bare(ax)
+        ax.set_xlim(-lim, lim)
+        ax.set_ylim(-1.42, 1.98)
+    # (a) the nugget
+    axes[0].add_patch(Circle((0, s), b, facecolor=ACCENT, edgecolor="none", zorder=3))
+    # (b) the harmonic projection, in bands of one hue whose opacity doubles with the density
+    n = 241
+    X, Y = np.meshgrid(np.linspace(-R, R, n), np.linspace(-R, R, n))
+    r = np.hypot(X, Y)
+    mu = np.where(r > 0, Y / np.maximum(r, 1e-12), 1.0)
+    rho = np.where(r <= R, ns.harmonic_point(m, s, R, np.minimum(r, R), mu), np.nan) / unit
+    levels = [1, 2, 4, 8, 16, 32]
+    for i, lo in enumerate(levels):
+        hi = levels[i + 1] if i + 1 < len(levels) else peak / unit * 1.01
+        axes[1].contourf(X, Y, np.where((rho >= lo) & (rho < hi), 1.0, np.nan), levels=[0.5, 1.5], colors=[ACCENT],
+                         alpha=0.12 + 0.13 * i, zorder=2, antialiased=True)
+    axes[1].add_patch(Circle((0, 0), R, facecolor="none", edgecolor=INK, lw=0.6, zorder=3))
+    # (c) the skin: thickness in proportion to the surface density, exaggerated
+    th = np.linspace(0, 2 * np.pi, 721)
+    sig = ns.balayage_point(m, s, R, np.cos(th))
+    w = 0.13 * sig / sig.max()
+    outer = np.stack([(R + w) * np.sin(th), (R + w) * np.cos(th)], axis=1)
+    inner = np.stack([R * np.sin(th[::-1]), R * np.cos(th[::-1])], axis=1)
+    axes[2].add_patch(Polygon(np.concatenate([outer, inner]), closed=True, facecolor=ACCENT, edgecolor="none", zorder=3))
+    for ax in (axes[0], axes[2]):
+        ax.add_patch(Circle((0, 0), R, facecolor="none", edgecolor=INK, lw=0.6, zorder=4))
+    for ax, label in zip(axes, ("(a) a nugget", "(b) a flush", "(c) a skin")):
+        ax.text(0, -1.12, label, ha="center", va="top", fontsize=7.5)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01, wspace=0.04)
+    print(f"  same outside: flush peak {peak / unit:.1f} m/(4 pi R^3), far wall "
+          f"{float(ns.harmonic_point(m, s, R, R, -1.0)) / unit:.3f}; trace moments", ns.trace_moments(m, s, R),
+          "inertia x", ns.inertia(m, s, R, "x"))
+    save(fig, "same-outside", web=True)
+
+
 def main() -> int:
     setup_fonts()
     # tidal, sky-integral, quadrupole, line-integral and earth-glow are modelled in 3D and drawn by
@@ -1659,7 +1721,8 @@ def main() -> int:
     for draw in (tidal_field, regimes, nearfield, resolution_law, capacity,
                  polarization_curves, array, budget,
                  sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
-                 milky_way, black_hole, sun_lens, memory_patterns, earth_inverted):
+                 milky_way, black_hole, sun_lens, memory_patterns, earth_inverted,
+                 same_outside):
         draw()
     return 0
 

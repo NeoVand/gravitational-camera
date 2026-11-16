@@ -81,6 +81,93 @@ zero over the sky, which is why a uniform shell of matter around the camera is
 invisible to it.}\label{fig:sky-integral}
 \end{figure*}
 
+\paragraph{What the image does show.} The ambiguity has an exact shape. For a
+body whose outside is connected, every density splits in one way only into two
+parts,
+\begin{equation}\label{eq:split}
+\rho = \rho_h + \frac{\nabla^2\chi}{4\pi G} ,
+\end{equation}
+where $\rho_h$ is harmonic inside the body, $\nabla^2\rho_h = 0$, and $\chi$
+vanishes on the surface together with its gradient. The field outside fixes
+$\rho_h$ completely and is blind to the rest \cite{Isakov1990}. The potential
+outside is built from the moments $\int\rho\,h\,\dd V$ of the density against
+functions $h$ harmonic in the body (the solid harmonics $r^\ell Y_{\ell m}$
+about a point inside), and the second part has none of them, since
+$\int h\,\nabla^2\chi\,\dd V = \int \chi\,\nabla^2 h\,\dd V = 0$. It follows that
+any estimate of the interior that is linear in the data and treats every point
+inside alike and independently, a white prior as in Eq.~\eqref{eq:wiener}, is
+itself harmonic: it is built from the data's own kernels, which are. A harmonic
+function has no maximum or minimum inside the region where it is harmonic. The
+least assuming picture of an interior that a camera outside can draw, taking
+the body's outline from light, therefore has its densest and its lightest
+points on the surface. It can never show a core. Every round body appears as a
+uniform ball of its mean density, and the layered Earth, seen from outside in
+this way, as $5513\,\mathrm{kg\,m^{-3}}$ throughout.
+
+Figure~\ref{fig:same-outside} shows three bodies with the same field outside. A
+steel ball of radius $R$ holds a gold nugget of mass $m$ at the distance $s$
+from its centre. The nugget's harmonic projection, the density harmonic in the
+ball that has the same field outside, is
+\begin{equation}\label{eq:harmonic-point}
+\rho_h = \frac{m}{4\pi R^3}\sum_{\ell=0}^{\infty}(2\ell+1)(2\ell+3)\,
+\Bigl(\frac{s r}{R^2}\Bigr)^{\ell} P_\ell(\cos\vartheta) ,
+\end{equation}
+with $\vartheta$ the angle from the nugget's direction; the sum has a closed
+form, which the reference implementation uses. For $s = R/2$ it is a flush on
+the wall nearest the nugget, $46\,m/4\pi R^3$ there, fifteen times the nugget's
+mass spread evenly, fading toward the far wall, where it dips just below zero,
+so that only the steel keeps it a real density. Poincar\'e's balayage sweeps the
+same mass onto the surface as a skin of surface density
+$m(R^2 - s^2)/4\pi R\,|\mathbf{x} - \mathbf{s}|^3$, thickest over the nugget. At
+any sensitivity, a camera outside cannot tell the three apart.
+
+\paragraph{What breaks the tie.} The three differ in one number that the
+electric part cannot see, $\int\rho\,r^2\,\dd V$, the trace of the second
+moment of the mass: $m s^2$, $\tfrac35\,m R^2$ and $m R^2$ for the nugget, the
+flush and the skin ($r^2$ is not harmonic, so by Eq.~\eqref{eq:split} the
+field outside carries no trace of it). The moment of inertia contains it,
+$I_x = \tfrac23\int\rho\,r^2\,\dd V + \int\rho\,(r^2/3 - x^2)\,\dd V$, where the
+second integral is harmonic and shared. Spun at the same rate about an axis
+across the line to the nugget, the three therefore differ in angular momentum,
+and so in the spin dipole of their magnetic fields
+(Section~\ref{sec:separation}), by the gold's shares of the moment of inertia,
+$0.25$, $0.48$ and $0.75\,mR^2$. The ball and the shell above, with
+$\int\rho\,r^2\,\dd V = \tfrac35 MR^2$ and $MR^2$, are the simplest case. Spin
+breaks only this one tie, since the moment of inertia is a single number. The
+thermal glow, which sums along lines instead of reaching out as a potential,
+would show the nugget as a spot, the flush as a gradient and the skin as a ring,
+but the glow measures friction and temperature, not mass
+(Section~\ref{sec:first-image}). A pixel inside the matter escapes the
+ambiguity altogether, because there $\mathrm{tr}\,\tE = 4\pi G\rho$ reads the
+density where the pixel is (Section~\ref{sec:pixel}).
+
+Together the channels go further than any one. For the Earth the glow gives the
+radius of the core, $3480\,\mathrm{km}$, from the kinks in its brightness
+(Figure~\ref{fig:earth-inverted}); the electric part gives the mass; and the
+magnetic part, with the rate of turning known, gives the moment of inertia,
+$0.331\,MR^2$, the value the Preliminary Reference Earth Model is built to
+match \cite{DziewonskiAnderson1981}. A two-layer Earth with that core, mass and
+moment of inertia has a core of $12{,}500\,\mathrm{kg\,m^{-3}}$ and a mantle of
+$4150\,\mathrm{kg\,m^{-3}}$. The reference model's core averages $10{,}900$; the
+difference is the compression of the mantle under its own weight, which two
+numbers cannot resolve.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/same-outside.pdf}
+\caption{Same outside, different inside: three steel balls whose fields are
+identical everywhere outside them. (a) A gold nugget halfway from the centre to
+the wall. (b) Its harmonic projection, Eq.~\eqref{eq:harmonic-point}, the least
+assuming interior that a camera outside could draw, shaded in bands that double
+in density up to $46\,m/4\pi R^3$ at the near wall. (c) Its balayage: the
+nugget's mass spread over the surface, drawn with a thickness in proportion to
+the surface density and exaggerated. Blue: equipotentials of the gold's share
+of the field, drawn outside each ball (the steel's share is the same in all
+three and is left out). They are the same in all three, and in (b) and (c) they
+centre on a nugget that is not there. The reference implementation checks the
+equality by integrating each body's potential directly.}\label{fig:same-outside}
+\end{figure}
+
 \paragraph{How sharp.} The space between scene and camera is empty, so the
 potential there obeys Laplace's equation. Consider a pattern in the scene that
 repeats across the line of sight with wavenumber $k$, at depth $z$ from the
