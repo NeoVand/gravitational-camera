@@ -59,18 +59,19 @@ export default async function () {
 		parts.push(seg(fr, pl, y, false));
 		parts.push(seg(pl, pr, y, true));           // through the person
 		parts.push(seg(pr, Math.min(W - 6, pr + 26), y, false));
-		// the pixel's value: one bar, split into each body's glow times its length
-		const vals = [['door', 1.0 * (1 - FACE) * (dr - dl)], ['iron', 5.0 * bw], ['person', 1.6 * (pr - pl)]];   // the door only through its thickness
-		const total = vals.reduce((t, [, v]) => t + v, 0);
-		const x0 = 62, L = W - 8 - x0, top = 2 * RH + 8, h = 9;
-		labels.push(tex('N(\\hat n) =', [x0 - 5, top + h / 2], 8, 'rc'));
-		let x = x0;
-		vals.forEach(([k, v], i) => {
-			const w = (v / total) * L;
-			parts.push(`<rect x="${x.toFixed(2)}" y="${top}" width="${w.toFixed(2)}" height="${h}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
-			labels.push(tex(`\\text{${k}}`, [i === 0 ? x : x + w / 2, top + h + 2], 6.5, i === 0 ? 'lt' : 'ct', DIM));
-			x += w;
+		// the pixel's value, N = door + iron + person: each body's glow times its length, as a bar beneath it
+		const vals = [['door', 1.0 * (1 - FACE) * (dr - dl), (dl + dr) / 2], ['iron', 5.0 * bw, (fl + fr) / 2], ['person', 1.6 * (pr - pl), (pl + pr) / 2]];
+		const vmax = Math.max(...vals.map(([, v]) => v));
+		const base = 2 * RH + 8 + 22, bw0 = 10, hmax = 20;
+		const [, camR] = across(camera, 'camera', ground, y);
+		labels.push(tex('N(\\hat n) =', [(left.camera + camR) / 2, base - 6], 8, 'cc'));
+		vals.forEach(([k, v, cx], i) => {
+			const h = Math.max(0.8, (v / vmax) * hmax);
+			parts.push(`<rect x="${(cx - bw0 / 2).toFixed(2)}" y="${(base - h).toFixed(2)}" width="${bw0}" height="${h.toFixed(2)}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
+			labels.push(tex(`\\text{${k}}`, [cx, base + 2], 6.5, 'ct', DIM));
+			if (i < 2) labels.push(tex('+', [(cx + vals[i + 1][2]) / 2, base - 6], 8, 'cc'));
 		});
+		parts.push(`<path d="M${(left.door - 6).toFixed(2)},${base}L${(W - 6).toFixed(2)},${base}" stroke="${RULE}" stroke-width="0.4"/>`);
 	}
 	const lab = await Promise.all(labels);
 	const Ht = 2 * RH + 8 + SUM;

@@ -1128,8 +1128,12 @@ def tidal_field():
     span = 2.4
     fine = np.linspace(-span, span, 300)
     FX, FZ = np.meshgrid(fine, fine)
-    coarse = np.linspace(-span * 0.86, span * 0.86, 9)
+    coarse = np.linspace(-span * 0.9, span * 0.9, 15)
     CX, CZ = np.meshgrid(coarse, coarse)
+    # rings sized from the spacing: the longest semi-axis (at the largest stretch, 1 + 0.6) is 0.44 of a
+    # step, so two neighbours together never reach across one and no rings overlap
+    step = coarse[1] - coarse[0]
+    r0 = 0.44 * step / 1.6
     panels = [
         ("(a) one mass", lambda X, Z: mass_field([(1.0, (0.0, 0.0))], X, Z), [(0.0, 0.0)]),
         ("(b) two masses", lambda X, Z: mass_field([(1.0, (-0.8, 0.0)), (1.0, (0.8, 0.0))], X, Z),
@@ -1150,16 +1154,16 @@ def tidal_field():
         Ec = field(CX, CZ)
         for i in range(CX.shape[0]):
             for j in range(CX.shape[1]):
-                if masses and min(np.hypot(CX[i, j] - mx, CZ[i, j] - mz) for mx, mz in masses) < 0.5:
+                if masses and min(np.hypot(CX[i, j] - mx, CZ[i, j] - mz) for mx, mz in masses) < 0.36:
                     continue
                 block = Ec[i, j][np.ix_([0, 2], [0, 2])]
                 vals, vecs = np.linalg.eigh(block)
                 # one strength scale for the whole panel, compressed for the masses' 1/r^3
                 strain = (np.sign(vals) * np.abs(vals) ** (1 / 3) * 0.38) if masses else vals * 0.35
-                axes_len = 0.19 * (1 - np.clip(strain, -0.6, 0.6))
+                axes_len = r0 * (1 - np.clip(strain, -0.6, 0.6))
                 angle = math.degrees(math.atan2(vecs[1, 0], vecs[0, 0]))
                 ax.add_patch(Ellipse((CX[i, j], CZ[i, j]), 2 * axes_len[0], 2 * axes_len[1], angle=angle,
-                                     fill=False, ec=INK, lw=0.6, zorder=4))
+                                     fill=False, ec=INK, lw=0.45, zorder=4))
         for mx, mz in masses:
             ax.add_patch(Circle((mx, mz), 0.13, color=INK, lw=0, zorder=5))
         ax.set_title(title, fontsize=8, loc="left", pad=3)
