@@ -1,0 +1,26 @@
+{
+ "size": "1536x1024",
+ "figure": "A wide scientific plate in two rows sharing one scene, explaining two ways of forming a picture. A small camera on a tripod at the left of each row looks to the right along one straight line of sight that passes in turn through a closed wooden door, a closed iron furnace with a red-hot iron block inside, and a person standing behind it.\nTop row, labelled 'light': a blue ray leaves the camera and stops at the front surface of the door, marked by one small dot, because the door is opaque; the furnace and the person behind are drawn faint, unseen.\nBottom row, labelled 'gravity': the line passes straight through everything, because nothing absorbs gravitational radiation. Inside each object the line glows orange, faintly in the cool door, strongly in the hot iron, moderately in the warm person. At the right end a small stacked bar shows the three contributions added: the pixel reports their sum along the whole line.\nThe only text is 'light', 'gravity' and a small sum sign.",
+ "variants": [
+  {
+   "name": "steel plate",
+   "style": "A nineteenth-century steel engraving, like the plates of Maxwell's Treatise or a scientific encyclopaedia: very fine parallel hatching and cross-hatching in black ink on bright white paper, tone made only by line density, crisp and exact. Colour only as a faint hand-tint where it carries meaning: warm orange for heat and gravity, cool blue for light. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  },
+  {
+   "name": "textbook linework",
+   "style": "Modern textbook engraving in the spirit of Misner, Thorne and Wheeler's Gravitation: clean confident ink outlines, sparse fine hatching for form, lots of white, extremely legible. A single soft orange wash for whatever glows or gravitates and a single pale blue wash for light, both delicate. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  },
+  {
+   "name": "copperplate stipple",
+   "style": "Copperplate engraving with stipple: tone built from tiny dots and fine contour lines, very delicate and luminous on white paper, like a finely printed anatomical or astronomical plate. Subtle orange tint where things are hot or gravitate, subtle blue where light travels. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  },
+  {
+   "name": "hand-coloured plate",
+   "style": "An antique engraved plate, hand-coloured: precise black engraved line work with cross-hatching, over which thin transparent watercolour tints are laid, glowing orange for heat and the gravitational signal, clear blue for the light ray, everything else left white or grey. Rich but restrained, museum quality. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  },
+  {
+   "name": "contemporary engraving",
+   "style": "A contemporary scientific engraving: the line discipline of a classic engraving (fine contour hatching that follows each surface's curvature, no gradients), but a cleaner, airier modern layout with more white space and thinner lines; colour used only as two sparing accents, burnt orange for gravity and heat and deep blue for light. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  }
+ ]
+}

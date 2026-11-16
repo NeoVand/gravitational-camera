@@ -60,3 +60,18 @@ Status: "fixed" means Neo's requested changes are in; none has been explicitly a
 - Colour mapping. The two accents now mean several things: stretch and squeeze, gravity and light, near field and
   waves, h+ and hx. The workflow asks for one mapping tied to the paper's central contrast, the same in every figure.
   To be decided with Neo from candidates, not in words.
+
+## Style: engraving (Neo, 16 Nov 2026)
+
+"The engraving style is probably really good, and the physics community is used to it from textbooks ... It's okay if
+it has subtle colors or, for example, shows the heat or something like that, or the beam. I think that can be something
+we can adopt for the whole paper, the website, and everything."
+
+Two routes, both exact:
+
+1. Diagrams of exact maths (rings, fields, curves): drawn wholly by code in an engraved manner (design/engrave_proto.py:
+   hatching that follows each surface, width set by a Lambert shadow, cross-hatching only in the core shadow).
+2. Pictorial plates (the Earth, a furnace, a person): code draws an exact base (design/bases/), the model engraves it
+   through the edit endpoint (design/imageedit.py), and the result is measured against the base. First test, the
+   Earth plate: the line of sight stayed within 1 px of the exact straight line at 40 of 40 samples. Generated
+   without a base, all five candidates bent that line at the Earth's centre.

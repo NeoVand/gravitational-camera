@@ -1,0 +1,26 @@
+{
+ "size": "1536x1024",
+ "figure": "A wide scientific plate in three panels side by side, lettered (a), (b), (c) at their top left, explaining what a gravitational detector feels: the tidal field, shown by its effect on a ring of twelve free test masses (small polished spheres, evenly spaced).\n(a) Beside a mass: a large heavy sphere, a planet labelled 'M', sits at the left. To its right floats the ring, distorted into an exact ellipse stretched along the line pointing at the planet and squeezed across it; the stretch is twice the squeeze. A thin dashed circle shows the ring undisturbed. Small arrows on the spheres point outward along the line to the planet and inward across it.\n(b) In a passing gravitational wave of 'plus' polarization travelling out of the page: the ring is stretched left-right and squeezed up-down by equal amounts, with a faint ghost of the opposite phase half a cycle later. Dashed circle undisturbed. Label 'h+'.\n(c) The 'cross' polarization: exactly the pattern of (b) turned by 45 degrees. Label 'hx'.\nThe only text is (a), (b), (c), 'M', 'h+', 'hx'.",
+ "variants": [
+  {
+   "name": "steel plate",
+   "style": "A nineteenth-century steel engraving, like the plates of Maxwell's Treatise or a scientific encyclopaedia: very fine parallel hatching and cross-hatching in black ink on bright white paper, tone made only by line density, crisp and exact. Colour only as a faint hand-tint where it carries meaning: warm orange for heat and gravity, cool blue for light. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  },
+  {
+   "name": "textbook linework",
+   "style": "Modern textbook engraving in the spirit of Misner, Thorne and Wheeler's Gravitation: clean confident ink outlines, sparse fine hatching for form, lots of white, extremely legible. A single soft orange wash for whatever glows or gravitates and a single pale blue wash for light, both delicate. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  },
+  {
+   "name": "copperplate stipple",
+   "style": "Copperplate engraving with stipple: tone built from tiny dots and fine contour lines, very delicate and luminous on white paper, like a finely printed anatomical or astronomical plate. Subtle orange tint where things are hot or gravitate, subtle blue where light travels. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  },
+  {
+   "name": "hand-coloured plate",
+   "style": "An antique engraved plate, hand-coloured: precise black engraved line work with cross-hatching, over which thin transparent watercolour tints are laid, glowing orange for heat and the gravitational signal, clear blue for the light ray, everything else left white or grey. Rich but restrained, museum quality. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  },
+  {
+   "name": "contemporary engraving",
+   "style": "A contemporary scientific engraving: the line discipline of a classic engraving (fine contour hatching that follows each surface's curvature, no gradients), but a cleaner, airier modern layout with more white space and thinner lines; colour used only as two sparing accents, burnt orange for gravity and heat and deep blue for light. Panels, if any, are separated only by white space: no frames, boxes or rules around them. Any lettering is a classic italic serif, like the mathematics of a LaTeX textbook, and only the labels named above."
+  }
+ ]
+}
