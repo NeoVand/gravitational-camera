@@ -17,6 +17,7 @@
 		WaveIcon,
 		WeightScale01Icon
 	} from '@hugeicons/core-free-icons';
+	import { posters } from '#lib/demos/posters.js';
 	import { objectsAt, scene, sunDirection } from '#lib/demos/sun-at-midnight.js';
 	import type { View } from '#lib/engine/index.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
@@ -54,49 +55,64 @@
 			icon: ViewIcon,
 			name: 'See through anything',
 			text: 'The whole Earth is transparent.',
-			href: resolve('/demo/sun-at-midnight')
+			href: resolve('/demo/sun-at-midnight'),
+			poster: posters['sun-at-midnight']
 		},
 		{
 			icon: SafeIcon,
 			name: 'Find what is hidden',
 			text: 'No shield or cloak exists.',
-			href: resolve('/demo/locked-safe')
+			href: resolve('/demo/locked-safe'),
+			poster: posters['locked-safe']
 		},
 		{
 			icon: WeightScale01Icon,
 			name: 'Weigh by looking',
 			text: 'Brightness is mass, not surface.',
-			href: resolve('/demo/full-or-empty')
+			href: resolve('/demo/full-or-empty'),
+			poster: posters['full-or-empty']
 		},
 		{
 			icon: MirrorIcon,
 			name: 'Ignore images',
 			text: 'A mirror shows nothing.',
-			href: resolve('/demo/blank-mirror')
+			href: resolve('/demo/blank-mirror'),
+			poster: posters['blank-mirror']
 		},
 		{
 			icon: TemperatureIcon,
 			name: 'Read inside temperature',
 			text: 'Heat is seen through the walls.',
-			href: resolve('/demo/closed-furnace')
+			href: resolve('/demo/closed-furnace'),
+			poster: posters['closed-furnace']
 		},
 		{
 			icon: DropletIcon,
 			name: 'Tell materials by friction',
 			text: 'Honey and water differ.',
-			href: resolve('/demo/honey-and-water')
+			href: resolve('/demo/honey-and-water'),
+			poster: posters['honey-and-water']
 		},
 		{
 			icon: Rotate01Icon,
 			name: 'Read spin and its sense',
 			text: 'Even in a sealed box.',
-			href: resolve('/demo/which-way')
+			href: resolve('/demo/which-way'),
+			poster: posters['which-way']
+		},
+		{
+			icon: Rotate01Icon,
+			name: 'See flow in a sealed body',
+			text: 'A spinning wheel shows its turning.',
+			href: resolve('/demo/sealed-flywheel'),
+			poster: posters['sealed-flywheel']
 		},
 		{
 			icon: FlashlightIcon,
 			name: 'See what emits no light',
 			text: 'All energy gravitates.',
-			href: resolve('/demo/beam-in-the-dark')
+			href: resolve('/demo/beam-in-the-dark'),
+			poster: posters['beam-in-the-dark']
 		}
 	];
 </script>
@@ -183,17 +199,18 @@
 		<ul class="affordances">
 			{#each affordances as a (a.name)}
 				<li>
-					<span class="glyph small"
-						><HugeiconsIcon icon={a.icon} size={22} strokeWidth={1.5} /></span
-					>
-					<div>
-						{#if a.href}
-							<h3><a href={a.href}>{a.name}</a></h3>
-						{:else}
-							<h3>{a.name}</h3>
-						{/if}
-						<p>{a.text}</p>
-					</div>
+					<a class="tile" href={a.href}>
+						<span class="thumb"><img src={a.poster} alt="" loading="lazy" /></span>
+						<span class="tile-text">
+							<span class="glyph small"
+								><HugeiconsIcon icon={a.icon} size={18} strokeWidth={1.6} /></span
+							>
+							<span>
+								<span class="name">{a.name}</span>
+								<span class="text">{a.text}</span>
+							</span>
+						</span>
+					</a>
 				</li>
 			{/each}
 		</ul>
@@ -425,29 +442,66 @@
 		margin: 0;
 		padding: 0;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
-		gap: 0.4rem 2rem;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+		gap: 1.8rem 1.4rem;
 	}
 
-	.affordances li {
+	.tile {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.thumb {
+		display: block;
+		aspect-ratio: 16 / 9;
+		border-radius: 10px;
+		overflow: hidden;
+		background: #0b0d12;
+		box-shadow: 0 0 0 1px var(--line);
+	}
+
+	.thumb img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+	}
+
+	.tile:hover .thumb img,
+	.tile:focus-visible .thumb img {
+		transform: scale(1.04);
+	}
+
+	.tile:focus-visible {
+		outline: none;
+	}
+
+	.tile:focus-visible .thumb {
+		box-shadow: 0 0 0 2px var(--accent);
+	}
+
+	.tile-text {
 		display: flex;
-		gap: 0.9rem;
+		gap: 0.75rem;
 		align-items: flex-start;
-		padding: 1rem 0;
-		border-top: 1px solid var(--line);
+		padding-top: 0.8rem;
 	}
 
-	.affordances h3 {
-		margin: 0 0 0.15rem;
+	.name {
+		display: block;
+		margin-bottom: 0.15rem;
 		font: 500 1rem/1.3 var(--font-sans);
+		transition: color 0.2s;
 	}
 
-	.affordances h3 a {
-		text-decoration-color: var(--accent);
+	.tile:hover .name {
+		color: var(--accent);
 	}
 
-	.affordances p {
-		margin: 0;
+	.text {
+		display: block;
 		color: var(--text-dim);
 		font-size: 0.86rem;
 	}
