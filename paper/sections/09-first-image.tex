@@ -79,6 +79,79 @@ gravitons from a body at room temperature, and more from hotter ones (with the
 friction taken as constant across the band). Its fluctuations, not its known
 mean, are what such a filter must remove.
 
+\paragraph{Reading the layers back.} A camera on the surface of a round planet
+needs no other viewpoint to see inside it. The line of sight at angle $\theta$
+from straight down passes the centre at the distance $p = R\sin\theta$ and
+crosses the planet along the whole chord at that distance, so for an emissivity
+that depends only on the radius, Eq.~\eqref{eq:column} becomes
+\begin{equation}\label{eq:abel}
+N(p) = 2\int_p^R \frac{j_N(r)\,r\,\dd r}{\sqrt{r^2 - p^2}} ,
+\end{equation}
+the Abel transform of the profile $j_N(r)$, which can be inverted:
+\begin{equation}\label{eq:abel-inverse}
+j_N(r) = -\frac{1}{\pi}\int_r^R \frac{\dd N}{\dd p}\,\frac{\dd p}{\sqrt{p^2 - r^2}} .
+\end{equation}
+The planet's symmetry supplies the other viewpoints that tomography would need.
+For shells of uniform emissivity the inversion is a peeling. The line of sight
+that grazes the top of a shell crosses only that shell and those above it, so
+the crust's emissivity is read first and each deeper one in turn, as in the
+onion-peeling reconstructions of flames and plasmas \cite{Dasch1992}. Where the
+emissivity jumps, at a boundary of radius $r$, $\dd N/\dd p$ diverges as
+$(r - p)^{-1/2}$: the brightness has a kink at $\sin\theta = r/R$, and these
+kinks are the steps of Figure~\ref{fig:earth-glow}. Their places are geometry,
+the radii of the boundaries; the friction, the temperatures and the exposure set
+only their heights.
+
+The heights measure a product. From the definitions above,
+\begin{equation}\label{eq:jN-friction}
+j_N = \frac{16\,G\,\eta\,\sigma T^3}{2.70\,\kB\,c^3} ,
+\end{equation}
+so counted gravitons give $\eta T^3$ in each shell, and their energies give
+$\eta T^4$. If the friction is flat across the thermal band, the two together
+give each shell's temperature, from the mean energy $2.70\,\kB T$ of the
+gravitons it sends, and then its friction. The camera is then a thermometer for
+the deep Earth and a viscometer for its friction at terahertz frequencies, which
+no seismometer reaches. If the friction varies across the band, each shell's
+spectrum is $\alpha(\omega)$ times a Planck spectrum, Eq.~\eqref{eq:kirchhoff},
+and the temperature trades off against the shape of $\alpha$.
+
+How well a lifetime does is shown in Figure~\ref{fig:earth-inverted}. It
+simulates eighty years of counts on a square metre that collects from every
+direction, about $1.4\times10^5$ gravitons in our model, with the Sun's path
+across the ground masked, and fits five shells to them by maximum likelihood,
+radii and emissivities together. In rings of one degree the fit places the
+boundary of the core to within $6\,\mathrm{km}$ and the top of the lower mantle
+to within $4\,\mathrm{km}$ (one standard deviation). It measures the
+emissivities of the outer core and the lower mantle to $0.6$ per cent, the upper
+mantle to $1.5$ per cent, the inner core, seen only within $11^\circ$ of straight
+down, to $3$ per cent, and the thin crust only to $25$ per cent; with the
+temperatures known, these are also the errors of the friction. The errors scale
+as $1/\sqrt{\eta\tau}$ with the friction and the exposure time. The coarse
+picture of the previous paragraph, forty picture elements, is what a lifetime
+buys for a scene that is not known in advance. A planet known to be layered
+spends the same gravitons on nine numbers, as a simple scene does in the near
+field (Section~\ref{sec:near-field}). Departures from spherical symmetry, from
+the planet's flattening to the slabs and plumes of the mantle, would need
+cameras at several places, and are tomography proper.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/earth-inverted.pdf}
+\caption{The thermal Earth, inverted, in a simulation. (a) Eighty years of
+gravitons on a detector of one square metre that collects from every
+direction, pooled in rings of one degree about straight down (dots, with
+Poisson errors; $142{,}914$ in all), and the maximum likelihood fit of five
+uniform shells, radii and emissivities together (line), Eq.~\eqref{eq:abel}.
+Dashed: the fitted boundaries, at $\arcsin(r/R)$. (b) Each shell's friction,
+read from its fitted emissivity at the model's temperature,
+Eq.~\eqref{eq:jN-friction}, against radius. The boxes span the fitted radii and
+one standard deviation; the line is the friction assumed in the model,
+$10^{-3}\,\mathrm{Pa\,s}$. The fitted radii are $1270 \pm 31$, $3485 \pm 6$,
+$5706 \pm 4$ and $6345 \pm 1\,\mathrm{km}$, against the model's $1222$, $3480$,
+$5701$ and $6346$. The crust, $25\,\mathrm{km}$ thick, sends only about sixty of
+the gravitons.}\label{fig:earth-inverted}
+\end{figure}
+
 \paragraph{Counting or recording.} These budgets count gravitons, while the
 array of Section~\ref{sec:no-lens} records the field at each pixel and
 combines the records afterwards. In the thermal regime the two are in

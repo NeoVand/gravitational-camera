@@ -1568,6 +1568,90 @@ def capacity():
     fig.subplots_adjust(left=0.15, right=0.97, top=0.97, bottom=0.19)
     save(fig, "capacity", web=True)
 
+
+# --- Figure: the thermal Earth, inverted ---------------------------------------
+
+def earth_inverted():
+    """A lifetime of gravitons from the Earth below, simulated, and the layers read back from it: the brightness in
+    rings of one degree with Poisson errors and the maximum likelihood fit of five shells (gravcam/abel.py), and
+    each shell's friction recovered from its emissivity given its temperature."""
+    from gravcam import abel, emission
+    from gravcam.scene import load_scene
+    scene = load_scene(ROOT / "scenes" / "sun-at-midnight.scene.json")
+    layers = ["inner-core", "outer-core", "lower-mantle", "upper-mantle", "earth"]
+    names = ["inner\ncore", "outer core", "lower mantle", "upper\nmantle", "crust"]
+    shells = ["#d48a46", "#e2a86f", "#ebc59c", "#f1d9bd", "#f1e9de"]      # as in Fig. earth-glow
+    radii = np.array([scene[k].shape.radius for k in layers])
+    jN = emission.number_emissivities(scene)
+    j = np.array([jN[scene.index(k)] for k in layers])
+    temps = np.array([scene[k].material.temperature for k in layers])
+    rho = float(np.linalg.norm(scene.observer))
+    edges = np.radians(np.linspace(0.0, 90.0, 91))
+    exposure = 80 * 3.15576e7                                   # one square metre for eighty years
+    mu = abel.expected_counts(radii, j, edges, exposure, rho)
+    counts = np.random.default_rng(20261116).poisson(mu)
+    start = radii.copy()
+    start[:3] *= [1.02, 0.98, 1.02]
+    start[3] -= 6e3
+    r_fit, j_fit, cov = abel.fit_counts(counts, edges, exposure, start, rho=rho)
+    err = np.sqrt(np.diag(cov))
+    eta = np.array([abel.friction_from_counts(a, t) for a, t in zip(j_fit, temps)])
+    eta_err = eta * err[:5] / j_fit
+    print("  inverted: radii km", np.round(r_fit / 1e3, 1), "+-", np.round(err[5:] / 1e3, 1),
+          " eta/1e-3", np.round(eta / 1e-3, 3), "+-", np.round(eta_err / 1e-3, 3), " counts", counts.sum())
+
+    fig, (ax, bx) = plt.subplots(2, 1, figsize=(COL, 4.0), gridspec_kw=dict(height_ratios=[1.0, 0.9], hspace=0.52))
+    # (a) the record: counts per ring over exposure and solid angle, and the fitted model
+    solid = 2 * np.pi * (np.cos(edges[:-1]) - np.cos(edges[1:]))
+    mid = np.degrees(0.5 * (edges[:-1] + edges[1:]))
+    unit = 1e-5
+    est = counts / (exposure * solid) / unit
+    bar = np.sqrt(np.maximum(counts, 1)) / (exposure * solid) / unit
+    theta = np.radians(np.linspace(0, 90, 1801))
+    for r, top in zip(r_fit[:-2], (7.2, 7.2, 4.7)):          # the last stops below the legend
+        g = math.degrees(math.asin(r / rho))
+        ax.plot([g, g], [0, top], color=FAINT, lw=0.45, ls=(0, (2, 2)), zorder=0.5)
+    ax.plot(np.degrees(theta), abel.radiance(r_fit, j_fit, theta, rho) / unit, color=ACCENT, lw=0.9, zorder=2,
+            label="fit: five shells")
+    ax.errorbar(mid, est, yerr=bar, fmt="o", ms=1.6, color=INK, mec="none", elinewidth=0.45, capsize=0, zorder=3,
+                label="counts in rings of $1^\\circ$")
+    ax.set_xlim(0, 90)
+    ax.set_ylim(0, 7.2)
+    ax.set_xticks([0, 15, 30, 45, 60, 75, 90])
+    ax.set_xticklabels([rf"${t}^\circ$" for t in (0, 15, 30, 45, 60, 75, 90)])
+    ax.set_xlabel("angle of the line of sight from straight down")
+    ax.set_ylabel(r"$N$ ($10^{-5}$ s$^{-1}$m$^{-2}$sr$^{-1}$)")
+    ax.legend(loc="upper right", handlelength=1.4, labelspacing=0.25)
+    ax.text(-0.17, 1.02, "(a)", transform=ax.transAxes, fontsize=8, va="bottom")
+    # (b) each shell's friction, read from its emissivity at its assumed temperature, against radius
+    inner = np.concatenate([[0.0], r_fit[:-1]]) / 1e6
+    outer = r_fit / 1e6
+    bx.axhline(1.0, color=FAINT, lw=0.6, zorder=0.5)
+    for k in range(4):
+        lo, hi = eta[k] - eta_err[k], eta[k] + eta_err[k]
+        bx.add_patch(plt.Rectangle((inner[k], lo / 1e-3), outer[k] - inner[k], (hi - lo) / 1e-3, facecolor=shells[k],
+                                   edgecolor=ACCENT, lw=0.6, zorder=2))
+        bx.plot([inner[k], outer[k]], [eta[k] / 1e-3] * 2, color=ACCENT, lw=0.9, zorder=3)
+    bx.errorbar([6.358], [eta[4] / 1e-3], yerr=[eta_err[4] / 1e-3], fmt="o", ms=2.2, color=ACCENT, elinewidth=0.6,
+                capsize=1.4, capthick=0.6, zorder=3)
+    for x, y, label, ha in ((0.64, 1.14, names[0], "center"), (2.38, 1.08, names[1], "center"),
+                            (4.59, 1.08, names[2], "center"), (6.02, 0.86, names[3], "center"),
+                            (6.24, eta[4] / 1e-3, names[4], "right")):
+        bx.text(x, y, label, fontsize=6.5, color=DIM, ha=ha, va="center", linespacing=1.0)
+    bx.set_xlim(0, 6.6)
+    bx.set_ylim(0.6, 1.8)
+    bx.set_yticks([0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8])
+    bx.set_xticks([0, 1, 2, 3, 4, 5, 6])
+    bx.set_xlabel(r"radius ($10^3$ km)")
+    bx.set_ylabel(r"friction, $\eta$ ($10^{-3}$ Pa s)")
+    bx.text(-0.17, 1.02, "(b)", transform=bx.transAxes, fontsize=8, va="bottom")
+    for a in (ax, bx):
+        for side in ("top", "right"):
+            a.spines[side].set_visible(False)
+    fig.subplots_adjust(left=0.15, right=0.97, top=0.96, bottom=0.09)
+    save(fig, "earth-inverted", web=True)
+
+
 def main() -> int:
     setup_fonts()
     # tidal, sky-integral, quadrupole, line-integral and earth-glow are modelled in 3D and drawn by
@@ -1575,7 +1659,7 @@ def main() -> int:
     for draw in (tidal_field, regimes, nearfield, resolution_law, capacity,
                  polarization_curves, array, budget,
                  sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
-                 milky_way, black_hole, sun_lens, memory_patterns):
+                 milky_way, black_hole, sun_lens, memory_patterns, earth_inverted):
         draw()
     return 0
 
