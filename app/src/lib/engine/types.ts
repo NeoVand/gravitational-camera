@@ -55,6 +55,8 @@ export interface SceneObject {
 	material: string;
 	/** Only spheres may spin, in the plane through the spin centre across the axis. */
 	spin?: Spin;
+	/** May be cut away in the light view, to show what is inside. */
+	cutaway?: boolean;
 	/**
 	 * Part of the empty room (floor, walls, furniture fixed in place). Its pull
 	 * and glow are known in advance, so a view can subtract them.
@@ -103,4 +105,6 @@ export interface AnalyzedObject {
 	background: boolean;
 	/** Steady rotation, for the wave view. */
 	spin?: Spin;
+	/** May be cut away in the light view; see `SceneObject.cutaway`. */
+	cutaway: boolean;
 }

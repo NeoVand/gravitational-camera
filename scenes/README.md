@@ -63,6 +63,9 @@ radiance along a ray from the observer is N = ∫ j_N ds
   *rotor*. A rotor whose mass is not symmetric about its axis radiates
   gravitational waves at twice its rate (`reference/gravcam/waves.py`). Static
   views use the time-zero positions.
+- An object may set `"cutaway": true`: the light view can cut it away to show
+  what it holds (a sealed drum, say). Like `background`, it changes no
+  physics.
 
 ## Near-field image model
 

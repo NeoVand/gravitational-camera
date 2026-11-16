@@ -4,11 +4,24 @@
 	 * the visitor can drag. Dragging the picture looks around; the wheel zooms.
 	 */
 	import type { Snippet } from 'svelte';
+	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
+	import {
+		Layers01Icon,
+		Orbit01Icon,
+		Sun03Icon,
+		TemperatureIcon,
+		WavesIcon
+	} from '@hugeicons/core-free-icons';
+	import { massPoints, sliceReference } from '../engine/tidal';
+	import { G } from '../engine/physics/constants';
 	import {
 		Engine,
 		EngineUnavailable,
+		MODE_FIELD,
 		MODE_LIGHT,
+		MODE_NEAR,
 		MODE_THERMAL,
+		MODE_WAVES,
 		packPrims,
 		referenceRadiance,
 		referenceTidal,
@@ -44,9 +57,14 @@
 		outline?: boolean;
 		/** Leave the empty room (background objects) out of the gravity views. */
 		subtractRoom?: boolean;
+		/** Cut away objects marked `cutaway` in the light view. */
+		cutaway?: boolean;
 		/** Sources for the wave view (see `packWaves`), and its brightness. */
 		waves?: PackedWaves;
 		waveExposure?: number;
+		/** Depth of the slice drawn by the field view, m, and how strongly its colours cover the image. */
+		fieldDepth?: number;
+		fieldOpacity?: number;
 		interactive?: boolean;
 		leftLabel?: string;
 		rightLabel?: string;
@@ -74,8 +92,11 @@
 		room = false,
 		outline = false,
 		subtractRoom = false,
+		cutaway = false,
 		waves,
 		waveExposure = 2.2,
+		fieldDepth = 3,
+		fieldOpacity = 0.5,
 		interactive = true,
 		leftLabel = 'Light',
 		rightLabel = 'Gravity · thermal',
@@ -88,13 +109,33 @@
 	const MAX_FOV = (100 * Math.PI) / 180;
 	const MAX_PITCH = Math.PI / 2 - 1e-3;
 
+	/** An icon for each kind of picture, shown on its label. */
+	const MODE_ICONS: Record<Mode, IconSvgElement> = {
+		[MODE_LIGHT]: Sun03Icon,
+		[MODE_THERMAL]: TemperatureIcon,
+		[MODE_NEAR]: Orbit01Icon,
+		[MODE_WAVES]: WavesIcon,
+		[MODE_FIELD]: Layers01Icon
+	};
+
 	let status: 'starting' | 'running' | 'unavailable' | 'failed' = $state('starting');
+
+	let capture: (() => Promise<Blob | null>) | undefined;
+
+	/** The picture as it is now, drawn again off screen, as a PNG. */
+	export function snapshot(): Promise<Blob | null> {
+		return capture ? capture() : Promise.resolve(null);
+	}
 	let message = $state('');
 
 	const nRef = $derived(referenceRadiance(objects, observer, subtractRoom));
 	const sRef = $derived(referenceTidal(objects, observer, exclusion, subtractRoom));
 	// where the divider sits once the on/off switches are taken into account
 	const split = $derived(showLight && showGravity ? divider : showLight ? 1 : 0);
+	// point masses standing in for the scene, to set the field view's brightness scale
+	const fieldPoints = $derived(
+		rightMode === MODE_FIELD ? massPoints(objects, 0.25, subtractRoom) : new Float64Array()
+	);
 
 	/**
 	 * `?present=readback` draws each frame off screen and copies the pixels to a
@@ -114,6 +155,20 @@
 		const started = performance.now();
 		const target = readback ? document.createElement('canvas') : canvas;
 		const ctx2d = readback ? canvas.getContext('2d') : null;
+		let last: { params: FrameParams; width: number; height: number } | undefined;
+
+		capture = async () => {
+			if (!engine || !last) return null;
+			const { params, width, height } = last;
+			const pixels = await engine.readFrame(params, width, height);
+			const still = document.createElement('canvas');
+			still.width = width;
+			still.height = height;
+			still
+				.getContext('2d')!
+				.putImageData(new ImageData(new Uint8ClampedArray(pixels), width, height), 0, 0);
+			return new Promise((done) => still.toBlob(done, 'image/png'));
+		};
 
 		const loop = async () => {
 			if (disposed || !engine) return;
@@ -130,8 +185,10 @@
 				nearBlur,
 				outline,
 				subtractRoom,
+				cutaway,
 				waves ? Array.from(new Float32Array(waves.buffer, 0, waves.count * 12)) : null,
 				waveExposure,
+				rightMode === MODE_FIELD ? [fieldDepth, fieldOpacity] : null,
 				leftMode,
 				rightMode,
 				sunDirection,
@@ -155,12 +212,30 @@
 				exclusion,
 				room,
 				nearOutline: outline,
-				waveExposure
+				waveExposure,
+				field:
+					rightMode === MODE_FIELD
+						? {
+								depth: fieldDepth,
+								// the shader leaves out G and divides densities by sRef
+								reference:
+									sliceReference(fieldPoints, observer, view, width / height, fieldDepth) /
+									(G * sRef),
+								opacity: fieldOpacity
+							}
+						: undefined
 			};
 			engine.setPrims(
-				packPrims(objects, observer, { nRef, sRef, glareAngle: 2.5 * pixelAngle, subtractRoom })
+				packPrims(objects, observer, {
+					nRef,
+					sRef,
+					glareAngle: 2.5 * pixelAngle,
+					subtractRoom,
+					cutaway
+				})
 			);
 			if (waves) engine.setWaves(waves);
+			last = { params, width, height };
 			if (ctx2d) {
 				busy = true;
 				const pixels = await engine.readFrame(params, width, height);
@@ -178,6 +253,7 @@
 			// lets tests wait for the frame drawn with a given setting, not an older one
 			canvas.dataset.nearBlur = String(params.nearBlur);
 			canvas.dataset.split = String(params.divider);
+			canvas.dataset.right = String(params.right);
 			canvas.dataset.waves = String(waves?.count ?? 0);
 			canvas.dataset.exposure = String(params.exposure);
 		};
@@ -278,10 +354,14 @@
 			</div>
 		{/if}
 		{#if showLight && split > 0.12}
-			<span class="tag left" style:right="calc({(1 - split) * 100}% + 14px)">{leftLabel}</span>
+			<span class="tag left" style:right="calc({(1 - split) * 100}% + 14px)">
+				<HugeiconsIcon icon={MODE_ICONS[leftMode]} size={13} strokeWidth={2} />{leftLabel}
+			</span>
 		{/if}
 		{#if showGravity && split < 0.88}
-			<span class="tag right" style:left="calc({split * 100}% + 14px)">{rightLabel}</span>
+			<span class="tag right" style:left="calc({split * 100}% + 14px)">
+				<HugeiconsIcon icon={MODE_ICONS[rightMode]} size={13} strokeWidth={2} />{rightLabel}
+			</span>
 		{/if}
 		{#if showLight && showGravity}
 			<div
@@ -360,6 +440,9 @@
 	.tag {
 		position: absolute;
 		top: 14px;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45em;
 		font: 500 0.72rem/1 var(--font-sans);
 		letter-spacing: 0.08em;
 		text-transform: uppercase;

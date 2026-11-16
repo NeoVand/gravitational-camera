@@ -23,6 +23,7 @@ struct Frame {
   sun: vec4f,       // unit vector toward the Sun; w unused
   near: vec4f,      // x: exclusion radius around the observer; y: number of wave sources; z: wave exposure
   counts: vec4u,    // number of prims, left mode, right mode, flags (1: room lighting, 2: outline of the light picture in the gravity views)
+  field: vec4f,     // field view: depth of the slice (m), typical tensor size there, opacity; w unused
 }
 
 const FLAG_FAR: u32 = 1u;

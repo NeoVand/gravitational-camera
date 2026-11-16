@@ -8,6 +8,7 @@ import { cameraBasis, type View } from './camera';
 import { MAX_PRIMS, PRIM_STRIDE, type PackedPrims } from './scene';
 import type { Vec3 } from './types';
 import blurWgsl from './wgsl/blur.wgsl?raw';
+import fieldWgsl from './wgsl/field.wgsl?raw';
 import frameWgsl from './wgsl/frame.wgsl?raw';
 import kernelsWgsl from './wgsl/kernels.wgsl?raw';
 import lightWgsl from './wgsl/light.wgsl?raw';
@@ -22,7 +23,13 @@ export const MODE_LIGHT = 0;
 export const MODE_THERMAL = 1;
 export const MODE_NEAR = 2;
 export const MODE_WAVES = 3;
-export type Mode = typeof MODE_LIGHT | typeof MODE_THERMAL | typeof MODE_NEAR | typeof MODE_WAVES;
+export const MODE_FIELD = 4;
+export type Mode =
+	| typeof MODE_LIGHT
+	| typeof MODE_THERMAL
+	| typeof MODE_NEAR
+	| typeof MODE_WAVES
+	| typeof MODE_FIELD;
 
 export interface FrameParams {
 	view: View;
@@ -49,11 +56,17 @@ export interface FrameParams {
 	nearOutline?: boolean;
 	/** Brightness multiplier for the wave view. */
 	waveExposure?: number;
+	/**
+	 * The field view's slice: its depth along the line of sight (m), the typical
+	 * size of the tidal tensor there (in packed units), and the opacity of the
+	 * colours over the near-field image.
+	 */
+	field?: { depth: number; reference: number; opacity: number };
 }
 
 export class EngineUnavailable extends Error {}
 
-const FRAME_BYTES = 128;
+const FRAME_BYTES = 144;
 const NEAR_FORMAT: GPUTextureFormat = 'rgba16float';
 
 async function compile(device: GPUDevice, label: string, parts: string[]) {
@@ -120,6 +133,7 @@ export class Engine {
 			thermalWgsl,
 			lightWgsl,
 			nearWgsl,
+			fieldWgsl,
 			wavesWgsl,
 			frameWgsl
 		]);
@@ -232,6 +246,7 @@ export class Engine {
 		f.set([...p.sunDirection, 0], 20);
 		f.set([p.exclusion ?? 0.25, this.waveCount, p.waveExposure ?? 1, 0], 24);
 		u.set([this.primCount, p.left, p.right, (p.room ? 1 : 0) | (p.nearOutline ? 2 : 0)], 28);
+		f.set([p.field?.depth ?? 0, p.field?.reference ?? 1, p.field?.opacity ?? 0, 0], 32);
 		return data;
 	}
 
@@ -293,7 +308,8 @@ export class Engine {
 	private draw(target: GPUTextureView, p: FrameParams, width: number, height: number): void {
 		const { device } = this;
 		const encoder = device.createCommandEncoder();
-		const wantsNear = p.left === MODE_NEAR || p.right === MODE_NEAR;
+		const usesNear = (m: Mode) => m === MODE_NEAR || m === MODE_FIELD;
+		const wantsNear = usesNear(p.left) || usesNear(p.right);
 
 		if (wantsNear) {
 			// The blur can span much of the picture, so it is done at reduced

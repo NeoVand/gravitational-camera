@@ -34,8 +34,11 @@ export default defineConfig(
 		}
 	},
 	{
-		// Override or add rule settings here, such as:
-		// 'svelte/button-has-type': 'error'
-		rules: {}
+		rules: {
+			// LaTeX passed to <Tex math={...}> is full of braces, which a plain
+			// attribute string would read as expressions, so string literals in
+			// mustaches are deliberate here.
+			'svelte/no-useless-mustaches': 'off'
+		}
 	}
 );

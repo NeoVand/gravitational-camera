@@ -174,3 +174,24 @@ export function packWaves(list: Rotor[], observer: Vec3, camera: WaveCamera): Pa
 	});
 	return { buffer, count: rows.length };
 }
+
+/**
+ * The scene at time t (s): every spinning sphere turned about its axis by
+ * 2π · rate · t. Everything else is unchanged.
+ */
+export function spunAt(objects: AnalyzedObject[], t: number): AnalyzedObject[] {
+	return objects.map((o) => {
+		if (!o.spin || o.spin.rate === 0) return o;
+		const k = unit(o.spin.axis);
+		const angle = 2 * Math.PI * o.spin.rate * t;
+		const v = sub(o.center, o.spin.center);
+		const c = Math.cos(angle);
+		const s = Math.sin(angle);
+		const kxv = cross(k, v);
+		const kv = dot(k, v);
+		const moved: Vec3 = [0, 1, 2].map(
+			(i) => o.spin!.center[i] + v[i] * c + kxv[i] * s + k[i] * kv * (1 - c)
+		) as Vec3;
+		return { ...o, center: moved };
+	});
+}

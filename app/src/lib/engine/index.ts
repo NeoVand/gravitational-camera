@@ -3,6 +3,7 @@ export {
 	EngineUnavailable,
 	MODE_LIGHT,
 	MODE_NEAR,
+	MODE_FIELD,
 	MODE_THERMAL,
 	MODE_WAVES
 } from './engine';
@@ -21,5 +22,14 @@ export {
 } from './scene';
 export type { AnalyzedObject, Scene, Vec3 } from './types';
 export { cutoff, nearFieldBlur, slicePointSpread, transfer } from './resolution';
-export { gravitonRate, packWaves, power, rotors, seenFrom, spotWidth, wavelength } from './waves';
+export {
+	gravitonRate,
+	packWaves,
+	power,
+	rotors,
+	seenFrom,
+	spotWidth,
+	spunAt,
+	wavelength
+} from './waves';
 export type { PackedWaves, Rotor, Seen, WaveCamera } from './waves';

@@ -8,7 +8,18 @@
 	 */
 	import type { Snippet } from 'svelte';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { ViewIcon } from '@hugeicons/core-free-icons';
+	import {
+		ContrastIcon,
+		DashedLineCircleIcon,
+		Image01Icon,
+		RabbitIcon,
+		Rotate01Icon,
+		SnailIcon,
+		Sun03Icon,
+		RulerIcon,
+		ViewIcon,
+		WavesIcon
+	} from '@hugeicons/core-free-icons';
 	import {
 		MODE_LIGHT,
 		MODE_WAVES,
@@ -19,6 +30,7 @@
 		rotors as findRotors,
 		seenFrom,
 		spotWidth,
+		spunAt,
 		wavelength,
 		type Scene,
 		type View
@@ -27,7 +39,12 @@
 	import DemoShell from './DemoShell.svelte';
 	import SplitView from './SplitView.svelte';
 	import WaveGlyphs from './WaveGlyphs.svelte';
-	import { length, sci, superscript } from './format';
+	import Group from './controls/Group.svelte';
+	import Segmented from './controls/Segmented.svelte';
+	import Slider from './controls/Slider.svelte';
+	import Toggle from './controls/Toggle.svelte';
+	import { length, sci, superscript, texLength, texSci } from './format';
+	import Tex from './Tex.svelte';
 
 	interface Props {
 		scene: Scene;
@@ -46,7 +63,7 @@
 		scene,
 		startDivider = 0.5,
 		look = { yaw: 0, pitch: -10 },
-		aperture = 1,
+		aperture: startAperture = 1,
 		slowSpeed = 0.2,
 		intro
 	}: Props = $props();
@@ -66,10 +83,32 @@
 	let outline = $state(true);
 	let showLight = $state(true);
 	let showGravity = $state(true);
+	let splitView: SplitView | undefined = $state();
+	// svelte-ignore state_referenced_locally
+	let logAperture = $state(Math.log10(startAperture));
+	const aperture = $derived(10 ** logAperture);
+	/** Cut the drums away in the light view, and let the balls turn. */
+	let inside = $state(false);
+	let time = $state(0);
 
-	const objects = $derived(analyzeScene(scene));
+	/** A clock for the turning balls, running while the drums are open. */
+	function clock() {
+		let frame = 0;
+		let last = performance.now();
+		const tick = (now: number) => {
+			if (inside) time += (now - last) / 1000;
+			last = now;
+			frame = requestAnimationFrame(tick);
+		};
+		frame = requestAnimationFrame(tick);
+		return () => cancelAnimationFrame(frame);
+	}
+
+	const still = $derived(analyzeScene(scene));
+	// the balls only need to move when they can be seen
+	const objects = $derived(inside ? spunAt(still, time) : still);
 	const observer = $derived(scene.observer.position);
-	const rotors = $derived(findRotors(objects));
+	const rotors = $derived(findRotors(still));
 	const trueSpeed = $derived(logSpeed >= LOG_C - 1e-9);
 	const speed = $derived(trueSpeed ? C : 10 ** logSpeed);
 
@@ -100,9 +139,16 @@
 	}
 </script>
 
-<DemoShell title={scene.title}>
+<DemoShell
+	title={scene.title}
+	onreset={() => (view = { ...START })}
+	onsave={() => splitView?.snapshot() ?? Promise.resolve(null)}
+>
 	{#snippet stage()}
+		<span class="clock" {@attach clock}></span>
 		<SplitView
+			bind:this={splitView}
+			cutaway={inside}
 			{objects}
 			{observer}
 			sunDirection={[0, 1, 0]}
@@ -136,51 +182,78 @@
 	{/snippet}
 
 	{#snippet controls()}
-		<div class="row">
-			<label for="speed">Speed of light</label>
-			<input id="speed" type="range" min="-1" max={LOG_C} step="0.01" bind:value={logSpeed} />
-			<output for="speed">
-				{trueSpeed ? 'true speed' : `slowed to ${speedText(speed)}`} · waves {length(lambda)}
-			</output>
-		</div>
-		<div class="row">
-			<label for="brightness">Exposure</label>
-			<input
-				id="brightness"
-				type="range"
-				min="-1.5"
-				max="1.5"
-				step="0.05"
-				bind:value={brightness}
+		<Group title="View">
+			<Segmented
+				label="What the gravity side shows"
+				options={[
+					{ value: 'image', label: 'Image', icon: Image01Icon },
+					{ value: 'pixels', label: 'What the pixels record', icon: Rotate01Icon }
+				]}
+				bind:value={display}
 			/>
-			<output for="brightness">× {(10 ** brightness).toFixed(brightness < 0 ? 2 : 1)}</output>
-		</div>
-		<div class="buttons">
-			<span class="segmented" role="group" aria-label="What the gravity side shows">
-				<button
-					type="button"
-					aria-pressed={display === 'image'}
-					onclick={() => (display = 'image')}
-				>
-					Image
+		</Group>
+		<Group title="Teaching mode">
+			<Slider
+				id="speed"
+				label="Speed of light"
+				icon={trueSpeed ? RabbitIcon : SnailIcon}
+				min={-1}
+				max={LOG_C}
+				step={0.01}
+				bind:value={logSpeed}
+				readout="{trueSpeed ? 'true' : speedText(speed)} · waves {length(lambda)}"
+				ends={['crawling', 'true speed']}
+			/>
+			<div class="actions">
+				<button type="button" class="action" onclick={() => (logSpeed = Math.log10(slowSpeed))}>
+					<HugeiconsIcon icon={SnailIcon} size={16} strokeWidth={1.7} /> Slow light
 				</button>
-				<button
-					type="button"
-					aria-pressed={display === 'pixels'}
-					onclick={() => (display = 'pixels')}
-				>
-					What the pixels record
+				<button type="button" class="action" onclick={() => (logSpeed = LOG_C)}>
+					<HugeiconsIcon icon={RabbitIcon} size={16} strokeWidth={1.7} /> True speed
 				</button>
-			</span>
-			<button type="button" onclick={() => (logSpeed = Math.log10(slowSpeed))}>Slow light</button>
-			<button type="button" onclick={() => (logSpeed = LOG_C)}>True speed</button>
-			<button type="button" onclick={() => (view = { ...START })}>
-				<HugeiconsIcon icon={ViewIcon} size={16} strokeWidth={1.8} /> Reset view
-			</button>
-			<label class="check"><input type="checkbox" bind:checked={outline} /> Outline</label>
-			<label class="check"><input type="checkbox" bind:checked={showLight} /> Light</label>
-			<label class="check"><input type="checkbox" bind:checked={showGravity} /> Gravity</label>
-		</div>
+			</div>
+		</Group>
+		<Group title="Camera">
+			<Slider
+				id="aperture"
+				label="Array width"
+				icon={RulerIcon}
+				min={-0.5}
+				max={1.5}
+				step={0.01}
+				bind:value={logAperture}
+				readout="{length(aperture)} · detail {inNearZone ? '—' : `${(spot / DEG).toFixed(1)}°`}"
+				ends={['30 cm', '30 m']}
+			/>
+			<Slider
+				id="brightness"
+				label="Exposure"
+				icon={ContrastIcon}
+				min={-1.5}
+				max={1.5}
+				step={0.05}
+				bind:value={brightness}
+				readout="× {(10 ** brightness).toFixed(brightness < 0 ? 2 : 1)}"
+			/>
+		</Group>
+		<Group title="Layers">
+			<div class="toggles">
+				<Toggle icon={Sun03Icon} label="Light" bind:checked={showLight} />
+				<Toggle icon={WavesIcon} label="Gravity" bind:checked={showGravity} />
+				<Toggle
+					icon={ViewIcon}
+					label="Inside"
+					hint="Cut the drums away in the light view, to watch the balls turn"
+					bind:checked={inside}
+				/>
+				<Toggle
+					icon={DashedLineCircleIcon}
+					label="Outline"
+					hint="A faint copy of the shapes in the light picture"
+					bind:checked={outline}
+				/>
+			</div>
+		</Group>
 	{/snippet}
 
 	{#snippet notes()}
@@ -193,11 +266,19 @@
 		<dl>
 			<div>
 				<dt>Wavelength · smallest detail with a {length(aperture)} array</dt>
-				<dd>{length(lambda)} · {inNearZone ? 'none' : `${(spot / DEG).toFixed(1)}°`}</dd>
+				<dd>
+					<Tex
+						math={`\\lambda = ${texLength(lambda)} \\quad \\Delta\\theta = ${inNearZone ? '\\text{none}' : `${(spot / DEG).toFixed(1)}^\\circ`}`}
+					/>
+				</dd>
 			</div>
 			<div>
 				<dt>Power radiated by one turning pair, at the true speed of light</dt>
-				<dd>{sci(powerTrue)} W: one graviton every {sci(yearsPerGraviton)} years</dd>
+				<dd>
+					<Tex
+						math={`P = ${texSci(powerTrue)}\\,\\mathrm{W}:\\ \\text{one graviton every } ${texSci(yearsPerGraviton)}\\ \\text{years}`}
+					/>
+				</dd>
 			</div>
 		</dl>
 		<p class="fine">
@@ -211,9 +292,62 @@
 			the pixels record” shows the pattern of stretching that passes over the camera from each drum.
 		</p>
 	{/snippet}
+	{#snippet physics()}
+		<h4>What a turning pair sends out</h4>
+		<p>
+			A pair of masses turning at angular speed <Tex math={'\\Omega'} /> has a changing mass quadrupole,
+			and radiates at <Tex math={'2\\Omega'} />. Seen at distance <Tex math="r" />, with its axis at
+			angle <Tex math={'\\iota'} /> to the line of sight, the two polarizations are
+		</p>
+		<Tex display math={'h_+ = A\\,\\frac{1+\\cos^2\\iota}{2}, \\qquad h_\\times = A\\cos\\iota,'} />
+		<Tex display math={'A = \\frac{4G\\,\\Delta I\\,\\Omega^2}{c^4 r},'} />
+		<p>
+			a quarter cycle apart, with <Tex math={'\\Delta I = md^2/2'} /> for two masses <Tex
+				math="m"
+			/>
+			a distance <Tex math="d" /> apart. The pattern of stretching therefore turns, and the share of the
+			signal that is circularly polarized,
+		</p>
+		<Tex display math={'\\frac{V}{I} = \\frac{2h_+h_\\times}{h_+^2 + h_\\times^2},'} />
+		<p>
+			is positive when it turns anticlockwise as the camera sees it. That sign is the colour of each
+			spot. It does not depend on the speed of light.
+		</p>
+		<h4>Why each rotor is a spot</h4>
+		<p>
+			The waves are <Tex math={'\\lambda = \\pi c/\\Omega'} /> long, and no camera resolves detail finer
+			than about the wavelength over its width <Tex math="D" />:
+		</p>
+		<Tex display math={'\\Delta\\theta \\approx 1.03\\,\\frac{\\lambda}{D} .'} />
+		<p>
+			This is diffraction, not noise: a more sensitive camera sees the spot better, but no smaller.
+			Only a wider array, or shorter waves, makes it sharper. Here <Tex
+				math={`\\lambda = ${texLength(lambda)}`}
+			/> and <Tex math={`D = ${texLength(aperture)}`} />{#if !inNearZone}, so <Tex
+					math={`\\Delta\\theta = ${(spot / DEG).toFixed(1)}^\\circ`}
+				/>{/if}.
+		</p>
+		<h4>Why the light is slowed</h4>
+		<p>The power radiated is</p>
+		<Tex display math={'P = \\frac{32}{5}\\,\\frac{G\\,\\Delta I^2\\,\\Omega^6}{c^5} .'} />
+		<p>
+			At the true speed of light that is <Tex math={`${texSci(powerTrue)}\\,\\mathrm{W}`} /> per pair,
+			one graviton every <Tex math={`${texSci(yearsPerGraviton)}`} /> years, and the waves are
+			<Tex math={texLength(trueLambda)} /> long: the room is deep inside their near zone. Slowing light
+			to <Tex math={`${slowSpeed}\\,\\mathrm{m/s}`} /> makes them <Tex
+				math={texLength(slowLambda)}
+			/> long and
+			<Tex math={`10^{${Math.round(5 * Math.log10(C / slowSpeed))}}`} /> times stronger, so that the camera
+			can show them. It is a teaching device and is labelled wherever it is on.
+		</p>
+	{/snippet}
 </DemoShell>
 
 <style>
+	.clock {
+		display: none;
+	}
+
 	.notice {
 		position: absolute;
 		top: 50%;

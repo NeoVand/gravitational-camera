@@ -140,7 +140,8 @@
         "center": [0.0, 2.555, -4.5],
         "size": [0.9, 0.95, 0.7]
       },
-      "material": "steel"
+      "material": "steel",
+      "cutaway": true
     },
     {
       "id": "drum-top-inside",
@@ -150,7 +151,8 @@
         "center": [0.0, 2.555, -4.5],
         "size": [0.86, 0.91, 0.66]
       },
-      "material": "air"
+      "material": "air",
+      "cutaway": true
     },
     {
       "id": "drum-top-ball-a",
@@ -189,7 +191,8 @@
         "center": [0.0, 1.515, -4.5],
         "size": [0.9, 0.95, 0.7]
       },
-      "material": "steel"
+      "material": "steel",
+      "cutaway": true
     },
     {
       "id": "drum-middle-inside",
@@ -199,7 +202,8 @@
         "center": [0.0, 1.515, -4.5],
         "size": [0.86, 0.91, 0.66]
       },
-      "material": "air"
+      "material": "air",
+      "cutaway": true
     },
     {
       "id": "drum-middle-ball-a",
@@ -238,7 +242,8 @@
         "center": [0.0, 0.475, -4.5],
         "size": [0.9, 0.95, 0.7]
       },
-      "material": "steel"
+      "material": "steel",
+      "cutaway": true
     },
     {
       "id": "drum-bottom-inside",
@@ -248,7 +253,8 @@
         "center": [0.0, 0.475, -4.5],
         "size": [0.86, 0.91, 0.66]
       },
-      "material": "air"
+      "material": "air",
+      "cutaway": true
     },
     {
       "id": "drum-bottom-ball-a",

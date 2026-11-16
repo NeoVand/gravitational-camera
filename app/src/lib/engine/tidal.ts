@@ -6,6 +6,7 @@
  * outside it), a box by a grid of cells no larger than `cell`. Nested objects
  * contribute their density contrast with the parent.
  */
+import { cameraBasis, type View } from './camera';
 import { G } from './physics/constants';
 import type { AnalyzedObject, Vec3 } from './types';
 
@@ -78,4 +79,42 @@ export function contract(e: number[], u: Vec3, v: Vec3): number {
 		e[2] * (u[0] * v[2] + u[2] * v[0]) +
 		e[4] * (u[1] * v[2] + u[2] * v[1])
 	);
+}
+
+/** Size of the traceless part of a tensor [xx, xy, xz, yy, yz, zz]: sqrt(sum of squares / 2). */
+export function anisotropy(e: number[]): number {
+	const t = (e[0] + e[3] + e[5]) / 3;
+	const a = e[0] - t;
+	const b = e[3] - t;
+	const c = e[5] - t;
+	return Math.sqrt(0.5 * (a * a + b * b + c * c + 2 * (e[1] ** 2 + e[2] ** 2 + e[4] ** 2)));
+}
+
+/**
+ * The typical size of the tidal field on a slice across the view at `depth`
+ * metres: the median over a 7 x 5 grid of points spanning the picture, in s⁻².
+ * The field view draws strengths relative to it.
+ */
+export function sliceReference(
+	points: Float64Array,
+	observer: Vec3,
+	view: View,
+	aspect: number,
+	depth: number
+): number {
+	const { right, up, forward } = cameraBasis(view);
+	const t = Math.tan(view.fov / 2);
+	const sizes: number[] = [];
+	for (let j = 0; j < 5; j++) {
+		for (let i = 0; i < 7; i++) {
+			const sx = ((i / 6) * 2 - 1) * t * aspect;
+			const sy = ((j / 4) * 2 - 1) * t;
+			const at: Vec3 = [0, 1, 2].map(
+				(k) => observer[k] + depth * (forward[k] + sx * right[k] + sy * up[k])
+			) as Vec3;
+			sizes.push(anisotropy(tidalTensor(points, at)));
+		}
+	}
+	sizes.sort((a, b) => a - b);
+	return Math.max(sizes[Math.floor(sizes.length / 2)], 1e-300);
 }

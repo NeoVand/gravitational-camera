@@ -155,15 +155,32 @@ test('near-field demo: gold shows through steel, and blurs away at low sensitivi
 	expect(sharp.peak, JSON.stringify({ sharp, blurred })).toBeGreaterThan(blurred.peak + 60);
 });
 
-test('near-field demo can show what the pixels record', async ({ page }) => {
+test('near-field demo can show the tidal field as a coloured slice', async ({ page }) => {
 	await page.goto('/demo/full-or-empty/?present=readback');
+	const canvas = page.locator('canvas');
 	await expect
-		.poll(async () => Number(await page.locator('canvas').getAttribute('data-frames')), {
-			timeout: 60_000
-		})
+		.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
 		.toBeGreaterThan(0);
-	await page.getByRole('button', { name: 'Raw pixels' }).click();
-	await expect(page.locator('.field ellipse')).toHaveCount(77);
+	await page.getByLabel('Light', { exact: true }).uncheck();
+	await page.getByRole('button', { name: 'Tidal field' }).click();
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · tidal field');
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 30_000 }).toBe('4');
+	await expect.poll(() => canvas.getAttribute('data-split'), { timeout: 30_000 }).toBe('0');
+	// diffusion-tensor colours: much of the picture is clearly coloured, not grey
+	const coloured = await page.evaluate(() => {
+		const c = document.querySelector('canvas')!;
+		const d = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
+		let n = 0;
+		let total = 0;
+		for (let i = 0; i < d.length; i += 4 * 53) {
+			const hi = Math.max(d[i], d[i + 1], d[i + 2]);
+			const lo = Math.min(d[i], d[i + 1], d[i + 2]);
+			total++;
+			if (hi - lo > 40) n++;
+		}
+		return n / total;
+	});
+	expect(coloured).toBeGreaterThan(0.3);
 });
 
 // --- the room demos: sample the picture where the camera says an object is ---

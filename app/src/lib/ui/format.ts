@@ -21,3 +21,17 @@ export function length(m: number): string {
 	if (m < 1e4) return `${Math.round(m)} m`;
 	return `${Math.round(m / 1e3).toLocaleString('en-US')} km`;
 }
+
+/** A number as LaTeX, "1.2 \times 10^{5}" (plain below a thousand). */
+export function texSci(x: number, digits = 1): string {
+	if (x === 0) return '0';
+	const e = Math.floor(Math.log10(Math.abs(x)));
+	if (e >= -2 && e < 3) return x.toFixed(Math.max(0, digits - e));
+	return `${(x / 10 ** e).toFixed(digits)} \\times 10^{${e}}`;
+}
+
+/** A length as LaTeX with its unit, as `length` chooses it. */
+export function texLength(m: number): string {
+	const [value, unit] = length(m).split(' ');
+	return `${value.replace(/,/g, '{,}')}\\,\\mathrm{${unit}}`;
+}

@@ -51,7 +51,8 @@ export function analyzeScene(scene: Scene): AnalyzedObject[] {
 			color: temperatureColor(m.temperature),
 			light: m.light,
 			background: o.background === true,
-			spin: o.spin
+			spin: o.spin,
+			cutaway: o.cutaway === true
 		};
 	});
 }
@@ -218,6 +219,8 @@ export interface PackScales {
 	glareAngle: number;
 	/** Leave background objects out of the gravity views (they still show in light). */
 	subtractRoom?: boolean;
+	/** Cut away the objects marked `cutaway` in the light view, showing what they hold. */
+	cutaway?: boolean;
 }
 
 /**
@@ -232,7 +235,14 @@ export function packPrims(
 	scales: PackScales
 ): PackedPrims {
 	if (objects.length > MAX_PRIMS) throw new Error(`Too many objects (${objects.length})`);
-	const { nRef, sRef, glareAngle, subtractRoom = false } = scales;
+	const { nRef, sRef, glareAngle, subtractRoom = false, cutaway = false } = scales;
+	/** Whether the light view draws an object: a root, or, cut away, the first not cut away. */
+	const surface = (o: AnalyzedObject): boolean => {
+		if (!cutaway) return o.parent < 0;
+		if (o.cutaway) return false;
+		for (let a = o.parent; a >= 0; a = objects[a].parent) if (!objects[a].cutaway) return false;
+		return true;
+	};
 	const buffer = new ArrayBuffer(PRIM_STRIDE * MAX_PRIMS);
 	const f = new Float32Array(buffer);
 	const u = new Uint32Array(buffer);
@@ -252,7 +262,7 @@ export function packPrims(
 
 		let flags = 0;
 		if (d2 > 16 * r2) flags |= FLAG_FAR;
-		if (!p) flags |= FLAG_SURFACE;
+		if (surface(o)) flags |= FLAG_SURFACE;
 		if (o.light?.emissive) flags |= FLAG_EMISSIVE;
 		if (o.light?.finish === 'mirror') flags |= FLAG_MIRROR;
 		if (o.light?.finish === 'screen') flags |= FLAG_SCREEN;
