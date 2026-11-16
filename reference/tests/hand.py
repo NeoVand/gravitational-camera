@@ -40,6 +40,40 @@ def center_of(raw_scene, object_id):
     return [float(v) for v in _object(raw_scene, object_id)["shape"]["center"]]
 
 
+def size_of(raw_scene, object_id):
+    return [float(v) for v in _object(raw_scene, object_id)["shape"]["size"]]
+
+
+def is_box(raw_scene, object_id):
+    return _object(raw_scene, object_id)["shape"]["type"] == "box"
+
+
+def faces_of(raw_scene, object_id):
+    """(low corner, high corner) of a box, as centre -+ size / 2."""
+    center, size = center_of(raw_scene, object_id), size_of(raw_scene, object_id)
+    return [c - s / 2 for c, s in zip(center, size)], [c + s / 2 for c, s in zip(center, size)]
+
+
+def shape_volume(raw_scene, object_id):
+    if is_box(raw_scene, object_id):
+        sx, sy, sz = size_of(raw_scene, object_id)
+        return sx * sy * sz
+    return ball_volume(radius_of(raw_scene, object_id))
+
+
+def children_of(raw_scene, object_id):
+    return [o["id"] for o in raw_scene["objects"] if o.get("parent") == object_id]
+
+
+def own_volume(raw_scene, object_id):
+    """Volume of the shape minus the volumes of its children's shapes."""
+    return shape_volume(raw_scene, object_id) - sum(shape_volume(raw_scene, c) for c in children_of(raw_scene, object_id))
+
+
+def density_of(raw_scene, object_id):
+    return float(material_of(raw_scene, object_id)["density"])
+
+
 def material_of(raw_scene, object_id):
     return raw_scene["materials"][_object(raw_scene, object_id)["material"]]
 

@@ -141,7 +141,7 @@ def broken(change):
     (lambda d: d["objects"][1]["shape"].update(radius=3), "entirely inside"),
     (lambda d: d["objects"].append(dict(d["objects"][1])), "duplicate object id"),
     (lambda d: d["objects"][0].update(parent="pit"), "cycle"),
-    (lambda d: d["objects"][1]["shape"].update(type="box"), "unsupported shape"),
+    (lambda d: d["objects"][1]["shape"].update(type="capsule"), "unsupported shape"),
     (lambda d: d["objects"][1]["shape"].update(radius=-1), "radius must be positive"),
     (lambda d: d["objects"].append({"id": "pit2", "parent": "ball", "material": "iron",
                                     "shape": {"type": "sphere", "center": [0, 0, 0], "radius": 0.9}}), "overlap"),

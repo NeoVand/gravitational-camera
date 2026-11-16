@@ -1,19 +1,30 @@
 """Scene loading: materials, the parent/child tree and own-region volumes.
 
-Implements the scene format v0 of ``scenes/README.md``. Only spheres exist so
-far. An object's *own region* is its shape minus its children; a point belongs
-to the innermost (deepest in the tree) object whose shape contains it.
+Implements the scene format of ``scenes/README.md``, v0 with the additions of
+v1: shapes are spheres or axis-aligned boxes, in any mixture and nesting. An
+object's *own region* is its shape minus its children; a point belongs to the
+innermost (deepest in the tree) object whose shape contains it.
 
 Choices where the contract is silent (all raise :class:`SceneError` rather
 than guess):
 
 * a child must lie entirely inside its parent (the contract says it does);
 * objects with the same parent (and root objects among themselves) must not
-  overlap, so that "innermost object containing a point" is unique;
-* ``density`` and ``temperature`` are required for every material.
+  overlap, so that "innermost object containing a point" is unique. They may
+  touch: a safe stands on the floor, a spherical tank touches it at a point;
+* ``density`` and ``temperature`` are required for every material;
+* ``observer.exclusion`` must be positive (the tidal column diverges
+  logarithmically at the observer if it sits in matter) and ``environment``
+  must be one of the two values the contract names.
 
-Points exactly on a surface count as inside (``distance <= radius``); surfaces
-have zero measure, so no integral depends on this.
+"Inside" and "overlap" for mixed shapes are the exact geometric statements:
+a box is inside a sphere if its farthest corner is, a sphere is inside a box
+if it fits between each pair of faces, and a sphere overlaps a box if the
+point of the box nearest to its centre is closer than its radius.
+
+Points exactly on a surface count as inside (``distance <= radius``, and
+``low <= coordinate <= high`` for a box); surfaces have zero measure, so no
+integral depends on this.
 """
 from __future__ import annotations
 
@@ -24,9 +35,12 @@ from pathlib import Path
 
 import numpy as np
 
-# Relative slack for the containment / overlap checks, so that spheres that
+# Relative slack for the containment / overlap checks, so that shapes that
 # touch within rounding are accepted.
 _GEOMETRY_RTOL = 1e-12
+
+DEFAULT_EXCLUSION = 0.25                  # m, observer.exclusion when the scene gives none
+ENVIRONMENTS = ("night-sky", "room")      # the first is the default
 
 
 class SceneError(ValueError):
@@ -55,9 +69,37 @@ class Sphere:
 
 
 @dataclass(frozen=True)
+class Box:
+    """Axis-aligned box. ``low`` and ``high`` are its two extreme corners."""
+    center: tuple[float, float, float]   # m
+    size: tuple[float, float, float]     # m, full edge lengths along x, y, z
+
+    @property
+    def half_size(self) -> tuple[float, float, float]:
+        return (0.5 * self.size[0], 0.5 * self.size[1], 0.5 * self.size[2])
+
+    @property
+    def low(self) -> tuple[float, float, float]:
+        h = self.half_size
+        return (self.center[0] - h[0], self.center[1] - h[1], self.center[2] - h[2])
+
+    @property
+    def high(self) -> tuple[float, float, float]:
+        h = self.half_size
+        return (self.center[0] + h[0], self.center[1] + h[1], self.center[2] + h[2])
+
+    @property
+    def volume(self) -> float:
+        return self.size[0] * self.size[1] * self.size[2]
+
+
+Shape = Sphere | Box
+
+
+@dataclass(frozen=True)
 class SceneObject:
     id: str
-    shape: Sphere
+    shape: Shape
     material: Material
     parent: str | None
     children: tuple[str, ...]
@@ -68,17 +110,29 @@ class SceneObject:
 class Scene:
     """A loaded scene. Objects keep the order of the scene file."""
 
-    def __init__(self, name, observer, objects, materials, source=None):
+    def __init__(self, name, observer, objects, materials, source=None,
+                 exclusion=DEFAULT_EXCLUSION, environment=ENVIRONMENTS[0]):
         self.name = name
         self.observer = np.asarray(observer, dtype=np.float64)
+        self.exclusion = float(exclusion)       # m, radius ignored by the near-field image
+        self.environment = environment          # only affects the ordinary-light view
         self.objects: tuple[SceneObject, ...] = tuple(objects)
         self.materials: dict[str, Material] = dict(materials)
         self.source = source
         self.ids: tuple[str, ...] = tuple(o.id for o in self.objects)
         self._index = {o.id: k for k, o in enumerate(self.objects)}
-        # Arrays in object order, for the vectorised routines.
+        # Arrays in object order, for the vectorised routines. ``radii`` is
+        # NaN for a box; ``lows`` and ``highs`` (the extreme corners) are NaN
+        # for a sphere.
+        nan3 = (math.nan, math.nan, math.nan)
+        self.is_box = np.array([isinstance(o.shape, Box) for o in self.objects], dtype=bool)
         self.centers = np.array([o.shape.center for o in self.objects], dtype=np.float64).reshape(-1, 3)
-        self.radii = np.array([o.shape.radius for o in self.objects], dtype=np.float64)
+        self.radii = np.array([math.nan if isinstance(o.shape, Box) else o.shape.radius
+                               for o in self.objects], dtype=np.float64)
+        self.lows = np.array([o.shape.low if isinstance(o.shape, Box) else nan3
+                              for o in self.objects], dtype=np.float64).reshape(-1, 3)
+        self.highs = np.array([o.shape.high if isinstance(o.shape, Box) else nan3
+                               for o in self.objects], dtype=np.float64).reshape(-1, 3)
         self.depths = np.array([o.depth for o in self.objects], dtype=np.int64)
         self.densities = np.array([o.material.density for o in self.objects], dtype=np.float64)
         self.temperatures = np.array([o.material.temperature for o in self.objects], dtype=np.float64)
@@ -122,9 +176,15 @@ class Scene:
         best = np.full(flat.shape[0], -1, dtype=np.int64)
         best_depth = np.full(flat.shape[0], -1, dtype=np.int64)
         for k in range(len(self.objects)):
-            offset = flat - self.centers[k]
-            distance2 = offset[:, 0] * offset[:, 0] + offset[:, 1] * offset[:, 1] + offset[:, 2] * offset[:, 2]
-            inside = distance2 <= self.radii[k] * self.radii[k]
+            if self.is_box[k]:
+                low, high = self.lows[k], self.highs[k]
+                inside = ((flat[:, 0] >= low[0]) & (flat[:, 0] <= high[0])
+                          & (flat[:, 1] >= low[1]) & (flat[:, 1] <= high[1])
+                          & (flat[:, 2] >= low[2]) & (flat[:, 2] <= high[2]))
+            else:
+                offset = flat - self.centers[k]
+                distance2 = offset[:, 0] * offset[:, 0] + offset[:, 1] * offset[:, 1] + offset[:, 2] * offset[:, 2]
+                inside = distance2 <= self.radii[k] * self.radii[k]
             deeper = inside & (self.depths[k] > best_depth)
             best[deeper] = k
             best_depth[deeper] = self.depths[k]
@@ -176,11 +236,19 @@ def _material(name: str, spec: dict) -> Material:
     return material
 
 
-def _shape(object_id: str, spec) -> Sphere:
+def _shape(object_id: str, spec) -> Shape:
     if not isinstance(spec, dict) or "type" not in spec:
         raise SceneError(f"object {object_id!r} needs a shape with a type")
+    if spec["type"] == "box":
+        if "center" not in spec or "size" not in spec:
+            raise SceneError(f"object {object_id!r}: a box needs 'center' and 'size'")
+        size = _vector(spec["size"], f"object {object_id!r} size")
+        if not all(edge > 0 for edge in size):
+            raise SceneError(f"object {object_id!r}: every box size must be positive, got {list(size)!r}")
+        return Box(center=_vector(spec["center"], f"object {object_id!r} center"), size=size)
     if spec["type"] != "sphere":
-        raise SceneError(f"object {object_id!r}: unsupported shape type {spec['type']!r} (only 'sphere' in v0)")
+        raise SceneError(f"object {object_id!r}: unsupported shape type {spec['type']!r} "
+                         "(only 'sphere' and 'box' in v1)")
     if "center" not in spec or "radius" not in spec:
         raise SceneError(f"object {object_id!r}: a sphere needs 'center' and 'radius'")
     radius = _number(spec["radius"], f"object {object_id!r} radius")
@@ -189,12 +257,67 @@ def _shape(object_id: str, spec) -> Sphere:
     return Sphere(center=_vector(spec["center"], f"object {object_id!r} center"), radius=radius)
 
 
+def _slack(*shapes: Shape) -> float:
+    """Absolute slack (m) for comparing box faces: the relative tolerance
+    times the largest coordinate or extent involved."""
+    scale = 0.0
+    for shape in shapes:
+        extent = shape.size if isinstance(shape, Box) else (shape.radius,) * 3
+        scale = max(scale, *(abs(c) for c in shape.center), *extent)
+    return _GEOMETRY_RTOL * scale
+
+
+def _farthest_corner_distance(box: Box, point) -> float:
+    return math.sqrt(sum(max(abs(lo - p), abs(hi - p)) ** 2 for lo, hi, p in zip(box.low, box.high, point)))
+
+
+def _distance_to_box(box: Box, point) -> float:
+    """Distance from ``point`` to the nearest point of the box (0 inside)."""
+    return math.sqrt(sum(max(lo - p, 0.0, p - hi) ** 2 for lo, hi, p in zip(box.low, box.high, point)))
+
+
+def shape_inside(child: Shape, outer: Shape) -> bool:
+    """Whether ``child`` lies entirely inside ``outer`` (touching allowed)."""
+    if isinstance(outer, Sphere):
+        if isinstance(child, Sphere):
+            return math.dist(child.center, outer.center) + child.radius <= outer.radius * (1 + _GEOMETRY_RTOL)
+        return _farthest_corner_distance(child, outer.center) <= outer.radius * (1 + _GEOMETRY_RTOL)
+    slack = _slack(child, outer)
+    if isinstance(child, Sphere):
+        low = tuple(c - child.radius for c in child.center)
+        high = tuple(c + child.radius for c in child.center)
+    else:
+        low, high = child.low, child.high
+    return all(lo >= outer_lo - slack and hi <= outer_hi + slack
+               for lo, hi, outer_lo, outer_hi in zip(low, high, outer.low, outer.high))
+
+
+def shapes_overlap(a: Shape, b: Shape) -> bool:
+    """Whether the interiors of ``a`` and ``b`` intersect (touching does not count)."""
+    if isinstance(a, Sphere) and isinstance(b, Sphere):
+        return math.dist(a.center, b.center) < (a.radius + b.radius) * (1 - _GEOMETRY_RTOL)
+    if isinstance(a, Box) and isinstance(b, Box):
+        slack = _slack(a, b)
+        return all(min(a_hi, b_hi) - max(a_lo, b_lo) > slack
+                   for a_lo, a_hi, b_lo, b_hi in zip(a.low, a.high, b.low, b.high))
+    sphere, box = (a, b) if isinstance(a, Sphere) else (b, a)
+    return _distance_to_box(box, sphere.center) < sphere.radius * (1 - _GEOMETRY_RTOL)
+
+
 def scene_from_dict(data: dict, source=None) -> Scene:
     """Build a :class:`Scene` from parsed scene JSON, validating the contract."""
     try:
         observer = _vector(data["observer"]["position"], "observer.position")
     except (KeyError, TypeError):
         raise SceneError("scene has no observer.position") from None
+    exclusion = DEFAULT_EXCLUSION
+    if data["observer"].get("exclusion") is not None:
+        exclusion = _number(data["observer"]["exclusion"], "observer.exclusion")
+        if not exclusion > 0:
+            raise SceneError(f"observer.exclusion must be positive, got {exclusion!r}")
+    environment = data.get("environment", ENVIRONMENTS[0])
+    if environment not in ENVIRONMENTS:
+        raise SceneError(f"environment must be one of {list(ENVIRONMENTS)!r}, got {environment!r}")
     if not isinstance(data.get("materials"), dict):
         raise SceneError("scene has no materials")
     if not isinstance(data.get("objects"), list):
@@ -202,7 +325,7 @@ def scene_from_dict(data: dict, source=None) -> Scene:
 
     materials = {name: _material(name, spec) for name, spec in data["materials"].items()}
 
-    shapes: dict[str, Sphere] = {}
+    shapes: dict[str, Shape] = {}
     parents: dict[str, str | None] = {}
     object_materials: dict[str, Material] = {}
     for spec in data["objects"]:
@@ -240,8 +363,7 @@ def scene_from_dict(data: dict, source=None) -> Scene:
     for object_id, parent in parents.items():
         if parent is None:
             continue
-        child, outer = shapes[object_id], shapes[parent]
-        if math.dist(child.center, outer.center) + child.radius > outer.radius * (1 + _GEOMETRY_RTOL):
+        if not shape_inside(shapes[object_id], shapes[parent]):
             raise SceneError(f"object {object_id!r} does not lie entirely inside its parent {parent!r}")
 
     siblings: dict[str | None, list[str]] = {}
@@ -250,8 +372,7 @@ def scene_from_dict(data: dict, source=None) -> Scene:
     for parent, group in siblings.items():
         for i, a in enumerate(group):
             for b in group[i + 1:]:
-                gap = math.dist(shapes[a].center, shapes[b].center)
-                if gap < (shapes[a].radius + shapes[b].radius) * (1 - _GEOMETRY_RTOL):
+                if shapes_overlap(shapes[a], shapes[b]):
                     where = "root objects" if parent is None else f"children of {parent!r}"
                     raise SceneError(f"{where} {a!r} and {b!r} overlap; the contract does not say which wins")
 
@@ -267,7 +388,8 @@ def scene_from_dict(data: dict, source=None) -> Scene:
             depth=depths[object_id],
             own_volume=own_volume,
         ))
-    return Scene(name=data.get("name", ""), observer=observer, objects=objects, materials=materials, source=source)
+    return Scene(name=data.get("name", ""), observer=observer, objects=objects, materials=materials, source=source,
+                 exclusion=exclusion, environment=environment)
 
 
 def load_scene(path) -> Scene:
