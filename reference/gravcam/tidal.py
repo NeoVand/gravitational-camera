@@ -36,11 +36,16 @@ def _offset(point, center):
     return x, np.sqrt(np.einsum("...c,...c->...", x, x))
 
 
+def _outer(n):
+    # n_i n_j with the product taken first, so the result is exactly symmetric
+    return n[..., :, None] * n[..., None, :]
+
+
 def point_mass_tidal_tensor(point, center, mass: float) -> np.ndarray:
     """(G M / r^3) (delta_ij - 3 n_i n_j) at ``point``; shape (..., 3, 3)."""
     x, r = _offset(point, center)
     n = x / r[..., None]
-    return (G * mass / r**3)[..., None, None] * (_IDENTITY - 3.0 * n[..., :, None] * n[..., None, :])
+    return (G * mass / r**3)[..., None, None] * (_IDENTITY - 3.0 * _outer(n))
 
 
 def uniform_sphere_tidal_tensor(point, center, radius: float, mass: float) -> np.ndarray:
@@ -49,7 +54,7 @@ def uniform_sphere_tidal_tensor(point, center, radius: float, mass: float) -> np
     outside = r >= radius
     safe_r = np.where(outside, r, 1.0)      # avoids 0/0 at the centre; unused inside
     n = x / safe_r[..., None]
-    exterior = (G * mass / safe_r**3)[..., None, None] * (_IDENTITY - 3.0 * n[..., :, None] * n[..., None, :])
+    exterior = (G * mass / safe_r**3)[..., None, None] * (_IDENTITY - 3.0 * _outer(n))
     interior = (G * mass / radius**3) * _IDENTITY
     return np.where(outside[..., None, None], exterior, interior)
 

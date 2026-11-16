@@ -23,6 +23,11 @@
 	let decades = $state(0);
 	let infoOpen = $state(true);
 
+	// On a phone the notes would cover the picture, so start with them closed.
+	$effect(() => {
+		if (window.matchMedia('(max-width: 640px)').matches) infoOpen = false;
+	});
+
 	const observer = scene.observer.position;
 	const objects = $derived(objectsAt(hours));
 	const sun = $derived(sunDirection(hours));
@@ -143,6 +148,7 @@
 				single gravitons. Colour stands for source temperature. Earth's internal friction is an
 				assumed placeholder. Drag to look around, scroll to zoom.
 			</p>
+			<button type="button" class="close" onclick={() => (infoOpen = false)}>Close</button>
 		</aside>
 	{/if}
 </main>
@@ -301,22 +307,55 @@
 		margin: 0;
 	}
 
+	.close {
+		display: none;
+	}
+
 	@media (max-width: 640px) {
+		main {
+			grid-template-rows: auto 1fr auto;
+		}
+
+		header {
+			position: static;
+			grid-row: 1;
+			padding: 0.6rem var(--gutter) 0.7rem;
+			background: var(--bg-raised);
+		}
+
+		h1 {
+			margin-top: 0.15rem;
+			font-size: 1.35rem;
+			text-shadow: none;
+		}
+
+		.stage {
+			grid-row: 2;
+		}
+
+		.panel {
+			grid-row: 3;
+		}
+
 		.row {
 			grid-template-columns: 1fr;
 			gap: 0.2rem;
 		}
 
 		.notes {
-			bottom: 11.5rem;
-			right: var(--gutter);
+			position: fixed;
+			inset: auto 0 0 0;
 			width: auto;
-			max-height: 40%;
+			max-height: 70svh;
 			overflow: auto;
+			border-radius: 14px 14px 0 0;
+			background: rgb(10 13 18 / 0.96);
+			z-index: 5;
 		}
 
-		h1 {
-			margin-top: 0.3rem;
+		.close {
+			display: inline-block;
+			margin-top: 0.9rem;
 		}
 	}
 </style>

@@ -154,6 +154,28 @@
 		pointer-events: none;
 	}
 
+	/* On a phone the words would sit across the divider, so stack them below. */
+	@media (max-width: 720px) {
+		.hero {
+			display: block;
+			min-height: 0;
+		}
+
+		.picture {
+			position: relative;
+			height: 58svh;
+		}
+
+		.words {
+			padding-block: 2rem 1.2rem;
+		}
+
+		.caption {
+			position: static;
+			margin: 0 var(--gutter) 2rem;
+		}
+	}
+
 	footer {
 		display: flex;
 		flex-wrap: wrap;
