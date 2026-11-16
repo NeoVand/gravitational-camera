@@ -1,0 +1,10 @@
+{
+  "name": "gravitational-camera-figures3d",
+  "private": true,
+  "type": "module",
+  "description": "Figures modelled in 3D with three.js and rendered to SVG (vector) in a headless browser.",
+  "dependencies": {
+    "three": "0.170.0",
+    "mathjax-full": "3.2.2"
+  }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+  window.MathJax = {
+    tex: { packages: { '[+]': ['textmacros'] } },
+    svg: { fontCache: 'none' },
+    startup: { typeset: false }
+  };
+</script>
+<script src="/figures3d/node_modules/mathjax-full/es5/tex-svg-full.js"></script>
+<script type="importmap">
+{ "imports": { "three": "/figures3d/node_modules/three/build/three.module.js", "three/addons/": "/figures3d/node_modules/three/examples/jsm/" } }
+</script>
+<style>html, body { margin: 0; background: transparent; }</style>
+</head>
+<body>
+<script type="module">
+  const params = new URLSearchParams(location.search);
+  const name = params.get('fig');
+  window.figureReady = (async () => {
+    await window.MathJax.startup.promise;
+    const mod = await import(`/figures3d/figs/${name}.js`);
+    return await mod.default();
+  })();
+</script>
+</body>
+</html>

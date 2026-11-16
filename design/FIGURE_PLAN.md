@@ -61,7 +61,26 @@ Status: "fixed" means Neo's requested changes are in; none has been explicitly a
   waves, h+ and hx. The workflow asks for one mapping tied to the paper's central contrast, the same in every figure.
   To be decided with Neo from candidates, not in words.
 
-## Style: engraving (Neo, 16 Nov 2026)
+## Style: modelled in 3D, drawn as vector (16 Nov 2026)
+
+Neo, on the engraved figures drawn by code: "The cross-hatching doesn't work. I think if you did 3D modeling with
+3.js, you would have a better chance at making really nice ones." And: "we're not going to put raster images, or at
+least we're going to try to avoid it ... Figures should not have a background, and they should work very well on a
+white background in particular. In some cases, they should be theme-aware for the website as well."
+
+So the conceptual figures are modelled in 3D (figures3d/, three.js for the geometry) and drawn as SVG by a small
+renderer of our own (figures3d/lib.js): every primitive projected by an orthographic camera and ordered by depth, with
+explicit layers where something must lie on top; spheres as circles with radial gradients computed from the lights;
+curves as single paths (so dashes run on); meshes as triangles shaded from the same lights, merged by colour; a
+translucent body drawn opaque inside a group that is faded once. Labels are TeX set by MathJax as paths. The PDF is
+the same SVG printed by Chromium. Charts stay in matplotlib (paper/figures/charts.py) and are placed into the figure.
+
+    cd figures3d && npm install && node render.mjs tidal sky-integral quadrupole line-integral earth-glow
+
+writes paper/figures/staging/ for review; --final writes over the paper's figures. Ink colours are the site's
+theme colours (mapped to its variables); shaded bodies keep their own colours on either theme.
+
+## Earlier attempt: engraving (abandoned)
 
 "The engraving style is probably really good, and the physics community is used to it from textbooks ... It's okay if
 it has subtle colors or, for example, shows the heat or something like that, or the beam. I think that can be something

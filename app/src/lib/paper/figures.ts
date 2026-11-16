@@ -81,7 +81,9 @@ const THEME: Record<string, string> = {
 	'#8b877d': 'var(--text-faint)',
 	'#b0560a': 'var(--accent)',
 	'#2a67ad': 'var(--accent-2)',
-	'#c9c4b8': 'var(--line-strong)'
+	'#c9c4b8': 'var(--line-strong)',
+	// pale tints of the accents, mixed with the page
+	'#dce7f3': 'color-mix(in srgb, var(--accent-2) 16%, var(--bg))'
 };
 
 /**
