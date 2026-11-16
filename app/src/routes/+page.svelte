@@ -3,14 +3,17 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		ArrowRight02Icon,
+		BlackHoleIcon,
 		BookOpen01Icon,
 		DropletIcon,
 		FlashlightIcon,
+		GalaxyIcon,
 		Layers01Icon,
 		MirrorIcon,
 		PlayCircleIcon,
 		Rotate01Icon,
 		SafeIcon,
+		SpiralsIcon,
 		TemperatureIcon,
 		TestTube01Icon,
 		ViewIcon,
@@ -115,6 +118,30 @@
 			poster: posters['beam-in-the-dark']
 		}
 	];
+
+	const vistas = [
+		{
+			icon: GalaxyIcon,
+			name: 'The Milky Way',
+			text: 'Its hidden heart is the brightest thing.',
+			href: resolve('/demo/milky-way'),
+			poster: posters['milky-way']
+		},
+		{
+			icon: BlackHoleIcon,
+			name: 'The only shadows',
+			text: 'A black hole against the first light.',
+			href: resolve('/demo/black-hole'),
+			poster: posters['black-hole']
+		},
+		{
+			icon: SpiralsIcon,
+			name: 'Two black holes',
+			text: 'From Newton’s pull to the waves.',
+			href: resolve('/demo/two-black-holes'),
+			poster: posters['two-black-holes']
+		}
+	];
 </script>
 
 <svelte:head>
@@ -217,6 +244,34 @@
 		<a class="more" href={resolve('/demo')}>
 			All demos <HugeiconsIcon icon={ArrowRight02Icon} size={18} strokeWidth={1.7} />
 		</a>
+	</section>
+
+	<section class="band">
+		<header>
+			<h2>The sky</h2>
+			<p>
+				The same equations, solved exactly at the largest scales: a galaxy seen through its dust,
+				the glow the Big Bang would have left, and the only things that cast shadows on it.
+			</p>
+		</header>
+		<ul class="affordances">
+			{#each vistas as a (a.name)}
+				<li>
+					<a class="tile" href={a.href}>
+						<span class="thumb"><img src={a.poster} alt="" loading="lazy" /></span>
+						<span class="tile-text">
+							<span class="glyph small"
+								><HugeiconsIcon icon={a.icon} size={18} strokeWidth={1.6} /></span
+							>
+							<span>
+								<span class="name">{a.name}</span>
+								<span class="text">{a.text}</span>
+							</span>
+						</span>
+					</a>
+				</li>
+			{/each}
+		</ul>
 	</section>
 
 	<section class="band doors">
@@ -343,6 +398,21 @@
 
 	nav a.secondary:hover {
 		border-color: #fff;
+	}
+
+	/* on a phone the two buttons stack, the same width and height */
+	@media (max-width: 560px) {
+		nav {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 0.65rem;
+			max-width: 22rem;
+		}
+
+		nav a {
+			justify-content: center;
+			padding: 0.85em 1.2em;
+		}
 	}
 
 	.caption {

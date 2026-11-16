@@ -3,6 +3,7 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		Clock01Icon,
+		GalaxyIcon,
 		Orbit01Icon,
 		PlayIcon,
 		TemperatureIcon,
@@ -12,7 +13,12 @@
 	import { posters } from '#lib/demos/posters.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 
-	const regimeIcons = { 'near field': Orbit01Icon, thermal: TemperatureIcon, waves: WavesIcon };
+	const regimeIcons = {
+		'near field': Orbit01Icon,
+		thermal: TemperatureIcon,
+		waves: WavesIcon,
+		sky: GalaxyIcon
+	};
 </script>
 
 <svelte:head>

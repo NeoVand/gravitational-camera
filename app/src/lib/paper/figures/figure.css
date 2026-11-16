@@ -4,16 +4,11 @@
 	color: var(--text);
 }
 
-.gfig {
-	overflow-x: auto;
-}
-
-/* On a narrow screen a drawing keeps a readable size and scrolls sideways.
+/* A drawing shrinks to the width of the column, like the paper's figures.
    Only the drawing itself: the icons in its controls keep their own size. */
 .gfig > svg {
 	display: block;
 	width: 100%;
-	min-width: 540px;
 	height: auto;
 	overflow: visible;
 }

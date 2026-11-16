@@ -18,7 +18,10 @@ const slugs = [
 	'honey-and-water',
 	'which-way',
 	'sealed-flywheel',
-	'beam-in-the-dark'
+	'beam-in-the-dark',
+	'milky-way',
+	'black-hole',
+	'two-black-holes'
 ];
 
 const browser = await chromium.launch({

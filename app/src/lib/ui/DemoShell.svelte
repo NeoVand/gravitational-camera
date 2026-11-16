@@ -359,6 +359,8 @@
 	.stage {
 		position: absolute;
 		inset: 0;
+		/* the picture's labels sit just above the dock */
+		--tag-inset: 4.9rem;
 	}
 
 	/* --- title ------------------------------------------------------------------ */
@@ -778,6 +780,10 @@
 
 		.dock {
 			bottom: 0.6rem;
+		}
+
+		.stage {
+			--tag-inset: 4.1rem;
 		}
 
 		.tool {

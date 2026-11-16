@@ -836,13 +836,18 @@ def _first_surface(scene, dirs):
     return label.reshape(dirs.shape[:-1])
 
 
-def _outline(ax, labels, extent):
-    edges = np.zeros(labels.shape, dtype=bool)
-    edges[1:, :] |= labels[1:, :] != labels[:-1, :]
-    edges[:, 1:] |= labels[:, 1:] != labels[:, :-1]
-    from matplotlib.colors import ListedColormap
-    ax.imshow(np.ma.masked_where(~edges, edges), cmap=ListedColormap(["#ffffff"]), alpha=0.55,
-              extent=extent, aspect="auto", interpolation="nearest", zorder=3)
+def _outline(ax, labels, extent, scene):
+    """Thin, smooth outlines of the objects light would show (not the room's
+    walls and floor), drawn over a gravitational image."""
+    h, w = labels.shape
+    x = np.linspace(extent[0], extent[1], w)
+    y = np.linspace(extent[3], extent[2], h)
+    for k, obj in enumerate(scene.objects):
+        if obj.parent is not None or obj.background:
+            continue
+        mask = (labels == k).astype(float)
+        if mask.any():
+            ax.contour(x, y, mask, levels=[0.5], colors="#ffffff", linewidths=0.55, alpha=0.75, zorder=3)
 
 
 def _perspective(yaw_deg, pitch_deg, fov_deg, width, height):
@@ -935,11 +940,23 @@ def sun_at_midnight():
     _on_image(axes[0].annotate("the Sun, behind\nthe Earth", (px, py), xytext=(px + 0.34, py - 0.06),
                                fontsize=7, ha="left", va="center", linespacing=1.1,
                                arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff", shrinkA=2, shrinkB=5)))
-    low, high = -7.0, -4.2
+    # The Sun's core is a tenth of a degree across, smaller than a pixel, so
+    # sampling at pixel centres would miss it: add its flux, spread over a spot
+    # a few pixels wide as a camera's resolution would, where it lies.
+    core = scene["sun-core"].shape
+    radius = core.radius / np.linalg.norm(np.asarray(core.center) - scene.observer)
+    flux = (2.0 / 3.0) * sun_N * math.pi * radius ** 2          # mean over the disc of a sphere's chord
+    pixel = (2 * t / h) ** 2                                       # solid angle of a pixel, steradians
+    cols = (px + 1) / 2 * w - 0.5
+    rows = (1 - py) / 2 * h - 0.5
+    jj, ii = np.meshgrid(np.arange(w), np.arange(h))
+    sigma = 1.3
+    spot = np.exp(-((jj - cols) ** 2 + (ii - rows) ** 2) / (2 * sigma ** 2)) / (2 * math.pi * sigma ** 2)
+    N = N + flux / pixel * spot
+    low, high = -7.0, -3.4
     im = axes[1].imshow(np.log10(np.clip(N, 10 ** low, None)), extent=(-1, 1, -1, 1), aspect="auto",
                         cmap=_colormap("thermal", ACCENT), vmin=low, vmax=high, interpolation="bilinear")
-    axes[1].plot([px], [py], "o", ms=6, mfc="none", mec="#ffffff", mew=0.9)
-    _on_image(axes[1].annotate(r"Sun's core", (px, py), xytext=(px + 0.34, py - 0.06),
+    _on_image(axes[1].annotate(r"Sun's core", (px + 0.03, py), xytext=(px + 0.34, py - 0.06),
                                fontsize=7, ha="left", va="center",
                                arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff", shrinkA=2, shrinkB=4)))
     # the horizon, which light shows as the edge of the ground
@@ -959,7 +976,7 @@ def sun_at_midnight():
     _panel(axes[0], "(a) light, long exposure")
     _panel(axes[1], "(b) thermal gravitons")
     _logscale_bar(fig, im, cax, low, high, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
-    print(f"  Sun's core: N = {sun_N:.3g} per s m^2 sr, at ({px:.2f}, {py:.2f})")
+    print(f"  Sun's core: N = {sun_N:.3g} per s m^2 sr, flux {flux:.2f} per s m^2, at ({px:.2f}, {py:.2f})")
     save(fig, "sun-at-midnight", web=True)
 
 
@@ -990,7 +1007,7 @@ def locked_safe():
     for ax, image in ((axes[1], S), (axes[2], blurred)):
         ax.imshow(image, extent=extent, aspect="auto", cmap=_colormap("near", ACCENT2), vmin=0, vmax=top,
                   interpolation="bilinear")
-        _outline(ax, labels, extent)
+        _outline(ax, labels, extent, full)
     _panel(axes[0], "(a) light")
     _panel(axes[1], r"(b) tidal column $S$")
     _panel(axes[2], r"(c) blurred, $\mathrm{SNR} = 10^{20}$")
@@ -1012,7 +1029,7 @@ def closed_furnace():
     hi = np.log10(N.max())
     im = axes[1].imshow(np.log10(np.clip(N, 10 ** (hi - 3), None)), extent=extent, aspect="auto",
                         cmap=_colormap("thermal", ACCENT), vmin=hi - 3, vmax=hi, interpolation="bilinear")
-    _outline(axes[1], labels, extent)
+    _outline(axes[1], labels, extent, scene)
     _on_image(axes[1].text(0.47, -0.78, "1500 K", ha="center", va="center", fontsize=7))
     _on_image(axes[1].text(-0.47, -0.78, "293 K", ha="center", va="center", fontsize=7))
     _panel(axes[0], "(a) light")
@@ -1056,7 +1073,7 @@ def which_way():
     fig, axes, cax = _panels(2, bar=True)
     axes[0].imshow(_light("which-way"), extent=extent, aspect="auto")
     axes[1].imshow(composite, extent=extent, aspect="auto", interpolation="bilinear")
-    _outline(axes[1], labels, extent)
+    _outline(axes[1], labels, extent, scene)
     _panel(axes[0], "(a) light")
     _panel(axes[1], r"(b) waves, coloured by $V/I$")
     cb = fig.colorbar(ScalarMappable(norm=Normalize(-1, 1), cmap=pol), cax=cax)

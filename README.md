@@ -86,3 +86,17 @@ file per scene the engine is tested against):
 cd reference
 python -m gravcam.export_fixtures
 ```
+
+The vista demos (the Milky Way, a black hole, two black holes) read a table
+exported from the reference and two all-sky pictures of the model Galaxy.
+Regenerate them after changing `gravcam/binary.py`, `schwarzschild.py`,
+`primordial.py` or `galaxy.py`:
+
+```bash
+cd reference
+python -m gravcam.export_vistas
+```
+
+```bash
+python3 app/scripts/sky_textures.py
+```

@@ -9,12 +9,15 @@ export interface DemoEntry {
 		| 'honey-and-water'
 		| 'which-way'
 		| 'sealed-flywheel'
-		| 'beam-in-the-dark';
+		| 'beam-in-the-dark'
+		| 'milky-way'
+		| 'black-hole'
+		| 'two-black-holes';
 	title: string;
 	affordance: string;
 	summary: string;
-	/** Which of the camera's three regimes the demo shows. */
-	regime: 'near field' | 'thermal' | 'waves';
+	/** Which of the camera's three regimes the demo shows, or the sky (the paper's vistas). */
+	regime: 'near field' | 'thermal' | 'waves' | 'sky';
 }
 
 export const demos: DemoEntry[] = [
@@ -89,5 +92,29 @@ export const demos: DemoEntry[] = [
 		regime: 'near field',
 		summary:
 			'An infrared laser beam cannot be seen from the side. Its energy still gravitates, and the camera sees a line.'
+	},
+	{
+		slug: 'milky-way',
+		title: 'The Milky Way',
+		affordance: 'See the Galaxy’s heart',
+		regime: 'sky',
+		summary:
+			'The whole sky from the Sun. In light, dust hides the Galaxy’s centre; in the gravitational waves of its white-dwarf pairs it is the brightest thing there is.'
+	},
+	{
+		slug: 'black-hole',
+		title: 'A black hole against the first light',
+		affordance: 'The only shadows',
+		regime: 'sky',
+		summary:
+			'If the Big Bang was hot enough, the sky glows in gravitons at 0.9 K. Nothing casts a shadow on that glow except a black hole. Exact rays, light beside it.'
+	},
+	{
+		slug: 'two-black-holes',
+		title: 'Two black holes, inside out',
+		affordance: 'Near field to waves',
+		regime: 'sky',
+		summary:
+			'The field of an orbiting pair, from the holes out to their waves: Newton’s pull turning with them, winding into a spiral a sixth of a wavelength out.'
 	}
 ];

@@ -2,8 +2,8 @@
 	import 'katex/dist/katex.min.css';
 	import { resolve } from '$app/paths';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { Pdf01Icon } from '@hugeicons/core-free-icons';
-	import { figureDrawing, figureImage, liveFigures } from '#lib/paper/figures.js';
+	import { Pdf01Icon, PlayCircleIcon } from '@hugeicons/core-free-icons';
+	import { figureDemos, figureDrawing, figureImage, liveFigures } from '#lib/paper/figures.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import type { PageProps } from './$types';
 
@@ -37,6 +37,43 @@
 			removeEventListener('resize', onScroll);
 			cancelAnimationFrame(frame);
 		};
+	}
+
+	/**
+	 * Shrinks each display equation that is wider than the column until it fits
+	 * (down to 60% of its size; beyond that it scrolls sideways), so that on a
+	 * phone no equation runs under its number or off the screen.
+	 */
+	function fitEquations(article: HTMLElement) {
+		const fit = () => {
+			for (const eq of article.querySelectorAll<HTMLElement>('.equation')) {
+				eq.style.removeProperty('--fit');
+				eq.classList.remove('wide');
+				const html = eq.querySelector<HTMLElement>('.katex-html');
+				if (!html) continue;
+				// the body is centred and the number sits at the right edge, so a
+				// body that clears the number on both sides needs the number's width twice
+				let body = 0;
+				let tag = 0;
+				for (const part of Array.from(html.children)) {
+					const width = part.getBoundingClientRect().width;
+					if (part.matches('.tag, .katex-tag')) tag = width;
+					else body += width;
+				}
+				const need = body + 2 * tag + 8;
+				const room = eq.clientWidth;
+				if (need <= room) continue;
+				const scale = room / need;
+				eq.style.setProperty('--fit', String(Math.max(0.6, scale)));
+				// too wide even at that size: the number follows the body, and both scroll
+				if (scale < 0.6) eq.classList.add('wide');
+			}
+		};
+		fit();
+		const watch = new ResizeObserver(fit);
+		watch.observe(article);
+		document.fonts?.ready.then(fit);
+		return () => watch.disconnect();
 	}
 </script>
 
@@ -73,7 +110,7 @@
 		</ol>
 	</nav>
 
-	<article {@attach followReading}>
+	<article {@attach followReading} {@attach fitEquations}>
 		<header>
 			<p class="kicker">Working draft</p>
 			<h1>{@html paper.title}</h1>
@@ -95,6 +132,7 @@
 				{@html block.html}
 			{:else}
 				{@const live = liveFigures[block.id]}
+				{@const demo = figureDemos[block.id]}
 				{@const drawing = figureDrawing(block.image)}
 				{@const image = figureImage(block.image)}
 				<figure class="plate" id={block.id}>
@@ -116,6 +154,12 @@
 								{/if}
 							</div>
 						</details>
+					{/if}
+					{#if demo}
+						<a class="demo-link" href={resolve(`/demo/${demo.slug}` as '/demo/black-hole')}>
+							<HugeiconsIcon icon={PlayCircleIcon} size={15} strokeWidth={1.8} />
+							{demo.label}
+						</a>
 					{/if}
 					<figcaption>
 						<span class="label">Figure {block.number}.</span>
@@ -377,7 +421,7 @@
 		margin: 1.2rem 0;
 		overflow-x: auto;
 		overflow-y: hidden;
-		font-size: 0.95em;
+		font-size: calc(0.95em * var(--fit, 1));
 		scroll-margin-top: 5rem;
 	}
 
@@ -385,10 +429,33 @@
 		font-size: 1.04em;
 	}
 
+	article :global(.equation.wide .katex-display > .katex) {
+		text-align: left;
+	}
+
+	article :global(.equation.wide .katex-html) {
+		white-space: nowrap;
+	}
+
+	article :global(.equation.wide .katex-html > .tag),
+	article :global(.equation.wide .katex-html > .katex-tag) {
+		position: static;
+		margin-left: 1.2em;
+	}
+
 	/* short inline formulas should not break across lines */
 	article :global(p .katex),
 	article :global(li .katex) {
 		white-space: nowrap;
+	}
+
+	/* on a phone a long one may, at its operators, rather than run off the screen */
+	@media (max-width: 640px) {
+		article :global(p .katex),
+		article :global(li .katex),
+		article :global(.nowrap) {
+			white-space: normal;
+		}
 	}
 
 	article :global(a.xref),
@@ -420,24 +487,36 @@
 		border-radius: 6px;
 	}
 
-	/* the paper's drawings sit on the page itself, as in print; on a narrow
-	   screen they keep a readable size and scroll sideways */
+	/* the paper's drawings sit on the page itself, as in print, and shrink to
+	   the width of the column; on a phone they can be pinched to enlarge */
 	.plate .art:has(> :global(svg.drawing)) {
 		padding: 0;
 		background: none;
 		border: 0;
-		overflow-x: auto;
 	}
 
 	.plate :global(svg.drawing) {
 		display: block;
 		width: 100%;
-		min-width: 34rem;
 		height: auto;
 	}
 
 	.live {
 		margin-top: 0.7rem;
+	}
+
+	.demo-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-top: 0.7rem;
+		font: 500 0.8rem/1.4 var(--font-sans);
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	.demo-link:hover {
+		text-decoration: underline;
 	}
 
 	.live summary {

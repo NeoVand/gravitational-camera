@@ -397,3 +397,90 @@ test('a beam in the dark: the beam shows in gravity as a line', async ({ page })
 	const sum = (c: number[]) => c[0] + c[1] + c[2];
 	expect(sum(onBeam), JSON.stringify({ onBeam, above })).toBeGreaterThan(sum(above) + 60);
 });
+
+// --- the vistas -----------------------------------------------------------------
+
+/** Mean colour of a small square of the canvas, at fractions of its width and height. */
+async function sample(page: Page, fx: number, fy: number, r = 3) {
+	return page.locator('canvas').evaluate(
+		(c: HTMLCanvasElement, [fx, fy, r]) => {
+			const x = Math.round(fx * c.width);
+			const y = Math.round(fy * c.height);
+			const data = c.getContext('2d')!.getImageData(x - r, y - r, 2 * r + 1, 2 * r + 1).data;
+			const mean = [0, 0, 0];
+			for (let i = 0; i < data.length; i += 4) for (let k = 0; k < 3; k++) mean[k] += data[i + k];
+			return mean.map((v) => v / (data.length / 4));
+		},
+		[fx, fy, r] as const
+	);
+}
+
+async function firstFrame(page: Page) {
+	const frames = async () => Number(await page.locator('canvas').getAttribute('data-frames'));
+	await expect.poll(frames, { timeout: 60_000 }).toBeGreaterThan(0);
+}
+
+async function framesAfter(page: Page, action: () => Promise<unknown>) {
+	const canvas = page.locator('canvas');
+	const frames = async () => Number(await canvas.getAttribute('data-frames'));
+	await expect.poll(frames, { timeout: 60_000 }).toBeGreaterThan(0);
+	const before = await frames();
+	await action();
+	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(before);
+}
+
+test('the Milky Way: dust hides the centre from light, not from the waves', async ({ page }) => {
+	await page.goto('/demo/milky-way/?present=readback');
+	await firstFrame(page);
+	// the divider is in the middle: the centre of the Galaxy is on the line; look just either side
+	const light = await sample(page, 0.47, 0.5);
+	const waves = await sample(page, 0.53, 0.5);
+	const detail = JSON.stringify({ light, waves });
+	// in the waves the centre is near white, in light the dust lane darkens it
+	expect(waves[1], detail).toBeGreaterThan(200);
+	expect(waves[1], detail).toBeGreaterThan(light[1] + 30);
+	// the first light: a nearly uniform glow, cream in the middle of its scale
+	await framesAfter(page, () => page.getByRole('button', { name: 'The first light' }).click());
+	await expect(page.locator('canvas')).toHaveAttribute('data-right', 'primordial');
+});
+
+test('a black hole: its shadow is black in both pictures and shrinks with distance', async ({
+	page
+}) => {
+	await page.goto('/demo/black-hole/?present=readback');
+	await firstFrame(page);
+	const dark = (c: number[]) => c[0] + c[1] + c[2] < 15;
+	// the hole is at the centre of the view, on the divider
+	expect(dark(await sample(page, 0.47, 0.5))).toBe(true);
+	expect(dark(await sample(page, 0.53, 0.5))).toBe(true);
+	const shadowWidth = () =>
+		page.locator('canvas').evaluate((c: HTMLCanvasElement) => {
+			const y = Math.round(c.height / 2);
+			const row = c.getContext('2d')!.getImageData(0, y, c.width, 1).data;
+			let n = 0;
+			for (let i = 0; i < row.length; i += 4) if (row[i] + row[i + 1] + row[i + 2] < 15) n += 1;
+			return n / c.width;
+		});
+	const near = await shadowWidth();
+	await framesAfter(page, () => page.getByLabel('Distance').fill('2.3'));
+	const far = await shadowWidth();
+	expect(far, JSON.stringify({ near, far })).toBeLessThan(near / 2);
+	await expect(page.getByText('Angular radius of the shadow')).toBeVisible();
+});
+
+test('two black holes: the field turns, and stops when told to', async ({ page }) => {
+	await page.goto('/demo/two-black-holes/');
+	const canvas = page.locator('canvas');
+	const frames = async () => Number(await canvas.getAttribute('data-frames'));
+	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(5);
+	const a = await sample(page, 0.75, 0.5);
+	await page.waitForTimeout(400);
+	const b = await sample(page, 0.75, 0.5);
+	expect(distance(a, b), JSON.stringify({ a, b })).toBeGreaterThan(5);
+	await page.getByRole('button', { name: 'Still' }).click();
+	await page.waitForTimeout(200);
+	const c = await sample(page, 0.75, 0.5);
+	await page.waitForTimeout(400);
+	const d = await sample(page, 0.75, 0.5);
+	expect(distance(c, d), JSON.stringify({ c, d })).toBeLessThan(1);
+});

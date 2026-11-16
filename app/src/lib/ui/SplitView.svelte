@@ -365,13 +365,25 @@
 			</div>
 		{/if}
 		{#if showLight && split > 0.12}
-			<span class="tag left" style:right="calc({(1 - split) * 100}% + 14px)">
-				<HugeiconsIcon icon={MODE_ICONS[leftMode]} size={13} strokeWidth={2} />{leftLabel}
+			<span
+				class="tag left"
+				style:right="calc({(1 - split) * 100}% + 14px)"
+				style:max-width="calc({split * 100}% - 28px)"
+			>
+				<HugeiconsIcon icon={MODE_ICONS[leftMode]} size={13} strokeWidth={2} /><span class="text"
+					>{leftLabel}</span
+				>
 			</span>
 		{/if}
 		{#if showGravity && split < 0.88}
-			<span class="tag right" style:left="calc({split * 100}% + 14px)">
-				<HugeiconsIcon icon={MODE_ICONS[rightMode]} size={13} strokeWidth={2} />{rightLabel}
+			<span
+				class="tag right"
+				style:left="calc({split * 100}% + 14px)"
+				style:max-width="calc({(1 - split) * 100}% - 28px)"
+			>
+				<HugeiconsIcon icon={MODE_ICONS[rightMode]} size={13} strokeWidth={2} /><span class="text"
+					>{rightLabel}</span
+				>
 			</span>
 		{/if}
 		{#if showLight && showGravity}
@@ -453,9 +465,11 @@
 		background: rgb(4 6 10 / 0.62);
 	}
 
+	/* The labels sit at the foot of the picture, clear of page headers; a page
+	   with controls along the bottom raises them with --tag-inset. */
 	.tag {
 		position: absolute;
-		top: 14px;
+		bottom: var(--tag-inset, 14px);
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45em;
@@ -470,6 +484,16 @@
 		backdrop-filter: blur(6px);
 		pointer-events: none;
 		white-space: nowrap;
+	}
+
+	.tag .text {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.tag :global(svg) {
+		flex: none;
 	}
 
 	.divider {

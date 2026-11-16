@@ -41,6 +41,13 @@ export const liveFigures: Record<string, LiveFigure> = {
 	'fig:array': { label: 'Try it: change the width of the array', drawing: ArrayFigure }
 };
 
+/** Figures whose scene can be explored in a demo of its own, with the demo's path. */
+export const figureDemos: Record<string, { label: string; slug: string }> = {
+	'fig:binary-field': { label: 'Watch it turn in the demo', slug: 'two-black-holes' },
+	'fig:milky-way': { label: 'Look around this sky in the demo', slug: 'milky-way' },
+	'fig:black-hole': { label: 'Fly closer in the demo', slug: 'black-hole' }
+};
+
 /** The static images in /paper/figures, as URLs the site can serve. */
 const images = import.meta.glob<string>('../../../../paper/figures/*.{png,jpg}', {
 	eager: true,

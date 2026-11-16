@@ -15,7 +15,8 @@ The scenes so far are rooms and planets. This section follows the same
 equations to the scales where they are most striking. We chose problems that
 have exact or closed-form solutions, so that every picture below is computed
 from physics, not drawn; each is checked by tests in the reference
-implementation.
+implementation. The website lets the reader look around three of these skies
+live.
 
 \paragraph{A pair of black holes, from the inside out.} Outside any compact
 source, linearized gravity has an exact solution organised by multipoles
@@ -24,10 +25,10 @@ $u = t - r/c$ and $\hat n$ the direction from the source, the trace-reversed
 perturbation in harmonic gauge is
 \begin{equation}\label{eq:multipole}
 \begin{aligned}
-\bar h^{00} &= \frac{4G}{c^2}\Bigl[\frac{M}{r} + \frac{1}{2}\,\partial_i\partial_j\frac{I_{ij}(u)}{r}\Bigr],\qquad
-\bar h^{ij} = \frac{2G}{c^4}\,\frac{\ddot I_{ij}(u)}{r},\\
+\bar h^{00} &= \frac{4G}{c^2}\Bigl[\frac{M}{r} + \frac{1}{2}\,\partial_i\partial_j\frac{I_{ij}(u)}{r}\Bigr],\\
 \bar h^{0i} &= \frac{2G}{c^3}\Bigl[\frac{\dot I_{ij}(u)\,n_j}{r^2} + \frac{\ddot I_{ij}(u)\,n_j}{c\,r}
-+ \frac{(\mathbf J\times\mathbf x)_i}{r^3}\Bigr],
++ \frac{(\mathbf J\times\mathbf x)_i}{r^3}\Bigr],\\
+\bar h^{ij} &= \frac{2G}{c^4}\,\frac{\ddot I_{ij}(u)}{r},
 \end{aligned}
 \end{equation}
 with $M$ the mass and $\mathbf J$ the angular momentum. It satisfies the gauge
