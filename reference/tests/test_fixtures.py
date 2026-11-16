@@ -1,7 +1,6 @@
 """The exported fixture (the bridge to the engine): present, current, and its
 numbers consistent with hand formulas that do not go through gravcam's
 column code."""
-import hashlib
 import json
 import math
 
@@ -51,13 +50,21 @@ def test_meta(fixture):
     assert meta["seed"] == export_fixtures.SEED
     assert meta["version"] == gravcam.__version__
     assert meta["package"] == "gravcam"
-    assert meta["scene_sha256"] == hashlib.sha256(SCENE_PATH.read_bytes()).hexdigest(), \
-        f"the scene file changed since the fixture was written; {REGENERATE}"
+    assert set(meta) == {"scene", "scene_name", "seed", "package", "version", "generator", "notes"}
 
 
 def test_fixture_is_what_the_exporter_writes_now(fixture):
+    """The numbers on disk are those of the current scene and code (to 1e-9)."""
     rebuilt = json.loads(export_fixtures.dumps(export_fixtures.build_fixture()))
     assert_same(fixture, rebuilt)
+
+
+def test_fixture_file_is_byte_identical_to_a_fresh_export():
+    """Stricter, and what CI checks with `git diff`: regenerating changes
+    nothing. The exporter uses only exactly rounded operations and a
+    platform-independent random sequence to make this hold everywhere."""
+    fresh = export_fixtures.dumps(export_fixtures.build_fixture())
+    assert FIXTURE_PATH.read_text(encoding="utf-8") == fresh, REGENERATE
 
 
 def test_json_keeps_full_float64_precision():

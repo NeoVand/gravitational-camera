@@ -104,3 +104,23 @@ def test_image_of_the_suns_core_integrates_to_its_graviton_flux(scene, raw_scene
     assert 0.999 * peak < image.max() <= peak * (1 + 1e-12)
     # the Earth in front contributes eleven orders of magnitude less
     assert 0 < image.min() < 1e-9 * image.max()
+
+
+def test_image_orientation_on_the_sun(scene, raw_scene):
+    """Aim the camera to the left of and above the Sun's core: the core must
+    then show up to the right of and below the image centre (i grows to the
+    right, j grows downwards), by the amount the pinhole formula predicts."""
+    center = np.array(hand.center_of(raw_scene, "sun-core"))
+    offset = center - scene.observer
+    angular_radius = math.asin(hand.radius_of(raw_scene, "sun-core") / float(np.linalg.norm(offset)))
+    yaw, pitch = camera.yaw_pitch_toward(offset)
+    shift, fov, size = 1.5 * angular_radius, 8 * angular_radius, 64
+
+    image = render.render(scene, yaw + shift / math.cos(pitch), pitch + shift, fov, size, size)
+    j, i = np.indices(image.shape)
+    centroid_i = float((i * image).sum() / image.sum())
+    centroid_j = float((j * image).sum() / image.sum())
+    pixels = math.tan(shift) / math.tan(fov / 2) * size / 2      # displacement of the disc's centre
+    assert centroid_i == pytest.approx((size - 1) / 2 + pixels, abs=0.5)
+    assert centroid_j == pytest.approx((size - 1) / 2 + pixels, abs=0.5)
+    assert pixels > 10

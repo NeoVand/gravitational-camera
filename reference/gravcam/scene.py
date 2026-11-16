@@ -50,7 +50,8 @@ class Sphere:
 
     @property
     def volume(self) -> float:
-        return 4.0 / 3.0 * math.pi * self.radius**3
+        r = self.radius
+        return 4.0 / 3.0 * math.pi * (r * r * r)
 
 
 @dataclass(frozen=True)
@@ -122,8 +123,8 @@ class Scene:
         best_depth = np.full(flat.shape[0], -1, dtype=np.int64)
         for k in range(len(self.objects)):
             offset = flat - self.centers[k]
-            distance2 = offset[:, 0] ** 2 + offset[:, 1] ** 2 + offset[:, 2] ** 2
-            inside = distance2 <= self.radii[k] ** 2
+            distance2 = offset[:, 0] * offset[:, 0] + offset[:, 1] * offset[:, 1] + offset[:, 2] * offset[:, 2]
+            inside = distance2 <= self.radii[k] * self.radii[k]
             deeper = inside & (self.depths[k] > best_depth)
             best[deeper] = k
             best_depth[deeper] = self.depths[k]

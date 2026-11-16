@@ -28,12 +28,13 @@ from .scene import Scene, SceneError
 
 def absorption_coefficient(friction: float) -> float:
     """alpha = 16 pi G eta / c^3, per metre, for shear viscosity eta (Pa s)."""
-    return 16.0 * math.pi * G * friction / c**3
+    return 16.0 * math.pi * G * friction / (c * c * c)
 
 
 def thermal_energy_emissivity(alpha: float, temperature: float) -> float:
     """j_E = alpha sigma T^4 / pi (W m^-3 sr^-1)."""
-    return alpha * sigma * temperature**4 / math.pi
+    t2 = temperature * temperature
+    return alpha * sigma * (t2 * t2) / math.pi
 
 
 def luminosity_energy_emissivity(luminosity: float, own_volume: float) -> float:
@@ -57,7 +58,7 @@ def number_emissivity(energy_emissivity: float, temperature: float) -> float:
 
 def flux_at_distance(luminosity: float, distance: float) -> float:
     """Energy flux L / (4 pi d^2) of an isotropic point source (W/m^2)."""
-    return luminosity / (4.0 * math.pi * distance**2)
+    return luminosity / (4.0 * math.pi * (distance * distance))
 
 
 def number_flux_at_distance(luminosity: float, temperature: float, distance: float) -> float:

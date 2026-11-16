@@ -241,7 +241,7 @@ def test_own_region_paths_equal_signed_sums_of_chords(scene, raw_scene):
     core = np.array(hand.center_of(raw_scene, "sun-core"))
     r_sun = hand.radius_of(raw_scene, "sun")
     at_the_sun = np.array([toward(observer, core, impact, hint=rng.standard_normal(3))
-                           for impact in 1.05 * r_sun * np.sqrt(rng.uniform(0, 1, 3000))])
+                           for impact in 1.05 * r_sun * rng.uniform(0, 1, 3000)])
     near_the_horizon = np.array([camera.camera_basis(yaw, pitch)[0]
                                  for yaw, pitch in zip(rng.uniform(0, 6.28, 2000), rng.uniform(-0.05, 0.01, 2000))])
     into_the_core = np.array([camera.camera_basis(yaw, pitch)[0]

@@ -33,7 +33,7 @@ def _offset(point, center):
     x = np.asarray(point, dtype=np.float64) - np.asarray(center, dtype=np.float64)
     if x.shape[-1] != 3:
         raise ValueError("points must have shape (..., 3)")
-    return x, np.sqrt(x[..., 0] ** 2 + x[..., 1] ** 2 + x[..., 2] ** 2)
+    return x, np.sqrt(x[..., 0] * x[..., 0] + x[..., 1] * x[..., 1] + x[..., 2] * x[..., 2])
 
 
 def _outer(n):
@@ -45,7 +45,7 @@ def point_mass_tidal_tensor(point, center, mass: float) -> np.ndarray:
     """(G M / r^3) (delta_ij - 3 n_i n_j) at ``point``; shape (..., 3, 3)."""
     x, r = _offset(point, center)
     n = x / r[..., None]
-    return (G * mass / r**3)[..., None, None] * (_IDENTITY - 3.0 * _outer(n))
+    return (G * mass / (r * r * r))[..., None, None] * (_IDENTITY - 3.0 * _outer(n))
 
 
 def uniform_sphere_tidal_tensor(point, center, radius: float, mass: float) -> np.ndarray:
@@ -54,8 +54,8 @@ def uniform_sphere_tidal_tensor(point, center, radius: float, mass: float) -> np
     outside = r >= radius
     safe_r = np.where(outside, r, 1.0)      # avoids 0/0 at the centre; unused inside
     n = x / safe_r[..., None]
-    exterior = (G * mass / safe_r**3)[..., None, None] * (_IDENTITY - 3.0 * _outer(n))
-    interior = (G * mass / radius**3) * _IDENTITY
+    exterior = (G * mass / (safe_r * safe_r * safe_r))[..., None, None] * (_IDENTITY - 3.0 * _outer(n))
+    interior = (G * mass / (radius * radius * radius)) * _IDENTITY
     return np.where(outside[..., None, None], exterior, interior)
 
 
@@ -65,7 +65,7 @@ def uniform_sphere_potential(point, center, radius: float, mass: float) -> np.nd
     outside = r >= radius
     safe_r = np.where(outside, r, 1.0)
     exterior = -G * mass / safe_r
-    interior = -G * mass * (3.0 * radius**2 - r**2) / (2.0 * radius**3)
+    interior = -G * mass * (3.0 * radius * radius - r * r) / (2.0 * radius * radius * radius)
     return np.where(outside, exterior, interior)
 
 

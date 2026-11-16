@@ -4,17 +4,24 @@
 
 writes ``reference/fixtures/sun-at-midnight.json`` from
 ``scenes/sun-at-midnight.scene.json``. The file holds the constants, the
-per-object emission values, about 200 rays from the scene's observer (a fixed
-seed mixes uniformly random directions with targeted ones) and the tidal
-tensor at the observer. Floats are written with ``repr``, i.e. with full
-float64 precision. The output is deterministic: no timestamps.
+per-object emission values, 200 rays from the scene's observer (a fixed seed
+mixes uniformly random directions with targeted ones) and the tidal tensor at
+the observer. Floats are written with ``repr``, i.e. with full float64
+precision.
+
+The output is meant to be bit-reproducible, so that regenerating it on
+another machine leaves the file unchanged: there are no timestamps or paths in
+it, and every number is built from operations that IEEE 754 defines exactly
+(+, -, *, /, sqrt) in a fixed order -- no trigonometry, no pow, no BLAS. The
+random directions come from Python's ``random`` module, whose sequence for a
+given seed is guaranteed across versions and platforms.
 """
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import math
+import random
 import sys
 from pathlib import Path
 
@@ -33,40 +40,52 @@ LIMB_FRACTIONS = (0.5, 0.9, 0.99, 1.01)      # impact parameter / radius
 POSITION_ANGLES_DEG = (0, 90)                # around the direction to the centre
 HORIZON_OFFSETS_M = (1.0, -1.0, -100.0, -10000.0)   # impact parameter - radius
 
+Vector = tuple[float, float, float]
 
-def perpendicular_frame(u):
+
+def _dot(a: Vector, b: Vector) -> float:
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
+
+
+def _unit(v: Vector) -> Vector:
+    norm = math.sqrt(_dot(v, v))
+    return (v[0] / norm, v[1] / norm, v[2] / norm)
+
+
+def _cross(a: Vector, b: Vector) -> Vector:
+    return (a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0])
+
+
+def perpendicular_frame(u: Vector) -> tuple[Vector, Vector]:
     """Two unit vectors (e1, e2) with (e1, e2, u) right-handed and orthogonal.
-    e1 is the coordinate axis least aligned with u, made orthogonal to u."""
-    u = np.asarray(u, dtype=np.float64)
-    axis = np.zeros(3)
-    axis[int(np.argmin(np.abs(u)))] = 1.0
-    e1 = axis - (axis @ u) * u
-    e1 /= np.linalg.norm(e1)
-    e2 = np.cross(u, e1)
-    return e1, e2 / np.linalg.norm(e2)
+    e1 is the coordinate axis least aligned with u (the first such axis on a
+    tie), made orthogonal to u."""
+    k = min(range(3), key=lambda i: abs(u[i]))
+    axis = tuple(1.0 if i == k else 0.0 for i in range(3))
+    along = _dot(axis, u)
+    e1 = _unit(tuple(axis[i] - along * u[i] for i in range(3)))
+    return e1, _unit(_cross(u, e1))
 
 
-def aim(origin, center, impact: float = 0.0, position_angle: float = 0.0):
+def aim(origin, center, impact: float = 0.0, position_angle_deg: int = 0):
     """Unit direction from ``origin`` whose line passes ``center`` at the
-    perpendicular distance ``impact`` (m), on the side given by
-    ``position_angle`` (radians, from e1 towards e2 of the perpendicular
-    frame). Returns None if ``impact`` is not smaller than the distance."""
-    oc = np.asarray(center, dtype=np.float64) - np.asarray(origin, dtype=np.float64)
-    distance = float(np.linalg.norm(oc))
+    perpendicular distance ``impact`` (m). ``position_angle_deg`` picks the
+    side: 0 offsets the line towards e1 of the perpendicular frame, 90 towards
+    e2. Returns None if ``impact`` is not smaller than the distance."""
+    oc = tuple(float(c) - float(o) for c, o in zip(center, origin))
+    distance = math.sqrt(_dot(oc, oc))
     if distance == 0.0 or not 0.0 <= impact < distance:
         return None
-    u = oc / distance
+    u = (oc[0] / distance, oc[1] / distance, oc[2] / distance)
     sin_theta = impact / distance
     cos_theta = math.sqrt((1.0 - sin_theta) * (1.0 + sin_theta))
-    e1, e2 = perpendicular_frame(u)
-    e = math.cos(position_angle) * e1 + math.sin(position_angle) * e2
-    v = cos_theta * u + sin_theta * e
-    return v / np.linalg.norm(v)
+    e = perpendicular_frame(u)[{0: 0, 90: 1}[position_angle_deg]]
+    return np.array(_unit(tuple(cos_theta * u[i] + sin_theta * e[i] for i in range(3))))
 
 
 def targeted_rays(scene: Scene) -> list[tuple[str, np.ndarray]]:
     """Labelled directions aimed at the features of the scene."""
-    origin = scene.observer
+    origin = scene.observer.tolist()
     rays: list[tuple[str, np.ndarray]] = [
         ("down", np.array([0.0, -1.0, 0.0])),
         ("up", np.array([0.0, 1.0, 0.0])),
@@ -89,7 +108,7 @@ def targeted_rays(scene: Scene) -> list[tuple[str, np.ndarray]]:
         for fraction in LIMB_FRACTIONS:
             for angle in POSITION_ANGLES_DEG:
                 add(f"limb:{obj.id}:{fraction:g}:pa{angle}",
-                    aim(origin, obj.shape.center, fraction * obj.shape.radius, math.radians(angle)))
+                    aim(origin, obj.shape.center, fraction * obj.shape.radius, angle))
     # Horizon: just above and below the surface the observer stands over.
     outside = [(math.dist(origin, o.shape.center) - o.shape.radius, o) for o in scene.objects if o.parent is None]
     outside = [(altitude, o) for altitude, o in outside if altitude > 0.0]
@@ -102,11 +121,16 @@ def targeted_rays(scene: Scene) -> list[tuple[str, np.ndarray]]:
 
 
 def random_rays(count: int, seed: int) -> list[tuple[str, np.ndarray]]:
-    """Directions uniform on the sphere (normalised Gaussian triples)."""
-    rng = np.random.default_rng(seed)
-    v = rng.standard_normal((count, 3))
-    v /= np.linalg.norm(v, axis=1, keepdims=True)
-    return [(f"random:{k:03d}", v[k]) for k in range(count)]
+    """Directions uniform on the sphere: points uniform in the cube [-1, 1)^3,
+    kept if they fall in the unit ball (and not too close to its centre),
+    then normalised."""
+    rng = random.Random(seed)
+    rays: list[tuple[str, np.ndarray]] = []
+    while len(rays) < count:
+        v = (2.0 * rng.random() - 1.0, 2.0 * rng.random() - 1.0, 2.0 * rng.random() - 1.0)
+        if 0.01 < _dot(v, v) <= 1.0:
+            rays.append((f"random:{len(rays):03d}", np.array(_unit(v))))
+    return rays
 
 
 def build_fixture(scene_path=DEFAULT_SCENE, seed: int = SEED, n_rays: int = N_RAYS,
@@ -173,7 +197,6 @@ def build_fixture(scene_path=DEFAULT_SCENE, seed: int = SEED, n_rays: int = N_RA
         "meta": {
             "scene": scene_path.name,
             "scene_name": scene.name,
-            "scene_sha256": hashlib.sha256(scene_path.read_bytes()).hexdigest(),
             "seed": seed,
             "package": "gravcam",
             "version": __version__,

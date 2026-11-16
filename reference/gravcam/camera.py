@@ -55,7 +55,7 @@ def ray_directions(yaw: float, pitch: float, fov: float, width: int, height: int
     forward, right, up = camera_basis(yaw, pitch)
     x, y, _ = _image_plane(fov, width, height)
     v = forward[None, None, :] + x[None, :, None] * right[None, None, :] + y[:, None, None] * up[None, None, :]
-    norm = np.sqrt(v[..., 0] ** 2 + v[..., 1] ** 2 + v[..., 2] ** 2)
+    norm = np.sqrt(v[..., 0] * v[..., 0] + v[..., 1] * v[..., 1] + v[..., 2] * v[..., 2])
     return v / norm[..., None]
 
 
@@ -65,7 +65,8 @@ def pixel_solid_angles(fov: float, width: int, height: int) -> np.ndarray:
     Multiply a radiance image by this and sum to get a flux."""
     x, y, t = _image_plane(fov, width, height)
     side = 2.0 * t / height            # pixels are square on the image plane
-    return side * side / (1.0 + x[None, :] ** 2 + y[:, None] ** 2) ** 1.5
+    s = 1.0 + (x * x)[None, :] + (y * y)[:, None]
+    return side * side / (s * np.sqrt(s))
 
 
 def yaw_pitch_toward(direction):
@@ -73,7 +74,7 @@ def yaw_pitch_toward(direction):
     d = np.asarray(direction, dtype=np.float64)
     if d.shape != (3,):
         raise ValueError("direction must have shape (3,)")
-    norm = math.sqrt(float(d @ d))
+    norm = math.sqrt(float(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]))
     if norm == 0.0:
         raise ValueError("direction must be non-zero")
     x, y, z = (d / norm).tolist()
