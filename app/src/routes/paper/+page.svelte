@@ -299,6 +299,12 @@
 		font-size: 1.04em;
 	}
 
+	/* short inline formulas should not break across lines */
+	article :global(p .katex),
+	article :global(li .katex) {
+		white-space: nowrap;
+	}
+
 	article :global(a.xref),
 	article :global(.cite a) {
 		text-decoration: none;
