@@ -4,7 +4,7 @@
 
 <div class="gfig">
 	<svg
-		viewBox="0 0 720 336"
+		viewBox="6 -10 720 343"
 		role="img"
 		aria-label="A line of sight in light stops at the first surface; in gravity it passes through every body and adds up their glow"
 	>

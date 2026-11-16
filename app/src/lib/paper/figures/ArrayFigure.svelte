@@ -70,7 +70,7 @@
 
 <div class="gfig">
 	<svg
-		viewBox="0 0 720 300"
+		viewBox="0 4 720 303"
 		role="img"
 		aria-label="Response of the computed image to a single point source, for a single pixel and for arrays of increasing width"
 	>

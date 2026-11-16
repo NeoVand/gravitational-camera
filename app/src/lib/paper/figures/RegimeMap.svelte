@@ -85,7 +85,7 @@
 
 <div class="gfig">
 	<svg
-		viewBox="0 0 720 440"
+		viewBox="-8 12 720 419"
 		role="img"
 		aria-label="Map of sources by frequency and distance, divided into the near zone and the wave zone"
 	>

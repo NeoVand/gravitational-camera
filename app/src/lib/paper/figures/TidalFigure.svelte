@@ -45,7 +45,7 @@
 
 <div class="gfig">
 	<svg
-		viewBox="0 0 720 250"
+		viewBox="3 28 720 233"
 		role="img"
 		aria-label="Rings of free particles distorted by a nearby mass and by the two polarizations of a gravitational wave"
 		{@attach animate}

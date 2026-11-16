@@ -84,7 +84,7 @@
 
 <div class="gfig">
 	<svg
-		viewBox="0 0 720 340"
+		viewBox="30 -2 720 351"
 		role="img"
 		aria-label="Radiation pattern of a rotating pair of masses, and the wavelength compared with the size of the source"
 		{@attach animate}
@@ -137,7 +137,7 @@
 		<path class="ink" d="M 390 190 v 12 M 690 190 v 12" stroke-width="1.4" />
 		<text class="small" x="540" y="216" text-anchor="middle">one wavelength</text>
 		<rect x={390} y="232" width={sizePx} height="12" fill="var(--text)" />
-		<text class="small" x={Math.min(390 + sizePx + 10, 600)} y="243"
+		<text class="small" x={Math.min(390 + sizePx + 10, 500)} y="243"
 			>the source, to the same scale</text
 		>
 		<text class="strong" x="540" y="282" text-anchor="middle">

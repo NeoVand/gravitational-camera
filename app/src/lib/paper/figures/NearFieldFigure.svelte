@@ -62,7 +62,7 @@
 
 <div class="gfig">
 	<svg
-		viewBox="0 0 720 420"
+		viewBox="20 -5 720 426"
 		role="img"
 		aria-label="Two masses below a row of pixels: the smooth signal the pixels record, and the reconstruction allowed by the noise"
 	>

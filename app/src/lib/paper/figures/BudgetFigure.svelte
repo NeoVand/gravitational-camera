@@ -60,7 +60,7 @@
 
 <div class="gfig">
 	<svg
-		viewBox="0 0 720 {TOP + rows.length * ROW + 44}"
+		viewBox="5 0 720 {TOP + rows.length * ROW + 39}"
 		role="img"
 		aria-label="Gravitons emitted per second by seven objects, on a logarithmic scale"
 	>
