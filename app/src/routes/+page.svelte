@@ -134,7 +134,7 @@
 				sunDirection={sun}
 				bind:view
 				bind:divider
-				interactive={false}
+				embedded
 				leftLabel="Light"
 				rightLabel="Gravity"
 				poster={asset('posters/sun-at-midnight.jpg')}
@@ -163,7 +163,7 @@
 		<p class="caption">
 			Midnight, looking down. Left, ordinary light: dark ground under the stars. Right, thermal
 			gravitational radiation: Earth’s interior, and the Sun’s core shining through the planet. Drag
-			the divider.
+			to look around, or drag the divider.
 		</p>
 	</section>
 

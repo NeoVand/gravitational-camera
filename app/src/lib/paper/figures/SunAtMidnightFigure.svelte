@@ -20,13 +20,14 @@
 		sunDirection={sun}
 		bind:view
 		bind:divider
-		interactive={false}
+		embedded
 		{poster}
 	/>
 </div>
 <p class="hint">
-	Live figure: drag the divider. <a href={resolve('/demo/sun-at-midnight')}>Open the full demo</a>
-	to look around and change the time of day.
+	Live figure: drag to look around, or drag the divider. <a href={resolve('/demo/sun-at-midnight')}
+		>Open the full demo</a
+	> to change the time of day.
 </p>
 
 <style>

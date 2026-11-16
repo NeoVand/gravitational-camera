@@ -74,12 +74,14 @@
 		subtractRoom={subtract}
 		{waves}
 		rightLabel={labels[gravity]}
-		interactive={false}
+		embedded
 		{poster}
 	/>
 </div>
 <p class="hint">
-	Live figure: drag the divider. <a href={resolve(`/demo/${demo}`)}>Open the full demo</a> for every control.
+	Live figure: drag to look around, or drag the divider. <a href={resolve(`/demo/${demo}`)}
+		>Open the full demo</a
+	> for every control.
 </p>
 
 <style>

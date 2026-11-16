@@ -9,6 +9,34 @@ test('landing page links to the demos and the paper', async ({ page }) => {
 	await expect(page.getByRole('link', { name: 'Read the paper' })).toBeVisible();
 });
 
+test('landing picture: dragging turns the view, and the wheel still scrolls the page', async ({
+	page
+}) => {
+	await page.goto('/?present=readback');
+	const canvas = page.locator('canvas');
+	const frames = async () => Number(await canvas.getAttribute('data-frames'));
+	await expect.poll(frames, { timeout: 60_000 }).toBeGreaterThan(0);
+	const sample = () =>
+		page.evaluate(() => {
+			const c = document.querySelector('canvas')!;
+			const g = c.getContext('2d')!;
+			return Array.from(g.getImageData(0, 0, c.width, c.height).data).reduce((a, b) => a + b, 0);
+		});
+	const before = await sample();
+	const drawn = await frames();
+	// drag across the right-hand (gravity) side, clear of the words and the divider
+	const box = (await canvas.boundingBox())!;
+	await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.5);
+	await page.mouse.down();
+	await page.mouse.move(box.x + box.width * 0.65, box.y + box.height * 0.3, { steps: 8 });
+	await page.mouse.up();
+	await expect.poll(frames, { timeout: 60_000 }).toBeGreaterThan(drawn);
+	expect(await sample()).not.toBe(before);
+	// the wheel over the picture scrolls the page instead of zooming
+	await page.mouse.wheel(0, 600);
+	await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
+});
+
 test('paper renders its equations, figures, cross-references and bibliography', async ({
 	page
 }) => {

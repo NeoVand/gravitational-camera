@@ -46,6 +46,12 @@
 		name="description"
 		content="Working draft of the paper: what a camera would see if every pixel were a gravitational-wave detector."
 	/>
+	<meta name="author" content={paper.authors.join(', ')} />
+	<!-- for scholarly search engines -->
+	<meta name="citation_title" content={paper.title} />
+	{#each paper.authors as author (author)}
+		<meta name="citation_author" content={author} />
+	{/each}
 </svelte:head>
 
 <SiteHeader current="paper" />

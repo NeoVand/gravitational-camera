@@ -66,6 +66,11 @@
 		fieldDepth?: number;
 		fieldOpacity?: number;
 		interactive?: boolean;
+		/**
+		 * Part of a scrolling page: dragging still looks around, but the wheel and
+		 * vertical swipes scroll the page; Ctrl and the wheel (a trackpad pinch) zoom.
+		 */
+		embedded?: boolean;
 		leftLabel?: string;
 		rightLabel?: string;
 		/** Still image shown until the engine draws, and if it cannot start. */
@@ -98,6 +103,7 @@
 		fieldDepth = 3,
 		fieldOpacity = 0.5,
 		interactive = true,
+		embedded = false,
 		leftLabel = 'Light',
 		rightLabel = 'Gravity · thermal',
 		poster,
@@ -302,7 +308,7 @@
 	}
 
 	function onWheel(e: WheelEvent) {
-		if (!interactive) return;
+		if (!interactive || (embedded && !e.ctrlKey)) return;
 		e.preventDefault();
 		const fov = Math.max(MIN_FOV, Math.min(MAX_FOV, view.fov * Math.exp(e.deltaY * 0.0015)));
 		view = { ...view, fov };
@@ -338,7 +344,7 @@
 <div class="frame" style:background-image={poster ? `url("${poster}")` : undefined}>
 	<canvas
 		{@attach mount}
-		class={{ interactive, ready: status === 'running' }}
+		class={{ interactive, embedded, ready: status === 'running' }}
 		onpointerdown={onPointerDown}
 		onpointermove={onPointerMove}
 		onpointerup={onPointerUp}
@@ -418,6 +424,11 @@
 
 	canvas.interactive {
 		cursor: grab;
+	}
+
+	/* on a page, a vertical swipe scrolls it; a sideways drag turns the view */
+	canvas.embedded {
+		touch-action: pan-y;
 	}
 
 	canvas.interactive:active {
