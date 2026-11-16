@@ -21,7 +21,7 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
 	// every figure has something drawn in it
 	const figures = page.locator('figure.plate');
-	expect(await figures.count()).toBe(9);
+	expect(await figures.count()).toBe(11);
 	for (const figure of await figures.all()) {
 		expect(await figure.locator('svg, canvas, img').count()).toBeGreaterThan(0);
 		for (const img of await figure.locator('img').all()) {

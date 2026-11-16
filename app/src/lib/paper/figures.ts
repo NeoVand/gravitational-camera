@@ -1,5 +1,8 @@
 import type { Component } from 'svelte';
 import ArrayFigure from './figures/ArrayFigure.svelte';
+import ClosedFurnaceFigure from './figures/ClosedFurnaceFigure.svelte';
+import LockedSafeFigure from './figures/LockedSafeFigure.svelte';
+import WhichWayFigure from './figures/WhichWayFigure.svelte';
 import BudgetFigure from './figures/BudgetFigure.svelte';
 import LineIntegralFigure from './figures/LineIntegralFigure.svelte';
 import NearFieldFigure from './figures/NearFieldFigure.svelte';
@@ -10,7 +13,10 @@ import TidalFigure from './figures/TidalFigure.svelte';
 
 /** Live figures that are pictures from the engine; they take a still image to show while loading. */
 export const pictureFigures: Record<string, Component<{ poster?: string }>> = {
-	'fig:sun-at-midnight': SunAtMidnightFigure
+	'fig:sun-at-midnight': SunAtMidnightFigure,
+	'fig:locked-safe': LockedSafeFigure,
+	'fig:closed-furnace': ClosedFurnaceFigure,
+	'fig:which-way': WhichWayFigure
 };
 
 /** Live figures that are drawings, by LaTeX label. */

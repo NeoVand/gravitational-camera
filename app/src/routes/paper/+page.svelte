@@ -6,6 +6,35 @@
 
 	let { data }: PageProps = $props();
 	const paper = $derived(data.paper);
+
+	/** The section being read: the last heading above a line a third of the way down. */
+	let active = $state('');
+
+	function followReading(article: HTMLElement) {
+		const headings = Array.from(article.querySelectorAll<HTMLElement>('h2[id]'));
+		let frame = 0;
+		const update = () => {
+			frame = 0;
+			const line = innerHeight * 0.33;
+			let current = '';
+			for (const h of headings) {
+				if (h.getBoundingClientRect().top <= line) current = h.id;
+				else break;
+			}
+			active = current;
+		};
+		const onScroll = () => {
+			if (!frame) frame = requestAnimationFrame(update);
+		};
+		update();
+		addEventListener('scroll', onScroll, { passive: true });
+		addEventListener('resize', onScroll);
+		return () => {
+			removeEventListener('scroll', onScroll);
+			removeEventListener('resize', onScroll);
+			cancelAnimationFrame(frame);
+		};
+	}
 </script>
 
 <svelte:head>
@@ -27,13 +56,15 @@
 		<ol>
 			{#each paper.contents as entry (entry.id)}
 				<li>
-					<a href="#{entry.id}"><span>{entry.number}</span>{@html entry.titleHtml}</a>
+					<a href="#{entry.id}" aria-current={active === entry.id ? 'location' : undefined}
+						><span>{entry.number}</span>{@html entry.titleHtml}</a
+					>
 				</li>
 			{/each}
 		</ol>
 	</nav>
 
-	<article>
+	<article {@attach followReading}>
 		<header>
 			<p class="kicker">Working draft</p>
 			<h1>{@html paper.title}</h1>
@@ -158,9 +189,23 @@
 		line-height: 1.35;
 	}
 
+	.contents a {
+		transition:
+			color 0.2s,
+			border-color 0.2s;
+	}
+
 	.contents a:hover {
 		color: var(--text);
+	}
+
+	.contents a[aria-current='location'] {
+		color: var(--text);
 		border-left-color: var(--accent);
+	}
+
+	.contents a[aria-current='location'] span {
+		color: var(--accent);
 	}
 
 	.contents a span {
