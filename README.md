@@ -11,11 +11,24 @@ one website: a landing page, the paper with live figures, and playable demos.
 
 ## Status
 
-A walking skeleton. One demo ("The Sun at midnight"), the first sections of the
-paper, and a reference implementation that the engine is tested against. The
-physics so far covers thermal emission only; the near field and waves from
-moving bodies are next. Material properties in the demo are labelled where they
-are assumptions.
+Six demos, covering two of the three regimes:
+
+| Demo | Regime | What it shows |
+|---|---|---|
+| The Sun at midnight | thermal | The Sun's core through the Earth |
+| The locked safe | near field | Gold inside steel; blur set by sensitivity |
+| Full or empty | near field | Weighing by looking |
+| The blank mirror | near field | Pictures, print and reflections carry no mass |
+| The closed furnace | thermal | Temperature inside a closed box |
+| Honey and water | thermal | Glow set by internal friction |
+
+The waves regime (moving bodies, with a labelled slowed-light teaching mode)
+is next. Material properties that are assumptions are labelled in each scene
+file and on the page.
+
+The paper has eleven sections with derivations, plain-language summaries and
+eight figures. Every number the engine draws is checked against the Python
+reference, on the CPU in double precision and on the GPU in single precision.
 
 ## Layout
 
@@ -64,7 +77,8 @@ them with the Python reference; the same comparison is available in any browser
 at `/dev/selftest/`. Headless browsers do not show WebGPU canvases, so tests and
 `app/scripts/capture.mjs` read frames back through `?present=readback`.
 
-After changing a scene or the reference code, regenerate the fixtures:
+After changing a scene or the reference code, regenerate the fixtures (one
+file per scene the engine is tested against):
 
 ```bash
 cd reference

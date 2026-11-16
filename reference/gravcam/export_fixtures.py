@@ -2,12 +2,21 @@
 
     python -m gravcam.export_fixtures            # run from reference/
 
-writes ``reference/fixtures/sun-at-midnight.json`` from
-``scenes/sun-at-midnight.scene.json``. The file holds the constants, the
-per-object emission values, 200 rays from the scene's observer (a fixed seed
-mixes uniformly random directions with targeted ones) and the tidal tensor at
-the observer. Floats are written with ``repr``, i.e. with full float64
-precision.
+writes one file in ``reference/fixtures/`` per scene in ``scenes/`` that the
+engine is tested against.
+
+``sun-at-midnight.json`` holds the constants, the per-object emission values,
+200 rays from the scene's observer (a fixed seed mixes uniformly random
+directions with targeted ones) and the tidal tensor at the observer. Floats
+are written with ``repr``, i.e. with full float64 precision.
+
+Each room scene gets the same per-object values and rays, with the tidal
+column added to every ray, and the tidal tensor at a small square array of
+sensors around the observer, with and without the empty room (the objects
+marked ``background``). Logarithms and arctangents are not correctly rounded
+on every platform, so the values that need them (tidal columns and tensors)
+are written to 10 significant digits; that is far finer than any test needs
+and keeps the files identical wherever they are regenerated.
 
 The output is meant to be bit-reproducible, so that regenerating it on
 another machine leaves the file unchanged: there are no timestamps or paths in
@@ -31,8 +40,13 @@ from . import __version__, columns, constants, emission, tidal
 from .scene import Scene, load_scene
 
 REFERENCE_DIR = Path(__file__).resolve().parents[1]
-DEFAULT_SCENE = REFERENCE_DIR.parent / "scenes" / "sun-at-midnight.scene.json"
+SCENES_DIR = REFERENCE_DIR.parent / "scenes"
+DEFAULT_SCENE = SCENES_DIR / "sun-at-midnight.scene.json"
 DEFAULT_OUT_DIR = REFERENCE_DIR / "fixtures"
+ROOM_SCENES = ("locked-safe", "full-or-empty", "blank-mirror", "closed-furnace", "honey-and-water")
+N_ROOM_RAYS = 160
+SENSOR_SPACING_M = 0.5            # the sensors: a 3 x 3 square in the x-y plane, centred on the observer
+SIGNIFICANT = 10                  # digits kept for values computed with log or atan
 
 SEED = 1916
 N_RAYS = 200
@@ -232,6 +246,126 @@ def build_fixture(scene_path=DEFAULT_SCENE, seed: int = SEED, n_rays: int = N_RA
     }
 
 
+def _rounded(x: float) -> float:
+    return float(f"{x:.{SIGNIFICANT}g}")
+
+
+def _rounded_matrix(m) -> list[list[float]]:
+    return [[_rounded(float(v)) for v in row] for row in np.asarray(m)]
+
+
+def _object_block(scene: Scene) -> dict:
+    per_object = emission.object_emission(scene)
+    return {
+        obj.id: {
+            "own_volume": obj.own_volume,
+            "alpha": per_object[obj.id].alpha,
+            "j_E": per_object[obj.id].j_E,
+            "j_N": per_object[obj.id].j_N,
+            "density": obj.material.density,
+            "temperature": obj.material.temperature,
+            "emission_source": per_object[obj.id].source,
+            "background": obj.background,
+        }
+        for obj in scene.objects
+    }
+
+
+def room_targeted_rays(scene: Scene) -> list[tuple[str, np.ndarray]]:
+    """Straight down, up and ahead, and toward the centre of every object."""
+    origin = scene.observer.tolist()
+    rays: list[tuple[str, np.ndarray]] = [
+        ("down", np.array([0.0, -1.0, 0.0])),
+        ("up", np.array([0.0, 1.0, 0.0])),
+        ("ahead", np.array([0.0, 0.0, -1.0])),
+        ("behind", np.array([0.0, 0.0, 1.0])),
+    ]
+    for obj in sorted(scene.objects, key=lambda o: -o.depth):
+        direction = aim(origin, obj.shape.center)
+        if direction is not None and not any(np.array_equal(direction, d) for _, d in rays):
+            rays.append((f"center:{obj.id}", direction))
+    return rays
+
+
+def build_room_fixture(scene_path, seed: int = SEED, n_rays: int = N_ROOM_RAYS) -> dict:
+    scene_path = Path(scene_path)
+    scene = load_scene(scene_path)
+    background = [o.id for o in scene.objects if o.background]
+    for object_id in background:
+        if scene[object_id].parent is not None or scene[object_id].children:
+            raise ValueError(f"{scene_path.name}: background object {object_id!r} must be a root without children")
+    kept = [o.id for o in scene.objects if o.parent is None and not o.background]
+
+    labelled = room_targeted_rays(scene)
+    labelled += random_rays(max(n_rays - len(labelled), 0), seed)
+    directions = np.array([direction for _, direction in labelled])
+    radiance = columns.number_radiance(scene, directions)
+    column = columns.mass_column(scene, directions)
+    tidal_column = columns.tidal_column(scene, directions)
+    chord = columns.chords(scene, directions)
+    rays = [
+        {
+            "label": label,
+            "direction": directions[k].tolist(),
+            "number_radiance": float(radiance[k]),
+            "mass_column": float(column[k]),
+            "tidal_column": _rounded(float(tidal_column[k])),
+            "chords": {object_id: float(chord[object_id][k]) for object_id in scene.ids},
+        }
+        for k, (label, _) in enumerate(labelled)
+    ]
+
+    sensors = []
+    for dy in (SENSOR_SPACING_M, 0.0, -SENSOR_SPACING_M):
+        for dx in (-SENSOR_SPACING_M, 0.0, SENSOR_SPACING_M):
+            point = scene.observer + np.array([dx, dy, 0.0])
+            sensors.append({
+                "point": point.tolist(),
+                "tensor": _rounded_matrix(tidal.scene_tidal_tensor(scene, point)),
+                "tensor_without_room": _rounded_matrix(tidal.scene_tidal_tensor(scene, point, kept)),
+            })
+
+    return {
+        "meta": {
+            "scene": scene_path.name,
+            "scene_name": scene.name,
+            "seed": seed,
+            "package": "gravcam",
+            "version": __version__,
+            "generator": "python -m gravcam.export_fixtures",
+            "notes": [
+                "All quantities are SI, float64. tidal_column and the tensors are rounded to "
+                f"{SIGNIFICANT} significant digits (they need log and atan, which are not correctly "
+                "rounded everywhere); everything else is written with full precision.",
+                "Rays start at observer.position; direction is a unit vector in scene axes.",
+                "chords: path length of the ray inside each object's FULL shape (children included), not its own region.",
+                "tidal_column: integral of rho dr / r beyond observer.exclusion (scenes/README.md).",
+                "sensors: the tidal tensor E_ij = d_i d_j Phi at nine points around the observer, from the closed-form "
+                "fields of uniform boxes and spheres; tensor_without_room leaves out the objects marked background.",
+            ],
+        },
+        "units": {
+            "own_volume": "m^3",
+            "alpha": "m^-1",
+            "j_E": "W m^-3 sr^-1",
+            "j_N": "gravitons s^-1 m^-3 sr^-1",
+            "density": "kg m^-3",
+            "temperature": "K",
+            "number_radiance": "gravitons s^-1 m^-2 sr^-1",
+            "mass_column": "kg m^-2",
+            "tidal_column": "kg m^-3",
+            "chords": "m",
+            "tensor": "s^-2",
+        },
+        "constants": constants.as_dict(),
+        "observer": {"position": scene.observer.tolist(), "exclusion": scene.exclusion},
+        "background": background,
+        "objects": _object_block(scene),
+        "sensors": sensors,
+        "rays": rays,
+    }
+
+
 def dumps(fixture: dict) -> str:
     """JSON text: indented, but with one ray per line (easier to diff)."""
     marker = "@@RAYS@@"
@@ -243,18 +377,31 @@ def dumps(fixture: dict) -> str:
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog="python -m gravcam.export_fixtures", description=__doc__.split("\n")[0])
-    parser.add_argument("--scene", type=Path, default=DEFAULT_SCENE, help="scene file (default: %(default)s)")
+    parser.add_argument("--scene", type=Path, default=None,
+                        help="one scene file (default: the Sun scene and every room scene)")
     parser.add_argument("--out", type=Path, default=None,
-                        help="output file (default: reference/fixtures/<scene name>.json)")
+                        help="output file, with --scene (default: reference/fixtures/<scene name>.json)")
     parser.add_argument("--seed", type=int, default=SEED, help="seed of the random directions (default %(default)s)")
-    parser.add_argument("--rays", type=int, default=N_RAYS, help="total number of rays (default %(default)s)")
+    parser.add_argument("--rays", type=int, default=None, help="total number of rays per scene")
     args = parser.parse_args(argv)
 
-    fixture = build_fixture(args.scene, seed=args.seed, n_rays=args.rays)
-    out = args.out or DEFAULT_OUT_DIR / (args.scene.name.removesuffix(".scene.json") + ".json")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(dumps(fixture), encoding="utf-8")
-    print(f"wrote {out} ({len(fixture['rays'])} rays, {len(fixture['objects'])} objects)")
+    if args.scene is None:
+        if args.out is not None:
+            parser.error("--out needs --scene")
+        jobs = [(DEFAULT_SCENE, None)] + [(SCENES_DIR / f"{name}.scene.json", None) for name in ROOM_SCENES]
+    else:
+        jobs = [(args.scene, args.out)]
+
+    for scene_path, out in jobs:
+        is_room = load_scene(scene_path).environment == "room"
+        if is_room:
+            fixture = build_room_fixture(scene_path, seed=args.seed, n_rays=args.rays or N_ROOM_RAYS)
+        else:
+            fixture = build_fixture(scene_path, seed=args.seed, n_rays=args.rays or N_RAYS)
+        out = out or DEFAULT_OUT_DIR / (scene_path.name.removesuffix(".scene.json") + ".json")
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(dumps(fixture), encoding="utf-8")
+        print(f"wrote {out} ({len(fixture['rays'])} rays, {len(fixture['objects'])} objects)")
     return 0
 
 

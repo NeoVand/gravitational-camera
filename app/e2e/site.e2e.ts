@@ -56,7 +56,7 @@ test('GPU self-test agrees with the reference implementation', async ({ page }) 
 	await page.goto('/dev/selftest/');
 	await expect(page.locator('#summary')).not.toHaveText('running', { timeout: 60_000 });
 	const report = await page.locator('main').innerText();
-	expect(report, report).toContain('all 3 passed');
+	expect(report, report).toContain('all 4 passed');
 });
 
 test('demo draws frames and responds to its controls', async ({ page }) => {

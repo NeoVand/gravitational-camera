@@ -105,6 +105,7 @@ class SceneObject:
     children: tuple[str, ...]
     depth: int            # 0 for a root object, parent's depth + 1 otherwise
     own_volume: float     # m^3: shape volume minus the children's shape volumes
+    background: bool = False   # part of the empty room, which a view may subtract
 
 
 class Scene:
@@ -328,6 +329,7 @@ def scene_from_dict(data: dict, source=None) -> Scene:
     shapes: dict[str, Shape] = {}
     parents: dict[str, str | None] = {}
     object_materials: dict[str, Material] = {}
+    backgrounds: dict[str, bool] = {}
     for spec in data["objects"]:
         if not isinstance(spec, dict) or "id" not in spec:
             raise SceneError(f"every object needs an id, got {spec!r}")
@@ -339,6 +341,9 @@ def scene_from_dict(data: dict, source=None) -> Scene:
             raise SceneError(f"object {object_id!r}: unknown material {spec.get('material')!r}")
         object_materials[object_id] = materials[spec["material"]]
         parents[object_id] = spec.get("parent")
+        backgrounds[object_id] = spec.get("background", False)
+        if not isinstance(backgrounds[object_id], bool):
+            raise SceneError(f"object {object_id!r}: background must be true or false")
 
     for object_id, parent in parents.items():
         if parent is not None and parent not in shapes:
@@ -387,6 +392,7 @@ def scene_from_dict(data: dict, source=None) -> Scene:
             children=tuple(children[object_id]),
             depth=depths[object_id],
             own_volume=own_volume,
+            background=backgrounds[object_id],
         ))
     return Scene(name=data.get("name", ""), observer=observer, objects=objects, materials=materials, source=source,
                  exclusion=exclusion, environment=environment)

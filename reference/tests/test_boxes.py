@@ -79,7 +79,8 @@ def test_depths_follow_the_parent_chain(room, raw_room):
         while parents[node] is not None:
             node, depth = parents[node], depth + 1
         assert obj.depth == depth
-    assert max(obj.depth for obj in room.objects) >= 1
+    if any(parents.values()):
+        assert max(obj.depth for obj in room.objects) >= 1
 
 
 def test_own_volumes(room, raw_room):
@@ -123,7 +124,12 @@ def test_locate_named_points(room, raw_room):
         else:
             reach = hand.radius_of(raw_room, object_id)
         assert room.object_at(center + [reach * (1 - 1e-9), 0.0, 0.0]).id == object_id
-        assert room.object_at(center + [reach, 0.0, 0.0]) is not None            # the surface counts as inside
+        # the surface counts as inside; centre + reach can round to just beyond it,
+        # so step back to the last float that is on or inside the surface
+        surface = center + [reach, 0.0, 0.0]
+        while abs(surface[0] - center[0]) > reach:
+            surface[0] = np.nextafter(surface[0], center[0])
+        assert room.object_at(surface) is not None
     assert room.object_at(room.observer) is None
     assert room.object_at([0.0, 100.0, 0.0]) is None
 
@@ -147,9 +153,10 @@ def brute_owner(raw, points):
 def test_locate_agrees_with_smallest_containing_shape(room, raw_room):
     rng = np.random.default_rng(21)
     everywhere = rng.uniform([-7, -1, -12], [7, 6, 4], size=(40000, 3))
-    # and dense clouds around every object with a parent, where the nesting is
+    # and dense clouds around every object: where the nesting is, and where a
+    # thin object (a poster, a mirror) would be missed by uniform sampling
     clouds = [np.array(hand.center_of(raw_room, o["id"])) + rng.uniform(-0.6, 0.6, size=(4000, 3))
-              for o in raw_room["objects"] if o.get("parent")]
+              for o in raw_room["objects"]]
     points = np.concatenate([everywhere, *clouds])
     expected = brute_owner(raw_room, points)
     assert np.array_equal(room.locate(points), expected)

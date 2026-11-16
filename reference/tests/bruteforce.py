@@ -31,8 +31,10 @@ ln(b / a), both ends raised to the exclusion radius: the integral of dr / r
 beyond the exclusion sphere, which turns the mass column into the tidal
 column. The weight of each cell is exact, so the only error of the dense sum
 is still the misplacement of each discontinuity by at most half a cell, and
-the rigorous bound becomes (h / a_min) * sum |jump|, with a_min the larger of
-the exclusion radius and the near end of the sampled interval.
+the rigorous bound becomes sum of (h / a_min) |jump| over the shapes, with
+a_min the largest of the exclusion radius, the near end of the sampled
+interval and the distance from the ray's origin to that shape's surface (no
+crossing of it can be nearer).
 """
 from __future__ import annotations
 
@@ -183,6 +185,16 @@ class BruteScene:
         smallest = size.argmin(axis=1)
         return np.where(inside.any(axis=1), smallest + 1, 0)
 
+    def surface_distance(self, origin, k):
+        """Distance from ``origin`` to the surface of shape k."""
+        offset = np.abs(origin - self.centers[k])
+        if not self.is_box[k]:
+            return abs(np.linalg.norm(offset) - self.radii[k])
+        outside = np.maximum(offset - self.halves[k], 0.0)
+        if outside.any():
+            return float(np.linalg.norm(outside))
+        return float(np.min(self.halves[k] - offset))
+
     def spans(self, origin, direction, prune=True):
         """Per sphere, the interval of the ray outside which the ray is
         certainly outside that sphere, or None if the ray certainly misses it:
@@ -249,5 +261,6 @@ class BruteScene:
             for k in members:
                 parent = self.parents[k]
                 outside = 0.0 if parent is None else values[self.ids.index(parent)]
-                out.dense_bound += measure.cell_bound(lo, h) * np.abs(values[k] - outside)
+                nearest = max(lo, self.surface_distance(origin, k))
+                out.dense_bound += measure.cell_bound(nearest, h) * np.abs(values[k] - outside)
         return out
