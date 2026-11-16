@@ -31,6 +31,24 @@ the matter's speed to that of light,
 Averaged over time, this holds for any mixture of waves, so the magnetic part
 is a detector of radiation that the pull of nearby objects hardly touches.
 
+\paragraph{What the magnetic part sees nearby.} Small as it is, the near-field
+magnetic tensor carries its own picture. It is sourced by the momentum density
+$\rho\mathbf{v}$ as the electric tensor is by $\rho$, and a moving element at
+distance $r$ contributes in proportion to $1/r^{3}$. The argument of
+Eq.~\eqref{eq:tidal-column} then carries over: the magnetic half of the camera
+images the \emph{current column}
+\begin{equation}\label{eq:current-column}
+\mathbf{J}(\hat n) = \int \rho\,\mathbf{v}(r\hat n)\,\frac{\dd r}{r} ,
+\end{equation}
+with the same blur law at a signal-to-noise ratio smaller by about $v/c$. For a
+ball turning at angular velocity $\boldsymbol\omega$ about a point $\mathbf{s}$,
+entered and left by the line of sight at distances $a$ and $b$, it is
+$\mathbf{J} = \rho\,[(\boldsymbol\omega\times\hat n)(b-a)
+- (\boldsymbol\omega\times\mathbf{s})\ln(b/a)]$. A smooth flywheel looks the
+same spinning or still, and pulls the same; its current column is a vortex
+that turns as the wheel turns. The demonstration of a sealed flywheel shows
+it.
+
 \paragraph{Variation across the array.} A wave of wavelength $\lambda$ changes
 across an array of width $a$ by a fraction of order $2\pi a/\lambda$. The field
 of a mass at distance $r$, which falls as $1/r^{3}$, changes by a fraction of
@@ -42,8 +60,9 @@ already plan arrays of sensors for exactly this purpose, to remove the changing
 pull of their surroundings \cite{Chaibi2016}; a camera simply keeps what they
 throw away. With two arrays far apart the separation is cleaner still: a wave
 appears in both, with a delay that gives its direction, while a nearby mass
-appears in one. The accompanying demonstrations show the raw readings of the
-pixels and their differences.
+appears in one. The accompanying demonstrations show the tidal tensor itself
+on a slice through the scene, coloured by the direction of stretching in the
+manner of diffusion tensor imaging.
 
 \paragraph{Depth.} The same variation measures distance. For an isolated mass
 the tidal field goes as $M/r^{3}$ and its gradient as $M/r^{4}$, so their

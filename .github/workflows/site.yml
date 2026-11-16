@@ -65,10 +65,21 @@ jobs:
       - name: End-to-end tests (includes the GPU self-test)
         run: pnpm exec playwright test
 
+  paper:
+    name: Paper PDF
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install LaTeX
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern latexmk
+      - name: Build the PDF
+        working-directory: paper
+        run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+
   build:
     name: Build for GitHub Pages
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: [reference, site]
+    needs: [reference, site, paper]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -83,8 +94,13 @@ jobs:
           node-version: 22
           cache: pnpm
           cache-dependency-path: app/pnpm-lock.yaml
-      - name: Install pandoc
-        run: sudo apt-get update && sudo apt-get install -y pandoc
+      - name: Install pandoc and LaTeX
+        run: sudo apt-get update && sudo apt-get install -y pandoc && sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern latexmk
+      - name: Build the PDF into the site
+        working-directory: paper
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          cp main.pdf ../app/static/the-gravitational-camera.pdf
       - name: Install dependencies
         working-directory: app
         run: pnpm install --frozen-lockfile

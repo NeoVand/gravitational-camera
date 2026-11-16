@@ -15,7 +15,15 @@ export default defineConfig({
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
 			adapter: adapter({ fallback: '404.html' }),
-			paths: { base: process.argv.includes('dev') ? '' : base }
+			paths: { base: process.argv.includes('dev') ? '' : base },
+			prerender: {
+				// The paper's PDF is made by LaTeX in the deploy workflow only, so
+				// other builds may lack it; every other broken link still fails.
+				handleHttpError: ({ path, message }) => {
+					if (path.endsWith('/the-gravitational-camera.pdf')) return;
+					throw new Error(message);
+				}
+			}
 		})
 	],
 	// scenes, fixtures and the paper live beside the app; previews may arrive through a proxy host

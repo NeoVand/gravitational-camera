@@ -16,6 +16,7 @@ export {
 	chordThrough,
 	columnsAlong,
 	crossing,
+	gravitonsInView,
 	packPrims,
 	referenceRadiance,
 	referenceTidal

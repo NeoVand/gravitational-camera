@@ -35,3 +35,14 @@ export function texLength(m: number): string {
 	const [value, unit] = length(m).split(' ');
 	return `${value.replace(/,/g, '{,}')}\\,\\mathrm{${unit}}`;
 }
+
+/** A waiting time in seconds, as LaTeX in the unit that suits it. */
+export function texWait(seconds: number): string {
+	const year = 365.25 * 86400;
+	if (!isFinite(seconds)) return '\\infty';
+	if (seconds < 120) return `${seconds.toFixed(0)}\\ \\text{seconds}`;
+	if (seconds < 7200) return `${(seconds / 60).toFixed(0)}\\ \\text{minutes}`;
+	if (seconds < 172800) return `${(seconds / 3600).toFixed(0)}\\ \\text{hours}`;
+	if (seconds < 2 * year) return `${(seconds / 86400).toFixed(0)}\\ \\text{days}`;
+	return `${texSci(seconds / year)}\\ \\text{years}`;
+}

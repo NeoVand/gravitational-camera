@@ -26,6 +26,7 @@
 		analyzeScene,
 		cameraBasis,
 		columnsAlong,
+		gravitonsInView,
 		nearFieldBlur,
 		type Scene,
 		type View
@@ -36,7 +37,7 @@
 	import Segmented from './controls/Segmented.svelte';
 	import Slider from './controls/Slider.svelte';
 	import Toggle from './controls/Toggle.svelte';
-	import { length, superscript, texLength, texSci } from './format';
+	import { length, superscript, texLength, texSci, texWait } from './format';
 	import Tex from './Tex.svelte';
 	import FlowField from './FlowField.svelte';
 	import { C } from '../engine/physics/constants';
@@ -121,6 +122,19 @@
 	const flowDecades = $derived(Math.max(1, sensitivity + Math.log10(rimSpeed / C)));
 	const flowBlur = $derived(nearFieldBlur(flowDecades));
 	const split = $derived(showLight && showGravity ? divider : showLight ? 1 : 0);
+	// gravitons per second that the whole view sends a square-metre detector
+	const inView = $derived(
+		gravity === 'thermal'
+			? gravitonsInView(
+					objects,
+					observer,
+					cameraBasis(view),
+					Math.tan(view.fov / 2) * 1.6,
+					Math.tan(view.fov / 2),
+					subtractRoom
+				)
+			: 0
+	);
 
 	// the near-field resolution law (paper, eq. resolution): full width at half
 	// maximum of the best reconstruction of a point, for a planar array
@@ -301,8 +315,10 @@
 			</dl>
 			<p class="fine">
 				The gravity side is the expected thermal image: the glow of everything along each line of
-				sight, with colour standing for temperature. At these rates a real detector would wait far
-				longer than the age of the universe for a single graviton. Friction values are assumptions.
+				sight, with colour standing for temperature. It is what the camera would build up over a
+				long exposure: everything in this view sends a detector of one square metre one graviton
+				every
+				<Tex math={texWait(1 / inView)} />. Friction values are assumptions.
 			</p>
 			{#if hasRoom}
 				<p class="fine">
@@ -385,6 +401,13 @@
 			<p>
 				That is why the inside of a closed box shows, why a slab is brightest seen edge-on, and why
 				the wavelength (microns, like thermal infrared) leaves the picture sharp.
+			</p>
+			<h4>How faint</h4>
+			<p>
+				Adding up every line of sight in view, a detector of one square metre would receive
+				<Tex math={`${texSci(inView)}\\ \\text{gravitons per second}`} />, one every <Tex
+					math={texWait(1 / inView)}
+				/>. The picture is the expected image of a very long exposure, not a snapshot.
 			</p>
 			<dl class="numbers">
 				<div>

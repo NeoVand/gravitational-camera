@@ -71,7 +71,27 @@ components of the field. For a single wave, the tensors $\tE_{ij}$ and
 $\tB_{ij}$ together fix the direction of travel. For a sky full of independent
 sources the pixel's data determine the brightness of the sky only in its
 broadest patterns: those of spherical-harmonic degree four or less,
-twenty-five numbers in all. We have confirmed this limit numerically and will
-give the proof in a later version. It is the gravitational counterpart of the
+twenty-five numbers in all. It is the gravitational counterpart of the
 statement that a single antenna has a broad beam, and it is the precise sense
 in which one pixel is not yet a camera.
+
+The proof is short. Independent waves add their second moments, so the
+pixel's data are integrals over the sky of the brightness $I(\hat n)$ and the
+circular polarization $V(\hat n)$ against kernels made from the polarization
+tensors of a plane wave travelling along $\hat n$. For the brightness the
+kernel is the sum over the two polarizations,
+\begin{equation}\label{eq:pixel-kernel}
+\sum_{A=+,\times} e^{A}_{ij}\, e^{A}_{kl}
+= P_{ik}P_{jl} + P_{il}P_{jk} - P_{ij}P_{kl},
+\qquad P_{ij} = \delta_{ij} - \hat n_i \hat n_j ,
+\end{equation}
+a polynomial of degree four in the components of $\hat n$; the kernel for $V$
+is the antisymmetric combination, also a polynomial of degree at most four.
+A polynomial of degree four on the sphere contains spherical harmonics of
+degree four and below only, so by their orthogonality every harmonic of $I$
+and $V$ above degree four integrates to zero. The magnetic tensor of a plane
+wave is the electric one turned by $45^\circ$ about $\hat n$, so the same
+holds for every product of $\tE$ and $\tB$. The linear polarization carries
+spin weight four about $\hat n$ and enters only through its harmonic of degree
+exactly four. The reference implementation checks all three statements
+numerically, harmonic by harmonic.

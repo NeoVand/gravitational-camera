@@ -12,13 +12,14 @@
 	} from '@hugeicons/core-free-icons';
 	import {
 		cameraBasis,
+		gravitonsInView,
 		chordThrough,
 		columnsAlong,
 		referenceRadiance,
 		type View
 	} from '#lib/engine/index.js';
 	import { aim, formatClock, objectsAt, scene, sunDirection } from '#lib/demos/sun-at-midnight.js';
-	import { km, superscript, texSci } from '#lib/ui/format.js';
+	import { km, superscript, texSci, texWait } from '#lib/ui/format.js';
 	import Tex from '#lib/ui/Tex.svelte';
 	import DemoShell from '#lib/ui/DemoShell.svelte';
 	import SplitView from '#lib/ui/SplitView.svelte';
@@ -66,6 +67,16 @@
 		const path = chordThrough(earth, observer, forward);
 		return { path, ...columnsAlong(objects, observer, forward) };
 	});
+
+	const inView = $derived(
+		gravitonsInView(
+			objects,
+			observer,
+			cameraBasis(view),
+			Math.tan(view.fov / 2) * 1.6,
+			Math.tan(view.fov / 2)
+		)
+	);
 
 	const sunRatio = $derived(
 		columnsAlong(objects, observer, sun).numberRadiance / referenceRadiance(objects, observer)
@@ -218,9 +229,10 @@
 		<p>
 			Along the centre of view the expected count is <Tex
 				math={`${texSci(centre.numberRadiance)}\\ \\mathrm{s^{-1}\\,m^{-2}\\,sr^{-1}}`}
-			/>. A detector of a square metre would wait far longer than the age of the universe for one
-			graviton: the picture is the expected image, not a photograph. The Earth's internal friction
-			is an assumed placeholder.
+			/>. Added up over everything in view, a detector of one square metre would receive one
+			graviton every <Tex math={texWait(1 / inView)} />: the whole planet is a large, faint source.
+			The picture is the expected image of a long exposure. The Earth's internal friction is an
+			assumed placeholder, and sets this rate in proportion.
 		</p>
 	{/snippet}
 </DemoShell>

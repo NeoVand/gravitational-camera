@@ -1,5 +1,8 @@
 <script lang="ts">
 	import 'katex/dist/katex.min.css';
+	import { resolve } from '$app/paths';
+	import { HugeiconsIcon } from '@hugeicons/svelte';
+	import { Pdf01Icon } from '@hugeicons/core-free-icons';
 	import { drawnFigures, figureImage, pictureFigures } from '#lib/paper/figures.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import type { PageProps } from './$types';
@@ -70,6 +73,10 @@
 			<h1>{@html paper.title}</h1>
 			{#if paper.authors.length}<p class="authors">{@html paper.authors.join(', ')}</p>{/if}
 			<p class="date">{@html paper.date}</p>
+			<!-- the PDF is built from the same LaTeX by the deploy workflow -->
+			<a class="pdf" href="{resolve('/')}the-gravitational-camera.pdf" download>
+				<HugeiconsIcon icon={Pdf01Icon} size={16} strokeWidth={1.8} /> PDF
+			</a>
 		</header>
 
 		<section class="abstract" aria-label="Abstract">
@@ -216,6 +223,24 @@
 
 	header {
 		margin: 4rem 0 2.2rem;
+	}
+
+	.pdf {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-top: 1rem;
+		padding: 0.4rem 0.8rem;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		font: 500 0.78rem/1 var(--font-sans);
+		color: var(--text-dim);
+		text-decoration: none;
+	}
+
+	.pdf:hover {
+		color: var(--text);
+		border-color: var(--line-strong);
 	}
 
 	.kicker {

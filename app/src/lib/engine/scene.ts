@@ -296,3 +296,38 @@ export function packPrims(
 	});
 	return { buffer, count: objects.length };
 }
+
+/**
+ * Gravitons per second that everything in a view sends to a detector of one
+ * square metre facing it: the number radiance integrated over the picture's
+ * solid angle, on a grid of directions.
+ */
+export function gravitonsInView(
+	objects: AnalyzedObject[],
+	origin: Vec3,
+	basis: { right: Vec3; up: Vec3; forward: Vec3 },
+	tanHalfWidth: number,
+	tanHalfHeight: number,
+	subtractRoom = false
+): number {
+	const nx = 64;
+	const ny = 40;
+	const dx = (2 * tanHalfWidth) / nx;
+	const dy = (2 * tanHalfHeight) / ny;
+	let total = 0;
+	for (let j = 0; j < ny; j++)
+		for (let i = 0; i < nx; i++) {
+			const x = -tanHalfWidth + (i + 0.5) * dx;
+			const y = -tanHalfHeight + (j + 0.5) * dy;
+			const d: Vec3 = [0, 1, 2].map(
+				(k) => basis.forward[k] + x * basis.right[k] + y * basis.up[k]
+			) as Vec3;
+			const n = Math.hypot(...d);
+			const dir: Vec3 = [d[0] / n, d[1] / n, d[2] / n];
+			// solid angle of a cell of the tangent plane: dx dy / (1 + x² + y²)^(3/2)
+			const solid = (dx * dy) / (1 + x * x + y * y) ** 1.5;
+			total +=
+				columnsAlong(objects, origin, dir, DEFAULT_EXCLUSION, subtractRoom).numberRadiance * solid;
+		}
+	return total;
+}

@@ -8,7 +8,14 @@ import furnaceJson from '../../../../scenes/closed-furnace.scene.json';
 import honeyJson from '../../../../scenes/honey-and-water.scene.json';
 import safeJson from '../../../../scenes/locked-safe.scene.json';
 import { pixelDirection, screenPosition, type View } from './camera';
-import { analyzeScene, columnsAlong, packPrims, PRIM_STRIDE, referenceTidal } from './scene';
+import {
+	analyzeScene,
+	columnsAlong,
+	gravitonsInView,
+	packPrims,
+	PRIM_STRIDE,
+	referenceTidal
+} from './scene';
 import { massPoints } from './tidal';
 import type { AnalyzedObject, Scene, Vec3 } from './types';
 
@@ -146,5 +153,28 @@ describe('the thermal demos', () => {
 		expect(contents).toHaveLength(2);
 		const [a, b] = contents.map((o) => o.jN);
 		expect(Math.max(a, b) / Math.min(a, b)).toBeCloseTo(1e4, -2);
+	});
+});
+
+describe('gravitons in a view', () => {
+	it('adds up to j_N V / d² for a small glowing ball', () => {
+		const scene = {
+			name: 'ball',
+			title: 'ball',
+			observer: { position: [0, 0, 0] as Vec3 },
+			materials: { warm: { density: 1000, temperature: 300, friction: 1 } },
+			objects: [
+				{
+					id: 'ball',
+					shape: { type: 'sphere' as const, center: [0, 0, -10] as Vec3, radius: 0.8 },
+					material: 'warm'
+				}
+			]
+		} as Scene;
+		const objects = analyzeScene(scene);
+		const basis = { right: [1, 0, 0] as Vec3, up: [0, 1, 0] as Vec3, forward: [0, 0, -1] as Vec3 };
+		const got = gravitonsInView(objects, [0, 0, 0], basis, 0.3, 0.3);
+		const want = (objects[0].jN * (4 / 3) * Math.PI * 0.8 ** 3) / 100;
+		expect(Math.abs(got / want - 1)).toBeLessThan(0.02);
 	});
 });
