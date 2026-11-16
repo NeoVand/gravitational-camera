@@ -1529,8 +1529,10 @@ def memory_patterns():
 
 def main() -> int:
     setup_fonts()
-    for draw in (tidal, tidal_field, regimes, sky_integral, nearfield, resolution_law, quadrupole,
-                 polarization_curves, line_integral, earth_glow, array, budget,
+    # tidal, sky-integral, quadrupole, line-integral and earth-glow are modelled in 3D and drawn by
+    # figures3d/ (node figures3d/render.mjs --final ...); their old versions here are no longer drawn
+    for draw in (tidal_field, regimes, nearfield, resolution_law,
+                 polarization_curves, array, budget,
                  sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
                  milky_way, black_hole, sun_lens, memory_patterns):
         draw()

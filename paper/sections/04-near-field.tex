@@ -65,17 +65,20 @@ spherical shell it feels no tide from the shell at all, whatever its mass.
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/sky-integral.pdf}
-\caption{The sky integral, Eq.~\eqref{eq:tidal-column}. (a) A pixel at the
-apex of a thin cone of directions $\dd\Omega$ about $\hat n$. The matter in
-the cone between $r$ and $r + \dd r$ has mass $\dd m = \rho\,r^2\,\dd r\,\dd\Omega$
-and adds $G\,\dd m\,(\delta_{ij} - 3\hat n_i\hat n_j)/r^3$ to the tidal field.
-The $r^2$ of the volume cancels two of the three powers of $1/r$, so each line
-of sight contributes its mass weighted by $\dd r/r$: the tidal column
-$S(\hat n)$. (b) The weight with which one component, $\tE_{zz}$, takes the
-matter in a direction at angle $\vartheta$ from the $z$ axis. Matter near the
-axis stretches the pixel along $z$; matter near the perpendicular plane
-squeezes it. The weight averages to zero over the sky, which is why a uniform
-shell of matter around the camera is invisible to it.}\label{fig:sky-integral}
+\caption{The sky integral, Eq.~\eqref{eq:tidal-column}. (a) A pixel at the apex
+of a cone of directions $\dd\Omega$ about $\hat n$. The matter in the cone
+between $r$ and $r + \dd r$, a piece of the cone bounded by two spherical caps
+(orange), has mass $\dd m = \rho\,r^2\,\dd r\,\dd\Omega$ and adds
+$G\,\dd m\,(\delta_{ij} - 3\hat n_i\hat n_j)/r^3$ to the tidal field. The $r^2$
+of the volume cancels two of the three powers of $1/r$, so each line of sight
+contributes its mass weighted by $\dd r/r$: the tidal column $S(\hat n)$. The
+cone's width and $\dd r$ are exaggerated. (b) The sky around the pixel,
+coloured by the sign of the weight $1 - 3\cos^2\vartheta$ with which one
+component, $\tE_{zz}$, takes matter in each direction: matter in the orange caps,
+within $54.7^\circ$ of the $z$ axis ($\cos^2\vartheta > 1/3$), stretches the
+pixel along $z$; matter in the blue band squeezes it. The weight averages to
+zero over the sky, which is why a uniform shell of matter around the camera is
+invisible to it.}\label{fig:sky-integral}
 \end{figure*}
 
 \paragraph{How sharp.} The space between scene and camera is empty, so the
