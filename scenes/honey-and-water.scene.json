@@ -1,0 +1,149 @@
+{
+  "name": "honey-and-water",
+  "title": "Honey and water",
+  "description": "Two sealed opaque bottles on a table, one full of honey and one full of water, at the same temperature.",
+  "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
+  "environment": "room",
+  "observer": {
+    "position": [0, 1.5, 0],
+    "exclusion": 0.25
+  },
+  "materials": {
+    "concrete": {
+      "density": 2400,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.42, 0.41, 0.39]
+      }
+    },
+    "plaster": {
+      "density": 1200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.6, 0.56]
+      }
+    },
+    "glass": {
+      "density": 2500,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.55, 0.62, 0.6]
+      }
+    },
+    "wood": {
+      "density": 700,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.36, 0.25, 0.16]
+      }
+    },
+    "honey": {
+      "density": 1400,
+      "temperature": 293,
+      "friction": 10
+    },
+    "water": {
+      "density": 1000,
+      "temperature": 293,
+      "friction": 0.001
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, -0.15, -4],
+        "size": [12, 0.3, 14]
+      },
+      "material": "concrete"
+    },
+    {
+      "id": "back-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, 2.5, -8.15],
+        "size": [12.6, 5, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "left-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [-6.15, 2.5, -4.0],
+        "size": [0.3, 5, 8.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "right-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [6.15, 2.5, -4.0],
+        "size": [0.3, 5, 8.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "table",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, 0.78, -2.2],
+        "size": [1.6, 0.06, 0.8]
+      },
+      "material": "wood"
+    },
+    {
+      "id": "bottle-left",
+      "shape": {
+        "type": "box",
+        "center": [-0.35, 1.0, -2.2],
+        "size": [0.2, 0.36, 0.2]
+      },
+      "material": "glass"
+    },
+    {
+      "id": "bottle-left-contents",
+      "parent": "bottle-left",
+      "shape": {
+        "type": "box",
+        "center": [-0.35, 1.0, -2.2],
+        "size": [0.18, 0.34, 0.18]
+      },
+      "material": "honey"
+    },
+    {
+      "id": "bottle-right",
+      "shape": {
+        "type": "box",
+        "center": [0.35, 1.0, -2.2],
+        "size": [0.2, 0.36, 0.2]
+      },
+      "material": "glass"
+    },
+    {
+      "id": "bottle-right-contents",
+      "parent": "bottle-right",
+      "shape": {
+        "type": "box",
+        "center": [0.35, 1.0, -2.2],
+        "size": [0.18, 0.34, 0.18]
+      },
+      "material": "water"
+    }
+  ],
+  "assumptions": [
+    "Honey is given its everyday viscosity, 10 Pa s, and water 0.001 Pa s. Whether everyday viscosity carries over to the frequencies of thermal radiation is an open question in the paper.",
+    "The bottles are drawn opaque; their glass is given the placeholder friction."
+  ]
+}

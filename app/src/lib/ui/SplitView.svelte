@@ -41,6 +41,8 @@
 		room?: boolean;
 		/** Add a faint copy of the ordinary picture to the near-field view. */
 		outline?: boolean;
+		/** Leave the empty room (background objects) out of the gravity views. */
+		subtractRoom?: boolean;
 		interactive?: boolean;
 		leftLabel?: string;
 		rightLabel?: string;
@@ -67,6 +69,7 @@
 		exclusion = 0.25,
 		room = false,
 		outline = false,
+		subtractRoom = false,
 		interactive = true,
 		leftLabel = 'Light',
 		rightLabel = 'Gravity · thermal',
@@ -82,8 +85,8 @@
 	let status: 'starting' | 'running' | 'unavailable' | 'failed' = $state('starting');
 	let message = $state('');
 
-	const nRef = $derived(referenceRadiance(objects, observer));
-	const sRef = $derived(referenceTidal(objects, observer, exclusion));
+	const nRef = $derived(referenceRadiance(objects, observer, subtractRoom));
+	const sRef = $derived(referenceTidal(objects, observer, exclusion, subtractRoom));
 	// where the divider sits once the on/off switches are taken into account
 	const split = $derived(showLight && showGravity ? divider : showLight ? 1 : 0);
 
@@ -120,6 +123,7 @@
 				exposure,
 				nearBlur,
 				outline,
+				subtractRoom,
 				leftMode,
 				rightMode,
 				sunDirection,
@@ -144,7 +148,9 @@
 				room,
 				nearOutline: outline
 			};
-			engine.setPrims(packPrims(objects, observer, { nRef, sRef, glareAngle: 2.5 * pixelAngle }));
+			engine.setPrims(
+				packPrims(objects, observer, { nRef, sRef, glareAngle: 2.5 * pixelAngle, subtractRoom })
+			);
 			if (ctx2d) {
 				busy = true;
 				const pixels = await engine.readFrame(params, width, height);
@@ -159,6 +165,10 @@
 				engine.render(params);
 			}
 			canvas.dataset.frames = String(Number(canvas.dataset.frames ?? 0) + 1);
+			// lets tests wait for the frame drawn with a given setting, not an older one
+			canvas.dataset.nearBlur = String(params.nearBlur);
+			canvas.dataset.split = String(params.divider);
+			canvas.dataset.exposure = String(params.exposure);
 		};
 
 		Engine.create(target)

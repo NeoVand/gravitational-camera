@@ -1,6 +1,6 @@
 export { Engine, EngineUnavailable, MODE_LIGHT, MODE_NEAR, MODE_THERMAL } from './engine';
 export type { FrameParams, Mode } from './engine';
-export { cameraBasis, pixelDirection } from './camera';
+export { cameraBasis, pixelDirection, screenPosition } from './camera';
 export type { View } from './camera';
 export {
 	DEFAULT_EXCLUSION,

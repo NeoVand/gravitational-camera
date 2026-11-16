@@ -1,0 +1,156 @@
+{
+  "name": "closed-furnace",
+  "title": "The closed furnace",
+  "description": "Two identical closed steel furnaces holding the same block of iron. In one the iron is at 1500 K, in the other it is cold.",
+  "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
+  "environment": "room",
+  "observer": {
+    "position": [0, 1.5, 0],
+    "exclusion": 0.25
+  },
+  "materials": {
+    "concrete": {
+      "density": 2400,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.42, 0.41, 0.39]
+      }
+    },
+    "plaster": {
+      "density": 1200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.6, 0.56]
+      }
+    },
+    "steel": {
+      "density": 7850,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.33, 0.35, 0.38]
+      }
+    },
+    "air": {
+      "density": 1.2,
+      "temperature": 293,
+      "friction": 0.001
+    },
+    "cold-iron": {
+      "density": 7870,
+      "temperature": 293,
+      "friction": 0.001
+    },
+    "hot-iron": {
+      "density": 7870,
+      "temperature": 1500,
+      "friction": 0.001
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, -0.15, -4],
+        "size": [12, 0.3, 14]
+      },
+      "material": "concrete"
+    },
+    {
+      "id": "back-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, 2.5, -8.15],
+        "size": [12.6, 5, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "left-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [-6.15, 2.5, -4.0],
+        "size": [0.3, 5, 8.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "right-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [6.15, 2.5, -4.0],
+        "size": [0.3, 5, 8.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "furnace-left",
+      "shape": {
+        "type": "box",
+        "center": [-1.1, 0.5, -3.5],
+        "size": [0.9, 1.0, 0.9]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "furnace-left-lining",
+      "parent": "furnace-left",
+      "shape": {
+        "type": "box",
+        "center": [-1.1, 0.5, -3.5],
+        "size": [0.8, 0.9, 0.8]
+      },
+      "material": "air"
+    },
+    {
+      "id": "furnace-left-charge",
+      "parent": "furnace-left-lining",
+      "shape": {
+        "type": "box",
+        "center": [-1.1, 0.3, -3.5],
+        "size": [0.5, 0.4, 0.5]
+      },
+      "material": "cold-iron"
+    },
+    {
+      "id": "furnace-right",
+      "shape": {
+        "type": "box",
+        "center": [1.1, 0.5, -3.5],
+        "size": [0.9, 1.0, 0.9]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "furnace-right-lining",
+      "parent": "furnace-right",
+      "shape": {
+        "type": "box",
+        "center": [1.1, 0.5, -3.5],
+        "size": [0.8, 0.9, 0.8]
+      },
+      "material": "air"
+    },
+    {
+      "id": "furnace-right-charge",
+      "parent": "furnace-right-lining",
+      "shape": {
+        "type": "box",
+        "center": [1.1, 0.3, -3.5],
+        "size": [0.5, 0.4, 0.5]
+      },
+      "material": "hot-iron"
+    }
+  ],
+  "assumptions": [
+    "Friction values are placeholders: the same effective viscosity is assumed for hot and cold iron.",
+    "The two furnaces hold the same mass, so the near-field view cannot tell them apart; only the thermal view can."
+  ]
+}

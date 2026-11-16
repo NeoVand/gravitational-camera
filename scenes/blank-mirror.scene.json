@@ -1,0 +1,182 @@
+{
+  "name": "blank-mirror",
+  "title": "The blank mirror",
+  "description": "A mirror, a television and a printed page on a wall, with a figure standing beside the mirror so that its reflection fills the glass.",
+  "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
+  "environment": "room",
+  "observer": {
+    "position": [0, 1.5, 0],
+    "exclusion": 0.25
+  },
+  "materials": {
+    "concrete": {
+      "density": 2400,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.42, 0.41, 0.39]
+      }
+    },
+    "plaster": {
+      "density": 1200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.6, 0.56]
+      }
+    },
+    "mirror": {
+      "density": 800,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.9, 0.92, 0.94],
+        "finish": "mirror"
+      }
+    },
+    "screen": {
+      "density": 200,
+      "temperature": 300,
+      "friction": 0.001,
+      "light": {
+        "color": [0.05, 0.05, 0.06],
+        "finish": "screen"
+      }
+    },
+    "paper": {
+      "density": 100,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.92, 0.9, 0.85],
+        "finish": "print"
+      }
+    },
+    "body": {
+      "density": 1000,
+      "temperature": 310,
+      "friction": 0.001,
+      "light": {
+        "color": [0.55, 0.36, 0.27]
+      }
+    },
+    "cloth": {
+      "density": 1000,
+      "temperature": 305,
+      "friction": 0.001,
+      "light": {
+        "color": [0.16, 0.23, 0.36]
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, -0.15, -4],
+        "size": [12, 0.3, 14]
+      },
+      "material": "concrete"
+    },
+    {
+      "id": "back-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, 3, -8.15],
+        "size": [12.6, 6, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "left-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [-6.15, 3, -2.5],
+        "size": [0.3, 6, 11.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "right-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [6.15, 3, -2.5],
+        "size": [0.3, 6, 11.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "front-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, 3, 3.15],
+        "size": [12.6, 6, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "mirror",
+      "shape": {
+        "type": "box",
+        "center": [-1.9, 1.55, -7.98],
+        "size": [1.7, 2.3, 0.02]
+      },
+      "material": "mirror"
+    },
+    {
+      "id": "page",
+      "shape": {
+        "type": "box",
+        "center": [0.15, 1.55, -7.99],
+        "size": [0.9, 1.25, 0.01]
+      },
+      "material": "paper"
+    },
+    {
+      "id": "television",
+      "shape": {
+        "type": "box",
+        "center": [2.2, 1.6, -7.96],
+        "size": [1.9, 1.1, 0.07]
+      },
+      "material": "screen"
+    },
+    {
+      "id": "figure-legs",
+      "shape": {
+        "type": "box",
+        "center": [-2.5, 0.43, -5.5],
+        "size": [0.34, 0.86, 0.22]
+      },
+      "material": "cloth"
+    },
+    {
+      "id": "figure-torso",
+      "shape": {
+        "type": "box",
+        "center": [-2.5, 1.17, -5.5],
+        "size": [0.44, 0.62, 0.25]
+      },
+      "material": "cloth"
+    },
+    {
+      "id": "figure-head",
+      "shape": {
+        "type": "sphere",
+        "center": [-2.5, 1.62, -5.5],
+        "radius": 0.115
+      },
+      "material": "body"
+    }
+  ],
+  "assumptions": [
+    "Friction values are placeholders, as in the other scenes.",
+    "The mirror (glass on a backing, 18 kg/m²) the television (mostly air, 14 kg/m²) and the page (a poster on foam board, 1 kg/m²) are given effective densities over their whole thickness."
+  ]
+}

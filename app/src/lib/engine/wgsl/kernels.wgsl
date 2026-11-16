@@ -22,13 +22,16 @@ struct Frame {
   tone: vec4f,      // thermal exposure, glare radius in pixels, light exposure, near-field exposure
   sun: vec4f,       // unit vector toward the Sun; w unused
   near: vec4f,      // x: exclusion radius around the observer; yzw unused
-  counts: vec4u,    // number of prims, left mode, right mode, flags (1: room lighting, 2: outline of the light picture in the near-field view)
+  counts: vec4u,    // number of prims, left mode, right mode, flags (1: room lighting, 2: outline of the light picture in the gravity views)
 }
 
 const FLAG_FAR: u32 = 1u;
 const FLAG_SURFACE: u32 = 2u;
 const FLAG_EMISSIVE: u32 = 4u;
 const FLAG_GLARE: u32 = 8u;
+const FLAG_MIRROR: u32 = 16u;
+const FLAG_SCREEN: u32 = 32u;
+const FLAG_PRINT: u32 = 64u;
 const SHAPE_BOX: u32 = 1u;
 
 // Ray from the observer along unit vector rd, against a sphere.

@@ -49,7 +49,8 @@ export function analyzeScene(scene: Scene): AnalyzedObject[] {
 			jE,
 			jN: numberEmissivity(jE, m.temperature),
 			color: temperatureColor(m.temperature),
-			light: m.light
+			light: m.light,
+			background: o.background === true
 		};
 	});
 }
@@ -107,17 +108,24 @@ export const DEFAULT_EXCLUSION = 0.25;
 /**
  * Line integrals along one ray. A child replaces its parent's material, so each
  * object contributes its own path times (its value − its parent's value).
+ *
+ * With `subtractRoom`, objects marked as background are left out. Pull and
+ * glow both add linearly, so this is exactly the image with the empty room's
+ * contribution removed; a child of a background object still counts its
+ * difference from that object.
  */
 export function columnsAlong(
 	objects: AnalyzedObject[],
 	origin: Vec3,
 	dir: Vec3,
-	exclusion = DEFAULT_EXCLUSION
+	exclusion = DEFAULT_EXCLUSION,
+	subtractRoom = false
 ): Columns {
 	let numberRadiance = 0;
 	let massColumn = 0;
 	let tidalColumn = 0;
 	for (const o of objects) {
+		if (subtractRoom && o.background) continue;
 		const hit = crossing(o, origin, dir);
 		if (!hit) continue;
 		const p = o.parent >= 0 ? objects[o.parent] : undefined;
@@ -135,9 +143,10 @@ export function columnsAlong(
 /** Objects whose disc is at least this wide count as "extended" for exposure. */
 const EXTENDED_ANGULAR_RADIUS = Math.PI / 180;
 
-function towardCentres(objects: AnalyzedObject[], origin: Vec3): Vec3[] {
+function towardCentres(objects: AnalyzedObject[], origin: Vec3, subtractRoom = false): Vec3[] {
 	const dirs: Vec3[] = [];
 	for (const o of objects) {
+		if (subtractRoom && o.background) continue;
 		const d: Vec3 = [o.center[0] - origin[0], o.center[1] - origin[1], o.center[2] - origin[2]];
 		const dist = Math.hypot(d[0], d[1], d[2]);
 		if (dist === 0) continue;
@@ -152,10 +161,16 @@ function towardCentres(objects: AnalyzedObject[], origin: Vec3): Vec3[] {
  * when looking at the centre of any extended object. Point-like sources (the
  * Sun's core from Earth) are left out so they do not set the exposure.
  */
-export function referenceRadiance(objects: AnalyzedObject[], origin: Vec3): number {
+export function referenceRadiance(
+	objects: AnalyzedObject[],
+	origin: Vec3,
+	subtractRoom = false
+): number {
 	return Math.max(
 		0,
-		...towardCentres(objects, origin).map((d) => columnsAlong(objects, origin, d).numberRadiance)
+		...towardCentres(objects, origin, subtractRoom).map(
+			(d) => columnsAlong(objects, origin, d, DEFAULT_EXCLUSION, subtractRoom).numberRadiance
+		)
 	);
 }
 
@@ -163,12 +178,13 @@ export function referenceRadiance(objects: AnalyzedObject[], origin: Vec3): numb
 export function referenceTidal(
 	objects: AnalyzedObject[],
 	origin: Vec3,
-	exclusion = DEFAULT_EXCLUSION
+	exclusion = DEFAULT_EXCLUSION,
+	subtractRoom = false
 ): number {
 	return Math.max(
 		1e-300,
-		...towardCentres(objects, origin).map(
-			(d) => columnsAlong(objects, origin, d, exclusion).tidalColumn
+		...towardCentres(objects, origin, subtractRoom).map(
+			(d) => columnsAlong(objects, origin, d, exclusion, subtractRoom).tidalColumn
 		)
 	);
 }
@@ -181,6 +197,9 @@ export const FLAG_FAR = 1;
 export const FLAG_SURFACE = 2;
 export const FLAG_EMISSIVE = 4;
 export const FLAG_GLARE = 8;
+export const FLAG_MIRROR = 16;
+export const FLAG_SCREEN = 32;
+export const FLAG_PRINT = 64;
 export const SHAPE_SPHERE = 0;
 export const SHAPE_BOX = 1;
 
@@ -196,6 +215,8 @@ export interface PackScales {
 	sRef: number;
 	/** Objects with a smaller angular radius also get a display glare. */
 	glareAngle: number;
+	/** Leave background objects out of the gravity views (they still show in light). */
+	subtractRoom?: boolean;
 }
 
 /**
@@ -210,7 +231,7 @@ export function packPrims(
 	scales: PackScales
 ): PackedPrims {
 	if (objects.length > MAX_PRIMS) throw new Error(`Too many objects (${objects.length})`);
-	const { nRef, sRef, glareAngle } = scales;
+	const { nRef, sRef, glareAngle, subtractRoom = false } = scales;
 	const buffer = new ArrayBuffer(PRIM_STRIDE * MAX_PRIMS);
 	const f = new Float32Array(buffer);
 	const u = new Uint32Array(buffer);
@@ -222,13 +243,19 @@ export function packPrims(
 		const d2 = cx * cx + cy * cy + cz * cz;
 		const r2 = o.radius * o.radius;
 		const p = o.parent >= 0 ? objects[o.parent] : undefined;
-		const w = o.jN / nRef;
-		const wp = (p?.jN ?? 0) / nRef;
+		// a subtracted object keeps its shape for the light view but no longer
+		// pulls or glows; a child of it still counts its difference from it
+		const gone = subtractRoom && o.background;
+		const w = gone ? 0 : o.jN / nRef;
+		const wp = gone ? 0 : (p?.jN ?? 0) / nRef;
 
 		let flags = 0;
 		if (d2 > 16 * r2) flags |= FLAG_FAR;
 		if (!p) flags |= FLAG_SURFACE;
 		if (o.light?.emissive) flags |= FLAG_EMISSIVE;
+		if (o.light?.finish === 'mirror') flags |= FLAG_MIRROR;
+		if (o.light?.finish === 'screen') flags |= FLAG_SCREEN;
+		if (o.light?.finish === 'print') flags |= FLAG_PRINT;
 		if (!o.half && d2 > r2 && Math.asin(o.radius / Math.sqrt(d2)) < glareAngle && w > 0) {
 			flags |= FLAG_GLARE;
 		}
@@ -246,7 +273,7 @@ export function packPrims(
 		f[k + 13] = w * o.color[1] - wp * (p?.color[1] ?? 0);
 		f[k + 14] = w * o.color[2] - wp * (p?.color[2] ?? 0);
 		f[k + 15] = w - wp;
-		f[k + 16] = (o.density - (p?.density ?? 0)) / sRef;
+		f[k + 16] = gone ? 0 : (o.density - (p?.density ?? 0)) / sRef;
 		const lc = o.light?.color ?? [0.1, 0.1, 0.1];
 		f[k + 20] = lc[0];
 		f[k + 21] = lc[1];

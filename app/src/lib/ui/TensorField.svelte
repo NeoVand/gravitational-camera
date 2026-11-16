@@ -16,13 +16,22 @@
 		span?: number;
 		/** Remove what all pixels have in common, leaving the differences. */
 		differences?: boolean;
+		/** Leave the empty room (background objects) out. */
+		subtractRoom?: boolean;
 	}
 
-	let { objects, observer, view, span = 1, differences = false }: Props = $props();
+	let {
+		objects,
+		observer,
+		view,
+		span = 1,
+		differences = false,
+		subtractRoom = false
+	}: Props = $props();
 
 	const COLS = 11;
 	const ROWS = 7;
-	const points = $derived(massPoints(objects));
+	const points = $derived(massPoints(objects, 0.25, subtractRoom));
 
 	const glyphs = $derived.by(() => {
 		const { right, up } = cameraBasis(view);

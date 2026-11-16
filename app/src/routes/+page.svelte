@@ -68,13 +68,24 @@
 			text: 'Brightness is mass, not surface.',
 			href: resolve('/demo/full-or-empty')
 		},
-		{ icon: MirrorIcon, name: 'Ignore images', text: 'A mirror shows nothing.' },
+		{
+			icon: MirrorIcon,
+			name: 'Ignore images',
+			text: 'A mirror shows nothing.',
+			href: resolve('/demo/blank-mirror')
+		},
 		{
 			icon: TemperatureIcon,
 			name: 'Read inside temperature',
-			text: 'Heat is seen through the walls.'
+			text: 'Heat is seen through the walls.',
+			href: resolve('/demo/closed-furnace')
 		},
-		{ icon: DropletIcon, name: 'Tell materials by friction', text: 'Honey and water differ.' },
+		{
+			icon: DropletIcon,
+			name: 'Tell materials by friction',
+			text: 'Honey and water differ.',
+			href: resolve('/demo/honey-and-water')
+		},
 		{ icon: Rotate01Icon, name: 'Read spin and its sense', text: 'Even in a sealed box.' },
 		{ icon: FlashlightIcon, name: 'See what emits no light', text: 'All energy gravitates.' }
 	];

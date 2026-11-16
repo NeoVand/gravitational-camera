@@ -53,3 +53,23 @@ export function pixelDirection(
 	const n = Math.hypot(d[0], d[1], d[2]);
 	return [d[0] / n, d[1] / n, d[2] / n];
 }
+
+/**
+ * Where a direction from the observer lands on screen, in pixels from the
+ * top-left (the inverse of `pixelDirection`). Undefined if it points behind.
+ */
+export function screenPosition(
+	view: View,
+	width: number,
+	height: number,
+	dir: Vec3
+): [number, number] | undefined {
+	const { right, up, forward } = cameraBasis(view);
+	const dot = (a: Vec3) => a[0] * dir[0] + a[1] * dir[1] + a[2] * dir[2];
+	const f = dot(forward);
+	if (f <= 0) return undefined;
+	const t = Math.tan(view.fov / 2);
+	const sx = dot(right) / f / (t * (width / height));
+	const sy = dot(up) / f / t;
+	return [((sx + 1) / 2) * width, ((1 - sy) / 2) * height];
+}

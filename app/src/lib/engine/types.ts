@@ -7,6 +7,8 @@ export interface LightMaterial {
 	color: Vec3;
 	/** 1 if the surface shines by its own light. */
 	emissive?: number;
+	/** How the surface looks: plain, a mirror, a lit picture, or a printed page. */
+	finish?: 'matte' | 'mirror' | 'screen' | 'print';
 }
 
 export interface Material {
@@ -41,6 +43,11 @@ export interface SceneObject {
 	parent?: string;
 	shape: Shape;
 	material: string;
+	/**
+	 * Part of the empty room (floor, walls, furniture fixed in place). Its pull
+	 * and glow are known in advance, so a view can subtract them.
+	 */
+	background?: boolean;
 }
 
 export interface Scene {
@@ -80,4 +87,6 @@ export interface AnalyzedObject {
 	/** Display colour for this temperature, linear RGB with peak 1. */
 	color: Vec3;
 	light?: LightMaterial;
+	/** Part of the empty room; see `SceneObject.background`. */
+	background: boolean;
 }

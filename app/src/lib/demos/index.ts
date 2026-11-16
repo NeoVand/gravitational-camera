@@ -1,6 +1,12 @@
 /** The demo catalogue: one demo per thing the camera can do that light cannot. */
 export interface DemoEntry {
-	slug?: 'sun-at-midnight' | 'locked-safe' | 'full-or-empty';
+	slug?:
+		| 'sun-at-midnight'
+		| 'locked-safe'
+		| 'full-or-empty'
+		| 'blank-mirror'
+		| 'closed-furnace'
+		| 'honey-and-water';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -29,18 +35,21 @@ export const demos: DemoEntry[] = [
 			'Light reports surfaces; gravity reports mass. Two tanks that look identical differ at a glance.'
 	},
 	{
+		slug: 'blank-mirror',
 		title: 'The blank mirror',
 		affordance: 'Images vanish',
 		summary:
 			'A mirror, a television and a printed page carry no mass in their pictures. To this camera they are blank.'
 	},
 	{
+		slug: 'closed-furnace',
 		title: 'The closed furnace',
 		affordance: 'Inside temperature',
 		summary:
 			'A thermal camera sees the skin of a hot object. This one sees the heat inside, through the walls.'
 	},
 	{
+		slug: 'honey-and-water',
 		title: 'Honey and water',
 		affordance: 'Internal friction',
 		summary:

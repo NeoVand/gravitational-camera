@@ -35,16 +35,18 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
   let uv = pos.xy / frame.viewport.xy;
   let mode = select(frame.counts.z, frame.counts.y, pos.x < frame.viewport.z);
   var col: vec3f;
+  let rd = ray_direction(uv);
   if (mode == MODE_THERMAL) {
-    col = thermal_view(ray_direction(uv));
+    col = thermal_view(rd);
   } else if (mode == MODE_NEAR) {
     col = near_view(uv);
-    if ((frame.counts.w & 2u) != 0u) {
-      // a faint copy of the ordinary picture, so shapes can be matched to masses
-      col += 0.16 * light_view(ray_direction(uv));
-    }
   } else {
-    col = light_view(ray_direction(uv));
+    col = light_view(rd);
+  }
+  if (mode != MODE_LIGHT && (frame.counts.w & 2u) != 0u) {
+    // a faint copy of the shapes in the ordinary picture, so they can be matched
+    // to what gravity shows
+    col += 0.16 * outline_view(rd);
   }
   let dither = (hash21(pos.xy + fract(frame.viewport.w) * 61.0) - 0.5) / 255.0;
   return vec4f(to_display(col) + dither, 1.0);

@@ -43,6 +43,14 @@ radiance along a ray from the observer is N = ∫ j_N ds
   inside which matter is ignored by the near-field image.
 - `environment` is `"night-sky"` (default) or `"room"`; it only affects the
   ordinary-light view.
+- `light.finish` is `"matte"` (default), `"mirror"`, `"screen"` (a lit picture)
+  or `"print"` (a page of text). It too affects only the ordinary-light view:
+  images carry no mass.
+- An object may set `"background": true` to mark it as part of the empty room
+  (floor, walls, fixed furniture). The physics is unchanged; a view may offer
+  to subtract these objects, which is exact because both the near field and the
+  thermal glow add linearly. A child of a background object still contributes
+  its contrast with it.
 
 ## Near-field image model
 

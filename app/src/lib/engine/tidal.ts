@@ -9,10 +9,19 @@
 import { G } from './physics/constants';
 import type { AnalyzedObject, Vec3 } from './types';
 
-/** Flat list of point masses: x, y, z, mass, repeated. */
-export function massPoints(objects: AnalyzedObject[], cell = 0.25): Float64Array {
+/**
+ * Flat list of point masses: x, y, z, mass, repeated. With `subtractRoom`,
+ * objects marked as background are left out (their children still count
+ * their contrast with them).
+ */
+export function massPoints(
+	objects: AnalyzedObject[],
+	cell = 0.25,
+	subtractRoom = false
+): Float64Array {
 	const out: number[] = [];
 	for (const o of objects) {
+		if (subtractRoom && o.background) continue;
 		const parent = o.parent >= 0 ? objects[o.parent] : undefined;
 		const contrast = o.density - (parent?.density ?? 0);
 		if (!o.half) {
