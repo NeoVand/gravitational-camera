@@ -4,8 +4,8 @@
 	import './figure.css';
 
 	/** Width of the array in wavelengths; index 0 is a single pixel. */
-	const WIDTHS = [0, 1, 2, 5, 10, 30, 100];
-	let index = $state(3);
+	const WIDTHS = [0, 2, 5, 10, 30, 100];
+	let index = $state(2);
 	const width = $derived(WIDTHS[index]);
 
 	// Bessel function J1 from its integral form

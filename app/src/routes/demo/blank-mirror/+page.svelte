@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>The blank mirror · The Gravitational Camera</title>
+	<title>The blank mirror · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="A mirror, a television and a printed page. In light each carries a picture; to the gravitational camera all three are blank slabs."

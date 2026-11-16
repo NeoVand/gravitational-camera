@@ -33,7 +33,7 @@
 </script>
 
 <header class={{ overlay }}>
-	<a class="brand" href={resolve('/')}>The Gravitational Camera</a>
+	<a class="brand" href={resolve('/')}>Gravitational Camera</a>
 	<nav aria-label="Site">
 		<a href={resolve('/paper')} aria-current={current === 'paper' ? 'page' : undefined}>
 			<HugeiconsIcon icon={BookOpen01Icon} size={18} strokeWidth={1.6} />

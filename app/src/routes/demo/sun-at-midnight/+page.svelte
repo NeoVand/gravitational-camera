@@ -107,14 +107,21 @@
 		decades = 0;
 	}
 
+	/**
+	 * The Sun and the Moon each span half a degree. A one-degree view makes them
+	 * as large on the screen as they seem to the eye; a wide one shows them, as a
+	 * camera would, as small discs.
+	 */
+	const CLOSE_UP = 1 * DEG;
+
 	function findTheSun() {
-		view = { ...aim(sun), fov: 1.6 * DEG };
+		view = { ...aim(sun), fov: CLOSE_UP };
 		decades = -Math.log10(sunRatio);
 	}
 
 	/** Centre the Moon on the divider: light shows one half of it, gravity the other. */
 	function findTheMoon() {
-		view = { ...aim(toMoon), fov: 3 * DEG };
+		view = { ...aim(toMoon), fov: CLOSE_UP };
 		divider = 0.5;
 		// half a decade under the Earth's exposure, so the warmer core shows
 		decades = Math.min(3, -Math.log10(moonRatio) - 0.5);
@@ -122,7 +129,7 @@
 </script>
 
 <svelte:head>
-	<title>The Sun at midnight · The Gravitational Camera</title>
+	<title>The Sun at midnight · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="Look down through the Earth at night: ordinary light on one side, thermal gravitational radiation on the other."
@@ -273,6 +280,15 @@
 			<Tex math={'5500\\,\\mathrm{K}'} />, and a line of sight through it is a quarter as long, so
 			its centre is about <Tex math={texSci(1 / moonRatio)} /> times fainter than the ground beneath your
 			feet. Find it, and the exposure is raised to show it.
+		</p>
+		<h4>How large</h4>
+		<p>
+			The Moon and the Sun both span about half a degree of sky, the width of a fingernail at arm's
+			length. A photograph with an ordinary lens shows the Moon as a small disc, smaller than it
+			seems to the eye, and near the horizon it seems larger still: an illusion of perception, not
+			of optics. Finding either one zooms to a view one degree tall, where it looks as large as it
+			seems. In gravity the Sun looks five times smaller than its visible disc: its gravitons come
+			from its core, the inner fifth of its radius, where it is hottest.
 		</p>
 		<h4>How faint</h4>
 		<p>

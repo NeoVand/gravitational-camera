@@ -6,3 +6,13 @@
 % column opens wide gaps between words. Only the stretch of \rightskip changes,
 % so \\ still ends a row.
 \g@addto@macro\@arrayparboxrestore{\rightskip\z@\@plus 2em\relax}
+%
+% Floats: LaTeX's defaults send any figure taller than 70% of a page to a page
+% of its own. Let figures and tables take up to 85% of a page with text, and
+% keep pages of floats alone for those that nearly fill one.
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.12}
+\renewcommand{\floatpagefraction}{0.8}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{4}

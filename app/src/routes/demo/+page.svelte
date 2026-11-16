@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<title>Demos · The Gravitational Camera</title>
+	<title>Demos · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="Split-screen demos: ordinary light on one side, the gravitational camera on the other."

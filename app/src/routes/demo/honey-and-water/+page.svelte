@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Honey and water · The Gravitational Camera</title>
+	<title>Honey and water · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="Two sealed bottles at the same temperature, one of honey and one of water. Thermal gravitational glow follows internal friction, so they differ."

@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Full or empty · The Gravitational Camera</title>
+	<title>Full or empty · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="Three identical steel tanks: one empty, one full of water, one full of mercury. The gravitational camera weighs them at a glance."

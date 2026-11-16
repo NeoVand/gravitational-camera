@@ -14,7 +14,7 @@
 </script>
 
 <svelte:head>
-	<title>A beam in the dark · The Gravitational Camera</title>
+	<title>A beam in the dark · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="An infrared laser beam cannot be seen from the side. Its energy still gravitates, and the camera sees a line."

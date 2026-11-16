@@ -20,7 +20,7 @@ export default defineConfig({
 				// The paper's PDF is made by LaTeX in the deploy workflow only, so
 				// other builds may lack it; every other broken link still fails.
 				handleHttpError: ({ path, message }) => {
-					if (path.endsWith('/the-gravitational-camera.pdf')) return;
+					if (path.endsWith('/gravitational-camera.pdf')) return;
 					throw new Error(message);
 				}
 			}

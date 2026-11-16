@@ -226,7 +226,7 @@
 </script>
 
 <svelte:head>
-	<title>Self-test · The Gravitational Camera</title>
+	<title>Self-test · Gravitational Camera</title>
 </svelte:head>
 
 <SiteHeader />

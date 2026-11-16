@@ -18,7 +18,8 @@ midnight. The Earth is modelled as five uniform shells with rounded textbook
 radii and temperatures, from a crust at $700\,\mathrm{K}$ to an inner core at
 $5500\,\mathrm{K}$. Looking straight down, the line of sight runs through
 $12{,}700\,\mathrm{km}$ of rock and iron, and the expected brightness is
-$6\times10^{-5}$ gravitons per second per square metre per steradian. The
+$6\times10^{-5}$ gravitons per second per square metre per steradian.
+Lines of sight that miss the core are fainter (Figure~\ref{fig:earth-glow}). The
 Sun radiates of order $10^{8}\,\mathrm{W}$ in gravitational waves
 \cite{GarciaCelyRingwald2025,Steane2024}, about
 $4\times10^{-16}\,\mathrm{W\,m^{-2}}$ at the Earth: roughly one graviton per
@@ -26,6 +27,23 @@ square metre per second, arriving from a patch of sky a tenth of a degree
 across. Its surface brightness is some $10^{10}$ times that of the Earth's
 interior in this model, so the Sun dominates the thermal gravitational sky by
 day and by night.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{figures/earth-glow.pdf}
+\caption{The thermal brightness of the Earth's interior seen from its surface,
+Eq.~\eqref{eq:column}, against the angle of the line of sight from straight
+down, with each shell's share shaded. The steps are the edges of the inner
+core ($11^\circ$), the core ($33^\circ$) and the lower mantle ($64^\circ$) as
+seen from the surface. The values scale with the assumed friction,
+$\eta = 10^{-3}\,\mathrm{Pa\,s}$.}\label{fig:earth-glow}
+\end{figure}
+
+The accompanying demonstration also includes the Moon. In light it is the
+brightest thing in the night sky; in this image its centre is about a hundred
+times fainter than the ground underfoot, because its interior is cooler,
+$1200$--$1700\,\mathrm{K}$ in our model, and a line of sight through it is a
+quarter as long.
 
 Two assumptions carry most of the uncertainty. The Earth's internal friction
 at thermal frequencies is not known to us, and is set to
@@ -62,7 +80,7 @@ gravitons.}\label{tab:budget}
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/budget.png}
+\includegraphics[width=\linewidth]{figures/budget.pdf}
 \caption{Gravitons emitted per second by whole objects, on a logarithmic
 scale spanning forty powers of ten. The spinning masses radiate by bulk
 motion, Eq.~\eqref{eq:dumbbell}; the others thermally,

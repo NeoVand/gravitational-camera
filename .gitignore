@@ -20,4 +20,4 @@ paper/*.fls
 paper/*.log
 paper/*.out
 paper/main.pdf
-app/static/the-gravitational-camera.pdf
+app/static/gravitational-camera.pdf

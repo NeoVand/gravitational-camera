@@ -118,7 +118,7 @@
 </script>
 
 <svelte:head>
-	<title>The Gravitational Camera</title>
+	<title>Gravitational Camera: a thought experiment</title>
 	<meta
 		name="description"
 		content="What would a camera see if every pixel were a gravitational-wave detector? A theory of gravitational image formation, with an engine you can play with."
@@ -144,7 +144,7 @@
 
 		<div class="words">
 			<p class="kicker">A thought experiment, worked out and rendered</p>
-			<h1>The Gravitational Camera</h1>
+			<h1>Gravitational Camera</h1>
 			<p class="lede">
 				What would a camera see if every pixel were a detector of gravitational waves?
 			</p>

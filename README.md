@@ -1,4 +1,4 @@
-# The Gravitational Camera
+# Gravitational Camera: a thought experiment
 
 What would a camera see if every pixel were an ideal, arbitrarily small detector
 of gravitational waves and tidal fields?
@@ -28,7 +28,8 @@ until the waves are centimetres long. Material properties that are
 assumptions are labelled in each scene file and on the page.
 
 The paper has eleven sections with derivations, plain-language summaries and
-eight figures. Every number the engine draws is checked against the Python
+fifteen figures: eleven drawn from the reference implementation, four rendered
+by the engine. Every number the engine draws is checked against the Python
 reference, on the CPU in double precision and on the GPU in single precision.
 
 ## Layout
@@ -38,7 +39,7 @@ reference, on the CPU in double precision and on the GPU in single precision.
 | `app/` | The website: SvelteKit, TypeScript, WebGPU. Engine in `app/src/lib/engine/`. |
 | `scenes/` | Scene files shared by the engine and the reference; the format is in `scenes/README.md`. |
 | `reference/` | Independent Python implementation of the physics, with tests. Exports the fixtures the engine is checked against. |
-| `paper/` | The paper's LaTeX source. The site renders it with pandoc; the same files go to the journal. |
+| `paper/` | The paper's LaTeX source. The site renders it with pandoc; the same files go to the journal. `paper/figures/make_figures.py` draws its figures (PDF for print, SVG for the site) from the reference implementation. |
 | `reports/`, `research_notes/` | The prior-work survey and its raw notes. |
 | `calc/` | Early order-of-magnitude checks. |
 

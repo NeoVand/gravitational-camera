@@ -44,13 +44,14 @@ of a rotor it cannot resolve.
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/quadrupole.png}
-\caption{Radiation from a spinning pair of masses. Left: the power sent in
-each direction, strongest along the axis of rotation. The small figures show
-the polarization: circular along the axis, linear in the plane of rotation.
-Right: the wavelength compared with the size of the source,
-Eq.~\eqref{eq:unresolved}, for parts moving at the speed shown; in the live
-version the speed can be changed.}\label{fig:quadrupole}
+\includegraphics[width=\linewidth]{figures/quadrupole.pdf}
+\caption{Radiation from a spinning pair of masses. (a) The power sent
+in each direction, against the angle $\iota$ from the axis of rotation:
+strongest along the axis, where the wave is circularly polarized, and eight
+times weaker in the plane of rotation, where it is linearly polarized. (b) The
+wavelength over the size of the source, Eq.~\eqref{eq:unresolved}, against the
+speed of its moving parts: for anything moving at everyday speeds the
+wavelength is millions of times the size of the body.}\label{fig:quadrupole}
 \end{figure}
 
 \paragraph{The sense of turning.} Let the rotor's angular velocity make the
@@ -71,7 +72,18 @@ is positive when that pattern turns anticlockwise as the camera sees it, which
 is the sense in which the rotor itself appears to turn. It is $\pm 1$ seen
 along the axis and zero seen edge-on. The camera reads the sense of rotation
 from the sign of $V$ and the tilt of the axis from its size, without resolving
-the rotor at all. The reference implementation checks
+the rotor at all (Figure~\ref{fig:polarization}).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.72\linewidth]{figures/polarization.pdf}
+\caption{The wave of a rotor seen from different directions: the amplitudes of
+its two polarizations, Eq.~\eqref{eq:rotor-amplitudes}, and its circular share
+$V/I$, Eq.~\eqref{eq:circular}, against the angle $\iota$ between the spin and
+the direction of the camera. $V/I$ is $\pm1$ along the axis and changes sign
+edge-on, where the wave is linearly polarized: its sign gives the sense of
+rotation, its size the tilt.}\label{fig:polarization}
+\end{figure} The reference implementation checks
 Eqs.~\eqref{eq:rotor-amplitudes} and~\eqref{eq:circular} against a direct
 transverse-traceless projection of the moving masses, and the total power of
 Eq.~\eqref{eq:dumbbell} against the flux integrated over the sky.

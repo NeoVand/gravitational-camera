@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>The locked safe · The Gravitational Camera</title>
+	<title>The locked safe · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="Two identical steel safes, one holding gold. Ordinary light cannot tell them apart; the gravitational camera can."

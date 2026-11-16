@@ -3,7 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import { Pdf01Icon } from '@hugeicons/core-free-icons';
-	import { drawnFigures, figureImage, pictureFigures } from '#lib/paper/figures.js';
+	import { figureDrawing, figureImage, liveFigures, pictureFigures } from '#lib/paper/figures.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import type { PageProps } from './$types';
 
@@ -41,7 +41,7 @@
 </script>
 
 <svelte:head>
-	<title>The Gravitational Camera · paper</title>
+	<title>Paper · Gravitational Camera: a thought experiment</title>
 	<meta
 		name="description"
 		content="Working draft of the paper: what a camera would see if every pixel were a gravitational-wave detector."
@@ -80,7 +80,7 @@
 			{#if paper.authors.length}<p class="authors">{@html paper.authors.join(', ')}</p>{/if}
 			<p class="date">{@html paper.date}</p>
 			<!-- the PDF is built from the same LaTeX by the deploy workflow -->
-			<a class="pdf" href="{resolve('/')}the-gravitational-camera.pdf" download>
+			<a class="pdf" href="{resolve('/')}gravitational-camera.pdf" download>
 				<HugeiconsIcon icon={Pdf01Icon} size={16} strokeWidth={1.8} /> PDF
 			</a>
 		</header>
@@ -95,18 +95,25 @@
 				{@html block.html}
 			{:else}
 				{@const Picture = pictureFigures[block.id]}
-				{@const Drawing = drawnFigures[block.id]}
+				{@const live = liveFigures[block.id]}
+				{@const drawing = figureDrawing(block.image)}
 				{@const image = figureImage(block.image)}
 				<figure class="plate" id={block.id}>
 					<div class="art">
 						{#if Picture}
 							<Picture poster={image} />
-						{:else if Drawing}
-							<Drawing />
+						{:else if drawing}
+							{@html drawing}
 						{:else if image}
 							<img src={image} alt="" />
 						{/if}
 					</div>
+					{#if live}
+						<details class="live">
+							<summary>{live.label}</summary>
+							<div class="art"><live.component /></div>
+						</details>
+					{/if}
 					<figcaption>
 						<span class="label">Figure {block.number}.</span>
 						{@html block.captionHtml}
@@ -408,6 +415,53 @@
 		display: block;
 		width: 100%;
 		border-radius: 6px;
+	}
+
+	/* the paper's drawings sit on the page itself, as in print; on a narrow
+	   screen they keep a readable size and scroll sideways */
+	.plate .art:has(> :global(svg.drawing)) {
+		padding: 0;
+		background: none;
+		border: 0;
+		overflow-x: auto;
+	}
+
+	.plate :global(svg.drawing) {
+		display: block;
+		width: 100%;
+		min-width: 34rem;
+		height: auto;
+	}
+
+	.live {
+		margin-top: 0.7rem;
+	}
+
+	.live summary {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		cursor: pointer;
+		font: 500 0.8rem/1.4 var(--font-sans);
+		color: var(--accent);
+		list-style: none;
+	}
+
+	.live summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.live summary::before {
+		content: '▸';
+		transition: transform 0.15s;
+	}
+
+	.live[open] summary::before {
+		transform: rotate(90deg);
+	}
+
+	.live .art {
+		margin-top: 0.6rem;
 	}
 
 	article :global(figcaption) {

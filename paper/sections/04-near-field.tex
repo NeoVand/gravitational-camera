@@ -39,10 +39,27 @@ the near-field camera's picture of the world. A single pixel measures only five
 numbers, the quadrupole of $S$ over the whole sky; an array, by comparing the
 field from pixel to pixel, recovers finer structure. The near-field
 demonstrations that accompany this paper show $S$, blurred as described next.
+Figure~\ref{fig:sky-integral} shows where the weighting comes from.
 One caution applies. The field outside a body does not fix the arrangement of
 mass inside it: a hollow shell and a solid ball of the same mass pull alike on
 a distant pixel. What an array at close range adds is the dependence on
 distance in Eq.~\eqref{eq:tidal-column}, which differs for the two.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{figures/sky-integral.pdf}
+\caption{The sky integral, Eq.~\eqref{eq:tidal-column}. (a) A pixel at the
+apex of a thin cone of directions $\dd\Omega$ about $\hat n$. The matter in
+the cone between $r$ and $r + \dd r$ has mass $\dd m = \rho\,r^2\,\dd r\,\dd\Omega$
+and adds $G\,\dd m\,(\delta_{ij} - 3\hat n_i\hat n_j)/r^3$ to the tidal field.
+The $r^2$ of the volume cancels two of the three powers of $1/r$, so each line
+of sight contributes its mass weighted by $\dd r/r$: the tidal column
+$S(\hat n)$. (b) The weight with which one component, $\tE_{zz}$, takes the
+matter in a direction at angle $\vartheta$ from the $z$ axis. Matter near the
+axis stretches the pixel along $z$; matter near the perpendicular plane
+squeezes it. The weight averages to zero over the sky, which is why a uniform
+shell of matter around the camera is invisible to it.}\label{fig:sky-integral}
+\end{figure}
 
 \paragraph{How sharp.} The space between scene and camera is empty, so the
 potential there obeys Laplace's equation. Consider a pattern in the scene that
@@ -90,7 +107,7 @@ maximum, as an angle seen from the array, is
 to within three per cent for every $\SNR \ge 100$ (for a single row of
 sensors over a two-dimensional scene, $3.79/q_c$). Table~\ref{tab:resolution}
 gives values, computed without approximation by the reference implementation
-that accompanies the site.
+that accompanies the site, and Figure~\ref{fig:resolution-law} shows the law.
 
 The angular blur does not depend on distance, wavelength or the size of the
 camera, only, through $q_c$, on the logarithm of its sensitivity. A
@@ -123,14 +140,30 @@ is the first estimate.}\label{tab:resolution}
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/nearfield.png}
-\caption{The near-field blur. Two masses lie at depth $z$ below a row of
-pixels (a two-dimensional slice). Top: what the pixels record, a single smooth
-bump. Bottom: the best reconstruction of the masses that the noise allows, the
-Wiener filter of Eq.~\eqref{eq:wiener}; its ripples are the price of discarding the
-detail that noise has swamped. The bar at the right is the blur at the
-signal-to-noise ratio shown. In the live version, raise the sensitivity and
-watch the two masses separate, slowly.}\label{fig:nearfield}
+\includegraphics[width=\linewidth]{figures/resolution-law.pdf}
+\caption{The exact near-field resolution law. (a) The Wiener filter $H$ of
+Eq.~\eqref{eq:wiener} against spatial frequency, for four signal-to-noise
+ratios: patterns coarser than $kz = q_c$ are kept almost whole, finer ones are
+lost. Dots mark $H = \tfrac12$ at $q_c$, Eq.~\eqref{eq:cutoff}. Raising the
+sensitivity from $10^{6}$ to $10^{60}$ moves the cutoff only from 18 to 144.
+(b) The resulting blur, the full width at half maximum of the image of a
+point, for a flat array ($4.43/q_c$) and a single row ($3.79/q_c$), with
+values computed directly by the reference implementation (dots) and the first
+estimate $\pi/\ln\SNR$ (dashed).}\label{fig:resolution-law}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{figures/nearfield.pdf}
+\caption{The near-field blur, for a row of pixels over a
+two-dimensional scene: two masses a distance $z/2$ apart at depth $z$, recorded
+with signal-to-noise ratio $10^6$. (a) The geometry, to scale, and what the
+pixels record: $\tE_{zz}$ along the row, a single smooth bump. (b) The best
+reconstruction of the masses that the noise allows, the Wiener filter of
+Eq.~\eqref{eq:wiener}, computed by the reference implementation; its ripples
+are the price of discarding the detail that noise has swamped. The bar is the
+blur, $0.21\,z$. On the website the sensitivity and the separation can be
+changed.}\label{fig:nearfield}
 \end{figure}
 
 The same logarithmic limit is met wherever fields that obey Laplace's equation

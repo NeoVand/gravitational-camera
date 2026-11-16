@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Which way it turns · The Gravitational Camera</title>
+	<title>Which way it turns · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="Three sealed drums, one still and two turning. The polarization of their gravitational waves tells which is which, and which way."

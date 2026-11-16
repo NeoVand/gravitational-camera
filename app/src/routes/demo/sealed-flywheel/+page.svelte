@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>The sealed flywheel · The Gravitational Camera</title>
+	<title>The sealed flywheel · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="A smooth flywheel looks the same spinning or still, and weighs the same. The gravitomagnetic half of the camera sees it turn."

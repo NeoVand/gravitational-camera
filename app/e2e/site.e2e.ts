@@ -4,7 +4,7 @@ import { screenPosition } from '../src/lib/engine/camera';
 
 test('landing page links to the demos and the paper', async ({ page }) => {
 	await page.goto('/');
-	await expect(page.getByRole('heading', { level: 1 })).toHaveText('The Gravitational Camera');
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Gravitational Camera');
 	await expect(page.getByRole('link', { name: 'Open the demos' })).toBeVisible();
 	await expect(page.getByRole('link', { name: 'Read the paper' })).toBeVisible();
 });
@@ -41,7 +41,9 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 	page
 }) => {
 	await page.goto('/paper/');
-	await expect(page.getByRole('heading', { level: 1 })).toHaveText('The Gravitational Camera');
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+		'Gravitational Camera: A Thought Experiment'
+	);
 	expect(await page.locator('.equation .katex').count()).toBeGreaterThanOrEqual(18);
 	expect(await page.locator('nav.contents li').count()).toBe(11);
 	expect(await page.locator('aside.plain').count()).toBeGreaterThanOrEqual(6);
@@ -49,7 +51,10 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
 	// every figure has something drawn in it
 	const figures = page.locator('figure.plate');
-	expect(await figures.count()).toBe(11);
+	expect(await figures.count()).toBe(15);
+	// the paper's drawings are inlined, in the theme's colours
+	expect(await page.locator('svg.drawing').count()).toBe(11);
+	await expect(page.locator('svg.drawing [fill="var(--text)"]').first()).toBeAttached();
 	for (const figure of await figures.all()) {
 		expect(await figure.locator('svg, canvas, img').count()).toBeGreaterThan(0);
 		for (const img of await figure.locator('img').all()) {
@@ -67,6 +72,8 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 test('near-field figure responds: more sensitivity separates the two masses', async ({ page }) => {
 	await page.goto('/paper/');
 	const figure = page.locator('[id="fig:nearfield"]');
+	// the live version opens under the paper's drawing
+	await figure.getByText('Try it: change the sensitivity').click();
 	const sensitivity = figure.getByLabel('Sensitivity');
 	await sensitivity.fill('1');
 	await expect(figure).toContainText('merge into one');

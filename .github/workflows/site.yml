@@ -100,7 +100,7 @@ jobs:
         working-directory: paper
         run: |
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
-          cp main.pdf ../app/static/the-gravitational-camera.pdf
+          cp main.pdf ../app/static/gravitational-camera.pdf
       - name: Install dependencies
         working-directory: app
         run: pnpm install --frozen-lockfile

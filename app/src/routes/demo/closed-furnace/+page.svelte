@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>The closed furnace · The Gravitational Camera</title>
+	<title>The closed furnace · Gravitational Camera</title>
 	<meta
 		name="description"
 		content="Two identical closed furnaces holding the same block of iron, one hot and one cold. Thermal gravitational radiation shows the heat through the steel."
