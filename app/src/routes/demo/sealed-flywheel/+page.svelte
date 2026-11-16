@@ -42,7 +42,7 @@
 				math={'1/r^3'}
 			/>, just as a mass element does. So the same argument images the <em>current column</em>
 		</p>
-		<Tex display math={'\\mathbf{J}(\\hat n) = \\int \\rho\\,\\mathbf{v}\; \\frac{dr}{r} .'} />
+		<Tex display math={'\\mathbf{J}(\\hat n) = \\int \\rho\\,\\mathbf{v}\\; \\frac{dr}{r} .'} />
 		<p>
 			For a ball turning at angular velocity <Tex math={'\\boldsymbol\\omega'} /> about a point <Tex
 				math={'\\mathbf{s}'}
