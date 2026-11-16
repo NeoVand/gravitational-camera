@@ -36,14 +36,14 @@ from pathlib import Path
 
 import numpy as np
 
-from . import __version__, columns, constants, emission, tidal
+from . import __version__, columns, constants, emission, tidal, waves
 from .scene import Scene, load_scene
 
 REFERENCE_DIR = Path(__file__).resolve().parents[1]
 SCENES_DIR = REFERENCE_DIR.parent / "scenes"
 DEFAULT_SCENE = SCENES_DIR / "sun-at-midnight.scene.json"
 DEFAULT_OUT_DIR = REFERENCE_DIR / "fixtures"
-ROOM_SCENES = ("locked-safe", "full-or-empty", "blank-mirror", "closed-furnace", "honey-and-water")
+ROOM_SCENES = ("locked-safe", "full-or-empty", "blank-mirror", "closed-furnace", "honey-and-water", "which-way")
 N_ROOM_RAYS = 160
 SENSOR_SPACING_M = 0.5            # the sensors: a 3 x 3 square in the x-y plane, centred on the observer
 SIGNIFICANT = 10                  # digits kept for values computed with log or atan
@@ -325,7 +325,28 @@ def build_room_fixture(scene_path, seed: int = SEED, n_rays: int = N_ROOM_RAYS) 
                 "tensor_without_room": _rounded_matrix(tidal.scene_tidal_tensor(scene, point, kept)),
             })
 
-    return {
+    rotor_block = []
+    for rotor in waves.rotors(scene):
+        seen = waves.seen_from(rotor, scene.observer)
+        rotor_block.append({
+            "members": list(rotor.members),
+            "center": rotor.center.tolist(),
+            "angular_direction": rotor.axis.tolist(),
+            "omega": rotor.omega,
+            "delta_inertia": _rounded(rotor.delta_inertia),
+            "power": _rounded(rotor.power()),
+            "wavelength": _rounded(rotor.wavelength()),
+            "at_observer": {
+                "distance": _rounded(seen["distance"]),
+                "cos_iota": _rounded(seen["cos_iota"]),
+                "amplitude": _rounded(seen["amplitude"]),
+                "flux": _rounded(seen["flux"]),
+                "circular": _rounded(seen["circular"]),
+                "linear": _rounded(seen["Q"] / seen["I"]),
+            },
+        })
+
+    fixture = {
         "meta": {
             "scene": scene_path.name,
             "scene_name": scene.name,
@@ -364,6 +385,15 @@ def build_room_fixture(scene_path, seed: int = SEED, n_rays: int = N_ROOM_RAYS) 
         "sensors": sensors,
         "rays": rays,
     }
+    if rotor_block:
+        fixture["meta"]["notes"].append(
+            "rotors: spinning parts grouped by their spin (gravcam/waves.py), at the true speed of light; "
+            "circular is V / I, positive when the pattern turns anticlockwise as seen from the observer, and "
+            "linear is Q / I in the basis of the projected axis. Rounded like the tidal values.")
+        fixture["units"].update({"omega": "rad s^-1", "delta_inertia": "kg m^2", "power": "W", "wavelength": "m",
+                                 "amplitude": "strain", "flux": "W m^-2"})
+        fixture["rotors"] = rotor_block
+    return fixture
 
 
 def dumps(fixture: dict) -> str:

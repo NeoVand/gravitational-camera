@@ -52,6 +52,18 @@ radiance along a ray from the observer is N = ∫ j_N ds
   thermal glow add linearly. A child of a background object still contributes
   its contrast with it.
 
+## Additions in v2
+
+- A sphere may carry `"spin": { "center": [x, y, z], "axis": [x, y, z],
+  "rate": r }`: steady rotation about the line through `center` along `axis`,
+  at `rate` revolutions per second, positive anticlockwise seen from the tip of
+  `axis` (the right-hand rule). The sphere's `shape.center` is its position at
+  time zero and must lie in the plane through `center` across the axis; it must
+  stay inside its parent as it turns. Spheres with the same spin form one rigid
+  *rotor*. A rotor whose mass is not symmetric about its axis radiates
+  gravitational waves at twice its rate (`reference/gravcam/waves.py`). Static
+  views use the time-zero positions.
+
 ## Near-field image model
 
 The tidal field at the observer from all mass beyond the exclusion radius is

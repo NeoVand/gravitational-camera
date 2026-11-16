@@ -18,5 +18,6 @@ export const km = (m: number) =>
 export function length(m: number): string {
 	if (m < 0.995) return `${Math.round(m * 100)} cm`;
 	if (m < 10) return `${m.toFixed(1)} m`;
-	return `${Math.round(m)} m`;
+	if (m < 1e4) return `${Math.round(m)} m`;
+	return `${Math.round(m / 1e3).toLocaleString('en-US')} km`;
 }

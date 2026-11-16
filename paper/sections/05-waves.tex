@@ -52,6 +52,29 @@ Right: the wavelength compared with the size of the source,
 Eq.~\eqref{eq:unresolved}, for a chosen speed.}\label{fig:quadrupole}
 \end{figure}
 
+\paragraph{The sense of turning.} Let the rotor's angular velocity make the
+angle $\iota$ with the line of sight toward the camera. At twice the rotation
+frequency the two polarizations of its wave have amplitudes
+\begin{equation}\label{eq:rotor-amplitudes}
+h_+ = A\,\frac{1 + \cos^2\iota}{2}, \qquad h_\times = A\cos\iota, \qquad
+A = \frac{4G\,\Delta I\,\Omega^2}{c^4 r},
+\end{equation}
+a quarter of a cycle apart, where $\Delta I$ is the difference between the two
+principal moments of inertia in the plane of rotation ($md^2/2$ for the pair of
+Eq.~\eqref{eq:dumbbell}). The pattern of stretching that passes over the camera
+therefore turns, and the share of the signal that is circularly polarized,
+\begin{equation}\label{eq:circular}
+\frac{V}{I} = \frac{2\,h_+ h_\times}{h_+^2 + h_\times^2},
+\end{equation}
+is positive when that pattern turns anticlockwise as the camera sees it, which
+is the sense in which the rotor itself appears to turn. It is $\pm 1$ seen
+along the axis and zero seen edge-on. The camera reads the sense of rotation
+from the sign of $V$ and the tilt of the axis from its size, without resolving
+the rotor at all. The reference implementation checks
+Eqs.~\eqref{eq:rotor-amplitudes} and~\eqref{eq:circular} against a direct
+transverse-traceless projection of the moving masses, and the total power of
+Eq.~\eqref{eq:dumbbell} against the flux integrated over the sky.
+
 \paragraph{What does not radiate.} The source of the wave field is the part of
 the stress that is transverse to the line of sight and has no trace. Steady
 motion in a straight line has no changing quadrupole and radiates nothing. Nor
@@ -61,7 +84,25 @@ exactly by the projection in Eq.~\eqref{eq:quadrupole}, a statement we have
 verified numerically. The camera sees shear and lopsided motion, not pressure.
 
 Because everyday speeds are so far below that of light, these effects cannot
-be shown at human scale. The demonstrations that accompany this paper include
-a clearly labelled mode in which the speed of light is lowered to walking
-pace, so that the patterns of Figure~\ref{fig:quadrupole} become visible
-around ordinary moving objects.
+be shown at human scale. A pair of balls turning once a second radiates waves
+150{,}000 km long, and a room is deep inside their near zone. The
+demonstrations that accompany this paper therefore include a clearly labelled
+teaching mode in which light, and gravity with it, is slowed to twenty
+centimetres a second. The waves are then ten centimetres long, an array a metre
+and a half across resolves them to $4^\circ$, and each rotor appears as a spot.
+Slowing light makes the waves shorter and, by Eq.~\eqref{eq:dumbbell}, far
+stronger, but it leaves Eq.~\eqref{eq:circular} unchanged: what the spot's
+colour says about the sense of turning is the same at any speed
+(Figure~\ref{fig:which-way}).
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{figures/which-way.jpg}
+\caption{Which way it turns. Three sealed steel drums; in two of them a pair of
+balls turns once a second, in opposite directions. Left of the divider, light:
+the drums are identical. Right, gravitational waves with light slowed to
+20\,cm/s (a labelled teaching mode): each turning pair is a spot coloured by
+its circular polarization, Eq.~\eqref{eq:circular}, magenta where the pattern
+turns anticlockwise as the camera sees it and green where it turns clockwise.
+The still pair is dark.}\label{fig:which-way}
+\end{figure}

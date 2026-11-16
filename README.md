@@ -11,7 +11,7 @@ one website: a landing page, the paper with live figures, and playable demos.
 
 ## Status
 
-Six demos, covering two of the three regimes:
+Seven demos, covering all three regimes:
 
 | Demo | Regime | What it shows |
 |---|---|---|
@@ -21,10 +21,11 @@ Six demos, covering two of the three regimes:
 | The blank mirror | near field | Pictures, print and reflections carry no mass |
 | The closed furnace | thermal | Temperature inside a closed box |
 | Honey and water | thermal | Glow set by internal friction |
+| Which way it turns | waves | The sense of rotation inside a sealed drum, from polarization |
 
-The waves regime (moving bodies, with a labelled slowed-light teaching mode)
-is next. Material properties that are assumptions are labelled in each scene
-file and on the page.
+The wave demo uses a clearly labelled teaching mode in which light is slowed
+until the waves are centimetres long. Material properties that are
+assumptions are labelled in each scene file and on the page.
 
 The paper has eleven sections with derivations, plain-language summaries and
 eight figures. Every number the engine draws is checked against the Python

@@ -21,7 +21,7 @@ struct Frame {
   viewport: vec4f,  // width, height, divider x in pixels, time in seconds
   tone: vec4f,      // thermal exposure, glare radius in pixels, light exposure, near-field exposure
   sun: vec4f,       // unit vector toward the Sun; w unused
-  near: vec4f,      // x: exclusion radius around the observer; yzw unused
+  near: vec4f,      // x: exclusion radius around the observer; y: number of wave sources; z: wave exposure
   counts: vec4u,    // number of prims, left mode, right mode, flags (1: room lighting, 2: outline of the light picture in the gravity views)
 }
 

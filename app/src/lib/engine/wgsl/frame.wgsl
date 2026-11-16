@@ -11,6 +11,7 @@
 const MODE_LIGHT: u32 = 0u;
 const MODE_THERMAL: u32 = 1u;
 const MODE_NEAR: u32 = 2u;
+const MODE_WAVES: u32 = 3u;
 
 @vertex
 fn vs(@builtin(vertex_index) vi: u32) -> @builtin(position) vec4f {
@@ -40,6 +41,8 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
     col = thermal_view(rd);
   } else if (mode == MODE_NEAR) {
     col = near_view(uv);
+  } else if (mode == MODE_WAVES) {
+    col = waves_view(rd);
   } else {
     col = light_view(rd);
   }

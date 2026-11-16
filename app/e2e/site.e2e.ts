@@ -21,9 +21,15 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
 	// every figure has something drawn in it
 	const figures = page.locator('figure.plate');
-	expect(await figures.count()).toBe(8);
+	expect(await figures.count()).toBe(9);
 	for (const figure of await figures.all()) {
-		expect(await figure.locator('svg, canvas').count()).toBeGreaterThan(0);
+		expect(await figure.locator('svg, canvas, img').count()).toBeGreaterThan(0);
+		for (const img of await figure.locator('img').all()) {
+			await img.scrollIntoViewIfNeeded();
+			await expect
+				.poll(() => img.evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth))
+				.toBeGreaterThan(0);
+		}
 	}
 	// nothing from the LaTeX source may leak through unrendered
 	await expect(page.locator('article')).not.toContainText('\\ref');
@@ -255,4 +261,26 @@ test('honey and water: honey glows, water barely does', async ({ page }) => {
 	const honey = await demo.at(sceneObject('honey-and-water', 'bottle-left-contents').center);
 	const water = await demo.at(sceneObject('honey-and-water', 'bottle-right-contents').center);
 	expect(honey[0], JSON.stringify({ honey, water })).toBeGreaterThan(water[0] + 80);
+});
+
+test('which way it turns: the polarization tells the sense of turning', async ({ page }) => {
+	const demo = await openDemo(page, '/demo/which-way/', { yaw: 13, pitch: 0 });
+	const canvas = page.locator('canvas');
+	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
+	const centre = (name: string) => sceneObject('which-way', `drum-${name}`).center;
+	const top = await demo.at(centre('top'));
+	const middle = await demo.at(centre('middle'));
+	const bottom = await demo.at(centre('bottom'));
+	const detail = JSON.stringify({ top, middle, bottom });
+	// top turns clockwise: green; middle anticlockwise: magenta; bottom is still: dark
+	expect(top[1], detail).toBeGreaterThan(top[0] + 40);
+	expect(middle[0], detail).toBeGreaterThan(middle[1] + 40);
+	expect(middle[2], detail).toBeGreaterThan(middle[1] + 40);
+	expect(bottom[0] + bottom[1] + bottom[2], detail).toBeLessThan((top[0] + top[1] + top[2]) / 2);
+
+	// at the true speed of light there is no wave image, and the page says why
+	await page.getByRole('button', { name: 'True speed' }).click();
+	await expect(page.getByText('deep inside their near zone')).toBeVisible();
+	await expect.poll(() => canvas.getAttribute('data-waves'), { timeout: 30_000 }).toBe('0');
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · waves');
 });

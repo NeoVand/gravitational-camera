@@ -86,7 +86,12 @@
 			text: 'Honey and water differ.',
 			href: resolve('/demo/honey-and-water')
 		},
-		{ icon: Rotate01Icon, name: 'Read spin and its sense', text: 'Even in a sealed box.' },
+		{
+			icon: Rotate01Icon,
+			name: 'Read spin and its sense',
+			text: 'Even in a sealed box.',
+			href: resolve('/demo/which-way')
+		},
 		{ icon: FlashlightIcon, name: 'See what emits no light', text: 'All energy gravitates.' }
 	];
 </script>

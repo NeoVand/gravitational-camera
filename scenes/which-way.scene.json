@@ -1,0 +1,288 @@
+{
+  "name": "which-way",
+  "title": "Which way it turns",
+  "description": "Three sealed steel drums on a shelf unit against the wall. Inside each, a pair of steel balls on a shaft: one pair turns one way, one the other, one is still.",
+  "frame": "Room coordinates, SI metres. +y is up, the observer looks along -z.",
+  "environment": "room",
+  "observer": {
+    "position": [0, 1.5, 0],
+    "exclusion": 0.25
+  },
+  "materials": {
+    "concrete": {
+      "density": 2400,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.42, 0.41, 0.39]
+      }
+    },
+    "plaster": {
+      "density": 1200,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.62, 0.6, 0.56]
+      }
+    },
+    "steel": {
+      "density": 7850,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.33, 0.35, 0.38]
+      }
+    },
+    "air": {
+      "density": 1.2,
+      "temperature": 293,
+      "friction": 0.001
+    },
+    "wood": {
+      "density": 600,
+      "temperature": 293,
+      "friction": 0.001,
+      "light": {
+        "color": [0.42, 0.3, 0.2]
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, -0.15, -4],
+        "size": [12, 0.3, 14]
+      },
+      "material": "concrete"
+    },
+    {
+      "id": "back-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [0, 3.75, -8.15],
+        "size": [12.6, 7.5, 0.3]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "left-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [-6.15, 3.75, -2.5],
+        "size": [0.3, 7.5, 11.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "right-wall",
+      "background": true,
+      "shape": {
+        "type": "box",
+        "center": [6.15, 3.75, -2.5],
+        "size": [0.3, 7.5, 11.0]
+      },
+      "material": "plaster"
+    },
+    {
+      "id": "shelf-post-left",
+      "shape": {
+        "type": "box",
+        "center": [-0.69, 1.55, -4.5],
+        "size": [0.06, 3.1, 0.8]
+      },
+      "material": "wood"
+    },
+    {
+      "id": "shelf-post-right",
+      "shape": {
+        "type": "box",
+        "center": [0.69, 1.55, -4.5],
+        "size": [0.06, 3.1, 0.8]
+      },
+      "material": "wood"
+    },
+    {
+      "id": "shelf-lower",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 1.02, -4.5],
+        "size": [1.32, 0.04, 0.8]
+      },
+      "material": "wood"
+    },
+    {
+      "id": "shelf-upper",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 2.06, -4.5],
+        "size": [1.32, 0.04, 0.8]
+      },
+      "material": "wood"
+    },
+    {
+      "id": "shelf-top",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 3.08, -4.5],
+        "size": [1.32, 0.04, 0.8]
+      },
+      "material": "wood"
+    },
+    {
+      "id": "drum-top",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 2.555, -4.5],
+        "size": [0.9, 0.95, 0.7]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "drum-top-inside",
+      "parent": "drum-top",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 2.555, -4.5],
+        "size": [0.86, 0.91, 0.66]
+      },
+      "material": "air"
+    },
+    {
+      "id": "drum-top-ball-a",
+      "parent": "drum-top-inside",
+      "shape": {
+        "type": "sphere",
+        "center": [-0.22, 2.555, -4.5],
+        "radius": 0.1
+      },
+      "material": "steel",
+      "spin": {
+        "center": [0.0, 2.555, -4.5],
+        "axis": [0, 0, 1],
+        "rate": -1.0
+      }
+    },
+    {
+      "id": "drum-top-ball-b",
+      "parent": "drum-top-inside",
+      "shape": {
+        "type": "sphere",
+        "center": [0.22, 2.555, -4.5],
+        "radius": 0.1
+      },
+      "material": "steel",
+      "spin": {
+        "center": [0.0, 2.555, -4.5],
+        "axis": [0, 0, 1],
+        "rate": -1.0
+      }
+    },
+    {
+      "id": "drum-middle",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 1.515, -4.5],
+        "size": [0.9, 0.95, 0.7]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "drum-middle-inside",
+      "parent": "drum-middle",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 1.515, -4.5],
+        "size": [0.86, 0.91, 0.66]
+      },
+      "material": "air"
+    },
+    {
+      "id": "drum-middle-ball-a",
+      "parent": "drum-middle-inside",
+      "shape": {
+        "type": "sphere",
+        "center": [-0.22, 1.515, -4.5],
+        "radius": 0.1
+      },
+      "material": "steel",
+      "spin": {
+        "center": [0.0, 1.515, -4.5],
+        "axis": [0, 0, 1],
+        "rate": 1.0
+      }
+    },
+    {
+      "id": "drum-middle-ball-b",
+      "parent": "drum-middle-inside",
+      "shape": {
+        "type": "sphere",
+        "center": [0.22, 1.515, -4.5],
+        "radius": 0.1
+      },
+      "material": "steel",
+      "spin": {
+        "center": [0.0, 1.515, -4.5],
+        "axis": [0, 0, 1],
+        "rate": 1.0
+      }
+    },
+    {
+      "id": "drum-bottom",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 0.475, -4.5],
+        "size": [0.9, 0.95, 0.7]
+      },
+      "material": "steel"
+    },
+    {
+      "id": "drum-bottom-inside",
+      "parent": "drum-bottom",
+      "shape": {
+        "type": "box",
+        "center": [0.0, 0.475, -4.5],
+        "size": [0.86, 0.91, 0.66]
+      },
+      "material": "air"
+    },
+    {
+      "id": "drum-bottom-ball-a",
+      "parent": "drum-bottom-inside",
+      "shape": {
+        "type": "sphere",
+        "center": [-0.22, 0.475, -4.5],
+        "radius": 0.1
+      },
+      "material": "steel",
+      "spin": {
+        "center": [0.0, 0.475, -4.5],
+        "axis": [0, 0, 1],
+        "rate": 0.0
+      }
+    },
+    {
+      "id": "drum-bottom-ball-b",
+      "parent": "drum-bottom-inside",
+      "shape": {
+        "type": "sphere",
+        "center": [0.22, 0.475, -4.5],
+        "radius": 0.1
+      },
+      "material": "steel",
+      "spin": {
+        "center": [0.0, 0.475, -4.5],
+        "axis": [0, 0, 1],
+        "rate": 0.0
+      }
+    }
+  ],
+  "assumptions": [
+    "Friction values are placeholders, as in the other scenes.",
+    "The shaft holding each pair of balls is left out; its mass is small and lies on the axis, where it does not radiate."
+  ]
+}

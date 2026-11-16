@@ -38,11 +38,23 @@ export interface BoxShape {
 
 export type Shape = SphereShape | BoxShape;
 
+/**
+ * Steady rotation of a sphere about an axis through `center`. `rate` is in
+ * revolutions per second, positive anticlockwise seen from the tip of `axis`.
+ */
+export interface Spin {
+	center: Vec3;
+	axis: Vec3;
+	rate: number;
+}
+
 export interface SceneObject {
 	id: string;
 	parent?: string;
 	shape: Shape;
 	material: string;
+	/** Only spheres may spin, in the plane through the spin centre across the axis. */
+	spin?: Spin;
 	/**
 	 * Part of the empty room (floor, walls, furniture fixed in place). Its pull
 	 * and glow are known in advance, so a view can subtract them.
@@ -89,4 +101,6 @@ export interface AnalyzedObject {
 	light?: LightMaterial;
 	/** Part of the empty room; see `SceneObject.background`. */
 	background: boolean;
+	/** Steady rotation, for the wave view. */
+	spin?: Spin;
 }

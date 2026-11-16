@@ -97,6 +97,27 @@ Shape = Sphere | Box
 
 
 @dataclass(frozen=True)
+class Spin:
+    """Steady rotation of a sphere about an axis (scenes/README.md, v2).
+    ``rate`` is in revolutions per second, positive anticlockwise when seen
+    from the tip of ``axis`` (the right-hand rule)."""
+    center: tuple[float, float, float]   # m, a point on the axis
+    axis: tuple[float, float, float]     # unit vector
+    rate: float                          # rev/s
+
+    @property
+    def omega(self) -> float:
+        """Angular speed, rad/s (not negative)."""
+        return 2.0 * math.pi * abs(self.rate)
+
+    @property
+    def angular_direction(self) -> tuple[float, float, float]:
+        """Unit vector along the angular velocity (the axis, flipped if the rate is negative)."""
+        s = 1.0 if self.rate >= 0 else -1.0
+        return (s * self.axis[0], s * self.axis[1], s * self.axis[2])
+
+
+@dataclass(frozen=True)
 class SceneObject:
     id: str
     shape: Shape
@@ -106,6 +127,7 @@ class SceneObject:
     depth: int            # 0 for a root object, parent's depth + 1 otherwise
     own_volume: float     # m^3: shape volume minus the children's shape volumes
     background: bool = False   # part of the empty room, which a view may subtract
+    spin: Spin | None = None   # steady rotation, for the wave views
 
 
 class Scene:
@@ -258,6 +280,40 @@ def _shape(object_id: str, spec) -> Shape:
     return Sphere(center=_vector(spec["center"], f"object {object_id!r} center"), radius=radius)
 
 
+def _spin(object_id: str, spec, shape: Shape) -> Spin | None:
+    if spec is None:
+        return None
+    if not isinstance(spec, dict) or not {"center", "axis", "rate"} <= spec.keys():
+        raise SceneError(f"object {object_id!r}: spin needs 'center', 'axis' and 'rate'")
+    if not isinstance(shape, Sphere):
+        raise SceneError(f"object {object_id!r}: only spheres may spin (a box would leave its axes)")
+    center = _vector(spec["center"], f"object {object_id!r} spin center")
+    axis = _vector(spec["axis"], f"object {object_id!r} spin axis")
+    norm = math.sqrt(sum(a * a for a in axis))
+    if not norm > 0:
+        raise SceneError(f"object {object_id!r}: spin axis must not be zero")
+    axis = tuple(a / norm for a in axis)
+    offset = tuple(p - q for p, q in zip(shape.center, center))
+    along = sum(o * a for o, a in zip(offset, axis))
+    if abs(along) > _GEOMETRY_RTOL * max(1.0, math.sqrt(sum(o * o for o in offset))):
+        raise SceneError(f"object {object_id!r}: a spinning sphere must lie in the plane through the spin "
+                         "center perpendicular to the axis")
+    return Spin(center=center, axis=axis, rate=_number(spec["rate"], f"object {object_id!r} spin rate"))
+
+
+def spun(sphere: Sphere, spin: Spin, turns: float) -> Sphere:
+    """The sphere after ``turns`` revolutions in the sense of positive rate
+    (Rodrigues' rotation about the spin axis)."""
+    angle = 2.0 * math.pi * turns
+    k = spin.axis
+    v = tuple(p - q for p, q in zip(sphere.center, spin.center))
+    cos, sin = math.cos(angle), math.sin(angle)
+    cross = (k[1] * v[2] - k[2] * v[1], k[2] * v[0] - k[0] * v[2], k[0] * v[1] - k[1] * v[0])
+    dot = sum(a * b for a, b in zip(k, v))
+    moved = tuple(v[i] * cos + cross[i] * sin + k[i] * dot * (1 - cos) for i in range(3))
+    return Sphere(center=tuple(q + m for q, m in zip(spin.center, moved)), radius=sphere.radius)
+
+
 def _slack(*shapes: Shape) -> float:
     """Absolute slack (m) for comparing box faces: the relative tolerance
     times the largest coordinate or extent involved."""
@@ -330,6 +386,7 @@ def scene_from_dict(data: dict, source=None) -> Scene:
     parents: dict[str, str | None] = {}
     object_materials: dict[str, Material] = {}
     backgrounds: dict[str, bool] = {}
+    spins: dict[str, Spin | None] = {}
     for spec in data["objects"]:
         if not isinstance(spec, dict) or "id" not in spec:
             raise SceneError(f"every object needs an id, got {spec!r}")
@@ -344,6 +401,7 @@ def scene_from_dict(data: dict, source=None) -> Scene:
         backgrounds[object_id] = spec.get("background", False)
         if not isinstance(backgrounds[object_id], bool):
             raise SceneError(f"object {object_id!r}: background must be true or false")
+        spins[object_id] = _spin(object_id, spec.get("spin"), shapes[object_id])
 
     for object_id, parent in parents.items():
         if parent is not None and parent not in shapes:
@@ -370,6 +428,10 @@ def scene_from_dict(data: dict, source=None) -> Scene:
             continue
         if not shape_inside(shapes[object_id], shapes[parent]):
             raise SceneError(f"object {object_id!r} does not lie entirely inside its parent {parent!r}")
+        if spins[object_id] is not None:
+            for k in range(32):
+                if not shape_inside(spun(shapes[object_id], spins[object_id], k / 32), shapes[parent]):
+                    raise SceneError(f"object {object_id!r} leaves its parent {parent!r} as it turns")
 
     siblings: dict[str | None, list[str]] = {}
     for object_id, parent in parents.items():
@@ -393,6 +455,7 @@ def scene_from_dict(data: dict, source=None) -> Scene:
             depth=depths[object_id],
             own_volume=own_volume,
             background=backgrounds[object_id],
+            spin=spins[object_id],
         ))
     return Scene(name=data.get("name", ""), observer=observer, objects=objects, materials=materials, source=source,
                  exclusion=exclusion, environment=environment)

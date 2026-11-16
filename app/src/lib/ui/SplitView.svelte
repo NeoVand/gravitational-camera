@@ -15,6 +15,7 @@
 		type AnalyzedObject,
 		type FrameParams,
 		type Mode,
+		type PackedWaves,
 		type Vec3,
 		type View
 	} from '../engine';
@@ -43,6 +44,9 @@
 		outline?: boolean;
 		/** Leave the empty room (background objects) out of the gravity views. */
 		subtractRoom?: boolean;
+		/** Sources for the wave view (see `packWaves`), and its brightness. */
+		waves?: PackedWaves;
+		waveExposure?: number;
 		interactive?: boolean;
 		leftLabel?: string;
 		rightLabel?: string;
@@ -70,6 +74,8 @@
 		room = false,
 		outline = false,
 		subtractRoom = false,
+		waves,
+		waveExposure = 2.2,
 		interactive = true,
 		leftLabel = 'Light',
 		rightLabel = 'Gravity · thermal',
@@ -124,6 +130,8 @@
 				nearBlur,
 				outline,
 				subtractRoom,
+				waves ? Array.from(new Float32Array(waves.buffer, 0, waves.count * 12)) : null,
+				waveExposure,
 				leftMode,
 				rightMode,
 				sunDirection,
@@ -146,11 +154,13 @@
 				nearBlur,
 				exclusion,
 				room,
-				nearOutline: outline
+				nearOutline: outline,
+				waveExposure
 			};
 			engine.setPrims(
 				packPrims(objects, observer, { nRef, sRef, glareAngle: 2.5 * pixelAngle, subtractRoom })
 			);
+			if (waves) engine.setWaves(waves);
 			if (ctx2d) {
 				busy = true;
 				const pixels = await engine.readFrame(params, width, height);
@@ -168,6 +178,7 @@
 			// lets tests wait for the frame drawn with a given setting, not an older one
 			canvas.dataset.nearBlur = String(params.nearBlur);
 			canvas.dataset.split = String(params.divider);
+			canvas.dataset.waves = String(waves?.count ?? 0);
 			canvas.dataset.exposure = String(params.exposure);
 		};
 

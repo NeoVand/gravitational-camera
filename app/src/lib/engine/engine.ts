@@ -15,11 +15,14 @@ import nearWgsl from './wgsl/near.wgsl?raw';
 import nearPassWgsl from './wgsl/nearpass.wgsl?raw';
 import probeWgsl from './wgsl/probe.wgsl?raw';
 import thermalWgsl from './wgsl/thermal.wgsl?raw';
+import wavesWgsl from './wgsl/waves.wgsl?raw';
+import { MAX_WAVE_SOURCES, WAVE_STRIDE, type PackedWaves } from './waves';
 
 export const MODE_LIGHT = 0;
 export const MODE_THERMAL = 1;
 export const MODE_NEAR = 2;
-export type Mode = typeof MODE_LIGHT | typeof MODE_THERMAL | typeof MODE_NEAR;
+export const MODE_WAVES = 3;
+export type Mode = typeof MODE_LIGHT | typeof MODE_THERMAL | typeof MODE_NEAR | typeof MODE_WAVES;
 
 export interface FrameParams {
 	view: View;
@@ -44,6 +47,8 @@ export interface FrameParams {
 	room?: boolean;
 	/** Add a faint copy of the ordinary picture to the near-field view. */
 	nearOutline?: boolean;
+	/** Brightness multiplier for the wave view. */
+	waveExposure?: number;
 }
 
 export class EngineUnavailable extends Error {}
@@ -66,6 +71,7 @@ async function compile(device: GPUDevice, label: string, parts: string[]) {
 
 export class Engine {
 	private primCount = 0;
+	private waveCount = 0;
 	private probePipeline: GPUComputePipeline | undefined;
 	// near-field targets, at reduced resolution; `a` holds the finished map
 	private near: { width: number; height: number; a: GPUTexture; b: GPUTexture } | undefined;
@@ -84,6 +90,7 @@ export class Engine {
 		private readonly columnFrameBuffer: GPUBuffer,
 		private readonly blurBuffers: [GPUBuffer, GPUBuffer],
 		private readonly primBuffer: GPUBuffer,
+		private readonly waveBuffer: GPUBuffer,
 		private readonly columnGroup: GPUBindGroup,
 		private readonly sampler: GPUSampler
 	) {}
@@ -113,6 +120,7 @@ export class Engine {
 			thermalWgsl,
 			lightWgsl,
 			nearWgsl,
+			wavesWgsl,
 			frameWgsl
 		]);
 		const columnModule = await compile(device, 'near column', [
@@ -163,6 +171,11 @@ export class Engine {
 			size: PRIM_STRIDE * MAX_PRIMS,
 			usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
 		});
+		const waveBuffer = device.createBuffer({
+			label: 'wave sources',
+			size: WAVE_STRIDE * MAX_WAVE_SOURCES,
+			usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
+		});
 		const columnGroup = device.createBindGroup({
 			layout: columnPipeline.getBindGroupLayout(0),
 			entries: [
@@ -188,6 +201,7 @@ export class Engine {
 			columnFrameBuffer,
 			blurBuffers,
 			primBuffer,
+			waveBuffer,
 			columnGroup,
 			sampler
 		);
@@ -196,6 +210,12 @@ export class Engine {
 	setPrims(prims: PackedPrims): void {
 		this.device.queue.writeBuffer(this.primBuffer, 0, prims.buffer);
 		this.primCount = prims.count;
+	}
+
+	/** The sources the wave view draws (see `packWaves`). */
+	setWaves(waves: PackedWaves): void {
+		this.device.queue.writeBuffer(this.waveBuffer, 0, waves.buffer);
+		this.waveCount = waves.count;
 	}
 
 	private frameData(p: FrameParams, width: number, height: number): ArrayBuffer {
@@ -210,7 +230,7 @@ export class Engine {
 		f.set([width, height, p.divider * width, p.timeSeconds], 12);
 		f.set([p.exposure, p.glarePixels, 1, p.nearExposure ?? 1], 16);
 		f.set([...p.sunDirection, 0], 20);
-		f.set([p.exclusion ?? 0.25, 0, 0, 0], 24);
+		f.set([p.exclusion ?? 0.25, this.waveCount, p.waveExposure ?? 1, 0], 24);
 		u.set([this.primCount, p.left, p.right, (p.room ? 1 : 0) | (p.nearOutline ? 2 : 0)], 28);
 		return data;
 	}
@@ -247,7 +267,8 @@ export class Engine {
 				{ binding: 0, resource: { buffer: this.frameBuffer } },
 				{ binding: 1, resource: { buffer: this.primBuffer } },
 				{ binding: 2, resource: a.createView() },
-				{ binding: 3, resource: this.sampler }
+				{ binding: 3, resource: this.sampler },
+				{ binding: 4, resource: { buffer: this.waveBuffer } }
 			]
 		});
 	}

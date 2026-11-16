@@ -50,7 +50,8 @@ export function analyzeScene(scene: Scene): AnalyzedObject[] {
 			jN: numberEmissivity(jE, m.temperature),
 			color: temperatureColor(m.temperature),
 			light: m.light,
-			background: o.background === true
+			background: o.background === true,
+			spin: o.spin
 		};
 	});
 }

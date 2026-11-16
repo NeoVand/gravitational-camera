@@ -6,7 +6,8 @@ export interface DemoEntry {
 		| 'full-or-empty'
 		| 'blank-mirror'
 		| 'closed-furnace'
-		| 'honey-and-water';
+		| 'honey-and-water'
+		| 'which-way';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -54,6 +55,13 @@ export const demos: DemoEntry[] = [
 		affordance: 'Internal friction',
 		summary:
 			'Thermal gravitational glow is set by how much a material resists flowing. Two sealed bottles tell themselves apart.'
+	},
+	{
+		slug: 'which-way',
+		title: 'Which way it turns',
+		affordance: 'Read spin and its sense',
+		summary:
+			'Three sealed drums, one still and two turning. The polarization of their gravitational waves tells which is which, and which way. Shown with light slowed down, and labelled so.'
 	},
 	{
 		title: 'The sealed flywheel',
