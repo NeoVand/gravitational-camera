@@ -2,10 +2,11 @@
 %
 % This file is the single source for the paper. The website renders it with
 % pandoc, so stay inside the subset the site understands: sections, \paragraph,
-% paragraphs, equation/align with \label, figure, table, quote (shown as a
+% paragraphs, equation/align with \label, figure, figure* (spanning both
+% columns), table, quote (shown as a
 % plain-language aside), itemize/enumerate, \cite, \ref, \eqref, \emph,
 % \textbf, \footnote. No TikZ, no custom environments.
-\documentclass[11pt]{article}
+\documentclass[aps,prd,twocolumn,nofootinbib,floatfix]{revtex4-2}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype}
 \usepackage{amsmath,amssymb,graphicx}
@@ -13,12 +14,12 @@
 \usepackage{gcpaper}
 \input{macros}
 
+\begin{document}
+
 \title{Gravitational Camera: A Thought Experiment}
 \author{Mostafa ‘Neo’ Mohsenvand}
+\noaffiliation
 \date{Working draft, 16 November 2026}
-
-\begin{document}
-\maketitle
 
 \begin{abstract}
 Suppose gravitational-wave detectors could be made arbitrarily small and
@@ -41,6 +42,8 @@ proposal for an instrument. The draft is incomplete, and its claims of novelty
 are provisional until the literature has been read in full.
 \end{abstract}
 
+\maketitle
+
 \input{sections/01-introduction}
 \input{sections/02-pixel}
 \input{sections/03-regimes}
@@ -54,6 +57,5 @@ are provisional until the literature has been read in full.
 \input{sections/11-vistas}
 \input{sections/12-status}
 
-\bibliographystyle{unsrt}
 \bibliography{refs}
 \end{document}

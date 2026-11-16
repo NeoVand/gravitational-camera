@@ -29,9 +29,10 @@ and outweighs the Moon in the camera's view some fifty thousand times.
 in view, and grouping it by direction, gives the tidal field at the camera as
 an integral over the sky,
 \begin{equation}\label{eq:tidal-column}
-\tE_{ij} = G \int \dd\Omega\,\bigl(\delta_{ij} - 3\,\hat n_i \hat n_j\bigr)\,S(\hat n),
-\qquad
+\begin{gathered}
+\tE_{ij} = G \int \dd\Omega\,\bigl(\delta_{ij} - 3\,\hat n_i \hat n_j\bigr)\,S(\hat n),\\
 S(\hat n) = \int \rho(r\hat n)\,\frac{\dd r}{r} .
+\end{gathered}
 \end{equation}
 The quantity $S$, which we call the \emph{tidal column}, is the mass along a
 line of sight with each part weighted by the inverse of its distance;
@@ -59,9 +60,9 @@ spinning ball of equal mass differ in $\tB_{ij}$ by the ratio of their moments
 of inertia, $5/3$ (Section~\ref{sec:separation}); and a tide applied from
 outside probes how the interior responds.
 
-\begin{figure}
+\begin{figure*}
 \centering
-\includegraphics[width=\linewidth]{figures/sky-integral.pdf}
+\includegraphics[width=\textwidth]{figures/sky-integral.pdf}
 \caption{The sky integral, Eq.~\eqref{eq:tidal-column}. (a) A pixel at the
 apex of a thin cone of directions $\dd\Omega$ about $\hat n$. The matter in
 the cone between $r$ and $r + \dd r$ has mass $\dd m = \rho\,r^2\,\dd r\,\dd\Omega$
@@ -73,7 +74,7 @@ matter in a direction at angle $\vartheta$ from the $z$ axis. Matter near the
 axis stretches the pixel along $z$; matter near the perpendicular plane
 squeezes it. The weight averages to zero over the sky, which is why a uniform
 shell of matter around the camera is invisible to it.}\label{fig:sky-integral}
-\end{figure}
+\end{figure*}
 
 \paragraph{How sharp.} The space between scene and camera is empty, so the
 potential there obeys Laplace's equation. Consider a pattern in the scene that
@@ -202,9 +203,9 @@ Wiener filter rolls off gradually, this slightly exceeds the full width, the
 reverse of a sharp-edged pupil. The last column is the first estimate.}\label{tab:resolution}
 \end{table}
 
-\begin{figure}
+\begin{figure*}
 \centering
-\includegraphics[width=\linewidth]{figures/resolution-law.pdf}
+\includegraphics[width=\textwidth]{figures/resolution-law.pdf}
 \caption{The exact near-field resolution law. (a) The Wiener filter $H$ of
 Eq.~\eqref{eq:wiener} against spatial frequency, for four signal-to-noise
 ratios: patterns coarser than $kz = q_c$ are kept almost whole, finer ones are
@@ -214,11 +215,11 @@ sensitivity from $10^{6}$ to $10^{60}$ moves the cutoff only from 18 to 144.
 point, for a flat array ($4.43/q_c$) and a single row ($3.79/q_c$), with
 values computed directly by the reference implementation (dots) and the first
 estimate $\pi/\ln\SNR$ (dashed).}\label{fig:resolution-law}
-\end{figure}
+\end{figure*}
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/nearfield.pdf}
+\includegraphics[width=\columnwidth]{figures/nearfield.pdf}
 \caption{The near-field blur, for a row of pixels over a
 two-dimensional scene: two masses a distance $z/2$ apart at depth $z$, recorded
 with signal-to-noise ratio $10^6$. (a) The geometry, to scale, and what the
@@ -237,9 +238,9 @@ Its consequence here is the central one for the whole subject. The near field
 is where everyday things are visible, and it can never be sharp. Sharp images
 need waves.
 
-\begin{figure}
+\begin{figure*}
 \centering
-\includegraphics[width=\linewidth]{figures/locked-safe.pdf}
+\includegraphics[width=\textwidth]{figures/locked-safe.pdf}
 \caption{The locked safe, computed. Two identical steel safes
 $3.5\,\mathrm{m}$ away; the right-hand one holds $320\,\mathrm{kg}$ of gold.
 (a) Ordinary light, from the same camera. (b) The tidal column $S(\hat n)$ of
@@ -250,4 +251,4 @@ Eq.~\eqref{eq:resolution}: the gold still stands out through the steel.
 Blurring $S$ in this way treats the scene as if it lay at a single depth; it
 shows what an array as wide as the scene is deep could resolve, not a
 reconstruction from simulated data (Section~\ref{sec:near-field}).}\label{fig:locked-safe}
-\end{figure}
+\end{figure*}

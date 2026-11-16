@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="252" height="151.2" viewBox="0 0 252 151.2">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="244.8" height="151.2" viewBox="0 0 244.8 151.2">
 <defs>
 <g>
 <g id="polarization-glyph-0-0">
@@ -181,264 +181,264 @@
 </g>
 </g>
 <clipPath id="polarization-clip-0">
-<path clip-rule="nonzero" d="M 25.730469 54 L 233.789062 54 L 233.789062 56 L 25.730469 56 Z M 25.730469 54 "/>
+<path clip-rule="nonzero" d="M 24.894531 54 L 227.011719 54 L 227.011719 56 L 24.894531 56 Z M 24.894531 54 "/>
 </clipPath>
 <clipPath id="polarization-clip-1">
-<path clip-rule="nonzero" d="M 25.730469 7 L 233.789062 7 L 233.789062 33 L 25.730469 33 Z M 25.730469 7 "/>
+<path clip-rule="nonzero" d="M 24.894531 7 L 227.011719 7 L 227.011719 33 L 24.894531 33 Z M 24.894531 7 "/>
 </clipPath>
 <clipPath id="polarization-clip-2">
-<path clip-rule="nonzero" d="M 25.730469 7 L 233.789062 7 L 233.789062 103 L 25.730469 103 Z M 25.730469 7 "/>
+<path clip-rule="nonzero" d="M 24.894531 7 L 227.011719 7 L 227.011719 103 L 24.894531 103 Z M 24.894531 7 "/>
 </clipPath>
 </defs>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 45.361706 L 25.199942 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 45.361706 L 24.478629 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-0" x="22.275504" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-0" x="21.440872" y="113.926026"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-1-0" x="26.224101" y="113.926026"/>
+<use xlink:href="#polarization-glyph-1-0" x="25.389469" y="113.926026"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-1" x="13.881362" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-2" x="16.951048" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-1" x="13.04673" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-2" x="16.116417" y="120.491355"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-3" x="20.678416" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-3" x="19.843784" y="120.491355"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-4" x="26.15989" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-5" x="30.106629" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-6" x="33.183748" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-4" x="25.325258" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-5" x="29.271997" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-6" x="32.349116" y="120.491355"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 77.490782 45.361706 L 77.490782 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 75.27724 45.361706 L 75.27724 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-7" x="72.315994" y="113.926026"/>
-<use xlink:href="#polarization-glyph-0-8" x="76.262734" y="113.926026"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-1-0" x="80.213189" y="113.926026"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 129.781622 45.361706 L 129.781622 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-9" x="124.330784" y="113.926026"/>
-<use xlink:href="#polarization-glyph-0-0" x="128.277523" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-7" x="69.995226" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-8" x="73.941965" y="113.926026"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-1-0" x="132.227979" y="113.926026"/>
+<use xlink:href="#polarization-glyph-1-0" x="77.892421" y="113.926026"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 126.071925 45.361706 L 126.071925 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-0-9" x="120.523879" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-0" x="124.470618" y="113.926026"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-10" x="116.597819" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-6" x="120.106032" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-11" x="124.491298" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-10" x="128.438037" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-12" x="131.946249" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-2" x="134.577409" y="120.491355"/>
-<use xlink:href="#polarization-glyph-0-13" x="138.524148" y="120.491355"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 182.068535 45.361706 L 182.068535 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-14" x="174.371275" y="113.926026"/>
-<use xlink:href="#polarization-glyph-0-15" x="178.318014" y="113.926026"/>
-<use xlink:href="#polarization-glyph-0-8" x="182.264753" y="113.926026"/>
+<use xlink:href="#polarization-glyph-1-0" x="128.421073" y="113.926026"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-1-0" x="186.217067" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-10" x="112.790914" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-6" x="116.299127" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-11" x="120.684392" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-10" x="124.631132" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-12" x="128.139344" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-2" x="130.770504" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-13" x="134.717243" y="120.491355"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 234.359375 45.361706 L 234.359375 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 176.866609 45.361706 L 176.866609 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-14" x="226.386064" y="113.926026"/>
-<use xlink:href="#polarization-glyph-0-16" x="230.332803" y="113.926026"/>
-<use xlink:href="#polarization-glyph-0-0" x="234.279543" y="113.926026"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-1-0" x="238.231856" y="113.926026"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-4" x="225.234405" y="120.491355"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-3" x="228.961773" y="120.491355"/>
+<use xlink:href="#polarization-glyph-0-14" x="169.078233" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-15" x="173.024972" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-8" x="176.971711" y="113.926026"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-4" x="234.443247" y="120.491355"/>
+<use xlink:href="#polarization-glyph-1-0" x="180.924025" y="113.926026"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 227.66522 45.361706 L 227.66522 48.86059 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-0-14" x="219.606885" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-16" x="223.553624" y="113.926026"/>
+<use xlink:href="#polarization-glyph-0-0" x="227.500364" y="113.926026"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-0-17" x="238.170614" y="120.491355"/>
+<use xlink:href="#polarization-glyph-1-0" x="231.452677" y="113.926026"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-0" x="21.15194" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-1" x="25.473285" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-2" x="30.283203" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-3" x="34.604548" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-4" x="37.005295" y="131.718501"/>
+<use xlink:href="#polarization-glyph-0-4" x="218.455226" y="120.491355"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-5" x="43.740784" y="131.718501"/>
+<use xlink:href="#polarization-glyph-0-3" x="222.182594" y="120.491355"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-4" x="48.791184" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-6" x="52.640803" y="131.718501"/>
+<use xlink:href="#polarization-glyph-0-4" x="227.664068" y="120.491355"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-7" x="55.761352" y="131.718501"/>
+<use xlink:href="#polarization-glyph-0-17" x="231.391435" y="120.491355"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-4" x="61.771222" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-4" x="65.620841" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-1" x="69.47046" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-0" x="17.345035" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-1" x="21.66638" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-2" x="26.476298" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-3" x="30.797643" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="33.19839" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-6" x="77.166248" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-8" x="80.527294" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-4" x="85.337212" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-5" x="39.933879" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-9" x="92.0727" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-10" x="95.484289" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-11" x="100.294207" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-1" x="102.694954" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="44.984278" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-6" x="48.833898" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-0" x="110.390741" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-1" x="114.712086" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-12" x="119.522004" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-7" x="51.954447" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-6" x="127.217792" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-8" x="130.578838" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-4" x="135.388756" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="57.964317" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="61.813936" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-1" x="65.663555" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-12" x="142.124245" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-11" x="146.934163" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-13" x="149.33491" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-4" x="152.712803" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-14" x="156.562422" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-6" x="160.403618" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-11" x="163.764664" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-15" x="166.165411" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-1" x="170.486756" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-6" x="73.359342" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-8" x="76.720389" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="81.530307" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-15" x="178.182544" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-16" x="182.503889" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-9" x="88.265795" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-10" x="91.677383" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-11" x="96.487301" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-1" x="98.888049" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-6" x="188.034792" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-8" x="191.395838" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-4" x="196.205756" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-0" x="106.583836" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-1" x="110.905181" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-12" x="115.715099" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-2-14" x="202.941245" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-0" x="206.78244" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-17" x="211.103785" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-4" x="218.31445" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-13" x="222.164069" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-0" x="225.541963" y="131.718501"/>
-<use xlink:href="#polarization-glyph-2-18" x="229.863308" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-6" x="123.410887" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-8" x="126.771933" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="131.581851" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-3-0" x="235.303662" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-12" x="138.317339" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-11" x="143.127257" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-13" x="145.528005" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="148.905898" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-14" x="152.755517" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-6" x="156.596713" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-11" x="159.957759" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-15" x="162.358506" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-1" x="166.679851" y="131.718501"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 49.111913 L 28.698826 49.111913 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-4-0" x="12.158007" y="104.110773"/>
+<use xlink:href="#polarization-glyph-2-15" x="174.375638" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-16" x="178.696983" y="131.718501"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-0" x="18.30035" y="104.110773"/>
+<use xlink:href="#polarization-glyph-2-6" x="184.227887" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-8" x="187.588933" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="192.398851" y="131.718501"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 96.011095 L 28.698826 96.011095 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-1" x="18.30035" y="57.457615"/>
+<use xlink:href="#polarization-glyph-2-14" x="199.134339" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-0" x="202.975535" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-17" x="207.29688" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-4" x="214.507545" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-13" x="218.357164" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-0" x="221.735058" y="131.718501"/>
+<use xlink:href="#polarization-glyph-2-18" x="226.056403" y="131.718501"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 142.910276 L 28.698826 142.910276 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-0" x="18.30035" y="10.804457"/>
+<use xlink:href="#polarization-glyph-3-0" x="231.496756" y="131.718501"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 49.111913 L 27.98144 49.111913 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-4-0" x="11.323375" y="104.110773"/>
+</g>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-5-0" x="17.465718" y="104.110773"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 96.011095 L 27.98144 96.011095 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-5-1" x="17.465718" y="57.457615"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 142.910276 L 27.98144 142.910276 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-5-0" x="17.465718" y="10.804457"/>
 </g>
 <g clip-path="url(#polarization-clip-0)">
-<path fill="none" stroke-width="0.5" stroke-linecap="square" stroke-linejoin="round" stroke="#c9c4b8" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 96.011095 L 234.359375 96.011095 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
+<path fill="none" stroke-width="0.5" stroke-linecap="square" stroke-linejoin="round" stroke="#c9c4b8" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 96.011095 L 227.66522 96.011095 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
 </g>
 <g clip-path="url(#polarization-clip-1)">
-<path fill="none" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 142.910276 L 29.849413 142.796396 L 34.494957 142.458681 L 39.144428 141.897131 L 43.793899 141.131382 L 49.020627 140.035772 L 54.251281 138.724182 L 60.059193 137.051314 L 67.033399 134.809044 L 77.490782 131.188426 L 90.2729 126.794205 L 97.24318 124.630473 L 103.055018 123.043998 L 108.281746 121.822727 L 113.512401 120.833143 L 118.161872 120.169494 L 122.807416 119.717898 L 127.456887 119.490137 L 132.102431 119.490137 L 136.751901 119.717898 L 141.401372 120.169494 L 146.046916 120.833143 L 151.277571 121.822727 L 156.504299 123.043998 L 162.316138 124.630473 L 168.705233 126.605713 L 177.422991 129.554828 L 196.594205 136.14027 L 203.568411 138.245098 L 209.376323 139.760888 L 214.606978 140.907548 L 219.833705 141.814666 L 224.483176 142.399777 L 229.132647 142.768907 L 233.778191 142.910276 L 234.359375 142.910276 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
+<path fill="none" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 142.910276 L 28.994585 142.796396 L 33.510541 142.458681 L 38.026496 141.897131 L 42.542452 141.131382 L 47.619957 140.035772 L 53.262938 138.567105 L 59.471396 136.690038 L 66.810805 134.220007 L 80.920222 129.150355 L 89.952133 126.04809 L 96.16059 124.131754 L 101.803571 122.612037 L 106.881076 121.465377 L 111.962508 120.562186 L 116.478464 119.973148 L 120.990493 119.607945 L 125.506448 119.462649 L 130.022404 119.549041 L 134.53836 119.863194 L 139.054315 120.393328 L 143.570271 121.135516 L 148.647776 122.203638 L 153.729208 123.495594 L 159.372189 125.148826 L 166.146123 127.371462 L 175.739583 130.7761 L 189.283523 135.57872 L 196.057457 137.742452 L 201.700438 139.332854 L 206.78187 140.550198 L 211.859375 141.539782 L 216.375331 142.203431 L 220.891286 142.655026 L 225.407242 142.882788 L 227.66522 142.910276 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
 </g>
 <g clip-path="url(#polarization-clip-2)">
-<path fill="none" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 142.910276 L 29.849413 142.796396 L 34.494957 142.454754 L 39.144428 141.885351 L 43.793899 141.09604 L 48.439443 140.082895 L 53.088914 138.857697 L 57.734458 137.420445 L 62.965112 135.566939 L 68.195767 133.469965 L 73.422495 131.137376 L 79.234334 128.294287 L 85.042245 125.20773 L 91.435268 121.555696 L 98.405547 117.302844 L 105.960937 112.437393 L 115.255952 106.162178 L 128.619254 96.83182 L 146.6281 84.26961 L 155.923115 78.065079 L 163.478505 73.274239 L 170.448785 69.111706 L 176.841807 65.553919 L 182.649719 62.561607 L 188.461558 59.824545 L 193.688285 57.594056 L 198.91894 55.603108 L 204.149595 53.859557 L 208.795139 52.528332 L 213.44461 51.40916 L 218.090154 50.505969 L 222.739625 49.822685 L 227.389096 49.367163 L 232.03464 49.139401 L 234.359375 49.111913 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
-<path fill="none" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-dasharray="4.4 2.2" stroke-miterlimit="10" d="M 25.199942 142.910276 L 79.234334 142.804249 L 86.785797 142.556854 L 91.435268 142.207358 L 94.918444 141.767543 L 97.824363 141.217774 L 100.730283 140.432391 L 103.055018 139.58025 L 105.379754 138.465005 L 107.119378 137.416518 L 108.86293 136.155977 L 110.606481 134.644114 L 112.350033 132.849512 L 114.093585 130.73683 L 115.837136 128.274653 L 117.580688 125.439418 L 119.320312 122.215418 L 121.063864 118.598727 L 123.3886 113.207068 L 125.713335 107.253861 L 129.200438 97.648619 L 134.427166 83.23683 L 136.751901 77.409284 L 139.076637 72.174702 L 140.820188 68.691526 L 142.56374 65.597115 L 144.303365 62.887541 L 146.046916 60.547098 L 147.790468 58.54437 L 149.53402 56.847941 L 151.277571 55.42247 L 153.021123 54.236541 L 155.345858 52.96422 L 157.666667 51.986417 L 159.991402 51.244229 L 162.897321 50.560946 L 166.384425 50.011177 L 170.448785 49.614559 L 175.679439 49.339674 L 183.812087 49.170817 L 200.662492 49.11584 L 234.359375 49.111913 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
+<path fill="none" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 142.910276 L 28.994585 142.796396 L 33.510541 142.454754 L 38.026496 141.885351 L 42.542452 141.09604 L 47.054481 140.082895 L 51.570437 138.857697 L 56.651868 137.228026 L 61.729373 135.347032 L 66.810805 133.218643 L 71.88831 130.866419 L 77.535218 127.995842 L 83.178199 124.885723 L 89.386657 121.210127 L 96.16059 116.937641 L 104.061549 111.667717 L 113.089534 105.361086 L 127.19895 95.194296 L 143.004795 83.872991 L 152.032779 77.688095 L 159.372189 72.91689 L 166.146123 68.777918 L 172.35458 65.243692 L 177.997561 62.274942 L 183.640542 59.565369 L 188.721974 57.362368 L 193.799479 55.394982 L 198.880911 53.678919 L 203.39294 52.375182 L 207.908896 51.283499 L 212.424851 50.407796 L 216.940807 49.755928 L 221.456763 49.327894 L 225.972718 49.127621 L 227.66522 49.111913 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<path fill="none" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-dasharray="4.4 2.2" stroke-miterlimit="10" d="M 24.478629 142.910276 L 76.969742 142.804249 L 84.305225 142.556854 L 88.821181 142.207358 L 92.206184 141.767543 L 95.029638 141.217774 L 97.853092 140.432391 L 100.11107 139.58025 L 102.369048 138.465005 L 104.061549 137.416518 L 105.754051 136.155977 L 107.446553 134.644114 L 109.139054 132.849512 L 110.831556 130.73683 L 112.527984 128.274653 L 114.220486 125.439418 L 115.912988 122.215418 L 117.605489 118.598727 L 119.863467 113.207068 L 122.121445 107.253861 L 125.506448 97.648619 L 130.58788 83.23683 L 132.845858 77.409284 L 135.103836 72.174702 L 137.361814 67.615551 L 139.054315 64.650728 L 140.746817 62.066815 L 142.439319 59.84418 L 144.13182 57.947479 L 145.824322 56.345296 L 147.520751 55.00229 L 149.213252 53.887045 L 151.47123 52.697189 L 153.729208 51.782217 L 155.983259 51.087153 L 158.806713 50.450992 L 162.191716 49.940493 L 166.146123 49.575289 L 171.789104 49.304332 L 180.255539 49.155109 L 200.007937 49.111913 L 227.66522 49.111913 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 45.361706 L 25.199942 146.66441 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 25.199942 45.361706 L 234.359375 45.361706 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
-<path fill="none" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 31.950314 75.296602 L 45.451058 75.296602 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 45.361706 L 24.478629 146.66441 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 24.478629 45.361706 L 227.66522 45.361706 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<path fill="none" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 31.229001 75.296602 L 44.729745 75.296602 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-0" x="51.842368" y="78.114739"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-7-0" x="56.39319" y="79.043821"/>
+<use xlink:href="#polarization-glyph-6-0" x="51.007737" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-1" x="62.236168" y="78.114739"/>
+<use xlink:href="#polarization-glyph-7-0" x="55.558559" y="79.043821"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-2" x="65.744164" y="78.114739"/>
+<use xlink:href="#polarization-glyph-6-1" x="61.401536" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-2" x="73.854937" y="78.114739"/>
+<use xlink:href="#polarization-glyph-6-2" x="64.909532" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-3" x="82.187949" y="78.114739"/>
-<use xlink:href="#polarization-glyph-5-0" x="85.257635" y="78.114739"/>
+<use xlink:href="#polarization-glyph-5-2" x="73.020305" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-4" x="90.959286" y="78.114739"/>
+<use xlink:href="#polarization-glyph-5-3" x="81.353317" y="78.114739"/>
+<use xlink:href="#polarization-glyph-5-0" x="84.423003" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-5" x="98.85357" y="78.114739"/>
-<use xlink:href="#polarization-glyph-5-6" x="102.361783" y="78.114739"/>
-<use xlink:href="#polarization-glyph-5-7" x="106.308522" y="78.114739"/>
+<use xlink:href="#polarization-glyph-5-4" x="90.124655" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-7-1" x="109.436393" y="75.491641"/>
+<use xlink:href="#polarization-glyph-5-5" x="98.018939" y="78.114739"/>
+<use xlink:href="#polarization-glyph-5-6" x="101.527151" y="78.114739"/>
+<use xlink:href="#polarization-glyph-5-7" x="105.47389" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-3" x="114.789123" y="78.114739"/>
+<use xlink:href="#polarization-glyph-7-1" x="108.601761" y="75.491641"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-8" x="117.584987" y="78.114739"/>
+<use xlink:href="#polarization-glyph-6-3" x="113.954491" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-1" x="120.656219" y="78.114739"/>
+<use xlink:href="#polarization-glyph-5-8" x="116.750356" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-9" x="124.604862" y="78.114739"/>
-</g>
-<path fill="none" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 31.950314 65.950537 L 45.451058 65.950537 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-0" x="51.842368" y="87.412525"/>
+<use xlink:href="#polarization-glyph-6-1" x="119.821588" y="78.114739"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-8-0" x="56.39319" y="88.341607"/>
+<use xlink:href="#polarization-glyph-5-9" x="123.77023" y="78.114739"/>
+</g>
+<path fill="none" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 31.229001 65.950537 L 44.729745 65.950537 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-6-0" x="51.007737" y="87.412525"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-1" x="62.525175" y="87.412525"/>
+<use xlink:href="#polarization-glyph-8-0" x="55.558559" y="88.341607"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-2" x="66.033171" y="87.412525"/>
+<use xlink:href="#polarization-glyph-6-1" x="61.690544" y="87.412525"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-2" x="74.143944" y="87.412525"/>
+<use xlink:href="#polarization-glyph-6-2" x="65.19854" y="87.412525"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-5-5" x="82.476956" y="87.412525"/>
-<use xlink:href="#polarization-glyph-5-6" x="85.985169" y="87.412525"/>
-<use xlink:href="#polarization-glyph-5-7" x="89.931908" y="87.412525"/>
+<use xlink:href="#polarization-glyph-5-2" x="73.309313" y="87.412525"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-3" x="94.369784" y="87.412525"/>
-</g>
-<path fill="none" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-dasharray="4.4 2.2" stroke-miterlimit="10" d="M 31.950314 56.604473 L 45.451058 56.604473 " transform="matrix(0.994737, 0, 0, -0.994737, 0.663158, 150.404211)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-4" x="51.842368" y="96.71031"/>
+<use xlink:href="#polarization-glyph-5-5" x="81.642325" y="87.412525"/>
+<use xlink:href="#polarization-glyph-5-6" x="85.150537" y="87.412525"/>
+<use xlink:href="#polarization-glyph-5-7" x="89.097276" y="87.412525"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#polarization-glyph-6-1" x="57.31322" y="96.71031"/>
-<use xlink:href="#polarization-glyph-6-5" x="61.259959" y="96.71031"/>
+<use xlink:href="#polarization-glyph-6-3" x="93.535153" y="87.412525"/>
+</g>
+<path fill="none" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-dasharray="4.4 2.2" stroke-miterlimit="10" d="M 31.229001 56.604473 L 44.729745 56.604473 " transform="matrix(0.994737, 0, 0, -0.994737, 0.544737, 150.404211)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-6-4" x="51.007737" y="96.71031"/>
+</g>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#polarization-glyph-6-1" x="56.478588" y="96.71031"/>
+<use xlink:href="#polarization-glyph-6-5" x="60.425327" y="96.71031"/>
 </g>
 </svg>

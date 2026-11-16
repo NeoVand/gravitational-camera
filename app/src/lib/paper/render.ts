@@ -40,7 +40,14 @@ export interface RenderedPaper {
 const esc = (s: string) =>
 	s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const IGNORED_RAW = [/^\\maketitle$/, /^\\centering$/, /^\\bibliographystyle\{[^}]*\}$/];
+// typesetting only, and REVTeX's front matter, which the page shows from the metadata
+const IGNORED_RAW = [
+	/^\\maketitle$/,
+	/^\\centering$/,
+	/^\\bibliographystyle\{[^}]*\}$/,
+	/^\\noaffiliation$/,
+	/^\\affiliation\{[^}]*\}$/
+];
 
 export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] }): RenderedPaper {
 	// ---- first pass: number everything that can be referred to ---------------

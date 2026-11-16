@@ -71,7 +71,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Install LaTeX
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern latexmk
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-publishers lmodern latexmk
       - name: Build the PDF
         working-directory: paper
         run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
@@ -95,7 +95,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install pandoc and LaTeX
-        run: sudo apt-get update && sudo apt-get install -y pandoc && sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern latexmk
+        run: sudo apt-get update && sudo apt-get install -y pandoc && sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-publishers lmodern latexmk
       - name: Build the PDF into the site
         working-directory: paper
         run: |

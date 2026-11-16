@@ -39,7 +39,7 @@ reference, on the CPU in double precision and on the GPU in single precision.
 | `app/` | The website: SvelteKit, TypeScript, WebGPU. Engine in `app/src/lib/engine/`. |
 | `scenes/` | Scene files shared by the engine and the reference; the format is in `scenes/README.md`. |
 | `reference/` | Independent Python implementation of the physics, with tests. Exports the fixtures the engine is checked against. |
-| `paper/` | The paper's LaTeX source. The site renders it with pandoc; the same files go to the journal. `paper/figures/make_figures.py` draws its figures (PDF for print, SVG for the site) from the reference implementation. |
+| `paper/` | The paper's LaTeX source, in REVTeX 4.2 (Physical Review D, two columns). The site renders it with pandoc; the same files go to the journal. `paper/figures/make_figures.py` draws its figures (PDF for print, SVG for the site) from the reference implementation. |
 | `reports/`, `research_notes/` | The prior-work survey and its raw notes. |
 | `calc/` | Early order-of-magnitude checks. |
 

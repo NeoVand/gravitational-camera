@@ -53,7 +53,10 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 	const sections = new URL('../../paper/sections/', import.meta.url);
 	const inSource = readdirSync(sections)
 		.filter((f) => f.endsWith('.tex'))
-		.map((f) => readFileSync(new URL(f, sections), 'utf8').split('\\begin{figure}').length - 1)
+		.map(
+			(f) =>
+				(readFileSync(new URL(f, sections), 'utf8').match(/\\begin\{figure\*?\}/g) ?? []).length
+		)
 		.reduce((a, b) => a + b, 0);
 	const figures = page.locator('figure.plate');
 	expect(await figures.count()).toBe(inSource);

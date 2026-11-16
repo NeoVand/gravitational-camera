@@ -84,14 +84,26 @@ const THEME: Record<string, string> = {
 	'#c9c4b8': 'var(--line-strong)'
 };
 
+/**
+ * On the page a drawing is shown at about 1.9 screen pixels per point of the
+ * PDF, so that its labels are as large wherever it appears; those that span
+ * both columns of the PDF are wider than the text and take its full width.
+ */
+const PIXELS_PER_POINT = 1.9;
+
 export function figureDrawing(source: string): string | undefined {
 	const hit = Object.entries(drawings).find(([file]) => stem(file) === stem(source));
 	if (!hit) return undefined;
+	const points = Number(hit[1].match(/<svg[^>]*?\swidth="([\d.]+)/)?.[1] ?? 0);
+	const width = points ? ` style="max-width: ${Math.round(points * PIXELS_PER_POINT)}px"` : '';
 	return hit[1]
 		.replace(/<\?xml[^>]*\?>/, '')
 		.replace(/<!DOCTYPE[^>]*>/, '')
 		.replace(/<metadata>[\s\S]*?<\/metadata>/, '')
-		.replace(/<svg([^>]*?) width="[^"]*" height="[^"]*"/, '<svg$1 class="drawing" role="img"')
+		.replace(
+			/<svg([^>]*?) width="[^"]*" height="[^"]*"/,
+			`<svg$1 class="drawing" role="img"${width}`
+		)
 		.replace(/#[0-9a-f]{6}\b/g, (hex) => THEME[hex] ?? hex)
 		.trim();
 }

@@ -49,7 +49,10 @@ ACCENT = "#b0560a"      # thermal, and the main curve
 ACCENT2 = "#2a67ad"     # near field, and a second curve
 RULE = "#c9c4b8"
 
-WIDTH = 5.0             # inches: the text width of the paper
+# Physical Review D, two columns: figures are one column wide, or span both
+COL = 3.4               # inches: the width of a column
+FULL = 7.0              # inches: the width of the page's text
+WIDTH = FULL
 C = 299_792_458.0
 
 
@@ -283,8 +286,9 @@ def strain_arrows(ax, angle, out, inward, size=0.36, center=(0.0, 0.0)):
 # --- Figure: what a pixel feels ------------------------------------------------
 
 def tidal():
-    # one drawing at one scale, so that the three rings and their captions line up
-    fig, ax = plt.subplots(figsize=(WIDTH, 1.9))
+    # one drawing at one scale, so that the three rings and their captions line
+    # up; the figure has the drawing's proportions, so circles stay round
+    fig, ax = plt.subplots(figsize=(FULL, FULL * 4.6 / 13.2))
     a = np.linspace(0, 2 * np.pi, 16, endpoint=False)
     t = np.linspace(0, 2 * np.pi, 200)
 
@@ -324,7 +328,7 @@ def tidal():
 # --- Figure: the three regimes -------------------------------------------------
 
 def regimes():
-    fig, ax = plt.subplots(figsize=(WIDTH, 3.1))
+    fig, ax = plt.subplots(figsize=(COL, 2.6))
     f0, f1, r0, r1 = 1e-7, 1e19, 1e-1, 1e12
     f = np.logspace(-7, 19, 300)
     edge = C / (2 * np.pi * f)
@@ -337,32 +341,34 @@ def regimes():
     ax.set_yscale("log")
     ax.set_xlim(f0, f1)
     ax.set_ylim(r0, r1)
-    ax.set_xticks([1e-6, 1e-3, 1, 1e3, 1e6, 1e9, 1e12, 1e15, 1e18])
+    ax.set_xticks([1e-6, 1, 1e6, 1e12, 1e18])
     ax.set_yticks([1e0, 1e3, 1e6, 1e9, 1e12])
     ax.minorticks_off()
-    ax.set_xlabel(r"frequency of the source, $f$ (Hz)")
-    ax.set_ylabel(r"distance from the camera, $r$ (m)")
-    ax.text(3e-7, 4e-1, r"\textit{near field}", color=ACCENT2, fontsize=9)
-    ax.text(6e18, 4e-1, r"\textit{wave zone}", color=ACCENT, fontsize=9, ha="right")
-    ax.annotate(r"$r = c/2\pi f$: edge of the near zone", xy=(3e5, C / (2 * np.pi * 3e5)), xytext=(3e7, 3e4),
-                fontsize=7.5, arrowprops=dict(arrowstyle="-", lw=0.5, color=DIM), color=INK)
+    ax.tick_params(labelsize=7)
+    ax.set_xlabel(r"frequency of the source, $f$ (Hz)", fontsize=7.5)
+    ax.set_ylabel(r"distance, $r$ (m)", fontsize=7.5)
+    ax.text(2e-7, 1e3, r"\textit{near field}", color=ACCENT2, fontsize=8.5, va="center")
+    ax.text(6e18, 1e3, r"\textit{wave zone}", color=ACCENT, fontsize=8.5, ha="right", va="center")
+    ax.annotate(r"$r = c/2\pi f$", xy=(3e5, C / (2 * np.pi * 3e5)), xytext=(3e7, 3e4),
+                fontsize=7, arrowprops=dict(arrowstyle="-", lw=0.5, color=DIM), color=INK, va="center")
     sources = [
-        (10 ** -4.65, 10 ** 8.58, "the Moon's tide", (0, -9), "center", False),
-        (10 ** -1.5, 1e6, "an earthquake's\ngravity signal", (-6, 0), "right", False),
-        (10 ** -0.5, 10 ** 1.5, "a passing lorry", (-6, 0), "right", False),
-        (1.0, 10 ** 0.5, "a person walking", (-6, 0), "right", False),
-        (10 ** 1.5, 10 ** 0.18, "a calibration rotor at LIGO", (0, -9), "center", False),
-        (10 ** 12.8, 10 ** 0.5, "a warm object\nin the room", (-6, 2), "right", True),
-        (10 ** 14.0, 10 ** 6.5, "the Earth's interior", (-6, 0), "right", True),
-        (10 ** 17.5, 10 ** 11.18, "the Sun's core", (-6, 0), "right", True),
+        (10 ** -4.65, 10 ** 8.58, "the Moon's tide", (0, -8), "center", False),
+        (10 ** -1.5, 1e6, "an earthquake's\ngravity signal", (0, -10), "center", False),
+        (10 ** -0.5, 10 ** 1.5, "a passing lorry", (-5, 0), "right", False),
+        (1.0, 10 ** 0.5, "a person walking", (-5, 0), "right", False),
+        (10 ** 1.5, 10 ** 0.18, "LIGO's calibration rotor", (0, -7), "center", False),
+        (10 ** 12.8, 10 ** 0.5, "a warm object\nin the room", (5, 0), "left", True),
+        (10 ** 14.0, 10 ** 6.5, "the Earth's interior", (-5, 0), "right", True),
+        (10 ** 17.5, 10 ** 11.18, "the Sun's core", (-5, 0), "right", True),
     ]
     for fx, ry, label, (dx, dy), ha, thermal in sources:
-        ax.plot(fx, ry, "o", ms=3.6, color=ACCENT if thermal else ACCENT2, mec="none")
+        ax.plot(fx, ry, "o", ms=3.2, color=ACCENT if thermal else ACCENT2, mec="none")
         ax.annotate(label.replace("'", "’"), (fx, ry), xytext=(dx, dy), textcoords="offset points",
-                    ha=ha, va="center", fontsize=7.5, linespacing=1.0)
-    ax.annotate("", xy=(3e2, 9e11), xytext=(3e2, 1e10), arrowprops=dict(arrowstyle="-|>", lw=0.7, color=INK))
-    ax.text(5e2, 2.5e10, "merging neutron stars,\n$10^{12}$ times farther", fontsize=7.5, va="center", linespacing=1.0)
-    fig.subplots_adjust(left=0.12, right=0.98, top=0.98, bottom=0.14)
+                    ha=ha, va="center", fontsize=6.5, linespacing=1.0)
+    ax.annotate("", xy=(3e4, 9e11), xytext=(3e4, 1e10), arrowprops=dict(arrowstyle="-|>", lw=0.7, color=INK))
+    ax.text(3e4, 5e9, "neutron stars merging,\n$10^{12}$ times farther", fontsize=6.5, ha="center", va="top",
+            linespacing=1.0)
+    fig.subplots_adjust(left=0.15, right=0.97, top=0.98, bottom=0.15)
     save(fig, "regimes", web=True)
 
 
@@ -382,7 +388,7 @@ def nearfield():
     rebuilt = rebuilt / rebuilt.max()
     fwhm = resolution.widths(snr, dims=1)["fwhm"]
 
-    fig, (top, bottom) = plt.subplots(2, 1, figsize=(WIDTH, 2.95), sharex=True,
+    fig, (top, bottom) = plt.subplots(2, 1, figsize=(COL, 2.6), sharex=True,
                                       gridspec_kw={"height_ratios": [1.25, 1], "hspace": 0.2})
     # (a) the geometry, to scale, and what the row records
     top.axhline(0.15, color=RULE, lw=0.5)
@@ -424,7 +430,7 @@ def nearfield():
 # --- Figure (new): the exact resolution law ------------------------------------
 
 def resolution_law():
-    fig, (left, right) = plt.subplots(1, 2, figsize=(WIDTH, 2.25), gridspec_kw={"wspace": 0.32})
+    fig, (left, right) = plt.subplots(1, 2, figsize=(FULL, 2.5), gridspec_kw={"wspace": 0.28})
     q = np.logspace(-1, math.log10(400), 800)
     styles = [(3, INK, "-"), (6, ACCENT2, "-"), (20, ACCENT, "-"), (60, DIM, (0, (4, 2)))]
     for decades, color, ls in styles:
@@ -481,7 +487,7 @@ def resolution_law():
 # --- Figure (new): the geometry of the sky integral ---------------------------
 
 def sky_integral():
-    fig, (left, right) = plt.subplots(1, 2, figsize=(WIDTH, 2.2), gridspec_kw={"width_ratios": [1.75, 1], "wspace": 0.05})
+    fig, (left, right) = plt.subplots(1, 2, figsize=(FULL, 2.7), gridspec_kw={"width_ratios": [1.75, 1], "wspace": 0.05})
     ax = left
     # a body crossed by a thin cone of directions about n
     theta = math.radians(14)
@@ -547,7 +553,7 @@ def sky_integral():
 # --- Figure: radiation from a spinning pair ------------------------------------
 
 def quadrupole():
-    fig, (left, right) = plt.subplots(1, 2, figsize=(WIDTH, 2.35), gridspec_kw={"width_ratios": [1, 1.3], "wspace": 0.25})
+    fig, (left, right) = plt.subplots(1, 2, figsize=(FULL, 2.6), gridspec_kw={"width_ratios": [1, 1.3], "wspace": 0.22})
     ax = left
     t = np.linspace(0, 2 * np.pi, 721)
     p = (1 + 6 * np.cos(t) ** 2 + np.cos(t) ** 4) / 8
@@ -609,7 +615,7 @@ def quadrupole():
 # --- Figure (new): polarization against inclination ---------------------------
 
 def polarization_curves():
-    fig, ax = plt.subplots(figsize=(WIDTH * 0.7, 2.1))
+    fig, ax = plt.subplots(figsize=(COL, 2.1))
     iota = np.linspace(0, 180, 361)
     values = [polarization(math.cos(math.radians(x))) for x in iota]
     ax.axhline(0, color=RULE, lw=0.5)
@@ -632,7 +638,7 @@ def polarization_curves():
 # --- Figure: light stops at the first surface, gravity adds up ----------------
 
 def line_integral():
-    fig, ax = plt.subplots(figsize=(WIDTH, 1.5))
+    fig, ax = plt.subplots(figsize=(FULL, 1.8))
     rows = {"light": 1.7, "gravity": 0.0}
     bodies = [("slab", 2.0, 0.26), ("ball", 3.6, 0.4), ("ball", 5.4, 0.55)]
     labels = [(r"$j_1$", r"$\ell_1$"), (r"$j_2$", r"$\ell_2$"), (r"$j_3$", r"$\ell_3$")]
@@ -681,7 +687,7 @@ def earth_glow():
     total = np.sum(parts, axis=0)
     assert np.allclose(total, columns.number_radiance(scene, directions), rtol=1e-9)
 
-    fig, ax = plt.subplots(figsize=(WIDTH, 2.2))
+    fig, ax = plt.subplots(figsize=(COL, 2.1))
     shades = [0.10, 0.18, 0.28, 0.45, 0.7]
     base = np.zeros_like(angle)
     unit = 1e-5
@@ -700,12 +706,12 @@ def earth_glow():
     ax.set_xticks([0, 15, 30, 45, 60, 75, 90])
     ax.set_xticklabels(["0°", "15°", "30°", "45°", "60°", "75°", "90°"])
     ax.set_xlabel("angle of the line of sight from straight down")
-    ax.set_ylabel(r"$N$ ($10^{-5}$ s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
+    ax.set_ylabel(r"$N$ ($10^{-5}$ s$^{-1}$m$^{-2}$sr$^{-1}$)", fontsize=7)
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles[::-1], labels[::-1], loc="upper right", handlelength=1.2, labelspacing=0.2)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
-    fig.subplots_adjust(left=0.08, right=0.97, top=0.97, bottom=0.2)
+    fig.subplots_adjust(left=0.12, right=0.97, top=0.97, bottom=0.2)
     save(fig, "earth-glow", web=True)
 
 
@@ -714,7 +720,7 @@ def earth_glow():
 def array():
     from scipy.special import j1
 
-    fig, ax = plt.subplots(figsize=(WIDTH, 2.15))
+    fig, ax = plt.subplots(figsize=(COL, 2.1))
     g = np.linspace(-90, 90, 1441)
     c = np.cos(np.radians(g))
     legendre = [np.ones_like(c), c, (3 * c**2 - 1) / 2, (5 * c**3 - 3 * c) / 2, (35 * c**4 - 30 * c**2 + 3) / 8]
@@ -742,10 +748,11 @@ def array():
     ax.set_yticks([0, 0.5, 1])
     ax.set_xlabel("angle away from the source")
     ax.set_ylabel("response")
-    ax.legend(title="width at half height", title_fontsize=7.5, loc="upper right", handlelength=1.8, labelspacing=0.25)
+    ax.legend(title="width at half height", title_fontsize=6.5, fontsize=6.5, loc="upper left",
+              handlelength=1.6, labelspacing=0.2, borderaxespad=0.2)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
-    fig.subplots_adjust(left=0.09, right=0.97, top=0.97, bottom=0.2)
+    fig.subplots_adjust(left=0.13, right=0.96, top=0.97, bottom=0.2)
     save(fig, "array", web=True)
 
 
@@ -754,27 +761,28 @@ def array():
 def budget():
     rows = [
         ("The Sun", 2.1e23, True),
-        ("The Earth's interior (assumed friction)", 5.2e10, True),
-        ("490-tonne steel beam, spun to breaking", 3.8e3, False),
-        ("Two 1-tonne masses, 48 turns a second", 8.1, False),
-        ("Two 1-kg masses, 16 turns a second", 2.1e-9, False),
+        ("The Earth's interior*", 5.2e10, True),
+        ("Steel beam spun to breaking", 3.8e3, False),
+        ("Two 1-t masses, 48 turns/s", 8.1, False),
+        ("Two 1-kg masses, 16 turns/s", 2.1e-9, False),
         ("A person", 1.6e-15, True),
         ("A litre of boiling water", 3.9e-17, True),
     ]
-    fig, ax = plt.subplots(figsize=(WIDTH, 2.3))
+    fig, ax = plt.subplots(figsize=(COL, 2.5))
     y = np.arange(len(rows))[::-1]
     lo = 1e-19
     for (name, rate, thermal), yy in zip(rows, y):
         ax.barh(yy, rate - lo, left=lo, height=0.55, color=ACCENT if thermal else ACCENT2, alpha=0.85, lw=0)
     ax.set_yticks(y)
-    ax.set_yticklabels([r[0].replace("'", "’") for r in rows], fontsize=7)
+    ax.set_yticklabels([r[0].replace("'", "’") for r in rows], fontsize=6.5)
     ax.tick_params(axis="y", length=0)
     ax.set_xscale("log")
     ax.set_xlim(lo, 1e25)
-    ax.set_xticks([1e-18, 1e-12, 1e-6, 1, 1e6, 1e12, 1e18, 1e24])
+    ax.set_xticks([1e-18, 1e-9, 1, 1e9, 1e18])
     ax.minorticks_off()
-    ax.set_xlabel("gravitons emitted per second, by the whole object")
-    marks = ((1 / 4.35e17, "one in the age\nof the universe"), (1 / 3.156e7, "one a\nyear"), (1.0, "one a\nsecond"))
+    ax.tick_params(axis="x", labelsize=6.5)
+    ax.set_xlabel("gravitons per second, whole object", fontsize=7)
+    marks = ((1 / 4.35e17, "one per age\nof universe"), (1.0, "one a\nsecond"))
     for value, _ in marks:
         ax.axvline(value, color=FAINT, lw=0.5, ls=(0, (2, 2)))
     top = ax.secondary_xaxis("top")
@@ -784,11 +792,11 @@ def budget():
     top.spines["top"].set_visible(False)
     ax.plot([], [], "s", color=ACCENT, ms=5, label="thermal glow")
     ax.plot([], [], "s", color=ACCENT2, ms=5, label="bulk motion")
-    ax.legend(loc="lower right", handlelength=0.8)
+    ax.legend(loc="lower right", handlelength=0.8, fontsize=6.5)
     for side in ("top", "right", "left"):
         ax.spines[side].set_visible(False)
     ax.set_ylim(-0.6, len(rows) - 0.3)
-    fig.subplots_adjust(left=0.43, right=0.97, top=0.88, bottom=0.18)
+    fig.subplots_adjust(left=0.45, right=0.97, top=0.88, bottom=0.17)
     save(fig, "budget", web=True)
 
 
@@ -893,16 +901,16 @@ def _panels(n, bar=False, aspect=9 / 16):
     left, gap, title = 0.02, 0.07, 0.19
     bottom = 0.07 if bar else 0.03
     right = 0.66 if bar else 0.02
-    pw = (WIDTH - left - right - (n - 1) * gap) / n
+    pw = (FULL - left - right - (n - 1) * gap) / n
     ph = pw * aspect
     height = bottom + ph + title
-    fig = plt.figure(figsize=(WIDTH, height))
-    axes = [fig.add_axes([(left + i * (pw + gap)) / WIDTH, bottom / height, pw / WIDTH, ph / height])
+    fig = plt.figure(figsize=(FULL, height))
+    axes = [fig.add_axes([(left + i * (pw + gap)) / FULL, bottom / height, pw / FULL, ph / height])
             for i in range(n)]
     cax = None
     if bar:
         x = left + n * pw + (n - 1) * gap + 0.09
-        cax = fig.add_axes([x / WIDTH, bottom / height, 0.075 / WIDTH, ph / height])
+        cax = fig.add_axes([x / FULL, bottom / height, 0.075 / FULL, ph / height])
     return fig, axes, cax
 
 
@@ -1108,7 +1116,7 @@ def tidal_field():
         E[..., 1, 1] = -E[..., 0, 0]
         return E
 
-    fig, axes = plt.subplots(1, 3, figsize=(WIDTH, 1.95), gridspec_kw={"wspace": 0.06})
+    fig, axes = plt.subplots(1, 3, figsize=(FULL, 2.55), gridspec_kw={"wspace": 0.06})
     span = 2.4
     fine = np.linspace(-span, span, 300)
     FX, FZ = np.meshgrid(fine, fine)
@@ -1186,7 +1194,7 @@ def binary_field():
         amp = np.hypot(a, b)
         return a / np.where(amp > 0, amp, 1), amp
 
-    fig = plt.figure(figsize=(WIDTH, 1.9))
+    fig = plt.figure(figsize=(FULL, 2.45))
     grid = fig.add_gridspec(1, 3, width_ratios=[1, 1, 1.25], wspace=0.08)
     axes = [fig.add_subplot(grid[0, i]) for i in range(3)]
     for ax, half, title in ((axes[0], 8.0 * d, "(a) near the pair"), (axes[1], 3.6 * lam, "(b) out to the waves")):
@@ -1322,10 +1330,12 @@ def milky_way():
     decades = 3.0
     rgb = _light_tone(light, top, decades)
     rgb[~inside] = 1.0
-    fig = plt.figure(figsize=(WIDTH, 4.75))
-    map_w, map_h = 4.15, 4.15 / 2
-    rows = [(0.06 + map_h + 0.32) / 4.75, 0.06 / 4.75]
-    axes = [fig.add_axes([0.02 / WIDTH, y, map_w / WIDTH, map_h / 4.75]) for y in rows]
+    map_w = COL - 0.62
+    map_h = map_w / 2
+    height = 2 * map_h + 0.58
+    fig = plt.figure(figsize=(COL, height))
+    rows = [(0.04 + map_h + 0.27) / height, 0.04 / height]
+    axes = [fig.add_axes([0.01 / COL, y, map_w / COL, map_h / height]) for y in rows]
     extent = (-2 * math.sqrt(2), 2 * math.sqrt(2), -math.sqrt(2), math.sqrt(2))
     axes[0].imshow(rgb, extent=extent, interpolation="bilinear")
     shown = np.log10(np.clip(waves / top, 10 ** -decades, None))
@@ -1338,9 +1348,8 @@ def milky_way():
         ax.set_xlim(-2 * math.sqrt(2) - 0.03, 2 * math.sqrt(2) + 0.03)
         ax.set_ylim(-math.sqrt(2) - 0.03, math.sqrt(2) + 0.03)
         ax.set_axis_off()
-    axes[0].set_title("(a) light: the stars, seen through the dust", fontsize=8, loc="left", pad=3)
-    axes[1].set_title("(b) gravitational waves from white-dwarf pairs, near a millihertz", fontsize=8,
-                      loc="left", pad=3)
+    axes[0].set_title("(a) light, through the dust", fontsize=8, loc="left", pad=3)
+    axes[1].set_title("(b) gravitational waves, near a millihertz", fontsize=8, loc="left", pad=3)
     _on_image(axes[0].annotate("dust lane", (-0.55, 0.0), xytext=(-1.25, 0.72), fontsize=7, ha="center",
                                va="center", arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff",
                                                             shrinkA=2, shrinkB=2)))
@@ -1353,7 +1362,7 @@ def milky_way():
     names = [r"$10^{-3}$", r"$10^{-2}$", r"$10^{-1}$", "1"]
     for ax, cmap in ((axes[0], grey), (axes[1], thermal)):
         pos = ax.get_position()
-        cax = fig.add_axes([pos.x1 + 0.1 / WIDTH, pos.y0 + 0.1 * pos.height, 0.075 / WIDTH, 0.8 * pos.height])
+        cax = fig.add_axes([pos.x1 + 0.08 / COL, pos.y0 + 0.1 * pos.height, 0.07 / COL, 0.8 * pos.height])
         from matplotlib.cm import ScalarMappable
         from matplotlib.colors import Normalize
         cb = fig.colorbar(ScalarMappable(norm=Normalize(-decades, 0), cmap=cmap), cax=cax)
@@ -1431,7 +1440,7 @@ def sun_lens():
     alpha = np.array([sunlens.deflection(x * sunlens.R_sun) for x in b])
     arcsec = np.degrees(alpha) * 3600
     focus = b * sunlens.R_sun / alpha / AU
-    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.95), gridspec_kw={"wspace": 0.42})
+    fig, axes = plt.subplots(2, 1, figsize=(COL, 3.7), gridspec_kw={"hspace": 0.55})
     ax = axes[0]
     ax.axvline(1, color=RULE, lw=0.6)
     ax.plot(b, arcsec, color=ACCENT, lw=1.2)
@@ -1459,13 +1468,15 @@ def sun_lens():
     ax.text(1.05, 548 / 1.6, "548 AU", fontsize=7, color=ACCENT2, ha="left", va="top")
     ax.set_xlim(0, 3)
     ax.set_ylim(10, 1e4)
+    ax.set_yticks([1e2, 1e3, 1e4])
+    ax.minorticks_off()
     ax.set_xlabel(r"impact parameter $b/R_\odot$")
     ax.set_ylabel("focal distance (AU)")
     ax.set_title("(b) where it focuses", fontsize=8, loc="left", pad=3)
     for a in axes:
         for side in ("top", "right"):
             a.spines[side].set_visible(False)
-    fig.subplots_adjust(left=0.09, right=0.98, top=0.9, bottom=0.21)
+    fig.subplots_adjust(left=0.17, right=0.97, top=0.95, bottom=0.11)
     peak = b[np.argmax(arcsec)]
     print(f"  peak bending {arcsec.max():.2f} arcsec at b = {peak:.2f} R; shortest focus {focus[0]:.1f} AU")
     save(fig, "sun-lens", web=True)
@@ -1480,7 +1491,7 @@ def memory_patterns():
     merger = np.array([abs(memory.epstein(memory.binary_flux, toward(a))[0]) for a in angles])
     ci = np.cos(angles)
     wave = np.hypot((1 + ci * ci) / 2, ci)                 # amplitude of the oscillating wave
-    fig, axes = plt.subplots(1, 2, figsize=(WIDTH, 1.95), gridspec_kw={"wspace": 0.3})
+    fig, axes = plt.subplots(2, 1, figsize=(COL, 3.7), gridspec_kw={"hspace": 0.55})
     deg = np.degrees(angles)
     ax = axes[0]
     ax.plot(deg, wave / wave.max(), color=ACCENT2, lw=1.1, label="oscillating wave")
@@ -1504,7 +1515,7 @@ def memory_patterns():
         a.set_xlabel(r"angle from the axis (degrees)")
         for side in ("top", "right"):
             a.spines[side].set_visible(False)
-    fig.subplots_adjust(left=0.09, right=0.98, top=0.9, bottom=0.21)
+    fig.subplots_adjust(left=0.17, right=0.95, top=0.95, bottom=0.11)
     save(fig, "memory", web=True)
 
 

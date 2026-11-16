@@ -67,7 +67,7 @@ Section~\ref{sec:near-field}.
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/array.pdf}
+\includegraphics[width=\columnwidth]{figures/array.pdf}
 \caption{How sharply a camera can tell directions apart: the
 response to a single distant source as the computed image is steered away from
 it, with the width of each curve at half height. For arrays $2$, $5$ and $30$
@@ -103,9 +103,11 @@ circular polarization $V(\hat n)$ against kernels made from the polarization
 tensors of a plane wave travelling along $\hat n$. For the brightness the
 kernel is the sum over the two polarizations,
 \begin{equation}\label{eq:pixel-kernel}
+\begin{gathered}
 \sum_{A=+,\times} e^{A}_{ij}\, e^{A}_{kl}
-= P_{ik}P_{jl} + P_{il}P_{jk} - P_{ij}P_{kl},
-\qquad P_{ij} = \delta_{ij} - \hat n_i \hat n_j ,
+= P_{ik}P_{jl} + P_{il}P_{jk} - P_{ij}P_{kl},\\
+P_{ij} = \delta_{ij} - \hat n_i \hat n_j ,
+\end{gathered}
 \end{equation}
 a polynomial of degree four in the components of $\hat n$; the kernel for $V$
 is the antisymmetric combination, also a polynomial of degree at most four.
