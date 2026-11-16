@@ -110,7 +110,8 @@ export class Panel {
 			if (cull && facing <= 0) continue;
 			// a face we see must have its normal toward us (generated normals sometimes point inward)
 			if (n.z < 0) n.negate();
-			const col = shadeNormal(base, n, o);
+			const faceBase = o.colorAt ? new THREE.Color(o.colorAt(P[0].clone().add(P[1]).add(P[2]).divideScalar(3))) : base;
+			const col = shadeNormal(faceBase, n, o);
 			tris.push({ kind: 'tri', P, fill: hex(col), layer, opacity: 1, depth: (C[0].z + C[1].z + C[2].z) / 3 });
 		}
 		if (opacity < 1 || o.group) {
@@ -265,3 +266,39 @@ Panel.prototype.render = function (id) {
 		: it);
 	return _render.call(this, id);
 };
+
+/** An engraved object (black ink on transparency, figures3d/sprites/), with what the figure needs to know of it. */
+export async function sprite(url) {
+	const blob = await (await fetch(url)).blob();
+	const href = await new Promise((res) => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(blob); });
+	const img = new Image();
+	img.src = href;
+	await img.decode();
+	const c = document.createElement('canvas');
+	c.width = img.width; c.height = img.height;
+	const ctx = c.getContext('2d');
+	ctx.drawImage(img, 0, 0);
+	const alpha = ctx.getImageData(0, 0, img.width, img.height).data;
+	const a = (x, y) => alpha[(y * img.width + x) * 4 + 3];
+	return {
+		href, w: img.width, h: img.height,
+		/** Leftmost and rightmost inked pixel in a row (fractions of the width), or null. */
+		span(fy) {
+			const y = Math.min(img.height - 1, Math.max(0, Math.round(fy * (img.height - 1))));
+			let l = -1, r = -1;
+			for (let x = 0; x < img.width; x++) if (a(x, y) > 40) { if (l < 0) l = x; r = x; }
+			return l < 0 ? null : [l / img.width, (r + 1) / img.width];
+		},
+		/** The row (fraction of the height) where the drawing reaches farthest right: a lens, a nose. */
+		rightmostRow() {
+			let best = 0, row = 0;
+			for (let y = 0; y < img.height; y++) for (let x = img.width - 1; x >= 0; x--) if (a(x, y) > 40) { if (x > best) { best = x; row = y; } break; }
+			return row / img.height;
+		},
+		/** The <image>, placed with its lower left at (x, y) points and `height` points tall. */
+		place(x, y, height, opacity = 1) {
+			const width = (height * img.width) / img.height;
+			return `<image class="ink" href="${href}" x="${x.toFixed(2)}" y="${(y - height).toFixed(2)}" width="${width.toFixed(2)}" height="${height.toFixed(2)}"${opacity < 1 ? ` opacity="${opacity}"` : ''} preserveAspectRatio="none"/>`;
+		}
+	};
+}

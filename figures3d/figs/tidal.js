@@ -31,13 +31,13 @@ function ring(P, centre, sx, sy, angle, accel, ghost = false) {
 
 export default async function () {
 	const e = 0.16, s = 0.2;
-	const a = new Panel({ x: 0, y: 0, w: 226, h: H, cx: -0.18, cy: 0, scale: 40 });
-	a.sphere(v3(-1.85, 0, 0), 1.0, STONE, { spec: 0.1, shininess: 10, wrap: 0.45, ambient: 0.34 });
-	a.curve([v3(-0.84, 0, -0.5), v3(0.95 - 1.42, 0, -0.5)], { color: RULE, width: 0.45, dash: [1, 2], layer: -2 });
+	const a = new Panel({ x: 0, y: 0, w: 226, h: H, cx: 0.17, cy: 0, scale: 40 });
+	a.sphere(v3(-1.2, 0, 0), 0.55, STONE, { spec: 0.1, shininess: 10, wrap: 0.45, ambient: 0.34 });
+	a.curve([v3(-0.64, 0, -0.5), v3(0.95 - 1.42, 0, -0.5)], { color: RULE, width: 0.45, dash: [1, 2], layer: -2 });
 	a.curve(ellipsePoints(0.95, 0, -0.2, 1, 1), { color: DIM, width: 0.5, dash: [2.4, 2], layer: -2 });
 	ring(a, [0.95, 0], 1 + 2 * e, 1 - e, 0, (x, y) => [2 * x, -y]);
 	a.label('\\text{(a)}', [4, 5], { anchor: 'lt' });
-	a.label('M', v3(-1.85, -1.14, 0), { anchor: 'ct', size: 9.5 });
+	a.label('M', v3(-1.2, -0.68, 0), { anchor: 'ct', size: 9.5 });
 
 	const panels = [a];
 	for (const [k, angle, name] of [[0, 0, '\\text{(b)}\\ \\ h_+'], [1, Math.PI / 4, '\\text{(c)}\\ \\ h_\\times']]) {

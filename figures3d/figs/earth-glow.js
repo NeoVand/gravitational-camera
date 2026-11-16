@@ -67,10 +67,11 @@ export default async function () {
 		P.annulus(circle(r[i]), i + 1 < r.length ? circle(r[i + 1]).reverse() : null,
 			{ fill: SHELLS[i], stroke: INK, width: 0.4, layer: 1, depthBias: 0 });
 	}
-	// the observer, standing on the cut at the top
+	// the camera, at the surface on the night side; every line of sight starts there
 	const O = v3(0, 1, 0);
-	P.curve([v3(0, 1.0, 0.001), v3(0, 1.075, 0.001)], { width: 1.1, layer: 3, cap: 'butt' });
-	P.sphere(v3(0, 1.1, 0.001), 0.022, '#3a3630', { layer: 3, spec: 0.1 });
+	P.curve([O, v3(0, -1, 0)], { color: DIM, width: 0.4, dash: [1.6, 1.6], layer: 2 });
+	P.sphere(O, 0.03, '#3a3630', { layer: 4, spec: 0.2 });
+	P.label('\\text{camera}', v3(-0.06, 1.06, 0), { size: 7.5, anchor: 'rb' });
 	// lines of sight that graze each boundary: sin(alpha) = r / R
 	const graze = [[r[4], 'inner core'], [r[3], 'core'], [r[2], 'lower mantle']];
 	for (const [rr] of graze) {
@@ -78,29 +79,18 @@ export default async function () {
 		const d = v3(Math.sin(al), -Math.cos(al), 0);
 		const end = O.clone().addScaledVector(d, 2 * Math.cos(al));
 		P.curve([O, end], { width: 0.45, layer: 2 });
-		P.label(`${Math.round((al * 180) / Math.PI)}^\\circ`, end.clone().addScaledVector(d, 0.07), { size: 7.5, anchor: 'lt', dx: 2 });
+		// a faint leader carries the line out past the globe to its angle
+		const tip = end.clone().addScaledVector(d, 0.55 - 0.25 * Math.cos(al));
+		P.curve([end, tip], { color: DIM, width: 0.35, dash: [0.8, 1.6], layer: 2 });
+		P.label(`${Math.round((al * 180) / Math.PI)}^\\circ`, tip.clone().addScaledVector(d, 0.1), { size: 7.5, anchor: 'cc' });
 	}
 	// light stops at the ground; gravity runs on to the Sun, 40 degrees from straight down
-	P.curve([v3(-0.012, 1.1, 0.002), v3(-0.075, 1.0, 0.002)], { color: ACCENT2, width: 0.8, layer: 3 });
 	const sd = v3(Math.sin((40 * Math.PI) / 180), -Math.cos((40 * Math.PI) / 180), 0);
 	const sun = O.clone().addScaledVector(sd, 2.42);
 	P.curve([O, sun.clone().addScaledVector(sd, -0.16)], { color: ACCENT, width: 0.9, layer: 2 });
 	P.sphere(sun, 0.15, '#f2a54a', { layer: 4, spec: 0.25, ambient: 0.75, key: 0.35 });
-	P.label('\\text{Sun}', sun.clone().add(v3(0.19, 0, 0)), { size: 7.5, anchor: 'lc', color: ACCENT });
-	// stars over the night side
-	let seed = 7;
-	const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-	const stars = [];
-	for (let k = 0; k < 34; k++) {
-		const x = 6 + rnd() * 236, y = 4 + rnd() * 34, s = 0.6 + 1.6 * rnd();
-		const pts = [];
-		for (let j = 0; j < 8; j++) {
-			const t = (Math.PI * j) / 4, rad = j % 2 ? 0.28 * s : s;
-			pts.push(`${(x + rad * Math.sin(t)).toFixed(2)},${(y - rad * Math.cos(t)).toFixed(2)}`);
-		}
-		stars.push(`<path d="M${pts.join('L')}Z" fill="${DIM}"/>`);
-	}
-	P.items.push({ kind: 'raw', svg: stars.join(''), layer: -10, depth: 0 });
+	P.label('\\text{Sun}', sun.clone().add(v3(0.24, -0.02, 0)), { size: 7.5, anchor: 'lc', color: ACCENT });
+
 	P.label('\\text{(a)}', [4, 5], { anchor: 'lt' });
 
 	const chart = await inset('/paper/figures/staging/earth-glow-chart.svg', 248, 4, 256);

@@ -1,64 +1,74 @@
 // Figure 12: two ways of forming a picture. A camera's line of sight passes through a closed door, a
 // closed iron furnace with a hot iron block inside, and a person. In light it ends at the door. In
 // gravity it runs through everything, and the pixel reports the sum along it of each body's number
-// emissivity times the length of the line inside it. Exact: the line is straight, and the glowing
-// stretches are the lengths of the line inside each body. Schematic: the objects, and the relative
-// glow (the stacked bar uses illustrative values: the hot iron far brighter than the door and the person).
-import { THREE, Panel, v3, figure, INK, ACCENT, ACCENT2, RULE } from '../lib.js';
+// emissivity times the length of the line inside it. Exact: the line is straight, and each glowing
+// stretch spans exactly where the line crosses that body's drawing. Schematic: the objects (engraved
+// illustrations), the iron block's place, and the glow of each (illustrative: the hot iron brightest).
+import { Panel, figure, sprite, tex, INK, DIM, RULE, ACCENT, ACCENT2 } from '../lib.js';
 
-const WOOD = '#b48a5e', IRON = '#5e6269', SKIN = '#a3998d', CAM = '#3d3a35', HOT = '#f39a3d';
-const Y = 0.62;                                      // height of the line of sight
-
-function box(P, c, s, color, o = {}) {
-	const g = new THREE.BoxGeometry(s[0], s[1], s[2]);
-	P.mesh(g, color, { matrix: new THREE.Matrix4().makeTranslation(c[0], c[1], c[2]), o: { smooth: false, spec: 0.08, ...o }, opacity: o.opacity ?? 1, layer: o.layer ?? 0 });
-}
-
-function scene(P, gravity) {
-	const ghost = gravity ? 0.4 : 0.22;
-	// the camera on its tripod
-	box(P, [0.32, Y, 0], [0.42, 0.3, 0.3], CAM, { ambient: 0.5 });
-	P.mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.16, 24), CAM, { matrix: new THREE.Matrix4().makeRotationZ(Math.PI / 2).setPosition(0.6, Y, 0), o: { ambient: 0.5 } });
-	for (const [dx, dz] of [[-0.2, 0.15], [0.2, 0.15], [0, -0.22]]) P.curve([v3(0.32, Y - 0.15, 0), v3(0.32 + dx, -0.45, dz)], { width: 0.8, color: CAM });
-	// the door
-	box(P, [1.7, 0.45, 0], [0.07, 1.8, 1.0], WOOD, { opacity: gravity ? ghost : 1, ambient: 0.45 });
-	// the furnace, its chimney, and (seen by gravity) the hot block inside
-	box(P, [3.0, 0.4, 0], [1.0, 1.1, 0.9], IRON, { opacity: gravity ? ghost : ghost, ambient: 0.5 });
-	P.mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.45, 24), IRON, { matrix: new THREE.Matrix4().makeTranslation(3.15, 1.17, -0.1), opacity: ghost, o: { ambient: 0.5 } });
-	if (gravity) box(P, [3.0, Y, 0], [0.42, 0.26, 0.36], HOT, { ambient: 0.8, key: 0.35, layer: 1 });
-	// the person
-	const op = gravity ? ghost : ghost;
-	P.mesh(new THREE.CapsuleGeometry(0.17, 0.5, 8, 24), SKIN, { matrix: new THREE.Matrix4().makeTranslation(4.4, 0.62, 0), opacity: op, o: { ambient: 0.5 } });
-	for (const dz of [-0.08, 0.08]) P.mesh(new THREE.CapsuleGeometry(0.065, 0.45, 6, 16), SKIN, { matrix: new THREE.Matrix4().makeTranslation(4.4, 0.0, dz), opacity: op, o: { ambient: 0.5 } });
-	P.sphere(v3(4.4, 1.17, 0), 0.13, SKIN, { opacity: op, layer: 0 });
-	P.curve([v3(-0.4, -0.45, 0.5), v3(5.6, -0.45, 0.5)], { color: RULE, width: 0.4, layer: -5 });
-}
+const TINT = { door: '#f1cfa9', iron: '#e5873a', person: '#eab489' };
 
 export default async function () {
-	const H = 112;
-	const light = new Panel({ x: 0, y: 0, w: 504, h: H, cx: 2.6, cy: 0.42, scale: 46, tilt: 12, turn: -24 });
-	const grav = new Panel({ x: 0, y: H, w: 504, h: H, cx: 2.6, cy: 0.42, scale: 46, tilt: 12, turn: -24 });
-	scene(light, false);
-	scene(grav, true);
-	// light: the ray stops at the door
-	light.curve([v3(0.68, Y, 0), v3(1.665, Y, 0)], { color: ACCENT2, width: 1.0, layer: 5 });
-	light.sphere(v3(1.665, Y, 0), 0.035, ACCENT2, { layer: 5, ambient: 1, key: 0, spec: 0 });
-	// gravity: the line runs through; inside each body it glows, as long as the body is deep
-	grav.curve([v3(0.68, Y, 0), v3(5.25, Y, 0)], { color: ACCENT, width: 0.7, layer: 5 });
-	const spans = [[1.665, 1.735, 0.8], [2.79, 3.21, 5.0], [4.23, 4.57, 1.4]];   // door, hot block, person: x0, x1, glow
-	for (const [x0, x1, j] of spans) {
-		const r = 0.03 + 0.012 * j;
-		grav.mesh(new THREE.CylinderGeometry(r, r, x1 - x0, 24), HOT, { matrix: new THREE.Matrix4().makeRotationZ(Math.PI / 2).setPosition((x0 + x1) / 2, Y, 0), layer: 6, o: { ambient: 0.9, key: 0.3, spec: 0.1 } });
+	const [camera, door, furnace, person] = await Promise.all(
+		['camera', 'door', 'furnace', 'person'].map((n) => sprite(`/figures3d/sprites/${n}.png`))
+	);
+	const RH = 120, W = 504;
+	const place = { camera: [30, 54], door: [134, 88], furnace: [206, 92], person: [334, 94] };   // left x, height
+	const parts = [], labels = [];
+	const lensRow = camera.rightmostRow();
+	for (const [row, gravity] of [[0, false], [1, true]]) {
+		const ground = row * RH + RH - 8;
+		const lensY = ground - place.camera[1] * (1 - lensRow);
+		const lensX = place.camera[0] + (place.camera[1] * camera.w) / camera.h;
+		const ghost = gravity ? 0.5 : 0.22;
+		parts.push(`<path d="M18,${ground}L${W - 14},${ground}" stroke="${RULE}" stroke-width="0.4"/>`);
+		parts.push(camera.place(place.camera[0], ground, place.camera[1]));
+		parts.push(door.place(place.door[0], ground, place.door[1], gravity ? ghost : 1));
+		parts.push(furnace.place(place.furnace[0], ground, place.furnace[1], ghost));
+		parts.push(person.place(place.person[0], ground, place.person[1], ghost));
+		// where the line of sight crosses each body, from its drawing
+		const cross = (s, [x0, h]) => {
+			const width = (h * s.w) / s.h;
+			const fy = 1 - (ground - lensY) / h;
+			const sp = s.span(fy);
+			return sp ? [x0 + sp[0] * width, x0 + sp[1] * width] : null;
+		};
+		const dd = cross(door, place.door), ff = cross(furnace, place.furnace), pp = cross(person, place.person);
+		labels.push(tex(gravity ? '\\textit{gravity}' : '\\textit{light}', [8, row * RH + 8], 10, 'lt', gravity ? ACCENT : ACCENT2));
+		if (!gravity) {
+			parts.push(`<path d="M${lensX},${lensY}L${dd[0]},${lensY}" stroke="${ACCENT2}" stroke-width="1"/>`);
+			parts.push(`<circle cx="${dd[0]}" cy="${lensY}" r="1.6" fill="${ACCENT2}"/>`);
+			continue;
+		}
+		// the hot block, seen through the furnace's walls
+		const fw = ff[1] - ff[0], bx0 = ff[0] + 0.3 * fw, bx1 = ff[1] - 0.3 * fw;
+		parts.push(`<rect x="${bx0}" y="${lensY - 7}" width="${bx1 - bx0}" height="14" rx="1.5" fill="${TINT.iron}" stroke="${ACCENT}" stroke-width="0.5" stroke-dasharray="1.6 1.2"/>`);
+		const end = pp[1] + 26;
+		parts.push(`<path d="M${lensX},${lensY}L${end},${lensY}" stroke="${ACCENT}" stroke-width="0.7"/>`);
+		const spans = [['door', dd[0], dd[1], 1.0], ['iron', bx0, bx1, 5.0], ['person', pp[0], pp[1], 1.6]];
+		for (const [k, a, b, j] of spans) {
+			const t = 1.6 + 0.55 * j;
+			parts.push(`<rect x="${a}" y="${lensY - t / 2}" width="${b - a}" height="${t}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
+		}
+		// the pixel's value: each body's glow times its length, added
+		const vals = spans.map(([k, a, b, j]) => [k, j * (b - a)]);
+		const total = vals.reduce((s, [, v]) => s + v, 0);
+		const unit = 62 / total, bw = 9, x0 = 384;
+		let x = x0;
+		vals.forEach(([k, v], i) => {
+			parts.push(`<rect x="${x}" y="${ground - v * unit}" width="${bw}" height="${v * unit}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
+			labels.push(tex(`\\text{${k}}`, [x + bw / 2, ground + 2], 6.5, 'ct', DIM));
+			x += bw;
+			labels.push(tex(i < 2 ? '+' : '=', [x + 6, ground - 10], 9, 'cc'));
+			x += 12;
+		});
+		let base = ground;
+		for (const [k, v] of vals) {
+			parts.push(`<rect x="${x}" y="${base - v * unit}" width="${bw + 3}" height="${v * unit}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
+			base -= v * unit;
+		}
+		labels.push(tex('N(\\hat n)', [x + (bw + 3) / 2, ground + 2], 7.5, 'ct'));
 	}
-	// the sum: each body's glow times its length, stacked
-	let base = 0.05;
-	grav.label('\\Sigma', v3(5.38, Y, 0), { size: 10, anchor: 'rc' });
-	for (const [x0, x1, j] of spans) {
-		const h = (x1 - x0) * j * 0.32;
-		box(grav, [5.6, base + h / 2, 0], [0.16, h, 0.16], HOT, { ambient: 0.75, key: 0.4, layer: 6 });
-		base += h;
-	}
-	light.label('\\textit{light}', [8, 8], { anchor: 'lt', size: 10, color: ACCENT2 });
-	grav.label('\\textit{gravity}', [8, 8], { anchor: 'lt', size: 10, color: ACCENT });
-	return figure(504, 2 * H, [light, grav]);
+	const lab = await Promise.all(labels);
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}pt" height="${2 * RH + 6}pt" viewBox="0 0 ${W} ${2 * RH + 6}">${parts.join('')}${lab.join('')}</svg>`;
 }

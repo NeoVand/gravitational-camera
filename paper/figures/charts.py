@@ -81,7 +81,7 @@ def quadrupole_chart():
     v = np.logspace(-1, math.log10(C), 200)
     ax.plot(v, (math.pi / 2) * C / v, color=mf.INK, lw=1.0)
     ax.axhline(1, color=mf.RULE, lw=0.5)
-    ax.axvspan(0.3, 300, color="#dce7f3", lw=0)
+    ax.axvspan(0.3, 300, color=mf.ACCENT2, alpha=0.1, lw=0, zorder=0)
     ax.text(10, 3e3, "everyday\nspeeds", ha="center", fontsize=7.5, color=mf.ACCENT2, linespacing=1.0)
     ax.text(2e6, 2.4, r"$\lambda = d$", fontsize=7.5, color=mf.DIM)
     vv = 32.0

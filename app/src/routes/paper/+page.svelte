@@ -502,6 +502,17 @@
 		margin: 0 auto;
 	}
 
+	/* engraved objects are black ink on transparency: on the dark theme the ink turns light */
+	:global(:root[data-theme='dark'] svg.drawing image.ink) {
+		filter: invert(1);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:global(:root:not([data-theme='light']) svg.drawing image.ink) {
+			filter: invert(1);
+		}
+	}
+
 	.live {
 		margin-top: 0.7rem;
 	}

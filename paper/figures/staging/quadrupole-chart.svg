@@ -197,7 +197,7 @@
 </clipPath>
 </defs>
 <g clip-path="url(#quadrupole-chart-clip-0)">
-<path fill-rule="nonzero" fill="#dce7f3" fill-opacity="1" d="M 59.121094 150.226562 L 130.082031 150.226562 L 130.082031 5.496094 L 59.121094 5.496094 Z M 59.121094 150.226562 "/>
+<path fill-rule="nonzero" fill="#2a67ad" fill-opacity="0.1" d="M 59.121094 150.226562 L 130.082031 150.226562 L 130.082031 5.496094 L 59.121094 5.496094 Z M 59.121094 150.226562 "/>
 </g>
 <path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 47.734273 33.046147 L 47.734273 36.549857 " transform="matrix(0.997826, 0, 0, -0.997826, 0.205435, 183.20087)"/>
 <g fill="#1c1a16" fill-opacity="1">
