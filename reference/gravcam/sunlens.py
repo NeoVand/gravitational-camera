@@ -82,3 +82,20 @@ def focal_distance(b: float) -> float:
     if b <= 0:
         return c * c / (4.0 * math.pi * G * column(0.0))
     return b / deflection(b)
+
+
+def diffraction_frequency(mass: float = M_sun) -> float:
+    """The frequency below which diffraction erases the focus of a lens of this
+    mass, whatever its size: w = 8 pi G M f / c^3 = 1, 8.1 kHz for the Sun.
+    A lens delays the wave by about 4 G M / c^3; it focuses only if that
+    delay spans a radian of the wave's phase."""
+    return c ** 3 / (8.0 * math.pi * G * mass)
+
+
+def point_mass_axis_gain(frequency: float, mass: float = M_sun) -> float:
+    """|F|^2 on the axis behind a point mass, in wave optics: pi w / (1 - exp(-pi w))
+    with w = 8 pi G M f / c^3. It tends to 1 + pi w / 2 for small w and to pi w,
+    the geometric focus growing with frequency, for large w. A transparent
+    lens, whose focusing mass is only the part inside the ray, gains less."""
+    w = 8.0 * math.pi * G * mass * frequency / c ** 3
+    return math.pi * w / -math.expm1(-math.pi * w)

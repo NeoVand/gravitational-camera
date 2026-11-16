@@ -19,8 +19,8 @@
 		<p>
 			Two steel safes stand in a room. The right-hand one holds 320 kg of gold; the other is empty.
 			In
-			<strong>light</strong> they are identical. In <strong>gravity</strong> nothing can be hidden: mass
-			has only one sign, so no wall, however thick, shields what is behind it.
+			<strong>light</strong> they are identical. In <strong>gravity</strong> no wall can hide the gold:
+			mass has only one sign, so no wall, however thick, shields what is behind it.
 		</p>
 		<p>
 			What limits the camera is blur, not walls. Lower the sensitivity and the gold dissolves into

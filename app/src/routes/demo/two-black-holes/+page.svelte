@@ -86,10 +86,11 @@
 		</p>
 		<p>
 			Close to the pair, inside the dashed circle a sixth of a wavelength out, the pattern is
-			Newton’s pull of two masses, turning rigidly with them. A camera there could see the pair as
-			two bodies. Farther out the pattern lags behind, because the field travels at the speed of
-			light, and winds into the spiral of the waves: there the pair is a single point that only
-			ripples.
+			Newton’s pull of two masses, turning rigidly with them. A camera well inside could see the
+			pair as two bodies, if it is sensitive and wide enough. Farther out the pattern lags behind,
+			because the field travels at the speed of light, and winds into the spiral of the waves: there
+			the pair is a single point that only ripples. The circle marks a gradual change, not a sharp
+			edge.
 		</p>
 		<dl>
 			<div>

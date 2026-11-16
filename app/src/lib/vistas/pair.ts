@@ -1,7 +1,7 @@
 /**
  * The changing tidal field of an orbiting pair in the plane of its orbit, for
  * the vista demo: E_zz(r, phi, t) = A(r) cos(2 Omega t - 2 phi + delta(r)),
- * from the exact linearized solution in the reference implementation
+ * from the linearized solution, truncated at the mass quadrupole, in the reference implementation
  * (reference/gravcam/binary.py, exported by gravcam.export_vistas). At the
  * order of the quadrupole, A and delta depend on r only through x = r / lambda,
  * lambda being the wavelength of the waves; the table holds x A(x), in units

@@ -3,6 +3,7 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		BookOpen01Icon,
+		GeologyCrustIcon,
 		GithubIcon,
 		Moon02Icon,
 		PlayCircleIcon,
@@ -11,7 +12,7 @@
 
 	interface Props {
 		current?: 'paper' | 'demo';
-		/** Lay the header over a picture: no background, and no theme switch. */
+		/** Lay the header over a dark picture: no background, light text. */
 		overlay?: boolean;
 	}
 
@@ -33,7 +34,10 @@
 </script>
 
 <header class={{ overlay }}>
-	<a class="brand" href={resolve('/')}>Gravitational Camera</a>
+	<a class="brand" href={resolve('/')}>
+		<HugeiconsIcon icon={GeologyCrustIcon} size={22} strokeWidth={1.5} />
+		<span>Gravitational Camera</span>
+	</a>
 	<nav aria-label="Site">
 		<a href={resolve('/paper')} aria-current={current === 'paper' ? 'page' : undefined}>
 			<HugeiconsIcon icon={BookOpen01Icon} size={18} strokeWidth={1.6} />
@@ -50,12 +54,10 @@
 		>
 			<HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.6} />
 		</a>
-		{#if !overlay}
-			<button type="button" onclick={toggleTheme} aria-label="Switch between light and dark">
-				<span class="to-light"><HugeiconsIcon icon={Sun03Icon} size={18} strokeWidth={1.6} /></span>
-				<span class="to-dark"><HugeiconsIcon icon={Moon02Icon} size={18} strokeWidth={1.6} /></span>
-			</button>
-		{/if}
+		<button type="button" onclick={toggleTheme} aria-label="Switch between light and dark">
+			<span class="to-light"><HugeiconsIcon icon={Sun03Icon} size={18} strokeWidth={1.6} /></span>
+			<span class="to-dark"><HugeiconsIcon icon={Moon02Icon} size={18} strokeWidth={1.6} /></span>
+		</button>
 	</nav>
 </header>
 
@@ -88,9 +90,17 @@
 	}
 
 	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 		font: 500 1.05rem/1.2 var(--font-serif);
 		text-decoration: none;
 		letter-spacing: -0.005em;
+	}
+
+	.brand :global(svg) {
+		flex: none;
+		color: var(--accent);
 	}
 
 	nav {
@@ -99,12 +109,15 @@
 		gap: 0.2rem;
 	}
 
+	/* every item is one line of 18px icon height, so that they line up */
 	nav a,
 	nav button {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.4rem;
-		padding: 0.45rem 0.65rem;
+		height: 2.1rem;
+		padding: 0 0.65rem;
+		line-height: 1;
 		border: 0;
 		border-radius: 8px;
 		background: none;
@@ -123,6 +136,11 @@
 		color: var(--text);
 	}
 
+	/* an icon set inline would sit on the text baseline, above the middle */
+	nav :global(svg) {
+		display: block;
+	}
+
 	@media (max-width: 560px) {
 		nav a span {
 			display: none;
@@ -130,6 +148,13 @@
 
 		.brand {
 			font-size: 0.95rem;
+		}
+	}
+
+	@media (max-width: 380px) {
+		nav a,
+		nav button {
+			padding: 0 0.45rem;
 		}
 	}
 </style>

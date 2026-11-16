@@ -152,8 +152,9 @@
 	/>
 </svelte:head>
 
-<main class="always-dark">
-	<section class="hero">
+<main>
+	<!-- the picture is a night sky, so the band around it stays dark in either theme -->
+	<section class="hero always-dark">
 		<div class="picture">
 			<SplitView
 				{objects}

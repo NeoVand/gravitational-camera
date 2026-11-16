@@ -37,11 +37,15 @@ radiance $B_\omega(T) = \hbar\omega^3/[4\pi^3c^2(e^{\hbar\omega/k_BT} - 1)]$,
 summed over the two polarizations, Kirchhoff's law gives the power radiated per
 unit volume, solid angle and frequency,
 \begin{equation}\label{eq:kirchhoff}
-j_\omega = \alpha(\omega)\, B_\omega(T) .
+j_\omega = \alpha(\omega)\, B_\omega(T) ,
 \end{equation}
-We have checked Eq.~\eqref{eq:kirchhoff} by a second route: computing the
+where $\alpha$ is the net absorption coefficient, absorption less stimulated
+emission, and $j_\omega$ the spontaneous emission. We have checked
+Eq.~\eqref{eq:kirchhoff} by a second route: computing the spontaneous
 radiation directly from the thermal fluctuations of shear stress in a viscous
-fluid gives the same expression. For long wavelengths it is the known result
+fluid, with the stress correlator taken in the unsymmetrized (Wightman) order
+that the fluctuation--dissipation theorem relates to $\mathrm{Re}\,\eta$, gives
+the same expression. For long wavelengths it is the known result
 that a thermal plasma radiates gravitational waves in proportion to its shear
 viscosity \cite{GhiglieriLaine2015}. What we add is its application to the
 matter around us.
@@ -50,7 +54,11 @@ Three consequences shape the image.
 \begin{itemize}
 \item \emph{Matter is transparent.} With $\alpha$ so small, nothing absorbs or
 scatters. A pixel receives the sum of the glow of everything along its line of
-sight (Figure~\ref{fig:line-integral}), and there are no shadows.
+sight (Figure~\ref{fig:line-integral}), and there are no shadows. Against a
+background of radiance $I_{\mathrm{bg}}$, a body of optical depth $\tau$
+changes what a pixel receives by $(B_\omega - I_{\mathrm{bg}})(1 -
+e^{-\tau})$, which for ordinary matter is its own glow, $\tau B_\omega$, less a
+negligible dimming of what lies behind.
 \item \emph{Brightness is temperature times high-frequency friction.} What
 sets a material's glow is how strongly it resists being sheared at the
 frequencies of heat, which can be very different from its everyday viscosity
@@ -65,8 +73,8 @@ this way: at most one graviton in twenty million years.
 \caption{Two ways of forming a picture. Light stops at the first
 opaque surface, so a pixel reports one point. Gravitational radiation passes
 through everything, so a pixel reports the sum along its whole line of sight,
-Eq.~\eqref{eq:column}: each body $k$ adds its emissivity $j_k$ times the
-length $\ell_k$ of the path inside it.}\label{fig:line-integral}
+Eq.~\eqref{eq:column}: each body $k$ adds its number emissivity $j_{N,k}$
+times the length $\ell_k$ of the path inside it.}\label{fig:line-integral}
 \end{figure*}
 
 Figure~\ref{fig:closed-furnace} shows the first consequence at work. Two
@@ -77,8 +85,8 @@ heat ($\Delta U/c^2$, about $10^{-11}\,\mathrm{kg}$ per megajoule
 tell them apart at any ordinary sensitivity; the hot iron glows through the
 steel. If the friction depended neither on frequency nor on temperature, the
 number of gravitons emitted would grow as $T^3$ and the hot block would outshine
-the cold one more than a hundredfold; the next paragraph explains why this is
-an upper estimate.
+the cold one more than a hundredfold; the next paragraph explains why, for a
+material whose stresses simply relax, this is an upper estimate.
 
 \begin{figure*}
 \centering
@@ -114,7 +122,10 @@ matter the friction at those frequencies comes from much faster processes, and
 an order-of-magnitude guess is $10^{-4}$ to $10^{-3}\,\mathrm{Pa\,s}$, which is
 why we use $10^{-3}\,\mathrm{Pa\,s}$ as a placeholder. A crystal has no sound
 waves above its Debye frequency, so above its Debye temperature its glow grows
-more slowly than $T^3$ as well. The spectrum of the glow therefore records a
+more slowly than $T^3$ as well. Maxwell's model falls steadily with
+frequency; a real material can have resonances in its losses, and then needs
+its own spectrum of stress fluctuations, which may exceed this estimate in a
+band. The spectrum of the glow therefore records a
 material's mechanical losses, a kind of gravitational colour, and with a
 frequency-dependent friction the number emissivity must be computed as
 $j_N = \int \alpha(\omega)\,B_\omega\,\dd\omega/\hbar\omega$ rather than by
@@ -134,4 +145,18 @@ with the sphere's surface, not its volume. Which channel wins should depend on
 how far a sound wave travels before it is damped: where that distance is much
 shorter than the body, as in most solids at room temperature, the volume
 emission of Eq.~\eqref{eq:kirchhoff} should dominate, while a cold, pure crystal
-might glow at its surface. We have not yet worked this out.
+might glow at its surface. An order-of-magnitude estimate supports this. In an
+elastic body without loss a wave is absorbed only where the stiffness changes,
+at the surface, where it launches sound \cite{Dyson1969}: the sound carries a
+strain of order $h$, so the fraction of the wave absorbed there is of order
+$G\rho c_T^3/c^3\omega^2$, with $c_T$ the speed of shear sound. Inside, a loss
+$\mathrm{Re}\,\eta = \rho c_T^2/\omega Q$, for sound of quality factor $Q$,
+absorbs along a path $\ell$ the fraction $\alpha\ell \sim G\rho c_T^2\ell/c^3\omega
+Q$. The ratio of volume to surface is of order $\omega\ell/c_T Q = \ell/\ell_s$,
+where $\ell_s = c_T Q/\omega$ is the distance sound of that frequency travels
+before it is damped, and Kirchhoff's law carries the same ratio over to
+emission. Thermal phonons in solids at room temperature travel nanometres, so
+ordinary bodies glow through their volume; a pure crystal cooled until its
+phonons cross it should glow at its surface. A proper calculation, with the
+angular and polarization dependence of the surface term, remains to be
+done.

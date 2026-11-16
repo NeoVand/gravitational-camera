@@ -44,7 +44,8 @@ pixel records the size and orientation of this distortion.}\label{fig:tidal}
 particles is drawn as the field distorts it (exaggerated, with the strength
 compressed so that weak regions remain visible), over a map of one component:
 $\tE_{zz}$ (up the page) in (a) and (b), $\tE_{xx}$ (across) in (c). Orange
-marks a stretch along that axis, blue a squeeze. (a) One mass: every ring is
+marks a stretch along that axis (the component negative, by
+Eq.~\eqref{eq:deviation}), blue a squeeze (positive). (a) One mass: every ring is
 stretched toward it. (b) Two masses: midway between them the ring is stretched
 along the line joining them and squeezed across it. (c) A plane wave of
 polarization $h_+$ travelling up the page: bands of stretch and squeeze across
@@ -72,7 +73,8 @@ apart. The pull is not small. A person of $70\,\mathrm{kg}$ standing one metre
 away produces $\tE \approx 9\times10^{-9}\,\mathrm{s^{-2}}$. If they sway by
 five centimetres once a second, the field changes by $3\,\delta r/r$ of
 itself, about $1.4\times10^{-9}\,\mathrm{s^{-2}}$, which a detector reads as a
-strain $h = 2\,\delta\tE/\omega^2 \approx 7\times10^{-11}$. The
+strain $h = 2\,\delta\tE/\omega^2 \approx 7\times10^{-11}$, where
+$\omega = 2\pi f$ is the angular frequency, here $2\pi\,\mathrm{s^{-1}}$. The
 waves LIGO detects have strains near $10^{-21}$. This is why people and
 vehicles must be kept away from its mirrors \cite{ThorneWinstein1999}: what
 the observatory treats as contamination is, for a camera, the picture.
@@ -81,11 +83,19 @@ An ideal pixel records all of $\tE_{ij}$, and also its magnetic counterpart
 \begin{equation}\label{eq:magnetic}
 \tB_{ij} = \tfrac{1}{2}\,c^2\,\epsilon_{ipq}\,R_{pqj0},
 \end{equation}
-which describes how the field twists the axes of nearby gyroscopes relative to
-one another \cite{Nichols2011}. In vacuum both are symmetric and trace-free, so
+with $\epsilon_{123} = +1$, which describes how the field twists the axes of
+nearby gyroscopes relative to one another \cite{Nichols2011}. In vacuum both
+are symmetric and trace-free, so
 a pixel yields ten numbers at each instant; with this normalization the two are
 equal in size in a plane wave, and $\tB_{ij}$ is $\tE_{ij}$ turned by
 $45^\circ$ about the direction of travel. Inside matter the Ricci part of the
-curvature, $\mathrm{tr}\,\tE = 4\pi G\rho$ in the Newtonian limit, adds
-local information that a pixel in vacuum does not see. We call an array of such pixels a
+curvature adds local information that a pixel in vacuum does not see: the
+trace $\mathrm{tr}\,\tE = 4\pi G\rho$ in the Newtonian limit, and an
+antisymmetric part of the magnetic tensor, $\tB_{[ij]} = -(4\pi
+G/c)\,\epsilon_{ijk}\,\rho v_k$ for matter of density $\rho$ flowing at
+velocity $\mathbf v$, which points along the flow. The pixel is also assumed
+not to rotate: a frame turning at angular velocity $\Omega$ feels a
+centrifugal pseudo-tide of order $\Omega^2$, and the Earth's own turning gives
+$5\times10^{-9}\,\mathrm{s^{-2}}$, some thirty thousand times the tide of the
+Moon, so gyroscopes must hold the frame still. We call an array of such pixels a
 gravitational camera.

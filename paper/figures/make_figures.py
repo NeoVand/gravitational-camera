@@ -357,9 +357,11 @@ def regimes():
         (10 ** -0.5, 10 ** 1.5, "a passing lorry", (-5, 0), "right", False),
         (1.0, 10 ** 0.5, "a person walking", (-5, 0), "right", False),
         (10 ** 1.5, 10 ** 0.18, "LIGO's calibration rotor", (0, -7), "center", False),
-        (10 ** 12.8, 10 ** 0.5, "a warm object\nin the room", (5, 0), "left", True),
-        (10 ** 14.0, 10 ** 6.5, "the Earth's interior", (-5, 0), "right", True),
-        (10 ** 17.5, 10 ** 11.18, "the Sun's core", (-5, 0), "right", True),
+        # thermal sources at the peak of their spectrum, f = 2.82 k T / h:
+        # 300 K, 3500 K (the Earth's mantle and core), 15.7 MK
+        (1.76e13, 10 ** 0.5, "a warm object\nin the room", (5, 0), "left", True),
+        (2.06e14, 10 ** 6.5, "the Earth's interior", (-5, 0), "right", True),
+        (9.2e17, 10 ** 11.18, "the Sun's core", (-5, 0), "right", True),
     ]
     for fx, ry, label, (dx, dy), ha, thermal in sources:
         ax.plot(fx, ry, "o", ms=3.2, color=ACCENT if thermal else ACCENT2, mec="none")
@@ -627,7 +629,7 @@ def polarization_curves():
     ax.set_xticks([0, 45, 90, 135, 180])
     ax.set_xticklabels(["0°\ntoward", "45°", "90°\nedge-on", "135°", "180°\naway"])
     ax.set_yticks([-1, 0, 1])
-    ax.set_xlabel(r"angle between the spin and the direction of the camera, $\iota$")
+    ax.set_xlabel(r"angle between the spin and the line from rotor to camera, $\iota$")
     ax.legend(loc="lower left", handlelength=1.8, labelspacing=0.25)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
@@ -641,7 +643,7 @@ def line_integral():
     fig, ax = plt.subplots(figsize=(FULL, 1.8))
     rows = {"light": 1.7, "gravity": 0.0}
     bodies = [("slab", 2.0, 0.26), ("ball", 3.6, 0.4), ("ball", 5.4, 0.55)]
-    labels = [(r"$j_1$", r"$\ell_1$"), (r"$j_2$", r"$\ell_2$"), (r"$j_3$", r"$\ell_3$")]
+    labels = [(r"$j_{N,1}$", r"$\ell_1$"), (r"$j_{N,2}$", r"$\ell_2$"), (r"$j_{N,3}$", r"$\ell_3$")]
     for name, y in rows.items():
         ax.add_patch(Rectangle((-0.16, y - 0.16), 0.32, 0.32, fc=INK, ec="none", zorder=5))
         ax.text(-0.35, y, name, ha="right", va="center", fontsize=8.5)
@@ -664,7 +666,7 @@ def line_integral():
         ax.plot([x - half, x + half], [y, y], color=ACCENT, lw=3.0, solid_capstyle="butt")
         ax.text(x, y + (0.6 if kind == "slab" else size + 0.06), j, ha="center", va="bottom", fontsize=8.5, color=ACCENT)
         ax.text(x, y - 0.12, ell, ha="center", va="top", fontsize=8.5)
-    ax.text(6.95, y, r"$N(\hat n) = \int j_N\,\mathrm{d}l = \sum_k j_k\,\ell_k$", va="center", fontsize=8.5)
+    ax.text(6.95, y, r"$N(\hat n) = \int j_N\,\mathrm{d}l = \sum_k j_{N,k}\,\ell_k$", va="center", fontsize=8.5)
     ax.set_xlim(-1.3, 10.9)
     ax.set_ylim(-0.85, 2.4)
     bare(ax)

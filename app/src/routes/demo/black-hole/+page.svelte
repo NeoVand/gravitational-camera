@@ -27,8 +27,9 @@
 		<p>
 			In <strong>primordial gravitons</strong>, the glow a hot Big Bang would have left, the sky is
 			uniform but for the faint dipole of our motion. Bending cannot show in a uniform glow, and
-			nothing but a black hole absorbs gravitons: so the hole’s shadow is the only dark thing in
-			this sky, and in any gravitational sky.
+			nothing but a black hole absorbs gravitons appreciably: so the hole’s shadow is the only dark
+			thing in this sky. It is dark because the hole is colder than the glow; a hole of 1.4 × 10²³
+			kg would be just as warm, and invisible.
 		</p>
 		<p class="fine">
 			Every ray is traced exactly through the Schwarzschild metric. Move closer and the shadow grows

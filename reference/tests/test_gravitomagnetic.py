@@ -117,5 +117,7 @@ def test_a_beam_of_light_has_the_field_of_a_plane_wave_and_shows_its_direction(d
     E, B = curvature.tidal_tensors(curvature.riemann(h, 0.0, [b, 0.0, 0.0], step=1e-3))
     scale = 4 * G * P / (c ** 3 * b ** 2)
     assert np.allclose(np.sort(np.linalg.eigvalsh(E)), [-scale, 0.0, scale], rtol=0, atol=1e-6 * scale)
+    # the stretch points at the beam, the squeeze runs across it, nothing along it
+    assert np.allclose(np.diag(E), [-scale, scale, 0.0], rtol=0, atol=1e-6 * scale)
     assert np.linalg.norm(B) == pytest.approx(np.linalg.norm(E), rel=1e-6)
     assert B[0, 1] == pytest.approx(-direction * scale, rel=1e-6)

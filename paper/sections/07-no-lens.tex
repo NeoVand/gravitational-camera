@@ -38,15 +38,17 @@ transparent Sun brings gravitational waves passing through its interior to a
 focus beyond $23.5\,\mathrm{AU}$ \cite{PatlaNemiroff2008}. And a narrow resonance can absorb
 strongly in a narrow band: stars may absorb at their oscillation frequencies
 \cite{McKernan2014}. Across a broad band, and for anything we could build,
-only black holes cast shadows; a rapidly spinning one even reflects some waves
-with gain \cite{TeukolskyPress1974}.
+the optical depth of ordinary matter is negligible, and only black holes cast
+shadows; a rapidly spinning one even reflects some waves with gain
+\cite{TeukolskyPress1974}.
 
 \paragraph{The computed image.} The camera does not need optics, because its
 pixels record more than a light sensor does. A light sensor registers only
 the energy that arrives. A gravitational pixel registers the field itself,
 with its phase. Waves from a direction $\hat n$ (pointing toward their source)
-reach different pixels at different times, and the image is made by undoing
-those delays and adding:
+reach different pixels at different times, a pixel at $\mathbf{x}_p$ earlier
+by $\hat n\cdot\mathbf{x}_p/c$ the farther it lies toward the source, and the
+image is made by undoing those delays and adding:
 \begin{equation}\label{eq:beam}
 I(\hat n) = \Bigl\langle\, \sum_{ij}\Bigl|\, \sum_{p} \Lambda_{ij,kl}(\hat n)\,
 \tE_{kl}\bigl(\mathbf{x}_p,\; t - \hat n\cdot\mathbf{x}_p/c\bigr) \Bigr|^{2}
@@ -57,12 +59,22 @@ the part of the tensor transverse to $\hat n$ and free of trace, the part a
 wave from that direction can carry. Waves from the chosen
 direction add in step; waves from elsewhere cancel. This is how arrays of
 radio telescopes form images, and it is what a lens does with glass. The
+magnetic records add something a scalar antenna lacks: for a wave from $\hat
+n$, $\epsilon_{ipq}\hat n_p\tB_{qj} = \tE_{ij}$, while for a wave from $-\hat
+n$ the same combination is $-\tE_{ij}$, so summing $\tfrac12(\tE_{ij} +
+\epsilon_{ipq}\hat n_p\tB_{qj})$ in place of $\tE_{ij}$ keeps the first and
+cancels the second, and even a flat array can tell front from back. The
 sharpness is that of any aperture of width $D$,
 \begin{equation}\label{eq:diffraction}
 \Delta\theta \approx \frac{\lambda}{D} ,
 \end{equation}
-shown in Figure~\ref{fig:array}. In the near field there are no delays to
-undo, and the image is instead obtained by the inversion of
+shown in Figure~\ref{fig:array}. The pixels need not all exist at once if the
+source is steady: one pixel carried across the aperture synthesizes it, as
+radio astronomers use the turning of the Earth, for the near field and for
+pairs of stars that orbit for millions of years. Thermal radiation, whose
+phase wanders within $\hbar/k_BT$, about $10^{-14}\,\mathrm{s}$ at room
+temperature, needs every pixel at the same moment. In the near field there are
+no delays to undo, and the image is instead obtained by the inversion of
 Section~\ref{sec:near-field}.
 
 \begin{figure}
@@ -82,11 +94,21 @@ its width in wavelengths, Eq.~\eqref{eq:diffraction}.}\label{fig:array}
 
 \paragraph{What one pixel knows.} A single LIGO cannot tell where a wave came
 from. A single ideal pixel can do better, because it records all ten
-components of the field. For a single wave, the tensors $\tE_{ij}$ and
-$\tB_{ij}$ together fix the direction of travel. For a sky full of independent
-sources the pixel's data determine the brightness of the sky only in its
-broadest patterns: those of spherical-harmonic degree four or less,
-twenty-five numbers in all. The even degrees, $0$, $2$ and $4$, come from the
+components of the field. For a single plane wave, of any polarization,
+\begin{equation}\label{eq:one-wave}
+\hat n_i = -\,\frac{\epsilon_{ijk}\,\tE_{jl}\,\tB_{kl}}{\tE_{ab}\,\tE_{ab}} ,
+\end{equation}
+the gravitational counterpart of the Poynting vector, points from the pixel
+back to the source. One pixel can therefore place a burst on the sky, to within
+an angle of order the inverse of its signal-to-noise ratio, and can place each
+source of a sky whose sources are separated in frequency, as thousands of the
+Galaxy's white-dwarf pairs would be after years of observation
+(Section~\ref{sec:vistas}), without an aperture. For a sky full of independent
+sources overlapping in frequency, the pixel's second moments determine the
+brightness of the sky only in its broadest patterns: those of
+spherical-harmonic degree four or less, twenty-five numbers in all. If the
+sources are many and Gaussian, the second moments are all the data hold; a few
+bright sources carry more in their higher statistics. The even degrees, $0$, $2$ and $4$, come from the
 correlations of $\tE$ with itself and of $\tB$ with itself; the odd degrees
 need the cross-correlation of $\tE$ with $\tB$, and mix with the circular
 polarization unless the sky is unpolarized. It is the gravitational
@@ -115,7 +137,20 @@ A polynomial of degree four on the sphere contains spherical harmonics of
 degree four and below only, so by their orthogonality every harmonic of $I$
 and $V$ above degree four integrates to zero. The magnetic tensor of a plane
 wave is the electric one turned by $45^\circ$ about $\hat n$, so the same
-holds for every product of $\tE$ and $\tB$. The linear polarization carries
-spin weight four about $\hat n$ and enters only through its harmonic of degree
-exactly four. The reference implementation checks all three statements
-numerically, harmonic by harmonic.
+holds for every product of $\tE$ and $\tB$: for the brightness, the kernels of
+$\tE\tE$ and $\tB\tB$ are even, of degree four, and that of $\tE\tB$ is odd,
+of degree three, which is why the odd harmonics need the cross-correlation.
+The linear polarization carries spin weight four about $\hat n$ and enters
+only through its harmonic of degree exactly four. The reference
+implementation checks all three statements numerically, harmonic by harmonic.
+
+An example shows how much the limit hides. The twelve corners of a regular
+icosahedron form a spherical design of degree five: they average every
+polynomial of degree five or less exactly as the whole sphere does
+\cite{Delsarte1977}. Twelve equal, unpolarized, independent sources at those
+corners therefore give a pixel exactly the second moments of a uniform sky,
+while six at the corners of an octahedron, a design of degree three only, do
+not; the reference implementation finds the first pair equal to one part in
+$10^{15}$. Two pixels a wavelength apart tell them apart, because their
+cross-correlation carries the phase $e^{i\omega\hat n\cdot\Delta\mathbf x/c}$,
+which no finite design averages exactly.

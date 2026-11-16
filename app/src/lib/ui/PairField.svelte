@@ -2,7 +2,7 @@
 	/**
 	 * The changing tidal field of two black holes in orbit, mapped in the plane
 	 * of the orbit and animated: E_zz = A(r) cos(2 Omega t - 2 phi + delta(r)),
-	 * from the reference implementation's exact linearized solution
+	 * from the reference implementation's linearized solution (to the quadrupole)
 	 * (lib/vistas/pair.ts). Colour gives the phase (orange stretch, blue
 	 * squeeze across the plane); the strength, which falls from r^-5 to r^-1,
 	 * is left out so that the pattern can be followed at every distance.

@@ -26,14 +26,18 @@ perturbation in harmonic gauge is
 \begin{equation}\label{eq:multipole}
 \begin{aligned}
 \bar h^{00} &= \frac{4G}{c^2}\Bigl[\frac{M}{r} + \frac{1}{2}\,\partial_i\partial_j\frac{I_{ij}(u)}{r}\Bigr],\\
-\bar h^{0i} &= \frac{2G}{c^3}\Bigl[\frac{\dot I_{ij}(u)\,n_j}{r^2} + \frac{\ddot I_{ij}(u)\,n_j}{c\,r}
+\bar h^{0i} &= \frac{2G}{c^3}\Bigl[\frac{\dot I_{ij}(u)\,\hat n_j}{r^2} + \frac{\ddot I_{ij}(u)\,\hat n_j}{c\,r}
 + \frac{(\mathbf J\times\mathbf x)_i}{r^3}\Bigr],\\
 \bar h^{ij} &= \frac{2G}{c^4}\,\frac{\ddot I_{ij}(u)}{r},
 \end{aligned}
 \end{equation}
-with $M$ the mass and $\mathbf J$ the angular momentum. It satisfies the gauge
-condition exactly, and its curvature gives the tidal field in every zone at
-once \cite{Teukolsky1982}. Figure~\ref{fig:binary-field} shows it in the plane
+with $M$ the mass, $\mathbf J$ the angular momentum and $I_{ij} = \int\rho\,
+x_ix_j\,\dd^3x$ the second moment of the mass, its trace included (outside
+the source the trace changes only the gauge, not the curvature, as the
+reference implementation confirms). It satisfies the gauge condition exactly,
+and its curvature gives the tidal field in every zone at once
+\cite{Teukolsky1982}: exactly, within linearized gravity and this truncation
+of the multipoles. Figure~\ref{fig:binary-field} shows it in the plane
 of an orbit, for two black holes of thirty solar masses each about ten seconds
 before they merge, when they are $2200\,\mathrm{km}$ apart and move at a tenth
 of the speed of light; their waves are $35{,}000\,\mathrm{km}$ long. Within a
@@ -44,12 +48,14 @@ $r^{-1}$: the waves. The two meet where
 $G\,\Delta I/r^5 \approx G\,\Delta I\,\omega^4/c^4 r$, that is at
 $r \approx c/\omega = \lambda/2\pi$.
 
-This is the boundary between the two ways the camera sees. Inside it, the
-near-field imaging of Section~\ref{sec:near-field} applies, and the camera
-could resolve the pair as two bodies; outside it, Eq.~\eqref{eq:unresolved}
-holds and the pair is a point whose polarization tells the axis and sense of
-its orbit. To see two black holes as two, the camera must be closer to them
-than about a sixth of the wavelength of their waves. The reference
+This marks a crossover between the two ways the camera sees, not a sharp
+edge. Well inside it the near-field imaging of Section~\ref{sec:near-field}
+applies, and an array could resolve the pair as two bodies, if its
+signal-to-noise ratio and width meet the blur law there; well outside it,
+Eq.~\eqref{eq:unresolved} holds and the pair is a point whose polarization
+tells the axis and sense of its orbit. Being within about a sixth of a
+wavelength is needed to see two black holes as two, but it is not enough by
+itself. The reference
 implementation computes the field of Eq.~\eqref{eq:multipole} by finite
 differences of the curvature and checks that it becomes Newton's field of the
 two masses near them, with an error falling as $(d/r)^2$, and the quadrupole
@@ -61,15 +67,16 @@ curvature of vacuum, with $|\tB| = |\tE|$ in the waves.
 \includegraphics[width=\textwidth]{figures/binary-field.pdf}
 \caption{Two black holes of thirty solar masses, ten seconds before they
 merge, in the plane of their orbit: the changing part of the tidal field
-$\tE_{zz}$ (across the plane), from the exact linearized solution
-Eq.~\eqref{eq:multipole}. Colour gives the phase, orange for stretch and blue
+$\tE_{zz}$ (across the plane), from the linearized solution of
+Eq.~\eqref{eq:multipole}, exact within that model. Colour gives the phase, orange for stretch and blue
 for squeeze, scaled at each place by the local strength. (a) Near the pair,
 whose separation is $d$, the pattern turns rigidly with it; beyond the dashed
 circle, $r = \lambda/2\pi$, it begins to wind. (b) Farther out it is the spiral
 of the waves. (c) The strength along a line in the plane, times $r$: Newton's
-$r^{-5}$ inside $\lambda/2\pi$, the waves' $r^{-1}$ outside. The field is the
-exact solution of linearized gravity, which this close to a merger is a guide
-to the full solution, not a substitute for it.}\label{fig:binary-field}
+$r^{-5}$ inside $\lambda/2\pi$, the waves' $r^{-1}$ outside. The field is an
+exact solution of linearized gravity truncated at the mass quadrupole, which
+this close to a merger is a guide to the full solution, not a substitute for
+it.}\label{fig:binary-field}
 \end{figure*}
 
 \paragraph{What a burst leaves behind.} Radiation that escapes to infinity
@@ -101,15 +108,24 @@ mass, as a thin shell moving at nearly the speed of light, and outside the
 shell the field is that of the original mass, inside it that of the remnant
 \cite{Vaidya1951}. A near-field camera sees the star lose the neutrinos'
 mass at the moment the shell passes the camera, not before: it weighs the
-burst as it arrives. If the neutrinos leave unevenly the explosion also leaves
+burst as it arrives. While the shell passes, the camera also feels the
+neutrinos themselves. Their flux of energy, $F = L/4\pi r^2$ at luminosity
+$L$, enters the Ricci part of the curvature and squeezes the camera evenly
+across their direction of travel, $\tE_{ij} = (GL/c^3r^2)(\delta_{ij} - \hat
+n_i\hat n_j)$, while $\tB$ gains the antisymmetric part of
+Section~\ref{sec:pixel}, set by their flow, so that one pixel points to the
+star although the explosion is spherical. From ten kiloparsecs this squeeze,
+while it lasts, is some $10^{11}$ times the change of pull it leaves behind. If the neutrinos leave unevenly the explosion also leaves
 memory \cite{Epstein1978,Turner1978}. A narrow jet of energy $E$ leaves
 $\Delta h = (2GE/c^4 r)(1 + \cos\theta)$ at angle $\theta$ from it, largest
 just off the line it travels along (exactly on that line symmetry allows
 none, and a jet of finite width turns the memory off within its own width
 of the axis); two opposite jets leave the same $2GE/c^4 r$ in every
 direction off their axis; a sphere leaves nothing (Figure~\ref{fig:memory}).
-Only the quadrupole and higher parts of the pattern count: a burst that is
-merely brighter on one side, a pure dipole, leaves no memory at all, while one
+Only the quadrupole and higher parts of the pattern count: the radiation of a
+burst that is merely brighter on one side, a pure dipole, leaves no memory at
+all. It does push the star the other way, and the recoiling remnant leaves a
+memory of its own, second order in the small recoil \cite{Favata2009}. A burst
 stronger along an axis than across it, in proportion to
 $1 + q\,P_2(\cos\theta')$, leaves
 \begin{equation}\label{eq:burst-memory}
@@ -131,18 +147,23 @@ all directions, in units of $4GE/c^4 r$.}\label{fig:memory}
 \paragraph{The Milky Way.} Tens of millions of close pairs of white dwarfs
 radiate at millihertz frequencies; together they make a foreground that will
 dominate the sky of the planned space detectors below a few millihertz
-\cite{Nelemans2001}. They trace the Galaxy's stars, so their brightness on
-the sky is the column integral of Eq.~\eqref{eq:column} over a model of the
-stellar mass, here two exponential discs and a central bulge with masses and
+\cite{Nelemans2001}. They trace the Galaxy's stars, and averaged over time
+and over orientations, which we take to be random, each radiates the same in
+every direction; so their brightness on the sky is the column integral of
+Eq.~\eqref{eq:column} over a model of the stellar mass, here two exponential discs and a central bulge with masses and
 sizes from Bland-Hawthorn and Gerhard \cite{BlandHawthornGerhard2016}. Light
 from the same stars passes through a thin disc of dust, which in this model
 dims the light of the Galactic centre by about forty magnitudes, comparable
 with what is observed. Figure~\ref{fig:milky-way}
 shows both on one scale. In light the centre is hardly brighter than the opposite
 side of the sky; in gravitational waves it is a hundred times brighter, and
-the map is a map of where the Galaxy's stars are. Seeing it this sharply would
-take a camera some $50\,\mathrm{AU}$ across, since at three millihertz the
-waves are two-thirds of an astronomical unit long.
+the map is a map of where the Galaxy's stars are. Seeing it this sharply as
+a smooth glow would take a camera some $50\,\mathrm{AU}$ across, since at three
+millihertz the waves are two-thirds of an astronomical unit long. The pairs are
+not a glow, though: after years of observation thousands of the brightest,
+above a few millihertz, would each sit alone in its own frequency bin, and a
+single pixel could place each of them by Eq.~\eqref{eq:one-wave}, breaking the
+smooth map into points.
 
 \begin{figure}
 \centering
@@ -185,20 +206,25 @@ degree. Four properties follow from what is already known.
 \item \emph{It moves with us.} Our motion through it at $370\,\mathrm{km/s}$
 \cite{Planck2018I} makes one side of the sky hotter by $v/c = 1.2\times10^{-3}$
 of its temperature, exactly as for the microwave background.
-\item \emph{On large scales it is the microwave background.} On scales larger
+\item \emph{On large scales it shares the microwave background's spots.} On scales larger
 than the horizon at the time the microwave background was released, the
 Boltzmann equation of any massless species reduces to
 $\dot\Theta = -\dot\Phi$ ($\Theta$ the fractional change of temperature, $\Phi$ that of the spatial metric), the same for gravitons streaming freely as for
 photons held in the plasma. With the same adiabatic start, the two arrive at
 that time with the same temperature perturbation, and from then on travel
-together through the same potentials. The graviton sky therefore repeats the
-large spots of the microwave sky, from a surface only $2\%$ farther away. It
-differs below a degree or so, where it has no acoustic peaks, its gravitons
-never having moved with the plasma \cite{Bartolo2019}.
-\item \emph{Lensing cannot be seen in it.} Bending conserves surface
-brightness, so a uniform background stays uniform however its rays are bent.
+together through the same potentials. To this approximation the graviton sky
+shares the large spots of the microwave sky, from a surface only $2\%$
+farther away; how closely, scale by scale, is a question for a
+cross-correlation of the two. It differs below a degree or so, where it has no
+acoustic peaks, its gravitons never having moved with the plasma, and it is
+not smoothed by the diffusion that blurs the microwave sky below a few
+arcminutes, since its gravitons never scattered \cite{Bartolo2019}.
+\item \emph{Lensing leaves its uniform part unchanged.} Bending conserves
+surface brightness, so a uniform background stays uniform however its rays are
+bent; only its departures from uniformity, the dipole of our motion and the
+spots, are moved about.
 \item \emph{Only black holes cast shadows on it.} Nothing else absorbs
-(Section~\ref{sec:no-lens}). Seen against this background, the sky is a
+appreciably across a broad band (Section~\ref{sec:no-lens}). Seen against this background, the sky is a
 uniform glow at $0.905\,\mathrm{K}$, warmer in the direction of our motion,
 with a black disc wherever a black hole stands.
 \end{itemize}
@@ -212,6 +238,18 @@ $\sin^{-1}[\sqrt{27}\,(GM/c^2 r)\sqrt{1-2GM/c^2 r}] = 7.3^\circ$, and the
 dipole folded around it. The whole sky is $2.6\%$ warmer than far from the
 hole, $T_g/\sqrt{1-2GM/c^2 r}$, so the camera's thermometer also reads how deep
 it sits in the hole's potential.
+
+A black hole is dark against this background only because it is colder. Its
+Hawking temperature, $\hbar c^3/8\pi GMk_B$, equals $0.905\,\mathrm{K}$ for a
+mass of $1.36\times10^{23}\,\mathrm{kg}$, nearly two masses of the Moon. A
+heavier hole casts a shadow; a lighter one glows against the sky; and one of
+just this mass, in equilibrium with the background, returns in every mode
+exactly what it receives and cannot be seen at all. Spin changes this too. A
+spinning hole amplifies the waves that turn with it, by up to $138\%$ for the
+most favoured mode of a hole spinning near its limit
+\cite{TeukolskyPress1974}, so at wavelengths comparable to its size it would
+return more of the background than it receives on that side, and appear
+brighter than the sky there rather than dark.
 
 \begin{figure*}
 \centering
@@ -227,8 +265,8 @@ around the shadow by the bending. Nothing else in a gravitational image casts
 a shadow.}\label{fig:black-hole}
 \end{figure*}
 
-\paragraph{The transparent Sun as a lens.} Gravitational waves short enough
-for geometric optics pass through the Sun and are bent by the mass inside the
+\paragraph{The transparent Sun as a lens.} Gravitational waves pass through
+the Sun and, where geometric optics holds, are bent by the mass inside the
 cylinder of their impact parameter, $\alpha(b) = 4GM_{\mathrm{cyl}}(b)/c^2 b$.
 For Eddington's standard model of the Sun the bending peaks at $4.2''$ for
 rays passing $0.28$ of a radius from the centre, more than twice the
@@ -240,6 +278,16 @@ $23.5\,\mathrm{AU}$ for the denser core of the standard solar model
 the Sun appears as a ring inside the solar disc, at the impact parameter
 whose focus lies at the camera. A uniform background, such as the primordial
 one, is not changed.
+
+Geometric optics needs more than a wavelength shorter than the Sun. A lens of
+mass $M$ delays a wave by about $4GM/c^3$, twenty microseconds for the Sun, and
+it focuses only if that delay spans a radian or more of the wave's phase, that
+is above $c^3/8\pi GM = 8\,\mathrm{kHz}$ for the Sun, whatever its size. Below,
+diffraction erases the focus: even a point of the Sun's mass raises the
+intensity on its axis only by the factor $\pi w/(1 - e^{-\pi w})$, with $w =
+8\pi GMf/c^3$, which is $1.02$ at $100\,\mathrm{Hz}$. The transparent Sun is a
+lens for thermal and primordial gravitons, not for the waves of orbiting or
+merging bodies.
 
 \begin{figure}
 \centering

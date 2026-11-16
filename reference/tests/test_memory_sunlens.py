@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 
 from gravcam import memory, sunlens
-from gravcam.constants import M_sun
+from gravcam.constants import G, M_sun, c
 
 
 def _toward(angle):
@@ -87,3 +87,14 @@ def test_only_the_quadrupole_and_higher_parts_of_a_burst_leave_memory():
         assert abs(dipole) < 1e-12
         quad, _ = memory.epstein(lambda n: (1 + 0.5 * (3 * n[:, 2] ** 2 - 1)) / (4 * math.pi), N)
         assert quad == pytest.approx(math.sin(theta) ** 2 / 8, rel=1e-9)
+
+
+def test_diffraction_hides_the_suns_focus_below_ten_kilohertz():
+    assert sunlens.diffraction_frequency() == pytest.approx(8.08e3, rel=2e-3)
+    # LIGO's band: the gain on the axis of even a point mass of the Sun's mass is 2 per cent
+    assert sunlens.point_mass_axis_gain(100.0) == pytest.approx(1.0196, abs=2e-4)
+    # the limits: 1 + pi w / 2 when small, pi w when large
+    w = 8 * math.pi * G * M_sun * 1e-3 / c ** 3
+    assert sunlens.point_mass_axis_gain(1e-3) == pytest.approx(1 + math.pi * w / 2, rel=1e-9)
+    w = 8 * math.pi * G * M_sun * 1e7 / c ** 3
+    assert sunlens.point_mass_axis_gain(1e7) == pytest.approx(math.pi * w, rel=1e-9)
