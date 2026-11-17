@@ -67,6 +67,31 @@ Gemini's table also gives harmonic counts for sound (9 + 7) and light (15 + 21):
   and 0.17 at two viewing angles, constant to 1 per cent from kr = 10 to 160. Range reaches out to about sqrt(SNR)
   reduced wavelengths. The analytic C(iota) is still to derive.
 
+## 3b. Second round (17 November 2026)
+
+- **Ten numbers = four invariants + three of orientation + three of velocity.** A generic reading (Petrov type I)
+  is W = P D P^T with P in SO(3, C) and D diagonal. The two independent complex eigenvalues are four real numbers no
+  observer can change. P = exp(iK) R0 splits into a real rotation R0 (which way the field's axes point) and an
+  imaginary one exp(iK), whose generator is the rapidity of the one frame in which the field is "at rest" (E and B
+  share axes). For a static scene that frame is the scene's: **the exact speedometer**. Checked: four unknown masses,
+  pixel at 0.05c, 0.27c and 0.6c, rapidity recovered to 4e-8 and direction to 1e-15. Light cannot do this: a non-null
+  electromagnetic field fixes its rest frame only up to a boost along its own axis (E parallel to B), so a light
+  sensor is at best a two-dimensional speedometer; gravity's type I field has no such freedom.
+- **The phase of the eigenvalues is spin.** For a spinning body, W = Psi (-2, 1, 1) with complex Psi whose phase is
+  3 a cos(theta) / r (a = J / Mc), as for Kerr's Psi_2 = -M / (r - i a cos theta)^3: an observer-independent reading
+  of the spin along the line of sight (derived to first order in the spin from the paper's spin-dipole B; 1.5e-6 rad
+  for the Earth over its pole). Complex eigenvalues therefore mean "something rotates or moves relative to the rest",
+  never "I am moving".
+- **The sky content per frequency, for every spin.** Checked: sound (p, v) sees 9 sky numbers with 7 null tests;
+  light (E, B) 28 (9 of brightness, 9 of circular, 10 of linear polarization) with 8 nulls; gravity 68 with 32. In
+  general 2(2s + 1)^2 + 2(4s + 1) for s >= 1. (Gemini's "15 + 21" for light was wrong.)
+- **No echoes.** Matter neither reflects nor absorbs gravitational waves, so the single-pixel separation theorems
+  hold inside a room, a mine or a planet. Radio and acoustic vector sensors are plagued by multipath ghosts; a
+  gravitational pixel is not. The cocktail party with no reverberation.
+- **Helicity sectors.** In the frequency domain W+ (C^5) and W- (C^5) carry the two helicities separately; each plane
+  wave is a point of the rational normal quartic in each. With uncorrelated sources, MUSIC on that curve may resolve
+  more than four (to check: how many per sector, and with both).
+
 ## 4. Ideas not yet checked
 
 - **Dark matter and the vacuum, read directly.** Inside matter tr E = 4 pi G (rho + 3p/c^2), whatever the matter is.
