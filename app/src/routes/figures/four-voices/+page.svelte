@@ -66,7 +66,7 @@
 	/>
 </svelte:head>
 
-<DemoShell title="One pixel, four voices" onreset={reset}>
+<DemoShell section="figures" title="One pixel, four voices" onreset={reset}>
 	{#snippet stage()}
 		<Voices
 			{sources}

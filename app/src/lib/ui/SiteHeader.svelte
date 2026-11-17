@@ -3,6 +3,7 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		BookOpen01Icon,
+		Chart01Icon,
 		GeologyCrustIcon,
 		GithubIcon,
 		Moon02Icon,
@@ -11,7 +12,7 @@
 	} from '@hugeicons/core-free-icons';
 
 	interface Props {
-		current?: 'paper' | 'demo';
+		current?: 'paper' | 'demo' | 'figures';
 		/** Lay the header over a dark picture: no background, light text. */
 		overlay?: boolean;
 	}
@@ -46,6 +47,10 @@
 		<a href={resolve('/demo')} aria-current={current === 'demo' ? 'page' : undefined}>
 			<HugeiconsIcon icon={PlayCircleIcon} size={18} strokeWidth={1.6} />
 			<span>Demos</span>
+		</a>
+		<a href={resolve('/figures')} aria-current={current === 'figures' ? 'page' : undefined}>
+			<HugeiconsIcon icon={Chart01Icon} size={18} strokeWidth={1.6} />
+			<span>Figures</span>
 		</a>
 		<a
 			href="https://github.com/NeoVand/gravitational-camera"

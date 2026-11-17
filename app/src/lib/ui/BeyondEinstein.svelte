@@ -98,17 +98,18 @@
 <style>
 	.frame {
 		position: absolute;
+		container-type: size;
 		inset: 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		gap: 0.4rem;
-		padding: 4.5rem 1rem 6rem;
+		padding: var(--stage-pad, 4.5rem 1rem 6rem);
 		background: radial-gradient(circle at 50% 45%, #10141b 0%, #07090d 70%);
 	}
 	svg {
-		width: min(54vw, 100vh);
+		width: var(--figure-width, min(54cqw, 100cqh));
 		height: auto;
 	}
 	text {

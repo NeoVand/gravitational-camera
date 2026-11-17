@@ -12,81 +12,15 @@ export interface DemoEntry {
 		| 'beam-in-the-dark'
 		| 'milky-way'
 		| 'black-hole'
-		| 'two-black-holes'
-		| 'four-stars'
-		| 'four-voices'
-		| 'now-and-then'
-		| 'speedometer'
-		| 'ranging'
-		| 'one-pixel-sky'
-		| 'beyond-einstein';
+		| 'two-black-holes';
 	title: string;
 	affordance: string;
 	summary: string;
-	/**
-	 * Which of the camera's three regimes the demo shows, the sky (the paper's vistas), or what a single pixel's
-	 * ten numbers say (the paper's Section III).
-	 */
-	regime: 'one pixel' | 'near field' | 'thermal' | 'waves' | 'sky';
+	/** Which of the camera's three regimes the demo shows, or the sky (the paper's vistas). */
+	regime: 'near field' | 'thermal' | 'waves' | 'sky';
 }
 
 export const demos: DemoEntry[] = [
-	{
-		slug: 'four-stars',
-		title: 'The four stars',
-		affordance: 'One point, four directions',
-		regime: 'one pixel',
-		summary:
-			'Each reading of a gravitational pixel has four directions of its own; light’s has two. They tell one body from two, a wave from a pull, and how fast a body crosses the sky.'
-	},
-	{
-		slug: 'four-voices',
-		title: 'One pixel, four voices',
-		affordance: 'Many waves at one point',
-		regime: 'one pixel',
-		summary:
-			'Four waves cross one point, each with any waveform. One pixel of this camera finds where every one comes from; a sensor of light finds two.'
-	},
-	{
-		slug: 'now-and-then',
-		title: 'Now and then',
-		affordance: 'See the present',
-		regime: 'one pixel',
-		summary:
-			'Light shows a moving body where it was; its tidal field points at where it is. Stop it, and the news spreads at the speed of light. Shown with light slowed down, and labelled so.'
-	},
-	{
-		slug: 'speedometer',
-		title: 'The speedometer in the dark',
-		affordance: 'Know your own speed',
-		regime: 'one pixel',
-		summary:
-			'A pixel crossing a room it knows nothing about reads its own velocity, every component, at any speed, and knows at once if anything in the room moves. Light reads two components.'
-	},
-	{
-		slug: 'ranging',
-		title: 'How far is that binary?',
-		affordance: 'Range a wave source',
-		regime: 'one pixel',
-		summary:
-			'The two senses of a binary’s waves arrive from directions that differ by an angle that shrinks with distance. One pixel reads it, out to a range set by the signal-to-noise ratio.'
-	},
-	{
-		slug: 'one-pixel-sky',
-		title: 'One pixel’s sky',
-		affordance: 'What a point can know',
-		regime: 'one pixel',
-		summary:
-			'A sky full of sources, seen by one pixel: exactly its patterns of degree four and below. Twelve sources on an icosahedron look like a uniform sky; six on an octahedron do not.'
-	},
-	{
-		slug: 'beyond-einstein',
-		title: 'Beyond Einstein',
-		affordance: 'Test gravity at a point',
-		regime: 'one pixel',
-		summary:
-			'One reading gives a wave’s direction, its speed and all six polarizations a theory of gravity allows, and checks that they belong to one wave. A massive graviton and a scalar differ even in sign.'
-	},
 	{
 		slug: 'sun-at-midnight',
 		title: 'The Sun at midnight',

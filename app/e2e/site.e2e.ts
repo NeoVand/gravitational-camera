@@ -496,7 +496,7 @@ test('two black holes: the field turns, and stops when told to', async ({ page }
 test('the four stars: gravity has four, light two, and a moving body is read exactly', async ({
 	page
 }) => {
-	await page.goto('/demo/four-stars/');
+	await page.goto('/figures/four-stars/');
 	const skies = page.locator('svg.sky');
 	await expect(skies).toHaveCount(2);
 	await expect(skies.nth(0).locator('circle.star')).toHaveCount(4);
@@ -532,7 +532,7 @@ test('the four stars: gravity has four, light two, and a moving body is read exa
 test('four voices: one gravitational pixel finds four waves, light none; with two, both find them', async ({
 	page
 }) => {
-	await page.goto('/demo/four-voices/');
+	await page.goto('/figures/four-voices/');
 	const skies = page.locator('svg.sky');
 	await expect(skies.nth(0).getByText('found 4 of 4')).toBeVisible();
 	await expect(skies.nth(1).getByText('4 waves fill all 6 numbers: nothing to find')).toBeVisible();
@@ -548,7 +548,7 @@ test('four voices: one gravitational pixel finds four waves, light none; with tw
 test('now and then: the scene runs, and a stop is held until the body is let go', async ({
 	page
 }) => {
-	await page.goto('/demo/now-and-then/');
+	await page.goto('/figures/now-and-then/');
 	const canvas = page.locator('canvas');
 	const frames = async () => Number(await canvas.getAttribute('data-frames'));
 	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(5);
@@ -564,7 +564,7 @@ test('now and then: the scene runs, and a stop is held until the body is let go'
 test('speedometer: gravity reads the pixel’s speed exactly, and a walking person sets off the alarm', async ({
 	page
 }) => {
-	await page.goto('/demo/speedometer/');
+	await page.goto('/figures/speedometer/');
 	await expect(page.getByText('all still')).toBeVisible();
 	await expect(page.locator('dd').first()).toContainText('0.6000');
 	await page.getByRole('button', { name: 'Walks', exact: true }).click();
@@ -576,7 +576,7 @@ test('speedometer: gravity reads the pixel’s speed exactly, and a walking pers
 test('ranging: the split reaches farther than the rank, and farther still with more signal', async ({
 	page
 }) => {
-	await page.goto('/demo/ranging/');
+	await page.goto('/figures/ranging/');
 	await expect(page.locator('.reads').getByText('lost in the noise')).toBeVisible();
 	await expect(page.getByText(/split: reaches \d+/)).toBeVisible();
 	const reachOf = async () =>
@@ -590,7 +590,7 @@ test('ranging: the split reaches farther than the rank, and farther still with m
 test("one pixel's sky: the icosahedron matches a uniform sky, the octahedron does not", async ({
 	page
 }) => {
-	await page.goto('/demo/one-pixel-sky/');
+	await page.goto('/figures/one-pixel-sky/');
 	await expect(page.locator('dd').first()).toContainText('the same');
 	await page.getByRole('button', { name: 'Six', exact: true }).click();
 	await expect(page.locator('dd').first()).toContainText('differ by');
@@ -600,7 +600,7 @@ test("one pixel's sky: the icosahedron matches a uniform sky, the octahedron doe
 test('beyond Einstein: one reading tells the theory, and a second wave fails the checks', async ({
 	page
 }) => {
-	await page.goto('/demo/beyond-einstein/');
+	await page.goto('/figures/beyond-einstein/');
 	await expect(page.getByText('what general relativity allows')).toBeVisible();
 	await page.getByRole('button', { name: 'Massive', exact: true }).click();
 	await expect(page.getByText('a massive graviton’s helicity-zero wave')).toBeVisible();
@@ -621,6 +621,24 @@ test('the One pixel layer: a turning flywheel sets off the alarm, a locked safe 
 	await page.getByRole('checkbox', { name: 'Pixel', exact: true }).check();
 	await expect(page.getByText('all still')).toBeVisible();
 	await expect(page.getByText(/type (I|D):/)).toBeVisible();
+});
+
+test('interactive figures: their own section, out of the demos, and live under their figures in the paper', async ({
+	page
+}) => {
+	await page.goto('/figures/');
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Interactive figures');
+	await expect(page.locator('ol > li')).toHaveCount(7);
+	await page.goto('/demo/');
+	await expect(page.getByText('The four stars')).toHaveCount(0);
+	await page.goto('/paper/');
+	const stars = page.locator('figure[id="fig:stars"]');
+	await stars.locator('summary').click();
+	await expect(stars.locator('svg.sky')).toHaveCount(2);
+	await expect(stars.getByRole('link', { name: 'Full screen' })).toHaveAttribute(
+		'href',
+		/figures\/four-stars/
+	);
 });
 
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {

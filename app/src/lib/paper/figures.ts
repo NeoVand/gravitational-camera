@@ -7,6 +7,13 @@ import QuadrupoleFigure from './figures/QuadrupoleFigure.svelte';
 import SunAtMidnightFigure from './figures/SunAtMidnightFigure.svelte';
 import TidalFigure from './figures/TidalFigure.svelte';
 import WhichWayFigure from './figures/WhichWayFigure.svelte';
+import BeyondLive from './figures/interactive/Beyond.svelte';
+import PresentLive from './figures/interactive/Present.svelte';
+import RangingLive from './figures/interactive/Ranging.svelte';
+import SkyLive from './figures/interactive/Sky.svelte';
+import SpeedometerLive from './figures/interactive/Speedometer.svelte';
+import StarsLive from './figures/interactive/Stars.svelte';
+import VoicesLive from './figures/interactive/Voices.svelte';
 
 /**
  * Interactive versions of some figures, offered under the figure itself (which
@@ -38,7 +45,18 @@ export const liveFigures: Record<string, LiveFigure> = {
 	'fig:tidal': { label: 'See it move', drawing: TidalFigure },
 	'fig:nearfield': { label: 'Try it: change the sensitivity', drawing: NearFieldFigure },
 	'fig:quadrupole': { label: 'Try it: change the speed', drawing: QuadrupoleFigure },
-	'fig:array': { label: 'Try it: change the width of the array', drawing: ArrayFigure }
+	'fig:array': { label: 'Try it: change the width of the array', drawing: ArrayFigure },
+	// the interactive figures of Section III (also at /figures)
+	'fig:stars': { label: 'Try it: move the bodies, set one moving', drawing: StarsLive },
+	'fig:voices': { label: 'Try it: hear up to five waves at once', drawing: VoicesLive },
+	'fig:present': { label: 'Try it: stop the body, with light slowed down', drawing: PresentLive },
+	'fig:speedometer': {
+		label: 'Try it: cross the room, set a mass moving',
+		drawing: SpeedometerLive
+	},
+	'fig:ranging': { label: 'Try it: move the source, change the signal', drawing: RangingLive },
+	'fig:sky-count': { label: 'Try it: choose a sky', drawing: SkyLive },
+	'fig:beyond': { label: 'Try it: choose a theory, add a second wave', drawing: BeyondLive }
 };
 
 /** Figures whose scene can be explored in a demo of its own, with the demo's path. */

@@ -132,14 +132,15 @@
 <style>
 	.frame {
 		position: absolute;
+		container-type: size;
 		inset: 0;
 		display: grid;
 		place-items: center;
-		padding: 4.5rem 1rem 6.5rem;
+		padding: var(--stage-pad, 4.5rem 1rem 6.5rem);
 		background: radial-gradient(circle at 50% 45%, #10141b 0%, #07090d 70%);
 	}
 	svg {
-		width: min(62vw, 120vh);
+		width: var(--figure-width, min(62cqw, 120cqh));
 		max-height: 100%;
 		touch-action: none;
 		user-select: none;

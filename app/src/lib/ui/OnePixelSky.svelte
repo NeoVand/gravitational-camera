@@ -128,27 +128,31 @@
 <style>
 	.row {
 		position: absolute;
+		container-type: size;
 		inset: 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 1vw;
-		padding: 5rem 1rem 6rem;
+		gap: 0.5rem;
+		padding: var(--stage-pad, 5rem 1rem 6rem);
 		background: radial-gradient(circle at 50% 45%, #10141b 0%, #07090d 70%);
 	}
 	.sky {
-		width: min(24vw, 46vh);
+		width: var(--figure-width, min(24cqw, 46cqh));
 		height: auto;
 		touch-action: none;
 		user-select: none;
 		cursor: grab;
 	}
+	/* a tall frame: one sphere above another (the row cannot query its own shape, so the page's is used) */
 	@media (orientation: portrait) {
 		.row {
 			flex-direction: column;
 		}
+	}
+	@container (aspect-ratio < 1) {
 		.sky {
-			width: min(60vw, 26vh);
+			width: min(60cqw, 26cqh);
 		}
 	}
 	.disc {

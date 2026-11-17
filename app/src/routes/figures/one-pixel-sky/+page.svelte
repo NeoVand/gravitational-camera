@@ -34,7 +34,7 @@
 	/>
 </svelte:head>
 
-<DemoShell title="One pixel’s sky" onreset={reset}>
+<DemoShell section="figures" title="One pixel’s sky" onreset={reset}>
 	{#snippet stage()}
 		<OnePixelSky sources={sky.sources} bind:yaw bind:pitch />
 	{/snippet}

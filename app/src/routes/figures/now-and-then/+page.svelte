@@ -69,7 +69,7 @@
 	/>
 </svelte:head>
 
-<DemoShell title="Now and then" onreset={restart}>
+<DemoShell section="figures" title="Now and then" onreset={restart}>
 	{#snippet stage()}
 		<NowAndThen {crossing} {t} />
 	{/snippet}

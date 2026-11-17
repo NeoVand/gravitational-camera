@@ -37,7 +37,7 @@
 	/>
 </svelte:head>
 
-<DemoShell title="How far is that binary?" onreset={reset}>
+<DemoShell section="figures" title="How far is that binary?" onreset={reset}>
 	{#snippet stage()}
 		<RangeChart {kr} {rho} {iota} />
 	{/snippet}

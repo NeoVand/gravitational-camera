@@ -88,7 +88,7 @@
 	/>
 </svelte:head>
 
-<DemoShell title="Beyond Einstein" onreset={reset}>
+<DemoShell section="figures" title="Beyond Einstein" onreset={reset}>
 	{#snippet stage()}
 		<BeyondEinstein E={reading.E} B={reading.B} set={pol} {read} {speed} />
 	{/snippet}

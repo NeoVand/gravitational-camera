@@ -24,6 +24,7 @@
 		ViewOffIcon
 	} from '@hugeicons/core-free-icons';
 	import { demos } from '../demos';
+	import { figures } from '../figures';
 
 	interface Props {
 		title: string;
@@ -36,11 +37,24 @@
 		onreset?: () => void;
 		/** A still of the picture, to download. */
 		onsave?: () => Promise<Blob | null>;
+		/** Which list the page belongs to, for the way back: the demos or the interactive figures. */
+		section?: 'demos' | 'figures';
 	}
 
-	let { title, stage, controls, notes, physics, onreset, onsave }: Props = $props();
+	let {
+		title,
+		stage,
+		controls,
+		notes,
+		physics,
+		onreset,
+		onsave,
+		section = 'demos'
+	}: Props = $props();
 
-	const kicker = $derived(demos.find((d) => d.title === title)?.affordance);
+	const kicker = $derived(
+		(section === 'figures' ? figures : demos).find((d) => d.title === title)?.affordance
+	);
 	const fileName = $derived(title.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
 
 	let notesOpen = $state(true);
@@ -198,9 +212,9 @@
 
 	{#if !bare}
 		<header transition:fade={{ duration: 150 }}>
-			<a class="back" href={resolve('/demo')}>
+			<a class="back" href={section === 'figures' ? resolve('/figures') : resolve('/demo')}>
 				<HugeiconsIcon icon={ArrowLeft02Icon} size={16} strokeWidth={2} />
-				<span>All demos</span>
+				<span>{section === 'figures' ? 'All figures' : 'All demos'}</span>
 			</a>
 			<div class="titles">
 				{#if kicker}<p class="kicker">{kicker}</p>{/if}

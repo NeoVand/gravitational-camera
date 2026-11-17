@@ -62,7 +62,7 @@
 	/>
 </svelte:head>
 
-<DemoShell title="The four stars" onreset={reset}>
+<DemoShell section="figures" title="The four stars" onreset={reset}>
 	{#snippet stage()}
 		<FourStars {sources} {wave} bind:yaw bind:pitch onmove={(i, p) => (positions[i] = p)} />
 	{/snippet}

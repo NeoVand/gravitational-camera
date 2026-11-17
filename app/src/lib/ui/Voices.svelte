@@ -235,36 +235,37 @@
 <style>
 	.stage {
 		position: absolute;
+		container-type: size;
 		inset: 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 1vh;
-		padding: 4.5rem 1rem 5.5rem;
+		gap: 0.5rem;
+		padding: var(--stage-pad, 4.5rem 1rem 5.5rem);
 		background: radial-gradient(circle at 50% 55%, #10141b 0%, #07090d 70%);
 	}
 	.traces {
-		width: min(52vw, 640px);
+		width: var(--traces-width, min(52cqw, 640px));
 		height: auto;
 	}
 	.skies {
 		display: flex;
-		gap: 1.5vw;
+		gap: 1.5cqw;
 	}
 	.sky {
-		width: min(26vw, 38vh);
+		width: var(--figure-width, min(26cqw, 38cqh));
 		height: auto;
 		touch-action: none;
 		user-select: none;
 		cursor: grab;
 	}
-	@media (orientation: portrait) {
+	@container (aspect-ratio < 1) {
 		.traces {
-			width: 92vw;
+			width: 92cqw;
 		}
 		.sky {
-			width: 44vw;
+			width: 44cqw;
 		}
 	}
 	.sky-disc {

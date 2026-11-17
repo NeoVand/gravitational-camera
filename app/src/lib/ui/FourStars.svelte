@@ -276,31 +276,32 @@
 <style>
 	.skies {
 		position: absolute;
+		container-type: size;
 		inset: 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 0.5vh;
-		padding: 4.5rem 1rem 5.5rem;
+		gap: 0.5rem;
+		padding: var(--stage-pad, 4.5rem 1rem 5.5rem);
 		background: radial-gradient(circle at 50% 45%, #10141b 0%, #07090d 70%);
 	}
 
 	/* gravity above light, in a column between the cards */
 	.sky {
-		width: min(43vh, 36vw);
+		width: var(--figure-width, min(43cqh, 36cqw));
 		height: auto;
 		touch-action: none;
 		user-select: none;
 		cursor: grab;
 	}
 
-	@media (orientation: portrait) {
+	@container (aspect-ratio < 1) {
 		.skies {
 			padding: 4.5rem 1rem 7rem;
 		}
 		.sky {
-			width: min(86vw, 40vh);
+			width: min(86cqw, 40cqh);
 		}
 	}
 

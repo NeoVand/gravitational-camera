@@ -12,6 +12,8 @@
 
 	/** The section being read: the last heading above a line a third of the way down. */
 	let active = $state('');
+	/** Which live figures' panels are open: the drawn ones are only made, and set running, when they are. */
+	let opened: Record<string, boolean> = $state({});
 
 	function followReading(article: HTMLElement) {
 		const headings = Array.from(article.querySelectorAll<HTMLElement>('h2[id]'));
@@ -144,12 +146,16 @@
 						{/if}
 					</div>
 					{#if live}
-						<details class="live" open={'picture' in live}>
+						<details
+							class="live"
+							open={'picture' in live}
+							ontoggle={(e) => (opened[block.id] = e.currentTarget.open)}
+						>
 							<summary>{live.label}</summary>
 							<div class="art">
 								{#if 'picture' in live}
 									<live.picture poster={image} />
-								{:else}
+								{:else if opened[block.id]}
 									<live.drawing />
 								{/if}
 							</div>

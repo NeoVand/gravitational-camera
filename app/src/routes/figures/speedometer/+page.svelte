@@ -55,7 +55,7 @@
 	/>
 </svelte:head>
 
-<DemoShell title="The speedometer in the dark" onreset={reset}>
+<DemoShell section="figures" title="The speedometer in the dark" onreset={reset}>
 	{#snippet stage()}
 		<Speedometer
 			{room}
