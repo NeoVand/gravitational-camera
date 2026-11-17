@@ -64,8 +64,10 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 		if (!x || typeof x !== 'object') return;
 		const n = x as Node;
 		if (n.t === 'Header') {
-			const [level, [id]] = n.c;
-			if (level === 1) {
+			const [level, [id, classes]] = n.c;
+			if ((classes as string[]).includes('unnumbered')) {
+				// \section* and the like: shown, but neither numbered nor listed in the contents
+			} else if (level === 1) {
 				section += 1;
 				subsection = 0;
 				if (id) labels.set(id, String(section));
