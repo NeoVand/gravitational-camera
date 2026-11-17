@@ -538,7 +538,7 @@ test('the four stars: gravity has four, light two, and a moving body is read exa
 	await expect(skies).toHaveCount(2);
 	await expect(skies.nth(0).locator('circle.star')).toHaveCount(4);
 	await expect(skies.nth(1).locator('circle.star')).toHaveCount(2);
-	await expect(page.getByText('one body (Petrov type D)')).toBeVisible();
+	await expect(page.getByText('like one round body (Petrov type D)')).toBeVisible();
 	// the sideways speed read from the stars equals the true one, before and after the body is dragged
 	const speeds = async () =>
 		(

@@ -74,8 +74,8 @@
 
 	const typeWords: Record<string, string> = {
 		N: 'type N: one wave',
-		D: 'type D: could be one body',
-		I: 'type I: more than one source',
+		D: 'type D: like one round body',
+		I: 'type I: not one round body or one wave',
 		II: 'type II',
 		III: 'type III',
 		O: 'no field'

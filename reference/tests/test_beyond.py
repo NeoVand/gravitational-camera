@@ -66,3 +66,25 @@ def test_massive_graviton_against_scalar(n):
     E, B = reading(beyond.scalar_mode() * 1e-3, n, x0=0.0)
     _, _, pol, _ = beyond.invert_one_reading(E, B, e1=E1)
     assert pol["l"] / pol["b"] == pytest.approx(1 - n * n, rel=1e-6)
+
+
+def test_the_wave_vector_from_one_reading_by_least_squares():
+    import math
+
+    import numpy as np
+
+    from gravcam import beyond, curvature
+    from gravcam.constants import c
+
+    rng = np.random.default_rng(3)
+    omega = 2 * math.pi * 100.0
+    for n in (0.8, 1.0, 1.3):
+        k = rng.normal(size=3)
+        k /= np.linalg.norm(k)
+        eps = rng.normal(size=(4, 4))
+        eps = (eps + eps.T) * 1e-3
+        h = beyond.metric_wave(eps, n, k, omega)
+        E, B = curvature.tidal_tensors(curvature.riemann(h, 0.37 * c / omega, np.zeros(3), c / omega * 1e-3))
+        p = beyond.wave_vector(E, B)
+        assert np.allclose(p, n * k, atol=1e-5)
+        assert np.abs(B - beyond.cross_matrix(p) @ E).max() < 1e-5 * np.abs(B).max()

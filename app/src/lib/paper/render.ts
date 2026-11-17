@@ -46,7 +46,10 @@ const IGNORED_RAW = [
 	/^\\centering$/,
 	/^\\bibliographystyle\{[^}]*\}$/,
 	/^\\noaffiliation$/,
-	/^\\affiliation\{[^}]*\}$/
+	/^\\affiliation\{[^}]*\}$/,
+	// page layout for print only
+	/^\\FloatBarrier$/,
+	/^\\clearpage$/
 ];
 
 export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] }): RenderedPaper {

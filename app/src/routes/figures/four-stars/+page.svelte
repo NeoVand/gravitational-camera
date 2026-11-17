@@ -130,8 +130,8 @@
 			<div>
 				<dt>What gravity’s stars say</dt>
 				<dd>
-					{#if reading.type === 'D'}one body (Petrov type D){:else if reading.type === 'N'}one plane
-						wave (type N){:else}more than one source (type {reading.type}){/if}
+					{#if reading.type === 'D'}like one round body (Petrov type D){:else if reading.type === 'N'}one
+						plane wave (type N){:else}not one round body or one wave (type {reading.type}){/if}
 				</dd>
 			</div>
 			{#if reading.read && truth}

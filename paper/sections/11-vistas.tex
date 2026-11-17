@@ -32,9 +32,10 @@ perturbation in harmonic gauge is
 \end{aligned}
 \end{equation}
 with $M$ the mass, $\mathbf J$ the angular momentum and $I_{ij} = \int\rho\,
-x_ix_j\,\dd^3x$ the second moment of the mass, its trace included (outside
-the source the trace changes only the gauge, not the curvature, as the
-reference implementation confirms). It satisfies the gauge condition exactly,
+x_ix_j\,\dd^3x$ the second moment of the mass. For a circular orbit its trace
+is constant, and then it changes only the gauge outside the source, not the
+curvature, as the reference implementation confirms; for a source whose trace
+varies, $I_{ij}$ should be its trace-free part. It satisfies the gauge condition exactly,
 and its curvature gives the tidal field in every zone at once
 \cite{Teukolsky1982}: exactly, within linearized gravity and this truncation
 of the multipoles. Figure~\ref{fig:binary-field} shows it in the plane
@@ -209,7 +210,7 @@ of its temperature, exactly as for the microwave background.
 \item \emph{On large scales it shares the microwave background's spots.} On scales larger
 than the horizon at the time the microwave background was released, the
 Boltzmann equation of any massless species reduces to
-$\dot\Theta = -\dot\Phi$ ($\Theta$ the fractional change of temperature, $\Phi$ that of the spatial metric), the same for gravitons streaming freely as for
+$\dot\Theta = -\dot\Phi$ ($\Theta$ the fractional change of temperature, $\Phi$ that of the spatial metric, $g_{ij} = a^2(1 + 2\Phi)\delta_{ij}$), the same for gravitons streaming freely as for
 photons held in the plasma. With the same adiabatic start, the two arrive at
 that time with the same temperature perturbation, and from then on travel
 together through the same potentials. To this approximation the graviton sky
@@ -244,7 +245,9 @@ Hawking temperature, $\hbar c^3/8\pi GMk_B$, equals $0.905\,\mathrm{K}$ for a
 mass of $1.36\times10^{23}\,\mathrm{kg}$, nearly two masses of the Moon. A
 heavier hole casts a shadow; a lighter one glows against the sky; and one of
 just this mass, in equilibrium with the background, returns in every mode
-exactly what it receives and cannot be seen at all. Spin changes this too. A
+exactly what it receives, and against a uniform sky at that temperature it
+cannot be seen in gravitons at all (it still lenses the sky's spots and
+anything behind it). Spin changes this too. A
 spinning hole amplifies the waves that turn with it, by up to $138\%$ for the
 most favoured mode of a hole spinning near its limit
 \cite{TeukolskyPress1974}, so at wavelengths comparable to its size it would

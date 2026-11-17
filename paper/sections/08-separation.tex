@@ -79,8 +79,8 @@ a solid ball of equal mass and size spinning at the same rate, whose electric
 fields are identical everywhere outside them, differ in $\tB$ by their moments
 of inertia, a factor $5/3$. At equal angular momentum they are identical
 outside, and so motion too can hide. A uniform ball of radius $2^{-1/5}R$
-turning one way inside a shell that reaches to $R$ and turns the other way at
-the same rate has no angular momentum, and outside it no magnetic field at all,
+turning one way inside a shell of the same density that fills the rest of the
+sphere out to $R$ and turns the other way at the same rate has no angular momentum, and outside it no magnetic field at all,
 though all of it moves; the reference implementation confirms the cancellation.
 For a ball turning at angular velocity $\boldsymbol\omega$ about a point
 $\mathbf{s}$, entered and left by the line of sight at distances $0 < a \le b$,
@@ -122,12 +122,14 @@ unchanged if the path is enlarged $\lambda$-fold and the mass
 $\lambda^3$-fold, while $\tB$ grows $\lambda$-fold, because the speed of light
 supplies the scale. From Eq.~\eqref{eq:magnetic-point}, $\tB\hat n =
 (3GM/cr^3)\,\hat n\times\mathbf v$ and $P\dot{\tE}\hat n = -(3GM/r^4)\,\mathbf
-v_\perp$, with $P = 1 - \hat n\hat n$, so
+v_\perp$, with $P = 1 - \hat n\hat n$, so that
 \begin{equation}\label{eq:one-pixel-range}
-r = c\,\frac{|\tB\hat n|}{|P\dot{\tE}\hat n|} ,
+\hat n\times(\tB\hat n) = \frac{r}{c}\,P\dot{\tE}\hat n ,
+\qquad r = c\,\frac{|\tB\hat n|}{|P\dot{\tE}\hat n|} ,
 \end{equation}
-and then $M$ from $\tE$; the sign that makes $r$ positive also fixes the sign
-of $\hat n$. The reference implementation recovers distance, mass and velocity
+and then $M$ from $\tE$. The stretch axis of $\tE$ gives $\hat n$ only up to
+sign; reversing it leaves the left side of the vector relation unchanged and
+reverses the right, so the sign that makes $r$ positive fixes $\hat n$. The reference implementation recovers distance, mass and velocity
 this way from the finite-difference curvature of a moving mass. Motion straight
 toward or away from the pixel gives no range, though it gives the time of
 arrival, Eq.~\eqref{eq:contact}; and the magnetic signal, smaller by $v/c$, sets
@@ -153,20 +155,6 @@ further thing possible. Each image is then a set of line integrals, exactly
 the data of a medical tomograph. Images from several positions can be combined
 into a true three-dimensional map of emissivity, with nothing hidden behind
 anything else.
-
-These statements follow from the fields of
-%   Sections~\ref{sec:pixel}--\ref{sec:waves}; the estimates of how well each
-%   separation works in the presence of noise are still to be made.
-% The text below begins with that paragraph's first sentence, kept. With it in place, the item "how well waves can
-% be separated from nearby pull in the presence of noise, and the limits of the three-dimensional reconstructions of
-% Section~\ref{sec:separation};" of paper/sections/12-status.tex is done, and the promise in the paragraph "How
-% precisely" of paper/sections/02b-one-pixel.tex ("it ranges a moving mass with the precision that
-% Section~\ref{sec:separation} gives") is kept by Eq.~\eqref{eq:magnetic-range}.
-% References: three new entries in paper/drafts/separation_noise.bib (Ross2021, Thompson1982, Reid1990), to be added
-% to paper/refs.bib. Figure: paper/figures/separation-noise.pdf, drawn by paper/figures/fig_separation_noise.py.
-% Every number: reference/gravcam/separation_noise.py (paper_numbers), checked in
-% reference/tests/test_separation_noise.py (test_numbers_quoted_in_the_draft and the tests above it).
-% New labels: eq:magnetic-range, eq:depth-bound, fig:separation-noise.
 
 These statements follow from the fields of
 Sections~\ref{sec:pixel}--\ref{sec:waves}. How well each works against noise

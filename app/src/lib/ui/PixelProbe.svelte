@@ -28,8 +28,8 @@
 		})
 	);
 	const words: Record<string, string> = {
-		D: 'type D: could be one body',
-		I: 'type I: more than one body',
+		D: 'type D: like one round body',
+		I: 'type I: not one round body',
 		N: 'type N: a wave',
 		II: 'type II',
 		III: 'type III',

@@ -90,3 +90,13 @@ def fierz_pauli_helicity0(n: float, k) -> np.ndarray:
 def scalar_mode() -> np.ndarray:
     """h_mu nu = phi eta_mu nu (a massive scalar of scalar-tensor gravity), lower indices."""
     return ETA.copy()
+
+
+def wave_vector(E, B) -> np.ndarray:
+    """p = (c / v_p) k from one reading, by Eq. wave-vector: (|E|^2 - E^2) p = sum_j e_j x b_j over the columns of E
+    and B, which follows from B = [p]x E. Solvable whenever E has rank two or more."""
+    E = np.asarray(E, dtype=float)
+    B = np.asarray(B, dtype=float)
+    H = np.sum(E * E) * np.eye(3) - E @ E
+    d = sum(np.cross(E[:, j], B[:, j]) for j in range(3))
+    return np.linalg.solve(H, d)

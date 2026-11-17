@@ -170,7 +170,7 @@ swirl's field.}\label{fig:silent-flows}
 
 Together the channels go further than any one. For the Earth the glow gives the
 radius of the core, $3480\,\mathrm{km}$, from the kinks in its brightness
-(Figure~\ref{fig:earth-inverted}); the electric part gives the mass; and the
+(Figures~\ref{fig:earth-glow} and~\ref{fig:earth-inverted}); the electric part gives the mass; and the
 magnetic part, with the rate of turning known, gives the moment of inertia,
 $0.331\,MR^2$, the value the Preliminary Reference Earth Model is built to
 match \cite{DziewonskiAnderson1981}. A two-layer Earth with that core, mass and
@@ -298,7 +298,8 @@ $z/\sqrt{\mathcal{R}}$, because the difference they make grows as the square
 of their separation. What limits the image is the variety of scenes allowed,
 not the precision of the data.
 
-\paragraph{A worked case.} The locked safe shows both sides of this. The
+\paragraph{A worked case.} The locked safe (Fig.~\ref{fig:locked-safe}) shows
+both sides of this. The
 empty room and the two safes are known and subtracted; what remains is
 $324\,\mathrm{kg}$ of gold, in one safe or the other, $3.5\,\mathrm{m}$ in
 front of the camera. A square array a metre across, of $11\times11$ pixels,
@@ -333,10 +334,12 @@ better. An array facing a scene obliquely is limited by its nearest pixels.
 \paragraph{A ruler under the ground.} One exact feature survives the blur. Above
 two equal masses $d$ apart, buried at any depth $z$ greater than
 $\tfrac{\sqrt3}{2}d$, the shear of the tidal field in the plane of the array,
-$(\tE_{xx} - \tE_{yy}) + 2i\,\tE_{xy}$, vanishes at exactly two points, on the line
-across the pair and exactly $d$ apart, whatever the depth: on that line
-$\tE_{xy} = 0$ by symmetry and $\tE_{xx} - \tE_{yy}$ is proportional to
-$y^2 - d^2/4$. The two zeros are a ruler laid on the camera, needing no
+$(\tE_{xx} - \tE_{yy}) + 2i\,\tE_{xy}$, vanishes at exactly two points, on the
+perpendicular bisector of the pair (turned $90^\circ$ from the line joining
+the masses) and exactly $d$ apart, whatever the depth: with the masses at
+$x = \pm d/2$, on the bisector $x = 0$ the term $\tE_{xy}$ vanishes by symmetry
+and $\tE_{xx} - \tE_{yy}$ is proportional to $y^2 - d^2/4$. Shallower than
+$\tfrac{\sqrt3}{2}d$, four more zeros appear off the bisector. The two zeros are a ruler laid on the camera, needing no
 reconstruction (Fig.~\ref{fig:buried-ruler}). Noise places each to within about $z^2/6\mathcal{R}d$, so they
 separate two masses once $d$ exceeds about $z/\sqrt{6\mathcal{R}}$: the limit of
 the previous paragraph, now reached by inspection. For unequal masses the zeros
@@ -350,7 +353,8 @@ depth $z$ below the plane of a camera; each panel spans $4.4\,d$ of that plane.
 Top: the ordinary near-field picture, $-\tE_{zz}$, which blurs into one as $z$
 grows. Bottom: the phase of the shear in the plane,
 $(\tE_{xx} - \tE_{yy}) + 2i\,\tE_{xy}$, which turns once around each of two
-zeros (circles). The zeros lie on the line across the pair, exactly $d$ apart
+zeros (circles). The zeros lie on the perpendicular bisector of the pair,
+exactly $d$ apart
 at every depth greater than $\tfrac{\sqrt3}{2}d$.}\label{fig:buried-ruler}
 \end{figure}
 
@@ -418,8 +422,9 @@ sensitivity adds bits only in proportion to its logarithm. In the near field
 there is no aperture to fix the number of patterns; sensitivity sets it
 through $e^{-kz}$, and that is why the power is three rather than one. A single
 pixel, at the other extreme, is limited by geometry rather than noise: from a
-sky of many overlapping sources it learns twenty-five numbers however
-sensitive it is (Section~\ref{sec:no-lens}). And the thermal glow, recorded by
+sky of many overlapping sources it learns twenty-five numbers of its
+brightness, sixty-eight with polarization, however sensitive it is
+(Section~\ref{sec:one-pixel}). And the thermal glow, recorded by
 counting gravitons, is limited by their number: $N$ gravitons over $M$
 resolution cells carry at most about $N\log_2 M$ bits. A camera a metre square
 looking down at the Earth for a year counts about 1{,}750 of them in the model
@@ -495,7 +500,7 @@ need waves.
 \centering
 \includegraphics[width=\textwidth]{figures/locked-safe.pdf}
 \caption{The locked safe, computed. Two identical steel safes
-$3.5\,\mathrm{m}$ away; the right-hand one holds $320\,\mathrm{kg}$ of gold.
+$3.5\,\mathrm{m}$ away; the right-hand one holds $324\,\mathrm{kg}$ of gold.
 (a) Ordinary light, from the same camera. (b) The tidal column $S(\hat n)$ of
 Eq.~\eqref{eq:tidal-column}, exact, with the empty room left out; white lines
 mark the outlines that light shows. (c) The same, blurred by the point spread

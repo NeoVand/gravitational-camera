@@ -29,7 +29,8 @@ five complex numbers. Two facts make this the natural form.
 First, observers transform $\mathcal{W}$ by rotations of three-dimensional space with
 complex angles. A pixel turned by a rotation $R$ reads $R\,\mathcal{W} R^{T}$. A pixel moving
 with rapidity $\eta$ along a unit vector $\hat u$ (speed $c\tanh\eta$) reads
-$\Lambda\,\mathcal{W}\Lambda^{T}$ with $\Lambda = \exp(i\eta\,\hat u\cdot\mathbf{L})$, where
+$\Lambda\,\mathcal{W}\Lambda^{T}$ with $\Lambda = \exp(-i\eta\,\hat u\cdot\mathbf{L})$ (a scene moving
+along $\hat u$ is seen through $\Lambda^{-1}$), where
 $(L_k)_{ij} = -\epsilon_{kij}$ generates rotations: a change of velocity is a
 rotation by an imaginary angle. (The Lorentz group is isomorphic to the group of
 complex rotations, $SO(3,\mathbb{C})$; for the curvature this is the content of
@@ -54,7 +55,8 @@ where $\tE_+$ and $\tE_\times$ are the wave's two polarizations, so that a wave'
 $\mathcal{W}$ has rank one. Conversely the direction of travel is read from $\mathbf{m}$
 as $\hat k = \mathrm{Re}(i\,\mathbf{m}\times\mathbf{m}^*)/|\mathbf{m}|^2$, which for
 one wave of any polarization is the gravitational counterpart of the Poynting
-vector:
+vector, the normalized super-Poynting vector of the curvature
+\cite{MaartensBassett1998}:
 \begin{equation}\label{eq:one-wave}
 \hat n_i = -\,\frac{\epsilon_{ijk}\,\tE_{jl}\,\tB_{kl}}{\tE_{ab}\,\tE_{ab}} ,
 \end{equation}
@@ -80,9 +82,15 @@ the body and opposite it. Where two or more bodies pull, they are four distinct
 points. The same
 distinctions can be read without solving anything, from the invariants: a
 repeated eigenvalue, the mark of a single body, makes
-$1 - 6J^2/I^3$ vanish, and a single wave makes $I = J = 0$ (Petrov's types D and
-N). One reading therefore tells whether the field could be that of one body,
-whether it is a pure wave, or whether it needs more. In the reference
+$1 - 6J^2/I^3$ vanish, and a single wave makes $\mathcal W$ itself a square,
+$\mathcal W^2 = 0$ (Petrov's types D and N; $I = J = 0$ alone would also allow
+type III). One reading therefore tells whether the field could be that of one
+round body, whether it is a pure wave, or whether it needs more. The type
+describes the field, not the objects: two masses on one line through the pixel
+also give type D, and one body that is not round gives type I. Nor can one
+instant tell every pull from every wave: two waves running in opposite
+directions can match, at one event, the tide of two masses at rest, and only a
+record over time, or over space, tells them apart. In the reference
 implementation the quantity $1 - 6J^2/I^3$ is below $10^{-8}$, rounding, for a
 single moving body, and $0.02$ for two bodies at comparable distances.
 Light at a point has two stars, not four: its $\mathbf{E} + ic\mathbf{B}$ has
@@ -119,8 +127,10 @@ imaginary one. The three complex eigenvalues, which sum to zero, are four
 numbers no observer can change. The rotation $R_0$ gives three angles, the
 orientation of the field's own axes. The imaginary part,
 $e^{2iK_0} = P^{\dagger}P$, gives three more: the velocity of the one frame in
-which $\tE$ and $\tB$ share their axes, the field's own rest frame. Ten numbers,
-read as four, three and three.
+which $\tE$ and $\tB$ share their axes, the field's own rest frame (the
+principal observer of Ref.~\cite{CostaWyllemanNatario2021}; for a field of type I
+it is unique, and it is the rest frame of matter only for a stationary
+source). Ten numbers, read as four, three and three.
 
 The consequences are immediate. For a scene of masses at rest, $\tB = 0$ in the
 scene's frame, so its eigenvalues are real; a pixel moving through it at any
@@ -134,7 +144,8 @@ principal axes of $\tE$ with eigenvalues $\lambda_a$,
 \tB_{bc} = \frac{v_a}{c}\,(\lambda_c - \lambda_b) \quad ((a,b,c)\ \text{cyclic}),
 \qquad \tB_{aa} = 0 ,
 \end{equation}
-so a pixel whose readings carry white noise $\sigma$ on each component reads
+so a pixel whose readings carry white noise $\sigma$ on each component (in the
+orthonormal basis of the paragraph \emph{How precisely}) reads
 each component of its velocity to within
 $c\,\sigma/\sqrt2\,|\lambda_b - \lambda_c|$. A pixel that reads the tide of a
 room, $10^{-8}\,\mathrm{s^{-2}}$ near a person, to one part in $10^{8}$, reads its
@@ -208,14 +219,17 @@ two fourth powers \cite{Sylvester1851} in the language of the sky. Light cannot
 do it at all: a single wave already uses four of its six numbers.
 
 At one frequency, three waves can be separated. Writing the reading as
-$\mathcal{W}(t) = \mathcal{W}_+e^{-i\omega t} + \mathcal{W}_-e^{i\omega t}$, both parts are sums
+$\mathcal{W}(t) = \mathcal{W}_+e^{-i\omega t} + \mathcal{W}_-e^{i\omega t}$ (since $\mathcal W$ is
+complex, $\mathcal W_-$ is not the conjugate of $\mathcal W_+$), both parts are sums
 over the same three squares, $\mathcal{W}_\pm = \sum_a \alpha_a^\pm\,
 \mathbf{m}_a\mathbf{m}_a^{T}$, and
 \begin{equation}\label{eq:pencil}
 \det(\mathcal{W}_+ - \lambda\,\mathcal{W}_-) = \det[\mathbf{m}_1,\mathbf{m}_2,\mathbf{m}_3]^2
 \prod_{a=1}^{3}(\alpha^+_a - \lambda\,\alpha^-_a) .
 \end{equation}
-Its three roots give the ratios $\lambda_a = \alpha_a^+/\alpha_a^-$; at each, one
+Its three roots give the ratios $\lambda_a = \alpha_a^+/\alpha_a^-$, which must be
+distinct (two face-on binaries turning the same way share one; any three distinct
+directions give $\det[\mathbf m_1,\mathbf m_2,\mathbf m_3] \neq 0$); at each, one
 wave drops out, the null vector of what remains is the cross product of the other
 two $\mathbf{m}$, and cross products of those give all three directions. For a
 circular binary seen at inclination $\iota$, $|\lambda| = \tan^{\pm4}(\iota/2)$,
@@ -225,7 +239,8 @@ pixel (to $10^{-9}$ in the reference implementation).
 
 Over time, four. If the waves come from fixed directions but carry any
 waveforms at all, the readings span a subspace of the five-dimensional space of
-matrices; for four waves it is four-dimensional, and there is one matrix $A$ with
+matrices; for four waves whose waveforms are linearly independent it is
+four-dimensional, and there is one matrix $A$ with
 $\mathrm{tr}(A\mathcal{W}) = 0$ for every reading. Each wave's $\mathbf{m}$ then lies on
 two conics,
 \begin{equation}\label{eq:four-waves}
@@ -292,8 +307,10 @@ anything else. The brightness and the circular polarization never mix at one
 pixel: one lives in the real part of the spectral matrix, the other in its
 imaginary part. (They mix in the cross-correlation of two separated detectors
 \cite{AllenOttewill1997,SetoCooray2004}, through the phase between them.) The
-same count for a point sensor of spin $s$ gives $2(2s+1)^2 + 2(4s+1)$: $28$ of
-$36$ for light. For sound, a pressure and a velocity, it is $9$ of $16$. All
+same count for a point sensor of a transverse field of spin $s \ge 1$, with two
+helicities, gives $2(2s+1)^2 + 2(4s+1)$: $28$ of $36$ for light. Sound, a
+pressure and a velocity, has one longitudinal polarization and is counted
+separately: $9$ of $16$. All
 three counts are checked in the reference implementation
 (Fig.~\ref{fig:sky-count}).
 
@@ -337,12 +354,18 @@ The field of a real source at distance $r$ is not quite a plane wave: it carries
 terms falling as $1/r^2$, $1/r^3$ and beyond, organized by how they turn about
 the line of sight \cite{Sachs1962}, and a pixel sees them. At one instant the
 departure of the oscillating part of $\mathcal{W}$ from rank one, the ratio of its
-second singular value to its first, is
+second singular value to its first (the singular values $s_1 \ge s_2 \ge s_3$
+being the square roots of the eigenvalues of $\mathcal W^\dagger\mathcal W$, not
+the eigenvalues of $\mathcal W$, which all vanish for a wave), is
 \begin{equation}\label{eq:ranging-instant}
 \frac{s_2}{s_1} = \frac{C(\iota, \theta)}{(kr)^2} + O\bigl((kr)^{-3}\bigr),
 \end{equation}
-not $1/kr$: the first correction only tilts the apparent $\mathbf{m}$, which at one
-instant cannot be told from a tilt of the source. For two masses turning in a
+not $1/kr$: the first correction, $\mathbf m\,\delta\mathbf m^T + \delta\mathbf m\,\mathbf m^T$
+with $\delta\mathbf m \propto \hat k$, equals $(\mathbf m + \delta\mathbf m)(\mathbf m +
+\delta\mathbf m)^T$ to that order, and only tilts the apparent $\mathbf{m}$, which at one
+instant cannot be told from a tilt of the source. The oscillating part is read
+at one instant from $\dot{\mathcal W}$, which holds none of the static tide of the
+pair's mass, $(c/v)^2$ times larger than the departure. For two masses turning in a
 circle, seen at inclination $\iota$ and wave phase $\theta$,
 \begin{equation}\label{eq:ranging-C}
 \begin{gathered}
@@ -352,16 +375,22 @@ A = (1 - 3\cos^2\!\iota)\cos^2\!\theta - 4\cos^2\!\iota\,\sin^2\!\theta,\\
 D = (1 + \cos^2\!\iota)^2\cos^2\!\theta + 4\cos^2\!\iota\,\sin^2\!\theta,
 \end{gathered}
 \end{equation}
-which is $2$ for any phase seen edge on and vanishes at the angle
-$\cos^2\iota = 1/3$. Over a cycle more can be done. The two frequency parts
-$\mathcal{W}_\pm$ depart from rank one by $2\tan^{\pm2}(\iota/2)/(kr)^2$, so that
+which is $2$ for any phase seen edge on and, at the phases $\theta = 0$ and
+$\pi$, vanishes at the angle $\cos^2\iota = 1/3$. Over a cycle more can be done. The two frequency parts
+$\mathcal{W}_\pm$ (the parts at $e^{\mp i\omega t}$, whose amplitudes go as
+$\cos^4(\iota/2)$ and $\sin^4(\iota/2)$) depart from rank one by
+$2\tan^{\pm2}(\iota/2)/(kr)^2$, both with the same $s_2$, so that
 $kr = [2\sqrt{s_1(\mathcal{W}_+)s_1(\mathcal{W}_-)}/s_2(\mathcal{W}_+)]^{1/2}$ needs no knowledge of the
 inclination. And the first-order tilt, invisible at one instant, differs between
 the two helicities: the directions read from the two parts differ by
 \begin{equation}\label{eq:helicity-split}
 \Delta\theta_\pm = \frac{8\,|\cot\iota|}{kr} .
 \end{equation}
-A difference of directions measured at signal-to-noise ratio $\rho$ ranges the
+Equation~\eqref{eq:helicity-split} holds while $\tan^2(\iota/2)$ and
+$\cot^2(\iota/2)$ both exceed $1/kr$; near face-on the weaker helicity's
+amplitude falls as $\tan^4(\iota/2)$, so its direction, not the formula, limits
+the range, and a full fit over distance, inclination and orientation gives the
+best inclination. A difference of directions measured at signal-to-noise ratio $\rho$ ranges the
 source out to $kr$ of order $\rho$, where the rank departure reaches only $kr$
 of order $\sqrt\rho$. A source seen at $\rho = 10^{3}$ can be ranged out to
 several hundred reduced wavelengths: at $100\,\mathrm{Hz}$, a few hundred
@@ -426,9 +455,17 @@ field equations assumed,
 \tB_{ij} = \frac{c}{v_p}\,\epsilon_{ipq}\hat k_p\,\tE_{qj} .
 \end{equation}
 So one reading of $\tE$ (now with a trace, six numbers) and $\tB$ (with an
-antisymmetric part, eight) gives the direction ($\hat k$ is the null vector of
-$\tB$ from the left), the phase speed, all six polarizations, and five checks that
-they belong to one wave. In general relativity $v_p = c$ and only the two tensor
+antisymmetric part, eight) gives the direction, the phase speed, all six
+polarizations, and five checks that they belong to one wave. Summing
+$\mathbf e_j \times \mathbf b_j$ over the columns of $\tE$ and $\tB$ turns
+Eq.~\eqref{eq:bianchi-wave} into a linear equation for
+$\mathbf p = (c/v_p)\hat k$,
+\begin{equation}\label{eq:wave-vector}
+\bigl(|\tE|^2 - \tE^2\bigr)\,\mathbf p = \textstyle\sum_j \mathbf e_j\times\mathbf b_j ,
+\end{equation}
+whose matrix is invertible whenever $\tE$ has rank two or more; the residual
+$\tB - [\mathbf p]_\times\tE$ then tests that the reading is one wave. A purely longitudinal wave, $\tE \propto \hat k\hat k$,
+has $\tB = 0$, and its speed cannot be read at one point. In general relativity $v_p = c$ and only the two tensor
 polarizations appear. A massive graviton and a massive scalar differ even in
 sign: with $n = c/v_p$, the helicity-zero wave of a Fierz--Pauli graviton
 \cite{FierzPauli1939} has longitudinal and breathing amplitudes in the ratio
@@ -454,24 +491,31 @@ $+(1 - n^2)$ (lines). The two differ in sign at every speed, and both ratios
 vanish as the speed approaches $c$.}\label{fig:beyond}
 \end{figure*}
 
-\paragraph{How precisely.} With white noise $\sigma$ on each of the ten numbers
-and $\rho = |\mathcal{W}|/\sigma$, one pixel places one wave to within $1/\rho$ radian in
+\paragraph{How precisely.} With white noise $\sigma$ on each of the ten numbers,
+taken as the coefficients of $\tE$ and $\tB$ in an orthonormal basis of
+symmetric trace-free tensors ($e^A_{ij}e^B_{ij} = \delta^{AB}$, so that an
+off-diagonal entry carries $\sigma/\sqrt2$), and $\rho = |\mathcal{W}|/\sigma$, one pixel places one wave to within $1/\rho$ radian in
 each direction, against $\sqrt2/\rho$ for a sensor of light at the same
 signal-to-noise ratio; it reads its own velocity as given after
 Eq.~\eqref{eq:speedometer}; and it ranges a moving mass with the precision that
-Section~\ref{sec:separation} gives.
+Section~\ref{sec:separation} gives. Table~\ref{tab:one-pixel} sets these
+counts beside those of a sensor of light.
 
 \paragraph{Matter at the pixel.} Inside matter the pixel reads the density
 locally, whatever the matter is: in full,
-$\mathrm{tr}\,\tE = 4\pi G(\rho + 3p/c^2)$, less $2\Omega^2$ if the pixel's frame
+$\mathrm{tr}\,\tE = 4\pi G[\rho + (p_1 + p_2 + p_3)/c^2]$, with $p_a$ the
+principal stresses (so $3p$ for a fluid), less $2\Omega^2$ if the pixel's frame
 turns at $\Omega$. The dark matter around the Sun, $0.4\,\mathrm{GeV\,cm^{-3}}$,
 gives $6\times10^{-31}\,\mathrm{s^{-2}}$, by its mass alone and with no other
-interaction. Between two plates a micrometre apart the Casimir energy is
-negative and its pressure large, and the trace is negative,
-$-8\times10^{-30}\,\mathrm{s^{-2}}$. The cosmological constant gives
+interaction. Between two plates a micrometre apart the Casimir energy density $u$ is
+negative; the stress across the plates is $3u$ and the two along them $-u$
+each, since the field has no trace, so the sum of stresses is $u$ and the trace,
+$8\pi Gu/c^2$, is $-8\times10^{-30}\,\mathrm{s^{-2}}$. The cosmological constant gives
 $-\Lambda c^2 = -1\times10^{-35}\,\mathrm{s^{-2}}$. Where radiation streams
-through, as neutrinos from a supernova do, the trace gives its energy flux and the
-antisymmetric part of $\tB$ its direction (Section~\ref{sec:pixel}), so that
+through with energy flux $\mathbf F$, as neutrinos from a supernova do, the trace
+is $8\pi G|\mathbf F|/c^3$ and the antisymmetric part of $\tB$,
+$-(4\pi G/c^3)\,\epsilon_{ijk}F_k$, gives the flux as a vector
+(Section~\ref{sec:pixel}), so that
 one reading inside the passing shell points back to the star, even when the
 collapse is perfectly spherical and sends out no waves at all.
 

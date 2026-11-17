@@ -150,17 +150,22 @@ density of conduction electrons, $m$ their mass and $v_F$ their Fermi speed. The
 weight, $\tfrac25 nE_F$, is $38\,\mathrm{GPa}$ in copper, and with its collision
 time, $2.5\times10^{-14}\,\mathrm{s}$ \cite{Hirayama2011}, $\omega\tau$ is about
 one at the frequencies of heat, where the electrons rub most: whatever $\tau$,
-the friction cannot exceed $\tfrac1{10}\,nmv_F^2/\omega$. We give that bound for
-iron, whose electrons are not free.
+the friction cannot exceed $\tfrac1{10}\,nmv_F^2/\omega$. For iron, whose
+electrons are not free, we give that bound: an envelope over every collision
+time, not the spectrum of any one metal.
 
 \emph{Driven vibrations.} In a crystal with two atoms in its cell a uniform
 shear pushes one set of atoms against the other \cite{Tanner2021}, and so drives
-the optical vibration seen in Raman scattering. Silicon glows in a line at
+the optical vibration seen in Raman scattering; single-phonon absorption of
+high-frequency waves has been computed for crystal detectors
+\cite{KahnSchutteEngelTrickle2024}. Silicon glows in a line at
 $520\,\mathrm{cm^{-1}}$ ($15.6\,\mathrm{THz}$), where its friction,
 $0.03\,\mathrm{Pa\,s}$, is thirty times the placeholder. The line's weight is the
 stiffness the shear loses when the atoms relax, $M\omega_0^2\zeta^2/8a =
 30\,\mathrm{GPa}$, with $M$ the atomic mass, $\omega_0$ the line, $a$ the cubic
-lattice constant and $\zeta$ Kleinman's parameter. In a glass, disorder lets a
+lattice constant and $\zeta = 0.54$ Kleinman's parameter. Only three of a
+wave's five shears drive the line, so averaged over directions its weight is
+$18\,\mathrm{GPa}$. In a glass, disorder lets a
 uniform shear drive every vibration \cite{LemaitreMaloney2006,Damart2017}; in
 silica the weight is about the shear modulus \cite{Leonforte2006}, spread over
 the band below $27\,\mathrm{THz}$. In water the stretching of hydrogen bonds near
@@ -174,13 +179,15 @@ volume it is $\tfrac12\,\dd^2/\dd t^2 \sum m u_x u_y$, summed over the atoms,
 which oscillates at sums of two phonon frequencies. A wave thus makes and
 unmakes pairs of phonons of opposite momentum, up to twice the highest phonon
 frequency. This weak channel, of classical weight $2nk_BT$ with $n$ the number of
-atoms per volume, about a gigapascal at room temperature, is the only one in an
+atoms per volume, about a gigapascal at room temperature (the reference
+implementation keeps the quantum occupations, which matter for diamond, whose
+Debye temperature is $2200\,\mathrm{K}$), is the only one in an
 insulating crystal with one atom in its cell; anharmonicity changes it by a
 factor of order one, and it makes an eighth of diamond's glow. Akhiezer's
 damping of sound, the relaxation of the thermal phonons in a time $\tau$, puts a
-similar weight near zero frequency; at the frequencies of heat its tail is
-smaller than the pair band by about $\omega_D\tau$, a thermal phonon's quality
-factor.
+similar weight near zero frequency; at a frequency $\omega$ its tail is
+smaller than the pair band by about $\omega_D\tau\,(\omega/\omega_D)^2$, with
+$\omega_D\tau$ a thermal phonon's quality factor.
 
 At room temperature these materials glow at one to sixty per cent of the
 placeholder's power (Table~\ref{tab:materials}): $10^{-3}\,\mathrm{Pa\,s}$ is an
@@ -276,12 +283,13 @@ the thermal glow that follows is \cite{DehnenRomeroSchaefer1984}
 L_S = 4\pi R^2\,\frac{\pi^2}{24}\Bigl(1 + \frac{3c_T}{2c_L}\Bigr)
 \frac{G\rho\,c_T^3\,(k_BT)^2}{\hbar c^5} ,
 \end{equation}
-with $c_T$ and $c_L$ the speeds of shear and compressional sound: by
-Kirchhoff's law, a surface that absorbs the fraction
-$\pi^2(1 + 3c_T/2c_L)\,G\rho c_T^3/c^3\omega^2$ of a wave, Dyson's absorption
-with its constant. Friction inside, $\mathrm{Re}\,\eta = \rho c_T^2/\omega Q$ for
-sound of quality factor $Q$, makes the volume glow by Eq.~\eqref{eq:kirchhoff},
-with $L_V = V\,32\zeta(3)\,G\rho c_T^2 (k_BT)^3/\pi c^5 Q\hbar^2$, and
+with $c_T$ and $c_L$ the speeds of shear and compressional sound. By
+Kirchhoff's law this is the glow of a surface that absorbs the fraction
+$\pi^2(1 + 3c_T/2c_L)\,G\rho c_T^3/c^3\omega^2$ of a wave, which is Dyson's
+absorption with its constant. Friction inside, $\mathrm{Re}\,\eta = \rho c_T^2/\omega Q$ for
+sound of quality factor $Q$, makes the volume glow by Eq.~\eqref{eq:kirchhoff};
+since this friction falls as $1/\omega$, the power grows as $T^3$ rather than
+$T^4$, with $L_V = V\,32\zeta(3)\,G\rho c_T^2 (k_BT)^3/\pi c^5 Q\hbar^2$, and
 \begin{equation}\label{eq:volume-surface}
 \frac{L_V}{L_S} = \frac{256\,\zeta(3)}{\pi^3\,(1 + 3c_T/2c_L)}\,
 \frac{R}{\ell_s} ,
