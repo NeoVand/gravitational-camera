@@ -493,6 +493,42 @@ test('two black holes: the field turns, and stops when told to', async ({ page }
 	expect(distance(c, d), JSON.stringify({ c, d })).toBeLessThan(1);
 });
 
+test('the four stars: gravity has four, light two, and a moving body is read exactly', async ({
+	page
+}) => {
+	await page.goto('/demo/four-stars/');
+	const skies = page.locator('svg.sky');
+	await expect(skies).toHaveCount(2);
+	await expect(skies.nth(0).locator('circle.star')).toHaveCount(4);
+	await expect(skies.nth(1).locator('circle.star')).toHaveCount(2);
+	await expect(page.getByText('one body (Petrov type D)')).toBeVisible();
+	// the sideways speed read from the stars equals the true one, before and after the body is dragged
+	const speeds = async () =>
+		(
+			await page
+				.locator('dd', { has: page.locator('.katex') })
+				.first()
+				.innerText()
+		).split('⋅');
+	const [read, truth] = await speeds();
+	expect(read.trim()).toBe(truth.trim());
+	const body = skies.nth(0).locator('[data-source="0"]');
+	const box = (await body.boundingBox())!;
+	await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+	await page.mouse.down();
+	await page.mouse.move(box.x + box.width / 2 + 40, box.y + box.height / 2 - 60, { steps: 6 });
+	await page.mouse.up();
+	const [read2, truth2] = await speeds();
+	expect(read2.trim()).toBe(truth2.trim());
+	expect(truth2.trim()).not.toBe(truth.trim());
+	await page.getByRole('button', { name: 'Two', exact: true }).click();
+	await expect(page.getByText('more than one source (type I)')).toBeVisible();
+	await expect(skies.nth(1).locator('circle.star')).toHaveCount(2);
+	await page.getByRole('button', { name: 'A wave', exact: true }).click();
+	await expect(page.getByText('one plane wave (type N)')).toBeVisible();
+	await expect(skies.nth(0).locator('circle.star')).toHaveCount(4);
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();

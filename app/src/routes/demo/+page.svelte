@@ -6,6 +6,7 @@
 		GalaxyIcon,
 		Orbit01Icon,
 		PlayIcon,
+		Target02Icon,
 		TemperatureIcon,
 		WavesIcon
 	} from '@hugeicons/core-free-icons';
@@ -14,6 +15,7 @@
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 
 	const regimeIcons = {
+		'one pixel': Target02Icon,
 		'near field': Orbit01Icon,
 		thermal: TemperatureIcon,
 		waves: WavesIcon,

@@ -50,6 +50,8 @@ import math
 import numpy as np
 from scipy.linalg import expm, logm, null_space
 
+from .constants import G, c as C_LIGHT
+
 # --- the five complex coordinates ----------------------------------------------------------------------------------
 
 STF = np.array([
@@ -159,6 +161,57 @@ def _quartic_roots_directions(A) -> np.ndarray:
     while len(out) < 4:                      # a root at infinity: m ~ (-1, i, 0)
         out.append(direction(np.array([-1.0, 1j, 0.0])))
     return np.array([_TURN @ d for d in out])
+
+
+def _boost(v) -> np.ndarray:
+    """The complex rotation L = exp(i eta [u]x) that carries a field from the rest frame of a body moving with
+    velocity v (m/s) into the frame in which it moves: W = L W0 L^T, F = L F0."""
+    v = np.asarray(v, dtype=float)
+    speed = np.linalg.norm(v)
+    if speed == 0:
+        return np.eye(3, dtype=complex)
+    u = v / speed
+    eta = math.atanh(speed / C_LIGHT)
+    K = np.array([[0.0, -u[2], u[1]], [u[2], 0.0, -u[0]], [-u[1], u[0], 0.0]])
+    # exp(theta K) = 1 + sin(theta) K + (1 - cos(theta)) K^2 (K^3 = -K), at theta = i eta
+    return np.eye(3) + 1j * math.sinh(eta) * K + (1 - math.cosh(eta)) * (K @ K)
+
+
+def _rest_separation(R, v) -> np.ndarray:
+    """The separation from a body to the pixel in the body's rest frame, from R between their present positions."""
+    v = np.asarray(v, dtype=float)
+    speed = np.linalg.norm(v)
+    if speed == 0:
+        return np.asarray(R, dtype=float)
+    u = v / speed
+    gamma = 1 / math.sqrt(1 - (speed / C_LIGHT) ** 2)
+    return R + (gamma - 1) * (R @ u) * u
+
+
+def moving_masses_W(masses, positions, velocities, x=(0.0, 0.0, 0.0)) -> np.ndarray:
+    """W at x of point masses (kg) moving uniformly, from their present positions (m) and velocities (m/s): each
+    one's static tide at the rest-frame separation, carried by the boost. Exact in linearized gravity, and equal to
+    the curvature of curvature.boosted_masses_metric (tests)."""
+    x = np.asarray(x, dtype=float)
+    W = np.zeros((3, 3), dtype=complex)
+    for M, p, v in zip(masses, positions, velocities):
+        Rp = _rest_separation(x - np.asarray(p, dtype=float), v)
+        r = np.linalg.norm(Rp)
+        n = Rp / r
+        L = _boost(v)
+        W += L @ (G * M / r ** 3 * (np.eye(3) - 3 * np.outer(n, n))) @ L.T
+    return W
+
+
+def moving_charges_F(charges, positions, velocities, x=(0.0, 0.0, 0.0)) -> np.ndarray:
+    """F = E + icB at x of point charges (in units with E = q R / r^3) moving uniformly: each one's Coulomb field at
+    the rest-frame separation, carried by the same boost; equal to Heaviside's field of a uniformly moving charge."""
+    x = np.asarray(x, dtype=float)
+    F = np.zeros(3, dtype=complex)
+    for q, p, v in zip(charges, positions, velocities):
+        Rp = _rest_separation(x - np.asarray(p, dtype=float), v)
+        F += _boost(v) @ (q * Rp / np.linalg.norm(Rp) ** 3)
+    return F
 
 
 def stars(W) -> np.ndarray:

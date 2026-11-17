@@ -12,15 +12,27 @@ export interface DemoEntry {
 		| 'beam-in-the-dark'
 		| 'milky-way'
 		| 'black-hole'
-		| 'two-black-holes';
+		| 'two-black-holes'
+		| 'four-stars';
 	title: string;
 	affordance: string;
 	summary: string;
-	/** Which of the camera's three regimes the demo shows, or the sky (the paper's vistas). */
-	regime: 'near field' | 'thermal' | 'waves' | 'sky';
+	/**
+	 * Which of the camera's three regimes the demo shows, the sky (the paper's vistas), or what a single pixel's
+	 * ten numbers say (the paper's Section III).
+	 */
+	regime: 'one pixel' | 'near field' | 'thermal' | 'waves' | 'sky';
 }
 
 export const demos: DemoEntry[] = [
+	{
+		slug: 'four-stars',
+		title: 'The four stars',
+		affordance: 'One point, four directions',
+		regime: 'one pixel',
+		summary:
+			'Each reading of a gravitational pixel has four directions of its own; light’s has two. They tell one body from two, a wave from a pull, and how fast a body crosses the sky.'
+	},
 	{
 		slug: 'sun-at-midnight',
 		title: 'The Sun at midnight',

@@ -113,6 +113,20 @@ def coulomb_F(charges, positions, velocities, x=np.zeros(3)):
     return F
 
 
+def test_closed_form_fields_of_moving_sources():
+    """moving_masses_W (each body's static tide at its rest-frame separation, carried by the boost exp(i eta [u]x))
+    equals the curvature of the exact boosted metric; moving_charges_F equals Heaviside's field."""
+    for beta in (0.0, 0.3, 0.9):
+        masses = rng.uniform(1e3, 5e3, 3)
+        pos = rng.normal(size=(3, 3)) * 2
+        vel = [unit(rng.normal(size=3)) * beta * c for _ in range(3)]
+        W = field_W(cv.boosted_masses_metric(masses, pos, vel))
+        assert np.linalg.norm(pixel.moving_masses_W(masses, pos, vel) - W) < 1e-7 * np.linalg.norm(W)
+        charges = rng.uniform(0.5, 2, 3)
+        F = pixel.moving_charges_F(charges, pos, [v / c * pixel.C_LIGHT for v in vel])
+        np.testing.assert_allclose(F, coulomb_F(charges, pos, [v / c for v in vel]), rtol=1e-12, atol=1e-14)
+
+
 def test_light_has_two_stars_and_cannot_count_charges():
     # a plane wave: a double star on its direction of travel
     for _ in range(5):

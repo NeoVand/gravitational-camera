@@ -1,4 +1,7 @@
-/** Stills of each demo (made by scripts/posters.mjs), by slug. */
+/**
+ * Stills of each demo, by slug: those drawn on a canvas made by scripts/posters.mjs, the drawn ones (the one-pixel
+ * demos) from a screenshot of their stage.
+ */
 import { asset } from '$app/paths';
 
 export const posters: Record<string, string> = {
@@ -13,5 +16,6 @@ export const posters: Record<string, string> = {
 	'beam-in-the-dark': asset('posters/beam-in-the-dark.jpg'),
 	'milky-way': asset('posters/milky-way.jpg'),
 	'black-hole': asset('posters/black-hole.jpg'),
-	'two-black-holes': asset('posters/two-black-holes.jpg')
+	'two-black-holes': asset('posters/two-black-holes.jpg'),
+	'four-stars': asset('posters/four-stars.jpg')
 };
