@@ -35,11 +35,38 @@ at speed $v$ through distances comparable with its size. The wavelength then
 exceeds the body by the factor by which light outruns it. No aperture can
 resolve an object much smaller than the wavelength it is seen by, so a compact,
 slowly moving body is a point in its own radiation. The exceptions are sources whose motion is
-small compared with their size: in general the wave sent in direction $\hat n$
-at frequency $\omega$ is set by the Fourier transform of the stress,
-$\tilde T_{kl}(\omega, \mathbf k)$, at $\mathbf k = \omega\hat n/c$, and a large
-body vibrating with small amplitude, or many small sources driven in step, can
-be larger than its wavelength and show a form.
+small compared with their size: a large body vibrating with small amplitude,
+or many small sources driven in step, can be larger than its wavelength and
+show a form (Eq.~\eqref{eq:wave-zone} below).
+
+\paragraph{A source larger than its wave.} Far from any source, of whatever
+size and speed, the wave is
+\begin{equation}\label{eq:wave-zone}
+h_{ij}^{\TT}(\omega, R\hat n) = \frac{4G}{c^4 R}\,e^{i\omega R/c}\,
+\Lambda_{ij,kl}(\hat n)\,\tilde T_{kl}\!\left(\omega, \frac{\omega\hat n}{c}\right),
+\end{equation}
+with $\Lambda$ the transverse traceless projection and $\tilde T_{kl}(\omega,
+\mathbf k) = \int T_{kl}\,e^{i\omega t - i\mathbf k\cdot\mathbf x}\,\dd t\,
+\dd^3x$: each direction carries one Fourier component of the stress, on the
+sphere $|\mathbf k| = \omega/c$. A camera at distance $R$ whose aperture $D$
+spans the directions within $D/R$ of the source reads a cap of that sphere,
+and so sees the source with detail $\lambda R/D$, as any aperture does. A
+compact source is the point $\mathbf k \to 0$, Eq.~\eqref{eq:quadrupole}. The
+simplest source larger than its wave is many compact ones driven in step,
+such as the generators of a continental power grid, which turn together over
+distances greater than the $3000\,\mathrm{km}$ wavelength of their waves. Its
+wave is that of one rotor times the sum $\sum_s e^{-i\phi_s - i\omega\hat
+n\cdot\mathbf x_s/c}$ over their positions and phases. Close together they
+add their amplitudes, and $N$ rotors radiate $N^2$ times the power of one; far
+apart they add their powers, $N$ times. Such a source does show its form, but
+the camera must undo, for each point of the source, the delays from that
+point, not those of a plane wave, because an aperture wide enough to resolve
+it lies in its Fresnel zone, $D^2 \gg \lambda R$; and two sources in step are
+separated only once $D \gtrsim 1.4\,\lambda R/s$ for a separation $s$, against
+about $\lambda R/s$ for sources that are not, the familiar penalty of imaging
+in coherent light. The reference implementation checks
+Eq.~\eqref{eq:wave-zone} against the exact sum of the rotors' waves, which it
+approaches as $1/R$, the two limits of the power, and the image.
 
 \paragraph{What the point tells.} The radiation is not the same in all
 directions, and it is polarized (Figure~\ref{fig:quadrupole}). Along the axis
