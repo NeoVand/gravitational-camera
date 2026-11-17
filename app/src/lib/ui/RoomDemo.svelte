@@ -324,7 +324,7 @@
 				the inverse of its distance, blurred by the limit that noise sets. “Outline” adds a faint
 				copy of the shapes in the ordinary picture so they can be matched to masses. “Tidal field”
 				shows what the camera records before any image is computed: the tensor at every point of a
-				slice through the room.
+				slice through the room, all at the distance from the camera the slider sets.
 			</p>
 			{#if hasRoom}
 				<p class="fine">

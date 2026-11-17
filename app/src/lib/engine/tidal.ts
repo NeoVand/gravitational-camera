@@ -91,8 +91,9 @@ export function anisotropy(e: number[]): number {
 }
 
 /**
- * The typical size of the tidal field on a slice across the view at `depth`
- * metres: the median over a 7 x 5 grid of points spanning the picture, in s⁻².
+ * The typical size of the tidal field on the slice the field view draws, the points
+ * `depth` metres from the camera: the median over a 7 x 5 grid of directions
+ * spanning the picture, in s⁻².
  * The field view draws strengths relative to it.
  */
 export function sliceReference(
@@ -109,9 +110,9 @@ export function sliceReference(
 		for (let i = 0; i < 7; i++) {
 			const sx = ((i / 6) * 2 - 1) * t * aspect;
 			const sy = ((j / 4) * 2 - 1) * t;
-			const at: Vec3 = [0, 1, 2].map(
-				(k) => observer[k] + depth * (forward[k] + sx * right[k] + sy * up[k])
-			) as Vec3;
+			const ray = [0, 1, 2].map((k) => forward[k] + sx * right[k] + sy * up[k]);
+			const norm = Math.hypot(...ray);
+			const at = ray.map((d, k) => observer[k] + (depth * d) / norm) as Vec3;
 			sizes.push(anisotropy(tidalTensor(points, at)));
 		}
 	}

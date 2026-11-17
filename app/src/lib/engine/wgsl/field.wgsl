@@ -122,10 +122,12 @@ fn stretch_axis(m: mat3x3f) -> vec4f {
   return vec4f(normalize(v), size);
 }
 
-// The traceless tidal tensor at the point where the ray along rd crosses the slice.
+// The traceless tidal tensor where the ray along rd (a unit vector) crosses the
+// slice: the points at one distance from the camera. A sphere around the camera,
+// not a plane, so that a body's cut lies in a cone about its direction and the
+// projection stretches it as it stretches the body's outline.
 fn slice_tensor(rd: vec3f) -> mat3x3f {
-  let f = frame.forward.xyz;
-  let x = rd * (frame.field.x / max(dot(rd, f), 1e-3));
+  let x = rd * frame.field.x;
   var e = tidal_at(x);
   let tr = (e[0][0] + e[1][1] + e[2][2]) / 3.0;
   return e - tr * mat3x3f(vec3f(1.0, 0.0, 0.0), vec3f(0.0, 1.0, 0.0), vec3f(0.0, 0.0, 1.0));

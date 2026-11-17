@@ -5,9 +5,17 @@ import math
 from gravcam import export_pixel
 
 
+def _same_stars(a, b):
+    """Stars as a set of unit vectors. Where two coincide (type D) they are double roots, fixed only to about the
+    square root of the rounding error, so their last digits depend on the numerical library: compare to 1e-6."""
+    return len(a) == len(b) and all(min(math.dist(x, y) for y in b) < 1e-6 for x in a)
+
+
 def _same(a, b):
     if isinstance(a, dict):
-        return a.keys() == b.keys() and all(_same(a[k], b[k]) for k in a)
+        return a.keys() == b.keys() and all(
+            _same_stars(a[k], b[k]) if k == "stars" else _same(a[k], b[k]) for k in a
+        )
     if isinstance(a, list):
         return len(a) == len(b) and all(_same(x, y) for x, y in zip(a, b))
     if isinstance(a, str):

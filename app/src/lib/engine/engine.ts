@@ -59,7 +59,7 @@ export interface FrameParams {
 	/** Brightness multiplier for the wave view. */
 	waveExposure?: number;
 	/**
-	 * The field view's slice: its depth along the line of sight (m), the typical
+	 * The field view's slice: its distance from the camera (m), the typical
 	 * size of the tidal tensor there (in packed units), and the opacity of the
 	 * colours over the near-field image.
 	 */
