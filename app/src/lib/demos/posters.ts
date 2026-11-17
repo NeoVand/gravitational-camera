@@ -20,5 +20,5 @@ export const posters: Record<string, string> = {
 	'four-stars': asset('posters/four-stars.jpg'),
 	'four-voices': asset('posters/four-voices.jpg'),
 	'now-and-then': asset('posters/now-and-then.jpg'),
-	'speedometer': asset('posters/speedometer.jpg')
+	speedometer: asset('posters/speedometer.jpg')
 };
