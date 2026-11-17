@@ -18,22 +18,52 @@ which for steel at $1\,\mathrm{kHz}$ is $10^{-13}$, and falls as the square of
 the frequency. A steel lens a metre thick would bring such a wave to a focus
 only some $10^{13}$ metres away, beyond the orbit of Pluto; and since the wave
 is three hundred kilometres long, a lens able to act on it at all would have
-to be far larger. The same number sets reflection: by our estimate a steel
-wall, however thick, returns less than $10^{-27}$ of the energy of a kilohertz
-wave. Absorption is weaker still
+to be far larger. Reflection needs stiffness: a medium of shear modulus $\mu$
+changes the square of the wave number by the fraction $16\pi G\mu/c^2\omega^2$
+\cite{Press1979}, so a steel wall, however thick, reflects the amplitude
+$4\pi G\mu/c^2\omega^2 = 2\times10^{-23}$ of a kilohertz wave, and
+$4\times10^{-46}$ of its energy. Absorption is weaker still
 (Section~\ref{sec:thermal}).
 
 A mass does bend passing waves by its gravity, exactly as it bends light, by
 the angle $4GM/bc^{2}$ for a ray passing at distance $b$. Used as a lens, the
 Earth has a focal length of fifteen thousand times the distance to the Sun,
 and a focal ratio near $10^{8}$. In each case the strength of the effect is
-set by the same number, the compactness $GM/Rc^{2}$ of the body, which is
-$7\times10^{-10}$ for the Earth and of order one only for a black hole. Bounds
-of this kind on absorption are known for bound systems without resonances
-\cite{Loeb2020}, and we expect a single statement to cover focusing,
-reflection, absorption and shadowing: no body much less compact than a black
-hole provides useful broadband optics. Two exceptions show how it must be
-worded. A weak lens still focuses if one waits far enough behind it: the
+set by the same number, the compactness $\mathcal{C} = GM/Rc^{2}$ of the body,
+which is $7\times10^{-10}$ for the Earth and of order one only for a black hole.
+For a uniform body of radius $R$, whose shear sound travels at $c_T$ with
+quality factor $Q$, crossed by a wave of reduced wavelength
+$\bar\lambda = c/\omega$,
+\begin{equation}\label{eq:optics-bound}
+\begin{gathered}
+\Delta\phi = 3\,\mathcal{C}\,\frac{\bar\lambda}{R} , \qquad
+|r| = 3\,\mathcal{C}\Bigl(\frac{c_T}{c}\Bigr)^{2}
+\Bigl(\frac{\bar\lambda}{R}\Bigr)^{2} , \\
+\tau = \frac{24\,\mathcal{C}}{Q}\Bigl(\frac{c_T}{c}\Bigr)^{2}
+\frac{\bar\lambda}{R} , \qquad
+N = \frac{1}{8\,\mathcal{C}} :
+\end{gathered}
+\end{equation}
+the phase by which the body delays the wave, Eq.~\eqref{eq:index}; the
+amplitude its stiffness reflects; its optical depth from internal friction,
+Eq.~\eqref{eq:alpha} with $\mathrm{Re}\,\eta = \rho c_T^2/\omega Q$; and its
+focal ratio as a gravitational lens, Eq.~\eqref{eq:lens-compactness} below.
+After $\mathcal{C}$, every factor is below one for ordinary matter at the
+wavelengths a body of its size could act on: sound is slower than light, and a
+body smaller than the wavelength diffracts the wave instead of bending,
+reflecting or shadowing it. So no body much less compact than a black hole
+provides useful broadband optics. Parts of this are known. Press found that a
+gravitational mirror larger than its own Schwarzschild radius needs
+$\mu > \rho c^2$ or $\eta\omega > \rho c^2$, which for stiffness means shear
+sound faster than light \cite{Press1979}; Smolin wrote the absorption of an
+elastic body of length $L$ \cite{Dyson1969} as
+$(GM/Lc^2)(\lambda/L)^2(c_T/c)^3$, every factor again below one, and concluded that no stable matter absorbs
+or confines gravitational radiation over a broad band
+\cite{Smolin1984,Smolin1985}; and Loeb bounded the dissipation in bound
+systems \cite{Loeb2020}. Eq.~\eqref{eq:optics-bound} puts refraction and
+focusing beside reflection and absorption, and absorption inside a body beside
+that at its surface. The reference implementation checks each term against
+its source. Two exceptions show how it must be worded. A weak lens still focuses if one waits far enough behind it: the
 transparent Sun brings gravitational waves passing through its interior to a
 focus beyond $23.5\,\mathrm{AU}$ \cite{PatlaNemiroff2008}. And a narrow resonance can absorb
 strongly in a narrow band: stars may absorb at their oscillation frequencies
