@@ -2,7 +2,7 @@
 
 _A thought experiment_
 
-![The landing page: at midnight, looking down. Left, in light, the dark ground under the stars; right, in gravity, the Earth's interior glowing in its thermal gravitational radiation, and the Sun's core shining through the planet.](docs/banner.jpg)
+![The sealed flywheel demo in use: the room in light beside the same room seen by the gravitational camera, with the physics notes, the controls and the one-pixel panel.](docs/banner.gif)
 
 What would a camera see if every pixel were an ideal, arbitrarily small detector of gravitational waves and tidal
 fields?
