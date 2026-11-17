@@ -427,6 +427,12 @@ export const vec5 = (W: CMat3): Complex[] =>
 export const mat5 = (a: Complex[]): CMat3 =>
 	cmat((i, j) => a.reduce((s, z, k) => add(s, scale(z, STF[k][i][j])), ZERO));
 
+/** The steering vector of a direction: the five complex numbers of m m^T for a wave travelling along k (unit norm). */
+export function steeringOf(k: Vec3): Complex[] {
+	const m = nullFrame(k);
+	return vec5(outer(m, m));
+}
+
 /** The matrix A with tr(A W) = 0 for every reading: its m^T A m vanishes on the sky at the waves' directions. */
 export function annihilator(readings: CMat3[]): CMat3 {
 	return mat5(smallestRightVector(readings.map(vec5)));

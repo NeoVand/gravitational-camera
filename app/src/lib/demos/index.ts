@@ -17,7 +17,8 @@ export interface DemoEntry {
 		| 'four-voices'
 		| 'now-and-then'
 		| 'speedometer'
-		| 'ranging';
+		| 'ranging'
+		| 'one-pixel-sky';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -68,6 +69,14 @@ export const demos: DemoEntry[] = [
 		regime: 'one pixel',
 		summary:
 			'The two senses of a binary’s waves arrive from directions that differ by an angle that shrinks with distance. One pixel reads it, out to a range set by the signal-to-noise ratio.'
+	},
+	{
+		slug: 'one-pixel-sky',
+		title: 'One pixel’s sky',
+		affordance: 'What a point can know',
+		regime: 'one pixel',
+		summary:
+			'A sky full of sources, seen by one pixel: exactly its patterns of degree four and below. Twelve sources on an icosahedron look like a uniform sky; six on an octahedron do not.'
 	},
 	{
 		slug: 'sun-at-midnight',

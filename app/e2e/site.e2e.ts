@@ -587,6 +587,16 @@ test('ranging: the split reaches farther than the rank, and farther still with m
 	await expect.poll(reachOf).toBeGreaterThan(before);
 });
 
+test("one pixel's sky: the icosahedron matches a uniform sky, the octahedron does not", async ({
+	page
+}) => {
+	await page.goto('/demo/one-pixel-sky/');
+	await expect(page.locator('dd').first()).toContainText('the same');
+	await page.getByRole('button', { name: 'Six', exact: true }).click();
+	await expect(page.locator('dd').first()).toContainText('differ by');
+	await expect(page.locator('svg.sky image')).toHaveCount(2);
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();
