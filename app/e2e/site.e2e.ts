@@ -615,10 +615,10 @@ test('the One pixel layer: a turning flywheel sets off the alarm, a locked safe 
 	page
 }) => {
 	await page.goto('/demo/sealed-flywheel/');
-	await page.getByRole('checkbox', { name: 'One pixel' }).check();
+	await page.getByRole('checkbox', { name: 'Pixel', exact: true }).check();
 	await expect(page.getByText(/something turns: \de-\d+/)).toBeVisible();
 	await page.goto('/demo/locked-safe/');
-	await page.getByRole('checkbox', { name: 'One pixel' }).check();
+	await page.getByRole('checkbox', { name: 'Pixel', exact: true }).check();
 	await expect(page.getByText('all still')).toBeVisible();
 	await expect(page.getByText(/type (I|D):/)).toBeVisible();
 });

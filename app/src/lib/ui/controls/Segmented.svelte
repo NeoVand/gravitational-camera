@@ -18,7 +18,12 @@
 	let { options, value = $bindable(), label }: Props = $props();
 </script>
 
-<div class="segmented" role="group" aria-label={label}>
+<div
+	class="segmented"
+	role="group"
+	aria-label={label}
+	style:--columns={options.length > 3 ? 2 : options.length}
+>
 	{#each options as option (option.value)}
 		<button
 			type="button"
@@ -32,8 +37,10 @@
 </div>
 
 <style>
+	/* one row for up to three choices, two columns beyond, so that they always fit the panel */
 	.segmented {
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
 		padding: 3px;
 		gap: 3px;
 		border-radius: 11px;
@@ -42,7 +49,7 @@
 	}
 
 	button {
-		flex: 1;
+		min-width: 0;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;

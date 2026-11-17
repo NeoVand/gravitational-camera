@@ -272,7 +272,7 @@
 				{/if}
 				<Toggle
 					icon={Target02Icon}
-					label="One pixel"
+					label="Pixel"
 					hint="What a single pixel at the camera reads: its four stars, its type, and whether anything turns"
 					bind:checked={probe}
 				/>

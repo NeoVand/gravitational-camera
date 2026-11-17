@@ -189,7 +189,7 @@
 				label="What the gravity side shows"
 				options={[
 					{ value: 'image', label: 'Image', icon: Image01Icon },
-					{ value: 'pixels', label: 'What the pixels record', icon: Rotate01Icon }
+					{ value: 'pixels', label: 'Raw pixels', icon: Rotate01Icon }
 				]}
 				bind:value={display}
 			/>
@@ -290,8 +290,8 @@
 				slowLambda
 			)}, which the camera can resolve. It rescales the wavelength and nothing else, and brightness
 			is shown on a relative scale. The polarization, which tells the sense of turning, does not
-			depend on it. “What the pixels record” shows the pattern of stretching that passes over the
-			camera from each drum.
+			depend on it. “Raw pixels” shows the pattern of stretching that passes over the camera from
+			each drum.
 		</p>
 	{/snippet}
 	{#snippet physics()}
