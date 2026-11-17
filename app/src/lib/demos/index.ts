@@ -16,7 +16,8 @@ export interface DemoEntry {
 		| 'four-stars'
 		| 'four-voices'
 		| 'now-and-then'
-		| 'speedometer';
+		| 'speedometer'
+		| 'ranging';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -59,6 +60,14 @@ export const demos: DemoEntry[] = [
 		regime: 'one pixel',
 		summary:
 			'A pixel crossing a room it knows nothing about reads its own velocity, every component, at any speed, and knows at once if anything in the room moves. Light reads two components.'
+	},
+	{
+		slug: 'ranging',
+		title: 'How far is that binary?',
+		affordance: 'Range a wave source',
+		regime: 'one pixel',
+		summary:
+			'The two senses of a binary’s waves arrive from directions that differ by an angle that shrinks with distance. One pixel reads it, out to a range set by the signal-to-noise ratio.'
 	},
 	{
 		slug: 'sun-at-midnight',

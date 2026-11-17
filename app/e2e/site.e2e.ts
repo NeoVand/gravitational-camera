@@ -573,6 +573,20 @@ test('speedometer: gravity reads the pixel’s speed exactly, and a walking pers
 	await expect(page.getByText('all still')).toBeVisible();
 });
 
+test('ranging: the split reaches farther than the rank, and farther still with more signal', async ({
+	page
+}) => {
+	await page.goto('/demo/ranging/');
+	await expect(page.locator('.reads').getByText('lost in the noise')).toBeVisible();
+	await expect(page.getByText(/split: reaches \d+/)).toBeVisible();
+	const reachOf = async () =>
+		Number(((await page.getByText(/split: reaches \d+/).textContent()) ?? '').match(/\d+/)![0]);
+	const before = await reachOf();
+	await page.locator('#snr').focus();
+	for (let i = 0; i < 20; i++) await page.keyboard.press('ArrowRight');
+	await expect.poll(reachOf).toBeGreaterThan(before);
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();
