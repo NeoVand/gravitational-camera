@@ -228,7 +228,25 @@ with $\hat p_\pm$ the directions of the two pairs and $\mathbf{v}_\perp$ the
 velocity across the line from the body to the pixel. The reference
 implementation finds the two sides equal to $2\times10^{-7}$ at $0.9\,c$. The
 ratio $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ of Section~\ref{sec:near-field} is its
-first-order form. A body coming straight on shows no sideways velocity and
+first-order form. Half their difference points along the line to where the body is now,
+$\tfrac12(\hat p_+ - \hat p_-) = \pm(1 - v_\perp^2/c^2)^{1/2}\,\hat n$. With the
+rate of change of the reading, one pixel then has the whole state of the body.
+The line turns toward the sideways velocity at the rate $v_\perp/r$, which gives
+the distance and the sign of $\hat n$; the repeated eigenvalue of $\mathcal W$ is
+$w = GM/R_*^3$, with $R_*$ the distance in the body's rest frame,
+$R_*^2 = \gamma^2(r^2 - |\mathbf v\times\mathbf r|^2/c^2)$, in which
+$\mathbf v\times\mathbf r$ does not change. So
+\begin{equation}\label{eq:moving-state}
+\begin{gathered}
+r = \frac{v_\perp}{|\dot{\hat n}|}, \qquad
+\dot r = -\frac{r}{3}\Bigl(1 - \frac{v_\perp^2}{c^2}\Bigr)\frac{\dot w}{w},\\
+M = \frac{w\,\gamma^3 r^3}{G}\Bigl(1 - \frac{v_\perp^2}{c^2}\Bigr)^{3/2}:
+\end{gathered}
+\end{equation}
+position, velocity and rest mass, seven numbers, exactly at any speed. The
+reference implementation recovers all seven at $0.91\,c$ to a few parts in a
+million, the accuracy of its finite differences; Eq.~\eqref{eq:one-pixel-range}
+below is the first-order form of the distance. A body coming straight on shows no sideways velocity and
 cannot be ranged (below), but because its tide grows as
 $r^{-3}$, the pixel reads when it will arrive,
 \begin{equation}\label{eq:contact}
@@ -281,11 +299,29 @@ two conics,
 \mathbf{m}^{T}\!A\,\mathbf{m} = 0, \qquad \mathbf{m}\cdot\mathbf{m} = 0 ,
 \end{equation}
 and two conics meet in four points: the four directions (Fig.~\ref{fig:voices}).
-For light the same argument gives two. In general a point sensor of a field of spin $s$ separates
-$s$ plane waves at one instant, $s + 1$ at one frequency and $2s$ from a time
-history; for light, $1$, $2$ and $2$, the known limit for electromagnetic vector
-sensors \cite{NehoraiPaldi1994,HochwaldNehorai1996}; for gravity, $2$, $3$ and
-$4$. In the reference implementation four waves with random waveforms are
+For light the same argument gives two.
+
+All three cases are one theorem. In the coordinates of Eq.~\eqref{eq:stars},
+the five numbers of a reading are the moments $y_j = \sum_a c_a z_a^j$,
+$j = 0,\dots,4$, of the waves' amplitudes $c_a$ over their directions $z_a$,
+so separating waves is Prony's problem of finding the nodes of a sum of
+powers \cite{KunisPeterRomerOhe2016}: the matrix $y_{j+k}$, stacked over the
+snapshots, has the polynomial with roots $z_a$ as its null vector, and when its
+rank equals the number of waves that polynomial is unique. For a point sensor
+of a field of spin $s$, with $2s + 1$ moments in each of $L$ independent
+snapshots, this gives generically
+\begin{equation}\label{eq:wave-count}
+N_{\max} = \Bigl\lfloor\frac{L(2s+1)}{L+1}\Bigr\rfloor
+\end{equation}
+waves, and no more: $s$ at one instant, $\lfloor 2(2s+1)/3\rfloor$ at one
+frequency (whose two parts $\mathcal W_\pm$ are two snapshots) and $2s$ from a
+long enough history. For light that is $1$, $2$ and $2$, the known limit for
+electromagnetic vector sensors \cite{NehoraiPaldi1994,HochwaldNehorai1996}; for
+gravity, $2$, $3$ and $4$; a field of spin four would separate six waves at one
+frequency, not five. Generic is a real condition: snapshots whose amplitudes
+are all proportional, or related through the directions themselves, add
+nothing, and the rank of the moment matrix tells when that has happened. The
+reference implementation checks each count, and its failure one wave beyond. In the reference implementation four waves with random waveforms are
 located to $10^{-14}$, and to $10^{-4}$ radian with noise of $10^{-4}$ of the
 signal on every component over three hundred readings.
 
@@ -314,6 +350,22 @@ five-by-five matrices built from the same five steering vectors; when the
 sources' circular fractions differ, diagonalizing one in the frame that whitens
 the other separates five sources in closed form, with their directions,
 brightnesses and circular fractions (checked in the reference implementation).
+
+\paragraph{Lensed images at one point.} The count assumes the waves overlap in
+time and frequency. The images of a chirping binary seen through a lens do
+not. A galaxy splits it into two or four images about an arcsecond apart,
+whose arrival times differ by hours to months; at any moment each image is at
+a different stage of the same chirp, and so at a different frequency. In each
+cell of time and frequency the pixel then reads a single wave, and places it to
+within $1/\rho$ radian at the signal-to-noise ratio $\rho$ of that image. An
+arcsecond needs $\rho \approx 2\times10^5$ at one point, where resolving the
+images by the width of an aperture would need, at $100\,\mathrm{Hz}$, an array
+four astronomical units across. The reference implementation places two
+images of a chirp an arcsecond apart, half a second out of step, each to two
+per cent of their separation from one pixel's noiseless record; with noise the
+limit is $1/\rho$. Images that overlap in frequency, as a lens of a steady
+source makes them, are instead a Prony problem whose conditioning falls as a
+power of their separation.
 
 \paragraph{What one pixel sees of the sky.} For a sky full of independent
 sources overlapping in frequency, what a pixel can learn at each frequency is
@@ -354,6 +406,22 @@ $(V/I)\langle\tE\cdot\tE^*\rangle$ into the imaginary part of
 $\langle\tE\cdot\tB^*\rangle$, so one pixel measures
 whether the sky is chiral, which a single planar interferometer cannot
 \cite{SetoTaruya2007}.
+
+Not every spectral matrix is a sky. Within one helicity, a sky of independent
+waves gives $C = \int p(\hat n)\,\mathbf v(\hat n)\mathbf v(\hat n)^\dagger\,\dd\Omega$
+with $p \ge 0$ and $\mathbf v$ the unit five-vector of a wave from $\hat n$,
+and such matrices fill only part of the positive ones. For
+$\mathbf u$ the five-vector of $\mathrm{diag}(1,-1,0)/\sqrt2$, every wave has
+$|\mathbf u^\dagger\mathbf v|^2 \le \tfrac12$, so every sky obeys
+\begin{equation}\label{eq:sky-witness}
+\mathbf u^\dagger C\,\mathbf u \le \tfrac12\,\mathrm{tr}\,C ,
+\end{equation}
+while $C = \mathbf u\mathbf u^\dagger$, positive and of unit trace, reaches
+one. It is made by two waves along $+\hat z$ and $-\hat z$ locked in phase, a
+standing wave. Violating a bound of this kind rejects the picture of
+independent waves (the cause may be coherence, a near field or a
+miscalibration), the same convex geometry that tells classical mixtures of spin
+states from others \cite{GiraudBraunBraun2008}.
 
 The rest of the sky is invisible to second moments. The twelve corners of a
 regular icosahedron form a spherical design of degree five: they average every
@@ -542,6 +610,25 @@ $-(4\pi G/c^3)\,\epsilon_{ijk}F_k$, gives the flux as a vector
 (Section~\ref{sec:pixel}), so that
 one reading inside the passing shell points back to the star, even when the
 collapse is perfectly spherical and sends out no waves at all.
+
+\paragraph{What no reading can tell.} All of this assumes what kind of scene
+is in view. Without that assumption no finite amount of data at one event
+decides. Two masses, one with the tidal weight $a$ along $\hat y$ and one with
+$2a$ along $\hat z$, give $\tE = a\,\mathrm{diag}(3,0,-3)$ and $\tB = 0$; so do
+two equal waves crossing in opposite directions along $\hat y$, whose magnetic
+parts cancel. More is true. For every order $N$ there is a positive shell of
+mass, whose field inside is exactly a constant $\tE_0$, and a pair of
+counter-propagating pulses with the profile
+$f(u) = [1 - 2m(u/\tau)^{2m}]\,e^{-(u/\tau)^{2m}}$, $2m > N$, whose field and
+all its derivatives through order $N$ agree with the shell's at one event; the
+pulses leave no lasting strain, since $f$ and $uf$ integrate to zero. The
+reference implementation checks both. What tells such scenes apart is a time
+record (the pulses pass), an aperture, or knowledge that the sources are
+compact and their waves outgoing. Nor does the algebraic type count bodies:
+two masses on a line make the same type D as one, and the reading with rows
+$(0,0,1)$, $(0,0,i)$, $(1,i,0)$ has both invariants zero, like a single wave,
+but rank two and $\mathcal W^3 = 0$: type III. The statements of this section
+are exact within the source classes they name.
 
 \paragraph{One pixel and many.} A single pixel already does part of a camera's
 work, as the paragraphs above show: it places one wave by Eq.~\eqref{eq:one-wave},
