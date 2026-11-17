@@ -13,7 +13,8 @@ export interface DemoEntry {
 		| 'milky-way'
 		| 'black-hole'
 		| 'two-black-holes'
-		| 'where-it-is';
+		| 'where-it-is'
+		| 'behind-the-wall';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -101,6 +102,14 @@ export const demos: DemoEntry[] = [
 		regime: 'near field',
 		summary:
 			'A ball flies across a room. Light shows it where it was; gravity, where it is. Stop it, and each finds out only when the news arrives. Shown with light slowed down, and labelled so.'
+	},
+	{
+		slug: 'behind-the-wall',
+		title: 'Behind the wall',
+		affordance: 'See motion through walls',
+		regime: 'near field',
+		summary:
+			'Two people behind a wall; one walks. Light sees the wall. Gravity sees both, colours the walker by the direction of walking, and one pixel alone knows that something moves.'
 	},
 	{
 		slug: 'milky-way',

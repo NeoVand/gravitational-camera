@@ -55,7 +55,7 @@
 		<p class="head">One pixel, at the camera</p>
 		<p>{words[d.type] ?? d.type}</p>
 		<p class={lit ? 'alarm' : 'still'}>
-			{lit ? `something turns: ${d.alarm.toExponential(0)}` : 'all still'}
+			{lit ? `something moves: ${d.alarm.toExponential(0)}` : 'all still'}
 		</p>
 	</div>
 </aside>

@@ -5,7 +5,9 @@
  * angular velocity ω about the point s (from the observer), entered and left
  * at distances a and b,
  *
- *     J = ρ [ (ω × n) (b − a) − (ω × s) ln(b / a) ].
+ *     J = ρ [ (ω × n) (b − a) − (ω × s) ln(b / a) ];
+ *
+ * for one moving as a whole with velocity v, J = ρ v ln(b / a).
  */
 import { crossing, DEFAULT_EXCLUSION } from './scene';
 import type { AnalyzedObject, Vec3 } from './types';
@@ -25,19 +27,23 @@ export function currentColumn(
 ): Vec3 {
 	const out: Vec3 = [0, 0, 0];
 	for (const o of objects) {
-		if (!o.spin || o.spin.rate === 0) continue;
+		const moving = o.velocity && (o.velocity[0] || o.velocity[1] || o.velocity[2]);
+		const turning = o.spin && o.spin.rate !== 0;
+		if (!moving && !turning) continue;
 		const hit = crossing(o, origin, dir);
 		if (!hit || hit[1] <= exclusion) continue;
 		const a = Math.max(hit[0], exclusion);
 		const b = hit[1];
 		const p = o.parent >= 0 ? objects[o.parent] : undefined;
 		const rho = o.density - (p?.density ?? 0);
-		const n = Math.hypot(...o.spin.axis);
-		const w = o.spin.axis.map((x) => (2 * Math.PI * o.spin!.rate * x) / n) as Vec3;
-		const s = o.spin.center.map((x, k) => x - origin[k]) as Vec3;
+		const log = Math.log(b / a);
+		if (moving) for (let k = 0; k < 3; k++) out[k] += rho * o.velocity![k] * log;
+		if (!turning) continue;
+		const n = Math.hypot(...o.spin!.axis);
+		const w = o.spin!.axis.map((x) => (2 * Math.PI * o.spin!.rate * x) / n) as Vec3;
+		const s = o.spin!.center.map((x, k) => x - origin[k]) as Vec3;
 		const wn = cross(w, dir);
 		const ws = cross(w, s);
-		const log = Math.log(b / a);
 		for (let k = 0; k < 3; k++) out[k] += rho * (wn[k] * (b - a) - ws[k] * log);
 	}
 	return out;

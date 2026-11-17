@@ -45,6 +45,7 @@
 	const scene: Scene = $derived({
 		...room,
 		name: 'where-it-is',
+		title: 'Where it is now',
 		materials: {
 			...room.materials,
 			marble: (mirrorJson as unknown as Scene).materials.marble,

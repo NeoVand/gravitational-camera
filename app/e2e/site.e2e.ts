@@ -653,7 +653,7 @@ test('the One pixel layer: a turning flywheel sets off the alarm, a locked safe 
 }) => {
 	await page.goto('/demo/sealed-flywheel/');
 	await page.getByRole('checkbox', { name: 'Pixel', exact: true }).check();
-	await expect(page.getByText(/something turns: \de-\d+/)).toBeVisible();
+	await expect(page.getByText(/something moves: \de-\d+/)).toBeVisible();
 	await page.goto('/demo/locked-safe/');
 	await page.getByRole('checkbox', { name: 'Pixel', exact: true }).check();
 	await expect(page.getByText('all still')).toBeVisible();
@@ -691,6 +691,23 @@ test('where it is now: the ball flies, the camera draws it, and a stop is held',
 	await expect(stop).toHaveAttribute('aria-pressed', 'true');
 	const drawn = await frames();
 	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(drawn);
+});
+
+test('behind the wall: one pixel knows someone walks, and stops knowing when they stand', async ({
+	page
+}) => {
+	await page.goto('/demo/behind-the-wall/?present=readback');
+	const canvas = page.locator('canvas').first();
+	await expect
+		.poll(async () => Number(await canvas.getAttribute('data-frames')), {
+			timeout: 60_000
+		})
+		.toBeGreaterThan(1);
+	await expect(page.getByRole('heading', { name: 'Behind the wall', level: 1 })).toBeVisible();
+	await expect(page.getByText(/something moves: \de-\d+/)).toBeVisible();
+	await expect(page.getByLabel('Flow', { exact: true })).toBeChecked();
+	await page.getByRole('button', { name: 'Stands', exact: true }).click();
+	await expect(page.getByText('all still')).toBeVisible();
 });
 
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {

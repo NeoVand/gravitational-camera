@@ -4,7 +4,7 @@ import { analyzeScene } from '../engine/scene';
 import type { Scene } from '../engine/types';
 import flywheel from '../../../../scenes/sealed-flywheel.scene.json';
 import { eigenvalues } from './pixel';
-import { describe, readingAt, spinDipole } from './probe';
+import { describe, movingPoint, readingAt, spinDipole } from './probe';
 
 const scene = flywheel as unknown as Scene;
 
@@ -43,5 +43,20 @@ group('one pixel in a room', () => {
 			// first order in a / r, as the reference checks it (rel 1e-3)
 			expect(Math.abs(phase - (3 * a * Math.cos(theta)) / r)).toBeLessThan(1e-3 * ((3 * a) / r));
 		}
+	});
+
+	it('a body moving across the line of sight: |B| / |E| = sqrt 3 v_perp / c; along it, no B at all', () => {
+		const G = 6.6743e-11,
+			C = 299_792_458,
+			M = 80,
+			r = 3;
+		const center: [number, number, number] = [0, 0, -r];
+		const k = (G * M) / r ** 3;
+		const E = Math.hypot(k * 1, k * 1, k * 2); // diag(1, 1, -2) G M / r^3
+		const across = movingPoint(M, center, [1.5, 0, 0], [0, 0, 0]);
+		const B = Math.hypot(...across.flat());
+		expect(B / E / (1.5 / C)).toBeCloseTo(Math.sqrt(3), 10);
+		const along = movingPoint(M, center, [0, 0, 1.5], [0, 0, 0]);
+		expect(Math.hypot(...along.flat())).toBe(0);
 	});
 });

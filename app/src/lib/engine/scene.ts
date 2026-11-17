@@ -52,6 +52,7 @@ export function analyzeScene(scene: Scene): AnalyzedObject[] {
 			light: m.light,
 			background: o.background === true,
 			spin: o.spin,
+			velocity: o.velocity,
 			cutaway: o.cutaway === true
 		};
 	});

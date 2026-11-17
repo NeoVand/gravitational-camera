@@ -67,6 +67,8 @@
 		extraControls?: Snippet;
 		/** Drawn over the picture, such as a label that light has been slowed down. */
 		extraOverlay?: Snippet;
+		/** Start with the "Pixel" layer on. */
+		startProbe?: boolean;
 	}
 
 	let {
@@ -82,7 +84,8 @@
 		intro,
 		physicsExtra,
 		extraControls,
-		extraOverlay
+		extraOverlay,
+		startProbe = false
 	}: Props = $props();
 
 	const DEG = Math.PI / 180;
@@ -111,21 +114,28 @@
 	const observer = $derived(scene.observer.position);
 	const exclusion = $derived(scene.observer.exclusion ?? 0.25);
 	const hasRoom = $derived(objects.some((o) => o.background));
-	const spinning = $derived(objects.filter((o) => o.spin && o.spin.rate !== 0));
+	// what moves: spinning spheres and bodies moving as a whole
+	const spinning = $derived(
+		objects.filter(
+			(o) => (o.spin && o.spin.rate !== 0) || (o.velocity && Math.hypot(...o.velocity) > 0)
+		)
+	);
 	let flow = $state(true);
 	/** The "One pixel" layer: what a single pixel at the camera reads. */
-	let probe = $state(false);
+	// svelte-ignore state_referenced_locally
+	let probe = $state(startProbe);
 	// the flow signal is about v/c of the mass signal, so its blur is that of a
 	// camera less sensitive by that factor
 	const rimSpeed = $derived(
 		Math.max(
 			0,
-			...spinning.map(
-				(o) =>
-					2 *
-					Math.PI *
-					Math.abs(o.spin!.rate) *
-					(o.radius + Math.hypot(...o.center.map((v, k) => v - o.spin!.center[k])))
+			...spinning.map((o) =>
+				o.spin && o.spin.rate !== 0
+					? 2 *
+						Math.PI *
+						Math.abs(o.spin.rate) *
+						(o.radius + Math.hypot(...o.center.map((v, k) => v - o.spin!.center[k])))
+					: Math.hypot(...o.velocity!)
 			)
 		)
 	);

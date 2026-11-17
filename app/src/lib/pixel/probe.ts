@@ -35,6 +35,23 @@ function angularMomentum(o: AnalyzedObject): Vec3 | undefined {
 	return [a[0] * s, a[1] * s, a[2] * s];
 }
 
+/**
+ * B at `at` from a body of mass M at `center` moving with velocity v (to first order in v/c, as a point):
+ * (3 G M / (c r^3)) [n (n x v) + (n x v) n], n from the pixel toward the body (reference: gravitomagnetic.py).
+ */
+export function movingPoint(mass: number, center: Vec3, velocity: Vec3, at: Vec3): number[][] {
+	const x: Vec3 = [center[0] - at[0], center[1] - at[1], center[2] - at[2]];
+	const r = Math.hypot(...x);
+	const n = x.map((v) => v / r) as Vec3;
+	const a: Vec3 = [
+		n[1] * velocity[2] - n[2] * velocity[1],
+		n[2] * velocity[0] - n[0] * velocity[2],
+		n[0] * velocity[1] - n[1] * velocity[0]
+	];
+	const k = (3 * G * mass) / (C * r ** 3);
+	return [0, 1, 2].map((i) => [0, 1, 2].map((j) => k * (n[i] * a[j] + a[i] * n[j])));
+}
+
 /** W = E + iB at a point of the scene, in s^-2. */
 export function readingAt(objects: AnalyzedObject[], at: Vec3, cell = 0.25): CMat3 {
 	const e = tidalTensor(massPoints(objects, cell), at);
@@ -50,9 +67,18 @@ export function readingAt(objects: AnalyzedObject[], at: Vec3, cell = 0.25): CMa
 	];
 	for (const o of objects) {
 		const L = angularMomentum(o);
-		if (!L) continue;
-		const b = spinDipole(L, o.center, at);
-		for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) B[i][j] += b[i][j];
+		if (L) {
+			const b = spinDipole(L, o.center, at);
+			for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) B[i][j] += b[i][j];
+		}
+		const v = o.velocity;
+		if (v && (v[0] || v[1] || v[2])) {
+			const volume = o.half
+				? 8 * o.half[0] * o.half[1] * o.half[2]
+				: (4 / 3) * Math.PI * o.radius ** 3;
+			const b = movingPoint(o.density * volume, o.center, v, at);
+			for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) B[i][j] += b[i][j];
+		}
 	}
 	return cmat((i, j) => cx(E[i][j], B[i][j]));
 }

@@ -59,6 +59,8 @@ export interface SceneObject {
 	material: string;
 	/** Only spheres may spin, in the plane through the spin centre across the axis. */
 	spin?: Spin;
+	/** Steady motion of the whole object, m/s (set by a demo frame by frame; the position is the present one). */
+	velocity?: Vec3;
 	/** May be cut away in the light view, to show what is inside. */
 	cutaway?: boolean;
 	/**
@@ -109,6 +111,8 @@ export interface AnalyzedObject {
 	background: boolean;
 	/** Steady rotation, for the wave view. */
 	spin?: Spin;
+	/** Steady motion of the whole object, m/s. */
+	velocity?: Vec3;
 	/** May be cut away in the light view; see `SceneObject.cutaway`. */
 	cutaway: boolean;
 }
