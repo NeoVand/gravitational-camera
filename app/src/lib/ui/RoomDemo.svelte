@@ -63,6 +63,10 @@
 		intro: Snippet;
 		/** Lines about this scene for the end of the physics tab. */
 		physicsExtra?: Snippet;
+		/** Controls of this scene's own, above the common ones. */
+		extraControls?: Snippet;
+		/** Drawn over the picture, such as a label that light has been slowed down. */
+		extraOverlay?: Snippet;
 	}
 
 	let {
@@ -76,7 +80,9 @@
 		startSensitivity = 20,
 		startBrightness = 0,
 		intro,
-		physicsExtra
+		physicsExtra,
+		extraControls,
+		extraOverlay
 	}: Props = $props();
 
 	const DEG = Math.PI / 180;
@@ -193,11 +199,13 @@
 				{#if probe}
 					<PixelProbe {objects} {observer} {view} />
 				{/if}
+				{@render extraOverlay?.()}
 			{/snippet}
 		</SplitView>
 	{/snippet}
 
 	{#snippet controls()}
+		{@render extraControls?.()}
 		{#if gravity === 'near'}
 			<Group title="View">
 				<Segmented

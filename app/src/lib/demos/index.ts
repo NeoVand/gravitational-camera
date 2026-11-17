@@ -12,7 +12,8 @@ export interface DemoEntry {
 		| 'beam-in-the-dark'
 		| 'milky-way'
 		| 'black-hole'
-		| 'two-black-holes';
+		| 'two-black-holes'
+		| 'where-it-is';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -92,6 +93,14 @@ export const demos: DemoEntry[] = [
 		regime: 'near field',
 		summary:
 			'An infrared laser beam cannot be seen from the side. Its energy still gravitates, and the camera sees a line.'
+	},
+	{
+		slug: 'where-it-is',
+		title: 'Where it is now',
+		affordance: 'See the present',
+		regime: 'near field',
+		summary:
+			'A ball flies across a room. Light shows it where it was; gravity, where it is. Stop it, and each finds out only when the news arrives. Shown with light slowed down, and labelled so.'
 	},
 	{
 		slug: 'milky-way',

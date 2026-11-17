@@ -678,6 +678,21 @@ test('interactive figures: their own section, out of the demos, and live under t
 	);
 });
 
+test('where it is now: the ball flies, the camera draws it, and a stop is held', async ({
+	page
+}) => {
+	await page.goto('/demo/where-it-is/?present=readback');
+	const canvas = page.locator('canvas').first();
+	const frames = async () => Number(await canvas.getAttribute('data-frames'));
+	await expect.poll(frames, { timeout: 60_000 }).toBeGreaterThan(3);
+	await expect(page.getByText(/light slowed to [\d.]+ m\/s/)).toBeVisible();
+	const stop = page.getByRole('button', { name: 'Stop it', exact: true });
+	await stop.click();
+	await expect(stop).toHaveAttribute('aria-pressed', 'true');
+	const drawn = await frames();
+	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(drawn);
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();
