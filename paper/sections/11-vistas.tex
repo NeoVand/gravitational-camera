@@ -251,6 +251,26 @@ most favoured mode of a hole spinning near its limit
 return more of the background than it receives on that side, and appear
 brighter than the sky there rather than dark.
 
+Mode by mode the bookkeeping is exact. A wave of angular degree $l$ and
+frequency $\omega$ that reaches the hole is absorbed with probability
+$\Gamma_l(\omega)$ and otherwise scattered back, and the hole emits in the
+same proportion, so what the camera receives from it in that mode differs
+from the sky's occupation $n_{\mathrm{bg}}$ by $\Gamma_l\,(n_H - n_{\mathrm{bg}})$,
+with $n_H$ the occupation at the hole's temperature. For a spinning hole
+$n_H$ is taken at $\omega - m\Omega_H$, $\Omega_H$ the angular velocity of its
+horizon, and in the modes that turn with it faster than it, $\omega <
+m\Omega_H$, both factors change sign: whatever the temperatures, those modes
+come out brighter than the sky. For a hole that does not spin we have computed
+$\Gamma_l$ for every mode from the Regge--Wheeler equation. The shadow is then
+less deep than the black disc of the geometric cross-section $27\pi G^2M^2/c^4$
+suggests, because the sky's gravitons are not short compared with the hole:
+against the $0.905\,\mathrm{K}$ background, a hole ten times the equilibrium
+mass is $93\%$ as dark as that disc, three times, $60\%$, and twice, $29\%$;
+only above about a hundred times, $10^{25}\,\mathrm{kg}$, is it black. The
+reference implementation checks the conservation of flux in every mode,
+Page's limit for long waves, $\Gamma_2 \to (256/225)(GM\omega/c^3)^6$
+\cite{Page1976}, and the geometric cross-section for short ones.
+
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/black-hole.pdf}
