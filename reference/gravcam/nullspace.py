@@ -147,3 +147,49 @@ def two_layer(M: float, I: float, R: float, rc: float) -> tuple[float, float]:
                   [8.0 * math.pi / 15.0 * rc ** 5, 8.0 * math.pi / 15.0 * (R ** 5 - rc ** 5)]])
     core, mantle = np.linalg.solve(A, [M, I])
     return float(core), float(mantle)
+
+
+# --- the magnetic part's null space: flows that circulate in meridian planes ----------------------------------------
+#
+# Outside a body, B comes from the gravitomagnetic potential A = int J / |x - x'| (J = rho v, steady). If J =
+# curl curl V with V vanishing, with its derivatives, on the surface, then A = grad(int div V / |x - x'|) outside, a
+# gradient, and B = 0 there. Every confined flow that turns in meridian planes (convection rolls, poloidal flow) is of
+# this form; only the swirl about the axis (toroidal flow) shows outside, and only through its harmonic part.
+# (Carbon's suite, design/sources; checked independently in tests/test_silent_flows.py.)
+
+
+def ball_flows(n: int = 64, power: int = 5):
+    """On an n^3 grid over [-1, 1]^3: the swirl J = curl(z psi) and the meridional rolls J = curl curl(z psi) of
+    psi = (1 - r^2)^power inside the unit ball (smooth at its surface, so the grid sums converge quickly). Returns
+    (grid (X, Y, Z), dV, swirl, rolls)."""
+    p = power
+    g = (np.arange(n) + 0.5) / n * 2 - 1
+    X, Y, Z = np.meshgrid(g, g, g, indexing="ij")
+    dV = (2.0 / n) ** 3
+    R2 = X * X + Y * Y + Z * Z
+    s = np.where(R2 < 1, 1 - R2, 0.0)
+    dpsi = -2 * p * s ** (p - 1)                           # grad psi = dpsi * x
+    swirl = np.stack([dpsi * Y, -dpsi * X, np.zeros_like(X)])
+    d2 = 4 * p * (p - 1) * s ** (p - 2)                    # grad(d psi / dz) = d2 * (x z, y z, z z) + dpsi * z-hat
+    lap = -6 * p * s ** (p - 1) + 4 * p * (p - 1) * s ** (p - 2) * R2
+    rolls = np.stack([d2 * X * Z, d2 * Y * Z, d2 * Z * Z + dpsi - lap])
+    return (X, Y, Z), dV, swirl, rolls
+
+
+def external_magnetic(J, grid, dV: float, x) -> np.ndarray:
+    """B outside a steady flow J (up to the constant G/c factor): the symmetrized eps_ipq d_q d_j A_p, with
+    A = int J / |x - x'|, from the kernel d_q d_j (1/R) = (3 R_q R_j - R^2 delta_qj) / R^5."""
+    X, Y, Z = grid
+    R = [x[0] - X, x[1] - Y, x[2] - Z]
+    R2 = R[0] ** 2 + R[1] ** 2 + R[2] ** 2
+    R5 = R2 ** 2.5
+    K = [[(3 * R[q] * R[j] - R2 * (q == j)) / R5 for j in range(3)] for q in range(3)]
+    eps = np.zeros((3, 3, 3))
+    for a, b, cc in ((0, 1, 2), (1, 2, 0), (2, 0, 1)):
+        eps[a, b, cc], eps[a, cc, b] = 1.0, -1.0
+    B = np.zeros((3, 3))
+    for i in range(3):
+        for j in range(3):
+            B[i, j] = sum(eps[i, p, q] * np.sum(J[p] * K[q][j]) * dV
+                          for p in range(3) for q in range(3) if eps[i, p, q])
+    return 0.5 * (B + B.T)

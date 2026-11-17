@@ -57,7 +57,8 @@ Gemini's table also gives harmonic counts for sound (9 + 7) and light (15 + 21):
 - **Four waves, arbitrary waveforms, one pixel.** If the waves come from fixed directions with any waveforms, the
   pixel's readings over time span a 4-dimensional subspace of C^5; the one matrix A orthogonal to it gives a second
   conic m^T A m = 0, which meets the null conic m.m = 0 in exactly four points: the four directions. 40 random
-  trials: error 1e-14; with noise at 1e-4 per component, 1.6e-9 rad. The general rule for a spin-s point sensor:
+  trials: error 1e-14; with noise at 1e-4 per component and 300 readings, up to 1e-4 rad (worst cases when two
+  sources lie close; an earlier figure of 1.6e-9 here was wrong). The general rule for a spin-s point sensor:
   s waves at one instant, s + 1 at one frequency, 2s with time. Light: 1, 2, 2 (matches Hochwald and Nehorai's limit
   of two sources for an electromagnetic vector sensor). Gravity: 2, 3, 4. "One ear that solves the cocktail party
   for four talkers."
@@ -102,7 +103,7 @@ Gemini's table also gives harmonic counts for sound (9 + 7) and light (15 + 21):
 | The in-plane shear (E_xx - E_yy) + 2i E_xy above two buried masses has two zeros exactly d apart whatever the depth | **Right for equal masses, checked; not for unequal ones.** Zeros at (0, +-d/2) for every depth above (sqrt 3 / 2) d (checked at 0.9 to 20 d); below that they move off the axis. For masses 1 : 2 they drift with depth (+-0.42 d at 1.5 d, +-0.475 d at 5 d). With noise a zero is placed to about z^2 / 6Rd, so two masses separate when d > z / sqrt(6R): the paper's Cramer-Rao scaling, reached by a geometric estimator. A good figure, not a new limit. The single-pixel aspect ratio d/2z above the midpoint is exact for equal masses. |
 | Higher cumulants of one pixel see the sky to l <= 4p, break the icosahedron's blindness, and separate 20 to 30 non-Gaussian sources | **Plausible, not checked.** Degree counting is right (the fourth cumulant is a degree-8 kernel; the icosahedron is only a 5-design). Standard in array processing (virtual aperture; De Lathauwer, Castaing and Cardoso, IEEE TSP 55, 2965, 2007). The source count needs a test, and long integrations of independent, non-Gaussian sources. |
 | Two pixels solve two static point masses (8 unknowns, 10 numbers) with no stereo ghosts | **Counting right; uniqueness not shown.** To test. |
-| Time to contact for a body coming straight on: tau = -3E/Edot, and E Eddot / Edot^2 = 4/3 - r rddot / 3 rdot^2 tells coasting from thrust | **Right (direct calculation).** Fills the paper's radial blind spot: no range, but the time of arrival. |
+| Time to contact for a body coming straight on: tau = -3E/Edot, and E Eddot / Edot^2 = 4/3 - r rddot / 3 rdot^2 tells coasting from thrust | **Right up to a sign**: since E grows as r^-3, tau = +3E/Edot (found when testing). The second ratio is right. Fills the paper's radial blind spot: no range, but the time of arrival. |
 | The first time integral of B records spin memory | **Wrong as stated.** For a passing wave B = eps k E, so its time integral vanishes with that of E. Spin memory is the magnetic-parity part of the time-integrated strain (Pasterski, Strominger and Zhiboedov, JHEP 2016, 053): a pattern over the sky, not the gravitomagnetic tensor at a point. At one pixel it sits in the third time integral of E. |
 | One pixel witnesses the standing waves of inflation through \|E\|^2 - \|B\|^2 breathing at 2 omega | **Known, and negative.** Allen, Flanagan and Papa (PRD 61, 024024, 2000) showed the non-stationarity is unobservable without an experiment lasting about the age of the Universe: any resolvable band contains modes whose phases differ by many turns. One pixel does not escape this. |
 

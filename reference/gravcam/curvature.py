@@ -54,6 +54,35 @@ def moving_masses_metric(masses, positions, velocities):
     return h
 
 
+def boosted_masses_metric(masses, positions, velocities):
+    """h(x0, x) of point masses each moving uniformly, exactly at any speed to first order in G: each is the
+    static field boosted, hbar_mu nu = 4 G M u_mu u_nu / (c^4 r'), with r' the distance in the mass's rest frame,
+    so h_mu nu = 4 G M u_mu u_nu / (c^4 r') + eta_mu nu 2 G M / (c^2 r'). Positions are at t = 0."""
+    masses = np.atleast_1d(np.asarray(masses, dtype=np.float64))
+    positions = np.atleast_2d(np.asarray(positions, dtype=np.float64))
+    velocities = np.atleast_2d(np.asarray(velocities, dtype=np.float64))
+    eta = np.diag([-1.0, 1.0, 1.0, 1.0])
+    parts = []
+    for m, p, v in zip(masses, positions, velocities):
+        speed = float(np.linalg.norm(v))
+        gamma = 1.0 / np.sqrt(1.0 - (speed / c) ** 2)
+        u = gamma * np.array([-c, *v])
+        vh = v / speed if speed > 0 else np.array([1.0, 0.0, 0.0])
+        parts.append((m, p, v, gamma, np.outer(u, u), vh))
+
+    def h(x0: float, x) -> np.ndarray:
+        out = np.zeros((4, 4))
+        for m, p, v, gamma, uu, vh in parts:
+            rel = np.asarray(x) - (p + v * (x0 / c))
+            par = rel @ vh
+            perp = rel - par * vh
+            rp = np.sqrt((gamma * par) ** 2 + perp @ perp)
+            out += 4.0 * G * m / (c ** 4 * rp) * uu + eta * 2.0 * G * m / (c ** 2 * rp)
+        return out
+
+    return h
+
+
 def plane_wave_metric(amplitude: float, omega: float, plus: float = 1.0, cross: float = 0.0):
     """h for a transverse-traceless plane wave travelling along +z."""
     k = omega / c

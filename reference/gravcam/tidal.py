@@ -252,3 +252,21 @@ def scene_potential(scene: Scene, point, roots=None) -> np.ndarray:
         else:
             total = total + uniform_sphere_potential(point, shape.center, shape.radius, mass)
     return total
+
+
+# --- a ruler under the ground ---------------------------------------------------------------------------------------
+#
+# Above two equal masses at (+-d/2, 0) buried at depth z, the in-plane shear (E_xx - E_yy) + 2i E_xy vanishes on the
+# perpendicular bisector exactly at y = +-d/2, whatever the depth (for z > sqrt(3) d / 2): on x = 0, E_xy = 0 by
+# symmetry and E_xx - E_yy = 6 G M (y^2 - d^2/4) / [(d/2)^2 + y^2 + z^2]^(5/2). The two zeros are d apart. For unequal
+# masses they drift with depth. (Carbon's note, design/sources; tests/test_silent_flows.py.)
+
+
+def planar_shear(x, y, z: float, masses):
+    """(E_xx - E_yy) + 2i E_xy on the plane at height z above point masses [(G M, (a, b))] at depth 0."""
+    S = 0j
+    for gm, (a, b) in masses:
+        X, Y = x - a, y - b
+        r2 = X * X + Y * Y + z * z
+        S = S + 3 * gm / r2 ** 2.5 * ((Y * Y - X * X) - 2j * X * Y)
+    return S
