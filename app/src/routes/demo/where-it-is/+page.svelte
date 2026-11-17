@@ -147,9 +147,9 @@
 		<p>
 			The <strong>gravitational</strong> camera sees it where it is. The field of a body moving steadily
 			is its field at rest carried along, so it points at the present position, however slow light is.
-			On the gravity side the glow is the ball’s mass, and the faint outline is where light shows it
-			(“Outline” in the layers); drag the divider to see the light picture itself. The pull of the empty
-			room is subtracted, so that only the ball and the plinth show.
+			On the gravity side the glow is the ball’s mass, and the faint outline is where light shows it (“Outline”
+			in the layers); drag the divider to see the light picture itself. The pull of the empty room is
+			subtracted, so that only the ball and the plinth show.
 		</p>
 		<p>
 			Press <em>Stop it</em>. Neither half can know at once. Light goes on showing the ball flying
