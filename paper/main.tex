@@ -24,31 +24,41 @@
 \begin{abstract}
 Suppose gravitational-wave detectors could be made arbitrarily small and
 arbitrarily sensitive, and a camera were built with one at every pixel. What
-would it see? We work out what such a pixel measures and how an array of them
-forms an image. The answer divides into three regimes. At everyday frequencies
-the camera sees the changing pull of nearby mass, through any obstacle, but
-with a blur that shrinks only as the logarithm of its sensitivity. In the
-waves radiated by moving bodies, a compact, slowly moving body is an unresolved
-point, though one pixel can find the direction of a single wave and, through
-the magnetic part of the field, the distance of a moving mass. Only in the
-faint thermal radiation of matter are sharp images possible, and there the
-world is transparent and self-luminous. No broadband lens, mirror or shadow
-exists for such a camera, short of a black hole, so its images are computed,
-not focused. We compute expected images of everyday scenes. Turned to the sky,
-the same equations, solved in closed form, show the field of a pair of black
-holes changing from Newton's pull to waves at a sixth of their wavelength, the
-memory an explosion leaves, the
-Galaxy's centre outshining the rest of the millihertz sky, and, if the early
-universe was hot enough, a primordial graviton glow at $0.905\,\mathrm{K}$ in
-which black holes are the only shadows. This is a thought experiment, not a
-proposal for an instrument. The draft is incomplete, and its claims of novelty
-are provisional until the literature has been read in full.
+would it see? A pixel records ten numbers, the electric and magnetic parts of the
+tidal field, where a sensor of light records six and a wave of either kind
+carries four. We show what the extra numbers buy. Written as one complex matrix,
+a reading splits into four numbers that no observer can change, three that
+orient the field and three that give the velocity of its rest frame. One pixel
+therefore reads its own velocity through an unknown scene, at any speed; it
+detects motion within the scene however it moves itself; it tells one body from
+two and a wave from a pull; it gives a moving body's sideways velocity exactly,
+at any speed; it separates two waves crossing it at one instant, three at one
+frequency and four over time, where a sensor of light separates one, two and
+two; it ranges a wave source out to a distance proportional to the
+signal-to-noise ratio; and it sees moving bodies where they are now, not where
+they were. One reading of any metric wave gives its speed and all six
+polarizations a metric theory allows. An array forms an image in three regimes.
+At everyday frequencies the camera sees the changing pull of nearby mass,
+through any obstacle, but with a blur that shrinks only as the logarithm of its
+sensitivity. In the waves radiated by moving bodies, a compact, slowly moving
+body is an unresolved point. Only in the faint thermal radiation of matter are
+sharp images possible, and there the world is transparent and self-luminous. No
+broadband lens, mirror or shadow exists for such a camera, short of a black
+hole, so its images are computed, not focused. Turned to the sky, the same
+equations, solved in closed form, show the field of a pair of black holes
+changing from Newton's pull to waves at a sixth of their wavelength, the memory
+an explosion leaves, the Galaxy's centre outshining the rest of the millihertz
+sky, and, if the early universe was hot enough, a primordial graviton glow at
+$0.905\,\mathrm{K}$ in which black holes are the only shadows. This is a thought
+experiment, not a proposal for an instrument. The draft is incomplete, and its
+claims of novelty are provisional until the literature has been read in full.
 \end{abstract}
 
 \maketitle
 
 \input{sections/01-introduction}
 \input{sections/02-pixel}
+\input{sections/02b-one-pixel}
 \input{sections/03-regimes}
 \input{sections/04-near-field}
 \input{sections/05-waves}

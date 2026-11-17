@@ -265,6 +265,20 @@ def four_waves(readings):
     return _quartic_roots_directions(mat5(a))
 
 
+def five_sources(S_I, S_V):
+    """Five uncorrelated sources from the brightness and circular-polarization blocks of one pixel's spectral matrix,
+    S_I = sum I_a q_a q_a^H and S_V = sum V_a q_a q_a^H (q_a = steering of source a), when their circular fractions
+    V_a / I_a differ: whiten S_I, diagonalize S_V in the whitened space; the eigenvalues are V_a / I_a and the
+    columns of S_I W V_A are sqrt(I_a) q_a up to phase. Returns (directions, I, V/I)."""
+    d, U = np.linalg.eigh(S_I)
+    Wh = U / np.sqrt(d)
+    frac, VA = np.linalg.eigh(Wh.conj().T @ S_V @ Wh)
+    C = S_I @ Wh @ VA
+    I = np.sum(np.abs(C) ** 2, axis=0)
+    dirs = [direction(np.linalg.svd(mat5(C[:, a]))[0][:, 0]) for a in range(C.shape[1])]
+    return np.array(dirs), I, frac
+
+
 # --- result 5: ranging a wave source -------------------------------------------------------------------------------
 
 def ranging_constant(iota: float, theta: float) -> float:

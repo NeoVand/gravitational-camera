@@ -169,65 +169,23 @@ sky is blurred over some fifty degrees, and an array sharpens in proportion to
 its width in wavelengths, Eq.~\eqref{eq:diffraction}.}\label{fig:array}
 \end{figure}
 
-\paragraph{What one pixel knows.} A single LIGO cannot tell where a wave came
-from. A single ideal pixel can do better, because it records all ten
-components of the field. For a single plane wave, of any polarization,
-\begin{equation}\label{eq:one-wave}
-\hat n_i = -\,\frac{\epsilon_{ijk}\,\tE_{jl}\,\tB_{kl}}{\tE_{ab}\,\tE_{ab}} ,
-\end{equation}
-the gravitational counterpart of the Poynting vector, points from the pixel
-back to the source. One pixel can therefore place a burst on the sky, to within
-an angle of order the inverse of its signal-to-noise ratio, and can place each
-source of a sky whose sources are separated in frequency, as thousands of the
-Galaxy's white-dwarf pairs would be after years of observation
-(Section~\ref{sec:vistas}), without an aperture. For a sky full of independent
-sources overlapping in frequency, the pixel's second moments determine the
-brightness of the sky only in its broadest patterns: those of
-spherical-harmonic degree four or less, twenty-five numbers in all. If the
-sources are many and Gaussian, the second moments are all the data hold; a few
-bright sources carry more in their higher statistics. The even degrees, $0$, $2$ and $4$, come from the
-correlations of $\tE$ with itself and of $\tB$ with itself; the odd degrees
-need the cross-correlation of $\tE$ with $\tB$, and mix with the circular
-polarization unless the sky is unpolarized. It is the gravitational
-counterpart of the statement that a single antenna has a broad beam, and it is
-the precise sense in which one pixel is not yet a camera. The limit is known
-for the response of a single detector to an anisotropic background
-\cite{AllenOttewill1997,SetoCooray2004} and for spherical resonant antennas
-\cite{MerkowitzJohnson1995}; we give a short proof that covers all ten
-components.
-
-The proof is short. Independent waves add their second moments, so the
-pixel's data are integrals over the sky of the brightness $I(\hat n)$ and the
-circular polarization $V(\hat n)$ against kernels made from the polarization
-tensors of a plane wave travelling along $\hat n$. For the brightness the
-kernel is the sum over the two polarizations,
-\begin{equation}\label{eq:pixel-kernel}
-\begin{gathered}
-\sum_{A=+,\times} e^{A}_{ij}\, e^{A}_{kl}
-= P_{ik}P_{jl} + P_{il}P_{jk} - P_{ij}P_{kl},\\
-P_{ij} = \delta_{ij} - \hat n_i \hat n_j ,
-\end{gathered}
-\end{equation}
-a polynomial of degree four in the components of $\hat n$; the kernel for $V$
-is the antisymmetric combination, also a polynomial of degree at most four.
-A polynomial of degree four on the sphere contains spherical harmonics of
-degree four and below only, so by their orthogonality every harmonic of $I$
-and $V$ above degree four integrates to zero. The magnetic tensor of a plane
-wave is the electric one turned by $45^\circ$ about $\hat n$, so the same
-holds for every product of $\tE$ and $\tB$: for the brightness, the kernels of
-$\tE\tE$ and $\tB\tB$ are even, of degree four, and that of $\tE\tB$ is odd,
-of degree three, which is why the odd harmonics need the cross-correlation.
-The linear polarization carries spin weight four about $\hat n$ and enters
-only through its harmonic of degree exactly four. The reference
-implementation checks all three statements numerically, harmonic by harmonic.
-
-An example shows how much the limit hides. The twelve corners of a regular
-icosahedron form a spherical design of degree five: they average every
-polynomial of degree five or less exactly as the whole sphere does
-\cite{Delsarte1977}. Twelve equal, unpolarized, independent sources at those
-corners therefore give a pixel exactly the second moments of a uniform sky,
-while six at the corners of an octahedron, a design of degree three only, do
-not; the reference implementation finds the first pair equal to one part in
-$10^{15}$. Two pixels a wavelength apart tell them apart, because their
-cross-correlation carries the phase $e^{i\omega\hat n\cdot\Delta\mathbf x/c}$,
-which no finite design averages exactly.
+\paragraph{One pixel and many.} A single pixel already does part of a camera's
+work (Section~\ref{sec:one-pixel}): it places one wave by Eq.~\eqref{eq:one-wave},
+separates up to four from their time history, and sees the sky's brightness in
+its patterns of degree four and below. An array adds to this in two ways. Its
+size sharpens the image, Eq.~\eqref{eq:diffraction}. And it multiplies the
+number of sources that can be told apart: an array of $N$ pixels, wherever they
+are placed and even along one line, has $5N$ independent steering vectors at
+each frequency and helicity, so subspace methods separate up to $5N - 1$
+uncorrelated sources, against $N - 1$ for scalar sensors and $3N - 1$ for sensors
+of light. The tensor nature of each pixel also removes the false images of a
+sparse array. Two scalar sensors far apart see a source equally well at any of
+the fringes of their pattern; two pixels $D$ apart see the fringe at the
+source's true direction more strongly than its neighbours, because their
+response to two directions an angle $\vartheta$ apart is multiplied by
+$\cos^8(\vartheta/2)$. With a minimum-variance (Capon) estimator and a source
+at signal-to-noise ratio $\rho$, the true fringe stands above the nearest false
+one by the factor $1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$, where
+$\vartheta_1 \approx \lambda/D$ is the fringe spacing, so that two pixels a
+hundred wavelengths apart form a telescope without ambiguity once $\rho$ exceeds
+about a hundred. The reference implementation checks these three statements.

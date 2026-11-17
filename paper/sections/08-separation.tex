@@ -9,9 +9,10 @@ Nearby objects pull differently on different pixels, and those differences
 tell how far away each thing is.
 \end{quote}
 
-Section~\ref{sec:pixel} ended with a difficulty: one pixel cannot tell a wave
-from the pull of a passing lorry. An ideal pixel can do better than LIGO, and
-an array can do much better. Three properties separate the two kinds of field.
+Section~\ref{sec:pixel} ended with a difficulty: from the electric part alone,
+one pixel cannot tell a wave from the pull of a passing lorry. With all ten
+numbers it can (Section~\ref{sec:one-pixel}), and an array can do much more.
+Three properties separate the two kinds of field.
 
 \paragraph{Shape.} A plane wave stretches and squeezes only across its
 direction of travel, so its tidal tensor has one vanishing eigenvalue and
@@ -19,7 +20,10 @@ $\det\tE = 0$. The field of a single mass has eigenvalues in the ratio
 $-2 : 1 : 1$, and its determinant is never zero. One reading of one pixel
 therefore distinguishes a single wave from a single mass. The test is for an
 isolated source: the fields of several masses, or of several waves, add, and
-their sum can have either form.
+their sum can have either form. The complex matrix of
+Section~\ref{sec:one-pixel} goes further: a pure wave has
+$\mathrm{tr}\,\mathcal{W}^2 = \mathrm{tr}\,\mathcal{W}^3 = 0$, two crossing waves have
+$\det\mathcal{W} = 0$, and any single body has a repeated eigenvalue.
 
 \paragraph{The magnetic part.} In a wave the magnetic tidal tensor is as large
 as the electric one; it is the same pattern turned by $45^\circ$ about the
@@ -59,10 +63,11 @@ $\mathbf{J}$, with the same blur law at a signal-to-noise ratio smaller by
 about $v/c$. Three things follow. Only motion across the line of sight counts:
 $\hat n\times\mathbf{J}$ removes the radial part, so the magnetic channel is
 the opposite of a Doppler radar, blind to approach and sensitive to sideways
-motion. For a single moving mass $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ exactly, so
-one reading of one pixel gives the line on which a body lies (the eigenvector
-of $\tE$'s negative eigenvalue, up to its sign) and, from $\tB$, its sideways
-speed. And outside a spherical body spinning with angular momentum
+motion. For a single moving mass $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ to first order
+in $v/c$, so one reading of one pixel gives the line on which a body lies (the
+eigenvector of $\tE$'s negative eigenvalue, up to its sign) and, from $\tB$, its
+sideways speed; at any speed, the four stars give the sideways velocity
+exactly, Eq.~\eqref{eq:star-velocity}. And outside a spherical body spinning with angular momentum
 $\mathbf{L}$ the field is exactly that of a spin dipole,
 $\tB_{ij} = -(3G/cr^{4})[L_i\hat n_j + \hat n_iL_j
 + (\mathbf{L}\cdot\hat n)(\delta_{ij} - 5\hat n_i\hat n_j)]$: a hollow shell and
@@ -120,12 +125,14 @@ r = c\,\frac{|\tB\hat n|}{|P\dot{\tE}\hat n|} ,
 and then $M$ from $\tE$; the sign that makes $r$ positive also fixes the sign
 of $\hat n$. The reference implementation recovers distance, mass and velocity
 this way from the finite-difference curvature of a moving mass. Motion straight
-toward or away from the pixel gives no range, and the magnetic signal, smaller
-by $v/c$, sets the noise. For waves, range comes from the
-curvature of the wavefront, which across an array of width $D$ amounts to
-a phase of order one at the distance $D^{2}/\lambda$; beyond it range is still
-measured, with a fractional error of order $\lambda r/\mathcal{R}D^{2}$ at
-signal-to-noise ratio $\mathcal{R}$.
+toward or away from the pixel gives no range, though it gives the time of
+arrival, Eq.~\eqref{eq:contact}; and the magnetic signal, smaller by $v/c$, sets
+the noise. For waves, range comes from the curvature of the wavefront, which
+across an array of width $D$ amounts to a phase of order one at the distance
+$D^{2}/\lambda$; beyond it range is still measured, with a fractional error of
+order $\lambda r/\mathcal{R}D^{2}$ at signal-to-noise ratio $\mathcal{R}$. A
+single pixel also ranges a wave source, from how its field departs from that of
+a plane wave, Eq.~\eqref{eq:helicity-split}.
 
 \paragraph{Front and back.} A flat array that records only the normal
 component $\tE_{zz}$ cannot tell a mass in front of it from the mirror image of

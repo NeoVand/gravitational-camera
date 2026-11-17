@@ -141,6 +141,19 @@ but the glow measures friction and temperature, not mass
 ambiguity altogether, because there $\mathrm{tr}\,\tE = 4\pi G\rho$ reads the
 density where the pixel is (Section~\ref{sec:pixel}).
 
+The magnetic part has a blind spot of the same kind for flows. Outside a body,
+$\tB$ comes from the potential $\int\rho\mathbf{v}\,\dd V'/|\mathbf{x} -
+\mathbf{x}'|$ of its steady flow of mass. If the flow is
+$\rho\mathbf{v} = \nabla\times\nabla\times\mathbf{V}$, with $\mathbf{V}$ vanishing
+together with its derivatives at the surface, that potential is a pure gradient
+outside, and $\tB = 0$ there. Every confined flow that turns in meridian planes,
+such as convection rolls inside a star or a planet's core, is of this form: it is
+silent outside, however fast it runs. Only the swirl about an axis shows, and
+only through its harmonic part, of which the spin dipole is the first term. The
+reference implementation checks this by integrating the field of both kinds of
+flow inside a ball: outside it, the rolls' field falls toward zero as the
+integration grid is refined, while the swirl's stays put.
+
 Together the channels go further than any one. For the Earth the glow gives the
 radius of the core, $3480\,\mathrm{km}$, from the kinks in its brightness
 (Figure~\ref{fig:earth-inverted}); the electric part gives the mass; and the
@@ -270,6 +283,18 @@ can be told from one only when they are farther apart than about
 $z/\sqrt{\mathcal{R}}$, because the difference they make grows as the square
 of their separation. What limits the image is the variety of scenes allowed,
 not the precision of the data.
+
+\paragraph{A ruler under the ground.} One exact feature survives the blur. Above
+two equal masses $d$ apart, buried at any depth $z$ greater than
+$\tfrac{\sqrt3}{2}d$, the shear of the tidal field in the plane of the array,
+$(\tE_{xx} - \tE_{yy}) + 2i\,\tE_{xy}$, vanishes at exactly two points, on the line
+across the pair and exactly $d$ apart, whatever the depth: on that line
+$\tE_{xy} = 0$ by symmetry and $\tE_{xx} - \tE_{yy}$ is proportional to
+$y^2 - d^2/4$. The two zeros are a ruler laid on the camera, needing no
+reconstruction. Noise places each to within about $z^2/6\mathcal{R}d$, so they
+separate two masses once $d$ exceeds about $z/\sqrt{6\mathcal{R}}$: the limit of
+the previous paragraph, now reached by inspection. For unequal masses the zeros
+move with depth, and the ruler is only approximate.
 
 \paragraph{How far can sensitivity go?} The premise of an arbitrarily sensitive
 camera eventually meets the rest of physics. A heuristic argument, not a

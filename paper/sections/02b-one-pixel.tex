@@ -1,0 +1,380 @@
+\section{What one pixel knows}\label{sec:one-pixel}
+
+\begin{quote}
+\textbf{In plain words.} A light sensor records six numbers at a point and a
+gravitational pixel ten, although a wave of either kind is described by only
+four. The extra numbers are not idle. From one reading of one pixel, with no
+lens and no second pixel, the field tells which way a wave came from, how many
+bodies are pulling, how fast the pixel itself is moving through the matter
+around it, and where a moving body is now rather than where it was. Over time
+it pulls apart several waves crossing it at once, and from how the field
+departs from a perfect wave it tells how far away their source is. Light at a
+point can do much less, for a reason that is a matter of algebra.
+\end{quote}
+
+A wave of light or of gravity reaching a point is described by four numbers: two
+for its direction and two for the strengths of its two polarizations. A sensor
+of light at a point records six, the electric and magnetic fields; a
+gravitational pixel records ten, Eqs.~\eqref{eq:tidal} and~\eqref{eq:magnetic}.
+This section shows what the six extra numbers buy. Most of it follows from
+writing them as one object.
+
+\paragraph{One complex matrix.} In vacuum $\tE$ and $\tB$ are real, symmetric and
+trace-free. Together they form the complex symmetric trace-free matrix
+\begin{equation}\label{eq:W}
+\mathcal{W} = \tE + i\,\tB ,
+\end{equation}
+five complex numbers. Two facts make this the natural form.
+
+First, observers transform $\mathcal{W}$ by rotations of three-dimensional space with
+complex angles. A pixel turned by a rotation $R$ reads $R\,\mathcal{W} R^{T}$. A pixel moving
+with rapidity $\eta$ along a unit vector $\hat u$ (speed $c\tanh\eta$) reads
+$\Lambda\,\mathcal{W}\Lambda^{T}$ with $\Lambda = \exp(i\eta\,\hat u\cdot\mathbf{L})$, where
+$(L_k)_{ij} = -\epsilon_{kij}$ generates rotations: a change of velocity is a
+rotation by an imaginary angle. (The Lorentz group is isomorphic to the group of
+complex rotations, $SO(3,\mathbb{C})$; for the curvature this is the content of
+Petrov's and Penrose's classifications \cite{Petrov2000,Penrose1960}.) The
+eigenvalues of $\mathcal{W}$, and with them
+\begin{equation}\label{eq:invariants}
+I = \mathrm{tr}\,\mathcal{W}^2, \qquad J = \mathrm{tr}\,\mathcal{W}^3,
+\end{equation}
+are therefore the same for every observer at that point, however turned and
+however moving.
+
+Second, a plane wave is a perfect square. For a wave travelling along $\hat k$,
+let $\mathbf{e}_1, \mathbf{e}_2$ span the plane across it with
+$\mathbf{e}_1\times\mathbf{e}_2 = \hat k$, and let
+$\mathbf{m} = (\mathbf{e}_1 + i\mathbf{e}_2)/\sqrt2$, a complex vector with
+$\mathbf{m}\cdot\mathbf{m} = 0$. Since $\tB_{ij} = \epsilon_{ipq}\hat k_p\tE_{qj}$ in
+the wave, and $\hat k\times\mathbf{m} = -i\mathbf{m}$,
+\begin{equation}\label{eq:square}
+\mathcal{W} = 2(\tE_+ - i\tE_\times)\,\mathbf{m}\mathbf{m}^{T},
+\end{equation}
+where $\tE_+$ and $\tE_\times$ are the wave's two polarizations, so that a wave's
+$\mathcal{W}$ has rank one. Conversely the direction of travel is read from $\mathbf{m}$
+as $\hat k = \mathrm{Re}(i\,\mathbf{m}\times\mathbf{m}^*)/|\mathbf{m}|^2$, which for
+one wave of any polarization is the gravitational counterpart of the Poynting
+vector:
+\begin{equation}\label{eq:one-wave}
+\hat n_i = -\,\frac{\epsilon_{ijk}\,\tE_{jl}\,\tB_{kl}}{\tE_{ab}\,\tE_{ab}} ,
+\end{equation}
+with $\hat n = -\hat k$ pointing from the pixel back to the source. The same
+construction for light gives $\mathbf{E} + ic\mathbf{B} = a\,\mathbf{m}$, a vector
+rather than a square; the difference between the two, a square against a single
+power, is the difference between spin two and spin one, and it is the source of
+almost everything below. Matter neither reflects nor absorbs gravitational waves
+(Section~\ref{sec:no-lens}), so none of what follows is spoiled by echoes, as
+direction finding with radio or sound is indoors.
+
+\paragraph{Four stars.} Every reading has four directions of its own. Writing a
+complex null vector by its stereographic coordinate $z$ on the sky,
+$\mathbf{m}(z) = (1 - z^2,\, i(1 + z^2),\, -2z)$, the quartic equation
+\begin{equation}\label{eq:stars}
+\mathbf{m}(z)^{T}\,\mathcal{W}\,\mathbf{m}(z) = 0
+\end{equation}
+has four roots, four points on the sphere of directions around the pixel: the
+principal null directions of the field \cite{Penrose1960}, which we call its
+stars. For one plane wave all four coincide on its direction of travel. For one
+body at rest they fall in two pairs, on the line to the body and opposite it.
+Where two or more bodies pull, they are four distinct points. The same
+distinctions can be read without solving anything, from the invariants: a
+repeated eigenvalue, the mark of a single body, makes
+$1 - 6J^2/I^3$ vanish, and a single wave makes $I = J = 0$ (Petrov's types D and
+N). One reading therefore tells whether the field could be that of one body,
+whether it is a pure wave, or whether it needs more. In the reference
+implementation the quantity $1 - 6J^2/I^3$ is below $10^{-8}$, rounding, for a
+single moving body, and $0.02$ for two bodies at comparable distances.
+Light at a point has two stars, not four: its $\mathbf{E} + ic\mathbf{B}$ has
+only one complex invariant.
+
+\paragraph{Ten numbers: four invariants, three angles, three velocities.} A
+reading whose eigenvalues are distinct can be written
+\begin{equation}\label{eq:polar}
+\mathcal{W} = P\,\mathrm{diag}(w_1, w_2, w_3)\,P^{T}, \qquad
+P = R_0\,e^{iK_0},
+\end{equation}
+with $P$ a complex rotation ($P^TP = 1$), split into a real rotation $R_0$ and an
+imaginary one. The three complex eigenvalues, which sum to zero, are four
+numbers no observer can change. The rotation $R_0$ gives three angles, the
+orientation of the field's own axes. The imaginary part,
+$e^{2iK_0} = P^{\dagger}P$, gives three more: the velocity of the one frame in
+which $\tE$ and $\tB$ share their axes, the field's own rest frame. Ten numbers,
+read as four, three and three.
+
+The consequences are immediate. For a scene of masses at rest, $\tB = 0$ in the
+scene's frame, so its eigenvalues are real; a pixel moving through it at any
+speed still finds real eigenvalues, and finds in $P$ the velocity of the scene
+relative to itself. The pixel is a speedometer: it reads its own velocity through
+an unknown room, at any speed, with no map of the room. In the reference
+implementation, for a pixel moving at $0.6\,c$ past four unknown masses, the
+rapidity is recovered to $4\times10^{-8}$. To first order in the speed, in the
+principal axes of $\tE$ with eigenvalues $\lambda_a$,
+\begin{equation}\label{eq:speedometer}
+\tB_{bc} = \frac{v_a}{c}\,(\lambda_c - \lambda_b) \quad ((a,b,c)\ \text{cyclic}),
+\qquad \tB_{aa} = 0 ,
+\end{equation}
+so a pixel whose readings carry white noise $\sigma$ on each component reads
+each component of its velocity to within
+$c\,\sigma/\sqrt2\,|\lambda_b - \lambda_c|$. A pixel that reads the tide of a
+room, $10^{-8}\,\mathrm{s^{-2}}$ near a person, to one part in $10^{8}$, reads its
+own speed to about two metres per second.
+
+The converse is an alarm. A pixel moving through a static scene, however fast,
+always finds real eigenvalues. If they are complex, something in the scene
+moves relative to the rest of it, or turns: the pixel's own motion can never
+set it off. The phase of the eigenvalues measures turning. Outside a spinning
+body of mass $M$ and angular momentum $J_s = Mca$, the eigenvalues are
+proportional to $(r - ia\cos\vartheta)^{-3}$, as in Kerr's solution
+\cite{Kerr1963}, so their phase, $3a\cos\vartheta/r$ for $a \ll r$, reads the
+spin along the line of sight; for the Earth seen from above a pole it is
+$1.5\times10^{-6}$.
+
+Light cannot do this. Its field at a point has only two invariants,
+$\mathbf{E}^2 - c^2\mathbf{B}^2$ and $\mathbf{E}\cdot\mathbf{B}$, and in the frame
+where $\mathbf{E}$ is parallel to $\mathbf{B}$ a boost along their common axis
+and a turn about it change nothing. A sensor of light is at best a
+two-dimensional speedometer. A single body does the same to gravity's field
+(type D): coming straight at the pixel, even at $0.3\,c$, it shows no $\tB$ at
+all, and its radial speed is unreadable. Two bodies, or one that is not round,
+remove the blind spot.
+
+\paragraph{A moving body, exactly.} The four stars of a single body moving at any
+speed are its two pairs, displaced by aberration toward its direction of motion.
+Their midpoint, as a vector, is exactly its velocity across the line of sight:
+\begin{equation}\label{eq:star-velocity}
+\tfrac12\,(\hat p_+ + \hat p_-) = \frac{\mathbf{v}_\perp}{c} ,
+\end{equation}
+with $\hat p_\pm$ the directions of the two pairs and $\mathbf{v}_\perp$ the
+velocity across the line from the body to the pixel. The reference
+implementation finds the two sides equal to $2\times10^{-7}$ at $0.9\,c$. The
+ratio $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ of Section~\ref{sec:separation} is its
+first-order form. A body coming straight on shows no sideways velocity and
+cannot be ranged (Section~\ref{sec:separation}), but because its tide grows as
+$r^{-3}$, the pixel reads when it will arrive,
+\begin{equation}\label{eq:contact}
+-\frac{r}{\dot r} = \frac{3\,\tE_\parallel}{\dot{\tE}_\parallel},
+\qquad
+\frac{\tE_\parallel\,\ddot{\tE}_\parallel}{\dot{\tE}_\parallel^2} = \frac43 - \frac{r\ddot r}{3\dot r^2},
+\end{equation}
+and from the second ratio whether it is coasting ($4/3$), braking or driven.
+
+\paragraph{Separating waves at one point.} Several waves crossing a pixel at
+once add their matrices, and the algebra of squares lets one pixel pull them
+apart.
+
+At one instant, two waves give $\mathcal{W} = c_1\mathbf{m}_1\mathbf{m}_1^{T} +
+c_2\mathbf{m}_2\mathbf{m}_2^{T}$, of rank two, so $\det\mathcal{W} = 0$: two real
+conditions that tell two crossing waves from the pull of a mass, whose
+$\det\mathcal{W} = -2(GM/r^3)^3$. The vector $\mathbf{v}$ with $\mathcal{W}\mathbf{v} = 0$ is
+$\mathbf{m}_1\times\mathbf{m}_2$; the null vectors orthogonal to it are the
+roots of one quadratic, and they are $\mathbf{m}_1$ and $\mathbf{m}_2$, which give
+both directions and then both amplitudes. This is Sylvester's theorem on sums of
+two fourth powers \cite{Sylvester1851} in the language of the sky. Light cannot
+do it at all: a single wave already uses four of its six numbers.
+
+At one frequency, three waves can be separated. Writing the reading as
+$\mathcal{W}(t) = \mathcal{W}_+e^{-i\omega t} + \mathcal{W}_-e^{i\omega t}$, both parts are sums
+over the same three squares, $\mathcal{W}_\pm = \sum_a \alpha_a^\pm\,
+\mathbf{m}_a\mathbf{m}_a^{T}$, and
+\begin{equation}\label{eq:pencil}
+\det(\mathcal{W}_+ - \lambda\,\mathcal{W}_-) = \det[\mathbf{m}_1,\mathbf{m}_2,\mathbf{m}_3]^2
+\prod_{a=1}^{3}(\alpha^+_a - \lambda\,\alpha^-_a) .
+\end{equation}
+Its three roots give the ratios $\lambda_a = \alpha_a^+/\alpha_a^-$; at each, one
+wave drops out, the null vector of what remains is the cross product of the other
+two $\mathbf{m}$, and cross products of those give all three directions. For a
+circular binary seen at inclination $\iota$, $|\lambda| = \tan^{\pm4}(\iota/2)$,
+so the roots also give the three inclinations. Three binaries in one frequency
+bin, which a single interferometer cannot tell apart, are three stars to one
+pixel (to $10^{-9}$ in the reference implementation).
+
+Over time, four. If the waves come from fixed directions but carry any
+waveforms at all, the readings span a subspace of the five-dimensional space of
+matrices; for four waves it is four-dimensional, and there is one matrix $A$ with
+$\mathrm{tr}(A\mathcal{W}) = 0$ for every reading. Each wave's $\mathbf{m}$ then lies on
+two conics,
+\begin{equation}\label{eq:four-waves}
+\mathbf{m}^{T}\!A\,\mathbf{m} = 0, \qquad \mathbf{m}\cdot\mathbf{m} = 0 ,
+\end{equation}
+and two conics meet in four points: the four directions. For light the same
+argument gives two. In general a point sensor of a field of spin $s$ separates
+$s$ plane waves at one instant, $s + 1$ at one frequency and $2s$ from a time
+history; for light, $1$, $2$ and $2$, the known limit for electromagnetic vector
+sensors \cite{NehoraiPaldi1994,HochwaldNehorai1996}; for gravity, $2$, $3$ and
+$4$. In the reference implementation four waves with random waveforms are
+located to $10^{-14}$, and to $10^{-4}$ radian with noise of $10^{-4}$ of the
+signal on every component over three hundred readings.
+
+Uncorrelated sources can be separated from second moments alone. In the
+frequency domain the two helicities occupy separate halves of the ten numbers,
+and the brightness and the circular polarization of the sources give two
+five-by-five matrices built from the same five steering vectors; when the
+sources' circular fractions differ, diagonalizing one in the frame that whitens
+the other separates five sources in closed form, with their directions,
+brightnesses and circular fractions (checked in the reference implementation).
+
+\paragraph{What one pixel sees of the sky.} For a sky full of independent
+sources overlapping in frequency, what a pixel can learn at each frequency is
+its ten-by-ten spectral matrix, one hundred real numbers. Split by helicity, it
+holds three blocks: the brightness $I$ and the circular polarization $V$ of the
+sky in two five-by-five Hermitian blocks, and the linear polarization in a
+complex symmetric one. The brightness enters through the kernel
+\begin{equation}\label{eq:pixel-kernel}
+\begin{gathered}
+\sum_{A=+,\times} e^{A}_{ij}\, e^{A}_{kl}
+= P_{ik}P_{jl} + P_{il}P_{jk} - P_{ij}P_{kl},\\
+P_{ij} = \delta_{ij} - \hat n_i \hat n_j ,
+\end{gathered}
+\end{equation}
+a polynomial of degree four in the components of $\hat n$, so the pixel sees the
+spherical harmonics of $I$ of degree four and below, twenty-five numbers; it
+sees as many of $V$, and eighteen of the linear polarization, which carries spin
+weight four and enters only at degree four. That is
+\begin{equation}\label{eq:sky-count}
+25 + 25 + 18 = 68
+\end{equation}
+numbers of the sky, all independent; the other thirty-two of the hundred vanish
+for any sky of gravitational waves and are checks against sensor noise or
+anything else. The brightness and the circular polarization never mix at one
+pixel: one lives in the real part of the spectral matrix, the other in its
+imaginary part. (They mix in the cross-correlation of two separated detectors
+\cite{AllenOttewill1997,SetoCooray2004}, through the phase between them.) The
+same count for a point sensor of spin $s$ gives $2(2s+1)^2 + 2(4s+1)$: $28$ of
+$36$ for light. For sound, a pressure and a velocity, it is $9$ of $16$. All
+three counts are checked in the reference implementation.
+
+One of the sixty-eight numbers is the handedness of the whole sky. An isotropic
+sky of brightness $I$ and net circular polarization $V$ puts exactly
+$(V/I)\langle\tE\cdot\tE^*\rangle$ into the imaginary part of
+$\langle\tE\cdot\tB^*\rangle$, so one pixel measures
+whether the sky is chiral, which a single planar interferometer cannot
+\cite{SetoTaruya2007}.
+
+The rest of the sky is invisible to second moments. The twelve corners of a
+regular icosahedron form a spherical design of degree five: they average every
+polynomial of degree five or less exactly as the whole sphere does
+\cite{Delsarte1977}. Twelve equal, unpolarized, independent sources at those
+corners therefore give a pixel exactly the second moments of a uniform sky,
+while six at the corners of an octahedron, a design of degree three only, do
+not; the reference implementation finds the first pair equal to one part in
+$10^{15}$. Sources that are not Gaussian say more: the fourth moments of the
+pixel are kernels of degree eight, which no icosahedron averages. Two pixels a
+wavelength apart tell the two skies apart as well, because their
+cross-correlation carries the phase $e^{i\omega\hat n\cdot\Delta\mathbf x/c}$,
+which no finite design averages exactly.
+
+\paragraph{How far away is a wave source?} A single plane wave has no distance.
+The field of a real source at distance $r$ is not quite a plane wave: it carries
+terms falling as $1/r^2$, $1/r^3$ and beyond, organized by how they turn about
+the line of sight \cite{Sachs1962}, and a pixel sees them. At one instant the
+departure of the oscillating part of $\mathcal{W}$ from rank one, the ratio of its
+second singular value to its first, is
+\begin{equation}\label{eq:ranging-instant}
+\frac{s_2}{s_1} = \frac{C(\iota, \theta)}{(kr)^2} + O\bigl((kr)^{-3}\bigr),
+\end{equation}
+not $1/kr$: the first correction only tilts the apparent $\mathbf{m}$, which at one
+instant cannot be told from a tilt of the source. For two masses turning in a
+circle, seen at inclination $\iota$ and wave phase $\theta$,
+\begin{equation}\label{eq:ranging-C}
+\begin{gathered}
+C = \frac{2\sin^2\!\iota\,\sqrt{A^2 + B^2}}{D}, \qquad
+B = 2\cos\iota\,\sin\theta\cos\theta,\\
+A = (1 - 3\cos^2\!\iota)\cos^2\!\theta - 4\cos^2\!\iota\,\sin^2\!\theta,\\
+D = (1 + \cos^2\!\iota)^2\cos^2\!\theta + 4\cos^2\!\iota\,\sin^2\!\theta,
+\end{gathered}
+\end{equation}
+which is $2$ for any phase seen edge on and vanishes at the angle
+$\cos^2\iota = 1/3$. Over a cycle more can be done. The two frequency parts
+$\mathcal{W}_\pm$ depart from rank one by $2\tan^{\pm2}(\iota/2)/(kr)^2$, so that
+$kr = [2\sqrt{s_1(\mathcal{W}_+)s_1(\mathcal{W}_-)}/s_2(\mathcal{W}_+)]^{1/2}$ needs no knowledge of the
+inclination. And the first-order tilt, invisible at one instant, differs between
+the two helicities: the directions read from the two parts differ by
+\begin{equation}\label{eq:helicity-split}
+\Delta\theta_\pm = \frac{8\,|\cot\iota|}{kr} .
+\end{equation}
+A difference of directions measured at signal-to-noise ratio $\rho$ ranges the
+source out to $kr$ of order $\rho$, where the rank departure reaches only $kr$
+of order $\sqrt\rho$. A source seen at $\rho = 10^{3}$ can be ranged out to
+several hundred reduced wavelengths: at $100\,\mathrm{Hz}$, a few hundred
+thousand kilometres. The
+reference implementation checks Eqs.~\eqref{eq:ranging-C}
+and~\eqref{eq:helicity-split} against the exact field of a turning pair to
+within a few per cent at $kr = 80$ and $0.5$ per cent at $kr = 200$.
+
+\paragraph{The camera sees the present.} The field of a body moving uniformly is
+its static field carried along, so it depends on where the body is now. The
+stretch axis of $\tE$ points at the body's present position, at any speed (to
+$10^{-7}$ radian at $0.3\,c$ in the reference implementation), while its light
+shows its position a light-travel time ago, displaced by the aberration angle,
+about $v_\perp/c$. Near two masses in orbit the changing part of the field is
+Newton's field of their present positions to order $(kr)^2$, while their
+retarded positions would be off by $kr$ itself: at $kr = 0.1$, a tenth of a per
+cent against ten per cent. The first-order retardation cancels because mass and
+momentum are conserved. The gravitational Sun is therefore $20.5''$ ahead of the
+optical Sun along its yearly path across the sky. Laplace took the absence of
+gravitational aberration to mean that gravity is far faster than light; it is
+what general relativity predicts \cite{Carlip2000}. A camera that sees mass sees
+it on its own slice of simultaneity. When a body changes its motion, the field
+goes on pointing at where it would have been until the news, travelling at the
+speed of light as a wave, arrives.
+
+\paragraph{Beyond general relativity, in one reading.} Other theories of gravity
+allow up to six polarizations, and waves that travel at other speeds
+\cite{EardleyLeeLightman1973}. For any plane wave of the metric, of any
+polarization and phase speed $v_p$, the second Bianchi identity gives, with no
+field equations assumed,
+\begin{equation}\label{eq:bianchi-wave}
+\tB_{ij} = \frac{c}{v_p}\,\epsilon_{ipq}\hat k_p\,\tE_{qj} .
+\end{equation}
+So one reading of $\tE$ (now with a trace, six numbers) and $\tB$ (with an
+antisymmetric part, eight) gives the direction ($\hat k$ is the null vector of
+$\tB$ from the left), the phase speed, all six polarizations, and five checks that
+they belong to one wave. In general relativity $v_p = c$ and only the two tensor
+polarizations appear. A massive graviton and a massive scalar differ even in
+sign: with $n = c/v_p$, the helicity-zero wave of a Fierz--Pauli graviton
+\cite{FierzPauli1939} has longitudinal and breathing amplitudes in the ratio
+$-2(1 - n^2)$, a scalar wave $+(1 - n^2)$. These are checked against curvature
+computed from the metric in the reference implementation. Testing general
+relativity this way at the level of present bounds would need extraordinary
+signal-to-noise ratios; what is new is that it needs only one point.
+
+\paragraph{How precisely.} With white noise $\sigma$ on each of the ten numbers
+and $\rho = |\mathcal{W}|/\sigma$, one pixel places one wave to within $1/\rho$ radian in
+each direction, against $\sqrt2/\rho$ for a sensor of light at the same
+signal-to-noise ratio; it reads its own velocity as given after
+Eq.~\eqref{eq:speedometer}; and it ranges a moving mass with the precision that
+Section~\ref{sec:separation} gives.
+
+\paragraph{Matter at the pixel.} Inside matter the pixel reads the density
+locally, whatever the matter is: in full,
+$\mathrm{tr}\,\tE = 4\pi G(\rho + 3p/c^2)$, less $2\Omega^2$ if the pixel's frame
+turns at $\Omega$. The dark matter around the Sun, $0.4\,\mathrm{GeV\,cm^{-3}}$,
+gives $6\times10^{-31}\,\mathrm{s^{-2}}$, by its mass alone and with no other
+interaction. Between two plates a micrometre apart the Casimir energy is
+negative and its pressure large, and the trace is negative,
+$-8\times10^{-30}\,\mathrm{s^{-2}}$. The cosmological constant gives
+$-\Lambda c^2 = -1\times10^{-35}\,\mathrm{s^{-2}}$. Where radiation streams
+through, as neutrinos from a supernova do, the trace gives its energy flux and the
+antisymmetric part of $\tB$ its direction (Section~\ref{sec:pixel}), so that
+one reading inside the passing shell points back to the star, even when the
+collapse is perfectly spherical and sends out no waves at all.
+
+\begin{table}
+\centering
+\begin{tabular}{p{0.46\linewidth}p{0.12\linewidth}p{0.13\linewidth}p{0.14\linewidth}}
+At one point & Sound & Light & Gravity \\ \hline
+Numbers recorded & 4 & 6 & 10 \\
+Numbers no observer can change & -- & 2 & 4 \\
+Own velocity readable, components & -- & 2 & 3 \\
+Waves separated at one instant & 1 & 1 & 2 \\
+Waves separated at one frequency & -- & 2 & 3 \\
+Waves separated over time & 2 & 2 & 4 \\
+Sky numbers per frequency (of) & 9 (16) & 28 (36) & 68 (100) \\
+Direction of one wave, standard deviation & -- & $\sqrt2/\rho$ & $1/\rho$ \\
+\end{tabular}
+\caption{What a sensor at one point can know, for sound (pressure and velocity),
+light (electric and magnetic fields) and gravity (the ten numbers of a pixel).
+Separation counts are for plane waves from distinct directions; over time the
+waveforms are arbitrary. A dash marks an entry that does not
+apply.}\label{tab:one-pixel}
+\end{table}

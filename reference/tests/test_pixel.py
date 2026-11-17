@@ -188,6 +188,20 @@ def test_light_separates_two_over_time_but_never_three():
     assert s[-1] > 1e-3 * s[0]                                               # full rank: no annihilator
 
 
+def test_five_uncorrelated_sources_in_closed_form():
+    for _ in range(10):
+        ks = [unit(rng.normal(size=3)) for _ in range(5)]
+        I = rng.uniform(0.5, 2, 5)
+        frac = rng.uniform(-1, 1, 5)
+        S_I = sum(i * np.outer(pixel.steering(k), pixel.steering(k).conj()) for i, k in zip(I, ks))
+        S_V = sum(i * f * np.outer(pixel.steering(k), pixel.steering(k).conj()) for i, f, k in zip(I, frac, ks))
+        dirs, I_found, frac_found = pixel.five_sources(S_I, S_V)
+        for d, i, f in zip(dirs, I_found, frac_found):
+            a = int(np.argmin([np.linalg.norm(d - k) for k in ks]))
+            assert np.linalg.norm(d - ks[a]) < 1e-8
+            assert i == pytest.approx(I[a], rel=1e-8) and f == pytest.approx(frac[a], abs=1e-9)
+
+
 # --- result 4: the sky at one pixel ---------------------------------------------------------------------------------
 
 def _sky_rank(model, pol, N=500, trials=60):
@@ -337,3 +351,119 @@ def test_speedometer_bound():
     np.testing.assert_allclose(pixel.speedometer_bound(lam, sigma),
                                [1 / (math.sqrt(2) * 1.0), 1 / (math.sqrt(2) * 3.5), 1 / (math.sqrt(2) * 2.5)])
     assert pixel.speedometer_bound([-2, 1, 1], 1.0)[0] == math.inf          # one body: no radial speed
+
+
+# --- further statements of Section III -----------------------------------------------------------------------------
+
+def test_the_phase_of_the_eigenvalues_is_spin():
+    """Outside a spinning ball: E of the mass, B of the spin dipole. The eigenvalues are Psi (-2, 1, 1) with complex
+    Psi of phase 3 a cos(theta) / r, a = J / M c (first order in a / r)."""
+    from gravcam import gravitomagnetic
+    from gravcam.constants import G
+    M, r = 5.97e24, 6.371e6
+    Js = 5.86e33                                             # the Earth's angular momentum
+    a = Js / (M * c)
+    for theta in (0.0, 0.7):
+        n = np.array([math.sin(theta), 0.0, math.cos(theta)])   # from the centre to the pixel
+        E = G * M / r ** 3 * (np.eye(3) - 3 * np.outer(n, n))
+        B = gravitomagnetic.spin_dipole(np.array([0, 0, Js]), n * r)
+        w = np.linalg.eigvals(pixel.weyl(E, B))
+        top = w[np.argmax(np.abs(w))]                            # the -2 eigenvalue
+        phase = abs(math.atan2(top.imag, -top.real))
+        assert phase == pytest.approx(3 * a * math.cos(theta) / r, rel=1e-3, abs=1e-12)
+
+
+def _fisher_full(model, params, sigma=1.0, h=1e-6):
+    cols = []
+    for i in range(len(params)):
+        up, dn = np.array(params, float), np.array(params, float)
+        up[i] += h
+        dn[i] -= h
+        d = (model(up) - model(dn)) / (2 * h)
+        cols.append(np.concatenate([d.real, d.imag]))
+    D = np.stack(cols, 1)
+    return np.linalg.inv(D.T @ D / sigma ** 2)
+
+
+def test_direction_bounds_are_one_over_rho_and_sqrt2_over_rho():
+    """Fisher information for one wave with its amplitude and polarization unknown: gravity sqrt(2/2)/rho = 1/rho,
+    light sqrt(2/1)/rho."""
+    k0 = unit(np.array([0.3, 0.5, 0.8]))
+    e1 = unit(np.cross(k0, [1.0, 0, 0])); e2 = np.cross(k0, e1)
+
+    def k_of(a, b):
+        return unit(k0 + a * e1 + b * e2)
+
+    def m_of(k):                                             # a smooth choice of null vector near k0
+        f1 = unit(e1 - (e1 @ k) * k); f2 = np.cross(k, f1)
+        return (f1 + 1j * f2) / math.sqrt(2)
+
+    c0 = 0.8 - 0.6j
+    grav = lambda p: pixel.vec5((p[2] + 1j * p[3]) * np.outer(m_of(k_of(p[0], p[1])), m_of(k_of(p[0], p[1]))))
+    light = lambda p: (p[2] + 1j * p[3]) * m_of(k_of(p[0], p[1]))
+    for model, spin in ((grav, 2), (light, 1)):
+        cov = _fisher_full(model, [0.0, 0.0, c0.real, c0.imag])
+        rho = abs(c0)                                        # |field| / sigma with |m m^T| = |m| = 1
+        assert math.sqrt(cov[0, 0]) == pytest.approx(pixel.direction_bound(rho, spin), rel=1e-6)
+        assert math.sqrt(cov[1, 1]) == pytest.approx(pixel.direction_bound(rho, spin), rel=1e-6)
+
+
+def test_sound_separates_two_waves_over_time():
+    """A sound wave along k gives (p, v) = s (1, k) (rho c = 1). Two waves' readings span a plane of R^4; the vectors
+    (x0, x) in it with |x| = x0 are the two directions (a line meets the quadric |x|^2 = x0^2 in two points)."""
+    ks = [unit(rng.normal(size=3)) for _ in range(2)]
+    X = np.array([sum(rng.normal() * np.concatenate([[1.0], k]) for k in ks) for _ in range(40)])
+    U = np.linalg.svd(X)[2][:2]                              # the plane
+    u, w = U[0], U[1]
+    # (alpha u + w) on the quadric: (alpha u0 + w0)^2 = |alpha u + w|^2
+    q = [u[0] ** 2 - u[1:] @ u[1:], 2 * (u[0] * w[0] - u[1:] @ w[1:]), w[0] ** 2 - w[1:] @ w[1:]]
+    found = []
+    for al in np.roots(q):
+        x = al.real * u + w
+        found.append(x[1:] / x[0])
+    for k in ks:
+        assert min(np.linalg.norm(f - k) for f in found) < 1e-9
+
+
+# --- arrays of pixels (Section VII) ----------------------------------------------------------------------------------
+
+def test_overlap_of_two_directions_is_cos8():
+    for _ in range(20):
+        a, b = unit(rng.normal(size=3)), unit(rng.normal(size=3))
+        ov = abs(np.vdot(pixel.steering(a), pixel.steering(b))) ** 2
+        assert ov == pytest.approx(math.cos(math.acos(np.clip(a @ b, -1, 1)) / 2) ** 8, rel=1e-10, abs=1e-14)
+
+
+def test_n_pixels_have_5n_independent_steering_vectors():
+    """Steering vectors a(k) (x) q(k) of an N-pixel array at wavenumber 1 (positions in wavelengths): 5N directions
+    give rank 5N, so subspace methods resolve 5N - 1 sources, even for pixels on one line."""
+    for N, line in ((1, False), (2, True), (3, False), (4, True)):
+        pos = rng.normal(size=(N, 3)) * 3
+        if line:
+            pos[:, 1:] = 0
+        ks = [unit(rng.normal(size=3)) for _ in range(5 * N)]
+        V = np.stack([np.kron(np.exp(2j * math.pi * pos @ k), pixel.steering(k)) for k in ks], 1)
+        s = np.linalg.svd(V, compute_uv=False)
+        assert s[-1] > 1e-8 * s[0]
+
+
+def test_two_far_pixels_suppress_grating_lobes():
+    """Two pixels D = 100 wavelengths apart, one source with signal-to-noise ratio rho: the Capon response at the
+    nearest grating lobe is lower than at the source by 1 + rho^2 (1 - cos^8(theta_1/2)); a scalar pair's is equal."""
+    D = 100.0
+    pos = np.array([[-D / 2, 0, 0], [D / 2, 0, 0]])
+    k0 = np.array([math.sin(1.1) * math.cos(0.4), math.sin(1.1) * math.sin(0.4), math.cos(1.1)])
+    # the nearest grating lobe in the plane of the baseline and k0: k_x larger by 1/D
+    kx = k0[0] + 1 / D
+    k1 = np.array([kx, *(k0[1:] / np.linalg.norm(k0[1:]) * math.sqrt(1 - kx * kx))])
+    def v(k):
+        return np.kron(np.exp(2j * math.pi * pos @ k), pixel.steering(k)) / math.sqrt(2)
+    for rho in (10.0, 100.0, 1000.0):
+        S = rho ** 2 * np.outer(v(k0), v(k0).conj()) + np.eye(10)
+        Si = np.linalg.inv(S)
+        capon = lambda k: 1 / np.real(v(k).conj() @ Si @ v(k))
+        th1 = math.acos(np.clip(k0 @ k1, -1, 1))
+        assert capon(k0) / capon(k1) == pytest.approx(1 + rho ** 2 * (1 - math.cos(th1 / 2) ** 8), rel=1e-6)
+    # a pair of scalar sensors cannot tell the lobe from the source
+    a = lambda k: np.exp(2j * math.pi * pos @ k) / math.sqrt(2)
+    assert abs(np.vdot(a(k0), a(k1))) == pytest.approx(1.0, abs=1e-9)
