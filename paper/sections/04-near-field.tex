@@ -298,6 +298,38 @@ $z/\sqrt{\mathcal{R}}$, because the difference they make grows as the square
 of their separation. What limits the image is the variety of scenes allowed,
 not the precision of the data.
 
+\paragraph{A worked case.} The locked safe shows both sides of this. The
+empty room and the two safes are known and subtracted; what remains is
+$324\,\mathrm{kg}$ of gold, in one safe or the other, $3.5\,\mathrm{m}$ in
+front of the camera. A square array a metre across, of $11\times11$ pixels,
+reads the five components of $\tE$ with white noise set by the $\SNR$ above
+for this mass at this depth. Asked only which safe holds the gold, the data
+answer quickly: the two possibilities give readings $1.8$ standard deviations
+apart at $\SNR = 10$, so the camera is wrong $18\%$ of the time, and
+$\SNR = 34$ makes it wrong once in a thousand. Some questions it cannot answer
+at any sensitivity: a sphere of gold and a point of the same mass give
+identical readings, as Newton showed, and the bar's shape departs from a
+point's by only $0.6$ standard deviations at $\SNR = 10^3$. Depth trades
+against mass: gold $0.2\,\mathrm{m}$ farther back and $14\%$ heavier, so as to
+pull as hard on the array's centre, is told apart at $\SNR \approx 10^3$, from
+the way the field changes across the array. Asked instead for an image that
+assumes nothing except that mass lies in the plane of the safes (a Gaussian
+prior on a grid of cells $25\,\mathrm{cm}$ apart, each holding up to about the
+gold's mass), the same data weigh the contents of a safe only to within
+$\pm 730\,\mathrm{kg}$ at $\SNR = 10^3$, and $\pm 490\,\mathrm{kg}$ at
+$10^6$: the image cannot say where the gold is. The array is a hand-held
+camera in the sense of Eq.~\eqref{eq:handheld}, whose blur of about
+$33^\circ$ at $\SNR = 10^3$ is wider than the two metres between the safes;
+an array six metres across still leaves $\pm 350\,\mathrm{kg}$ at $\SNR =
+10^6$, because a broad uniform layer of mass has no tidal field at all. These
+uncertainties belong to the array and the noise, not to the data, and the
+reference implementation computes them exactly. Tilting the array changes
+nothing in principle, since each pixel reads the whole tensor wherever it
+points: only where its pixels are matters. Turned through $70^\circ$, the
+metre-wide array tells the two safes apart $9\%$ better; the six-metre one,
+whose near edge then comes within $0.7\,\mathrm{m}$ of the safes, thirty times
+better. An array facing a scene obliquely is limited by its nearest pixels.
+
 \paragraph{A ruler under the ground.} One exact feature survives the blur. Above
 two equal masses $d$ apart, buried at any depth $z$ greater than
 $\tfrac{\sqrt3}{2}d$, the shear of the tidal field in the plane of the array,
