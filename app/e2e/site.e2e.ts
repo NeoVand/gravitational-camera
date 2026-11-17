@@ -387,12 +387,49 @@ test('sealed flywheel: the flow of the turning wheel shows as an anticlockwise v
 	await page.goto('/demo/sealed-flywheel/?present=readback');
 	await expect(page.locator('.tag.right')).toHaveText('Gravity · near field and flow');
 	await expect(page.getByText('Smallest detail at 3.8 m')).toBeVisible();
-	const arrows = page.locator('.flow g');
-	await expect.poll(() => arrows.count(), { timeout: 30_000 }).toBeGreaterThan(10);
-	// it turns toward the camera's left at the top: anticlockwise as seen
-	expect(await page.locator('.flow g.clockwise').count()).toBe(0);
-	await page.getByLabel('Flow').uncheck();
-	await expect(arrows).toHaveCount(0);
+	const picture = page.locator('.flow img');
+	await expect(picture).toHaveCount(1, { timeout: 30_000 });
+	// the flow's direction is its hue: leftward is yellow, rightward magenta. Turning anticlockwise as seen,
+	// the wheel's flow runs left across its top and right across its bottom.
+	const ends = await picture.evaluate(async (img: HTMLImageElement) => {
+		await img.decode();
+		const c = document.createElement('canvas');
+		c.width = img.naturalWidth;
+		c.height = img.naturalHeight;
+		const g = c.getContext('2d')!;
+		g.drawImage(img, 0, 0);
+		const d = g.getImageData(0, 0, c.width, c.height).data;
+		let sx = 0,
+			sy = 0,
+			sw = 0,
+			top = c.height,
+			bottom = 0;
+		for (let j = 0; j < c.height; j++)
+			for (let i = 0; i < c.width; i++) {
+				const a = d[(j * c.width + i) * 4 + 3];
+				if (a > 150) {
+					sx += i * a;
+					sy += j * a;
+					sw += a;
+					top = Math.min(top, j);
+					bottom = Math.max(bottom, j);
+				}
+			}
+		const cx = Math.round(sx / sw),
+			cy = Math.round(sy / sw),
+			r = (bottom - top) / 4;
+		const at = (j: number) =>
+			Array.from(d.slice((j * c.width + cx) * 4, (j * c.width + cx) * 4 + 3));
+		return { up: at(Math.round(cy - r)), down: at(Math.round(cy + r)) };
+	});
+	const [ur, ug, ub] = ends.up;
+	const [dr, dg, db] = ends.down;
+	expect(ug - ub, JSON.stringify(ends)).toBeGreaterThan(40); // yellow above: flowing left
+	expect(db - dg, JSON.stringify(ends)).toBeGreaterThan(40); // magenta below: flowing right
+	expect(ur).toBeGreaterThan(150);
+	expect(dr).toBeGreaterThan(150);
+	await page.getByLabel('Flow', { exact: true }).uncheck();
+	await expect(picture).toHaveCount(0);
 });
 
 test('a beam in the dark: the beam shows in gravity as a line', async ({ page }) => {

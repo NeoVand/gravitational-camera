@@ -1,9 +1,11 @@
 <script lang="ts">
 	/**
-	 * The flow that the gravitomagnetic half of the camera images: the current
+	 * The image that the gravitomagnetic half of the camera forms: the current
 	 * column J = ∫ ρ v dr / r across the view, blurred by the camera's
-	 * resolution for that (fainter) signal, drawn as arrows whose dashes run
-	 * along the flow. Colour gives the sense of turning as the camera sees it.
+	 * resolution for that (fainter) signal. Drawn as a picture over the gravity
+	 * side, as flow is usually shown: hue for the direction in which mass moves
+	 * across the view (the wheel in the corner), brightness for how much. A body
+	 * turning shows as a ring in which the hues go round, in the order of its sense.
 	 */
 	import {
 		cameraBasis,
@@ -30,15 +32,15 @@
 	let width = $state(0);
 	let height = $state(0);
 
-	const COLS = 48;
+	const COLS = 160;
 
-	const arrows = $derived.by(() => {
-		if (!width || !height || split >= 1) return [];
+	/** The blurred flow across the view on a grid of directions: components along screen right and up. */
+	const field = $derived.by(() => {
+		if (!width || !height || split >= 1) return undefined;
 		const full = width / (1 - split);
-		const rows = Math.max(8, Math.round((COLS * height) / full));
+		const rows = Math.max(16, Math.round((COLS * height) / full));
 		const cell = full / COLS;
 		const { right, up } = cameraBasis(view);
-		// the flow on a grid of directions, as components across the screen
 		const fx = new Float64Array(COLS * rows);
 		const fy = new Float64Array(COLS * rows);
 		for (let j = 0; j < rows; j++)
@@ -50,7 +52,7 @@
 			}
 		// the blur, as a Gaussian in grid cells, applied along rows then columns
 		const pixelAngle = (2 * Math.tan(view.fov / 2)) / height;
-		const sigma = Math.max(0.3, blur / pixelAngle / cell);
+		const sigma = Math.max(0.5, blur / pixelAngle / cell);
 		const reach = Math.ceil(3 * sigma);
 		const kernel = Array.from({ length: 2 * reach + 1 }, (_, k) =>
 			Math.exp(-0.5 * ((k - reach) / sigma) ** 2)
@@ -72,63 +74,69 @@
 				}
 			return out;
 		};
-		const bx = pass(pass(fx, true), false);
-		const by = pass(pass(fy, true), false);
+		return { bx: pass(pass(fx, true), false), by: pass(pass(fy, true), false), rows, full };
+	});
+
+	/** Direction to colour: a hue wheel of even lightness. */
+	function hue(angle: number): [number, number, number] {
+		const h = (((angle / (2 * Math.PI)) % 1) + 1) % 1;
+		const f = (n: number) => {
+			const k = (n + h * 6) % 6;
+			return 0.62 - 0.4 * Math.max(-1, Math.min(k - 3, 4 - k, 1));
+		};
+		return [f(5) * 255, f(3) * 255, f(1) * 255];
+	}
+
+	/** The picture: the blurred flow, coloured by direction and faded by strength, as an image. */
+	const picture = $derived.by(() => {
+		const f = field;
+		if (!f || typeof document === 'undefined') return '';
 		let peak = 0;
-		for (let k = 0; k < bx.length; k++) peak = Math.max(peak, Math.hypot(bx[k], by[k]));
-		if (peak === 0) return [];
-		// the sense of turning of the spinning body nearest each arrow, as seen
-		const spinning = objects.filter((o) => o.spin && o.spin.rate !== 0);
-		const out: { x: number; y: number; dx: number; dy: number; size: number; sense: number }[] = [];
-		for (let j = 1; j < rows; j += 2)
-			for (let i = 1; i < COLS; i += 2) {
-				const k = j * COLS + i;
-				const size = Math.hypot(bx[k], by[k]) / peak;
-				if (size < 0.06) continue;
-				const x = (i + 0.5) * cell - split * full;
-				if (x < -cell) continue;
-				const d = pixelDirection(view, COLS, rows, i, j);
-				let best = spinning[0];
-				let bestDot = -2;
-				for (const o of spinning) {
-					const c = o.center.map((v, m) => v - observer[m]);
-					const n = Math.hypot(...c);
-					const dot = (c[0] * d[0] + c[1] * d[1] + c[2] * d[2]) / n;
-					if (dot > bestDot) {
-						bestDot = dot;
-						best = o;
-					}
-				}
-				const toward = best.center.map((v, m) => observer[m] - v);
-				const omega = best.spin!.axis.map((a) => a * best.spin!.rate);
-				const sense = Math.sign(omega[0] * toward[0] + omega[1] * toward[1] + omega[2] * toward[2]);
-				const length = Math.hypot(bx[k], by[k]);
-				out.push({
-					x,
-					y: (j + 0.5) * cell,
-					dx: bx[k] / length,
-					dy: -by[k] / length,
-					size,
-					sense
-				});
-			}
-		return out.map((a) => ({ ...a, cell }));
+		for (let k = 0; k < f.bx.length; k++) peak = Math.max(peak, Math.hypot(f.bx[k], f.by[k]));
+		if (!(peak > 0)) return '';
+		const canvas = document.createElement('canvas');
+		canvas.width = COLS;
+		canvas.height = f.rows;
+		const ctx = canvas.getContext('2d')!;
+		const img = ctx.createImageData(COLS, f.rows);
+		for (let k = 0; k < f.bx.length; k++) {
+			const size = Math.hypot(f.bx[k], f.by[k]) / peak;
+			// screen y runs down: the angle of the flow as the eye sees it
+			const [r, g, b] = hue(Math.atan2(f.by[k], f.bx[k]));
+			img.data[k * 4] = r;
+			img.data[k * 4 + 1] = g;
+			img.data[k * 4 + 2] = b;
+			img.data[k * 4 + 3] = 255 * Math.min(0.9, 1.3 * Math.pow(size, 0.7));
+		}
+		ctx.putImageData(img, 0, 0);
+		return canvas.toDataURL();
+	});
+
+	const wheel = Array.from({ length: 36 }, (_, i) => {
+		const a0 = (i / 36) * 2 * Math.PI,
+			a1 = ((i + 1) / 36) * 2 * Math.PI;
+		const [r, g, b] = hue(a0 + Math.PI / 36);
+		const p = (a: number, rad: number) =>
+			`${(rad * Math.cos(a)).toFixed(2)},${(-rad * Math.sin(a)).toFixed(2)}`;
+		return {
+			d: `M${p(a0, 7)}L${p(a0, 16)}L${p(a1, 16)}L${p(a1, 7)}Z`,
+			fill: `rgb(${r | 0},${g | 0},${b | 0})`
+		};
 	});
 </script>
 
 <div class="flow" bind:clientWidth={width} bind:clientHeight={height} aria-hidden="true">
-	<svg width="100%" height="100%">
-		{#each arrows as a (`${a.x},${a.y}`)}
-			{@const half = a.cell * (0.35 + 0.55 * Math.sqrt(a.size))}
-			<g
-				class={a.sense > 0 ? 'anticlockwise' : 'clockwise'}
-				opacity={0.25 + 0.7 * Math.sqrt(a.size)}
-				transform="translate({a.x} {a.y}) rotate({(Math.atan2(a.dy, a.dx) * 180) / Math.PI})"
-			>
-				<line x1={-half} y1="0" x2={half} y2="0" />
-				<path d="M {half} 0 l -5 -3.2 l 0 6.4 z" />
-			</g>
-		{/each}
+	{#if field && picture}
+		<img src={picture} alt="" style:left="{-(split * field.full)}px" style:width="{field.full}px" />
+	{/if}
+	<svg
+		class="key"
+		viewBox="-40 -24 80 52"
+		role="img"
+		aria-label="Direction of the flow across the view"
+	>
+		{#each wheel as w, i (i)}<path d={w.d} fill={w.fill} />{/each}
+		<text x="0" y="27">flow</text>
 	</svg>
 </div>
 
@@ -136,47 +144,23 @@
 	.flow {
 		position: absolute;
 		inset: 0;
+		overflow: hidden;
 		pointer-events: none;
 	}
-
-	svg {
-		display: block;
-		overflow: visible;
+	img {
+		position: absolute;
+		top: 0;
+		height: 100%;
 	}
-
-	line {
-		stroke-width: 1.6;
-		stroke-linecap: round;
-		stroke-dasharray: 5 4;
-		animation: run 0.9s linear infinite;
+	.key {
+		position: absolute;
+		left: 14px;
+		top: 84px;
+		width: 64px;
 	}
-
-	@keyframes run {
-		to {
-			stroke-dashoffset: -9;
-		}
-	}
-
-	/* the colours of the wave view: magenta anticlockwise, green clockwise */
-	.anticlockwise line {
-		stroke: rgb(250 120 225);
-	}
-
-	.anticlockwise path {
-		fill: rgb(250 120 225);
-	}
-
-	.clockwise line {
-		stroke: rgb(120 240 140);
-	}
-
-	.clockwise path {
-		fill: rgb(120 240 140);
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		line {
-			animation: none;
-		}
+	.key text {
+		fill: rgb(255 255 255 / 0.75);
+		font: 500 9px var(--font-sans);
+		text-anchor: middle;
 	}
 </style>

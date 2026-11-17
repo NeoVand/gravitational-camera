@@ -63,7 +63,9 @@
 				math={`v/c \\approx ${(ratio * 1e7).toFixed(1)} \\times 10^{-7}`}
 			/> of the mass image: a camera reaching <Tex math={'\\mathrm{SNR} = 10^{20}'} /> on the mass sees
 			the flow at about <Tex math={`10^{${(20 + Math.log10(ratio)).toFixed(1)}}`} />, and so more
-			blurred. The arrows are shown magnified; their spread is that blur.
+			blurred. The flow image is drawn at its own brightness, magnified against the mass image; its
+			spread is that blur. Its hue is the direction in which mass moves across the view (the wheel
+			in the corner), so a turning body shows as a ring of hues going round.
 		</p>
 	{/snippet}
 </RoomDemo>
