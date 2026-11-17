@@ -220,7 +220,127 @@ def present_past():
     return out
 
 
-FIGURES = {"stars": stars, "voices": voices, "ranging": ranging, "present": present_past}
+def speedometer():
+    """The speedometer and the alarm (Fig. speedometer): a pixel crossing a room of four masses at 0.6 c, at points
+    along its path. For the room at rest the eigenvalues of W are real and the pixel reads its own velocity from W;
+    with one mass moving across the room at 0.05 c they turn complex. Room axes: x along the path, y across it,
+    z up; positions in the room's frame, contracted along x in the pixel's."""
+    import math
+
+    beta, u = 0.6, 0.05
+    gamma = 1 / math.sqrt(1 - beta ** 2)
+    masses = [6.0, 3.0, 8.0, 4.0]
+    room = np.array([[-2.2, 1.6, 0.6], [0.4, -1.9, -0.4], [1.3, 2.2, 0.3], [3.0, -1.0, 0.5]])
+    v = np.array([beta * c, 0.0, 0.0])
+    moving = 1                                                  # this mass walks across the room, along +y
+    rows = []
+    for X in np.linspace(-4.0, 4.0, 33):
+        rel = room - np.array([X, 0.0, 0.0])
+        rel[:, 0] /= gamma
+        out = {"x": float(X)}
+        for case, extra in (("still", 0.0), ("moving", u * c / gamma)):
+            vel = [-v + (np.array([0.0, extra, 0.0]) if i == moving else 0.0) for i in range(4)]
+            W = _field_W(cv.boosted_masses_metric(masses, rel, vel))
+            w = np.linalg.eigvals(W)
+            w = w[np.argsort(w.real)] / np.max(np.abs(w))
+            out[case] = {"alarm": pixel.motion_alarm(W), "eig": [[float(z.real), float(z.imag)] for z in w]}
+            if case == "still":
+                read = -pixel.rest_frame_velocity(W)
+                out[case]["read"] = read.tolist()
+                out[case]["error"] = float(np.linalg.norm(read - v / c))
+        rows.append(out)
+    return {"beta": beta, "u": u, "masses": masses, "room": room.tolist(), "moving": moving, "path": rows}
+
+
+def beyond_gr():
+    """Beyond general relativity in one reading (Fig. beyond): for waves of a massive graviton (helicity 0) and of a
+    massive scalar at several phase speeds, the curvature computed from the metric by finite differences, inverted
+    from one reading (beyond.invert_one_reading) for n = c/v_p and the ratio of longitudinal to breathing
+    amplitude."""
+    import math
+
+    from . import beyond
+
+    omega = 2 * math.pi * 100.0
+    k = np.array([0.6, 0.0, 0.8])
+    e1 = np.array([0.8, 0.0, -0.6])
+
+    def reading(eps, n):
+        h = beyond.metric_wave(eps, n, k, omega)
+        return cv.tidal_tensors(cv.riemann(h, 0.0, np.zeros(3), c / omega * 1e-3))
+
+    rows = []
+    for n in (0.15, 0.3, 0.45, 0.6, 0.75, 0.85, 0.92):
+        row = {"n": n}
+        for name, eps in (("graviton", beyond.fierz_pauli_helicity0(n, k)), ("scalar", beyond.scalar_mode())):
+            E, B = reading(eps * 1e-3, n)
+            _, n_found, pol, residual = beyond.invert_one_reading(E, B, e1=e1)
+            row[name] = {"n": n_found, "ratio": pol["l"] / pol["b"], "residual": residual}
+        rows.append(row)
+    return {"rows": rows}
+
+
+def two_pixels():
+    """Two pixels far apart (Fig. two-pixels): (a) the response across the sky of two sensors D apart to a source
+    at broadside, scalar against tensor (the steering vectors of pixel.steering); (b) with a minimum-variance (Capon)
+    estimator, how far the true fringe stands above the nearest false one for D = 100 wavelengths."""
+    import math
+
+    def v(k, pos):
+        return np.kron(np.exp(2j * math.pi * pos @ k), pixel.steering(k)) / math.sqrt(2)
+
+    D = 6.0
+    pos = np.array([[-D / 2, 0, 0], [D / 2, 0, 0]])
+    k0 = np.array([0.0, 0.0, 1.0])
+    th = np.linspace(-math.pi, math.pi, 2401)
+    pattern = []
+    for t in th:
+        k = np.array([math.sin(t), 0.0, math.cos(t)])
+        tensor = abs(np.vdot(v(k0, pos), v(k, pos))) ** 2
+        scalar = abs(np.vdot(np.exp(2j * math.pi * pos @ k0), np.exp(2j * math.pi * pos @ k))) ** 2 / 4
+        pattern.append([round(float(t), 6), round(float(scalar), 6), round(float(tensor), 6)])
+    D2 = 100.0
+    pos2 = np.array([[-D2 / 2, 0, 0], [D2 / 2, 0, 0]])
+    k0 = np.array([math.sin(1.1) * math.cos(0.4), math.sin(1.1) * math.sin(0.4), math.cos(1.1)])
+    kx = k0[0] + 1 / D2
+    k1 = np.array([kx, *(k0[1:] / np.linalg.norm(k0[1:]) * math.sqrt(1 - kx * kx))])
+    th1 = math.acos(np.clip(k0 @ k1, -1, 1))
+    capon = []
+    for rho in np.logspace(0, 4, 13):
+        S = rho ** 2 * np.outer(v(k0, pos2), v(k0, pos2).conj()) + np.eye(10)
+        Si = np.linalg.inv(S)
+        c_ = lambda k: 1 / np.real(v(k, pos2).conj() @ Si @ v(k, pos2))
+        capon.append([float(rho), float(c_(k0) / c_(k1))])
+    return {"D": D, "pattern": pattern, "D_capon": D2, "theta1": th1, "capon": capon}
+
+
+def silent_flows():
+    """Silent flows (Fig. silent-flows): inside a ball, a swirl about the z axis and meridional rolls of the same
+    smooth profile (nullspace.ball_flows); outside, in the meridian plane y = 0, the size of the magnetic part of
+    the field of each, by the same integration over the ball."""
+    from . import nullspace
+
+    grid, dV, swirl, rolls = nullspace.ball_flows(n=64, power=5)
+    g = np.linspace(-2.0, 2.0, 41)
+    out = {"g": g.tolist(), "swirl": [], "rolls": []}
+    for z in g:
+        rows = {"swirl": [], "rolls": []}
+        for x in g:
+            if x * x + z * z < 1.1 ** 2:
+                rows["swirl"].append(None)
+                rows["rolls"].append(None)
+                continue
+            p = np.array([x, 0.0, z])
+            rows["swirl"].append(float(np.linalg.norm(nullspace.external_magnetic(swirl, grid, dV, p))))
+            rows["rolls"].append(float(np.linalg.norm(nullspace.external_magnetic(rolls, grid, dV, p))))
+        out["swirl"].append(rows["swirl"])
+        out["rolls"].append(rows["rolls"])
+    return out
+
+
+FIGURES = {"stars": stars, "voices": voices, "ranging": ranging, "present": present_past,
+           "speedometer": speedometer, "beyond": beyond_gr,
+           "two-pixels": two_pixels, "silent-flows": silent_flows}
 
 
 def main(names=None) -> None:

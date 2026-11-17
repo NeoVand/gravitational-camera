@@ -15,7 +15,7 @@ function screenBasis(P) {
 }
 
 /** A dot `r` points across at world point p, drawn flat to the reader. */
-function disc(P, p, r, { fill = INK, stroke = 'none', width = 0, layer, offset = [0, 0], opacity = 1, n = 28 } = {}) {
+export function disc(P, p, r, { fill = INK, stroke = 'none', width = 0, layer, offset = [0, 0], opacity = 1, n = 28 } = {}) {
 	const [ex, ey] = screenBasis(P);
 	const c = p.clone().addScaledVector(ex, offset[0] / P.scale).addScaledVector(ey, offset[1] / P.scale);
 	const pts = [];
@@ -34,7 +34,7 @@ function star(P, p, n, color) {
 }
 
 /** A great circle on the unit sky with the given normal: solid in front, dashed behind. */
-function greatCircle(P, normal, { color = RULE, width = 0.4 } = {}) {
+export function greatCircle(P, normal, { color = RULE, width = 0.4 } = {}) {
 	const n = normal.clone().normalize();
 	const a = Math.abs(n.x) < 0.9 ? v3(1, 0, 0) : v3(0, 1, 0);
 	const u = a.clone().sub(n.clone().multiplyScalar(a.dot(n))).normalize();
@@ -48,7 +48,7 @@ function greatCircle(P, normal, { color = RULE, width = 0.4 } = {}) {
 }
 
 /** A curve on the sky, split where it passes behind: solid in front, faint and dashed behind. */
-function runs(P, pts, { color, width }) {
+export function runs(P, pts, { color, width }) {
 	let run = [], front = null;
 	const flush = () => {
 		if (run.length > 1) {

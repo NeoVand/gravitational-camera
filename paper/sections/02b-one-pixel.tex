@@ -143,12 +143,25 @@ own speed to about two metres per second.
 The converse is an alarm. A pixel moving through a static scene, however fast,
 always finds real eigenvalues. If they are complex, something in the scene
 moves relative to the rest of it, or turns: the pixel's own motion can never
-set it off. The phase of the eigenvalues measures turning. Outside a spinning
+set it off (Fig.~\ref{fig:speedometer}). The phase of the eigenvalues measures turning. Outside a spinning
 body of mass $M$ and angular momentum $J_s = Mca$, the eigenvalues are
 proportional to $(r - ia\cos\vartheta)^{-3}$, as in Kerr's solution
 \cite{Kerr1963}, so their phase, $3a\cos\vartheta/r$ for $a \ll r$, reads the
 spin along the line of sight; for the Earth seen from above a pole it is
 $1.5\times10^{-6}$.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/speedometer.pdf}
+\caption{The speedometer and the alarm. (a) A pixel crosses a room of four
+masses unknown to it at $0.6\,c$ (seen from above, in the room's frame), and at
+every point reads its own velocity from $\mathcal{W}$ alone, Eq.~\eqref{eq:polar}
+(arrows). (b) Along the path: the error of the velocity read (dashed), and the
+alarm $\max|\mathrm{Im}\,w|/\max|w|$ over the eigenvalues $w$ of $\mathcal{W}$,
+which is zero to rounding for the room at rest, however fast the pixel moves,
+and is not when one mass crosses the room at $0.05\,c$. Computed from the exact
+field of uniformly moving masses.}\label{fig:speedometer}
+\end{figure}
 
 Light cannot do this. Its field at a point has only two invariants,
 $\mathbf{E}^2 - c^2\mathbf{B}^2$ and $\mathbf{E}\cdot\mathbf{B}$, and in the frame
@@ -281,7 +294,8 @@ imaginary part. (They mix in the cross-correlation of two separated detectors
 \cite{AllenOttewill1997,SetoCooray2004}, through the phase between them.) The
 same count for a point sensor of spin $s$ gives $2(2s+1)^2 + 2(4s+1)$: $28$ of
 $36$ for light. For sound, a pressure and a velocity, it is $9$ of $16$. All
-three counts are checked in the reference implementation.
+three counts are checked in the reference implementation
+(Fig.~\ref{fig:sky-count}).
 
 One of the sixty-eight numbers is the handedness of the whole sky. An isotropic
 sky of brightness $I$ and net circular polarization $V$ puts exactly
@@ -302,6 +316,21 @@ pixel are kernels of degree eight, which no icosahedron averages. Two pixels a
 wavelength apart tell the two skies apart as well, because their
 cross-correlation carries the phase $e^{i\omega\hat n\cdot\Delta\mathbf x/c}$,
 which no finite design averages exactly.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/sky-count.pdf}
+\caption{What one pixel sees of the sky at one frequency. (a) Of the real
+numbers in the spectral matrix of a point sensor, those that carry the sky's
+brightness $I$, its circular polarization $V$ and its linear polarization, and
+those that vanish for any sky of waves and serve as checks,
+Eq.~\eqref{eq:sky-count}, for sound (a pressure and a velocity), light and
+gravity. (b) What a pixel cannot see: twelve equal, unpolarized, independent
+sources at the corners of a regular icosahedron give it exactly the second
+moments of a uniform sky of the same total brightness, because those corners
+average every polynomial of degree five or less as the whole sphere
+does.}\label{fig:sky-count}
+\end{figure*}
 
 \paragraph{How far away is a wave source?} A single plane wave has no distance.
 The field of a real source at distance $r$ is not quite a plane wave: it carries
@@ -403,10 +432,27 @@ they belong to one wave. In general relativity $v_p = c$ and only the two tensor
 polarizations appear. A massive graviton and a massive scalar differ even in
 sign: with $n = c/v_p$, the helicity-zero wave of a Fierz--Pauli graviton
 \cite{FierzPauli1939} has longitudinal and breathing amplitudes in the ratio
-$-2(1 - n^2)$, a scalar wave $+(1 - n^2)$. These are checked against curvature
-computed from the metric in the reference implementation. Testing general
+$-2(1 - n^2)$, a scalar wave $+(1 - n^2)$ (Fig.~\ref{fig:beyond}). These are
+checked against curvature computed from the metric in the reference
+implementation. Testing general
 relativity this way at the level of present bounds would need extraordinary
 signal-to-noise ratios; what is new is that it needs only one point.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/beyond.pdf}
+\caption{Beyond general relativity in one reading. (a) The six polarizations a
+metric theory of gravity allows \cite{EardleyLeeLightman1973}, each drawn as the
+distortion it makes of a ring of free particles in the plane where it acts
+(dashed: at rest; exaggerated), for a wave travelling along $\hat k$; general
+relativity has only the first two. One reading gives all six, with the
+direction and the phase speed, Eq.~\eqref{eq:bianchi-wave}. (b) The ratio of the
+longitudinal to the breathing amplitude, and $n = c/v_p$, both read from one
+reading, for the helicity-zero wave of a massive graviton and for a massive
+scalar (points: curvature computed from the metric), against $-2(1 - n^2)$ and
+$+(1 - n^2)$ (lines). The two differ in sign at every speed, and both ratios
+vanish as the speed approaches $c$.}\label{fig:beyond}
+\end{figure*}
 
 \paragraph{How precisely.} With white noise $\sigma$ on each of the ten numbers
 and $\rho = |\mathcal{W}|/\sigma$, one pixel places one wave to within $1/\rho$ radian in

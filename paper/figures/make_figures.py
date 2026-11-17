@@ -1756,6 +1756,161 @@ def buried_ruler():
     save(fig, "buried-ruler", web=True)
 
 
+# --- Figure: the speedometer and the alarm --------------------------------------
+
+def speedometer():
+    """A pixel crossing a room of four masses at 0.6 c (gravcam/figure_data.py, speedometer): (a) the room from
+    above; (b) along the path, the alarm max|Im w|/max|w| for the room at rest and with one mass moving, and the
+    error of the velocity the pixel reads from W."""
+    import json
+    from matplotlib.patches import Circle
+    d = json.loads((ROOT / "reference/results/figures/speedometer.json").read_text())
+    room = np.array(d["room"])
+    path = d["path"]
+    fig = plt.figure(figsize=(COL, 3.3))
+    a = fig.add_axes([0.0, 0.5, 1.0, 0.5])
+    b = fig.add_axes([0.17, 0.1, 0.79, 0.34])
+    bare(a)
+    a.plot([-4.3, 4.3], [0, 0], color=RULE, lw=0.6, ls=(0, (3, 2)), zorder=1)
+    for i, (m, (x, y, _)) in enumerate(zip(d["masses"], room)):
+        a.add_patch(Circle((x, y), 0.16 * m ** (1 / 3), color="#a7a299", ec="none", zorder=3))
+        if i == d["moving"]:
+            arrow(a, (x + 0.5, y - 0.2), (x + 0.5, y + 0.55), color=ACCENT, width=0.7, head=4)
+            a.text(x + 0.65, y + 0.15, rf"${d['u']}\,c$", color=ACCENT, fontsize=7.5, va="center")
+    for r in path[4::8]:
+        x = r["x"]
+        a.plot([x], [0], "o", ms=2.6, color=INK, mec="none", zorder=4)
+        vx = r["still"]["read"][0]
+        arrow(a, (x, 0), (x + 1.2 * vx, 0), color=ACCENT2, width=0.8, head=4, z=5)
+    a.text(-4.3, 0.22, r"read from $\mathcal{W}$: $0.6\,c$", color=ACCENT2, fontsize=7.5, va="bottom")
+    a.text(4.3, -0.22, "pixel's path", color=DIM, fontsize=7, va="top", ha="right")
+    a.text(-4.3, 2.55, "(a)", va="top")
+    a.set_xlim(-4.4, 4.4)
+    a.set_ylim(-2.6, 2.6)
+    x = np.array([r["x"] for r in path])
+    b.semilogy(x, [r["moving"]["alarm"] for r in path], color=ACCENT, lw=0.9)
+    b.semilogy(x, [r["still"]["alarm"] for r in path], color=INK, lw=0.7)
+    b.semilogy(x, [r["still"]["error"] for r in path], color=ACCENT2, lw=0.7, ls=(0, (3, 2)))
+    b.text(0, 6e-3, "alarm, one mass moving", color=ACCENT, fontsize=7, ha="center", va="bottom")
+    b.text(0, 2.5e-8, "speed read, error", color=ACCENT2, fontsize=7, ha="center", va="bottom")
+    b.text(0, 3e-10, "alarm, room at rest", color=INK, fontsize=7, ha="center", va="top")
+    b.set_xlim(-4, 4)
+    b.set_ylim(1e-11, 1e-1)
+    b.set_yticks([1e-10, 1e-8, 1e-6, 1e-4, 1e-2])
+    b.minorticks_off()
+    b.set_xlabel("position along the path")
+    b.set_xticks([-4, -2, 0, 2, 4])
+    b.text(0.02, 0.03, "(b)", transform=b.transAxes, va="bottom")
+    for side in ("top", "right"):
+        b.spines[side].set_visible(False)
+    save(fig, "speedometer", web=True)
+
+
+# --- Figure: two pixels far apart ------------------------------------------------
+
+def two_pixels():
+    """(a) The response across the sky of two sensors six wavelengths apart to a source at broadside: scalar
+    sensors and pixels; (b) the true fringe over the nearest false one under a Capon estimator, two pixels a hundred
+    wavelengths apart (gravcam/figure_data.py, two-pixels)."""
+    import json
+    d = json.loads((ROOT / "reference/results/figures/two-pixels.json").read_text())
+    p = np.array(d["pattern"])
+    fig, (a, b) = plt.subplots(2, 1, figsize=(COL, 3.25))
+    deg = np.degrees(p[:, 0])
+    a.plot(deg, p[:, 1], color=FAINT, lw=0.45)
+    a.plot(deg, p[:, 2], color=ACCENT, lw=0.6)
+    a.plot(deg, np.cos(p[:, 0] / 2) ** 8, color=INK, lw=0.7, ls=(0, (3, 2)))
+    a.text(0, 1.04, r"$\cos^8(\vartheta/2)$", fontsize=7.5, ha="center", va="bottom")
+    a.text(-178, 1.06, f"scalar sensors", color=DIM, fontsize=7, ha="left", va="bottom")
+    a.text(178, 1.06, "two pixels", color=ACCENT, fontsize=7, ha="right", va="bottom")
+    a.set_xlim(-182, 182)
+    a.set_ylim(-0.02, 1.25)
+    a.set_xticks([-180, -90, 0, 90, 180])
+    a.set_xticklabels([r"$-180^\circ$", r"$-90^\circ$", r"$0$", r"$90^\circ$", r"$180^\circ$"])
+    a.set_yticks([0, 0.5, 1])
+    a.set_xlabel(rf"angle $\vartheta$ from the source, sensors ${d['D']:g}\lambda$ apart", labelpad=2)
+    a.set_ylabel("response")
+    a.text(0.0, 1.0, "(a)", transform=a.transAxes, va="bottom", ha="left")
+    c = np.array(d["capon"])
+    rho = np.logspace(0, 4, 100)
+    th1 = d["theta1"]
+    b.loglog(rho, 1 + rho ** 2 * (1 - math.cos(th1 / 2) ** 8), color=ACCENT, lw=0.8)
+    b.loglog(c[:, 0], c[:, 1], "o", ms=2.8, color=ACCENT, mec="none")
+    b.loglog(rho, np.ones_like(rho), color=FAINT, lw=0.8)
+    b.text(9000, 1.3, "scalar sensors", color=DIM, fontsize=7, va="bottom", ha="right")
+    b.text(150, 8, "two pixels", color=ACCENT, fontsize=7, ha="right", va="bottom")
+    b.set_xlim(0.9, 1.15e4)
+    b.set_ylim(0.7, 1e5)
+    b.set_yticks([1, 10, 100, 1e3, 1e4, 1e5])
+    b.minorticks_off()
+    b.set_xlabel(rf"signal-to-noise ratio $\rho$, pixels ${d['D_capon']:g}\lambda$ apart", labelpad=2)
+    b.set_ylabel("true fringe over\nnearest false one")
+    b.text(0.0, 1.0, "(b)", transform=b.transAxes, va="bottom", ha="left")
+    for ax in (a, b):
+        for side in ("top", "right"):
+            ax.spines[side].set_visible(False)
+    fig.subplots_adjust(left=0.2, right=0.97, top=0.95, bottom=0.11, hspace=0.62)
+    save(fig, "two-pixels", web=True)
+
+
+# --- Figure: silent flows -------------------------------------------------------
+
+def silent_flows():
+    """Inside a ball, a swirl about its axis and meridional rolls; outside, in a meridian plane, the size of the
+    magnetic part of the field of each (gravcam/figure_data.py, silent-flows), on one scale."""
+    import json
+    from matplotlib.colors import LinearSegmentedColormap
+    from matplotlib.patches import Circle
+    from scipy import ndimage
+    d = json.loads((ROOT / "reference/results/figures/silent-flows.json").read_text())
+    g = np.array(d["g"])
+    ramp = LinearSegmentedColormap.from_list("b", ["#fbf8f3", "#e8b98b", ACCENT, "#3d1b03"])
+    top = max(v for row in d["swirl"] for v in row if v is not None)
+    fig, axes = plt.subplots(1, 2, figsize=(COL, 1.95))
+    # the flows inside, on a finer grid, in the plane y = 0 (x across, z up; y into the page)
+    p = 5
+    h = np.linspace(-1, 1, 201)
+    X, Z = np.meshgrid(h, h)
+    R2 = X * X + Z * Z
+    sv = np.where(R2 < 1, 1 - R2, 0.0)
+    dpsi = -2 * p * sv ** (p - 1)
+    d2 = 4 * p * (p - 1) * sv ** (p - 2)
+    lap = -6 * p * sv ** (p - 1) + 4 * p * (p - 1) * sv ** (p - 2) * R2
+    for ax, key, title in zip(axes, ("swirl", "rolls"), ("a swirl about the axis", "rolls in meridian planes")):
+        B = np.array([[np.nan if v is None else v for v in row] for row in d[key]]) / top
+        # computed only beyond r = 1.1: the cells inside take their nearest computed value, and are then covered
+        idx = ndimage.distance_transform_edt(np.isnan(B), return_distances=False, return_indices=True)
+        B = B[tuple(idx)]
+        ax.imshow(np.log10(np.maximum(B, 1e-12)), extent=(g[0], g[-1], g[0], g[-1]), origin="lower", cmap=ramp,
+                  vmin=-4, vmax=0, interpolation="bilinear")
+        ax.add_patch(Circle((0, 0), 1.1, fc="#fffffe", ec="none", zorder=1.5))
+        ax.add_patch(Circle((0, 0), 1.0, fc="#fffffe", ec=INK, lw=0.6, zorder=2))
+        ax.plot([0, 0], [-1.25, 1.25], color=RULE, lw=0.5, ls=(0, (2, 2)), zorder=2.5)
+        if key == "swirl":
+            for x, z in ((0.5, 0.0), (0.38, 0.45), (0.38, -0.45)):
+                ax.plot([x], [z], marker="o", ms=5, mfc="#fffffe", mec=ACCENT2, mew=0.7, zorder=3)
+                ax.plot([x], [z], marker="x", ms=3.2, mec=ACCENT2, mew=0.7, zorder=3.1)
+                ax.plot([-x], [z], marker="o", ms=5, mfc="#fffffe", mec=ACCENT2, mew=0.7, zorder=3)
+                ax.plot([-x], [z], marker="o", ms=1.4, color=ACCENT2, zorder=3.1)
+        else:
+            Jx = d2 * X * Z
+            Jz = d2 * Z * Z + dpsi - lap
+            inside = R2 < 0.97
+            ax.streamplot(h, h, np.where(inside, Jx, np.nan), np.where(inside, Jz, np.nan), color=ACCENT2,
+                          linewidth=0.5, density=0.55, arrowsize=0.5, zorder=3)
+        ax.set_title(title, fontsize=7.5, pad=2)
+        ax.set_xlim(g[0], g[-1])
+        ax.set_ylim(g[0], g[-1])
+        ax.set_xticks([])
+        ax.set_yticks([])
+        for sp in ax.spines.values():
+            sp.set_linewidth(0.4)
+            sp.set_color(RULE)
+    axes[1].text(1.9, -1.88, r"$\mathcal{B} = 0$ outside", fontsize=7, ha="right", va="bottom", color=DIM)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.9, bottom=0.01, wspace=0.05)
+    save(fig, "silent-flows", web=True)
+
+
 # --- Figure: the thermal Earth, inverted ---------------------------------------
 
 def earth_inverted():
@@ -1963,7 +2118,8 @@ def main() -> int:
                  polarization_curves, array, budget,
                  sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
                  milky_way, black_hole, sun_lens, memory_patterns, earth_inverted,
-                 same_outside, black_hole_camera, ranging, present_past, buried_ruler):
+                 same_outside, black_hole_camera, ranging, present_past, buried_ruler, speedometer,
+                 two_pixels, silent_flows):
         if len(sys.argv) > 1 and draw.__name__ not in sys.argv[1:]:
             continue
         draw()

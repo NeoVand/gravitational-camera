@@ -188,4 +188,19 @@ at signal-to-noise ratio $\rho$, the true fringe stands above the nearest false
 one by the factor $1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$, where
 $\vartheta_1 \approx \lambda/D$ is the fringe spacing, so that two pixels a
 hundred wavelengths apart form a telescope without ambiguity once $\rho$ exceeds
-about a hundred. The reference implementation checks these three statements.
+about a hundred (Fig.~\ref{fig:two-pixels}). The reference implementation checks
+these three statements.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/two-pixels.pdf}
+\caption{Two pixels far apart. (a) The response of two sensors six wavelengths
+apart to one source, against the angle from it in the plane of their baseline:
+scalar sensors answer equally at every fringe, while for two pixels each fringe
+is weighed by $\cos^8(\vartheta/2)$, the overlap of their tensor responses to
+the two directions. (b) With a minimum-variance (Capon) estimator and two pixels
+a hundred wavelengths apart, the true fringe over the nearest false one,
+$1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$ (line; points computed), against the
+signal-to-noise ratio; for scalar sensors the two are equal at any
+$\rho$.}\label{fig:two-pixels}
+\end{figure}

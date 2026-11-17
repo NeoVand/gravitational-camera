@@ -68,7 +68,7 @@ def main(names=()) -> int:
     mf.OUT = HERE / "staging"
     mf.OUT.mkdir(exist_ok=True)
     mf.setup_fonts()
-    for draw in (earth_glow_chart, quadrupole_chart, voices_chart):
+    for draw in (earth_glow_chart, quadrupole_chart, voices_chart, sky_count_chart, beyond_chart):
         if names and draw.__name__.replace("_chart", "").replace("_", "-") not in names:
             continue
         fig, name = draw()
@@ -141,6 +141,66 @@ def voices_chart():
     low.text(1.0, -0.06, "time", transform=low.transAxes, ha="right", va="top", fontsize=7, color=mf.DIM)
     return fig, "voices-chart"
 
+
+def sky_count_chart():
+    """What one pixel learns of the sky per frequency (Eq. sky-count): the real numbers of its spectral matrix that
+    carry the sky's brightness, circular and linear polarization, and those that are checks (counts checked in
+    reference/tests/test_pixel.py)."""
+    rows = [("sound", 16, [9, 0, 0]), ("light", 36, [9, 9, 10]), ("gravity", 100, [25, 25, 18])]
+    fill = [mf.ACCENT, mf.ACCENT2, mf.FAINT]
+    names = ["brightness $I$", "circular $V$", "linear", "checks"]
+    fig, ax = plt.subplots(figsize=(250 / 72, 112 / 72))
+    for k, (name, total, parts) in enumerate(rows):
+        y = 2 - k
+        x0 = 0
+        for n, col in zip(parts, fill):
+            if n:
+                ax.barh(y, n, left=x0, height=0.62, color=col, lw=0)
+                ax.text(x0 + n / 2, y, f"{n}", ha="center", va="center", fontsize=7, color="#fffffe")
+                x0 += n
+        ax.barh(y, total - x0, left=x0, height=0.62, color="#eeebe5", ec=mf.RULE, lw=0.5)
+        ax.text(x0 + (total - x0) / 2, y, f"{total - x0}", ha="center", va="center", fontsize=7, color=mf.DIM)
+        ax.text(-2, y, name, ha="right", va="center", fontsize=8)
+        ax.text(total + 2, y, f"{sum(parts)} of {total}", ha="left", va="center", fontsize=7.5, color=mf.DIM)
+    # the key, under the bars
+    for x, name, col in zip((0, 34, 63, 82), names, fill + ["#eeebe5"]):
+        ax.barh(-0.95, 3.2, left=x, height=0.36, color=col, ec=mf.RULE if col == "#eeebe5" else "none", lw=0.5)
+        ax.text(x + 4.6, -0.95, name, va="center", fontsize=7)
+    ax.set_xlim(-22, 128)
+    ax.set_ylim(-1.3, 2.45)
+    ax.set_axis_off()
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+    return fig, "sky-count-chart"
+
+def beyond_chart():
+    """Longitudinal over breathing amplitude, read from one reading, for a massive graviton's helicity-0 wave and a
+    massive scalar's, against n = c / v_p (gravcam/figure_data.py, beyond)."""
+    import json
+    d = json.loads((mf.ROOT / "reference/results/figures/beyond.json").read_text())
+    n = np.linspace(0, 1, 100)
+    fig, ax = plt.subplots(figsize=(190 / 72, 168 / 72))
+    ax.axhline(0, color=mf.RULE, lw=0.6)
+    ax.plot(n, -2 * (1 - n ** 2), color=mf.ACCENT, lw=0.8)
+    ax.plot(n, 1 - n ** 2, color=mf.ACCENT2, lw=0.8)
+    for row in d["rows"]:
+        ax.plot([row["graviton"]["n"]], [row["graviton"]["ratio"]], "o", ms=2.8, color=mf.ACCENT, mec="none")
+        ax.plot([row["scalar"]["n"]], [row["scalar"]["ratio"]], "o", ms=2.8, color=mf.ACCENT2, mec="none")
+    ax.text(0.98, -1.7, "massive graviton,\nhelicity 0", color=mf.ACCENT, fontsize=7, va="top", ha="right",
+            linespacing=1.0)
+    ax.text(0.05, 1.12, "massive scalar", color=mf.ACCENT2, fontsize=7, va="bottom")
+    ax.plot([1], [0], "o", ms=3.6, mfc="#fffffe", mec=mf.INK, mew=0.7, zorder=5)
+    ax.text(1.0, 0.6, "general\nrelativity", color=mf.DIM, fontsize=7, ha="right", va="bottom", linespacing=1.0)
+    ax.set_xlim(0, 1.02)
+    ax.set_ylim(-2.2, 1.5)
+    ax.set_xticks([0, 0.5, 1])
+    ax.set_xticklabels(["0", "0.5", "1"])
+    ax.set_yticks([-2, -1, 0, 1])
+    ax.set_xlabel(r"$n = c/v_p$, read from $\mathcal{B} = n\,[\hat k]_\times\mathcal{E}$")
+    ax.set_ylabel(r"$\mathcal{E}_l/\mathcal{E}_b$")
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    fig.subplots_adjust(left=0.2, right=0.97, top=0.97, bottom=0.2)
+    return fig, "beyond-chart"
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
