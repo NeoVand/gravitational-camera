@@ -561,6 +561,18 @@ test('now and then: the scene runs, and a stop is held until the body is let go'
 	await expect(stop).toHaveAttribute('aria-pressed', 'false');
 });
 
+test('speedometer: gravity reads the pixel’s speed exactly, and a walking person sets off the alarm', async ({
+	page
+}) => {
+	await page.goto('/demo/speedometer/');
+	await expect(page.getByText('all still')).toBeVisible();
+	await expect(page.locator('dd').first()).toContainText('0.6000');
+	await page.getByRole('button', { name: 'Walks', exact: true }).click();
+	await expect(page.getByText('something moves')).toBeVisible();
+	await page.getByRole('button', { name: 'Still', exact: true }).click();
+	await expect(page.getByText('all still')).toBeVisible();
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();

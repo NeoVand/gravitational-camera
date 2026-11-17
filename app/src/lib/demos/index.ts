@@ -15,7 +15,8 @@ export interface DemoEntry {
 		| 'two-black-holes'
 		| 'four-stars'
 		| 'four-voices'
-		| 'now-and-then';
+		| 'now-and-then'
+		| 'speedometer';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -50,6 +51,14 @@ export const demos: DemoEntry[] = [
 		regime: 'one pixel',
 		summary:
 			'Light shows a moving body where it was; its tidal field points at where it is. Stop it, and the news spreads at the speed of light. Shown with light slowed down, and labelled so.'
+	},
+	{
+		slug: 'speedometer',
+		title: 'The speedometer in the dark',
+		affordance: 'Know your own speed',
+		regime: 'one pixel',
+		summary:
+			'A pixel crossing a room it knows nothing about reads its own velocity, every component, at any speed, and knows at once if anything in the room moves. Light reads two components.'
 	},
 	{
 		slug: 'sun-at-midnight',
