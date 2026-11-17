@@ -16,6 +16,7 @@
 		Rotate01Icon,
 		Radar01Icon,
 		Sun03Icon,
+		Target02Icon,
 		TemperatureIcon
 	} from '@hugeicons/core-free-icons';
 	import {
@@ -40,6 +41,7 @@
 	import { length, superscript, texLength, texSci, texWait } from './format';
 	import Tex from './Tex.svelte';
 	import FlowField from './FlowField.svelte';
+	import PixelProbe from './PixelProbe.svelte';
 	import { C } from '../engine/physics/constants';
 	import { cutoff } from '../engine/resolution';
 
@@ -105,6 +107,8 @@
 	const hasRoom = $derived(objects.some((o) => o.background));
 	const spinning = $derived(objects.filter((o) => o.spin && o.spin.rate !== 0));
 	let flow = $state(true);
+	/** The "One pixel" layer: what a single pixel at the camera reads. */
+	let probe = $state(false);
 	// the flow signal is about v/c of the mass signal, so its blur is that of a
 	// camera less sensitive by that factor
 	const rimSpeed = $derived(
@@ -186,6 +190,9 @@
 				{#if gravity === 'near' && display === 'image' && flow && spinning.length}
 					<FlowField {objects} {observer} {view} {exclusion} blur={flowBlur / 2.355} {split} />
 				{/if}
+				{#if probe}
+					<PixelProbe {objects} {observer} {view} />
+				{/if}
 			{/snippet}
 		</SplitView>
 	{/snippet}
@@ -263,6 +270,12 @@
 						bind:checked={flow}
 					/>
 				{/if}
+				<Toggle
+					icon={Target02Icon}
+					label="One pixel"
+					hint="What a single pixel at the camera reads: its four stars, its type, and whether anything turns"
+					bind:checked={probe}
+				/>
 				{#if hasRoom}
 					<Toggle
 						icon={Home03Icon}

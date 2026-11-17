@@ -611,6 +611,18 @@ test('beyond Einstein: one reading tells the theory, and a second wave fails the
 	await expect(page.getByText(/the checks fail/)).toBeVisible();
 });
 
+test('the One pixel layer: a turning flywheel sets off the alarm, a locked safe does not', async ({
+	page
+}) => {
+	await page.goto('/demo/sealed-flywheel/');
+	await page.getByRole('checkbox', { name: 'One pixel' }).check();
+	await expect(page.getByText(/something turns: \de-\d+/)).toBeVisible();
+	await page.goto('/demo/locked-safe/');
+	await page.getByRole('checkbox', { name: 'One pixel' }).check();
+	await expect(page.getByText('all still')).toBeVisible();
+	await expect(page.getByText(/type (I|D):/)).toBeVisible();
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();
