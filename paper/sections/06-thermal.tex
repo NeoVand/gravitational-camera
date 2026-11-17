@@ -165,7 +165,11 @@ stiffness the shear loses when the atoms relax, $M\omega_0^2\zeta^2/8a =
 30\,\mathrm{GPa}$, with $M$ the atomic mass, $\omega_0$ the line, $a$ the cubic
 lattice constant and $\zeta = 0.54$ Kleinman's parameter. Only three of a
 wave's five shears drive the line, so averaged over directions its weight is
-$18\,\mathrm{GPa}$. In a glass, disorder lets a
+$18\,\mathrm{GPa}$. The line's glow is therefore polarized, and its brightness
+depends on the direction of view in the crystal: seen along a cube edge it is
+fully linearly polarized; along a face diagonal, $5/4$ as bright and $60\%$
+polarized; along a body diagonal, $4/3$ as bright and unpolarized. A thermal
+image of a crystal shows how it is oriented. In a glass, disorder lets a
 uniform shear drive every vibration \cite{LemaitreMaloney2006,Damart2017}; in
 silica the weight is about the shear modulus \cite{Leonforte2006}, spread over
 the band below $27\,\mathrm{THz}$. In water the stretching of hydrogen bonds near
@@ -260,6 +264,29 @@ water's friction rises where its hydrogen bonds stretch. (b) The glow they
 send, $4\pi j_\omega$ per unit of frequency, Eq.~\eqref{eq:kirchhoff}, with the
 placeholder's for comparison.}\label{fig:materials}
 \end{figure*}
+
+\paragraph{How bright can matter glow?} The sum rule caps the glow of every
+material. Its friction is positive and its integral fixed by
+Eq.~\eqref{eq:friction-sum}, so a relaxing stiffness $\Delta\mu = G_\infty - G_0$
+emits the most when all of it sits where the Planck spectrum peaks:
+\begin{equation}\label{eq:glow-bound}
+\frac{P}{V} \le 11.37\,\frac{G\,\Delta\mu\,(k_BT)^3}{\hbar^2c^5}, \qquad
+\frac{\dot N}{V} \le 5.18\,\frac{G\,\Delta\mu\,(k_BT)^2}{\hbar^2c^5},
+\end{equation}
+the constants being eight times the largest values of $x^3/(e^x - 1)$, at
+$x = \hbar\omega/k_BT = 2.82$, and of $x^2/(e^x - 1)$, at $x = 1.59$. At room
+temperature $30\,\mathrm{GPa}$ radiates at most
+$5.6\times10^{-35}\,\mathrm{W\,m^{-3}}$. Silicon, whose line lies close to the
+best frequency, reaches $98\%$ of the power its own weight allows; silica
+$69\%$, water $40\%$, copper $39\%$, and diamond, whose line is in the Wien
+tail, $16\%$. The same weight limits absorption: the optical depth of a path of
+length $L$, integrated over frequency, is $8\pi^2GL\,\Delta\mu/c^3$, which for a
+metre of $30\,\mathrm{GPa}$ is $6\times10^{-24}\,\mathrm{s^{-1}}$, so no material
+is opaque over any band of useful width (Section~\ref{sec:no-lens}). And the
+placeholder friction is not a material at high temperature: to glow as brightly
+as $10^{-3}\,\mathrm{Pa\,s}$, a material needs $110\,\mathrm{GPa}$ of relaxing
+stiffness at room temperature and $2.1\,\mathrm{TPa}$ at $5500\,\mathrm{K}$,
+several times the shear stiffness of diamond (Section~\ref{sec:first-image}).
 
 Two consequences follow. The honey-and-water demonstration shows the contrast
 that everyday viscosity would give, and is labelled as such. And temperature

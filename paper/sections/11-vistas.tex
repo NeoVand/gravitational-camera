@@ -63,6 +63,23 @@ two masses near them, with an error falling as $(d/r)^2$, and the quadrupole
 wave far away, with an error falling as $\lambda/r$, and that it is the
 curvature of vacuum, with $|\tB| = |\tE|$ in the waves.
 
+One pixel on the axis of the orbit watches the crossover in its four stars.
+There the reading is the pair's static tide plus the wave,
+$\mathcal W = (GM/r^3)\,\mathrm{diag}(1,1,-2) + w\,\mathbf m_0\mathbf m_0^T$ with
+$\mathbf m_0 = (1, i, 0)$, and Eq.~\eqref{eq:stars} factors:
+$\mathbf m^T\mathcal W\mathbf m = 4z^2(wz^2 - 3GM/r^3)$. Two stars sit on the
+direction of the wave from the start; the other two, at
+$z = \pm(3GM/r^3w)^{1/2}$, turn about the line of sight in step with the orbit
+and move out to join them as the wave outgrows the pull, so the type goes from
+D through I to N. They cross the sky's equator where $|w| = 3GM/r^3$, the
+wave's stretch one and a half times the static stretch along the line of sight,
+which is not at $\lambda/2\pi$: the static tide of the whole
+mass exceeds the changing quadrupole there by $(c/v)^2$, and the wave overtakes
+it only near $(\lambda/2\pi)(c/v)$, ten times farther for the pair of
+Fig.~\ref{fig:binary-field}. The magnetic part has no static tide, and its
+crossover, from the spin dipole $GJ/cr^4$ to the wave, falls at
+$\lambda/2\pi$ whatever the speed.
+
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/binary-field.pdf}
@@ -99,7 +116,14 @@ the shape found by Wiseman and Will \cite{WisemanWill1991,Favata2009}, which
 we reproduce by integrating Eq.~\eqref{eq:memory} numerically. It is largest
 seen edge-on, where the oscillating wave is weakest (Fig.~\ref{fig:memory}).
 A camera that records the field, not the strain, sees the memory as a burst of
-$\tE$ whose second time integral does not return to zero.
+$\tE$ whose second time integral does not return to zero. The memory has a partner
+of the other parity, the spin memory \cite{PasterskiStromingerZhiboedov2016,Nichols2017}:
+a lasting offset not in the strain but in its time integral, the third
+integral of the field. For a pair that does not precess its pattern goes as
+$\sin^2\iota\cos\iota$: it vanishes seen face-on and edge-on, peaks at
+$\cos\iota = \pm1/\sqrt3$, and changes sign between the two sides of the
+orbit. The displacement memory, even under $\iota \to \pi - \iota$, cannot tell
+which way the pair turned; the spin memory records it.
 
 \paragraph{An exploding star.} A spherical collapse or explosion radiates
 nothing: by Birkhoff's theorem the field outside a spherical body is that of a
@@ -288,6 +312,55 @@ around the shadow by the bending. Nothing else in a gravitational image casts
 a shadow.}\label{fig:black-hole}
 \end{figure*}
 
+\paragraph{Falling in.} A camera at rest near a hole must hover, and is torn
+apart as it nears the horizon; a camera falling freely from far away crosses it
+without noticing. Falling straight in, it reads the same tide as one at rest
+at the same radius, $\mathcal W = (GM/r^3)\,\mathrm{diag}(1,1,-2)$, with no
+magnetic part, because a boost along the line to the hole leaves a field of
+type D unchanged, and nothing marks the horizon. Its view of the sky does
+change. Passing the hovering camera inward at $v = (2GM/r)^{1/2}$, it sees the
+shadow shrunk by aberration: at $40\,GM/c^2$, $5.8^\circ$ instead of
+$7.3^\circ$; at the photon sphere, $35.3^\circ$ instead of a whole hemisphere;
+and at the horizon, where the hovering camera would see the shadow fill almost
+the whole sky, $\cos\alpha = 23/31$, $42.1^\circ$, less than $13\%$ of it. The
+rest of the sky, the primordial glow among it, crowds toward the edge of the
+shadow, bluer there and redder behind.
+
+\paragraph{Through a room at nearly the speed of light.} Fly a pixel through a
+still room at speed $\beta c$. The reading is the room's, carried by a boost:
+its invariants do not change and the motion alarm stays silent, so the pixel
+knows the scene is still; but the magnetic part grows to match the electric,
+$|\tB|/|\tE| \to 1$, and the four stars all crowd toward the way ahead, within
+angles that shrink as $1/\gamma$ (flying along an axis of the tide, onto one
+cone of half-angle $\arccos\beta$). Every piece of furniture then looks, to one
+pixel, like a wave coming from in front, a gravitational shock of the kind
+Aichelburg and Sexl found for a mass moving at the speed of light
+\cite{AichelburgSexl1971}, and only the unchanged invariants say otherwise.
+
+\paragraph{Counting coincidences.} Pixels that only count can still tell
+skies apart, by how their counts arrive together, as Hanbury Brown and Twiss
+measured stars. Gravitons from one mode of a coherent source, such as a cloud
+of light bosons about a spinning hole, arrive independently, $g^{(2)} = 1$;
+from a thermal sky, such as the $0.905\,\mathrm{K}$ glow, they bunch,
+$g^{(2)} = 2$. Inflation leaves neither: it makes gravitons in pairs of
+opposite momentum, a two-mode squeezed state
+\cite{GrishchukSidorov1990}, in which each direction alone looks thermal while
+counts in opposite directions coincide with $g^{(2)} = 2 + 1/\bar n$ for
+$\bar n$ gravitons per mode, more than any two classical fields allow
+\cite{KannoSoda2019}. Two counting pixels looking in opposite directions would
+tell a sky born hot from one born in inflation.
+
+\paragraph{A string that cannot be seen where it is.} Space around a straight
+cosmic string is flat: a wedge of angle $8\pi G\mu/c^2$ is missing around it,
+$\mu$ its mass per length, and outside its core every pixel reads zero
+\cite{Vilenkin1981}. A string a metre from the camera is invisible to the near
+field however heavy it is. It shows only against what lies behind it: the
+missing wedge makes double images of sources beyond it, and a string moving
+across the line of sight at speed $v$ cuts a background into two halves whose
+temperatures differ by up to $8\pi G\mu\gamma v/c^3$ \cite{KaiserStebbins1984};
+against the primordial glow, a string with $G\mu/c^2 = 10^{-6}$ moving at half
+the speed of light makes a step of $1.5\times10^{-5}$ of its temperature.
+
 \paragraph{The transparent Sun as a lens.} Gravitational waves pass through
 the Sun and, where geometric optics holds, are bent by the mass inside the
 cylinder of their impact parameter, $\alpha(b) = 4GM_{\mathrm{cyl}}(b)/c^2 b$.
@@ -343,13 +416,19 @@ through the centre, $548\,\mathrm{AU}$ at the surface. The dashed line marks
 the $23.5\,\mathrm{AU}$ found for the standard solar model.}\label{fig:sun-lens}
 \end{figure}
 
-\paragraph{Two further consequences.} There is no flash photography. To
-light a scene and see what it reflects, matter would have to scatter
+\paragraph{Three further consequences.} There is no flash photography with
+waves. To light a scene and see what it reflects, matter would have to scatter
 gravitational waves, and the cross-section of a body of mass $m$ is of order
 $(Gm/c^2)^2$ \cite{Peters1976}, $10^{-50}\,\mathrm{m^2}$ for a person: every
-picture in this paper is made by what the scene itself emits or how it pulls.
+picture in this paper is made by what the scene itself emits, how it pulls, or,
+in the near field, how it yields to a pull (Section~\ref{sec:near-field}).
 And an earthquake shows in two parts of the field. Compressional waves change
 the density of the rock they cross, and with it $\tE$; that is the prompt
 signal already recorded \cite{Vallee2017}. Shear waves in a uniform medium do
 not change its density, but they move mass, and so appear in $\tB$, through
-Eq.~\eqref{eq:current-column}.
+Eq.~\eqref{eq:current-column}. And in curved space a burst does not arrive all at once.
+Huygens's principle fails: waves scatter off the curvature they cross and
+arrive followed by a tail inside the light cone \cite{DeWitt1960}, an echo whose
+size records the mass between the source and the camera; for a binary it shifts
+the phase of the wave by an amount set by the system's total mass
+\cite{BlanchetDamour1992}.
