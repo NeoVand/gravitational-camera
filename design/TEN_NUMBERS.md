@@ -106,6 +106,33 @@ Gemini's table also gives harmonic counts for sound (9 + 7) and light (15 + 21):
 | The first time integral of B records spin memory | **Wrong as stated.** For a passing wave B = eps k E, so its time integral vanishes with that of E. Spin memory is the magnetic-parity part of the time-integrated strain (Pasterski, Strominger and Zhiboedov, JHEP 2016, 053): a pattern over the sky, not the gravitomagnetic tensor at a point. At one pixel it sits in the third time integral of E. |
 | One pixel witnesses the standing waves of inflation through \|E\|^2 - \|B\|^2 breathing at 2 omega | **Known, and negative.** Allen, Flanagan and Papa (PRD 61, 024024, 2000) showed the non-stationarity is unobservable without an experiment lasting about the age of the Universe: any resolvable band contains modes whose phases differ by many turns. One pixel does not escape this. |
 
+## 3d. Carbon's answer to the brief (the "spin-2 pixel suite"): assessment
+
+Carbon sent a 78 kB treatise and a pure-Python suite (standard library only; it touches nothing outside its folder).
+Its own suite passes (7 parts, 2 s). The checks below are independent, with our own reference implementation.
+
+| Result | Status |
+|---|---|
+| Single-instant ranging constant C(iota, theta) in s2/s1 = C/(kr)^2 | **Confirmed independently** (binary model, oscillating part, theta = 0): (kr)^2 s2/s1 at kr = 80 is 0.207, 0.251, 1.999 against C = 0.204, 0.240, 2 at iota = 30, 60, 90 degrees, converging. |
+| Frequency domain: s2/s1 of W+ and W- = 2 tan^{+-2}(iota/2)/(kr)^2; an inclination-free range | **Confirmed independently** (our earlier numbers, 1.09 and 0.17, are 2 tan^2(iota/2) at the two inclinations we used). |
+| The two helicities' apparent directions split by 8 \|cot iota\| / (kr): one pixel ranges a wave source out to kr ~ SNR, not sqrt(SNR) | **Confirmed independently**: kr x angle = 13.83, 8.00, 4.619, 2.143 at kr = 200 against 13.86, 8.00, 4.619, 2.144 for iota = 30, 45, 60, 75 degrees. A major result. |
+| Beyond GR: for any metric plane wave, B = (c/v_p)[k]x E; one reading gives the direction, the phase speed, all six polarizations and five checks | **Confirmed independently** (residual 1e-10 for random polarizations at n = 0.8, 1, 1.3). |
+| Fierz-Pauli massive graviton E_l/E_b = -2(1 - n^2) against a scalar mode +(1 - n^2) | **Confirmed independently** at n = 0.8 and 0.6. |
+| Meridional (poloidal) steady flows inside a body give B = 0 outside; only the harmonic part of the toroidal flow shows | **Confirmed independently** to the grid's accuracy (1e-4 relative at 96^3, 1e-16 on the axis). Proof: J = curl curl V with V confined makes the potential a pure gradient outside. |
+| Helicity blocks S++, S--, S+- of the spectral matrix; K = 5 sources in closed form from the (S_I, S_V) pencil when the circular fractions differ | Plausible; checked by Carbon's suite (follows from the block structure we verified). |
+| Identifiability with second-order statistics: unpolarized 8, circular 12, partially polarized 9, fully polarized 13 sources (local Jacobian rank; global uniqueness open); light defective already at 3 | Plausible; Carbon's suite. Global uniqueness to be stated as open. |
+| Arrays: 5N - 1 sources for N pixels; overlap cos^8(theta/2) (cos^{4s} for spin s); Capon suppresses grating lobes once SNR > D / lambda | Plausible; Carbon's suite. The overlap law is a one-line identity. |
+| Cramer-Rao: one wave's direction to 1/rho (light sqrt 2 / rho); speedometer sigma_v/c = sigma_B / (sqrt 2 \|lambda_b - lambda_c\|); moving-mass ranging with crossover at cT = 2 sqrt 3 r | Plausible; Carbon's suite. |
+| Fourth cumulants reach l <= 8 (81 modes, light 25); the icosahedron's contrast sqrt(2/75) | Plausible; Carbon's suite. |
+| A rotating frame adds -2 Omega^2 to tr E; a neutrino shell's Ricci curvature points back to a spherical supernova; a light beam's field is exactly type N | Plausible, short calculations. |
+| The first time integral of B records spin memory | **Still wrong as stated** (see 3c). |
+| One pixel witnesses inflation's standing waves | **Still known negative** (Allen, Flanagan and Papa 2000). |
+
+New prior art from Carbon to read and cite: Paik, Griggs, Moody and Venkateswara, Class. Quantum Grav. 33, 075003
+(2016) (SOGRO); Tan, Nehorai and Paldi, IEEE TSP 44, 3087 (1996); Nichols et al., PRD 84, 124014 (2011) (tendexes
+and vortexes, the visual language of E and B); Eardley, Lee and Lightman, PRD 8, 3308 (1973); Forward (1971);
+Merkowitz and Johnson (1995).
+
 ## 4. Ideas not yet checked
 
 - **Dark matter and the vacuum, read directly.** Inside matter tr E = 4 pi G (rho + 3p/c^2), whatever the matter is.
