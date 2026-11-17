@@ -289,6 +289,25 @@ intensity on its axis only by the factor $\pi w/(1 - e^{-\pi w})$, with $w =
 lens for thermal and primordial gravitons, not for the waves of orbiting or
 merging bodies.
 
+Wave optics joins the two regimes. For a source directly behind the Sun the
+amplitude on the axis, a distance $d$ behind it, is the Fresnel integral over
+the plane of the Sun of $e^{ik[b^2/2d - \Phi(b)]}$, where $\Phi' = \alpha$ is
+the extra path through its field. Outside the disc $\Phi$ is a point mass's,
+and that part of the integral is an incomplete gamma function; inside it is
+smooth, and we integrate it numerically. On Earth's orbit the Sun never raises
+the intensity by more than the $6\%$ of the central ray's geometric focusing,
+$(1 - d/f_0)^{-2}$ with $f_0 = 33.7\,\mathrm{AU}$, which it reaches only above
+about $10\,\mathrm{kHz}$. Beyond the central focus a ring of rays from inside
+the Sun converges on the axis, and the gain there grows in proportion to the
+frequency: at $50\,\mathrm{AU}$ it is $3.4$ at $10\,\mathrm{kHz}$, $44$ at
+$100\,\mathrm{kHz}$ and $480$ at $1\,\mathrm{MHz}$, from $1.1$ to $1.25$
+times that of a point of the Sun's mass, $\pi w$, and equal to it at
+$550\,\mathrm{AU}$, where the converging rays graze the limb. At the
+frequencies of thermal gravitons, near $10^{13}\,\mathrm{Hz}$, the same
+proportion gives some $5\times10^{9}$. The reference implementation checks the
+method against the point mass's closed form, and both limits: long waves,
+which see only the Sun's whole mass, and short ones, which follow the rays.
+
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/sun-lens.pdf}
