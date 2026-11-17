@@ -51,7 +51,7 @@ view, decide everything.
   and the only shadows on it are black holes; the transparent Sun focuses gravitational waves only above about
   $8\,\mathrm{kHz}$.
 
-The paper is a working draft, and its claims of novelty are provisional until the literature has been read in full.
+The papers on which the claims of novelty most depend have been read in full; the paper ends with the two calculations that remain open.
 
 ## The demos
 
