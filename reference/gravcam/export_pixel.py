@@ -14,7 +14,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import onepixel, pixel
+from . import beyond, curvature, onepixel, pixel
 from .constants import c
 
 OUT = Path(__file__).resolve().parents[1] / "fixtures" / "pixel.json"
@@ -87,8 +87,23 @@ def build() -> dict:
     amps = rng.normal(size=(12, 4)) + 1j * rng.normal(size=(12, 4))
     readings = [sum(a * np.outer(m, m) for a, m in zip(row, ms)) for row in amps]
     light = [sum(a * m for a, m in zip(row[:2], ms[:2])) for row in amps]
+    # beyond general relativity: one reading of a metric plane wave, curvature by finite differences
+    omega = 2 * np.pi * 100.0
+    k, e1 = np.array([0.6, 0.0, 0.8]), np.array([0.8, 0.0, -0.6])
+    metric_waves = []
+    for n in (0.8, 1.0, 1.3):
+        eps = rng.normal(size=(4, 4))
+        eps = (eps + eps.T) * 1e-3
+        x0 = 0.37 * c / omega
+        h = beyond.metric_wave(eps, n, k, omega)
+        E, B = curvature.tidal_tensors(curvature.riemann(h, x0, np.zeros(3), c / omega * 1e-3))
+        kf, nf, pol, residual = beyond.invert_one_reading(E, B, e1=e1)
+        metric_waves.append({"eps": _r(eps), "n": n, "k": _r(k), "e1": _r(e1), "omega": omega, "x0": x0,
+                             "E": _r(E), "B": _r(B), "found_k": _r(kf), "found_n": _r(nf),
+                             "pol": {key: _r(v) for key, v in pol.items()}})
     return {
         "c": c,
+        "beyond": metric_waves,
         "scenes": scenes,
         "waves": waves,
         "charges": charges,

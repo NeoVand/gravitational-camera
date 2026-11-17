@@ -597,6 +597,20 @@ test("one pixel's sky: the icosahedron matches a uniform sky, the octahedron doe
 	await expect(page.locator('svg.sky image')).toHaveCount(2);
 });
 
+test('beyond Einstein: one reading tells the theory, and a second wave fails the checks', async ({
+	page
+}) => {
+	await page.goto('/demo/beyond-einstein/');
+	await expect(page.getByText('what general relativity allows')).toBeVisible();
+	await page.getByRole('button', { name: 'Massive', exact: true }).click();
+	await expect(page.getByText('a massive graviton’s helicity-zero wave')).toBeVisible();
+	await page.getByRole('button', { name: 'Scalar', exact: true }).click();
+	await expect(page.getByText('a massive scalar’s wave')).toBeVisible();
+	await page.getByRole('checkbox', { name: 'A second wave' }).check();
+	await expect(page.getByText('not one wave of the metric')).toBeVisible();
+	await expect(page.getByText(/the checks fail/)).toBeVisible();
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();

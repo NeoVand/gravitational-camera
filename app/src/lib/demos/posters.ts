@@ -22,5 +22,6 @@ export const posters: Record<string, string> = {
 	'now-and-then': asset('posters/now-and-then.jpg'),
 	speedometer: asset('posters/speedometer.jpg'),
 	ranging: asset('posters/ranging.jpg'),
-	'one-pixel-sky': asset('posters/one-pixel-sky.jpg')
+	'one-pixel-sky': asset('posters/one-pixel-sky.jpg'),
+	'beyond-einstein': asset('posters/beyond-einstein.jpg')
 };

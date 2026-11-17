@@ -18,7 +18,8 @@ export interface DemoEntry {
 		| 'now-and-then'
 		| 'speedometer'
 		| 'ranging'
-		| 'one-pixel-sky';
+		| 'one-pixel-sky'
+		| 'beyond-einstein';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -77,6 +78,14 @@ export const demos: DemoEntry[] = [
 		regime: 'one pixel',
 		summary:
 			'A sky full of sources, seen by one pixel: exactly its patterns of degree four and below. Twelve sources on an icosahedron look like a uniform sky; six on an octahedron do not.'
+	},
+	{
+		slug: 'beyond-einstein',
+		title: 'Beyond Einstein',
+		affordance: 'Test gravity at a point',
+		regime: 'one pixel',
+		summary:
+			'One reading gives a wave’s direction, its speed and all six polarizations a theory of gravity allows, and checks that they belong to one wave. A massive graviton and a scalar differ even in sign.'
 	},
 	{
 		slug: 'sun-at-midnight',

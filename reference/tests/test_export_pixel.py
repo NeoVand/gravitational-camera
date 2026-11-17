@@ -18,5 +18,5 @@ def _same(a, b):
 def test_committed_cases_match_a_fresh_build():
     committed = json.loads(export_pixel.OUT.read_text())
     fresh = json.loads(json.dumps(export_pixel.build()))
-    for key in ("scenes", "waves", "charges", "four_waves", "light_two_waves"):
+    for key in ("scenes", "waves", "charges", "four_waves", "light_two_waves", "beyond"):
         assert _same(committed[key], fresh[key]), key
