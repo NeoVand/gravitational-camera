@@ -92,6 +92,20 @@ Gemini's table also gives harmonic counts for sound (9 + 7) and light (15 + 21):
   wave is a point of the rational normal quartic in each. With uncorrelated sources, MUSIC on that curve may resolve
   more than four (to check: how many per sector, and with both).
 
+## 3c. Carbon's first note, written before the brief: assessment
+
+| Claim | Verdict |
+|---|---|
+| 10 = 4 + 3 + 3, with cosh 2eta = (tr G^dagger G - 1)/2 and the canonical frame as the one where the Bel-Robinson super-Poynting vector vanishes | **Agrees with ours, found independently.** Nuance for the paper: for a single body (type D) the stabilizer is two-dimensional, as for light, so the radial velocity and the roll about the line of sight are not fixed; the full 3 + 3 needs a type I field. |
+| The four stars (principal null directions) of a moving mass aberrate like starlight, and the midpoint of the two double stars is exactly v_perp / c | **Right, checked, new to us.** Midpoint against v_perp/c (velocity across the present line of sight): 1e-10 at 0.1c and 0.5c, 4e-8 at 0.9c. An exact, all-speed reading of a body's sideways velocity; the paper's \|B\|/\|E\| = sqrt(3) v_perp/c is its first-order form. |
+| A small wave splits a double star by sqrt(epsilon) (an exceptional point) | **True but no gain.** It is a nonlinear map of the same data: noise splits the stars the same way, so the signal-to-noise ratio is unchanged (the known verdict on exceptional-point sensors). A nice picture, not a sensitivity. |
+| The in-plane shear (E_xx - E_yy) + 2i E_xy above two buried masses has two zeros exactly d apart whatever the depth | **Right for equal masses, checked; not for unequal ones.** Zeros at (0, +-d/2) for every depth above (sqrt 3 / 2) d (checked at 0.9 to 20 d); below that they move off the axis. For masses 1 : 2 they drift with depth (+-0.42 d at 1.5 d, +-0.475 d at 5 d). With noise a zero is placed to about z^2 / 6Rd, so two masses separate when d > z / sqrt(6R): the paper's Cramer-Rao scaling, reached by a geometric estimator. A good figure, not a new limit. The single-pixel aspect ratio d/2z above the midpoint is exact for equal masses. |
+| Higher cumulants of one pixel see the sky to l <= 4p, break the icosahedron's blindness, and separate 20 to 30 non-Gaussian sources | **Plausible, not checked.** Degree counting is right (the fourth cumulant is a degree-8 kernel; the icosahedron is only a 5-design). Standard in array processing (virtual aperture; De Lathauwer, Castaing and Cardoso, IEEE TSP 55, 2965, 2007). The source count needs a test, and long integrations of independent, non-Gaussian sources. |
+| Two pixels solve two static point masses (8 unknowns, 10 numbers) with no stereo ghosts | **Counting right; uniqueness not shown.** To test. |
+| Time to contact for a body coming straight on: tau = -3E/Edot, and E Eddot / Edot^2 = 4/3 - r rddot / 3 rdot^2 tells coasting from thrust | **Right (direct calculation).** Fills the paper's radial blind spot: no range, but the time of arrival. |
+| The first time integral of B records spin memory | **Wrong as stated.** For a passing wave B = eps k E, so its time integral vanishes with that of E. Spin memory is the magnetic-parity part of the time-integrated strain (Pasterski, Strominger and Zhiboedov, JHEP 2016, 053): a pattern over the sky, not the gravitomagnetic tensor at a point. At one pixel it sits in the third time integral of E. |
+| One pixel witnesses the standing waves of inflation through \|E\|^2 - \|B\|^2 breathing at 2 omega | **Known, and negative.** Allen, Flanagan and Papa (PRD 61, 024024, 2000) showed the non-stationarity is unobservable without an experiment lasting about the age of the Universe: any resolvable band contains modes whose phases differ by many turns. One pixel does not escape this. |
+
 ## 4. Ideas not yet checked
 
 - **Dark matter and the vacuum, read directly.** Inside matter tr E = 4 pi G (rho + 3p/c^2), whatever the matter is.
