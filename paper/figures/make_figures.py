@@ -1672,11 +1672,7 @@ def same_outside():
         # the gold's share of the potential outside: circles about the nugget, drawn only beyond the surface
         for d in (0.72, 0.92, 1.16, 1.45):
             x, y = d * np.sin(phi), s + d * np.cos(phi)
-            out = np.hypot(x, y) > R * 1.0
-            if k == 2:                                   # clear of the skin
-                cos = np.clip(y / np.maximum(np.hypot(x, y), 1e-9), -1, 1)
-                skin = 0.13 * ns.balayage_point(m, s, R, cos) / ns.balayage_point(m, s, R, 1.0)
-                out &= np.hypot(x, y) > R + skin + 0.02
+            out = np.hypot(x, y) > (R + 0.09 if k == 2 else R)     # in (c), at the outer edge of the skin
             xs, ys = np.where(out, x, np.nan), np.where(out, y, np.nan)
             ax.plot(xs, ys, color=ACCENT2, lw=0.45, zorder=1)
         bare(ax)
@@ -1696,13 +1692,29 @@ def same_outside():
         axes[1].contourf(X, Y, np.where((rho >= lo) & (rho < hi), 1.0, np.nan), levels=[0.5, 1.5], colors=[ACCENT],
                          alpha=0.12 + 0.13 * i, zorder=2, antialiased=True)
     axes[1].add_patch(Circle((0, 0), R, facecolor="none", edgecolor=INK, lw=0.6, zorder=3))
-    # (c) the skin: thickness in proportion to the surface density, exaggerated
-    th = np.linspace(0, 2 * np.pi, 721)
-    sig = ns.balayage_point(m, s, R, np.cos(th))
-    w = 0.13 * sig / sig.max()
-    outer = np.stack([(R + w) * np.sin(th), (R + w) * np.cos(th)], axis=1)
-    inner = np.stack([R * np.sin(th[::-1]), R * np.cos(th[::-1])], axis=1)
-    axes[2].add_patch(Polygon(np.concatenate([outer, inner]), closed=True, facecolor=ACCENT, edgecolor="none", zorder=3))
+    # (c) the skin: a band of constant width, shaded like (b) in steps whose opacity rises as the surface density
+    # doubles; the density falls monotonically from the pole over the nugget, so each step is an arc about it
+    band = 0.09
+    q = s / R
+    sig_unit = m / (4 * math.pi * R * R)
+    edges = [0.125, 0.25, 0.5, 1, 2, 4, 8]                    # in units of m / 4 pi R^2; 0.22 to 6 occur
+
+    def angle_at(level):                                      # where sigma = level, from the pole over the nugget
+        d = ((1 - q * q) / level) ** (1 / 3)
+        return math.acos(min(1.0, max(-1.0, (1 + q * q - d * d) / (2 * q))))
+
+    for i in range(len(edges) - 1):
+        a, b = angle_at(edges[i + 1]), angle_at(edges[i])       # denser is nearer the pole
+        th = np.linspace(-b, b, 721) if a == 0 else None
+        pieces = [np.linspace(-b, -a, 181), np.linspace(a, b, 181)] if th is None else [th]
+        for t in pieces:
+            outer = np.stack([(R + band) * np.sin(t), (R + band) * np.cos(t)], axis=1)
+            inner = np.stack([R * np.sin(t[::-1]), R * np.cos(t[::-1])], axis=1)
+            axes[2].add_patch(Polygon(np.concatenate([outer, inner]), closed=True, facecolor=ACCENT,
+                                      alpha=0.12 + 0.13 * i, edgecolor="none", zorder=3))
+    axes[2].add_patch(Circle((0, 0), R + band, facecolor="none", edgecolor=ACCENT, lw=0.45, zorder=3.5))
+    assert edges[0] < float(ns.balayage_point(m, s, R, -1.0)) / sig_unit and \
+        float(ns.balayage_point(m, s, R, 1.0)) / sig_unit < edges[-1]
     for ax in (axes[0], axes[2]):
         ax.add_patch(Circle((0, 0), R, facecolor="none", edgecolor=INK, lw=0.6, zorder=4))
     for ax, label in zip(axes, ("(a) a nugget", "(b) a flush", "(c) a skin")):
