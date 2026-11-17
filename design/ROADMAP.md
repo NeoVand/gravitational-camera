@@ -27,6 +27,34 @@ electric part's.
    flywheel; the scale symmetry of $\mathcal{E}$ alone. Then what breaks each: spin ($\mathcal{B}$), the glow, a pixel
    in contact ($\mathrm{tr}\,\mathcal{E} = 4\pi G\rho$). A figure and a demo.
 
+## What the ten numbers afford, beyond seeing through walls
+
+Checked numerically against the reference implementation (not yet in the paper):
+
+- **The camera sees the present; light sees the past.** For a mass in uniform motion the stretch axis of the exact
+  linearized tidal tensor points at the mass's *present* position at any speed (to numerical precision at
+  v = 0.3c, where light shows it 10 degrees behind, at the retarded position). Near an orbiting pair the changing
+  field matches Newton's field from the present positions with an error of order (kr)^2, while the retarded
+  positions are off by kr itself (kr = 0.1: 0.1 per cent against 10 per cent). So the gravitational Sun is 20.5
+  arcseconds ahead of the optical Sun, Laplace's puzzle about the speed of gravity, resolved by Carlip (Phys. Lett. A
+  267, 81, 2000). Waves, by contrast, do come from the retarded position: the near-field and wave images of one
+  binary disagree on its phase by kr.
+- **One pixel can count to two.** The complex invariants I = tr Q^2, J = tr Q^3 of Q = E + iB, independent of how
+  the pixel is turned, classify the field (Petrov type): one body, at rest or moving, gives 1 - 6 J^2 / I^3 = 0
+  (type D); two bodies give a nonzero value (0.02 in the test case); a pure wave gives I = J = 0 (type N). Type D
+  means "consistent with one body", since anything symmetric about the line to the pixel is also type D. E alone is
+  not enough: a moving mass splits E's transverse eigenvalues, and only the complex Q stays degenerate.
+
+Candidates, not yet checked:
+
+- One-pixel ranging of a wave source from the mixture of 1/r^2 (spin-1) and 1/r (spin-2) parts of its field near the
+  source, r of order lambda (|Psi_3 / Psi_4| ~ 1/kr); a pixel would then also weigh the source from its Coulomb part.
+- Bookkeeping of the stress-energy: the near field's E sees mass, its B momentum, the waves the transverse stress;
+  a pixel inside matter reads rho + 3p/c^2 from tr E and the momentum density from B's antisymmetric part.
+- Hearing inside sealed bodies: a heartbeat (70 g moved 5 cm) changes the tide at a metre by about 1e-12 s^-2,
+  1e-4 of the person's own.
+- A search for gravitomagnetic monopoles (NUT charge): a static B with the pattern of a mass.
+
 ## Next in line
 
 - Spectra instead of bolometric numbers: the Earth goes dark above the Debye frequency, the Sun's spectrum
