@@ -13,7 +13,8 @@ export interface DemoEntry {
 		| 'milky-way'
 		| 'black-hole'
 		| 'two-black-holes'
-		| 'four-stars';
+		| 'four-stars'
+		| 'four-voices';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -32,6 +33,14 @@ export const demos: DemoEntry[] = [
 		regime: 'one pixel',
 		summary:
 			'Each reading of a gravitational pixel has four directions of its own; light’s has two. They tell one body from two, a wave from a pull, and how fast a body crosses the sky.'
+	},
+	{
+		slug: 'four-voices',
+		title: 'One pixel, four voices',
+		affordance: 'Many waves at one point',
+		regime: 'one pixel',
+		summary:
+			'Four waves cross one point, each with any waveform. One pixel of this camera finds where every one comes from; a sensor of light finds two.'
 	},
 	{
 		slug: 'sun-at-midnight',

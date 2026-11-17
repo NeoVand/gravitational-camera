@@ -3,7 +3,8 @@
 	 * Two skies around one point: the stars of gravity's field there (four) and of light's (two), for the same
 	 * sources (lib/pixel/scene.ts). Drag a source to move it; drag anywhere else to turn the sky.
 	 */
-	import { norm, unit, type Vec3 } from '../pixel/complex';
+	import { norm, type Vec3 } from '../pixel/complex';
+	import { greatCircle, project, toCamera, toWorld } from '../pixel/view';
 	import {
 		readGravity,
 		readLight,
@@ -32,56 +33,11 @@
 	const gravity = $derived(readGravity(sources, wave));
 	const light = $derived(readLight(sources, wave));
 
-	/** World to camera: turn by yaw about y, then tilt by pitch about x; z toward the viewer. */
-	function cam(p: Vec3): Vec3 {
-		const cy = Math.cos(yaw),
-			sy = Math.sin(yaw),
-			cp = Math.cos(pitch),
-			sp = Math.sin(pitch);
-		const x1 = cy * p[0] + sy * p[2],
-			z1 = -sy * p[0] + cy * p[2];
-		return [x1, cp * p[1] - sp * z1, sp * p[1] + cp * z1];
-	}
-	function world(q: Vec3): Vec3 {
-		const cy = Math.cos(yaw),
-			sy = Math.sin(yaw),
-			cp = Math.cos(pitch),
-			sp = Math.sin(pitch);
-		const y1 = cp * q[1] + sp * q[2],
-			z1 = -sp * q[1] + cp * q[2];
-		return [cy * q[0] - sy * z1, y1, sy * q[0] + cy * z1];
-	}
-	const at = (p: Vec3) => {
-		const q = cam(p);
-		return { x: U * q[0], y: -U * q[1], z: q[2] };
-	};
-
-	/** A great circle of the sky as two paths, the half in front and the half behind. */
-	function circle(normal: Vec3): { front: string; back: string } {
-		const n = unit(normal);
-		const a: Vec3 = Math.abs(n[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
-		const along = a[0] * n[0] + a[1] * n[1] + a[2] * n[2];
-		const u = unit([a[0] - along * n[0], a[1] - along * n[1], a[2] - along * n[2]]);
-		const w: Vec3 = [
-			n[1] * u[2] - n[2] * u[1],
-			n[2] * u[0] - n[0] * u[2],
-			n[0] * u[1] - n[1] * u[0]
-		];
-		let front = '',
-			back = '';
-		let prev: boolean | undefined;
-		for (let k = 0; k <= 120; k++) {
-			const t = (2 * Math.PI * k) / 120;
-			const p = at([0, 1, 2].map((i) => Math.cos(t) * u[i] + Math.sin(t) * w[i]) as Vec3);
-			const isFront = p.z >= 0;
-			const cmd = prev === isFront ? 'L' : 'M';
-			if (isFront) front += `${cmd}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
-			else back += `${cmd}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
-			prev = isFront;
-		}
-		return { front, back };
-	}
-	const circles = $derived([circle([0, 1, 0]), circle([0, 0, 1])]);
+	const view = $derived({ yaw, pitch });
+	const cam = (p: Vec3) => toCamera(view, p);
+	const world = (q: Vec3) => toWorld(view, q);
+	const at = (p: Vec3) => project(view, p, U);
+	const circles = $derived([greatCircle(view, [0, 1, 0], U), greatCircle(view, [0, 0, 1], U)]);
 
 	/** Touching dots for a star of multiplicity n, so that they can be counted. */
 	function dots(star: Star): { x: number; y: number; z: number }[] {
@@ -161,7 +117,7 @@
 		let w = world([p.x / U, -p.y / U, drag.depth]);
 		const r = norm(w);
 		const clamped = Math.max(1.15, Math.min(1.8, r));
-		w = w.map((x) => (x * clamped) / r) as Vec3;
+		w = w.map((x: number) => (x * clamped) / r) as Vec3;
 		onmove(drag.index, w);
 	}
 

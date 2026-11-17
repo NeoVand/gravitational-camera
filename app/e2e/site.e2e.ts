@@ -529,6 +529,22 @@ test('the four stars: gravity has four, light two, and a moving body is read exa
 	await expect(skies.nth(0).locator('circle.star')).toHaveCount(4);
 });
 
+test('four voices: one gravitational pixel finds four waves, light none; with two, both find them', async ({
+	page
+}) => {
+	await page.goto('/demo/four-voices/');
+	const skies = page.locator('svg.sky');
+	await expect(skies.nth(0).getByText('found 4 of 4')).toBeVisible();
+	await expect(skies.nth(1).getByText('4 waves fill all 6 numbers: nothing to find')).toBeVisible();
+	await expect(skies.nth(0).locator('circle.found')).toHaveCount(4);
+	const slider = page.locator('#count');
+	await slider.focus();
+	await page.keyboard.press('ArrowLeft');
+	await page.keyboard.press('ArrowLeft');
+	await expect(skies.nth(0).getByText('found 2 of 2')).toBeVisible();
+	await expect(skies.nth(1).getByText('found 2 of 2')).toBeVisible();
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();
