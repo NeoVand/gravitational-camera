@@ -1,6 +1,6 @@
 # Gravitational Camera
 
-*A thought experiment*
+_A thought experiment_
 
 ![The landing page: at midnight, looking down. Left, in light, the dark ground under the stars; right, in gravity, the Earth's interior glowing in its thermal gravitational radiation, and the Sun's core shining through the planet.](docs/banner.jpg)
 
@@ -57,36 +57,46 @@ The paper is a working draft, and its claims of novelty are provisional until th
 
 Every demo shows the same scene twice, one half in light and the other in gravity, with a divider to drag.
 
-| Demo | Regime | What it shows |
-|---|---|---|
-| The Sun at midnight | thermal | The Earth's layers, and the Sun's core through the planet |
-| The locked safe | near field | Gold inside a steel safe; the blur set by sensitivity |
-| Full or empty | near field | Weighing by looking |
-| The blank mirror | near field | Reflections, pictures and print carry next to no mass |
-| The sealed flywheel | near field | The flow inside a sealed body, in the magnetic part |
-| A beam in the dark | near field | A beam of light, invisible from the side, gravitates |
-| The closed furnace | thermal | The temperature inside a closed box |
-| Honey and water | thermal | Glow set by internal friction |
-| Which way it turns | waves | The sense of rotation inside a sealed drum, from polarization |
-| The Milky Way | sky | The Galaxy's centre through its dust |
-| A black hole against the first light | sky | Exact Schwarzschild rays; the only shadow in the graviton sky |
-| Two black holes, inside out | sky | The field of an orbiting pair, from Newton's pull to waves |
+| Demo                                 | Regime     | What it shows                                                                               |
+| ------------------------------------ | ---------- | ------------------------------------------------------------------------------------------- |
+| The Sun at midnight                  | thermal    | The Earth's layers, and the Sun's core through the planet                                   |
+| The locked safe                      | near field | Gold inside a steel safe; the blur set by sensitivity                                       |
+| Full or empty                        | near field | Weighing by looking                                                                         |
+| The blank mirror                     | near field | Reflections, pictures and print carry next to no mass                                       |
+| The sealed flywheel                  | near field | The flow inside a sealed body, in the magnetic part                                         |
+| A beam in the dark                   | near field | A beam of light, invisible from the side, gravitates                                        |
+| Where it is now                      | near field | Light shows a flying ball where it was, gravity where it is (light slowed, and labelled so) |
+| Behind the wall                      | near field | Two people behind a wall; one walks, and the flow and a single pixel show it                |
+| The closed furnace                   | thermal    | The temperature inside a closed box                                                         |
+| Honey and water                      | thermal    | Glow set by internal friction                                                               |
+| Which way it turns                   | waves      | The sense of rotation inside a sealed drum, from polarization                               |
+| The Milky Way                        | sky        | The Galaxy's centre through its dust                                                        |
+| A black hole against the first light | sky        | Exact Schwarzschild rays; the only shadow in the graviton sky                               |
+| Two black holes, inside out          | sky        | The field of an orbiting pair, from Newton's pull to waves                                  |
 
-The wave demo uses a clearly labelled teaching mode in which light is slowed until the waves are centimetres long.
+Two demos use a clearly labelled teaching mode in which light is slowed: until the waves are centimetres long, or
+until its delay can be seen across a room.
 Material properties that are assumptions are labelled in each scene file and on the page.
+
+## Interactive figures
+
+Seven of the paper's figures on what a single pixel knows are also live, under their figures in the online paper and
+on their own at **[/figures](https://neovand.github.io/gravitational-camera/figures/)**: the four stars of one reading,
+four waves heard by one pixel, the camera sees the present, the speedometer, ranging a wave source, the sky at one
+pixel, and beyond general relativity in one reading.
 
 ## The repository
 
-| Path | What it is |
-|---|---|
-| `app/` | The website: SvelteKit, TypeScript, WebGPU. The engine is in `app/src/lib/engine/`, the paper's page in `app/src/routes/paper/`. |
-| `paper/` | The paper in REVTeX 4.2 (Physical Review D, two columns). The site renders the same LaTeX with pandoc. |
-| `paper/figures/` | The figures, as PDF for print and SVG for the site. `make_figures.py` draws the charts and renders from the reference implementation. |
-| `figures3d/` | The figures modelled in 3D: three.js for the geometry, a small renderer of our own that writes vector SVG, labels set in TeX by MathJax. |
-| `reference/` | An independent Python implementation of the physics, with its tests. It exports the fixtures the engine is checked against. |
-| `scenes/` | Scene files shared by the engine and the reference; the format is in `scenes/README.md`. |
-| `design/` | How figures are made (`FIGURE_WORKFLOW.md`, `FIGURE_PLAN.md`) and the image-model tools used for style references and illustrations. |
-| `reports/`, `research_notes/` | The survey of prior work and its notes. |
+| Path                          | What it is                                                                                                                               |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `app/`                        | The website: SvelteKit, TypeScript, WebGPU. The engine is in `app/src/lib/engine/`, the paper's page in `app/src/routes/paper/`.         |
+| `paper/`                      | The paper in REVTeX 4.2 (Physical Review D, two columns). The site renders the same LaTeX with pandoc.                                   |
+| `paper/figures/`              | The figures, as PDF for print and SVG for the site. `make_figures.py` draws the charts and renders from the reference implementation.    |
+| `figures3d/`                  | The figures modelled in 3D: three.js for the geometry, a small renderer of our own that writes vector SVG, labels set in TeX by MathJax. |
+| `reference/`                  | An independent Python implementation of the physics, with its tests. It exports the fixtures the engine is checked against.              |
+| `scenes/`                     | Scene files shared by the engine and the reference; the format is in `scenes/README.md`.                                                 |
+| `design/`                     | How figures are made (`FIGURE_WORKFLOW.md`, `FIGURE_PLAN.md`) and the image-model tools used for style references and illustrations.     |
+| `reports/`, `research_notes/` | The survey of prior work and its notes.                                                                                                  |
 
 ## Building it
 

@@ -5,6 +5,7 @@
 		ArrowRight02Icon,
 		BlackHoleIcon,
 		BookOpen01Icon,
+		Clock01Icon,
 		DropletIcon,
 		FlashlightIcon,
 		GalaxyIcon,
@@ -18,7 +19,8 @@
 		TestTube01Icon,
 		ViewIcon,
 		WaveIcon,
-		WeightScale01Icon
+		WeightScale01Icon,
+		WorkoutRunIcon
 	} from '@hugeicons/core-free-icons';
 	import { posters } from '#lib/demos/posters.js';
 	import { objectsAt, scene, sunDirection } from '#lib/demos/sun-at-midnight.js';
@@ -116,6 +118,20 @@
 			text: 'All energy gravitates.',
 			href: resolve('/demo/beam-in-the-dark'),
 			poster: posters['beam-in-the-dark']
+		},
+		{
+			icon: Clock01Icon,
+			name: 'See the present',
+			text: 'Light shows where things were.',
+			href: resolve('/demo/where-it-is'),
+			poster: posters['where-it-is']
+		},
+		{
+			icon: WorkoutRunIcon,
+			name: 'See motion through walls',
+			text: 'One pixel knows something moves.',
+			href: resolve('/demo/behind-the-wall'),
+			poster: posters['behind-the-wall']
 		}
 	];
 
