@@ -42,6 +42,83 @@ the optical depth of ordinary matter is negligible, and only black holes cast
 shadows; a rapidly spinning one even reflects some waves with gain
 \cite{TeukolskyPress1974}.
 
+\paragraph{A camera with a black hole in it.} For focusing, the argument comes
+down to one condition. A lens of radius $R$ that brings rays to a focus at the
+distance $f$ must bend its edge ray by $R/f$, and gravity bends it by $2r_s/R$,
+where $r_s = 2GM/c^2$ for the mass $M$ inside that ray. So
+\begin{equation}\label{eq:lens-compactness}
+\frac{r_s}{R} = \frac{1}{4N}
+\end{equation}
+for a lens of focal ratio $N = f/2R$. A pocket lens at $f/10$, five centimetres
+in radius, would need eleven times the mass of the Moon inside it, seven billion
+times the density of an atomic nucleus. Nothing short of a black hole is
+compact enough, so to see what a lens would do for the camera, we put a black
+hole in front of it.
+
+The natural choice is the hole of Section~\ref{sec:vistas} that is as warm as
+the sky, $1.36\times10^{23}\,\mathrm{kg}$ at $0.905\,\mathrm{K}$: lighter holes are
+hotter and evaporate, but this one neither grows nor shrinks. Its
+Schwarzschild radius is $0.2\,\mathrm{mm}$. Diffraction limits it as it limits
+the Sun: it focuses only waves shorter than about $4\pi r_s = 2.5\,\mathrm{mm}$,
+frequencies above $120\,\mathrm{GHz}$. That excludes every wave from moving
+bodies (focusing a kilohertz wave would take a lens of eight solar masses) but
+admits the whole thermal glow, whose wavelengths are microns. A point mass has
+no single focus: rays passing at the distance $b$ cross the axis at
+$b^2/2r_s$, so a camera on the axis at the distance $d$ collects the rays near
+the Einstein radius $b_E = \sqrt{2 r_s d}$, from a patch of sky
+$\sqrt{2r_s/d}$ in angular radius.
+
+Where would the camera be? At a metre the ring is $1.2^\circ$ in radius, but the
+tide is $2\times10^{13}\,\mathrm{s^{-2}}$, enough to tear the camera apart. It
+falls to a bearable $1\,\mathrm{s^{-2}}$ only $26\,\mathrm{km}$ away
+(Figure~\ref{fig:black-hole-camera}). There the ring is $25''$ in radius, the
+rays that reach the camera pass $3.25\,\mathrm{m}$ from the hole, and the hole
+pulls with $1340$ times the Earth's gravity. The camera cannot stand still. It
+must orbit, at $19\,\mathrm{km/s}$, once every nine seconds, while its axis
+sweeps a circle on the sky, so that any patch of sky is in focus for a third of
+a millisecond per turn. A detector $10\,\mathrm{cm}$ across on the axis gathers,
+from a source behind the hole, the rays through an annulus of about one square
+metre, $\pi a\sqrt{a^2 + 4b_E^2}$ for a detector of radius $a$: $130$ times its
+own area, well within the gain of $800$ that diffraction allows at a wavelength
+of $10\,\mu\mathrm{m}$. A hole of two lunar masses does the work of a dish a
+little over a metre across. Meanwhile it blinds the near field: its tide exceeds
+that of a person standing a metre from the camera until the camera is
+$12{,}500\,\mathrm{km}$ away.
+
+\paragraph{What a lens would buy.} Classically, nothing that an ideal array
+lacks. The array of Eq.~\eqref{eq:beam} records the field and does by
+computation what any lens does, and a converter of gravitons into photons a
+metre across, placed before ordinary optics (Section~\ref{sec:first-image}),
+would gather as much as the hole. What a lens does buy, like any device that
+combines the field before detecting it, is quantum: for radiation that holds
+$10^{-30}$ gravitons in each mode, combining before detection is what lets a
+camera count gravitons instead of recording noise
+(Section~\ref{sec:first-image}). And no lens of any kind could sharpen the
+near field, whose blur is Laplace's equation, Eq.~\eqref{eq:evanescent}. In
+electromagnetism a slab of negative permittivity restores the fading detail
+\cite{Pendry2000}, because matter holds charges of both signs and polarizes
+strongly. Matter answers a tide only by deforming, which adds to the field a
+fraction of order $G\rho/\omega_0^2$, with $\omega_0$ the frequency at which the
+material rings: the same small number as Eq.~\eqref{eq:index}. A response of
+order one would take a material so soft against its own weight that it is
+unstable to collapse, which for steel means a slab some ten thousand kilometres
+thick, whose own pull would then fill the image.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/black-hole-camera.pdf}
+\caption{A camera with a black hole in it. The tide of the hole that is as warm
+as the sky ($1.36\times10^{23}\,\mathrm{kg}$, Schwarzschild radius
+$0.2\,\mathrm{mm}$), the one lens compact enough to focus the thermal glow,
+against the distance from it. The camera has to sit where the tide is
+bearable, $1\,\mathrm{s^{-2}}$ at $26\,\mathrm{km}$, where the Einstein ring is
+$25''$ in radius and the camera must orbit the hole every nine seconds. Even
+there the hole's tide is $10^{8}$ times that of a person a metre from the
+camera (dashed), and it stays larger until the camera is
+$12{,}500\,\mathrm{km}$ away. Computed by the reference
+implementation.}\label{fig:black-hole-camera}
+\end{figure}
+
 \paragraph{The computed image.} The camera does not need optics, because its
 pixels record more than a light sensor does. A light sensor registers only
 the energy that arrives. A gravitational pixel registers the field itself,

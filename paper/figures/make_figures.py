@@ -1726,6 +1726,48 @@ def same_outside():
     save(fig, "same-outside", web=True)
 
 
+# --- Figure: a camera with a black hole in it -----------------------------------
+
+def black_hole_camera():
+    """The tide of the 0.905 K hole, the one lens a thermal camera could use, against distance, with where its
+    camera would have to be (gravcam/lens.py)."""
+    from gravcam import lens, primordial
+    from gravcam.constants import G
+    M = lens.hawking_mass(primordial.graviton_temperature())
+    rs = lens.schwarzschild_radius(M)
+    cam = lens.distance_for_tide(M, 1.0)
+    person = 2 * G * 70.0
+    far = lens.distance_for_tide(M, person)
+    d = np.logspace(math.log10(rs), math.log10(2.9e7), 400)
+    fig, ax = plt.subplots(figsize=(COL, 2.3))
+    ax.plot(d, lens.tide(M, d), color=INK, lw=0.9)
+    ax.axhline(person, color=ACCENT2, lw=0.7, ls=(0, (3, 2)), zorder=1)
+    ax.text(1.6e-4, person * 3.5, r"a person a metre from the camera, $10^{-8}$ s$^{-2}$", fontsize=6.5, color=ACCENT2, va="bottom")
+    pts = [(rs, "horizon, 0.2 mm", (6, 0), "left"),
+           (1.0, r"1 m: ring $1.2^\circ$", (6, 2), "left"),
+           (cam, "the camera: 26 km,\n" r"ring $25''$, orbit 9 s", (-6, -2), "right"),
+           (far, "12,500 km", (-4, -4), "right")]
+    for x, label, (dx, dy), ha in pts:
+        y = lens.tide(M, x)
+        ax.plot([x], [y], "o", ms=3.0, color=ACCENT, mec="none", zorder=4)
+        ax.annotate(label, (x, y), xytext=(dx, dy), textcoords="offset points", fontsize=6.5, ha=ha,
+                    va="bottom" if dy >= 0 else "top", linespacing=1.1)
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlim(1e-4, 3e7)
+    ax.set_ylim(1e-12, 1e27)
+    ax.set_xticks([1e-4, 1e-2, 1, 1e2, 1e4, 1e6])
+    ax.set_xticklabels(["0.1 mm", "1 cm", "1 m", "100 m", "10 km", "1000 km"])
+    ax.set_yticks([1e-10, 1e-5, 1, 1e5, 1e10, 1e15, 1e20, 1e25])
+    ax.minorticks_off()
+    ax.set_xlabel("distance from the hole")
+    ax.set_ylabel(r"its tide, $2GM/d^3$ (s$^{-2}$)")
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    fig.subplots_adjust(left=0.17, right=0.97, top=0.97, bottom=0.18)
+    save(fig, "black-hole-camera", web=True)
+
+
 def main() -> int:
     setup_fonts()
     # tidal, sky-integral, quadrupole, line-integral and earth-glow are modelled in 3D and drawn by
@@ -1734,7 +1776,7 @@ def main() -> int:
                  polarization_curves, array, budget,
                  sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
                  milky_way, black_hole, sun_lens, memory_patterns, earth_inverted,
-                 same_outside):
+                 same_outside, black_hole_camera):
         draw()
     return 0
 
