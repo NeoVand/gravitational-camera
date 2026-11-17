@@ -1,0 +1,33 @@
+\section{Benchmarks of the reference implementation}\label{app:benchmarks}
+
+The main text quotes the results of several numerical experiments in the
+reference implementation; their details are collected here. Every number is
+produced by code that accompanies the site and is checked by its tests.
+
+\paragraph{Separation with noise.} The wave and rotor are those of
+Section~\ref{sec:one-pixel}. With $\tE$ and $\tB$ at one pixel the near field
+pays the same $\sqrt2$ as the wave in the two components it shares with the
+wave, and nothing in the other three. An array that reads only $\tE$ fits the
+rotor as a point quadrupole of unknown moment and position; for a pixel and six
+neighbours at distance $b$ along three axes and $b \ll r$, the factor on the
+wave's error lies between $0.22\,r/b$ and $0.55\,r/b$ over the rotor's
+orientations, and the array overtakes the magnetic part beyond $b = 0.29\,r$.
+In return the wave costs the rotor's moment and position factors of $1.5$ and
+$1.3$ from $\tE$ alone, and $1.07$ and $1.04$ with $\tB$ too. Modelling the
+rotor as a point leaves a false wave of $0.005$ of the true one, from its next
+multipole, which matters only above $\rho \approx 270$; ignored altogether, the
+rotor is read as $70$ times the wave by the array.
+
+\paragraph{Depth with noise.} For a person $3\,\mathrm{m}$ away and neighbours
+$0.5\,\mathrm{m}$ out, the bound of Eq.~\eqref{eq:depth-bound} on $\sigma_r/r$
+is between $0.90/\rho$ and $1.08/\rho$, depending on direction, against
+$1.16/\rho$ from the closed form (Fig.~\ref{fig:separation-noise}b): wider
+stencils gain from the curvature of the field across them. For a person walking
+at $1.4\,\mathrm{m\,s^{-1}}$ the magnetic bound is $\sigma_r/r =
+1.2\times10^{8}/\rho$. Bodies on one line: a rod of length $L$ pointing at the
+camera appears as a point $L^2/3r$ nearer than its centre; the spread $s$ of the
+depths enters the second derivatives as a share $s^2/r^2$, which the seven
+pixels read to $1/\rho_H$, with $\rho_H$ between $8.1$ and $10.5$ times
+$\rho\,(b/r)^2$ depending on direction, so that two equal masses, $s =
+\Delta/2$, are told from one when $\Delta > 2r/\rho_H^{1/2}$, between $0.62$
+and $0.70$ times $(r^2/b)/\rho^{1/2}$.

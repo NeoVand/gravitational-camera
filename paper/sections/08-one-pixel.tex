@@ -1,23 +1,30 @@
-\section{What one pixel knows}\label{sec:one-pixel}
+\section{One pixel, sparse arrays and depth}\label{sec:one-pixel}
 
 \begin{quote}
 \textbf{In plain words.} A light sensor records six numbers at a point and a
 gravitational pixel ten, although a wave of either kind is described by only
 four. The extra numbers are not idle. From one reading of one pixel, with no
-lens and no second pixel, the field tells which way a wave came from, how many
-bodies are pulling, how fast the pixel itself is moving through the matter
-around it, and where a moving body is now rather than where it was. Over time
-it pulls apart several waves crossing it at once, and from how the field
-departs from a perfect wave it tells how far away their source is. Light at a
-point can do much less, for a reason that is a matter of algebra.
+lens and no second pixel, the field tells which way a wave came from, whether
+its source could be a single round body, how fast the pixel itself is moving
+through the matter around it, and where a moving body is now rather than where
+it was. Over time it pulls apart several waves crossing it at once, and from
+how the field departs from a perfect wave it tells how far away their source
+is. A wave twists spacetime as strongly as it stretches it, while still matter
+only stretches, so the twist tells a wave from the pull of nearby things; and a
+few pixels side by side tell how far away each thing is. Light at a point can
+do much less, for a reason that is a matter of algebra.
 \end{quote}
 
 A wave of light or of gravity reaching a point is described by four numbers: two
 for its direction and two for the strengths of its two polarizations. A sensor
 of light at a point records six, the electric and magnetic fields; a
 gravitational pixel records ten, Eqs.~\eqref{eq:tidal} and~\eqref{eq:magnetic}.
-This section shows what the six extra numbers buy. Most of it follows from
-writing them as one object.
+Section~\ref{sec:pixel} ended with a difficulty: from the electric part alone,
+one pixel cannot tell a wave from the pull of a passing lorry. With all ten
+numbers it can, by the shape of the field and by its magnetic part, and a
+handful of pixels can do more. This section shows what the six extra numbers
+buy, then what a few pixels add. Most of it follows from writing the ten
+numbers as one object.
 
 \paragraph{One complex matrix.} In vacuum $\tE$ and $\tB$ are real, symmetric and
 trace-free. Together they form the complex symmetric trace-free matrix
@@ -116,6 +123,33 @@ Eq.~\eqref{eq:star-velocity}. Two masses at rest give four separate stars
 stars again, at the ends of the line of force, as one charge would.}\label{fig:stars}
 \end{figure*}
 
+\paragraph{Shape.} A plane wave stretches and squeezes only across its
+direction of travel, so its tidal tensor has one vanishing eigenvalue and
+$\det\tE = 0$. The field of a single mass has eigenvalues in the ratio
+$-2 : 1 : 1$, and its determinant is never zero. One reading of one pixel
+therefore distinguishes a single wave from a single mass. The test is for an
+isolated source: the fields of several masses, or of several waves, add, and
+their sum can have either form.
+
+\paragraph{The magnetic part.} In a wave the magnetic tidal tensor is as large
+as the electric one; it is the same pattern turned by $45^\circ$ about the
+direction of travel. Near slowly moving matter it is smaller by the ratio of
+the matter's speed to that of light,
+\begin{equation}\label{eq:magnetic-ratio}
+\frac{|\tB|}{|\tE|} = 1 \quad\text{(wave)},
+\qquad
+\frac{|\tB|}{|\tE|} \sim \frac{v}{c} \quad\text{(near field)} ,
+\end{equation}
+where $|\tE|^2 = \tE_{ij}\tE_{ij}$ (the Frobenius norm) and likewise for $\tB$,
+and $v$ is the speed of the matter. At a distance $r$ from a compact source of
+size $L$, the part of the field that changes is smaller by about $(v/c)(r/L)$,
+that is, by $kr$ at the frequency of the change: more than $v/c$, but still far
+below one in the near zone.
+Averaged over time, the first holds for any mixture of waves from independent
+sources, so the magnetic part is a detector of radiation that the pull of
+nearby objects hardly touches. Coherent waves are an exception: in a standing
+wave the magnetic part vanishes where the electric part is largest.
+
 \paragraph{Ten numbers: four invariants, three angles, three velocities.} A
 reading whose eigenvalues are distinct can be written
 \begin{equation}\label{eq:polar}
@@ -193,9 +227,9 @@ Their midpoint, as a vector, is exactly its velocity across the line of sight
 with $\hat p_\pm$ the directions of the two pairs and $\mathbf{v}_\perp$ the
 velocity across the line from the body to the pixel. The reference
 implementation finds the two sides equal to $2\times10^{-7}$ at $0.9\,c$. The
-ratio $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ of Section~\ref{sec:separation} is its
+ratio $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ of Section~\ref{sec:near-field} is its
 first-order form. A body coming straight on shows no sideways velocity and
-cannot be ranged (Section~\ref{sec:separation}), but because its tide grows as
+cannot be ranged (below), but because its tide grows as
 $r^{-3}$, the pixel reads when it will arrive,
 \begin{equation}\label{eq:contact}
 -\frac{r}{\dot r} = \frac{3\,\tE_\parallel}{\dot{\tE}_\parallel},
@@ -491,16 +525,6 @@ $+(1 - n^2)$ (lines). The two differ in sign at every speed, and both ratios
 vanish as the speed approaches $c$.}\label{fig:beyond}
 \end{figure*}
 
-\paragraph{How precisely.} With white noise $\sigma$ on each of the ten numbers,
-taken as the coefficients of $\tE$ and $\tB$ in an orthonormal basis of
-symmetric trace-free tensors ($e^A_{ij}e^B_{ij} = \delta^{AB}$, so that an
-off-diagonal entry carries $\sigma/\sqrt2$), and $\rho = |\mathcal{W}|/\sigma$, one pixel places one wave to within $1/\rho$ radian in
-each direction, against $\sqrt2/\rho$ for a sensor of light at the same
-signal-to-noise ratio; it reads its own velocity as given after
-Eq.~\eqref{eq:speedometer}; and it ranges a moving mass with the precision that
-Section~\ref{sec:separation} gives. Table~\ref{tab:one-pixel} sets these
-counts beside those of a sensor of light.
-
 \paragraph{Matter at the pixel.} Inside matter the pixel reads the density
 locally, whatever the matter is: in full,
 $\mathrm{tr}\,\tE = 4\pi G[\rho + (p_1 + p_2 + p_3)/c^2]$, with $p_a$ the
@@ -518,6 +542,196 @@ $-(4\pi G/c^3)\,\epsilon_{ijk}F_k$, gives the flux as a vector
 (Section~\ref{sec:pixel}), so that
 one reading inside the passing shell points back to the star, even when the
 collapse is perfectly spherical and sends out no waves at all.
+
+\paragraph{One pixel and many.} A single pixel already does part of a camera's
+work, as the paragraphs above show: it places one wave by Eq.~\eqref{eq:one-wave},
+separates up to four from their time history, and sees the sky's brightness in
+its patterns of degree four and below. An array adds to this in two ways. Its
+size sharpens the image, Eq.~\eqref{eq:diffraction}. And it multiplies the
+number of sources that can be told apart: an array of $N$ pixels, wherever they
+are placed and even along one line, has $5N$ independent steering vectors at
+each frequency and helicity, so subspace methods separate up to $5N - 1$
+uncorrelated sources, against $N - 1$ for scalar sensors and $3N - 1$ for sensors
+of light. The tensor nature of each pixel also removes the false images of a
+sparse array. Two scalar sensors far apart see a source equally well at any of
+the fringes of their pattern; two pixels $D$ apart see the fringe at the
+source's true direction more strongly than its neighbours, because their
+response to two directions an angle $\vartheta$ apart is multiplied by
+$\cos^8(\vartheta/2)$. With a minimum-variance (Capon) estimator and a source
+at signal-to-noise ratio $\rho$, the true fringe stands above the nearest false
+one by the factor $1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$, where
+$\vartheta_1 \approx \lambda/D$ is the fringe spacing, so that two pixels a
+hundred wavelengths apart form a telescope without ambiguity once $\rho$ exceeds
+about a hundred (Fig.~\ref{fig:two-pixels}). The reference implementation checks
+these three statements.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/two-pixels.pdf}
+\caption{Two pixels far apart. (a) The response of two sensors six wavelengths
+apart to one source, against the angle from it in the plane of their baseline:
+scalar sensors answer equally at every fringe, while for two pixels each fringe
+is weighed by $\cos^8(\vartheta/2)$, the overlap of their tensor responses to
+the two directions. (b) With a minimum-variance (Capon) estimator and two pixels
+a hundred wavelengths apart, the true fringe over the nearest false one,
+$1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$ (line; points computed), against the
+signal-to-noise ratio; for scalar sensors the two are equal at any
+$\rho$.}\label{fig:two-pixels}
+\end{figure}
+
+\paragraph{Variation across the array.} A wave of wavelength $\lambda$ changes
+across an array of width $a$ by a fraction of order $2\pi a/\lambda$. The field
+of a mass at distance $r$, which falls as $1/r^{3}$, changes by a fraction of
+order $3a/r$. For a one-metre array, a wave at $100\,\mathrm{Hz}$ and a person
+three metres away, these are $2\times10^{-6}$ and $1$. Subtracting the
+average over the array therefore removes the wave and keeps the variation of
+the neighbourhood. The reverse is harder: the average itself contains the pull
+of everything nearby, and the person alone adds $3\times10^{-10}\,\mathrm{s^{-2}}$
+to it, a million times the tidal field of the waves LIGO detects. To isolate
+the wave the camera must model the nearby masses from their variation and
+subtract them, which is how observatories plan to remove the changing pull of
+their surroundings \cite{Harms2019,Chaibi2016}, or use the magnetic part, or
+compare two arrays far apart; a camera simply keeps what the observatories
+throw away. With two arrays far apart the separation is cleaner still: a wave
+appears in both, with a delay that gives its direction, while a nearby mass
+appears in one. The accompanying demonstrations show the tidal tensor itself
+on a slice through the scene, coloured by the direction of stretching in the
+manner of diffusion tensor imaging.
+
+\paragraph{Depth.} The same variation measures distance. For an isolated mass
+the tidal field goes as $M/r^{3}$ and its gradient as $M/r^{4}$, so their
+ratio gives $r$, and then $M$: a pixel and its neighbours locate and weigh a
+body with no need to move the camera. This is the principle by which a
+calibration rotor's distance from a detector's mirror is found from the ratio
+of two of its multipoles \cite{Inoue2018}. A single pixel can range a moving
+mass without neighbours, but only with its magnetic part. The electric record
+alone cannot do it: the record of a mass $M$ moving along $\mathbf{x}(t)$ is
+unchanged if the path is enlarged $\lambda$-fold and the mass
+$\lambda^3$-fold, while $\tB$ grows $\lambda$-fold, because the speed of light
+supplies the scale. From Eq.~\eqref{eq:magnetic-point}, $\tB\hat n =
+(3GM/cr^3)\,\hat n\times\mathbf v$ and $P\dot{\tE}\hat n = -(3GM/r^4)\,\mathbf
+v_\perp$, with $P = 1 - \hat n\hat n$, so that
+\begin{equation}\label{eq:one-pixel-range}
+\hat n\times(\tB\hat n) = \frac{r}{c}\,P\dot{\tE}\hat n ,
+\qquad r = c\,\frac{|\tB\hat n|}{|P\dot{\tE}\hat n|} ,
+\end{equation}
+and then $M$ from $\tE$. The stretch axis of $\tE$ gives $\hat n$ only up to
+sign; reversing it leaves the left side of the vector relation unchanged and
+reverses the right, so the sign that makes $r$ positive fixes $\hat n$. The reference implementation recovers distance, mass and velocity
+this way from the finite-difference curvature of a moving mass. Motion straight
+toward or away from the pixel gives no range, though it gives the time of
+arrival, Eq.~\eqref{eq:contact}; and the magnetic signal, smaller by $v/c$, sets
+the noise. For waves, range comes from the curvature of the wavefront, which
+across an array of width $D$ amounts to a phase of order one at the distance
+$D^{2}/\lambda$; beyond it range is still measured, with a fractional error of
+order $\lambda r/\mathcal{R}D^{2}$ at signal-to-noise ratio $\mathcal{R}$. A
+single pixel also ranges a wave source, from how its field departs from that of
+a plane wave, Eq.~\eqref{eq:helicity-split}.
+
+\paragraph{Front and back.} A flat array that records only the normal
+component $\tE_{zz}$ cannot tell a mass in front of it from the mirror image of
+that mass behind it, because the two give the same $\tE_{zz}$ on the plane. The
+shear components $\tE_{xz}$ and $\tE_{yz}$ change sign between the two, so the
+full tensor separates the half-spaces: a camera with no housing to block
+gravity can still ignore the photographer standing behind it.
+
+\paragraph{Three dimensions.} The pixels need not lie in a plane. A closed
+shell of pixels sees the whole sky at once and has no blind side; pixels
+filling a volume sample the field itself, although, as long as they stay
+outside the matter, the ambiguity of Section~\ref{sec:near-field} remains. And in the thermal regime the transparency of matter makes a
+further thing possible. Each image is then a set of line integrals, exactly
+the data of a medical tomograph. Images from several positions can be combined
+into a true three-dimensional map of emissivity, with nothing hidden behind
+anything else.
+
+\paragraph{How precisely.} With white noise $\sigma$ on each of the ten numbers,
+taken as the coefficients of $\tE$ and $\tB$ in an orthonormal basis of
+symmetric trace-free tensors ($e^A_{ij}e^B_{ij} = \delta^{AB}$, so that an
+off-diagonal entry carries $\sigma/\sqrt2$), and $\rho = |\mathcal{W}|/\sigma$, one pixel places one wave to within $1/\rho$ radian in
+each direction, against $\sqrt2/\rho$ for a sensor of light at the same
+signal-to-noise ratio; it reads its own velocity as given after
+Eq.~\eqref{eq:speedometer}; and it ranges a moving mass with the precision of
+Eq.~\eqref{eq:magnetic-range} below. Table~\ref{tab:one-pixel} sets these
+counts beside those of a sensor of light.
+
+How well each of these works against noise follows from the Cram\'er--Rao
+bounds of the same fields, which the reference implementation computes and
+checks against fits to simulated noisy readings (Fig.~\ref{fig:separation-noise});
+the details are collected in Appendix~\ref{app:benchmarks}.
+
+\paragraph{Separation with noise.} Take a wave at $100\,\mathrm{Hz}$ of strain
+$10^{-21}$ and, $3\,\mathrm{m}$ from the camera, a rotor of two
+$1\,\mathrm{kg}$ masses $12\,\mathrm{cm}$ apart turning 50 times a second,
+about the quadrupole of the rotor that calibrates LIGO by its pull
+\cite{Ross2021}. Its changing tide has the wave's frequency and a hundred times
+its size. Shape alone tells an isolated wave from an isolated mass: the nearest
+wave to the field of a mass, and the nearest mass to a wave, lie at half the
+reading's size, so one reading of $\tE$ puts the two $\rho/2$ standard
+deviations apart, and at $\rho = 12$ fewer than one reading in a hundred is
+taken for the other. A wave and a near field together are separated by the
+magnetic part, at a fixed price. Let the near field's $\tE$ at the wave's
+frequency be anything at all, and its $\tB$ below the noise. Fitting both then
+enlarges the error of the wave's amplitude by exactly $\sqrt2$, however strong
+the near field: the near field takes the wave's $\tE$, and the wave is read from
+its $\tB$, which carries half its signal. Ignored, the rotor would be read as a
+wave 35 times the true one; its own magnetic part, smaller than its $\tE$ by
+about $kr$ (Eq.~\eqref{eq:magnetic-ratio}), leaks less than $10^{-4}$ of the
+wave. An array that reads only $\tE$ must instead model the rotor from its
+variation, and pays more: the factor on the wave's error grows as $r/b$ for
+neighbours at distance $b$, because a quadrupole's tide falls as $r^{-5}$, and
+is $2.2$ for the rotor and an array a metre across, or $1.26$ with $\tB$ as well.
+
+\paragraph{How well depth is measured.} For one mass the field and its gradient
+give the range exactly, $r = \sqrt{15}\,|\tE|/|\nabla\tE|$ with norms over all
+components, and the Cram\'er--Rao bounds on range and mass are
+\begin{equation}\label{eq:depth-bound}
+\Bigl(\frac{\sigma_r}{r}\Bigr)^2 = \frac{1}{\rho_E^2} + \frac{1}{\rho_G^2},
+\qquad
+\Bigl(\frac{\sigma_M}{M}\Bigr)^2 = \frac{16}{\rho_E^2} + \frac{9}{\rho_G^2},
+\end{equation}
+where $\rho_E$ and $\rho_G$ are the signal-to-noise ratios of the field and of
+its gradient, whatever the direction. A pixel with six neighbours at distance
+$b \ll r$ has $\rho_E = \sqrt7\,\rho$ and $\rho_G = \sqrt{30}\,\rho\,b/r$, so
+$\sigma_r/r \approx r/(\sqrt{30}\,\rho b)$. This rests on Euler's relation for a
+field homogeneous of degree $-N$ about its source, $(\mathbf{x}_s -
+\mathbf{x})\cdot\nabla f = N f$, with $N = 3$ for the tide of a mass, by which
+geophysicists find the depth of buried sources from measured gradients
+\cite{Thompson1982,Reid1990}. The magnetic part of one pixel,
+Eq.~\eqref{eq:one-pixel-range}, ranges a moving mass with no neighbours to
+\begin{equation}\label{eq:magnetic-range}
+\frac{\sigma_r}{r} = \frac{1}{\rho_B} ,
+\end{equation}
+$\rho_B$ the signal-to-noise ratio of $\tB$ alone, $\sqrt3\,v_\perp/c$ times
+that of $\tE$ in each reading: for a person walking at
+$1.4\,\mathrm{m\,s^{-1}}$, a hundred million times worse than with neighbours.
+Depth along one line is the limit. For bodies on one line through the pixel
+every derivative of $\tE$ there has the pattern of a single mass, so field and
+gradient see one body at $r_{\mathrm{eff}} = \sum_i M_i r_i^{-3} / \sum_i M_i
+r_i^{-4}$, weighted toward the nearer: two equal masses $\Delta$ apart appear
+as one at $r - \Delta^2/r$, and a rod pointing at the camera as a point nearer
+than its centre. The spread of the depths shows first in the second
+derivatives, so two equal masses on one line are told from one only when
+$\Delta$ exceeds about $0.7\,(r^2/b)/\rho^{1/2}$: the square-root law that
+Section~\ref{sec:near-field} found for masses side by side. A round body of any
+size is a point, and its size is not measured at all.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/separation-noise.pdf}
+\caption{Separation and depth with noise, against the distance $b$ of a pixel's
+six neighbours over the distance $r$ of the source. Blue: Cram\'er--Rao bounds
+of the full models; black: closed forms; dots: the spread of
+maximum-likelihood fits to simulated noisy readings. (a) The factor $D$ by
+which fitting the rotor of the text enlarges the error of a wave's amplitude:
+at one pixel from $\tE$ and $\tB$, with any near field, $\sqrt2$ (the dot at
+left is a simulation with the rotor present); for the array, which fits the
+rotor as a point quadrupole of unknown moment and position, from $\tE$ alone
+(solid) and from both (dashed). (b) The range of one mass, with $\rho$ the
+signal-to-noise ratio of one pixel's reading, against
+Eq.~\eqref{eq:depth-bound}. (c) The separation $\Delta_{\min}$ in depth at which
+two equal masses on one line are told from one at one standard deviation.
+Computed in the reference implementation.}\label{fig:separation-noise}
+\end{figure*}
 
 \begin{table}
 \centering

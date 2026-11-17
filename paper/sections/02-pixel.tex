@@ -22,7 +22,7 @@ small vector $\xi^i$ accelerate relative to one another by
 \frac{\dd^2 \xi^i}{\dd t^2} = -\tE_{ij}\,\xi^j .
 \end{equation}
 Figure~\ref{fig:tidal} shows what this does to a ring of free particles, and
-Figure~\ref{fig:tidal-field} the field around masses and in a wave.
+Fig.~\ref{fig:tidal-field} the field around masses and in a wave.
 
 \begin{figure*}
 \centering
@@ -101,4 +101,11 @@ not to rotate: a frame turning at angular velocity $\Omega$ feels a
 centrifugal pseudo-tide of order $\Omega^2$, and the Earth's own turning gives
 $5\times10^{-9}\,\mathrm{s^{-2}}$, some thirty thousand times the tide of the
 Moon, so gyroscopes must hold the frame still. We call an array of such pixels a
-gravitational camera.
+gravitational camera. (Signature $-{+}{+}{+}$, $x^0 = ct$, and
+$R^\alpha{}_{\beta\gamma\delta} = \partial_\gamma\Gamma^\alpha_{\beta\delta} - \dots$, so that
+$\mathrm{tr}\,\tE = c^2R_{00} = +4\pi G\rho$ for dust at rest.)
+
+The two parts are best written as one complex matrix, $\mathcal W = \tE +
+i\tB$, and Section~\ref{sec:one-pixel} shows how much a single pixel can read
+from it. The sections in between follow an array of pixels through the regimes
+in which a camera forms images.

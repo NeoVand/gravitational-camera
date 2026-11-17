@@ -104,7 +104,7 @@ $\sqrt{2r_s/d}$ in angular radius.
 Where would the camera be? At a metre the ring is $1.2^\circ$ in radius, but the
 tide is $2\times10^{13}\,\mathrm{s^{-2}}$, enough to tear the camera apart. It
 falls to a bearable $1\,\mathrm{s^{-2}}$ only $26\,\mathrm{km}$ away
-(Figure~\ref{fig:black-hole-camera}). There the ring is $25''$ in radius, the
+(Fig.~\ref{fig:black-hole-camera}). There the ring is $25''$ in radius, the
 rays that reach the camera pass $3.25\,\mathrm{m}$ from the hole, and the hole
 pulls with $1340$ times the Earth's gravity. The camera cannot stand still. It
 must orbit, at $19\,\mathrm{km/s}$, once every nine seconds, while its axis
@@ -180,7 +180,7 @@ sharpness is that of any aperture of width $D$,
 \begin{equation}\label{eq:diffraction}
 \Delta\theta \approx \frac{\lambda}{D} ,
 \end{equation}
-shown in Figure~\ref{fig:array}. The pixels need not all exist at once if the
+shown in Fig.~\ref{fig:array}. The pixels need not all exist at once if the
 source is steady: one pixel carried across the aperture synthesizes it, as
 radio astronomers use the turning of the Earth, for the near field and for
 pairs of stars that orbit for millions of years. Thermal radiation, whose
@@ -202,40 +202,4 @@ degree four and below; being an estimate rather than a power, it can be
 negative, as it is sixty degrees off. Either way a single pixel's view of the
 sky is blurred over some fifty degrees, and an array sharpens in proportion to
 its width in wavelengths, Eq.~\eqref{eq:diffraction}.}\label{fig:array}
-\end{figure}
-
-\paragraph{One pixel and many.} A single pixel already does part of a camera's
-work (Section~\ref{sec:one-pixel}): it places one wave by Eq.~\eqref{eq:one-wave},
-separates up to four from their time history, and sees the sky's brightness in
-its patterns of degree four and below. An array adds to this in two ways. Its
-size sharpens the image, Eq.~\eqref{eq:diffraction}. And it multiplies the
-number of sources that can be told apart: an array of $N$ pixels, wherever they
-are placed and even along one line, has $5N$ independent steering vectors at
-each frequency and helicity, so subspace methods separate up to $5N - 1$
-uncorrelated sources, against $N - 1$ for scalar sensors and $3N - 1$ for sensors
-of light. The tensor nature of each pixel also removes the false images of a
-sparse array. Two scalar sensors far apart see a source equally well at any of
-the fringes of their pattern; two pixels $D$ apart see the fringe at the
-source's true direction more strongly than its neighbours, because their
-response to two directions an angle $\vartheta$ apart is multiplied by
-$\cos^8(\vartheta/2)$. With a minimum-variance (Capon) estimator and a source
-at signal-to-noise ratio $\rho$, the true fringe stands above the nearest false
-one by the factor $1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$, where
-$\vartheta_1 \approx \lambda/D$ is the fringe spacing, so that two pixels a
-hundred wavelengths apart form a telescope without ambiguity once $\rho$ exceeds
-about a hundred (Fig.~\ref{fig:two-pixels}). The reference implementation checks
-these three statements.
-
-\begin{figure}
-\centering
-\includegraphics[width=\columnwidth]{figures/two-pixels.pdf}
-\caption{Two pixels far apart. (a) The response of two sensors six wavelengths
-apart to one source, against the angle from it in the plane of their baseline:
-scalar sensors answer equally at every fringe, while for two pixels each fringe
-is weighed by $\cos^8(\vartheta/2)$, the overlap of their tensor responses to
-the two directions. (b) With a minimum-variance (Capon) estimator and two pixels
-a hundred wavelengths apart, the true fringe over the nearest false one,
-$1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$ (line; points computed), against the
-signal-to-noise ratio; for scalar sensors the two are equal at any
-$\rho$.}\label{fig:two-pixels}
 \end{figure}

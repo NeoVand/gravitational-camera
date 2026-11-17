@@ -27,16 +27,6 @@ Our results are these.
 \item A pixel measures the \emph{tidal field}, ten numbers at each point
 (Section~\ref{sec:pixel}). Its electric part alone cannot tell a passing wave
 from the pull of a nearby object, and for everyday scenes the pull dominates.
-\item One pixel knows far more than a sensor of light at a point
-(Section~\ref{sec:one-pixel}). Its ten numbers are four invariants, the
-orientation of the field and the velocity of its rest frame, so a pixel reads its
-own velocity through an unknown scene and detects motion within it whatever its
-own. It tells whether its field could come from a single round body or a single
-wave, reads a moving body's
-sideways velocity exactly at any speed, separates up to four waves crossing it,
-ranges a wave source, sees moving bodies where they are now rather than where
-they were, and reads the speed and all six polarizations of a wave in one
-reading.
 \item What the camera sees falls into three regimes, set by how far the source
 is compared with the wavelength it would radiate (Section~\ref{sec:regimes}).
 \item In the near field the camera sees mass itself, moving or still, through
@@ -44,19 +34,25 @@ any obstacle. Its blur is a fixed fraction of the distance, and improves only
 with the logarithm of the sensitivity (Section~\ref{sec:near-field}).
 \item In the waves radiated by moving bodies, a compact body moving slowly is
 smaller than its own wavelength and appears as a point
-(Section~\ref{sec:waves}), though a single pixel can still tell the direction
-of a single wave (Section~\ref{sec:one-pixel}).
+(Section~\ref{sec:waves}).
 \item In thermal radiation the camera can be as sharp as an infrared camera.
 Matter is transparent, and glows in proportion to its temperature and internal
 friction (Section~\ref{sec:thermal}).
 \item Matter cannot act as a lens, a mirror or a screen for gravitational
 waves, so the image must be computed from what the pixels record
 (Section~\ref{sec:no-lens}).
-\item An array can separate waves from the pull of nearby objects, and can
-measure distance: the waves are what its pixels share, the neighbourhood is
-where they differ. A single pixel can range a moving mass, because the
-magnetic part of the field supplies the one scale the electric part lacks
-(Section~\ref{sec:separation}).
+\item One pixel knows far more than a sensor of light at a point, and a few
+pixels more still (Section~\ref{sec:one-pixel}). A pixel's ten numbers are four
+invariants, the orientation of the field and the velocity of its rest frame, so
+it reads its own velocity through an unknown scene and detects motion within it
+whatever its own. It tells whether its field could come from a single round
+body or a single wave, reads a moving body's sideways velocity exactly at any
+speed, separates up to four waves crossing it, ranges a wave source, sees moving
+bodies where they are now rather than where they were, and reads the speed and
+all six polarizations of a wave in one reading. Its magnetic part separates a
+wave from the pull of nearby objects at a fixed cost in noise, and supplies the
+one scale the electric part lacks, so a single pixel ranges a moving mass; a
+few pixels side by side measure distance from how the field varies.
 \item The expected number of gravitons sets what can be seen in practice: a
 first image, with its budget (Section~\ref{sec:first-image}), and a summary of
 what the camera can do that light cannot (Section~\ref{sec:affordances}).
@@ -87,7 +83,7 @@ radiation: the expected number radiance $N(\hat n)$ of Eq.~\eqref{eq:column},
 on a logarithmic scale. The ground is transparent. Lines of sight just below
 the horizon cross only the crust and upper mantle and are faint; steeper ones
 cross the hotter lower mantle, and the steepest the core
-(Figure~\ref{fig:earth-glow}). The Sun's core, $50^\circ$ below the horizon, is
+(Fig.~\ref{fig:earth-glow}). The Sun's core, $50^\circ$ below the horizon, is
 smaller than a pixel; its flux, under one graviton per square metre per second,
 is spread over a spot a few pixels across, far brighter than the top of the
 scale. Section~\ref{sec:first-image} gives the model and its assumptions; the

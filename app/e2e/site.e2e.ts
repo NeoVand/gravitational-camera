@@ -559,7 +559,7 @@ test('the four stars: gravity has four, light two, and a moving body is read exa
 	expect(read2.trim()).toBe(truth2.trim());
 	expect(truth2.trim()).not.toBe(truth.trim());
 	await page.getByRole('button', { name: 'Two', exact: true }).click();
-	await expect(page.getByText('more than one source (type I)')).toBeVisible();
+	await expect(page.getByText('not one round body or one wave (type I)')).toBeVisible();
 	await expect(skies.nth(1).locator('circle.star')).toHaveCount(2);
 	await page.getByRole('button', { name: 'A wave', exact: true }).click();
 	await expect(page.getByText('one plane wave (type N)')).toBeVisible();

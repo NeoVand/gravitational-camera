@@ -49,6 +49,7 @@ const IGNORED_RAW = [
 	/^\\affiliation\{[^}]*\}$/,
 	// page layout for print only
 	/^\\FloatBarrier$/,
+	/^\\appendix$/,
 	/^\\clearpage$/
 ];
 
@@ -58,6 +59,9 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 	const citeNumbers = new Map<string, number>();
 	let section = 0;
 	let subsection = 0;
+	// after \appendix, sections are lettered A, B, ... as LaTeX letters them
+	let appendix = false;
+	const sectionName = (k: number) => (appendix ? String.fromCharCode(64 + k) : String(k));
 	let figures = 0;
 	let tables = 0;
 	let equations = 0;
@@ -66,6 +70,11 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 		if (Array.isArray(x)) return x.forEach(scan);
 		if (!x || typeof x !== 'object') return;
 		const n = x as Node;
+		if (n.t === 'RawBlock' && /^\\appendix$/.test(String(n.c[1]).trim())) {
+			appendix = true;
+			section = 0;
+			return;
+		}
 		if (n.t === 'Header') {
 			const [level, [id, classes]] = n.c;
 			if ((classes as string[]).includes('unnumbered')) {
@@ -73,10 +82,10 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 			} else if (level === 1) {
 				section += 1;
 				subsection = 0;
-				if (id) labels.set(id, String(section));
+				if (id) labels.set(id, sectionName(section));
 			} else if (level === 2) {
 				subsection += 1;
-				if (id) labels.set(id, `${section}.${subsection}`);
+				if (id) labels.set(id, `${sectionName(section)}.${subsection}`);
 			}
 		} else if (n.t === 'Figure') {
 			figures += 1;
