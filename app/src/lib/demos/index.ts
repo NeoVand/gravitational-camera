@@ -14,7 +14,8 @@ export interface DemoEntry {
 		| 'black-hole'
 		| 'two-black-holes'
 		| 'four-stars'
-		| 'four-voices';
+		| 'four-voices'
+		| 'now-and-then';
 	title: string;
 	affordance: string;
 	summary: string;
@@ -41,6 +42,14 @@ export const demos: DemoEntry[] = [
 		regime: 'one pixel',
 		summary:
 			'Four waves cross one point, each with any waveform. One pixel of this camera finds where every one comes from; a sensor of light finds two.'
+	},
+	{
+		slug: 'now-and-then',
+		title: 'Now and then',
+		affordance: 'See the present',
+		regime: 'one pixel',
+		summary:
+			'Light shows a moving body where it was; its tidal field points at where it is. Stop it, and the news spreads at the speed of light. Shown with light slowed down, and labelled so.'
 	},
 	{
 		slug: 'sun-at-midnight',

@@ -545,6 +545,22 @@ test('four voices: one gravitational pixel finds four waves, light none; with tw
 	await expect(skies.nth(1).getByText('found 2 of 2')).toBeVisible();
 });
 
+test('now and then: the scene runs, and a stop is held until the body is let go', async ({
+	page
+}) => {
+	await page.goto('/demo/now-and-then/');
+	const canvas = page.locator('canvas');
+	const frames = async () => Number(await canvas.getAttribute('data-frames'));
+	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(5);
+	const stop = page.getByRole('button', { name: 'Stop it', exact: true });
+	await stop.click();
+	await expect(stop).toHaveAttribute('aria-pressed', 'true');
+	const drawn = await frames();
+	await expect.poll(frames).toBeGreaterThan(drawn);
+	await page.getByRole('button', { name: 'Moving', exact: true }).click();
+	await expect(stop).toHaveAttribute('aria-pressed', 'false');
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();

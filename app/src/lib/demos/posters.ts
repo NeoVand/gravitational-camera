@@ -18,5 +18,6 @@ export const posters: Record<string, string> = {
 	'black-hole': asset('posters/black-hole.jpg'),
 	'two-black-holes': asset('posters/two-black-holes.jpg'),
 	'four-stars': asset('posters/four-stars.jpg'),
-	'four-voices': asset('posters/four-voices.jpg')
+	'four-voices': asset('posters/four-voices.jpg'),
+	'now-and-then': asset('posters/now-and-then.jpg')
 };
