@@ -49,6 +49,11 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 	expect(await page.locator('aside.plain').count()).toBeGreaterThanOrEqual(6);
 	await expect(page.locator('a.xref').first()).toBeVisible();
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
+	// every reference names its authors: in a list ordered by citation a dash for "the same author as
+	// above" would point at the wrong entry
+	for (const entry of await page.locator('ol.references li').allTextContents()) {
+		expect(entry.trim()).not.toMatch(/^\W*[—–-]{2,}/);
+	}
 	// every figure in the LaTeX source is on the page, with something drawn in it
 	const sections = new URL('../../paper/sections/', import.meta.url);
 	const inSource = readdirSync(sections)

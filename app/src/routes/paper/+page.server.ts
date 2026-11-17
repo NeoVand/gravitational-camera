@@ -5,6 +5,8 @@ import { renderPaper } from '#lib/paper/render.js';
 import type { PageServerLoad } from './$types';
 
 const PAPER_DIR = path.resolve('..', 'paper');
+/** pandoc's default citation style, except that every entry names its authors (see the file). */
+const STYLE = path.resolve('src', 'lib', 'paper', 'references.csl');
 
 /**
  * Read a LaTeX file with its \input files spliced in and comment lines removed.
@@ -31,7 +33,17 @@ export const load: PageServerLoad = () => {
 	try {
 		json = execFileSync(
 			'pandoc',
-			['-f', 'latex+raw_tex', '-t', 'json', '--citeproc', '--bibliography', 'refs.bib'],
+			[
+				'-f',
+				'latex+raw_tex',
+				'-t',
+				'json',
+				'--citeproc',
+				'--bibliography',
+				'refs.bib',
+				'--csl',
+				STYLE
+			],
 			{ cwd: PAPER_DIR, input: readTex('main.tex'), encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }
 		);
 	} catch (cause) {
