@@ -64,11 +64,13 @@ def earth_glow_chart():
     return fig, "earth-glow-chart"
 
 
-def main() -> int:
+def main(names=()) -> int:
     mf.OUT = HERE / "staging"
     mf.OUT.mkdir(exist_ok=True)
     mf.setup_fonts()
-    for draw in (earth_glow_chart, quadrupole_chart):
+    for draw in (earth_glow_chart, quadrupole_chart, voices_chart):
+        if names and draw.__name__.replace("_chart", "").replace("_", "-") not in names:
+            continue
         fig, name = draw()
         mf.save(fig, name, web=True)
     return 0
@@ -103,5 +105,42 @@ def quadrupole_chart():
     return fig, "quadrupole-chart"
 
 
+def voices_chart():
+    """One ear, four voices: the four waveforms, and the ten numbers the pixel reads while all four pass."""
+    import json
+    d = json.loads((mf.ROOT / "reference/results/figures/voices.json").read_text())
+    t = np.array(d["t"])
+    fig = plt.figure(figsize=(244 / 72, 214 / 72))
+    top = fig.add_axes([0.1, 0.62, 0.88, 0.32])
+    low = fig.add_axes([0.1, 0.07, 0.88, 0.47])
+    for ax in (top, low):
+        ax.set_axis_off()
+        ax.set_xlim(-0.01, 1.01)
+    gap = 1.25
+    for i, w in enumerate(d["waves"]):
+        y0 = -i * gap
+        top.plot(t, y0 + 0.5 * np.array(w["im"]), color=mf.FAINT, lw=0.45)
+        top.plot(t, y0 + 0.5 * np.array(w["re"]), color=mf.INK, lw=0.6)
+        top.text(-0.035, y0, rf"${i + 1}$", ha="right", va="center", fontsize=7.5, color=mf.ACCENT)
+    top.set_ylim(-3 * gap - 0.75, 0.75)
+    top.text(0.0, 1.0, r"four waves, each with its own two polarizations", transform=top.transAxes, fontsize=7.5,
+             color=mf.DIM, va="bottom")
+    tr = np.array(d["traces"])
+    tr = tr / np.max(np.abs(tr))
+    gap = 0.75
+    names = [rf"$\mathcal{{E}}_{k}$" for k in range(1, 6)] + [rf"$\mathcal{{B}}_{k}$" for k in range(1, 6)]
+    for i, (row, name) in enumerate(zip(tr, names)):
+        y0 = -i * gap - (0.35 if i >= 5 else 0.0)
+        low.plot(t, y0 + 0.5 * row, color=mf.INK if i < 5 else mf.DIM, lw=0.5)
+        low.text(-0.035, y0, name, ha="right", va="center", fontsize=7, color=mf.DIM)
+    low.set_ylim(-9 * gap - 0.35 - 0.6, 0.6)
+    low.text(0.0, 1.0, r"what one pixel reads: ten numbers", transform=low.transAxes, fontsize=7.5, color=mf.DIM,
+             va="bottom")
+    low.annotate("", xy=(1.0, -0.035), xytext=(0.0, -0.035), xycoords="axes fraction",
+                 arrowprops=dict(arrowstyle="-|>", lw=0.5, color=mf.DIM, mutation_scale=6))
+    low.text(1.0, -0.06, "time", transform=low.transAxes, ha="right", va="top", fontsize=7, color=mf.DIM)
+    return fig, "voices-chart"
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    sys.exit(main(sys.argv[1:]))

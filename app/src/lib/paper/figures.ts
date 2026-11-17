@@ -85,7 +85,9 @@ const THEME: Record<string, string> = {
 	// the page itself, where a figure clears a space around a mark
 	'#fffffe': 'var(--bg)',
 	// pale tints of the accents, mixed with the page
-	'#dce7f3': 'color-mix(in srgb, var(--accent-2) 16%, var(--bg))'
+	'#dce7f3': 'color-mix(in srgb, var(--accent-2) 16%, var(--bg))',
+	// a neutral tint of the page, for a sky or a surface drawn flat
+	'#eeebe5': 'color-mix(in srgb, var(--text) 8%, var(--bg))'
 };
 
 /**

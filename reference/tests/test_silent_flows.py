@@ -34,6 +34,11 @@ def test_buried_ruler_equal_masses(z):
     assert abs(tidal.planar_shear(0.0, 0.37, z, masses).imag) < 1e-15        # E_xy = 0 on the bisector
     y0 = brentq(lambda y: tidal.planar_shear(0.0, y, z, masses).real, 0.2, 0.9)
     assert y0 == pytest.approx(d / 2, abs=1e-12)
+    # the phase of the shear turns once around each zero (Fig. buried-ruler)
+    t = np.linspace(0, 2 * np.pi, 2001)
+    for s in (1, -1):
+        S = tidal.planar_shear(0.1 * np.cos(t), s * d / 2 + 0.1 * np.sin(t), z, masses)
+        assert np.sum(np.diff(np.unwrap(np.angle(S)))) / (2 * np.pi) == pytest.approx(1.0, abs=1e-9)
 
 
 def test_unequal_masses_drift_with_depth():

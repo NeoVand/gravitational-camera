@@ -100,6 +100,40 @@ def test_four_stars_give_the_sideways_velocity_exactly(beta):
         np.testing.assert_allclose(pixel.body_velocity(W), v_perp / c, atol=2e-7)
 
 
+def coulomb_F(charges, positions, velocities, x=np.zeros(3)):
+    """F = E + iB (c = 1) at x of point charges moving uniformly, from their present positions (exact)."""
+    F = np.zeros(3, dtype=complex)
+    for q, p, v in zip(charges, positions, velocities):
+        v = np.asarray(v, dtype=float)
+        R = x - np.asarray(p, dtype=float)
+        b2 = v @ v
+        s2 = 1 - (b2 - (v @ R) ** 2 / (R @ R)) if b2 else 1.0           # 1 - beta^2 sin^2 psi
+        E = q * (1 - b2) * R / ((R @ R) ** 1.5 * s2 ** 1.5)
+        F += E + 1j * np.cross(v, E)
+    return F
+
+
+def test_light_has_two_stars_and_cannot_count_charges():
+    # a plane wave: a double star on its direction of travel
+    for _ in range(5):
+        k = unit(rng.normal(size=3))
+        e = unit(np.cross(k, rng.normal(size=3)))
+        s = pixel.light_stars(e + 1j * np.cross(k, e))
+        np.testing.assert_allclose(s, [k, k], atol=1e-6)
+    # one charge at rest: the two ends of its line of force; moving: the midpoint is v_perp / c, as for gravity
+    for beta in (0.0, 0.5, 0.9):
+        v = unit(rng.normal(size=3)) * beta
+        p0 = rng.normal(size=3) * 2
+        s = pixel.light_stars(coulomb_F([1.0], [p0], [v]))
+        n = -unit(p0)
+        np.testing.assert_allclose(s.mean(axis=0), v - (v @ n) * n, atol=1e-9)
+    # two charges at rest: still two stars, the ends of the line of force, as for one charge somewhere else
+    F = coulomb_F([1.0, 0.4], [[-1.45, 0.2, 0.0], [0.3, -1.2, 0.6]], [[0, 0, 0]] * 2)
+    s = pixel.light_stars(F)
+    E = unit(F.real)
+    assert min(np.linalg.norm(s - [E, -E]), np.linalg.norm(s - [-E, E])) < 1e-9
+
+
 def test_time_to_contact():
     """A body coming straight on: E_par = -2 G M / r^3; -3 E / Edot = -r / rdot."""
     r, rdot = 7.0, -0.5
@@ -175,13 +209,17 @@ def test_light_separates_two_over_time_but_never_three():
         return (a + 1j * b) * m
     ks = [unit(rng.normal(size=3)) for _ in range(2)]
     F = np.array([sum(em_wave(k, *rng.normal(size=2)) for k in ks) for _ in range(50)])
-    a = np.linalg.svd(F)[2][-1].conj()
-    X = np.linalg.svd(a[None, :])[2][1:].conj().T
-    from scipy.linalg import null_space
-    X = null_space(a[None, :])
-    found = [pixel.direction(m) for m in pixel._null_in_plane(X[:, 0], X[:, 1])]
-    for k in ks:
-        assert min(np.linalg.norm(f - k) for f in found) < 1e-9
+    for found in (pixel.light_two_waves(F), pixel.light_stars(np.linalg.svd(F)[2][-1].conj())):
+        for k in ks:
+            assert min(np.linalg.norm(f - k) for f in found) < 1e-9
+    # gravity's annihilator vanishes on the sky at the four directions and nowhere else on a grid of the sky
+    ks4 = [unit(rng.normal(size=3)) for _ in range(4)]
+    A = pixel.annihilator([sum(wave_W(k, *rng.normal(size=2)) for k in ks4) for _ in range(40)])
+    q = lambda k: abs(pixel.null_frame(k) @ A @ pixel.null_frame(k))
+    assert max(q(k) for k in ks4) < 1e-12
+    grid = [unit(v) for v in rng.normal(size=(2000, 3))]
+    far = [g for g in grid if min(np.linalg.norm(g - k) for k in ks4) > 0.3]
+    assert min(q(g) for g in far) > 1e-4
     ks3 = [unit(rng.normal(size=3)) for _ in range(3)]
     F3 = np.array([sum(em_wave(k, *rng.normal(size=2)) for k in ks3) for _ in range(50)])
     s = np.linalg.svd(F3, compute_uv=False)

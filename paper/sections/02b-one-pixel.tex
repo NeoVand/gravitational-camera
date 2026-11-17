@@ -74,9 +74,10 @@ $\mathbf{m}(z) = (1 - z^2,\, i(1 + z^2),\, -2z)$, the quartic equation
 \end{equation}
 has four roots, four points on the sphere of directions around the pixel: the
 principal null directions of the field \cite{Penrose1960}, which we call its
-stars. For one plane wave all four coincide on its direction of travel. For one
-body at rest they fall in two pairs, on the line to the body and opposite it.
-Where two or more bodies pull, they are four distinct points. The same
+stars (Fig.~\ref{fig:stars}). For one plane wave all four coincide on its
+direction of travel. For one body at rest they fall in two pairs, on the line to
+the body and opposite it. Where two or more bodies pull, they are four distinct
+points. The same
 distinctions can be read without solving anything, from the invariants: a
 repeated eigenvalue, the mark of a single body, makes
 $1 - 6J^2/I^3$ vanish, and a single wave makes $I = J = 0$ (Petrov's types D and
@@ -85,7 +86,27 @@ whether it is a pure wave, or whether it needs more. In the reference
 implementation the quantity $1 - 6J^2/I^3$ is below $10^{-8}$, rounding, for a
 single moving body, and $0.02$ for two bodies at comparable distances.
 Light at a point has two stars, not four: its $\mathbf{E} + ic\mathbf{B}$ has
-only one complex invariant.
+only one complex invariant. Any field of light that is not a pure wave has two
+separate stars, as a single charge has, so one point of light cannot tell one
+source from several.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/stars.pdf}
+\caption{The stars of a field, the solutions of Eq.~\eqref{eq:stars}, on the
+sky around one pixel (each disc), for gravity (top) and light (bottom),
+computed in the reference implementation. Coincident stars are drawn as touching
+dots, so that every sky of gravity holds four and every sky of light two; faint
+dots and dashed lines lie on the far side. One wave puts all of them on its
+direction of travel $\hat k$. One source at rest, a mass or a charge, puts them
+in two groups on the line through it. Moving across that line at $0.9\,c$, the
+source folds both groups toward its velocity, along the paths drawn from their
+places at rest (open circles), and the midpoint of the two, as a vector, is its
+velocity across the line to where it is now, $\mathbf{v}_\perp/c$,
+Eq.~\eqref{eq:star-velocity}. Two masses at rest give four separate stars
+(Petrov type I), so they could not be one body; two charges give light's two
+stars again, at the ends of the line of force, as one charge would.}\label{fig:stars}
+\end{figure*}
 
 \paragraph{Ten numbers: four invariants, three angles, three velocities.} A
 reading whose eigenvalues are distinct can be written
@@ -140,7 +161,8 @@ remove the blind spot.
 
 \paragraph{A moving body, exactly.} The four stars of a single body moving at any
 speed are its two pairs, displaced by aberration toward its direction of motion.
-Their midpoint, as a vector, is exactly its velocity across the line of sight:
+Their midpoint, as a vector, is exactly its velocity across the line of sight
+(Fig.~\ref{fig:stars}):
 \begin{equation}\label{eq:star-velocity}
 \tfrac12\,(\hat p_+ + \hat p_-) = \frac{\mathbf{v}_\perp}{c} ,
 \end{equation}
@@ -196,14 +218,32 @@ two conics,
 \begin{equation}\label{eq:four-waves}
 \mathbf{m}^{T}\!A\,\mathbf{m} = 0, \qquad \mathbf{m}\cdot\mathbf{m} = 0 ,
 \end{equation}
-and two conics meet in four points: the four directions. For light the same
-argument gives two. In general a point sensor of a field of spin $s$ separates
+and two conics meet in four points: the four directions (Fig.~\ref{fig:voices}).
+For light the same argument gives two. In general a point sensor of a field of spin $s$ separates
 $s$ plane waves at one instant, $s + 1$ at one frequency and $2s$ from a time
 history; for light, $1$, $2$ and $2$, the known limit for electromagnetic vector
 sensors \cite{NehoraiPaldi1994,HochwaldNehorai1996}; for gravity, $2$, $3$ and
 $4$. In the reference implementation four waves with random waveforms are
 located to $10^{-14}$, and to $10^{-4}$ radian with noise of $10^{-4}$ of the
 signal on every component over three hundred readings.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/voices.pdf}
+\caption{One pixel, four waves. (a) Four plane waves arrive from four fixed
+directions, each with its own waveform in both polarizations (strong and faint lines),
+and one pixel reads the ten numbers of $\tE$ and $\tB$ while all four pass.
+(b) From the readings alone: the matrix $A$ with $\mathrm{tr}(A\mathcal{W}) = 0$
+for every reading, and, on the sky toward the sources, the size of
+$\mathbf{m}^{T}\!A\,\mathbf{m}$, shaded over two and a half decades. It vanishes
+at exactly four points, Eq.~\eqref{eq:four-waves}: the zeros found from the
+readings (dots) fall on the four sources (rings) to $10^{-14}$. (c) Light from
+the first two sources, the same way: its readings $\mathbf{E} + ic\mathbf{B}$
+span a plane, the vector $\mathbf{a}$ orthogonal to it gives
+$\mathbf{m}\cdot\mathbf{a}$, and that vanishes at the two sources; a third wave of
+light would fill all six of its numbers and leave nothing to find. Computed in
+the reference implementation.}\label{fig:voices}
+\end{figure*}
 
 Uncorrelated sources can be separated from second moments alone. In the
 frequency domain the two helicities occupy separate halves of the ten numbers,
@@ -299,14 +339,31 @@ several hundred reduced wavelengths: at $100\,\mathrm{Hz}$, a few hundred
 thousand kilometres. The
 reference implementation checks Eqs.~\eqref{eq:ranging-C}
 and~\eqref{eq:helicity-split} against the exact field of a turning pair to
-within a few per cent at $kr = 80$ and $0.5$ per cent at $kr = 200$.
+within a few per cent at $kr = 80$ and $0.5$ per cent at $kr = 200$
+(Fig.~\ref{fig:ranging}).
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/ranging.pdf}
+\caption{Ranging a wave source from one pixel: the exact field of two equal
+masses turning in a circle, read at reduced distance $kr$ and inclination
+$\iota$ (points), against the formulas (lines). (a) At one instant, at wave
+phase $\theta = 0$, the oscillating part of $\mathcal{W}$ departs from rank one
+by $C(\iota, 0)/(kr)^2$, Eqs.~\eqref{eq:ranging-instant}
+and~\eqref{eq:ranging-C}, not by $1/kr$ (dashed); the points approach the lines
+as the next order dies away. (b) Over a cycle, the distance read from the two
+frequency parts $\mathcal{W}_\pm$ alone, with no knowledge of the inclination,
+over the true distance. (c) The directions read from the two frequency parts
+differ by $8|\cot\iota|/kr$, Eq.~\eqref{eq:helicity-split}, here at
+$kr = 200$.}\label{fig:ranging}
+\end{figure*}
 
 \paragraph{The camera sees the present.} The field of a body moving uniformly is
 its static field carried along, so it depends on where the body is now. The
 stretch axis of $\tE$ points at the body's present position, at any speed (to
 $10^{-7}$ radian at $0.3\,c$ in the reference implementation), while its light
 shows its position a light-travel time ago, displaced by the aberration angle,
-about $v_\perp/c$. Near two masses in orbit the changing part of the field is
+about $v_\perp/c$ (Fig.~\ref{fig:present}). Near two masses in orbit the changing part of the field is
 Newton's field of their present positions to order $(kr)^2$, while their
 retarded positions would be off by $kr$ itself: at $kr = 0.1$, a tenth of a per
 cent against ten per cent. The first-order retardation cancels because mass and
@@ -317,6 +374,19 @@ what general relativity predicts \cite{Carlip2000}. A camera that sees mass sees
 it on its own slice of simultaneity. When a body changes its motion, the field
 goes on pointing at where it would have been until the news, travelling at the
 speed of light as a wave, arrives.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/present.pdf}
+\caption{The camera sees the present. (a) A mass passing a pixel at $0.6\,c$:
+the stretch axis of its exact field at the pixel (a ring of free masses,
+exaggerated) points at where the mass is now, while its light arrives from where
+it was a light-travel time ago. (b) Near two masses in orbit, at reduced
+distance $kr$, the changing part of the exact field against Newton's field of
+the masses at their present positions, which it matches to order $(kr)^2$, and
+at their retarded positions, which miss by $kr$. Computed in the reference
+implementation.}\label{fig:present}
+\end{figure}
 
 \paragraph{Beyond general relativity, in one reading.} Other theories of gravity
 allow up to six polarizations, and waves that travel at other speeds

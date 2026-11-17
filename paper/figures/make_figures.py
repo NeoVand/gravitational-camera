@@ -1569,6 +1569,193 @@ def capacity():
     save(fig, "capacity", web=True)
 
 
+# --- Figure: how far away is a wave source -------------------------------------
+
+def ranging():
+    """Ranging a wave source from one pixel: the exact field of an orbiting pair (gravcam/binary.py), read at
+    reduced distance kr and inclination iota (gravcam/figure_data.py, ranging), against Eqs. (ranging-instant),
+    the frequency identity and (helicity-split)."""
+    import json
+    from gravcam import pixel
+    d = json.loads((ROOT / "reference/results/figures/ranging.json").read_text())
+    fig, (a, b, c) = plt.subplots(1, 3, figsize=(FULL, 2.15))
+    colours = {40: ACCENT2, 70: ACCENT, 90: INK, 35: ACCENT2}
+    kr = np.logspace(math.log10(3), math.log10(130), 100)
+    # (a) one instant
+    for s in d["instant"]:
+        col = colours[s["iota"]]
+        p = np.array(s["points"])
+        a.plot(kr, s["C"] / kr ** 2, color=col, lw=0.8)
+        a.plot(p[:, 0], p[:, 1], "o", ms=2.8, color=col, mec="none", zorder=4)
+        a.text(140, s["C"] / 130 ** 2, rf"${s['iota']}^\circ$", fontsize=7, color=col, va="center")
+    a.plot(kr, 0.5 / kr, color=FAINT, lw=0.6, ls=(0, (2.5, 2)))
+    a.text(9, 0.5 / 9 * 1.35, r"$\propto 1/kr$", fontsize=7, color=FAINT, ha="left", va="bottom")
+    a.set_xscale("log")
+    a.set_yscale("log")
+    a.set_xlim(3, 170)
+    a.set_ylim(8e-6, 0.3)
+    a.set_xlabel(r"$kr$")
+    a.set_ylabel(r"$s_2/s_1$ at one instant")
+    a.text(0.03, 0.03, "(a)", transform=a.transAxes, va="bottom")
+    # (b) over a cycle, no inclination needed
+    b.axhline(1.0, color=RULE, lw=0.6)
+    for s in d["frequency"]:
+        col = colours[s["iota"]]
+        p = np.array(s["points"])
+        b.plot(p[:, 0], p[:, 1] / p[:, 0], "o-", ms=2.8, lw=0.6, color=col, mec="none",
+               label=rf"$\iota = {s['iota']}^\circ$")
+    b.legend(loc="upper right", handlelength=1.4, labelspacing=0.25, fontsize=7)
+    b.set_xscale("log")
+    b.set_xlim(5, 120)
+    b.set_ylim(0.95, 1.3)
+    b.set_xlabel(r"$kr$")
+    b.set_ylabel(r"$kr$ read from $\mathcal{W}_\pm$, over true")
+    b.text(0.03, 0.97, "(b)", transform=b.transAxes, va="top", ha="left")
+    # (c) the two helicities point apart
+    iota = np.linspace(6, 84, 200)
+    c.plot(iota, [pixel.helicity_split(math.radians(i)) for i in iota], color=INK, lw=0.8)
+    p = np.array(d["split"])
+    c.plot(p[:, 0], p[:, 1], "o", ms=2.8, color=ACCENT, mec="none", zorder=4)
+    c.text(30, 8 / math.tan(math.radians(30)) * 1.25, r"$8\,|\cot\iota|$", fontsize=7.5, ha="left", va="bottom")
+    c.set_yscale("log")
+    c.set_xlim(0, 90)
+    c.set_ylim(0.7, 80)
+    c.set_yticks([1, 3, 10, 30])
+    c.set_yticklabels(["1", "3", "10", "30"])
+    c.set_xticks([0, 30, 60, 90])
+    c.set_xticklabels([r"$0^\circ$", r"$30^\circ$", r"$60^\circ$", r"$90^\circ$"])
+    c.set_xlabel(r"inclination $\iota$")
+    c.set_ylabel(rf"$kr\,\Delta\theta_\pm$ at $kr = {d['split_kr']}$")
+    c.text(0.97, 0.94, "(c)", transform=c.transAxes, va="top", ha="right")
+    for ax in (a, b, c):
+        ax.minorticks_off()
+        for side in ("top", "right"):
+            ax.spines[side].set_visible(False)
+    a.set_xticks([3, 10, 30, 100])
+    a.set_xticklabels(["3", "10", "30", "100"])
+    b.set_xticks([10, 30, 100])
+    b.set_xticklabels(["10", "30", "100"])
+    fig.subplots_adjust(left=0.075, right=0.985, top=0.96, bottom=0.2, wspace=0.42)
+    save(fig, "ranging", web=True)
+
+
+# --- Figure: the camera sees the present ----------------------------------------
+
+def present_past():
+    """(a) A body passing a pixel at 0.6 c: the stretch axis of its exact field points at where it is now, its light
+    at where it was. (b) Near an orbiting pair, the changing field against Newton's at the present and at the
+    retarded positions (gravcam/figure_data.py, present)."""
+    import json
+    from matplotlib.patches import Ellipse
+    d = json.loads((ROOT / "reference/results/figures/present.json").read_text())
+    fig = plt.figure(figsize=(COL, 3.55))
+    a = fig.add_axes([0.0, 0.47, 1.0, 0.53])
+    b = fig.add_axes([0.17, 0.09, 0.79, 0.33])
+    bare(a)
+    now, then, axis = (np.array(d[k][:2]) for k in ("present", "retarded", "axis"))
+    y = now[1]
+    a.plot([-1.25, 1.05], [y, y], color=RULE, lw=0.6, zorder=1)
+    arrow(a, (0.62, y + 0.12), (0.98, y + 0.12), color=INK, width=0.6, head=4)
+    a.text(0.8, y + 0.17, rf"$\mathbf{{v}} = {d['beta']}\,c$", ha="center", va="bottom", fontsize=7.5)
+    # the stretch axis of the exact field, through the present position, and the line light arrives along
+    reach = 1.22 / axis[1]
+    a.plot([0, axis[0] * reach], [0, axis[1] * reach], color=ACCENT, lw=0.9, zorder=2)
+    a.plot([0, then[0] * 1.0], [0, then[1] * 1.0], color=ACCENT2, lw=0.9, ls=(0, (3, 2)), zorder=2)
+    a.plot(*now, "o", ms=6.5, color=INK, mec="none", zorder=4)
+    a.plot(*then, "o", ms=6.5, mfc="#fffffe", mec=ACCENT2, mew=0.9, zorder=4)
+    a.text(now[0] + 0.1, y - 0.1, "now", fontsize=7.5, va="top", ha="left")
+    a.text(then[0] - 0.1, y - 0.1, "where light\nshows it", fontsize=7.5, va="top", ha="right", color=ACCENT2,
+           linespacing=1.0)
+    a.text(axis[0] * 0.62 + 0.06, axis[1] * 0.62, r"stretch axis of $\mathcal{E}$", fontsize=7.5, color=ACCENT,
+           ha="left", va="center")
+    a.text(then[0] * 0.55 - 0.07, then[1] * 0.55, "light", fontsize=7.5, color=ACCENT2, ha="right", va="center")
+    # the pixel, a ring of free masses stretched along the axis (exaggerated)
+    ang = math.degrees(math.atan2(axis[1], axis[0]))
+    a.add_patch(Ellipse((0, 0), 0.2, 0.2, fill=False, ec=FAINT, lw=0.5, ls=(0, (1.5, 1.5)), zorder=3))
+    a.add_patch(Ellipse((0, 0), 0.27, 0.15, angle=ang, fill=False, ec=ACCENT, lw=0.8, zorder=3))
+    a.plot([0], [0], "o", ms=2.6, color=INK, mec="none", zorder=4)
+    a.text(0.2, -0.04, "pixel", fontsize=7.5, va="center", ha="left")
+    a.text(-1.25, y + 0.3, "(a)", va="top")
+    a.set_xlim(-1.3, 1.1)
+    a.set_ylim(-0.2, y + 0.32)
+    # (b) near an orbiting pair
+    p = np.array(d["pair"])
+    kr = np.logspace(math.log10(0.015), math.log10(0.4), 50)
+    b.plot(kr, kr, color=ACCENT2, lw=0.6, ls=(0, (3, 2)))
+    k2 = float(np.median(p[:, 1] / p[:, 0] ** 2))
+    b.plot(kr, k2 * kr ** 2, color=ACCENT, lw=0.6, ls=(0, (3, 2)))
+    b.plot(p[:, 0], p[:, 2], "o", ms=2.8, color=ACCENT2, mec="none", zorder=4)
+    b.plot(p[:, 0], p[:, 1], "o", ms=2.8, color=ACCENT, mec="none", zorder=4)
+    b.text(0.017, 0.2, r"retarded positions, $kr$", fontsize=7, color=ACCENT2, ha="left", va="bottom")
+    b.text(0.085, 3e-4, rf"present positions, ${k2:.2f}\,(kr)^2$", fontsize=7, color=ACCENT, ha="left", va="top")
+    b.set_xscale("log")
+    b.set_yscale("log")
+    b.set_xlim(0.015, 0.4)
+    b.set_ylim(1e-5, 0.6)
+    b.set_xticks([0.02, 0.05, 0.1, 0.2])
+    b.set_xticklabels(["0.02", "0.05", "0.1", "0.2"])
+    b.set_yticks([1e-4, 1e-3, 1e-2, 1e-1])
+    b.minorticks_off()
+    b.set_xlabel(r"$kr$ near an orbiting pair")
+    b.set_ylabel("error of Newton's field")
+    b.text(0.97, 0.04, "(b)", transform=b.transAxes, va="bottom", ha="right")
+    for side in ("top", "right"):
+        b.spines[side].set_visible(False)
+    save(fig, "present", web=True)
+
+
+# --- Figure: a ruler under the ground -------------------------------------------
+
+def buried_ruler():
+    """Two equal masses d apart, buried at depths z: the ordinary picture -E_zz on the plane of the array blurs into
+    one, while the in-plane shear (E_xx - E_yy) + 2i E_xy has two zeros, around which its phase turns once, exactly
+    d apart at every depth (gravcam/tidal.py, planar_shear)."""
+    from scipy.optimize import brentq
+    from matplotlib import patheffects
+    from matplotlib.colors import LinearSegmentedColormap
+    from gravcam import tidal
+    d = 1.0
+    masses = [(1.0, (-d / 2, 0.0)), (1.0, (d / 2, 0.0))]
+    depths = (1.0, 2.0, 4.0)
+    L = 2.2
+    g = np.linspace(-L, L, 401)
+    X, Y = np.meshgrid(g, g)
+    fig, axes = plt.subplots(2, 3, figsize=(COL, 2.42))
+    blue = LinearSegmentedColormap.from_list("near", ["#f7f9fc", "#a9c4e6", ACCENT2, "#123b6b"])
+    # a cyclic map from the paper's colours, for the phase
+    phase = LinearSegmentedColormap.from_list("phase", [ACCENT, "#f2dfc8", ACCENT2, "#22303f", ACCENT])
+    halo = [patheffects.withStroke(linewidth=1.6, foreground=INK)]
+    for j, z in enumerate(depths):
+        top, low = axes[0, j], axes[1, j]
+        ezz = sum(gm * ((X - a) ** 2 + (Y - b) ** 2 - 2 * z * z) / ((X - a) ** 2 + (Y - b) ** 2 + z * z) ** 2.5
+                  for gm, (a, b) in masses)
+        pull = -ezz / np.max(-ezz)
+        top.imshow(pull, extent=(-L, L, -L, L), origin="lower", cmap=blue, vmin=0, vmax=1, interpolation="bilinear")
+        for _, (a, b) in masses:
+            top.plot([a], [b], "+", ms=4, mew=0.6, color=INK)
+        S = tidal.planar_shear(X, Y, z, masses)
+        low.imshow(np.angle(S), extent=(-L, L, -L, L), origin="lower", cmap=phase, vmin=-np.pi, vmax=np.pi,
+                   interpolation="nearest")
+        zeros = [brentq(lambda y: tidal.planar_shear(0.0, y, z, masses).real, s * 0.1, s * 1.5) for s in (1, -1)]
+        for y0 in zeros:
+            low.plot([0], [y0], "o", ms=3.6, mfc="none", mec="#ffffff", mew=0.7, path_effects=halo)
+        low.annotate("", xy=(0.62, zeros[0]), xytext=(0.62, zeros[1]),
+                     arrowprops=dict(arrowstyle="<|-|>", lw=0.6, color="#ffffff", mutation_scale=4.5, shrinkA=0,
+                                     shrinkB=0, path_effects=halo))
+        low.text(0.78, 0.0, r"$d$", color="#ffffff", fontsize=7.5, va="center", ha="left", path_effects=halo)
+        top.set_title(rf"$z = {z:g}\,d$", fontsize=8, pad=3)
+        for ax in (top, low):
+            ax.set_xticks([])
+            ax.set_yticks([])
+            for sp in ax.spines.values():
+                sp.set_linewidth(0.4)
+                sp.set_color(RULE)
+    axes[0, 0].set_ylabel(r"$-\mathcal{E}_{zz}$", fontsize=8)
+    axes[1, 0].set_ylabel(r"phase of the shear", fontsize=7.5)
+    fig.subplots_adjust(left=0.075, right=0.995, top=0.925, bottom=0.005, wspace=0.05, hspace=0.05)
+    save(fig, "buried-ruler", web=True)
+
+
 # --- Figure: the thermal Earth, inverted ---------------------------------------
 
 def earth_inverted():
@@ -1776,7 +1963,9 @@ def main() -> int:
                  polarization_curves, array, budget,
                  sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
                  milky_way, black_hole, sun_lens, memory_patterns, earth_inverted,
-                 same_outside, black_hole_camera):
+                 same_outside, black_hole_camera, ranging, present_past, buried_ruler):
+        if len(sys.argv) > 1 and draw.__name__ not in sys.argv[1:]:
+            continue
         draw()
     return 0
 

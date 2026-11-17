@@ -166,6 +166,20 @@ def stars(W) -> np.ndarray:
     return _quartic_roots_directions(W)
 
 
+def light_stars(F) -> np.ndarray:
+    """Light's two principal directions, in the same convention: roots of m(z) . F = 0 (degree 2 in z), with
+    F = E + i c B. A charge at rest gives the two ends of its line of force; a plane wave a double star on its
+    direction of travel."""
+    Ft = _TURN.T @ np.asarray(F, dtype=complex)
+    z = np.polynomial.Polynomial([0, 1])
+    m = [1 - z ** 2, 1j * (1 + z ** 2), -2 * z]
+    roots = list(sum(m[i] * Ft[i] for i in range(3)).roots())
+    out = [direction(null_vector(r)) for r in roots]
+    while len(out) < 2:
+        out.append(direction(np.array([-1.0, 1j, 0.0])))
+    return np.array([_TURN @ d for d in out])
+
+
 # --- result 1: ten = four + three + three --------------------------------------------------------------------------
 
 def _axial(A) -> np.ndarray:
@@ -263,6 +277,21 @@ def four_waves(readings):
     V = vec5(np.asarray(readings, dtype=complex))
     a = np.linalg.svd(V)[2][-1].conj()                      # V a = 0
     return _quartic_roots_directions(mat5(a))
+
+
+def annihilator(readings) -> np.ndarray:
+    """The matrix A with tr(A W) = 0 for every reading (complex symmetric, trace-free, unit norm): the conic of
+    four_waves. Its m^T A m vanishes on the sky exactly at the waves' directions of travel."""
+    V = vec5(np.asarray(readings, dtype=complex))
+    return mat5(np.linalg.svd(V)[2][-1].conj())
+
+
+def light_two_waves(readings) -> np.ndarray:
+    """Light's limit over time: two plane waves with any waveforms, from readings F(t) = E + icB (T x 3). The
+    readings span a plane of C^3; its annihilator a has m . a = 0 at the two directions of travel, which are
+    light's stars of a (light_stars)."""
+    a = np.linalg.svd(np.asarray(readings, dtype=complex))[2][-1].conj()
+    return light_stars(a)
 
 
 def five_sources(S_I, S_V):
