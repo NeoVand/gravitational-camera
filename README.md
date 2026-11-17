@@ -100,6 +100,18 @@ pixel, and beyond general relativity in one reading.
 
 ## Building it
 
+The `Makefile` at the root does all of it:
+
+```bash
+make doctor   # checks Python, Node, pandoc, TeX and poppler, and says how to install what is missing
+make setup    # .venv with the reference implementation, the site's packages, the test browser
+make dev      # the site at http://localhost:5173
+make test     # everything CI runs
+make paper    # paper/main.pdf
+```
+
+`make help` lists the rest (`figures`, `build`, `fixtures`, `clean`, ...). The steps it runs are these:
+
 **The site** needs Node 22 or later, pnpm and pandoc:
 
 ```bash
