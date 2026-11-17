@@ -76,3 +76,14 @@ def test_the_numbers_the_paper_quotes():
     assert 330 < wide["right"][1] < 370
     turned = worked_case(1e3, tilt_deg=70)
     assert 1.05 < turned["left_right"] / mid["left_right"] < 1.12
+
+
+def test_positivity_finds_the_gold_where_the_gaussian_image_cannot():
+    from gravcam.inversion import positive_case
+
+    linear = worked_case(1e3)
+    positive = positive_case(1e3, trials=20)
+    m, s = positive["right"]
+    assert abs(m - GOLD_MASS) < 0.1 * GOLD_MASS and s < 30.0      # 317 +- 16 kg
+    assert positive["left"][0] < 5.0                                 # nothing in the empty safe
+    assert linear["right"][1] > 20 * s                               # against +-730 kg without positivity

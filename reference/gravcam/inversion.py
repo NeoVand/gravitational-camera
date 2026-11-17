@@ -138,3 +138,27 @@ def worked_case(snr: float, side: float = 1.0, n: int = 11, tilt_deg: float = 0.
         "right": (m_right, s_right),
         "left": (m_left, s_left),
     }
+
+
+def footprint(cells, center, half=(0.45, 0.6)) -> np.ndarray:
+    """The cells within a safe's footprint, as a boolean mask."""
+    return (np.abs(cells[:, 0] - center[0]) <= half[0]) & (cells[:, 1] <= center[1] + half[1])
+
+
+def positive_case(snr: float, trials: int = 40, side: float = 1.0, n: int = 11, seed: int = 1) -> dict:
+    """The same data, reconstructed with every cell's mass constrained to be non-negative (non-negative least
+    squares, no prior): mean and spread over noise of the mass found in each safe."""
+    from scipy.optimize import nnls
+
+    pixels = array_pixels(side, n)
+    sigma = noise_for_snr(snr, side / (n - 1))
+    cells = grid()
+    A = design(pixels, cells) / sigma
+    truth = read_box(pixels, RIGHT)
+    rng = np.random.default_rng(seed)
+    right, left = [], []
+    for _ in range(trials):
+        m, _ = nnls(A, (truth + sigma * rng.standard_normal(truth.shape)) / sigma, maxiter=5000)
+        right.append(m[footprint(cells, RIGHT)].sum())
+        left.append(m[footprint(cells, LEFT)].sum())
+    return {"right": (float(np.mean(right)), float(np.std(right))), "left": (float(np.mean(left)), float(np.std(left)))}

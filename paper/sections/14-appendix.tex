@@ -31,3 +31,62 @@ pixels read to $1/\rho_H$, with $\rho_H$ between $8.1$ and $10.5$ times
 $\rho\,(b/r)^2$ depending on direction, so that two equal masses, $s =
 \Delta/2$, are told from one when $\Delta > 2r/\rho_H^{1/2}$, between $0.62$
 and $0.70$ times $(r^2/b)/\rho^{1/2}$.
+
+\paragraph{The worked inversion.} The array of Section~\ref{sec:near-field}'s
+worked case is a square a metre across, of $11\times11$ pixels $10\,\mathrm{cm}$
+apart, centred on the camera and facing the safes; the noise on each component
+is set by $\SNR = 2Gm/z^2\sigma a$ for $m = 324\,\mathrm{kg}$, $z =
+3.5\,\mathrm{m}$ and spacing $a$. The image is the Gaussian posterior on point
+masses at the nodes of a grid $25\,\mathrm{cm}$ apart, $5\,\mathrm{m}\times
+2.5\,\mathrm{m}$, in the plane of the safes, each with prior standard deviation
+equal to the gold's mass; it is computed through the singular values of the
+design matrix, which stays exact at any noise. A safe's mass is the sum over the
+cells of its footprint, $0.9\,\mathrm{m}$ wide. Gold $0.2\,\mathrm{m}$ farther
+back and $14\%$ heavier, so as to pull as hard on the array's centre, is told
+apart at $\SNR \approx 10^3$, from the way the field changes across the array.
+The posterior uncertainty is $\pm 730\,\mathrm{kg}$ at $\SNR = 10^3$ and $\pm
+490\,\mathrm{kg}$ at $10^6$ for the metre-wide array, and $\pm 350\,\mathrm{kg}$
+at $10^6$ for one six metres across; these belong to the array and the noise,
+not to the data. Tilting changes nothing in principle, since each pixel reads
+the whole tensor wherever it points: turned through $70^\circ$, the metre-wide
+array tells the two safes apart $9\%$ better, and the six-metre one, whose near
+edge then comes within $0.7\,\mathrm{m}$ of the safes, thirty times better. The
+positive reconstruction is non-negative least squares on the same grid, with no
+prior, over forty draws of the noise.
+
+\paragraph{The trembling lattice.} The ball and the shell of
+Fig.~\ref{fig:tremor} are the sites of a simple cubic lattice of unit spacing
+within a radius of six spacings, the shell keeping only those beyond four, each
+site joined to its six nearest neighbours by springs of unit stiffness and to
+its twelve next-nearest by springs half as stiff, which makes a stable elastic
+solid. The masses are equal within each body and add to the same total in
+both. The normal modes give the response of every moment directly: a mode of
+frequency $\omega_n$ moves $q_h$ by $c_n$ per unit of its mass-weighted
+amplitude, and in equilibrium $\langle\dot q_h^2\rangle = k_BT\sum_n c_n^2$ and
+$\langle q_h^2\rangle = k_BT\sum_n c_n^2/\omega_n^2$. The first sum equals
+$k_BT\int\rho\,|\nabla h|^2\,\dd V$ to rounding error for any stiffnesses, as
+Eq.~\eqref{eq:thermal-moment} requires; for $h = x$ all of it lies in the free
+translation, the Brownian motion of Eq.~\eqref{eq:thermal-multipole} with
+$\ell = 1$. The steel ball's numbers use Rayleigh's method with the
+displacement $\mathbf{u} = (q/R)(-x/2, -y/2, z)$, which has no divergence and
+moves only the surface: effective mass $3M/10$, stiffness $3\mu V/R^2$, a
+quadrupole $\tfrac15 MRq\,\mathrm{diag}(-1,-1,2)$ and so a tide
+$36GMRq/5r^5$ on its axis. Rayleigh's method overestimates the frequency;
+these are estimates, not the exact modes of a steel sphere.
+
+For a quantum system the jitter is no longer $k_BT\chi(0)$. With the
+static compliance $\chi_0$ and the sum $A$ of Eq.~\eqref{eq:sum-rule} both
+finite, the measure $(2/\pi\chi_0)\,\mathrm{Im}\,\chi(\omega)\,\dd\omega/\omega$
+has unit weight and mean square frequency $A/\chi_0$, and the quantum
+fluctuation--dissipation theorem gives the jitter as its average of
+$\tfrac12\hbar\chi_0\,\omega\coth(\hbar\omega/2k_BT)$. Since
+$\sqrt{x}\coth(b\sqrt{x})$ is concave in $x$,
+\begin{equation}\label{eq:jitter-bounds}
+k_BT\chi_0 \le \langle\delta q^2\rangle \le
+\frac{\hbar}{2}\sqrt{A\chi_0}\,\coth\!\Big(\frac{\hbar}{2k_BT}\sqrt{\frac{A}{\chi_0}}\Big),
+\end{equation}
+with the upper bound reached by a single mode. The reference implementation
+checks both sides on random spectra, and checks that the shell drive of
+Eq.~\eqref{eq:thermometer} has no monopole or dipole, interacts with point
+masses placed at random outside it exactly as $-f\,D\!:\!\tE$, and makes the
+field $6GfD/a^5$ at its centre.

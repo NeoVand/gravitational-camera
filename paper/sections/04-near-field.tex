@@ -124,8 +124,8 @@ computed from the scene and blurred as described next. Other channels break
 the ambiguity: the thermal glow shows a shell as a ring; a shell and a ball of
 equal mass spinning at the same rate differ in $\tB_{ij}$ by the ratio of their
 moments of inertia, $5/3$ (Section~\ref{sec:one-pixel}), though at equal
-angular momentum they are again alike; and a tide applied from outside probes
-how the interior responds. The camera's position matters too: inside a closed
+angular momentum they are again alike; and heat, or a tide applied from
+outside, reveals the rest (\emph{What heat reveals}, below). The camera's position matters too: inside a closed
 spherical shell it feels no tide from the shell at all, whatever its mass.
 
 \paragraph{What the image does show.} The ambiguity has an exact shape. For a
@@ -197,7 +197,8 @@ and so in the spin dipole of their magnetic fields
 (Section~\ref{sec:one-pixel}), by the gold's shares of the moment of inertia,
 $0.25$, $0.48$ and $0.75\,mR^2$. The ball and the shell above, with
 $\int\rho\,r^2\,\dd V = \tfrac35 MR^2$ and $MR^2$, are the simplest case. Spin
-breaks only this one tie, since the moment of inertia is a single number. The
+breaks only this one tie, since the moment of inertia is a single number; heat
+breaks them all, as shown below. The
 thermal glow, which sums along lines instead of reaching out as a potential,
 would show the nugget as a spot, the flush as a gradient and the skin as a ring,
 but the glow measures friction and temperature, not mass
@@ -242,6 +243,108 @@ moment of inertia has a core of $12{,}500\,\mathrm{kg\,m^{-3}}$ and a mantle of
 $4150\,\mathrm{kg\,m^{-3}}$. The reference model's core averages $10{,}900$; the
 difference is the compression of the mantle under its own weight, which two
 numbers cannot resolve.
+
+\paragraph{What heat reveals.} Every warm body trembles, and its trembling has a
+near field. In classical thermal equilibrium the velocities of the particles
+of a body are independent of their positions and of one another, with
+$\langle v_a^2\rangle = 3k_BT/m_a$, whatever forces hold the body together. Any
+moment of its mass, $q_h = \sum_a m_a\,h(\mathbf{x}_a)$, therefore changes at a
+rate whose mean square follows at once:
+\begin{equation}\label{eq:thermal-moment}
+\langle \dot q_h\,\dot q_g\rangle = k_BT\int\rho\,\nabla h\cdot\nabla g\,\dd V .
+\end{equation}
+For $h$ harmonic, $q_h$ is one of the moments from which the field outside is
+built, and the camera reads it; but $\nabla h\cdot\nabla g = \tfrac12\nabla^2(hg)$
+is not harmonic, so the right-hand side is just what the static field cannot
+see. For the multipoles $h = r^\ell Y_{\ell m}$, summed over $m$,
+\begin{equation}\label{eq:thermal-multipole}
+\sum_m\langle|\dot q_{\ell m}|^2\rangle = \frac{\ell(2\ell+1)^2}{4\pi}\,k_BT
+\int\rho\,r^{2\ell-2}\,\dd V .
+\end{equation}
+The dipole gives the mass: its tremor is the Brownian motion of the body as a
+whole. The quadrupole gives $\int\rho\,r^2\,\dd V$, the number that told the
+nugget from its flush and its skin, and the shell from the ball, whose
+tremors differ by $5/3$ whatever their elastic constants and their friction;
+these set only at which frequencies the tremor lies, not how much of it there
+is. The octupole gives $\int\rho\,r^4\,\dd V$, and so on. For a round body the
+whole sequence fixes the density at every radius, since a positive
+distribution on a finite interval is fixed by its moments; for any body, the
+products $\nabla h\cdot\nabla g$ of harmonic functions reach every Fourier
+component of the density, as Calder\'on showed for an inverse problem of the
+same form \cite{Calderon1980}. At a known temperature a warm body cannot hide
+its interior from a camera outside it, though, as in Eq.~\eqref{eq:resolution},
+fine detail is reached only through exponentially small signals.
+
+Three conditions apply: the modes that carry the tremor must be classical,
+$\hbar\omega \ll k_BT$; slow enough to be seen as near field, $\omega r \ll c$;
+and measured in full. All three hold for a solid, whose smooth moments fall on
+its lowest modes of vibration. In a lattice ball of 924 masses joined by
+springs, $85\%$ of the quadrupole's tremor lies at one frequency and $99\%$
+below twice it; a shell of the same mass and radius, a third as thick as it is
+wide, trembles $1.22$ times as much, the ratio of their second moments, at
+frequencies more than twice as low (Fig.~\ref{fig:tremor}). A steel ball ten
+centimetres in radius rings in its lowest quadrupole mode near $15\,\mathrm{kHz}$,
+with $4\times10^8$ quanta in it at room temperature, and its tremor makes a
+tide of $3\times10^{-25}\,\mathrm{s^{-2}}$ a metre away, where $\omega r/c =
+3\times10^{-4}$. That mode emits one graviton in $7\times10^{17}$ years. The
+camera hears the ball ring without receiving any of its radiation: the graviton
+counts that limit the thermal glow (Section~\ref{sec:thermal}) say nothing
+about the near field. Its cost is distance. A quadrupole's tide falls as
+$r^{-5}$, so when the tremor is far below the noise, the information gathered
+about it grows only as the observing time over $r^{20}$: from $20\,\mathrm{cm}$
+to a metre costs $10^{14}$ times as long.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/tremor.pdf}
+\caption{The thermal tremor of a ball and a shell whose fields outside are
+identical: lattices of equal masses joined by springs, with the same total mass
+and radius, the shell a third as thick as it is wide. Each curve adds up, mode
+by mode in order of frequency, the mean square rate of change of the
+quadrupole moment, Eq.~\eqref{eq:thermal-multipole}; frequency is in units of
+the ball's strongest quadrupole mode. The totals are in the ratio of the
+bodies' second moments, $\int\rho\,r^2\,\dd V$, whatever the springs; the shell
+is softer, and its tremor lies lower.}\label{fig:tremor}
+\end{figure}
+
+\paragraph{What a push reveals.} A tide applied from outside reads the same
+numbers at any temperature. By the fluctuation--dissipation theorem
+\cite{CallenWelton1951} the tremor is the dissipative part of the body's
+response, and Eq.~\eqref{eq:thermal-moment} becomes the inertial sum rule
+familiar from nuclear physics \cite{LippariniStringari1989}:
+\begin{equation}\label{eq:sum-rule}
+\frac{2}{\pi}\int_0^\infty\omega\,\mathrm{Im}\,\chi_h(\omega)\,\dd\omega
+= \int\rho\,|\nabla h|^2\,\dd V ,
+\end{equation}
+where $\chi_h$ is the response of $q_h$ to a tide whose potential is $-F h$.
+The friction and the stiffness of the body spread the response over frequency
+but cannot change its total. The static part of the response is the body's
+tidal Love number \cite{Love1909}: a ball of rigidity $\mu$, density $\rho$ and
+surface gravity $g$ acquires a quadrupole $\tfrac23 k_2R^5/G$ times the applied
+tide, with $k_2 = \tfrac32/(1 + 19\mu/2\rho g R)$ for a uniform ball; for the
+steel ball, $k_2 = 4\times10^{-16}$. The same compliance sets the static
+jitter, $\langle\delta q_h^2\rangle = k_BT\,\chi_h(0)$. Quantum mechanics
+pins the jitter between the classical value and that of a single mode at the
+mean frequency, $\sqrt{A/\chi_h(0)}$ with $A$ the sum of
+Eq.~\eqref{eq:sum-rule} (Appendix~\ref{app:benchmarks}).
+
+\paragraph{A thermometer that needs no model.} The ratio of tremor to response
+is the temperature, but only if the push couples to the same quantity that the
+pixel reads \cite{Levin1998}. Surround the pixel with a thin spherical shell
+of radius $a$ and shift mass around it in the pattern
+$\delta\sigma = -15f\,\hat n\cdot D\cdot\hat n/4\pi a^4$, for a fixed
+trace-free $D$. Its interaction with any matter outside the shell is exactly
+$-f\,D\!:\!\tE$, with $\tE$ the field of that matter at the pixel, so it pushes
+on precisely the combination $y = D\!:\!\tE$ that the pixel reads. Then
+\begin{equation}\label{eq:thermometer}
+T = \frac{\omega\,S_{yy}(\omega)}{2k_B\,\mathrm{Im}\,\chi_{yy}(\omega)} ,
+\end{equation}
+where $S_{yy}$ is the spectrum of the reading and $\chi_{yy}$ its response to
+$f$, and every unknown about the body, its modes, their shapes and how each
+shows at the pixel, cancels. The shell's own field at the pixel,
+$6Gf D/a^5$, is in phase with $f$ and adds nothing to $\mathrm{Im}\,\chi_{yy}$.
+A body not in equilibrium reads as an average of its temperatures, weighted by
+where it dissipates.
 
 \paragraph{How sharp.} The space between scene and camera is empty, so the
 potential there obeys Laplace's equation. Consider a pattern in the scene that
@@ -363,6 +466,17 @@ blur, $0.21\,z$. On the website the sensitivity and the separation can be
 changed.}\label{fig:nearfield}
 \end{figure}
 
+\paragraph{Any gravitational camera.} Nothing here depends on reading
+curvature. Pixels linked into one array could compare clocks, reading the
+potential itself, or accelerometers, reading its gradient. Over a sheet their
+kernels go as $q^{-1}e^{-q}$ and $e^{-q}$, where the tidal camera's goes as
+$q\,e^{-q}$, and Eq.~\eqref{eq:cutoff} becomes $q^p e^{-q} = 1/\pi\SNR$ with
+$p = -1$, $0$ and $1$. At $\SNR = 10^3$ the cut-offs are $6.2$, $8.1$ and
+$10.4$; at $10^{20}$, $43.4$, $47.2$ and $51.1$. They differ by about the
+logarithm of $q_c$, and the definition of $\SNR$ shifts each by a similar
+amount. The blur belongs to Laplace's equation, which every static
+gravitational field obeys in empty space, not to the detector.
+
 \paragraph{A hand-held camera.} A camera much smaller than its distance from
 the scene does worse. Inside a camera of width $D$, the part of the field that
 varies over the sky with angular degree $\ell$ changes across the camera by a
@@ -394,37 +508,43 @@ of their separation. What limits the image is the variety of scenes allowed,
 not the precision of the data.
 
 \paragraph{A worked case.} The locked safe (Fig.~\ref{fig:locked-safe}) shows
-both sides of this. The
-empty room and the two safes are known and subtracted; what remains is
-$324\,\mathrm{kg}$ of gold, in one safe or the other, $3.5\,\mathrm{m}$ in
-front of the camera. A square array a metre across, of $11\times11$ pixels,
-reads the five components of $\tE$ with white noise set by the $\SNR$ above
-for this mass at this depth. Asked only which safe holds the gold, the data
-answer quickly: the two possibilities give readings $1.8$ standard deviations
-apart at $\SNR = 10$, so the camera is wrong $18\%$ of the time, and
-$\SNR = 34$ makes it wrong once in a thousand. Some questions it cannot answer
-at any sensitivity: a sphere of gold and a point of the same mass give
-identical readings, as Newton showed, and the bar's shape departs from a
-point's by only $0.6$ standard deviations at $\SNR = 10^3$. Depth trades
-against mass: gold $0.2\,\mathrm{m}$ farther back and $14\%$ heavier, so as to
-pull as hard on the array's centre, is told apart at $\SNR \approx 10^3$, from
-the way the field changes across the array. Asked instead for an image that
-assumes nothing except that mass lies in the plane of the safes (a Gaussian
-prior on a grid of cells $25\,\mathrm{cm}$ apart, each holding up to about the
-gold's mass), the same data weigh the contents of a safe only to within
-$\pm 730\,\mathrm{kg}$ at $\SNR = 10^3$, and $\pm 490\,\mathrm{kg}$ at
-$10^6$: the image cannot say where the gold is. The array is a hand-held
-camera in the sense of Eq.~\eqref{eq:handheld}, whose blur of about
-$33^\circ$ at $\SNR = 10^3$ is wider than the two metres between the safes;
-an array six metres across still leaves $\pm 350\,\mathrm{kg}$ at $\SNR =
-10^6$, because a broad uniform layer of mass has no tidal field at all. These
-uncertainties belong to the array and the noise, not to the data, and the
-reference implementation computes them exactly. Tilting the array changes
-nothing in principle, since each pixel reads the whole tensor wherever it
-points: only where its pixels are matters. Turned through $70^\circ$, the
-metre-wide array tells the two safes apart $9\%$ better; the six-metre one,
-whose near edge then comes within $0.7\,\mathrm{m}$ of the safes, thirty times
-better. An array facing a scene obliquely is limited by its nearest pixels.
+both sides of this. The empty room and the two safes are known and subtracted;
+what remains is $324\,\mathrm{kg}$ of gold, in one safe or the other,
+$3.5\,\mathrm{m}$ in front of the camera. A square array a metre across, of
+$11\times11$ pixels, reads the five components of $\tE$ with white noise set by
+the $\SNR$ above for this mass at this depth. Asked only which safe holds the
+gold, the data answer quickly: the two possibilities give readings $1.8$
+standard deviations apart at $\SNR = 10$, so the camera is wrong $18\%$ of the
+time, and $\SNR = 34$ makes it wrong once in a thousand. Some questions it
+cannot answer at any sensitivity: a sphere of gold and a point of the same mass
+give identical readings, as Newton showed, and the bar's shape departs from a
+point's by only $0.6$ standard deviations at $\SNR = 10^3$. Asked instead for an
+image that assumes nothing except that mass lies in the plane of the safes, the
+same data weigh the contents of a safe only to within $\pm 730\,\mathrm{kg}$ at
+$\SNR = 10^3$: the image cannot say where the gold is. The array is a hand-held
+camera in the sense of Eq.~\eqref{eq:handheld}, whose blur of about $33^\circ$
+is wider than the two metres between the safes, and a broad layer of mass has
+no tidal field at all. Appendix~\ref{app:benchmarks} gives the details, and
+the effect of tilting the array, which matters only through where its pixels
+are.
+
+\paragraph{What positivity buys.} One fact is missing from that image: mass is
+never negative. A Gaussian image allows a cell to hold minus five hundred
+kilograms of gold beside one holding plus five hundred, and the near field
+cannot see the difference; that is where its large errors hide. Requiring every
+cell's mass to be positive, and assuming nothing else, the same data at
+$\SNR = 10^3$ put $317 \pm 16\,\mathrm{kg}$ in the right-hand safe and nothing
+in the left, in every trial; at $\SNR = 10^4$, $328 \pm 1\,\mathrm{kg}$, the
+small excess being the cost of modelling a bar as a grid of points. This is the
+mathematics of super-resolution of positive sources
+\cite{Donoho1992,CandesFernandezGranda2014}: a scene made of a few compact
+masses is resolved down to separations that shrink as a power of the
+sensitivity, as for the two masses above, not as its
+logarithm. The logarithmic law of Eq.~\eqref{eq:resolution} is the limit for a
+scene crowded with mass; for an empty room holding a few objects, which is most
+of the scenes of this paper, positivity is the camera's most powerful prior,
+and it is one that the electrostatic analogue, whose charges have two signs,
+does not have.
 
 \begin{figure*}
 \centering
@@ -480,6 +600,25 @@ $G$ and $z$ cancelling. For a person watched for the age of the universe this
 is about $10^{70}$, a blur of $1.5^\circ$. On this estimate no near-field camera
 could draw a face; making the estimate rigorous needs the coupling, the
 resources and the discrimination task to be stated exactly.
+The estimate is generous in another way: a camera of mass $zc^2/2G$ three
+metres away would pull on the person with $10^{15}$ times the Earth's gravity.
+Asking it to pull no harder than the Earth does lowers its mass, and the
+ceiling, by fifteen orders of magnitude, to $7\times10^{54}$, and widens the
+blur only from $1.5^\circ$ to $1.9^\circ$.
+
+Quantum mechanics sets a sharper limit when the scene is itself quantum. Hold a
+mass $m$ behind a wall in a superposition of two places a distance $d$ apart.
+The centre of mass of an isolated system cannot move, so the two branches
+differ in their quadrupole, about $md^2$, and a camera that read it before
+light from the place where the superposition is undone could arrive would learn
+which way the mass went faster than causality allows. The resolution of
+exactly this thought experiment \cite{Belenchia2018,DanielsonSatishchandranWald2022}
+is that the vacuum fluctuations of the field forbid localizing any probe to
+better than about a Planck length, which limits what a camera can learn in a
+given time, and that whenever it could learn enough, undoing the superposition
+radiates gravitons that carry the information away. A perfect camera is
+therefore a perfect source of decoherence: its picture of a quantum object
+through a wall ends the object's superposition.
 
 \paragraph{How much a picture holds.} The resolution law says how fine the
 detail of a near-field image can be. A different question, the one Shannon
