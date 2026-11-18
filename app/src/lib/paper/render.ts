@@ -47,6 +47,7 @@ const IGNORED_RAW = [
 	/^\\bibliographystyle\{[^}]*\}$/,
 	/^\\noaffiliation$/,
 	/^\\affiliation\{[^}]*\}$/,
+	/^\\email\{[^}]*\}$/,
 	// page layout for print only
 	/^\\FloatBarrier$/,
 	/^\\appendix$/,
