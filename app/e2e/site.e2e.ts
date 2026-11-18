@@ -1289,9 +1289,18 @@ test('one exposure, the near field: the reconstruction carries the noise of the 
 	await openTab(page, 'Controls');
 	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
 	await page.getByLabel('Outline').uncheck();
-	// a camera far less sensitive, and the picture brightened, so that the noise stands out
+	// a camera far less sensitive, and the picture brightened, so that the noise stands out; wait for a frame drawn
+	// with both (a slow software frame can outlast settled's one-second wait)
+	const blurBefore = await canvas.getAttribute('data-near-blur');
+	const exposureBefore = await canvas.getAttribute('data-exposure');
 	await page.locator('#sensitivity').fill('3');
 	await page.locator('#brightness').fill('1.5');
+	await expect
+		.poll(() => canvas.getAttribute('data-near-blur'), { timeout: 60_000 })
+		.not.toBe(blurBefore);
+	await expect
+		.poll(() => canvas.getAttribute('data-exposure'), { timeout: 60_000 })
+		.not.toBe(exposureBefore);
 	await settled(page);
 	// a slow software frame can outlast settled's one-second wait, so each switch below also waits for a frame drawn
 	// with, or without, the noise
