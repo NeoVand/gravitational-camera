@@ -33,6 +33,8 @@
 		color: var(--text-faint);
 		font-size: 0.68rem;
 		line-height: 1;
+		/* a name of two words may take two lines */
+		text-align: center;
 		cursor: pointer;
 		user-select: none;
 		transition:

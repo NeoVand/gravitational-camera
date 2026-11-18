@@ -65,6 +65,11 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 	let figures = 0;
 	let tables = 0;
 	let equations = 0;
+	// pandoc has written a labelled table in two ways: as a Div that carries the
+	// label and wraps the Table (older versions), and as a Table that carries
+	// the label itself (newer versions; seen with 3.13). Tables counted through their Div are
+	// remembered here so that they are not counted again.
+	const wrappedTables = new WeakSet<object>();
 
 	const scan = (x: any): void => {
 		if (Array.isArray(x)) return x.forEach(scan);
@@ -91,6 +96,12 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 			figures += 1;
 			if (n.c[0][0]) labels.set(n.c[0][0], String(figures));
 		} else if (n.t === 'Div' && n.c[1].some((b: Node) => b.t === 'Table')) {
+			tables += 1;
+			const inner = n.c[1].find((b: Node) => b.t === 'Table');
+			wrappedTables.add(inner);
+			const id = n.c[0][0] || inner.c[0][0];
+			if (id) labels.set(id, String(tables));
+		} else if (n.t === 'Table' && !wrappedTables.has(n)) {
 			tables += 1;
 			if (n.c[0][0]) labels.set(n.c[0][0], String(tables));
 		} else if (n.t === 'Math' && n.c[0].t === 'DisplayMath') {
@@ -287,7 +298,7 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 			case 'Div': {
 				const [[id, classes], content] = n.c;
 				const t = content.find((b: Node) => b.t === 'Table');
-				if (t) return table(t, id);
+				if (t) return table(t, id || t.c[0][0]);
 				if (classes.includes('references')) {
 					const entries = content
 						.map((e: Node) => ({ key: String(e.c[0][0]).replace(/^ref-/, ''), node: e }))
@@ -300,6 +311,9 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 				}
 				return blocksHtml(content);
 			}
+			case 'Table':
+				// newer pandoc (seen with 3.13): the Table carries its own label
+				return table(n, n.c[0][0]);
 			default:
 				throw new Error(`Paper: unsupported block element "${n.t}"`);
 		}

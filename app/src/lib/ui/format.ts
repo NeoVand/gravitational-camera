@@ -40,9 +40,47 @@ export function texLength(m: number): string {
 export function texWait(seconds: number): string {
 	const year = 365.25 * 86400;
 	if (!isFinite(seconds)) return '\\infty';
+	if (seconds < 10) return `${texSci(seconds)}\\ \\text{seconds}`;
 	if (seconds < 120) return `${seconds.toFixed(0)}\\ \\text{seconds}`;
 	if (seconds < 7200) return `${(seconds / 60).toFixed(0)}\\ \\text{minutes}`;
 	if (seconds < 172800) return `${(seconds / 3600).toFixed(0)}\\ \\text{hours}`;
 	if (seconds < 2 * year) return `${(seconds / 86400).toFixed(0)}\\ \\text{days}`;
 	return `${texSci(seconds / year)}\\ \\text{years}`;
+}
+
+/**
+ * A tide in s⁻², to three figures: "−3.06 × 10⁻⁶ s⁻²". With `signed`, a plus goes before a positive value, since
+ * the sign says which way the field acts: negative stretches, positive squeezes.
+ */
+export function tidal(x: number, signed = false): string {
+	if (x === 0) return '0 s⁻²';
+	let e = Math.floor(Math.log10(Math.abs(x)));
+	let mantissa = (Math.abs(x) / 10 ** e).toFixed(2);
+	if (mantissa === '10.00') {
+		e += 1;
+		mantissa = '1.00';
+	}
+	const sign = x < 0 ? '−' : signed ? '+' : '';
+	return `${sign}${mantissa} × 10${superscript(e)} s⁻²`;
+}
+
+/** How many times: "4.2", "330", "2.0 × 10⁵". */
+export function times(x: number): string {
+	if (x >= 9.95e3 || x < 0.995) return sci(x);
+	if (x < 9.95) return x.toFixed(1);
+	return Math.round(x).toLocaleString('en-US');
+}
+
+/** A span of time in seconds, in the unit that suits it: "6.8 ms", "7.4 minutes", "21 days", "2.5 × 10⁷ years". */
+export function duration(seconds: number): string {
+	const year = 365.25 * 86400;
+	const two = (v: number) => (v < 9.95 ? v.toFixed(1) : v.toFixed(0));
+	if (seconds < 1e-3) return `${sci(seconds)} s`;
+	if (seconds < 1) return `${two(seconds * 1e3)} ms`;
+	if (seconds < 120) return `${two(seconds)} s`;
+	if (seconds < 7200) return `${two(seconds / 60)} minutes`;
+	if (seconds < 172800) return `${two(seconds / 3600)} hours`;
+	if (seconds < 2 * year) return `${two(seconds / 86400)} days`;
+	if (seconds < 1e4 * year) return `${two(seconds / year)} years`;
+	return `${sci(seconds / year)} years`;
 }

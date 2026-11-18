@@ -12,7 +12,9 @@
 	import {
 		ContrastIcon,
 		DashedLineCircleIcon,
+		Home03Icon,
 		Image01Icon,
+		Layers01Icon,
 		RabbitIcon,
 		Rotate01Icon,
 		SnailIcon,
@@ -23,9 +25,12 @@
 	} from '@hugeicons/core-free-icons';
 	import {
 		MODE_LIGHT,
+		MODE_FIELD,
 		MODE_WAVES,
 		analyzeScene,
+		cameraBasis,
 		gravitonRate,
+		nearFieldBlur,
 		packWaves,
 		power,
 		rotors as findRotors,
@@ -40,6 +45,14 @@
 	import DemoShell from './DemoShell.svelte';
 	import SplitView from './SplitView.svelte';
 	import WaveGlyphs from './WaveGlyphs.svelte';
+	import TidalReading from './TidalReading.svelte';
+	import FieldLegend from './FieldLegend.svelte';
+	import FieldLookControls from './FieldLookControls.svelte';
+	import { fieldReference } from '../pixel/field-view';
+	import { roomSlices } from '../pixel/slices';
+	import { sceneTide } from '../pixel/tide';
+	import { ROOM_SOURCES, drumsReading, prepareDrums } from '../pixel/tide-demos';
+	import type { Vec3 } from '../engine';
 	import Group from './controls/Group.svelte';
 	import Segmented from './controls/Segmented.svelte';
 	import Slider from './controls/Slider.svelte';
@@ -80,7 +93,13 @@
 	// svelte-ignore state_referenced_locally
 	let logSpeed = $state(Math.log10(slowSpeed));
 	let brightness = $state(0);
-	let display: 'image' | 'pixels' = $state('image');
+	/** What the gravity side shows: the wave image, or the tidal field of the room and the drums. */
+	let display = $state<'image' | 'field'>('image');
+	/** Over the wave image: the pattern of stretching that each drum's waves give a ring of particles. */
+	let rawPixels = $state(false);
+	/** The field view: how far from the camera its points lie (the drums are 4.5 m away), and the room's part. */
+	let sliceDepth = $state(4.5);
+	let subtractRoom = $state(false);
 	let outline = $state(true);
 	let showLight = $state(true);
 	let showGravity = $state(true);
@@ -91,13 +110,14 @@
 	/** Cut the drums away in the light view, and let the balls turn. */
 	let inside = $state(false);
 	let time = $state(0);
+	const field = $derived(display === 'field');
 
-	/** A clock for the turning balls, running while the drums are open. */
+	/** A clock for the turning balls, running while the drums are open or the camera's reading is shown. */
 	function clock() {
 		let frame = 0;
 		let last = performance.now();
 		const tick = (now: number) => {
-			if (inside) time += (now - last) / 1000;
+			if (inside || field) time += (now - last) / 1000;
 			last = now;
 			frame = requestAnimationFrame(tick);
 		};
@@ -107,9 +127,28 @@
 
 	const still = $derived(analyzeScene(scene));
 	// the balls only need to move when they can be seen
-	const objects = $derived(inside ? spunAt(still, time) : still);
+	const objects = $derived(inside || field ? spunAt(still, time) : still);
 	const observer = $derived(scene.observer.position);
 	const rotors = $derived(findRotors(still));
+	// the tide at the camera: what does not change through a turn is worked out once
+	const drums = $derived(prepareDrums(scene.name, still, observer));
+	const tide = $derived(drumsReading(drums, time, subtractRoom));
+	// where the sphere of points meets something: the drums, the shelf, the walls and the floor
+	const sliceMarks = $derived(
+		roomSlices(still, observer, 0.45, ROOM_SOURCES['which-way'].groups).map((m) => ({
+			at: m.at,
+			label: `${m.label}, ${length(m.at)}`
+		}))
+	);
+	// the field view's scale: the median strength over the picture, from the exact tensor of the boxes and balls
+	const fieldScale = $derived.by(() => {
+		const tanY = Math.tan(view.fov / 2);
+		return fieldReference(
+			(d) =>
+				sceneTide(objects, observer.map((v, k) => v + sliceDepth * d[k]) as Vec3, subtractRoom),
+			{ ...cameraBasis(view), tanX: tanY * (splitView?.aspect() ?? 1.6), tanY }
+		);
+	});
 	const trueSpeed = $derived(logSpeed >= LOG_C - 1e-9);
 	const speed = $derived(trueSpeed ? C : 10 ** logSpeed);
 
@@ -140,8 +179,30 @@
 	}
 </script>
 
+{#snippet fieldKey()}
+	<FieldLegend
+		where="on a sphere {length(sliceDepth)} about the camera"
+		reference={fieldScale}
+		full
+	/>
+{/snippet}
+
+{#snippet status()}
+	{#if field}
+		<FieldLegend where="on a sphere {length(sliceDepth)} about the camera" reference={fieldScale} />
+	{:else}
+		<p class="notice">
+			At {speedText(speed)} these waves are {length(lambda).replace(' ', ' ')} long, and the drums lie
+			deep inside their near zone. There is no wave image to form: here the camera sees only the moving
+			masses. Slow the light down to see the waves.
+		</p>
+	{/if}
+{/snippet}
+
 <DemoShell
 	title={scene.title}
+	legend={field ? fieldKey : undefined}
+	foot={field || inNearZone ? status : undefined}
 	onreset={() => (view = { ...START })}
 	onsave={() => splitView?.snapshot() ?? Promise.resolve(null)}
 >
@@ -159,24 +220,25 @@
 			{showLight}
 			{showGravity}
 			leftMode={MODE_LIGHT}
-			rightMode={MODE_WAVES}
+			rightMode={field ? MODE_FIELD : MODE_WAVES}
 			{waves}
 			waveExposure={2.2 * 10 ** brightness}
+			exposure={2.2 * 10 ** brightness}
+			nearBlur={nearFieldBlur(20) / 2.355}
+			fieldDepth={sliceDepth}
+			fieldReference={fieldScale}
+			{subtractRoom}
 			room
 			{outline}
-			rightLabel={trueSpeed
-				? 'Gravity · waves'
-				: `Gravity · waves · light slowed to ${speedText(speed)}`}
-			dimRight={display === 'pixels' || inNearZone}
+			rightLabel={field
+				? 'Gravity · tidal field'
+				: trueSpeed
+					? 'Gravity · waves'
+					: `Gravity · waves · light slowed to ${speedText(speed)}`}
+			dimRight={!field && (rawPixels || inNearZone)}
 		>
 			{#snippet overlay()}
-				{#if inNearZone}
-					<p class="notice">
-						At {speedText(speed)} these waves are {length(lambda).replace(' ', ' ')} long, and the drums
-						lie deep inside their near zone. There is no wave image to form: here the camera sees only
-						the moving masses. Slow the light down to see the waves.
-					</p>
-				{:else if display === 'pixels'}
+				{#if !field && !inNearZone && rawPixels}
 					<WaveGlyphs {rotors} {observer} {view} {split} />
 				{/if}
 			{/snippet}
@@ -189,11 +251,27 @@
 				label="What the gravity side shows"
 				options={[
 					{ value: 'image', label: 'Image', icon: Image01Icon },
-					{ value: 'pixels', label: 'Raw pixels', icon: Rotate01Icon }
+					{ value: 'field', label: 'Tidal field', icon: Layers01Icon }
 				]}
 				bind:value={display}
 			/>
 		</Group>
+		{#if field}
+			<FieldLookControls reference={fieldScale}>
+				<Slider
+					id="slice"
+					label="Slice"
+					icon={Layers01Icon}
+					min={0.6}
+					max={9}
+					step={0.05}
+					bind:value={sliceDepth}
+					readout="{length(sliceDepth)} away"
+					ends={['near', 'far']}
+					marks={sliceMarks}
+				/>
+			</FieldLookControls>
+		{/if}
 		<Group title="Teaching mode">
 			<Slider
 				id="speed"
@@ -254,6 +332,18 @@
 					hint="A faint copy of the shapes in the light picture"
 					bind:checked={outline}
 				/>
+				<Toggle
+					icon={Rotate01Icon}
+					label="Raw pixels"
+					hint="Over the wave image: the pattern of stretching that passes over the camera from each drum"
+					bind:checked={rawPixels}
+				/>
+				<Toggle
+					icon={Home03Icon}
+					label="Room"
+					hint="In the tidal field: the pull of the empty room, its floor and walls. Turn it off to subtract them: gravity adds up, so this is exact."
+					bind:checked={() => !subtractRoom, (on) => (subtractRoom = !on)}
+				/>
 			</div>
 		</Group>
 	{/snippet}
@@ -292,6 +382,15 @@
 			is shown on a relative scale. The polarization, which tells the sense of turning, does not
 			depend on it. “Raw pixels” shows the pattern of stretching that passes over the camera from
 			each drum.
+		</p>
+		<p class="fine">
+			“Tidal field” shows the field itself on the gravity side, at the true speed of light: the
+			tidal tensor of the room, the shelf, the drums and the balls at the points of a sphere about
+			the camera, as far away as the slider sets. The colour is the direction of the stretch and the
+			fine strokes lie along it. Where the sphere passes through the two turning pairs the strokes
+			turn with them, once a second, as in truth. The waves are some 10²⁷ times weaker than that
+			turning part, and no picture of the field could show them. What one pixel reads at the camera,
+			with the turning part and the wave in s⁻², is under “Physics”.
 		</p>
 	{/snippet}
 	{#snippet physics()}
@@ -343,6 +442,8 @@
 			above no longer holds. Brightness is therefore shown on a relative scale. The polarization, which
 			gives the sense of turning, does not depend on the speed of light at all.
 		</p>
+		<h4>The tidal field at the camera</h4>
+		<TidalReading reading={tide} basis={cameraBasis(view)} />
 	{/snippet}
 </DemoShell>
 
@@ -352,19 +453,8 @@
 	}
 
 	.notice {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		translate: -50% -50%;
-		width: min(26rem, 80%);
 		margin: 0;
-		padding: 1rem 1.2rem;
-		border-radius: 0.8rem;
-		background: rgb(10 12 18 / 0.78);
-		color: #e8e6e0;
-		font-size: 0.92rem;
-		line-height: 1.5;
-		text-align: center;
+		color: var(--text);
 	}
 
 	.legend {

@@ -139,12 +139,37 @@ describe('subtracting the empty room', () => {
 
 describe('the thermal demos', () => {
 	it('the hot iron outshines the cold one through the same steel', () => {
-		const { objects, observer } = load(furnaceJson);
-		const glow = (id: string) =>
-			columnsAlong(objects, observer, toward(observer, byId(objects, id).center)).numberRadiance;
-		// at fixed friction the number emissivity grows as T^3 (energy as T^4, mean energy as T)
+		const { scene, objects, observer } = load(furnaceJson);
+		const glow = (id: string, subtractRoom = false) =>
+			columnsAlong(
+				objects,
+				observer,
+				toward(observer, byId(objects, id).center),
+				0.25,
+				subtractRoom
+			).numberRadiance;
+		// per volume the number emissivity goes as friction × T^3 (energy as T^4, mean energy as T), with the
+		// frictions the scene gives
+		const perVolume = (name: string) =>
+			(scene.materials[name].friction ?? 0) * scene.materials[name].temperature ** 3;
+		// a metal's friction falls as 1/T, so the hot iron sends (1500/293)^2 = 26 times the cold iron's, not 134
+		expect(perVolume('hot-iron') / perVolume('cold-iron') / (1500 / 293) ** 2).toBeCloseTo(1, 2);
+		expect(perVolume('steel')).toBe(perVolume('cold-iron'));
+		expect(perVolume('air')).toBe(0);
+		// The line from the eye, 1.5 m up, to the middle of a block, 3.5 m in and 0.3 m up, enters and leaves by
+		// the front and back faces: the furnace's 0.9 m apart, its lining's 0.8 m and the block's 0.5 m. Then it
+		// crosses 0.3 m of floor while it drops 1.2 m. So of its own length it has (0.9 - 0.8)/3.5 in steel,
+		// 0.5/3.5 in iron and 0.3/1.2 in concrete.
+		const line = (iron: string, floor = 1) =>
+			(perVolume('steel') * 0.1 + perVolume(iron) * 0.5) / 3.5 +
+			(floor * perVolume('concrete') * 0.3) / 1.2;
 		const ratio = glow('furnace-right-charge') / glow('furnace-left-charge');
-		expect(ratio).toBeGreaterThan(20);
+		expect(ratio / (line('hot-iron') / line('cold-iron'))).toBeCloseTo(1, 9);
+		expect(ratio).toBeGreaterThan(15);
+		// the furnaces by themselves, with the floor's glow behind them taken away
+		const alone = glow('furnace-right-charge', true) / glow('furnace-left-charge', true);
+		expect(alone / (line('hot-iron', 0) / line('cold-iron', 0))).toBeCloseTo(1, 9);
+		expect(alone).toBeGreaterThan(20);
 	});
 
 	it('honey glows about ten thousand times brighter than water', () => {
@@ -176,5 +201,98 @@ describe('gravitons in a view', () => {
 		const got = gravitonsInView(objects, [0, 0, 0], basis, 0.3, 0.3);
 		const want = (objects[0].jN * (4 / 3) * Math.PI * 0.8 ** 3) / 100;
 		expect(Math.abs(got / want - 1)).toBeLessThan(0.02);
+	});
+
+	/**
+	 * What the grid of directions cannot see. The integral of dV / r² over a ball of radius R a distance D away is
+	 * 2πR − π (D² − R²)/D · ln((D + R)/(D − R)); the values here are that, and the same for a box by Gauss-Legendre
+	 * quadrature, from mpmath and numpy.
+	 */
+	const basis = { right: [1, 0, 0] as Vec3, up: [0, 1, 0] as Vec3, forward: [0, 0, -1] as Vec3 };
+	const glowing = (objects: Scene['objects']) =>
+		analyzeScene({
+			name: 'glow',
+			title: 'glow',
+			observer: { position: [0, 0, 0] as Vec3 },
+			materials: {
+				warm: { density: 1000, temperature: 300, friction: 1 },
+				hot: { density: 1000, temperature: 900, friction: 3 }
+			},
+			objects
+		} as Scene);
+	const ball = (center: Vec3, radius: number, material = 'warm', id = 'ball', parent?: string) => ({
+		id,
+		parent,
+		shape: { type: 'sphere' as const, center, radius },
+		material
+	});
+
+	it('adds a ball that lies wholly in view exactly, whatever its size', () => {
+		for (const [radius, distance, tanHalf, integral] of [
+			[0.8, 10, 0.3, 0.021474133068775946],
+			[3, 5, 1, 4.913004943595706],
+			// a hundredth of a cell across: the grid alone would miss it, or count it many times over
+			[1e-3, 7, 0.3, 8.54855147323162e-11]
+		]) {
+			const objects = glowing([ball([0, 0, -distance], radius)]);
+			const got = gravitonsInView(objects, [0, 0, 0], basis, tanHalf, tanHalf);
+			expect(Math.abs(got / (objects[0].jN * integral) - 1)).toBeLessThan(1e-12);
+		}
+	});
+
+	it('counts a body too small for the grid once if its centre is in view, and not otherwise', () => {
+		// a ball 4 cm across some 6 m away, under half a cell, in a view whose right-hand edge is at x / z = 0.48
+		const share = (x: number) => {
+			const objects = glowing([ball([x, -0.8, -6], 0.02)]);
+			const d2 = x * x + 0.64 + 36;
+			// V / D², and the next term of its series, (R / D)² / 5
+			const whole =
+				((objects[0].jN * (4 / 3) * Math.PI * 0.02 ** 3) / d2) * (1 + 0.02 ** 2 / d2 / 5);
+			return gravitonsInView(objects, [0, 0, 0], basis, 0.48, 0.3) / whole;
+		};
+		expect(Math.abs(share(1.2) - 1)).toBeLessThan(1e-9); // well inside
+		expect(Math.abs(share(2.87) - 1)).toBeLessThan(1e-9); // across the edge, its centre inside
+		expect(share(2.89)).toBe(0); // across the edge, its centre outside
+		expect(share(3.2)).toBe(0); // out of view
+		// and a small box, as a point with the first correction for its shape
+		const box = glowing([
+			{
+				id: 'box',
+				shape: { type: 'box' as const, center: [1.2, -0.8, -6] as Vec3, size: [0.04, 0.06, 0.02] },
+				material: 'warm'
+			}
+		]);
+		const boxed = gravitonsInView(box, [0, 0, 0], basis, 0.48, 0.3);
+		expect(Math.abs(boxed / (box[0].jN * 1.2604942620561e-6) - 1)).toBeLessThan(1e-8);
+	});
+
+	it('counts nothing twice: a ball inside a ball adds only what it has over its parent', () => {
+		const objects = glowing([
+			ball([0, 0, -10], 0.8),
+			ball([0, 0, -10], 0.3, 'hot', 'heart', 'ball')
+		]);
+		const [outer, inner] = objects;
+		const want = outer.jN * 0.021474133068775946 + (inner.jN - outer.jN) * 0.001131177009057426;
+		const got = gravitonsInView(objects, [0, 0, 0], basis, 0.3, 0.3);
+		expect(Math.abs(got / want - 1)).toBeLessThan(1e-12);
+	});
+
+	it('leaves to the grid what the view cuts, as before', () => {
+		// a ball half out of view: its part in view on a much finer grid of the same kind
+		const objects = glowing([ball([3, 0, -10], 0.8)]);
+		const got = gravitonsInView(objects, [0, 0, 0], basis, 0.3, 0.3);
+		let fine = 0;
+		const n = 800;
+		const step = 0.6 / n;
+		for (let j = 0; j < n; j++)
+			for (let i = 0; i < n; i++) {
+				const x = -0.3 + (i + 0.5) * step;
+				const y = -0.3 + (j + 0.5) * step;
+				const len = Math.hypot(x, y, 1);
+				const N = columnsAlong(objects, [0, 0, 0], [x / len, y / len, -1 / len]).numberRadiance;
+				fine += (N * step * step) / (1 + x * x + y * y) ** 1.5;
+			}
+		expect(fine).toBeGreaterThan(0.3 * objects[0].jN * 0.021474133068775946);
+		expect(Math.abs(got / fine - 1)).toBeLessThan(0.03);
 	});
 });

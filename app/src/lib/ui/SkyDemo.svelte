@@ -8,6 +8,8 @@
 	import {
 		BlackHoleIcon,
 		GalaxyIcon,
+		Image01Icon,
+		Layers01Icon,
 		RulerIcon,
 		SparklesIcon,
 		WavesIcon
@@ -22,6 +24,15 @@
 	import Segmented from './controls/Segmented.svelte';
 	import Slider from './controls/Slider.svelte';
 	import Tex from './Tex.svelte';
+	import TidalReading from './TidalReading.svelte';
+	import FieldLegend from './FieldLegend.svelte';
+	import FieldLookControls from './FieldLookControls.svelte';
+	import FieldOverlay from './FieldOverlay.svelte';
+	import { fieldReference } from '../pixel/field-view';
+	import { galaxySlices, holeSlices, logSlices } from '../pixel/slices';
+	import { galaxyReading, holeReading } from '../pixel/tide-demos';
+	import { galaxyField, holeField, holeHollow } from '../vistas/field';
+	import { skyBasis } from '../vistas/sky';
 
 	interface Props {
 		title: string;
@@ -34,7 +45,15 @@
 		physics: Snippet;
 	}
 
-	let { title, slug, hole, startRight = 'waves', look, intro, physics }: Props = $props();
+	let {
+		title,
+		slug,
+		hole,
+		startRight = 'waves',
+		look,
+		intro,
+		physics: pagePhysics
+	}: Props = $props();
 
 	const DEG = Math.PI / 180;
 	// the demo starts from these and the visitor takes it from there
@@ -48,6 +67,17 @@
 	// svelte-ignore state_referenced_locally
 	let logDistance = $state(Math.log10(hole?.distance ?? 40));
 	let skyView: SkyView | undefined = $state();
+	/** What the gravity side shows: the picture, or the tidal field about the camera. */
+	let display = $state<'image' | 'field'>('image');
+	/**
+	 * The field is drawn at the points this far from the camera, on a logarithmic slider: in G M / c² about a hole
+	 * (it starts on the sphere that passes through the hole), in kpc in the Galaxy (from 10 pc to 30 kpc).
+	 */
+	// svelte-ignore state_referenced_locally
+	let logReach = $state(hole ? Math.log10(hole.distance) : Math.log10(4));
+	const reach = $derived(10 ** logReach);
+	let innerWidth = $state(1600);
+	let innerHeight = $state(1000);
 
 	const distance = $derived(10 ** logDistance);
 	const direction = $derived.by((): Vec3 => {
@@ -60,6 +90,40 @@
 	const temperature = $derived(primordial.temperature * (hole ? blueshift(distance) : 1));
 	const range = $derived(primordial.beta * temperature * 1.05);
 	const dipole = primordial.dipole as Vec3;
+	// the tide where the camera is: the hole's, at this distance, or the Galaxy's at the Sun
+	const tide = $derived(hole ? holeReading(direction, distance) : galaxyReading());
+	// the tide at the points of a sphere about the camera, for the field view
+	const tensorAt = $derived(
+		hole
+			? (n: Vec3) => holeField(direction, distance, reach, n)
+			: (n: Vec3) => galaxyField(reach, n)
+	);
+	// inside the horizon there is none: the directions in which the sphere's point lies there
+	const hollow = $derived(hole ? holeHollow(direction, distance, reach) : undefined);
+	const camera = $derived({ ...skyBasis(view), tanY: Math.tan(view.fov / 2) });
+	const fieldScale = $derived(
+		fieldReference(tensorAt, { ...camera, tanX: (camera.tanY * innerWidth) / innerHeight })
+	);
+	const lengthText = (v: number) =>
+		hole
+			? `${v.toFixed(v < 10 ? 1 : 0)} GM/c²`
+			: v < 1
+				? `${(v * 1000).toFixed(0)} pc`
+				: `${v.toFixed(v < 10 ? 1 : 0)} kpc`;
+	// where the sphere of points meets something
+	const slices = $derived(
+		logSlices(hole ? holeSlices(distance) : galaxySlices(), hole ? -0.5 : -2, hole ? 2.9 : 1.48)
+	);
+	const sliceMarks = $derived(
+		slices.marks.map((m) => ({ at: m.position, label: `${m.label}, ${lengthText(m.at)}` }))
+	);
+	const reachText = $derived(
+		hole
+			? `${reach.toFixed(reach < 10 ? 1 : 0)} GM/c²`
+			: reach < 1
+				? `${(reach * 1000).toFixed(0)} pc`
+				: `${reach.toFixed(reach < 10 ? 1 : 0)} kpc`
+	);
 
 	/** Distances in kilometres for a hole of ten solar masses and for the one at the Galaxy's centre. */
 	const GM_C2_SUN_KM = 1.4766;
@@ -67,12 +131,35 @@
 	const centreAu = $derived((distance * 4.3e6 * GM_C2_SUN_KM) / 1.496e8);
 </script>
 
+<svelte:window bind:innerWidth bind:innerHeight />
+
+{#snippet fieldKey()}
+	<FieldLegend
+		where="on a sphere {reachText} about {hole ? 'the camera' : 'the Sun'}"
+		reference={fieldScale}
+		full
+	/>
+{/snippet}
+
+{#snippet status()}
+	<FieldLegend
+		where="on a sphere {reachText} about {hole ? 'the camera' : 'the Sun'}"
+		reference={fieldScale}
+	/>
+{/snippet}
+
 <DemoShell
 	{title}
-	{physics}
+	legend={display === 'field' ? fieldKey : undefined}
+	foot={display === 'field' ? status : undefined}
 	onreset={() => (view = { ...START })}
 	onsave={() => skyView?.snapshot() ?? Promise.resolve(null)}
 >
+	{#snippet physics()}
+		{@render pagePhysics()}
+		<h4>The tidal field at the camera</h4>
+		<TidalReading reading={tide} />
+	{/snippet}
 	{#snippet stage()}
 		<SkyView
 			bind:this={skyView}
@@ -85,15 +172,38 @@
 			{dipole}
 			beta={primordial.beta}
 			{range}
-			rightIcon={right === 'waves' ? WavesIcon : SparklesIcon}
-			rightLabel={right === 'waves'
-				? 'Gravity · millihertz waves'
-				: `Gravity · primordial, ${temperature.toFixed(3)} K`}
-		/>
+			rightIcon={display === 'field' ? Layers01Icon : right === 'waves' ? WavesIcon : SparklesIcon}
+			rightLabel={display === 'field'
+				? 'Gravity · tidal field'
+				: right === 'waves'
+					? 'Gravity · millihertz waves'
+					: `Gravity · primordial, ${temperature.toFixed(3)} K`}
+		>
+			{#snippet overlay()}
+				{#if display === 'field'}
+					<FieldOverlay
+						{tensorAt}
+						{camera}
+						reference={fieldScale}
+						split={divider}
+						beneath={hole || right === 'primordial' ? 0.75 : 0.1}
+						{hollow}
+					/>
+				{/if}
+			{/snippet}
+		</SkyView>
 	{/snippet}
 
 	{#snippet controls()}
 		<Group title="View">
+			<Segmented
+				label="What the gravity side shows"
+				options={[
+					{ value: 'image', label: 'Image', icon: Image01Icon },
+					{ value: 'field', label: 'Tidal field', icon: Layers01Icon }
+				]}
+				bind:value={display}
+			/>
 			{#if !hole}
 				<Segmented
 					label="What the gravity side shows"
@@ -116,6 +226,24 @@
 				ends={['narrow', 'wide']}
 			/>
 		</Group>
+		{#if display === 'field'}
+			<FieldLookControls reference={fieldScale}>
+				<Slider
+					id="slice"
+					label="Slice"
+					icon={Layers01Icon}
+					min={0}
+					max={slices.scale.last}
+					step={0.005}
+					bind:value={
+						() => slices.scale.toPosition(logReach), (p) => (logReach = slices.scale.toValue(p))
+					}
+					readout="{reachText} away"
+					ends={['near', 'far']}
+					marks={sliceMarks}
+				/>
+			</FieldLookControls>
+		{/if}
 		{#if hole}
 			<Group title="Black hole">
 				<Slider
@@ -157,5 +285,18 @@
 				</div>
 			</dl>
 		{/if}
+		<p class="fine">
+			“Tidal field” shows the field itself on the gravity side: the tidal tensor at the points of a
+			sphere about {hole ? 'the camera' : 'the Sun'}, as far away as the slider sets. The colour is
+			the direction of the stretch and the fine strokes lie along it; the ticks on the slider mark
+			where the sphere meets something.
+			{#if hole}
+				The tensor is what observers held at rest outside a hole of ten Suns read, exactly. Points
+				are placed as in flat space, and inside the horizon there is none.
+			{:else}
+				It is the field of the stars of the Galaxy’s model only: no gas and no dark matter.
+			{/if}
+			What one pixel reads at the camera is under “Physics”.
+		</p>
 	{/snippet}
 </DemoShell>

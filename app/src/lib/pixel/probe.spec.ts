@@ -2,11 +2,14 @@
 import { describe as group, expect, it } from 'vitest';
 import { analyzeScene } from '../engine/scene';
 import type { Scene } from '../engine/types';
+import lockedSafe from '../../../../scenes/locked-safe.scene.json';
 import flywheel from '../../../../scenes/sealed-flywheel.scene.json';
+import { symmetricEigen } from './complex';
 import { eigenvalues } from './pixel';
 import { describe, movingPoint, readingAt, spinDipole } from './probe';
 
 const scene = flywheel as unknown as Scene;
+const safe = lockedSafe as unknown as Scene;
 
 group('one pixel in a room', () => {
 	it('a room at rest reads real eigenvalues; a spinning flywheel sets off the alarm', () => {
@@ -20,6 +23,41 @@ group('one pixel in a room', () => {
 		const d = describe(readingAt(turning, at));
 		expect(d.alarm).toBeGreaterThan(1e-12);
 		expect(d.stars.length).toBe(4);
+	});
+
+	it('the alarm of a room is max |v.B.v| / max |w| on the axes v of its tide, to first order', () => {
+		// the flywheel's room (an alarm of 1.1e-9), and a person walking in the locked safe's room (some 1e-11)
+		const walker = analyzeScene({
+			...safe,
+			materials: { ...safe.materials, person: { density: 985, temperature: 310, friction: 0.001 } },
+			objects: [
+				...safe.objects,
+				{
+					id: 'walking',
+					shape: { type: 'box', center: [-0.3, 0.85, -5.6], size: [0.36, 1.7, 0.2] },
+					material: 'person',
+					velocity: [1.4, 0, 0]
+				}
+			]
+		});
+		const rooms = [
+			{ objects: analyzeScene(scene), at: scene.observer.position, size: 1e-9 },
+			{ objects: walker, at: safe.observer.position, size: 1e-12 }
+		];
+		for (const { objects, at, size } of rooms) {
+			const W = readingAt(objects, at);
+			const { values, vectors } = symmetricEigen(W.map((r) => r.map((z) => z.re)));
+			const turns = values.map((_, n) =>
+				W.reduce(
+					(s, r, i) => s + r.reduce((t, z, j) => t + vectors[i][n] * z.im * vectors[j][n], 0),
+					0
+				)
+			);
+			const expected =
+				Math.max(...turns.map(Math.abs)) / Math.max(...values.map((v) => Math.abs(v)));
+			expect(expected).toBeGreaterThan(size);
+			expect(Math.abs(describe(W).alarm / expected - 1)).toBeLessThan(1e-9);
+		}
 	});
 
 	it('outside a spinning ball the eigenvalues turn by 3 a cos(theta) / r, as in Kerr’s solution', () => {

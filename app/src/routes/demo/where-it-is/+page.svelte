@@ -166,7 +166,7 @@
 			sees the ball’s mass, unseen by light, at <Tex math={'\\mathbf p(t)'} />. At these speeds the
 			moving ball’s field is also squeezed along its motion, by <Tex math={'1/\\gamma'} />; that is
 			left out of the picture. For bodies in orbit the field anticipates the curve of the orbit as
-			well, to second order (the paper, Section III).
+			well, to second order (the paper, Section VIII).
 		</p>
 	{/snippet}
 </RoomDemo>

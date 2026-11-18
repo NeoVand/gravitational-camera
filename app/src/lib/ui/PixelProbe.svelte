@@ -2,7 +2,7 @@
 	/**
 	 * The "One pixel" layer of a room demo: what a single pixel at the camera reads (lib/pixel/probe.ts), drawn as
 	 * the sky around it seen as the camera sees it (the centre is where the camera looks): its four stars, its type
-	 * and the motion alarm.
+	 * and the motion alarm. In brief it is one line, for the foot of the sidebar.
 	 */
 	import { cameraBasis, type View } from '../engine/camera';
 	import type { AnalyzedObject, Vec3 } from '../engine/types';
@@ -12,9 +12,11 @@
 		objects: AnalyzedObject[];
 		observer: Vec3;
 		view: View;
+		/** One line of words only. */
+		brief?: boolean;
 	}
 
-	let { objects, observer, view }: Props = $props();
+	let { objects, observer, view, brief = false }: Props = $props();
 
 	const R = 52;
 	const d = $derived(describe(readingAt(objects, observer)));
@@ -38,45 +40,67 @@
 	const lit = $derived(d.alarm > 1e-12);
 </script>
 
-<aside class="probe" aria-label="What one pixel at the camera reads">
-	<svg
-		viewBox="-60 -60 120 120"
-		role="img"
-		aria-label="Its four stars on the sky, seen as the camera sees it"
-	>
-		<circle r={R} class="disc" />
-		<line x1="-6" x2="6" class="mark" />
-		<line y1="-6" y2="6" class="mark" />
-		{#each dots as p, i (i)}
-			<circle cx={p.x} cy={p.y} r="4.4" class={['star', { behind: !p.front }]} />
-		{/each}
-	</svg>
-	<div>
-		<p class="head">One pixel, at the camera</p>
-		<p>{words[d.type] ?? d.type}</p>
-		<p class={lit ? 'alarm' : 'still'}>
-			{lit ? `something moves: ${d.alarm.toExponential(0)}` : 'all still'}
-		</p>
+{#if brief}
+	<p class="line">
+		<strong>One pixel, at the camera:</strong>
+		{words[d.type] ?? d.type};
+		<span class={lit ? 'alarm' : 'still'}>
+			{lit ? `something moves: ${d.alarm.toExponential(0)}` : 'all still'}</span
+		>.
+	</p>
+{:else}
+	<div class="probe">
+		<svg
+			viewBox="-60 -60 120 120"
+			role="img"
+			aria-label="Its four stars on the sky, seen as the camera sees it"
+		>
+			<circle r={R} class="disc" />
+			<line x1="-6" x2="6" class="mark" />
+			<line y1="-6" y2="6" class="mark" />
+			{#each dots as p, i (i)}
+				<circle cx={p.x} cy={p.y} r="4.4" class={['star', { behind: !p.front }]} />
+			{/each}
+		</svg>
+		<div>
+			<p class="head">One pixel, at the camera</p>
+			<p>{words[d.type] ?? d.type}</p>
+			<p class={lit ? 'alarm' : 'still'}>
+				{lit ? `something moves: ${d.alarm.toExponential(0)}` : 'all still'}
+			</p>
+		</div>
 	</div>
-</aside>
+	<p class="what">
+		The disc is the sky about the pixel, seen as the camera sees it: the centre is where the camera
+		looks. The four dots are the reading’s four stars, the directions that every tidal reading
+		singles out; a faint dot is behind you. Where they fall together tells the reading’s type. The
+		last line is the part of the reading that only moving mass gives.
+	</p>
+{/if}
 
 <style>
 	.probe {
-		position: absolute;
-		right: 1rem;
-		bottom: 1rem;
 		display: flex;
 		align-items: center;
-		gap: 0.6rem;
-		width: 15.5rem;
-		padding: 0.45rem 0.8rem 0.45rem 0.45rem;
-		border-radius: 14px;
-		background: rgb(12 15 21 / 0.84);
-		border: 1px solid rgb(255 255 255 / 0.08);
-		backdrop-filter: blur(14px);
+		gap: 0.9rem;
 		color: #e9e6df;
-		font: 500 0.72rem/1.3 var(--font-sans);
-		pointer-events: none;
+		font: 500 0.8rem/1.35 var(--font-sans);
+	}
+
+	.line {
+		margin: 0;
+	}
+
+	.line strong {
+		font-weight: 600;
+		color: #fff;
+	}
+
+	.what {
+		margin: 1rem 0 0;
+		font-size: 0.78rem;
+		line-height: 1.5;
+		color: var(--text-faint);
 	}
 	p {
 		margin: 0.15rem 0;
@@ -86,7 +110,7 @@
 		letter-spacing: 0.02em;
 	}
 	svg {
-		width: 4.6rem;
+		width: 7rem;
 		flex: none;
 		height: auto;
 	}
@@ -108,6 +132,7 @@
 	.still {
 		color: #7bd88f;
 	}
+
 	.alarm {
 		color: #ff9c8a;
 	}

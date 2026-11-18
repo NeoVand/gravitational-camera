@@ -18,9 +18,11 @@
 		playing: boolean;
 		/** Seconds per wave period on screen. */
 		period?: number;
+		/** Draw the map of the field; without it only the pair on its orbit is drawn. */
+		field?: boolean;
 	}
 
-	let { speed, reach, playing, period = 1.6 }: Props = $props();
+	let { speed, reach, playing, period = 1.6, field = true }: Props = $props();
 
 	let canvas: HTMLCanvasElement | undefined = $state();
 	let width = $state(0);
@@ -47,7 +49,7 @@
 		let last = performance.now();
 		let key = '';
 		let phase = new Float32Array(0);
-		let inside = new Uint8Array(0);
+		let inside = new Float32Array(0);
 		let image: ImageData | undefined;
 
 		const prepare = (w: number, h: number) => {
@@ -55,18 +57,17 @@
 			const perPixel = reach / half;
 			const d = separationOverWavelength(speed);
 			phase = new Float32Array(w * h);
-			inside = new Uint8Array(w * h);
+			inside = new Float32Array(w * h);
 			for (let j = 0; j < h; j++) {
 				for (let i = 0; i < w; i++) {
 					const x = (i + 0.5 - w / 2) * perPixel;
 					const y = (h / 2 - j - 0.5) * perPixel;
 					const r = Math.hypot(x, y);
 					const k = j * w + i;
-					// within the orbit the expansion of the field in multipoles fails
-					if (r < 0.8 * d) {
-						inside[k] = 1;
-						continue;
-					}
+					// within the orbit the expansion of the field in multipoles fails: the share of the pixel that lies
+					// there, so that the disc's edge is the circle's and not the lattice's
+					inside[k] = Math.max(0, Math.min(1, 0.5 + (0.8 * d - r) / perPixel));
+					if (inside[k] === 1) continue;
 					phase[k] = pairField(r).delta - 2 * Math.atan2(y, x);
 				}
 			}
@@ -89,15 +90,16 @@
 			const turn = 2 * Math.PI * tau;
 			for (let p = 0; p < phase.length; p++) {
 				const o = p * 4;
-				if (inside[p]) {
+				const hidden = field ? inside[p] : 1;
+				if (hidden === 1) {
 					data[o] = 38;
 					data[o + 1] = 40;
 					data[o + 2] = 48;
 				} else {
 					const c = Math.round((Math.cos(phase[p] + turn) * 0.5 + 0.5) * 255) * 3;
-					data[o] = PALETTE[c];
-					data[o + 1] = PALETTE[c + 1];
-					data[o + 2] = PALETTE[c + 2];
+					data[o] = PALETTE[c] + (38 - PALETTE[c]) * hidden;
+					data[o + 1] = PALETTE[c + 1] + (40 - PALETTE[c + 1]) * hidden;
+					data[o + 2] = PALETTE[c + 2] + (48 - PALETTE[c + 2]) * hidden;
 				}
 				data[o + 3] = 255;
 			}
@@ -150,6 +152,12 @@
 		{@attach draw}
 		aria-label="Map of the changing tidal field of two black holes in orbit, seen from above the orbit"
 	></canvas>
+	{#if !field}
+		<p class="none">
+			There is no camera picture here to go back to: this demo is the map of the pair’s tidal field.
+			Only the pair is drawn.
+		</p>
+	{/if}
 	<p class="scale">dashed circle: λ/2π, where Newton’s field gives way to the waves</p>
 </div>
 
@@ -166,6 +174,21 @@
 		display: block;
 		width: 100%;
 		height: 100%;
+	}
+
+	.none {
+		position: absolute;
+		left: 50%;
+		top: 30%;
+		translate: -50% -50%;
+		width: min(24rem, 80%);
+		margin: 0;
+		padding: 0.8rem 1rem;
+		border-radius: 0.8rem;
+		background: rgb(10 12 18 / 0.78);
+		color: #e8e6e0;
+		font: 400 0.85rem/1.5 var(--font-sans);
+		text-align: center;
 	}
 
 	.scale {

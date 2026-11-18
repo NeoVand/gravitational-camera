@@ -25,11 +25,19 @@ export const div = (a: Complex, b: Complex): Complex => {
 	const d = b.re * b.re + b.im * b.im;
 	return cx((a.re * b.re + a.im * b.im) / d, (a.im * b.re - a.re * b.im) / d);
 };
+/**
+ * The principal square root. Only the larger of its two parts is taken from a sum; the other follows from
+ * 2 re im = Im a, so that a nearly real argument keeps the digits of its small imaginary part.
+ */
 export const csqrt = (a: Complex): Complex => {
 	const r = abs(a);
-	const re = Math.sqrt(Math.max(0, (r + a.re) / 2));
-	const im = Math.sqrt(Math.max(0, (r - a.re) / 2));
-	return cx(re, a.im < 0 ? -im : im);
+	if (r === 0) return cx(0);
+	if (a.re >= 0) {
+		const re = Math.sqrt((r + a.re) / 2);
+		return cx(re, a.im / (2 * re));
+	}
+	const im = (a.im < 0 ? -1 : 1) * Math.sqrt((r - a.re) / 2);
+	return cx(a.im / (2 * im), im);
 };
 export const cexp = (a: Complex): Complex => {
 	const e = Math.exp(a.re);

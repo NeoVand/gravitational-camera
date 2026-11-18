@@ -2,8 +2,8 @@
 //
 //   node scripts/posters.mjs [base url]      (default http://localhost:5173/)
 //
-// Each demo is opened with ?present=readback, its first steady frame is read
-// from the canvas and saved as static/posters/<slug>.jpg. Set PW_CHROMIUM to a
+// Each demo is opened with ?present=readback and its interface hidden, its first
+// steady frame is read from the canvas and saved as static/posters/<slug>.jpg. Set PW_CHROMIUM to a
 // Chromium binary if Playwright's own download is not available.
 import { writeFileSync } from 'node:fs';
 import { chromium } from '@playwright/test';
@@ -33,6 +33,9 @@ for (const slug of slugs) {
 	await page.goto(new URL(`demo/${slug}/?present=readback`, base).href, {
 		waitUntil: 'networkidle'
 	});
+	// the picture alone, without the sidebar: the whole window, as the demo list shows it
+	await page.locator('canvas').first().waitFor();
+	await page.keyboard.press('h');
 	const frames = () =>
 		page.evaluate(() => Number(document.querySelector('canvas')?.dataset.frames ?? 0));
 	let last = -1;

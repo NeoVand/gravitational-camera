@@ -18,6 +18,13 @@
 		readout: string;
 		/** Words for the two ends of the track. */
 		ends?: [string, string];
+		/** A value worth marking on the track, with a few words under it. */
+		mark?: { at: number; label: string };
+		/**
+		 * Values worth going to: a tick for each under the track. A tick's name shows when it is pointed at, focused
+		 * or current; pressing it moves the slider there.
+		 */
+		marks?: { at: number; label: string }[];
 	}
 
 	let {
@@ -29,10 +36,27 @@
 		max,
 		step = 0.01,
 		readout,
-		ends
+		ends,
+		mark,
+		marks = []
 	}: Props = $props();
 
 	const fill = $derived(Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100)));
+	/** Where the mark falls along the track, 0 to 1, if it is on it. */
+	const markAt = $derived(
+		mark && mark.at >= min && mark.at <= max ? (mark.at - min) / (max - min) : undefined
+	);
+
+	/** The marks that fall on the track, in order, each with its place along it, 0 to 1. */
+	const ticks = $derived(
+		marks
+			.filter((m) => m.at >= min && m.at <= max)
+			.sort((a, b) => a.at - b.at)
+			.map((m) => ({ ...m, place: (m.at - min) / (max - min) }))
+	);
+	/** The tick the slider stands on, if any: within a step of it. */
+	const standing = $derived(ticks.find((t) => Math.abs(t.at - value) <= step * 0.75));
+	let pointed: string | undefined = $state();
 
 	/**
 	 * Touch: the value follows the finger anywhere along the track, not only
@@ -99,14 +123,46 @@
 		onpointerup={up}
 		onpointercancel={() => (touch = undefined)}
 	/>
+	{#if ticks.length}
+		<div class="ticks" role="group" aria-label="Places worth going to on “{label}”">
+			{#each ticks as tick (tick.at)}
+				<button
+					type="button"
+					class={{ on: tick === standing }}
+					style:--at={tick.place}
+					aria-label="Go to {tick.label}"
+					aria-pressed={tick === standing}
+					title={tick.label}
+					onclick={() => (value = tick.at)}
+					onpointerenter={() => (pointed = tick.label)}
+					onpointerleave={() => (pointed = undefined)}
+					onfocus={() => (pointed = tick.label)}
+					onblur={() => (pointed = undefined)}
+				></button>
+			{/each}
+		</div>
+	{/if}
 	{#if ends}
 		<div class="ends" aria-hidden="true"><span>{ends[0]}</span><span>{ends[1]}</span></div>
+	{/if}
+	{#if ticks.length}
+		<p class="named" aria-live="polite">
+			{pointed ?? standing?.label ?? 'the ticks mark where the field changes'}
+		</p>
+	{/if}
+	{#if mark && markAt !== undefined}
+		<div class="mark" style:--at={markAt}>
+			<i></i>
+			<span style:--shift="{-100 * markAt}%">{mark.label}</span>
+		</div>
 	{/if}
 </div>
 
 <style>
 	.slider {
 		display: grid;
+		/* a long reading is cut short; it never widens the panel */
+		grid-template-columns: minmax(0, 1fr);
 		gap: 0.35rem;
 	}
 
@@ -223,8 +279,111 @@
 		margin-top: -0.2rem;
 	}
 
+	/* places worth going to: a row of ticks under the track, each a button, and the name of the one in hand */
+	.ticks {
+		--half: 7px;
+		position: relative;
+		height: 0.95rem;
+		margin-top: -0.45rem;
+	}
+
+	.ticks button {
+		position: absolute;
+		top: 0;
+		left: calc(var(--half) + (100% - 2 * var(--half)) * var(--at));
+		translate: -50% 0;
+		width: 0.85rem;
+		height: 0.95rem;
+		padding: 0;
+		border: 0;
+		background: none;
+		cursor: pointer;
+	}
+
+	.ticks button::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 0.1rem;
+		translate: -50% 0;
+		width: 2px;
+		height: 0.6rem;
+		border-radius: 1px;
+		background: var(--text-faint);
+		transition:
+			background-color 0.12s,
+			height 0.12s;
+	}
+
+	.ticks button:hover::before,
+	.ticks button:focus-visible::before,
+	.ticks button.on::before {
+		background: var(--accent);
+		height: 0.75rem;
+	}
+
+	.ticks button:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
+		border-radius: 3px;
+	}
+
+	.named {
+		margin: -0.2rem 0 0;
+		min-height: 1.3em;
+		font-size: 0.66rem;
+		line-height: 1.3;
+		color: var(--text-dim);
+	}
+
+	/* a finger needs a wider target */
+	@media (pointer: coarse) {
+		.ticks {
+			height: 1.4rem;
+		}
+
+		.ticks button {
+			width: 1.3rem;
+			height: 1.4rem;
+		}
+
+		.ticks button::before {
+			top: 0.25rem;
+		}
+	}
+
+	/* a marked value: a tick that reaches up to the track, and its words below, kept inside the track's ends */
+	.mark {
+		--half: 7px;
+		position: relative;
+		margin-top: -0.15rem;
+		font-size: 0.66rem;
+		line-height: 1.3;
+		color: var(--text-dim);
+	}
+
+	.mark i {
+		position: absolute;
+		left: calc(var(--half) + (100% - 2 * var(--half)) * var(--at));
+		top: -0.62rem;
+		width: 1px;
+		height: 0.6rem;
+		background: var(--text-dim);
+	}
+
+	.mark span {
+		display: inline-block;
+		margin-left: calc(var(--half) + (100% - 2 * var(--half)) * var(--at));
+		translate: var(--shift) 0;
+		white-space: nowrap;
+	}
+
 	/* fingers need a larger target than a pointer */
 	@media (pointer: coarse) {
+		.mark {
+			--half: 11px;
+		}
+
 		input {
 			--thumb: 22px;
 			height: 32px;

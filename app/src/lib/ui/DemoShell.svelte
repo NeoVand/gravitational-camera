@@ -1,38 +1,55 @@
 <script lang="ts">
 	/**
-	 * The frame shared by every demo: the picture fills the screen; the title,
-	 * a card of notes, a panel of controls and a dock of tools float over it.
-	 * Keys: N notes, C controls, R reset the view, S save a still, F full
-	 * screen, H hide everything but the picture.
+	 * The frame shared by every demo: the picture, and beside it one docked sidebar that holds everything else.
+	 * Nothing floats over the picture.
+	 *
+	 * The sidebar is a panel and, at the window's edge, a rail. The rail holds the tabs (About, Physics, Controls,
+	 * and where a demo has them Pixel and Key, then Help) and the tools (reset the view, save a still, full screen,
+	 * hide the interface). One tab is open at a time; pressing the open tab's icon puts the panel away, and the
+	 * picture takes its width. On a phone the rail is a bar along the bottom and the panel a sheet above it.
+	 * Whether the panel is open, and at which tab, is kept from one demo to the next.
+	 *
+	 * Keys: N about, C controls, R reset the view, S save a still, F full screen, H hide everything but the
+	 * picture, ? help.
 	 */
 	import type { Snippet } from 'svelte';
-	import { fly, fade } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import { resolve } from '$app/paths';
 	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
 	import {
 		ArrowLeft02Icon,
+		ArrowRight01Icon,
 		Atom02Icon,
 		Camera01Icon,
-		Cancel01Icon,
 		HelpCircleIcon,
 		InformationCircleIcon,
 		FullScreenIcon,
+		Key01Icon,
 		MinimizeScreenIcon,
 		SlidersHorizontalIcon,
 		Target02Icon,
+		CenterFocusIcon,
 		ViewIcon,
 		ViewOffIcon
 	} from '@hugeicons/core-free-icons';
 	import { demos } from '../demos';
 	import { figures } from '../figures';
 
+	type TabName = 'about' | 'physics' | 'controls' | 'pixel' | 'key' | 'help';
+
 	interface Props {
 		title: string;
 		stage: Snippet;
 		controls: Snippet;
 		notes: Snippet;
-		/** The physics behind the demo, with its equations: a second tab of the notes. */
+		/** The physics behind the demo, with its equations. */
 		physics?: Snippet;
+		/** What one pixel at the camera reads, where the demo shows it: the Pixel tab. */
+		pixel?: Snippet;
+		/** The key to what the picture shows now, where it needs one: the Key tab. */
+		legend?: Snippet;
+		/** A line or two about the picture as it is now, kept in sight at the foot of the panel whatever the tab. */
+		foot?: Snippet;
 		/** Return the view to where it started. */
 		onreset?: () => void;
 		/** A still of the picture, to download. */
@@ -47,6 +64,9 @@
 		controls,
 		notes,
 		physics,
+		pixel,
+		legend,
+		foot,
 		onreset,
 		onsave,
 		section = 'demos'
@@ -56,111 +76,109 @@
 		(section === 'figures' ? figures : demos).find((d) => d.title === title)?.affordance
 	);
 	const fileName = $derived(title.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+	const home = $derived(section === 'figures' ? resolve('/figures') : resolve('/demo'));
+	const homeName = $derived(section === 'figures' ? 'All figures' : 'All demos');
 
-	let notesOpen = $state(true);
-	let controlsOpen = $state(true);
-	let helpOpen = $state(false);
+	interface Tab {
+		name: TabName;
+		label: string;
+		icon: IconSvgElement;
+		/** Its key on the keyboard, if it has one. */
+		key?: string;
+	}
+
+	const tabs = $derived<Tab[]>([
+		{ name: 'about', label: 'About', icon: InformationCircleIcon, key: 'N' },
+		...(physics ? [{ name: 'physics' as const, label: 'Physics', icon: Atom02Icon }] : []),
+		{ name: 'controls', label: 'Controls', icon: SlidersHorizontalIcon, key: 'C' },
+		...(pixel ? [{ name: 'pixel' as const, label: 'Pixel', icon: CenterFocusIcon }] : []),
+		...(legend ? [{ name: 'key' as const, label: 'Key', icon: Key01Icon }] : []),
+		{ name: 'help', label: 'Help', icon: HelpCircleIcon, key: '?' }
+	]);
+
+	/** Whether the panel is open, and the tab last chosen. */
+	let open = $state(true);
+	let chosen = $state<TabName>('controls');
+	// a tab this demo does not have gives way to the controls
+	const current = $derived(tabs.some((t) => t.name === chosen) ? chosen : 'controls');
+
 	let bare = $state(false);
 	let fullscreen = $state(false);
 	let saving = $state(false);
-	let tab: 'about' | 'physics' = $state('about');
+	/** On a phone the rail lies along the bottom. */
+	let flat = $state(false);
+	/** Set once what was kept has been read, so that it is not written over first. */
+	let ready = $state(false);
 
-	/**
-	 * Let a card be dragged by its header. Its offset is remembered, kept on
-	 * screen, and forgotten on a double-click. On phones the cards are sheets
-	 * and stay put.
-	 */
-	function movable(key: string) {
-		return (card: HTMLElement) => {
-			if (narrow()) return;
-			const head = card.querySelector<HTMLElement>('.card-head');
-			if (!head) return;
-			const storeKey = `gc-card-${key}`;
-			let dx = 0;
-			let dy = 0;
-			try {
-				[dx, dy] = JSON.parse(localStorage.getItem(storeKey) ?? '[0,0]');
-			} catch {
-				/* storage may be unavailable; start where the layout puts the card */
-			}
-			const apply = () => (card.style.translate = `${dx}px ${dy}px`);
-			const keepOnScreen = () => {
-				const r = card.getBoundingClientRect();
-				const margin = 8;
-				if (r.left < margin) dx += margin - r.left;
-				if (r.top < margin) dy += margin - r.top;
-				if (r.right > innerWidth - margin) dx -= r.right - (innerWidth - margin);
-				if (r.top > innerHeight - 48) dy -= r.top - (innerHeight - 48);
-				apply();
-			};
-			const save = () => {
-				try {
-					localStorage.setItem(storeKey, JSON.stringify([dx, dy]));
-				} catch {
-					/* not remembered, which is fine */
-				}
-			};
-			let start: { x: number; y: number; dx: number; dy: number } | undefined;
-			const down = (e: PointerEvent) => {
-				if ((e.target as HTMLElement).closest('button')) return;
-				start = { x: e.clientX, y: e.clientY, dx, dy };
-				head.setPointerCapture(e.pointerId);
-				card.classList.add('dragging');
-			};
-			const move = (e: PointerEvent) => {
-				if (!start) return;
-				dx = start.dx + e.clientX - start.x;
-				dy = start.dy + e.clientY - start.y;
-				apply();
-			};
-			const up = () => {
-				if (!start) return;
-				start = undefined;
-				card.classList.remove('dragging');
-				keepOnScreen();
-				save();
-			};
-			const home = () => {
-				dx = 0;
-				dy = 0;
-				apply();
-				save();
-			};
-			apply();
-			requestAnimationFrame(keepOnScreen);
-			head.addEventListener('pointerdown', down);
-			head.addEventListener('pointermove', move);
-			head.addEventListener('pointerup', up);
-			head.addEventListener('pointercancel', up);
-			head.addEventListener('dblclick', home);
-			return () => {
-				head.removeEventListener('pointerdown', down);
-				head.removeEventListener('pointermove', move);
-				head.removeEventListener('pointerup', up);
-				head.removeEventListener('pointercancel', up);
-				head.removeEventListener('dblclick', home);
-			};
-		};
+	const KEPT = 'gravitational-camera:sidebar';
+	/** Narrower than this, the panel would leave too little picture to start open. */
+	const ROOMY = 960;
+
+	/** Start as the reader left it: the last tab, and on a roomy window whether the panel was open. */
+	function start() {
+		let kept: { open?: unknown; tab?: unknown } = {};
+		try {
+			kept = JSON.parse(localStorage.getItem(KEPT) ?? '{}') ?? {};
+		} catch {
+			// nothing kept, or nothing can be: start with the controls open
+		}
+		if (typeof kept.tab === 'string') chosen = kept.tab as TabName;
+		open = window.innerWidth >= ROOMY && kept.open !== false;
+		ready = true;
+		const phone = window.matchMedia('(max-width: 720px)');
+		const lay = () => (flat = phone.matches);
+		lay();
+		phone.addEventListener('change', lay);
+		return () => phone.removeEventListener('change', lay);
 	}
 
-	/** On a phone the cards would cover the picture: start with them put away. */
-	function narrowStart() {
-		if (window.matchMedia('(max-width: 720px)').matches) {
-			notesOpen = false;
-			controlsOpen = false;
+	$effect(() => {
+		const state = { open, tab: chosen };
+		if (!ready) return;
+		try {
+			// on a small screen the panel always starts put away, so what is done there is not kept as a wish
+			const before = JSON.parse(localStorage.getItem(KEPT) ?? '{}') ?? {};
+			const keep = window.innerWidth >= ROOMY ? state : { ...before, tab: state.tab };
+			localStorage.setItem(KEPT, JSON.stringify(keep));
+		} catch {
+			// not remembered, which is fine
+		}
+	});
+
+	/** Open the panel at a tab; the open tab's own icon puts the panel away. */
+	function choose(name: TabName) {
+		if (open && current === name) open = false;
+		else {
+			chosen = name;
+			open = true;
 		}
 	}
 
-	const narrow = () => window.matchMedia('(max-width: 720px)').matches;
-
-	function toggleNotes() {
-		notesOpen = !notesOpen;
-		if (notesOpen && narrow()) controlsOpen = false;
+	/** Show a tab, whatever is open now. */
+	export function show(name: TabName) {
+		chosen = name;
+		open = true;
 	}
 
-	function toggleControls() {
-		controlsOpen = !controlsOpen;
-		if (controlsOpen && narrow()) notesOpen = false;
+	/** Arrow keys walk the tabs, as in any list of tabs; the one reached is opened. */
+	function walk(e: KeyboardEvent) {
+		const at = tabs.findIndex((t) => t.name === current);
+		const last = tabs.length - 1;
+		const to =
+			e.key === 'ArrowDown' || e.key === 'ArrowRight'
+				? (at + 1) % tabs.length
+				: e.key === 'ArrowUp' || e.key === 'ArrowLeft'
+					? (at + last) % tabs.length
+					: e.key === 'Home'
+						? 0
+						: e.key === 'End'
+							? last
+							: -1;
+		if (to < 0) return;
+		e.preventDefault();
+		e.stopPropagation();
+		show(tabs[to].name);
+		(e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('[role="tab"]')[to]?.focus();
 	}
 
 	async function toggleFullscreen() {
@@ -191,14 +209,13 @@
 		if (t?.isContentEditable || t?.tagName === 'TEXTAREA') return;
 		if (t instanceof HTMLInputElement && !['range', 'checkbox'].includes(t.type)) return;
 		const key = e.key.toLowerCase();
-		if (key === 'n') toggleNotes();
-		else if (key === 'c') toggleControls();
+		if (key === 'n') choose('about');
+		else if (key === 'c') choose('controls');
 		else if (key === 'r' && onreset) onreset();
 		else if (key === 's' && onsave) save();
 		else if (key === 'f') toggleFullscreen();
 		else if (key === 'h') bare = !bare;
-		else if (key === '?') helpOpen = !helpOpen;
-		else if (key === 'escape') helpOpen = false;
+		else if (key === '?') choose('help');
 		else return;
 		e.preventDefault();
 	}
@@ -207,133 +224,122 @@
 <svelte:window onkeydown={onKey} />
 <svelte:document onfullscreenchange={() => (fullscreen = !!document.fullscreenElement)} />
 
-<main class={['always-dark', { bare }]} {@attach narrowStart}>
+<main class={['always-dark', { bare, open }]} data-ready={ready || undefined} {@attach start}>
 	<div class="stage">{@render stage()}</div>
 
 	{#if !bare}
-		<header transition:fade={{ duration: 150 }}>
-			<a class="back" href={section === 'figures' ? resolve('/figures') : resolve('/demo')}>
-				<HugeiconsIcon icon={ArrowLeft02Icon} size={16} strokeWidth={2} />
-				<span>{section === 'figures' ? 'All figures' : 'All demos'}</span>
-			</a>
-			<div class="titles">
-				{#if kicker}<p class="kicker">{kicker}</p>{/if}
-				<h1>{title}</h1>
-			</div>
-		</header>
-
-		{#if notesOpen}
-			<aside
-				class="card notes"
-				aria-label="About this demo"
-				transition:fly={{ x: -16, duration: 180 }}
-				{@attach movable('notes')}
-			>
-				<div class="card-head" title="Drag to move · double-click to put back">
-					{#if physics}
-						<div class="tabs" role="tablist" aria-label="Notes">
-							<button
-								type="button"
-								role="tab"
-								aria-selected={tab === 'about'}
-								onclick={() => (tab = 'about')}
-							>
-								<HugeiconsIcon icon={InformationCircleIcon} size={15} strokeWidth={1.8} /> About
-							</button>
-							<button
-								type="button"
-								role="tab"
-								aria-selected={tab === 'physics'}
-								onclick={() => (tab = 'physics')}
-							>
-								<HugeiconsIcon icon={Atom02Icon} size={15} strokeWidth={1.8} /> Physics
-							</button>
+		<aside class="side" aria-label="About the demo, its controls and its tools">
+			{#if open}
+				<section class="panel">
+					<header>
+						<div class="titles">
+							{#if kicker}<p class="kicker">{kicker}</p>{/if}
+							<h1>{title}</h1>
 						</div>
-					{:else}
-						<span>
-							<HugeiconsIcon icon={InformationCircleIcon} size={15} strokeWidth={1.8} /> About this demo
-						</span>
-					{/if}
-					<button type="button" class="close" aria-label="Close the notes" onclick={toggleNotes}>
-						<HugeiconsIcon icon={Cancel01Icon} size={15} strokeWidth={1.8} />
-					</button>
-				</div>
-				<div class={['scroll', { physics: tab === 'physics' && physics }]} role="tabpanel">
-					{#if tab === 'physics' && physics}{@render physics()}{:else}{@render notes()}{/if}
-				</div>
-			</aside>
-		{/if}
+						<button
+							type="button"
+							class="away"
+							aria-label="Put the panel away"
+							title="Put the panel away"
+							onclick={() => (open = false)}
+						>
+							<HugeiconsIcon icon={ArrowRight01Icon} size={17} strokeWidth={1.8} />
+						</button>
+					</header>
+					{#key current}
+						<div
+							class={['scroll', current]}
+							role="tabpanel"
+							id="shell-panel"
+							aria-labelledby="shell-tab-{current}"
+							tabindex="0"
+						>
+							{#if current === 'about'}
+								{@render notes()}
+							{:else if current === 'physics' && physics}
+								{@render physics()}
+							{:else if current === 'pixel' && pixel}
+								{@render pixel()}
+							{:else if current === 'key' && legend}
+								{@render legend()}
+							{:else if current === 'help'}
+								<dl class="keys">
+									<dt>Drag the picture</dt>
+									<dd>look around</dd>
+									<dt>Scroll</dt>
+									<dd>zoom</dd>
+									<dt>Drag the line</dt>
+									<dd>move between light and gravity (arrow keys when it is selected)</dd>
+									<dt><kbd>N</kbd> <kbd>C</kbd> <kbd>?</kbd></dt>
+									<dd>about, controls, this help; the same key again puts the panel away</dd>
+									<dt><kbd>R</kbd> <kbd>S</kbd></dt>
+									<dd>reset the view, save a still</dd>
+									<dt><kbd>F</kbd> <kbd>H</kbd></dt>
+									<dd>full screen, hide everything but the picture</dd>
+								</dl>
+							{:else}
+								{@render controls()}
+								<!-- The numbers that answer the controls are kept beside them: the lists of readings in
+								     the demo's notes, and nothing else of the notes (see .answers below). -->
+								<section class="readings" aria-label="Readings">
+									<h3>Readings</h3>
+									<div class="answers">{@render notes()}</div>
+								</section>
+							{/if}
+						</div>
+					{/key}
+					{#if foot}<footer>{@render foot()}</footer>{/if}
+				</section>
+			{/if}
 
-		{#if controlsOpen}
-			<section
-				class="card inspector"
-				aria-label="Controls"
-				transition:fly={{ x: 16, duration: 180 }}
-				{@attach movable('controls')}
-			>
-				<div class="card-head" title="Drag to move · double-click to put back">
-					<span
-						><HugeiconsIcon icon={SlidersHorizontalIcon} size={15} strokeWidth={1.8} /> Controls</span
-					>
-					<button
-						type="button"
-						class="close"
-						aria-label="Close the controls"
-						onclick={toggleControls}
-					>
-						<HugeiconsIcon icon={Cancel01Icon} size={15} strokeWidth={1.8} />
-					</button>
+			<nav class="rail" aria-label="Panels and tools">
+				{#if !open}<h1 class="unseen">{title}</h1>{/if}
+				<!-- the way back keeps its place whether the panel is open or not -->
+				<a class="tool back" href={home} aria-label={homeName}>
+					<HugeiconsIcon icon={ArrowLeft02Icon} size={18} strokeWidth={2} />
+					<span class="tip" aria-hidden="true">{homeName}</span>
+				</a>
+				<div
+					class="tabs"
+					role="tablist"
+					aria-label="Panels"
+					aria-orientation={flat ? 'horizontal' : 'vertical'}
+					tabindex="-1"
+					onkeydown={walk}
+				>
+					{#each tabs as t (t.name)}
+						<button
+							type="button"
+							role="tab"
+							id="shell-tab-{t.name}"
+							aria-selected={open && current === t.name}
+							aria-controls={open ? 'shell-panel' : undefined}
+							tabindex={current === t.name ? 0 : -1}
+							title={t.key ? `${t.label} (${t.key})` : t.label}
+							onclick={() => choose(t.name)}
+						>
+							<HugeiconsIcon icon={t.icon} size={19} strokeWidth={1.6} />
+							<span>{t.label}</span>
+							{#if t.name === 'key' && foot && !open}
+								<span class="tip wide" aria-hidden="true">{@render foot()}</span>
+							{/if}
+						</button>
+					{/each}
 				</div>
-				<div class="scroll">{@render controls()}</div>
-			</section>
-		{/if}
-
-		<nav class="dock" aria-label="Tools" transition:fly={{ y: 12, duration: 180 }}>
-			{@render tool(InformationCircleIcon, 'Notes', 'N', toggleNotes, notesOpen)}
-			{@render tool(SlidersHorizontalIcon, 'Controls', 'C', toggleControls, controlsOpen)}
-			<span class="sep" aria-hidden="true"></span>
-			{#if onreset}{@render tool(Target02Icon, 'Reset the view', 'R', onreset)}{/if}
-			{#if onsave}{@render tool(Camera01Icon, 'Save a still', 'S', save)}{/if}
-			{@render tool(
-				fullscreen ? MinimizeScreenIcon : FullScreenIcon,
-				fullscreen ? 'Leave full screen' : 'Full screen',
-				'F',
-				toggleFullscreen
-			)}
-			{@render tool(ViewOffIcon, 'Hide the interface', 'H', () => (bare = true))}
-			{@render tool(HelpCircleIcon, 'How to use', '?', () => (helpOpen = !helpOpen), helpOpen)}
-		</nav>
-
-		{#if helpOpen}
-			<div
-				class="card help"
-				role="dialog"
-				aria-label="How to use"
-				transition:fly={{ y: 8, duration: 150 }}
-			>
-				<div class="card-head">
-					<span><HugeiconsIcon icon={HelpCircleIcon} size={15} strokeWidth={1.8} /> How to use</span
-					>
-					<button type="button" class="close" aria-label="Close" onclick={() => (helpOpen = false)}>
-						<HugeiconsIcon icon={Cancel01Icon} size={15} strokeWidth={1.8} />
-					</button>
+				<span class="sep" aria-hidden="true"></span>
+				<div class="tools">
+					{#if onreset}{@render tool(Target02Icon, 'Reset the view', 'R', onreset)}{/if}
+					{#if onsave}{@render tool(Camera01Icon, 'Save a still', 'S', save)}{/if}
+					{@render tool(
+						fullscreen ? MinimizeScreenIcon : FullScreenIcon,
+						fullscreen ? 'Leave full screen' : 'Full screen',
+						'F',
+						toggleFullscreen
+					)}
+					{@render tool(ViewOffIcon, 'Hide the interface', 'H', () => (bare = true))}
 				</div>
-				<dl>
-					<dt>Drag the picture</dt>
-					<dd>look around</dd>
-					<dt>Scroll</dt>
-					<dd>zoom</dd>
-					<dt>Drag the line</dt>
-					<dd>move between light and gravity (arrow keys when it is selected)</dd>
-					<dt><kbd>N</kbd> <kbd>C</kbd></dt>
-					<dd>notes, controls</dd>
-					<dt><kbd>R</kbd> <kbd>S</kbd></dt>
-					<dd>reset the view, save a still</dd>
-					<dt><kbd>F</kbd> <kbd>H</kbd></dt>
-					<dd>full screen, hide everything but the picture</dd>
-				</dl>
-			</div>
-		{/if}
+			</nav>
+		</aside>
 	{:else}
 		<button
 			type="button"
@@ -346,14 +352,8 @@
 	{/if}
 </main>
 
-{#snippet tool(
-	icon: IconSvgElement,
-	label: string,
-	key: string,
-	onclick: () => void,
-	pressed: boolean | undefined = undefined
-)}
-	<button type="button" class="tool" aria-label={label} aria-pressed={pressed} {onclick}>
+{#snippet tool(icon: IconSvgElement, label: string, key: string, onclick: () => void)}
+	<button type="button" class="tool" aria-label={label} {onclick}>
 		<HugeiconsIcon {icon} size={19} strokeWidth={1.6} />
 		<span class="tip" aria-hidden="true">{label} <kbd>{key}</kbd></span>
 	</button>
@@ -363,72 +363,100 @@
 	main {
 		position: fixed;
 		inset: 0;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
 		background: #000;
 		color: var(--text);
 		font-family: var(--font-sans);
-		--glass: rgb(12 15 21 / 0.84);
-		--glass-line: rgb(255 255 255 / 0.08);
+		--surface: #0d1016;
+		--line: rgb(255 255 255 / 0.09);
+		--rail: 3.9rem;
 	}
 
+	/* the picture has the window but for the sidebar: nothing lies over it */
 	.stage {
-		position: absolute;
-		inset: 0;
-		/* the picture's labels sit just above the dock */
-		--tag-inset: 4.9rem;
+		position: relative;
+		min-width: 0;
+		min-height: 0;
+		overflow: hidden;
+		/* what a stage that is a page to read keeps clear at its edges */
+		--clear-top: 1.2rem;
+		--clear-bottom: 1.2rem;
+		--clear-left: 1.2rem;
+		--clear-right: 1.2rem;
 	}
 
-	/* --- title ------------------------------------------------------------------ */
+	.side {
+		display: flex;
+		min-height: 0;
+		background: var(--surface);
+		border-left: 1px solid var(--line);
+	}
+
+	/* --- the panel ---------------------------------------------------------------- */
+
+	.panel {
+		display: flex;
+		flex-direction: column;
+		width: min(23rem, calc(100vw - var(--rail) - 16rem));
+		min-height: 0;
+		border-right: 1px solid var(--line);
+	}
 
 	header {
-		position: absolute;
-		top: 1rem;
-		left: 1rem;
 		display: flex;
-		align-items: center;
-		gap: 0.8rem;
-		max-width: calc(100% - 2rem);
-		padding: 0.45rem 1.1rem 0.5rem 0.45rem;
-		border-radius: 14px;
-		background: var(--glass);
-		border: 1px solid var(--glass-line);
-		backdrop-filter: blur(18px);
-		box-shadow: 0 10px 30px rgb(0 0 0 / 0.35);
-	}
-
-	.back {
-		flex: none;
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		height: 2.2rem;
-		padding: 0 0.85rem 0 0.7rem;
-		border-radius: 10px;
-		background: #f1ede4;
-		color: #15171c;
-		font: 500 0.78rem/1 var(--font-sans);
-		text-decoration: none;
-		box-shadow: 0 1px 6px rgb(0 0 0 / 0.3);
-		transition:
-			background-color 0.15s,
-			translate 0.15s;
-	}
-
-	.back:hover {
-		background: #fff;
-		translate: -1px 0;
-	}
-
-	.back:focus-visible {
-		outline: 2px solid var(--accent);
-		outline-offset: 2px;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.6rem;
+		padding: 0.95rem 1rem 0.9rem;
+		border-bottom: 1px solid var(--line);
 	}
 
 	.titles {
 		min-width: 0;
 	}
 
+	/* the way back, at the head of the rail: the one light thing in the sidebar */
+	.tool.back {
+		margin-bottom: 0.45rem;
+		background: #f1ede4;
+		color: #15171c;
+	}
+
+	.away {
+		display: grid;
+		place-items: center;
+		flex: none;
+		width: 2rem;
+		height: 2rem;
+		margin: -0.25rem -0.35rem 0 0;
+		border: 0;
+		border-radius: 8px;
+		background: transparent;
+		color: var(--text-faint);
+		cursor: pointer;
+	}
+
+	.away:hover {
+		background: rgb(255 255 255 / 0.08);
+		color: var(--text);
+	}
+
+	.away:focus-visible,
+	.tool:focus-visible,
+	.tabs button:focus-visible,
+	.scroll:focus-visible,
+	.unhide:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	.scroll:focus-visible {
+		outline-offset: -2px;
+	}
+
 	.kicker {
-		margin: 0 0 0.25rem;
+		margin: 0 0 0.3rem;
 		font: 600 0.6rem/1 var(--font-sans);
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -437,82 +465,231 @@
 
 	h1 {
 		margin: 0;
-		font: 400 clamp(1.15rem, 2vw, 1.45rem) / 1.1 var(--font-serif);
+		font: 400 1.45rem/1.12 var(--font-serif);
 		letter-spacing: -0.005em;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+		text-wrap: balance;
 	}
 
-	/* --- floating cards ---------------------------------------------------------- */
-
-	.card {
+	.unseen {
 		position: absolute;
-		display: flex;
-		flex-direction: column;
-		background: var(--glass);
-		border: 1px solid var(--glass-line);
-		border-radius: 16px;
-		backdrop-filter: blur(18px) saturate(1.3);
-		box-shadow: 0 14px 44px rgb(0 0 0 / 0.42);
+		width: 1px;
+		height: 1px;
 		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
 	}
 
-	.card-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0.7rem 0.6rem 0.55rem 1rem;
-		border-bottom: 1px solid var(--glass-line);
-		font: 600 0.66rem/1 var(--font-sans);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+	.scroll {
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		padding: 1rem 1rem 1.2rem;
+		scrollbar-width: thin;
+		scrollbar-color: rgb(255 255 255 / 0.18) transparent;
+		animation: arrive 0.14s ease-out;
+	}
+
+	@keyframes arrive {
+		from {
+			opacity: 0;
+		}
+	}
+
+	footer {
+		padding: 0.6rem 1rem 0.7rem;
+		border-top: 1px solid var(--line);
+		background: rgb(255 255 255 / 0.025);
+		font-size: 0.72rem;
+		line-height: 1.45;
 		color: var(--text-dim);
 	}
 
-	.card-head span {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45rem;
+	/* --- what the tabs hold --------------------------------------------------------- */
+
+	.about,
+	.pixel,
+	.key {
+		font-size: 0.86rem;
+		line-height: 1.55;
 	}
 
-	.card-head {
-		cursor: grab;
-		touch-action: none;
-		user-select: none;
+	.about :global(p),
+	.key :global(p) {
+		margin: 0 0 0.8rem;
+		text-wrap: pretty;
 	}
 
-	:global(.dragging) .card-head {
-		cursor: grabbing;
+	.about :global(strong),
+	.key :global(strong) {
+		color: #fff;
+		font-weight: 600;
 	}
 
-	.card:global(.dragging) {
-		box-shadow: 0 20px 60px rgb(0 0 0 / 0.55);
+	.about :global(dl),
+	.answers :global(dl) {
+		margin: 0.9rem 0;
+		display: grid;
+		gap: 0.55rem;
+		padding: 0.75rem 0.8rem;
+		border-radius: 10px;
+		background: rgb(255 255 255 / 0.04);
 	}
 
-	.tabs {
+	.about :global(dt),
+	.answers :global(dt) {
+		color: var(--text-faint);
+		font-size: 0.72rem;
+	}
+
+	.about :global(dd),
+	.answers :global(dd) {
+		margin: 0.1rem 0 0;
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		color: var(--text);
+	}
+
+	/* under the controls, the notes' lists of readings and no other part of the notes */
+	.readings {
+		margin-top: 1.1rem;
+	}
+
+	.readings:not(:has(dl)) {
+		display: none;
+	}
+
+	.readings h3 {
+		margin: 0 0 0.6rem;
+		font: 600 0.62rem/1 var(--font-sans);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--text-faint);
+	}
+
+	.answers > :global(:not(dl)) {
+		display: none;
+	}
+
+	.answers :global(dl) {
+		margin: 0;
+		font-size: 0.86rem;
+		line-height: 1.55;
+	}
+
+	.answers :global(dl + dl) {
+		margin-top: 0.6rem;
+	}
+
+	.about :global(.fine) {
+		color: var(--text-faint);
+		font-size: 0.76rem;
+		margin: 0;
+	}
+
+	.about :global(.fine + .fine) {
+		margin-top: 0.6rem;
+	}
+
+	/* the physics tab: set like the paper, for reading */
+	.physics {
+		font: 400 0.95rem/1.6 var(--font-serif);
+		color: #e6e2d9;
+	}
+
+	.physics :global(h4) {
+		margin: 1.1rem 0 0.35rem;
+		font: 600 0.62rem/1 var(--font-sans);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.physics :global(h4:first-child) {
+		margin-top: 0.1rem;
+	}
+
+	.physics :global(p) {
+		margin: 0 0 0.7rem;
+	}
+
+	.physics :global(.numbers) {
+		margin: 0.9rem 0 0;
+		font-family: var(--font-sans);
+	}
+
+	.keys {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.7rem 1rem;
+		margin: 0;
+		font-size: 0.82rem;
+		line-height: 1.45;
+	}
+
+	.keys dt {
+		color: var(--text);
+		white-space: nowrap;
+	}
+
+	.keys dd {
+		margin: 0;
+		color: var(--text-dim);
+	}
+
+	/* --- the rail: the tabs, then the tools ------------------------------------------ */
+
+	.rail {
 		display: flex;
+		flex-direction: column;
+		align-items: center;
 		gap: 0.2rem;
-		margin-left: -0.45rem;
+		width: var(--rail);
+		padding: 0.6rem 0;
+	}
+
+	.tabs,
+	.tools {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.2rem;
 	}
 
 	.tabs button {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		padding: 0.4rem 0.6rem;
+		position: relative;
+		display: grid;
+		justify-items: center;
+		gap: 0.28rem;
+		width: 3.3rem;
+		padding: 0.5rem 0 0.42rem;
 		border: 0;
-		border-radius: 8px;
+		border-radius: 10px;
 		background: transparent;
 		color: var(--text-faint);
-		font: inherit;
-		letter-spacing: inherit;
-		text-transform: inherit;
+		font: 500 0.6rem/1 var(--font-sans);
 		cursor: pointer;
+		transition:
+			background-color 0.15s,
+			color 0.15s;
 	}
 
-	.tabs button:hover {
-		color: var(--text-dim);
+	/* a finger leaves no pointer behind: only a pointer that hovers lights what it is over */
+	@media (hover: hover) {
+		.tabs button:hover {
+			background: rgb(255 255 255 / 0.06);
+			color: var(--text);
+		}
+
+		.tool:hover {
+			background: rgb(255 255 255 / 0.08);
+			color: var(--text);
+		}
+
+		.tool.back:hover {
+			background: #fff;
+			color: #15171c;
+		}
 	}
 
 	.tabs button[aria-selected='true'] {
@@ -524,146 +701,31 @@
 		color: var(--accent);
 	}
 
-	.close {
-		display: grid;
-		place-items: center;
-		width: 1.7rem;
-		height: 1.7rem;
-		border: 0;
-		border-radius: 8px;
-		background: transparent;
-		color: var(--text-faint);
-		cursor: pointer;
-	}
-
-	.close:hover {
-		background: rgb(255 255 255 / 0.08);
-		color: var(--text);
-	}
-
-	.scroll {
-		overflow-y: auto;
-		overscroll-behavior: contain;
-		padding: 0.9rem 1rem 1rem;
-		scrollbar-width: thin;
-		scrollbar-color: rgb(255 255 255 / 0.18) transparent;
-	}
-
-	.notes {
-		left: 1rem;
-		top: 5.4rem;
-		width: min(23.5rem, calc(100% - 2rem));
-		max-height: calc(100% - 5.4rem - 5.4rem);
-		font-size: 0.84rem;
-		line-height: 1.55;
-	}
-
-	.notes :global(p) {
-		margin: 0 0 0.8rem;
-		text-wrap: pretty;
-	}
-
-	.notes :global(strong) {
-		color: #fff;
-		font-weight: 600;
-	}
-
-	.notes :global(dl) {
-		margin: 0.9rem 0;
-		display: grid;
-		gap: 0.55rem;
-		padding: 0.75rem 0.8rem;
-		border-radius: 10px;
-		background: rgb(255 255 255 / 0.04);
-	}
-
-	.notes :global(dt) {
-		color: var(--text-faint);
-		font-size: 0.7rem;
-	}
-
-	.notes :global(dd) {
-		margin: 0.1rem 0 0;
-		font-family: var(--font-mono);
-		font-size: 0.76rem;
-		color: var(--text);
-	}
-
-	.notes :global(.fine) {
-		color: var(--text-faint);
-		font-size: 0.74rem;
-		margin: 0;
-	}
-
-	.notes :global(.fine + .fine) {
-		margin-top: 0.6rem;
-	}
-
-	/* the physics tab: set like the paper, for reading */
-	.scroll.physics {
-		font: 400 0.95rem/1.6 var(--font-serif);
-		color: #e6e2d9;
-	}
-
-	.scroll.physics :global(h4) {
-		margin: 1.1rem 0 0.35rem;
-		font: 600 0.62rem/1 var(--font-sans);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--accent);
-	}
-
-	.scroll.physics :global(h4:first-child) {
-		margin-top: 0.1rem;
-	}
-
-	.scroll.physics :global(p) {
-		margin: 0 0 0.7rem;
-	}
-
-	.scroll.physics :global(.numbers) {
-		margin: 0.9rem 0 0;
-		font-family: var(--font-sans);
-	}
-
-	.inspector {
-		right: 1rem;
-		top: 4rem;
-		width: min(19rem, calc(100% - 2rem));
-		max-height: calc(100% - 4rem - 5.4rem);
-	}
-
-	/* --- dock --------------------------------------------------------------------- */
-
-	.dock {
+	/* the open tab is tied to its panel by a mark on the edge they share */
+	.tabs button[aria-selected='true']::before {
+		content: '';
 		position: absolute;
-		left: 50%;
-		bottom: 1rem;
-		translate: -50% 0;
-		display: flex;
-		align-items: center;
-		gap: 0.15rem;
-		padding: 0.3rem;
-		border-radius: 14px;
-		background: var(--glass);
-		border: 1px solid var(--glass-line);
-		backdrop-filter: blur(18px);
-		box-shadow: 0 10px 30px rgb(0 0 0 / 0.4);
+		left: -0.3rem;
+		top: 0.5rem;
+		bottom: 0.5rem;
+		width: 2px;
+		border-radius: 1px;
+		background: var(--accent);
 	}
 
 	.sep {
-		width: 1px;
-		height: 1.4rem;
-		margin: 0 0.25rem;
-		background: var(--glass-line);
+		width: 1.6rem;
+		height: 1px;
+		margin: 0.45rem 0;
+		background: var(--line);
 	}
 
 	.tool {
 		position: relative;
 		display: grid;
 		place-items: center;
-		width: 2.4rem;
-		height: 2.4rem;
+		width: 2.5rem;
+		height: 2.5rem;
 		border: 0;
 		border-radius: 10px;
 		background: transparent;
@@ -674,28 +736,19 @@
 			color 0.15s;
 	}
 
-	.tool:hover,
-	.tool:focus-visible {
-		background: rgb(255 255 255 / 0.08);
-		color: var(--text);
-		outline: none;
-	}
-
-	.tool[aria-pressed='true'] {
-		color: var(--accent);
-	}
-
 	.tip {
 		position: absolute;
-		bottom: calc(100% + 10px);
-		left: 50%;
-		translate: -50% 4px;
+		right: calc(100% + 12px);
+		top: 50%;
+		translate: 4px -50%;
+		z-index: 2;
 		padding: 0.4rem 0.55rem;
 		border-radius: 8px;
-		background: rgb(20 23 30 / 0.96);
-		border: 1px solid var(--glass-line);
+		background: rgb(20 23 30 / 0.97);
+		border: 1px solid var(--line);
 		color: var(--text);
-		font-size: 0.72rem;
+		font: 400 0.72rem/1.4 var(--font-sans);
+		text-align: left;
 		white-space: nowrap;
 		opacity: 0;
 		pointer-events: none;
@@ -704,10 +757,17 @@
 			translate 0.12s;
 	}
 
+	.tip.wide {
+		width: 19rem;
+		white-space: normal;
+	}
+
 	.tool:hover .tip,
-	.tool:focus-visible .tip {
+	.tool:focus-visible .tip,
+	.tabs button:hover .tip,
+	.tabs button:focus-visible .tip {
 		opacity: 1;
-		translate: -50% 0;
+		translate: 0 -50%;
 	}
 
 	kbd {
@@ -721,32 +781,6 @@
 		text-align: center;
 	}
 
-	.help {
-		left: 50%;
-		bottom: 4.6rem;
-		translate: -50% 0;
-		width: min(24rem, calc(100% - 2rem));
-	}
-
-	.help dl {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 0.55rem 1rem;
-		margin: 0;
-		padding: 0.9rem 1rem 1rem;
-		font-size: 0.8rem;
-	}
-
-	.help dt {
-		color: var(--text);
-		white-space: nowrap;
-	}
-
-	.help dd {
-		margin: 0;
-		color: var(--text-dim);
-	}
-
 	.unhide {
 		position: absolute;
 		left: 50%;
@@ -757,7 +791,7 @@
 		gap: 0.5rem;
 		padding: 0.5rem 0.8rem;
 		border-radius: 999px;
-		border: 1px solid var(--glass-line);
+		border: 1px solid var(--line);
 		background: rgb(12 15 21 / 0.5);
 		color: var(--text-dim);
 		font-size: 0.74rem;
@@ -766,47 +800,132 @@
 		transition: opacity 0.2s;
 	}
 
-	.unhide:hover {
+	.unhide:hover,
+	.unhide:focus-visible {
 		opacity: 1;
 	}
 
-	/* --- phones: the cards become sheets over the lower part of the screen --------- */
+	/* --- a narrower window: a narrower panel ------------------------------------------ */
+
+	@media (max-width: 1100px) {
+		.panel {
+			width: min(20.5rem, calc(100vw - var(--rail) - 12rem));
+		}
+	}
+
+	/* --- phones: the rail is a bar along the bottom, the panel a sheet above it --------- */
 
 	@media (max-width: 720px) {
+		main {
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-rows: minmax(0, 1fr) auto;
+		}
+
+		.side {
+			flex-direction: column;
+			border-left: 0;
+			border-top: 1px solid var(--line);
+		}
+
+		.panel {
+			width: auto;
+			height: 46svh;
+			border-right: 0;
+			border-bottom: 1px solid var(--line);
+		}
+
 		header {
-			top: 0.6rem;
-			left: 0.6rem;
+			align-items: center;
+			padding: 0.5rem 0.75rem 0.55rem;
+		}
+
+		.tool.back {
+			margin: 0 0.3rem 0 0;
+		}
+
+		.away {
+			margin: 0 -0.2rem 0 0;
+		}
+
+		.away :global(svg) {
+			rotate: 90deg;
+		}
+
+		.kicker {
+			margin-bottom: 0.2rem;
 		}
 
 		h1 {
-			font-size: 1.2rem;
+			font-size: 1.15rem;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
-		.notes,
-		.inspector {
-			left: 0.5rem;
-			right: 0.5rem;
-			top: auto;
-			bottom: 4.4rem;
+		.scroll {
+			padding: 0.8rem 0.85rem 1rem;
+		}
+
+		footer {
+			padding: 0.45rem 0.85rem 0.5rem;
+		}
+
+		.rail {
+			flex-direction: row;
 			width: auto;
-			max-height: 52svh;
+			gap: 0.1rem;
+			padding: 0.3rem 0.4rem calc(0.3rem + env(safe-area-inset-bottom));
+			overflow-x: auto;
+			scrollbar-width: none;
 		}
 
-		.dock {
-			bottom: 0.6rem;
+		.tabs,
+		.tools {
+			flex-direction: row;
+			gap: 0.1rem;
 		}
 
-		.stage {
-			--tag-inset: 4.1rem;
+		.tabs button {
+			width: 3.1rem;
+			min-height: 2.75rem;
+		}
+
+		.tabs button[aria-selected='true']::before {
+			left: 0.7rem;
+			right: 0.7rem;
+			top: -0.3rem;
+			bottom: auto;
+			width: auto;
+			height: 2px;
+		}
+
+		.sep {
+			flex: none;
+			width: 1px;
+			height: 1.6rem;
+			margin: 0 0.3rem;
 		}
 
 		.tool {
-			width: 2.3rem;
-			height: 2.3rem;
+			flex: none;
+			width: 2.75rem;
+			height: 2.75rem;
 		}
 
 		.tip {
 			display: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.scroll {
+			animation: none;
+		}
+
+		.tip,
+		.tool,
+		.tabs button {
+			transition: none;
 		}
 	}
 </style>

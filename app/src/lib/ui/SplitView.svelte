@@ -13,6 +13,8 @@
 		WavesIcon
 	} from '@hugeicons/core-free-icons';
 	import { massPoints, sliceReference } from '../engine/tidal';
+	import { lookUniforms } from '../pixel/field-view';
+	import { fieldLook } from './field-look.svelte';
 	import { G } from '../engine/physics/constants';
 	import {
 		Engine,
@@ -64,9 +66,13 @@
 		/** Sources for the wave view (see `packWaves`), and its brightness. */
 		waves?: PackedWaves;
 		waveExposure?: number;
-		/** Depth of the slice drawn by the field view, m, and how strongly its colours cover the image. */
+		/** Depth of the slice drawn by the field view, m. How it looks is the reader's to set (field-look). */
 		fieldDepth?: number;
-		fieldOpacity?: number;
+		/**
+		 * The strength the field view's scale is set against, s⁻²: the median over the picture. Left out, it is
+		 * worked out here with boxes and spheres as point masses, which serves outside matter only.
+		 */
+		fieldReference?: number;
 		interactive?: boolean;
 		/**
 		 * Part of a scrolling page: dragging still looks around, but the wheel and
@@ -104,7 +110,7 @@
 		waves,
 		waveExposure = 2.2,
 		fieldDepth = 3,
-		fieldOpacity = 0.5,
+		fieldReference,
 		interactive = true,
 		embedded = false,
 		leftLabel = 'Light',
@@ -137,13 +143,25 @@
 	}
 	let message = $state('');
 
+	/** The picture's size on the page, CSS pixels. */
+	let frameWidth = $state(0);
+	let frameHeight = $state(0);
+
+	/** Width over height of the picture, once it has been laid out. */
+	export function aspect(): number | undefined {
+		return frameWidth > 0 && frameHeight > 0 ? frameWidth / frameHeight : undefined;
+	}
+
 	const nRef = $derived(referenceRadiance(objects, observer, subtractRoom));
 	const sRef = $derived(referenceTidal(objects, observer, exclusion, subtractRoom));
 	// where the divider sits once the on/off switches are taken into account
 	const split = $derived(showLight && showGravity ? divider : showLight ? 1 : 0);
-	// point masses standing in for the scene, to set the field view's brightness scale
+
+	// point masses standing in for the scene, to set the field view's brightness scale where the page gives none
 	const fieldPoints = $derived(
-		rightMode === MODE_FIELD ? massPoints(objects, 0.25, subtractRoom) : new Float64Array()
+		rightMode === MODE_FIELD && fieldReference === undefined
+			? massPoints(objects, 0.25, subtractRoom)
+			: new Float64Array()
 	);
 
 	/**
@@ -198,7 +216,7 @@
 				cutaway,
 				waves ? Array.from(new Float32Array(waves.buffer, 0, waves.count * 12)) : null,
 				waveExposure,
-				rightMode === MODE_FIELD ? [fieldDepth, fieldOpacity] : null,
+				rightMode === MODE_FIELD ? [fieldDepth, fieldReference, $state.snapshot(fieldLook)] : null,
 				leftMode,
 				rightMode,
 				sunDirection,
@@ -230,9 +248,11 @@
 								depth: fieldDepth,
 								// the shader leaves out G and divides densities by sRef
 								reference:
-									sliceReference(fieldPoints, observer, view, width / height, fieldDepth) /
+									(fieldReference ??
+										sliceReference(fieldPoints, observer, view, width / height, fieldDepth)) /
 									(G * sRef),
-								opacity: fieldOpacity
+								opacity: fieldLook.opacity,
+								...lookUniforms(fieldLook)
 							}
 						: undefined
 			};
@@ -346,7 +366,12 @@
 	}
 </script>
 
-<div class="frame" style:background-image={poster ? `url("${poster}")` : undefined}>
+<div
+	class="frame"
+	style:background-image={poster ? `url("${poster}")` : undefined}
+	bind:clientWidth={frameWidth}
+	bind:clientHeight={frameHeight}
+>
 	<canvas
 		{@attach mount}
 		class={{ interactive, embedded, ready: status === 'running' }}

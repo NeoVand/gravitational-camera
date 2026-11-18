@@ -6,6 +6,8 @@
 		value: T;
 		label: string;
 		icon: IconSvgElement;
+		/** Takes a whole row of its own. */
+		wide?: boolean;
 	}
 
 	interface Props {
@@ -16,17 +18,21 @@
 	}
 
 	let { options, value = $bindable(), label }: Props = $props();
+
+	// the columns are counted over the options that share rows
+	const narrow = $derived(options.filter((o) => !o.wide));
 </script>
 
 <div
 	class="segmented"
 	role="group"
 	aria-label={label}
-	style:--columns={options.length > 3 ? 2 : options.length}
+	style:--columns={narrow.length > 3 ? 2 : narrow.length}
 >
 	{#each options as option (option.value)}
 		<button
 			type="button"
+			class={{ wide: option.wide }}
 			aria-pressed={value === option.value}
 			onclick={() => (value = option.value)}
 		>
@@ -65,6 +71,10 @@
 		transition:
 			background-color 0.15s,
 			color 0.15s;
+	}
+
+	button.wide {
+		grid-column: 1 / -1;
 	}
 
 	button:hover {

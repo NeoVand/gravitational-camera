@@ -22,10 +22,11 @@
 			turns once a second, in opposite directions. In <strong>light</strong> the drums are identical.
 		</p>
 		<p>
-			A turning pair sends out <strong>gravitational waves</strong>. The camera cannot resolve the
-			pair, which is far smaller than the waves, but it reads their polarization: seen along the
-			shaft, the pattern of stretching turns the same way as the balls. Colour shows the sense of
-			turning.
+			A turning pair sends out <strong>gravitational waves</strong>. At the real speed of light the
+			pair is far smaller than its waves, and the camera cannot resolve it; the slowed light of this
+			view shortens the waves for display only. What the camera reads is their polarization: seen
+			along the shaft, the pattern of stretching turns the same way as the balls. Colour shows the
+			sense of turning.
 		</p>
 	{/snippet}
 </WaveDemo>

@@ -63,12 +63,20 @@ export interface FrameParams {
 	 * size of the tidal tensor there (in packed units), and the opacity of the
 	 * colours over the near-field image.
 	 */
-	field?: { depth: number; reference: number; opacity: number };
+	field?: {
+		depth: number;
+		reference: number;
+		opacity: number;
+		/** The wash's contrast, the decades added to its scale, what it is coloured by, the strokes' dark edge. */
+		look?: [number, number, number, number];
+		/** The strokes' cell in pixels (0 for none), half length in cells and half weight in pixels. */
+		strokes?: [number, number, number];
+	};
 }
 
 export class EngineUnavailable extends Error {}
 
-const FRAME_BYTES = 144;
+const FRAME_BYTES = 176;
 const NEAR_FORMAT: GPUTextureFormat = 'rgba16float';
 
 async function compile(device: GPUDevice, label: string, parts: string[]) {
@@ -249,6 +257,9 @@ export class Engine {
 		f.set([p.exclusion ?? 0.25, this.waveCount, p.waveExposure ?? 1, 0], 24);
 		u.set([this.primCount, p.left, p.right, (p.room ? 1 : 0) | (p.nearOutline ? 2 : 0)], 28);
 		f.set([p.field?.depth ?? 0, p.field?.reference ?? 1, p.field?.opacity ?? 0, 0], 32);
+		// left out, the look is that of the first picture (ORIGINAL_LOOK in lib/pixel/field-view.ts)
+		f.set(p.field?.look ?? [1, 0, 0, 0], 36);
+		f.set([...(p.field?.strokes ?? [26, 0.42, 0.8]), 0], 40);
 		return data;
 	}
 

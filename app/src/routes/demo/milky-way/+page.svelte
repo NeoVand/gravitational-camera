@@ -28,10 +28,11 @@
 			have left in gravitons: 0.905 K, warmer by a thousandth toward where we are heading.
 		</p>
 		<p class="fine">
-			Both pictures come from one model of the Galaxy (two discs, a bulge and a disc of dust) on one
-			logarithmic scale; stars are added to the light for orientation. Seeing the waves this sharply
-			would take a camera some 50 AU across: at three millihertz they are two-thirds of an
-			astronomical unit long. Drag to look around; the wheel zooms.
+			Both pictures come from one model of the Galaxy (two discs, a bulge and a disc of dust), each
+			on its own scale of brightness, the waves over three decades; stars are added to the light for
+			orientation. Seeing the waves this sharply would take a camera some 50 AU across: at three
+			millihertz they are two-thirds of an astronomical unit long. Drag to look around; the wheel
+			zooms.
 		</p>
 	{/snippet}
 	{#snippet physics()}
@@ -43,7 +44,7 @@
 		/>
 		<p>
 			Light has the dust’s opacity <Tex math={'\\kappa'} />, about one magnitude per kiloparsec in
-			the plane near the Sun, forty magnitudes toward the centre. Gravitational waves have
+			the plane near the Sun, thirty magnitudes toward the centre. Gravitational waves have
 			<Tex math={'\\tau = 0'} />: matter absorbs them some 10<sup>30</sup> times too weakly to matter.
 		</p>
 		<h4>The first light</h4>

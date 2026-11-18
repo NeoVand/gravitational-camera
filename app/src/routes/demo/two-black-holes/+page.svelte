@@ -1,6 +1,8 @@
 <script lang="ts">
 	import {
 		DashboardSpeed01Icon,
+		Image01Icon,
+		Layers01Icon,
 		PauseIcon,
 		PlayIcon,
 		ZoomInAreaIcon
@@ -17,13 +19,25 @@
 	// half the view, in wavelengths, on a logarithmic slider
 	let logReach = $state(Math.log10(0.5));
 	let motion: 'play' | 'pause' = $state('play');
+	/** The same switch as in every demo. Here the picture is itself the tidal field, so it starts on. */
+	let display = $state<'image' | 'field'>('field');
 
 	const reach = $derived(10 ** logReach);
 	const ratio = $derived(separationOverWavelength(speed));
 	/** For two holes of thirty Suns each: G M / c^3 of the pair, seconds. */
 	const GM_C3 = 60 * 4.925e-6;
+	/** Seconds in which one wave passes on screen. */
+	const SCREEN_PERIOD = 1.6;
+	/**
+	 * The separation is G M / (4 v²), so it is 6 G M / c², about where the last stable orbit lies, at
+	 * v = c / √24 = 0.204 c. The linearized model means nothing closer: the slider stops at its last step below
+	 * that, 0.2 c, where the holes are 6.25 G M / c² apart.
+	 */
+	const MAX_SPEED = 0.2;
 	const separation = $derived(GM_C3 / (4 * speed * speed)); // in units of c times a second
 	const frequency = $derived((8 * speed ** 3) / (Math.PI * GM_C3));
+	/** Seconds in which one wave truly passes: 1.6 s at 0.042 c, longer below it. */
+	const truePeriod = $derived(1 / frequency);
 	const wavelengthKm = $derived(299792.458 / frequency);
 	const toMerge = $derived((5 / 64) * (1 / (4 * speed * speed)) ** 4 * GM_C3);
 </script>
@@ -38,11 +52,25 @@
 
 <DemoShell title="Two black holes, inside out" onreset={() => (logReach = Math.log10(0.5))}>
 	{#snippet stage()}
-		<PairField {speed} {reach} playing={motion === 'play'} />
+		<PairField
+			{speed}
+			{reach}
+			playing={motion === 'play'}
+			period={SCREEN_PERIOD}
+			field={display === 'field'}
+		/>
 	{/snippet}
 
 	{#snippet controls()}
 		<Group title="View">
+			<Segmented
+				label="What the picture shows"
+				options={[
+					{ value: 'image', label: 'Image', icon: Image01Icon },
+					{ value: 'field', label: 'Tidal field', icon: Layers01Icon }
+				]}
+				bind:value={display}
+			/>
 			<Slider
 				id="reach"
 				label="Zoom"
@@ -69,7 +97,7 @@
 				label="Orbital speed"
 				icon={DashboardSpeed01Icon}
 				min={0.02}
-				max={0.3}
+				max={MAX_SPEED}
 				step={0.005}
 				bind:value={speed}
 				readout="{speed.toFixed(3)} c · {ratio.toFixed(3)} λ apart"
@@ -111,11 +139,13 @@
 			</div>
 		</dl>
 		<p class="fine">
-			The motion is slowed: one wave passes every 1.6 seconds here. The strength is left out of the
-			colours; it falls as the fifth power of the distance near the pair and only as the first power
-			in the waves. Inside the orbit the field is not shown. This is the exact solution of
-			linearized gravity for the pair’s quadrupole, which this close to a merger is a guide to the
-			full answer, not a substitute for it.
+			The motion is {truePeriod < SCREEN_PERIOD ? 'slowed' : 'quickened'}: one wave passes every
+			{SCREEN_PERIOD} seconds here, against
+			<Tex math={`${Number(truePeriod.toPrecision(2))}\\,\\mathrm{s}`} /> in truth. The strength is left
+			out of the colours; it falls as the fifth power of the distance near the pair and only as the first
+			power in the waves. Inside the orbit the field is not shown. This is the exact solution of linearized
+			gravity for the pair’s quadrupole, which this close to a merger is a guide to the full answer, not
+			a substitute for it.
 		</p>
 	{/snippet}
 

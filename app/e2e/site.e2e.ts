@@ -45,7 +45,8 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 		'Gravitational Camera: A Thought Experiment'
 	);
 	expect(await page.locator('.equation .katex').count()).toBeGreaterThanOrEqual(18);
-	expect(await page.locator('nav.contents li').count()).toBe(13);
+	// fourteen numbered sections and three appendices
+	expect(await page.locator('nav.contents li').count()).toBe(17);
 	expect(await page.locator('aside.plain').count()).toBeGreaterThanOrEqual(6);
 	await expect(page.locator('a.xref').first()).toBeVisible();
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
@@ -245,7 +246,7 @@ test('near-field demo can show the tidal field as a coloured slice', async ({ pa
 	await expect(page.locator('.tag.right')).toHaveText('Gravity · tidal field');
 	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 30_000 }).toBe('4');
 	await expect.poll(() => canvas.getAttribute('data-split'), { timeout: 30_000 }).toBe('0');
-	// diffusion-tensor colours: much of the picture is clearly coloured, not grey
+	// a wash coloured by the direction of the stretch: much of the picture is coloured, not grey
 	const coloured = await page.evaluate(() => {
 		const c = document.querySelector('canvas')!;
 		const d = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
@@ -338,17 +339,22 @@ test('blank mirror: the reflection is there in light and absent in gravity', asy
 	expect(distance(gravity.twin, gravity.plain), detail).toBeLessThan(8);
 });
 
-test('closed furnace: the hot iron glows through the steel, the cold one does not', async ({
+test('closed furnace: both blocks show through the steel, the hot one far the brighter', async ({
 	page
 }) => {
 	const demo = await openDemo(page, '/demo/closed-furnace/', { yaw: 13, pitch: -13 });
 	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
+	const block = sceneObject('closed-furnace', 'furnace-left-charge').center;
 	const hot = await demo.at(sceneObject('closed-furnace', 'furnace-right-charge').center);
-	const cold = await demo.at(sceneObject('closed-furnace', 'furnace-left-charge').center);
-	const detail = JSON.stringify({ hot, cold });
+	const cold = await demo.at(block);
+	// the air over the cold block, inside the same furnace: air is given no friction, so only the steel glows there
+	const air = await demo.at([block[0], 0.8, block[2]]);
+	const detail = JSON.stringify({ hot, cold, air });
 	expect(hot[0], detail).toBeGreaterThan(cold[0] + 80);
 	// warm colours: red leads blue in the glow
 	expect(hot[0], detail).toBeGreaterThan(hot[2] + 60);
+	// the cold iron sends as much per volume as the steel, and the line through it holds six times the metal
+	expect(cold[0], detail).toBeGreaterThan(air[0] + 5);
 });
 
 test('honey and water: honey glows, water barely does', async ({ page }) => {
@@ -458,6 +464,18 @@ async function sample(page: Page, fx: number, fy: number, r = 3) {
 		},
 		[fx, fy, r] as const
 	);
+}
+
+/** Open one of the sidebar's tabs, whatever is open now. */
+async function openTab(page: Page, name: string) {
+	const tab = page.getByRole('tab', { name, exact: true });
+	if ((await tab.getAttribute('aria-selected')) !== 'true') await tab.click();
+	await expect(tab).toHaveAttribute('aria-selected', 'true');
+}
+
+/** The demo's frame has read what it kept and answers clicks. */
+async function shellReady(page: Page) {
+	await page.locator('main[data-ready]').waitFor();
 }
 
 async function firstFrame(page: Page) {
@@ -710,11 +728,494 @@ test('behind the wall: one pixel knows someone walks, and stops knowing when the
 	await expect(page.getByText('all still')).toBeVisible();
 });
 
+test('tidal field, the Sun at midnight: the switch turns the gravity side into the field about the camera', async ({
+	page
+}) => {
+	await page.goto('/demo/sun-at-midnight/?present=readback');
+	const canvas = page.locator('canvas').first();
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('1');
+	const before = await canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL().length);
+	await page.getByRole('button', { name: 'Tidal field', exact: true }).click();
+	// the picture itself changes: the engine's field view, as in the rooms
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · tidal field');
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('4');
+	expect(await canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL().length)).not.toBe(before);
+	// the key says where the points lie, what the strokes and the colour mean and the ends of the scale, in s⁻²
+	const legend = page.getByTestId('field-legend');
+	await expect(legend).toContainText('on a sphere 1,995 km about the camera');
+	await expect(legend).toContainText('Colour is the direction of the stretch');
+	await expect(legend).toContainText(
+		/Strength: \d\.\d\d × 10⁻⁸ s⁻² to \d\.\d\d × 10⁻⁶ s⁻², logarithmic/
+	);
+	// the Key tab has the whole of it, with the scale drawn
+	await openTab(page, 'Key');
+	const key = page.getByTestId('field-key');
+	await expect(key).toContainText('Each fine stroke lies along the stretch');
+	await expect(key).toContainText('red across, green up and down, blue toward you');
+	await expect(key).toContainText(/Half the picture is\s+stronger than\s+\d\.\d\d × 10⁻⁶ s⁻²/);
+	await openTab(page, 'Controls');
+	// the slider's ticks are worked out from the scene: the Earth's shells, its centre and far side, the Moon, the Sun
+	const ticks = page.getByRole('group', { name: 'Places worth going to on “Slice”' });
+	await expect(ticks.getByRole('button')).toHaveCount(8);
+	await expect(
+		ticks.getByRole('button', { name: /^Go to the Sun, 149,60\d,\d{3} km$/ })
+	).toBeVisible();
+	const core = ticks.getByRole('button', { name: 'Go to the top of the outer core, 2,891 km' });
+	await core.click();
+	await expect(core).toHaveAttribute('aria-pressed', 'true');
+	await expect(legend).toContainText('on a sphere 2,891 km about the camera');
+	// a tick is a button, so the keyboard reaches it too
+	const centre = ticks.getByRole('button', { name: 'Go to the Earth’s centre, 6,371 km' });
+	await centre.focus();
+	await page.keyboard.press('Enter');
+	await expect(legend).toContainText('on a sphere 6,371 km about the camera');
+	// near by it is the ground's own tide in every direction
+	await page.locator('#slice').fill('0');
+	await expect(legend).toContainText('on a sphere 2.0 m about the camera');
+	await expect(legend).toContainText(/Strength: \d\.\d\d × 10⁻⁸ s⁻² to \d\.\d\d × 10⁻⁵ s⁻²/);
+	// nothing lies over the picture: the camera's own reading is under Physics, whatever the view
+	await expect(page.locator('.stage [data-testid]')).toHaveCount(0);
+	await openTab(page, 'Physics');
+	await expect(page.getByRole('heading', { name: 'The tidal field at the camera' })).toBeVisible();
+	const reading = page.getByTestId('tidal-reading');
+	// 2 G M / R^3 for the scene's Earth, along the vertical, and half of it across
+	await expect(reading.getByText('−3.06 × 10⁻⁶ s⁻²').first()).toBeVisible();
+	await expect(reading.getByText('up-down')).toBeVisible();
+	await expect(reading.getByText('+1.53 × 10⁻⁶ s⁻²')).toBeVisible();
+	await expect(reading.getByText('−1.80 × 10⁻¹³ s⁻²')).toBeVisible();
+	// the Sun's, 2 G M / d^3 for the real Sun's mass, and the Moon's against it: 1.80e-13 / 7.93e-14 = 2.26
+	await expect(reading.getByText('−7.93 × 10⁻¹⁴ s⁻²')).toBeVisible();
+	await expect(reading.getByText(/the real Sun’s mass/)).toBeVisible();
+	await expect(reading.getByText(/Here the Moon’s is 2\.3 times the Sun’s\./)).toBeVisible();
+	await expect(reading.getByText('exaggerated 2.0 × 10⁵ times')).toBeVisible();
+	await expect(reading.getByText(/what one pixel at the camera reads/)).toBeVisible();
+	expect(await reading.locator('svg[role="img"]').first().locator('circle.mass').count()).toBe(12);
+	// the reading follows the hour: at noon the Moon is on the far side of the Earth, and its tide is less
+	await openTab(page, 'Controls');
+	await page.locator('#time').fill('12');
+	await openTab(page, 'Physics');
+	await expect(reading.getByText('−1.67 × 10⁻¹³ s⁻²')).toBeVisible();
+});
+
+test('tidal field, which way it turns: the same switch shows the field of the drums, turning with the pairs', async ({
+	page
+}) => {
+	await page.goto('/demo/which-way/?present=readback');
+	const canvas = page.locator('canvas').first();
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('3');
+	await page.getByRole('button', { name: 'Tidal field', exact: true }).click();
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · tidal field');
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('4');
+	await expect(page.getByTestId('field-legend')).toContainText(
+		'on a sphere 4.5 m about the camera'
+	);
+	// the slice starts where the sphere meets the drums: the tick worked out from the scene says so
+	await expect(
+		page.getByRole('button', { name: 'Go to the three drums and the shelf, 4.5 m' })
+	).toHaveAttribute('aria-pressed', 'true');
+	// the pairs turn, so the field is drawn again and again
+	const drawn = Number(await canvas.getAttribute('data-frames'));
+	await expect
+		.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
+		.toBeGreaterThan(drawn);
+	// the room's part can be taken away, as in the rooms
+	await expect(page.getByRole('checkbox', { name: 'Room', exact: true })).toBeChecked();
+	// the steady tide, the turning part and the wave, each in s⁻², are under Physics
+	await page.getByRole('tab', { name: 'Physics' }).click();
+	const reading = page.getByTestId('tidal-reading');
+	await expect(reading.getByText('Steady: the average over a turn')).toBeVisible();
+	await expect(reading.getByText('now; at most 3.41 × 10⁻¹³ s⁻² over a turn')).toBeVisible();
+	await expect(reading.getByText('now; at most 1.42 × 10⁻⁴⁰ s⁻² over a turn')).toBeVisible();
+});
+
+test('tidal field, the sky: the same switch in the vista demos, and in the map of two black holes', async ({
+	page
+}) => {
+	const legend = page.getByTestId('field-legend');
+	const wash = page.locator('canvas[aria-label^="The tidal field"]');
+	const reading = page.getByTestId('tidal-reading');
+
+	// a black hole: the field of the hole at points about the camera, and its tide at the camera under Physics
+	await page.goto('/demo/black-hole/');
+	await shellReady(page);
+	await expect(wash).toHaveCount(0);
+	await page.getByRole('button', { name: 'Tidal field', exact: true }).click();
+	await expect(page.locator('.tag').last()).toHaveText('Gravity · tidal field');
+	// a wash over every pixel of the gravity side, and strokes over it
+	await expect
+		.poll(async () => Number(await wash.getAttribute('data-strokes')), { timeout: 60_000 })
+		.toBeGreaterThan(50);
+	await expect(legend).toContainText('on a sphere 40 GM/c² about the camera');
+	await expect(legend).toContainText(/Strength: \d\.\d\d × 10. s⁻² to \d\.\d\d × 10. s⁻²/);
+	// the ticks: the photon sphere and the horizon on either side of the hole's centre
+	await page.getByRole('button', { name: 'Go to the horizon, near side, 38 GM/c²' }).click();
+	await expect(legend).toContainText('on a sphere 38 GM/c² about the camera');
+	await openTab(page, 'Physics');
+	await expect(page.getByRole('heading', { name: 'The tidal field at the camera' })).toBeVisible();
+	await expect(reading.getByText('toward the hole', { exact: true })).toBeVisible();
+	await openTab(page, 'Controls');
+	await page.locator('#distance').fill('1.6');
+	await openTab(page, 'Physics');
+	await expect(reading.getByText('−1.31 × 10⁴ s⁻²').first()).toBeVisible();
+	await openTab(page, 'Controls');
+	await page.locator('#distance').fill('1.3');
+	await openTab(page, 'Physics');
+	await expect(reading.getByText('−1.04 × 10⁵ s⁻²').first()).toBeVisible();
+	await openTab(page, 'Controls');
+
+	// the Milky Way: the Galaxy's field about the Sun; at the Sun it is of order 1e-30 s⁻²
+	await page.goto('/demo/milky-way/');
+	await shellReady(page);
+	await page.getByRole('button', { name: 'Tidal field', exact: true }).click();
+	// a wash over every pixel of the gravity side, and strokes over it
+	await expect
+		.poll(async () => Number(await wash.getAttribute('data-strokes')), { timeout: 60_000 })
+		.toBeGreaterThan(50);
+	await expect(legend).toContainText('on a sphere 4.0 kpc about the Sun');
+	await page.getByRole('button', { name: 'Go to the Galaxy’s centre, 8.2 kpc' }).click();
+	await expect(legend).toContainText('on a sphere 8.2 kpc about the Sun');
+	await openTab(page, 'Physics');
+	await expect(reading.getByText('+3.54 × 10⁻³⁰ s⁻²')).toBeVisible();
+	await expect(reading.getByText('toward the Galaxy’s centre', { exact: true })).toBeVisible();
+	await openTab(page, 'Controls');
+
+	// two black holes: the picture is the field, so the switch starts on; off, the page says why nothing else shows
+	await page.goto('/demo/two-black-holes/');
+	await shellReady(page);
+	const on = page.getByRole('button', { name: 'Tidal field', exact: true });
+	await expect(on).toHaveAttribute('aria-pressed', 'true');
+	await page.getByRole('button', { name: 'Image', exact: true }).click();
+	await expect(page.getByText(/no camera picture here/)).toBeVisible();
+});
+
+test('tidal field, the rooms: the switch turns the gravity side into the field, near-field room and thermal room alike', async ({
+	page
+}) => {
+	const legend = page.getByTestId('field-legend');
+	const reading = page.getByTestId('tidal-reading');
+	const card = page.getByRole('complementary', { name: 'Tidal field at the camera' });
+
+	// a near-field room: over the weighted mass, a wash coloured by the field and strokes along its stretch
+	await page.goto('/demo/locked-safe/?present=readback');
+	const canvas = page.locator('canvas').first();
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('2');
+	const before = await canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL().length);
+	await expect(legend).toHaveCount(0);
+	await page.getByRole('button', { name: 'Tidal field', exact: true }).click();
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · tidal field');
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('4');
+	expect(await canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL().length)).not.toBe(before);
+	await expect(legend).toContainText('on a sphere 3.5 m about the camera');
+	await expect(legend).toContainText(/Strength: \d\.\d\d × 10⁻¹⁰ s⁻² to \d\.\d\d × 10⁻⁷ s⁻²/);
+	// the ticks of the slice are the distances of the things and the walls, worked out from the scene
+	const ticks = page.getByRole('group', { name: 'Places worth going to on “Slice”' });
+	await expect(ticks.getByRole('button')).toHaveCount(4);
+	await ticks.getByRole('button', { name: 'Go to the two safes, 3.8 m' }).click();
+	await expect(legend).toContainText('on a sphere 3.8 m about the camera');
+	await expect(ticks.getByRole('button', { name: 'Go to the back wall, 8.0 m' })).toBeVisible();
+	// nothing floats over the picture: what one pixel reads is under Physics
+	await expect(card).toHaveCount(0);
+	await expect(page.locator('.stage [data-testid]')).toHaveCount(0);
+	await openTab(page, 'Physics');
+	await expect(page.getByRole('heading', { name: 'The tidal field at the camera' })).toBeVisible();
+	await expect(reading.getByText('the gold', { exact: true })).toBeVisible();
+	await expect(reading.getByText('−7.22 × 10⁻¹⁰ s⁻²')).toBeVisible();
+	await expect(reading.getByText('−6.59 × 10⁻⁹ s⁻²')).toBeVisible();
+	// with the room taken away the gold and the safes are all of it
+	await openTab(page, 'Controls');
+	await page.getByRole('checkbox', { name: 'Room', exact: true }).uncheck();
+	// the reading is there whatever the view shows
+	await page.getByRole('button', { name: 'Image', exact: true }).click();
+	await openTab(page, 'Physics');
+	await expect(reading.getByText('taken away', { exact: true })).toBeVisible();
+	await expect(reading.getByText('With the empty room taken away')).toBeVisible();
+	await expect(reading.getByText('the gold', { exact: true })).toBeVisible();
+	await openTab(page, 'Controls');
+
+	// a thermal room has the same switch: its masses have a tidal field whatever the regime
+	await page.goto('/demo/closed-furnace/?present=readback');
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('1');
+	const glow = await canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL().length);
+	await page.getByRole('button', { name: 'Tidal field', exact: true }).click();
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · tidal field');
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('4');
+	expect(await canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL().length)).not.toBe(glow);
+	await expect(legend).toContainText('on a sphere 3.5 m about the camera');
+	await expect(page.getByRole('button', { name: 'Go to the two furnaces, 3.8 m' })).toBeVisible();
+	await expect(card).toHaveCount(0);
+	await openTab(page, 'Physics');
+	await expect(reading.getByText('the hot iron', { exact: true })).toBeVisible();
+	await expect(reading.getByText('−1.83 × 10⁻⁹ s⁻²').first()).toBeVisible();
+});
+
+test('tidal field, its look: colour and contrast change the picture, are kept across demos, and can be reset', async ({
+	page
+}) => {
+	await page.goto('/demo/locked-safe/?present=readback');
+	const canvas = page.locator('canvas').first();
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('2');
+	await page.getByRole('button', { name: 'Tidal field', exact: true }).click();
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('4');
+	/** The gravity side's mean colour and how far its colours spread from grey, 0 to 255. */
+	const tint = () =>
+		canvas.evaluate((c: HTMLCanvasElement) => {
+			const d = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
+			const from = Math.ceil(c.width * Number(c.dataset.split)) + 2;
+			const sum = [0, 0, 0];
+			let spread = 0;
+			let n = 0;
+			for (let y = 0; y < c.height; y += 3)
+				for (let x = from; x < c.width; x += 3) {
+					const o = (y * c.width + x) * 4;
+					for (let k = 0; k < 3; k++) sum[k] += d[o + k];
+					spread += Math.max(d[o], d[o + 1], d[o + 2]) - Math.min(d[o], d[o + 1], d[o + 2]);
+					n++;
+				}
+			return { mean: sum.map((v) => v / n), spread: spread / n };
+		});
+	const settled = async () => {
+		const frames = Number(await canvas.getAttribute('data-frames'));
+		await expect
+			.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
+			.toBeGreaterThan(frames);
+		return tint();
+	};
+	const far = (a: number[], b: number[]) => Math.max(...a.map((v, k) => Math.abs(v - b[k])));
+	const first = await tint();
+	const legend = page.getByTestId('field-legend');
+	await expect(legend).toContainText('Colour is the direction of the stretch');
+
+	// colour by strength, then by stretch against squeeze: each is another picture, and the key says which
+	await page.getByRole('button', { name: 'Strength', exact: true }).click();
+	await expect(legend).toContainText('Colour is the strength');
+	const byStrength = await settled();
+	expect(far(byStrength.mean, first.mean)).toBeGreaterThan(8);
+	await page.getByRole('button', { name: 'Stretch or squeeze', exact: true }).click();
+	await expect(legend).toContainText('Orange where stretch leads');
+	const bySign = await settled();
+	expect(far(bySign.mean, byStrength.mean)).toBeGreaterThan(8);
+	await page.getByRole('button', { name: 'Direction', exact: true }).click();
+	const again = await settled();
+	expect(far(again.mean, first.mean)).toBeLessThan(1);
+
+	// contrast: less of it and the wash's colours draw in toward grey
+	const contrast = page.locator('#look-contrast');
+	await expect(contrast).toHaveValue('1.2');
+	await contrast.fill('0.5');
+	await expect(page.locator('output[for="look-contrast"]')).toHaveText('50%');
+	const pale = await settled();
+	expect(pale.spread).toBeLessThan(0.6 * first.spread);
+
+	// the strength scale's reading is the strength drawn at full, in s⁻², and the key follows it
+	await page.locator('#look-scale').fill('1');
+	await expect(page.locator('output[for="look-scale"]')).toHaveText(/\d\.\d\d × 10⁻⁸ s⁻²/);
+	await expect(legend).toContainText(/to \d\.\d\d × 10⁻⁸ s⁻²/);
+
+	// the look is one for every demo
+	await page.goto('/demo/closed-furnace/?present=readback');
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('1');
+	await page.getByRole('button', { name: 'Tidal field', exact: true }).click();
+	await expect(page.locator('#look-contrast')).toHaveValue('0.5');
+	await expect(page.locator('#look-scale')).toHaveValue('1');
+	// strokes can be put away, and everything brought back at once
+	await page.getByText('Strokes', { exact: true }).click();
+	await page.getByRole('checkbox', { name: 'Draw strokes along the stretch' }).uncheck();
+	await expect(page.locator('#look-density')).toHaveCount(0);
+	await page.getByRole('button', { name: 'Reset look' }).click();
+	await expect(page.locator('#look-contrast')).toHaveValue('1.2');
+	await expect(page.locator('#look-scale')).toHaveValue('0');
+	await expect(page.locator('#look-density')).toHaveValue('1');
+	await expect(page.getByRole('button', { name: 'Reset look' })).toBeDisabled();
+});
+
+test('the locked safe: the camera at work reads, decides and images, and its error falls as the SNR rises', async ({
+	page
+}) => {
+	await page.goto('/demo/locked-safe/');
+	await page.getByRole('button', { name: 'The camera at work', exact: true }).click();
+	const bench = page.getByRole('region', { name: 'The camera at work' });
+	await expect(bench).toBeVisible();
+	// it opens at a signal-to-noise ratio of 1,000: 605 readings, a decision, and an image that cannot weigh a safe
+	await expect(
+		bench.getByText(/605 readings, every one with noise of 3\.53 × 10⁻¹¹ s⁻²/)
+	).toBeVisible();
+	expect(await bench.getByTestId('readings').locator('canvas').count()).toBe(5);
+	const choice = bench.getByTestId('choice');
+	const error = bench.getByTestId('error');
+	const distance = bench.getByTestId('distance');
+	await expect(choice).toHaveText('Gold in the right safe');
+	await expect(error).toHaveText('1 in 10¹⁷⁸³');
+	await expect(distance).toHaveText('181 standard deviations apart');
+	await expect(bench.getByTestId('mass-right')).toHaveText(/± 729 kg$/);
+	await expect(bench.getByTestId('mass-left')).toHaveText(/± 729 kg$/);
+	await expect(bench.getByTestId('verdict')).toHaveText(/cannot say where the gold is/);
+	await expect(bench.getByTestId('bar-point')).toHaveText('0.58 standard deviations');
+
+	// the paper's two cases: wrong 18% of the time at 10, once in a thousand at 34
+	const chanceOfError = async () => Number(await error.getAttribute('data-error'));
+	await page.getByRole('button', { name: 'Signal-to-noise ratio 10', exact: true }).click();
+	await expect(error).toHaveText('18% of the time');
+	await expect(distance).toHaveText('1.81 standard deviations apart');
+	await expect(bench.getByTestId('mass-right')).toHaveText(/± 947 kg$/);
+	const atTen = await chanceOfError();
+	expect(atTen).toBeCloseTo(0.1826, 4);
+	await page.getByRole('button', { name: 'Signal-to-noise ratio 34', exact: true }).click();
+	await expect(error).toHaveText('0.10% of the time');
+	expect(await chanceOfError()).toBeLessThan(atTen / 100);
+	// and along the slider the error only falls
+	let last = 1;
+	for (const decades of [0, 0.5, 1, 1.5, 2]) {
+		await page.locator('#snr').fill(String(decades));
+		await expect
+			.poll(async () => Number(await bench.getAttribute('data-snr')))
+			.toBeCloseTo(10 ** decades, 9);
+		const now = await chanceOfError();
+		expect(now).toBeLessThan(last);
+		last = now;
+	}
+
+	// a new exposure is a new draw of the noise; the count of decisions goes up
+	const central = bench.getByTestId('central');
+	const first = await central.innerText();
+	await page.getByRole('button', { name: 'New exposure' }).click();
+	await expect(bench.getByTestId('tally')).toHaveText(/^right \d, left \d$/);
+	await expect(bench.getByText('The 2 exposures at these settings')).toBeVisible();
+	expect(await central.innerText()).not.toBe(first);
+
+	// positivity finds the gold where the Gaussian image could not
+	await page.getByRole('button', { name: 'Signal-to-noise ratio 1,000', exact: true }).click();
+	await page.getByRole('checkbox', { name: 'Positivity' }).check();
+	await expect(bench.getByTestId('verdict')).toHaveText(/The right footprint holds mass/);
+	const found = (await bench.getByTestId('mass-right').innerText()).match(/^(\d+) ± (\d+) kg$/);
+	expect(found).not.toBeNull();
+	expect(Number(found![1])).toBeGreaterThan(250);
+	expect(Number(found![1])).toBeLessThan(380);
+	expect(Number(found![2])).toBeLessThan(60);
+	await page.getByRole('checkbox', { name: 'Positivity' }).uncheck();
+
+	// a sphere and a point: the view says the readings are identical, and they are
+	await page.getByRole('button', { name: 'Sphere', exact: true }).click();
+	await expect(bench.getByTestId('inside')).toHaveText('a gold sphere in the right safe');
+	await expect(bench.getByTestId('sphere-point')).toHaveText('0.000 standard deviations');
+	await expect(bench.getByText(/Put the point in its place and no reading changes/)).toBeVisible();
+	const sphere = await central.innerText();
+	await page.getByRole('button', { name: 'Point', exact: true }).click();
+	await expect(bench.getByTestId('inside')).toHaveText('a point mass in the right safe');
+	expect(await central.innerText()).toBe(sphere);
+
+	// nothing inside: asked to choose a safe, the camera says that neither fits
+	await page.getByRole('button', { name: 'Nothing', exact: true }).click();
+	await expect(choice).toHaveText('Neither fits the readings');
+	await expect(bench.getByTestId('fit')).toHaveText(/χ² = [\d,]+ for 605 readings/);
+});
+
+test('the sidebar: one docked panel of tabs that collapses to a rail, gives the picture its width, and is remembered', async ({
+	page
+}) => {
+	await page.goto('/demo/locked-safe/?present=readback');
+	await shellReady(page);
+	const canvas = page.locator('canvas').first();
+	await firstFrame(page);
+	const width = async () => (await canvas.boundingBox())!.width;
+	const tab = (name: string) => page.getByRole('tab', { name, exact: true });
+	const panel = page.getByRole('tabpanel');
+
+	// it opens on the controls, with the title and the way back in the sidebar and nothing over the picture
+	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
+	await expect(panel.getByRole('button', { name: 'Tidal field', exact: true })).toBeVisible();
+	await expect(page.getByRole('heading', { name: 'The locked safe', level: 1 })).toBeVisible();
+	await expect(page.getByRole('link', { name: 'All demos' })).toHaveAttribute('href', /\/demo\/?$/);
+	await expect(page.locator('.stage').locator('aside, [role="dialog"], nav')).toHaveCount(0);
+	const beside = await width();
+	const side = (await page.locator('aside').boundingBox())!;
+	expect(beside + side.width).toBeCloseTo(page.viewportSize()!.width, 0);
+
+	// the open tab's own icon puts the panel away: the rail stays, and the picture takes the width
+	await tab('Controls').click();
+	await expect(panel).toHaveCount(0);
+	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'false');
+	await expect.poll(width).toBeGreaterThan(beside + 300);
+	const wide = await width();
+	const rail = (await page.locator('aside').boundingBox())!;
+	expect(rail.width).toBeLessThan(80);
+	// the picture is drawn again at its new size
+	const frames = Number(await canvas.getAttribute('data-frames'));
+	await expect
+		.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
+		.toBeGreaterThan(frames);
+	expect(await canvas.evaluate((c: HTMLCanvasElement) => c.width / c.clientWidth)).toBeCloseTo(
+		1,
+		1
+	);
+	// at the new size the divider still answers, where it is drawn, and a still can be saved
+	const divider = page.getByRole('slider', {
+		name: 'Divider between the light view and the gravity view'
+	});
+	const at = (await divider.boundingBox())!;
+	const split = Number(await canvas.getAttribute('data-split'));
+	expect((at.x + at.width / 2) / wide).toBeCloseTo(split, 1);
+	await divider.focus();
+	await page.keyboard.press('ArrowLeft');
+	await expect
+		.poll(async () => Number(await canvas.getAttribute('data-split')))
+		.toBeLessThan(split);
+	const still = page.waitForEvent('download');
+	await page.getByRole('button', { name: 'Save a still' }).click();
+	expect((await still).suggestedFilename()).toBe('the-locked-safe.png');
+
+	// a tab's icon on the rail opens the panel at that tab
+	await tab('Physics').click();
+	await expect(tab('Physics')).toHaveAttribute('aria-selected', 'true');
+	await expect(panel.getByRole('heading', { name: 'The tidal field at the camera' })).toBeVisible();
+	await expect.poll(width).toBeCloseTo(beside, 0);
+
+	// the tabs are a list of tabs: the arrow keys walk them, and the keys of old still work
+	await tab('Physics').focus();
+	await page.keyboard.press('ArrowDown');
+	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
+	await expect(tab('Controls')).toBeFocused();
+	await page.keyboard.press('ArrowUp');
+	await page.keyboard.press('ArrowUp');
+	await expect(tab('About')).toHaveAttribute('aria-selected', 'true');
+	await expect(panel).toContainText('Two steel safes stand in a room');
+	await page.keyboard.press('c');
+	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
+	await page.keyboard.press('c');
+	await expect(panel).toHaveCount(0);
+	await page.keyboard.press('?');
+	await expect(panel).toContainText('reset the view, save a still');
+	await page.keyboard.press('n');
+	await expect(tab('About')).toHaveAttribute('aria-selected', 'true');
+
+	// the tab and whether the panel is open are kept, here and in the next demo
+	await tab('Physics').click();
+	await page.reload();
+	await shellReady(page);
+	await expect(tab('Physics')).toHaveAttribute('aria-selected', 'true');
+	await tab('Physics').click();
+	await page.goto('/demo/closed-furnace/?present=readback');
+	await shellReady(page);
+	await expect(panel).toHaveCount(0);
+	await expect.poll(width).toBeCloseTo(wide, 0);
+	await tab('Controls').click();
+	await expect(panel.getByRole('button', { name: 'Tidal field', exact: true })).toBeVisible();
+
+	// "hide the interface" hides the rail too
+	await page.getByRole('button', { name: 'Hide the interface' }).click();
+	await expect(page.locator('aside')).toHaveCount(0);
+	await expect.poll(width).toBe(page.viewportSize()!.width);
+	await page.getByRole('button', { name: /Show the interface/ }).click();
+	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
+});
+
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();
 	await page.goto('/demo/milky-way/?present=readback');
-	await page.getByRole('button', { name: 'Controls', exact: true }).click();
+	// on a phone the panel starts put away: the bar of tabs along the bottom opens it as a sheet
+	await shellReady(page);
+	await expect(page.locator('#fov')).toHaveCount(0);
+	await openTab(page, 'Controls');
 	const slider = page.locator('#fov');
 	const box = (await slider.boundingBox())!;
 	// a finger is given a larger target

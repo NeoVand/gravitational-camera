@@ -37,7 +37,7 @@ export const demos: DemoEntry[] = [
 		affordance: 'Nothing can hide',
 		regime: 'near field',
 		summary:
-			'Mass has only one sign, so there is no shield, cloak or camouflage. What is inside a steel safe is as plain as what is outside.'
+			'Mass has only one sign, so there is no shield and no cloak: a pull can be disguised but never cancelled. What is inside a steel safe is felt as plainly as what is outside.'
 	},
 	{
 		slug: 'full-or-empty',
@@ -45,7 +45,7 @@ export const demos: DemoEntry[] = [
 		affordance: 'Weigh by looking',
 		regime: 'near field',
 		summary:
-			'Light reports surfaces; gravity reports mass. Two tanks that look identical differ at a glance.'
+			'Light reports surfaces; gravity reports mass. Three tanks that look identical differ at a glance.'
 	},
 	{
 		slug: 'blank-mirror',

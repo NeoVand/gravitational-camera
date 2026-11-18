@@ -5,6 +5,7 @@
 	 * of the camera. Dragging looks around; the wheel zooms. The vista demos'
 	 * counterpart of SplitView, drawn by lib/vistas/sky.ts.
 	 */
+	import type { Snippet } from 'svelte';
 	import { asset } from '$app/paths';
 	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
 	import { Sun03Icon } from '@hugeicons/core-free-icons';
@@ -26,6 +27,8 @@
 		rightIcon: IconSvgElement;
 		/** Still image shown until the sky is drawn. */
 		poster?: string;
+		/** Drawn over the right-hand (gravity) side. */
+		overlay?: Snippet;
 	}
 
 	let {
@@ -39,7 +42,8 @@
 		range,
 		rightLabel,
 		rightIcon,
-		poster
+		poster,
+		overlay
 	}: Props = $props();
 
 	const MIN_FOV = (2 * Math.PI) / 180;
@@ -205,6 +209,9 @@
 	></canvas>
 
 	{#if status === 'running'}
+		{#if overlay && divider < 1}
+			<div class="right-side" style:left="{divider * 100}%">{@render overlay()}</div>
+		{/if}
 		{#if divider > 0.12}
 			<span
 				class="tag"
@@ -254,6 +261,14 @@
 </div>
 
 <style>
+	.right-side {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		pointer-events: none;
+	}
+
 	.frame {
 		position: relative;
 		width: 100%;

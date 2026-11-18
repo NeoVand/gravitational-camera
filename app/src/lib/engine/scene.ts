@@ -299,9 +299,31 @@ export function packPrims(
 }
 
 /**
+ * The chord through a ball of radius R, integrated over the solid angle it fills as seen from a distance D > R
+ * of its centre: the integral of dV / r² over the ball, 2πR − π (D² − R²)/D · ln((D + R)/(D − R)). For a small
+ * ball that is a difference of nearly equal numbers, so its series is summed instead; the first term is V / D².
+ */
+function ballOverSky(R: number, D: number): number {
+	const x = R / D;
+	if (x >= 0.1) {
+		return 2 * Math.PI * R - ((Math.PI * (D * D - R * R)) / D) * Math.log((D + R) / (D - R));
+	}
+	let sum = 0;
+	for (let k = 0, p = 1; k < 12; k++, p *= x * x) sum += p / ((2 * k + 1) * (2 * k + 3));
+	return 4 * Math.PI * R * x * x * sum;
+}
+
+/**
  * Gravitons per second that everything in a view sends to a detector of one
  * square metre facing it: the number radiance integrated over the picture's
- * solid angle, on a grid of directions.
+ * solid angle.
+ *
+ * Most of it is added up on a grid of directions. A grid misses what is small:
+ * the Sun's core from the Earth is a twentieth of a cell across. So a ball seen
+ * from outside whose disc lies wholly in the view is added exactly instead,
+ * and a body too small for the grid that crosses the edge of the view (or is
+ * a box) counts whole, as a point, when its centre is in view. Neither is then
+ * sampled, so nothing is counted twice.
  */
 export function gravitonsInView(
 	objects: AnalyzedObject[],
@@ -315,20 +337,72 @@ export function gravitonsInView(
 	const ny = 40;
 	const dx = (2 * tanHalfWidth) / nx;
 	const dy = (2 * tanHalfHeight) / ny;
+	const { right, up, forward } = basis;
+	const dot = (a: Vec3, b: Vec3) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+	// inward unit normals of the four planes that bound the view
+	const sides = [
+		[tanHalfWidth, -1, 0],
+		[tanHalfWidth, 1, 0],
+		[tanHalfHeight, 0, -1],
+		[tanHalfHeight, 0, 1]
+	].map(([f, r, u]) => {
+		const n = Math.hypot(f, r, u);
+		return [0, 1, 2].map((k) => (f * forward[k] + r * right[k] + u * up[k]) / n) as Vec3;
+	});
+
 	let total = 0;
+	/** What is left to the grid: each object with its emissivity over its parent's. */
+	const sampled: [AnalyzedObject, number][] = [];
+	for (const o of objects) {
+		if (subtractRoom && o.background) continue;
+		const weight = o.jN - (o.parent >= 0 ? objects[o.parent].jN : 0);
+		if (weight === 0) continue;
+		const c: Vec3 = [o.center[0] - origin[0], o.center[1] - origin[1], o.center[2] - origin[2]];
+		const dist = Math.hypot(c[0], c[1], c[2]);
+		if (dist > o.radius) {
+			// sines of its angular radius, and of the angle from its centre to the nearest edge (positive inside)
+			const sine = o.radius / dist;
+			const margin = Math.min(...sides.map((n) => dot(n, c))) / dist;
+			if (margin <= -sine) continue; // wholly out of view
+			if (!o.half && margin >= sine) {
+				total += weight * ballOverSky(o.radius, dist);
+				continue;
+			}
+			const ahead = dot(c, forward);
+			if (ahead > 0) {
+				const x = dot(c, right) / ahead;
+				const y = dot(c, up) / ahead;
+				// how far across the grid's plane it reaches, at most
+				const across = 2 * Math.asin(sine) * (1 + x * x + y * y);
+				if (across < Math.min(dx, dy)) {
+					if (margin < 0) continue;
+					if (!o.half) total += weight * ballOverSky(o.radius, dist);
+					else {
+						// a small box: V / D², and the next term of dV / r² about its centre
+						const h = o.half;
+						const along = (c[0] * h[0]) ** 2 + (c[1] * h[1]) ** 2 + (c[2] * h[2]) ** 2;
+						const next = ((4 * along) / (dist * dist) - dot(h, h)) / (3 * dist * dist);
+						total += ((weight * 8 * h[0] * h[1] * h[2]) / (dist * dist)) * (1 + next);
+					}
+					continue;
+				}
+			}
+		}
+		sampled.push([o, weight]);
+	}
+
 	for (let j = 0; j < ny; j++)
 		for (let i = 0; i < nx; i++) {
 			const x = -tanHalfWidth + (i + 0.5) * dx;
 			const y = -tanHalfHeight + (j + 0.5) * dy;
-			const d: Vec3 = [0, 1, 2].map(
-				(k) => basis.forward[k] + x * basis.right[k] + y * basis.up[k]
-			) as Vec3;
+			const d: Vec3 = [0, 1, 2].map((k) => forward[k] + x * right[k] + y * up[k]) as Vec3;
 			const n = Math.hypot(...d);
 			const dir: Vec3 = [d[0] / n, d[1] / n, d[2] / n];
 			// solid angle of a cell of the tangent plane: dx dy / (1 + x² + y²)^(3/2)
 			const solid = (dx * dy) / (1 + x * x + y * y) ** 1.5;
-			total +=
-				columnsAlong(objects, origin, dir, DEFAULT_EXCLUSION, subtractRoom).numberRadiance * solid;
+			let radiance = 0;
+			for (const [o, weight] of sampled) radiance += chordThrough(o, origin, dir) * weight;
+			total += radiance * solid;
 		}
 	return total;
 }

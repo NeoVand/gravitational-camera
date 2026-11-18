@@ -24,6 +24,8 @@ struct Frame {
   near: vec4f,      // x: exclusion radius around the observer; y: number of wave sources; z: wave exposure
   counts: vec4u,    // number of prims, left mode, right mode, flags (1: room lighting, 2: outline of the light picture in the gravity views)
   field: vec4f,     // field view: depth of the slice (m), typical tensor size there, opacity; w unused
+  look: vec4f,      // field view's look: contrast of the wash (1 as first drawn), decades added to the strength scale, colour by (0 direction, 1 strength, 2 stretch against squeeze), darkness of the strokes' edge
+  strokes: vec4f,   // field view's strokes: cell in pixels (0 for none), half length in cells, half weight in pixels; w unused
 }
 
 const FLAG_FAR: u32 = 1u;

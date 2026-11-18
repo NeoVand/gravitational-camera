@@ -61,9 +61,8 @@
 			This beam has <Tex math={`\\lambda = ${texSci(perMetre)}\\,\\mathrm{kg/m}`} />: the 3.4 m
 			between laser and dump pull like <Tex math={`${texSci(beamMass)}\\,\\mathrm{kg}`} />, about <Tex
 				math={texSci(hydrogen)}
-			/> hydrogen atoms. Against the room it is a change of about one part in <Tex
-				math={'10^{22}'}
-			/>, which the camera can only see by subtracting the reading with the laser off. The demo
+			/> hydrogen atoms. That is a change of about five parts in <Tex math={'10^{25}'} /> of the tide
+			of the room, which the camera can only see by subtracting the reading with the laser off. The demo
 			starts at <Tex math={'\\mathrm{SNR} = 10^{40}'} /> for that reason.
 		</p>
 	{/snippet}

@@ -5,6 +5,7 @@
 	 * sensitivity leaves.
 	 */
 	import type { Snippet } from 'svelte';
+	import type { IconSvgElement } from '@hugeicons/svelte';
 	import { posters } from '../demos/posters';
 	import {
 		ContrastIcon,
@@ -42,6 +43,12 @@
 	import Tex from './Tex.svelte';
 	import FlowField from './FlowField.svelte';
 	import PixelProbe from './PixelProbe.svelte';
+	import TidalReading from './TidalReading.svelte';
+	import FieldLegend from './FieldLegend.svelte';
+	import FieldLookControls from './FieldLookControls.svelte';
+	import { massPoints, sliceReference } from '../engine/tidal';
+	import { roomSlices } from '../pixel/slices';
+	import { ROOM_SOURCES, roomReading } from '../pixel/tide-demos';
 	import { C } from '../engine/physics/constants';
 	import { cutoff } from '../engine/resolution';
 
@@ -69,6 +76,18 @@
 		extraOverlay?: Snippet;
 		/** Start with the "Pixel" layer on. */
 		startProbe?: boolean;
+		/**
+		 * A third view, in place of the picture: the camera's measurement and what is computed from it, for a demo
+		 * that has the computation (the locked safe). Its stage is laid over the picture and its controls take the
+		 * place of the picture's.
+		 */
+		work?: {
+			label: string;
+			icon: IconSvgElement;
+			stage: Snippet;
+			controls: Snippet;
+			notes?: Snippet;
+		};
 	}
 
 	let {
@@ -85,7 +104,8 @@
 		physicsExtra,
 		extraControls,
 		extraOverlay,
-		startProbe = false
+		startProbe = false,
+		work
 	}: Props = $props();
 
 	const DEG = Math.PI / 180;
@@ -103,7 +123,7 @@
 	let sensitivity = $state(startSensitivity);
 	// svelte-ignore state_referenced_locally
 	let brightness = $state(startBrightness);
-	let display: 'image' | 'pixels' = $state('image');
+	let display = $state<'image' | 'pixels' | 'work'>('image');
 	// svelte-ignore state_referenced_locally
 	let sliceDepth = $state(subjectDistance);
 	// svelte-ignore state_referenced_locally
@@ -163,12 +183,50 @@
 	const centre = $derived(
 		columnsAlong(objects, observer, cameraBasis(view).forward, exclusion, subtractRoom)
 	);
+	// the tidal tensor at the camera itself, by source: what one pixel there reads
+	const tide = $derived(roomReading(scene.name, objects, observer, subtractRoom));
+	// the field view's scale, as the picture itself sets it (SplitView): the median strength over the slice
+	const fieldScale = $derived(
+		display === 'pixels'
+			? sliceReference(
+					massPoints(objects, 0.25, subtractRoom),
+					observer,
+					view,
+					splitView?.aspect() ?? 1.6,
+					sliceDepth
+				)
+			: 1
+	);
+	// where the sphere of points meets something: each thing in the room, each wall and the floor
+	const sliceMarks = $derived(
+		roomSlices(objects, observer, 0.45, ROOM_SOURCES[scene.name]?.groups).map((m) => ({
+			at: m.at,
+			label: `${m.label}, ${length(m.at)}`
+		}))
+	);
 </script>
+
+{#snippet fieldKey()}
+	<FieldLegend
+		where="on a sphere {length(sliceDepth)} about the camera"
+		reference={fieldScale}
+		full
+	/>
+{/snippet}
+
+{#snippet status()}
+	{#if display === 'pixels'}
+		<FieldLegend where="on a sphere {length(sliceDepth)} about the camera" reference={fieldScale} />
+	{/if}
+	{#if probe}<PixelProbe {objects} {observer} {view} brief />{/if}
+{/snippet}
 
 <DemoShell
 	title={scene.title}
-	onreset={() => (view = { ...START })}
-	onsave={() => splitView?.snapshot() ?? Promise.resolve(null)}
+	legend={display === 'pixels' ? fieldKey : undefined}
+	foot={display === 'pixels' || probe ? status : undefined}
+	onreset={display === 'work' ? undefined : () => (view = { ...START })}
+	onsave={display === 'work' ? undefined : () => splitView?.snapshot() ?? Promise.resolve(null)}
 >
 	{#snippet stage()}
 		<SplitView
@@ -182,133 +240,83 @@
 			{showLight}
 			{showGravity}
 			leftMode={MODE_LIGHT}
-			rightMode={gravity === 'thermal'
-				? MODE_THERMAL
-				: display === 'pixels'
-					? MODE_FIELD
+			rightMode={display === 'pixels'
+				? MODE_FIELD
+				: gravity === 'thermal'
+					? MODE_THERMAL
 					: MODE_NEAR}
 			fieldDepth={sliceDepth}
-			exposure={(gravity === 'near' ? 2.2 : 1.6) * 10 ** brightness}
+			exposure={(gravity === 'near' || display === 'pixels' ? 2.2 : 1.6) * 10 ** brightness}
 			nearBlur={blurSigma}
 			{exclusion}
 			room
 			{outline}
 			{subtractRoom}
-			rightLabel={gravity === 'thermal'
-				? 'Gravity · thermal'
-				: display === 'image'
-					? spinning.length && flow
+			rightLabel={display === 'pixels'
+				? 'Gravity · tidal field'
+				: gravity === 'thermal'
+					? 'Gravity · thermal'
+					: spinning.length && flow
 						? 'Gravity · near field and flow'
-						: 'Gravity · near field'
-					: 'Gravity · tidal field'}
+						: 'Gravity · near field'}
 		>
 			{#snippet overlay()}
 				{#if gravity === 'near' && display === 'image' && flow && spinning.length}
 					<FlowField {objects} {observer} {view} {exclusion} blur={flowBlur / 2.355} {split} />
 				{/if}
-				{#if probe}
-					<PixelProbe {objects} {observer} {view} />
-				{/if}
 				{@render extraOverlay?.()}
 			{/snippet}
 		</SplitView>
+		{#if display === 'work' && work}{@render work.stage()}{/if}
+	{/snippet}
+
+	{#snippet pixel()}
+		<PixelProbe {objects} {observer} {view} />
 	{/snippet}
 
 	{#snippet controls()}
-		{@render extraControls?.()}
-		{#if gravity === 'near'}
-			<Group title="View">
-				<Segmented
-					label="What the gravity side shows"
-					options={[
-						{ value: 'image', label: 'Image', icon: Image01Icon },
-						{ value: 'pixels', label: 'Tidal field', icon: Layers01Icon }
-					]}
-					bind:value={display}
-				/>
-				{#if display === 'pixels'}
-					<Slider
-						id="slice"
-						label="Slice"
-						icon={Layers01Icon}
-						min={0.6}
-						max={9}
-						step={0.05}
-						bind:value={sliceDepth}
-						readout="{length(sliceDepth)} away"
-						ends={['near', 'far']}
-					/>
-				{/if}
-			</Group>
-		{/if}
-		<Group title="Camera">
-			{#if gravity === 'near'}
-				<Slider
-					id="sensitivity"
-					label="Sensitivity"
-					icon={Radar01Icon}
-					min={1}
-					max={60}
-					step={0.5}
-					bind:value={sensitivity}
-					readout="10{superscript(sensitivity)} · blur {(blurAngle / DEG).toFixed(1)}°"
-					ends={['noisy', 'sharp']}
-				/>
-			{/if}
-			<Slider
-				id="brightness"
-				label="Exposure"
-				icon={ContrastIcon}
-				min={-1.5}
-				max={1.5}
-				step={0.05}
-				bind:value={brightness}
-				readout="× {(10 ** brightness).toFixed(brightness < 0 ? 2 : 1)}"
+		<Group title="View">
+			<Segmented
+				label="What the gravity side shows"
+				options={[
+					{ value: 'image', label: 'Image', icon: Image01Icon },
+					{ value: 'pixels', label: 'Tidal field', icon: Layers01Icon },
+					...(work
+						? [{ value: 'work' as const, label: work.label, icon: work.icon, wide: true }]
+						: [])
+				]}
+				bind:value={display}
 			/>
 		</Group>
-		<Group title="Layers">
-			<div class="toggles">
-				<Toggle icon={Sun03Icon} label="Light" bind:checked={showLight} />
-				<Toggle
-					icon={gravity === 'near' ? Orbit01Icon : TemperatureIcon}
-					label="Gravity"
-					bind:checked={showGravity}
+		{#if display === 'pixels'}
+			<FieldLookControls reference={fieldScale}>
+				<Slider
+					id="slice"
+					label="Slice"
+					icon={Layers01Icon}
+					min={0.6}
+					max={9}
+					step={0.05}
+					bind:value={sliceDepth}
+					readout="{length(sliceDepth)} away"
+					ends={['near', 'far']}
+					marks={sliceMarks}
 				/>
-				<Toggle
-					icon={DashedLineCircleIcon}
-					label="Outline"
-					hint="A faint copy of the shapes in the light picture, to match masses to objects"
-					bind:checked={outline}
-				/>
-				{#if spinning.length && gravity === 'near'}
-					<Toggle
-						icon={Rotate01Icon}
-						label="Flow"
-						hint="The mass currents that the gravitomagnetic half of each pixel records, shown magnified"
-						bind:checked={flow}
-					/>
-				{/if}
-				<Toggle
-					icon={Target02Icon}
-					label="Pixel"
-					hint="What a single pixel at the camera reads: its four stars, its type, and whether anything turns"
-					bind:checked={probe}
-				/>
-				{#if hasRoom}
-					<Toggle
-						icon={Home03Icon}
-						label="Room"
-						hint="The pull and glow of the empty room, its floor and walls. Turn it off to subtract them: gravity adds up, so this is exact."
-						bind:checked={() => !subtractRoom, (on) => (subtractRoom = !on)}
-					/>
-				{/if}
-			</div>
-		</Group>
+			</FieldLookControls>
+		{/if}
+		{#if display !== 'work'}{@render extraControls?.()}{/if}
+		{#if display === 'work' && work}
+			{@render work.controls()}
+		{:else}
+			{@render pictureControls()}
+		{/if}
 	{/snippet}
 
 	{#snippet notes()}
 		{@render intro()}
-		{#if gravity === 'near'}
+		{#if display === 'work' && work?.notes}
+			{@render work.notes()}
+		{:else if gravity === 'near'}
 			<dl>
 				<div>
 					<dt>Smallest detail at {length(subjectDistance)}</dt>
@@ -320,12 +328,24 @@
 				</div>
 			</dl>
 			<p class="fine">
-				The gravity side is the expected reconstruction: mass along each line of sight, weighted by
-				the inverse of its distance, blurred by the limit that noise sets. “Outline” adds a faint
-				copy of the shapes in the ordinary picture so they can be matched to masses. “Tidal field”
-				shows what the camera records before any image is computed: the tensor at every point of a
-				slice through the room, all at the distance from the camera the slider sets.
+				The gravity side is an idealization: the mass of the known scene along each line of sight,
+				weighted by the inverse of its distance, blurred by the paper’s resolution law. It is what
+				an array as wide as the scene is deep would compute, with no noise and without the
+				arrangements of mass the camera cannot tell apart. “Outline” adds a faint copy of the shapes
+				in the ordinary picture so they can be matched to masses. “Tidal field” shows the field in
+				the room, of which the camera reads the value at its own place: the tensor at every point of
+				a slice through the room, all at the distance from the camera the slider sets. The colour is
+				the direction of the stretch there and the fine strokes lie along it; the ticks on the
+				slider mark where the slice meets something, and the controls under “Tidal field” set how it
+				is drawn. What one pixel reads at the camera itself, in s⁻² and source by source, is under
+				“Physics”.
 			</p>
+			{#if work}
+				<p class="fine">
+					“{work.label}” is not an idealization. It shows the readings of an array of pixels with
+					noise, and what can be computed from them and from nothing else.
+				</p>
+			{/if}
 			{#if hasRoom}
 				<p class="fine">
 					Turning off “Room” removes the pull of the floor and walls. Gravity adds up linearly, so a
@@ -349,7 +369,15 @@
 				sight, with colour standing for temperature. It is what the camera would build up over a
 				long exposure: everything in this view sends a detector of one square metre one graviton
 				every
-				<Tex math={texWait(1 / inView)} />. Friction values are assumptions.
+				<Tex math={texWait(1 / inView)} />. Where the paper has an estimate of a material’s
+				friction, the material carries it. The others keep the placeholder
+				<Tex math={'10^{-3}\\ \\mathrm{Pa\\,s}'} />, unless the text above gives another.
+			</p>
+			<p class="fine">
+				“Tidal field” shows what every mass in the room has, hot or cold: the tensor at every point
+				of a slice through the room, as a wash of colour for the direction of the stretch with fine
+				strokes along it. Its value at the camera itself, in s⁻² and source by source, is under
+				“Physics”.
 			</p>
 			{#if hasRoom}
 				<p class="fine">
@@ -379,8 +407,10 @@
 			/>
 			<Tex display math={'S(\\hat n) = \\int \\rho(r\\hat n)\\, \\frac{dr}{r} .'} />
 			<p>
-				The gravity side shows <Tex math={'S'} />. Nothing absorbs or scatters gravity, and mass has
-				one sign, so nothing in the room can hide anything else.
+				The gravity side shows <Tex math={'S'} /> of the known scene, blurred by the law below: what an
+				array as wide as the scene is deep would compute, with no noise and without the arrangements of
+				mass it cannot tell apart. Nothing absorbs or scatters gravity, and mass has one sign, so nothing
+				in the room can hide anything else.
 			</p>
 			<h4>Why it is blurred</h4>
 			<p>
@@ -452,5 +482,74 @@
 			</dl>
 		{/if}
 		{@render physicsExtra?.()}
+		<h4>The tidal field at the camera</h4>
+		<TidalReading reading={tide} basis={cameraBasis(view)} />
 	{/snippet}
 </DemoShell>
+
+<!-- the controls of the picture: its camera and its layers -->
+{#snippet pictureControls()}
+	<Group title="Camera">
+		{#if gravity === 'near'}
+			<Slider
+				id="sensitivity"
+				label="Sensitivity"
+				icon={Radar01Icon}
+				min={1}
+				max={60}
+				step={0.5}
+				bind:value={sensitivity}
+				readout="10{superscript(sensitivity)} · blur {(blurAngle / DEG).toFixed(1)}°"
+				ends={['noisy', 'sharp']}
+			/>
+		{/if}
+		<Slider
+			id="brightness"
+			label="Exposure"
+			icon={ContrastIcon}
+			min={-1.5}
+			max={1.5}
+			step={0.05}
+			bind:value={brightness}
+			readout="× {(10 ** brightness).toFixed(brightness < 0 ? 2 : 1)}"
+		/>
+	</Group>
+	<Group title="Layers">
+		<div class="toggles">
+			<Toggle icon={Sun03Icon} label="Light" bind:checked={showLight} />
+			<Toggle
+				icon={gravity === 'near' ? Orbit01Icon : TemperatureIcon}
+				label="Gravity"
+				bind:checked={showGravity}
+			/>
+			<Toggle
+				icon={DashedLineCircleIcon}
+				label="Outline"
+				hint="A faint copy of the shapes in the light picture, to match masses to objects"
+				bind:checked={outline}
+			/>
+			{#if spinning.length && gravity === 'near'}
+				<Toggle
+					icon={Rotate01Icon}
+					label="Flow"
+					hint="The mass currents that the gravitomagnetic half of each pixel records, shown magnified"
+					bind:checked={flow}
+				/>
+			{/if}
+			<Toggle
+				icon={Target02Icon}
+				label="Pixel"
+				hint="Keep in sight, at the foot of the panel, what a single pixel at the camera reads: its type, and whether anything moves. The Pixel tab has its four stars."
+				bind:checked={probe}
+			/>
+			{#if hasRoom}
+				<Toggle
+					icon={Home03Icon}
+					label="Room"
+					hint="The pull and glow of the empty room, its floor and walls. Turn it off to subtract them: gravity adds up, so this is exact."
+					bind:checked={() => !subtractRoom, (on) => (subtractRoom = !on)}
+				/>
+			{/if}
+		</div>
+	</Group>
+{/snippet}
