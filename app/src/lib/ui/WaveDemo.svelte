@@ -3,7 +3,7 @@
 	 * A wave demo in a room: ordinary light on one side, the gravitational waves
 	 * of whatever spins on the other. At the true speed of light the waves are
 	 * far longer than the room, which then lies inside their near zone, so the
-	 * demo offers a clearly labelled teaching mode in which light (and gravity)
+	 * demo offers a clearly labelled setting in which light (and gravity)
 	 * are slowed until the waves are centimetres long.
 	 */
 	import type { Snippet } from 'svelte';
@@ -272,7 +272,7 @@
 				/>
 			</FieldLookControls>
 		{/if}
-		<Group title="Teaching mode">
+		<Group title="Slowed light">
 			<Slider
 				id="speed"
 				label="Speed of light"
@@ -382,6 +382,13 @@
 			is shown on a relative scale. The polarization, which tells the sense of turning, does not
 			depend on it. “Raw pixels” shows the pattern of stretching that passes over the camera from
 			each drum.
+		</p>
+		<p class="fine">
+			What is real here: the drums, the balls and their turning, which pairs turn and which way, and
+			so the colour of each spot; and, at the true speed of light, the power each pair sends out and
+			its gravitons, given above, so few that the picture is the expected image of an exposure no
+			camera could make. What is slowed: the speed of light alone, and with it the length of the
+			waves, the size of the spots and how bright they are.
 		</p>
 		<p class="fine">
 			“Tidal field” shows the field itself on the gravity side, at the true speed of light: the

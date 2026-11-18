@@ -1,5 +1,5 @@
 /**
- * The interactive figures: the paper's results on what one pixel knows (its Section III), to explore. They are
+ * The interactive figures: the paper's results on what one pixel measures (its Section VIII), to explore. They are
  * diagrams, not views through the camera; each also appears live under its figure in the online paper.
  */
 export interface FigureEntry {
@@ -14,15 +14,15 @@ export interface FigureEntry {
 export const figures: FigureEntry[] = [
 	{
 		slug: 'four-stars',
-		title: 'The four stars',
+		title: 'Principal null directions',
 		affordance: 'One point, four directions',
 		figure: 'fig:stars',
 		summary:
-			'Each reading of a gravitational pixel has four directions of its own; light’s has two. They tell one body from two, a wave from a pull, and how fast a body crosses the sky.'
+			'Each reading of a gravitational pixel has four principal null directions; a reading of light has two. They tell one body from two, a wave from a pull, and how fast a body crosses the sky.'
 	},
 	{
 		slug: 'four-voices',
-		title: 'One pixel, four voices',
+		title: 'One pixel, four waves',
 		affordance: 'Many waves at one point',
 		figure: 'fig:voices',
 		summary:
@@ -38,11 +38,11 @@ export const figures: FigureEntry[] = [
 	},
 	{
 		slug: 'speedometer',
-		title: 'The speedometer in the dark',
-		affordance: 'Know your own speed',
+		title: 'A pixel’s own velocity',
+		affordance: 'Own velocity, motion test',
 		figure: 'fig:speedometer',
 		summary:
-			'A pixel crossing a room it knows nothing about reads its own velocity, every component, at any speed, and knows at once if anything in the room moves. Light reads two components.'
+			'A pixel crossing a room of unknown masses determines its own velocity, every component, at any speed, from one reading. If its eigenvalues turn complex, something in the room moves. Light reads two components.'
 	},
 	{
 		slug: 'ranging',

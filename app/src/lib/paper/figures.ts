@@ -46,9 +46,9 @@ export const liveFigures: Record<string, LiveFigure> = {
 	'fig:nearfield': { label: 'Try it: change the sensitivity', drawing: NearFieldFigure },
 	'fig:quadrupole': { label: 'Try it: change the speed', drawing: QuadrupoleFigure },
 	'fig:array': { label: 'Try it: change the width of the array', drawing: ArrayFigure },
-	// the interactive figures of Section III (also at /figures)
+	// the interactive figures of Section VIII (also at /figures)
 	'fig:stars': { label: 'Try it: move the bodies, set one moving', drawing: StarsLive },
-	'fig:voices': { label: 'Try it: hear up to five waves at once', drawing: VoicesLive },
+	'fig:voices': { label: 'Try it: up to five waves at once', drawing: VoicesLive },
 	'fig:present': { label: 'Try it: stop the body, with light slowed down', drawing: PresentLive },
 	'fig:speedometer': {
 		label: 'Try it: cross the room, set a mass moving',

@@ -2,14 +2,21 @@
 	/**
 	 * A near-field demo in a room: ordinary light on one side, the mass seen by
 	 * the gravitational camera on the other, with the blur that the chosen
-	 * sensitivity leaves.
+	 * sensitivity leaves; or a thermal one, the glow of warm matter.
+	 *
+	 * Beside the expected picture, a third view simulates what the instrument records. Near field, "One exposure":
+	 * the same reconstruction with the reconstructed noise of one draw of the readings added (lib/measure/noise.ts),
+	 * at the signal-to-noise ratio of the demo's subject. Thermal, "Counts": the gravitons an exposure of a given
+	 * area and time counts in each picture element, expected or drawn (lib/measure/counts.ts).
 	 */
 	import type { Snippet } from 'svelte';
 	import type { IconSvgElement } from '@hugeicons/svelte';
 	import { posters } from '../demos/posters';
 	import {
+		Camera01Icon,
 		ContrastIcon,
 		DashedLineCircleIcon,
+		DiceIcon,
 		Home03Icon,
 		Image01Icon,
 		Layers01Icon,
@@ -20,7 +27,9 @@
 		Target02Icon,
 		TemperatureIcon
 	} from '@hugeicons/core-free-icons';
+	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
+		MODE_COUNTS,
 		MODE_FIELD,
 		MODE_LIGHT,
 		MODE_NEAR,
@@ -30,16 +39,22 @@
 		columnsAlong,
 		gravitonsInView,
 		nearFieldBlur,
+		referenceRadiance,
 		type Scene,
 		type View
 	} from '../engine';
+	import { countPicture, countRates } from '../measure/counts';
+	import { CountExposure } from '../measure/exposure.svelte';
+	import { noiseField, noiseGrid, noiseVariance, pointPeak } from '../measure/noise';
+	import CountsControls from './CountsControls.svelte';
+	import CountsReadout from './CountsReadout.svelte';
 	import DemoShell from './DemoShell.svelte';
 	import SplitView from './SplitView.svelte';
 	import Group from './controls/Group.svelte';
 	import Segmented from './controls/Segmented.svelte';
 	import Slider from './controls/Slider.svelte';
 	import Toggle from './controls/Toggle.svelte';
-	import { length, superscript, texLength, texSci, texWait } from './format';
+	import { length, superscript, texLength, texSci, texWait, times } from './format';
 	import Tex from './Tex.svelte';
 	import FlowField from './FlowField.svelte';
 	import PixelProbe from './PixelProbe.svelte';
@@ -77,6 +92,12 @@
 		/** Start with the "Pixel" layer on. */
 		startProbe?: boolean;
 		/**
+		 * Near field: what the signal-to-noise ratio is quoted for, as in the paper, the peak field of a point of its
+		 * mass at its distance against the noise averaged over a patch that wide (an object of the scene, and how to
+		 * call it). The noise of "One exposure" is set by it.
+		 */
+		subject?: { id: string; name: string };
+		/**
 		 * A third view, in place of the picture: the camera's measurement and what is computed from it, for a demo
 		 * that has the computation (the locked safe). Its stage is laid over the picture and its controls take the
 		 * place of the picture's.
@@ -105,6 +126,7 @@
 		extraControls,
 		extraOverlay,
 		startProbe = false,
+		subject,
 		work
 	}: Props = $props();
 
@@ -123,7 +145,8 @@
 	let sensitivity = $state(startSensitivity);
 	// svelte-ignore state_referenced_locally
 	let brightness = $state(startBrightness);
-	let display = $state<'image' | 'pixels' | 'work'>('image');
+	/** The expected picture, the tidal field, a simulated exposure ("One exposure" or "Counts"), or the work. */
+	let display = $state<'image' | 'pixels' | 'measure' | 'work'>('image');
 	// svelte-ignore state_referenced_locally
 	let sliceDepth = $state(subjectDistance);
 	// svelte-ignore state_referenced_locally
@@ -183,6 +206,13 @@
 	const centre = $derived(
 		columnsAlong(objects, observer, cameraBasis(view).forward, exclusion, subtractRoom)
 	);
+	/**
+	 * The same with the room counted. With the room taken away, a line of sight that meets nothing else has nothing
+	 * along it, exactly: the readouts say so, and what the room alone gives there.
+	 */
+	const centreWithRoom = $derived(
+		subtractRoom ? columnsAlong(objects, observer, cameraBasis(view).forward, exclusion) : centre
+	);
 	// the tidal tensor at the camera itself, by source: what one pixel there reads
 	const tide = $derived(roomReading(scene.name, objects, observer, subtractRoom));
 	// the field view's scale, as the picture itself sets it (SplitView): the median strength over the slice
@@ -197,6 +227,67 @@
 				)
 			: 1
 	);
+	// --- one exposure ------------------------------------------------------------------------------------------------
+	const measuring = $derived(display === 'measure');
+	// the picture's tangent plane, as the engine draws it: its own shape once laid out
+	const tanY = $derived(Math.tan(view.fov / 2));
+	const tanX = $derived(tanY * (splitView?.aspect() ?? 1.6));
+
+	// near field: the subject the signal-to-noise ratio is quoted for, its mass and distance
+	const subjectObject = $derived(subject && objects.find((o) => o.id === subject.id));
+	const subjectMass = $derived(subjectObject ? subjectObject.density * subjectObject.ownVolume : 0);
+	const subjectDepth = $derived(
+		subjectObject
+			? Math.hypot(...subjectObject.center.map((v, k) => v - observer[k]))
+			: subjectDistance
+	);
+	/** The reconstructed noise is in units of m / z^3, kg m⁻³ of tidal column. */
+	const noiseUnit = $derived(subjectMass / subjectDepth ** 3);
+	/** Which draw of the readings' noise: each "New exposure" is another. */
+	let noiseSeed = $state(1);
+	// a draw depends on the picture, the sensitivity and the seed alone, not on the scene: one that moves keeps it
+	const noise = $derived.by(() => {
+		if (!measuring || gravity !== 'near' || !subject) return undefined;
+		const g = noiseGrid(tanX, tanY, sensitivity);
+		const field = noiseField(g.n, g.n, g.cell, sensitivity, noiseSeed);
+		// the picture's part of the draw, from its top left corner, and a cell more for the last interpolation
+		const width = Math.min(g.n, Math.floor(g.across) + 2);
+		const height = Math.min(g.n, Math.floor(g.up) + 2);
+		const data = new Float32Array(4 * width * height);
+		for (let j = 0; j < height; j++)
+			for (let i = 0; i < width; i++) data[4 * (j * width + i)] = field[j * g.n + i];
+		return { image: { width, height, data }, across: g.across, up: g.up };
+	});
+	const noiseSigma = $derived(noiseUnit * Math.sqrt(noiseVariance(sensitivity)));
+	const subjectPeak = $derived(noiseUnit * pointPeak(sensitivity));
+
+	// thermal: the exposure and its counts
+	const counting = new CountExposure();
+	const countGrid = $derived(
+		measuring && gravity === 'thermal'
+			? countRates(
+					objects,
+					observer,
+					cameraBasis(view),
+					tanX,
+					tanY,
+					counting.across,
+					3,
+					subtractRoom
+				)
+			: undefined
+	);
+	const counts = $derived(
+		countGrid &&
+			countPicture(
+				countGrid,
+				counting.area * counting.time,
+				referenceRadiance(objects, observer, subtractRoom),
+				counting.show,
+				counting.seed
+			)
+	);
+
 	// where the sphere of points meets something: each thing in the room, each wall and the floor
 	const sliceMarks = $derived(
 		roomSlices(objects, observer, 0.45, ROOM_SOURCES[scene.name]?.groups).map((m) => ({
@@ -243,8 +334,12 @@
 			rightMode={display === 'pixels'
 				? MODE_FIELD
 				: gravity === 'thermal'
-					? MODE_THERMAL
+					? measuring
+						? MODE_COUNTS
+						: MODE_THERMAL
 					: MODE_NEAR}
+			image={counts?.image ?? noise?.image}
+			noise={noise && { scale: noiseUnit, across: noise.across, up: noise.up }}
 			fieldDepth={sliceDepth}
 			exposure={(gravity === 'near' || display === 'pixels' ? 2.2 : 1.6) * 10 ** brightness}
 			nearBlur={blurSigma}
@@ -254,11 +349,17 @@
 			{subtractRoom}
 			rightLabel={display === 'pixels'
 				? 'Gravity · tidal field'
-				: gravity === 'thermal'
-					? 'Gravity · thermal'
-					: spinning.length && flow
-						? 'Gravity · near field and flow'
-						: 'Gravity · near field'}
+				: measuring
+					? gravity === 'thermal'
+						? counting.show === 'draw'
+							? 'Gravity · counted'
+							: 'Gravity · counts expected'
+						: 'Gravity · one exposure'
+					: gravity === 'thermal'
+						? 'Gravity · thermal'
+						: spinning.length && flow
+							? 'Gravity · near field and flow'
+							: 'Gravity · near field'}
 		>
 			{#snippet overlay()}
 				{#if gravity === 'near' && display === 'image' && flow && spinning.length}
@@ -283,7 +384,18 @@
 					{ value: 'pixels', label: 'Tidal field', icon: Layers01Icon },
 					...(work
 						? [{ value: 'work' as const, label: work.label, icon: work.icon, wide: true }]
-						: [])
+						: gravity === 'thermal'
+							? [{ value: 'measure' as const, label: 'Counts', icon: Camera01Icon, wide: true }]
+							: subject
+								? [
+										{
+											value: 'measure' as const,
+											label: 'One exposure',
+											icon: Camera01Icon,
+											wide: true
+										}
+									]
+								: [])
 				]}
 				bind:value={display}
 			/>
@@ -305,6 +417,9 @@
 			</FieldLookControls>
 		{/if}
 		{#if display !== 'work'}{@render extraControls?.()}{/if}
+		{#if measuring && counts}
+			<CountsControls exposure={counting} needed={counts.needed} />
+		{/if}
 		{#if display === 'work' && work}
 			{@render work.controls()}
 		{:else}
@@ -316,6 +431,45 @@
 		{@render intro()}
 		{#if display === 'work' && work?.notes}
 			{@render work.notes()}
+		{:else if measuring && gravity === 'near' && subject}
+			<dl>
+				<div>
+					<dt>Signal to noise, for {subject.name}</dt>
+					<dd>
+						<Tex math={`10^{${sensitivity}}`} />: {times(subjectMass)} kg, {length(subjectDepth)} away
+					</dd>
+				</div>
+				<div>
+					<dt>Noise in the picture, one standard deviation</dt>
+					<dd><Tex math={`${texSci(noiseSigma, 2)}\\ \\mathrm{kg\\,m^{-3}}`} /></dd>
+				</div>
+				<div>
+					<dt>A point of that mass there peaks at</dt>
+					<dd>
+						<Tex math={`${texSci(subjectPeak, 2)}\\ \\mathrm{kg\\,m^{-3}}`} />, {times(
+							subjectPeak / noiseSigma
+						)} standard deviations
+					</dd>
+				</div>
+			</dl>
+			<p class="fine">
+				“One exposure” is what the camera computes from one set of readings: the picture of “Image”,
+				with the reconstruction of the readings’ noise added. The best reconstruction passes that
+				noise only near its cutoff, so it comes out as ripples the size of the blur, the same
+				everywhere: mass shows where it stands above them. More sensitivity makes the ripples finer,
+				not fainter; what grows is how far a compact mass stands above them. Below zero is drawn
+				black, as in “Image”. “New exposure” draws the noise again; turning the camera keeps it,
+				since it belongs to the array. The flow is not drawn over a measurement.
+			</p>
+		{:else if measuring && gravity === 'thermal' && counts && countGrid}
+			<CountsReadout picture={counts} exposure={counting} elements={countGrid.nx * countGrid.ny} />
+			<p class="fine">
+				“Counts” is what a camera that counts gravitons records: each element of the picture
+				receives a random, Poisson, number of them, whose mean is the brightness of “Image” times
+				the element’s solid angle, the collecting area and the time. Each is drawn in the colour of
+				the temperature that sent it. “Expected” shows those means, on the same scale; one graviton
+				is never drawn dim.
+			</p>
 		{:else if gravity === 'near'}
 			<dl>
 				<div>
@@ -324,7 +478,15 @@
 				</div>
 				<div>
 					<dt>Mass along the centre of view, weighted by 1/distance</dt>
-					<dd><Tex math={`${centre.tidalColumn.toFixed(0)}\\ \\mathrm{kg\\,m^{-3}}`} /></dd>
+					<dd>
+						<Tex
+							math={`${texSci(centre.tidalColumn, 2)}\\ \\mathrm{kg\\,m^{-3}}`}
+						/>{@render onlyRoom(
+							centre.tidalColumn,
+							centreWithRoom.tidalColumn,
+							'\\mathrm{kg\\,m^{-3}}'
+						)}
+					</dd>
 				</div>
 			</dl>
 			<p class="fine">
@@ -360,7 +522,11 @@
 					<dd>
 						<Tex
 							math={`${texSci(centre.numberRadiance)}\\ \\text{gravitons}\\ \\mathrm{s^{-1}\\,m^{-2}\\,sr^{-1}}`}
-						/>
+						/>{@render onlyRoom(
+							centre.numberRadiance,
+							centreWithRoom.numberRadiance,
+							'\\mathrm{s^{-1}\\,m^{-2}\\,sr^{-1}}'
+						)}
 					</dd>
 				</div>
 			</dl>
@@ -432,10 +598,33 @@
 				<Tex math={texLength(blurAngle * subjectDistance)} /> at
 				<Tex math={`${subjectDistance}\\,\\mathrm{m}`} />.
 			</p>
+			<h4>One exposure</h4>
+			<p>
+				The array reads the field with white noise. The reconstruction <Tex math={'W = H/T'} /> passes
+				it with the spectrum
+			</p>
+			<Tex
+				display
+				math={'P(q) = \\left(\\frac{m}{z^3}\\right)^{2} H(q)\\,\\bigl(1 - H(q)\\bigr),'}
+			/>
+			<p>
+				in the units of <Tex math={'S'} />, for a signal-to-noise ratio quoted for a point mass <Tex
+					math="m"
+				/> at depth <Tex math="z" />: a band of ripples at the cutoff, of variance
+				<Tex math={'(m/z^3)^2 \\frac{1}{2\\pi}\\int H(1-H)\\,q\\,dq'} />.
+			</p>
 			<dl class="numbers">
 				<div>
 					<dt>Tidal column along the centre of view</dt>
-					<dd><Tex math={`S = ${centre.tidalColumn.toFixed(0)}\\ \\mathrm{kg\\,m^{-3}}`} /></dd>
+					<dd>
+						<Tex
+							math={`S = ${texSci(centre.tidalColumn, 2)}\\ \\mathrm{kg\\,m^{-3}}`}
+						/>{@render onlyRoom(
+							centre.tidalColumn,
+							centreWithRoom.tidalColumn,
+							'\\mathrm{kg\\,m^{-3}}'
+						)}
+					</dd>
 				</div>
 			</dl>
 		{:else}
@@ -470,13 +659,27 @@
 					math={texWait(1 / inView)}
 				/>. The picture is the expected image of a very long exposure, not a snapshot.
 			</p>
+			<h4>Counting</h4>
+			<p>
+				Over an exposure of area <Tex math="A" /> and time <Tex math={'\\tau'} />, an element of the
+				picture of solid angle <Tex math={'\\Omega'} /> counts a Poisson number of gravitons, of mean
+			</p>
+			<Tex display math={'\\lambda = A\\,\\tau \\int_\\Omega N(\\hat n)\\, d\\Omega ,'} />
+			<p>
+				and scatters about it by <Tex math={'\\sqrt{\\lambda}'} />: a difference of a tenth stands
+				five standard deviations clear only at about 2,500 gravitons an element.
+			</p>
 			<dl class="numbers">
 				<div>
 					<dt>Brightness along the centre of view</dt>
 					<dd>
 						<Tex
 							math={`N = ${texSci(centre.numberRadiance)}\\ \\mathrm{s^{-1}\\,m^{-2}\\,sr^{-1}}`}
-						/>
+						/>{@render onlyRoom(
+							centre.numberRadiance,
+							centreWithRoom.numberRadiance,
+							'\\mathrm{s^{-1}\\,m^{-2}\\,sr^{-1}}'
+						)}
 					</dd>
 				</div>
 			</dl>
@@ -486,6 +689,18 @@
 		<TidalReading reading={tide} basis={cameraBasis(view)} />
 	{/snippet}
 </DemoShell>
+
+<!-- a readout of exactly zero along a line of sight that meets only the room, which is taken away -->
+{#snippet onlyRoom(value: number, withRoom: number, unit: string)}
+	{#if value === 0 && withRoom !== 0}
+		<span class="why">
+			Only the room lies along this line, and it is taken away; it gives
+			<Tex math={`${texSci(withRoom, 2)}\\ ${unit}`} /> here.</span
+		>
+	{:else if value === 0}
+		<span class="why">Nothing lies along this line.</span>
+	{/if}
+{/snippet}
 
 <!-- the controls of the picture: its camera and its layers -->
 {#snippet pictureControls()}
@@ -502,10 +717,20 @@
 				readout="10{superscript(sensitivity)} · blur {(blurAngle / DEG).toFixed(1)}°"
 				ends={['noisy', 'sharp']}
 			/>
+			{#if measuring && subject}
+				<div class="actions">
+					<button type="button" class="action" onclick={() => (noiseSeed += 1)}>
+						<HugeiconsIcon icon={DiceIcon} size={16} strokeWidth={1.8} /> New exposure
+					</button>
+				</div>
+				<p class="hint">
+					Signal to noise for {subject.name}: {times(subjectMass)} kg, {length(subjectDepth)} away.
+				</p>
+			{/if}
 		{/if}
 		<Slider
 			id="brightness"
-			label="Exposure"
+			label={measuring ? 'Brightness' : 'Exposure'}
 			icon={ContrastIcon}
 			min={-1.5}
 			max={1.5}
@@ -539,7 +764,7 @@
 			<Toggle
 				icon={Target02Icon}
 				label="Pixel"
-				hint="Keep in sight, at the foot of the panel, what a single pixel at the camera reads: its type, and whether anything moves. The Pixel tab has its four stars."
+				hint="Keep in sight, at the foot of the panel, what a single pixel at the camera reads: its type, and whether anything moves. The Pixel tab has its four principal null directions."
 				bind:checked={probe}
 			/>
 			{#if hasRoom}
@@ -553,3 +778,20 @@
 		</div>
 	</Group>
 {/snippet}
+
+<style>
+	.hint {
+		margin: 0;
+		font-size: 0.7rem;
+		line-height: 1.4;
+		color: var(--text-faint);
+	}
+
+	/* why a readout is exactly zero, under it, in the type of the notes */
+	.why {
+		display: block;
+		margin-top: 0.25rem;
+		font: 400 0.72rem/1.45 var(--font-sans);
+		color: var(--text-faint);
+	}
+</style>

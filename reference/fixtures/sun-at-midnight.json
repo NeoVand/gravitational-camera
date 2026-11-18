@@ -11,7 +11,8 @@
       "Rays start at observer.position; direction is a unit vector in scene axes.",
       "chords: path length of the ray inside each object's FULL shape (children included), not its own region.",
       "alpha is null where the material has no friction (emission set by luminosity).",
-      "Rays labelled limb:* pass a sphere's centre at the stated fraction of its radius; horizon:* pass the ground sphere's centre at radius + the stated offset. Near a limb a chord is sensitive to the direction: an error db in the impact parameter changes it by 2 b db / (half chord)."
+      "Rays labelled limb:* pass a sphere's centre at the stated fraction of its radius; horizon:* pass the ground sphere's centre at radius + the stated offset. Near a limb a chord is sensitive to the direction: an error db in the impact parameter changes it by 2 b db / (half chord).",
+      "counts: gravitons per second per square metre of collecting area from each picture element of a view (rows from the top), cells[0] x cells[1] square elements of the tangent plane, each sampled on samples x samples rays weighted by their solid angles; balls narrower than a sample's spacing (points) counted whole in the element of their centre. Rounded to 10 significant digits; rate_without_room leaves the background out."
     ]
   },
   "units": {
@@ -25,7 +26,8 @@
     "mass_column": "kg m^-2",
     "chords": "m",
     "tidal tensor": "s^-2",
-    "mass": "kg"
+    "mass": "kg",
+    "rate": "gravitons s^-1 m^-2"
   },
   "constants": {
     "G": 6.6743e-11,
@@ -392,5 +394,49 @@
     {"label": "random:119", "direction": [-0.4929194818178187, 0.5974168026797522, -0.6325531980160682], "number_radiance": 0.0, "mass_column": 0.0, "chords": {"earth": 0.0, "upper-mantle": 0.0, "lower-mantle": 0.0, "outer-core": 0.0, "inner-core": 0.0, "sun": 0.0, "sun-core": 0.0, "moon": 0.0, "moon-core": 0.0}},
     {"label": "random:120", "direction": [-0.8194389581823821, 0.3929169946632519, -0.4172960928618558], "number_radiance": 0.0, "mass_column": 0.0, "chords": {"earth": 0.0, "upper-mantle": 0.0, "lower-mantle": 0.0, "outer-core": 0.0, "inner-core": 0.0, "sun": 0.0, "sun-core": 0.0, "moon": 0.0, "moon-core": 0.0}},
     {"label": "random:121", "direction": [-0.9213393249458409, -0.3796956480894365, -0.08345695375632194], "number_radiance": 3.446344150748122e-07, "mass_column": 16369491010.34931, "chords": {"earth": 4838072.931975031, "upper-mantle": 4704811.3346987115, "lower-mantle": 0.0, "outer-core": 0.0, "inner-core": 0.0, "sun": 0.0, "sun-core": 0.0, "moon": 0.0, "moon-core": 0.0}}
-  ]
+  ],
+  "counts": {
+    "view": {
+      "forward": [
+        0.0,
+        -0.8,
+        -0.6
+      ],
+      "right": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        0.6,
+        -0.8
+      ],
+      "tan_x": 1.0,
+      "tan_y": 0.625
+    },
+    "cells": [
+      16,
+      10
+    ],
+    "samples": 3,
+    "points": [
+      "sun",
+      "sun-core",
+      "moon",
+      "moon-core"
+    ],
+    "rate": [
+      [1.347180966e-09, 1.668602413e-09, 2.043518196e-09, 2.459900286e-09, 2.890500576e-09, 3.291142403e-09, 3.605751919e-09, 3.780045701e-09, 3.780045701e-09, 3.605751919e-09, 3.291142403e-09, 2.890500576e-09, 2.459900286e-09, 2.043518196e-09, 1.668602413e-09, 1.347180966e-09],
+      [1.78108281e-09, 2.233013194e-09, 2.947544364e-09, 5.091570319e-09, 8.462641532e-09, 1.16214332e-08, 1.505306103e-08, 1.674757924e-08, 1.674757924e-08, 1.505306103e-08, 1.16214332e-08, 8.462641532e-09, 5.091570319e-09, 2.947544364e-09, 2.233013194e-09, 1.78108281e-09],
+      [3.029572282e-09, 6.268913618e-09, 1.091429532e-08, 1.569557025e-08, 2.064456927e-08, 2.538021997e-08, 2.920716086e-08, 3.137047412e-08, 3.137047412e-08, 2.920716086e-08, 2.538021997e-08, 2.064456927e-08, 1.569557025e-08, 1.091429532e-08, 6.268913618e-09, 3.029572282e-09],
+      [8.772995502e-09, 1.292894884e-08, 1.792720459e-08, 2.377625281e-08, 3.017956678e-08, 3.646463438e-08, 4.162076268e-08, 4.45605881e-08, 4.45605881e-08, 4.162076268e-08, 3.646463438e-08, 3.017956678e-08, 2.377625281e-08, 1.792720459e-08, 1.292894884e-08, 8.772995502e-09],
+      [1.263481355e-08, 1.740925197e-08, 2.333790118e-08, 3.037811051e-08, 3.815751906e-08, 4.584657912e-08, 5.218764975e-08, 5.581526133e-08, 0.7334274702, 5.218764975e-08, 4.584657912e-08, 3.815751906e-08, 3.037811051e-08, 2.333790118e-08, 1.740925197e-08, 1.263481355e-08],
+      [1.541240003e-08, 2.072182746e-08, 2.7329644e-08, 3.517661877e-08, 4.384125145e-08, 5.239784144e-08, 6.152559666e-08, 6.824642293e-08, 6.824642293e-08, 6.152559666e-08, 5.239784144e-08, 4.384125145e-08, 3.517661877e-08, 2.7329644e-08, 2.072182746e-08, 1.541240003e-08],
+      [1.72597758e-08, 2.281670077e-08, 2.968285815e-08, 3.777134e-08, 4.821140588e-08, 6.650599485e-08, 8.264123661e-08, 9.086054622e-08, 9.086054622e-08, 8.264123661e-08, 6.650599485e-08, 4.821140588e-08, 3.777134e-08, 2.968285815e-08, 2.281670077e-08, 1.72597758e-08],
+      [1.819577071e-08, 2.367653507e-08, 3.035720044e-08, 4.025018084e-08, 5.930616281e-08, 7.594347351e-08, 8.856372834e-08, 9.558007191e-08, 9.558007191e-08, 8.856372834e-08, 7.594347351e-08, 5.930616281e-08, 4.025018084e-08, 3.035720044e-08, 2.367653507e-08, 1.819577071e-08],
+      [1.830065401e-08, 2.342611979e-08, 3.019106002e-08, 4.590744483e-08, 6.123423255e-08, 7.470686144e-08, 8.526346006e-08, 9.113879642e-08, 9.113879642e-08, 8.526346006e-08, 7.470686144e-08, 6.123423255e-08, 4.590744483e-08, 3.019106002e-08, 2.342611979e-08, 1.830065401e-08],
+      [1.772617196e-08, 2.230644542e-08, 3.220854009e-08, 4.563653536e-08, 5.766238223e-08, 6.854726689e-08, 8.142162129e-08, 1.045090815e-07, 1.045090815e-07, 8.142162129e-08, 6.854726689e-08, 5.766238223e-08, 4.563653536e-08, 3.220854009e-08, 2.230644542e-08, 1.772617196e-08]
+    ]
+  }
 }

@@ -31,12 +31,15 @@ export default defineConfig({
 	preview: { allowedHosts: true },
 	test: {
 		expect: { requireAssertions: true },
+		// several tests run whole inversions and field grids, a few seconds each on a busy machine
+		testTimeout: 30_000,
 		projects: [
 			{
 				extends: './vite.config.ts',
 				test: {
 					name: 'server',
 					environment: 'node',
+					testTimeout: 30_000,
 					include: ['src/**/*.{test,spec}.{js,ts}'],
 					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
 				}

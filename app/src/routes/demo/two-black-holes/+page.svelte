@@ -8,12 +8,14 @@
 		ZoomInAreaIcon
 	} from '@hugeicons/core-free-icons';
 	import DemoShell from '#lib/ui/DemoShell.svelte';
+	import FieldLegend from '#lib/ui/FieldLegend.svelte';
+	import FieldLookControls from '#lib/ui/FieldLookControls.svelte';
 	import PairField from '#lib/ui/PairField.svelte';
 	import Group from '#lib/ui/controls/Group.svelte';
 	import Segmented from '#lib/ui/controls/Segmented.svelte';
 	import Slider from '#lib/ui/controls/Slider.svelte';
 	import Tex from '#lib/ui/Tex.svelte';
-	import { separationOverWavelength } from '#lib/vistas/pair.js';
+	import { pairScale, separationOverWavelength } from '#lib/vistas/pair.js';
 
 	let speed = $state(0.1);
 	// half the view, in wavelengths, on a logarithmic slider
@@ -24,6 +26,8 @@
 
 	const reach = $derived(10 ** logReach);
 	const ratio = $derived(separationOverWavelength(speed));
+	/** The strength the view's scale is set against, s⁻², as PairField sets it. */
+	const fieldScale = $derived(pairScale(speed, reach));
 	/** For two holes of thirty Suns each: G M / c^3 of the pair, seconds. */
 	const GM_C3 = 60 * 4.925e-6;
 	/** Seconds in which one wave passes on screen. */
@@ -50,7 +54,50 @@
 	/>
 </svelte:head>
 
-<DemoShell title="Two black holes, inside out" onreset={() => (logReach = Math.log10(0.5))}>
+{#snippet circle()}
+	<p class="circle">The dashed circle is λ/2π, where Newton’s field gives way to the waves.</p>
+{/snippet}
+
+{#snippet key(full: boolean)}
+	<FieldLegend
+		where="in the plane of the orbit, its changing part"
+		reference={fieldScale}
+		{full}
+		subject="Every pixel is coloured by the changing part of the tidal tensor at its own point in the plane of the orbit, for two holes of 30 Suns."
+		sign={{
+			stretch: 'space across the plane of the orbit, along your line of sight, is stretched',
+			zero: 'it passes through zero',
+			squeeze: 'it is squeezed',
+			strength: 'strength over a wave period: the brightness'
+		}}
+		median="Half the picture is stronger, as a root mean square over a wave period, than"
+	>
+		{@render circle()}
+	</FieldLegend>
+{/snippet}
+
+{#snippet fieldKey()}
+	{@render key(true)}
+{/snippet}
+
+{#snippet status()}
+	{#if display === 'field'}
+		{@render key(false)}
+	{:else}
+		<p class="none">
+			There is no camera picture here to go back to: this demo is the map of the pair’s tidal field.
+			Only the pair is drawn.
+		</p>
+		{@render circle()}
+	{/if}
+{/snippet}
+
+<DemoShell
+	title="Two black holes, inside out"
+	legend={display === 'field' ? fieldKey : undefined}
+	foot={status}
+	onreset={() => (logReach = Math.log10(0.5))}
+>
 	{#snippet stage()}
 		<PairField
 			{speed}
@@ -104,13 +151,24 @@
 				ends={['wide', 'about to merge']}
 			/>
 		</Group>
+		{#if display === 'field'}
+			<FieldLookControls reference={fieldScale} />
+		{/if}
 	{/snippet}
 
 	{#snippet notes()}
 		<p>
-			Two black holes orbit each other, seen from above. The colour is the part of the tidal field
-			that changes as they turn: <strong>orange</strong> where space across the plane of the orbit
-			is stretched at this moment, <strong>blue</strong> where it is squeezed.
+			Two black holes orbit each other, seen from above. The picture is the part of the tidal field
+			that changes as they turn, drawn as every demo’s “Tidal field” view draws it: colour for the
+			direction of the stretch, fine strokes along it, brightness for its strength. Colour it by
+			“Stretch or squeeze” under Controls for the colours of the paper’s figure: <strong
+				>orange</strong
+			>
+			where space across the plane of the orbit is stretched at this moment, <strong>blue</strong> where
+			it is squeezed, pale where it passes through zero; its brightness is then the strength over a whole
+			wave period, which does not pass through zero. Coloured by direction, where the two strongest stretches
+			are nearly equal the stretch has no single direction, and the colour passes from one axis’s to the
+			other’s.
 		</p>
 		<p>
 			Close to the pair, inside the dashed circle a sixth of a wavelength out, the pattern is
@@ -141,11 +199,11 @@
 		<p class="fine">
 			The motion is {truePeriod < SCREEN_PERIOD ? 'slowed' : 'quickened'}: one wave passes every
 			{SCREEN_PERIOD} seconds here, against
-			<Tex math={`${Number(truePeriod.toPrecision(2))}\\,\\mathrm{s}`} /> in truth. The strength is left
-			out of the colours; it falls as the fifth power of the distance near the pair and only as the first
-			power in the waves. Inside the orbit the field is not shown. This is the exact solution of linearized
-			gravity for the pair’s quadrupole, which this close to a merger is a guide to the full answer, not
-			a substitute for it.
+			<Tex math={`${Number(truePeriod.toPrecision(2))}\\,\\mathrm{s}`} /> in truth. The strength falls
+			as the fifth power of the distance near the pair and only as the first power in the waves; “Strength
+			scale” under Controls brings up the weak or tames the strong. Inside the orbit the field is not
+			shown. This is the exact solution of linearized gravity for the pair’s quadrupole, which this close
+			to a merger is a guide to the full answer, not a substitute for it.
 		</p>
 	{/snippet}
 
@@ -170,3 +228,14 @@
 		</p>
 	{/snippet}
 </DemoShell>
+
+<style>
+	.circle,
+	.none {
+		margin: 0.35rem 0 0;
+	}
+
+	.none {
+		margin-top: 0;
+	}
+</style>

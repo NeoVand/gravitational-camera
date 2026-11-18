@@ -33,7 +33,8 @@ view, decide everything.
 - **In the near field the camera sees mass itself, through any wall, but blurred.** The blur is fixed by the logarithm
   of the sensitivity: $\Delta\theta = 4.43/q_c$ with $q_c e^{-q_c} = 1/(\pi\,\mathrm{SNR})$, that is $24^\circ$ at a
   signal-to-noise ratio of a thousand and still $3.4^\circ$ at $10^{30}$. A blurred image is not a vague measurement:
-  a single mass is placed to within a millimetre at a metre while its image is $24^\circ$ wide.
+  a simple scene, or one whose mass cannot be negative, is measured far more sharply than it can be drawn, and a single
+  mass is placed to within a millimetre at a metre while its image is $24^\circ$ wide.
 - **In the waves of moving bodies, a compact body is a point**, since its wavelength exceeds its size by $(\pi/2)\,c/v$.
   The point still tells which way the body turns, from its polarization.
 - **In the thermal glow, matter is transparent and self-luminous**: each pixel sums the glow along its whole line of
@@ -41,22 +42,29 @@ view, decide everything.
   frequencies of heat, and it is faint: the whole Earth below delivers at most one graviton per square metre every
   twenty hours, however generous one is to its materials.
 - **There are no usable lenses, mirrors or shadows** short of a black hole; images are computed, not focused.
-- **Everything is nearly bald.** One look at a body's pull reads only the harmonic part of its mass; two looks, at
-  its thermal tremor or its answer to a push, read all of it, through the same logarithm. A black hole gives
-  away seven numbers at the first and only its temperature at the second. The second look can be a push and then a
-  weighing: the weight alone, after enough pushes from outside, gives the whole density.
-- **One pixel knows more than one might think.** It points back to a single wave,
-  $\hat n = -\epsilon_{ijk}\mathcal{E}_{jl}\mathcal{B}_{kl}/|\mathcal{E}|^2$, and ranges a moving mass,
-  $r = c\,|\mathcal{B}\hat n|/|P\dot{\mathcal{E}}\hat n|$, because the magnetic part supplies the scale the electric
-  part lacks. For a sky of many sources it sees only the spherical harmonics of degree four and below: twelve sources
-  at the corners of an icosahedron look to it exactly like a uniform sky.
-- **On the scale of the sky**, the Galaxy's centre, hidden from light by thirty magnitudes of dust, is the brightest
-  part of the millihertz sky; if the early universe was ever hot enough, the whole sky glows at $0.905\,\mathrm{K}$,
-  and the only shadows on it are black holes; the transparent Sun focuses gravitational waves only above about
-  $8\,\mathrm{kHz}$.
+- **One pixel measures more than one might think.** It records ten numbers: four that no observer can change, three
+  that orient the field and three that give the velocity of its rest frame. So it determines its own velocity
+  through an unknown scene, and is a test for relative motion within it (its eigenvalues turn complex); every
+  reading has four principal null directions, against two for light. It points back to a single wave,
+  $\hat n = -\epsilon_{ijk}\mathcal{E}_{jl}\mathcal{B}_{kl}/|\mathcal{E}|^2$, gives a moving body's whole state
+  exactly, and ranges a moving mass, $r = c\,|\mathcal{B}\hat n|/|P\dot{\mathcal{E}}\hat n|$, because the magnetic
+  part supplies the scale the electric part lacks. It separates up to four crossing waves where a sensor of light
+  separates two, ranges a wave source, sees moving bodies where they are now, and reads the speed and all six
+  polarizations of any metric wave. For a sky of many sources it sees only the spherical harmonics of degree four and
+  below: twelve sources at the corners of an icosahedron look to it exactly like a uniform sky.
+- **In astrophysical and cosmological scenes**, the field of a pair of black holes changes from Newton's pull to
+  waves at a sixth of their wavelength; the Galaxy's centre, hidden from light by thirty magnitudes of dust, is the
+  brightest part of the millihertz sky; if the early universe was ever hot enough, the whole sky glows at
+  $0.905\,\mathrm{K}$, and the only shadows on it are black holes; the transparent Sun focuses gravitational waves
+  only above about $8\,\mathrm{kHz}$.
+- **The exterior field and the interior: gravitational hair.** The field outside a body at one time fixes only the
+  harmonic moments of its mass; the field at two times, its thermal tremor or its response to an applied tide, fixes
+  all of it, through the same logarithm. A black hole gives away seven numbers at one time and only its temperature
+  at two. The second reading can be an impulsive tide and a weighing: the weight alone, after enough impulsive tides
+  applied from outside, gives the whole density.
 
-The papers on which the claims of novelty most depend have been read in full; the paper ends with what the camera
-teaches and with the problems that remain open.
+This is a thought experiment, not a proposal for an instrument. The paper ends with a conclusion and the problems
+that remain open; an appendix says where each of its results is checked.
 
 ## The demos
 
@@ -73,22 +81,22 @@ Every demo shows the same scene twice, one half in light and the other in gravit
 | Where it is now                      | near field | Light shows a flying ball where it was, gravity where it is (light slowed, and labelled so) |
 | Behind the wall                      | near field | Two people behind a wall; one walks, and the flow and a single pixel show it                |
 | The closed furnace                   | thermal    | The temperature inside a closed box                                                         |
-| Honey and water                      | thermal    | Glow set by internal friction                                                               |
+| Honey and water                      | thermal    | Glow set by friction at the frequencies of heat, not viscosity: honey glows near water      |
 | Which way it turns                   | waves      | The sense of rotation inside a sealed drum, from polarization                               |
 | The Milky Way                        | sky        | The Galaxy's centre through its dust                                                        |
 | A black hole against the first light | sky        | Exact Schwarzschild rays; the only shadow in the graviton sky                               |
 | Two black holes, inside out          | sky        | The field of an orbiting pair, from Newton's pull to waves                                  |
 
-Two demos use a clearly labelled teaching mode in which light is slowed: until the waves are centimetres long, or
-until its delay can be seen across a room.
+Two demos slow light down, and say so wherever it is slowed: until the waves are centimetres long, or until its
+delay can be seen across a room.
 Material properties that are assumptions are labelled in each scene file and on the page.
 
 ## Interactive figures
 
-Seven of the paper's figures on what a single pixel knows are also live, under their figures in the online paper and
-on their own at **[/figures](https://neovand.github.io/gravitational-camera/figures/)**: the four stars of one reading,
-four waves heard by one pixel, the camera sees the present, the speedometer, ranging a wave source, the sky at one
-pixel, and beyond general relativity in one reading.
+Seven of the paper's figures on what a single pixel measures are also live, under their figures in the online paper
+and on their own at **[/figures](https://neovand.github.io/gravitational-camera/figures/)**: the principal null
+directions of one reading, four waves separated by one pixel, the camera sees the present, a pixel's own velocity and
+the test for motion, ranging a wave source, the sky at one pixel, and beyond general relativity in one reading.
 
 ## The repository
 

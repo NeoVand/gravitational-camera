@@ -9,8 +9,8 @@
 
 	/**
 	 * Two people behind a wall that light cannot see through; one walks back and forth. The gravitational camera
-	 * sees both through the wall, its flow image shows which one moves and which way, and a single pixel's motion
-	 * alarm goes off. Built here, frame by frame, from the locked safe's room.
+	 * sees both through the wall, its flow image shows which one moves and which way, and a single pixel's test for
+	 * motion turns on. Built here, frame by frame, from the locked safe's room.
 	 */
 	const room = roomJson as unknown as Scene;
 	const WALK = 1.4; // m/s
@@ -80,7 +80,7 @@
 	<title>Behind the wall · Gravitational Camera</title>
 	<meta
 		name="description"
-		content="Two people behind a wall. Light sees the wall. The gravitational camera sees both people through it, and knows which one is moving."
+		content="Two people behind a wall. Light sees the wall. The gravitational camera sees both people through it, and shows which one is moving."
 	/>
 </svelte:head>
 
@@ -92,6 +92,7 @@
 	startProbe
 	startSensitivity={30}
 	look={{ yaw: 0, pitch: -8 }}
+	subject={{ id: 'standing', name: 'the person standing' }}
 >
 	{#snippet extraControls()}
 		<Group title="The people">
@@ -117,8 +118,9 @@
 			mass: the colour on the walker is the flow, its hue the direction of walking.
 		</p>
 		<p>
-			And one pixel knows that something moves without forming any image: the “Pixel” panel turns
-			red. A room at rest can never set that off, however the camera moves.
+			And a single pixel detects that something moves without forming any image: the eigenvalues of
+			its reading turn complex, and the “Pixel” panel turns red. A room at rest can never do that,
+			however the camera moves.
 		</p>
 	{/snippet}
 	{#snippet physicsExtra()}
@@ -127,8 +129,8 @@
 			magnetic part <Tex math={'|\\mathcal{B}| = \\sqrt3\\,(v_\\perp/c)\\,|\\mathcal{E}|'} />.
 			Walking pace is
 			<Tex math={'v/c \\approx 5\\times10^{-9}'} />, so the flow image is that much fainter than the
-			mass image, and more blurred at the same sensitivity. The pixel’s alarm, the phase of its
-			eigenvalues, needs no image at all.
+			mass image, and more blurred at the same sensitivity. The pixel’s test for motion, the
+			imaginary part of its eigenvalues, needs no image at all.
 		</p>
 	{/snippet}
 </RoomDemo>

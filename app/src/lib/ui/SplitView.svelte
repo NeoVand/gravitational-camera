@@ -6,6 +6,7 @@
 	import type { Snippet } from 'svelte';
 	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
 	import {
+		Camera01Icon,
 		Layers01Icon,
 		Orbit01Icon,
 		Sun03Icon,
@@ -19,6 +20,7 @@
 	import {
 		Engine,
 		EngineUnavailable,
+		MODE_COUNTS,
 		MODE_FIELD,
 		MODE_LIGHT,
 		MODE_NEAR,
@@ -29,6 +31,7 @@
 		referenceTidal,
 		type AnalyzedObject,
 		type FrameParams,
+		type ImageMap,
 		type Mode,
 		type PackedWaves,
 		type Vec3,
@@ -83,6 +86,16 @@
 		rightLabel?: string;
 		/** Still image shown until the engine draws, and if it cannot start. */
 		poster?: string;
+		/**
+		 * A picture made on the page, for the gravity side: a thermal exposure's counts (with `rightMode` the counts
+		 * mode), or the noise of a near-field exposure (with `noise`).
+		 */
+		image?: ImageMap;
+		/**
+		 * One near-field exposure: the noise in `image` (its red part) times `scale`, in kg m⁻³ of tidal column, is
+		 * added to the blurred column; the picture spans `across` by `up` of the image's cells from its top left.
+		 */
+		noise?: { scale: number; across: number; up: number };
 		/** Drawn over the right-hand (gravity) side. */
 		overlay?: Snippet;
 		/** Darken the right-hand picture so an overlay reads clearly. */
@@ -116,6 +129,8 @@
 		leftLabel = 'Light',
 		rightLabel = 'Gravity · thermal',
 		poster,
+		image,
+		noise,
 		overlay,
 		dimRight = false
 	}: Props = $props();
@@ -130,7 +145,8 @@
 		[MODE_THERMAL]: TemperatureIcon,
 		[MODE_NEAR]: Orbit01Icon,
 		[MODE_WAVES]: WavesIcon,
-		[MODE_FIELD]: Layers01Icon
+		[MODE_FIELD]: Layers01Icon,
+		[MODE_COUNTS]: Camera01Icon
 	};
 
 	let status: 'starting' | 'running' | 'unavailable' | 'failed' = $state('starting');
@@ -179,6 +195,9 @@
 		let disposed = false;
 		let busy = false;
 		let lastKey = '';
+		// the page's picture last sent to the engine, and how many have been
+		let uploaded: ImageMap | undefined;
+		let uploads = 0;
 		const started = performance.now();
 		const target = readback ? document.createElement('canvas') : canvas;
 		const ctx2d = readback ? canvas.getContext('2d') : null;
@@ -205,7 +224,14 @@
 			const width = Math.max(1, Math.round(canvas.clientWidth * ratio));
 			const height = Math.max(1, Math.round(canvas.clientHeight * ratio));
 			const pixelAngle = (2 * Math.tan(view.fov / 2)) / height;
+			if (image && image !== uploaded) {
+				engine.setImage(image);
+				uploaded = image;
+				uploads++;
+			}
 			const key = JSON.stringify([
+				uploads,
+				noise ? [noise.scale / sRef, noise.across, noise.up] : null,
 				view,
 				split,
 				exposure,
@@ -242,6 +268,7 @@
 				room,
 				nearOutline: outline,
 				waveExposure,
+				noise: noise && { amplitude: noise.scale / sRef, across: noise.across, up: noise.up },
 				field:
 					rightMode === MODE_FIELD
 						? {
@@ -287,6 +314,7 @@
 			canvas.dataset.right = String(params.right);
 			canvas.dataset.waves = String(waves?.count ?? 0);
 			canvas.dataset.exposure = String(params.exposure);
+			canvas.dataset.image = String(uploads);
 		};
 
 		Engine.create(target)

@@ -7,12 +7,15 @@
 // the blurred tidal column, made by the near-field passes
 @group(0) @binding(2) var near_map: texture_2d<f32>;
 @group(0) @binding(3) var near_sampler: sampler;
+// a picture made on the CPU: the noise of one near-field exposure, or a thermal exposure's counts
+@group(0) @binding(5) var image_map: texture_2d<f32>;
 
 const MODE_LIGHT: u32 = 0u;
 const MODE_THERMAL: u32 = 1u;
 const MODE_NEAR: u32 = 2u;
 const MODE_WAVES: u32 = 3u;
 const MODE_FIELD: u32 = 4u;
+const MODE_COUNTS: u32 = 5u;
 
 @vertex
 fn vs(@builtin(vertex_index) vi: u32) -> @builtin(position) vec4f {
@@ -27,9 +30,36 @@ fn ray_direction(uv: vec2f) -> vec3f {
                                      + sy * frame.up.w * frame.up.xyz);
 }
 
+// The image map at a point of the picture, between its four nearest cells: cell (i, j) lies at uv = (i, j) / (y, z)
+// of frame.image, so the picture's corner is the map's.
+fn image_between(uv: vec2f) -> f32 {
+  let dims = vec2i(textureDimensions(image_map));
+  let p = uv * frame.image.yz;
+  let base = vec2i(floor(p));
+  let f = p - floor(p);
+  let a = clamp(base, vec2i(0), dims - 1);
+  let b = clamp(base + 1, vec2i(0), dims - 1);
+  let top = mix(textureLoad(image_map, a, 0).r, textureLoad(image_map, vec2i(b.x, a.y), 0).r, f.x);
+  let bottom = mix(textureLoad(image_map, vec2i(a.x, b.y), 0).r, textureLoad(image_map, b, 0).r, f.x);
+  return mix(top, bottom, f.y);
+}
+
 fn near_view(uv: vec2f) -> vec3f {
-  let s = textureSampleLevel(near_map, near_sampler, uv, 0.0).r;
+  var s = textureSampleLevel(near_map, near_sampler, uv, 0.0).r;
+  // one exposure: the reconstruction of the readings' noise, added to that of the scene
+  if (frame.image.x != 0.0) { s += frame.image.x * image_between(uv); }
   return mass_color(1.0 - exp(-frame.tone.w * max(s, 0.0)));
+}
+
+// A thermal exposure's counts, an element to a cell of the map, each its colour times its count over the scale; drawn
+// with the thermal view's tone curve.
+fn counts_view(uv: vec2f) -> vec3f {
+  let dims = vec2i(textureDimensions(image_map));
+  let cell = clamp(vec2i(floor(uv * vec2f(dims))), vec2i(0), dims - 1);
+  let x = frame.tone.x * max(textureLoad(image_map, cell, 0).rgb, vec3f(0.0));
+  let m = max(x.r, max(x.g, x.b));
+  let c = x / max(m, 1e-20) * (1.0 - exp(-m));
+  return mix(c, vec3f(1.0), smoothstep(2.0, 40.0, m));
 }
 
 @fragment
@@ -46,6 +76,8 @@ fn fs(@builtin(position) pos: vec4f) -> @location(0) vec4f {
     col = waves_view(rd);
   } else if (mode == MODE_FIELD) {
     col = field_view(uv, rd, pos.xy);
+  } else if (mode == MODE_COUNTS) {
+    col = counts_view(uv);
   } else {
     col = light_view(rd);
   }

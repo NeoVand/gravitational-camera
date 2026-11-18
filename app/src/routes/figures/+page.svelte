@@ -11,7 +11,7 @@
 	<title>Interactive figures · Gravitational Camera</title>
 	<meta
 		name="description"
-		content="The paper's results on what one gravitational pixel knows, as figures to explore."
+		content="The paper's results on what one gravitational pixel measures, as figures to explore."
 	/>
 </svelte:head>
 
@@ -20,9 +20,9 @@
 <main>
 	<h1>Interactive figures</h1>
 	<p class="intro">
-		What a single pixel of the camera knows, from the paper’s Section III, as figures to explore.
-		These are diagrams of the results, not views through the camera; each also appears under its
-		figure in the online paper.
+		What a single pixel of the camera measures, from the paper’s Section VIII, as figures to
+		explore. These are diagrams of the results, not views through the camera; each also appears
+		under its figure in the online paper.
 	</p>
 
 	<ol>

@@ -1,5 +1,5 @@
 /**
- * The camera sees the present (paper, Section III): a body crossing a scene in a straight line, with light slowed so
+ * The camera sees the present (paper, Section VIII): a body crossing a scene in a straight line, with light slowed so
  * that the body moves at a good fraction of its speed. The tidal field everywhere points at where the body is now;
  * light shows where it was. If the body stops, the news spreads at the speed of light: outside the sphere it has
  * reached, the field still points at where the body would have been. Used by the demo "Now and then"

@@ -84,3 +84,16 @@ export function duration(seconds: number): string {
 	if (seconds < 1e4 * year) return `${two(seconds / year)} years`;
 	return `${sci(seconds / year)} years`;
 }
+
+/** A number to two figures, plainly: "3.2", "45", "320", "1,800". */
+const twoFigures = (x: number) =>
+	x >= 99.5
+		? Number(x.toPrecision(2)).toLocaleString('en-US')
+		: x.toPrecision(2).replace(/\.0$/, '');
+
+/** An area in square metres, in the unit that suits it: "4 cm²", "1 m²", "320 m²", "1 km²". */
+export function area(m2: number): string {
+	if (m2 < 0.0995) return `${twoFigures(m2 * 1e4)} cm²`;
+	if (m2 < 9.95e4) return `${twoFigures(m2)} m²`;
+	return `${twoFigures(m2 / 1e6)} km²`;
+}

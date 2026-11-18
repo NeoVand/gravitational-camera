@@ -6,11 +6,13 @@
 	 * The sidebar is a panel and, at the window's edge, a rail. The rail holds the tabs (About, Physics, Controls,
 	 * and where a demo has them Pixel and Key, then Help) and the tools (reset the view, save a still, full screen,
 	 * hide the interface). One tab is open at a time; pressing the open tab's icon puts the panel away, and the
-	 * picture takes its width. On a phone the rail is a bar along the bottom and the panel a sheet above it.
-	 * Whether the panel is open, and at which tab, is kept from one demo to the next.
+	 * picture takes its width. With the panel put away, the Key tab still opens it at the colour key (its tip shows the
+	 * key in brief). On a phone the rail is a bar along the bottom, the tabs in one row and the tools, named, in a row
+	 * beneath, and the panel a sheet above it. Whether the panel is open, and at which tab, is kept from one demo to
+	 * the next.
 	 *
-	 * Keys: N about, C controls, R reset the view, S save a still, F full screen, H hide everything but the
-	 * picture, ? help.
+	 * Keys: N about, C controls, K the colour key (where the picture has one), R reset the view, S save a still,
+	 * F full screen, H hide everything but the picture, ? help.
 	 */
 	import type { Snippet } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -92,7 +94,7 @@
 		...(physics ? [{ name: 'physics' as const, label: 'Physics', icon: Atom02Icon }] : []),
 		{ name: 'controls', label: 'Controls', icon: SlidersHorizontalIcon, key: 'C' },
 		...(pixel ? [{ name: 'pixel' as const, label: 'Pixel', icon: CenterFocusIcon }] : []),
-		...(legend ? [{ name: 'key' as const, label: 'Key', icon: Key01Icon }] : []),
+		...(legend ? [{ name: 'key' as const, label: 'Key', icon: Key01Icon, key: 'K' }] : []),
 		{ name: 'help', label: 'Help', icon: HelpCircleIcon, key: '?' }
 	]);
 
@@ -211,6 +213,7 @@
 		const key = e.key.toLowerCase();
 		if (key === 'n') choose('about');
 		else if (key === 'c') choose('controls');
+		else if (key === 'k' && legend) choose('key');
 		else if (key === 'r' && onreset) onreset();
 		else if (key === 's' && onsave) save();
 		else if (key === 'f') toggleFullscreen();
@@ -272,6 +275,10 @@
 									<dd>move between light and gravity (arrow keys when it is selected)</dd>
 									<dt><kbd>N</kbd> <kbd>C</kbd> <kbd>?</kbd></dt>
 									<dd>about, controls, this help; the same key again puts the panel away</dd>
+									{#if legend}
+										<dt><kbd>K</kbd></dt>
+										<dd>the key to the colours of the picture</dd>
+									{/if}
 									<dt><kbd>R</kbd> <kbd>S</kbd></dt>
 									<dd>reset the view, save a still</dd>
 									<dt><kbd>F</kbd> <kbd>H</kbd></dt>
@@ -315,28 +322,37 @@
 							aria-selected={open && current === t.name}
 							aria-controls={open ? 'shell-panel' : undefined}
 							tabindex={current === t.name ? 0 : -1}
-							title={t.key ? `${t.label} (${t.key})` : t.label}
+							title={t.name === 'key' && !open
+								? undefined
+								: t.key
+									? `${t.label} (${t.key})`
+									: t.label}
 							onclick={() => choose(t.name)}
 						>
 							<HugeiconsIcon icon={t.icon} size={19} strokeWidth={1.6} />
 							<span>{t.label}</span>
-							{#if t.name === 'key' && foot && !open}
-								<span class="tip wide" aria-hidden="true">{@render foot()}</span>
+							{#if t.name === 'key' && !open}
+								<!-- with the panel away, the key in brief, and what opens it in full -->
+								<span class="tip wide" aria-hidden="true">
+									<span class="open-key">Open the key <kbd>K</kbd></span>
+									{#if foot}{@render foot()}{/if}
+								</span>
 							{/if}
 						</button>
 					{/each}
 				</div>
 				<span class="sep" aria-hidden="true"></span>
 				<div class="tools">
-					{#if onreset}{@render tool(Target02Icon, 'Reset the view', 'R', onreset)}{/if}
-					{#if onsave}{@render tool(Camera01Icon, 'Save a still', 'S', save)}{/if}
+					{#if onreset}{@render tool(Target02Icon, 'Reset the view', 'Reset', 'R', onreset)}{/if}
+					{#if onsave}{@render tool(Camera01Icon, 'Save a still', 'Save', 'S', save)}{/if}
 					{@render tool(
 						fullscreen ? MinimizeScreenIcon : FullScreenIcon,
 						fullscreen ? 'Leave full screen' : 'Full screen',
+						fullscreen ? 'Leave full' : 'Full screen',
 						'F',
 						toggleFullscreen
 					)}
-					{@render tool(ViewOffIcon, 'Hide the interface', 'H', () => (bare = true))}
+					{@render tool(ViewOffIcon, 'Hide the interface', 'Hide', 'H', () => (bare = true))}
 				</div>
 			</nav>
 		</aside>
@@ -352,9 +368,17 @@
 	{/if}
 </main>
 
-{#snippet tool(icon: IconSvgElement, label: string, key: string, onclick: () => void)}
+{#snippet tool(
+	icon: IconSvgElement,
+	label: string,
+	short: string,
+	key: string,
+	onclick: () => void
+)}
 	<button type="button" class="tool" aria-label={label} {onclick}>
 		<HugeiconsIcon {icon} size={19} strokeWidth={1.6} />
+		<!-- on a phone, where nothing hovers, the tools are named -->
+		<span class="name" aria-hidden="true">{short}</span>
 		<span class="tip" aria-hidden="true">{label} <kbd>{key}</kbd></span>
 	</button>
 {/snippet}
@@ -762,6 +786,21 @@
 		white-space: normal;
 	}
 
+	.open-key {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-bottom: 0.35rem;
+		padding-bottom: 0.35rem;
+		border-bottom: 1px solid var(--line);
+		color: var(--accent);
+		font-weight: 600;
+	}
+
+	.tool .name {
+		display: none;
+	}
+
 	.tool:hover .tip,
 	.tool:focus-visible .tip,
 	.tabs button:hover .tip,
@@ -870,13 +909,13 @@
 			padding: 0.45rem 0.85rem 0.5rem;
 		}
 
+		/* two rows that fit any phone: the way back and the tabs, sharing the width; beneath them the tools */
 		.rail {
 			flex-direction: row;
+			flex-wrap: wrap;
 			width: auto;
-			gap: 0.1rem;
-			padding: 0.3rem 0.4rem calc(0.3rem + env(safe-area-inset-bottom));
-			overflow-x: auto;
-			scrollbar-width: none;
+			gap: 0.1rem 0.2rem;
+			padding: 0.3rem 0.4rem calc(0.25rem + env(safe-area-inset-bottom));
 		}
 
 		.tabs,
@@ -885,9 +924,19 @@
 			gap: 0.1rem;
 		}
 
+		.tabs {
+			flex: 1 1 0;
+			min-width: 0;
+			justify-content: space-around;
+		}
+
 		.tabs button {
-			width: 3.1rem;
+			flex: 1 1 0;
+			min-width: 0;
+			max-width: 4.4rem;
+			width: auto;
 			min-height: 2.75rem;
+			white-space: nowrap;
 		}
 
 		.tabs button[aria-selected='true']::before {
@@ -900,16 +949,45 @@
 		}
 
 		.sep {
-			flex: none;
-			width: 1px;
-			height: 1.6rem;
-			margin: 0 0.3rem;
+			display: none;
 		}
 
 		.tool {
 			flex: none;
 			width: 2.75rem;
 			height: 2.75rem;
+		}
+
+		.tools {
+			flex: 1 0 100%;
+			justify-content: space-around;
+			padding-top: 0.2rem;
+			border-top: 1px solid var(--line);
+		}
+
+		.tools .tool {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.25rem;
+			flex: 1 1 auto;
+			min-width: 0;
+			max-width: 8rem;
+			width: auto;
+			height: 2.4rem;
+		}
+
+		.tools .tool :global(svg) {
+			flex: none;
+		}
+
+		.tools .tool .name {
+			display: inline;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font: 500 0.62rem/1.2 var(--font-sans);
+			white-space: nowrap;
 		}
 
 		.tip {

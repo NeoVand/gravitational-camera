@@ -30,7 +30,7 @@
     "glass": {
       "density": 2500,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.55, 0.62, 0.6]
       }
@@ -47,12 +47,12 @@
     "honey": {
       "density": 1400,
       "temperature": 293,
-      "friction": 10
+      "friction": 0.000331
     },
     "water": {
       "density": 1000,
       "temperature": 293,
-      "friction": 0.001
+      "friction": 8.64e-05
     }
   },
   "objects": [
@@ -146,7 +146,8 @@
     }
   ],
   "assumptions": [
-    "Honey is given its everyday viscosity, 10 Pa s, and water 0.001 Pa s. Whether everyday viscosity carries over to the frequencies of thermal radiation is an open question in the paper.",
-    "The bottles are drawn opaque; their glass is given the placeholder friction."
+    "Friction is the constant value that sends as many gravitons as each material is estimated to (reference/gravcam/scenefriction.py): water's simulated spectrum for the water; for the honey, the most a relaxing shear stiffness of 30 GPa, twice the water model's, can send, an upper bound and not an estimate; silica glass for the bottles, and standing for concrete and plaster; the cap of a 1 GPa stiffness for the wood.",
+    "Honey's everyday viscosity, about 10 Pa s, is not its friction at the frequencies of heat: the slow rearrangement of its molecules that makes it is frozen there (Maxwell's model leaves less than 1e-8 Pa s), so the honey glows at most about four times as brightly as the water.",
+    "The bottles are drawn opaque."
   ]
 }

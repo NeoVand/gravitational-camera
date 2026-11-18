@@ -24,12 +24,15 @@ export const MODE_THERMAL = 1;
 export const MODE_NEAR = 2;
 export const MODE_WAVES = 3;
 export const MODE_FIELD = 4;
+/** A thermal exposure's counts, from the picture set by `setImage`. */
+export const MODE_COUNTS = 5;
 export type Mode =
 	| typeof MODE_LIGHT
 	| typeof MODE_THERMAL
 	| typeof MODE_NEAR
 	| typeof MODE_WAVES
-	| typeof MODE_FIELD;
+	| typeof MODE_FIELD
+	| typeof MODE_COUNTS;
 
 export interface FrameParams {
 	view: View;
@@ -72,11 +75,23 @@ export interface FrameParams {
 		/** The strokes' cell in pixels (0 for none), half length in cells and half weight in pixels. */
 		strokes?: [number, number, number];
 	};
+	/**
+	 * One near-field exposure: its noise (the picture set by `setImage`, its red part) times `amplitude`, in units of
+	 * the reference tidal column, is added to the blurred column; the picture spans `across` by `up` of its cells.
+	 */
+	noise?: { amplitude: number; across: number; up: number };
+}
+
+/** A picture made on the CPU, for the engine to draw: rows from the top, four floats a cell (red, green, blue, 0). */
+export interface ImageMap {
+	width: number;
+	height: number;
+	data: Float32Array;
 }
 
 export class EngineUnavailable extends Error {}
 
-const FRAME_BYTES = 176;
+const FRAME_BYTES = 192;
 const NEAR_FORMAT: GPUTextureFormat = 'rgba16float';
 
 async function compile(device: GPUDevice, label: string, parts: string[]) {
@@ -100,6 +115,8 @@ export class Engine {
 	private near: { width: number; height: number; a: GPUTexture; b: GPUTexture } | undefined;
 	private frameGroup: GPUBindGroup | undefined;
 	private blurGroups: [GPUBindGroup, GPUBindGroup] | undefined;
+	// the picture made on the CPU (`setImage`); a single dark cell until there is one
+	private image: { texture: GPUTexture; width: number; height: number } | undefined;
 
 	private constructor(
 		private readonly device: GPUDevice,
@@ -231,6 +248,31 @@ export class Engine {
 		);
 	}
 
+	/** The picture the counts view draws and the near-field noise is read from (see `ImageMap`). */
+	setImage(image: ImageMap): void {
+		const { width, height, data } = image;
+		if (this.image?.width !== width || this.image.height !== height) {
+			this.image?.texture.destroy();
+			this.image = {
+				width,
+				height,
+				texture: this.device.createTexture({
+					label: 'image',
+					size: [width, height],
+					format: 'rgba32float',
+					usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST
+				})
+			};
+			this.frameGroup = undefined;
+		}
+		this.device.queue.writeTexture(
+			{ texture: this.image.texture },
+			data as Float32Array<ArrayBuffer>,
+			{ bytesPerRow: width * 16 },
+			[width, height]
+		);
+	}
+
 	setPrims(prims: PackedPrims): void {
 		this.device.queue.writeBuffer(this.primBuffer, 0, prims.buffer);
 		this.primCount = prims.count;
@@ -260,12 +302,18 @@ export class Engine {
 		// left out, the look is that of the first picture (ORIGINAL_LOOK in lib/pixel/field-view.ts)
 		f.set(p.field?.look ?? [1, 0, 0, 0], 36);
 		f.set([...(p.field?.strokes ?? [26, 0.42, 0.8]), 0], 40);
+		f.set([p.noise?.amplitude ?? 0, p.noise?.across ?? 1, p.noise?.up ?? 1, 0], 44);
 		return data;
 	}
 
-	/** Make sure the reduced-resolution targets exist at this size. */
+	/** Make sure the reduced-resolution targets exist at this size, and the frame's bindings with them. */
 	private ensureNear(width: number, height: number): void {
-		if (this.near?.width === width && this.near.height === height) return;
+		if (!this.image) this.setImage({ width: 1, height: 1, data: new Float32Array(4) });
+		if (this.near?.width === width && this.near.height === height && this.frameGroup) return;
+		if (this.near?.width === width && this.near.height === height) {
+			this.frameGroup = this.frameBindings(this.near.a);
+			return;
+		}
 		this.near?.a.destroy();
 		this.near?.b.destroy();
 		const make = (label: string) =>
@@ -289,14 +337,19 @@ export class Engine {
 			});
 		// blur along x reads a and writes b; along y reads b and writes a
 		this.blurGroups = [blurGroup(this.blurBuffers[0], a), blurGroup(this.blurBuffers[1], b)];
-		this.frameGroup = this.device.createBindGroup({
+		this.frameGroup = this.frameBindings(a);
+	}
+
+	private frameBindings(near: GPUTexture): GPUBindGroup {
+		return this.device.createBindGroup({
 			layout: this.framePipeline.getBindGroupLayout(0),
 			entries: [
 				{ binding: 0, resource: { buffer: this.frameBuffer } },
 				{ binding: 1, resource: { buffer: this.primBuffer } },
-				{ binding: 2, resource: a.createView() },
+				{ binding: 2, resource: near.createView() },
 				{ binding: 3, resource: this.sampler },
-				{ binding: 4, resource: { buffer: this.waveBuffer } }
+				{ binding: 4, resource: { buffer: this.waveBuffer } },
+				{ binding: 5, resource: this.image!.texture.createView() }
 			]
 		});
 	}
@@ -474,6 +527,7 @@ export class Engine {
 	destroy(): void {
 		this.near?.a.destroy();
 		this.near?.b.destroy();
+		this.image?.texture.destroy();
 		this.device.destroy();
 	}
 }

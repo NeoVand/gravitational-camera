@@ -2,7 +2,7 @@
 	/**
 	 * A room seen from above, a pixel crossing it, and what the pixel reads of its own velocity
 	 * (lib/pixel/speedometer.ts): gravity every component, light only the part across its field. A meter shows the
-	 * motion alarm on a scale of decades. Drag the pixel to move it.
+	 * test for motion, the size of the eigenvalues' imaginary part, on a scale of decades. Drag the pixel to move it.
 	 */
 	import type { Vec3 } from '../pixel/complex';
 	import type { Thing } from '../pixel/speedometer';
@@ -108,7 +108,7 @@
 			tabindex="-1"
 			aria-label="the pixel: drag to move it"
 		/>
-		<!-- the alarm -->
+		<!-- the test for motion -->
 		<g transform="translate(0 228)">
 			<text x="-160" y="4" class="tag end" fill={lit ? '#ff9c8a' : '#a09d96'}
 				>{lit ? 'something moves' : 'all still'}</text
@@ -120,7 +120,7 @@
 			{/each}
 			<line x1={meter(-12)} x2={meter(-12)} y1="-9" y2="9" class="threshold" />
 			<circle cx={meter(decades)} cy="0" r="6" fill={lit ? '#ff9c8a' : '#7bd88f'} />
-			<text x="160" y="4" class="tag">motion alarm</text>
+			<text x="160" y="4" class="tag">motion test</text>
 		</g>
 	</svg>
 	<p class="legend">

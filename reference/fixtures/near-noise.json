@@ -1,0 +1,109 @@
+{
+ "meta": {
+  "package": "gravcam",
+  "version": "0.1.0",
+  "generator": "python -m gravcam.export_fixtures",
+  "notes": [
+   "The Wiener reconstruction of resolution.py, H = s^2 / (1 + s^2), s = pi SNR q e^-q, q = k z, passes the readings' white noise with spectrum S_sigma H (1 - H), S_sigma = m^2 / z^2 the prior's; in the angles of the picture and the units of the tidal column, (m / z^3)^2 H (1 - H) per steradian.",
+   "variance: (1 / 2 pi) int H (1 - H) q dq; peak: (1 / 2 pi) int H q dq, the centre of the image of a point of mass m; both on resolution.py's trapezoid grid. Rounded to 10 significant digits (they need exp and log)."
+  ]
+ },
+ "rows": [
+  {
+   "snr_decades": 3,
+   "q_c": 10.39368342,
+   "variance": 0.9148374231,
+   "peak": 8.668277658,
+   "q": [
+    5.196841712,
+    8.314946739,
+    9.354315081,
+    10.39368342,
+    11.43305177,
+    12.47242011,
+    15.59052513
+   ],
+   "spectrum": [
+    0.0001224712745,
+    0.02329549903,
+    0.1158766821,
+    0.25,
+    0.1141778218,
+    0.02154969625,
+    6.88974758e-05
+   ]
+  },
+  {
+   "snr_decades": 6,
+   "q_c": 17.84178354,
+   "variance": 1.503999408,
+   "peak": 25.40093174,
+   "q": [
+    8.92089177,
+    14.27342683,
+    16.05760519,
+    17.84178354,
+    19.62596189,
+    21.41014025,
+    26.76267531
+   ],
+   "spectrum": [
+    7.136278503e-08,
+    0.001239669737,
+    0.03251395796,
+    0.25,
+    0.03190964645,
+    0.001142702013,
+    4.014156908e-08
+   ]
+  },
+  {
+   "snr_decades": 20,
+   "q_c": 51.13081918,
+   "variance": 4.150013431,
+   "peak": 208.1109377,
+   "q": [
+    25.56540959,
+    40.90465534,
+    46.01773726,
+    51.13081918,
+    56.24390109,
+    61.35698301,
+    76.69622876
+   ],
+   "spectrum": [
+    0.0,
+    2.048740506e-09,
+    4.470021662e-05,
+    0.25,
+    4.381076025e-05,
+    1.888119342e-09,
+    1.400715372e-22
+   ]
+  },
+  {
+   "snr_decades": 40,
+   "q_c": 97.83137898,
+   "variance": 7.865569611,
+   "peak": 761.7004017,
+   "q": [
+    48.91568949,
+    78.26510318,
+    88.04824108,
+    97.83137898,
+    107.6145169,
+    117.3976548,
+    146.7470685
+   ],
+   "spectrum": [
+    0.0,
+    0.0,
+    3.926353227e-09,
+    0.25,
+    3.848218804e-09,
+    1.456502629e-17,
+    7.320731358e-43
+   ]
+  }
+ ]
+}

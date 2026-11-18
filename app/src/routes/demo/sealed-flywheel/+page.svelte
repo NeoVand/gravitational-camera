@@ -18,7 +18,14 @@
 	/>
 </svelte:head>
 
-<RoomDemo {scene} subjectDistance={3.8} startDivider={0.5} look={{ yaw: 6, pitch: -12 }} subtract>
+<RoomDemo
+	{scene}
+	subjectDistance={3.8}
+	startDivider={0.5}
+	look={{ yaw: 6, pitch: -12 }}
+	subtract
+	subject={{ id: 'flywheel-right', name: 'one flywheel' }}
+>
 	{#snippet intro()}
 		<p>
 			Two sealed steel housings each hold a smooth steel flywheel. The right-hand one turns at 3000

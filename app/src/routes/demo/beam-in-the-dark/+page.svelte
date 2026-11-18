@@ -29,6 +29,7 @@
 	subtract
 	startSensitivity={40}
 	startBrightness={0.6}
+	subject={{ id: 'beam', name: 'the beam' }}
 >
 	{#snippet intro()}
 		<p>
@@ -63,7 +64,9 @@
 				math={texSci(hydrogen)}
 			/> hydrogen atoms. That is a change of about five parts in <Tex math={'10^{25}'} /> of the tide
 			of the room, which the camera can only see by subtracting the reading with the laser off. The demo
-			starts at <Tex math={'\\mathrm{SNR} = 10^{40}'} /> for that reason.
+			starts at <Tex math={'\\mathrm{SNR} = 10^{40}'} />, quoted, as in every demo, for its subject,
+			here the beam itself: the noise is <Tex math={'10^{-40}'} /> of the beam's tide, some five parts
+			in <Tex math={'10^{65}'} /> of the room's.
 		</p>
 	{/snippet}
 </RoomDemo>

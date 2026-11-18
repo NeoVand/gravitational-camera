@@ -1,6 +1,6 @@
 <script lang="ts">
 	/**
-	 * Two skies around one point: the stars of gravity's field there (four) and of light's (two), for the same
+	 * Two skies around one point: the principal null directions of gravity's field there (four) and of light's (two), for the same
 	 * sources (lib/pixel/scene.ts). Drag a source to move it; drag anywhere else to turn the sky.
 	 */
 	import { norm, type Vec3 } from '../pixel/complex';
@@ -143,7 +143,7 @@
 		viewBox="-190 -212 380 372"
 		class="sky"
 		role="img"
-		aria-label="{name}: the stars of the field on the sky around the pixel"
+		aria-label="{name}: the principal null directions of the field on the sky around the pixel"
 		onpointerdown={down}
 		onpointermove={move}
 		onpointerup={up}
@@ -255,7 +255,7 @@
 <div class="skies">
 	{@render sky(
 		'gravity',
-		'four stars',
+		'four directions',
 		gravity.stars,
 		GRAVITY,
 		'g',
@@ -264,7 +264,7 @@
 	)}
 	{@render sky(
 		'light',
-		'two stars',
+		'two directions',
 		light.stars,
 		LIGHT,
 		'l',

@@ -14,7 +14,12 @@
 	/>
 </svelte:head>
 
-<RoomDemo {scene} subjectDistance={3.5} startDivider={0.52}>
+<RoomDemo
+	{scene}
+	subjectDistance={3.5}
+	startDivider={0.52}
+	subject={{ id: 'tank-middle-contents', name: 'the water in the middle tank' }}
+>
 	{#snippet intro()}
 		<p>
 			Three steel tanks look the same in <strong>light</strong>. From left to right they hold air,

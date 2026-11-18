@@ -55,14 +55,14 @@
 </script>
 
 <svelte:head>
-	<title>The four stars · Gravitational Camera</title>
+	<title>Principal null directions · Gravitational Camera</title>
 	<meta
 		name="description"
-		content="Every reading of a gravitational pixel has four directions of its own, light's only two. Move the sources and watch them: one body, a moving body, two bodies, a wave."
+		content="Every reading of a gravitational pixel has four principal null directions, a reading of light only two. Move the sources and watch them: one body, a moving body, two bodies, a wave."
 	/>
 </svelte:head>
 
-<DemoShell section="figures" title="The four stars" onreset={reset}>
+<DemoShell section="figures" title="Principal null directions" onreset={reset}>
 	{#snippet stage()}
 		<FourStars {sources} {wave} bind:yaw bind:pitch onmove={(i, p) => (positions[i] = p)} />
 	{/snippet}
@@ -114,21 +114,21 @@
 
 	{#snippet notes()}
 		<p>
-			A pixel of this camera reads ten numbers. Put together, they have four directions of their own
-			on the sky around it, its <strong>stars</strong>: the directions in which the field looks,
-			locally, like a wave. Light’s field at a point has only two.
+			A pixel of this camera reads ten numbers. Put together, they single out four directions on the
+			sky around it, the <strong>principal null directions</strong> of the reading (for a field of spin
+			two these are also called its Majorana stars). Light’s field at a point has only two.
 		</p>
 		<p>
-			One body at rest puts gravity’s stars in two pairs, on the line through it. Set it moving and
-			both pairs fold toward its velocity; the arrow to their midpoint is its velocity across the
-			line of sight, exactly, at any speed (the dotted ring is the true value). One wave puts all
-			four stars on its direction of travel. A second body splits them into four, and the pixel
-			knows at once that no single body could make this field. Light, at one point, gives the same
-			two stars for one charge or many.
+			One body at rest puts gravity’s four directions in two pairs, on the line through it. Set it
+			moving and both pairs fold toward its velocity; the arrow to their midpoint is its velocity
+			across the line of sight, exactly, at any speed (the dotted ring is the true value). One wave
+			puts all four on its direction of travel. A second body separates them, and the one reading
+			shows that no single body could make this field. Light, at one point, gives the same two
+			directions for one charge or many.
 		</p>
 		<dl>
 			<div>
-				<dt>What gravity’s stars say</dt>
+				<dt>What gravity’s four directions say</dt>
 				<dd>
 					{#if reading.type === 'D'}like one round body (Petrov type D){:else if reading.type === 'N'}one
 						plane wave (type N){:else}not one round body or one wave (type {reading.type}){/if}
@@ -136,7 +136,7 @@
 			</div>
 			{#if reading.read && truth}
 				<div>
-					<dt>Sideways speed, from the stars · true</dt>
+					<dt>Sideways speed, from the directions · true</dt>
 					<dd><Tex math={`${fmt(reading.read)} \\cdot ${fmt(truth)}`} /></dd>
 				</div>
 			{/if}
@@ -152,9 +152,10 @@
 			{/if}
 		</dl>
 		<p class="fine">
-			Drag a body to move it, or drag anywhere else to turn the sky. Touching dots are stars that
-			coincide; faint ones are on the far side. The fields are exact for bodies moving steadily, in
-			linearized gravity, and computed here as the paper’s reference implementation computes them.
+			Drag a body to move it, or drag anywhere else to turn the sky. Touching dots are directions
+			that coincide; faint ones are on the far side. The fields are exact for bodies moving
+			steadily, in linearized gravity, and computed here as the paper’s reference implementation
+			computes them.
 		</p>
 	{/snippet}
 
@@ -171,7 +172,7 @@
 			on which every observer acts by a complex rotation. Writing a complex null vector by its point
 			<Tex math={'z'} /> on the sky, <Tex
 				math={'\\mathbf m(z) = (1 - z^2,\\, i(1 + z^2),\\, -2z)'}
-			/>, the stars are the four roots of
+			/>, the four directions are the roots of
 		</p>
 		<Tex display math={'\\mathbf m(z)^{T}\\,\\mathcal{W}\\,\\mathbf m(z) = 0 ,'} />
 		<p>
@@ -182,8 +183,8 @@
 		<p>
 			The field of a body moving steadily is its field at rest carried by a boost, an imaginary
 			rotation
-			<Tex math={'e^{i\\eta[\\hat{\\mathbf u}]_\\times}'} />, which moves its two pairs of stars by
-			aberration. Their midpoint is
+			<Tex math={'e^{i\\eta[\\hat{\\mathbf u}]_\\times}'} />, which moves its two pairs of
+			directions by aberration. Their midpoint is
 		</p>
 		<Tex display math={'\\tfrac12(\\hat p_+ + \\hat p_-) = \\mathbf v_\\perp/c ,'} />
 		<p>

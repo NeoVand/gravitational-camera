@@ -1,8 +1,8 @@
 <script lang="ts">
 	/**
 	 * The "One pixel" layer of a room demo: what a single pixel at the camera reads (lib/pixel/probe.ts), drawn as
-	 * the sky around it seen as the camera sees it (the centre is where the camera looks): its four stars, its type
-	 * and the motion alarm. In brief it is one line, for the foot of the sidebar.
+	 * the sky around it seen as the camera sees it (the centre is where the camera looks): its four principal null
+	 * directions, its type and the test for motion. In brief it is one line, for the foot of the sidebar.
 	 */
 	import { cameraBasis, type View } from '../engine/camera';
 	import type { AnalyzedObject, Vec3 } from '../engine/types';
@@ -53,7 +53,7 @@
 		<svg
 			viewBox="-60 -60 120 120"
 			role="img"
-			aria-label="Its four stars on the sky, seen as the camera sees it"
+			aria-label="Its four principal null directions on the sky, seen as the camera sees it"
 		>
 			<circle r={R} class="disc" />
 			<line x1="-6" x2="6" class="mark" />
@@ -72,9 +72,10 @@
 	</div>
 	<p class="what">
 		The disc is the sky about the pixel, seen as the camera sees it: the centre is where the camera
-		looks. The four dots are the reading’s four stars, the directions that every tidal reading
+		looks. The four dots are the reading’s four principal null directions, which every tidal reading
 		singles out; a faint dot is behind you. Where they fall together tells the reading’s type. The
-		last line is the part of the reading that only moving mass gives.
+		last line is the test for motion: the eigenvalues of the reading are real for a scene at rest,
+		however the pixel moves, and complex when something in it moves.
 	</p>
 {/if}
 

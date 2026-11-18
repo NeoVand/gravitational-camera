@@ -10,7 +10,17 @@ pair's symmetry it is E(r, phi, t) = A(r) cos(2 Omega t - 2 phi + delta(r)),
 and at the order of the quadrupole A and delta depend on r only through
 x = r / lambda. The table gives, against x, the strength x A(x) in units of its
 value in the waves, and eta = delta + 2 pi x, which is smooth: delta itself
-winds by 2 pi every wavelength.
+winds by 2 pi every wavelength. eta is given from its value at the last
+sample, ``eta_end`` (reduced to the interval -pi to pi), so that the true
+phase is delta = eta + eta_end - 2 pi x.
+
+The rest of the tensor in the plane: with the changing part written
+E_ij = Re[c_ij exp(2 i Omega t)] at phi = 0, in the axes (r, phi, z),
+``rr`` and ``rphi`` are c_rr / c_zz and c_rphi / c_zz as [real, imaginary]
+pairs; c_phiphi = -(c_rr + c_zz), since the field has no trace outside the
+pair, and the components with z vanish by the reflection z -> -z. At any phi
+the tensor is the one at phi = 0 and the time t - phi / Omega, turned by phi.
+These ratios, unlike c_ij, change slowly with x.
 
 ``sweep``: the angle swept by rays near a black hole (schwarzschild.py), at a
 few distances and viewing angles, against which the site's own calculation is
@@ -51,22 +61,26 @@ def pair_table(n: int = 240, x_min: float = 0.005, x_max: float = 20.0) -> dict:
     x = np.geomspace(x_min, x_max, n)
     pts = np.stack([x * lam, np.zeros(n), np.zeros(n)], axis=-1)
     quarter = 0.25 * math.pi / pair.omega          # a quarter of a wave period
-    zz = []
-    for k in range(4):
-        E, _ = binary.tidal(pair, k * quarter, pts)
-        zz.append(E[:, 2, 2])
+    snaps = [binary.tidal(pair, k * quarter, pts)[0] for k in range(4)]
+    # E(t) = static + a cos(2 Omega t) + b sin(2 Omega t) = static + Re[(a - i b) exp(2 i Omega t)]
+    cpx = 0.5 * (snaps[0] - snaps[2]) - 0.5j * (snaps[1] - snaps[3])
+    a, b = cpx[:, 2, 2].real, -cpx[:, 2, 2].imag
     wz = [pair.wave_tidal(k * quarter, pts)[:, 2, 2] for k in range(4)]
-    a, b = 0.5 * (zz[0] - zz[2]), 0.5 * (zz[1] - zz[3])
     strength = np.hypot(a, b)
     wave = np.hypot(0.5 * (wz[0] - wz[2]), 0.5 * (wz[1] - wz[3]))
     # delta winds once a wavelength; delta + 2 pi x varies slowly, so unwrap that
     eta = np.unwrap(np.angle(np.exp(1j * (np.arctan2(-b, a) + 2 * math.pi * x))))
     # the waves' r A is the same at every radius: use it as the unit
     unit = float(np.median(x * wave))
+    rr = cpx[:, 0, 0] / cpx[:, 2, 2]
+    rphi = cpx[:, 0, 1] / cpx[:, 2, 2]
     return {
         "x": [_r(v) for v in x],
         "strength": [_r(v) for v in x * strength / unit],
         "eta": [_r(v) for v in eta - eta[-1]],
+        "eta_end": _r(math.remainder(float(eta[-1]), 2 * math.pi)),
+        "rr": [[_r(v.real), _r(v.imag)] for v in rr],
+        "rphi": [[_r(v.real), _r(v.imag)] for v in rphi],
     }
 
 

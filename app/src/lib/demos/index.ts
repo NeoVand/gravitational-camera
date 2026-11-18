@@ -18,7 +18,7 @@ export interface DemoEntry {
 	title: string;
 	affordance: string;
 	summary: string;
-	/** Which of the camera's three regimes the demo shows, or the sky (the paper's vistas). */
+	/** Which of the camera's three regimes the demo shows, or the sky (the paper's astrophysical and cosmological scenes). */
 	regime: 'near field' | 'thermal' | 'waves' | 'sky';
 }
 
@@ -66,10 +66,10 @@ export const demos: DemoEntry[] = [
 	{
 		slug: 'honey-and-water',
 		title: 'Honey and water',
-		affordance: 'Internal friction',
+		affordance: 'Friction, not viscosity',
 		regime: 'thermal',
 		summary:
-			'Thermal gravitational glow is set by how much a material resists shearing at the frequencies of heat. Two sealed bottles, shown with their everyday viscosities.'
+			'Two sealed bottles. Honey is ten thousand times more viscous than water, but the glow is set by friction at the frequencies of heat, where the two differ by a small factor.'
 	},
 	{
 		slug: 'which-way',
@@ -109,7 +109,7 @@ export const demos: DemoEntry[] = [
 		affordance: 'See motion through walls',
 		regime: 'near field',
 		summary:
-			'Two people behind a wall; one walks. Light sees the wall. Gravity sees both, colours the walker by the direction of walking, and one pixel alone knows that something moves.'
+			'Two people behind a wall; one walks. Light sees the wall. Gravity sees both, colours the walker by the direction of walking, and a single pixel detects that something moves.'
 	},
 	{
 		slug: 'milky-way',

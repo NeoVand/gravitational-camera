@@ -26,6 +26,7 @@ struct Frame {
   field: vec4f,     // field view: depth of the slice (m), typical tensor size there, opacity; w unused
   look: vec4f,      // field view's look: contrast of the wash (1 as first drawn), decades added to the strength scale, colour by (0 direction, 1 strength, 2 stretch against squeeze), darkness of the strokes' edge
   strokes: vec4f,   // field view's strokes: cell in pixels (0 for none), half length in cells, half weight in pixels; w unused
+  image: vec4f,     // the picture made on the CPU (image_map): x, the near field's noise in units of the reference tidal column per unit of the map (0 for none); y and z, the picture's width and height in the map's cells; w unused
 }
 
 const FLAG_FAR: u32 = 1u;

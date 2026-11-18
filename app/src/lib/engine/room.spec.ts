@@ -172,12 +172,13 @@ describe('the thermal demos', () => {
 		expect(alone).toBeGreaterThan(20);
 	});
 
-	it('honey glows about ten thousand times brighter than water', () => {
+	it('honey glows within a small factor of water, not ten thousand times brighter as its viscosity would have it', () => {
 		const { objects } = load(honeyJson);
-		const contents = objects.filter((o) => o.id.endsWith('-contents'));
-		expect(contents).toHaveLength(2);
-		const [a, b] = contents.map((o) => o.jN);
-		expect(Math.max(a, b) / Math.min(a, b)).toBeCloseTo(1e4, -2);
+		const glow = (id: string) => objects.find((o) => o.id === id)!.jN;
+		const ratio = glow('bottle-left-contents') / glow('bottle-right-contents');
+		// honey at the most a relaxing stiffness of 30 GPa allows, water from its spectrum (reference scenefriction.py)
+		expect(ratio).toBeGreaterThan(1);
+		expect(ratio).toBeLessThan(5);
 	});
 });
 

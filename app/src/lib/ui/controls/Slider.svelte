@@ -25,6 +25,8 @@
 		 * or current; pressing it moves the slider there.
 		 */
 		marks?: { at: number; label: string }[];
+		/** What the ticks are, said under them while none is pointed at or current. */
+		marksHint?: string;
 	}
 
 	let {
@@ -38,7 +40,8 @@
 		readout,
 		ends,
 		mark,
-		marks = []
+		marks = [],
+		marksHint = 'the ticks mark where the field changes'
 	}: Props = $props();
 
 	const fill = $derived(Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100)));
@@ -147,7 +150,7 @@
 	{/if}
 	{#if ticks.length}
 		<p class="named" aria-live="polite">
-			{pointed ?? standing?.label ?? 'the ticks mark where the field changes'}
+			{pointed ?? standing?.label ?? marksHint}
 		</p>
 	{/if}
 	{#if mark && markAt !== undefined}

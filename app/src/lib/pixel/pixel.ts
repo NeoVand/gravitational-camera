@@ -1,5 +1,5 @@
 /**
- * What one pixel knows (paper, Section III): the algebra of its ten numbers as one complex symmetric matrix
+ * What one pixel measures (paper, Section VIII): the algebra of its ten numbers as one complex symmetric matrix
  * W = E + iB. A port of reference/gravcam/pixel.py, with the same names and conventions, tested against
  * reference/fixtures/pixel.json (pixel.spec.ts).
  */

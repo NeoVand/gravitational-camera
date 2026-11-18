@@ -94,7 +94,7 @@
 		{
 			icon: DropletIcon,
 			name: 'Tell materials by friction',
-			text: 'Honey and water can differ.',
+			text: 'Viscosity does not set the glow.',
 			href: resolve('/demo/honey-and-water'),
 			poster: posters['honey-and-water']
 		},
@@ -129,7 +129,7 @@
 		{
 			icon: WorkoutRunIcon,
 			name: 'See motion through walls',
-			text: 'One pixel knows something moves.',
+			text: 'One pixel detects the motion.',
 			href: resolve('/demo/behind-the-wall'),
 			poster: posters['behind-the-wall']
 		}

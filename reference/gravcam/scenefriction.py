@@ -8,11 +8,13 @@ material's temperature (so the counts are right; the energy then is 2.701 k T a 
 only approximates):
 
   spectrum   the count of a model spectrum of materials.py (iron, with its electrons at their bound; silica glass
-             standing for concrete and plaster; copper standing for gold);
+             for glass, and standing for concrete and plaster; copper standing for gold; water, from its simulated
+             spectrum);
   hot metal  a metal's friction falls as 1/T when its collision rate grows as T (Section VI), so the hot iron has
              the cold iron's friction times 293 K / T: its count grows as T^2, about 25 times at 1500 K;
   cap        the most a relaxing shear stiffness can send, glowbounds.count_bound: the Earth's and the Moon's
-             shells, with the stiffnesses of glowbounds.EARTH_SHELLS, and wood. An upper bound, not an estimate;
+             shells, with the stiffnesses of glowbounds.EARTH_SHELLS, wood, and honey. An upper bound, not an
+             estimate;
   none       air: a gas whose molecules collide every 0.2 ns has next to no shear friction at the frequencies of
              heat (eta_0 / (omega tau)^2, about 1e-13 Pa s), so it is given none.
 
@@ -52,6 +54,13 @@ def hot_metal(friction_cold: float, temperature: float, cold: float = 293.0) -> 
 # mantle has the shear modulus of the Earth's uppermost mantle, its small core the weight of two free electrons
 # per atom of iron, as for the Earth's.
 WOOD_STIFFNESS = 1e9
+# Honey's everyday viscosity, some 10 Pa s, is the slow rearrangement of its molecules (Maxwell's model, Eq. maxwell):
+# at the frequencies of heat that is frozen, and leaves of order G_inf^2 / (eta_0 omega^2), less than 1e-8 Pa s. What
+# dissipates a uniform shear there are the fast vibrations of its hydrogen bonds and molecules, as in water, whose
+# model (materials.water) has a weight of 15 GPa. Honey, four-fifths sugar and denser, is allowed twice that: an
+# upper bound on its glow, not an estimate, which leaves it at most four times as bright as water.
+HONEY_VISCOSITY = 10.0
+HONEY_STIFFNESS = 30e9
 MOON_MANTLE_STIFFNESS = 70e9
 MOON_CORE_STIFFNESS = 220e9
 
@@ -73,6 +82,9 @@ def table() -> dict[str, tuple[float, str]]:
         "concrete": (silica, "spectrum: silica glass standing for concrete, 293 K"),
         "plaster": (silica, "spectrum: silica glass standing for plaster, 293 K"),
         "gold": (count_friction(t["copper"], 293.0), "spectrum: copper standing for gold, 293 K"),
+        "glass": (silica, "spectrum: silica glass, 293 K"),
+        "water": (count_friction(t["water"], 293.0), "spectrum: water (Schulz et al. 2020), 293 K"),
+        "honey": (cap_friction(HONEY_STIFFNESS, 293.0), "cap: 30 GPa, twice the water model's weight, 293 K"),
         "wood": (cap_friction(WOOD_STIFFNESS, 293.0), "cap: shear stiffness 1 GPa, 293 K"),
         "moon-mantle": (cap_friction(MOON_MANTLE_STIFFNESS, 1200.0), "cap: 70 GPa, 1200 K"),
         "moon-core": (cap_friction(MOON_CORE_STIFFNESS, 1700.0), "cap: 220 GPa, 1700 K"),

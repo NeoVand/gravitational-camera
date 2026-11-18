@@ -44,7 +44,7 @@
     "water": {
       "density": 1000,
       "temperature": 293,
-      "friction": 0.001
+      "friction": 8.64e-05
     },
     "mercury": {
       "density": 13534,
@@ -152,7 +152,7 @@
     }
   ],
   "assumptions": [
-    "Friction is the constant value that sends as many gravitons as each material is estimated to (reference/gravcam/scenefriction.py): iron's spectrum for steel, silica glass standing for concrete and plaster, none for air; materials not listed there keep the placeholder 1e-3 Pa s.",
+    "Friction is the constant value that sends as many gravitons as each material is estimated to (reference/gravcam/scenefriction.py): iron's spectrum for steel, water's simulated spectrum for water, silica glass standing for concrete and plaster, none for air; materials not listed there keep the placeholder 1e-3 Pa s.",
     "Tank walls are 1 cm of steel."
   ]
 }

@@ -30,7 +30,7 @@
 	<title>One pixel’s sky · Gravitational Camera</title>
 	<meta
 		name="description"
-		content="What one gravitational pixel can know of a sky full of sources: its harmonics of degree four and below. Twelve sources on an icosahedron look exactly like a uniform sky."
+		content="What one gravitational pixel can measure of a sky full of sources: its harmonics of degree four and below. Twelve sources on an icosahedron look exactly like a uniform sky."
 	/>
 </svelte:head>
 

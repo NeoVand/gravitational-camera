@@ -1,6 +1,6 @@
 /** Waiting times as the demos print them. */
 import { describe, expect, it } from 'vitest';
-import { duration, tidal, texWait, times } from './format';
+import { area, duration, tidal, texWait, times } from './format';
 
 describe('a waiting time', () => {
 	it('keeps a digit after the point under ten seconds, and rounds above', () => {
@@ -30,5 +30,16 @@ describe('a tide', () => {
 		expect(duration(442.7)).toBe('7.4 minutes');
 		expect(duration(0.0068)).toBe('6.8 ms');
 		expect(duration(7.7e14)).toBe('2.4 × 10⁷ years');
+	});
+});
+
+describe('an area', () => {
+	it('is in the unit that suits it, to two figures', () => {
+		expect(area(1e-4)).toBe('1 cm²');
+		expect(area(3.2e-3)).toBe('32 cm²');
+		expect(area(1)).toBe('1 m²');
+		expect(area(10 ** 2.5)).toBe('320 m²');
+		expect(area(1800)).toBe('1,800 m²');
+		expect(area(1e6)).toBe('1 km²');
 	});
 });

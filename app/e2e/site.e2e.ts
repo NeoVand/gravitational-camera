@@ -357,12 +357,20 @@ test('closed furnace: both blocks show through the steel, the hot one far the br
 	expect(cold[0], detail).toBeGreaterThan(air[0] + 5);
 });
 
-test('honey and water: honey glows, water barely does', async ({ page }) => {
+test('honey and water: both glow, the honey by a small factor more, not by its viscosity', async ({
+	page
+}) => {
 	const demo = await openDemo(page, '/demo/honey-and-water/', { yaw: 0, pitch: -12 });
 	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
 	const honey = await demo.at(sceneObject('honey-and-water', 'bottle-left-contents').center);
 	const water = await demo.at(sceneObject('honey-and-water', 'bottle-right-contents').center);
-	expect(honey[0], JSON.stringify({ honey, water })).toBeGreaterThan(water[0] + 80);
+	// between the bottles the line of sight passes over the table to the floor, whose glow starts taken away
+	const between = await demo.at([0, 1.0, -2.2]);
+	const detail = JSON.stringify({ honey, water, between });
+	expect(honey[0], detail).toBeGreaterThan(water[0] + 10);
+	expect(water[0], detail).toBeGreaterThan(between[0] + 40);
+	await openTab(page, 'About');
+	await expect(page.getByText(/the honey here is 3\.8 times as bright as the water/)).toBeVisible();
 });
 
 test('which way it turns: the polarization tells the sense of turning', async ({ page }) => {
@@ -548,7 +556,7 @@ test('two black holes: the field turns, and stops when told to', async ({ page }
 	expect(distance(c, d), JSON.stringify({ c, d })).toBeLessThan(1);
 });
 
-test('the four stars: gravity has four, light two, and a moving body is read exactly', async ({
+test('principal null directions: gravity has four, light two, and a moving body is read exactly', async ({
 	page
 }) => {
 	await page.goto('/figures/four-stars/');
@@ -584,7 +592,7 @@ test('the four stars: gravity has four, light two, and a moving body is read exa
 	await expect(skies.nth(0).locator('circle.star')).toHaveCount(4);
 });
 
-test('four voices: one gravitational pixel finds four waves, light none; with two, both find them', async ({
+test('four waves: one gravitational pixel finds four waves, light none; with two, both find them', async ({
 	page
 }) => {
 	await page.goto('/figures/four-voices/');
@@ -616,7 +624,7 @@ test('now and then: the scene runs, and a stop is held until the body is let go'
 	await expect(stop).toHaveAttribute('aria-pressed', 'false');
 });
 
-test('speedometer: gravity reads the pixel’s speed exactly, and a walking person sets off the alarm', async ({
+test('own velocity: gravity reads the pixel’s speed exactly, and a walking person turns the motion test on', async ({
 	page
 }) => {
 	await page.goto('/figures/speedometer/');
@@ -666,7 +674,7 @@ test('beyond Einstein: one reading tells the theory, and a second wave fails the
 	await expect(page.getByText(/the checks fail/)).toBeVisible();
 });
 
-test('the One pixel layer: a turning flywheel sets off the alarm, a locked safe does not', async ({
+test('the One pixel layer: a turning flywheel turns the motion test on, a locked safe does not', async ({
 	page
 }) => {
 	await page.goto('/demo/sealed-flywheel/');
@@ -685,7 +693,7 @@ test('interactive figures: their own section, out of the demos, and live under t
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Interactive figures');
 	await expect(page.locator('ol > li')).toHaveCount(7);
 	await page.goto('/demo/');
-	await expect(page.getByText('The four stars')).toHaveCount(0);
+	await expect(page.getByText('Principal null directions')).toHaveCount(0);
 	await page.goto('/paper/');
 	const stars = page.locator('figure[id="fig:stars"]');
 	await stars.locator('summary').click();
@@ -711,7 +719,7 @@ test('where it is now: the ball flies, the camera draws it, and a stop is held',
 	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(drawn);
 });
 
-test('behind the wall: one pixel knows someone walks, and stops knowing when they stand', async ({
+test('behind the wall: one pixel detects that someone walks, and not when they stand', async ({
 	page
 }) => {
 	await page.goto('/demo/behind-the-wall/?present=readback');
@@ -1235,4 +1243,157 @@ test('on a phone, a slider follows the finger anywhere along its track', async (
 	await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
 	await expect.poll(async () => Number(await slider.inputValue())).toBeGreaterThan(95);
 	await context.close();
+});
+
+// --- what the instrument records: one exposure of the near field, and the gravitons a thermal exposure counts ------
+
+/** The picture, one pixel in every seven along each side, as the sum of its red, green and blue. */
+async function pixels(page: Page): Promise<number[]> {
+	return page.locator('canvas').evaluate((c: HTMLCanvasElement) => {
+		const data = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
+		const out: number[] = [];
+		for (let y = 3; y < c.height; y += 7)
+			for (let x = 3; x < c.width; x += 7) {
+				const i = 4 * (y * c.width + x);
+				out.push(data[i] + data[i + 1] + data[i + 2]);
+			}
+		return out;
+	});
+}
+
+const meanDifference = (a: number[], b: number[]) =>
+	a.reduce((s, v, i) => s + Math.abs(v - b[i]), 0) / a.length;
+
+/** Wait until the picture has stopped changing: no new frame for a second. */
+async function settled(page: Page) {
+	const canvas = page.locator('canvas');
+	let last = -1;
+	await expect
+		.poll(
+			async () => {
+				const now = Number(await canvas.getAttribute('data-frames'));
+				const steady = now === last;
+				last = now;
+				return steady;
+			},
+			{ intervals: [1000], timeout: 30_000 }
+		)
+		.toBe(true);
+}
+
+test('one exposure, the near field: the reconstruction carries the noise of the readings, and each exposure its own', async ({
+	page
+}) => {
+	const demo = await openDemo(page, '/demo/full-or-empty/', { yaw: 13, pitch: -13 });
+	const canvas = page.locator('canvas');
+	await openTab(page, 'Controls');
+	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
+	await page.getByLabel('Outline').uncheck();
+	// a camera far less sensitive, and the picture brightened, so that the noise stands out
+	await page.locator('#sensitivity').fill('3');
+	await page.locator('#brightness').fill('1.5');
+	await settled(page);
+	const expected = await pixels(page);
+
+	await page.getByRole('button', { name: 'One exposure', exact: true }).click();
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · one exposure');
+	await expect.poll(() => canvas.getAttribute('data-image'), { timeout: 30_000 }).toBe('1');
+	await settled(page);
+	const one = await pixels(page);
+
+	// another draw of the readings' noise, another picture of the same scene
+	await page.getByRole('button', { name: 'New exposure', exact: true }).click();
+	await expect.poll(() => canvas.getAttribute('data-image'), { timeout: 30_000 }).toBe('2');
+	await settled(page);
+	const two = await pixels(page);
+
+	// the readings say what the signal-to-noise ratio is quoted for, and how large the noise is
+	const readings = page.getByRole('region', { name: 'Readings' });
+	await expect(
+		readings.getByText('Signal to noise, for the water in the middle tank')
+	).toBeVisible();
+	await expect(readings.getByText(/493 kg, 3\.6 m away/)).toBeVisible();
+	await expect(readings.getByText(/\d standard deviations/)).toBeVisible();
+
+	// back to the expected picture: the noise is gone, but for the screen's dither, and each draw stood well above it
+	await page.getByRole('button', { name: 'Image', exact: true }).click();
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · near field');
+	await settled(page);
+	const dither = meanDifference(await pixels(page), expected);
+	const detail = JSON.stringify({
+		dither,
+		one: meanDifference(one, expected),
+		two: meanDifference(two, one)
+	});
+	expect(dither, detail).toBeLessThan(1);
+	expect(meanDifference(one, expected), detail).toBeGreaterThan(dither + 1);
+	expect(meanDifference(two, one), detail).toBeGreaterThan(dither + 1);
+});
+
+test('counts, a thermal room: a lifetime on a square metre counts nothing, and long enough shows the bottles', async ({
+	page
+}) => {
+	const demo = await openDemo(page, '/demo/honey-and-water/', { yaw: 0, pitch: -12 });
+	const canvas = page.locator('canvas');
+	await openTab(page, 'Controls');
+	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
+	await page.getByLabel('Outline').uncheck();
+	await page.getByRole('button', { name: 'Counts', exact: true }).click();
+	await expect.poll(() => canvas.getAttribute('data-right'), { timeout: 60_000 }).toBe('5');
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · counted');
+	await expect(page.locator('output[for="area"]')).toHaveText('1 m²');
+	await expect(page.locator('output[for="time"]')).toHaveText('80 years');
+	const verdict = page.getByTestId('counts-verdict');
+	await expect(verdict).toContainText('the true picture is black');
+	const readings = page.getByRole('region', { name: 'Readings' });
+	await expect(readings.locator('dd').nth(1)).toContainText(/4\.\d\d/);
+	await settled(page);
+	const honey = sceneObject('honey-and-water', 'bottle-left-contents').center;
+	const water = sceneObject('honey-and-water', 'bottle-right-contents').center;
+	expect(Math.max(...(await demo.at(honey)))).toBeLessThan(10);
+
+	// long enough for 2,500 gravitons in the brightest element: the bottles show, the honey the brighter
+	const uploaded = await canvas.getAttribute('data-image');
+	await page.getByRole('button', { name: 'Long enough', exact: true }).click();
+	await expect
+		.poll(() => canvas.getAttribute('data-image'), { timeout: 30_000 })
+		.not.toBe(uploaded);
+	await expect(verdict).toContainText('Enough for a picture');
+	await expect(verdict).toContainText('times the age of the universe');
+	await settled(page);
+	const lit = await demo.at(honey);
+	const wet = await demo.at(water);
+	const detail = JSON.stringify({ lit, wet });
+	expect(lit[0], detail).toBeGreaterThan(80);
+	expect(lit[0], detail).toBeGreaterThan(wet[0] + 10);
+
+	// another exposure, another draw: the same bottles, other counts
+	const before = await pixels(page);
+	await page.getByRole('button', { name: 'New exposure', exact: true }).click();
+	await expect
+		.poll(async () => meanDifference(await pixels(page), before), { timeout: 30_000 })
+		.toBeGreaterThan(0);
+
+	// the expected counts are the thermal image itself, cut into elements
+	await page.getByRole('button', { name: 'Expected', exact: true }).click();
+	await expect(page.locator('.tag.right')).toHaveText('Gravity · counts expected');
+	await settled(page);
+	expect((await demo.at(honey))[0]).toBeGreaterThan(80);
+});
+
+test('counts, the Sun at midnight: eighty years on a square metre, single gravitons from the planet, the Sun’s core in thousands', async ({
+	page
+}) => {
+	await page.goto('/demo/sun-at-midnight/?present=readback');
+	await firstFrame(page);
+	await openTab(page, 'Controls');
+	await page.getByRole('button', { name: 'Counts', exact: true }).click();
+	await expect
+		.poll(() => page.locator('canvas').getAttribute('data-right'), { timeout: 60_000 })
+		.toBe('5');
+	const readings = page.getByRole('region', { name: 'Readings' });
+	// the Sun's core alone sends a square metre about a graviton a second: some 10^9 in a lifetime, in one element
+	await expect(readings.getByText(/^[12]\.\d × 10⁹, in [\d,]+ of [\d,]+ elements$/)).toBeVisible();
+	await openTab(page, 'About');
+	await expect(page.getByTestId('counts-verdict')).toContainText('lifetimes');
 });

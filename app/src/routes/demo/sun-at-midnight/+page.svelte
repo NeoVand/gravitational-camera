@@ -3,6 +3,7 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		ArrowDown02Icon,
+		Camera01Icon,
 		PauseIcon,
 		PlayIcon,
 		Clock01Icon,
@@ -15,6 +16,7 @@
 		TemperatureIcon
 	} from '@hugeicons/core-free-icons';
 	import {
+		MODE_COUNTS,
 		MODE_FIELD,
 		MODE_THERMAL,
 		cameraBasis,
@@ -35,6 +37,10 @@
 		scene,
 		sunDirection
 	} from '#lib/demos/sun-at-midnight.js';
+	import { countPicture, countRates } from '#lib/measure/counts.js';
+	import { CountExposure } from '#lib/measure/exposure.svelte.js';
+	import CountsControls from '#lib/ui/CountsControls.svelte';
+	import CountsReadout from '#lib/ui/CountsReadout.svelte';
 	import { fieldReference } from '#lib/pixel/field-view.js';
 	import { logSlices, planetSlices } from '#lib/pixel/slices.js';
 	import { sceneTide } from '#lib/pixel/tide.js';
@@ -65,8 +71,11 @@
 	let splitView: SplitView | undefined = $state();
 	/** The day runs at an hour a second while playing. */
 	let playing = $state(false);
-	/** What the gravity side shows: the thermal image, or the tidal field about the camera. */
-	let display = $state<'image' | 'field'>('image');
+	/**
+	 * What the gravity side shows: the thermal image, the tidal field about the camera, or the gravitons an exposure
+	 * counts (lib/measure/counts.ts).
+	 */
+	let display = $state<'image' | 'field' | 'counts'>('image');
 	/**
 	 * The field is drawn at the points this far from the camera, on a logarithmic slider: from 3 m, where it is the
 	 * ground's own tide in every direction, through the planet and past the Moon, to beyond the Sun.
@@ -165,6 +174,24 @@
 		columnsAlong(objects, observer, toMoon).numberRadiance / referenceRadiance(objects, observer)
 	);
 
+	// the gravitons an exposure counts in each element of the picture, expected or drawn
+	const counting = new CountExposure();
+	const countGrid = $derived.by(() => {
+		if (display !== 'counts') return undefined;
+		const tanY = Math.tan(view.fov / 2);
+		return countRates(objects, observer, cameraBasis(view), tanY * aspect, tanY, counting.across);
+	});
+	const counts = $derived(
+		countGrid &&
+			countPicture(
+				countGrid,
+				counting.area * counting.time,
+				referenceRadiance(objects, observer),
+				counting.show,
+				counting.seed
+			)
+	);
+
 	function lookDown() {
 		view = { ...DOWN };
 		decades = 0;
@@ -229,11 +256,22 @@
 			bind:divider
 			{showLight}
 			{showGravity}
-			rightMode={display === 'field' ? MODE_FIELD : MODE_THERMAL}
+			rightMode={display === 'field'
+				? MODE_FIELD
+				: display === 'counts'
+					? MODE_COUNTS
+					: MODE_THERMAL}
+			image={counts?.image}
 			exposure={display === 'field' ? 2.2 : exposure}
 			fieldDepth={radius}
 			fieldReference={fieldScale}
-			rightLabel={display === 'field' ? 'Gravity · tidal field' : 'Gravity · thermal'}
+			rightLabel={display === 'field'
+				? 'Gravity · tidal field'
+				: display === 'counts'
+					? counting.show === 'draw'
+						? 'Gravity · counted'
+						: 'Gravity · counts expected'
+					: 'Gravity · thermal'}
 		></SplitView>
 	{/snippet}
 
@@ -243,7 +281,8 @@
 				label="What the gravity side shows"
 				options={[
 					{ value: 'image', label: 'Image', icon: Image01Icon },
-					{ value: 'field', label: 'Tidal field', icon: Layers01Icon }
+					{ value: 'field', label: 'Tidal field', icon: Layers01Icon },
+					{ value: 'counts', label: 'Counts', icon: Camera01Icon, wide: true }
 				]}
 				bind:value={display}
 			/>
@@ -265,6 +304,9 @@
 					marks={sliceMarks}
 				/>
 			</FieldLookControls>
+		{/if}
+		{#if display === 'counts' && counts}
+			<CountsControls exposure={counting} needed={counts.needed} />
 		{/if}
 		<Group title="Scene">
 			<Slider
@@ -299,7 +341,7 @@
 		<Group title="Camera">
 			<Slider
 				id="exposure"
-				label="Exposure"
+				label={display === 'counts' ? 'Brightness' : 'Exposure'}
 				icon={ContrastIcon}
 				min={-12}
 				max={3}
@@ -349,6 +391,17 @@
 				</dd>
 			</div>
 		</dl>
+		{#if display === 'counts' && counts && countGrid}
+			<CountsReadout picture={counts} exposure={counting} elements={countGrid.nx * countGrid.ny} />
+			<p class="fine">
+				“Counts” is what a camera that counts gravitons records: each element of the picture
+				receives a random, Poisson, number of them, whose mean is the brightness of “Image” times
+				the element’s solid angle, the collecting area and the time. Each is drawn in the colour of
+				the temperature that sent it, and the Sun’s core, far brighter than everything else, in its
+				own element. “Expected” shows those means, on the same scale; one graviton is never drawn
+				dim.
+			</p>
+		{/if}
 		<p class="fine">
 			This is the expected image, not a photograph: at these rates a real detector would count
 			single gravitons. Colour stands for source temperature. The friction of the Earth and the Moon

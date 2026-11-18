@@ -11,7 +11,8 @@
       "Rays start at observer.position; direction is a unit vector in scene axes.",
       "chords: path length of the ray inside each object's FULL shape (children included), not its own region.",
       "tidal_column: integral of rho dr / r beyond observer.exclusion (scenes/README.md).",
-      "sensors: the tidal tensor E_ij = d_i d_j Phi at nine points around the observer, from the closed-form fields of uniform boxes and spheres; tensor_without_room leaves out the objects marked background."
+      "sensors: the tidal tensor E_ij = d_i d_j Phi at nine points around the observer, from the closed-form fields of uniform boxes and spheres; tensor_without_room leaves out the objects marked background.",
+      "counts: gravitons per second per square metre of collecting area from each picture element of a view (rows from the top), cells[0] x cells[1] square elements of the tangent plane, each sampled on samples x samples rays weighted by their solid angles; balls narrower than a sample's spacing (points) counted whole in the element of their centre. Rounded to 10 significant digits; rate_without_room leaves the background out."
     ]
   },
   "units": {
@@ -25,7 +26,8 @@
     "mass_column": "kg m^-2",
     "tidal_column": "kg m^-3",
     "chords": "m",
-    "tensor": "s^-2"
+    "tensor": "s^-2",
+    "rate": "gravitons s^-1 m^-2"
   },
   "constants": {
     "G": 6.6743e-11,
@@ -105,9 +107,9 @@
     },
     "bottle-left": {
       "own_volume": 0.003384,
-      "alpha": 1.2451264825798172e-37,
-      "j_E": 1.6563259861413043e-35,
-      "j_N": 1.5158992160117934e-15,
+      "alpha": 3.635769329133066e-38,
+      "j_E": 4.836471879532608e-36,
+      "j_N": 4.4264257107544363e-16,
       "density": 2500.0,
       "temperature": 293.0,
       "emission_source": "friction",
@@ -115,9 +117,9 @@
     },
     "bottle-left-contents": {
       "own_volume": 0.011016,
-      "alpha": 1.2451264825798172e-33,
-      "j_E": 1.656325986141304e-31,
-      "j_N": 1.5158992160117932e-11,
+      "alpha": 4.1213686573391956e-38,
+      "j_E": 5.482439014127717e-36,
+      "j_N": 5.017626404999036e-16,
       "density": 1400.0,
       "temperature": 293.0,
       "emission_source": "friction",
@@ -125,9 +127,9 @@
     },
     "bottle-right": {
       "own_volume": 0.003384,
-      "alpha": 1.2451264825798172e-37,
-      "j_E": 1.6563259861413043e-35,
-      "j_N": 1.5158992160117934e-15,
+      "alpha": 3.635769329133066e-38,
+      "j_E": 4.836471879532608e-36,
+      "j_N": 4.4264257107544363e-16,
       "density": 2500.0,
       "temperature": 293.0,
       "emission_source": "friction",
@@ -135,9 +137,9 @@
     },
     "bottle-right-contents": {
       "own_volume": 0.011016,
-      "alpha": 1.2451264825798172e-37,
-      "j_E": 1.6563259861413043e-35,
-      "j_N": 1.5158992160117934e-15,
+      "alpha": 1.0757892809489621e-38,
+      "j_E": 1.431065652026087e-36,
+      "j_N": 1.3097369226341895e-16,
       "density": 1000.0,
       "temperature": 293.0,
       "emission_source": "friction",
@@ -520,8 +522,8 @@
     {"label": "up", "direction": [0.0, 1.0, 0.0], "number_radiance": 0.0, "mass_column": 0.0, "tidal_column": 0.0, "chords": {"floor": 0.0, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
     {"label": "ahead", "direction": [0.0, 0.0, -1.0], "number_radiance": 1.327927713226334e-16, "mass_column": 360.00000000000085, "tidal_column": 44.17676775, "chords": {"floor": 0.0, "back-wall": 0.3000000000000007, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
     {"label": "behind", "direction": [0.0, 0.0, 1.0], "number_radiance": 0.0, "mass_column": 0.0, "tidal_column": 0.0, "chords": {"floor": 0.0, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
-    {"label": "center:bottle-left-contents", "direction": [-0.15330100795744098, -0.21900143993920143, -0.9636063357324863], "number_radiance": 2.8323113846327485e-12, "mass_column": 3601.0556088366516, "tidal_column": 574.9509247, "chords": {"floor": 1.3698540068197058, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.20755363739692534, "bottle-left-contents": 0.18679827365723245, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
-    {"label": "center:bottle-right-contents", "direction": [0.15330100795744098, -0.21900143993920143, -0.9636063357324863], "number_radiance": 9.209860957870681e-16, "mass_column": 3526.3362993737587, "tidal_column": 542.2053767, "chords": {"floor": 1.3698540068197058, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.20755363739692534, "bottle-right-contents": 0.18679827365723245}},
+    {"label": "center:bottle-left-contents", "direction": [-0.15330100795744098, -0.21900143993920143, -0.9636063357324863], "number_radiance": 7.092713021770931e-16, "mass_column": 3601.0556088366516, "tidal_column": 574.9509247, "chords": {"floor": 1.3698540068197058, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.20755363739692534, "bottle-left-contents": 0.18679827365723245, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
+    {"label": "center:bottle-right-contents", "direction": [0.15330100795744098, -0.21900143993920143, -0.9636063357324863], "number_radiance": 6.400085667553369e-16, "mass_column": 3526.3362993737587, "tidal_column": 542.2053767, "chords": {"floor": 1.3698540068197058, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.20755363739692534, "bottle-right-contents": 0.18679827365723245}},
     {"label": "center:floor", "direction": [0.0, -0.3813309229528951, -0.9244386010979275], "number_radiance": 3.485629541362241e-16, "mass_column": 1901.8913923473965, "tidal_column": 444.6069714, "chords": {"floor": 0.7867182595025426, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.019667956487563254, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
     {"label": "center:back-wall", "direction": [0.0, 0.12178605818812532, -0.9925563742332215], "number_radiance": 1.3378864391981747e-16, "mass_column": 362.6998015887125, "tidal_column": 44.17676775, "chords": {"floor": 0.0, "back-wall": 0.3022498346572604, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
     {"label": "center:left-wall", "direction": [-0.8306072119561718, 0.13505808324490598, -0.5402323329796239], "number_radiance": 1.5987432978085008e-16, "mass_column": 433.41785963086113, "tidal_column": 58.548197, "chords": {"floor": 0.0, "back-wall": 0.0, "left-wall": 0.36118154969238425, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
@@ -676,5 +678,56 @@
     {"label": "random:146", "direction": [0.2570657784848594, -0.8966471408867811, 0.36047342519461006], "number_radiance": 1.4809925250115846e-16, "mass_column": 802.991463607326, "tidal_column": 437.5717363, "chords": {"floor": 0.3345797765030525, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
     {"label": "random:147", "direction": [0.7571551294387373, 0.3461036383144065, 0.5540111745354417], "number_radiance": 0.0, "mass_column": 0.0, "tidal_column": 0.0, "chords": {"floor": 0.0, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}},
     {"label": "random:148", "direction": [0.047699805817866044, -0.25175279397744965, 0.9666153626181851], "number_radiance": 0.0, "mass_column": 0.0, "tidal_column": 0.0, "chords": {"floor": 0.0, "back-wall": 0.0, "left-wall": 0.0, "right-wall": 0.0, "table": 0.0, "bottle-left": 0.0, "bottle-left-contents": 0.0, "bottle-right": 0.0, "bottle-right-contents": 0.0}}
-  ]
+  ],
+  "counts": {
+    "view": {
+      "forward": [
+        0.0,
+        -0.22162110358896814,
+        -0.9751328557914598
+      ],
+      "right": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        0.9751328557914598,
+        -0.22162110358896814
+      ],
+      "tan_x": 0.8,
+      "tan_y": 0.5
+    },
+    "cells": [
+      16,
+      10
+    ],
+    "samples": 3,
+    "points": [],
+    "rate": [
+      [6.999639858e-19, 7.601986735e-19, 8.207249886e-19, 8.790373605e-19, 9.320021355e-19, 9.761043779e-19, 1.00789545e-18, 1.024578784e-18, 1.024578784e-18, 1.00789545e-18, 9.761043779e-19, 9.320021355e-19, 8.790373605e-19, 8.207249886e-19, 7.601986735e-19, 6.999639858e-19],
+      [7.485841616e-19, 8.163254675e-19, 8.849526146e-19, 9.51604224e-19, 1.01260302e-18, 1.063731886e-18, 1.100779462e-18, 1.120285805e-18, 1.120285805e-18, 1.100779462e-18, 1.063731886e-18, 1.01260302e-18, 9.51604224e-19, 8.849526146e-19, 8.163254675e-19, 7.485841616e-19],
+      [8.603819356e-19, 8.675042555e-19, 9.436229248e-19, 1.018043742e-18, 1.086582383e-18, 1.144349724e-18, 1.186390153e-18, 1.208587297e-18, 1.208587297e-18, 1.186390153e-18, 1.144349724e-18, 1.086582383e-18, 1.018043742e-18, 9.436229248e-19, 8.675042555e-19, 8.603819356e-19],
+      [9.077300463e-19, 9.11051734e-19, 9.933905818e-19, 1.074277126e-18, 1.14910834e-18, 1.21243215e-18, 1.258662283e-18, 1.28312131e-18, 1.28312131e-18, 1.258662283e-18, 1.21243215e-18, 1.14910834e-18, 1.074277126e-18, 9.933905818e-19, 9.11051734e-19, 9.077300463e-19],
+      [1.340053029e-18, 2.741591194e-18, 4.485786975e-18, 5.125280386e-18, 5.488829825e-18, 5.797146239e-18, 6.712458036e-18, 6.142053512e-18, 6.142053512e-18, 6.336195048e-18, 5.797146239e-18, 5.488829825e-18, 5.125280386e-18, 4.485786975e-18, 2.741591194e-18, 1.340053029e-18],
+      [3.168642685e-18, 3.479461673e-18, 3.798774315e-18, 4.11324582e-18, 4.408314314e-18, 4.670035759e-18, 5.58453889e-18, 4.94773948e-18, 4.94773948e-18, 5.169752308e-18, 4.670035759e-18, 4.408314314e-18, 4.11324582e-18, 3.798774315e-18, 3.479461673e-18, 3.168642685e-18],
+      [2.289563502e-18, 2.511105639e-18, 2.738146088e-18, 2.961335411e-18, 3.180120418e-18, 3.357972196e-18, 3.486080761e-18, 3.553861331e-18, 3.553861331e-18, 3.486080761e-18, 3.357972196e-18, 3.180120418e-18, 2.961335411e-18, 2.738146088e-18, 2.511105639e-18, 2.289563502e-18],
+      [1.762070755e-18, 1.928017094e-18, 2.097275983e-18, 2.262772879e-18, 2.415200693e-18, 2.543682163e-18, 2.637190095e-18, 2.686563528e-18, 2.686563528e-18, 2.637190095e-18, 2.543682163e-18, 2.415200693e-18, 2.262772879e-18, 2.097275983e-18, 1.928017094e-18, 1.762070755e-18],
+      [1.403644673e-18, 1.530728871e-18, 1.659485856e-18, 1.784546893e-18, 1.899010407e-18, 1.994959787e-18, 2.064487754e-18, 2.101097e-18, 2.101097e-18, 2.064487754e-18, 1.994959787e-18, 1.899010407e-18, 1.784546893e-18, 1.659485856e-18, 1.530728871e-18, 1.403644673e-18],
+      [1.14155903e-18, 1.239845852e-18, 1.338616666e-18, 1.433782327e-18, 1.520227268e-18, 1.592212228e-18, 1.644105214e-18, 1.671338534e-18, 1.671338534e-18, 1.644105214e-18, 1.592212228e-18, 1.520227268e-18, 1.433782327e-18, 1.338616666e-18, 1.239845852e-18, 1.14155903e-18]
+    ],
+    "rate_without_room": [
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6.898324362e-19, 0.0, 0.0, 3.135694486e-19, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 7.329555354e-19, 0.0, 0.0, 3.181689527e-19, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    ]
+  }
 }

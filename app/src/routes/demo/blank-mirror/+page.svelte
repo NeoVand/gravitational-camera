@@ -14,7 +14,14 @@
 	/>
 </svelte:head>
 
-<RoomDemo {scene} subjectDistance={8} startDivider={0.57} look={{ yaw: 13, pitch: -6 }} subtract>
+<RoomDemo
+	{scene}
+	subjectDistance={8}
+	startDivider={0.57}
+	look={{ yaw: 13, pitch: -6 }}
+	subtract
+	subject={{ id: 'ball', name: 'the bronze ball' }}
+>
 	{#snippet intro()}
 		<p>
 			On the wall hang a mirror, a printed page and a television. In <strong>light</strong> each

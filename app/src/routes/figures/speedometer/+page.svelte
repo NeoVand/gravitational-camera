@@ -48,14 +48,14 @@
 </script>
 
 <svelte:head>
-	<title>The speedometer in the dark · Gravitational Camera</title>
+	<title>A pixel’s own velocity · Gravitational Camera</title>
 	<meta
 		name="description"
-		content="One gravitational pixel crossing a room it knows nothing about reads its own velocity, every component, at any speed; and knows at once if anything in the room moves. Light reads two components."
+		content="One gravitational pixel crossing a room of unknown masses determines its own velocity, every component, at any speed; and its reading is a test for motion within the room. Light reads two components."
 	/>
 </svelte:head>
 
-<DemoShell section="figures" title="The speedometer in the dark" onreset={reset}>
+<DemoShell section="figures" title="A pixel’s own velocity" onreset={reset}>
 	{#snippet stage()}
 		<Speedometer
 			{room}
@@ -107,17 +107,16 @@
 
 	{#snippet notes()}
 		<p>
-			A pixel crosses a dark room at a good fraction of the speed of light. It knows nothing of the
-			room: not how many masses there are, nor where. From one reading of its ten numbers it finds
+			A pixel crosses a dark room at a good fraction of the speed of light, with no map of the room:
+			not how many masses there are, nor where. From one reading of its ten numbers it determines
 			its own velocity, every component of it (orange, over the true one, dashed white), because the
 			tide of a room at rest has no magnetic part in the room’s own frame, and that frame can be
 			found from the reading alone.
 		</p>
 		<p>
-			So the eigenvalues of what it reads stay real, however fast it goes. If anything in the room
-			moves, a person walking past at 1.5 m/s, they turn complex, and the <strong
-				>motion alarm</strong
-			> goes off. The pixel’s own motion can never set it off.
+			So the eigenvalues of what it reads stay real, however fast it goes. This is a
+			<strong>test for relative motion</strong>: if anything in the room moves, a person walking
+			past at 1.5 m/s, they turn complex. The pixel’s own motion can never make them so.
 		</p>
 		<p>
 			Light cannot do this. In a room of charges at rest, a sensor of light reads only the part of
@@ -135,7 +134,7 @@
 				<dd><Tex math={`${norm(l.read).toFixed(4)}\\,c`} /></dd>
 			</div>
 			<div>
-				<dt>Motion alarm</dt>
+				<dt>Motion test: largest imaginary part over largest eigenvalue</dt>
 				<dd><Tex math={g.alarm < 1e-15 ? '< 10^{-15}' : fmt(g.alarm)} /></dd>
 			</div>
 		</dl>

@@ -1,11 +1,19 @@
 /**
- * The vista demos' physics against the Python reference
+ * The sky demos' physics against the Python reference
  * (reference/fixtures/vistas.json, written by `python -m gravcam.export_vistas`).
  */
 import { describe, expect, it } from 'vitest';
 import vistas from '../../../../reference/fixtures/vistas.json';
 import { blueshift, shadowRadius, sweep, sweepTable } from './lens';
-import { pairField, separationOverWavelength } from './pair';
+import {
+	pairField,
+	pairScale,
+	pairTensor,
+	pairTensorAt,
+	separationOverWavelength,
+	waveTide,
+	type Complex2
+} from './pair';
 
 describe('rays near a black hole', () => {
 	for (const row of vistas.sweep.rows) {
@@ -70,5 +78,50 @@ describe('the field of an orbiting pair', () => {
 
 	it('a pair at a tenth of light speed is a sixteenth of a wavelength across', () => {
 		expect(separationOverWavelength(0.1)).toBeCloseTo(0.0637, 4);
+	});
+
+	const ratio = (a: Complex2, b: Complex2): Complex2 => {
+		const n = b[0] * b[0] + b[1] * b[1];
+		return [(a[0] * b[0] + a[1] * b[1]) / n, (a[1] * b[0] - a[0] * b[1]) / n];
+	};
+
+	it('has the whole tensor in the plane: Newton’s rotating quadrupole close in', () => {
+		// -(3 G / 2) I_kl x_k x_l / r^5, at phi = 0: (E_rr, E_rphi, E_phiphi, E_zz) in the ratio -18 : -12 i : 21/2 : 15/2
+		const t = pairTensor(0.005);
+		const rr = ratio(t.rr, t.zz);
+		const rphi = ratio(t.rphi, t.zz);
+		const phiphi = ratio(t.phiphi, t.zz);
+		expect(rr[0]).toBeCloseTo(-2.4, 2);
+		expect(rphi[1]).toBeCloseTo(-1.6, 2);
+		expect(phiphi[0]).toBeCloseTo(1.4, 2);
+		expect(Math.abs(rr[1]) + Math.abs(rphi[0]) + Math.abs(phiphi[1])).toBeLessThan(1e-3);
+	});
+
+	it('and the wave far out: only E_phiphi = -E_zz in the plane, with the wave’s own phase', () => {
+		const x = 15;
+		const t = pairTensor(x);
+		const phiphi = ratio(t.phiphi, t.zz);
+		expect(phiphi[0]).toBeCloseTo(-1, 2);
+		expect(Math.hypot(...t.rr) / Math.hypot(...t.zz)).toBeLessThan(2e-3);
+		// at phi = 0, E_zz = -A cos(2 Omega t - k r): c_zz = -A exp(-i k r), to order 1 / k r (here 2 / k r)
+		const want: Complex2 = [-Math.cos(2 * Math.PI * x), Math.sin(2 * Math.PI * x)];
+		const got = ratio(t.zz, [Math.hypot(...t.zz), 0]);
+		expect(Math.hypot(got[0] - want[0], got[1] - want[1])).toBeLessThan(3 / (2 * Math.PI * x));
+	});
+
+	it('in s^-2 for two holes of thirty Suns at 0.1 c, as the reference implementation computes it', () => {
+		// gravcam.binary.tidal at x = 20, phi = 0: c_zz = (-3.73254e-3, 5.94222e-5) s^-2, and the wave alone 3.73183e-3
+		expect(waveTide(0.1, 20)).toBeCloseTo(3.731834e-3, 8);
+		const t = pairTensorAt(0.1, 20, 0)!;
+		expect(t.zz[0]).toBeCloseTo(-3.732543e-3, 8);
+		expect(t.zz[1]).toBeCloseTo(5.94222e-5, 8);
+		expect(pairTensorAt(0.1, 0.03, 0)).toBeUndefined();
+	});
+
+	it('sets its scale by the median over the view, steady in time', () => {
+		const near = pairScale(0.1, 0.25);
+		const far = pairScale(0.1, 4);
+		expect(near).toBeGreaterThan(far);
+		expect(pairScale(0.1, 0.25)).toBe(near);
 	});
 });

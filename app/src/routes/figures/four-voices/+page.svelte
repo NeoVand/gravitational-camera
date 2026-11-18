@@ -59,14 +59,14 @@
 </script>
 
 <svelte:head>
-	<title>One pixel, four voices · Gravitational Camera</title>
+	<title>One pixel, four waves · Gravitational Camera</title>
 	<meta
 		name="description"
-		content="One gravitational pixel hears four waves at once, each with any waveform, and finds where every one comes from. A sensor of light at one point finds two."
+		content="One gravitational pixel reads four waves at once, each with any waveform, and finds where every one comes from. A sensor of light at one point finds two."
 	/>
 </svelte:head>
 
-<DemoShell section="figures" title="One pixel, four voices" onreset={reset}>
+<DemoShell section="figures" title="One pixel, four waves" onreset={reset}>
 	{#snippet stage()}
 		<Voices
 			{sources}

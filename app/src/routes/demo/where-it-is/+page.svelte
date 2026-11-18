@@ -111,7 +111,14 @@
 	/>
 </svelte:head>
 
-<RoomDemo {scene} subjectDistance={4} startDivider={0.18} subtract look={{ yaw: 0, pitch: -6 }}>
+<RoomDemo
+	{scene}
+	subjectDistance={4}
+	startDivider={0.18}
+	subtract
+	look={{ yaw: 0, pitch: -6 }}
+	subject={{ id: 'ball-mass', name: 'the ball' }}
+>
 	{#snippet extraControls()}
 		<Group title="The ball">
 			<Slider

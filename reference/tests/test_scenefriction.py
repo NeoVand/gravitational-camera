@@ -59,3 +59,27 @@ def test_the_earth_and_the_moon_are_at_their_caps_and_air_has_none():
     tau = eta0 / pressure
     omega = 2.82 * M.kB * 293.0 / M.hbar
     assert 1e-14 < eta0 / (omega * tau) ** 2 < 1e-12
+
+
+def test_honey_glows_within_a_small_factor_of_water():
+    """Section VI: honey's everyday viscosity is frozen out at the frequencies of heat, so it does not set its glow.
+    The scene gives honey the cap of a relaxing stiffness twice the water model's weight, and water its spectrum."""
+    table = sf.table()
+    honey, water = table["honey"][0], table["water"][0]
+    # the cap of 30 GPa, which is twice the weight of the water model
+    assert honey == pytest.approx(sf.cap_friction(30e9, 293.0), rel=1e-12)
+    assert sf.HONEY_STIFFNESS == pytest.approx(2 * M.water_weight(), rel=0.02)
+    # water from its simulated spectrum: a tenth of the placeholder, as in the paper's table
+    assert water == pytest.approx(sf.count_friction(M.table()["water"], 293.0), rel=1e-12)
+    assert 0.5e-4 < water < 1.5e-4
+    # so honey sends at most about four times water's gravitons, and its everyday viscosity, given as its friction,
+    # would overstate its glow at least thirty thousand times
+    assert 1 < honey / water < 5
+    assert sf.HONEY_VISCOSITY / honey > 3e4
+    # the everyday viscosity itself, relaxed by Maxwell's model at the peak of the glow, leaves next to nothing:
+    # eta_0 / (omega tau)^2 = G_inf^2 / (eta_0 omega^2), with G_inf no more than the whole relaxing stiffness
+    omega = 2.82 * M.kB * 293.0 / M.hbar
+    tau = sf.HONEY_VISCOSITY / sf.HONEY_STIFFNESS
+    assert float(M.maxwell(omega, sf.HONEY_VISCOSITY, tau)) < 1e-8
+    # the glass of the bottles is silica glass
+    assert table["glass"][0] == table["concrete"][0]

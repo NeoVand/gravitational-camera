@@ -211,6 +211,8 @@ const mix3 = (a: Rgb, b: Rgb, t: number): Rgb => [
 /** The paper's orange for a stretch and blue for a squeeze, in linear light. */
 export const STRETCH: Rgb = [0.812, 0.379, 0.101];
 export const SQUEEZE: Rgb = [0.2157, 0.465, 1.0];
+/** The paper's pale, #f7f3ec, for zero between them, where a picture has one (the map of two black holes). */
+export const PALE: Rgb = [0.9324, 0.8992, 0.8433];
 
 /** Colour by strength: from a deep violet through red to a pale yellow. */
 export function strengthRamp(level: number): Rgb {
@@ -257,25 +259,42 @@ export function fieldMark(
 	const level = fieldLevel(fieldSize(E), reference, look.shift);
 	const axis = stretchAxis(E);
 	const dot = (a: Vec3) => axis[0] * a[0] + axis[1] * a[1] + axis[2] * a[2];
-	const screen = [dot(camera.right), dot(camera.up), dot(camera.forward)];
-	let hue: Rgb;
-	if (look.colour === 'strength') hue = strengthRamp(level);
-	else if (look.colour === 'sign') hue = signHue(E);
+	return markOf(level, [dot(camera.right), dot(camera.up), dot(camera.forward)], look, () =>
+		signHue(E)
+	);
+}
+
+/**
+ * The same from what it rests on, for a picture that finds them its own way: the strength on the scale, 0 to 1; the
+ * stretch axis in the picture's axes (right, up, along the view), a unit vector; and, for colour by sign, the hue.
+ */
+export function markOf(level: number, screen: Vec3, look: FieldLook, sign: () => Rgb): FieldMark {
+	// written out part by part, without arrays to spare: a picture may ask for it at every point, every frame
+	const [s0, s1, s2] = screen;
+	let h0: number, h1: number, h2: number;
+	if (look.colour === 'strength') [h0, h1, h2] = strengthRamp(level);
+	else if (look.colour === 'sign') [h0, h1, h2] = sign();
 	else {
 		// red across, green up and down, blue along the line of sight, the strongest part full
-		const top = Math.max(Math.abs(screen[0]), Math.abs(screen[1]), Math.abs(screen[2]), 1e-6);
-		hue = screen.map((s) => Math.abs(s) / top) as Rgb;
+		const top = Math.max(Math.abs(s0), Math.abs(s1), Math.abs(s2), 1e-6);
+		h0 = Math.abs(s0) / top;
+		h1 = Math.abs(s1) / top;
+		h2 = Math.abs(s2) / top;
 	}
 	// muted, so the picture underneath still reads
 	const saturation = clamp01(0.72 * look.contrast);
 	const shade = 1 + (level - 1) * clamp01(0.6 * look.contrast);
-	const tone = hue.map((h) => (0.62 + (h - 0.62) * saturation) * shade) as Rgb;
-	const inPlane = Math.hypot(screen[0], screen[1]);
+	const tone: Rgb = [
+		(0.62 + (h0 - 0.62) * saturation) * shade,
+		(0.62 + (h1 - 0.62) * saturation) * shade,
+		(0.62 + (h2 - 0.62) * saturation) * shade
+	];
+	const inPlane = Math.hypot(s0, s1);
 	return {
 		level,
 		tone,
 		cover: look.opacity * level,
-		across: inPlane > 0 ? [screen[0] / inPlane, -screen[1] / inPlane] : [1, 0],
+		across: inPlane > 0 ? [s0 / inPlane, -s1 / inPlane] : [1, 0],
 		inPlane
 	};
 }

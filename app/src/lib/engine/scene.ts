@@ -303,7 +303,7 @@ export function packPrims(
  * of its centre: the integral of dV / r² over the ball, 2πR − π (D² − R²)/D · ln((D + R)/(D − R)). For a small
  * ball that is a difference of nearly equal numbers, so its series is summed instead; the first term is V / D².
  */
-function ballOverSky(R: number, D: number): number {
+export function ballOverSky(R: number, D: number): number {
 	const x = R / D;
 	if (x >= 0.1) {
 		return 2 * Math.PI * R - ((Math.PI * (D * D - R * R)) / D) * Math.log((D + R) / (D - R));

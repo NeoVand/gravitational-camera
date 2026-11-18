@@ -13,7 +13,21 @@ are written with ``repr``, i.e. with full float64 precision.
 Each room scene gets the same per-object values and rays, with the tidal
 column added to every ray, and the tidal tensor at a small square array of
 sensors around the observer, with and without the empty room (the objects
-marked ``background``). Logarithms and arctangents are not correctly rounded
+marked ``background``).
+
+The thermal scenes (the Sun at midnight, the closed furnace, honey and water)
+also get a ``counts`` block: what a camera that counts gravitons expects in
+each picture element of a view near the one the demo starts with, per second
+and per square metre of collecting area. The view's tangent plane is cut into
+square elements, each sampled on a grid of rays (``columns.line_integral``)
+weighted by their solid angles (as ``camera.pixel_solid_angles``); a ball too
+small for the samples (the Sun's core, the Moon) is counted whole in the
+element that holds its centre, from the integral of dV / r^2 over it.
+
+``near-noise.json`` holds the noise of the near-field Wiener reconstruction
+(``resolution.py``): for a few signal-to-noise ratios, the spectrum of the
+reconstructed noise, H (1 - H), and its variance, (1 / 2 pi) int H (1 - H) q dq,
+in units of (m / z^3)^2 for a prior of point masses m one per z^2 at depth z. Logarithms and arctangents are not correctly rounded
 on every platform, so the values that need them (tidal columns and tensors)
 are written to 10 significant digits; that is far finer than any test needs
 and keeps the files identical wherever they are regenerated.
@@ -36,13 +50,14 @@ from pathlib import Path
 
 import numpy as np
 
-from . import __version__, columns, constants, currents, emission, tidal, waves
-from .scene import Scene, load_scene
+from . import __version__, columns, constants, currents, emission, resolution, tidal, waves
+from .scene import Scene, Sphere, load_scene
 
 REFERENCE_DIR = Path(__file__).resolve().parents[1]
 SCENES_DIR = REFERENCE_DIR.parent / "scenes"
 DEFAULT_SCENE = SCENES_DIR / "sun-at-midnight.scene.json"
 DEFAULT_OUT_DIR = REFERENCE_DIR / "fixtures"
+NOISE_FIXTURE = "near-noise.json"
 ROOM_SCENES = ("locked-safe", "full-or-empty", "blank-mirror", "closed-furnace", "honey-and-water", "which-way",
                "sealed-flywheel", "beam-in-the-dark")
 N_ROOM_RAYS = 160
@@ -148,6 +163,13 @@ def random_rays(count: int, seed: int) -> list[tuple[str, np.ndarray]]:
     return rays
 
 
+COUNTS_NOTE = (
+    "counts: gravitons per second per square metre of collecting area from each picture element of a view (rows "
+    "from the top), cells[0] x cells[1] square elements of the tangent plane, each sampled on samples x samples "
+    "rays weighted by their solid angles; balls narrower than a sample's spacing (points) counted whole in the "
+    "element of their centre. Rounded to 10 significant digits; rate_without_room leaves the background out.")
+
+
 def build_fixture(scene_path=DEFAULT_SCENE, seed: int = SEED, n_rays: int = N_RAYS,
                   earth_id: str = "earth", sun_id: str = "sun") -> dict:
     scene_path = Path(scene_path)
@@ -224,6 +246,7 @@ def build_fixture(scene_path=DEFAULT_SCENE, seed: int = SEED, n_rays: int = N_RA
                 "Rays labelled limb:* pass a sphere's centre at the stated fraction of its radius; horizon:* pass the "
                 "ground sphere's centre at radius + the stated offset. Near a limb a chord is sensitive to the "
                 "direction: an error db in the impact parameter changes it by 2 b db / (half chord).",
+                *([COUNTS_NOTE] if scene.name in COUNT_VIEWS else []),
             ],
         },
         "units": {
@@ -238,12 +261,14 @@ def build_fixture(scene_path=DEFAULT_SCENE, seed: int = SEED, n_rays: int = N_RA
             "chords": "m",
             "tidal tensor": "s^-2",
             "mass": "kg",
+            **({"rate": "gravitons s^-1 m^-2"} if scene.name in COUNT_VIEWS else {}),
         },
         "constants": constants.as_dict(),
         "observer": {"position": point.tolist()},
         "objects": objects,
         "tidal": tidal_block,
         "rays": rays,
+        **({"counts": counts} if (counts := counts_fixture(scene)) is not None else {}),
     }
 
 
@@ -403,16 +428,184 @@ def build_room_fixture(scene_path, seed: int = SEED, n_rays: int = N_ROOM_RAYS) 
             "current_column: integral of rho v dr / r beyond observer.exclusion (gravcam/currents.py), at time "
             "zero, rounded like the tidal values.")
         fixture["units"]["current_column"] = "kg m^-2 s^-1"
+    counts = counts_fixture(scene)
+    if counts is not None:
+        fixture["meta"]["notes"].append(COUNTS_NOTE)
+        fixture["units"]["rate"] = "gravitons s^-1 m^-2"
+        fixture["counts"] = counts
     return fixture
 
 
+# --- what a camera that counts gravitons expects: the thermal scenes' views, cut into picture elements ----------------
+
+# where each demo looks first, nearly: a direction from the observer, and the tangents of half the view across and up
+COUNT_VIEWS = {
+    "sun-at-midnight": ((0.0, -0.8, -0.6), 1.0, 0.625),
+    "closed-furnace": ((0.0, -1.0, -3.5), 0.8, 0.5),
+    "honey-and-water": ((0.0, -0.5, -2.2), 0.8, 0.5),
+}
+COUNT_CELLS = (16, 10)            # picture elements across and up
+COUNT_SAMPLES = 3                 # rays along each side of an element
+
+
+def ball_over_sky(radius: float, distance: float) -> float:
+    """The integral of dV / r^2 over a ball of the given radius seen from a point at the given distance from its
+    centre, outside it: 2 pi R - pi (D^2 - R^2) / D ln((D + R) / (D - R)). For a small ball that is a difference
+    of nearly equal numbers, so its series in x = R / D is summed instead, V / D^2 (1 + x^2 / 5 + ...)."""
+    x = radius / distance
+    if x >= 0.1:
+        return (2.0 * math.pi * radius
+                - math.pi * (distance * distance - radius * radius) / distance
+                * math.log((distance + radius) / (distance - radius)))
+    total, power = 0.0, 1.0
+    for k in range(12):
+        total += power / ((2 * k + 1) * (2 * k + 3))
+        power *= x * x
+    return 4.0 * math.pi * radius * x * x * total
+
+
+def count_block(scene: Scene, direction, tan_x: float, tan_y: float, without_room: bool = False,
+                cells: tuple[int, int] = COUNT_CELLS, samples: int = COUNT_SAMPLES) -> dict:
+    """Gravitons per second per square metre of collecting area from each picture element of a view, rows from the
+    top; with ``without_room``, the objects marked background left out."""
+    origin = tuple(float(v) for v in scene.observer)
+    forward = _unit(tuple(float(v) for v in direction))
+    right = _unit(_cross(forward, (0.0, 1.0, 0.0)))
+    up = _cross(right, forward)
+    nx, ny = cells
+    s = samples
+    dx, dy = 2.0 * tan_x / nx, 2.0 * tan_y / ny
+    step = min(dx, dy) / s
+    index = {obj.id: k for k, obj in enumerate(scene.objects)}
+    values = emission.number_emissivities(scene).copy()
+    for obj in scene.objects:
+        if without_room and obj.background:
+            values[index[obj.id]] = 0.0
+
+    # balls narrower than a sample's spacing are counted whole, at their centres
+    points = []
+    for obj in scene.objects:
+        if not isinstance(obj.shape, Sphere) or (without_room and obj.background):
+            continue
+        c = tuple(float(a) - b for a, b in zip(obj.shape.center, origin))
+        dist = math.sqrt(_dot(c, c))
+        if dist > obj.shape.radius and obj.shape.radius / dist < step:
+            points.append((obj, c, dist))
+    small = {obj.id for obj, _, _ in points}
+    parent_value = lambda obj: 0.0 if obj.parent is None else values[index[obj.parent]]
+
+    # along the sampled rays a small ball radiates as its nearest ancestor that is not small
+    sampled = values.copy()
+    for obj, _, _ in points:
+        ancestor = obj.parent
+        while ancestor is not None and ancestor in small:
+            ancestor = scene[ancestor].parent
+        sampled[index[obj.id]] = 0.0 if ancestor is None else values[index[ancestor]]
+
+    xs = [-tan_x + (i + (a + 0.5) / s) * dx for i in range(nx) for a in range(s)]
+    ys = [tan_y - (j + (b + 0.5) / s) * dy for j in range(ny) for b in range(s)]
+    directions = np.array([[forward[k] + x * right[k] + y * up[k] for k in range(3)] for y in ys for x in xs])
+    norms = np.sqrt(np.sum(directions * directions, axis=1))
+    radiance = columns.line_integral(scene, sampled, directions / norms[:, None])
+    width = nx * s
+    rate = [[0.0] * nx for _ in range(ny)]
+    for row, y in enumerate(ys):
+        for col, x in enumerate(xs):
+            q = 1.0 + x * x + y * y
+            solid = (dx / s) * (dy / s) / (q * math.sqrt(q))
+            rate[row // s][col // s] += float(radiance[row * width + col]) * solid
+    for obj, c, dist in points:
+        ahead = _dot(c, forward)
+        if ahead <= 0.0:
+            continue
+        x, y = _dot(c, right) / ahead, _dot(c, up) / ahead
+        i, j = math.floor((x + tan_x) / dx), math.floor((tan_y - y) / dy)
+        if 0 <= i < nx and 0 <= j < ny:
+            rate[j][i] += (values[index[obj.id]] - parent_value(obj)) * ball_over_sky(obj.shape.radius, dist)
+    return {
+        "view": {"forward": list(forward), "right": list(right), "up": list(up), "tan_x": tan_x, "tan_y": tan_y},
+        "cells": [nx, ny],
+        "samples": s,
+        "points": [obj.id for obj, _, _ in points],
+        "rate": [[_rounded(v) for v in row] for row in rate],
+    }
+
+
+def counts_fixture(scene: Scene) -> dict | None:
+    """The counts block of a thermal scene, with and without the room where it has one; None for the others."""
+    if scene.name not in COUNT_VIEWS:
+        return None
+    direction, tan_x, tan_y = COUNT_VIEWS[scene.name]
+    block = count_block(scene, direction, tan_x, tan_y)
+    if any(obj.background for obj in scene.objects):
+        block["rate_without_room"] = count_block(scene, direction, tan_x, tan_y, without_room=True)["rate"]
+    return block
+
+
+# --- the noise of the near-field reconstruction --------------------------------------------------------------------
+
+NOISE_DECADES = (3, 6, 20, 40)
+NOISE_SAMPLES = (0.5, 0.8, 0.9, 1.0, 1.1, 1.2, 1.5)    # q / q_c
+
+
+def build_noise_fixture() -> dict:
+    """For each signal-to-noise ratio, the Wiener filter's cutoff, the spectrum of the noise it passes, H (1 - H),
+    at a few q, and two integrals over the plane in units of (m / z^3)^2 and m / z^3: the noise's variance,
+    (1 / 2 pi) int H (1 - H) q dq, and the peak of a point mass m's image, (1 / 2 pi) int H q dq."""
+    rows = []
+    for n in NOISE_DECADES:
+        snr = 10.0**n
+        q, w = resolution._grid(snr)
+        h = resolution.transfer(q, snr)
+        qc = resolution.cutoff(snr)
+        at = np.array(NOISE_SAMPLES) * qc
+        ha = resolution.transfer(at, snr)
+        rows.append({
+            "snr_decades": n,
+            "q_c": _rounded(qc),
+            "variance": _rounded(float(np.sum(w * h * (1.0 - h) * q)) / (2.0 * math.pi)),
+            "peak": _rounded(float(np.sum(w * h * q)) / (2.0 * math.pi)),
+            "q": [_rounded(float(v)) for v in at],
+            "spectrum": [_rounded(float(v)) for v in ha * (1.0 - ha)],
+        })
+    return {
+        "meta": {
+            "package": "gravcam",
+            "version": __version__,
+            "generator": "python -m gravcam.export_fixtures",
+            "notes": [
+                "The Wiener reconstruction of resolution.py, H = s^2 / (1 + s^2), s = pi SNR q e^-q, q = k z, passes "
+                "the readings' white noise with spectrum S_sigma H (1 - H), S_sigma = m^2 / z^2 the prior's; in the "
+                "angles of the picture and the units of the tidal column, (m / z^3)^2 H (1 - H) per steradian.",
+                "variance: (1 / 2 pi) int H (1 - H) q dq; peak: (1 / 2 pi) int H q dq, the centre of the image of a "
+                "point of mass m; both on resolution.py's trapezoid grid. Rounded to "
+                f"{SIGNIFICANT} significant digits (they need exp and log).",
+            ],
+        },
+        "rows": rows,
+    }
+
+
 def dumps(fixture: dict) -> str:
-    """JSON text: indented, but with one ray per line (easier to diff)."""
-    marker = "@@RAYS@@"
-    skeleton = dict(fixture, rays=marker)
+    """JSON text: indented, but with one ray, and one row of picture elements, per line (easier to diff)."""
+    markers = {"@@RAYS@@": None}
+    skeleton = dict(fixture, rays="@@RAYS@@")
+    if "counts" in fixture:
+        counts = dict(fixture["counts"])
+        for key in ("rate", "rate_without_room"):
+            if key in counts:
+                marker = f"@@{key.upper()}@@"
+                markers[marker] = counts[key]
+                counts[key] = marker
+        skeleton["counts"] = counts
     text = json.dumps(skeleton, indent=2, allow_nan=False)
     rows = ",\n".join("    " + json.dumps(ray, allow_nan=False) for ray in fixture["rays"])
-    return text.replace(json.dumps(marker), "[\n" + rows + "\n  ]") + "\n"
+    text = text.replace(json.dumps("@@RAYS@@"), "[\n" + rows + "\n  ]")
+    for marker, table in markers.items():
+        if table is not None:
+            lines = ",\n".join("      " + json.dumps(row, allow_nan=False) for row in table)
+            text = text.replace(json.dumps(marker), "[\n" + lines + "\n    ]")
+    return text + "\n"
 
 
 def main(argv=None) -> int:
@@ -442,6 +635,10 @@ def main(argv=None) -> int:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(dumps(fixture), encoding="utf-8")
         print(f"wrote {out} ({len(fixture['rays'])} rays, {len(fixture['objects'])} objects)")
+    if args.scene is None:
+        out = DEFAULT_OUT_DIR / NOISE_FIXTURE
+        out.write_text(json.dumps(build_noise_fixture(), indent=1) + "\n", encoding="utf-8")
+        print(f"wrote {out}")
     return 0
 
 

@@ -1,7 +1,7 @@
 /**
- * What one pixel at a point of a demo's scene reads (paper, Section III): E from the scene's masses
+ * What one pixel at a point of a demo's scene reads (paper, Section VIII): E from the scene's masses
  * (engine/tidal.ts) and B from its spinning spheres, each exactly a spin dipole outside it; and what that one
- * reading says: its type, its four stars, and the motion alarm. Used by the "One pixel" layer of the room demos.
+ * reading says: its type, its four principal null directions, and the test for motion. Used by the "One pixel" layer of the room demos.
  */
 import { cx, cmat, dot, type CMat3, type Vec3 } from './complex';
 import { motionAlarm, petrov, speciality, stars, C, G } from './pixel';
