@@ -69,7 +69,7 @@ def materials_figure():
     a.set_xticks([1, 10, 100])
     a.set_xticklabels(["1", "10", "100"])
     a.text(hot[0] * 1.08, 4.5e-2, r"heat at 293\,K", fontsize=6.5, color=mf.DIM, va="bottom")
-    a.text(0.02, 0.98, "(a)", transform=a.transAxes, va="top", fontsize=8.5)
+    mf.letter(a, "(a)")
 
     # (b) the glow: power per volume per unit frequency, 4 pi j_omega domega/df
     fb = np.linspace(0.05, 60.0, 6000)
@@ -88,15 +88,16 @@ def materials_figure():
     b.set_ylim(1e-40, 1e-33)
     b.set_xlabel(r"frequency $\omega/2\pi$ (THz)")
     b.set_ylabel(r"glow (W\,m$^{-3}$\,THz$^{-1}$)")
-    b.text(0.03, 0.98, "(b)", transform=b.transAxes, va="top", fontsize=8.5)
+    mf.letter(b, "(b)")
     si_f = M.SI["omega0"] / M.THZ
     di_f = M.DIAMOND["omega0"] / M.THZ
     peak = lambda key, x: 4 * np.pi * M.THZ * float(M.spectral_emissivity(tab[key], x * M.THZ, T))
     b.annotate(r"Si, 520\,cm$^{-1}$", xy=(si_f + 0.6, peak("silicon", si_f)), xytext=(23, 2.4e-34), fontsize=6.5,
                color=mf.DIM, va="center", arrowprops=dict(arrowstyle="-", lw=0.5, color=mf.FAINT, shrinkA=1, shrinkB=1))
-    b.annotate(r"C, 1333\,cm$^{-1}$", xy=(di_f + 0.5, peak("diamond", di_f)), xytext=(47, 4e-35), fontsize=6.5,
-               color=mf.DIM, va="center", arrowprops=dict(arrowstyle="-", lw=0.5, color=mf.FAINT, shrinkA=1,
-                                                          shrinkB=1))
+    # ending short of the frame at the right, above the line's peak
+    b.annotate(r"C, 1333\,cm$^{-1}$", xy=(di_f + 0.5, peak("diamond", di_f)), xytext=(57.5, 1.0e-34), fontsize=6.5,
+               color=mf.DIM, ha="right", va="center", arrowprops=dict(arrowstyle="-", lw=0.5, color=mf.FAINT,
+                                                                      shrinkA=1, shrinkB=1))
 
     handles, labels = a.get_legend_handles_labels()
     ph, = a.plot([], [], color=mf.INK, lw=0.8, ls=(0, (4, 2)))

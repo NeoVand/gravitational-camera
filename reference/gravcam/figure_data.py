@@ -130,15 +130,45 @@ def voices():
     }
 
 
+def _changing_part(pair):
+    """The same pair with every part of its field that does not change left out: no mass, no spin, and only the
+    turning part of its second moment. The field is linear in these, so what remains is exactly the changing part
+    of the full field, and it is what W(t) - <W>, W_+ and W_- read.
+
+    It must be left out before the curvature is taken. The curvature comes from second differences of the metric,
+    and far out the static potential of the pair's mass, G M / c^2 r, is (c/v)^2 times the changing part
+    ((c/v)^2 = 3.6e5 for the pair of Fig. ranging): the rounding error of each metric value, 1e-16 of the static part
+    and amplified by 1/step^2, then reaches about 1e-5 of the wave's curvature, as large as the departure from rank
+    one that ranging reads at kr = 100 (2 tan^2(iota/2)/(kr)^2 = 2e-5 at iota = 35 degrees)."""
+    from . import binary
+
+    class Changing(binary.Pair):
+        def __init__(self):
+            super().__init__(pair.m, pair.d, pair.omega)
+            self.mass = 0.0
+            self.spin = np.zeros(3)
+
+        def moments(self, u):
+            I, I1, I2 = super().moments(u)
+            I = I.copy()
+            k = 0.25 * self.m * self.d ** 2                 # the static part of I: k diag(1, 1, 0)
+            I[:, 0, 0] -= k
+            I[:, 1, 1] -= k
+            return I, I1, I2
+
+    return Changing()
+
+
 def ranging():
     """How far away is a wave source (Fig. ranging): the exact field of two masses turning in a circle (binary.py),
-    read by one pixel at reduced distance kr and inclination iota, against the three statements of the text."""
+    read by one pixel at reduced distance kr and inclination iota, against the three statements of the text. Only
+    the changing part of the field is computed (_changing_part): it is all that the three statements read."""
     import math
 
     from . import binary
     from .constants import c as C
 
-    pair = binary.Pair(1.0, 1.0, 1.0e6)
+    pair = _changing_part(binary.Pair(1.0, 1.0, 1.0e6))
     lamr = pair.wavelength / (2 * math.pi)
     omega = 2 * pair.omega
 
@@ -157,8 +187,7 @@ def ranging():
         iota = math.radians(deg)
         rows = []
         for kr in (4, 6, 9, 13, 20, 30, 45, 68, 100):
-            # the finite-difference step that holds the curvature's small parts best at each distance
-            ts, Ws = cycle(iota, kr, t0=kr * lamr / C, step_fraction=5e-3 if kr < 50 else 1e-2)
+            ts, Ws = cycle(iota, kr, t0=kr * lamr / C)
             s = np.linalg.svd(Ws[0] - Ws.mean(axis=0), compute_uv=False)
             rows.append([kr, float(s[1] / s[0])])
         out["instant"].append({"iota": deg, "C": pixel.ranging_constant(iota, 0.0), "points": rows})
@@ -210,7 +239,9 @@ def present_past():
     for kr in (0.02, 0.03, 0.05, 0.07, 0.1, 0.14, 0.2, 0.3):
         pair = binary.Pair(m, d, kr * C / (2 * r))
         ts = np.linspace(0, math.pi / pair.omega, 16, endpoint=False)
-        full = np.array([binary.tidal(pair, t, x[None, :])[0][0] for t in ts])
+        # the changing part of the exact field, computed alone: near the pair it is (d/r)^2 of the static tide, and
+        # the differences it is compared by are (kr)^2 smaller again (see _changing_part)
+        full = np.array([binary.tidal(_changing_part(pair), t, x[None, :])[0][0] for t in ts])
         now = np.array([present.newton_pair(pair, t, x) for t in ts])
         then = np.array([present.newton_pair(pair, t - r / C, x) for t in ts])
         dev = lambda A: A - A.mean(axis=0)

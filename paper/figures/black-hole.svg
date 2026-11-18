@@ -163,16 +163,15 @@
 <path fill="none" stroke-width="0.4" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 456.481463 5.0386 L 456.481463 131.601987 " transform="matrix(0.995086, 0, 0, -0.995086, 1.238425, 144.568526)"/>
 <path fill="none" stroke-width="0.4" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 231.481194 5.0386 L 456.481463 5.0386 " transform="matrix(0.995086, 0, 0, -0.995086, 1.238425, 144.568526)"/>
 <path fill="none" stroke-width="0.4" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 231.481194 131.601987 L 456.481463 131.601987 " transform="matrix(0.995086, 0, 0, -0.995086, 1.238425, 144.568526)"/>
-<path fill="none" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" stroke="#15140f" stroke-opacity="1" stroke-miterlimit="10" d="M 394.249852 35.241717 C 381.805885 43.167386 369.361918 51.093054 356.917951 59.018723 " transform="matrix(0.995086, 0, 0, -0.995086, 1.238425, 144.568526)"/>
-<g fill="#15140f" fill-opacity="1">
-<use xlink:href="#black-hole-glyph-1-0" x="390.54577" y="117.340187"/>
-<use xlink:href="#black-hole-glyph-1-1" x="393.682459" y="117.340187"/>
-<use xlink:href="#black-hole-glyph-1-2" x="398.054392" y="117.340187"/>
-<use xlink:href="#black-hole-glyph-1-3" x="402.00301" y="117.340187"/>
-<use xlink:href="#black-hole-glyph-1-4" x="406.374943" y="117.340187"/>
+<g fill="#ffffff" fill-opacity="1">
+<use xlink:href="#black-hole-glyph-1-0" x="330.90465" y="78.298625"/>
+<use xlink:href="#black-hole-glyph-1-1" x="334.041339" y="78.298625"/>
+<use xlink:href="#black-hole-glyph-1-2" x="338.413271" y="78.298625"/>
+<use xlink:href="#black-hole-glyph-1-3" x="342.36189" y="78.298625"/>
+<use xlink:href="#black-hole-glyph-1-4" x="346.733823" y="78.298625"/>
 </g>
-<g fill="#15140f" fill-opacity="1">
-<use xlink:href="#black-hole-glyph-1-5" x="410.110134" y="117.340187"/>
+<g fill="#ffffff" fill-opacity="1">
+<use xlink:href="#black-hole-glyph-1-5" x="350.469014" y="78.298625"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
 <use xlink:href="#black-hole-glyph-0-0" x="231.580843" y="10.627514"/>

@@ -331,531 +331,531 @@
 </g>
 </g>
 <clipPath id="sun-lens-clip-0">
-<path clip-rule="nonzero" d="M 106 13.289062 L 108 13.289062 L 108 100.847656 L 106 100.847656 Z M 106 13.289062 "/>
+<path clip-rule="nonzero" d="M 100 13.289062 L 102 13.289062 L 102 100.847656 L 100 100.847656 Z M 100 13.289062 "/>
 </clipPath>
 <clipPath id="sun-lens-clip-1">
-<path clip-rule="nonzero" d="M 41.699219 33 L 237.097656 33 L 237.097656 100 L 41.699219 100 Z M 41.699219 33 "/>
+<path clip-rule="nonzero" d="M 35.773438 32 L 231.171875 32 L 231.171875 96 L 35.773438 96 Z M 35.773438 32 "/>
 </clipPath>
 <clipPath id="sun-lens-clip-2">
-<path clip-rule="nonzero" d="M 105 72 L 237.097656 72 L 237.097656 93 L 105 93 Z M 105 72 "/>
+<path clip-rule="nonzero" d="M 100 69 L 231.171875 69 L 231.171875 89 L 100 89 Z M 100 69 "/>
 </clipPath>
 <clipPath id="sun-lens-clip-3">
-<path clip-rule="nonzero" d="M 106 149.003906 L 108 149.003906 L 108 236.5625 L 106 236.5625 Z M 106 149.003906 "/>
+<path clip-rule="nonzero" d="M 100 149.003906 L 102 149.003906 L 102 236.5625 L 100 236.5625 Z M 100 149.003906 "/>
 </clipPath>
 <clipPath id="sun-lens-clip-4">
-<path clip-rule="nonzero" d="M 41.699219 157 L 237.097656 157 L 237.097656 223 L 41.699219 223 Z M 41.699219 157 "/>
+<path clip-rule="nonzero" d="M 35.773438 164 L 231.171875 164 L 231.171875 224 L 35.773438 224 Z M 35.773438 164 "/>
 </clipPath>
 <clipPath id="sun-lens-clip-5">
-<path clip-rule="nonzero" d="M 41.699219 225 L 237.097656 225 L 237.097656 227 L 41.699219 227 Z M 41.699219 225 "/>
+<path clip-rule="nonzero" d="M 35.773438 226 L 231.171875 226 L 231.171875 228 L 35.773438 228 Z M 35.773438 226 "/>
 </clipPath>
 </defs>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 165.325209 L 41.61746 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 165.325209 L 35.678333 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="36.637024" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="30.711799" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="40.597594" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="34.672368" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="42.79793" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="36.872704" y="109.475974"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 74.257214 165.325209 L 74.257214 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 68.318087 165.325209 L 68.318087 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="69.203676" y="109.475974"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="73.164245" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="63.27845" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-1" x="75.364582" y="109.475974"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 106.896968 165.325209 L 106.896968 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-2" x="101.770328" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="67.23902" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="105.730897" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-0-1" x="69.439356" y="109.475974"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 100.957841 165.325209 L 100.957841 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-2" x="95.845102" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="107.931233" y="109.475974"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 139.536722 165.325209 L 139.536722 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-2" x="134.336979" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="99.805671" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="138.297549" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="102.006008" y="109.475974"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 133.597595 165.325209 L 133.597595 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-2" x="128.411754" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-1" x="140.497885" y="109.475974"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 172.176476 165.325209 L 172.176476 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-3" x="166.903631" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="132.372323" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="170.8642" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-0-1" x="134.572659" y="109.475974"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 166.237349 165.325209 L 166.237349 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-3" x="160.978405" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="173.064537" y="109.475974"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 204.81623 165.325209 L 204.81623 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-3" x="199.470283" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="164.938975" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="203.430852" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="167.139311" y="109.475974"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 198.877103 165.325209 L 198.877103 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-3" x="193.545057" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-1" x="205.631188" y="109.475974"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 237.455984 165.325209 L 237.455984 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-4" x="232.036934" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="197.505626" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="235.997504" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-0-1" x="199.705963" y="109.475974"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 231.516857 165.325209 L 231.516857 168.825262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-4" x="226.111709" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="238.19784" y="109.475974"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="230.072278" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-2-0" x="93.993011" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-1" x="96.401037" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-2" x="103.633564" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-3" x="108.458066" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-4" x="112.792513" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-5" x="116.645355" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="232.272614" y="109.475974"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-2-2" x="122.91121" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-3" x="127.735712" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-6" x="132.070158" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-3" x="135.458293" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-1" x="139.79274" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-7" x="147.025268" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-5" x="150.886559" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-7" x="154.257795" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-2-6" x="158.119086" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-0" x="88.067785" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-1" x="90.475811" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-2" x="97.708339" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-3" x="102.53284" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-4" x="106.867287" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-5" x="110.720129" y="121.25345"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-3-0" x="164.473548" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-3-1" x="168.191203" y="121.25345"/>
-<use xlink:href="#sun-lens-glyph-3-2" x="172.52565" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-2" x="116.985984" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-3" x="121.810486" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-6" x="126.144933" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-3" x="129.533068" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-1" x="133.867515" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-7" x="141.100042" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-5" x="144.961333" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-7" x="148.33257" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-2-6" x="152.193861" y="121.25345"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-4-0" x="179.107102" y="122.192235"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 165.325209 L 45.117513 165.325209 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="34.245058" y="103.415999"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 197.236764 L 45.117513 197.236764 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-3" x="34.245058" y="71.576693"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 229.14832 L 45.117513 229.14832 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-5" x="34.245058" y="39.737387"/>
+<use xlink:href="#sun-lens-glyph-3-0" x="158.548323" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-3-1" x="162.265977" y="121.25345"/>
+<use xlink:href="#sun-lens-glyph-3-2" x="166.600424" y="121.25345"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-5-0" x="28.141743" y="97.052198"/>
+<use xlink:href="#sun-lens-glyph-4-0" x="173.181877" y="122.192235"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 169.86275 L 39.178385 169.86275 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-0" x="28.319832" y="98.887132"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 200.12607 L 39.178385 200.12607 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-3" x="28.319832" y="68.694687"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 230.385475 L 39.178385 230.385475 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-5" x="28.319832" y="38.502242"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-5-1" x="28.141743" y="91.986486"/>
-<use xlink:href="#sun-lens-glyph-5-2" x="28.141743" y="88.125195"/>
-<use xlink:href="#sun-lens-glyph-5-3" x="28.141743" y="83.300694"/>
-<use xlink:href="#sun-lens-glyph-5-4" x="28.141743" y="78.476193"/>
-<use xlink:href="#sun-lens-glyph-5-2" x="28.141743" y="76.068166"/>
-<use xlink:href="#sun-lens-glyph-5-5" x="28.141743" y="71.243665"/>
+<use xlink:href="#sun-lens-glyph-5-0" x="22.216517" y="97.052198"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-5-6" x="28.141743" y="64.014599"/>
-<use xlink:href="#sun-lens-glyph-5-7" x="28.141743" y="60.643363"/>
-<use xlink:href="#sun-lens-glyph-5-8" x="28.141743" y="56.308916"/>
-<use xlink:href="#sun-lens-glyph-5-9" x="28.141743" y="52.920781"/>
-<use xlink:href="#sun-lens-glyph-5-10" x="28.141743" y="49.067939"/>
-<use xlink:href="#sun-lens-glyph-5-1" x="28.141743" y="45.646007"/>
-<use xlink:href="#sun-lens-glyph-5-9" x="28.141743" y="41.784716"/>
-<use xlink:href="#sun-lens-glyph-5-11" x="28.141743" y="37.931874"/>
-<use xlink:href="#sun-lens-glyph-5-2" x="28.141743" y="33.597427"/>
-<use xlink:href="#sun-lens-glyph-5-3" x="28.141743" y="28.772926"/>
-<use xlink:href="#sun-lens-glyph-5-10" x="28.141743" y="23.948425"/>
-<use xlink:href="#sun-lens-glyph-5-12" x="28.141743" y="20.526493"/>
+<use xlink:href="#sun-lens-glyph-5-1" x="22.216517" y="91.986486"/>
+<use xlink:href="#sun-lens-glyph-5-2" x="22.216517" y="88.125195"/>
+<use xlink:href="#sun-lens-glyph-5-3" x="22.216517" y="83.300694"/>
+<use xlink:href="#sun-lens-glyph-5-4" x="22.216517" y="78.476193"/>
+<use xlink:href="#sun-lens-glyph-5-2" x="22.216517" y="76.068166"/>
+<use xlink:href="#sun-lens-glyph-5-5" x="22.216517" y="71.243665"/>
+</g>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-5-6" x="22.216517" y="64.014599"/>
+<use xlink:href="#sun-lens-glyph-5-7" x="22.216517" y="60.643363"/>
+<use xlink:href="#sun-lens-glyph-5-8" x="22.216517" y="56.308916"/>
+<use xlink:href="#sun-lens-glyph-5-9" x="22.216517" y="52.920781"/>
+<use xlink:href="#sun-lens-glyph-5-10" x="22.216517" y="49.067939"/>
+<use xlink:href="#sun-lens-glyph-5-1" x="22.216517" y="45.646007"/>
+<use xlink:href="#sun-lens-glyph-5-9" x="22.216517" y="41.784716"/>
+<use xlink:href="#sun-lens-glyph-5-11" x="22.216517" y="37.931874"/>
+<use xlink:href="#sun-lens-glyph-5-2" x="22.216517" y="33.597427"/>
+<use xlink:href="#sun-lens-glyph-5-3" x="22.216517" y="28.772926"/>
+<use xlink:href="#sun-lens-glyph-5-10" x="22.216517" y="23.948425"/>
+<use xlink:href="#sun-lens-glyph-5-12" x="22.216517" y="20.526493"/>
 </g>
 <g clip-path="url(#sun-lens-clip-0)">
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="round" stroke="#c9c4b8" stroke-opacity="1" stroke-miterlimit="10" d="M 106.896968 165.325209 L 106.896968 253.081007 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="round" stroke="#c9c4b8" stroke-opacity="1" stroke-miterlimit="10" d="M 100.957841 165.325209 L 100.957841 253.081007 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 </g>
 <g clip-path="url(#sun-lens-clip-1)">
-<path fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 41.875853 167.141792 L 42.81155 173.605536 L 43.743331 179.967488 L 44.675113 186.141519 L 45.606894 192.064986 L 46.54259 197.66742 L 47.474372 202.901839 L 48.406153 207.721263 L 49.337935 212.098286 L 50.273631 216.017249 L 51.205412 219.470321 L 52.137194 222.461418 L 53.07289 224.998369 L 54.004672 227.10075 L 54.936453 228.79205 L 55.868234 230.103591 L 56.803931 231.066693 L 57.735712 231.704846 L 58.667494 232.0572 L 59.599275 232.155076 L 60.534971 232.029795 L 61.466753 231.704846 L 62.398534 231.215465 L 63.334231 230.581227 L 64.266012 229.825623 L 65.197793 228.972142 L 66.129575 228.036446 L 67.065271 227.042024 L 67.997053 225.992791 L 68.928834 224.912238 L 69.860615 223.804279 L 70.796312 222.676745 L 72.659875 220.413848 L 73.595571 219.286314 L 74.527353 218.170525 L 75.459134 217.070397 L 76.390915 215.982014 L 77.326612 214.917121 L 78.258393 213.875718 L 79.190175 212.857805 L 80.121956 211.863383 L 81.057652 210.896366 L 81.989434 209.956755 L 82.921215 209.040634 L 83.856912 208.151918 L 84.788693 207.294522 L 85.720474 206.456702 L 86.652256 205.650202 L 87.587952 204.867193 L 88.519734 204.107673 L 89.451515 203.37556 L 90.383296 202.666936 L 91.318993 201.981803 L 92.250774 201.316244 L 93.182556 200.674177 L 94.114337 200.051684 L 95.050033 199.448767 L 95.981815 198.869339 L 96.913596 198.305573 L 97.849293 197.761381 L 98.781074 197.232849 L 99.712855 196.719978 L 100.644637 196.222767 L 101.580333 195.745131 L 102.512115 195.279241 L 103.443896 194.825095 L 104.375677 194.38661 L 105.311374 193.963784 L 106.243155 193.548789 L 106.896968 193.266906 L 111.399273 191.462069 L 115.901578 189.88039 L 120.403883 188.474887 L 124.906188 187.225987 L 129.404578 186.102368 L 133.906883 185.088371 L 138.409188 184.168335 L 142.911494 183.330514 L 147.413799 182.56708 L 151.916104 181.862372 L 156.418409 181.212474 L 160.920714 180.613471 L 165.423019 180.057534 L 169.925324 179.540748 L 174.427629 179.059197 L 178.929934 178.608967 L 183.432239 178.186142 L 187.934544 177.790722 L 192.436849 177.418792 L 196.939154 177.070353 L 201.437544 176.737574 L 205.939849 176.42437 L 210.442154 176.130741 L 214.944459 175.848858 L 219.446764 175.582635 L 223.949069 175.328157 L 228.451374 175.089339 L 232.953679 174.858351 L 237.455984 174.639108 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 35.936726 171.585371 L 36.872422 177.716336 L 37.804204 183.749425 L 38.735985 189.606336 L 39.671681 195.220515 L 40.603463 200.533235 L 41.535244 205.4936 L 42.467026 210.066376 L 43.402722 214.220242 L 44.334503 217.935623 L 45.266285 221.208603 L 46.198066 224.043097 L 47.133763 226.450852 L 48.065544 228.443611 L 48.997325 230.048781 L 49.933022 231.293766 L 50.864803 232.205972 L 51.796585 232.812804 L 52.728366 233.145583 L 53.664062 233.239545 L 54.595844 233.118178 L 55.527625 232.808889 L 56.459407 232.342999 L 57.395103 231.743996 L 58.326885 231.027543 L 59.258666 230.217128 L 60.194362 229.332327 L 61.126144 228.3888 L 62.057925 227.394378 L 62.989707 226.368636 L 63.925403 225.315488 L 64.857184 224.250595 L 66.720747 222.105149 L 67.656444 221.03634 L 68.588225 219.975362 L 69.520006 218.930045 L 70.451788 217.904302 L 71.387484 216.89422 L 72.319266 215.903713 L 73.251047 214.936696 L 74.186743 213.997084 L 75.118525 213.077048 L 76.050306 212.184417 L 76.982088 211.319192 L 77.917784 210.477456 L 78.849565 209.659211 L 79.781347 208.868372 L 80.713128 208.104937 L 81.648825 207.361078 L 82.580606 206.640709 L 83.512387 205.947746 L 84.448084 205.274358 L 85.379865 204.62446 L 86.311647 203.994137 L 87.243428 203.38339 L 88.179124 202.796132 L 89.110906 202.224535 L 90.042687 201.672514 L 90.974469 201.140067 L 91.910165 200.619366 L 92.841946 200.122155 L 93.773728 199.636689 L 94.709424 199.166883 L 95.641206 198.708822 L 96.572987 198.266422 L 97.504768 197.839682 L 98.440465 197.424687 L 99.372246 197.021437 L 100.304028 196.629932 L 100.957841 196.359794 L 105.460146 194.652833 L 109.962451 193.149455 L 114.464756 191.818338 L 118.967061 190.632079 L 123.469366 189.567186 L 127.971671 188.604084 L 132.470061 187.734943 L 136.972366 186.940189 L 141.474671 186.21199 L 145.976976 185.546432 L 150.479281 184.931769 L 154.981586 184.360172 L 159.483891 183.835556 L 163.986196 183.346175 L 168.488501 182.888114 L 172.990806 182.461374 L 177.493111 182.062039 L 181.995416 181.686194 L 186.497721 181.33384 L 191.000026 181.001061 L 195.502331 180.687857 L 200.004636 180.390314 L 204.506942 180.10843 L 209.005332 179.842207 L 213.507637 179.591644 L 218.009942 179.348911 L 222.512247 179.121838 L 227.014552 178.902595 L 231.516857 178.695098 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 </g>
 <g clip-path="url(#sun-lens-clip-2)">
-<path fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 106.896968 193.266906 L 111.399273 191.462069 L 115.901578 189.88039 L 120.403883 188.474887 L 124.906188 187.225987 L 129.404578 186.102368 L 133.906883 185.088371 L 138.409188 184.168335 L 142.911494 183.330514 L 147.413799 182.563165 L 151.916104 181.862372 L 156.418409 181.212474 L 160.920714 180.613471 L 165.423019 180.057534 L 169.925324 179.540748 L 174.427629 179.059197 L 178.929934 178.608967 L 183.432239 178.186142 L 187.934544 177.790722 L 192.436849 177.418792 L 196.939154 177.066438 L 201.437544 176.737574 L 205.939849 176.42437 L 210.442154 176.126826 L 214.944459 175.848858 L 219.446764 175.582635 L 223.949069 175.328157 L 228.451374 175.085424 L 232.953679 174.858351 L 237.455984 174.639108 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 100.957841 196.359794 L 105.460146 194.648918 L 109.962451 193.149455 L 114.464756 191.818338 L 118.967061 190.632079 L 123.469366 189.567186 L 127.971671 188.604084 L 132.470061 187.734943 L 136.972366 186.940189 L 141.474671 186.21199 L 145.976976 185.546432 L 150.479281 184.931769 L 154.981586 184.360172 L 159.483891 183.835556 L 163.986196 183.346175 L 168.488501 182.888114 L 172.990806 182.461374 L 177.493111 182.062039 L 181.995416 181.686194 L 186.497721 181.33384 L 191.000026 181.001061 L 195.502331 180.687857 L 200.004636 180.390314 L 204.506942 180.10843 L 209.005332 179.842207 L 213.507637 179.591644 L 218.009942 179.348911 L 222.512247 179.121838 L 227.014552 178.902595 L 231.516857 178.695098 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 </g>
-<path fill="none" stroke-width="0.8" stroke-linecap="butt" stroke-linejoin="round" stroke="#8b877d" stroke-opacity="1" stroke-dasharray="2.4 1.6" stroke-miterlimit="10" d="M 63.334231 249.314731 L 64.266012 245.857744 L 65.197793 242.670895 L 66.129575 239.726779 L 67.065271 237.001906 L 67.997053 234.464955 L 68.928834 232.104181 L 69.860615 229.900009 L 70.796312 227.836779 L 71.728093 225.89883 L 72.659875 224.078333 L 73.595571 222.363542 L 74.527353 220.746627 L 75.459134 219.219758 L 76.390915 217.775106 L 77.326612 216.404839 L 78.258393 215.105043 L 79.190175 213.867888 L 80.121956 212.693373 L 81.057652 211.57367 L 81.989434 210.504862 L 82.921215 209.483034 L 83.856912 208.508187 L 84.788693 207.576406 L 85.720474 206.67986 L 86.652256 205.82638 L 87.587952 205.004219 L 88.519734 204.21338 L 89.451515 203.453861 L 90.383296 202.725662 L 91.318993 202.024868 L 92.250774 201.347565 L 93.182556 200.697667 L 94.114337 200.067344 L 95.050033 199.460512 L 95.981815 198.87717 L 96.913596 198.309488 L 97.849293 197.761381 L 98.781074 197.232849 L 99.712855 196.719978 L 100.644637 196.222767 L 101.580333 195.745131 L 102.512115 195.279241 L 103.443896 194.825095 L 104.375677 194.38661 L 105.311374 193.959869 L 106.243155 193.548789 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 165.325209 L 41.61746 253.081007 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 165.325209 L 237.455984 165.325209 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.8" stroke-linecap="butt" stroke-linejoin="round" stroke="#8b877d" stroke-opacity="1" stroke-dasharray="2.4 1.6" stroke-miterlimit="10" d="M 57.395103 249.510484 L 58.326885 246.229673 L 59.258666 243.211172 L 60.194362 240.419742 L 61.126144 237.831896 L 62.057925 235.428056 L 62.989707 233.188649 L 63.925403 231.098013 L 64.857184 229.14049 L 65.788966 227.304332 L 66.720747 225.577796 L 67.656444 223.953051 L 68.588225 222.418352 L 69.520006 220.969785 L 70.451788 219.599518 L 71.387484 218.299722 L 72.319266 217.066482 L 73.251047 215.895883 L 74.186743 214.780094 L 75.118525 213.719116 L 76.050306 212.705119 L 76.982088 211.738102 L 77.917784 210.81415 L 78.849565 209.92935 L 79.781347 209.079784 L 80.713128 208.269369 L 81.648825 207.490275 L 82.580606 206.742501 L 83.512387 206.022132 L 84.448084 205.329168 L 85.379865 204.66361 L 86.311647 204.021542 L 87.243428 203.40688 L 88.179124 202.807878 L 89.110906 202.236281 L 90.042687 201.680344 L 90.974469 201.143982 L 91.910165 200.623281 L 92.841946 200.122155 L 93.773728 199.636689 L 94.709424 199.166883 L 95.641206 198.708822 L 96.572987 198.266422 L 97.504768 197.839682 L 98.440465 197.424687 L 99.372246 197.017522 L 100.304028 196.626017 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 165.325209 L 35.678333 253.081007 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 165.325209 L 231.516857 165.325209 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-0" x="110.739063" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-1" x="113.620742" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-2" x="117.691276" y="20.924952"/>
-</g>
-<g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-3" x="123.454136" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-4" x="127.524669" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-5" x="131.595202" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-6" x="135.665736" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-7" x="137.752692" y="20.924952"/>
+<use xlink:href="#sun-lens-glyph-6-0" x="104.813838" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-1" x="107.695517" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-2" x="111.76605" y="20.760266"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-7" x="143.160188" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-4" x="146.080634" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-8" x="150.151167" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-9" x="153.032846" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-10" x="155.320098" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-11" x="158.9965" y="20.924952"/>
-<use xlink:href="#sun-lens-glyph-6-2" x="162.27231" y="20.924952"/>
+<use xlink:href="#sun-lens-glyph-6-3" x="117.52891" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-4" x="121.599443" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-5" x="125.669977" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-6" x="129.74051" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-7" x="131.827466" y="20.760266"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-7-0" x="155.681043" y="76.172697"/>
+<use xlink:href="#sun-lens-glyph-6-7" x="137.234962" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-4" x="140.155408" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-8" x="144.225941" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-9" x="147.10762" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-10" x="149.394872" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-11" x="153.071275" y="20.760266"/>
+<use xlink:href="#sun-lens-glyph-6-2" x="156.347085" y="20.760266"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-8-0" x="159.64322" y="76.172697"/>
+<use xlink:href="#sun-lens-glyph-7-0" x="149.755817" y="72.920147"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-7-1" x="162.00403" y="76.172697"/>
-<use xlink:href="#sun-lens-glyph-7-2" x="165.963232" y="76.172697"/>
+<use xlink:href="#sun-lens-glyph-8-0" x="153.717994" y="72.920147"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-9-0" x="169.928384" y="73.172935"/>
-<use xlink:href="#sun-lens-glyph-9-0" x="172.115239" y="73.172935"/>
+<use xlink:href="#sun-lens-glyph-7-1" x="156.078804" y="72.920147"/>
+<use xlink:href="#sun-lens-glyph-7-2" x="160.038006" y="72.920147"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-8-1" x="176.166386" y="76.172697"/>
+<use xlink:href="#sun-lens-glyph-9-0" x="164.003158" y="69.920386"/>
+<use xlink:href="#sun-lens-glyph-9-0" x="166.190013" y="69.920386"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-9-1" x="182.154654" y="77.166722"/>
+<use xlink:href="#sun-lens-glyph-8-1" x="170.241161" y="72.920147"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-8-2" x="188.036036" y="76.172697"/>
-<use xlink:href="#sun-lens-glyph-8-3" x="192.106569" y="76.172697"/>
+<use xlink:href="#sun-lens-glyph-9-1" x="176.229428" y="73.914172"/>
+</g>
+<g fill="#5d5a52" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-8-2" x="182.11081" y="72.920147"/>
+<use xlink:href="#sun-lens-glyph-8-3" x="186.181343" y="72.920147"/>
 </g>
 <g fill="#b0560a" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-7-3" x="42.830803" y="29.448719"/>
+<use xlink:href="#sun-lens-glyph-7-3" x="36.905578" y="28.542945"/>
 </g>
 <g fill="#b0560a" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-8-0" x="46.79298" y="29.448719"/>
+<use xlink:href="#sun-lens-glyph-8-0" x="40.867755" y="28.542945"/>
 </g>
 <g fill="#b0560a" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-7-4" x="49.15379" y="29.448719"/>
+<use xlink:href="#sun-lens-glyph-7-4" x="43.228564" y="28.542945"/>
 </g>
 <g fill="#b0560a" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-9-0" x="53.115967" y="26.448958"/>
-<use xlink:href="#sun-lens-glyph-9-0" x="55.302823" y="26.448958"/>
+<use xlink:href="#sun-lens-glyph-9-0" x="47.190741" y="25.543184"/>
+<use xlink:href="#sun-lens-glyph-9-0" x="49.377597" y="25.543184"/>
 </g>
-<path fill="none" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke="#8b877d" stroke-opacity="1" stroke-miterlimit="10" d="M 107.82092 231.391642 C 96.208888 230.138827 84.596856 228.886011 72.984824 227.633196 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke="#8b877d" stroke-opacity="1" stroke-miterlimit="10" d="M 101.881792 232.511346 C 90.26976 231.325086 78.657728 230.134912 67.045696 228.948652 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 <g fill="#8b877d" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-10" x="110.739063" y="33.990961"/>
-</g>
-<g fill="#8b877d" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-12" x="116.902516" y="33.990961"/>
+<use xlink:href="#sun-lens-glyph-6-10" x="104.813838" y="33.002844"/>
 </g>
 <g fill="#8b877d" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-13" x="121.171745" y="33.990961"/>
-<use xlink:href="#sun-lens-glyph-6-14" x="124.848147" y="33.990961"/>
-<use xlink:href="#sun-lens-glyph-6-5" x="126.935103" y="33.990961"/>
+<use xlink:href="#sun-lens-glyph-6-12" x="110.97729" y="33.002844"/>
 </g>
 <g fill="#8b877d" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-0" x="130.806925" y="33.990961"/>
+<use xlink:href="#sun-lens-glyph-6-13" x="115.246519" y="33.002844"/>
+<use xlink:href="#sun-lens-glyph-6-14" x="118.922921" y="33.002844"/>
+<use xlink:href="#sun-lens-glyph-6-5" x="121.009877" y="33.002844"/>
 </g>
 <g fill="#8b877d" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-15" x="136.175654" y="33.990961"/>
-<use xlink:href="#sun-lens-glyph-6-10" x="142.236226" y="33.990961"/>
-<use xlink:href="#sun-lens-glyph-6-7" x="145.912628" y="33.990961"/>
-<use xlink:href="#sun-lens-glyph-6-7" x="148.833074" y="33.990961"/>
+<use xlink:href="#sun-lens-glyph-6-0" x="124.881699" y="33.002844"/>
+</g>
+<g fill="#8b877d" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-6-15" x="130.250429" y="33.002844"/>
+<use xlink:href="#sun-lens-glyph-6-10" x="136.311" y="33.002844"/>
+<use xlink:href="#sun-lens-glyph-6-7" x="139.987403" y="33.002844"/>
+<use xlink:href="#sun-lens-glyph-6-7" x="142.907849" y="33.002844"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-10-0" x="41.697762" y="10.296809"/>
-<use xlink:href="#sun-lens-glyph-10-1" x="44.982021" y="10.296809"/>
-<use xlink:href="#sun-lens-glyph-10-2" x="49.20464" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-0" x="35.772536" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-1" x="39.056795" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-2" x="43.279415" y="10.296809"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-10-3" x="55.305345" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-3" x="49.380119" y="10.296809"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-10-4" x="60.231848" y="10.296809"/>
-<use xlink:href="#sun-lens-glyph-10-5" x="63.985287" y="10.296809"/>
-<use xlink:href="#sun-lens-glyph-10-6" x="68.677086" y="10.296809"/>
-<use xlink:href="#sun-lens-glyph-10-7" x="73.368885" y="10.296809"/>
-<use xlink:href="#sun-lens-glyph-10-5" x="75.714784" y="10.296809"/>
-<use xlink:href="#sun-lens-glyph-10-8" x="80.406583" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-4" x="54.306622" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-5" x="58.060061" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-6" x="62.75186" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-7" x="67.443659" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-5" x="69.789559" y="10.296809"/>
+<use xlink:href="#sun-lens-glyph-10-8" x="74.481358" y="10.296809"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 29.304702 L 41.61746 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 29.304702 L 35.678333 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="36.637024" y="245.191015"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="40.597594" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="30.711799" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="42.79793" y="245.191015"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 74.257214 29.304702 L 74.257214 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="69.203676" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="34.672368" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="73.164245" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="36.872704" y="245.191015"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 68.318087 29.304702 L 68.318087 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-0" x="63.27845" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-1" x="75.364582" y="245.191015"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 106.896968 29.304702 L 106.896968 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-2" x="101.770328" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="67.23902" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="105.730897" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-0-1" x="69.439356" y="245.191015"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 100.957841 29.304702 L 100.957841 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-2" x="95.845102" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="107.931233" y="245.191015"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 139.536722 29.304702 L 139.536722 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-2" x="134.336979" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="99.805671" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="138.297549" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="102.006008" y="245.191015"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 133.597595 29.304702 L 133.597595 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-2" x="128.411754" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-1" x="140.497885" y="245.191015"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 172.176476 29.304702 L 172.176476 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-3" x="166.903631" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="132.372323" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="170.8642" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-0-1" x="134.572659" y="245.191015"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 166.237349 29.304702 L 166.237349 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-3" x="160.978405" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="173.064537" y="245.191015"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 204.81623 29.304702 L 204.81623 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-3" x="199.470283" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="164.938975" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="203.430852" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="167.139311" y="245.191015"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 198.877103 29.304702 L 198.877103 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-3" x="193.545057" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-1" x="205.631188" y="245.191015"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 237.455984 29.304702 L 237.455984 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-4" x="232.036934" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="197.505626" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-1-0" x="235.997504" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-0-1" x="199.705963" y="245.191015"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 231.516857 29.304702 L 231.516857 32.804754 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-4" x="226.111709" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-0" x="238.19784" y="245.191015"/>
+<use xlink:href="#sun-lens-glyph-1-0" x="230.072278" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-2-0" x="93.993011" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-1" x="96.401037" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-2" x="103.633564" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-3" x="108.458066" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-4" x="112.792513" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-5" x="116.645355" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="232.272614" y="245.191015"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-2-2" x="122.91121" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-3" x="127.735712" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-6" x="132.070158" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-3" x="135.458293" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-1" x="139.79274" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-7" x="147.025268" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-5" x="150.886559" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-7" x="154.257795" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-2-6" x="158.119086" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-0" x="88.067785" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-1" x="90.475811" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-2" x="97.708339" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-3" x="102.53284" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-4" x="106.867287" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-5" x="110.720129" y="256.968492"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-3-0" x="164.473548" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-3-1" x="168.191203" y="256.968492"/>
-<use xlink:href="#sun-lens-glyph-3-2" x="172.52565" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-2" x="116.985984" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-3" x="121.810486" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-6" x="126.144933" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-3" x="129.533068" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-1" x="133.867515" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-7" x="141.100042" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-5" x="144.961333" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-7" x="148.33257" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-2-6" x="152.193861" y="256.968492"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-4-0" x="179.107102" y="257.907277"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 58.554024 L 45.117513 58.554024 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-2" x="26.732717" y="210.335834"/>
-<use xlink:href="#sun-lens-glyph-0-0" x="30.691422" y="210.335834"/>
+<use xlink:href="#sun-lens-glyph-3-0" x="158.548323" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-3-1" x="162.265977" y="256.968492"/>
+<use xlink:href="#sun-lens-glyph-3-2" x="166.600424" y="256.968492"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-11-0" x="34.653855" y="207.704783"/>
+<use xlink:href="#sun-lens-glyph-4-0" x="173.181877" y="257.907277"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 87.807262 L 45.117513 87.807262 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 55.887877 L 39.178385 55.887877 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-2" x="26.732717" y="181.149804"/>
-<use xlink:href="#sun-lens-glyph-0-0" x="30.691422" y="181.149804"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-11-1" x="34.653855" y="178.518752"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 117.060499 L 45.117513 117.060499 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-0-2" x="26.732717" y="151.963773"/>
-<use xlink:href="#sun-lens-glyph-0-0" x="30.691422" y="151.963773"/>
+<use xlink:href="#sun-lens-glyph-0-2" x="20.807491" y="212.997388"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="24.766197" y="212.997388"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-11-2" x="34.653855" y="149.332722"/>
+<use xlink:href="#sun-lens-glyph-11-0" x="28.72863" y="210.366337"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 82.471052 L 39.178385 82.471052 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-2" x="20.807491" y="186.472912"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="24.766197" y="186.472912"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-5-13" x="20.629402" y="229.835369"/>
-<use xlink:href="#sun-lens-glyph-5-11" x="20.629402" y="227.182316"/>
+<use xlink:href="#sun-lens-glyph-11-1" x="28.72863" y="183.841861"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 109.058142 L 39.178385 109.058142 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-0-2" x="20.807491" y="159.948436"/>
+<use xlink:href="#sun-lens-glyph-0-0" x="24.766197" y="159.948436"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-5-9" x="20.629402" y="222.606658"/>
-<use xlink:href="#sun-lens-glyph-5-7" x="20.629402" y="218.753816"/>
-<use xlink:href="#sun-lens-glyph-5-14" x="20.629402" y="214.419369"/>
+<use xlink:href="#sun-lens-glyph-11-2" x="28.72863" y="157.317385"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-5-3" x="20.629402" y="209.116724"/>
-<use xlink:href="#sun-lens-glyph-5-4" x="20.629402" y="204.292223"/>
-<use xlink:href="#sun-lens-glyph-5-10" x="20.629402" y="201.884197"/>
-<use xlink:href="#sun-lens-glyph-5-15" x="20.629402" y="198.462265"/>
-<use xlink:href="#sun-lens-glyph-5-7" x="20.629402" y="195.091028"/>
-<use xlink:href="#sun-lens-glyph-5-2" x="20.629402" y="190.756581"/>
-<use xlink:href="#sun-lens-glyph-5-9" x="20.629402" y="185.93208"/>
-<use xlink:href="#sun-lens-glyph-5-1" x="20.629402" y="182.079238"/>
+<use xlink:href="#sun-lens-glyph-5-13" x="14.704177" y="229.835369"/>
+<use xlink:href="#sun-lens-glyph-5-11" x="14.704177" y="227.182316"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-5-6" x="20.629402" y="175.323328"/>
-<use xlink:href="#sun-lens-glyph-5-16" x="20.629402" y="171.952092"/>
+<use xlink:href="#sun-lens-glyph-5-9" x="14.704177" y="222.606658"/>
+<use xlink:href="#sun-lens-glyph-5-7" x="14.704177" y="218.753816"/>
+<use xlink:href="#sun-lens-glyph-5-14" x="14.704177" y="214.419369"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-5-17" x="20.629402" y="165.687422"/>
-<use xlink:href="#sun-lens-glyph-5-12" x="20.629402" y="159.181527"/>
+<use xlink:href="#sun-lens-glyph-5-3" x="14.704177" y="209.116724"/>
+<use xlink:href="#sun-lens-glyph-5-4" x="14.704177" y="204.292223"/>
+<use xlink:href="#sun-lens-glyph-5-10" x="14.704177" y="201.884197"/>
+<use xlink:href="#sun-lens-glyph-5-15" x="14.704177" y="198.462265"/>
+<use xlink:href="#sun-lens-glyph-5-7" x="14.704177" y="195.091028"/>
+<use xlink:href="#sun-lens-glyph-5-2" x="14.704177" y="190.756581"/>
+<use xlink:href="#sun-lens-glyph-5-9" x="14.704177" y="185.93208"/>
+<use xlink:href="#sun-lens-glyph-5-1" x="14.704177" y="182.079238"/>
+</g>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-5-6" x="14.704177" y="175.323328"/>
+<use xlink:href="#sun-lens-glyph-5-16" x="14.704177" y="171.952092"/>
+</g>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-5-17" x="14.704177" y="165.687422"/>
+<use xlink:href="#sun-lens-glyph-5-12" x="14.704177" y="159.181527"/>
 </g>
 <g clip-path="url(#sun-lens-clip-3)">
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="round" stroke="#c9c4b8" stroke-opacity="1" stroke-miterlimit="10" d="M 106.896968 29.304702 L 106.896968 117.060499 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="round" stroke="#c9c4b8" stroke-opacity="1" stroke-miterlimit="10" d="M 100.957841 29.304702 L 100.957841 117.060499 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 </g>
 <g clip-path="url(#sun-lens-clip-4)">
-<path fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 41.875853 44.733905 L 42.81155 44.773056 L 43.743331 44.870932 L 44.675113 45.019704 L 45.606894 45.219371 L 46.54259 45.469934 L 47.474372 45.771393 L 48.406153 46.115917 L 49.337935 46.499592 L 50.273631 46.926332 L 51.205412 47.388308 L 52.137194 47.885519 L 53.07289 48.41405 L 54.004672 48.969987 L 54.936453 49.545499 L 55.868234 50.148416 L 56.803931 50.766994 L 57.735712 51.401232 L 58.667494 52.047215 L 59.599275 52.704943 L 60.534971 53.370501 L 61.466753 54.043889 L 62.398534 54.721192 L 63.334231 55.402411 L 64.266012 56.083629 L 65.197793 56.768762 L 66.129575 57.446066 L 67.065271 58.127284 L 67.997053 58.800672 L 68.928834 59.470145 L 69.860615 60.135703 L 70.796312 60.797347 L 71.728093 61.447245 L 72.659875 62.093227 L 73.595571 62.73138 L 74.527353 63.365618 L 75.459134 63.988111 L 76.390915 64.602773 L 77.326612 65.20569 L 78.258393 65.804693 L 79.190175 66.39195 L 80.121956 66.975292 L 81.057652 67.542974 L 81.989434 68.106741 L 82.921215 68.658763 L 83.856912 69.202954 L 84.788693 69.739316 L 85.720474 70.267847 L 86.652256 70.784634 L 87.587952 71.29359 L 88.519734 71.794716 L 89.451515 72.288012 L 90.383296 72.773478 L 91.318993 73.247199 L 92.250774 73.717005 L 93.182556 74.17898 L 94.114337 74.629211 L 95.050033 75.075526 L 95.981815 75.514011 L 96.913596 75.944667 L 97.849293 76.371407 L 98.781074 76.786402 L 99.712855 77.197482 L 100.644637 77.604647 L 101.580333 78.000067 L 102.512115 78.395487 L 103.443896 78.779161 L 104.375677 79.158921 L 105.311374 79.534766 L 106.243155 79.906695 L 106.896968 80.161173 L 111.399273 81.856389 L 115.901578 83.441983 L 120.403883 84.937532 L 124.906188 86.350864 L 129.404578 87.685895 L 133.906883 88.958286 L 138.409188 90.168036 L 142.911494 91.322975 L 147.413799 92.427018 L 151.916104 93.487996 L 156.418409 94.501994 L 160.920714 95.480756 L 165.423019 96.420367 L 169.925324 97.328658 L 174.427629 98.205629 L 178.929934 99.051279 L 183.432239 99.873439 L 187.934544 100.668194 L 192.436849 101.435543 L 196.939154 102.183317 L 201.437544 102.911516 L 205.939849 103.616225 L 210.442154 104.301358 L 214.944459 104.970832 L 219.446764 105.624645 L 223.949069 106.258882 L 228.451374 106.87746 L 232.953679 107.484292 L 237.455984 108.075465 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 35.936726 43.324488 L 36.872422 43.363638 L 37.804204 43.449769 L 38.735985 43.586796 L 39.671681 43.770803 L 40.603463 43.997876 L 41.535244 44.268014 L 42.467026 44.581218 L 43.402722 44.933573 L 44.334503 45.321162 L 45.266285 45.740072 L 46.198066 46.190303 L 47.133763 46.671854 L 48.065544 47.17298 L 48.997325 47.701511 L 49.933022 48.245703 L 50.864803 48.80947 L 51.796585 49.384982 L 52.728366 49.972239 L 53.664062 50.571242 L 54.595844 51.178074 L 55.527625 51.788821 L 56.459407 52.403484 L 57.395103 53.022062 L 58.326885 53.644554 L 59.258666 54.263132 L 60.194362 54.881709 L 62.057925 56.111034 L 62.989707 56.721782 L 63.925403 57.324699 L 64.857184 57.923701 L 65.788966 58.518789 L 66.720747 59.106046 L 67.656444 59.685473 L 68.588225 60.25707 L 69.520006 60.824752 L 70.451788 61.380689 L 71.387484 61.93271 L 72.319266 62.476902 L 73.251047 63.013264 L 74.186743 63.53788 L 75.118525 64.058581 L 76.050306 64.567538 L 76.982088 65.072579 L 77.917784 65.565875 L 78.849565 66.051341 L 79.781347 66.528977 L 80.713128 67.002697 L 81.648825 67.464673 L 82.580606 67.918819 L 83.512387 68.369049 L 84.448084 68.807534 L 85.379865 69.242105 L 86.311647 69.66493 L 87.243428 70.08384 L 88.179124 70.498835 L 89.110906 70.902085 L 90.042687 71.30142 L 90.974469 71.692925 L 91.910165 72.076599 L 92.841946 72.456359 L 93.773728 72.832204 L 94.709424 73.200218 L 95.641206 73.560403 L 96.572987 73.916672 L 97.504768 74.269026 L 98.440465 74.61355 L 99.372246 74.95416 L 100.304028 75.290854 L 100.957841 75.521842 L 105.460146 77.06437 L 109.962451 78.505108 L 114.464756 79.86363 L 118.967061 81.147765 L 123.469366 82.365345 L 127.971671 83.520284 L 132.470061 84.616498 L 136.972366 85.669646 L 141.474671 86.671898 L 145.976976 87.635 L 150.479281 88.558951 L 154.981586 89.447667 L 159.483891 90.301147 L 163.986196 91.127222 L 168.488501 91.921977 L 172.990806 92.693241 L 177.493111 93.437101 L 181.995416 94.157469 L 186.497721 94.858263 L 191.000026 95.539481 L 195.502331 96.197209 L 200.004636 96.839277 L 204.506942 97.46177 L 209.005332 98.072517 L 213.507637 98.663689 L 218.009942 99.239202 L 222.512247 99.802968 L 227.014552 100.35499 L 231.516857 100.891352 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 </g>
 <g clip-path="url(#sun-lens-clip-5)">
-<path fill="none" stroke-width="0.7" stroke-linecap="butt" stroke-linejoin="round" stroke="#8b877d" stroke-opacity="1" stroke-dasharray="2.1 1.4" stroke-miterlimit="10" d="M 41.61746 40.157214 L 237.455984 40.157214 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.7" stroke-linecap="butt" stroke-linejoin="round" stroke="#8b877d" stroke-opacity="1" stroke-dasharray="2.1 1.4" stroke-miterlimit="10" d="M 35.678333 39.166707 L 231.516857 39.166707 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 29.304702 L 41.61746 117.060499 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 41.61746 29.304702 L 237.455984 29.304702 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 29.304702 L 35.678333 117.060499 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 35.678333 29.304702 L 231.516857 29.304702 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-16" x="135.049483" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-17" x="138.725885" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-18" x="142.402287" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-19" x="144.489243" y="223.195441"/>
-</g>
-<g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-20" x="150.652695" y="223.195441"/>
+<use xlink:href="#sun-lens-glyph-6-16" x="129.124257" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-17" x="132.800659" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-18" x="136.477061" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-19" x="138.564017" y="224.299915"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-21" x="155.900745" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-22" x="161.347507" y="223.195441"/>
+<use xlink:href="#sun-lens-glyph-6-20" x="144.72747" y="224.299915"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-7" x="165.921513" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-0" x="168.841959" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-10" x="171.723638" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-5" x="175.40004" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-23" x="179.470573" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-10" x="183.541106" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-8" x="187.217509" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-23" x="190.099188" y="223.195441"/>
+<use xlink:href="#sun-lens-glyph-6-21" x="149.97552" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-22" x="155.422281" y="224.299915"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-7" x="196.656771" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-13" x="199.577217" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-24" x="203.253619" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-10" x="205.340575" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-8" x="209.016978" y="223.195441"/>
+<use xlink:href="#sun-lens-glyph-6-7" x="159.996287" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-0" x="162.916733" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-10" x="165.798412" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-5" x="169.474814" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-23" x="173.545348" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-10" x="177.615881" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-8" x="181.292283" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-23" x="184.173962" y="224.299915"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-15" x="214.385707" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-13" x="220.446278" y="223.195441"/>
+<use xlink:href="#sun-lens-glyph-6-7" x="190.731545" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-13" x="193.651991" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-24" x="197.328394" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-10" x="199.41535" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-8" x="203.091752" y="224.299915"/>
 </g>
 <g fill="#5d5a52" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-6-23" x="224.321377" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-2" x="228.39191" y="223.195441"/>
-<use xlink:href="#sun-lens-glyph-6-24" x="231.66772" y="223.195441"/>
+<use xlink:href="#sun-lens-glyph-6-15" x="208.460481" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-13" x="214.521053" y="224.299915"/>
 </g>
-<path fill="none" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 111.732052 49.596395 C 89.459345 48.022545 67.186638 46.448696 44.917846 44.874847 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
-<g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-0" x="114.647062" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-0" x="118.606264" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-1" x="122.565466" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-2" x="124.812957" y="215.156622"/>
+<g fill="#5d5a52" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-6-23" x="218.396151" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-2" x="222.466684" y="224.299915"/>
+<use xlink:href="#sun-lens-glyph-6-24" x="225.742494" y="224.299915"/>
 </g>
+<path fill="none" stroke-width="0.45" stroke-linecap="round" stroke-linejoin="round" stroke="#8b877d" stroke-opacity="1" stroke-miterlimit="10" d="M 41.550904 61.220172 C 39.851774 56.044478 38.152643 50.8727 36.457427 45.697007 " transform="matrix(0.997753, 0, 0, -0.997753, 0.175281, 265.801348)"/>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-3" x="131.450519" y="215.156622"/>
-</g>
-<g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-4" x="137.102262" y="215.156622"/>
+<use xlink:href="#sun-lens-glyph-12-0" x="42.285866" y="189.081239"/>
+<use xlink:href="#sun-lens-glyph-12-0" x="46.245069" y="189.081239"/>
+<use xlink:href="#sun-lens-glyph-12-1" x="50.204271" y="189.081239"/>
+<use xlink:href="#sun-lens-glyph-12-2" x="52.451762" y="189.081239"/>
 </g>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-5" x="145.646364" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-6" x="149.605566" y="215.156622"/>
+<use xlink:href="#sun-lens-glyph-12-3" x="59.089324" y="189.081239"/>
 </g>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-6" x="155.387272" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-7" x="158.490619" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-8" x="162.87427" y="215.156622"/>
+<use xlink:href="#sun-lens-glyph-12-4" x="64.741067" y="189.081239"/>
 </g>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-9" x="169.080425" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-8" x="172.60822" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-10" x="176.136016" y="215.156622"/>
+<use xlink:href="#sun-lens-glyph-12-5" x="42.285866" y="195.227553"/>
+<use xlink:href="#sun-lens-glyph-12-6" x="46.245069" y="195.227553"/>
 </g>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-6" x="180.305667" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-11" x="183.409014" y="215.156622"/>
-<use xlink:href="#sun-lens-glyph-12-8" x="186.51236" y="215.156622"/>
+<use xlink:href="#sun-lens-glyph-12-6" x="52.026775" y="195.227553"/>
+<use xlink:href="#sun-lens-glyph-12-7" x="55.130122" y="195.227553"/>
+<use xlink:href="#sun-lens-glyph-12-8" x="59.513773" y="195.227553"/>
 </g>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-12" x="110.08773" y="196.565897"/>
-<use xlink:href="#sun-lens-glyph-12-13" x="114.046933" y="196.565897"/>
-<use xlink:href="#sun-lens-glyph-12-14" x="118.006135" y="196.565897"/>
+<use xlink:href="#sun-lens-glyph-12-9" x="42.285866" y="201.373868"/>
+<use xlink:href="#sun-lens-glyph-12-8" x="45.813662" y="201.373868"/>
+<use xlink:href="#sun-lens-glyph-12-10" x="49.341457" y="201.373868"/>
 </g>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-3" x="124.643697" y="196.565897"/>
+<use xlink:href="#sun-lens-glyph-12-6" x="53.511109" y="201.373868"/>
+<use xlink:href="#sun-lens-glyph-12-11" x="56.614455" y="201.373868"/>
+<use xlink:href="#sun-lens-glyph-12-8" x="59.717802" y="201.373868"/>
 </g>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-12-4" x="130.29544" y="196.565897"/>
+<use xlink:href="#sun-lens-glyph-12-12" x="104.162505" y="200.65048"/>
+<use xlink:href="#sun-lens-glyph-12-13" x="108.121707" y="200.65048"/>
+<use xlink:href="#sun-lens-glyph-12-14" x="112.080909" y="200.65048"/>
+</g>
+<g fill="#2a67ad" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-12-3" x="118.718471" y="200.65048"/>
+</g>
+<g fill="#2a67ad" fill-opacity="1">
+<use xlink:href="#sun-lens-glyph-12-4" x="124.370214" y="200.65048"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-10-0" x="41.697762" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-3" x="44.982021" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-2" x="49.67382" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-0" x="35.772536" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-3" x="39.056795" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-2" x="43.748594" y="146.01185"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-10-9" x="55.774525" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-10" x="61.873863" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-4" x="66.565662" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-11" x="70.319102" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-4" x="73.611313" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-9" x="49.849299" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-10" x="55.948638" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-4" x="60.640437" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-11" x="64.393876" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-4" x="67.686087" y="146.01185"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-10-7" x="80.181198" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-12" x="82.527097" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-7" x="74.255972" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-12" x="76.601871" y="146.01185"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-10-13" x="88.627802" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-14" x="91.204315" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-13" x="82.702576" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-14" x="85.279089" y="146.01185"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#sun-lens-glyph-10-15" x="95.661638" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-16" x="99.415077" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-17" x="104.106876" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-4" x="107.438849" y="146.01185"/>
-<use xlink:href="#sun-lens-glyph-10-17" x="111.192288" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-15" x="89.736412" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-16" x="93.489851" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-17" x="98.18165" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-4" x="101.513623" y="146.01185"/>
+<use xlink:href="#sun-lens-glyph-10-17" x="105.267062" y="146.01185"/>
 </g>
 </svg>

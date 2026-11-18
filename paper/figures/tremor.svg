@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="244.8" height="165.6" viewBox="0 0 244.8 165.6">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="244.8pt" height="165.6pt" viewBox="0 0 244.8 165.6">
 <defs>
 <g>
 <g id="tremor-glyph-0-0">
@@ -21,7 +21,10 @@
 <path d="M 3.734375 -1.21875 L 3.734375 -1.46875 L 2.9375 -1.46875 L 2.9375 -4.828125 C 2.9375 -4.96875 2.9375 -5.03125 2.78125 -5.03125 C 2.6875 -5.03125 2.671875 -5.03125 2.59375 -4.921875 L 0.21875 -1.46875 L 0.21875 -1.21875 L 2.328125 -1.21875 L 2.328125 -0.609375 C 2.328125 -0.328125 2.296875 -0.25 1.734375 -0.25 L 1.5625 -0.25 L 1.5625 0 L 2.625 -0.015625 L 3.703125 0 L 3.703125 -0.25 L 3.53125 -0.25 C 2.953125 -0.25 2.9375 -0.328125 2.9375 -0.609375 L 2.9375 -1.21875 Z M 2.375 -1.46875 L 0.484375 -1.46875 L 2.375 -4.21875 Z M 2.375 -1.46875 "/>
 </g>
 <g id="tremor-glyph-0-6">
-<path d="M 3.84375 -4.796875 L 1.9375 -4.796875 C 1.765625 -4.796875 1.53125 -4.8125 1.34375 -4.828125 C 0.953125 -4.859375 0.953125 -4.921875 0.921875 -5.03125 L 0.6875 -5.03125 L 0.4375 -3.46875 L 0.671875 -3.46875 C 0.6875 -3.578125 0.765625 -4.09375 0.875 -4.15625 C 0.953125 -4.1875 1.515625 -4.1875 1.625 -4.1875 L 3.203125 -4.1875 L 2.4375 -3.15625 C 1.59375 -2.03125 1.40625 -0.84375 1.40625 -0.265625 C 1.40625 -0.1875 1.40625 0.15625 1.765625 0.15625 C 2.109375 0.15625 2.109375 -0.171875 2.109375 -0.265625 L 2.109375 -0.625 C 2.109375 -1.703125 2.28125 -2.578125 2.65625 -3.0625 L 3.765625 -4.53125 C 3.84375 -4.625 3.84375 -4.640625 3.84375 -4.796875 Z M 3.84375 -4.796875 "/>
+<path d="M 3.625 -1.515625 C 3.625 -2.484375 2.890625 -3.171875 2.0625 -3.171875 C 1.515625 -3.171875 1.203125 -2.828125 1.03125 -2.46875 C 1.03125 -3.078125 1.078125 -3.625 1.34375 -4.078125 C 1.578125 -4.453125 1.953125 -4.765625 2.421875 -4.765625 C 2.578125 -4.765625 2.921875 -4.734375 3.078125 -4.484375 C 2.75 -4.46875 2.71875 -4.21875 2.71875 -4.125 C 2.71875 -3.90625 2.890625 -3.78125 3.078125 -3.78125 C 3.203125 -3.78125 3.421875 -3.859375 3.421875 -4.140625 C 3.421875 -4.59375 3.078125 -4.953125 2.421875 -4.953125 C 1.375 -4.953125 0.328125 -3.96875 0.328125 -2.359375 C 0.328125 -0.34375 1.265625 0.15625 1.984375 0.15625 C 2.34375 0.15625 2.734375 0.0625 3.078125 -0.265625 C 3.375 -0.546875 3.625 -0.859375 3.625 -1.515625 Z M 2.921875 -1.515625 C 2.921875 -1.140625 2.921875 -0.8125 2.765625 -0.546875 C 2.578125 -0.203125 2.3125 -0.0625 1.984375 -0.0625 C 1.59375 -0.0625 1.34375 -0.34375 1.234375 -0.546875 C 1.0625 -0.890625 1.046875 -1.390625 1.046875 -1.671875 C 1.046875 -2.421875 1.453125 -2.96875 2.03125 -2.96875 C 2.40625 -2.96875 2.625 -2.765625 2.765625 -2.515625 C 2.921875 -2.234375 2.921875 -1.90625 2.921875 -1.515625 Z M 2.921875 -1.515625 "/>
+</g>
+<g id="tremor-glyph-0-7">
+<path d="M 3.625 -1.25 C 3.625 -1.71875 3.375 -2.03125 3.25 -2.15625 C 3.125 -2.28125 3.109375 -2.28125 2.46875 -2.6875 C 2.890625 -2.890625 3.40625 -3.265625 3.40625 -3.84375 C 3.40625 -4.546875 2.671875 -4.953125 1.984375 -4.953125 C 1.1875 -4.953125 0.546875 -4.40625 0.546875 -3.71875 C 0.546875 -3.4375 0.640625 -3.1875 0.828125 -2.96875 C 0.96875 -2.8125 0.984375 -2.796875 1.453125 -2.5 C 0.53125 -2.09375 0.328125 -1.546875 0.328125 -1.140625 C 0.328125 -0.3125 1.15625 0.15625 1.96875 0.15625 C 2.890625 0.15625 3.625 -0.46875 3.625 -1.25 Z M 3.03125 -3.84375 C 3.03125 -3.40625 2.6875 -3.046875 2.25 -2.828125 L 1.3125 -3.390625 C 1.109375 -3.515625 0.921875 -3.734375 0.921875 -4 C 0.921875 -4.46875 1.4375 -4.765625 1.96875 -4.765625 C 2.546875 -4.765625 3.03125 -4.375 3.03125 -3.84375 Z M 3.203125 -1 C 3.203125 -0.421875 2.59375 -0.0625 1.984375 -0.0625 C 1.3125 -0.0625 0.75 -0.515625 0.75 -1.140625 C 0.75 -1.6875 1.171875 -2.125 1.6875 -2.375 L 2.6875 -1.75 C 2.8125 -1.6875 3.203125 -1.453125 3.203125 -1 Z M 3.203125 -1 "/>
 </g>
 <g id="tremor-glyph-1-0">
 <path d="M 1.515625 -0.40625 C 1.515625 -0.65625 1.296875 -0.828125 1.109375 -0.828125 C 0.859375 -0.828125 0.6875 -0.640625 0.6875 -0.421875 C 0.6875 -0.15625 0.890625 0 1.09375 0 C 1.328125 0 1.515625 -0.1875 1.515625 -0.40625 Z M 1.515625 -0.40625 "/>
@@ -166,10 +169,10 @@
 </g>
 </g>
 <clipPath id="tremor-clip-0">
-<path clip-rule="nonzero" d="M 36.828125 50 L 231 50 L 231 133.8125 L 36.828125 133.8125 Z M 36.828125 50 "/>
+<path clip-rule="nonzero" d="M 36.828125 38 L 232.195312 38 L 232.195312 132 L 36.828125 132 Z M 36.828125 38 "/>
 </clipPath>
 <clipPath id="tremor-clip-1">
-<path clip-rule="nonzero" d="M 36.828125 33 L 231 33 L 231 133.8125 L 36.828125 133.8125 Z M 36.828125 33 "/>
+<path clip-rule="nonzero" d="M 36.828125 18 L 232.195312 18 L 232.195312 132 L 36.828125 132 Z M 36.828125 18 "/>
 </clipPath>
 </defs>
 <path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 31.464281 L 36.72143 34.964904 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
@@ -318,144 +321,148 @@
 <use xlink:href="#tremor-glyph-2-19" x="211.037206" y="154.21475"/>
 <use xlink:href="#tremor-glyph-2-2" x="215.860922" y="154.21475"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 31.464281 L 40.218137 31.464281 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 35.105869 L 40.218137 35.105869 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-0" x="19.255381" y="136.380203"/>
+<use xlink:href="#tremor-glyph-0-0" x="23.215306" y="132.745782"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-1-0" x="23.215306" y="136.380203"/>
+<use xlink:href="#tremor-glyph-1-0" x="27.17523" y="132.745782"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-0" x="25.415284" y="136.380203"/>
-<use xlink:href="#tremor-glyph-0-0" x="29.373345" y="136.380203"/>
+<use xlink:href="#tremor-glyph-0-0" x="29.375208" y="132.745782"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 52.02163 L 40.218137 52.02163 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 53.321637 L 40.218137 53.321637 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-0" x="19.255381" y="115.872497"/>
-</g>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-1-0" x="23.215306" y="115.872497"/>
+<use xlink:href="#tremor-glyph-0-0" x="23.215306" y="114.573676"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-3" x="25.415284" y="115.872497"/>
-<use xlink:href="#tremor-glyph-0-1" x="29.373345" y="115.872497"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 72.578978 L 40.218137 72.578978 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-0" x="19.255381" y="95.364791"/>
+<use xlink:href="#tremor-glyph-1-0" x="27.17523" y="114.573676"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-1-0" x="23.215306" y="95.364791"/>
+<use xlink:href="#tremor-glyph-0-3" x="29.375208" y="114.573676"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 71.537406 L 40.218137 71.537406 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#tremor-glyph-0-0" x="23.215306" y="96.40157"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-1" x="25.415284" y="95.364791"/>
-<use xlink:href="#tremor-glyph-0-0" x="29.373345" y="95.364791"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 93.136326 L 40.218137 93.136326 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-0" x="19.255381" y="74.857085"/>
+<use xlink:href="#tremor-glyph-1-0" x="27.17523" y="96.40157"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-1-0" x="23.215306" y="74.857085"/>
+<use xlink:href="#tremor-glyph-0-5" x="29.375208" y="96.40157"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 89.75709 L 40.218137 89.75709 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#tremor-glyph-0-0" x="23.215306" y="78.229464"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-6" x="25.415284" y="74.857085"/>
-<use xlink:href="#tremor-glyph-0-1" x="29.373345" y="74.857085"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 113.693675 L 40.218137 113.693675 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-2" x="19.255381" y="54.34938"/>
+<use xlink:href="#tremor-glyph-1-0" x="27.17523" y="78.229464"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-1-0" x="23.215306" y="54.34938"/>
+<use xlink:href="#tremor-glyph-0-6" x="29.375208" y="78.229464"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 107.972858 L 40.218137 107.972858 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#tremor-glyph-0-0" x="23.215306" y="60.057358"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-0" x="25.415284" y="54.34938"/>
-<use xlink:href="#tremor-glyph-0-0" x="29.373345" y="54.34938"/>
-</g>
-<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 134.251023 L 40.218137 134.251023 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
-<g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-2" x="19.255381" y="33.841674"/>
+<use xlink:href="#tremor-glyph-1-0" x="27.17523" y="60.057358"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-1-0" x="23.215306" y="33.841674"/>
+<use xlink:href="#tremor-glyph-0-7" x="29.375208" y="60.057358"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 126.188627 L 40.218137 126.188627 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#tremor-glyph-0-2" x="23.215306" y="41.885252"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-0-3" x="25.415284" y="33.841674"/>
-<use xlink:href="#tremor-glyph-0-1" x="29.373345" y="33.841674"/>
+<use xlink:href="#tremor-glyph-1-0" x="27.17523" y="41.885252"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-3-0" x="13.15306" y="112.999908"/>
+<use xlink:href="#tremor-glyph-0-0" x="29.375208" y="41.885252"/>
+</g>
+<path fill="none" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="round" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 144.404395 L 40.218137 144.404395 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#tremor-glyph-0-2" x="23.215306" y="23.713146"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-4-0" x="13.15306" y="108.014547"/>
+<use xlink:href="#tremor-glyph-1-0" x="27.17523" y="23.713146"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-5-0" x="13.15306" y="109.623402"/>
+<use xlink:href="#tremor-glyph-0-3" x="29.375208" y="23.713146"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-6-0" x="9.564333" y="105.440914"/>
+<use xlink:href="#tremor-glyph-3-0" x="17.112984" y="108.869884"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-3-1" x="13.15306" y="101.330203"/>
+<use xlink:href="#tremor-glyph-4-0" x="17.112984" y="103.884523"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-7-0" x="13.15306" y="97.953697"/>
+<use xlink:href="#tremor-glyph-5-0" x="17.112984" y="105.493378"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-7-1" x="13.15306" y="92.651915"/>
-<use xlink:href="#tremor-glyph-7-2" x="13.15306" y="87.828199"/>
-<use xlink:href="#tremor-glyph-7-3" x="13.15306" y="83.494458"/>
-<use xlink:href="#tremor-glyph-7-3" x="13.15306" y="81.086824"/>
-<use xlink:href="#tremor-glyph-7-4" x="13.15306" y="78.67919"/>
-<use xlink:href="#tremor-glyph-7-5" x="13.15306" y="76.271556"/>
+<use xlink:href="#tremor-glyph-6-0" x="13.524257" y="101.31089"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-7-6" x="13.15306" y="69.956033"/>
-<use xlink:href="#tremor-glyph-7-7" x="13.15306" y="66.585346"/>
-<use xlink:href="#tremor-glyph-7-6" x="13.15306" y="62.251604"/>
-<use xlink:href="#tremor-glyph-7-2" x="13.15306" y="58.880917"/>
-<use xlink:href="#tremor-glyph-7-3" x="13.15306" y="54.547176"/>
+<use xlink:href="#tremor-glyph-3-1" x="17.112984" y="97.200179"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-4-1" x="13.15306" y="49.187104"/>
+<use xlink:href="#tremor-glyph-7-0" x="17.112984" y="93.823673"/>
 </g>
 <g fill="#1c1a16" fill-opacity="1">
-<use xlink:href="#tremor-glyph-4-2" x="13.15306" y="40.025491"/>
+<use xlink:href="#tremor-glyph-7-1" x="17.112984" y="88.521891"/>
+<use xlink:href="#tremor-glyph-7-2" x="17.112984" y="83.698175"/>
+<use xlink:href="#tremor-glyph-7-3" x="17.112984" y="79.364434"/>
+<use xlink:href="#tremor-glyph-7-3" x="17.112984" y="76.9568"/>
+<use xlink:href="#tremor-glyph-7-4" x="17.112984" y="74.549166"/>
+<use xlink:href="#tremor-glyph-7-5" x="17.112984" y="72.141532"/>
+</g>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#tremor-glyph-7-6" x="17.112984" y="65.826009"/>
+<use xlink:href="#tremor-glyph-7-7" x="17.112984" y="62.455322"/>
+<use xlink:href="#tremor-glyph-7-6" x="17.112984" y="58.12158"/>
+<use xlink:href="#tremor-glyph-7-2" x="17.112984" y="54.750893"/>
+<use xlink:href="#tremor-glyph-7-3" x="17.112984" y="50.417152"/>
+</g>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#tremor-glyph-4-1" x="17.112984" y="45.05708"/>
+</g>
+<g fill="#1c1a16" fill-opacity="1">
+<use xlink:href="#tremor-glyph-4-2" x="17.112984" y="35.895467"/>
 </g>
 <g clip-path="url(#tremor-clip-0)">
-<path fill="none" stroke-width="1.3" stroke-linecap="square" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 31.464281 L 85.679244 31.464281 L 85.679244 101.167397 L 111.695058 101.167397 L 111.695058 111.332516 L 117.462862 111.332516 L 117.462862 112.824392 L 128.622566 112.824392 L 128.622566 113.047586 L 128.708711 113.047586 L 186.766578 113.157226 L 186.766578 113.161141 L 202.523296 113.235539 L 202.523296 113.403914 L 202.589863 113.403914 L 212.277268 113.513553 L 212.277268 113.537047 L 230.113215 113.603614 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<path fill="none" stroke-width="1.3" stroke-linecap="square" stroke-linejoin="round" stroke="#2a67ad" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 35.105869 L 85.679244 35.105869 L 85.679244 112.315353 L 111.695058 112.315353 L 111.695058 123.572949 L 117.462862 123.572949 L 117.462862 125.225368 L 128.622566 125.225368 L 128.622566 125.475972 L 128.708711 125.475972 L 186.766578 125.585611 L 186.766578 125.597358 L 202.523296 125.679587 L 202.523296 125.86754 L 202.589863 125.86754 L 210.538704 125.945854 L 210.538704 125.988927 L 210.63268 125.988927 L 232.560519 126.086819 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
 </g>
 <g clip-path="url(#tremor-clip-1)">
-<path fill="none" stroke-width="1.3" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 31.464281 L 57.60378 31.464281 L 57.60378 109.143648 L 76.132803 109.143648 L 76.132803 110.854803 L 95.143456 110.854803 L 95.143456 120.044916 L 101.580842 120.044916 L 101.580842 129.023583 L 110.457701 129.023583 L 110.457701 129.763647 L 141.297639 129.853708 L 141.297639 129.885034 L 155.47242 129.971179 L 155.47242 129.994673 L 167.489659 130.065155 L 167.489659 130.12389 L 167.528816 130.12389 L 170.046601 130.131722 L 170.046601 130.296181 L 170.077927 130.296181 L 176.374349 130.327506 L 176.374349 130.57811 L 179.687019 130.597688 L 179.687019 131.20462 L 179.698766 131.20462 L 188.48948 131.286849 L 188.48948 131.361247 L 188.544299 131.361247 L 200.83172 131.451308 L 200.83172 131.510043 L 200.878708 131.510043 L 230.113215 131.564863 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<path fill="none" stroke-width="1.3" stroke-linecap="square" stroke-linejoin="round" stroke="#b0560a" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 35.105869 L 57.60378 35.105869 L 57.60378 121.145224 L 76.132803 121.145224 L 76.132803 123.044331 L 95.143456 123.044331 L 95.143456 133.225113 L 101.580842 133.225113 L 101.580842 143.170954 L 110.457701 143.170954 L 110.457701 143.989332 L 141.297639 144.075477 L 141.297639 144.122466 L 155.47242 144.220358 L 155.47242 144.243852 L 167.489659 144.302587 L 167.489659 144.384817 L 167.528816 144.384817 L 170.046601 144.443552 L 170.046601 144.580601 L 170.077927 144.580601 L 176.374349 144.611926 L 176.374349 144.893856 L 179.687019 144.913434 L 179.687019 145.583016 L 179.698766 145.583016 L 188.48948 145.673077 L 188.48948 145.759222 L 188.544299 145.759222 L 200.83172 145.83362 L 200.83172 145.923681 L 200.878708 145.923681 L 232.560519 145.982416 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
 </g>
-<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 31.464281 L 36.72143 150.696901 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
+<path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 31.464281 L 36.72143 158.97466 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
 <path fill="none" stroke-width="0.6" stroke-linecap="square" stroke-linejoin="miter" stroke="#1c1a16" stroke-opacity="1" stroke-miterlimit="10" d="M 36.72143 31.464281 L 232.560519 31.464281 " transform="matrix(0.99759, 0, 0, -0.99759, 0.195181, 165.200964)"/>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#tremor-glyph-8-0" x="194.750937" y="47.871714"/>
-<use xlink:href="#tremor-glyph-8-1" x="199.148782" y="47.871714"/>
-<use xlink:href="#tremor-glyph-8-2" x="203.106843" y="47.871714"/>
-<use xlink:href="#tremor-glyph-8-2" x="205.305766" y="47.871714"/>
-<use xlink:href="#tremor-glyph-8-3" x="207.504688" y="47.871714"/>
+<use xlink:href="#tremor-glyph-8-0" x="194.750937" y="35.142695"/>
+<use xlink:href="#tremor-glyph-8-1" x="199.148782" y="35.142695"/>
+<use xlink:href="#tremor-glyph-8-2" x="203.106843" y="35.142695"/>
+<use xlink:href="#tremor-glyph-8-2" x="205.305766" y="35.142695"/>
+<use xlink:href="#tremor-glyph-8-3" x="207.504688" y="35.142695"/>
 </g>
 <g fill="#2a67ad" fill-opacity="1">
-<use xlink:href="#tremor-glyph-8-4" x="213.223579" y="47.871714"/>
-<use xlink:href="#tremor-glyph-8-5" x="217.18164" y="47.871714"/>
-<use xlink:href="#tremor-glyph-8-6" x="219.380563" y="47.871714"/>
-<use xlink:href="#tremor-glyph-8-6" x="223.338624" y="47.871714"/>
+<use xlink:href="#tremor-glyph-8-4" x="213.223579" y="35.142695"/>
+<use xlink:href="#tremor-glyph-8-5" x="217.18164" y="35.142695"/>
+<use xlink:href="#tremor-glyph-8-6" x="219.380563" y="35.142695"/>
+<use xlink:href="#tremor-glyph-8-6" x="223.338624" y="35.142695"/>
 </g>
 <g fill="#b0560a" fill-opacity="1">
-<use xlink:href="#tremor-glyph-8-7" x="192.066583" y="29.799706"/>
-<use xlink:href="#tremor-glyph-8-8" x="195.189799" y="29.799706"/>
-<use xlink:href="#tremor-glyph-8-9" x="199.587644" y="29.799706"/>
-<use xlink:href="#tremor-glyph-8-2" x="203.105921" y="29.799706"/>
-<use xlink:href="#tremor-glyph-8-2" x="205.304843" y="29.799706"/>
-<use xlink:href="#tremor-glyph-8-3" x="207.503766" y="29.799706"/>
+<use xlink:href="#tremor-glyph-8-7" x="192.066583" y="15.125436"/>
+<use xlink:href="#tremor-glyph-8-8" x="195.189799" y="15.125436"/>
+<use xlink:href="#tremor-glyph-8-9" x="199.587644" y="15.125436"/>
+<use xlink:href="#tremor-glyph-8-2" x="203.105921" y="15.125436"/>
+<use xlink:href="#tremor-glyph-8-2" x="205.304843" y="15.125436"/>
+<use xlink:href="#tremor-glyph-8-3" x="207.503766" y="15.125436"/>
 </g>
 <g fill="#b0560a" fill-opacity="1">
-<use xlink:href="#tremor-glyph-8-4" x="213.222657" y="29.799706"/>
-<use xlink:href="#tremor-glyph-8-5" x="217.180718" y="29.799706"/>
-<use xlink:href="#tremor-glyph-8-10" x="219.379641" y="29.799706"/>
-<use xlink:href="#tremor-glyph-8-10" x="223.337702" y="29.799706"/>
+<use xlink:href="#tremor-glyph-8-4" x="213.222657" y="15.125436"/>
+<use xlink:href="#tremor-glyph-8-5" x="217.180718" y="15.125436"/>
+<use xlink:href="#tremor-glyph-8-10" x="219.379641" y="15.125436"/>
+<use xlink:href="#tremor-glyph-8-10" x="223.337702" y="15.125436"/>
 </g>
 </svg>
