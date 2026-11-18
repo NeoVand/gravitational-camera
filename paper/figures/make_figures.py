@@ -1060,7 +1060,7 @@ def sun_at_midnight():
     sigma = 1.3
     spot = np.exp(-((jj - cols) ** 2 + (ii - rows) ** 2) / (2 * sigma ** 2)) / (2 * math.pi * sigma ** 2)
     N = N + flux / pixel * spot
-    low, high = -7.4, -4.6          # 1.2e-5 straight down, the shells at the most their stiffness allows; the
+    low, high = -6.8, -4.6          # 1.2e-5 straight down, the shells at the most their stiffness allows; the
     #                                 range is narrow enough that the core's step in brightness shows
     im = axes[1].imshow(np.log10(np.clip(N, 10 ** low, None)), extent=(-1, 1, -1, 1), aspect="auto",
                         cmap=_colormap("thermal", ACCENT), vmin=low, vmax=high, interpolation="bilinear")
@@ -1082,9 +1082,6 @@ def sun_at_midnight():
             y = 1 - 2 * (inside.mean() + 0.5) / h
             _on_image(axes[1].text(-0.95, y, name, fontsize=6.5, ha="left", va="center"),
                       dark=(name == "lower mantle"))
-    # the core's edge, where lines of sight first enter it (33.1 degrees from straight down), dotted like the horizon
-    axes[1].contour(np.linspace(-1, 1, w), np.linspace(1, -1, h), nadir, levels=[33.1], colors="#5a3a14",
-                    linewidths=0.5, linestyles=[(0, (1.5, 1.5))], alpha=0.8)
     # the core (nadir below 33.1 degrees) shows as a cap at the foot of the picture: name it there
     cap_rows = rows[nadir[:, w // 2] < 33.1]
     if cap_rows.size:
