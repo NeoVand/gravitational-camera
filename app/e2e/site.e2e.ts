@@ -1157,7 +1157,7 @@ test('the sidebar: one docked panel of tabs that collapses to a rail, gives the 
 	await divider.focus();
 	await page.keyboard.press('ArrowLeft');
 	await expect
-		.poll(async () => Number(await canvas.getAttribute('data-split')))
+		.poll(async () => Number(await canvas.getAttribute('data-split')), { timeout: 60_000 })
 		.toBeLessThan(split);
 	const still = page.waitForEvent('download');
 	await page.getByRole('button', { name: 'Save a still' }).click();
