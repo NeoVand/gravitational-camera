@@ -145,8 +145,8 @@ def test_scene_mass_is_density_times_own_volume(scene):
     assert tidal.scene_mass(scene, ["earth"]) == pytest.approx(5.9722e24, rel=1e-2)
     # ... and the Moon's two layers give its mass (7.342e22 kg) closely
     assert tidal.scene_mass(scene, ["moon"]) == pytest.approx(7.342e22, rel=2e-3)
-    # ... but the Sun's rough densities do not give the solar mass
-    assert tidal.scene_mass(scene, ["sun"]) == pytest.approx(1.41e30, rel=1e-2)
+    # ... and the Sun's two layers are given densities that add to the solar mass
+    assert tidal.scene_mass(scene, ["sun"]) == pytest.approx(1.98847e30, rel=1e-4)
 
 
 def test_nested_roots_are_refused(scene):

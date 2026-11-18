@@ -12,7 +12,7 @@
     "concrete": {
       "density": 2400,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.5, 0.38, 0.27],
         "texture": "wood"
@@ -21,7 +21,7 @@
     "plaster": {
       "density": 1200,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.62, 0.6, 0.56],
         "texture": "plaster"
@@ -171,7 +171,7 @@
     }
   ],
   "assumptions": [
-    "Friction values are placeholders, as in the other scenes.",
+    "Friction is the constant value that sends as many gravitons as each material is estimated to (reference/gravcam/scenefriction.py): iron's spectrum for steel, silica glass standing for concrete and plaster, none for air; materials not listed there keep the placeholder 1e-3 Pa s.",
     "The mirror (glass on a backing, 18 kg/m\u00b2) the television (mostly air, 14 kg/m\u00b2) and the page (a poster on foam board, 1 kg/m\u00b2) are given effective densities over their whole thickness."
   ]
 }

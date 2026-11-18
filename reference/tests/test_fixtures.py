@@ -299,4 +299,4 @@ def test_tidal_block(fixture, raw_scene):
     n = x / d
     expected = hand.G * hand.M_SUN / d**3 * (np.eye(3) - 3 * np.outer(n, n))
     assert np.array(sun["tensor"]) == pytest.approx(expected, rel=1e-12, abs=1e-28)
-    assert sun["scene_density_mass"] == pytest.approx(1.408e30, rel=1e-3)
+    assert sun["scene_density_mass"] == pytest.approx(hand.M_SUN, rel=1e-4)       # the layers carry the Sun's mass

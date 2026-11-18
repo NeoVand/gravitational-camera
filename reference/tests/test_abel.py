@@ -103,15 +103,16 @@ def test_radius_derivative(earth):
 
 
 def test_a_lifetime_of_counts(earth):
-    """Eighty years on a square metre: about 1.4e5 gravitons, which fix the core's radius to a few kilometres. A
-    simulated record is fitted, starting two per cent off in the deep radii, and lands within the forecast errors."""
+    """Eighty years on a square metre: at most 3.6e4 gravitons (the shells at the most their stiffness allows,
+    scenefriction.py), which fix the core's radius to some twenty kilometres. A simulated record is fitted, starting two per cent off
+    in the deep radii, and lands within the forecast errors."""
     radii, j, rho = earth["radii"], earth["jN"], earth["rho"]
     edges = np.radians(np.linspace(0.0, 90.0, 901))
     exposure = 80 * YEAR
     mu = abel.expected_counts(radii, j, edges, exposure, rho)
-    assert 1.3e5 < mu.sum() < 1.5e5
+    assert 3.5e4 < mu.sum() < 3.7e4
     fj, fr = abel.forecast(radii, j, edges, exposure, rho)
-    assert fj[1] < 0.01 and fj[2] < 0.01 and fr[1] < 5e3 and fr[2] < 3e3
+    assert fj[1] < 0.02 and fj[2] < 0.01 and 1.5e4 < fr[1] < 2.5e4 and fr[2] < 5e3      # rings of 0.1 degree
     # errors scale as one over the square root of the exposure (or of the friction)
     fj4, fr4 = abel.forecast(radii, j, edges, 4 * exposure, rho)
     np.testing.assert_allclose(fj4, fj / 2, rtol=1e-9)

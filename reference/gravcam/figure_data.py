@@ -234,7 +234,7 @@ def speedometer():
     v = np.array([beta * c, 0.0, 0.0])
     moving = 1                                                  # this mass walks across the room, along +y
     rows = []
-    for X in np.linspace(-4.0, 4.0, 33):
+    for X in np.linspace(-4.0, 4.0, 161):
         rel = room - np.array([X, 0.0, 0.0])
         rel[:, 0] /= gamma
         out = {"x": float(X)}

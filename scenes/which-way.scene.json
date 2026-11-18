@@ -12,7 +12,7 @@
     "concrete": {
       "density": 2400,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.5, 0.38, 0.27],
         "texture": "wood"
@@ -21,7 +21,7 @@
     "plaster": {
       "density": 1200,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.62, 0.6, 0.56],
         "texture": "plaster"
@@ -30,7 +30,7 @@
     "steel": {
       "density": 7850,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.00109,
       "light": {
         "color": [0.33, 0.35, 0.38],
         "texture": "metal"
@@ -39,12 +39,12 @@
     "air": {
       "density": 1.2,
       "temperature": 293,
-      "friction": 0.001
+      "friction": 0
     },
     "wood": {
       "density": 600,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 1.1e-05,
       "light": {
         "color": [0.42, 0.3, 0.2],
         "texture": "wood"
@@ -292,7 +292,7 @@
     }
   ],
   "assumptions": [
-    "Friction values are placeholders, as in the other scenes.",
+    "Friction is the constant value that sends as many gravitons as each material is estimated to (reference/gravcam/scenefriction.py): iron's spectrum for steel, silica glass standing for concrete and plaster, none for air; materials not listed there keep the placeholder 1e-3 Pa s.",
     "The shaft holding each pair of balls is left out; its mass is small and lies on the axis, where it does not radiate."
   ]
 }

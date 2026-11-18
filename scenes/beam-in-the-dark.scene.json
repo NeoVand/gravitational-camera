@@ -12,7 +12,7 @@
     "concrete": {
       "density": 2400,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.5, 0.38, 0.27],
         "texture": "wood"
@@ -21,7 +21,7 @@
     "plaster": {
       "density": 1200,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.62, 0.6, 0.56],
         "texture": "plaster"
@@ -146,7 +146,7 @@
     }
   ],
   "assumptions": [
-    "Friction values are placeholders, as in the other scenes.",
+    "Friction is the constant value that sends as many gravitons as each material is estimated to (reference/gravcam/scenefriction.py): iron's spectrum for steel, silica glass standing for concrete and plaster, none for air; materials not listed there keep the placeholder 1e-3 Pa s.",
     "The beam is a 2 cm square column of 100 kW light. Its density is its active gravitational mass, 2u/c^2 = 1.86e-17 kg/m^3 with u = P/(A c): to a static observer beside it, a beam of light pulls twice as hard as dust of the same energy (Tolman, Ehrenfest and Podolsky 1931)."
   ]
 }

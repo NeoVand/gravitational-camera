@@ -145,8 +145,11 @@ def love_k2(rho: float, mu: float, R: float) -> float:
 
 
 def tidal_deformability(k2: float, R: float) -> float:
-    """lambda in Q_ij = -lambda E_ij (Q the trace-free second moment): lambda = 2 k2 R^5 / (3 G)."""
-    return 2 * k2 * R**5 / (3 * G)
+    """lambda in Q_ij = -lambda E_ij (Q the trace-free second moment), for the Love number k2 of love_k2, whose
+    fluid limit is 3/2: the induced potential at the surface is k2 times the tidal one, and a quadrupole Q makes the
+    potential -(3 G / 2) Q_ij x_i x_j / r^5, so lambda = k2 R^5 / (3 G). (With the convention whose fluid limit is
+    3/4 the same lambda is written 2 k2 R^5 / (3 G).)"""
+    return k2 * R**5 / (3 * G)
 
 
 # --- the conjugate drive: a pixel that is a thermometer ----------------------------------------------------------

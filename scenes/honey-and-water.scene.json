@@ -12,7 +12,7 @@
     "concrete": {
       "density": 2400,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.5, 0.38, 0.27],
         "texture": "wood"
@@ -21,7 +21,7 @@
     "plaster": {
       "density": 1200,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 0.000292,
       "light": {
         "color": [0.62, 0.6, 0.56],
         "texture": "plaster"
@@ -38,7 +38,7 @@
     "wood": {
       "density": 700,
       "temperature": 293,
-      "friction": 0.001,
+      "friction": 1.1e-05,
       "light": {
         "color": [0.36, 0.25, 0.16],
         "texture": "wood"

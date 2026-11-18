@@ -134,6 +134,13 @@ def test_love_number_limits():
     assert math.isclose(r.love_k2(rho, 1e-30, R), 1.5, rel_tol=1e-12)          # a fluid ball
     mu = rho * 3000.0**2
     assert math.isclose(r.love_k2(rho, mu, R), 4 * math.pi * G * rho**2 * R**2 / (19 * mu), rel_tol=1e-9)
+    # the fluid ball's quadrupole, from the height of its tide: the surface rises by (1 + k2) U / g = (5/2) e R^2 P2 / g
+    # under the tide E = e diag(1, 1, -2), and a uniform ball with the bulge eps R P2 has Q_zz = (8 pi / 15) rho R^5 eps
+    e = 1e-6
+    g = G * rho * 4 * math.pi * R / 3
+    Q_zz = 8 * math.pi / 15 * rho * R**5 * (2.5 * e * R / g)
+    assert math.isclose(-Q_zz / (-2 * e), r.tidal_deformability(1.5, R), rel_tol=1e-12)
+    assert math.isclose(r.tidal_deformability(1.5, R), R**5 / (2 * G), rel_tol=1e-12)
 
 
 def test_the_conjugate_shell_pushes_on_exactly_what_the_pixel_reads():

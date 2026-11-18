@@ -203,8 +203,8 @@ def build_fixture(scene_path=DEFAULT_SCENE, seed: int = SEED, n_rays: int = N_RA
             "tensor": tidal.uniform_sphere_tidal_tensor(point, sun.shape.center, sun.shape.radius, constants.M_sun).tolist(),
             "scene_density_mass": tidal.scene_mass(scene, [sun_id]),
             "note": "The Sun is taken as a point-like uniform sphere of the standard solar mass "
-                    "1.98847e30 kg at the scene's Sun centre, NOT from the scene's densities: those "
-                    "are only rough and imply the smaller mass given as scene_density_mass.",
+                    "1.98847e30 kg at the scene's Sun centre, NOT a sum over the scene's two uniform "
+                    "layers; their densities are chosen to give the same mass (scene_density_mass).",
         },
     }
 

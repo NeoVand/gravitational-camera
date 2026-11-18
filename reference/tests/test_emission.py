@@ -54,11 +54,12 @@ def test_crust_numbers_by_hand(scene):
 
 def test_temperature_scaling(scene):
     per_object = emission.object_emission(scene)
-    # equal friction everywhere on Earth, so j_E goes as T^4 and j_N as T^3
+    # j_E goes as the friction times T^4 and j_N as the friction times T^3
     a, b = per_object["earth"], per_object["inner-core"]
     ratio = scene["inner-core"].material.temperature / scene["earth"].material.temperature
-    assert b.j_E / a.j_E == pytest.approx(ratio**4, rel=1e-13)
-    assert b.j_N / a.j_N == pytest.approx(ratio**3, rel=1e-13)
+    friction = scene["inner-core"].material.friction / scene["earth"].material.friction
+    assert b.j_E / a.j_E == pytest.approx(friction * ratio**4, rel=1e-13)
+    assert b.j_N / a.j_N == pytest.approx(friction * ratio**3, rel=1e-13)
 
 
 def test_zero_friction_does_not_emit(scene):

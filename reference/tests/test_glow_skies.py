@@ -45,8 +45,9 @@ def test_the_placeholder_cannot_be_matched_at_the_earths_temperatures():
 
 
 def test_the_earths_lifetime_budget_with_the_bound():
-    base = B.earth_lifetime()
-    bounded = B.earth_lifetime({k: v["ratio"] for k, v in B.earth_bounded().items()})
+    # the scene holds each shell at its bound; dividing the bounds out again gives the placeholder's Earth
+    bounded = B.earth_lifetime()
+    base = B.earth_lifetime({k: 1 / v["ratio"] for k, v in B.earth_bounded().items()})
     assert 1.3e5 < base["counts"] < 1.5e5
     assert 3e4 < bounded["counts"] < 4e4
     assert bounded["errors"][1] > 3 * base["errors"][1]          # the core's boundary, from 6 km to tens of km

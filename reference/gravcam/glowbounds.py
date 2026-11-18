@@ -152,7 +152,7 @@ def liquid_iron(resistivity: float = 1.0e-6, density: float = 11000.0, electrons
 def earth_lifetime(scale=None, years: float = 80.0) -> dict:
     """Gravitons from the Earth below on one square metre in a lifetime, and the forecast one-sigma errors of the
     five-shell fit (radii in m, emissivities as fractions), with each shell's emissivity multiplied by scale (a dict
-    by shell name; None keeps the placeholder)."""
+    by shell name; None keeps the scene's own frictions, which are the bounds of earth_bounded: scenefriction.py)."""
     import pathlib
     from . import abel, emission
     from .scene import load_scene

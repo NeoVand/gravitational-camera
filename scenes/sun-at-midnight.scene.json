@@ -10,7 +10,7 @@
     "crust": {
       "density": 2800,
       "temperature": 700,
-      "friction": 0.001,
+      "friction": 0.000203,
       "light": {
         "color": [0.22, 0.2, 0.17]
       }
@@ -18,25 +18,25 @@
     "upper-mantle": {
       "density": 3400,
       "temperature": 1700,
-      "friction": 0.001
+      "friction": 0.000247
     },
     "lower-mantle": {
       "density": 4900,
       "temperature": 2800,
-      "friction": 0.001
+      "friction": 0.000338
     },
     "outer-core": {
       "density": 11000,
       "temperature": 4500,
-      "friction": 0.001
+      "friction": 0.000158
     },
     "inner-core": {
       "density": 12900,
       "temperature": 5500,
-      "friction": 0.001
+      "friction": 0.000235
     },
     "sun-envelope": {
-      "density": 200,
+      "density": 614.74,
       "temperature": 2000000.0,
       "friction": 0,
       "light": {
@@ -52,7 +52,7 @@
     "moon-mantle": {
       "density": 3314,
       "temperature": 1200,
-      "friction": 0.001,
+      "friction": 0.000189,
       "light": {
         "color": [0.58, 0.56, 0.53]
       }
@@ -60,7 +60,7 @@
     "moon-core": {
       "density": 7000,
       "temperature": 1700,
-      "friction": 0.001
+      "friction": 0.000418
     }
   },
   "objects": [
@@ -153,9 +153,10 @@
     }
   ],
   "assumptions": [
-    "Friction is the effective shear viscosity at thermal frequencies. The Earth values (1e-3 Pa s everywhere) are placeholders, not measurements.",
+    "Friction is the effective shear viscosity at thermal frequencies. It is not known for the Earth: each shell has the most that its shear stiffness allows (reference/gravcam/scenefriction.py, glowbounds.py), 16 to 34 per cent of the old placeholder 1e-3 Pa s, so every brightness of the Earth here is an upper bound.",
+    "The Sun's core is a uniform ball of 1e5 kg/m^3 within a fifth of its radius; the rest is given the uniform density (614.74 kg/m^3) that makes the whole Sun's mass the standard 1.98847e30 kg, so that its tide at the Earth is right.",
     "The Sun's graviton luminosity (1e8 W) is the order of magnitude found in the literature (0.6e8 to 1.3e8 W) and is spread uniformly over the inner 20% of the solar radius.",
     "Layer radii, densities and temperatures are rounded textbook values.",
-    "The Moon, one day before full, is a crust and mantle at a representative 1200 K around a 350 km core at 1700 K, with the same placeholder friction as the Earth. Its radius and mean density (3344 kg/m³) match the measured ones."
+    "The Moon, one day before full, is a crust and mantle at a representative 1200 K around a 350 km core at 1700 K, each at the most its stiffness allows, as for the Earth. Its radius and mean density (3344 kg/m³) match the measured ones."
   ]
 }
