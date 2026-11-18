@@ -1293,11 +1293,14 @@ test('one exposure, the near field: the reconstruction carries the noise of the 
 	await page.locator('#sensitivity').fill('3');
 	await page.locator('#brightness').fill('1.5');
 	await settled(page);
+	// a slow software frame can outlast settled's one-second wait, so each switch below also waits for a frame drawn
+	// with, or without, the noise
 	const expected = await pixels(page);
 
 	await page.getByRole('button', { name: 'One exposure', exact: true }).click();
 	await expect(page.locator('.tag.right')).toHaveText('Gravity · one exposure');
 	await expect.poll(() => canvas.getAttribute('data-image'), { timeout: 30_000 }).toBe('1');
+	await expect.poll(() => canvas.getAttribute('data-noise'), { timeout: 60_000 }).toBe('1');
 	await settled(page);
 	const one = await pixels(page);
 
@@ -1318,6 +1321,7 @@ test('one exposure, the near field: the reconstruction carries the noise of the 
 	// back to the expected picture: the noise is gone, but for the screen's dither, and each draw stood well above it
 	await page.getByRole('button', { name: 'Image', exact: true }).click();
 	await expect(page.locator('.tag.right')).toHaveText('Gravity · near field');
+	await expect.poll(() => canvas.getAttribute('data-noise'), { timeout: 60_000 }).toBe('0');
 	await settled(page);
 	const dither = meanDifference(await pixels(page), expected);
 	const detail = JSON.stringify({

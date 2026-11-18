@@ -315,6 +315,7 @@
 			canvas.dataset.waves = String(waves?.count ?? 0);
 			canvas.dataset.exposure = String(params.exposure);
 			canvas.dataset.image = String(uploads);
+			canvas.dataset.noise = params.noise ? '1' : '0';
 		};
 
 		Engine.create(target)
