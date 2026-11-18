@@ -1,11 +1,15 @@
-// One ear, four voices. (a) Four plane waves from fixed directions, each with its own waveform in both
-// polarizations, and the ten numbers one pixel reads while they pass (paper/figures/charts.py). (b) From those
-// readings alone: the matrix A that annihilates them all, and on the sky toward the sources the size of
-// m^T A m, which vanishes at exactly four points, the four sources. (c) Light from the first two, the same way:
-// a vector a, and m . a vanishing at two points. All numbers from reference/gravcam/figure_data.py (voices).
-import { THREE, Panel, v3, figure, inset, INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
+// One ear, four voices. (a) Four plane waves from fixed directions, each with its own waveform and polarization
+// (the third is linearly polarized), and the ten numbers one pixel reads while they pass (paper/figures/charts.py).
+// (b) From those readings alone: the matrix A that annihilates them all, and on the sky toward the sources the size
+// of m^T A m, which vanishes at exactly four points. The rings are the true sources, the dots the zeros found from
+// the readings; they agree to 1e-15. (c) Light from the first two, the same way: a vector a, and m . a vanishing at
+// two points. All numbers from reference/gravcam/figure_data.py (voices).
+import { THREE, Panel, v3, figure, inset, letter, ACCENT, ACCENT2 } from '../lib.js';
 
-const W = 504, LEFT = 248, COL = (W - LEFT) / 2;
+// the chart of (a) LEFT - 4 points wide; the two skies, each SCALE points in radius, SPACING apart, the right one's
+// edge as far from the right edge as the panel letter (a) is from the left (its parenthesis's side bearing)
+const W = 504, LEFT = 248, SCALE = 60, SPACING = 132, BEARING = 0.7;
+const CENTRES = [W - BEARING - SCALE - SPACING, W - BEARING - SCALE];
 
 const c = (re, im = 0) => ({ re, im });
 const mul = (a, b) => c(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re);
@@ -32,6 +36,7 @@ function ramp(stops) {
 export default async function () {
 	const d = await (await fetch('/reference/results/figures/voices.json')).json();
 	const chart = await inset('/paper/figures/staging/voices-chart.svg', 0, 0, LEFT - 4);
+	const COL = SPACING;
 	const H = Math.round(chart.h);
 	const A = (i, j) => c(d.A.re[i][j], d.A.im[i][j]);
 	const a = (i) => c(d.a.re[i], d.a.im[i]);
@@ -56,7 +61,7 @@ export default async function () {
 	];
 	const panels = [];
 	skies.forEach((s, j) => {
-		const P = new Panel({ x: LEFT + j * COL, y: 0, w: COL, h: H, cx: 0, cy: 0.04, scale: 56, tilt: 6, turn: 0 });
+		const P = new Panel({ x: CENTRES[j] - COL / 2, y: 0, w: COL, h: H, cx: 0, cy: 0.04, scale: SCALE, tilt: 6, turn: 0 });
 		panels.push(P);
 		// the largest value on the sky, for a scale in decades below it
 		let top = 0;
@@ -68,25 +73,23 @@ export default async function () {
 		P.rasterSphere(v3(0, 0, 0), 1, (n) => s.colour(1 + Math.log10(Math.max(1e-12, s.q(n) / top)) / decades), {
 			o: { ambient: 0.84, key: 0.22, fill: 0.04, spec: 0.05, wrap: 0.6 }, density: 4
 		});
-		// the sources, ringed, and the zeros found from the readings, as dots; numbered outside the sky
+		// the true sources, ringed, and the zeros found from the readings alone, as dots; numbered outside the sky
 		const [ox, oy] = P.at(v3(0, 0, 0));
 		d.sources.slice(0, s.count).forEach((src, i) => {
 			const n = v3(...src);
 			const f = v3(...s.found.reduce((b, x) => (n.distanceTo(v3(...x)) < n.distanceTo(v3(...b)) ? x : b)));
-			const [fx, fy] = P.at(f);
+			const [sx, sy] = P.at(n), [fx, fy] = P.at(f);
 			P.items.push({ kind: 'raw', layer: 2, depth: 1, svg:
-				`<circle cx="${fx.toFixed(2)}" cy="${fy.toFixed(2)}" r="4.2" fill="none" stroke="#ffffff" stroke-width="0.8"/>` +
+				`<circle cx="${sx.toFixed(2)}" cy="${sy.toFixed(2)}" r="4.2" fill="none" stroke="#ffffff" stroke-width="0.8"/>` +
 				`<circle cx="${fx.toFixed(2)}" cy="${fy.toFixed(2)}" r="1.3" fill="#ffffff"/>` });
-			const [sx, sy] = P.at(n);
 			const u = [sx - ox, sy - oy], L = Math.hypot(...u);
 			const R = P.scale + 8;
 			P.label(`${i + 1}`, [(ox + (u[0] / L) * R) - P.x, (oy + (u[1] / L) * R) - P.y], { size: 7.5, color: s.mark });
 		});
-		P.label(s.title, [COL / 2, H / 2 - P.scale - 12], { size: 8, anchor: 'cb' });
-		P.label(s.formula, [COL / 2, H / 2 + P.scale + 12], { size: 8, anchor: 'ct' });
-		P.label(['\\text{(b)}', '\\text{(c)}'][j], [4, 4], { anchor: 'lt' });
+		P.label(s.formula, v3(0, -1, 0), { size: 8, anchor: 'ct', dy: 9 });
+		P.labels.push(letter('bc'[j], P.x, 1, s.title));
 	});
-	const extra = [Promise.resolve(chart.svg)];
-	panels[0].label('\\text{(a)}', [-LEFT, 4], { anchor: 'lt' });
+	// (a): its letter on the baseline of the chart's first heading (charts.py, voices_chart)
+	const extra = [Promise.resolve(chart.svg), letter('a', 0)];
 	return figure(W, H, panels, extra);
 }

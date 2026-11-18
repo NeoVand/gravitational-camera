@@ -19,6 +19,7 @@ export const FAINT = '#8b877d';
 export const RULE = '#c9c4b8';
 export const ACCENT = '#b0560a';
 export const ACCENT2 = '#2a67ad';
+export const PAGE = '#fffffe';
 export { THREE };
 
 // the studio, in camera space (x right, y up, z toward the viewer)
@@ -29,14 +30,16 @@ const VIEW = new THREE.Vector3(0, 0, 1);
 const hex = (c) => '#' + c.getHexString();
 
 export function shadeNormal(base, n, o = {}) {
-	const { ambient = 0.3, key = 0.8, fill = 0.14, wrap = 0.3, spec = 0.3, shininess = 30, rim = 0 } = o;
+	const { ambient = 0.3, key = 0.8, fill = 0.14, wrap = 0.3, spec = 0.3, shininess = 30, rim = 0, steps = 72 } = o;
 	const kd = Math.max(0, (n.dot(KEY) + wrap) / (1 + wrap));
 	const fd = Math.max(0, n.dot(FILL));
 	const h = KEY.clone().add(VIEW).normalize();
 	const s = spec * Math.pow(Math.max(0, n.dot(h)), shininess);
 	const r = rim * Math.pow(1 - Math.max(0, n.dot(VIEW)), 3);
 	const c = base.clone().multiplyScalar(ambient + key * kd + fill * fd);
-	const q = (x) => Math.round(Math.min(1, x) * 72) / 72;
+	// faces of a mesh share a colour in `steps` levels, so that neighbours merge into one path; an image (steps: 0)
+	// keeps every level, or its gradients show terraces
+	const q = (x) => (steps ? Math.round(Math.min(1, x) * steps) / steps : Math.min(1, x));
 	return new THREE.Color(q(c.r + s + r), q(c.g + s + r), q(c.b + s + r));
 }
 
@@ -82,8 +85,12 @@ export class Panel {
 	}
 
 	/** An arrow from `a` to `b` drawn in the screen plane: a shaft and a filled head `head` points long. */
-	arrow(a, b, { color = INK, width = 0.6, head = 4.2, layer = 1, both = false } = {}) {
-		this.items.push({ kind: 'arrow', a, b, color, width, head, layer, both, depth: (this.cam(a).z + this.cam(b).z) / 2 });
+	arrow(a, b, { color = INK, width = 0.6, head = 4.2, layer = 1, both = false, halo = 0, haloLayer = layer - 0.5 } = {}) {
+		const depth = (this.cam(a).z + this.cam(b).z) / 2;
+		// a halo: the same arrow in the page's colour, `halo` points wider on each side, laid beneath it at `haloLayer`
+		// so that what lies under that layer is cut clear of the arrow
+		if (halo) this.items.push({ kind: 'arrow', a, b, color: PAGE, width: width + 2 * halo, head, layer: haloLayer, both, depth, outline: 2 * halo });
+		this.items.push({ kind: 'arrow', a, b, color, width, head, layer, both, depth });
 		return this;
 	}
 
@@ -188,7 +195,8 @@ export class Panel {
 				const hd = Math.min(it.head, 0.6 * L), hw = 0.36 * hd;
 				const head = (P, s) => {
 					const base = [P[0] - s * u[0] * hd, P[1] - s * u[1] * hd];
-					return `<path d="M${P[0].toFixed(2)},${P[1].toFixed(2)}L${(base[0] + w[0] * hw).toFixed(2)},${(base[1] + w[1] * hw).toFixed(2)}L${(base[0] - w[0] * hw).toFixed(2)},${(base[1] - w[1] * hw).toFixed(2)}Z" fill="${it.color}"/>`;
+					const edge = it.outline ? ` stroke="${it.color}" stroke-width="${it.outline}" stroke-linejoin="round"` : '';
+					return `<path d="M${P[0].toFixed(2)},${P[1].toFixed(2)}L${(base[0] + w[0] * hw).toFixed(2)},${(base[1] + w[1] * hw).toFixed(2)}L${(base[0] - w[0] * hw).toFixed(2)},${(base[1] - w[1] * hw).toFixed(2)}Z" fill="${it.color}"${edge}/>`;
 				};
 				const s0 = it.both ? [A[0] + u[0] * hd * 0.8, A[1] + u[1] * hd * 0.8] : A;
 				const s1 = [B[0] - u[0] * hd * 0.8, B[1] - u[1] * hd * 0.8];
@@ -228,6 +236,16 @@ export async function tex(src, at, size = 8.5, anchor = 'cc', color = INK) {
 	const y = anchor[1] === 'B' ? at[1] + vb[1] * s : at[1] - { t: 0, c: 0.5, b: 1 }[anchor[1]] * H;
 	const inner = svg.innerHTML.replace(/currentColor/g, color);
 	return `<g transform="translate(${x.toFixed(2)},${y.toFixed(2)}) scale(${s}) translate(${-vb[0]},${-vb[1]})" fill="${color}" stroke="${color}" stroke-width="0">${inner}</g>`;
+}
+
+/** The size of a panel letter, as in the charts (make_figures.py, _panel). */
+export const LETTER = 8;
+
+/** A panel letter, "(a)", with an optional short title on the same line, in one style in every figure: 8 pt, at the
+ * top left of its panel, the top of its parenthesis at (x, y) figure points and the title on its baseline. */
+export function letter(l, x, y = 1, title = '', color = INK) {
+	const src = `\\text{(${l})}` + (title ? `\\ \\ ${title}` : '');
+	return tex(src, [x, y + 0.75 * LETTER], LETTER, 'lB', color);
 }
 
 /** The figure: panels and their labels, w by h points, no background. */
@@ -368,7 +386,7 @@ Panel.prototype.rasterSphere = function (c, R, colorAt, { keep = () => true, o =
 			const pw = w.clone().multiplyScalar(R).add(c);
 			if (!keep(pw)) continue;
 			base.set(colorAt(w));
-			const col = shadeNormal(base, n, o);
+			const col = shadeNormal(base, n, { steps: 0, ...o });
 			const k = (j * size + i) * 4;
 			const hx = col.getHex();                       // sRGB, as the page shows it (col is linear)
 			img.data[k] = (hx >> 16) & 255; img.data[k + 1] = (hx >> 8) & 255; img.data[k + 2] = hx & 255;

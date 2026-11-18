@@ -21,7 +21,7 @@ export default async function () {
 	const size = { camera: lineH / (1 - lens), door: HD, furnace: lineH / BODY_CENTRE, person: (1.75 / 2.1) * HD };
 	const left = { camera: 8, door: 64, furnace: 120, person: 196 };
 	const width = (s, h) => (h * s.w) / s.h;
-	const RH = HD + 14, W = 246, SUM = 30, parts = [], labels = [];
+	const RH = HD + 14, W = 246, SUM = 32, parts = [], labels = [];
 	const across = (s, k, ground, y) => {
 		const h = size[k], sp = s.span(1 - (ground - y) / h);
 		return [left[k] + sp[0] * width(s, h), left[k] + sp[1] * width(s, h)];
@@ -52,7 +52,6 @@ export default async function () {
 		const fw = fr - fl, bx = fl + 0.3 * fw, bw = 0.4 * fw, bh = 0.2 * size.furnace;
 		parts.push(`<rect x="${bx.toFixed(2)}" y="${(y - bh / 2).toFixed(2)}" width="${bw.toFixed(2)}" height="${bh.toFixed(2)}" rx="2" fill="${TINT.iron}" fill-opacity="0.55" stroke="${ACCENT}" stroke-width="0.6" stroke-dasharray="0.6 1.4" stroke-linecap="round"/>`);
 		parts.push(seg(lensX, E, y, false));
-		parts.push(dot(E, y, ACCENT));
 		parts.push(seg(E, dr, y, true));            // through the door, and hidden behind it
 		parts.push(seg(dr, fl, y, false));
 		parts.push(seg(fl, fr, y, true));           // through the furnace
@@ -68,7 +67,7 @@ export default async function () {
 		vals.forEach(([k, v, cx], i) => {
 			const h = Math.max(0.8, (v / vmax) * hmax);
 			parts.push(`<rect x="${(cx - bw0 / 2).toFixed(2)}" y="${(base - h).toFixed(2)}" width="${bw0}" height="${h.toFixed(2)}" fill="${TINT[k]}" stroke="${ACCENT}" stroke-width="0.4"/>`);
-			labels.push(tex(`\\text{${k}}`, [cx, base + 2], 6.5, 'ct', DIM));
+			labels.push(tex(`\\text{${k}}`, [cx, base + 6.5], 6.5, 'cB', DIM));     // the three on one baseline
 			if (i < 2) labels.push(tex('+', [(cx + vals[i + 1][2]) / 2, base - 6], 8, 'cc'));
 		});
 		parts.push(`<path d="M${(left.door - 6).toFixed(2)},${base}L${(W - 6).toFixed(2)},${base}" stroke="${RULE}" stroke-width="0.4"/>`);

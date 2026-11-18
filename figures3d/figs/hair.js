@@ -17,7 +17,7 @@
 // skin, the size of the core and the stone's layers are as the model drew them there), and the grain of the
 // sections. Schematic: the size of K, and the places and lengths of the grey arrows of the field and of the
 // heavy arrows of the tide.
-import { Panel, v3, figure, sprite, INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
+import { Panel, v3, figure, sprite, letter, INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
 
 // ---- the physics --------------------------------------------------------------------------------------
 export const SHELL_INNER = 0.92;    // the shell's inner radius, in units of a
@@ -67,18 +67,18 @@ export const K = 0.42;              // the length of a kick arrow, in units of i
 const STEEL = '#868b92', PAGE = '#fffffe';
 const HAIR = 0.4;
 
-const W = 504, H = 243;
+const W = 504, H = 239;
 const A = 27;                                   // points per radius a
 const GUT = 33, COL = 93;                       // the row labels' gutter and a column of panel (a)
 const colX = (j) => GUT + COL / 2 + j * COL;
-const TOP = 5;                                  // the top of the letters and heads
-const Y1 = 59, Y2 = 150, BASE = 237;            // the two rows' centres and the bars' baseline
+const TOP = 1;                                  // the top of the letters and heads
+const Y1 = 55, Y2 = 146, BASE = 233;            // the two rows' centres and the bars' baseline
 const BAR = 36, BARW = 24;                      // points per M a^2, and a bar's width
 const FIELD = [1.15, 1.45], TIDE = [1.13, 1.52]; // the arrows outside, nearer and farther end, in units of a
 
 const XB = 314;                                 // panel (b)
-const XS = 402, XH = 470;                       // the stone's and the hole's centres; both of radius A
-const PITCH = 7.2, ROWS = 8.2, BEAD = 3.3, ROW0 = 105;   // the beads: spacing in a row, of the rows, largest radius, first row
+const XS = 408, XH = 476;                       // the stone's and the hole's centres; both of radius A
+const PITCH = 7.2, ROWS = 8.2, BEAD = 3.3, ROW0 = 101;   // the beads: spacing in a row, of the rows, largest radius, first row
 const NAME = 6.5, NAMEW = 14.2, GAP = 3.5;      // the hole's three words: type size, width of the longest, space before
 
 const SPRITES = '/figures3d/sprites/hair/';
@@ -184,14 +184,14 @@ export default async function () {
 		draw(`<rect x="${n2(x - BARW / 2)}" y="${n2(BASE - h)}" width="${BARW}" height="${n2(h)}" fill="${ACCENT}"/>`);
 		page.label(text(b.head), [x, TOP], { size: 8, anchor: 'ct' });
 	});
-	page.label('\\text{(a)}', [4, TOP], { anchor: 'lt' });
-	[['the field', Y1], ['a tide', Y2]].forEach(([s, y]) => page.label(text(s), [4, y], { size: 8, anchor: 'lc' }));
-	page.label(`\\smash[b]{\\text{the weight}}`, [4, BASE], { size: 8, anchor: 'lb' });
+	page.labels.push(letter('a', 0, TOP));
+	// the rows' names, their left edges under that of the letter
+	[['the field', Y1], ['a tide', Y2]].forEach(([s, y]) => page.label(text(s), [0.5, y], { size: 8, anchor: 'lc' }));
+	page.label(`\\smash[b]{\\text{the weight}}`, [0.5, BASE], { size: 8, anchor: 'lb' });
 
 	// ---- (b)
 	draw(picture('hair-stone', art.stone, XS, Y1, A, circle(XS, Y1, A)) + outline(XS, Y1, A, 0.35));
-	draw(`<circle cx="${XH}" cy="${Y1}" r="${A}" fill="#000000"/>` +
-		`<circle cx="${XH}" cy="${Y1}" r="${A + 2.2}" fill="none" stroke="${ACCENT}" stroke-width="0.6"/>`);
+	draw(`<circle cx="${XH}" cy="${Y1}" r="${A}" fill="#000000"/>`);
 	// the numbers
 	const bead = (X, Y, r) => page.sphere(fp(X, Y), r, STEEL, { spec: 0.6, shininess: 36, layer: 1 });
 	const L = topDegree();
@@ -212,7 +212,7 @@ export default async function () {
 	page.label(text(`${seven}`), [x0, ROW0 + 2 * ROWS + 7], { size: 8, anchor: 'ct' });
 	page.label(text('a stone'), [XS, TOP], { size: 8, anchor: 'ct' });
 	page.label(text('a black hole'), [XH, TOP], { size: 8, anchor: 'ct' });
-	page.label('\\text{(b)}', [XB, TOP], { anchor: 'lt' });
+	page.labels.push(letter('b', XB, TOP));
 
 	return figure(W, H, [...panels, page]);
 }

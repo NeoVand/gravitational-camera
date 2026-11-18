@@ -128,8 +128,10 @@ def voices_chart():
         top.plot(t, y0 + 0.5 * np.array(w["re"]), color=mf.INK, lw=0.6)
         top.text(-0.035, y0, rf"${i + 1}$", ha="right", va="center", fontsize=7.5, color=mf.ACCENT)
     top.set_ylim(-3 * gap - 0.75, 0.75)
-    top.text(0.0, 1.0, r"four waves, each with its own two polarizations", transform=top.transAxes, fontsize=7.5,
-             color=mf.DIM, va="bottom")
+    # the heading's baseline 7 pt below the top, on the baseline of the panel letter (a) (figures3d/figs/voices.js);
+    # the faint line is the second polarization, which the third wave, linearly polarized, does not have
+    fig.text(0.1, 1 - 7 / 214, r"four waves, each with its own waveform and polarization", fontsize=7.5,
+             color=mf.DIM, va="baseline")
     tr = np.array(d["traces"])
     tr = tr / np.max(np.abs(tr))
     gap = 0.75
@@ -189,17 +191,19 @@ def beyond_chart():
     w, h, top, base, left, right, under = 196, 141, 2, 3.5, 28, 3, 18.5
     fig = plt.figure(figsize=(w / 72, h / 72))
     ax = fig.add_axes([left / w, (base + under) / h, (w - left - right) / w, (h - top - base - under) / h])
+    # orange is general relativity's alone, as in (a): the massive graviton in ink, the scalar in blue, and the point
+    # where both meet general relativity in orange
     ax.axhline(0, color=mf.RULE, lw=0.6)
-    ax.plot(n, -2 * (1 - n ** 2), color=mf.ACCENT, lw=0.8)
+    ax.plot(n, -2 * (1 - n ** 2), color=mf.INK, lw=0.8)
     ax.plot(n, 1 - n ** 2, color=mf.ACCENT2, lw=0.8)
     for row in d["rows"]:
-        ax.plot([row["graviton"]["n"]], [row["graviton"]["ratio"]], "o", ms=2.8, color=mf.ACCENT, mec="none")
+        ax.plot([row["graviton"]["n"]], [row["graviton"]["ratio"]], "o", ms=2.8, color=mf.INK, mec="none")
         ax.plot([row["scalar"]["n"]], [row["scalar"]["ratio"]], "o", ms=2.8, color=mf.ACCENT2, mec="none")
-    ax.text(0.98, -1.7, "massive graviton,\nhelicity 0", color=mf.ACCENT, fontsize=7, va="top", ha="right",
+    ax.text(0.98, -1.7, "massive graviton,\nhelicity 0", color=mf.INK, fontsize=7, va="top", ha="right",
             linespacing=1.0)
     ax.text(0.05, 1.12, "massive scalar", color=mf.ACCENT2, fontsize=7, va="bottom")
-    ax.plot([1], [0], "o", ms=3.6, mfc="#fffffe", mec=mf.INK, mew=0.7, zorder=5)
-    ax.text(1.0, 0.6, "general\nrelativity", color=mf.DIM, fontsize=7, ha="right", va="bottom", linespacing=1.0)
+    ax.plot([1], [0], "o", ms=3.6, mfc="#fffffe", mec=mf.ACCENT, mew=0.8, zorder=5)
+    ax.text(1.0, 0.6, "general\nrelativity", color=mf.ACCENT, fontsize=7, ha="right", va="bottom", linespacing=1.0)
     ax.set_xlim(0, 1.02)
     ax.set_ylim(-2.2, 1.5)
     ax.set_xticks([0, 0.5, 1])

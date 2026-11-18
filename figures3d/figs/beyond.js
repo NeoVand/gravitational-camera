@@ -2,7 +2,7 @@
 // as the distortion it makes of a ring of free particles in the plane where it acts (exaggerated), for a wave
 // travelling up the page; general relativity has only the first two. (b) One reading tells a massive graviton
 // from a massive scalar (paper/figures/charts.py, beyond_chart).
-import { THREE, Panel, v3, figure, inset, tex, DIM, RULE, ACCENT } from '../lib.js';
+import { THREE, Panel, v3, figure, inset, tex, letter, LETTER, DIM, RULE, ACCENT } from '../lib.js';
 import { disc } from './stars.js';
 
 const W = 504, COLS = 3;
@@ -12,7 +12,7 @@ const RIGHT = 196, CHART_TOP = 2, CHART_BASE = 3.5;
 // The layout, in points: the panel letters and the heading share one baseline, LINE; GAP from a line of text to the
 // rings below it; NAME from the foot of a row of rings to the baseline of their names. The chart's plot box spans
 // from the top of the first row of rings to its x label, level with the second row's names.
-const LINE = 8, GAP = 7, NAME = 9.5;
+const LINE = 7, GAP = 7, NAME = 9.5;
 
 // the wave's frame in the drawing: e1 to the right, e2 into the page, k up (e1 x e2 = k)
 const R = new THREE.Matrix3().set(1, 0, 0, 0, 0, 1, 0, -1, 0);
@@ -95,9 +95,9 @@ export default async function () {
 		console.error(`beyond: the chart should be ${(H - top + CHART_TOP).toFixed(2)} pt tall to meet the rings; it is ${chart.h.toFixed(2)}`);
 	}
 	const line = [
-		tex('\\text{(a)}', [0, LINE], 8.5, 'lB'),
+		letter('a', 0, LINE - 0.75 * LETTER),
 		tex('\\text{general relativity}', [cw, LINE], 7.5, 'cB', ACCENT),
-		tex('\\text{(b)}', [W - RIGHT, LINE], 8.5, 'lB')
+		letter('b', W - RIGHT, LINE - 0.75 * LETTER)
 	];
 	return figure(W, H, panels, [Promise.resolve(chart.svg), ...line]);
 }

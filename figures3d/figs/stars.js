@@ -5,7 +5,20 @@
 import { THREE, Panel, v3, figure, INK, DIM, RULE, ACCENT, ACCENT2 } from '../lib.js';
 
 const SKY = '#eeebe5', BODY = '#a7a299', PIXEL = '#868b92', PAGE = '#fffffe';
-const W = 504, HEAD = 10, ROW = 98, LEFT = 40, COL = (W - LEFT) / 4;
+// the sky is drawn flat in SKY at this opacity, a veil over what lies behind it
+const VEIL = 0.72;
+// the row names in a gutter LEFT wide, then four columns COL apart; the drawing's ink as far from the right edge as
+// the names are from the left
+const W = 504, HEAD = 10, ROW = 98, LEFT = 37, COL = 122;
+
+/** A colour as it shows through the veil of the sky (over the page): what lies on the far side looks like this. */
+function veiled(c) {
+	if (c === 'none') return c;
+	// mixed as the page mixes them, in sRGB
+	const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+	const [a, b] = [rgb(c), rgb(SKY)];
+	return '#' + a.map((x, i) => Math.round((1 - VEIL) * x + VEIL * b[i]).toString(16).padStart(2, '0')).join('');
+}
 
 const vec = (a) => v3(a[0], a[1], a[2]);
 
@@ -14,8 +27,13 @@ function screenBasis(P) {
 	return [v3(1, 0, 0).applyMatrix4(M), v3(0, 1, 0).applyMatrix4(M)];
 }
 
-/** A dot `r` points across at world point p, drawn flat to the reader. */
+/** A dot `r` points across at world point p, drawn flat to the reader. One on the far side of the sky (when no
+ * layer is given) is drawn above the sky's fill in the colours the veil gives it, and beneath its outline, so that a
+ * dot that reaches past the outline is one colour throughout. */
 export function disc(P, p, r, { fill = INK, stroke = 'none', width = 0, layer, offset = [0, 0], opacity = 1, n = 28 } = {}) {
+	if (layer === undefined && P.cam(p).z <= 0) {
+		[fill, stroke, layer] = [veiled(fill), veiled(stroke), 0.5];
+	}
 	const [ex, ey] = screenBasis(P);
 	const c = p.clone().addScaledVector(ex, offset[0] / P.scale).addScaledVector(ey, offset[1] / P.scale);
 	const pts = [];
@@ -23,7 +41,14 @@ export function disc(P, p, r, { fill = INK, stroke = 'none', width = 0, layer, o
 		const t = (2 * Math.PI * k) / n;
 		pts.push(c.clone().addScaledVector(ex, (r * Math.cos(t)) / P.scale).addScaledVector(ey, (r * Math.sin(t)) / P.scale));
 	}
-	P.polygon(pts, { fill, stroke, width, opacity, layer: layer ?? (P.cam(p).z > 0 ? 2 : -1) });
+	P.polygon(pts, { fill, stroke, width, opacity, layer: layer ?? 2 });
+}
+
+/** The sky around a pixel, flat, in a tint of the page (so that it follows the site's theme): its fill a veil over
+ * what lies behind (layer 0), its outline drawn over the far side's dots (layer 0.6). */
+export function veil(P, { fill = SKY, stroke = RULE, opacity = VEIL } = {}) {
+	disc(P, v3(0, 0, 0), P.scale, { fill, opacity, n: 160, layer: 0 });
+	disc(P, v3(0, 0, 0), P.scale, { fill: 'none', stroke, width: 0.5, opacity, n: 160, layer: 0.6 });
 }
 
 /** A star of multiplicity n: n touching dots, so that they can be counted. */
@@ -66,8 +91,7 @@ export function runs(P, pts, { color, width }) {
 }
 
 function sky(P) {
-	// the sky drawn flat, in a tint of the page, so that it follows the site's theme; what lies behind shows faintly
-	disc(P, v3(0, 0, 0), P.scale, { fill: SKY, stroke: RULE, width: 0.5, opacity: 0.72, n: 160, layer: 0 });
+	veil(P);
 	greatCircle(P, v3(0, 1, 0));
 	P.sphere(v3(0, 0, 0), 0.055, PIXEL, { spec: 0.5, layer: 3 });
 }

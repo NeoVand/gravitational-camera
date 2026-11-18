@@ -3,7 +3,7 @@
 // The cone's width and dr are exaggerated. (b) The sky around the pixel, coloured by the sign of the
 // weight 1 - 3 cos^2 theta with which E_zz takes matter in each direction: exact. Matter in the orange
 // caps (|cos theta| > 1/sqrt 3) stretches the pixel along z; matter in the blue band squeezes it.
-import { THREE, Panel, v3, figure, INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
+import { THREE, Panel, v3, figure, letter, INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
 
 const ELEMENT = '#e9934a', CONE = '#ece6dc', CAP = '#f1c9a1', BAND = '#c9d9ec';
 
@@ -62,21 +62,30 @@ export default async function () {
 	A.arrow(n.clone().multiplyScalar(0.16), n.clone().multiplyScalar(1.3), { width: 0.8, head: 4.4, layer: 5 });
 	A.label('\\hat n', n.clone().multiplyScalar(0.8).add(v3(0, 0.26, 0)));
 	A.label('\\mathrm{d}\\Omega', n.clone().multiplyScalar(reach + 0.05).add(v3(0.12, 0.0, 0)), { anchor: 'lc', size: 8 });
-	const below = v3(0, -1, 0).multiplyScalar(0.62);
-	A.arrow(below.clone().addScaledVector(n, 0.02), n.clone().multiplyScalar(r * Math.cos(half)).add(below), { color: DIM, width: 0.45, head: 3, both: true, layer: 5 });
-	A.label('r', n.clone().multiplyScalar(r * 0.5).add(below).add(v3(0, -0.18, 0)), { color: DIM });
+	// the distance r, measured along the cone's lower edge from the pixel to the element, on a dimension line just
+	// outside the cone, with short extension lines to the pixel and to the element's near rim
+	const lower = v3(Math.cos(Math.atan2(n.y, n.x) - half), Math.sin(Math.atan2(n.y, n.x) - half), 0);
+	const out = v3(lower.y, -lower.x, 0).multiplyScalar(0.2);
+	const rim0 = lower.clone().multiplyScalar(r);
+	A.curve([out.clone().multiplyScalar(0.5), out.clone().multiplyScalar(1.2)], { color: DIM, width: 0.35, layer: 3.5 });   // beneath the pixel
+	A.curve([rim0.clone().addScaledVector(out, 0.25), rim0.clone().addScaledVector(out, 1.2)], { color: DIM, width: 0.35, layer: 5 });
+	A.arrow(out, rim0.clone().add(out), { color: DIM, width: 0.45, head: 3, both: true, layer: 5 });
+	A.label('r', lower.clone().multiplyScalar(r / 2).addScaledVector(out, 2.1), { color: DIM });
 	A.label('\\mathrm{d}r', n.clone().multiplyScalar(r + dr / 2).add(v3(0, (r + dr) * Math.sin(half) + 0.12, 0)), { size: 8, anchor: 'cb' });
-	A.label('\\mathrm{d}m = \\rho\\, r^{2}\\, \\mathrm{d}r\\, \\mathrm{d}\\Omega', n.clone().multiplyScalar(r + dr / 2).add(v3(0.05, -0.95, 0)), { anchor: 'ct' });
-	A.label('\\mathrm{d}\\mathcal{E}_{ij} = \\frac{G\\,\\mathrm{d}m}{r^{3}}\\,(\\delta_{ij} - 3\\hat n_i\\hat n_j)', [24, 2], { anchor: 'lt' });
+	A.label('\\mathrm{d}m = \\rho\\, r^{2}\\, \\mathrm{d}r\\, \\mathrm{d}\\Omega', n.clone().multiplyScalar(r + dr / 2).add(v3(0.05, -0.95, 0)), { anchor: 'ct', dx: 13, dy: 4 });
+	A.labels.push(letter('a', 0, 2, '\\mathrm{d}\\mathcal{E}_{ij} = \\frac{G\\,\\mathrm{d}m}{r^{3}}\\,(\\delta_{ij} - 3\\hat n_i\\hat n_j)'));
 	A.label('\\mathcal{E}_{ij} = G \\int \\mathrm{d}\\Omega\\,(\\delta_{ij} - 3\\hat n_i \\hat n_j)\\,S(\\hat n),\\qquad S(\\hat n) = \\int \\rho\\,\\frac{\\mathrm{d}r}{r}', [24, HA - 4], { anchor: 'lb' });
-	A.label('\\text{(a)}', [4, 2], { anchor: 'lt' });
 
 	// (b) the sky around the pixel, by the sign of the weight
 	const B = new Panel({ x: 0, y: HA + GAP, w: W, h: HB, cx: 0, cy: (1.42 - 1.32) / 2, scale: SB, tilt: TILT });
 	const magic = Math.acos(1 / Math.sqrt(3));
-	B.mesh(new THREE.SphereGeometry(1, 96, 64), CAP, {
-		o: { ambient: 0.62, key: 0.45, spec: 0.12, colorAt: (p) => (Math.abs(p.y) > Math.cos(magic) ? CAP : BAND) }
-	});
+	// the sphere in three zones, two caps and the band, each its own mesh with a row of vertices on the boundary, so
+	// that the colours meet along the circle itself and not along the steps of a grid
+	for (const [from, to, colour] of [[0, magic, CAP], [magic, Math.PI - magic, BAND], [Math.PI - magic, Math.PI, CAP]]) {
+		B.mesh(new THREE.SphereGeometry(1, 96, Math.max(8, Math.round((64 * (to - from)) / Math.PI)), 0, 2 * Math.PI, from, to - from), colour, {
+			o: { ambient: 0.62, key: 0.45, spec: 0.12 }
+		});
+	}
 	// the two boundary circles, at 54.7 degrees from the axis, where they face us
 	for (const s of [1, -1]) {
 		const pts = [];
@@ -92,7 +101,8 @@ export default async function () {
 		if (run.length > 1) B.curve(run, { width: 0.5, layer: 2 });
 	}
 	B.curve([v3(0, 1, 0), v3(0, 1.42, 0)], { color: DIM, width: 0.5, layer: 2 });
-	B.curve([v3(0, -1, 0), v3(0, -1.32, 0)], { color: DIM, width: 0.5, layer: 2 });
+	// below, the axis shows only once it leaves the sphere's outline (the south pole lies behind it), a little clear of it
+	B.curve([v3(0, -1 / Math.cos(THREE.MathUtils.degToRad(TILT)) - 0.06, 0), v3(0, -1.32, 0)], { color: DIM, width: 0.5, layer: 2 });
 	B.label('z', v3(0.07, 1.42, 0), { anchor: 'lt', color: DIM });
 	B.label('\\text{stretch}', v3(0, 0.83, 0.3), { size: 7.5, color: ACCENT });
 	B.label('\\text{squeeze}', v3(0, 0, 1), { size: 7.5, color: ACCENT2 });
@@ -106,6 +116,6 @@ export default async function () {
 	B.curve(arc, { color: DIM, width: 0.45, layer: 3 });
 	B.curve([v3(Math.sin(magic), Math.cos(magic), 0), v3(1.28 * Math.sin(magic), 1.28 * Math.cos(magic), 0)], { color: DIM, width: 0.45, layer: 3 });
 	B.label('54.7^\\circ', v3(1.32 * Math.sin(magic / 2), 1.32 * Math.cos(magic / 2), 0), { size: 7.5, anchor: 'lb', color: DIM });
-	B.label('\\text{(b)}\\ \\ 1 - 3\\cos^{2}\\vartheta', [4, 2], { anchor: 'lt' });
+	B.labels.push(letter('b', 0, B.y + 1, '1 - 3\\cos^{2}\\vartheta'));
 	return figure(W, H, [A, B]);
 }

@@ -5,7 +5,7 @@
 // from straight down, 50 below the horizon, as in Fig. 1: exact. Schematic: the observer, the stars,
 // the Sun's size and distance. (b) Brightness against angle, from the reference implementation
 // (paper/figures/charts.py), in the shells' colours.
-import { THREE, Panel, v3, figure, inset, globeMap, INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
+import { THREE, Panel, v3, figure, inset, globeMap, letter, INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
 
 const SHELLS = ['#f1e9de', '#f1d9bd', '#ebc59c', '#e2a86f', '#d48a46'];
 const SURFACE = '#a9b0b8';
@@ -27,7 +27,7 @@ export default async function () {
 	const R = radii[0];
 	const r = radii.map((x) => x / R);
 
-	const H = 206;
+	const H = 196;
 	const P = new Panel({ x: 0, y: 0, w: 252, h: H, cx: 0.34, cy: -0.07, scale: 76, tilt: 14, turn: -26 });
 	// three quarters of the globe: the quarter in front of the reader (x > 0, z > 0) is cut away
 	const earth = await globeMap('/figures3d/textures/earth.jpg');
@@ -40,9 +40,25 @@ export default async function () {
 	P.rasterSphere(v3(0, 0, 0), 1, (q) => earth(geographic(q), -Math.PI - 0.065), {
 		keep: (q) => !(q.x > 0 && q.z > 0), o: { spec: 0.1, shininess: 14, wrap: 0.45, ambient: 0.55, key: 0.6 }, density: 4, layer: -1
 	});
+	// the globe's outline: the limb, only where the surface it belongs to is there. Where the limb would cross the
+	// cut-away quarter there is no surface; a line of sight there passes through the gap, and the outline of what
+	// remains is the edge of the cut faces, drawn with them
 	{
-		const [gx, gy] = P.at(v3(0, 0, 0));
-		P.items.push({ kind: 'raw', layer: -0.5, depth: 0, svg: `<circle cx="${gx.toFixed(2)}" cy="${gy.toFixed(2)}" r="${P.scale.toFixed(2)}" fill="none" stroke="${INK}" stroke-width="0.4"/>` });
+		const inv = P.rot.clone().invert();
+		const e1 = v3(1, 0, 0).applyMatrix4(inv), e2 = v3(0, 1, 0).applyMatrix4(inv);
+		const cut = (q) => q.x > 0 && q.z > 0;
+		let run = [];
+		const flush = () => { if (run.length > 1) P.curve(run, { color: INK, width: 0.4, layer: -0.5 }); run = []; };
+		const N = 720;
+		// start the walk where the limb is cut, so that no run is split at the seam
+		let k0 = 0;
+		while (k0 < N && !cut(e1.clone().multiplyScalar(Math.cos((2 * Math.PI * k0) / N)).addScaledVector(e2, Math.sin((2 * Math.PI * k0) / N)))) k0++;
+		for (let k = k0; k <= k0 + N; k++) {
+			const t = (2 * Math.PI * k) / N;
+			const q = e1.clone().multiplyScalar(Math.cos(t)).addScaledVector(e2, Math.sin(t));
+			if (cut(q)) flush(); else run.push(q);
+		}
+		flush();
 	}
 	// the two cut faces, each a half disc showing the shells: z = 0 for x > 0 (the lines of sight lie on it)
 	// and x = 0 for z > 0
@@ -93,12 +109,7 @@ export default async function () {
 	P.sphere(sun, 0.15, '#f2a54a', { layer: 4, spec: 0.25, ambient: 0.75, key: 0.35 });
 	P.label('\\text{Sun}', sun.clone().add(v3(0.24, -0.02, 0)), { size: 7.5, anchor: 'lc', color: ACCENT });
 
-	P.label('\\text{(a)}', [4, 5], { anchor: 'lt' });
-
 	const chart = await inset('/paper/figures/staging/earth-glow-chart.svg', 248, 4, 256);
-	const extra = [chartLabel()];
-	function chartLabel() { return Promise.resolve(chart.svg); }
-	const b = new Panel({ x: 248, y: 0, w: 10, h: 10 });
-	b.label('\\text{(b)}', [4, 5], { anchor: 'lt' });
-	return figure(504, Math.max(H, chart.h + 4), [P, b], extra);
+	const extra = [Promise.resolve(chart.svg), letter('a', 0), letter('b', 248)];
+	return figure(504, Math.ceil(Math.max(H, chart.h + 4)), [P], extra);
 }

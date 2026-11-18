@@ -3,13 +3,14 @@
 // (GM/r^3) diag(-2, 1, 1) along the line to it, so a ring of radius 1 becomes the ellipse with
 // semi-axes 1 + 2e and 1 - e; in a wave, 1 + e and 1 - e), the beads' places on it, and each arrow,
 // the tidal acceleration -E xi at the bead. Exaggerated: e. Schematic: the planet's size and distance.
-import { Panel, v3, ellipsePoints, figure, INK, DIM, RULE } from '../lib.js';
+import { Panel, v3, ellipsePoints, figure, letter, INK, DIM, RULE } from '../lib.js';
 
 // one column: (a) across the top, (b) and (c) side by side beneath it, all at one scale (SCALE points to the
 // undisturbed ring's radius), so that the dashed rings are the same size in the three panels. Each row is as tall
 // as what it holds: (a) the dashed circle, (b) and (c) the ghost ring, radius 1 + s plus a bead; GAP of air between.
-// REACH: the arrows' length per unit of tidal acceleration.
-const W = 246, HALF = W / 2, SCALE = 34, BEAD = 0.075, REACH = 0.15;
+// REACH: the arrows' length per unit of tidal acceleration, so that the shortest, at the top and bottom of (a), still
+// shows a shaft behind its head of HEAD points.
+const W = 246, HALF = W / 2, SCALE = 34, BEAD = 0.075, REACH = 0.2, HEAD = 3.2;
 const TOP = 2 * SCALE + 4, GAP = 18, LOW = Math.ceil(2 * (1.2 + BEAD) * SCALE) + 4;
 const ROW = TOP + GAP, H = ROW + LOW;
 const STEEL = '#868b92', STONE = '#cdbca3', GHOST = '#e2ded6';
@@ -30,7 +31,8 @@ function ring(P, centre, sx, sy, angle, accel, ghost = false) {
 			const a = v3(ca * ax - sa * ay, sa * ax + ca * ay, 0);
 			const u = a.clone().normalize();
 			const from = p.clone().addScaledVector(u, BEAD + 0.04);
-			P.arrow(from, from.clone().addScaledVector(a, REACH), { width: 0.55, head: 3.6 });
+			// a halo of the page's colour beneath each arrow cuts the pale ring and its beads (layer -1) clear of it
+			P.arrow(from, from.clone().addScaledVector(a, REACH), { width: 0.55, head: HEAD, halo: 0.55, haloLayer: -0.5 });
 		}
 	}
 }
@@ -43,17 +45,17 @@ export default async function () {
 	a.curve([v3(-1.04, 0, -0.5), v3(0.95 - 1.42, 0, -0.5)], { color: RULE, width: 0.45, dash: [1, 2], layer: -2 });
 	a.curve(ellipsePoints(0.95, 0, -0.2, 1, 1), { color: DIM, width: 0.5, dash: [2.4, 2], layer: -2 });
 	ring(a, [0.95, 0], 1 + 2 * e, 1 - e, 0, (x, y) => [2 * x, -y]);
-	a.label('\\text{(a)}', [4, 2], { anchor: 'lt' });
+	a.labels.push(letter('a', 0));
 	a.label('M', v3(-1.6, -0.68, 0), { anchor: 'ct', size: 9.5 });
 
 	const panels = [a];
 	// each ring centred in its half of the column
-	for (const [k, angle, name] of [[0, 0, '\\text{(b)}\\ \\ h_+'], [1, Math.PI / 4, '\\text{(c)}\\ \\ h_\\times']]) {
+	for (const [k, angle, name] of [[0, 0, ['b', 'h_+']], [1, Math.PI / 4, ['c', 'h_\\times']]]) {
 		const P = new Panel({ x: HALF * k, y: ROW, w: HALF, h: LOW, scale: SCALE });
 		P.curve(ellipsePoints(0, 0, -0.2, 1, 1), { color: DIM, width: 0.5, dash: [2.4, 2], layer: -2 });
 		ring(P, [0, 0], 1 - s, 1 + s, angle, null, true);
 		ring(P, [0, 0], 1 + s, 1 - s, angle, (x, y) => [x, -y]);
-		P.label(name, [4, 0], { anchor: 'lt' });
+		P.labels.push(letter(name[0], P.x, P.y, name[1]));
 		P.label('\\odot', [HALF - 6, 1], { anchor: 'rt', size: 9 });
 		panels.push(P);
 	}
