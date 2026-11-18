@@ -1,0 +1,26 @@
+{
+ "size": "1536x1024",
+ "figure": "A wide scientific figure for a physics paper, about what the gravitational field outside a body can tell of its inside. The subject: three round bodies of exactly the same size and the same weight, each cut open like an anatomical model to show its inside: (1) a solid uniform ball, (2) a hollow shell with all its matter in a thin skin, (3) a ball with a small dense core inside light rock. From outside their pull is identical, so one look cannot tell them apart. A sudden tidal push (a stretch along one axis and a squeeze across it, shown by a few arrows: stretch in burnt orange, squeeze in deep blue) kicks every part of each body in proportion to its distance from the centre, so the shell gains the most energy, the uniform ball three fifths as much, the dense-core ball least; weighed afterwards they differ. The only text allowed is a few very short labels such as 'one look', 'a push', 'weighed'. No equations. No decorative background.",
+ "variants": [
+  {
+   "name": "three cutaways, two rows",
+   "style": "Composition: three columns, one body in each, in two rows. Top row, 'one look': the three cutaway bodies, each surrounded by the same faint, evenly spaced radial field lines, identical in all three. Bottom row, 'a push, then weighed': the same three bodies with short velocity arrows inside them growing with distance from the centre, and beneath each a small plain bar whose height is the energy gained: tallest for the shell, three fifths of that for the ball, shortest for the dense core. Look: a clean 3D-modelled technical illustration, softly shaded solids in warm sand and stone tones with thin single dark outlines, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes or dividing lines, generous whitespace, precise geometry."
+  },
+  {
+   "name": "the balance",
+   "style": "Composition: a story in two scenes side by side. Left scene, 'one look': a fine laboratory beam balance, perfectly level, with the cutaway solid ball on one pan and the cutaway hollow shell on the other. Right scene, 'a push, then weighed': the same balance after a tidal push has passed over both (stretch and squeeze arrows around each body); the pan with the shell now hangs very slightly lower. The dense-core ball waits on the bench. Look: restrained, physically rendered 3D scientific visualization, brushed brass and pale stone, soft studio lighting with gentle contact shadows on a seamless white background, accents in burnt orange and deep blue only, museum-exhibit quality, uncluttered."
+  },
+  {
+   "name": "a scan by waves",
+   "style": "Composition: one cutaway body with a dense core at the centre of the figure. A flat wavefront, drawn as a thin translucent sheet with a gentle ripple across it, has just passed through the body from left to right; behind it every part of the body carries a short arrow pointing across the direction of travel (orange where pushed apart, blue where pushed together). To the right, on a plain upright screen, the body's projection along the wave's path appears as a smooth grey-scale profile, darker where more matter lay along the path, like a medical scan. Two more faint wavefronts approach from other directions, to suggest scanning from all sides. Look: clean 3D-modelled technical illustration with thin single dark outlines, softly shaded solids in warm sand tones, burnt orange (#b0560a) and deep blue (#2a67ad) accents only, pure white background, calm and exact."
+  },
+  {
+   "name": "a stone beside a black hole",
+   "style": "Composition: two subjects side by side. Left: a stone the size of a boulder, cut open to show rich layered structure inside. Right: a black hole of the same outline size, a perfectly black disc with a thin bright ring. Under each, 'what the outside knows' is drawn as a row of small beads, each bead one number: under the stone a long ribbon of hundreds of small beads trailing off the edge of the picture, under the black hole exactly seven beads. A tidal push (stretch arrows in orange, squeeze in blue) passes over both; the stone visibly quivers (a faint doubled outline), the black hole does not change. Look: restrained physically rendered 3D scientific visualization, soft studio lighting, seamless white background, accents in burnt orange and deep blue only, minimal labels, high-end museum-exhibit quality."
+  },
+  {
+   "name": "monograph plate",
+   "style": "Composition: as a single plate from a classic physics monograph. The three cutaway bodies in a row along the top with identical field lines around them; a single horizontal arrow labelled 'a push' leads to the same three along the bottom with their inner velocity arrows and the energy gained written as three plain bars. Look: fine black ink line drawing with delicate hatching for shading on white paper, in the manner of the figures in Misner, Thorne and Wheeler's Gravitation, a single burnt orange accent and a single deep blue accent used sparingly for the stretch and the squeeze, crisp and exact, no clutter."
+  }
+ ]
+}

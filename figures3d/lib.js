@@ -215,7 +215,7 @@ export function ellipsePoints(cx, cy, z, a, b, angle = 0, n = 240) {
 
 export const v3 = (x, y, z = 0) => new THREE.Vector3(x, y, z);
 
-/** A TeX label as vector paths at `at` (figure points); anchor: horizontal l/c/r, vertical t/c/b. */
+/** A TeX label as vector paths at `at` (figure points); anchor: horizontal l/c/r, vertical t/c/b, or B for the baseline. */
 export async function tex(src, at, size = 8.5, anchor = 'cc', color = INK) {
 	const node = await window.MathJax.tex2svgPromise(src, { display: false });
 	const svg = node.querySelector('svg');
@@ -223,8 +223,9 @@ export async function tex(src, at, size = 8.5, anchor = 'cc', color = INK) {
 	const s = size / 1000;
 	const W = vb[2] * s, H = vb[3] * s;
 	const ax = { l: 0, c: 0.5, r: 1 }[anchor[0]];
-	const ay = { t: 0, c: 0.5, b: 1 }[anchor[1]];
-	const x = at[0] - ax * W, y = at[1] - ay * H;
+	const x = at[0] - ax * W;
+	// MathJax puts the baseline at y = 0 of its viewBox, whose top is at -height
+	const y = anchor[1] === 'B' ? at[1] + vb[1] * s : at[1] - { t: 0, c: 0.5, b: 1 }[anchor[1]] * H;
 	const inner = svg.innerHTML.replace(/currentColor/g, color);
 	return `<g transform="translate(${x.toFixed(2)},${y.toFixed(2)}) scale(${s}) translate(${-vb[0]},${-vb[1]})" fill="${color}" stroke="${color}" stroke-width="0">${inner}</g>`;
 }

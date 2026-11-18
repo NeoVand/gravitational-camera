@@ -81,8 +81,8 @@ export default async function () {
 	const d = await (await fetch('/reference/results/figures/stars.json')).json();
 	const panels = [];
 	const rows = [
-		{ key: 'gravity', color: ACCENT, label: '\\text{gravity}', note: '\\text{four stars}' },
-		{ key: 'light', color: ACCENT2, label: '\\text{light}', note: '\\text{two stars}' }
+		{ key: 'gravity', color: ACCENT, label: '\\text{gravity}', note: '\\text{four directions}' },
+		{ key: 'light', color: ACCENT2, label: '\\text{light}', note: '\\text{two directions}' }
 	];
 	const heads = ['\\text{one wave}', '\\text{one source at rest}', '\\text{one source at } 0.9\\,c', '\\text{two sources at rest}'];
 	const types = ['\\text{type N}', '\\text{type D}', '\\text{type D}', '\\text{type I}'];

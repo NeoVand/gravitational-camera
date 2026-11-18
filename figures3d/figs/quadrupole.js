@@ -7,10 +7,38 @@
 import { Panel, v3, figure, inset, INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
 
 const FILL = '#f3d6b6', STEEL = '#868b92';
+// Across the full width: the drawing of (a), from the formula's left edge to the 90-degree label's right, and the
+// chart of (b), CHART_W points wide at its true size (charts.py, quadrupole_chart: its y label's left edge at its left
+// edge, its plot box ending 1 pt short of its right edge, the curve's end 0.3 pt short), each centred in its share:
+// equal margins outside and a gutter of twice that between. The panel letters stand over the left edges of the two,
+// on one baseline, LINE.
+const W = 504, H = 180, SCALE = 56, CHART_W = 250, LINE = 9.5;
+const FORMULA = '\\displaystyle \\frac{\\mathrm{d}P}{\\mathrm{d}\\Omega} \\propto \\frac{1 + 6\\cos^{2}\\iota + \\cos^{4}\\iota}{8}';
+const FORMULA_SIZE = 8.5, FORMULA_GAP = 0.5, DEGREE_SIZE = 6.5, RING = 1.33, SIZE = 0.15;
+
+/** The width in points of a TeX label set at `size`, as tex() in lib.js sets it. */
+async function texWidth(src, size) {
+	const svg = (await window.MathJax.tex2svgPromise(src, { display: false })).querySelector('svg');
+	return (svg.getAttribute('viewBox').split(/\s+/).map(Number)[2] * size) / 1000;
+}
 
 export default async function () {
-	const H = 180;
-	const A = new Panel({ x: 0, y: 0, w: 236, h: H, cx: -0.12, cy: 0.0, scale: 56 });
+	// how far the drawing reaches left and right of the spin axis, in points
+	const ellipses = [];
+	let right = 0;
+	for (let deg = 0; deg <= 180; deg += 30) {
+		const t = (deg * Math.PI) / 180, c = Math.cos(t);
+		const ap = (1 + c * c) / 2, ax = Math.abs(c);
+		const at = v3(RING * Math.sin(t), RING * Math.cos(t), 0);
+		const tag = v3(at.x + Math.max(SIZE * ap, 0.02) + 0.05, at.y, 0);
+		right = Math.max(right, tag.x * SCALE + (await texWidth(`${deg}^\\circ`, DEGREE_SIZE)));
+		ellipses.push({ deg, c, ap, ax, at, tag });
+	}
+	const left = FORMULA_GAP * SCALE + (await texWidth(FORMULA, FORMULA_SIZE));
+	const margin = (W - left - right - CHART_W + 0.3) / 4;
+	const axis = margin + left;
+
+	const A = new Panel({ x: 0, y: 0, w: 2 * axis, h: H, scale: SCALE });
 	const p = (t) => (1 + 6 * Math.cos(t) ** 2 + Math.cos(t) ** 4) / 8;
 	const curve = [];
 	for (let k = 0; k <= 360; k++) {
@@ -46,13 +74,9 @@ export default async function () {
 	// the polarization ellipse seen from each direction: semi-axes in proportion to (1 + cos^2 i)/2 and |cos i|,
 	// filled orange where the wave turns anticlockwise as seen there, blue where clockwise, as strongly as
 	// its circular share |V/I| = 2 a+ ax / (a+^2 + ax^2); the linear wave in the plane of the orbit in ink
-	const size = 0.15;
-	for (let deg = 0; deg <= 180; deg += 30) {
-		const t = (deg * Math.PI) / 180, c = Math.cos(t);
-		const ap = (1 + c * c) / 2, ax = Math.abs(c);
-		const a = size * ap, b = size * ax;
+	for (const { deg, c, ap, ax, at, tag } of ellipses) {
+		const a = SIZE * ap, b = SIZE * ax;
 		const vi = (2 * ap * ax) / (ap * ap + ax * ax);
-		const at = v3(1.33 * Math.sin(t), 1.33 * Math.cos(t), 0);
 		if (b > 1e-6) {
 			const e = [];
 			for (let k = 0; k <= 72; k++) {
@@ -65,13 +89,14 @@ export default async function () {
 		} else {
 			A.curve([v3(at.x - a, at.y, 0), v3(at.x + a, at.y, 0)], { width: 0.8, layer: 3 });
 		}
-		A.label(`${deg}^\\circ`, v3(at.x + Math.max(a, 0.02) + 0.05, at.y, 0), { size: 6.5, anchor: 'lc', color: DIM });
+		A.label(`${deg}^\\circ`, tag, { size: DEGREE_SIZE, anchor: 'lc', color: DIM });
 	}
-	// the formula, left of the pattern and level with its centre
-	A.label('\\frac{\\mathrm{d}P}{\\mathrm{d}\\Omega} \\propto \\frac{1 + 6\\cos^{2}\\iota + \\cos^{4}\\iota}{8}', [A.at(v3(-0.46, 0, 0))[0] - A.x, A.at(v3(0, 0, 0))[1] - A.y], { anchor: 'rc', size: 7.5 });
-	A.label('\\text{(a)}', [4, 5], { anchor: 'lt' });
-	const chart = await inset('/paper/figures/staging/quadrupole-chart.svg', 238, 0, 266);
-	const B = new Panel({ x: 238, y: 0, w: 10, h: 10 });
-	B.label('\\text{(b)}', [262, 5], { anchor: 'rt' });
-	return figure(504, Math.max(H, chart.h), [A, B], [Promise.resolve(chart.svg)]);
+	// the formula, left of the pattern and level with the pair at its centre
+	A.label(FORMULA, [A.at(v3(-FORMULA_GAP, 0, 0))[0], A.at(v3(0, 0, 0))[1]], { anchor: 'rc', size: FORMULA_SIZE });
+	A.label('\\text{(a)}', [margin, LINE], { anchor: 'lB' });
+	const x = W - margin - CHART_W + 0.3;
+	const chart = await inset('/paper/figures/staging/quadrupole-chart.svg', x, 0, CHART_W);
+	const B = new Panel({ x, y: 0, w: 10, h: 10 });
+	B.label('\\text{(b)}', [0, LINE], { anchor: 'lB' });
+	return figure(W, Math.max(H, chart.h), [A, B], [Promise.resolve(chart.svg)]);
 }

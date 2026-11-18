@@ -31,7 +31,13 @@ export default async function () {
 	const P = new Panel({ x: 0, y: 0, w: 252, h: H, cx: 0.34, cy: -0.07, scale: 76, tilt: 14, turn: -26 });
 	// three quarters of the globe: the quarter in front of the reader (x > 0, z > 0) is cut away
 	const earth = await globeMap('/figures3d/textures/earth.jpg');
-	P.rasterSphere(v3(0, 0, 0), 1, (q) => earth(q, 3.05), {
+	// the camera stands at latitude 40 north (the top of the figure), so the globe's axis leans 50 degrees from the
+	// figure's vertical, in the plane of the lines of sight (z = 0), toward the side on which the Sun lies: at local
+	// midnight at an equinox the Sun is below the northern horizon, at right angles to the axis. The map is sampled
+	// in that turned frame, with the camera's place at longitude 4 west (central Spain).
+	const lean = (50 * Math.PI) / 180;
+	const geographic = (q) => v3(q.x * Math.cos(lean) - q.y * Math.sin(lean), q.x * Math.sin(lean) + q.y * Math.cos(lean), q.z);
+	P.rasterSphere(v3(0, 0, 0), 1, (q) => earth(geographic(q), -Math.PI - 0.065), {
 		keep: (q) => !(q.x > 0 && q.z > 0), o: { spec: 0.1, shininess: 14, wrap: 0.45, ambient: 0.55, key: 0.6 }, density: 4, layer: -1
 	});
 	{

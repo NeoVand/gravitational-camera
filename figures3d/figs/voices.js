@@ -50,9 +50,9 @@ export default async function () {
 	};
 	const skies = [
 		{ q: gravity, found: d.found, count: 4, colour: ramp(['#3d1b03', '#b0560a', '#e8b98b', '#f9f1e7']), mark: ACCENT,
-			title: '\\text{gravity: four voices}', formula: '|\\mathbf m^{T}\\!A\\,\\mathbf m|' },
+			title: '\\text{gravity: four waves}', formula: '|\\mathbf m^{T}\\!A\\,\\mathbf m|' },
 		{ q: light, found: d.found_light, count: 2, colour: ramp(['#0c2747', '#2a67ad', '#a3c2e4', '#eff4fa']), mark: ACCENT2,
-			title: '\\text{light: two voices}', formula: '|\\mathbf m\\cdot\\mathbf a|' }
+			title: '\\text{light: two waves}', formula: '|\\mathbf m\\cdot\\mathbf a|' }
 	];
 	const panels = [];
 	skies.forEach((s, j) => {

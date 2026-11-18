@@ -1,4 +1,4 @@
-\section{Vistas}\label{sec:vistas}
+\section{Astrophysical and cosmological scenes}\label{sec:vistas}
 
 \begin{quote}
 \textbf{In plain words.} The same rules, applied to the sky. Close to a pair of
@@ -12,13 +12,10 @@ only shadows are black holes.
 \end{quote}
 
 The scenes so far are rooms and planets. This section follows the same
-equations to the scales where they are most striking. We chose problems that
-have exact or closed-form solutions, so that every picture below is computed
-from physics, not drawn; each is checked by tests in the reference
-implementation. The website lets the reader look around three of these skies
-live.
+equations to astrophysical scales, in problems that
+have exact or closed-form solutions.
 
-\paragraph{A pair of black holes, from the inside out.} Outside any compact
+\paragraph{A pair of black holes, from the near zone to the wave zone.} Outside any compact
 source, linearized gravity has an exact solution organised by multipoles
 \cite{Thorne1980}. Kept to the order of the mass quadrupole $I_{ij}$, with
 $u = t - r/c$ and $\hat n$ the direction from the source, the trace-reversed
@@ -34,7 +31,7 @@ perturbation in harmonic gauge is
 with $M$ the mass, $\mathbf J$ the angular momentum and $I_{ij} = \int\rho\,
 x_ix_j\,\dd^3x$ the second moment of the mass. For a circular orbit its trace
 is constant, and then it changes only the gauge outside the source, not the
-curvature, as the reference implementation confirms; for a source whose trace
+curvature; for a source whose trace
 varies, $I_{ij}$ should be its trace-free part. It satisfies the gauge condition exactly,
 and its curvature gives the tidal field in every zone at once
 \cite{Teukolsky1982}: exactly, within linearized gravity and this truncation
@@ -56,28 +53,27 @@ signal-to-noise ratio and width meet the blur law there; well outside it,
 Eq.~\eqref{eq:unresolved} holds and the pair is a point whose polarization
 tells the axis and sense of its orbit. Being within about a sixth of a
 wavelength is needed to see two black holes as two, but it is not enough by
-itself. The reference
-implementation computes the field of Eq.~\eqref{eq:multipole} by finite
-differences of the curvature and checks that it becomes Newton's field of the
+itself. The field of Eq.~\eqref{eq:multipole} becomes Newton's field of the
 two masses near them, with an error falling as $(d/r)^2$, and the quadrupole
-wave far away, with an error falling as $\lambda/r$, and that it is the
+wave far away, with an error falling as $\lambda/r$; it is the
 curvature of vacuum, with $|\tB| = |\tE|$ in the waves.
 
-One pixel on the axis of the orbit watches the crossover in its four stars.
+One pixel on the axis of the orbit follows the crossover in its four
+principal null directions.
 There the reading is the pair's static tide plus the wave,
 $\mathcal W = (GM/r^3)\,\mathrm{diag}(1,1,-2) + w\,\mathbf m_0\mathbf m_0^T$ with
 $\mathbf m_0 = (1, i, 0)$, and Eq.~\eqref{eq:stars} factors:
-$\mathbf m^T\mathcal W\mathbf m = 4z^2(wz^2 - 3GM/r^3)$. Two stars sit on the
+$\mathbf m^T\mathcal W\mathbf m = 4z^2(wz^2 - 3GM/r^3)$. Two of them lie on the
 direction of the wave from the start; the other two, at
 $z = \pm(3GM/r^3w)^{1/2}$, turn about the line of sight in step with the orbit
 and move out to join them as the wave outgrows the pull, so the type goes from
-D through I to N. They cross the sky's equator where $|w| = 3GM/r^3$, the
+D through II to N. They cross the sky's equator where $|w| = 3GM/r^3$, the
 wave's stretch one and a half times the static stretch along the line of sight,
 which is not at $\lambda/2\pi$: the static tide of the whole
 mass exceeds the changing quadrupole there by $(c/v)^2$, and the wave overtakes
 it only near $(\lambda/2\pi)(c/v)$, ten times farther for the pair of
-Fig.~\ref{fig:binary-field}. The magnetic part has no static tide, and its
-crossover, from the spin dipole $GJ/cr^4$ to the wave, falls at
+Fig.~\ref{fig:binary-field}. The magnetic part has no tide of the mass, only
+that of the spin, $GJ/cr^4$, and its crossover from the one to the wave falls at
 $\lambda/2\pi$ whatever the speed.
 
 \begin{figure*}
@@ -91,15 +87,16 @@ for squeeze, scaled at each place by the local strength. (a) Near the pair,
 whose separation is $d$, the pattern turns rigidly with it; beyond the dashed
 circle, $r = \lambda/2\pi$, it begins to wind. (b) Farther out it is the spiral
 of the waves. (c) The strength along a line in the plane, times $r$: Newton's
-$r^{-5}$ inside $\lambda/2\pi$, the waves' $r^{-1}$ outside. The field is an
+$r^{-5}$ near the pair and the waves' $r^{-1}$ far from it, the two laws
+crossing at $0.3\,\lambda$, twice the radius of the dashed circle. The field is an
 exact solution of linearized gravity truncated at the mass quadrupole, which
 this close to a merger is a guide to the full solution, not a substitute for
 it.}\label{fig:binary-field}
 \end{figure*}
 
-\paragraph{What a burst leaves behind.} Radiation that escapes to infinity
+\paragraph{Memory.} Radiation that escapes to infinity
 carries away mass, and a camera it passes is left permanently deformed: the
-memory \cite{Christodoulou1991,Thorne1992}. For energy radiated with angular
+memory \cite{ZeldovichPolnarev1974,Christodoulou1991,Thorne1992}. For energy radiated with angular
 distribution $\dd E/\dd\Omega'$, at nearly the speed of light, the change in
 strain seen from direction $\hat N$ at distance $r$ is
 \cite{Epstein1978,Thorne1992}
@@ -112,8 +109,7 @@ $(1+\cos^2\iota)^2/4 + \cos^2\iota$, it gives
 \begin{equation}\label{eq:merger-memory}
 \Delta h_+ = \frac{G\,\Delta E}{24\,c^4 r}\,\sin^2\iota\,\bigl(17 + \cos^2\iota\bigr),
 \end{equation}
-the shape found by Wiseman and Will \cite{WisemanWill1991,Favata2009}, which
-we reproduce by integrating Eq.~\eqref{eq:memory} numerically. It is largest
+the shape found by Wiseman and Will \cite{WisemanWill1991,Favata2009}. It is largest
 seen edge-on, where the oscillating wave is weakest (Fig.~\ref{fig:memory}).
 A camera that records the field, not the strain, sees the memory as a burst of
 $\tE$ whose second time integral does not return to zero. The memory has a partner
@@ -178,8 +174,8 @@ every direction; so their brightness on the sky is the column integral of
 Eq.~\eqref{eq:column} over a model of the stellar mass, here two exponential discs and a central bulge with masses and
 sizes from Bland-Hawthorn and Gerhard \cite{BlandHawthornGerhard2016}. Light
 from the same stars passes through a thin disc of dust, which in this model
-dims the light of the Galactic centre by about forty magnitudes, comparable
-with what is observed. Figure~\ref{fig:milky-way}
+dims the light of the Galactic centre by about thirty magnitudes, at the low
+end of the thirty to fifty inferred from the infrared \cite{Fritz2011}. Figure~\ref{fig:milky-way}
 shows both on one scale. In light the centre is hardly brighter than the opposite
 side of the sky; in gravitational waves it is a hundred times brighter, and
 the map is a map of where the Galaxy's stars are. Seeing it this sharply as
@@ -202,7 +198,7 @@ three millihertz. Without its dust, (a) would be identical to (b) in
 brightness.}\label{fig:milky-way}
 \end{figure}
 
-\paragraph{The first light.} Gravitons stop interacting near the Planck
+\paragraph{A primordial graviton background.} Gravitons stop interacting near the Planck
 temperature. If the early universe was ever that hot, they were then in
 equilibrium and have kept a black-body spectrum ever since. Every species that
 later annihilated heated the photons but not them, so by conservation of
@@ -222,15 +218,17 @@ $10^{-8}$ for the background found by pulsar timing at nanohertz frequencies
 \cite{NANOGrav2023}. At high frequencies it outshines everything else in this
 paper. A black body of two polarizations sends
 $N = 4\zeta(3)(k_BT/h)^3/c^2$ quanta per second per square metre per
-steradian: $3.6\times10^{14}$ at $0.905\,\mathrm{K}$, against $6\times10^{-5}$
+steradian: $3.6\times10^{14}$ at $0.905\,\mathrm{K}$, against at most $1.2\times10^{-5}$
 for the Earth's interior and $4\times10^{5}$ for the Sun's core
 (Section~\ref{sec:first-image}). It is also the easiest to image. Its
 gravitons are about a centimetre long, so an aperture of a metre resolves a
-degree. Four properties follow from what is already known.
+degree. The following properties follow from what is already known.
 \begin{itemize}
-\item \emph{It moves with us.} Our motion through it at $370\,\mathrm{km/s}$
-\cite{Planck2018I} makes one side of the sky hotter by $v/c = 1.2\times10^{-3}$
-of its temperature, exactly as for the microwave background.
+\item \emph{It has a dipole from our motion.} We move at $370\,\mathrm{km/s}$
+relative to the frame in which the microwave background is isotropic
+\cite{Planck2018I}. If the graviton background is isotropic in the same frame,
+our motion makes it hotter by $v/c = 1.2\times10^{-3}$ of its temperature in
+the direction in which we move, exactly as for the microwave background.
 \item \emph{On large scales it shares the microwave background's spots.} On scales larger
 than the horizon at the time the microwave background was released, the
 Boltzmann equation of any massless species reduces to
@@ -240,7 +238,8 @@ that time with the same temperature perturbation, and from then on travel
 together through the same potentials. To this approximation the graviton sky
 shares the large spots of the microwave sky, from a surface only $2\%$
 farther away; how closely, scale by scale, is a question for a
-cross-correlation of the two. It differs below a degree or so, where it has no
+cross-correlation of the two. The same redshift was found for the gravitons
+that inflation makes \cite{AlbaMaldacena2016}. It differs below a degree or so, where it has no
 acoustic peaks, its gravitons never having moved with the plasma, and it is
 not smoothed by the diffusion that blurs the microwave sky below a few
 arcminutes, since its gravitons never scattered \cite{Bartolo2019}.
@@ -268,10 +267,10 @@ A black hole is dark against this background only because it is colder. Its
 Hawking temperature, $\hbar c^3/8\pi GMk_B$, equals $0.905\,\mathrm{K}$ for a
 mass of $1.36\times10^{23}\,\mathrm{kg}$, nearly two masses of the Moon. A
 heavier hole casts a shadow; a lighter one glows against the sky; and one of
-just this mass, in equilibrium with the background, returns in every mode
-exactly what it receives, and against a uniform sky at that temperature it
-cannot be seen in gravitons at all (it still lenses the sky's spots and
-anything behind it). Spin changes this too. A
+just this mass, in balance with the graviton background (though not with the
+warmer microwave one), returns in every mode exactly what it receives, and
+against a uniform sky at that temperature it cannot be seen in gravitons at all
+(it still lenses the sky's spots and anything behind it). Spin changes this too. A
 spinning hole amplifies the waves that turn with it, by up to $138\%$ for the
 most favoured mode of a hole spinning near its limit
 \cite{TeukolskyPress1974}, so at wavelengths comparable to its size it would
@@ -285,16 +284,16 @@ same proportion, so what the camera receives from it in that mode differs
 from the sky's occupation $n_{\mathrm{bg}}$ by $\Gamma_l\,(n_H - n_{\mathrm{bg}})$,
 with $n_H$ the occupation at the hole's temperature. For a spinning hole
 $n_H$ is taken at $\omega - m\Omega_H$, $\Omega_H$ the angular velocity of its
-horizon, and in the modes that turn with it faster than it, $\omega <
+horizon, and in the modes that turn with it but more slowly than it, $\omega <
 m\Omega_H$, both factors change sign: whatever the temperatures, those modes
 come out brighter than the sky. For a hole that does not spin we have computed
 $\Gamma_l$ for every mode from the Regge--Wheeler equation. The shadow is then
 less deep than the black disc of the geometric cross-section $27\pi G^2M^2/c^4$
 suggests, because the sky's gravitons are not short compared with the hole:
 against the $0.905\,\mathrm{K}$ background, a hole ten times the equilibrium
-mass is $93\%$ as dark as that disc, three times, $60\%$, and twice, $29\%$;
+mass is $93\%$ as dark as that disc, three times, $54\%$, and twice, $29\%$;
 only above about a hundred times, $10^{25}\,\mathrm{kg}$, is it black. The
-reference implementation checks the conservation of flux in every mode,
+computed $\Gamma_l$ conserve flux in every mode and reach
 Page's limit for long waves, $\Gamma_2 \to (256/225)(GM\omega/c^3)^6$
 \cite{Page1976}, and the geometric cross-section for short ones.
 
@@ -304,17 +303,23 @@ Page's limit for long waves, $\Gamma_2 \to (256/225)(GM\omega/c^3)^6$
 \caption{A black hole seen from rest $40\,GM/c^2$ away, through exact
 Schwarzschild rays, with the Galaxy's centre $9^\circ$ below the hole. (a) Light:
 the model Milky Way of Fig.~\ref{fig:milky-way}, with stars added for
-orientation, bent into a ring around the shadow and a second image above it.
+orientation.
 (b) The primordial graviton background, Eq.~\eqref{eq:graviton-temperature},
 warmed to $0.929\,\mathrm{K}$ by the depth of the potential and hotter toward
 our direction of motion; the colour shows its departure from the mean, folded
-around the shadow by the bending. Nothing else in a gravitational image casts
-a shadow.}\label{fig:black-hole}
+around the shadow by the bending. The two skies differ, but the rays that carry
+them are the same: dashed, in both panels, is the Einstein ring, $20^\circ$ in
+radius, where the sky straight behind the hole is seen. The Galaxy's bulge,
+which reaches up to that line, is drawn out around it into the bright ring of
+(a). Inside the ring each side of the sky appears on the opposite side of the
+hole: the band of the Milky Way below the hole appears again as the arc above
+it in (a), and the background's dipole turns over in (b). Nothing else in a
+gravitational image casts a shadow.}\label{fig:black-hole}
 \end{figure*}
 
-\paragraph{Falling in.} A camera at rest near a hole must hover, and is torn
-apart as it nears the horizon; a camera falling freely from far away crosses it
-without noticing. Falling straight in, it reads the same tide as one at rest
+\paragraph{A freely falling camera.} A camera at rest near a hole must hover, and the
+thrust that holds it grows without limit as it nears the horizon; a camera
+falling freely from far away crosses it without noticing. Falling straight in, it reads the same tide as one at rest
 at the same radius, $\mathcal W = (GM/r^3)\,\mathrm{diag}(1,1,-2)$, with no
 magnetic part, because a boost along the line to the hole leaves a field of
 type D unchanged, and nothing marks the horizon. Its view of the sky does
@@ -328,29 +333,35 @@ shadow, bluer there and redder behind.
 
 \paragraph{Through a room at nearly the speed of light.} Fly a pixel through a
 still room at speed $\beta c$. The reading is the room's, carried by a boost:
-its invariants do not change and the motion alarm stays silent, so the pixel
-knows the scene is still; but the magnetic part grows to match the electric,
-$|\tB|/|\tE| \to 1$, and the four stars all crowd toward the way ahead, within
-angles that shrink as $1/\gamma$ (flying along an axis of the tide, onto one
-cone of half-angle $\arccos\beta$). Every piece of furniture then looks, to one
-pixel, like a wave coming from in front, a gravitational shock of the kind
+its invariants do not change and its eigenvalues stay real, so the pixel
+can tell that the scene is still; but the magnetic part grows to match the electric,
+$|\tB|/|\tE| \to 1$, and the four principal null directions, which mark
+directions of travel, all
+crowd toward the way behind, within angles of it that shrink as $1/\gamma$
+(flying along the axis of the tide's middle eigenvalue, onto one cone of
+half-angle $\arccos\beta$ about it; a field of type D flown along its own axis
+is the exception, and does not change). Every piece of furniture then looks, to
+one pixel, like a wave coming from in front, a gravitational shock of the kind
 Aichelburg and Sexl found for a mass moving at the speed of light
 \cite{AichelburgSexl1971}, and only the unchanged invariants say otherwise.
 
 \paragraph{Counting coincidences.} Pixels that only count can still tell
 skies apart, by how their counts arrive together, as Hanbury Brown and Twiss
 measured stars. Gravitons from one mode of a coherent source, such as a cloud
-of light bosons about a spinning hole, arrive independently, $g^{(2)} = 1$;
+of light bosons about a spinning hole, arrive independently, $g^{(2)} = 1$,
+where $g^{(2)}$ is the rate of coincident counts over that of independent
+arrivals;
 from a thermal sky, such as the $0.905\,\mathrm{K}$ glow, they bunch,
 $g^{(2)} = 2$. Inflation leaves neither: it makes gravitons in pairs of
 opposite momentum, a two-mode squeezed state
 \cite{GrishchukSidorov1990}, in which each direction alone looks thermal while
 counts in opposite directions coincide with $g^{(2)} = 2 + 1/\bar n$ for
-$\bar n$ gravitons per mode, more than any two classical fields allow
-\cite{KannoSoda2019}. Two counting pixels looking in opposite directions would
-tell a sky born hot from one born in inflation.
+$\bar n$ gravitons per mode, more than any two classical fields allow. Two
+counting pixels looking in opposite directions would tell a sky born hot from
+one born in inflation; intensity interferometry of primordial gravitons has
+been proposed for the purpose \cite{KannoSoda2019}.
 
-\paragraph{A string that cannot be seen where it is.} Space around a straight
+\paragraph{A cosmic string.} Space around a straight
 cosmic string is flat: a wedge of angle $8\pi G\mu/c^2$ is missing around it,
 $\mu$ its mass per length, and outside its core every pixel reads zero
 \cite{Vilenkin1981}. A string a metre from the camera is invisible to the near
@@ -365,7 +376,7 @@ the speed of light makes a step of $1.5\times10^{-5}$ of its temperature.
 the Sun and, where geometric optics holds, are bent by the mass inside the
 cylinder of their impact parameter, $\alpha(b) = 4GM_{\mathrm{cyl}}(b)/c^2 b$.
 For Eddington's standard model of the Sun the bending peaks at $4.2''$ for
-rays passing $0.28$ of a radius from the centre, more than twice the
+rays passing $0.27$ of a radius from the centre, more than twice the
 $1.75''$ of rays that graze it (Fig.~\ref{fig:sun-lens}). Rays through the
 centre come to a focus first, $c^2/4\pi G\Sigma(0) = 34\,\mathrm{AU}$ behind
 the Sun, where $\Sigma$ is the column density; Patla and Nemiroff found
@@ -396,12 +407,12 @@ $(1 - d/f_0)^{-2}$ with $f_0 = 33.7\,\mathrm{AU}$, which it reaches only above
 about $10\,\mathrm{kHz}$. Beyond the central focus a ring of rays from inside
 the Sun converges on the axis, and the gain there grows in proportion to the
 frequency: at $50\,\mathrm{AU}$ it is $3.4$ at $10\,\mathrm{kHz}$, $44$ at
-$100\,\mathrm{kHz}$ and $480$ at $1\,\mathrm{MHz}$, from $1.1$ to $1.25$
+$100\,\mathrm{kHz}$ and $480$ at $1\,\mathrm{MHz}$, from $0.9$ to $1.2$
 times that of a point of the Sun's mass, $\pi w$, and equal to it at
 $550\,\mathrm{AU}$, where the converging rays graze the limb. At the
 frequencies of thermal gravitons, near $10^{13}\,\mathrm{Hz}$, the same
-proportion gives some $5\times10^{9}$. The reference implementation checks the
-method against the point mass's closed form, and both limits: long waves,
+proportion gives some $5\times10^{9}$. The integral reproduces the point
+mass's closed form, and both limits: long waves,
 which see only the Sun's whole mass, and short ones, which follow the rays.
 
 \begin{figure}
@@ -416,17 +427,17 @@ through the centre, $548\,\mathrm{AU}$ at the surface. The dashed line marks
 the $23.5\,\mathrm{AU}$ found for the standard solar model.}\label{fig:sun-lens}
 \end{figure}
 
-\paragraph{Three further consequences.} There is no flash photography with
-waves. To light a scene and see what it reflects, matter would have to scatter
+\paragraph{Scattering, earthquakes and tails.} A scene cannot be illuminated
+with gravitational waves. To light a scene and see what it reflects, matter would have to scatter
 gravitational waves, and the cross-section of a body of mass $m$ is of order
-$(Gm/c^2)^2$ \cite{Peters1976}, $10^{-50}\,\mathrm{m^2}$ for a person: every
+$(Gm/c^2)^2$ \cite{Peters1976}, $3\times10^{-51}\,\mathrm{m^2}$ for a person: every
 picture in this paper is made by what the scene itself emits, how it pulls, or,
 in the near field, how it yields to a pull (Section~\ref{sec:near-field}).
-And an earthquake shows in two parts of the field. Compressional waves change
+An earthquake shows in two parts of the field. Compressional waves change
 the density of the rock they cross, and with it $\tE$; that is the prompt
 signal already recorded \cite{Vallee2017}. Shear waves in a uniform medium do
 not change its density, but they move mass, and so appear in $\tB$, through
-Eq.~\eqref{eq:current-column}. And in curved space a burst does not arrive all at once.
+Eq.~\eqref{eq:current-column}. In curved space a burst does not arrive all at once.
 Huygens's principle fails: waves scatter off the curvature they cross and
 arrive followed by a tail inside the light cone \cite{DeWitt1960}, an echo whose
 size records the mass between the source and the camera; for a binary it shifts

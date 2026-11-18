@@ -1,0 +1,340 @@
+\section{The exterior field and the interior: gravitational hair}\label{sec:hair}
+
+\begin{quote}
+\textbf{In plain words.} Physicists say that a black hole has no hair: from
+outside, nothing can be learnt of what fell into it but its mass and its spin.
+The camera shows that everything is nearly bald. One look at the pull of a
+stone tells very little of what is inside it. But a stone, unlike a black hole,
+gives itself away to a second look. It trembles with its own heat and it yields
+to a push, and in the trembling and the yielding all of its inside can be read,
+slowly. It is enough to push it and then weigh it. A black hole trembles and
+yields too, and tells nothing by it but its temperature.
+\end{quote}
+
+The limits of the near field were met one at a time in
+Section~\ref{sec:near-field}: an ambiguity, a blur, a count of bits, a tie
+broken by heat. They are one subject, and its natural name is hair:
+what the field outside a body fixes of its interior. This
+section puts them together, in the form that quantum mechanics gives them, and
+compares a black hole with an ordinary body.
+
+\paragraph{The field at one time.} Outside a body, with no waves coming in from elsewhere,
+the field at one time is built from the moments
+$Q_h = \int\rho\,h\,\dd V$ of its mass against the functions $h$ that are
+harmonic in it, and from the like moments of its flow. A density that has none
+of these moments, $\nabla^2\chi/4\pi G$, has no effect on a camera
+outside (Eq.~\eqref{eq:split}). This generalizes Newton's shell theorem.
+In general relativity still less is fixed at one time. To first
+order the constraints fix to the matter its total energy, momentum and angular
+momentum and its centre of mass, and the fields of its higher moments can be
+cancelled, on that one slice, by a free field added to them
+\cite{DonnellyGiddings2017}; in the full theory the data inside any region can
+be joined to a slice of a spinning black hole's field outside a larger one
+\cite{CorvinoSchoen2006}. The statements of this paper suppose that no such field
+has been added (Section~\ref{sec:one-pixel}).
+
+\paragraph{The field at two times.} A second reading, a moment later, does not
+repeat the first, because the moments change. For matter whose forces do not depend on
+velocity, with $Q_h = \sum_a m_a h(\mathbf x_a)$ and its rate of change
+$\dot Q_g = \tfrac12\sum_a(\mathbf p_a\cdot\nabla g + \nabla g\cdot\mathbf p_a)$,
+where $\mathbf p_a$ are the momenta, the two do not commute:
+\begin{equation}\label{eq:hair-commutator}
+[\,Q_h,\,\dot Q_g\,] = i\hbar\int\rho\,\nabla h\cdot\nabla g\,\dd V ,
+\end{equation}
+and the Poisson bracket of classical mechanics has the same form. The
+right-hand side appears in three results. In thermal
+equilibrium $\langle\dot Q_h\dot Q_g\rangle$ is $k_BT$ times it,
+Eq.~\eqref{eq:thermal-moment}. It is the whole weight of the response to an
+applied tide,
+Eq.~\eqref{eq:sum-rule}. And far above every frequency at which
+the body can respond, the moment $Q_h$ follows a tide that acts on $Q_g$ as
+\begin{equation}\label{eq:dust}
+\chi_{hg}(\omega) \to -\frac{1}{\omega^2}\int\rho\,\nabla h\cdot\nabla g\,\dd V ,
+\end{equation}
+which is the response of dust: driven faster than its bonds can act, every body
+responds as a cloud of free mass, as every atom responds to an X-ray as a cloud
+of free electrons.
+
+The right-hand side is not a harmonic moment. For $h$
+and $g$ harmonic it is the moment of the density against
+$\nabla h\cdot\nabla g$, and such products are enough to build any function.
+Take $h_\pm = e^{\boldsymbol\zeta_\pm\cdot\mathbf x}$ with
+$\boldsymbol\zeta_\pm = \tfrac12(i\boldsymbol\xi \pm \boldsymbol\eta)$, where
+$\boldsymbol\eta$ is perpendicular to $\boldsymbol\xi$ and as long. Both are
+harmonic, since $\boldsymbol\zeta_\pm\cdot\boldsymbol\zeta_\pm = 0$, and
+\begin{equation}\label{eq:calderon}
+\int\rho\,\nabla h_+\cdot\nabla h_-\,\dd V
+= -\tfrac12\,|\boldsymbol\xi|^2\int\rho\,e^{i\boldsymbol\xi\cdot\mathbf x}\,\dd V :
+\end{equation}
+the data at two times are the Fourier transform of the density. This is
+Calder\'on's argument \cite{Calderon1980}, made for the problem of finding the
+conductivity inside a body from currents and voltages at its surface. The
+present problem is that one in its linearized form, with density in place of conductivity, and
+here, to first order in $G$, the linear form is exact. The null space of
+Eq.~\eqref{eq:split} is therefore a property of a reading at one time, not of
+gravity. The
+nugget, its flush and its skin (Fig.~\ref{fig:same-outside}) have the same
+exterior field at any instant, and are told apart as soon as they are warm or
+a tide is applied.
+
+\paragraph{Stability.} Each of $h_\pm$ grows to $e^{|\boldsymbol\xi|a/2}$ across
+a body of radius $a$, and the camera must build them from multipoles that reach
+it weakened by $(a/r)^\ell$ at each degree, so detail of size
+$2\pi/|\boldsymbol\xi|$ costs exponentially in sensitivity, as in
+Eq.~\eqref{eq:evanescent}. This is a known property of Calder\'on's
+problem, whose stability, for conductivities bounded beforehand, is logarithmic
+and cannot be better \cite{Alessandrini1988,Mandache2001}. Readings at two
+times remove the ambiguity and keep the blur.
+
+\paragraph{The number of bits.} Read on a sphere of radius $R_c$ about a
+body of radius $a$, the multipole of degree $\ell$ is weaker than the monopole
+by $(a/R_c)^\ell$, and there are $2\ell + 1$ of each. If the monopole is read at
+the signal-to-noise ratio $\SNR$, the argument that gave
+Eq.~\eqref{eq:capacity} gives, for the whole body at one time,
+\begin{equation}\label{eq:hair-bits}
+H \approx \frac{1}{\ln 2}\left[\frac{L^3}{3\Lambda^2} + \frac{L^2}{2\Lambda}\right],
+\qquad L = \ln\SNR, \quad \Lambda = \ln\frac{R_c}{a}
+\end{equation}
+bits, whose leading term is that of Eq.~\eqref{eq:capacity} for a camera close
+to the surface. From a distance of three of its radii, a camera with $\SNR = 10^6$ reads
+$1{,}200$ bits of a body, and at the heuristic ceiling of
+Section~\ref{sec:near-field}, $10^{70}$, it reads $1.7\times10^6$: two hundred
+kilobytes, for a person watched for the age of the universe. A black hole has
+less. All the moments of its field are fixed by its mass and its spin
+\cite{Hansen1974}, which with its place make seven numbers: at most
+$7\log_2\SNR$ bits, $140$ at $10^6$ and $1{,}600$ at $10^{70}$, whatever its
+size. A neutron star is nearly as bald, its moment of inertia, its quadrupole
+and its yielding to a tide being tied to one another, to about one per cent,
+whatever it is made of \cite{YagiYunes2013}. Having no hair is the end of a scale on which every body
+lies, and the scale is short. Between a person and a black hole there is a
+factor of nine in what gravity can tell at $\SNR = 10^6$, and of a thousand at
+that ceiling (Fig.~\ref{fig:hair}b).
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/hair.pdf}
+\caption{What the exterior field determines. (a) Three bodies of one size and one mass: a
+uniform ball, a shell whose skin is eight per cent of its radius thick, and a
+ball of light rock whose core, of $0.4$ of its radius, holds half the mass.
+The field: outside, the pull of the three is the same at any one time (grey
+arrows). A tide: an
+impulsive tide of potential proportional to $x^2 - y^2$ gives each part an
+impulse along
+$(x, -y)$ and in proportion to its distance from the centre, outward near one
+axis (orange) and inward near the other (blue), drawn on sections of the
+three. The weight: the energy each gains, Eq.~\eqref{eq:push}, is proportional to
+its $\int\rho\,r^2\,\dd V$, which is $0.60$, $0.92$ and $0.37\,Ma^2$ (bars).
+(b) The numbers that the field outside carries, a bead for each. A stone read
+at $\SNR = 10^6$ from three of its radii shows the $169$ moments of degree
+twelve and below, the $2\ell + 1$ of each degree in a row, each bead's area in
+proportion to the bits it holds, about $1{,}200$ in all
+(Eq.~\eqref{eq:hair-bits}); a black hole shows seven. The cutaway bodies and
+the stone's layers are pictures; the sections, the directions of the impulses,
+the bars and the beads are exact.}\label{fig:hair}
+\end{figure*}
+
+\paragraph{Response of a black hole to a tide.} A black hole responds to a tide as no ordinary body does.
+Its Love numbers are zero \cite{BinningtonPoisson2009,DamourNagar2009}, with
+spin as without \cite{CharalambousDubovskyIvanov2021}: a steady tide raises no
+moment on a hole that does not turn, and on one that turns it raises one by
+friction only, no tide being steady to a turning horizon. The response is
+that of the horizon, and it is purely dissipative. In
+a tide that changes slowly a hole of mass $M$ and Schwarzschild radius $r_s$,
+not turning, absorbs energy at the rate \cite{Poisson2004}
+\begin{equation}\label{eq:horizon-friction}
+\begin{gathered}
+\frac{\dd E}{\dd t} = \nu\,\bigl(\dot{\tE}_{ij}\dot{\tE}_{ij}
++ \dot{\tB}_{ij}\dot{\tB}_{ij}\bigr),\\
+\nu = \frac{16}{45}\,\frac{G^5M^6}{c^{13}} = \frac{M r_s^5}{90\,c^3} ,
+\end{gathered}
+\end{equation}
+so that its response has a dissipative part and no elastic part: a quadrupole $Q_{ij}$ with the
+energy $Q_{ij}\tE_{ij}$ in a tide (half of Newton's
+$\int\rho\,(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$) and
+$\mathrm{Im}\,\chi = \nu\omega$ \cite{GoldbergerRothstein2006}. This is the
+absorption of long gravitons, seen in the near field: through that coupling, the
+limit of Section~\ref{sec:vistas} for the absorption of a quadrupole wave is
+$(16/5)\,G\nu\,\omega^6/c^5$ \cite{GoldbergerRothstein2020}.
+
+\paragraph{Fluctuations of a black hole's quadrupole.} For a hole formed by
+collapse and left alone, that quadrupole also fluctuates, at frequencies far below
+$c/r_s$, with a flat spectrum \cite{GoldbergerRothstein2020}:
+\begin{equation}\label{eq:hole-noise}
+\begin{gathered}
+\langle Q_{ij}(t)\,Q_{kl}(0)\rangle
+= \Pi_{ijkl}\int S_Q\,e^{-i\omega t}\,\frac{\dd\omega}{2\pi},\\
+S_Q = \frac{\hbar\,r_s^5}{360\pi G} ,
+\end{gathered}
+\end{equation}
+with $\Pi_{ijkl} = \tfrac12(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})
+- \tfrac13\delta_{ij}\delta_{kl}$. The spectrum was found by matching to Hawking's radiation, for which at
+these frequencies the chance of emitting a quantum and the chance of absorbing
+one are both the classical absorption times $k_BT/\hbar\omega$. Inserting
+Eqs.~\eqref{eq:horizon-friction} and~\eqref{eq:hole-noise} into the thermometer
+of Eq.~\eqref{eq:thermometer} gives
+\begin{equation}\label{eq:hole-thermometer}
+T = \frac{S_Q}{2k_B\,\nu} = \frac{\hbar c^3}{8\pi G M k_B} ,
+\end{equation}
+the Hawking temperature. The result is not independent, the noise
+having been fixed by matching to radiation at that temperature; what it confirms
+is that the friction, found from the growth of the horizon, and the absorption,
+found from the scattering of waves, are the same number. A hole's near field
+therefore obeys the rule of every warm body, noise equal to
+friction at its own temperature, so that a camera beside it reads that
+temperature from the field that does not radiate, without absorbing any quantum of
+the radiation. The signal is far beyond reach, like most in this
+paper: for the hole as warm as the sky it is
+$4\times10^{-32}\,\mathrm{s^{-2}}$ in a second, a metre away, where the hole's
+steady tide is $2\times10^{13}\,\mathrm{s^{-2}}$. The tremor carries nothing
+else. A stone's tremor carries $\int\rho\,\nabla h\cdot\nabla g\,\dd V$ for
+every pair of harmonic functions, and so the whole of its interior; a hole's
+carries $M$ again (Table~\ref{tab:hair}).
+
+\begin{table}
+\centering
+\begin{tabular}{p{0.24\linewidth}p{0.36\linewidth}p{0.28\linewidth}}
+ & A stone, a planet, a star & A black hole \\ \hline
+The field at one time & the harmonic moments of its mass and its flow & mass, place and spin: seven numbers \\
+Bits, at $\SNR$ & $[L^3/3\Lambda^2 + L^2/2\Lambda]/\ln 2$ & $7\log_2\SNR$ \\
+A steady tide & its Love numbers & nothing, if it does not turn \\
+A changing tide & when fast, $-\omega^{-2}\int\rho\,\nabla h\cdot\nabla g\,\dd V$: the density & when slow, friction, $\nu$ \\
+Its tremor & $k_BT\int\rho\,\nabla h\cdot\nabla g\,\dd V$: the density, at a known temperature & $2k_BT\nu$: the temperature \\
+Its weight, after an impulsive tide & $\tfrac12\epsilon^2\int\rho\,|\nabla g|^2\,\dd V$ more: the density & $\nu\int\dot{\tE}_{ij}\dot{\tE}_{ij}\,\dd t$ more: its mass \\
+\end{tabular}
+\caption{What the field outside a body determines of its interior, for ordinary matter
+and for a black hole. $L = \ln\SNR$ and $\Lambda = \ln(R_c/a)$ are those of
+Eq.~\eqref{eq:hair-bits}; $h$ and $g$ are harmonic functions; $\nu$ is the
+horizon's friction, Eq.~\eqref{eq:horizon-friction}; the last line is
+Eq.~\eqref{eq:push}.}\label{tab:hair}
+\end{table}
+
+\paragraph{What gravity cannot decohere.} The null space has a meaning in
+quantum mechanics. Put a body into a superposition of two arrangements of its
+mass that have the same field outside: a ball and a shell, the nugget and its
+skin, or two stages of any motion that keeps a body round. At any one time the
+field outside is the same in both branches. It holds no record of which, and
+nothing outside that touches the body through its field alone can learn which
+from a reading at one time; if the superposition is made by a motion that leaves the field
+outside unchanged throughout, as a round motion does, no graviton is emitted in
+making it. To the outside the branches differ only in readings at two times, in their
+tremor and in their response to a tide, Eq.~\eqref{eq:dust}. Yet they differ at
+once in the measure by which Di\'osi
+and Penrose proposed that gravity itself ends superpositions
+\cite{Diosi1987,Penrose1996}, the gravitational self-energy of the difference
+of the two densities:
+\begin{equation}\label{eq:dp-energy}
+E_G = \frac{1}{8\pi G}\int|\mathbf g_1 - \mathbf g_2|^2\,\dd V = \frac{GM^2}{10R}
+\end{equation}
+for a ball and a shell of mass $M$ and radius $R$, whose fields
+$\mathbf g_{1,2}$ differ only inside (the numerical factor in front of $E_G$ is
+a matter of convention). For the mass and size of a glass bead a micron in
+radius, $\hbar/E_G$ is a fifth of a second; a real bead cannot move its mass to
+its surface, and if it only breathes, by a part $\delta/R$ of its radius,
+$E_G = \tfrac{9}{10}(\delta/R)^2GM^2/R$ and the time is longer by
+$R^2/9\delta^2$. Such a pair would separate the two ideas cleanly: the ordinary
+way in which gravity ends a superposition, by carrying away a record of it
+\cite{Belenchia2018,DanielsonSatishchandranWald2022}, is closed, and a collapse
+of Di\'osi's and Penrose's kind is not (in its simplest form, with no free
+length, it has since been excluded by experiment \cite{DonadiEtAl2021}). A spherical
+disturbance with no change of mass has been noted, for dark matter, to be the
+kind most robust against decoherence by gravity \cite{AllaliHertzberg2020}.
+
+\paragraph{An impulsive tide and a weighing.} The second reading can be of a single
+number. Let a tide act on the body impulsively: masses outside make, for
+an instant, the potential $-\epsilon\,g(\mathbf x)\,\delta(t)$, with $g$
+harmonic in the body, and each part of it, of mass $m$, receives the impulse
+$\epsilon m\nabla g$ where it stands. For matter whose forces do not depend on velocity the energy
+gained is
+\begin{equation}\label{eq:push}
+\Delta E = \epsilon\,\dot Q_g + \frac{\epsilon^2}{2}\int\rho\,|\nabla g|^2\,\dd V ,
+\end{equation}
+exactly, with no further terms; it is the sum rule of Eq.~\eqref{eq:sum-rule}
+in time instead of frequency, and it holds of the operators of quantum
+mechanics, where the impulse is $e^{i\epsilon Q_g/\hbar}$. Energy has weight:
+the mass that the monopole of the body's field reports rises by $\Delta E/c^2$, and
+an isolated body keeps the gain until it is read. Impulses of both signs
+and two weighings therefore give $\int\rho\,|\nabla g|^2\,\dd V$ and,
+separately, $\dot Q_g$. The first, with the impulses taken in pairs, is the left-hand
+side of Eq.~\eqref{eq:calderon}: sixteen weighings for each Fourier component of the
+density. The second then gives the motion. For a body of $N$ parts the
+gradients of harmonic functions at their $N$ places can be chosen at will, so
+that enough impulses give every momentum (Appendix~\ref{app:proofs}). A ball and
+a shell of the same weight and the same exterior field gain energy from the
+same impulsive tide of the lowest degree in the ratio three to five
+(Fig.~\ref{fig:hair}a, where the shell has some
+thickness). Only the weight has been read, the one
+number that Gauss's law carries to any distance.
+
+The pair $h_\pm$ of Eq.~\eqref{eq:calderon} varies in two directions only. Each
+is the profile of a wave with flat fronts that travels along the third, and in
+general relativity such a wave, arriving all at once with any profile that is
+harmonic across its front, is an exact solution; the field of a particle
+without mass is one \cite{AichelburgSexl1971}. What a pair of them reads is the
+Fourier transform, at $\boldsymbol\xi$, of the density summed along the wave's
+path: a projection, as in X-ray tomography, and the body is reconstructed from its
+projections in the same way.
+
+The measurement is far beyond reach. An impulse that changes velocities by
+$\Delta v$ raises the weight by about $\tfrac12(\Delta v/c)^2$ of itself, five
+parts in $10^{41}$ for $\Delta v = 3\times10^{-12}\,\mathrm{m\,s^{-1}}$, which is
+about what the strongest tide of a laboratory could give; fine detail costs
+exponentially in sensitivity, as before; the impulse must be over before the body can respond,
+which requires that the body's own motions be slow compared with light; and
+Eq.~\eqref{eq:push} is the first order in $1/c^2$, not the whole theory.
+
+\paragraph{The algebra of the moments and the energy.} The result can be stated
+algebraically. A
+quantity whose Poisson bracket with every harmonic moment vanishes does not
+depend on the momenta, and if its bracket with the energy vanishes too it is a
+constant (Appendix~\ref{app:proofs}). In this sense the moments and the weight, all of them
+measured outside, generate all that can be determined of the body; the moments
+alone leave every function of position undetermined. In general relativity, where the
+energy is itself a term at the boundary, the corresponding statement was made by Marolf
+\cite{Marolf2009}, who noted that it does not by itself let a classical
+observer determine the interior from the boundary:
+$J_z$ is the bracket of
+$J_x$ and $J_y$, yet the values of those two do not determine $J_z$. This holds
+for an observer who only measures the field. An observer who can apply a tide
+measures brackets, since the bracket of two quantities is the response of the
+first to an impulse generated by
+the second, and Eq.~\eqref{eq:push} is such a response taken twice. If the body
+is warm no tide need be applied: its thermal motion supplies the impulses, and in the
+tremor, $\langle\dot Q_h\dot Q_g\rangle = k_BT\int\rho\,\nabla h\cdot\nabla g\,\dd V$,
+the temperature stands exactly where $\hbar$ stands in
+Eq.~\eqref{eq:hair-commutator}. In quantum mechanics the zero-point motion
+supplies them at any temperature, which is why the correlations of
+a quantum state contain its commutators, and those of a cold classical body do
+not.
+
+\paragraph{Black holes and the classical limit.} For ordinary matter, then,
+the exterior field determines the interior, with a precision that grows as the
+logarithm of the sensitivity. For a black hole it gives seven
+numbers at one time and a temperature at two, and a hole subjected to a tide and then weighed
+has gained $\nu\int\dot{\tE}_{ij}\dot{\tE}_{ij}\,\dd t$, which gives its mass
+again. Whether the exterior field holds more is the question of the fate of
+what falls in. It has been argued that in quantum gravity it does:
+that everything massless particles will carry out to infinity can be learnt
+there before they arrive, from correlations of the energy with the waves
+\cite{LaddhaEtAl2021}; that observers at the boundary of an asymptotically
+anti-de Sitter space can find the state within by simple operations there and
+a measurement of the energy \cite{ChowdhuryPapadoulakiRaju2021}; and that
+quantum corrections to the field outside an ordinary body depend on its
+density profile where the classical field does not \cite{CalmetEtAl2022}.
+The first two are said by their authors to have no classical counterpart, and
+for a reading at one time they have none, by Newton's shell theorem. An
+impulsive tide followed by a weighing is what remains of them without $\hbar$:
+an operation made from
+outside and then a reading of the energy. Its differences from the quantum
+results show what in them is quantum. It needs time, for the tide to reach the
+body and the change of mass to be read, where
+they need next to none. It gives a density and a motion, not a state. It is not
+peculiar to gravity, since the work done by any applied force can be measured, and
+charges obey the analogue of Eq.~\eqref{eq:push} with the square of the charge
+over the mass in place of the mass; what is peculiar to gravity is that no part
+of a body can be shielded from the tide, that the quantity read is the mass itself, and that the
+result remains in the field outside. On a black hole the method
+fails. A hole's tremor is of order $\hbar$, its temperature in
+Eq.~\eqref{eq:hole-thermometer} being proportional to it: without $\hbar$ a
+hole is at zero temperature and has no tremor, and under a tide it gives only its mass. Whatever more the
+exterior field holds of a hole is of order $\hbar$, beyond the classical
+account given here.

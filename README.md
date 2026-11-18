@@ -26,32 +26,37 @@ view, decide everything.
 ## What it finds
 
 - **A pixel measures the tidal field**, ten numbers at each point: the electric part $\mathcal{E}_{ij}$ and the
-  magnetic part $\mathcal{B}_{ij}$ of the curvature. It cannot tell a passing wave from the pull of a passing lorry,
-  and for everyday scenes the pull dominates.
+  magnetic part $\mathcal{B}_{ij}$ of the curvature. One component of it, which is all an interferometer reads, cannot tell a
+  passing wave from the pull of a passing lorry, and for everyday scenes the pull dominates.
 - **Three regimes**, set by the distance to the source against a sixth of its wavelength and by how fast it moves: the
   near field, waves from bulk motion, and the thermal glow of matter.
 - **In the near field the camera sees mass itself, through any wall, but blurred.** The blur is fixed by the logarithm
-  of the sensitivity: $\Delta\theta = 4.43/q_c$ with $q_c e^{-q_c} = 1/\pi\,\mathrm{SNR}$, that is $24^\circ$ at a
+  of the sensitivity: $\Delta\theta = 4.43/q_c$ with $q_c e^{-q_c} = 1/(\pi\,\mathrm{SNR})$, that is $24^\circ$ at a
   signal-to-noise ratio of a thousand and still $3.4^\circ$ at $10^{30}$. A blurred image is not a vague measurement:
   a single mass is placed to within a millimetre at a metre while its image is $24^\circ$ wide.
 - **In the waves of moving bodies, a compact body is a point**, since its wavelength exceeds its size by $(\pi/2)\,c/v$.
   The point still tells which way the body turns, from its polarization.
 - **In the thermal glow, matter is transparent and self-luminous**: each pixel sums the glow along its whole line of
   sight, so the Sun's core shines through the Earth at midnight. The glow is set by a material's friction at the
-  frequencies of heat, and it is faint: the whole Earth below delivers about one graviton per square metre every five
-  hours.
-- **There are no lenses, mirrors or shadows** short of a black hole; images are computed, not focused.
+  frequencies of heat, and it is faint: the whole Earth below delivers at most one graviton per square metre every
+  twenty hours, however generous one is to its materials.
+- **There are no usable lenses, mirrors or shadows** short of a black hole; images are computed, not focused.
+- **Everything is nearly bald.** One look at a body's pull reads only the harmonic part of its mass; two looks, at
+  its thermal tremor or its answer to a push, read all of it, through the same logarithm. A black hole gives
+  away seven numbers at the first and only its temperature at the second. The second look can be a push and then a
+  weighing: the weight alone, after enough pushes from outside, gives the whole density.
 - **One pixel knows more than one might think.** It points back to a single wave,
   $\hat n = -\epsilon_{ijk}\mathcal{E}_{jl}\mathcal{B}_{kl}/|\mathcal{E}|^2$, and ranges a moving mass,
   $r = c\,|\mathcal{B}\hat n|/|P\dot{\mathcal{E}}\hat n|$, because the magnetic part supplies the scale the electric
   part lacks. For a sky of many sources it sees only the spherical harmonics of degree four and below: twelve sources
   at the corners of an icosahedron look to it exactly like a uniform sky.
-- **On the scale of the sky**, the Galaxy's centre, hidden from light by forty magnitudes of dust, is the brightest
+- **On the scale of the sky**, the Galaxy's centre, hidden from light by thirty magnitudes of dust, is the brightest
   part of the millihertz sky; if the early universe was ever hot enough, the whole sky glows at $0.905\,\mathrm{K}$,
   and the only shadows on it are black holes; the transparent Sun focuses gravitational waves only above about
   $8\,\mathrm{kHz}$.
 
-The papers on which the claims of novelty most depend have been read in full; the paper ends with the two calculations that remain open.
+The papers on which the claims of novelty most depend have been read in full; the paper ends with what the camera
+teaches and with the problems that remain open.
 
 ## The demos
 

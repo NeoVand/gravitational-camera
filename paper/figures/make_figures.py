@@ -253,7 +253,8 @@ def svg_from_pdf(name: str) -> None:
 
 def save(fig, name: str, web: bool = False) -> None:
     check_layout(fig, name)
-    fig.savefig(OUT / f"{name}.pdf", metadata={"CreationDate": None, "ModDate": None})
+    # 300 dots per inch for the computed images set into a figure (the default, 100, shows as blocks in print)
+    fig.savefig(OUT / f"{name}.pdf", dpi=300, metadata={"CreationDate": None, "ModDate": None})
     plt.close(fig)
     if web:
         svg_from_pdf(name)
@@ -329,8 +330,8 @@ def tidal():
 
 def regimes():
     fig, ax = plt.subplots(figsize=(COL, 2.6))
-    f0, f1, r0, r1 = 1e-7, 1e19, 1e-1, 1e12
-    f = np.logspace(-7, 19, 300)
+    f0, f1, r0, r1 = 1e-9, 1e19, 1e-1, 1e12          # room at the left for the names set left of their points
+    f = np.logspace(-9, 19, 300)
     edge = C / (2 * np.pi * f)
     ax.fill_between(f, r0, np.clip(edge, r0, r1), color=ACCENT2, alpha=0.10, lw=0)
     ax.fill_between(f, np.clip(edge, r0, r1), r1, color=ACCENT, alpha=0.10, lw=0)
@@ -347,7 +348,7 @@ def regimes():
     ax.tick_params(labelsize=7)
     ax.set_xlabel(r"frequency of the source, $f$ (Hz)", fontsize=7.5)
     ax.set_ylabel(r"distance, $r$ (m)", fontsize=7.5)
-    ax.text(2e-7, 1e3, r"\textit{near field}", color=ACCENT2, fontsize=8.5, va="center")
+    ax.text(8e-9, 1e3, r"\textit{near field}", color=ACCENT2, fontsize=8.5, va="center")
     ax.text(6e18, 1e3, r"\textit{wave zone}", color=ACCENT, fontsize=8.5, ha="right", va="center")
     ax.annotate(r"$r = c/2\pi f$", xy=(3e5, C / (2 * np.pi * 3e5)), xytext=(3e7, 3e4),
                 fontsize=7, arrowprops=dict(arrowstyle="-", lw=0.5, color=DIM), color=INK, va="center")
@@ -359,7 +360,7 @@ def regimes():
         (10 ** 1.5, 10 ** 0.18, "LIGO's calibration rotor", (0, -7), "center", False),
         # thermal sources at the peak of their spectrum, f = 2.82 k T / h:
         # 300 K, 3500 K (the Earth's mantle and core), 15.7 MK
-        (1.76e13, 10 ** 0.5, "a warm object\nin the room", (5, 0), "left", True),
+        (1.76e13, 10 ** 0.5, "a warm object\nin the room", (0, 11), "center", True),
         (2.06e14, 10 ** 6.5, "the Earth's interior", (-5, 0), "right", True),
         (9.2e17, 10 ** 11.18, "the Sun's core", (-5, 0), "right", True),
     ]
@@ -367,8 +368,9 @@ def regimes():
         ax.plot(fx, ry, "o", ms=3.2, color=ACCENT if thermal else ACCENT2, mec="none")
         ax.annotate(label.replace("'", "’"), (fx, ry), xytext=(dx, dy), textcoords="offset points",
                     ha=ha, va="center", fontsize=6.5, linespacing=1.0)
-    ax.annotate("", xy=(3e4, 9e11), xytext=(3e4, 1e10), arrowprops=dict(arrowstyle="-|>", lw=0.7, color=INK))
-    ax.text(3e4, 5e9, "neutron stars merging,\n$10^{12}$ times farther", fontsize=6.5, ha="center", va="top",
+    # at the frequency of the last orbits, about two kilohertz
+    ax.annotate("", xy=(2e3, 9e11), xytext=(2e3, 1e10), arrowprops=dict(arrowstyle="-|>", lw=0.7, color=INK))
+    ax.text(8e2, 5e9, "neutron stars merging,\n$10^{12}$ times farther", fontsize=6.5, ha="left", va="top",
             linespacing=1.0)
     fig.subplots_adjust(left=0.15, right=0.97, top=0.98, bottom=0.15)
     save(fig, "regimes", web=True)
@@ -594,9 +596,9 @@ def quadrupole():
     ax.axvspan(0.3, 300, color=ACCENT2, alpha=0.08, lw=0)
     ax.text(10, 3e3, "everyday\nspeeds", ha="center", fontsize=7.5, color=ACCENT2, linespacing=1.0)
     ax.text(2e6, 2.4, r"$\lambda = d$", fontsize=7.5, color=DIM)
-    vv = 32.0
+    vv = 16 * math.pi                                             # a metre apart, sixteen turns a second
     ax.plot([vv], [(math.pi / 2) * C / vv], "o", ms=3, color=ACCENT, mec="none")
-    ax.annotate(r"$32\,\mathrm{m/s}$: $\lambda \approx 1.5\times10^{7}\,d$", (vv, (math.pi / 2) * C / vv), xytext=(8, 4),
+    ax.annotate(r"$50\,\mathrm{m/s}$: $\lambda \approx 9.4\times10^{6}\,d$", (vv, (math.pi / 2) * C / vv), xytext=(8, 4),
                 textcoords="offset points", fontsize=7.5)
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -734,8 +736,9 @@ def array():
         return np.where(np.abs(x) < 1e-9, 1.0, (2 * j1(safe) / safe) ** 2)
 
     def fwhm(curve):
-        above = g[(curve >= 0.5) & (g >= 0)]
-        return 2 * above.max()
+        k = int(np.argmax((curve < 0.5) & (g >= 0)))          # the first sample below half height
+        g0, g1, c0, c1 = g[k - 1], g[k], curve[k - 1], curve[k]
+        return 2 * (g0 + (c0 - 0.5) * (g1 - g0) / (c0 - c1))
 
     curves = [(single, "one pixel", DIM, (0, (4, 2))), (airy(2), r"$D = 2\lambda$", ACCENT2, "-"),
               (airy(5), r"$D = 5\lambda$", INK, "-"), (airy(30), r"$D = 30\lambda$", ACCENT, "-")]
@@ -761,14 +764,26 @@ def array():
 # --- Figure: the graviton budget ------------------------------------------------
 
 def budget():
+    from gravcam import materials
+    water = materials.table()["water"]
+    person = 0.070 * 4 * math.pi * materials.number_emissivity(water, 310.0)       # 70 litres at 310 K
+    litre = 1e-3 * 4 * math.pi * materials.number_emissivity(water, 373.15)
+    assert abs(person / 1.3e-16 - 1) < 0.05 and abs(litre / 2.7e-18 - 1) < 0.05
+    scene = load_scene(ROOT / "scenes" / "sun-at-midnight.scene.json")
+    shells = ["inner-core", "outer-core", "lower-mantle", "upper-mantle", "earth"]
+    j_shell = emission.number_emissivities(scene)
+    outer_r = [scene[k].shape.radius for k in shells]
+    earth = sum(4 * math.pi * j_shell[scene.index(k)] * (4 / 3) * math.pi * (r**3 - (outer_r[i - 1] ** 3 if i else 0.0))
+                for i, (k, r) in enumerate(zip(shells, outer_r)))
+    assert abs(earth / 5.7e9 - 1) < 0.02
     rows = [
         ("The Sun", 2.1e23, True),
-        ("The Earth's interior*", 5.2e10, True),
+        ("The Earth's interior*", earth, True),
         ("Steel beam spun to breaking", 3.8e3, False),
         ("Two 1-t masses, 48 turns/s", 8.1, False),
         ("Two 1-kg masses, 16 turns/s", 2.1e-9, False),
-        ("A person", 1.6e-15, True),
-        ("A litre of boiling water", 3.9e-17, True),
+        ("A person", person, True),
+        ("A litre of boiling water", litre, True),
     ]
     fig, ax = plt.subplots(figsize=(COL, 2.5))
     y = np.arange(len(rows))[::-1]
@@ -968,7 +983,7 @@ def sun_at_midnight():
     sigma = 1.3
     spot = np.exp(-((jj - cols) ** 2 + (ii - rows) ** 2) / (2 * sigma ** 2)) / (2 * math.pi * sigma ** 2)
     N = N + flux / pixel * spot
-    low, high = -7.0, -3.4
+    low, high = -7.6, -4.0          # 1.2e-5 straight down, the shells at the most their stiffness allows
     im = axes[1].imshow(np.log10(np.clip(N, 10 ** low, None)), extent=(-1, 1, -1, 1), aspect="auto",
                         cmap=_colormap("thermal", ACCENT), vmin=low, vmax=high, interpolation="bilinear")
     _on_image(axes[1].annotate(r"Sun's core", (px + 0.03, py), xytext=(px + 0.34, py - 0.06),
@@ -1006,27 +1021,155 @@ def _without_room(scene_path):
 
 
 def locked_safe():
-    """The locked safe in light, and its tidal column with the room left out:
-    exact, and blurred by the near-field point spread at SNR 10^20."""
+    """The locked safe, two rows of three panels of one size. Above, the picture: (a) light; (b) the tidal column,
+    room included; (c) the same with the known room left out; below, (d) that blurred by the near-field point
+    spread at SNR 10^20; (e) the field of the two safes on a sphere about the camera through their middles, seen
+    from the same camera, as rings over a map of the component along the line of sight, as in Fig. tidal-field;
+    (f) what a row of pixels at the camera reads, before any image is computed (gravcam/tidal.py)."""
+    from matplotlib.colors import LinearSegmentedColormap
+    from matplotlib.transforms import blended_transform_factory
+    from gravcam import tidal as td
     path = ROOT / "scenes" / "locked-safe.scene.json"
     full = load_scene(path)
     scene = _without_room(path)
+    safes = ["safe-left", "safe-right"]
+
+    # the grid: six panels of the renders' shape (16:9), equal in size; (f) keeps its scale at the right
+    left, right, gap, title, between, bottom = 0.02, 0.42, 0.07, 0.19, 0.05, 0.36
+    pw = (FULL - left - right - 2 * gap) / 3
+    ph = pw * 9 / 16
+    height = bottom + 2 * ph + 2 * title + between
+    fig = plt.figure(figsize=(FULL, height))
+    def at(row, col):
+        y = bottom + (1 - row) * (ph + title + between)
+        return fig.add_axes([(left + col * (pw + gap)) / FULL, y / height, pw / FULL, ph / height])
+    a_light, a_room, a_safes = at(0, 0), at(0, 1), at(0, 2)
+    a_blur, a_field, a_read = at(1, 0), at(1, 1), at(1, 2)
+
+    # (a)-(d): the tidal column along each ray, with the room and without it, and blurred
     w, h = 640, 360
     d = _perspective(0, -14, 52, w, h)
+    S_full = columns.tidal_column(full, d.reshape(-1, 3), origin=full.observer).reshape(h, w)
     S = columns.tidal_column(scene, d.reshape(-1, 3), origin=full.observer).reshape(h, w)
     blurred = _blur(S, 52, 1e20)
     labels = _first_surface(full, d)
     extent = (-1, 1, -1, 1)
-    fig, axes, _ = _panels(3)
-    axes[0].imshow(_light("locked-safe"), extent=extent, aspect="auto")
-    top = np.percentile(S, 99.7)
-    for ax, image in ((axes[1], S), (axes[2], blurred)):
+    a_light.imshow(_light("locked-safe"), extent=extent, aspect="auto")
+    top = np.percentile(S_full, 99.7)                  # one scale for the three, so that they can be compared
+    for ax, image in ((a_room, S_full), (a_safes, S), (a_blur, blurred)):
         ax.imshow(image, extent=extent, aspect="auto", cmap=_colormap("near", ACCENT2), vmin=0, vmax=top,
                   interpolation="bilinear")
         _outline(ax, labels, extent, full)
-    _panel(axes[0], "(a) light")
-    _panel(axes[1], r"(b) tidal column $S$")
-    _panel(axes[2], r"(c) blurred, $\mathrm{SNR} = 10^{20}$")
+    _panel(a_light, "(a) light")
+    _panel(a_room, r"(b) tidal column $S$, room included")
+    _panel(a_safes, "(c) the empty room subtracted")
+    _panel(a_blur, r"(d) blurred, $\mathrm{SNR} = 10^{20}$")
+    room = S_full - S
+    print(f"  locked-safe: S of the room alone up to {room.max():.3g}, of the safes up to {S.max():.3g}")
+
+    # (e): the field of the safes on a sphere about the camera through their middles, seen from the camera, so that
+    # it lies exactly over the pictures above: rings across the line of sight as the field distorts them, over a map
+    # of the component along it; where the sphere cuts a safe, the cut face, and the gold
+    from gravcam.camera import camera_basis
+    signed = LinearSegmentedColormap.from_list("signed", [ACCENT, "#f7f3ec", ACCENT2])
+    cam = np.array(full.observer, dtype=float)
+    boxes = [(np.asarray(scene[k].shape.center, float), np.asarray(scene[k].shape.size, float)) for k in safes]
+    gold = scene["safe-right-gold"].shape
+    reach = float(np.linalg.norm(boxes[0][0] - cam))          # the distance to the middle of each safe
+    ahead, across, upward = camera_basis(0.0, math.radians(-14))
+    tv = math.tan(math.radians(52) / 2)                       # the renders' vertical field of view, 52 degrees
+    th = tv * 16 / 9
+
+    def looking(X, Y):
+        v = ahead + X[..., None] * across + Y[..., None] * upward
+        return v / np.linalg.norm(v, axis=-1, keepdims=True)
+
+    def within(P, centre, size, margin=0.0):
+        return np.all(np.abs(P - centre) < size / 2 + margin, axis=-1)
+
+    def in_a_safe(P, margin=0.0):
+        hit = np.zeros(P.shape[:-1], dtype=bool)
+        for centre, size in boxes:
+            hit |= within(P, centre, size, margin)
+        return hit
+
+    GX, GY = np.meshgrid(np.linspace(-th, th, 640), np.linspace(-tv, tv, 360))      # the renders' pixels
+    n = looking(GX, GY)
+    P = cam + reach * n
+    along = np.einsum("...i,...ij,...j->...", n, td.scene_tidal_tensor(scene, P, roots=safes), n)
+    shown = np.sign(along) * np.abs(along) ** (1 / 3)
+    lim = np.abs(shown[~in_a_safe(P, 0.15)]).max()
+    print(f"  locked-safe (e): along the line of sight, outside the safes, from {along[~in_a_safe(P)].min():.2e} to "
+          f"{along[~in_a_safe(P)].max():.2e} s^-2")
+    rgb = signed(np.clip(0.5 + 0.5 * shown / lim, 0, 1))[..., :3]
+    cut = in_a_safe(P)
+    golden = within(P, np.asarray(gold.center, float), np.asarray(gold.size, float))
+    rgb[cut] = matplotlib.colors.to_rgb("#e9e4da")
+    rgb[golden] = matplotlib.colors.to_rgb(ACCENT)
+    a_field.imshow(rgb, extent=(-th, th, -tv, tv), origin="lower", interpolation="bilinear", aspect="auto")
+    a_field.contour(GX, GY, cut.astype(float), levels=[0.5], colors=INK, linewidths=0.5, zorder=3)
+    NX, NY = 16, 9
+    cx_ = -th + (np.arange(NX) + 0.5) * 2 * th / NX
+    cy_ = -tv + (np.arange(NY) + 0.5) * 2 * tv / NY
+    CX, CY = np.meshgrid(cx_, cy_)
+    m = looking(CX, CY)
+    Q = cam + reach * m
+    Ec = td.scene_tidal_tensor(scene, Q, roots=safes)
+    keep = ~in_a_safe(Q, 0.2)
+    unit = np.abs(Ec[keep]).max() ** (1 / 3)
+    r0 = 0.44 * (2 * th / NX) / 1.6
+    for i in range(NY):
+        for j in range(NX):
+            if not keep[i, j]:
+                continue
+            k = m[i, j]
+            side = across - (across @ k) * k
+            side /= np.linalg.norm(side)
+            rise = np.cross(side, k)                       # across the line of sight, toward the picture's top
+            frame = np.stack([side, rise])
+            block = frame @ Ec[i, j] @ frame.T
+            vals, vecs = np.linalg.eigh(block)
+            strain = np.clip(np.sign(vals) * np.abs(vals) ** (1 / 3) / unit * 0.6, -0.6, 0.6)
+            axes_len = r0 * (1 - strain)
+            angle = math.degrees(math.atan2(vecs[1, 0], vecs[0, 0]))
+            a_field.add_patch(Ellipse((CX[i, j], CY[i, j]), 2 * axes_len[0], 2 * axes_len[1], angle=angle,
+                                      fill=False, ec=INK, lw=0.4, zorder=4))
+    a_field.set_xlim(-th, th)
+    a_field.set_ylim(-tv, tv)
+    _panel(a_field, rf"(e) the field, ${reach:.1f}\,\mathrm{{m}}$ away")
+    row = 1.75                                          # half the length of the row of pixels, in metres
+
+    # (f): the readings along the row, at the camera's height: with the gold, without it, and the gold alone
+    x = np.linspace(-row, row, 281)
+    pts = np.stack([x, np.full_like(x, cam[1]), np.full_like(x, cam[2])], axis=-1)
+    both = td.scene_tidal_tensor(scene, pts, roots=safes)
+    alone = td.scene_tidal_tensor(scene, pts, roots=["safe-right-gold"])
+    u = 1e-9
+    a_read.axhline(0, color=RULE, lw=0.5)
+    for (i, k), color in (((2, 2), ACCENT), ((0, 2), ACCENT2)):
+        a_read.plot(x, (both - alone)[:, i, k] / u, color=color, lw=0.7, ls=(0, (3, 2)))
+        a_read.plot(x, both[:, i, k] / u, color=color, lw=1.0)
+    a_read.plot(x, alone[:, 2, 2] / u, color=INK, lw=0.9)
+    a_read.set_xlim(-row, row)
+    a_read.set_ylim(-7.6, 3.6)
+    a_read.set_yticks([-6, -4, -2, 0, 2])
+    a_read.set_xticks([-1.5, -1, -0.5, 0, 0.5, 1, 1.5])
+    a_read.set_xticklabels(["$-1.5$", "", "", "$0$", "", "", "$1.5$"])
+    a_read.tick_params(labelsize=7, pad=1.5, length=2.5)
+    a_read.yaxis.tick_right()
+    a_read.yaxis.set_label_position("right")
+    a_read.set_ylabel(r"reading ($10^{-9}\,\mathrm{s^{-2}}$)", fontsize=7, labelpad=2)
+    a_read.set_xlabel(r"place along the row (m)", fontsize=7, labelpad=1)
+    for spine in a_read.spines.values():
+        spine.set_linewidth(0.4)
+    a_read.set_title("(f) what the pixels read", fontsize=8, loc="left", pad=3)
+    a_read.text(-0.55, 2.4, r"$\mathcal{E}_{xz}$", color=ACCENT2, fontsize=7, ha="left", va="center")
+    a_read.text(-1.65, -6.85, r"$\mathcal{E}_{zz}$", color=ACCENT, fontsize=7, ha="left", va="center")
+    a_read.text(-1.65, -1.05, "the gold alone", color=INK, fontsize=6.5, ha="left", va="center")
+    a_read.text(1.65, -6.85, "dashed: no gold", color=DIM, fontsize=6.5, ha="right", va="center")
+
+    print(f"  locked-safe: the gold's largest component along the row {np.abs(alone).max():.2e} s^-2; "
+          f"the safes' {np.abs(both).max():.2e}")
     save(fig, "locked-safe", web=True)
 
 
@@ -1233,13 +1376,7 @@ def binary_field():
         ax.set_xticks([])
         ax.set_yticks([])
         ax.set_title(title, fontsize=8, loc="left", pad=3)
-    # scale bars, in units of the separation and of the wavelength
-    axes[0].plot([3.0, 7.0], [-7.0, -7.0], color=INK, lw=0.8)
-    axes[0].text(5.0, -6.6, "$4d$", ha="center", va="bottom", fontsize=7)
     span_l = lam / d
-    axes[1].plot([3.6 * span_l - 0.4 * span_l - span_l, 3.6 * span_l - 0.4 * span_l], [-3.2 * span_l] * 2,
-                 color=INK, lw=0.8)
-    axes[1].text(3.6 * span_l - 0.9 * span_l, -3.05 * span_l, r"$\lambda$", ha="center", va="bottom", fontsize=7)
 
     # (c) how strongly the field changes, along a line in the plane
     radii = np.geomspace(1.6 * d, 60 * lam, 160)
@@ -1277,6 +1414,17 @@ def binary_field():
     ax.text(3.0, 1.6, "waves", color=ACCENT, fontsize=7, ha="left")
     ax.set_title("(c) strength", fontsize=8, loc="left", pad=3)
     fig.subplots_adjust(left=0.01, right=0.9, top=0.9, bottom=0.17)
+    # scale bars, in units of the separation and of the wavelength: under (a) and (b), ending at their right
+    # edges, level with the label of (c)'s axis
+    from matplotlib.transforms import blended_transform_factory
+    fig.canvas.draw()
+    box = axes[2].xaxis.label.get_window_extent()
+    level = fig.transFigure.inverted().transform((0.0, 0.5 * (box.y0 + box.y1)))[1]
+    for a, (x0, x1), name in ((axes[0], (4.0, 8.0), "$4d$"), (axes[1], (2.6 * span_l, 3.6 * span_l), r"$\lambda$")):
+        where = blended_transform_factory(a.transData, fig.transFigure)
+        a.plot([x0, x1], [level, level], transform=where, color=INK, lw=0.8, clip_on=False, solid_capstyle="butt")
+        a.annotate(name, (x0, level), xycoords=where, xytext=(-3, 0), textcoords="offset points", ha="right",
+                   va="center", fontsize=7)
     save(fig, "binary-field", web=True)
 
 
@@ -1361,7 +1509,7 @@ def milky_way():
         ax.set_ylim(-math.sqrt(2) - 0.03, math.sqrt(2) + 0.03)
         ax.set_axis_off()
     axes[0].set_title("(a) light, through the dust", fontsize=8, loc="left", pad=3)
-    axes[1].set_title("(b) gravitational waves, near a millihertz", fontsize=8, loc="left", pad=3)
+    axes[1].set_title("(b) gravitational waves, at three millihertz", fontsize=8, loc="left", pad=3)
     _on_image(axes[0].annotate("dust lane", (-0.55, 0.0), xytext=(-1.25, 0.72), fontsize=7, ha="center",
                                va="center", arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff",
                                                             shrinkA=2, shrinkB=2)))
@@ -1431,6 +1579,18 @@ def black_hole():
     lim = 1e3 * beta * T0 * sw.blueshift(r_obs) * 1.02
     im = axes[1].imshow(dT, extent=(-1, 1, -1, 1), aspect="auto", cmap=temp, vmin=-lim, vmax=lim,
                         interpolation="bilinear")
+    # the Einstein ring, where the sky straight behind the hole is seen: the same in both panels, since both are
+    # carried by the same rays; inside it each side of the sky appears on the other side of the hole
+    from scipy.optimize import brentq
+    ring = brentq(lambda p: sw.sweep(r_obs, p)[0] - math.pi, 1.0001 * sw.shadow_radius(r_obs), 1.2)
+    phi = np.linspace(0, 2 * np.pi, 400)
+    ex, ey = math.tan(ring) * np.cos(phi) / tx, math.tan(ring) * np.sin(phi) / (tx * h / w)
+    axes[0].plot(ex, ey, color="#ffffff", lw=0.6, ls=(0, (3, 2.5)), alpha=0.75)
+    axes[1].plot(ex, ey, color=INK, lw=0.6, ls=(0, (3, 2.5)), alpha=0.8)
+    for ax in axes[:2]:
+        ax.set_xlim(-1, 1)
+        ax.set_ylim(-1, 1)
+    print(f"  Einstein ring {math.degrees(ring):.1f} deg, {ring / sw.shadow_radius(r_obs):.2f} times the shadow's radius")
     _panel(axes[0], "(a) light")
     _panel(axes[1], "(b) primordial gravitons")
     _on_image(axes[1].annotate("shadow", (0.1, -0.13), xytext=(0.42, -0.62), fontsize=7, ha="left",
@@ -1473,8 +1633,8 @@ def sun_lens():
     ax.axvline(1, color=RULE, lw=0.6)
     ax.semilogy(b, focus, color=ACCENT2, lw=1.2)
     ax.axhline(23.5, color=FAINT, lw=0.7, ls=(0, (3, 2)))
-    ax.text(2.95, 26, "23.5 AU, standard model", fontsize=6.5, color=DIM, ha="right", va="bottom")
-    ax.annotate(f"{focus[0]:.1f} AU at the centre", (0.02, focus[0]), xytext=(1.12, 15), fontsize=7,
+    ax.text(2.95, 26, "23.5 AU, standard solar model", fontsize=6.5, color=DIM, ha="right", va="bottom")
+    ax.annotate(f"{focus[0]:.1f} AU at the centre", (0.02, focus[0]), xytext=(1.12, 62), fontsize=7,
                 color=ACCENT2, ha="left", va="center",
                 arrowprops=dict(arrowstyle="-", lw=0.5, color=ACCENT2, shrinkA=1, shrinkB=2))
     ax.text(1.05, 548 / 1.6, "548 AU", fontsize=7, color=ACCENT2, ha="left", va="top")
@@ -1567,6 +1727,84 @@ def capacity():
         ax.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.15, right=0.97, top=0.97, bottom=0.19)
     save(fig, "capacity", web=True)
+
+
+# --- Figure: what the outside knows ---------------------------------------------
+
+def hair_scale():
+    """(a) A ball and a shell of one mass and one radius, read by pushing and weighing (gravcam/hair.py): the Fourier
+    transform of each density, the points from simulated weighings, sixteen for each. (b) The bits in the field
+    outside a body against the sensitivity, for ordinary matter read from three radii and for a black hole."""
+    from gravcam import hair as h
+    R, M = 1.0, 1.0
+    u = (np.arange(-10, 11) + 0.5) * R / 10
+    X, Y, Z = np.meshgrid(u, u, u, indexing="ij")
+    ball = np.stack([X.ravel(), Y.ravel(), Z.ravel()], axis=1)
+    ball = ball[np.linalg.norm(ball, axis=1) <= R]
+    k_ = np.arange(4000) + 0.5
+    mu, phi = 1 - 2 * k_ / 4000, math.pi * (1 + 5**0.5) * k_
+    shell = R * np.stack([np.sqrt(1 - mu**2) * np.cos(phi), np.sqrt(1 - mu**2) * np.sin(phi), mu], axis=1)
+    bodies = [(ball, h.ball_form_factor, "a ball", ACCENT), (shell, h.shell_form_factor, "a shell", ACCENT2)]
+    fig, (a, b) = plt.subplots(1, 2, figsize=(FULL, 2.45), gridspec_kw={"width_ratios": [1.12, 1.0]})
+    x = np.linspace(1e-3, 12.5, 500)
+    marks = np.arange(1.0, 12.1, 1.0)
+    a.axhline(0, color=RULE, lw=0.5)
+    for pts, form, name, color in bodies:
+        a.plot(x, [form(M, R, q) for q in x], color=color, lw=1.1)
+        weigh = h.body(pts, np.full(len(pts), M / len(pts)), np.zeros_like(pts))
+        got = np.array([h.density_from_weighings(weigh, [0.0, 0.0, q]).real for q in marks])
+        assert np.allclose(got, [form(M, R, q) for q in marks], atol=0.03), name
+        a.plot(marks, got, "o", ms=3.0, color=color, mec="white", mew=0.4, zorder=5)
+    a.plot([0], [1], "o", ms=3.2, color=INK, mec="none", zorder=6, clip_on=False)
+    a.annotate("one look: the same mass,\nthe same field outside", (0, 1), xytext=(3.1, 0.93), textcoords="data",
+               fontsize=7, color=DIM, va="center", linespacing=1.05,
+               arrowprops=dict(arrowstyle="-", lw=0.45, color=FAINT, shrinkA=2, shrinkB=3))
+    a.text(1.55, 0.3, "a shell", fontsize=7.5, color=ACCENT2, ha="right")
+    a.text(2.75, 0.52, "a ball", fontsize=7.5, color=ACCENT, ha="left")
+    a.set_xlim(0, 12.5)
+    a.set_ylim(-0.3, 1.08)
+    a.set_xticks([0, 2, 4, 6, 8, 10, 12])
+    a.set_yticks([0, 0.5, 1])
+    a.set_xlabel(r"wavenumber of the detail, $|\boldsymbol{\xi}|\,a$")
+    a.set_ylabel(r"$\tilde\rho(\boldsymbol{\xi})/M$, from the weight")
+    top = a.secondary_xaxis("top")
+    reach = [1, 10, 100]
+    top.set_xticks([2 * math.log(v) for v in reach])
+    top.set_xticklabels([r"$1$", r"$10$", r"$100$"], fontsize=7, color=DIM)
+    top.tick_params(length=2.5, color=FAINT, pad=1.5)
+    top.spines["top"].set_color(FAINT)
+    top.set_xlabel(r"what the push must span across the body, $e^{|\boldsymbol{\xi}|a/2}$", fontsize=7, color=DIM, labelpad=3)
+    a.spines["right"].set_visible(False)
+    a.text(-0.17, 1.2, "(a)", transform=a.transAxes, fontsize=9, va="top")
+
+    snr = np.logspace(0.5, 70, 160)
+    stone = np.array([h.hair_bits(v, 3.0) for v in snr])
+    hole = np.array([h.black_hole_bits(v) for v in snr])
+    b.plot(snr, stone, color=ACCENT, lw=1.1)
+    b.plot(snr, hole, color=INK, lw=1.0)
+    b.text(1e31, 1.6e4, "a stone, a planet, a star", fontsize=7.5, color=ACCENT, ha="left")
+    b.text(1e44, 3.2e2, "a black hole", fontsize=7.5, color=INK, ha="left")
+    for v, (ds, dh) in ((1e6, ((5, -7), (5, -8))), (1e70, ((-5, 6), (-5, 7)))):
+        for value, color, (dx, dy) in ((h.hair_bits(v, 3.0), ACCENT, ds), (h.black_hole_bits(v), INK, dh)):
+            b.plot([v], [value], "o", ms=2.8, color=color, mec="none", zorder=5, clip_on=False)
+            two = float(f"{value:.2g}")                                # two figures, as the text gives them
+            label = f"{two:,.0f}".replace(",", "{,}") if value < 1e5 else r"$1.7\times10^{6}$"
+            b.annotate(rf"${label}$" if value < 1e5 else label, (v, value), xytext=(dx, dy), textcoords="offset points",
+                       fontsize=7, ha="left" if dx > 0 else "right", va="center")
+    b.set_xscale("log")
+    b.set_yscale("log")
+    b.set_xlim(3, 1e70)
+    b.set_ylim(3, 1e7)
+    b.set_xticks([1e10, 1e20, 1e30, 1e40, 1e50, 1e60, 1e70])
+    b.set_yticks([1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7])
+    b.minorticks_off()
+    b.set_xlabel(r"signal-to-noise ratio, $\mathrm{SNR}$")
+    b.set_ylabel("bits in the field outside")
+    for side in ("top", "right"):
+        b.spines[side].set_visible(False)
+    b.text(-0.2, 1.2, "(b)", transform=b.transAxes, fontsize=9, va="top")
+    fig.subplots_adjust(left=0.085, right=0.985, top=0.83, bottom=0.17, wspace=0.3)
+    save(fig, "hair-scale", web=True)
 
 
 # --- Figure: how far away is a wave source -------------------------------------
@@ -1732,7 +1970,7 @@ def buried_ruler():
         pull = -ezz / np.max(-ezz)
         top.imshow(pull, extent=(-L, L, -L, L), origin="lower", cmap=blue, vmin=0, vmax=1, interpolation="bilinear")
         for _, (a, b) in masses:
-            top.plot([a], [b], "+", ms=4, mew=0.6, color=INK)
+            top.plot([a], [b], "+", ms=4, mew=0.7, color="#ffffff")
         S = tidal.planar_shear(X, Y, z, masses)
         low.imshow(np.angle(S), extent=(-L, L, -L, L), origin="lower", cmap=phase, vmin=-np.pi, vmax=np.pi,
                    interpolation="nearest")
@@ -1768,39 +2006,42 @@ def speedometer():
     room = np.array(d["room"])
     path = d["path"]
     fig = plt.figure(figsize=(COL, 3.3))
-    a = fig.add_axes([0.0, 0.5, 1.0, 0.5])
-    b = fig.add_axes([0.17, 0.1, 0.79, 0.34])
+    # (a) and (b) share the coordinate along the path: the same limits over the same width of the page
+    a = fig.add_axes([0.19, 0.5, 0.77, 0.5])
+    b = fig.add_axes([0.19, 0.1, 0.77, 0.34])
     bare(a)
-    a.plot([-4.3, 4.3], [0, 0], color=RULE, lw=0.6, ls=(0, (3, 2)), zorder=1)
+    a.plot([-4.0, 4.0], [0, 0], color=RULE, lw=0.6, ls=(0, (3, 2)), zorder=1)
     for i, (m, (x, y, _)) in enumerate(zip(d["masses"], room)):
         a.add_patch(Circle((x, y), 0.16 * m ** (1 / 3), color="#a7a299", ec="none", zorder=3))
         if i == d["moving"]:
             arrow(a, (x + 0.5, y - 0.2), (x + 0.5, y + 0.55), color=ACCENT, width=0.7, head=4)
             a.text(x + 0.65, y + 0.15, rf"${d['u']}\,c$", color=ACCENT, fontsize=7.5, va="center")
-    for r in path[4::8]:
+    for r in path[len(path) // 8::len(path) // 4]:
         x = r["x"]
         a.plot([x], [0], "o", ms=2.6, color=INK, mec="none", zorder=4)
         vx = r["still"]["read"][0]
         arrow(a, (x, 0), (x + 1.2 * vx, 0), color=ACCENT2, width=0.8, head=4, z=5)
-    a.text(-4.3, 0.22, r"read from $\mathcal{W}$: $0.6\,c$", color=ACCENT2, fontsize=7.5, va="bottom")
-    a.text(4.3, -0.22, "pixel's path", color=DIM, fontsize=7, va="top", ha="right")
-    a.text(-4.3, 2.55, "(a)", va="top")
-    a.set_xlim(-4.4, 4.4)
-    a.set_ylim(-2.6, 2.6)
+    a.text(-4.0, 0.22, r"read from $\mathcal{W}$: $0.6\,c$", color=ACCENT2, fontsize=7.5, va="bottom")
+    a.text(4.0, -0.22, "pixel's path", color=DIM, fontsize=7, va="top", ha="right")
+    fig.text(0.02, 0.985, "(a)", va="top")
+    a.set_xlim(-4, 4)
+    half = 4 * (0.5 * 3.3) / (0.77 * COL)                       # equal scales, so the masses are round
+    a.set_ylim(-half, half)
     x = np.array([r["x"] for r in path])
     b.semilogy(x, [r["moving"]["alarm"] for r in path], color=ACCENT, lw=0.9)
     b.semilogy(x, [r["still"]["alarm"] for r in path], color=INK, lw=0.7)
     b.semilogy(x, [r["still"]["error"] for r in path], color=ACCENT2, lw=0.7, ls=(0, (3, 2)))
-    b.text(0, 6e-3, "alarm, one mass moving", color=ACCENT, fontsize=7, ha="center", va="bottom")
-    b.text(0, 2.5e-8, "speed read, error", color=ACCENT2, fontsize=7, ha="center", va="bottom")
-    b.text(0, 3e-10, "alarm, room at rest", color=INK, fontsize=7, ha="center", va="top")
+    b.text(0, 6e-3, r"$\max|\mathrm{Im}\,w|/\max|w|$, one mass moving", color=ACCENT, fontsize=7, ha="center", va="bottom")
+    b.text(0, 2.5e-8, r"error of the velocity read, in units of $c$", color=ACCENT2, fontsize=7, ha="center", va="bottom")
+    b.text(0, 8e-12, r"$\max|\mathrm{Im}\,w|/\max|w|$, room at rest", color=INK, fontsize=7, ha="center", va="top")
     b.set_xlim(-4, 4)
-    b.set_ylim(1e-11, 1e-1)
+    b.set_ylim(4e-13, 1e-1)
     b.set_yticks([1e-10, 1e-8, 1e-6, 1e-4, 1e-2])
     b.minorticks_off()
     b.set_xlabel("position along the path")
+    b.set_ylabel("ratio, and error", fontsize=7.5)
     b.set_xticks([-4, -2, 0, 2, 4])
-    b.text(0.02, 0.03, "(b)", transform=b.transAxes, va="bottom")
+    fig.text(0.02, 0.5, "(b)", va="top")
     for side in ("top", "right"):
         b.spines[side].set_visible(False)
     save(fig, "speedometer", web=True)
@@ -1940,7 +2181,7 @@ def earth_inverted():
     eta = np.array([abel.friction_from_counts(a, t) for a, t in zip(j_fit, temps)])
     eta_err = eta * err[:5] / j_fit
     print("  inverted: radii km", np.round(r_fit / 1e3, 1), "+-", np.round(err[5:] / 1e3, 1),
-          " eta/1e-3", np.round(eta / 1e-3, 3), "+-", np.round(eta_err / 1e-3, 3), " counts", counts.sum())
+          " eta/1e-4", np.round(eta / 1e-4, 3), "+-", np.round(eta_err / 1e-4, 3), " counts", counts.sum())
 
     fig, (ax, bx) = plt.subplots(2, 1, figsize=(COL, 4.0), gridspec_kw=dict(height_ratios=[1.0, 0.9], hspace=0.52))
     # (a) the record: counts per ring over exposure and solid angle, and the fitted model
@@ -1950,7 +2191,8 @@ def earth_inverted():
     est = counts / (exposure * solid) / unit
     bar = np.sqrt(np.maximum(counts, 1)) / (exposure * solid) / unit
     theta = np.radians(np.linspace(0, 90, 1801))
-    for r, top in zip(r_fit[:-2], (7.2, 7.2, 4.7)):          # the last stops below the legend
+    top_a = 1.25 * abel.radiance(r_fit, j_fit, np.array([0.0]), rho)[0] / 1e-5
+    for r, top in zip(r_fit[:-2], (top_a, top_a, 0.65 * top_a)):          # the last stops below the legend
         g = math.degrees(math.asin(r / rho))
         ax.plot([g, g], [0, top], color=FAINT, lw=0.45, ls=(0, (2, 2)), zorder=0.5)
     ax.plot(np.degrees(theta), abel.radiance(r_fit, j_fit, theta, rho) / unit, color=ACCENT, lw=0.9, zorder=2,
@@ -1958,34 +2200,43 @@ def earth_inverted():
     ax.errorbar(mid, est, yerr=bar, fmt="o", ms=1.6, color=INK, mec="none", elinewidth=0.45, capsize=0, zorder=3,
                 label="counts in rings of $1^\\circ$")
     ax.set_xlim(0, 90)
-    ax.set_ylim(0, 7.2)
+    ax.set_ylim(0, top_a)
     ax.set_xticks([0, 15, 30, 45, 60, 75, 90])
     ax.set_xticklabels([rf"${t}^\circ$" for t in (0, 15, 30, 45, 60, 75, 90)])
     ax.set_xlabel("angle of the line of sight from straight down")
     ax.set_ylabel(r"$N$ ($10^{-5}$ s$^{-1}$m$^{-2}$sr$^{-1}$)")
     ax.legend(loc="upper right", handlelength=1.4, labelspacing=0.25)
     ax.text(-0.17, 1.02, "(a)", transform=ax.transAxes, fontsize=8, va="bottom")
-    # (b) each shell's friction, read from its emissivity at its assumed temperature, against radius
+    # (b) each shell's friction, read from its emissivity at its assumed temperature, against radius; the faint
+    # lines are the frictions the model was given (those of the scene file, gravcam/scenefriction.py)
     inner = np.concatenate([[0.0], r_fit[:-1]]) / 1e6
     outer = r_fit / 1e6
-    bx.axhline(1.0, color=FAINT, lw=0.6, zorder=0.5)
+    u = 1e-4
+    true = np.array([abel.friction_from_counts(a, t) for a, t in zip(j, temps)])
+    edge = np.concatenate([[0.0], radii]) / 1e6
+    for k in range(5):
+        bx.plot([edge[k], edge[k + 1]], [true[k] / u] * 2, color=FAINT, lw=0.6, zorder=0.5)
     for k in range(4):
         lo, hi = eta[k] - eta_err[k], eta[k] + eta_err[k]
-        bx.add_patch(plt.Rectangle((inner[k], lo / 1e-3), outer[k] - inner[k], (hi - lo) / 1e-3, facecolor=shells[k],
+        bx.add_patch(plt.Rectangle((inner[k], lo / u), outer[k] - inner[k], (hi - lo) / u, facecolor=shells[k],
                                    edgecolor=ACCENT, lw=0.6, zorder=2))
-        bx.plot([inner[k], outer[k]], [eta[k] / 1e-3] * 2, color=ACCENT, lw=0.9, zorder=3)
-    bx.errorbar([6.358], [eta[4] / 1e-3], yerr=[eta_err[4] / 1e-3], fmt="o", ms=2.2, color=ACCENT, elinewidth=0.6,
+        bx.plot([inner[k], outer[k]], [eta[k] / u] * 2, color=ACCENT, lw=0.9, zorder=3)
+        # each name clear of its box and of the model's line: above, or for the thin upper mantle below
+        lines = 1 + names[k].count("\n")
+        y = (min(lo, true[k]) / u - 0.22 * lines - 0.12) if k == 3 else (max(hi, true[k]) / u + 0.22 * lines + 0.1)
+        # the upper mantle's name ends short of the crust's bar beside it
+        bx.text(outer[k] - 0.1 if k == 3 else 0.5 * (inner[k] + outer[k]), y, names[k], fontsize=6.5, color=DIM,
+                ha="right" if k == 3 else "center", va="center", linespacing=1.0)
+    bx.errorbar([6.358], [eta[4] / u], yerr=[eta_err[4] / u], fmt="o", ms=2.2, color=ACCENT, elinewidth=0.6,
                 capsize=1.4, capthick=0.6, zorder=3)
-    for x, y, label, ha in ((0.64, 1.14, names[0], "center"), (2.38, 1.08, names[1], "center"),
-                            (4.59, 1.08, names[2], "center"), (6.02, 0.86, names[3], "center"),
-                            (6.24, eta[4] / 1e-3, names[4], "right")):
-        bx.text(x, y, label, fontsize=6.5, color=DIM, ha=ha, va="center", linespacing=1.0)
+    bx.text(6.24, eta[4] / u, names[4], fontsize=6.5, color=DIM, ha="right", va="center")
+    top_b = math.ceil((eta[4] + eta_err[4]) / u + 0.3)
     bx.set_xlim(0, 6.6)
-    bx.set_ylim(0.6, 1.8)
-    bx.set_yticks([0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8])
+    bx.set_ylim(1.0, top_b)
+    bx.set_yticks(np.arange(1, top_b + 0.5, 1.0))
     bx.set_xticks([0, 1, 2, 3, 4, 5, 6])
     bx.set_xlabel(r"radius ($10^3$ km)")
-    bx.set_ylabel(r"friction, $\eta$ ($10^{-3}$ Pa s)")
+    bx.set_ylabel(r"friction, $\eta$ ($10^{-4}$ Pa s)")
     bx.text(-0.17, 1.02, "(b)", transform=bx.transAxes, fontsize=8, va="bottom")
     for a in (ax, bx):
         for side in ("top", "right"):
@@ -2119,7 +2370,7 @@ def main() -> int:
                  sun_at_midnight, locked_safe, which_way, closed_furnace, binary_field,
                  milky_way, black_hole, sun_lens, memory_patterns, earth_inverted,
                  same_outside, black_hole_camera, ranging, present_past, buried_ruler, speedometer,
-                 two_pixels, silent_flows):
+                 two_pixels, silent_flows, hair_scale):
         if len(sys.argv) > 1 and draw.__name__ not in sys.argv[1:]:
             continue
         draw()

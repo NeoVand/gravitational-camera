@@ -94,3 +94,59 @@ Two routes, both exact:
    through the edit endpoint (design/imageedit.py), and the result is measured against the base. First test, the
    Earth plate: the line of sight stayed within 1 px of the exact straight line at 40 of 40 samples. Generated
    without a base, all five candidates bent that line at the Earth's centre.
+
+## Audit of November 2026 (all 38 figures, by three independent readers, each number recomputed)
+
+Corrected in the code or the captions, and waiting to be redrawn (`make figures` needs LaTeX; the 3D ones need
+`make setup-3d` and a Playwright on NODE_PATH, e.g. the site's):
+
+- budget: the Earth's bar was 5.2e10 (now 2.4e10); a person and a litre of water were drawn with the placeholder
+  friction, ten times the text's values (now from the spectrum of water: 1.3e-16 and 2.7e-18 per second).
+- array: the legend's "1.8 deg" for D = 30 wavelengths was read off the plotting grid; it is 2.0 deg.
+- quadrupole (b): the marked point was "32 m/s", which is in no text; the pair of the text moves at 50 m/s.
+- sun-lens (b): "23.5 AU, standard model" read as Eddington's; now "standard solar model".
+- milky-way (b): the panel said "near a millihertz", the caption three.
+- every computed image was set into its figure at 100 dots per inch; `save` now asks for 300.
+- earth-glow (a): the camera stood on the north pole; the globe now leans so that it stands at latitude 40 north
+  with the Sun below the northern horizon (staged: paper/figures/staging/earth-glow.pdf).
+- captions only: tidal (the arrows are displacements: in a wave the acceleration at greatest stretch points
+  inward); nearfield (a) (not to scale); two-pixels (b) (the source is 55 deg from broadside, fringe spacing 1.8
+  lambda/D); binary-field (c) (the two power laws cross at 0.3 lambda, not at lambda/2pi); tremor.
+
+Found and not yet done (craft, to be judged on a redrawn figure):
+
+- regimes: four labels are struck through by the axes; the neutron-star arrow sits at 3e4 Hz.
+- speedometer: (a) and (b) share the path coordinate but are not aligned (the moving mass sits above the wrong
+  dip); (b) has no y title and 33-point curves; the "at rest" floor is finite-difference noise, not rounding.
+- which-way, closed-furnace, black-hole: colour bar offset from its frame; white sliver at a frame; black seams
+  where wall meets floor in closed-furnace (b).
+- stars, sky-count: far-side dots that overlap the limb are two-toned; content off-centre (4 pt against 22 pt).
+- silent-flows: streamlines broken, doubled on the axis, not mirror-symmetric. same-outside (b): white seams
+  between bands; (c) double outline. buried-ruler: thick black outlines on white marks. sky-integral: sawtooth
+  on the cap boundaries; the r arrowhead on the element.
+- sun-at-midnight (a): the dashed "circle" is an ellipse; the core is unlabelled. locked-safe: no colour bar, and
+  the gold saturates the scale. nearfield: make (a) to scale; label the y axis of (b). capacity: "38" wedged
+  against a tick; end dots half-clipped (also resolution-law).
+- materials: "C, 1333 cm^-1" cut by the frame. line-integral: "person" 1.4 pt above "door" and "iron".
+  beyond: "plus" 1.5 pt above its neighbours; orange means general relativity in (a), the massive graviton in (b).
+- ranging (b): jitter of 1-2 per cent in the "exact" points; (c) two points 1-3 per cent off at kr = 200.
+  separation-noise: one point 5 per cent below its bound (too few trials). earth-inverted: three of four fitted
+  boundaries dashed; the crust's bar is 21 per cent where the text says 25.
+- colour: the sense of turning is magenta/green in which-way and orange/blue in quadrupole.
+
+New, staged: `hair` (figures3d/figs/hair.js, built from image candidate A's layout with D's beads, two runs of
+candidates in design/candidates/hair/: one look, a push, weighed, for a ball, a shell and a dense core; and the
+169 numbers outside a stone at SNR 10^6 from three radii against a black hole's 7; paper/figures/staging/hair.pdf),
+and `hair-scale` (make_figures.py hair_scale: form factors of a ball and a shell read by weighing; bits against SNR;
+a draft with stand-in fonts at paper/figures/staging/hair-scale-draft.png). Neither is in the paper yet.
+
+### 17 November 2026, later: the placeholder friction is gone from the paper's scenes
+
+The scene files now carry material values (reference/gravcam/scenefriction.py; the Earth's shells at the most their
+stiffness allows, iron from its spectrum and falling as 1/T when hot, silica glass for concrete and plaster, none
+for air). Every figure drawn from a scene changes and must be redrawn once LaTeX is installed: sun-at-midnight
+(colour scale moved to 10^-7.6 .. 10^-4), earth-glow's chart (so the staged earth-glow.pdf still shows the old
+chart), earth-inverted (panel b in 10^-4 Pa s, with each shell's own line), closed-furnace (both blocks now show
+through the steel; the cold one could not be seen before because the air inside was given the friction of steel),
+budget (the Earth's bar from its scene, 5.7e9 per second). Previews without LaTeX were looked at; the captions and
+the text of Sections VI and IX already describe the new figures.

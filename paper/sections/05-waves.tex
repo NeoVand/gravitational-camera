@@ -4,8 +4,8 @@
 \textbf{In plain words.} Anything that is whirled, shaken or struck sends out
 gravitational waves. But a wave cannot show detail smaller than its own
 length, and these waves are longer than the thing that makes them by the same
-factor that light is faster than the thing moves. A spinning flywheel is a
-dot. The dot does carry a message: its polarization tells which way the wheel
+factor that light is faster than the thing moves. A spinning dumbbell is a
+dot. The dot does carry a message: its polarization tells which way the dumbbell
 is turning.
 \end{quote}
 
@@ -64,11 +64,9 @@ point, not those of a plane wave, because an aperture wide enough to resolve
 it lies in its Fresnel zone, $D^2 \gg \lambda R$; and two sources in step are
 separated only once $D \gtrsim 1.4\,\lambda R/s$ for a separation $s$, against
 about $\lambda R/s$ for sources that are not, the familiar penalty of imaging
-in coherent light. The reference implementation checks
-Eq.~\eqref{eq:wave-zone} against the exact sum of the rotors' waves, which it
-approaches as $1/R$, the two limits of the power, and the image.
+in coherent light.
 
-\paragraph{What the point tells.} The radiation is not the same in all
+\paragraph{The polarization of an unresolved source.} The radiation is not the same in all
 directions, and it is polarized (Fig.~\ref{fig:quadrupole}). Along the axis
 of rotation it is strongest and circularly polarized, with the handedness of
 the rotation; in the plane of rotation it is eight times weaker and linearly
@@ -112,6 +110,7 @@ difference between the two
 principal moments of inertia in the plane of rotation ($md^2/2$ for the pair of
 Eq.~\eqref{eq:dumbbell}). The pattern of stretching that passes over the camera
 therefore turns, and the share of the signal that is circularly polarized,
+the ratio of the Stokes parameters $V$ and $I$,
 \begin{equation}\label{eq:circular}
 \frac{V}{I} = \frac{2\,h_+ h_\times}{h_+^2 + h_\times^2},
 \end{equation}
@@ -131,39 +130,38 @@ $V/I$, Eq.~\eqref{eq:circular}, against the angle $\iota$ between the spin and
 the direction of the camera. $V/I$ is $\pm1$ along the axis and changes sign
 edge-on, where the wave is linearly polarized: its sign gives the sense of
 rotation, its size the tilt.}\label{fig:polarization}
-\end{figure} The reference implementation checks
-Eqs.~\eqref{eq:rotor-amplitudes} and~\eqref{eq:circular} against a direct
-transverse-traceless projection of the moving masses, and the total power of
-Eq.~\eqref{eq:dumbbell} against the flux integrated over the sky.
+\end{figure}
 
 \paragraph{What does not radiate.} The source of the wave field is the part of
 the stress that is transverse to the line of sight and has no trace. Steady
-motion in a straight line has no changing quadrupole and radiates nothing. Nor
-does anything that keeps spherical symmetry, however violently it pulsates.
+motion in a straight line radiates nothing: its quadrupole grows, but with a
+constant second derivative, and only a change in that radiates. Nor does
+anything that keeps spherical symmetry, however violently it pulsates, or a
+wheel turning steadily about its axis of symmetry, whose arrangement of mass
+does not change.
 And a pressure that is the same in all directions is pure trace: it is removed
 exactly by the projection in Eq.~\eqref{eq:quadrupole}, a statement we have
 verified numerically. The camera sees shear and lopsided motion, not pressure.
 
 Because everyday speeds are so far below that of light, these effects cannot
 be shown at human scale. A pair of balls turning once a second radiates waves
-150{,}000 km long, and a room is deep inside their near zone. The
-demonstrations that accompany this paper therefore include a clearly labelled
-teaching mode in which light, and gravity with it, is slowed to twenty
-centimetres a second. The waves are then ten centimetres long, an array a metre
+150{,}000 km long, and a room is deep inside their near zone.
+Figure~\ref{fig:which-way} is therefore drawn with the speed of light, and of
+gravity with it, set to twenty centimetres a second. The waves are then ten
+centimetres long, an array a metre
 and a half across resolves them to $4^\circ$, and each rotor appears as a spot.
-The mode rescales the wavelength for display and nothing else; it is not a
-consistent world. The demonstration's balls move at $1.4\,\mathrm{m/s}$, seven
+The change rescales the wavelength for display and nothing else; it is not a
+consistent world. The balls of the figure move at $1.4\,\mathrm{m/s}$, seven
 times faster than the slowed light, where Eq.~\eqref{eq:dumbbell} would not
 hold. Brightness is shown on a relative scale, and the polarization is that of
 Eq.~\eqref{eq:circular}, which does not depend on the speed of light: what the
-spot's colour says about the sense of turning is the same at any speed
-(Fig.~\ref{fig:which-way}).
+spot's colour says about the sense of turning is the same at any speed.
 
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/which-way.pdf}
-\caption{Which way it turns, computed in the teaching mode with light
-slowed to $20\,\mathrm{cm/s}$, in which the waves are $10\,\mathrm{cm}$ long and
+\caption{Which way it turns, computed with the speed of light
+set to $20\,\mathrm{cm/s}$, so that the waves are $10\,\mathrm{cm}$ long and
 an array $1.5\,\mathrm{m}$ wide can resolve the drums. Three sealed steel drums;
 in the top and middle ones a pair of balls turns once a second, in opposite
 senses, and the bottom pair is still. (a) Ordinary light, from the same

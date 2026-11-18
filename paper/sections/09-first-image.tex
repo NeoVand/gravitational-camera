@@ -17,16 +17,17 @@ observer on the night side of the Earth, at latitude $40^\circ$ at local
 midnight. The Earth is modelled as five uniform shells with rounded textbook
 radii and temperatures, from a crust at $700\,\mathrm{K}$ to an inner core at
 $5500\,\mathrm{K}$. Looking straight down, the line of sight runs through
-$12{,}700\,\mathrm{km}$ of rock and iron, and the expected brightness is
-$6\times10^{-5}$ gravitons per second per square metre per steradian.
+$12{,}700\,\mathrm{km}$ of rock and iron, and the expected brightness is at
+most $1.2\times10^{-5}$ gravitons per second per square metre per steradian,
+each shell being given the most that its stiffness allows (below).
 Lines of sight that miss the core are fainter (Fig.~\ref{fig:earth-glow}). The
 Sun radiates of order $10^{8}\,\mathrm{W}$ in gravitational waves
-\cite{GarciaCelyRingwald2025,Steane2024}, about
+\cite{Weinberg1965,GarciaCelyRingwald2025,Steane2024}, about
 $4\times10^{-16}\,\mathrm{W\,m^{-2}}$ at the Earth: roughly one graviton per
 square metre per second, arriving from a patch of sky a tenth of a degree
 across. Its surface brightness, about $4\times10^{5}$ gravitons per second per
-square metre per steradian at the centre of the core in our model, is nearly
-$10^{10}$ times that of the Earth's interior, so the Sun dominates the thermal
+square metre per steradian at the centre of the core in our model, is more
+than $10^{10}$ times that of the Earth's interior, so the Sun dominates the thermal
 gravitational sky by day and by night.
 
 \begin{figure*}
@@ -43,12 +44,12 @@ distance are schematic; the surface is NASA's Blue Marble. (b) The brightness,
 Eq.~\eqref{eq:column}, against the angle of the line of sight, with each
 shell's share shaded in its colour in (a). Its steps fall exactly at the
 grazing angles, so their places are a measurement of the radii that does not
-depend on the assumed friction, $\eta = 10^{-3}\,\mathrm{Pa\,s}$, which sets
-only their heights.}\label{fig:earth-glow}
+depend on the friction, here the most that each shell's stiffness allows, which
+sets only their heights.}\label{fig:earth-glow}
 \end{figure*}
 
-The accompanying demonstration also includes the Moon. In light it is the
-brightest thing in the night sky; in this image its centre is about a hundred
+The Moon, in light the brightest thing in the night sky, is faint in thermal
+gravitational radiation: its centre is about eighty
 times fainter than the ground underfoot, because its interior is cooler,
 $1200$--$1700\,\mathrm{K}$ in our model, and a line of sight through it is a
 quarter as long.
@@ -56,31 +57,34 @@ quarter as long.
 The shells' radii and densities are rounded from the Preliminary Reference
 Earth Model \cite{DziewonskiAnderson1981}. Two assumptions carry most of the
 uncertainty. The Earth's internal friction
-at thermal frequencies is not known to us, and is set to
-$\eta = 10^{-3}\,\mathrm{Pa\,s}$ throughout as a placeholder. The Sun's
+at thermal frequencies is not known. Each shell is therefore given the
+most that its stiffness allows, Eq.~\eqref{eq:glow-bound}, between $1.6$ and
+$3.4\times10^{-4}\,\mathrm{Pa\,s}$ (see \emph{What the Earth's materials
+allow}, below), so that every brightness of the Earth in this section is an
+upper bound. The Sun's
 emission is spread uniformly over the inner fifth of its radius, where the
 true profile is peaked toward the centre.
 
 \paragraph{How faint.} The image is an expectation value. Figure~\ref{fig:budget}
 sets the numbers of gravitons emitted side by side, and Table~\ref{tab:budget}
-the numbers a camera would receive in each of the accompanying demonstrations.
+the numbers a camera would receive in each of the scenes of this paper.
 The Sun delivers about one graviton per square metre per second. The whole
-Earth below, in this model, delivers one every five hours, about $10^{5}$ per
-square metre in a lifetime. (With the placeholder friction; real materials allow at
-most a quarter of that, as shown below.) That is a coarse picture: picking out features of
+Earth below delivers at most one every twenty hours,
+$3.6\times10^{4}$ per square metre in eighty years. That is a coarse picture: picking out features of
 ten per cent contrast at five standard deviations takes about $2500$ counts
-each, so a lifetime's exposure resolves some forty picture elements, if the
-assumed friction is right. Everyday objects in a room take millions of years
+each, so a lifetime's exposure resolves at most some fourteen picture
+elements. Everyday objects in a room take millions of years
 for a single graviton. These counts assume no other background. If the
 primordial glow of Section~\ref{sec:vistas} exists, its
 $3.6\times10^{14}$ gravitons per second per square metre per steradian dwarf
 every one of them; but it is cold, and an ideal filter passing only frequencies
-above one terahertz leaves $10^{-20}$ of it while keeping $99.5$ per cent of the
-gravitons from a body at room temperature, and more from hotter ones (with the
+above two terahertz leaves $4\times10^{-43}$ of it, fainter than anything in
+this paper, while keeping $98$ per cent of the gravitons from a body at room
+temperature, and more from hotter ones (with the
 friction taken as constant across the band). Its fluctuations, not its known
 mean, are what such a filter must remove.
 
-\paragraph{Reading the layers back.} A camera on the surface of a round planet
+\paragraph{Recovering the layers.} A camera on the surface of a round planet
 needs no other viewpoint to see inside it. The line of sight at angle $\theta$
 from straight down passes the centre at the distance $p = R\sin\theta$ and
 crosses the planet along the whole chord at that distance, so for an emissivity
@@ -94,7 +98,7 @@ j_N(r) = -\frac{1}{\pi}\int_r^R \frac{\dd N}{\dd p}\,\frac{\dd p}{\sqrt{p^2 - r^
 \end{equation}
 The planet's symmetry supplies the other viewpoints that tomography would need.
 For shells of uniform emissivity the inversion is a peeling. The line of sight
-that grazes the top of a shell crosses only that shell and those above it, so
+that grazes the bottom of a shell crosses only that shell and those above it, so
 the crust's emissivity is read first and each deeper one in turn, as in the
 onion-peeling reconstructions of flames and plasmas \cite{Dasch1992}. Where the
 emissivity jumps, at a boundary of radius $r$, $\dd N/\dd p$ diverges as
@@ -118,46 +122,49 @@ and the temperature trades off against the shape of $\alpha$.
 
 How well a lifetime does is shown in Fig.~\ref{fig:earth-inverted}. It
 simulates eighty years of counts on a square metre that collects from every
-direction, about $1.4\times10^5$ gravitons in our model, with the Sun's path
+direction, about $3.6\times10^4$ gravitons with the shells at their bounds, with the Sun's path
 across the ground masked, and fits five shells to them by maximum likelihood,
 radii and emissivities together. In rings of one degree the fit places the
-boundary of the core to within $6\,\mathrm{km}$ and the top of the lower mantle
-to within $4\,\mathrm{km}$ (one standard deviation). It measures the
-emissivities of the outer core and the lower mantle to $0.6$ per cent, the upper
-mantle to $1.5$ per cent, the inner core, seen only within $11^\circ$ of straight
-down, to $3$ per cent, and the thin crust only to $25$ per cent; with the
+boundary of the core to within $29\,\mathrm{km}$ and the top of the lower mantle
+to within $5\,\mathrm{km}$ (one standard deviation). It measures the
+emissivity of the lower mantle to $0.9$ per cent, of the outer core to $1.8$,
+of the upper mantle to $3$, of the inner core, seen only within $11^\circ$ of straight
+down, to $6$, and of the thin crust hardly at all, to $56$ per cent; with the
 temperatures known, these are also the errors of the friction. The errors scale
 as $1/\sqrt{\eta\tau}$ with the friction and the exposure time. The coarse
-picture of the previous paragraph, forty picture elements, is what a lifetime
-buys for a scene that is not known in advance. A planet known to be layered
+picture of the previous paragraph, fourteen picture elements, is what a lifetime
+gives for a scene that is not known in advance. A planet known to be layered
 spends the same gravitons on nine numbers, as a simple scene does in the near
 field (Section~\ref{sec:near-field}). Departures from spherical symmetry, from
 the planet's flattening to the slabs and plumes of the mantle, would need
 cameras at several places, and are tomography proper.
 
-\paragraph{What the Earth's materials allow.} The placeholder overstates the
+\paragraph{What the Earth's materials allow.} The placeholder of
+Section~\ref{sec:thermal}, $10^{-3}\,\mathrm{Pa\,s}$, would overstate the
 deep Earth. By Eq.~\eqref{eq:glow-bound}, matching its count of gravitons needs
 $0.9\,\mathrm{TPa}$ of relaxing stiffness at $2800\,\mathrm{K}$ and
 $1.7\,\mathrm{TPa}$ at $5500\,\mathrm{K}$, several times the shear stiffness of
-any shell. Granting each shell all of the shear stiffness at its base, and the
-core the weight of two free electrons per atom, $0.2\,\mathrm{TPa}$, placed at
-the best frequency, caps each shell at $16$ to $34\%$ of the placeholder's
-count: a lifetime then brings at most $3.6\times10^4$ gravitons, and the
-boundary of the core is found to within $29\,\mathrm{km}$ rather than $6$. Real
-spectra fall further below. The mantle is an insulator whose vibrations end
-near $30\,\mathrm{THz}$, twice that for pairs, while at $2800\,\mathrm{K}$ its
+any shell. The figures of this section grant each shell all of the shear
+stiffness at its base, and the core the weight of two free electrons per atom,
+$0.2\,\mathrm{TPa}$, placed at the best frequency: $16$ to $34\%$ of the
+placeholder's count, shell by shell. That is the most the Earth can send, not
+an estimate of what it does; with the placeholder a lifetime would have brought
+$1.4\times10^5$ gravitons and found the boundary of the core to within
+$6\,\mathrm{km}$. Real spectra fall further below. The mantle is an insulator whose vibrations end
+near $33\,\mathrm{THz}$, twice that for pairs, while at $2800\,\mathrm{K}$ its
 glow would peak in number near $90\,\mathrm{THz}$; and the electrons of the
 liquid iron core, with a resistivity of order a micro-ohm metre
 \cite{Pozzo2012}, collide every fraction of a femtosecond and spread their
 weight far beyond the band of heat, to about $3\%$ of the placeholder's
-friction. In counts the core may then hardly stand out from the mantle. In
+friction, a fifth of what the figures grant it. In counts the core may then
+hardly stand out from the mantle. In
 colour it does. The core's gravitons, from electrons whose friction is flat
 across the band, carry about $2.7\,k_BT \approx 1\,\mathrm{eV}$; the mantle's,
 confined below its highest vibrations, $0.09$ to $0.17\,\mathrm{eV}$. The
 boundary of the core, $33^\circ$ from straight down, is a step in the colour of
 the glow by a factor of five to twelve, for any resistivity between half a
-micro-ohm metre and three. The figures of this section keep the placeholder,
-whose steps fall at the same places.
+micro-ohm metre and three. The steps of the figures fall at the same places
+whatever the friction.
 
 \begin{figure}
 \centering
@@ -165,17 +172,31 @@ whose steps fall at the same places.
 \caption{The thermal Earth, inverted, in a simulation. (a) Eighty years of
 gravitons on a detector of one square metre that collects from every
 direction, pooled in rings of one degree about straight down (dots, with
-Poisson errors; $142{,}914$ in all), and the maximum likelihood fit of five
+Poisson errors; $35{,}619$ in all), and the maximum likelihood fit of five
 uniform shells, radii and emissivities together (line), Eq.~\eqref{eq:abel}.
 Dashed: the fitted boundaries, at $\arcsin(r/R)$. (b) Each shell's friction,
 read from its fitted emissivity at the model's temperature,
 Eq.~\eqref{eq:jN-friction}, against radius. The boxes span the fitted radii and
-one standard deviation; the line is the friction assumed in the model,
-$10^{-3}\,\mathrm{Pa\,s}$. The fitted radii are $1270 \pm 31$, $3485 \pm 6$,
-$5706 \pm 4$ and $6345 \pm 1\,\mathrm{km}$, against the model's $1222$, $3480$,
-$5701$ and $6346$. The crust, $25\,\mathrm{km}$ thick, sends only about sixty of
+one standard deviation; the grey lines are the frictions given to the model,
+each shell's bound. The fitted radii are $1281 \pm 41$, $3499 \pm 28$,
+$5709 \pm 5$ and $6350 \pm 3\,\mathrm{km}$, against the model's $1222$, $3480$,
+$5701$ and $6346$. The crust, $25\,\mathrm{km}$ thick, sends only about twelve of
 the gravitons.}\label{fig:earth-inverted}
 \end{figure}
+
+\paragraph{Arrival and absorption.} The counts of this section are of gravitons
+that arrive, and here the premise of an ideal pixel asks the most. A detector
+made of matter absorbs through the same friction by which matter glows, and the
+sum rule that caps the glow caps the catch (Section~\ref{sec:thermal}). Across
+the band of room-temperature heat, $k_BT/\hbar = 4\times10^{13}\,\mathrm{s^{-1}}$
+wide, a metre of a solid with $30\,\mathrm{GPa}$ of relaxing stiffness stops no
+more than about $1.5\times10^{-37}$ of what crosses it, and a metre of diamond
+not twenty times more. A cubic metre of such a detector, crossed by one graviton
+a second, would wait $2\times10^{29}$ years for its first count. Dyson, and
+Rothman and Boughn, reached the same verdict for detectors of other kinds
+\cite{Dyson2013,RothmanBoughn2006}. The thermal pictures of this paper are
+pictures of what is there to be seen, not of what a detector made of matter
+could record.
 
 \paragraph{Counting or recording.} These budgets count gravitons, while the
 array of Section~\ref{sec:no-lens} records the field at each pixel and
@@ -217,24 +238,22 @@ single bright source but not for an image.
 \begin{table}
 \centering
 \begin{tabular}{p{0.42\linewidth}p{0.22\linewidth}p{0.26\linewidth}}
-Demonstration, and what is counted & Regime & One graviton per square metre every \\ \hline
+Scene, and what is counted & Regime & One graviton per square metre every \\ \hline
 The Sun at midnight: the Sun's core & thermal & second \\
-The Sun at midnight: the whole Earth below & thermal & 5 hours \\
-Honey and water: the honey, at $2\,\mathrm{m}$ & thermal & $10^{6}$ years \\
-The closed furnace: the hot iron, at $3.5\,\mathrm{m}$ & thermal & $2\times10^{7}$ years \\
+The Sun at midnight: the whole Earth below & thermal & 20 hours, or more \\
+The closed furnace: the hot iron, at $3.5\,\mathrm{m}$ & thermal & $9\times10^{7}$ years \\
 Which way it turns: one turning pair, at $4.5\,\mathrm{m}$ & waves & $4\times10^{7}$ years \\
-The other demonstrations & near field & none needed \\
+The other scenes & near field & none needed \\
 \end{tabular}
-\caption{The graviton budget of the demonstrations, for a detector of one
-square metre that collects from every direction, from the reference
-implementation. The thermal rates take each material's friction as listed in
-its scene file: the placeholder $10^{-3}\,\mathrm{Pa\,s}$, or for honey its
-everyday viscosity, which Section~\ref{sec:thermal} explains is an upper
-estimate at thermal frequencies. The turning pair is two steel balls of
+\caption{The graviton budget of the scenes of this paper, for a detector of one
+square metre that collects from every direction. The thermal rates take for the
+Earth's shells the most their stiffness allows, and for the
+hot iron the estimate of Section~\ref{sec:thermal}. The turning pair is two steel balls of
 $33\,\mathrm{kg}$, $0.44\,\mathrm{m}$ apart, turning once a second and seen along
-their axis. A flat detector facing the ground would collect each direction in
+their axis; the rate is that of their far field, although at this distance the
+camera is deep inside their near zone. A flat detector facing the ground would collect each direction in
 proportion to the cosine of its angle from straight down, and would wait about
-$1.4$ times as long for the Earth. The near field is a static field, not
+$1.3$ times as long for the Earth. The near field is a static field, not
 radiation: what limits it is noise, Eq.~\eqref{eq:resolution}, not the number
 of gravitons.}\label{tab:budget}
 \end{table}
@@ -245,13 +264,10 @@ of gravitons.}\label{tab:budget}
 \caption{Gravitons emitted per second by whole objects, on a logarithmic
 scale spanning forty powers of ten. The spinning masses radiate by bulk
 motion, Eq.~\eqref{eq:dumbbell}; the others thermally,
-Eq.~\eqref{eq:kirchhoff}, with a constant friction that makes the thermal
-values upper estimates. The beam weighs 490 tonnes; the pairs of masses are
-of one tonne and one kilogram each. The Earth's value (marked with an
-asterisk) depends on its assumed friction.}\label{fig:budget}
+Eq.~\eqref{eq:kirchhoff}. The person, taken as seventy litres of water, and
+the litre of water have the friction of water (Section~\ref{sec:thermal}).
+The Earth's value (marked with an asterisk) depends on its assumed friction
+and is an upper estimate. The beam weighs 490 tonnes; the pairs of masses are
+of one tonne, two metres apart, and of one kilogram, a metre
+apart.}\label{fig:budget}
 \end{figure}
-
-All images shown with this paper are computed twice: by the engine that draws
-them, and by an independent reference implementation that integrates
-Eq.~\eqref{eq:column} by a different method. The two agree to a few parts in a
-million along ordinary lines of sight.

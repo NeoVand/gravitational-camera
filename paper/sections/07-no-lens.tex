@@ -8,22 +8,22 @@ records the wave itself, crest by crest, and a computer can then combine the
 pixels to do what a lens would have done.
 \end{quote}
 
-\paragraph{Nothing to build optics from.} The gravitational field of matter of
+\paragraph{The optical constants of matter.} The gravitational field of matter of
 density $\rho$ changes the speed of a gravitational wave of angular frequency
 $\omega$ by the fraction \cite{Peters1974}
 \begin{equation}\label{eq:index}
 n - 1 = \frac{2\pi G \rho}{\omega^{2}} ,
 \end{equation}
-which for steel at $1\,\mathrm{kHz}$ is $10^{-13}$, and falls as the square of
+where $n$ is the refractive index; for steel at $1\,\mathrm{kHz}$ this is
+$10^{-13}$, and it falls as the square of
 the frequency. The matter's own response adds less still: stiffness changes the
-square of the wave number by $16\pi G\mu/c^2\omega^2$ (below), and matter without
+square of the wave number by the fraction $16\pi G\mu/c^2\omega^2$, for a shear
+modulus $\mu$ \cite{Press1979}, and matter without
 stiffness, free to move with the wave, responds only through the spread of its
 velocities, a fraction of order $(v/c)^2$ as large \cite{FlaugerWeinberg2018}. A steel lens a metre thick would bring such a wave to a focus
 only some $10^{13}$ metres away, beyond the orbit of Pluto; and since the wave
 is three hundred kilometres long, a lens able to act on it at all would have
-to be far larger. Reflection needs stiffness: a medium of shear modulus $\mu$
-changes the square of the wave number by the fraction $16\pi G\mu/c^2\omega^2$
-\cite{Press1979}, so a steel wall, however thick, reflects the amplitude
+to be far larger. Reflection needs stiffness: a steel wall, however thick, reflects the amplitude
 $4\pi G\mu/c^2\omega^2 = 2\times10^{-23}$ of a kilohertz wave, and
 $4\times10^{-46}$ of its energy. Absorption is weaker still
 (Section~\ref{sec:thermal}).
@@ -31,7 +31,7 @@ $4\times10^{-46}$ of its energy. Absorption is weaker still
 A mass does bend passing waves by its gravity, exactly as it bends light, by
 the angle $4GM/bc^{2}$ for a ray passing at distance $b$. Used as a lens, the
 Earth has a focal length of fifteen thousand times the distance to the Sun,
-and a focal ratio near $10^{8}$. In each case the strength of the effect is
+and a focal ratio near $2\times10^{8}$. In each case the strength of the effect is
 set by the same number, the compactness $\mathcal{C} = GM/Rc^{2}$ of the body,
 which is $7\times10^{-10}$ for the Earth and of order one only for a black hole.
 For a uniform body of radius $R$, whose shear sound travels at $c_T$ with
@@ -65,8 +65,8 @@ or confines gravitational radiation over a broad band
 \cite{Smolin1984,Smolin1985}; and Loeb bounded the dissipation in bound
 systems \cite{Loeb2020}. Eq.~\eqref{eq:optics-bound} puts refraction and
 focusing beside reflection and absorption, and absorption inside a body beside
-that at its surface. The reference implementation checks each term against
-its source. Two exceptions show how it must be worded. A weak lens still focuses if one waits far enough behind it: the
+that at its surface. The qualifications ``useful'' and ``broadband'' are
+necessary. A weak lens still focuses if one waits far enough behind it: the
 transparent Sun brings gravitational waves passing through its interior to a
 focus beyond $23.5\,\mathrm{AU}$ \cite{PatlaNemiroff2008}. And a narrow resonance can absorb
 strongly in a narrow band: stars may absorb at their oscillation frequencies
@@ -75,7 +75,7 @@ the optical depth of ordinary matter is negligible, and only black holes cast
 shadows; a rapidly spinning one even reflects some waves with gain
 \cite{TeukolskyPress1974}.
 
-\paragraph{A camera with a black hole in it.} For focusing, the argument comes
+\paragraph{A black hole as the lens.} For focusing, the argument comes
 down to one condition. A lens of radius $R$ that brings rays to a focus at the
 distance $f$ must bend its edge ray by $R/f$, and gravity bends it by $2r_s/R$,
 where $r_s = 2GM/c^2$ for the mass $M$ inside that ray. So
@@ -90,7 +90,10 @@ hole in front of it.
 
 The natural choice is the hole of Section~\ref{sec:vistas} that is as warm as
 the sky, $1.36\times10^{23}\,\mathrm{kg}$ at $0.905\,\mathrm{K}$: lighter holes are
-hotter and evaporate, but this one neither grows nor shrinks. Its
+hotter and evaporate, and this one is in balance with the graviton sky. (It is
+colder than the microwave sky and gains from it, though by less than a part in
+$10^{51}$ of its mass each second; and like every such balance, this one is
+unstable.) Its
 Schwarzschild radius is $0.2\,\mathrm{mm}$. Diffraction limits it as it limits
 the Sun: it focuses only waves shorter than about $4\pi r_s = 2.5\,\mathrm{mm}$,
 frequencies above $120\,\mathrm{GHz}$. That excludes every wave from moving
@@ -120,11 +123,11 @@ little over a metre across. Meanwhile it blinds the near field: its tide exceeds
 that of a person standing a metre from the camera until the camera is
 $12{,}500\,\mathrm{km}$ away.
 
-\paragraph{What a lens would buy.} Classically, nothing that an ideal array
+\paragraph{What a lens would add.} Classically, nothing that an ideal array
 lacks. The array of Eq.~\eqref{eq:beam} records the field and does by
 computation what any lens does, and a converter of gravitons into photons a
 metre across, placed before ordinary optics (Section~\ref{sec:first-image}),
-would gather as much as the hole. What a lens does buy, like any device that
+would gather as much as the hole. What a lens does add, like any device that
 combines the field before detecting it, is quantum: for radiation that holds
 $10^{-30}$ gravitons in each mode, combining before detection is what lets a
 camera count gravitons instead of recording noise
@@ -142,7 +145,7 @@ thick, whose own pull would then fill the image.
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/black-hole-camera.pdf}
-\caption{A camera with a black hole in it. The tide of the hole that is as warm
+\caption{A black hole as the camera's lens. The tide of the hole that is as warm
 as the sky ($1.36\times10^{23}\,\mathrm{kg}$, Schwarzschild radius
 $0.2\,\mathrm{mm}$), the one lens compact enough to focus the thermal glow,
 against the distance from it. The camera has to sit where the tide is
@@ -150,8 +153,7 @@ bearable, $1\,\mathrm{s^{-2}}$ at $26\,\mathrm{km}$, where the Einstein ring is
 $25''$ in radius and the camera must orbit the hole every nine seconds. Even
 there the hole's tide is $10^{8}$ times that of a person a metre from the
 camera (dashed), and it stays larger until the camera is
-$12{,}500\,\mathrm{km}$ away. Computed by the reference
-implementation.}\label{fig:black-hole-camera}
+$12{,}500\,\mathrm{km}$ away.}\label{fig:black-hole-camera}
 \end{figure}
 
 \paragraph{The computed image.} The camera does not need optics, because its
@@ -182,9 +184,9 @@ sharpness is that of any aperture of width $D$,
 \end{equation}
 shown in Fig.~\ref{fig:array}. The pixels need not all exist at once if the
 source is steady: one pixel carried across the aperture synthesizes it, as
-radio astronomers use the turning of the Earth, for the near field and for
-pairs of stars that orbit for millions of years. Thermal radiation, whose
-phase wanders within $\hbar/k_BT$, about $10^{-14}\,\mathrm{s}$ at room
+a radar synthesizes an aperture with one moving antenna, for the near field and
+for pairs of stars that orbit for millions of years. Thermal radiation, whose
+phase wanders within $\hbar/k_BT$, about $3\times10^{-14}\,\mathrm{s}$ at room
 temperature, needs every pixel at the same moment. In the near field there are
 no delays to undo, and the image is instead obtained by the inversion of
 Section~\ref{sec:near-field}.

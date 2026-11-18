@@ -79,16 +79,21 @@ def main(names=()) -> int:
 
 def quadrupole_chart():
     C = mf.C
-    fig, ax = plt.subplots(figsize=(266 / 72, 180 / 72))   # the height of the diagram beside it
+    # drawn at its true size beside the radiation pattern of figures3d/figs/quadrupole.js (CHART_W there), as tall as
+    # it: the y label's left edge half a point in from the chart's left edge, beneath the panel letter, and the plot
+    # box 1 pt short of the right edge
+    w, h, left, right, top, bottom = 250, 180, 34, 1, 17, 32.4
+    fig = plt.figure(figsize=(w / 72, h / 72))
+    ax = fig.add_axes([left / w, bottom / h, (w - left - right) / w, (h - top - bottom) / h])
     v = np.logspace(-1, math.log10(C), 200)
     ax.plot(v, (math.pi / 2) * C / v, color=mf.INK, lw=1.0)
     ax.axhline(1, color=mf.RULE, lw=0.5)
     ax.axvspan(0.3, 300, color=mf.ACCENT2, alpha=0.1, lw=0, zorder=0)
     ax.text(10, 3e3, "everyday\nspeeds", ha="center", fontsize=7.5, color=mf.ACCENT2, linespacing=1.0)
     ax.text(2e6, 2.4, r"$\lambda = d$", fontsize=7.5, color=mf.DIM)
-    vv = 32.0
+    vv = 16 * math.pi                                             # a metre apart, sixteen turns a second
     ax.plot([vv], [(math.pi / 2) * C / vv], "o", ms=3, color=mf.ACCENT, mec="none")
-    ax.annotate(r"$32\,\mathrm{m/s}$: $\lambda \approx 1.5\times10^{7}\,d$", (vv, (math.pi / 2) * C / vv), xytext=(900, 2e8),
+    ax.annotate(r"$50\,\mathrm{m/s}$: $\lambda \approx 9.4\times10^{6}\,d$", (vv, (math.pi / 2) * C / vv), xytext=(900, 2e8),
                 textcoords="data", fontsize=7.5, arrowprops=dict(arrowstyle="-", lw=0.45, color=mf.DIM, shrinkA=1, shrinkB=2))
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -98,10 +103,10 @@ def quadrupole_chart():
     ax.set_yticks([1, 1e2, 1e4, 1e6, 1e8, 1e10])
     ax.minorticks_off()
     ax.set_xlabel(r"speed of the moving parts, $v$ (m/s)")
-    ax.set_ylabel(r"$\lambda/d = \frac{\pi}{2}\,c/v$")
+    ax.set_ylabel(r"$\lambda/d = \frac{\pi}{2}\,c/v$", va="top")      # turned, its top is its left edge
+    ax.yaxis.set_label_coords((0.5 - left) / (w - left - right), 0.5)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
-    fig.subplots_adjust(left=0.17, right=0.97, top=0.97, bottom=0.18)
     return fig, "quadrupole-chart"
 
 
@@ -178,7 +183,12 @@ def beyond_chart():
     import json
     d = json.loads((mf.ROOT / "reference/results/figures/beyond.json").read_text())
     n = np.linspace(0, 1, 100)
-    fig, ax = plt.subplots(figsize=(190 / 72, 168 / 72))
+    # drawn at its true size beside the rings of figures3d/figs/beyond.js (RIGHT, CHART_TOP, CHART_BASE there): the
+    # plot box's top 2 pt below the top, level with the first row of rings, and the x label's baseline 3.5 pt above
+    # the foot, level with the second row's names
+    w, h, top, base, left, right, under = 196, 141, 2, 3.5, 28, 3, 18.5
+    fig = plt.figure(figsize=(w / 72, h / 72))
+    ax = fig.add_axes([left / w, (base + under) / h, (w - left - right) / w, (h - top - base - under) / h])
     ax.axhline(0, color=mf.RULE, lw=0.6)
     ax.plot(n, -2 * (1 - n ** 2), color=mf.ACCENT, lw=0.8)
     ax.plot(n, 1 - n ** 2, color=mf.ACCENT2, lw=0.8)
@@ -195,11 +205,11 @@ def beyond_chart():
     ax.set_xticks([0, 0.5, 1])
     ax.set_xticklabels(["0", "0.5", "1"])
     ax.set_yticks([-2, -1, 0, 1])
-    ax.set_xlabel(r"$n = c/v_p$, read from $\mathcal{B} = n\,[\hat k]_\times\mathcal{E}$")
+    ax.set_xlabel(r"$n = c/v_p$, read from $\mathcal{B} = n\,[\hat k]_\times\mathcal{E}$", va="baseline")
+    ax.xaxis.set_label_coords(0.5, -under / (h - top - base - under))
     ax.set_ylabel(r"$\mathcal{E}_l/\mathcal{E}_b$")
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
-    fig.subplots_adjust(left=0.2, right=0.97, top=0.97, bottom=0.2)
     return fig, "beyond-chart"
 
 if __name__ == "__main__":

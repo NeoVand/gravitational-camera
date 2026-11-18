@@ -1,4 +1,4 @@
-\section{The thermal glow: sharp, transparent, faint}\label{sec:thermal}
+\section{The thermal glow}\label{sec:thermal}
 
 \begin{quote}
 \textbf{In plain words.} Heat is molecules jostling, and jostling masses send
@@ -40,12 +40,11 @@ unit volume, solid angle and frequency,
 j_\omega = \alpha(\omega)\, B_\omega(T) ,
 \end{equation}
 where $\alpha$ is the net absorption coefficient, absorption less stimulated
-emission, and $j_\omega$ the spontaneous emission. We have checked
-Eq.~\eqref{eq:kirchhoff} by a second route: computing the spontaneous
-radiation directly from the thermal fluctuations of shear stress in a viscous
+emission, and $j_\omega$ the spontaneous emission. The same expression
+follows directly from the thermal fluctuations of shear stress in a viscous
 fluid, with the stress correlator taken in the unsymmetrized (Wightman) order
-that the fluctuation--dissipation theorem relates to $\mathrm{Re}\,\eta$, gives
-the same expression. For long wavelengths it is the known result
+that the fluctuation--dissipation theorem relates to $\mathrm{Re}\,\eta$. For
+long wavelengths it is the known result
 that a thermal plasma radiates gravitational waves in proportion to its shear
 viscosity \cite{GhiglieriLaine2015}, and the same law has been applied to the
 non-relativistic plasma inside the Sun, as one part of its gravitational
@@ -53,7 +52,7 @@ spectrum \cite{GarciaCelyRingwald2025}. What we add is its application to the
 solids and liquids around us, whose friction at the frequencies of heat is
 not that of a plasma.
 
-Three consequences shape the image.
+For the image this means the following.
 \begin{itemize}
 \item \emph{Matter is transparent.} With $\alpha$ so small, nothing absorbs or
 scatters. A pixel receives the sum of the glow of everything along its line of
@@ -65,7 +64,7 @@ negligible dimming of what lies behind.
 \item \emph{Brightness is temperature times high-frequency friction.} What
 sets a material's glow is how strongly it resists being sheared at the
 frequencies of heat, which can be very different from its everyday viscosity
-(see \emph{Gravitational colour}, below).
+(see \emph{Friction at the frequencies of heat}, below).
 \item \emph{The glow is faint.} A person radiates about $10^{-36}\,\mathrm{W}$
 this way: one graviton in two hundred million years.
 \end{itemize}
@@ -86,7 +85,7 @@ through its thickness, adds little. The objects are illustrations, and their
 sizes are chosen so that one level line crosses the middle of each.}\label{fig:line-integral}
 \end{figure}
 
-Figure~\ref{fig:closed-furnace} shows the first consequence at work. Two
+Figure~\ref{fig:closed-furnace} shows the transparency at work. Two
 closed steel furnaces hold the same block of iron, one at room temperature and
 one at $1500\,\mathrm{K}$. They look the same and, to within the mass of their
 heat ($\Delta U/c^2$, about $10^{-11}\,\mathrm{kg}$ per megajoule
@@ -104,14 +103,17 @@ material whose stresses simply relax, this is an upper estimate.
 hold the same block of iron, one at $293\,\mathrm{K}$ and one at
 $1500\,\mathrm{K}$. (a) Ordinary light: the two are identical. (b) The expected
 thermal number radiance, Eq.~\eqref{eq:column}, from the same camera, on a
-logarithmic scale, with the outlines that light shows. The hot iron glows
-through its steel; the cold block cannot be told from its surroundings. The
+logarithmic scale, with the outlines that light shows. Both blocks show
+through their steel, since the air about them does not glow, and the hot one is
+sixteen times the brighter through its middle (twenty-two without the glow of
+the floor behind them). The
 room itself glows faintly, brightest where a line of sight crosses the floor
-at a slant. The values assume the placeholder friction discussed in the
-text.}\label{fig:closed-furnace}
+at a slant. Iron and steel have the friction of iron in
+Table~\ref{tab:materials}, falling as $1/T$ in the hot block; silica glass
+stands for the concrete and the plaster.}\label{fig:closed-furnace}
 \end{figure*}
 
-\paragraph{Gravitational colour.} Equation~\eqref{eq:alpha} holds when the wave
+\paragraph{Friction at the frequencies of heat.} Equation~\eqref{eq:alpha} holds when the wave
 is slower than the processes that produce viscosity. At the frequencies of heat
 that is rarely so, and $\eta$ must be replaced by the dissipative part of the
 material's shear response at the frequency of the wave, the real part of its
@@ -146,10 +148,11 @@ over which it does so (Table~\ref{tab:materials}, Fig.~\ref{fig:materials}).
 \emph{Free electrons.} In a metal a shear deforms the electrons' Fermi sphere,
 and collisions relax it in a time $\tau$:
 $\mathrm{Re}\,\eta = \tfrac15 n m v_F^2\,\tau/(1 + \omega^2\tau^2)$, with $n$ the
-density of conduction electrons, $m$ their mass and $v_F$ their Fermi speed. The
-weight, $\tfrac25 nE_F$, is $38\,\mathrm{GPa}$ in copper, and with its collision
+density of conduction electrons, $m$ their mass and $v_F$ their Fermi speed. Its
+integral in Eq.~\eqref{eq:friction-sum}, the weight of the channel, is
+$\tfrac25 nE_F$ with $E_F$ the Fermi energy, $38\,\mathrm{GPa}$ in copper, and with its collision
 time, $2.5\times10^{-14}\,\mathrm{s}$ \cite{Hirayama2011}, $\omega\tau$ is about
-one at the frequencies of heat, where the electrons rub most: whatever $\tau$,
+one at the frequencies of heat, where the electrons dissipate most: whatever $\tau$,
 the friction cannot exceed $\tfrac1{10}\,nmv_F^2/\omega$. For iron, whose
 electrons are not free, we give that bound: an envelope over every collision
 time, not the spectrum of any one metal.
@@ -160,10 +163,11 @@ the optical vibration seen in Raman scattering; single-phonon absorption of
 high-frequency waves has been computed for crystal detectors
 \cite{KahnSchutteEngelTrickle2024}. Silicon glows in a line at
 $520\,\mathrm{cm^{-1}}$ ($15.6\,\mathrm{THz}$), where its friction,
-$0.03\,\mathrm{Pa\,s}$, is thirty times the placeholder. The line's weight is the
-stiffness the shear loses when the atoms relax, $M\omega_0^2\zeta^2/8a =
+$0.03\,\mathrm{Pa\,s}$, is thirty times the placeholder, a constant friction
+of $10^{-3}\,\mathrm{Pa\,s}$ used here for comparison. The line's weight is the
+stiffness the shear loses when the atoms relax, $M\omega_0^2\zeta_K^2/8a =
 30\,\mathrm{GPa}$, with $M$ the atomic mass, $\omega_0$ the line, $a$ the cubic
-lattice constant and $\zeta = 0.54$ Kleinman's parameter. Only three of a
+lattice constant and $\zeta_K = 0.54$ Kleinman's parameter. Only three of a
 wave's five shears drive the line, so averaged over directions its weight is
 $18\,\mathrm{GPa}$. The line's glow is therefore polarized, and its brightness
 depends on the direction of view in the crystal: seen along a cube edge it is
@@ -175,7 +179,7 @@ silica the weight is about the shear modulus \cite{Leonforte2006}, spread over
 the band below $27\,\mathrm{THz}$. In water the stretching of hydrogen bonds near
 $8\,\mathrm{THz}$ and the rocking of the molecules carry it \cite{Schulz2020}:
 the friction there, $2\times10^{-4}\,\mathrm{Pa\,s}$, is a third of the steady
-viscosity.
+viscosity of the same model of water, $7\times10^{-4}\,\mathrm{Pa\,s}$.
 
 \emph{Pairs of phonons.} Even in a harmonic crystal the uniform part of the
 stress is quadratic in the atoms' displacements $\mathbf u$: integrated over the
@@ -183,14 +187,14 @@ volume it is $\tfrac12\,\dd^2/\dd t^2 \sum m u_x u_y$, summed over the atoms,
 which oscillates at sums of two phonon frequencies. A wave thus makes and
 unmakes pairs of phonons of opposite momentum, up to twice the highest phonon
 frequency. This weak channel, of classical weight $2nk_BT$ with $n$ the number of
-atoms per volume, about a gigapascal at room temperature (the reference
-implementation keeps the quantum occupations, which matter for diamond, whose
+atoms per volume, about a gigapascal at room temperature (the values of
+Table~\ref{tab:materials} keep the quantum occupations, which matter for diamond, whose
 Debye temperature is $2200\,\mathrm{K}$), is the only one in an
 insulating crystal with one atom in its cell; anharmonicity changes it by a
 factor of order one, and it makes an eighth of diamond's glow. Akhiezer's
 damping of sound, the relaxation of the thermal phonons in a time $\tau$, puts a
 similar weight near zero frequency; at a frequency $\omega$ its tail is
-smaller than the pair band by about $\omega_D\tau\,(\omega/\omega_D)^2$, with
+smaller than the pair band by about $\omega_D\tau\,(\omega/\omega_D)^4$, with
 $\omega_D\tau$ a thermal phonon's quality factor.
 
 At room temperature these materials glow at one to sixty per cent of the
@@ -223,7 +227,7 @@ should glow like water.
 \begin{table}
 \centering
 \begin{tabular}{llccc}
-Material & What rubs & $\eta_{\mathrm{eff}}$ & $P/V$ & $\bar E/k_BT$ \\ \hline
+Material & Source of friction & $\eta_{\mathrm{eff}}$ & $P/V$ & $\bar E/k_BT$ \\ \hline
 Copper & electrons & 1.3 & 2.8 & 1.4 \\
 Iron & electrons (bound) & $\le 6$ & $\le 12$ & 1.5 \\
 Silicon & Raman line & 1.6 & 3.4 & 2.6 \\
@@ -232,8 +236,8 @@ Silica glass & all vibrations & 2.3 & 4.8 & 2.1 \\
 Water & hydrogen bonds & 0.54 & 1.1 & 1.7 \\
 Placeholder & & 10 & 21 & 2.70 \\
 \end{tabular}
-\caption{The thermal glow of real materials at $293\,\mathrm{K}$, from the
-reference implementation: what dissipates a uniform shear at the frequencies of
+\caption{The thermal glow of real materials at $293\,\mathrm{K}$: what
+dissipates a uniform shear at the frequencies of
 heat; $\eta_{\mathrm{eff}}$, the constant friction that would give the same
 power, in $10^{-4}\,\mathrm{Pa\,s}$; the power per volume,
 $4\pi\int j_\omega\,\dd\omega$, in $10^{-35}\,\mathrm{W\,m^{-3}}$; and the
@@ -253,7 +257,7 @@ diamond that follow from their elastic constants.}\label{tab:materials}
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/materials.pdf}
-\caption{Gravitational colour. (a) The friction against a uniform shear,
+\caption{The friction and the glow of real materials. (a) The friction against a uniform shear,
 $\mathrm{Re}\,\eta(\omega)$, of the materials of Table~\ref{tab:materials} at
 $293\,\mathrm{K}$; the shaded band is where the Planck radiance exceeds a tenth
 of its peak. Copper and iron (dotted: the bound for free electrons) relax their
@@ -265,7 +269,7 @@ send, $4\pi j_\omega$ per unit of frequency, Eq.~\eqref{eq:kirchhoff}, with the
 placeholder's for comparison.}\label{fig:materials}
 \end{figure*}
 
-\paragraph{How bright can matter glow?} The sum rule caps the glow of every
+\paragraph{A bound on the glow.} The sum rule caps the glow of every
 material. Its friction is positive and its integral fixed by
 Eq.~\eqref{eq:friction-sum}, so a relaxing stiffness $\Delta\mu = G_\infty - G_0$
 emits the most when all of it sits where the Planck spectrum peaks:
@@ -282,19 +286,21 @@ $69\%$, water $40\%$, copper $39\%$, and diamond, whose line is in the Wien
 tail, $16\%$. The same weight limits absorption: the optical depth of a path of
 length $L$, integrated over frequency, is $8\pi^2GL\,\Delta\mu/c^3$, which for a
 metre of $30\,\mathrm{GPa}$ is $6\times10^{-24}\,\mathrm{s^{-1}}$, so no material
-is opaque over any band of useful width (Section~\ref{sec:no-lens}). And the
+is opaque over any band of useful width (Section~\ref{sec:no-lens}). It is the
+rule by which the cross-section of a resonant bar, integrated over frequency,
+depends only on its mass and the speed of sound in it
+\cite{MisnerThorneWheeler1973}. And the
 placeholder friction is not a material at high temperature: to glow as brightly
 as $10^{-3}\,\mathrm{Pa\,s}$, a material needs $110\,\mathrm{GPa}$ of relaxing
 stiffness at room temperature and $2.1\,\mathrm{TPa}$ at $5500\,\mathrm{K}$,
 several times the shear stiffness of diamond (Section~\ref{sec:first-image}).
 
-Two consequences follow. The honey-and-water demonstration shows the contrast
-that everyday viscosity would give, and is labelled as such. And temperature
+Temperature
 cannot be read from the glow alone: a different temperature with a different
 friction spectrum gives the same $j_\omega$, so a thermal gravitational image
 measures temperature only when the material's response is known from elsewhere.
 
-\paragraph{A glowing volume or a glowing outline?} Thermal radiation from the
+\paragraph{Volume and surface emission.} Thermal radiation from the
 vibrations of a solid has been calculated before
 \cite{SchaeferDehnen1981,SchaeferDehnen1981erratum,DehnenRomeroSchaefer1984};
 for an elastic sphere without internal damping its strength was found to grow
@@ -328,5 +334,4 @@ their volume: a steel ball of radius $10\,\mathrm{cm}$ at room temperature
 glows $10^{-46}\,\mathrm{W}$ from its surface and, with $Q\approx10$ for its
 thermal phonons, $7\times10^{8}$ times more from its volume. A pure crystal cooled until
 its phonons cross it glows at its surface, in proportion to $T^2$ rather than
-$T^3$, as Dehnen, Romero and Schäfer found. The reference implementation
-checks both expressions by integrating Kirchhoff's law over the spectrum.
+$T^3$, as Dehnen, Romero and Schäfer found.

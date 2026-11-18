@@ -12,6 +12,10 @@
 \usepackage{amsmath,amssymb,graphicx,placeins}
 \usepackage[hidelinks,pdfusetitle]{hyperref}
 \usepackage{gcpaper}
+% The summaries in plain words that open the sections (their quote environments) are for the website, which reads
+% this same source. The PDF leaves them out.
+\usepackage{comment}
+\excludecomment{quote}
 \input{macros}
 
 \begin{document}
@@ -23,33 +27,28 @@
 
 \begin{abstract}
 Suppose gravitational-wave detectors could be made arbitrarily small and
-arbitrarily sensitive, and a camera were built with one at every pixel. What
+sensitive, and a camera were built with one at every pixel. What
 would it see? An array forms an image in three regimes. At everyday frequencies
-the camera sees the changing pull of nearby mass, through any obstacle, but
-with a blur that shrinks only as the logarithm of its sensitivity, although a
-simple scene, or one whose mass cannot be negative, is measured far more
-sharply than it can be drawn. A warm body's steady pull hides its interior, but its
-thermal tremor reveals it. In the waves radiated by moving bodies, a
-compact, slowly moving body is an unresolved point. Only in the faint thermal
-radiation of matter are sharp images possible, and there the world is
-transparent and glows in proportion to its friction at the frequencies of
-heat, which we compute for real materials. No broadband lens, mirror or shadow
-exists for such a camera, short of a black hole, so its images are computed,
-not focused. One pixel already knows a great deal. It records ten numbers, the
-electric and magnetic parts of the tidal field, where a sensor of light records
-six and a wave of either kind carries four. Written as one complex matrix, a
-reading splits into four numbers that no observer can change, three that orient
-the field and three that give the velocity of its rest frame. One pixel
-therefore reads its own velocity through an unknown scene, detects motion within
-it, gives a moving body's position, velocity and mass exactly at any speed, separates up to
-four crossing waves where a sensor of light separates two, ranges a wave source,
-sees moving bodies where they are now rather than where they were, and reads the
-speed and all six polarizations of any metric wave; its magnetic part separates
-waves from nearby pull at a fixed cost in noise. Turned to the sky, the same
-equations, solved in closed form, show the field of a pair of black holes
-changing from Newton's pull to waves at a sixth of their wavelength, the memory
-an explosion leaves, the Galaxy's centre outshining the rest of the millihertz
-sky, and, if the early universe was hot enough, a primordial graviton glow at
+it sees the changing pull of nearby mass, through any obstacle, with a blur that
+shrinks only as the logarithm of its sensitivity; yet a simple scene, or one
+whose mass cannot be negative, is measured far more sharply than it can be
+drawn. A warm body's steady pull hides its interior, but its thermal tremor
+reveals it; a black hole's tells only its temperature. In the waves of moving bodies a compact, slow body is an unresolved
+point. Only in the faint thermal radiation of matter are sharp images possible;
+there the world is transparent and glows in proportion to its friction at the
+frequencies of heat, estimated for real materials. Short of a black hole
+nothing makes a usable lens, mirror or shadow, so images are computed, not
+focused. One pixel records ten numbers, the
+electric and magnetic parts of the tidal field: four that no observer can
+change, three that orient the field and three that give the velocity of its
+rest frame. It therefore reads its own velocity through an unknown scene,
+detects motion within it, gives a moving body's whole state
+exactly, separates up to four crossing waves where a sensor of light separates
+two, ranges a wave source, sees moving bodies where they are now, and reads the
+speed and all six polarizations of any metric wave. Turned to the sky, the same
+equations show a pair of black holes changing from Newton's pull to waves at a
+sixth of their wavelength, the Galaxy's centre outshining the rest of the
+millihertz sky, and, if the early universe was hot enough, a graviton glow at
 $0.905\,\mathrm{K}$ in which black holes are the only shadows. This is a thought
 experiment, not a proposal for an instrument.
 \end{abstract}
@@ -68,6 +67,8 @@ experiment, not a proposal for an instrument.
 \input{sections/10-affordances}
 \input{sections/11-vistas}
 \FloatBarrier
+\input{sections/11a-hair}
+\input{sections/11b-conclusion}
 \input{sections/12-status}
 \input{sections/13-ai-use}
 \appendix

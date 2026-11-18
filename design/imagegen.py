@@ -1,6 +1,6 @@
 """Style candidates for the paper's figures, from an image model.
 
-    python3 design/imagegen.py design/prompts/<figure>.json [--quality high]
+    python3 design/imagegen.py design/prompts/<figure>.json [--quality high] [--run run2]
 
 The prompt file holds a shared description of the figure ("figure") and a list
 of style variants ("variants", each with a "name" and a "style"). Each variant
@@ -10,9 +10,9 @@ A, B, C, ... go to design/candidates/<figure>/, which is not committed.
 
 These images are style references only (design/FIGURE_WORKFLOW.md): the
 figure that goes into the paper is drawn by code from data and exact maths,
-in the style chosen. The API key is never read here: the session's network
-proxy adds it to requests to api.openai.com, so the header below carries a
-placeholder.
+in the style chosen. The API key comes from the environment or from an
+uncommitted file (design/apikey.py); without either the header carries a
+placeholder, for sessions whose network proxy adds the key.
 """
 from __future__ import annotations
 
@@ -22,10 +22,14 @@ import json
 import pathlib
 import string
 import sys
+import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
 from PIL import Image, ImageDraw, ImageFont
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from apikey import bearer, explain  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent
 MODEL = "gpt-image-2.6-sunburst"
@@ -36,10 +40,13 @@ def generate(prompt: str, size: str, quality: str) -> bytes:
     body = json.dumps({"model": MODEL, "prompt": prompt, "size": size, "quality": quality, "n": 1}).encode()
     req = urllib.request.Request(URL, data=body, headers={
         "Content-Type": "application/json",
-        "Authorization": "Bearer proxy-injected",   # replaced by the proxy
+        "Authorization": bearer(),
     })
-    with urllib.request.urlopen(req, timeout=600) as r:
-        data = json.load(r)
+    try:
+        with urllib.request.urlopen(req, timeout=600) as r:
+            data = json.load(r)
+    except urllib.error.HTTPError as e:
+        raise SystemExit(explain(e)) from None
     return base64.b64decode(data["data"][0]["b64_json"])
 
 
@@ -67,9 +74,13 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("prompts", type=pathlib.Path)
     ap.add_argument("--quality", default="high", choices=["low", "medium", "high"])
+    ap.add_argument("--run", default="", help="a name for this run (e.g. run2): written to its own folder, so that "
+                    "the same prompts can be drawn more than once and the runs compared for artefacts")
     args = ap.parse_args()
     spec = json.loads(args.prompts.read_text())
     out = ROOT / "candidates" / args.prompts.stem
+    if args.run:
+        out = out / args.run
     out.mkdir(parents=True, exist_ok=True)
     size = spec.get("size", "1536x1024")
     jobs = []

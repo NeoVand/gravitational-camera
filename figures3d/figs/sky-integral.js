@@ -14,8 +14,11 @@ function along(axis, origin) {
 }
 
 export default async function () {
-	const H = 200;
-	const A = new Panel({ x: 0, y: 0, w: 300, h: H, cx: 2.35, cy: 0.1, scale: 52, tilt: 14, turn: -28 });
+	// one column: (a) above (b)
+	const W = 246, HA = 143, GAP = 5, SB = 50, TILT = 18;
+	// (b) from the top of its z axis (level with its panel letter) to the bottom of it
+	const HB = Math.round((1.42 + 1.32) * Math.cos(THREE.MathUtils.degToRad(TILT)) * SB + 4), H = HA + GAP + HB;
+	const A = new Panel({ x: 0, y: 0, w: W, h: HA, cx: 2.53, cy: 0.1, scale: 50, tilt: 14, turn: -28 });
 	const half = (13 * Math.PI) / 180;
 	const n = v3(1, 0.12, 0).normalize();
 	const reach = 4.8, r = 3.0, dr = 0.42;
@@ -55,7 +58,7 @@ export default async function () {
 	}
 	// the pixel, the direction n, and the distance r
 	A.sphere(O, 0.12, '#868b92', { spec: 0.6, layer: 4 });
-	A.label('\\text{pixel}', v3(-0.18, 0, 0), { size: 7.5, anchor: 'rc' });
+	A.label('\\text{pixel}', v3(0, 0.2, 0), { size: 7.5, anchor: 'cb' });
 	A.arrow(n.clone().multiplyScalar(0.16), n.clone().multiplyScalar(1.3), { width: 0.8, head: 4.4, layer: 5 });
 	A.label('\\hat n', n.clone().multiplyScalar(0.8).add(v3(0, 0.26, 0)));
 	A.label('\\mathrm{d}\\Omega', n.clone().multiplyScalar(reach + 0.05).add(v3(0.12, 0.0, 0)), { anchor: 'lc', size: 8 });
@@ -64,12 +67,12 @@ export default async function () {
 	A.label('r', n.clone().multiplyScalar(r * 0.5).add(below).add(v3(0, -0.18, 0)), { color: DIM });
 	A.label('\\mathrm{d}r', n.clone().multiplyScalar(r + dr / 2).add(v3(0, (r + dr) * Math.sin(half) + 0.12, 0)), { size: 8, anchor: 'cb' });
 	A.label('\\mathrm{d}m = \\rho\\, r^{2}\\, \\mathrm{d}r\\, \\mathrm{d}\\Omega', n.clone().multiplyScalar(r + dr / 2).add(v3(0.05, -0.95, 0)), { anchor: 'ct' });
-	A.label('\\mathrm{d}\\mathcal{E}_{ij} = \\frac{G\\,\\mathrm{d}m}{r^{3}}\\,(\\delta_{ij} - 3\\hat n_i\\hat n_j)', [24, 5], { anchor: 'lt' });
-	A.label('\\mathcal{E}_{ij} = G \\int \\mathrm{d}\\Omega\\,(\\delta_{ij} - 3\\hat n_i \\hat n_j)\\,S(\\hat n),\\qquad S(\\hat n) = \\int \\rho\\,\\frac{\\mathrm{d}r}{r}', [24, H - 4], { anchor: 'lb' });
-	A.label('\\text{(a)}', [4, 5], { anchor: 'lt' });
+	A.label('\\mathrm{d}\\mathcal{E}_{ij} = \\frac{G\\,\\mathrm{d}m}{r^{3}}\\,(\\delta_{ij} - 3\\hat n_i\\hat n_j)', [24, 2], { anchor: 'lt' });
+	A.label('\\mathcal{E}_{ij} = G \\int \\mathrm{d}\\Omega\\,(\\delta_{ij} - 3\\hat n_i \\hat n_j)\\,S(\\hat n),\\qquad S(\\hat n) = \\int \\rho\\,\\frac{\\mathrm{d}r}{r}', [24, HA - 4], { anchor: 'lb' });
+	A.label('\\text{(a)}', [4, 2], { anchor: 'lt' });
 
 	// (b) the sky around the pixel, by the sign of the weight
-	const B = new Panel({ x: 300, y: 0, w: 204, h: H, cx: 0, cy: 0.06, scale: 58, tilt: 18 });
+	const B = new Panel({ x: 0, y: HA + GAP, w: W, h: HB, cx: 0, cy: (1.42 - 1.32) / 2, scale: SB, tilt: TILT });
 	const magic = Math.acos(1 / Math.sqrt(3));
 	B.mesh(new THREE.SphereGeometry(1, 96, 64), CAP, {
 		o: { ambient: 0.62, key: 0.45, spec: 0.12, colorAt: (p) => (Math.abs(p.y) > Math.cos(magic) ? CAP : BAND) }
@@ -103,7 +106,6 @@ export default async function () {
 	B.curve(arc, { color: DIM, width: 0.45, layer: 3 });
 	B.curve([v3(Math.sin(magic), Math.cos(magic), 0), v3(1.28 * Math.sin(magic), 1.28 * Math.cos(magic), 0)], { color: DIM, width: 0.45, layer: 3 });
 	B.label('54.7^\\circ', v3(1.32 * Math.sin(magic / 2), 1.32 * Math.cos(magic / 2), 0), { size: 7.5, anchor: 'lb', color: DIM });
-	B.label('1 - 3\\cos^{2}\\vartheta', [102, H - 4], { anchor: 'cb' });
-	B.label('\\text{(b)}', [4, 5], { anchor: 'lt' });
-	return figure(504, H, [A, B]);
+	B.label('\\text{(b)}\\ \\ 1 - 3\\cos^{2}\\vartheta', [4, 2], { anchor: 'lt' });
+	return figure(W, H, [A, B]);
 }

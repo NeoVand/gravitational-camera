@@ -19,11 +19,13 @@ A wave of light or of gravity reaching a point is described by four numbers: two
 for its direction and two for the strengths of its two polarizations. A sensor
 of light at a point records six, the electric and magnetic fields; a
 gravitational pixel records ten, Eqs.~\eqref{eq:tidal} and~\eqref{eq:magnetic}.
-Section~\ref{sec:pixel} ended with a difficulty: from the electric part alone,
-one pixel cannot tell a wave from the pull of a passing lorry. With all ten
-numbers it can, by the shape of the field and by its magnetic part, and a
-handful of pixels can do more. This section shows what the six extra numbers
-buy, then what a few pixels add. Most of it follows from writing the ten
+A detector that reads one
+component cannot tell a wave from the pull of a passing lorry
+(Section~\ref{sec:pixel}), and even the
+whole electric part cannot find a wave beneath an unknown pull. With
+all ten numbers a pixel can, by the shape of the field and by its magnetic
+part, and a handful of pixels can do more. This section shows what the six extra numbers
+give, then what a few pixels add. Most of it follows from writing the ten
 numbers as one object.
 
 \paragraph{One complex matrix.} In vacuum $\tE$ and $\tB$ are real, symmetric and
@@ -34,12 +36,12 @@ trace-free. Together they form the complex symmetric trace-free matrix
 five complex numbers. Two facts make this the natural form.
 
 First, observers transform $\mathcal{W}$ by rotations of three-dimensional space with
-complex angles. A pixel turned by a rotation $R$ reads $R\,\mathcal{W} R^{T}$. A pixel moving
+complex angles. A pixel turned by a rotation $R$ reads $R^{T}\mathcal{W} R$. A pixel moving
 with rapidity $\eta$ along a unit vector $\hat u$ (speed $c\tanh\eta$) reads
 $\Lambda\,\mathcal{W}\Lambda^{T}$ with $\Lambda = \exp(-i\eta\,\hat u\cdot\mathbf{L})$ (a scene moving
 along $\hat u$ is seen through $\Lambda^{-1}$), where
 $(L_k)_{ij} = -\epsilon_{kij}$ generates rotations: a change of velocity is a
-rotation by an imaginary angle. (The Lorentz group is isomorphic to the group of
+rotation by an imaginary angle. (The restricted Lorentz group is isomorphic to the group of
 complex rotations, $SO(3,\mathbb{C})$; for the curvature this is the content of
 Petrov's and Penrose's classifications \cite{Petrov2000,Penrose1960}.) The
 eigenvalues of $\mathcal{W}$, and with them
@@ -49,7 +51,7 @@ I = \mathrm{tr}\,\mathcal{W}^2, \qquad J = \mathrm{tr}\,\mathcal{W}^3,
 are therefore the same for every observer at that point, however turned and
 however moving.
 
-Second, a plane wave is a perfect square. For a wave travelling along $\hat k$,
+Second, the $\mathcal{W}$ of a plane wave is the square of a vector. For a wave travelling along $\hat k$,
 let $\mathbf{e}_1, \mathbf{e}_2$ span the plane across it with
 $\mathbf{e}_1\times\mathbf{e}_2 = \hat k$, and let
 $\mathbf{m} = (\mathbf{e}_1 + i\mathbf{e}_2)/\sqrt2$, a complex vector with
@@ -75,42 +77,46 @@ almost everything below. Matter neither reflects nor absorbs gravitational waves
 (Section~\ref{sec:no-lens}), so none of what follows is spoiled by echoes, as
 direction finding with radio or sound is indoors.
 
-\paragraph{Four stars.} Every reading has four directions of its own. Writing a
+\paragraph{Principal null directions.} Every reading has four directions of its own. Writing a
 complex null vector by its stereographic coordinate $z$ on the sky,
 $\mathbf{m}(z) = (1 - z^2,\, i(1 + z^2),\, -2z)$, the quartic equation
 \begin{equation}\label{eq:stars}
 \mathbf{m}(z)^{T}\,\mathcal{W}\,\mathbf{m}(z) = 0
 \end{equation}
 has four roots, four points on the sphere of directions around the pixel: the
-principal null directions of the field \cite{Penrose1960}, which we call its
-stars (Fig.~\ref{fig:stars}). For one plane wave all four coincide on its
+principal null directions of the field \cite{Penrose1960}, which for a state
+of spin two are its Majorana stars \cite{Bruno2019} (Fig.~\ref{fig:stars}). For one plane wave all four coincide on its
 direction of travel. For one body at rest they fall in two pairs, on the line to
 the body and opposite it. Where two or more bodies pull, they are four distinct
 points. The same
 distinctions can be read without solving anything, from the invariants: a
 repeated eigenvalue, the mark of a single body, makes
 $1 - 6J^2/I^3$ vanish, and a single wave makes $\mathcal W$ itself a square,
-$\mathcal W^2 = 0$ (Petrov's types D and N; $I = J = 0$ alone would also allow
-type III). One reading therefore tells whether the field could be that of one
+$\mathcal W^2 = 0$ (Petrov's types D and N). Neither condition is quite enough
+alone: $I^3 = 6J^2$ also allows type II, a body with a wave running along the
+line to it, which is told from type D by
+$(\mathcal W - w)(\mathcal W + 2w) = 0$ with $w = -J/I$ the repeated
+eigenvalue, positive for a single body; and $I = J = 0$ also allows type III. One reading therefore tells whether the field could be that of one
 round body, whether it is a pure wave, or whether it needs more. The type
 describes the field, not the objects: two masses on one line through the pixel
 also give type D, and one body that is not round gives type I. Nor can one
 instant tell every pull from every wave: two waves running in opposite
 directions can match, at one event, the tide of two masses at rest, and only a
-record over time, or over space, tells them apart. In the reference
-implementation the quantity $1 - 6J^2/I^3$ is below $10^{-8}$, rounding, for a
-single moving body, and $0.02$ for two bodies at comparable distances.
-Light at a point has two stars, not four: its $\mathbf{E} + ic\mathbf{B}$ has
+record over time, or over space, tells them apart. The quantity
+$1 - 6J^2/I^3$ vanishes for a
+single moving body, and is $0.55$ for the two masses of Fig.~\ref{fig:stars}.
+Light at a point has two principal null directions, not four: its $\mathbf{E} + ic\mathbf{B}$ has
 only one complex invariant. Any field of light that is not a pure wave has two
-separate stars, as a single charge has, so one point of light cannot tell one
+separate null directions, as a single charge has, so one point of light cannot tell one
 source from several.
 
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/stars.pdf}
-\caption{The stars of a field, the solutions of Eq.~\eqref{eq:stars}, on the
-sky around one pixel (each disc), for gravity (top) and light (bottom),
-computed in the reference implementation. Coincident stars are drawn as touching
+\caption{The principal null directions of a field, the solutions of
+Eq.~\eqref{eq:stars}, on the
+sky around one pixel (each disc), for gravity (top) and light (bottom).
+Coincident directions are drawn as touching
 dots, so that every sky of gravity holds four and every sky of light two; faint
 dots and dashed lines lie on the far side. One wave puts all of them on its
 direction of travel $\hat k$. One source at rest, a mass or a charge, puts them
@@ -118,9 +124,9 @@ in two groups on the line through it. Moving across that line at $0.9\,c$, the
 source folds both groups toward its velocity, along the paths drawn from their
 places at rest (open circles), and the midpoint of the two, as a vector, is its
 velocity across the line to where it is now, $\mathbf{v}_\perp/c$,
-Eq.~\eqref{eq:star-velocity}. Two masses at rest give four separate stars
+Eq.~\eqref{eq:star-velocity}. Two masses at rest give four separate directions
 (Petrov type I), so they could not be one body; two charges give light's two
-stars again, at the ends of the line of force, as one charge would.}\label{fig:stars}
+directions again, at the ends of the line of force, as one charge would.}\label{fig:stars}
 \end{figure*}
 
 \paragraph{Shape.} A plane wave stretches and squeezes only across its
@@ -142,7 +148,8 @@ the matter's speed to that of light,
 \end{equation}
 where $|\tE|^2 = \tE_{ij}\tE_{ij}$ (the Frobenius norm) and likewise for $\tB$,
 and $v$ is the speed of the matter. At a distance $r$ from a compact source of
-size $L$, the part of the field that changes is smaller by about $(v/c)(r/L)$,
+size $L$, the magnetic part of the field that changes is smaller than its
+electric part by about $(v/c)(r/L)$,
 that is, by $kr$ at the frequency of the change: more than $v/c$, but still far
 below one in the near zone.
 Averaged over time, the first holds for any mixture of waves from independent
@@ -164,15 +171,14 @@ $e^{2iK_0} = P^{\dagger}P$, gives three more: the velocity of the one frame in
 which $\tE$ and $\tB$ share their axes, the field's own rest frame (the
 principal observer of Ref.~\cite{CostaWyllemanNatario2021}; for a field of type I
 it is unique, and it is the rest frame of matter only for a stationary
-source). Ten numbers, read as four, three and three.
+source).
 
-The consequences are immediate. For a scene of masses at rest, $\tB = 0$ in the
+For a scene of masses at rest, $\tB = 0$ in the
 scene's frame, so its eigenvalues are real; a pixel moving through it at any
 speed still finds real eigenvalues, and finds in $P$ the velocity of the scene
-relative to itself. The pixel is a speedometer: it reads its own velocity through
-an unknown room, at any speed, with no map of the room. In the reference
-implementation, for a pixel moving at $0.6\,c$ past four unknown masses, the
-rapidity is recovered to $4\times10^{-8}$. To first order in the speed, in the
+relative to itself. The pixel therefore determines its own velocity through
+an unknown room, at any speed, with no map of the room
+(Fig.~\ref{fig:speedometer}). To first order in the speed, in the
 principal axes of $\tE$ with eigenvalues $\lambda_a$,
 \begin{equation}\label{eq:speedometer}
 \tB_{bc} = \frac{v_a}{c}\,(\lambda_c - \lambda_b) \quad ((a,b,c)\ \text{cyclic}),
@@ -181,43 +187,50 @@ principal axes of $\tE$ with eigenvalues $\lambda_a$,
 so a pixel whose readings carry white noise $\sigma$ on each component (in the
 orthonormal basis of the paragraph \emph{How precisely}) reads
 each component of its velocity to within
-$c\,\sigma/\sqrt2\,|\lambda_b - \lambda_c|$. A pixel that reads the tide of a
+$c\,\sigma/(\sqrt2\,|\lambda_b - \lambda_c|)$. A pixel that reads the tide of a
 room, $10^{-8}\,\mathrm{s^{-2}}$ near a person, to one part in $10^{8}$, reads its
 own speed to about two metres per second.
 
-The converse is an alarm. A pixel moving through a static scene, however fast,
+The converse is a test for relative motion within the scene. A pixel moving
+through a static scene, however fast,
 always finds real eigenvalues. If they are complex, something in the scene
-moves relative to the rest of it, or turns: the pixel's own motion can never
-set it off (Fig.~\ref{fig:speedometer}). The phase of the eigenvalues measures turning. Outside a spinning
+moves relative to the rest of it, or turns; the pixel's own motion cannot make
+them so (Fig.~\ref{fig:speedometer}). The phase of the eigenvalues measures turning. Outside a spinning
 body of mass $M$ and angular momentum $J_s = Mca$, the eigenvalues are
 proportional to $(r - ia\cos\vartheta)^{-3}$, as in Kerr's solution
 \cite{Kerr1963}, so their phase, $3a\cos\vartheta/r$ for $a \ll r$, reads the
 spin along the line of sight; for the Earth seen from above a pole it is
-$1.5\times10^{-6}$.
+$1.5\times10^{-6}$. A pixel resting on the Earth shows both effects. At a
+pole it does not move, and its eigenvalues have that phase. On the equator the
+planet turns across the pixel's line to its centre, and to first order in the
+speeds the eigenvalues stay real, while the velocity read from $\mathcal{W}$ is
+$(1 - I/MR^2)\,\Omega R = 311\,\mathrm{m\,s^{-1}}$, the speed of the ground less
+the share that the planet's own turning takes back (Section~\ref{sec:pixel}).
 
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/speedometer.pdf}
-\caption{The speedometer and the alarm. (a) A pixel crosses a room of four
+\caption{A pixel's own velocity, and a test for motion in the scene. (a) A pixel crosses a room of four
 masses unknown to it at $0.6\,c$ (seen from above, in the room's frame), and at
 every point reads its own velocity from $\mathcal{W}$ alone, Eq.~\eqref{eq:polar}
 (arrows). (b) Along the path: the error of the velocity read (dashed), and the
-alarm $\max|\mathrm{Im}\,w|/\max|w|$ over the eigenvalues $w$ of $\mathcal{W}$,
-which is zero to rounding for the room at rest, however fast the pixel moves,
-and is not when one mass crosses the room at $0.05\,c$. Computed from the exact
+ratio $\max|\mathrm{Im}\,w|/\max|w|$ over the eigenvalues $w$ of $\mathcal{W}$,
+which is zero for the room at rest, however fast the pixel moves, to the
+accuracy of the computation, $10^{-8}$ here, and is not when one mass crosses
+the room at $0.05\,c$. Computed from the exact
 field of uniformly moving masses.}\label{fig:speedometer}
 \end{figure}
 
 Light cannot do this. Its field at a point has only two invariants,
 $\mathbf{E}^2 - c^2\mathbf{B}^2$ and $\mathbf{E}\cdot\mathbf{B}$, and in the frame
 where $\mathbf{E}$ is parallel to $\mathbf{B}$ a boost along their common axis
-and a turn about it change nothing. A sensor of light is at best a
-two-dimensional speedometer. A single body does the same to gravity's field
+and a turn about it change nothing. A sensor of light reads at most two
+components of its own velocity. A single body does the same to gravity's field
 (type D): coming straight at the pixel, even at $0.3\,c$, it shows no $\tB$ at
 all, and its radial speed is unreadable. Two bodies, or one that is not round,
 remove the blind spot.
 
-\paragraph{A moving body, exactly.} The four stars of a single body moving at any
+\paragraph{The state of a moving body.} The four principal null directions of a single body moving at any
 speed are its two pairs, displaced by aberration toward its direction of motion.
 Their midpoint, as a vector, is exactly its velocity across the line of sight
 (Fig.~\ref{fig:stars}):
@@ -225,8 +238,8 @@ Their midpoint, as a vector, is exactly its velocity across the line of sight
 \tfrac12\,(\hat p_+ + \hat p_-) = \frac{\mathbf{v}_\perp}{c} ,
 \end{equation}
 with $\hat p_\pm$ the directions of the two pairs and $\mathbf{v}_\perp$ the
-velocity across the line from the body to the pixel. The reference
-implementation finds the two sides equal to $2\times10^{-7}$ at $0.9\,c$. The
+velocity across the line from the body to the pixel
+(Appendix~\ref{app:proofs}). The
 ratio $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ of Section~\ref{sec:near-field} is its
 first-order form. Half their difference points along the line to where the body is now,
 $\tfrac12(\hat p_+ - \hat p_-) = \pm(1 - v_\perp^2/c^2)^{1/2}\,\hat n$. With the
@@ -234,7 +247,8 @@ rate of change of the reading, one pixel then has the whole state of the body.
 The line turns toward the sideways velocity at the rate $v_\perp/r$, which gives
 the distance and the sign of $\hat n$; the repeated eigenvalue of $\mathcal W$ is
 $w = GM/R_*^3$, with $R_*$ the distance in the body's rest frame,
-$R_*^2 = \gamma^2(r^2 - |\mathbf v\times\mathbf r|^2/c^2)$, in which
+$R_*^2 = \gamma^2(r^2 - |\mathbf v\times\mathbf r|^2/c^2)$ and
+$\gamma = (1 - v^2/c^2)^{-1/2}$, in which
 $\mathbf v\times\mathbf r$ does not change. So
 \begin{equation}\label{eq:moving-state}
 \begin{gathered}
@@ -243,11 +257,12 @@ r = \frac{v_\perp}{|\dot{\hat n}|}, \qquad
 M = \frac{w\,\gamma^3 r^3}{G}\Bigl(1 - \frac{v_\perp^2}{c^2}\Bigr)^{3/2}:
 \end{gathered}
 \end{equation}
-position, velocity and rest mass, seven numbers, exactly at any speed. The
-reference implementation recovers all seven at $0.91\,c$ to a few parts in a
-million, the accuracy of its finite differences; Eq.~\eqref{eq:one-pixel-range}
+position, velocity and rest mass, seven numbers, exactly at any speed (and, as
+everywhere in this paper, to first order in $GM/rc^2$).
+Equation~\eqref{eq:one-pixel-range}
 below is the first-order form of the distance. A body coming straight on shows no sideways velocity and
-cannot be ranged (below), but because its tide grows as
+cannot be ranged (below), but because its tide $\tE_\parallel$ along the line
+to it grows as
 $r^{-3}$, the pixel reads when it will arrive,
 \begin{equation}\label{eq:contact}
 -\frac{r}{\dot r} = \frac{3\,\tE_\parallel}{\dot{\tE}_\parallel},
@@ -257,8 +272,8 @@ $r^{-3}$, the pixel reads when it will arrive,
 and from the second ratio whether it is coasting ($4/3$), braking or driven.
 
 \paragraph{Separating waves at one point.} Several waves crossing a pixel at
-once add their matrices, and the algebra of squares lets one pixel pull them
-apart.
+once add their matrices, and the algebra of squares lets one pixel separate
+them.
 
 At one instant, two waves give $\mathcal{W} = c_1\mathbf{m}_1\mathbf{m}_1^{T} +
 c_2\mathbf{m}_2\mathbf{m}_2^{T}$, of rank two, so $\det\mathcal{W} = 0$: two real
@@ -286,10 +301,10 @@ wave drops out, the null vector of what remains is the cross product of the othe
 two $\mathbf{m}$, and cross products of those give all three directions. For a
 circular binary seen at inclination $\iota$, $|\lambda| = \tan^{\pm4}(\iota/2)$,
 so the roots also give the three inclinations. Three binaries in one frequency
-bin, which a single interferometer cannot tell apart, are three stars to one
-pixel (to $10^{-9}$ in the reference implementation).
+bin, which a single interferometer cannot tell apart, are three separate
+directions to one pixel.
 
-Over time, four. If the waves come from fixed directions but carry any
+Over time, four waves can be separated. If the waves come from fixed directions but carry any
 waveforms at all, the readings span a subspace of the five-dimensional space of
 matrices; for four waves whose waveforms are linearly independent it is
 four-dimensional, and there is one matrix $A$ with
@@ -315,15 +330,15 @@ N_{\max} = \Bigl\lfloor\frac{L(2s+1)}{L+1}\Bigr\rfloor
 \end{equation}
 waves, and no more: $s$ at one instant, $\lfloor 2(2s+1)/3\rfloor$ at one
 frequency (whose two parts $\mathcal W_\pm$ are two snapshots) and $2s$ from a
-long enough history. For light that is $1$, $2$ and $2$, the known limit for
-electromagnetic vector sensors \cite{NehoraiPaldi1994,HochwaldNehorai1996}; for
+long enough history. For light that is $1$, $2$ and $2$; for
 gravity, $2$, $3$ and $4$; a field of spin four would separate six waves at one
-frequency, not five. Generic is a real condition: snapshots whose amplitudes
+frequency, not five. Bounds of this kind are established for electromagnetic and acoustic vector
+sensors, where they depend on what is assumed of the sources' polarization
+\cite{NehoraiPaldi1994,HochwaldNehorai1996}. Generic is a real condition: snapshots whose amplitudes
 are all proportional, or related through the directions themselves, add
-nothing, and the rank of the moment matrix tells when that has happened. The
-reference implementation checks each count, and its failure one wave beyond. In the reference implementation four waves with random waveforms are
-located to $10^{-14}$, and to $10^{-4}$ radian with noise of $10^{-4}$ of the
-signal on every component over three hundred readings.
+nothing, and the rank of the moment matrix tells when that has happened. With
+noise of $10^{-4}$ of the signal on every component, four waves with random
+waveforms are located to $10^{-4}$ radian from three hundred readings.
 
 \begin{figure*}
 \centering
@@ -335,12 +350,11 @@ and one pixel reads the ten numbers of $\tE$ and $\tB$ while all four pass.
 for every reading, and, on the sky toward the sources, the size of
 $\mathbf{m}^{T}\!A\,\mathbf{m}$, shaded over two and a half decades. It vanishes
 at exactly four points, Eq.~\eqref{eq:four-waves}: the zeros found from the
-readings (dots) fall on the four sources (rings) to $10^{-14}$. (c) Light from
+readings (dots) fall on the four sources (rings). (c) Light from
 the first two sources, the same way: its readings $\mathbf{E} + ic\mathbf{B}$
 span a plane, the vector $\mathbf{a}$ orthogonal to it gives
 $\mathbf{m}\cdot\mathbf{a}$, and that vanishes at the two sources; a third wave of
-light would fill all six of its numbers and leave nothing to find. Computed in
-the reference implementation.}\label{fig:voices}
+light would fill all six of its numbers and leave nothing to find.}\label{fig:voices}
 \end{figure*}
 
 Uncorrelated sources can be separated from second moments alone. In the
@@ -349,7 +363,7 @@ and the brightness and the circular polarization of the sources give two
 five-by-five matrices built from the same five steering vectors; when the
 sources' circular fractions differ, diagonalizing one in the frame that whitens
 the other separates five sources in closed form, with their directions,
-brightnesses and circular fractions (checked in the reference implementation).
+brightnesses and circular fractions.
 
 \paragraph{Lensed images at one point.} The count assumes the waves overlap in
 time and frequency. The images of a chirping binary seen through a lens do
@@ -360,9 +374,9 @@ cell of time and frequency the pixel then reads a single wave, and places it to
 within $1/\rho$ radian at the signal-to-noise ratio $\rho$ of that image. An
 arcsecond needs $\rho \approx 2\times10^5$ at one point, where resolving the
 images by the width of an aperture would need, at $100\,\mathrm{Hz}$, an array
-four astronomical units across. The reference implementation places two
-images of a chirp an arcsecond apart, half a second out of step, each to two
-per cent of their separation from one pixel's noiseless record; with noise the
+four astronomical units across. From one pixel's noiseless record, two
+images of a chirp an arcsecond apart and half a second out of step are each
+placed to two per cent of their separation; with noise the
 limit is $1/\rho$. Images that overlap in frequency, as a lens of a steady
 source makes them, are instead a Prony problem whose conditioning falls as a
 power of their separation.
@@ -380,6 +394,7 @@ complex symmetric one. The brightness enters through the kernel
 P_{ij} = \delta_{ij} - \hat n_i \hat n_j ,
 \end{gathered}
 \end{equation}
+(for polarization tensors with $e^A_{ij}e^A_{ij} = 2$),
 a polynomial of degree four in the components of $\hat n$, so the pixel sees the
 spherical harmonics of $I$ of degree four and below, twenty-five numbers; it
 sees as many of $V$, and eighteen of the linear polarization, which carries spin
@@ -390,15 +405,13 @@ weight four and enters only at degree four. That is
 numbers of the sky, all independent; the other thirty-two of the hundred vanish
 for any sky of gravitational waves and are checks against sensor noise or
 anything else. The brightness and the circular polarization never mix at one
-pixel: one lives in the real part of the spectral matrix, the other in its
+pixel: one lies in the real part of the spectral matrix, the other in its
 imaginary part. (They mix in the cross-correlation of two separated detectors
 \cite{AllenOttewill1997,SetoCooray2004}, through the phase between them.) The
 same count for a point sensor of a transverse field of spin $s \ge 1$, with two
 helicities, gives $2(2s+1)^2 + 2(4s+1)$: $28$ of $36$ for light. Sound, a
 pressure and a velocity, has one longitudinal polarization and is counted
-separately: $9$ of $16$. All
-three counts are checked in the reference implementation
-(Fig.~\ref{fig:sky-count}).
+separately: $9$ of $16$ (Fig.~\ref{fig:sky-count}).
 
 One of the sixty-eight numbers is the handedness of the whole sky. An isotropic
 sky of brightness $I$ and net circular polarization $V$ puts exactly
@@ -429,8 +442,7 @@ polynomial of degree five or less exactly as the whole sphere does
 \cite{Delsarte1977}. Twelve equal, unpolarized, independent sources at those
 corners therefore give a pixel exactly the second moments of a uniform sky,
 while six at the corners of an octahedron, a design of degree three only, do
-not; the reference implementation finds the first pair equal to one part in
-$10^{15}$. Sources that are not Gaussian say more: the fourth moments of the
+not. Sources that are not Gaussian say more: the fourth moments of the
 pixel are kernels of degree eight, which no icosahedron averages. Two pixels a
 wavelength apart tell the two skies apart as well, because their
 cross-correlation carries the phase $e^{i\omega\hat n\cdot\Delta\mathbf x/c}$,
@@ -451,7 +463,7 @@ average every polynomial of degree five or less as the whole sphere
 does.}\label{fig:sky-count}
 \end{figure*}
 
-\paragraph{How far away is a wave source?} A single plane wave has no distance.
+\paragraph{Ranging a wave source.} A single plane wave has no distance.
 The field of a real source at distance $r$ is not quite a plane wave: it carries
 terms falling as $1/r^2$, $1/r^3$ and beyond, organized by how they turn about
 the line of sight \cite{Sachs1962}, and a pixel sees them. At one instant the
@@ -477,8 +489,9 @@ A = (1 - 3\cos^2\!\iota)\cos^2\!\theta - 4\cos^2\!\iota\,\sin^2\!\theta,\\
 D = (1 + \cos^2\!\iota)^2\cos^2\!\theta + 4\cos^2\!\iota\,\sin^2\!\theta,
 \end{gathered}
 \end{equation}
-which is $2$ for any phase seen edge on and, at the phases $\theta = 0$ and
-$\pi$, vanishes at the angle $\cos^2\iota = 1/3$. Over a cycle more can be done. The two frequency parts
+which is $2$ seen edge on (except at the phases where the wave itself passes
+through zero) and, at the phases $\theta = 0$ and $\pi$, vanishes at the angle
+$\cos^2\iota = 1/3$. Over a cycle more can be done. The two frequency parts
 $\mathcal{W}_\pm$ (the parts at $e^{\mp i\omega t}$, whose amplitudes go as
 $\cos^4(\iota/2)$ and $\sin^4(\iota/2)$) depart from rank one by
 $2\tan^{\pm2}(\iota/2)/(kr)^2$, both with the same $s_2$, so that
@@ -496,9 +509,8 @@ best inclination. A difference of directions measured at signal-to-noise ratio $
 source out to $kr$ of order $\rho$, where the rank departure reaches only $kr$
 of order $\sqrt\rho$. A source seen at $\rho = 10^{3}$ can be ranged out to
 several hundred reduced wavelengths: at $100\,\mathrm{Hz}$, a few hundred
-thousand kilometres. The
-reference implementation checks Eqs.~\eqref{eq:ranging-C}
-and~\eqref{eq:helicity-split} against the exact field of a turning pair to
+thousand kilometres. Equations~\eqref{eq:ranging-C}
+and~\eqref{eq:helicity-split} agree with the exact field of a turning pair to
 within a few per cent at $kr = 80$ and $0.5$ per cent at $kr = 200$
 (Fig.~\ref{fig:ranging}).
 
@@ -518,19 +530,19 @@ differ by $8|\cot\iota|/kr$, Eq.~\eqref{eq:helicity-split}, here at
 $kr = 200$.}\label{fig:ranging}
 \end{figure*}
 
-\paragraph{The camera sees the present.} The field of a body moving uniformly is
+\paragraph{The absence of gravitational aberration.} The field of a body moving uniformly is
 its static field carried along, so it depends on where the body is now. The
-stretch axis of $\tE$ points at the body's present position, at any speed (to
-$10^{-7}$ radian at $0.3\,c$ in the reference implementation), while its light
+stretch axis of $\tE$ points at the body's present position, at any speed, while its light
 shows its position a light-travel time ago, displaced by the aberration angle,
 about $v_\perp/c$ (Fig.~\ref{fig:present}). Near two masses in orbit the changing part of the field is
 Newton's field of their present positions to order $(kr)^2$, while their
-retarded positions would be off by $kr$ itself: at $kr = 0.1$, a tenth of a per
-cent against ten per cent. The first-order retardation cancels because mass and
+retarded positions would be off by $kr$ itself: at $kr = 0.1$, a tenth to half
+of a per cent, depending on direction, against ten per cent. The first-order retardation cancels because mass and
 momentum are conserved. The gravitational Sun is therefore $20.5''$ ahead of the
 optical Sun along its yearly path across the sky. Laplace took the absence of
-gravitational aberration to mean that gravity is far faster than light; it is
-what general relativity predicts \cite{Carlip2000}. A camera that sees mass sees
+gravitational aberration to mean that gravity travels far faster than light.
+General relativity, in which gravity travels at the speed of light, predicts
+the same absence at this order, through this cancellation \cite{Carlip2000}. A camera that sees mass sees
 it on its own slice of simultaneity. When a body changes its motion, the field
 goes on pointing at where it would have been until the news, travelling at the
 speed of light as a wave, arrives.
@@ -538,17 +550,16 @@ speed of light as a wave, arrives.
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/present.pdf}
-\caption{The camera sees the present. (a) A mass passing a pixel at $0.6\,c$:
+\caption{The field of a moving mass points to its present position. (a) A mass passing a pixel at $0.6\,c$:
 the stretch axis of its exact field at the pixel (a ring of free masses,
 exaggerated) points at where the mass is now, while its light arrives from where
 it was a light-travel time ago. (b) Near two masses in orbit, at reduced
 distance $kr$, the changing part of the exact field against Newton's field of
 the masses at their present positions, which it matches to order $(kr)^2$, and
-at their retarded positions, which miss by $kr$. Computed in the reference
-implementation.}\label{fig:present}
+at their retarded positions, which miss by $kr$.}\label{fig:present}
 \end{figure}
 
-\paragraph{Beyond general relativity, in one reading.} Other theories of gravity
+\paragraph{Tests of general relativity from one reading.} Other theories of gravity
 allow up to six polarizations, and waves that travel at other speeds
 \cite{EardleyLeeLightman1973}. For any plane wave of the metric, of any
 polarization and phase speed $v_p$, the second Bianchi identity gives, with no
@@ -566,16 +577,15 @@ $\mathbf p = (c/v_p)\hat k$,
 \bigl(|\tE|^2 - \tE^2\bigr)\,\mathbf p = \textstyle\sum_j \mathbf e_j\times\mathbf b_j ,
 \end{equation}
 whose matrix is invertible whenever $\tE$ has rank two or more; the residual
-$\tB - [\mathbf p]_\times\tE$ then tests that the reading is one wave. A purely longitudinal wave, $\tE \propto \hat k\hat k$,
+$\tB - [\mathbf p]_\times\tE$, with $[\mathbf p]_\times$ the matrix of the cross
+product with $\mathbf p$, then tests that the reading is one wave. A purely longitudinal wave, $\tE \propto \hat k\hat k$,
 has $\tB = 0$, and its speed cannot be read at one point. In general relativity $v_p = c$ and only the two tensor
 polarizations appear. A massive graviton and a massive scalar differ even in
 sign: with $n = c/v_p$, the helicity-zero wave of a Fierz--Pauli graviton
 \cite{FierzPauli1939} has longitudinal and breathing amplitudes in the ratio
-$-2(1 - n^2)$, a scalar wave $+(1 - n^2)$ (Fig.~\ref{fig:beyond}). These are
-checked against curvature computed from the metric in the reference
-implementation. Testing general
+$-2(1 - n^2)$, a scalar wave $+(1 - n^2)$ (Fig.~\ref{fig:beyond}). Testing general
 relativity this way at the level of present bounds would need extraordinary
-signal-to-noise ratios; what is new is that it needs only one point.
+signal-to-noise ratios, but it needs only one point.
 
 \begin{figure*}
 \centering
@@ -621,8 +631,7 @@ mass, whose field inside is exactly a constant $\tE_0$, and a pair of
 counter-propagating pulses with the profile
 $f(u) = [1 - 2m(u/\tau)^{2m}]\,e^{-(u/\tau)^{2m}}$, $2m > N$, whose field and
 all its derivatives through order $N$ agree with the shell's at one event; the
-pulses leave no lasting strain, since $f$ and $uf$ integrate to zero. The
-reference implementation checks both. What tells such scenes apart is a time
+pulses leave no lasting strain, since $f$ and $uf$ integrate to zero. What tells such scenes apart is a time
 record (the pulses pass), an aperture, or knowledge that the sources are
 compact and their waves outgoing. Nor does the algebraic type count bodies:
 two masses on a line make the same type D as one, and the reading with rows
@@ -638,7 +647,8 @@ size sharpens the image, Eq.~\eqref{eq:diffraction}. And it multiplies the
 number of sources that can be told apart: an array of $N$ pixels, wherever they
 are placed and even along one line, has $5N$ independent steering vectors at
 each frequency and helicity, so subspace methods separate up to $5N - 1$
-uncorrelated sources, against $N - 1$ for scalar sensors and $3N - 1$ for sensors
+uncorrelated sources (one more, as above, if their circular polarizations
+differ), against $N - 1$ for scalar sensors and $3N - 1$ for sensors
 of light. The tensor nature of each pixel also removes the false images of a
 sparse array. Two scalar sensors far apart see a source equally well at any of
 the fringes of their pattern; two pixels $D$ apart see the fringe at the
@@ -647,10 +657,10 @@ response to two directions an angle $\vartheta$ apart is multiplied by
 $\cos^8(\vartheta/2)$. With a minimum-variance (Capon) estimator and a source
 at signal-to-noise ratio $\rho$, the true fringe stands above the nearest false
 one by the factor $1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$, where
-$\vartheta_1 \approx \lambda/D$ is the fringe spacing, so that two pixels a
+$\vartheta_1$ is the fringe spacing, $\lambda/D$ for a source broadside to the
+pair and wider away from it, so that two pixels a
 hundred wavelengths apart form a telescope without ambiguity once $\rho$ exceeds
-about a hundred (Fig.~\ref{fig:two-pixels}). The reference implementation checks
-these three statements.
+about a hundred (Fig.~\ref{fig:two-pixels}).
 
 \begin{figure}
 \centering
@@ -662,7 +672,8 @@ is weighed by $\cos^8(\vartheta/2)$, the overlap of their tensor responses to
 the two directions. (b) With a minimum-variance (Capon) estimator and two pixels
 a hundred wavelengths apart, the true fringe over the nearest false one,
 $1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$ (line; points computed), against the
-signal-to-noise ratio; for scalar sensors the two are equal at any
+signal-to-noise ratio, for a source $55^\circ$ from broadside, where
+$\vartheta_1 = 1.8\,\lambda/D$; for scalar sensors the two are equal at any
 $\rho$.}\label{fig:two-pixels}
 \end{figure}
 
@@ -678,12 +689,9 @@ to it, a million times the tidal field of the waves LIGO detects. To isolate
 the wave the camera must model the nearby masses from their variation and
 subtract them, which is how observatories plan to remove the changing pull of
 their surroundings \cite{Harms2019,Chaibi2016}, or use the magnetic part, or
-compare two arrays far apart; a camera simply keeps what the observatories
-throw away. With two arrays far apart the separation is cleaner still: a wave
+compare two arrays far apart. With two arrays far apart the separation is cleaner still: a wave
 appears in both, with a delay that gives its direction, while a nearby mass
-appears in one. The accompanying demonstrations show the tidal tensor itself
-on a slice through the scene, coloured by the direction of stretching in the
-manner of diffusion tensor imaging.
+appears in one.
 
 \paragraph{Depth.} The same variation measures distance. For an isolated mass
 the tidal field goes as $M/r^{3}$ and its gradient as $M/r^{4}$, so their
@@ -704,8 +712,7 @@ v_\perp$, with $P = 1 - \hat n\hat n$, so that
 \end{equation}
 and then $M$ from $\tE$. The stretch axis of $\tE$ gives $\hat n$ only up to
 sign; reversing it leaves the left side of the vector relation unchanged and
-reverses the right, so the sign that makes $r$ positive fixes $\hat n$. The reference implementation recovers distance, mass and velocity
-this way from the finite-difference curvature of a moving mass. Motion straight
+reverses the right, so the sign that makes $r$ positive fixes $\hat n$. Motion straight
 toward or away from the pixel gives no range, though it gives the time of
 arrival, Eq.~\eqref{eq:contact}; and the magnetic signal, smaller by $v/c$, sets
 the noise. For waves, range comes from the curvature of the wavefront, which
@@ -742,8 +749,8 @@ Eq.~\eqref{eq:magnetic-range} below. Table~\ref{tab:one-pixel} sets these
 counts beside those of a sensor of light.
 
 How well each of these works against noise follows from the Cram\'er--Rao
-bounds of the same fields, which the reference implementation computes and
-checks against fits to simulated noisy readings (Fig.~\ref{fig:separation-noise});
+bounds of the same fields, compared in Fig.~\ref{fig:separation-noise} with
+fits to simulated noisy readings;
 the details are collected in Appendix~\ref{app:benchmarks}.
 
 \paragraph{Separation with noise.} Take a wave at $100\,\mathrm{Hz}$ of strain
@@ -754,7 +761,7 @@ about the quadrupole of the rotor that calibrates LIGO by its pull
 its size. Shape alone tells an isolated wave from an isolated mass: the nearest
 wave to the field of a mass, and the nearest mass to a wave, lie at half the
 reading's size, so one reading of $\tE$ puts the two $\rho/2$ standard
-deviations apart, and at $\rho = 12$ fewer than one reading in a hundred is
+deviations apart, with $\rho$ here the size of $\tE$ over its noise, and at $\rho = 12$ fewer than one reading in a hundred is
 taken for the other. A wave and a near field together are separated by the
 magnetic part, at a fixed price. Let the near field's $\tE$ at the wave's
 frequency be anything at all, and its $\tB$ below the noise. Fitting both then
@@ -762,7 +769,7 @@ enlarges the error of the wave's amplitude by exactly $\sqrt2$, however strong
 the near field: the near field takes the wave's $\tE$, and the wave is read from
 its $\tB$, which carries half its signal. Ignored, the rotor would be read as a
 wave 35 times the true one; its own magnetic part, smaller than its $\tE$ by
-about $kr$ (Eq.~\eqref{eq:magnetic-ratio}), leaks less than $10^{-4}$ of the
+about $kr$ (the remark after Eq.~\eqref{eq:magnetic-ratio}), leaks less than $10^{-4}$ of the
 wave. An array that reads only $\tE$ must instead model the rotor from its
 variation, and pays more: the factor on the wave's error grows as $r/b$ for
 neighbours at distance $b$, because a quadrupole's tide falls as $r^{-5}$, and
@@ -816,8 +823,7 @@ rotor as a point quadrupole of unknown moment and position, from $\tE$ alone
 (solid) and from both (dashed). (b) The range of one mass, with $\rho$ the
 signal-to-noise ratio of one pixel's reading, against
 Eq.~\eqref{eq:depth-bound}. (c) The separation $\Delta_{\min}$ in depth at which
-two equal masses on one line are told from one at one standard deviation.
-Computed in the reference implementation.}\label{fig:separation-noise}
+two equal masses on one line are told from one at one standard deviation.}\label{fig:separation-noise}
 \end{figure*}
 
 \begin{table}
@@ -828,12 +834,12 @@ Numbers recorded & 4 & 6 & 10 \\
 Numbers no observer can change & -- & 2 & 4 \\
 Own velocity readable, components & -- & 2 & 3 \\
 Waves separated at one instant & 1 & 1 & 2 \\
-Waves separated at one frequency & -- & 2 & 3 \\
+Waves separated at one frequency & 2 & 2 & 3 \\
 Waves separated over time & 2 & 2 & 4 \\
 Sky numbers per frequency (of) & 9 (16) & 28 (36) & 68 (100) \\
 Direction of one wave, standard deviation & -- & $\sqrt2/\rho$ & $1/\rho$ \\
 \end{tabular}
-\caption{What a sensor at one point can know, for sound (pressure and velocity),
+\caption{What a sensor at one point can measure, for sound (pressure and velocity),
 light (electric and magnetic fields) and gravity (the ten numbers of a pixel).
 Separation counts are for plane waves from distinct directions; over time the
 waveforms are arbitrary. A dash marks an entry that does not
