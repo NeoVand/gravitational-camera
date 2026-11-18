@@ -84,6 +84,28 @@ def test_positivity_finds_the_gold_where_the_gaussian_image_cannot():
     linear = worked_case(1e3)
     positive = positive_case(1e3, trials=20)
     m, s = positive["right"]
-    assert abs(m - GOLD_MASS) < 0.1 * GOLD_MASS and s < 30.0      # 317 +- 16 kg
+    assert abs(m - GOLD_MASS) < 0.1 * GOLD_MASS and s < 30.0      # 316 +- 20 kg over 3000 draws
     assert positive["left"][0] < 5.0                                 # nothing in the empty safe
     assert linear["right"][1] > 20 * s                               # against +-730 kg without positivity
+
+
+def test_posterior_with_fewer_readings_than_cells():
+    """A small array reads fewer numbers than there are cells: the posterior still exists, the patterns the data
+    do not reach keep their prior, and the worked case runs."""
+    import numpy as np
+    from gravcam.inversion import posterior, worked_case
+    rng = np.random.default_rng(0)
+    A = rng.standard_normal((20, 50))
+    y = A @ rng.standard_normal(50)
+    mean, cov = posterior(A, y, 0.1, 2.0)
+    assert mean.shape == (50,) and cov.shape == (50, 50) and np.all(np.isfinite(mean))
+    # the prior is kept exactly in the directions A cannot see
+    _, _, Vt = np.linalg.svd(A, full_matrices=True)
+    unseen = Vt[20:]
+    assert np.allclose(unseen @ mean, 0.0, atol=1e-10)
+    assert np.allclose(unseen @ cov @ unseen.T, 4.0 * np.eye(30), atol=1e-10)
+    # and it agrees with the direct formula where that is well conditioned
+    direct = np.linalg.solve(A.T @ A / 0.01 + np.eye(50) / 4.0, A.T @ y / 0.01)
+    assert np.allclose(mean, direct, atol=1e-8)
+    for n in (3, 4, 6):
+        assert worked_case(1e3, n=n)

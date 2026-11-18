@@ -93,13 +93,13 @@ def posterior(A: np.ndarray, y: np.ndarray, sigma: float, prior_std: float):
     their prior. Stable however small the noise, unlike inverting A^T A / sigma^2 + 1/s^2 directly."""
     U, S, Vt = np.linalg.svd(A / sigma, full_matrices=True)
     s2 = prior_std**2
-    k = len(S)
+    k = len(S)                          # min(readings, cells): with fewer readings than cells the rest keep the prior
     shrink = np.full(Vt.shape[0], s2)
     shrink[:k] = 1.0 / (S**2 + 1.0 / s2)
     cov = (Vt.T * shrink) @ Vt
-    gain = np.zeros(Vt.shape[0])
-    gain[:k] = S / (S**2 + 1.0 / s2)
-    mean = Vt.T @ (gain * (U[:, : Vt.shape[0]].T @ (y / sigma))[: Vt.shape[0]])
+    coef = np.zeros(Vt.shape[0])
+    coef[:k] = S / (S**2 + 1.0 / s2) * (U[:, :k].T @ (y / sigma))
+    mean = Vt.T @ coef
     return mean, cov
 
 
@@ -145,9 +145,10 @@ def footprint(cells, center, half=(0.45, 0.6)) -> np.ndarray:
     return (np.abs(cells[:, 0] - center[0]) <= half[0]) & (cells[:, 1] <= center[1] + half[1])
 
 
-def positive_case(snr: float, trials: int = 40, side: float = 1.0, n: int = 11, seed: int = 1) -> dict:
+def positive_case(snr: float, trials: int = 3000, side: float = 1.0, n: int = 11, seed: int = 1) -> dict:
     """The same data, reconstructed with every cell's mass constrained to be non-negative (non-negative least
-    squares, no prior): mean and spread over noise of the mass found in each safe."""
+    squares, no prior): mean and spread over noise of the mass found in each safe. The spread needs thousands of
+    draws to settle: forty gave 317 +- 16 kg at SNR 10^3, three thousand give 316 +- 20 kg."""
     from scipy.optimize import nnls
 
     pixels = array_pixels(side, n)
