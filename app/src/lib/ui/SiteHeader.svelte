@@ -79,7 +79,7 @@
 		background: color-mix(in srgb, var(--bg) 86%, transparent);
 		backdrop-filter: blur(10px);
 		border-bottom: 1px solid var(--line);
-		font-size: 0.86rem;
+		font: 400 1rem/1 var(--font-serif);
 	}
 
 	header.overlay {
@@ -108,11 +108,12 @@
 		color: var(--accent);
 	}
 
-	/* the serif sets its capitals higher in the line than the sans of the other items:
-	   lower it so that its capitals are centred on the icons, as theirs are */
-	.brand span {
+	/* the serif sets its capitals high in the line: lower them so that they are centred on the
+	   icons */
+	.brand span,
+	nav a span {
 		position: relative;
-		top: 0.11em;
+		top: 0.08em;
 	}
 
 	nav {
@@ -131,7 +132,6 @@
 		padding: 0 0.65rem;
 		line-height: 1;
 		border: 0;
-		border-radius: 8px;
 		background: none;
 		color: var(--text-dim);
 		text-decoration: none;
@@ -141,11 +141,21 @@
 	nav a:hover,
 	nav button:hover {
 		color: var(--text);
-		background: var(--bg-raised);
 	}
 
+	nav a:hover span {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.25em;
+	}
+
+	/* the page you are on: its words in full ink, its icon in the accent */
 	nav a[aria-current='page'] {
 		color: var(--text);
+	}
+
+	nav a[aria-current='page'] :global(svg) {
+		color: var(--accent);
 	}
 
 	/* an icon set inline would sit on the text baseline, above the middle */

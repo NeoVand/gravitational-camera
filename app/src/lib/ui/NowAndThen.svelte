@@ -55,7 +55,7 @@
 			oy = h * 0.47;
 		const X = (p: Vec3) => ox + p[0] * s,
 			Y = (p: Vec3) => oy - p[1] * s;
-		ctx.fillStyle = '#0b0c10';
+		ctx.fillStyle = '#18120b';
 		ctx.fillRect(0, 0, w, h);
 
 		const now = position(k, t);
@@ -182,7 +182,7 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		background: #0b0c10;
+		background: #18120b;
 	}
 	canvas {
 		display: block;
@@ -197,7 +197,7 @@
 		margin: 0;
 		padding: 0.4em 0.75em;
 		border-radius: 999px;
-		background: rgb(8 10 14 / 0.6);
+		background: rgb(24 18 11 / 0.6);
 		border: 1px solid rgb(255 255 255 / 0.14);
 		color: rgb(255 255 255 / 0.8);
 		font: 500 0.7rem/1.2 var(--font-sans);

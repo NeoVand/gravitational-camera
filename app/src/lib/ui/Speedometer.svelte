@@ -137,7 +137,7 @@
 		display: grid;
 		place-items: center;
 		padding: var(--stage-pad, 4.5rem 1rem 6.5rem);
-		background: radial-gradient(circle at 50% 45%, #10141b 0%, #07090d 70%);
+		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
 	}
 	svg {
 		width: var(--figure-width, min(62cqw, 120cqh));
@@ -178,7 +178,7 @@
 	}
 	.pixel {
 		fill: #e9e6df;
-		stroke: #07090d;
+		stroke: #18120b;
 		stroke-width: 2;
 		cursor: grab;
 	}
@@ -213,7 +213,7 @@
 		margin: 0;
 		padding: 0.4em 0.75em;
 		border-radius: 999px;
-		background: rgb(8 10 14 / 0.6);
+		background: rgb(24 18 11 / 0.6);
 		border: 1px solid rgb(255 255 255 / 0.14);
 		color: rgb(255 255 255 / 0.8);
 		font: 500 0.7rem/1.2 var(--font-sans);

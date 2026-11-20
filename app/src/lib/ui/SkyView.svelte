@@ -301,11 +301,9 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45em;
-		font: 500 0.72rem/1 var(--font-sans);
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
+		font: italic 400 0.92rem/1 var(--font-serif);
 		color: rgb(255 255 255 / 0.82);
-		background: rgb(8 10 14 / 0.55);
+		background: rgb(33 25 16 / 0.6);
 		border: 1px solid rgb(255 255 255 / 0.14);
 		padding: 0.45em 0.7em;
 		border-radius: 999px;
@@ -393,7 +391,7 @@
 		padding: 1rem 1.2rem;
 		border-radius: 12px;
 		background: rgb(12 15 21 / 0.86);
-		color: #e8e6e1;
+		color: #d2dde7;
 		font-size: 0.85rem;
 	}
 

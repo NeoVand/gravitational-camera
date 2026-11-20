@@ -121,7 +121,7 @@
 		justify-content: center;
 		gap: 0.6rem;
 		padding: var(--stage-pad, 4.5rem 1rem 6rem);
-		background: radial-gradient(circle at 50% 45%, #10141b 0%, #07090d 70%);
+		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
 	}
 	svg {
 		width: var(--figure-width, min(56cqw, 110cqh));

@@ -120,7 +120,7 @@
 			<p class="date">{@html paper.date}</p>
 			<!-- the PDF is built from the same LaTeX by the deploy workflow -->
 			<a class="pdf" href="{resolve('/')}gravitational-camera.pdf" download>
-				<HugeiconsIcon icon={Pdf01Icon} size={16} strokeWidth={1.8} /> PDF
+				<HugeiconsIcon icon={Pdf01Icon} size={18} strokeWidth={1.6} /> Download the PDF
 			</a>
 		</header>
 
@@ -237,11 +237,8 @@
 
 	.contents p {
 		margin: 0 0 0.7rem;
-		font-size: 0.7rem;
-		font-weight: 600;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--text-faint);
+		font: italic 400 1rem/1.3 var(--font-serif);
+		color: var(--text-dim);
 	}
 
 	.contents ol {
@@ -259,7 +256,7 @@
 		border-left: 1px solid transparent;
 		color: var(--text-dim);
 		text-decoration: none;
-		line-height: 1.35;
+		font: 400 0.95rem/1.35 var(--font-serif);
 	}
 
 	.contents a {
@@ -294,26 +291,27 @@
 	.pdf {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.4rem;
-		margin-top: 1rem;
-		padding: 0.4rem 0.8rem;
-		border: 1px solid var(--line);
-		border-radius: 999px;
-		font: 500 0.78rem/1 var(--font-sans);
+		gap: 0.45rem;
+		margin-top: 1.1rem;
+		font: italic 400 1.05rem/1 var(--font-serif);
 		color: var(--text-dim);
 		text-decoration: none;
 	}
 
 	.pdf:hover {
 		color: var(--text);
-		border-color: var(--line-strong);
+	}
+
+	.pdf:hover :global(span),
+	.pdf:hover {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.25em;
 	}
 
 	.kicker {
-		margin: 0 0 0.9rem;
-		font: 600 0.72rem/1 var(--font-sans);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		margin: 0 0 0.8rem;
+		font: italic 400 1.05rem/1.2 var(--font-serif);
 		color: var(--accent);
 	}
 
@@ -327,25 +325,23 @@
 	.authors,
 	.date {
 		margin: 0;
-		font: 400 0.9rem/1.5 var(--font-sans);
+		font: 400 1.05rem/1.5 var(--font-serif);
 		color: var(--text-dim);
 	}
 
+	/* the abstract, set apart by a rule and its own heading, not a box */
 	.abstract {
 		margin: 0 0 3rem;
-		padding: 1.3rem 1.5rem 1.4rem;
-		background: var(--bg-raised);
-		border-radius: 10px;
+		padding-top: 1.4rem;
+		border-top: 1px solid var(--line);
 		font-size: 1.04rem;
 		line-height: 1.6;
 	}
 
 	.abstract h2 {
 		margin: 0 0 0.5rem;
-		font: 600 0.72rem/1 var(--font-sans);
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--text-faint);
+		font: italic 400 1.05rem/1.3 var(--font-serif);
+		color: var(--text-dim);
 	}
 
 	.abstract :global(p) {
@@ -365,12 +361,11 @@
 		margin-right: 0.35em;
 	}
 
+	/* the paper's run-in paragraph heads, in italic as a journal sets them */
 	article :global(h4.run-in) {
 		margin: 2rem 0 -0.9rem;
-		font: 600 0.76rem/1.4 var(--font-sans);
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--accent);
+		font: italic 500 1.08rem/1.4 var(--font-serif);
+		color: var(--text);
 	}
 
 	article :global(p) {
@@ -400,14 +395,13 @@
 		margin: 0;
 	}
 
-	/* the plain-language summaries */
+	/* the plain-language summaries: a hairline in the accent, no box */
 	article :global(aside.plain) {
 		margin: 1.4rem 0 1.8rem;
-		padding: 1rem 1.3rem 1.05rem;
-		border-left: 3px solid var(--accent);
-		background: color-mix(in srgb, var(--accent) 9%, transparent);
-		border-radius: 0 10px 10px 0;
-		font: 400 1rem/1.58 var(--font-sans);
+		padding: 0.15rem 0 0.2rem 1.25rem;
+		border-left: 1px solid var(--accent);
+		font: 400 1.06rem/1.6 var(--font-serif);
+		color: var(--text-dim);
 	}
 
 	article :global(aside.plain p) {
@@ -417,9 +411,8 @@
 	article :global(aside.plain strong) {
 		display: block;
 		margin-bottom: 0.3rem;
-		font-size: 0.72rem;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
+		font-style: italic;
+		font-weight: 500;
 		color: var(--accent);
 	}
 
@@ -598,11 +591,9 @@
 	}
 
 	article :global(th) {
-		font-weight: 600;
+		font-weight: 500;
+		font-style: italic;
 		color: var(--text-dim);
-		font-size: 0.74rem;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
 		border-bottom-color: var(--line-strong);
 	}
 
@@ -668,8 +659,9 @@
 		margin: 0;
 	}
 
-	article :global(:target) {
-		background: color-mix(in srgb, var(--accent) 14%, transparent);
-		outline: 6px solid color-mix(in srgb, var(--accent) 14%, transparent);
+	/* where a link has just taken you: the number in the accent, no band */
+	article :global(:target .number),
+	article :global(.equation:target .katex-tag) {
+		color: var(--accent);
 	}
 </style>

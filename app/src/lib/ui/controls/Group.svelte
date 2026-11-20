@@ -22,9 +22,7 @@
 
 	h3 {
 		margin: 0 0 0.6rem;
-		font: 600 0.62rem/1 var(--font-sans);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font: italic 400 0.95rem/1.3 var(--font-serif);
 		color: var(--text-faint);
 	}
 

@@ -14,37 +14,38 @@
 	--gutter: clamp(1rem, 4vw, 3rem);
 }
 
-/* Dark is the default: the subject is a sky. `.always-dark` pins it for pages
-   that are built around a night picture. */
+/* The two themes are the two sides of the landing page's seam. Dark, the default, is the
+   gravity side: an umber ground and pale ink. `.always-dark` pins it for pages built around a
+   picture. Light is the light side: a pale blue-grey ground and umber ink. Each side's ink is
+   the other side's ground. */
 :root,
 .always-dark {
-	--bg: #07090d;
-	--bg-raised: #0e1218;
-	--bg-sunken: #04060a;
-	--line: rgb(255 255 255 / 0.1);
-	--line-strong: rgb(255 255 255 / 0.28);
-	--text: #e9e6df;
-	--text-dim: #a09d96;
-	--text-faint: #6f6d68;
+	--bg: #211910;
+	--bg-raised: #2b2117;
+	--bg-sunken: #18120b;
+	--line: rgb(210 221 231 / 0.11);
+	--line-strong: rgb(210 221 231 / 0.3);
+	--text: #d2dde7;
+	--text-dim: #a2acb4;
+	--text-faint: #747c82;
 	--accent: #e8a45a;
-	--accent-2: #7fb4ff;
+	--accent-2: #8fb6dd;
 	--good: #7bd88f;
 	--bad: #ff7b72;
 	color-scheme: dark;
 }
 
-/* Light: warm paper and dark ink, for reading. */
 :root[data-theme='light'] {
-	--bg: #faf8f3;
-	--bg-raised: #f1eee6;
-	--bg-sunken: #e9e5da;
-	--line: rgb(20 18 10 / 0.12);
-	--line-strong: rgb(20 18 10 / 0.34);
-	--text: #1c1a16;
-	--text-dim: #5d5a52;
-	--text-faint: #8b877d;
-	--accent: #b0560a;
-	--accent-2: #2a67ad;
+	--bg: #e3e9ef;
+	--bg-raised: #d8e1e9;
+	--bg-sunken: #ccd7e1;
+	--line: rgb(45 34 24 / 0.13);
+	--line-strong: rgb(45 34 24 / 0.32);
+	--text: #2d2218;
+	--text-dim: #5d5046;
+	--text-faint: #85786c;
+	--accent: #9a5212;
+	--accent-2: #2d5f8e;
 	--good: #1f7a3a;
 	--bad: #b3261e;
 	color-scheme: light;
@@ -52,16 +53,16 @@
 
 @media (prefers-color-scheme: light) {
 	:root:not([data-theme='dark']) {
-		--bg: #faf8f3;
-		--bg-raised: #f1eee6;
-		--bg-sunken: #e9e5da;
-		--line: rgb(20 18 10 / 0.12);
-		--line-strong: rgb(20 18 10 / 0.34);
-		--text: #1c1a16;
-		--text-dim: #5d5a52;
-		--text-faint: #8b877d;
-		--accent: #b0560a;
-		--accent-2: #2a67ad;
+		--bg: #e3e9ef;
+		--bg-raised: #d8e1e9;
+		--bg-sunken: #ccd7e1;
+		--line: rgb(45 34 24 / 0.13);
+		--line-strong: rgb(45 34 24 / 0.32);
+		--text: #2d2218;
+		--text-dim: #5d5046;
+		--text-faint: #85786c;
+		--accent: #9a5212;
+		--accent-2: #2d5f8e;
 		--good: #1f7a3a;
 		--bad: #b3261e;
 		color-scheme: light;

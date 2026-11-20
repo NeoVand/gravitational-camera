@@ -392,7 +392,7 @@
 		background: #000;
 		color: var(--text);
 		font-family: var(--font-sans);
-		--surface: #0d1016;
+		--surface: #1c150e;
 		--line: rgb(255 255 255 / 0.09);
 		--rail: 3.9rem;
 	}
@@ -443,8 +443,8 @@
 	/* the way back, at the head of the rail: the one light thing in the sidebar */
 	.tool.back {
 		margin-bottom: 0.45rem;
-		background: #f1ede4;
-		color: #15171c;
+		background: #d2dde7;
+		color: #2d2218;
 	}
 
 	.away {
@@ -481,9 +481,7 @@
 
 	.kicker {
 		margin: 0 0 0.3rem;
-		font: 600 0.6rem/1 var(--font-sans);
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
+		font: italic 400 0.95rem/1.3 var(--font-serif);
 		color: var(--accent);
 	}
 
@@ -585,9 +583,7 @@
 
 	.readings h3 {
 		margin: 0 0 0.6rem;
-		font: 600 0.62rem/1 var(--font-sans);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font: italic 400 0.95rem/1.3 var(--font-serif);
 		color: var(--text-faint);
 	}
 
@@ -618,14 +614,12 @@
 	/* the physics tab: set like the paper, for reading */
 	.physics {
 		font: 400 0.95rem/1.6 var(--font-serif);
-		color: #e6e2d9;
+		color: var(--text);
 	}
 
 	.physics :global(h4) {
 		margin: 1.1rem 0 0.35rem;
-		font: 600 0.62rem/1 var(--font-sans);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font: italic 400 0.95rem/1.3 var(--font-serif);
 		color: var(--accent);
 	}
 
@@ -711,8 +705,8 @@
 		}
 
 		.tool.back:hover {
-			background: #fff;
-			color: #15171c;
+			background: #e8eef3;
+			color: #2d2218;
 		}
 	}
 

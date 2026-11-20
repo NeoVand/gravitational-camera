@@ -5,7 +5,6 @@
 		Clock01Icon,
 		GalaxyIcon,
 		Orbit01Icon,
-		PlayIcon,
 		TemperatureIcon,
 		WavesIcon
 	} from '@hugeicons/core-free-icons';
@@ -13,12 +12,33 @@
 	import { posters } from '#lib/demos/posters.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 
-	const regimeIcons = {
-		'near field': Orbit01Icon,
-		thermal: TemperatureIcon,
-		waves: WavesIcon,
-		sky: GalaxyIcon
-	};
+	/** The demos fall into the paper's regimes, and the sky: each group is a section of the page. */
+	const groups = [
+		{
+			regime: 'near field',
+			name: 'The near field',
+			line: 'Mass itself, through any wall.',
+			icon: Orbit01Icon
+		},
+		{
+			regime: 'thermal',
+			name: 'The thermal glow',
+			line: 'Warm matter glows, and nothing blocks the glow of what lies behind.',
+			icon: TemperatureIcon
+		},
+		{
+			regime: 'waves',
+			name: 'Waves from motion',
+			line: 'Every moving thing is a point, and its waves say which way it turns.',
+			icon: WavesIcon
+		},
+		{
+			regime: 'sky',
+			name: 'The sky',
+			line: 'The same equations at the largest scales.',
+			icon: GalaxyIcon
+		}
+	] as const;
 </script>
 
 <svelte:head>
@@ -39,66 +59,85 @@
 		them.
 	</p>
 
-	<ol>
-		{#each demos as demo (demo.title)}
-			<li>
-				{#if demo.slug}
-					<a class="card" href={resolve(`/demo/${demo.slug}`)}>
-						<div class="thumb">
-							<img src={posters[demo.slug]} alt="" loading="lazy" />
-							<span class="play" aria-hidden="true">
-								<HugeiconsIcon icon={PlayIcon} size={18} strokeWidth={2} />
-							</span>
-						</div>
-						{@render text(demo)}
-					</a>
-				{:else}
-					<div class="card soon">
-						<div class="thumb empty">
-							<HugeiconsIcon icon={Clock01Icon} size={20} strokeWidth={1.6} />
-							<span>In progress</span>
-						</div>
-						{@render text(demo)}
-					</div>
-				{/if}
-			</li>
-		{/each}
-	</ol>
+	{#each groups as group (group.regime)}
+		<section aria-labelledby="group-{group.regime.replace(' ', '-')}">
+			<h2 id="group-{group.regime.replace(' ', '-')}">
+				<HugeiconsIcon icon={group.icon} size={22} strokeWidth={1.4} />
+				<span>{group.name}</span>
+			</h2>
+			<p class="line">{group.line}</p>
+			<ol>
+				{#each demos.filter((d) => d.regime === group.regime) as demo (demo.title)}
+					<li>
+						{#if demo.slug}
+							<a class="demo" href={resolve(`/demo/${demo.slug}`)}>
+								<img src={posters[demo.slug]} alt="" loading="lazy" width="1280" height="720" />
+								<h3>{demo.title}</h3>
+								<p class="summary"><em>{demo.affordance}.</em> {demo.summary}</p>
+							</a>
+						{:else}
+							<div class="demo soon">
+								<span class="empty">
+									<HugeiconsIcon icon={Clock01Icon} size={20} strokeWidth={1.4} />
+									<span>In progress</span>
+								</span>
+								<h3>{demo.title}</h3>
+								<p class="summary"><em>{demo.affordance}.</em> {demo.summary}</p>
+							</div>
+						{/if}
+					</li>
+				{/each}
+			</ol>
+		</section>
+	{/each}
 </main>
-
-{#snippet text(demo: (typeof demos)[number])}
-	<div class="text">
-		<p class="meta">
-			<span class="affordance">{demo.affordance}</span>
-			<span class="regime">
-				<HugeiconsIcon icon={regimeIcons[demo.regime]} size={13} strokeWidth={1.8} />
-				{demo.regime}
-			</span>
-		</p>
-		<h2>{demo.title}</h2>
-		<p class="summary">{demo.summary}</p>
-	</div>
-{/snippet}
 
 <style>
 	main {
 		max-width: 72rem;
 		margin: 0 auto;
-		padding: 1.2rem var(--gutter) 5rem;
+		padding: 1.2rem var(--gutter) 6rem;
+		font-family: var(--font-serif);
 	}
 
 	h1 {
 		margin: 3rem 0 1rem;
-		font: 400 clamp(2.2rem, 5vw, 3.4rem) / 1.05 var(--font-serif);
+		font: 300 clamp(2.6rem, 6vw, 4.2rem) / 1 var(--font-serif);
+		font-variation-settings: 'opsz' 72;
 		letter-spacing: -0.02em;
 	}
 
 	.intro {
 		max-width: 40rem;
-		margin: 0 0 2.8rem;
+		margin: 0;
 		color: var(--text-dim);
-		font-size: 1.05rem;
+		font-size: 1.2rem;
+		line-height: 1.5;
 		text-wrap: pretty;
+	}
+
+	section {
+		margin-top: clamp(3.5rem, 8vh, 5.5rem);
+	}
+
+	h2 {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin: 0;
+		font: 400 clamp(1.6rem, 2.6vw, 2.1rem) / 1.15 var(--font-serif);
+	}
+
+	h2 :global(svg) {
+		flex: none;
+		color: var(--accent);
+	}
+
+	.line {
+		margin: 0.35rem 0 1.6rem;
+		color: var(--text-dim);
+		font-style: italic;
+		font-size: 1.1rem;
 	}
 
 	ol {
@@ -107,143 +146,68 @@
 		padding: 0;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
-		gap: 2.2rem 1.6rem;
+		gap: 2.6rem 1.8rem;
 	}
 
-	.card {
+	.demo {
 		display: block;
 		color: inherit;
 		text-decoration: none;
 	}
 
-	.thumb {
-		position: relative;
-		aspect-ratio: 16 / 9;
-		border-radius: 12px;
-		overflow: hidden;
-		background: #0b0d12;
-		box-shadow: 0 0 0 1px var(--line);
-	}
-
-	.thumb img {
+	img,
+	.empty {
 		display: block;
 		width: 100%;
-		height: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
 		object-fit: cover;
-		transition:
-			transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
-			filter 0.3s;
+		border-radius: 3px;
+		background: var(--bg-sunken);
 	}
 
-	a.card:hover .thumb img,
-	a.card:focus-visible .thumb img {
-		transform: scale(1.04);
-		filter: brightness(1.06);
-	}
-
-	.play {
-		position: absolute;
-		right: 0.75rem;
-		bottom: 0.75rem;
-		display: grid;
-		place-items: center;
-		width: 2.4rem;
-		height: 2.4rem;
-		border-radius: 50%;
-		background: rgb(244 241 234 / 0.94);
-		color: #14161b;
-		box-shadow: 0 2px 10px rgb(0 0 0 / 0.35);
-		opacity: 0;
-		translate: 0 6px;
-		transition:
-			opacity 0.2s,
-			translate 0.2s;
-	}
-
-	a.card:hover .play,
-	a.card:focus-visible .play {
-		opacity: 1;
-		translate: 0 0;
-	}
-
-	a.card:focus-visible {
-		outline: none;
-	}
-
-	a.card:focus-visible .thumb {
-		box-shadow: 0 0 0 2px var(--accent);
-	}
-
-	.thumb.empty {
+	.empty {
 		display: grid;
 		place-content: center;
 		justify-items: center;
-		gap: 0.5rem;
+		gap: 0.4rem;
 		color: var(--text-faint);
-		font-size: 0.78rem;
-		background: repeating-linear-gradient(
-			-45deg,
-			transparent 0 10px,
-			rgb(127 127 127 / 0.05) 10px 20px
-		);
-		box-shadow: inset 0 0 0 1px var(--line);
+		font-style: italic;
 	}
 
-	.text {
-		padding: 0.95rem 0.15rem 0;
+	h3 {
+		margin: 0.9rem 0 0.3rem;
+		font: 400 1.4rem/1.2 var(--font-serif);
 	}
 
-	.meta {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 0.8rem;
-		margin: 0 0 0.4rem;
+	a.demo:hover h3 {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.18em;
 	}
 
-	.affordance {
-		font-size: 0.7rem;
-		font-weight: 600;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--accent);
+	a.demo:focus-visible {
+		outline: none;
 	}
 
-	.soon .affordance {
-		color: var(--text-faint);
+	a.demo:focus-visible img {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
 	}
 
-	.regime {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.3rem;
-		padding: 0.2rem 0.55rem;
-		border-radius: 999px;
-		border: 1px solid var(--line);
-		color: var(--text-dim);
-		font-size: 0.7rem;
-		white-space: nowrap;
-	}
-
-	h2 {
-		margin: 0 0 0.4rem;
-		font: 400 1.45rem/1.2 var(--font-serif);
-		transition: color 0.2s;
-	}
-
-	a.card:hover h2 {
-		color: var(--accent);
-	}
-
-	.soon h2 {
+	.soon h3 {
 		color: var(--text-dim);
 	}
 
 	.summary {
 		margin: 0;
-		font-size: 0.9rem;
+		font-size: 1rem;
 		line-height: 1.5;
 		color: var(--text-dim);
 		text-wrap: pretty;
+	}
+
+	.summary em {
+		color: var(--text);
 	}
 </style>

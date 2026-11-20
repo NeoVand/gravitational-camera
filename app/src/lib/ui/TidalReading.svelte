@@ -265,9 +265,7 @@
 
 	h5 {
 		margin: 0.95rem 0 0.4rem;
-		font: 600 0.6rem/1.2 var(--font-sans);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font: italic 400 0.95rem/1.3 var(--font-serif);
 		color: var(--text-dim);
 	}
 
@@ -397,7 +395,7 @@
 
 	.mass {
 		fill: rgb(255 255 255 / 0.75);
-		stroke: #07090d;
+		stroke: #18120b;
 		stroke-width: 0.6;
 	}
 

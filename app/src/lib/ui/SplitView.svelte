@@ -527,11 +527,9 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45em;
-		font: 500 0.72rem/1 var(--font-sans);
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
+		font: italic 400 0.92rem/1 var(--font-serif);
 		color: rgb(255 255 255 / 0.82);
-		background: rgb(8 10 14 / 0.55);
+		background: rgb(33 25 16 / 0.6);
 		border: 1px solid rgb(255 255 255 / 0.14);
 		padding: 0.45em 0.7em;
 		border-radius: 999px;
@@ -630,6 +628,6 @@
 		inset: auto 0 0 0;
 		padding: 0.8rem 1rem;
 		font-size: 0.8rem;
-		background: rgb(8 10 14 / 0.7);
+		background: rgb(24 18 11 / 0.7);
 	}
 </style>

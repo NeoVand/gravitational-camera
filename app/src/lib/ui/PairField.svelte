@@ -234,7 +234,7 @@
 			const scale = Math.min(w, h) / 2 / reach;
 			const ratio = w / Math.max(1, width);
 
-			ctx.fillStyle = '#0b0c10';
+			ctx.fillStyle = '#18120b';
 			ctx.fillRect(0, 0, w, h);
 			let drawn = 0;
 			if (field && small && image) {
@@ -370,7 +370,7 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		background: #0b0c10;
+		background: #18120b;
 	}
 
 	canvas {

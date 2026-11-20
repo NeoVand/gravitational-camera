@@ -187,7 +187,7 @@
 		margin: 0;
 		padding: 0.35em 0.8em;
 		border-radius: 999px;
-		background: rgb(8 10 14 / 0.65);
+		background: rgb(24 18 11 / 0.65);
 		border: 1px solid rgb(255 255 255 / 0.18);
 		color: rgb(255 255 255 / 0.85);
 		font: 500 0.72rem/1.2 var(--font-sans);

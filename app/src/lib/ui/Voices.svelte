@@ -243,7 +243,7 @@
 		justify-content: center;
 		gap: 0.5rem;
 		padding: var(--stage-pad, 4.5rem 1rem 5.5rem);
-		background: radial-gradient(circle at 50% 55%, #10141b 0%, #07090d 70%);
+		background: radial-gradient(circle at 50% 55%, #2a2016 0%, #18120b 70%);
 	}
 	.traces {
 		width: var(--traces-width, min(52cqw, 640px));
@@ -292,7 +292,7 @@
 		pointer-events: none;
 	}
 	.found {
-		stroke: #07090d;
+		stroke: #18120b;
 		stroke-width: 1.2;
 	}
 	.found.behind {

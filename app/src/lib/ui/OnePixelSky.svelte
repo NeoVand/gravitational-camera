@@ -135,7 +135,7 @@
 		justify-content: center;
 		gap: 0.5rem;
 		padding: var(--stage-pad, 5rem 1rem 6rem);
-		background: radial-gradient(circle at 50% 45%, #10141b 0%, #07090d 70%);
+		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
 	}
 	.sky {
 		width: var(--figure-width, min(24cqw, 46cqh));

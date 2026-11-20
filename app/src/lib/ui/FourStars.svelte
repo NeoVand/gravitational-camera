@@ -284,7 +284,7 @@
 		justify-content: center;
 		gap: 0.5rem;
 		padding: var(--stage-pad, 4.5rem 1rem 5.5rem);
-		background: radial-gradient(circle at 50% 45%, #10141b 0%, #07090d 70%);
+		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
 	}
 
 	/* gravity above light, in a column between the cards */
@@ -349,7 +349,7 @@
 		cursor: grab;
 	}
 	.star {
-		stroke: #07090d;
+		stroke: #18120b;
 		stroke-width: 1.1;
 	}
 	.pixel {

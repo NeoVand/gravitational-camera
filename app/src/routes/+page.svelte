@@ -506,13 +506,6 @@
 		display: none;
 	}
 
-	/* the picture's own labels, in the page's voice */
-	.hero :global(.tag) {
-		font: italic 400 0.95rem/1 var(--font-serif);
-		letter-spacing: 0;
-		text-transform: none;
-	}
-
 	.hero .pictures {
 		position: absolute;
 		inset: 0;

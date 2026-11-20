@@ -124,7 +124,7 @@
 	}
 	.star {
 		fill: #e8a45a;
-		stroke: #07090d;
+		stroke: #18120b;
 		stroke-width: 1;
 	}
 	.star.behind {

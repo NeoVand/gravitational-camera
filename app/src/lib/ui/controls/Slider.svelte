@@ -246,7 +246,7 @@
 		height: 14px;
 		margin-top: -5.5px;
 		border-radius: 50%;
-		background: var(--slider-thumb, #f4f1ea);
+		background: var(--slider-thumb, #e3e9ef);
 		border: 0;
 		box-shadow:
 			0 0 0 4px rgb(232 164 90 / 0),
@@ -258,7 +258,7 @@
 		width: 14px;
 		height: 14px;
 		border-radius: 50%;
-		background: var(--slider-thumb, #f4f1ea);
+		background: var(--slider-thumb, #e3e9ef);
 		border: 0;
 		box-shadow: var(--slider-shadow, 0 1px 4px rgb(0 0 0 / 0.5));
 	}

@@ -487,9 +487,7 @@
 	}
 
 	.kicker {
-		font: 600 0.62rem/1 var(--font-sans);
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
+		font: italic 400 0.95rem/1.3 var(--font-serif);
 		color: var(--accent);
 		margin-bottom: 0.45rem;
 	}
@@ -573,9 +571,7 @@
 		align-items: baseline;
 		gap: 0.5rem;
 		margin: 0 0 0.45rem;
-		font: 600 0.62rem/1 var(--font-sans);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font: italic 400 0.95rem/1.3 var(--font-serif);
 		color: var(--text-dim);
 	}
 
