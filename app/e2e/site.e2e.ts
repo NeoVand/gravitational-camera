@@ -5,8 +5,9 @@ import { screenPosition } from '../src/lib/engine/camera';
 test('landing page links to the demos and the paper', async ({ page }) => {
 	await page.goto('/');
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Gravitational Camera');
-	await expect(page.getByRole('link', { name: 'Open the demos' })).toBeVisible();
-	await expect(page.getByRole('link', { name: 'Read the paper' })).toBeVisible();
+	const start = page.getByRole('navigation', { name: 'Start' });
+	await expect(start.getByRole('link', { name: 'Open the demos' })).toBeVisible();
+	await expect(start.getByRole('link', { name: 'Read the paper' })).toBeVisible();
 });
 
 test('landing picture: dragging turns the view, and the wheel still scrolls the page', async ({
@@ -24,7 +25,9 @@ test('landing picture: dragging turns the view, and the wheel still scrolls the 
 		});
 	const before = await sample();
 	const drawn = await frames();
-	// drag across the right-hand (gravity) side, clear of the words and the divider
+	// the picture sits under the title: bring it into the window, then drag across its right-hand
+	// (gravity) side, clear of the divider
+	await canvas.scrollIntoViewIfNeeded();
 	const box = (await canvas.boundingBox())!;
 	await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.5);
 	await page.mouse.down();
@@ -33,8 +36,9 @@ test('landing picture: dragging turns the view, and the wheel still scrolls the 
 	await expect.poll(frames, { timeout: 60_000 }).toBeGreaterThan(drawn);
 	expect(await sample()).not.toBe(before);
 	// the wheel over the picture scrolls the page instead of zooming
+	const scrolled = await page.evaluate(() => window.scrollY);
 	await page.mouse.wheel(0, 600);
-	await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
+	await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(scrolled + 100);
 });
 
 test('paper renders its equations, figures, cross-references and bibliography', async ({

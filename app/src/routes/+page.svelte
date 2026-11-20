@@ -1,163 +1,133 @@
 <script lang="ts">
-	import { asset, resolve } from '$app/paths';
+	/**
+	 * The landing page is one long split picture. A seam runs down the whole page: light on its
+	 * left, gravity on its right. It is the divider of the picture at the top, so moving that
+	 * divider moves the seam through every scene below. The words are drawn white with a
+	 * difference blend, so they read dark on the light side and pale on the gravity side wherever
+	 * the seam is; the two grounds are each other's complement, so each side's ink is the other
+	 * side's colour.
+	 */
+	import { resolve } from '$app/paths';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
-		ArrowRight02Icon,
 		BlackHoleIcon,
 		BookOpen01Icon,
-		Clock01Icon,
-		DropletIcon,
+		Chart01Icon,
 		FlashlightIcon,
 		GalaxyIcon,
-		Layers01Icon,
+		GeologyCrustIcon,
+		GithubIcon,
 		MirrorIcon,
 		PlayCircleIcon,
 		Rotate01Icon,
 		SafeIcon,
-		SpiralsIcon,
 		TemperatureIcon,
-		TestTube01Icon,
-		ViewIcon,
-		WaveIcon,
 		WeightScale01Icon,
 		WorkoutRunIcon
 	} from '@hugeicons/core-free-icons';
-	import { posters } from '#lib/demos/posters.js';
-	import { objectsAt, scene, sunDirection } from '#lib/demos/sun-at-midnight.js';
+	import { stills } from '#lib/demos/stills.js';
+	import { objectsAt, scene as sunScene, sunDirection } from '#lib/demos/sun-at-midnight.js';
 	import type { View } from '#lib/engine/index.js';
-	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import SplitView from '#lib/ui/SplitView.svelte';
 
 	const DEG = Math.PI / 180;
 	let view: View = $state({ yaw: 16 * DEG, pitch: -31 * DEG, fov: 76 * DEG });
-	let divider = $state(0.46);
+	/** Where the seam is, 0 (all gravity) to 1 (all light): the picture's divider. */
+	let seam = $state(0.5);
 	const objects = objectsAt(0);
 	const sun = sunDirection(0);
 
-	const regimes = [
-		{
-			icon: WeightScale01Icon,
-			name: 'The near field',
-			line: 'Mass itself, through any wall.',
-			text: 'At everyday speeds the camera feels the changing pull of whatever is near it. Nothing can be hidden, and everything can be weighed. The price is a blur that no sensitivity can remove.'
-		},
-		{
-			icon: WaveIcon,
-			name: 'Waves from motion',
-			line: 'Every moving thing is a point.',
-			text: 'Whatever spins, shakes or collides sends out waves far longer than itself. The camera cannot resolve it, but reads from the polarization which way it turns.'
-		},
-		{
-			icon: TemperatureIcon,
-			name: 'The thermal glow',
-			line: 'Sharp, transparent, faint.',
-			text: 'Warm matter glows in gravitational waves short enough for sharp pictures. Nothing blocks the glow of what lies behind, so the picture runs all the way through.'
-		}
-	];
+	// --- the seam below the picture: grab it anywhere; its handle shows where the pointer is ---
+	let gripAt = $state(0);
+	let hovering = $state(false);
+	let dragging = $state(false);
 
-	const affordances = [
+	function follow(e: PointerEvent) {
+		// the seam's strip lives in the page, whose box is the seam's ruler
+		const r = (e.currentTarget as HTMLElement).parentElement!.getBoundingClientRect();
+		gripAt = e.clientY - r.top;
+		if (dragging) seam = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+	}
+
+	function grab(e: PointerEvent) {
+		// no text selection, and no dragging of the picture underneath, which would cancel the pointer
+		e.preventDefault();
+		(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+		dragging = true;
+		follow(e);
+	}
+
+	function release() {
+		dragging = false;
+	}
+
+	/** The scenes, rooms first; from `skyFrom` on, the sky. */
+	const scenes = [
 		{
-			icon: ViewIcon,
-			name: 'See through anything',
-			text: 'The whole Earth is transparent.',
-			href: resolve('/demo/sun-at-midnight'),
-			poster: posters['sun-at-midnight']
-		},
-		{
+			slug: 'locked-safe',
+			href: resolve('/demo/locked-safe'),
 			icon: SafeIcon,
 			name: 'Find what is hidden',
-			text: 'No shield or cloak exists.',
-			href: resolve('/demo/locked-safe'),
-			poster: posters['locked-safe']
+			line: 'Two identical steel safes, one holding gold. No wall shields mass.'
 		},
 		{
+			slug: 'full-or-empty',
+			href: resolve('/demo/full-or-empty'),
 			icon: WeightScale01Icon,
 			name: 'Weigh by looking',
-			text: 'Brightness is mass, not surface.',
-			href: resolve('/demo/full-or-empty'),
-			poster: posters['full-or-empty']
+			line: 'Three identical tanks: one empty, one of water, one of mercury.'
 		},
 		{
-			icon: MirrorIcon,
-			name: 'Ignore images',
-			text: 'A mirror shows nothing.',
-			href: resolve('/demo/blank-mirror'),
-			poster: posters['blank-mirror']
-		},
-		{
-			icon: TemperatureIcon,
-			name: 'Read inside temperature',
-			text: 'Heat is seen through the walls.',
+			slug: 'closed-furnace',
 			href: resolve('/demo/closed-furnace'),
-			poster: posters['closed-furnace']
+			icon: TemperatureIcon,
+			name: 'Read the heat inside',
+			line: 'Two closed furnaces, one hot. Its heat shows through the steel.'
 		},
 		{
-			icon: DropletIcon,
-			name: 'Tell materials by friction',
-			text: 'Viscosity does not set the glow.',
-			href: resolve('/demo/honey-and-water'),
-			poster: posters['honey-and-water']
+			slug: 'blank-mirror',
+			href: resolve('/demo/blank-mirror'),
+			icon: MirrorIcon,
+			name: 'A mirror shows nothing',
+			line: 'A mirror, a television and a printed page are blank slabs to gravity.'
 		},
 		{
-			icon: Rotate01Icon,
-			name: 'Read spin and its sense',
-			text: 'Even in a sealed box.',
-			href: resolve('/demo/which-way'),
-			poster: posters['which-way']
-		},
-		{
-			icon: Rotate01Icon,
-			name: 'See flow in a sealed body',
-			text: 'A spinning wheel shows its turning.',
+			slug: 'sealed-flywheel',
 			href: resolve('/demo/sealed-flywheel'),
-			poster: posters['sealed-flywheel']
+			icon: Rotate01Icon,
+			name: 'See a sealed wheel turn',
+			line: 'Spinning or still, it looks and weighs the same. Its gravitomagnetic field does not.'
 		},
 		{
+			slug: 'beam-in-the-dark',
+			href: resolve('/demo/beam-in-the-dark'),
 			icon: FlashlightIcon,
 			name: 'See what emits no light',
-			text: 'All energy gravitates.',
-			href: resolve('/demo/beam-in-the-dark'),
-			poster: posters['beam-in-the-dark']
+			line: 'An infrared beam, invisible from the side. Its energy still gravitates.'
 		},
 		{
-			icon: Clock01Icon,
-			name: 'See the present',
-			text: 'Light shows where things were.',
-			href: resolve('/demo/where-it-is'),
-			poster: posters['where-it-is']
-		},
-		{
-			icon: WorkoutRunIcon,
-			name: 'See motion through walls',
-			text: 'One pixel detects the motion.',
+			slug: 'behind-the-wall',
 			href: resolve('/demo/behind-the-wall'),
-			poster: posters['behind-the-wall']
-		}
-	];
-
-	const vistas = [
-		{
-			icon: GalaxyIcon,
-			name: 'The Milky Way',
-			text: 'Its hidden heart is the brightest thing.',
-			href: resolve('/demo/milky-way'),
-			poster: posters['milky-way']
+			icon: WorkoutRunIcon,
+			name: 'See through walls',
+			line: 'Two people behind a wall, and which of them is moving.'
 		},
 		{
+			slug: 'milky-way',
+			href: resolve('/demo/milky-way'),
+			icon: GalaxyIcon,
+			name: 'The heart of the Galaxy',
+			line: 'Dust hides the centre from light, not from gravity.'
+		},
+		{
+			slug: 'black-hole',
+			href: resolve('/demo/black-hole'),
 			icon: BlackHoleIcon,
 			name: 'The only shadows',
-			text: 'A black hole against the first light.',
-			href: resolve('/demo/black-hole'),
-			poster: posters['black-hole']
-		},
-		{
-			icon: SpiralsIcon,
-			name: 'Two black holes',
-			text: 'From Newton’s pull to the waves.',
-			href: resolve('/demo/two-black-holes'),
-			poster: posters['two-black-holes']
+			line: 'A black hole against the glow of the first gravitons.'
 		}
 	];
+	const skyFrom = 'milky-way';
 </script>
 
 <svelte:head>
@@ -168,488 +138,533 @@
 	/>
 </svelte:head>
 
-<main>
-	<!-- the picture is a night sky, so the band around it stays dark in either theme -->
-	<section class="hero always-dark">
-		<div class="picture">
-			<SplitView
-				{objects}
-				observer={scene.observer.position}
-				sunDirection={sun}
-				bind:view
-				bind:divider
-				embedded
-				leftLabel="Light"
-				rightLabel="Gravity"
-				poster={asset('posters/sun-at-midnight.jpg')}
-			/>
-		</div>
-		<SiteHeader overlay />
+<div class="page" style:--seam={seam}>
+	<!-- the seam: drag it anywhere down the page (the picture's own divider is the keyboard's way) -->
+	<div
+		class={['seam', { shown: hovering || dragging }]}
+		role="presentation"
+		onpointerenter={(e) => {
+			hovering = true;
+			follow(e);
+		}}
+		onpointerleave={() => (hovering = false)}
+		onpointerdown={grab}
+		onpointermove={follow}
+		onpointerup={release}
+		onpointercancel={release}
+	>
+		<span class="grip" style:top="{gripAt}px"></span>
+	</div>
 
-		<div class="words">
-			<h1>Gravitational Camera</h1>
-			<p class="subtitle">A thought experiment</p>
-			<p class="lede">
-				What would a camera see if every pixel were a detector of gravitational waves?
+	<header class="ink top">
+		<nav aria-label="Site">
+			<a class="brand" href={resolve('/')} aria-label="Gravitational Camera, home">
+				<HugeiconsIcon icon={GeologyCrustIcon} size={22} strokeWidth={1.5} />
+			</a>
+			<a href={resolve('/demo')}>
+				<HugeiconsIcon icon={PlayCircleIcon} size={18} strokeWidth={1.5} />
+				<span>Demos</span>
+			</a>
+			<a href={resolve('/figures')}>
+				<HugeiconsIcon icon={Chart01Icon} size={18} strokeWidth={1.5} />
+				<span>Figures</span>
+			</a>
+			<span class="gap"></span>
+			<a href={resolve('/paper')}>
+				<HugeiconsIcon icon={BookOpen01Icon} size={18} strokeWidth={1.5} />
+				<span>Paper</span>
+			</a>
+			<a href="https://github.com/NeoVand/gravitational-camera">
+				<HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.5} />
+				<span>Source</span>
+			</a>
+		</nav>
+	</header>
+
+	<main>
+		<section class="opening">
+			<div class="ink words">
+				<h1>Gravitational Camera</h1>
+				<p class="subtitle">A thought experiment</p>
+				<p class="question">
+					What would a camera see if every pixel were a detector of gravitational waves?
+				</p>
+				<nav class="calls" aria-label="Start">
+					<a href={resolve('/demo')}>
+						<HugeiconsIcon icon={PlayCircleIcon} size={20} strokeWidth={1.5} />
+						<span>Open the demos</span>
+					</a>
+					<a href={resolve('/paper')}>
+						<HugeiconsIcon icon={BookOpen01Icon} size={20} strokeWidth={1.5} />
+						<span>Read the paper</span>
+					</a>
+				</nav>
+			</div>
+
+			<div class="hero">
+				<span class="pictures still" aria-hidden="true">
+					<span class="layer light"
+						><img src={stills['sun-at-midnight'].light} alt="" width="1600" height="800" /></span
+					>
+					<span class="layer gravity"
+						><img src={stills['sun-at-midnight'].gravity} alt="" width="1600" height="800" /></span
+					>
+				</span>
+				<SplitView
+					{objects}
+					observer={sunScene.observer.position}
+					sunDirection={sun}
+					bind:view
+					bind:divider={seam}
+					embedded
+					leftLabel="Light"
+					rightLabel="Gravity"
+				/>
+			</div>
+
+			<p class="ink caption hero-caption">
+				Midnight, looking down. In light, dark ground under the stars; in gravity, the Earth’s warm
+				interior, and the Sun shining up through the planet. Drag the picture to look around. Move
+				its divider and the whole page follows.
 			</p>
-			<nav aria-label="Main">
-				<a class="primary" href={resolve('/demo')}>
-					<HugeiconsIcon icon={PlayCircleIcon} size={20} strokeWidth={1.7} />
-					Open the demos
+		</section>
+
+		<section class="scenes" aria-label="Scenes">
+			{#each scenes as s (s.slug)}
+				{#if s.slug === skyFrom}
+					<p class="ink turn">The same camera, pointed at the sky.</p>
+				{/if}
+				<a class="scene" href={s.href}>
+					<span class="pictures">
+						<span class="layer light">
+							<img
+								src={stills[s.slug].light}
+								alt=""
+								width="1600"
+								height="800"
+								loading="lazy"
+								decoding="async"
+							/>
+						</span>
+						<span class="layer gravity">
+							<img
+								src={stills[s.slug].gravity}
+								alt=""
+								width="1600"
+								height="800"
+								loading="lazy"
+								decoding="async"
+							/>
+						</span>
+					</span>
+					<span class="ink caption">
+						<span class="glyph"><HugeiconsIcon icon={s.icon} size={24} strokeWidth={1.4} /></span>
+						<span class="name">{s.name}</span>
+						<span class="line">{s.line}</span>
+					</span>
 				</a>
-				<a class="secondary" href={resolve('/paper')}>
-					<HugeiconsIcon icon={BookOpen01Icon} size={20} strokeWidth={1.7} />
-					Read the paper
+			{/each}
+		</section>
+
+		<section class="ink closing">
+			<p>
+				The paper works this out in linearized gravity: what such a camera could image, how sharply,
+				and what it could never see.
+			</p>
+			<nav class="calls" aria-label="More">
+				<a href={resolve('/demo')}>
+					<HugeiconsIcon icon={PlayCircleIcon} size={20} strokeWidth={1.5} />
+					<span>All the demos</span>
+				</a>
+				<a href={resolve('/paper')}>
+					<HugeiconsIcon icon={BookOpen01Icon} size={20} strokeWidth={1.5} />
+					<span>Read the paper</span>
 				</a>
 			</nav>
-		</div>
+		</section>
+	</main>
 
-		<p class="caption">
-			Midnight, looking down. Left, ordinary light: dark ground under the stars. Right, thermal
-			gravitational radiation: Earth’s interior, and the Sun’s core shining through the planet. Drag
-			to look around, or drag the divider.
-		</p>
-	</section>
-
-	<section class="band">
-		<header>
-			<h2>Three ways of seeing</h2>
-			<p>
-				A gravitational detector cannot tell a passing wave from the pull of a nearby object. What
-				its pixels receive depends on how fast the source moves and how far away it is, and falls
-				into three regimes with very different pictures.
-			</p>
-		</header>
-		<ol class="regimes">
-			{#each regimes as r (r.name)}
-				<li>
-					<span class="glyph"><HugeiconsIcon icon={r.icon} size={30} strokeWidth={1.4} /></span>
-					<h3>{r.name}</h3>
-					<p class="line">{r.line}</p>
-					<p>{r.text}</p>
-				</li>
-			{/each}
-		</ol>
-	</section>
-
-	<section class="band">
-		<header>
-			<h2>What it can do that light cannot</h2>
-			<p>
-				Gravity is produced by everything and stopped by nothing. Each consequence is a demo: one
-				half of the picture in light, the other in gravity.
-			</p>
-		</header>
-		<ul class="affordances">
-			{#each affordances as a (a.name)}
-				<li>
-					<a class="tile" href={a.href}>
-						<span class="thumb"><img src={a.poster} alt="" loading="lazy" /></span>
-						<span class="tile-text">
-							<span class="glyph small"
-								><HugeiconsIcon icon={a.icon} size={18} strokeWidth={1.6} /></span
-							>
-							<span>
-								<span class="name">{a.name}</span>
-								<span class="text">{a.text}</span>
-							</span>
-						</span>
-					</a>
-				</li>
-			{/each}
-		</ul>
-		<a class="more" href={resolve('/demo')}>
-			All demos <HugeiconsIcon icon={ArrowRight02Icon} size={18} strokeWidth={1.7} />
-		</a>
-	</section>
-
-	<section class="band">
-		<header>
-			<h2>The sky</h2>
-			<p>
-				The same equations, solved exactly at the largest scales: a galaxy seen through its dust,
-				the glow the Big Bang would have left, and the only things that cast shadows on it.
-			</p>
-		</header>
-		<ul class="affordances">
-			{#each vistas as a (a.name)}
-				<li>
-					<a class="tile" href={a.href}>
-						<span class="thumb"><img src={a.poster} alt="" loading="lazy" /></span>
-						<span class="tile-text">
-							<span class="glyph small"
-								><HugeiconsIcon icon={a.icon} size={18} strokeWidth={1.6} /></span
-							>
-							<span>
-								<span class="name">{a.name}</span>
-								<span class="text">{a.text}</span>
-							</span>
-						</span>
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</section>
-
-	<section class="band doors">
-		<a href={resolve('/paper')}>
-			<span class="glyph"><HugeiconsIcon icon={BookOpen01Icon} size={30} strokeWidth={1.4} /></span>
-			<h3>The paper</h3>
-			<p>
-				The theory, written to be read at two levels: plain-language summaries for everyone,
-				derivations and live figures for physicists.
-			</p>
-		</a>
-		<a href={resolve('/demo')}>
-			<span class="glyph"><HugeiconsIcon icon={Layers01Icon} size={30} strokeWidth={1.4} /></span>
-			<h3>The engine</h3>
-			<p>
-				A WebGPU renderer that draws the same scene in light and in gravity, side by side, in your
-				browser.
-			</p>
-		</a>
-		<a href={resolve('/dev/selftest')}>
-			<span class="glyph"><HugeiconsIcon icon={TestTube01Icon} size={30} strokeWidth={1.4} /></span>
-			<h3>The checks</h3>
-			<p>
-				Every picture is computed twice, by the engine and by an independent reference. Run the
-				comparison on your own device.
-			</p>
-		</a>
-	</section>
-
-	<footer>
-		<span>Work in progress. The physics is standard; the claims of novelty are provisional.</span>
-		<a href="https://github.com/NeoVand/gravitational-camera">Source on GitHub</a>
+	<footer class="ink">
+		<p>Work in progress. The physics is standard; the claims of novelty are provisional.</p>
 	</footer>
-</main>
+</div>
 
 <style>
-	main {
-		min-height: 100svh;
-	}
+	/* The two grounds are complements (255 minus each other), so white drawn with a difference
+	   blend comes out as the other ground's colour on each side. */
+	.page {
+		--lux: #d2dde7;
+		--umbra: #2d2218;
+		--g: clamp(1rem, 4vw, 3rem);
+		--at: calc(var(--seam) * 100%);
 
-	.hero {
 		position: relative;
-		min-height: min(100svh, 58rem);
-		display: grid;
-		align-items: center;
-		overflow: hidden;
+		min-height: 100vh;
+		overflow-x: clip;
+		background: linear-gradient(90deg, var(--lux) 0 var(--at), var(--umbra) var(--at) 100%);
+		font-family: var(--font-serif);
+		font-optical-sizing: auto;
+		color: #fff;
 	}
 
-	.picture {
+	/* the seam, from the top of the page to the bottom: a hairline in a strip wide enough to grab */
+	.seam {
 		position: absolute;
-		inset: 0;
+		top: 0;
+		bottom: 0;
+		left: var(--at);
+		z-index: 1;
+		width: 24px;
+		margin-left: -12px;
+		cursor: ew-resize;
+		touch-action: pan-y;
+		user-select: none;
 	}
 
-	.words {
-		position: relative;
-		width: min(36rem, 100% - 2 * var(--gutter));
-		margin-left: var(--gutter);
-		padding-block: 6rem 7rem;
+	.seam::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 50%;
+		width: 1px;
+		translate: -0.5px 0;
+		background: rgb(232 164 90 / 0.75);
+	}
+
+	/* the same handle as the picture's divider, where the pointer meets the seam */
+	.grip {
+		position: absolute;
+		left: 50%;
+		width: 28px;
+		height: 28px;
+		translate: -50% -50%;
+		border-radius: 50%;
+		background: rgb(255 255 255 / 0.92);
+		box-shadow: 0 1px 8px rgb(0 0 0 / 0.45);
+		opacity: 0;
+		transition: opacity 0.15s;
 		pointer-events: none;
 	}
 
-	.words a {
-		pointer-events: auto;
+	.seam.shown .grip {
+		opacity: 1;
 	}
 
-	.subtitle {
-		margin: 0.55rem 0 0;
-		font: italic 400 clamp(1.35rem, 2.6vw, 1.9rem) / 1.2 var(--font-serif);
-		color: var(--accent);
-		text-shadow: 0 1px 14px rgb(0 0 0 / 0.85);
+	.grip::before,
+	.grip::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		width: 6px;
+		height: 6px;
+		border: solid #111;
+		border-width: 0 0 1.5px 1.5px;
+	}
+
+	.grip::before {
+		left: 7px;
+		transform: translateY(-50%) rotate(45deg);
+	}
+
+	.grip::after {
+		right: 7px;
+		transform: translateY(-50%) rotate(-135deg);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.grip {
+			transition: none;
+		}
+	}
+
+	.ink {
+		color: #fff;
+		mix-blend-mode: difference;
+	}
+
+	.ink a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.ink a:focus-visible,
+	.scene:focus-visible {
+		outline: 1.5px solid #fff;
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+
+	/* --- the top line -------------------------------------------------------- */
+
+	.top nav {
+		display: flex;
+		align-items: center;
+		gap: clamp(1rem, 2.4vw, 2rem);
+		padding: 1.25rem var(--g);
+		font-size: 1.0625rem;
+	}
+
+	.top .gap {
+		flex: 1;
+	}
+
+	.top a,
+	.calls a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45em;
+	}
+
+	.top .brand {
+		margin-right: clamp(0.25rem, 1vw, 0.75rem);
+	}
+
+	.top a:hover {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.25em;
+	}
+
+	/* --- the opening ------------------------------------------------------- */
+
+	.opening {
+		padding-top: clamp(2.5rem, 8vh, 6rem);
+	}
+
+	.words {
+		text-align: center;
+		padding-inline: var(--g);
 	}
 
 	h1 {
 		margin: 0;
-		font: 400 clamp(2.8rem, 6.6vw, 4.9rem) / 1 var(--font-serif);
-		letter-spacing: -0.022em;
-		text-wrap: balance;
-		text-shadow: 0 2px 30px rgb(0 0 0 / 0.7);
+		font-size: clamp(3.2rem, 9vw, 8.5rem);
+		font-weight: 300;
+		font-variation-settings: 'opsz' 72;
+		line-height: 0.95;
+		letter-spacing: -0.02em;
 	}
 
-	.lede {
-		margin: 1.5rem 0 2.3rem;
-		max-width: 27rem;
-		font-size: clamp(1.08rem, 1.6vw, 1.3rem);
+	.subtitle {
+		margin: 0.6rem 0 0;
+		font-size: clamp(1.35rem, 2.4vw, 2rem);
+		font-style: italic;
+		font-weight: 300;
+	}
+
+	.question {
+		max-width: 30ch;
+		margin: clamp(1.75rem, 4vh, 2.75rem) auto 0;
+		font-size: clamp(1.15rem, 1.7vw, 1.45rem);
 		line-height: 1.45;
-		text-wrap: pretty;
-		text-shadow: 0 1px 16px rgb(0 0 0 / 0.9);
 	}
 
-	nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.8rem;
-		font-size: 0.96rem;
+	/* two calls, one each side of the seam's home */
+	.calls {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: clamp(2.5rem, 7vw, 6rem);
+		margin: clamp(1.75rem, 4vh, 2.5rem) auto 0;
+		font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+		font-style: italic;
 	}
 
-	nav a {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.55rem;
-		padding: 0.7em 1.25em;
-		border-radius: 999px;
-		text-decoration: none;
-		font-weight: 500;
+	.calls a {
+		justify-self: end;
 	}
 
-	nav a.primary {
-		background: var(--text);
-		color: var(--bg);
+	.calls a span {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.28em;
 	}
 
-	nav a.primary:hover {
-		background: #fff;
+	.calls a + a {
+		justify-self: start;
 	}
 
-	nav a.secondary {
-		border: 1px solid rgb(255 255 255 / 0.45);
-		background: rgb(8 10 14 / 0.45);
-		backdrop-filter: blur(6px);
+	.calls a:hover span {
+		text-decoration-thickness: 2px;
 	}
 
-	nav a.secondary:hover {
-		border-color: #fff;
+	.hero {
+		position: relative;
+		z-index: 2;
+		height: min(50vw, 80vh);
+		min-height: 300px;
+		margin-top: clamp(2.5rem, 7vh, 5rem);
 	}
 
-	/* on a phone the two buttons stack, the same width and height */
-	@media (max-width: 560px) {
-		nav {
-			display: grid;
-			grid-template-columns: 1fr;
-			gap: 0.65rem;
-			max-width: 22rem;
-		}
+	/* the engine paints over the stills once it runs; until then, or without WebGPU, the
+	   stills show the same view, split at the same seam */
+	.hero :global(.frame) {
+		background: transparent;
+	}
 
-		nav a {
-			justify-content: center;
-			padding: 0.85em 1.2em;
-		}
+	.hero :global(.notice) {
+		display: none;
+	}
+
+	/* the picture's own labels, in the page's voice */
+	.hero :global(.tag) {
+		font: italic 400 0.95rem/1 var(--font-serif);
+		letter-spacing: 0;
+		text-transform: none;
+	}
+
+	.hero .pictures {
+		position: absolute;
+		inset: 0;
+	}
+
+	.hero .layer {
+		position: absolute;
+		inset: 0;
+	}
+
+	.hero .pictures img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.caption {
-		position: absolute;
-		left: var(--gutter);
-		bottom: 1.4rem;
-		margin: 0;
-		max-width: 34rem;
-		font-size: 0.78rem;
+		display: block;
+		text-align: center;
+		padding-inline: var(--g);
+	}
+
+	.hero-caption {
+		max-width: 62ch;
+		margin: 1.25rem auto 0;
+		font-size: 0.98rem;
+		font-style: italic;
 		line-height: 1.5;
-		color: var(--text-dim);
-		text-shadow: 0 1px 10px rgb(0 0 0 / 0.9);
-		pointer-events: none;
 	}
 
-	.band {
-		max-width: 72rem;
-		margin: 0 auto;
-		padding: clamp(3.5rem, 8vw, 6rem) var(--gutter) 0;
-	}
+	/* --- the scenes ---------------------------------------------------------- */
 
-	.band > header {
-		max-width: 40rem;
-		margin-bottom: 2.4rem;
-	}
-
-	h2 {
-		margin: 0 0 0.8rem;
-		font: 400 clamp(1.9rem, 4vw, 2.7rem) / 1.08 var(--font-serif);
-		letter-spacing: -0.015em;
-		text-wrap: balance;
-	}
-
-	.band > header p {
-		margin: 0;
-		color: var(--text-dim);
-		font-size: 1.05rem;
-		text-wrap: pretty;
-	}
-
-	.glyph {
-		display: inline-grid;
-		place-items: center;
-		width: 3.4rem;
-		height: 3.4rem;
-		border-radius: 14px;
-		background: color-mix(in srgb, var(--accent) 14%, transparent);
-		color: var(--accent);
-	}
-
-	.glyph.small {
-		width: 2.6rem;
-		height: 2.6rem;
-		border-radius: 11px;
-		flex: none;
-	}
-
-	.regimes {
-		list-style: none;
-		margin: 0;
-		padding: 0;
+	.scenes {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-		gap: 1.2rem;
+		row-gap: clamp(4.5rem, 12vh, 8rem);
+		margin-top: clamp(5rem, 14vh, 9rem);
 	}
 
-	.regimes li,
-	.doors a {
-		padding: 1.6rem 1.6rem 1.7rem;
-		background: var(--bg-raised);
-		border: 1px solid var(--line);
-		border-radius: 16px;
-	}
-
-	h3 {
-		margin: 1.1rem 0 0.3rem;
-		font: 500 1.35rem/1.2 var(--font-serif);
-	}
-
-	.line {
-		margin: 0 0 0.7rem;
-		color: var(--accent);
-		font-size: 0.92rem;
-	}
-
-	.regimes p:last-child,
-	.doors p {
-		margin: 0;
-		color: var(--text-dim);
-		font-size: 0.93rem;
-		line-height: 1.55;
-		text-wrap: pretty;
-	}
-
-	.affordances {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-		gap: 1.8rem 1.4rem;
-	}
-
-	.tile {
+	.scene {
 		display: block;
 		color: inherit;
 		text-decoration: none;
 	}
 
-	.thumb {
+	/* each layer spans the whole page, so the seam cuts both at the same place as the page's */
+	.pictures {
+		position: relative;
 		display: block;
-		aspect-ratio: 16 / 9;
-		border-radius: 10px;
-		overflow: hidden;
-		background: #0b0d12;
-		box-shadow: 0 0 0 1px var(--line);
 	}
 
-	.thumb img {
+	.layer {
 		display: block;
-		width: 100%;
-		height: 100%;
+	}
+
+	.layer.light {
+		clip-path: inset(0 calc(100% - var(--at)) 0 0);
+	}
+
+	.layer.gravity {
+		position: absolute;
+		inset: 0;
+		clip-path: inset(0 0 0 var(--at));
+	}
+
+	/* the stills are 2:1; a wider crop keeps each subject and loses floor and ceiling */
+	.scene img {
+		display: block;
+		width: min(100% - 2 * var(--g), 64rem);
+		height: auto;
+		aspect-ratio: 2.35;
+		margin-inline: auto;
 		object-fit: cover;
-		transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+		object-position: 50% 55%;
 	}
 
-	.tile:hover .thumb img,
-	.tile:focus-visible .thumb img {
-		transform: scale(1.04);
+	.scene .caption {
+		margin-top: 1.1rem;
 	}
 
-	.tile:focus-visible {
-		outline: none;
-	}
-
-	.tile:focus-visible .thumb {
-		box-shadow: 0 0 0 2px var(--accent);
-	}
-
-	.tile-text {
+	.scene .glyph {
 		display: flex;
-		gap: 0.75rem;
-		align-items: flex-start;
-		padding-top: 0.8rem;
+		justify-content: center;
+		margin-bottom: 0.5rem;
 	}
 
-	.name {
+	.scene .name {
 		display: block;
-		margin-bottom: 0.15rem;
-		font: 500 1rem/1.3 var(--font-sans);
-		transition: color 0.2s;
+		font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+		font-weight: 350;
+		line-height: 1.2;
 	}
 
-	.tile:hover .name {
-		color: var(--accent);
-	}
-
-	.text {
+	.scene .line {
 		display: block;
-		color: var(--text-dim);
-		font-size: 0.86rem;
+		max-width: 46ch;
+		margin: 0.35rem auto 0;
+		font-size: clamp(1rem, 1.3vw, 1.125rem);
+		font-style: italic;
+		line-height: 1.45;
 	}
 
-	.more {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		margin-top: 1.6rem;
-		color: var(--accent);
-		text-decoration: none;
-		font-size: 0.95rem;
-	}
-
-	.more:hover {
+	.scene:hover .name {
 		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.2em;
 	}
 
-	.doors {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-		gap: 1.2rem;
-		padding-bottom: clamp(3.5rem, 8vw, 6rem);
+	/* inside the scenes' grid, whose gap already sets it apart */
+	.turn {
+		margin: clamp(1.5rem, 5vh, 3.5rem) auto 0;
+		padding-inline: var(--g);
+		text-align: center;
+		font-size: clamp(1.6rem, 3.2vw, 2.75rem);
+		font-weight: 300;
+		font-style: italic;
 	}
 
-	.doors a {
-		text-decoration: none;
-		transition: border-color 0.15s;
+	/* --- the end --------------------------------------------------------------- */
+
+	.closing {
+		margin: clamp(7rem, 18vh, 11rem) auto 0;
+		padding-inline: var(--g);
+		text-align: center;
 	}
 
-	.doors a:hover {
-		border-color: var(--accent);
-	}
-
-	/* On a phone the words would sit across the divider, so stack them below. */
-	@media (max-width: 720px) {
-		.hero {
-			display: block;
-			min-height: 0;
-		}
-
-		.picture {
-			position: relative;
-			height: 58svh;
-		}
-
-		.words {
-			padding-block: 2rem 1.2rem;
-		}
-
-		.caption {
-			position: static;
-			margin: 0 var(--gutter) 1rem;
-		}
+	.closing p {
+		max-width: 36ch;
+		margin: 0 auto;
+		font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+		font-weight: 300;
+		line-height: 1.35;
 	}
 
 	footer {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 0.5rem 2rem;
-		padding: 1.2rem var(--gutter);
-		border-top: 1px solid var(--line);
-		font-size: 0.78rem;
-		color: var(--text-faint);
+		padding: clamp(5rem, 14vh, 8rem) var(--g) 2rem;
+		text-align: center;
+		font-size: 0.9rem;
+		font-style: italic;
+		opacity: 0.85;
+	}
+
+	footer p {
+		margin: 0;
+	}
+
+	@media (max-width: 40rem) {
+		.calls {
+			column-gap: 2rem;
+		}
+
+		.hero {
+			height: 62vw;
+		}
 	}
 </style>
