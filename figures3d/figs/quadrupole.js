@@ -6,7 +6,9 @@
 // of the source against the speed of its parts (paper/figures/charts.py).
 import { Panel, v3, figure, inset, letter, INK, DIM, FAINT, ACCENT } from '../lib.js';
 
-const FILL = '#f3d6b6', STEEL = '#868b92';
+// the pattern's fill, and on the site's dark theme a deep shade of it (the accent at 20% over the dark page, as the
+// site tints the paper's pale accent), so that the pale ink drawn over it stays legible
+const FILL = '#f3d6b6', FILL_NIGHT = '#49351f', STEEL = '#868b92';
 // the sense of turning in the colours of the which-way figure (make_figures.py, which_way): magenta for V/I = +1,
 // anticlockwise as the observer sees it, green for V/I = -1, clockwise
 const TURNS_ANTICLOCKWISE = '#c2255c', TURNS_CLOCKWISE = '#2f9e44';
@@ -48,7 +50,7 @@ export default async function () {
 		const t = (2 * Math.PI * k) / 360;
 		curve.push(v3(p(t) * Math.sin(t), p(t) * Math.cos(t), 0));
 	}
-	A.polygon(curve, { fill: FILL, layer: 0 });
+	A.polygon(curve, { fill: `light-dark(${FILL}, ${FILL_NIGHT})`, layer: 0 });
 	A.curve(curve, { color: ACCENT, width: 0.8, layer: 1 });
 	// the spin axis, and the angular velocity
 	A.curve([v3(0, -1.12, 0), v3(0, 1.12, 0)], { color: FAINT, width: 0.45, dash: [2, 2], layer: 2 });

@@ -2,10 +2,12 @@
 // in it between r and r + dr: a piece of a cone bounded by two spherical caps, of volume r^2 dr dOmega.
 // The cone's width and dr are exaggerated. (b) The sky around the pixel, coloured by the sign of the
 // weight 1 - 3 cos^2 theta with which E_zz takes matter in each direction: exact. Matter in the orange
-// caps (|cos theta| > 1/sqrt 3) stretches the pixel along z; matter in the blue band squeezes it.
+// caps (|cos theta| > 1/sqrt 3) stretches the pixel along z; matter in the blue band squeezes it. On the site's
+// dark theme the sphere takes deep shades of the same two colours, so that its labels stay legible.
 import { THREE, Panel, v3, figure, letter, INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
 
 const ELEMENT = '#e9934a', CONE = '#ece6dc', CAP = '#f1c9a1', BAND = '#c9d9ec';
+const CAP_NIGHT = '#5e3818', BAND_NIGHT = '#24405e';
 
 // a solid of revolution about +y, then turned so +y points along `axis`
 function along(axis, origin) {
@@ -81,9 +83,9 @@ export default async function () {
 	const magic = Math.acos(1 / Math.sqrt(3));
 	// the sphere in three zones, two caps and the band, each its own mesh with a row of vertices on the boundary, so
 	// that the colours meet along the circle itself and not along the steps of a grid
-	for (const [from, to, colour] of [[0, magic, CAP], [magic, Math.PI - magic, BAND], [Math.PI - magic, Math.PI, CAP]]) {
+	for (const [from, to, colour, night] of [[0, magic, CAP, CAP_NIGHT], [magic, Math.PI - magic, BAND, BAND_NIGHT], [Math.PI - magic, Math.PI, CAP, CAP_NIGHT]]) {
 		B.mesh(new THREE.SphereGeometry(1, 96, Math.max(8, Math.round((64 * (to - from)) / Math.PI)), 0, 2 * Math.PI, from, to - from), colour, {
-			o: { ambient: 0.62, key: 0.45, spec: 0.12 }
+			night, o: { ambient: 0.62, key: 0.45, spec: 0.12 }, nightO: { spec: 0.02 }
 		});
 	}
 	// the two boundary circles, at 54.7 degrees from the axis, where they face us

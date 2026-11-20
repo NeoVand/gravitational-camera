@@ -43,6 +43,13 @@ export function shadeNormal(base, n, o = {}) {
 	return new THREE.Color(q(c.r + s + r), q(c.g + s + r), q(c.b + s + r));
 }
 
+// A dark shade, quantised in steps of 3 of the 255 screen levels rather than in steps of linear light, which near
+// black are coarse enough to show as terraces; neighbouring faces of one level still merge into one path.
+function nightShade(base, n, o) {
+	const c = shadeNormal(base, n, { ...o, steps: 0 }).getHex();
+	return '#' + [16, 8, 0].map((s) => Math.min(255, 3 * Math.round(((c >> s) & 255) / 3)).toString(16).padStart(2, '0')).join('');
+}
+
 export class Panel {
 	/** A panel `w` by `h` points at (x, y) in the figure, looking down -z at (cx, cy), `scale` points per unit. */
 	constructor({ x = 0, y = 0, w, h, cx = 0, cy = 0, scale = 40, tilt = 0, turn = 0 }) {
@@ -94,13 +101,17 @@ export class Panel {
 		return this;
 	}
 
-	/** A shaded mesh from three.js geometry, placed by `matrix`; each face lit by the studio. */
-	mesh(geometry, color, { matrix = new THREE.Matrix4(), layer = 0, o = {}, cull = true, opacity = 1 } = {}) {
+	/** A shaded mesh from three.js geometry, placed by `matrix`; each face lit by the studio. With `night`, a
+	 * second colour for the site's dark theme, lit as `o` with `nightO` over it: each face is filled
+	 * light-dark(day, night), which a page in the dark colour scheme shows as the night shade and the PDF (and any
+	 * page in the light scheme) as the day one. */
+	mesh(geometry, color, { matrix = new THREE.Matrix4(), layer = 0, o = {}, cull = true, opacity = 1, night = null, nightO = {} } = {}) {
 		const g = geometry.index ? geometry.toNonIndexed() : geometry;
 		const pos = g.attributes.position;
 		const nor = g.attributes.normal;
 		const nm = new THREE.Matrix3().getNormalMatrix(matrix);
 		const base = new THREE.Color(color);
+		const dark = night && new THREE.Color(night);
 		const tris = [];
 		for (let i = 0; i < pos.count; i += 3) {
 			const P = [0, 1, 2].map((k) => new THREE.Vector3().fromBufferAttribute(pos, i + k).applyMatrix4(matrix));
@@ -119,7 +130,8 @@ export class Panel {
 			if (n.z < 0) n.negate();
 			const faceBase = o.colorAt ? new THREE.Color(o.colorAt(P[0].clone().add(P[1]).add(P[2]).divideScalar(3))) : base;
 			const col = shadeNormal(faceBase, n, o);
-			tris.push({ kind: 'tri', P, fill: hex(col), layer, opacity: 1, depth: (C[0].z + C[1].z + C[2].z) / 3 });
+			const fill = dark ? `light-dark(${hex(col)}, ${nightShade(dark, n, { ...o, ...nightO })})` : hex(col);
+			tris.push({ kind: 'tri', P, fill, layer, opacity: 1, depth: (C[0].z + C[1].z + C[2].z) / 3 });
 		}
 		if (opacity < 1 || o.group) {
 			const depth = tris.reduce((s, t) => s + t.depth, 0) / Math.max(1, tris.length);

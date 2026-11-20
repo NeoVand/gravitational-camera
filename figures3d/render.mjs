@@ -39,9 +39,9 @@ try {
 		// ids unique to the figure, since the site inlines several figures on one page
 		svg = svg.replace(/id="(p\d+[^"]*)"/g, `id="${name}-$1"`).replace(/url\(#(p\d+[^)]*)\)/g, `url(#${name}-$1)`);
 		fs.writeFileSync(path.join(out, `${name}.svg`), svg);
-		// the PDF: the same SVG on a page of exactly its size, printed as vectors
+		// the PDF: the same SVG on a page of exactly its size, printed as vectors, in the light (day) colours
 		const [w, h] = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/).slice(1).map(Number);
-		await page.setContent(`<html><body style="margin:0">${svg}</body></html>`);
+		await page.setContent(`<html><body style="margin:0; color-scheme: light">${svg}</body></html>`);
 		await page.pdf({ path: path.join(out, `${name}.pdf`), width: `${w / 72}in`, height: `${h / 72}in`, printBackground: false, pageRanges: '1' });
 		console.log(`wrote ${name}.svg (${Math.round(svg.length / 1024)} kB) and .pdf, ${w} x ${h} pt`);
 		await page.close();
