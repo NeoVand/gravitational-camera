@@ -1,0 +1,22 @@
+{
+ "size": "1536x1024",
+ "figure": "A wide scientific figure for a physics paper about what can be learnt of the inside of a body from outside, through gravity alone. Two round bodies of exactly the same size and the same weight, each cut open like an anatomical model to show its inside. Body A is hollow: all of its matter is in one thin shell at about seven tenths of its radius. Body B has half of its matter in a small dense ball at the centre and half in a thin shell at its surface. The figure shows three ways of examining them from outside, as three steps. Step 1, 'one look': the pull of gravity outside the two is exactly the same (the same faint, evenly spaced radial field lines around both). Step 2, 'a squeeze': a sudden tidal squeeze that stretches the body along one axis and compresses it across (two outward arrows in burnt orange, two inward arrows in deep blue); both bodies gain exactly the same energy, shown by two small plain bars of equal height. Step 3, 'the next squeeze': a sudden tidal push with three lobes at 120 degrees (three outward orange arrows alternating with three inward blue arrows); now body B gains exactly twice as much energy as body A, shown by a bar twice as tall. The message: each more intricate squeeze reveals one more layer of the inside. The only text allowed is a few very short labels such as 'one look', 'a squeeze', 'the next squeeze', 'A', 'B'. No equations. No decorative background.",
+ "variants": [
+  {
+   "name": "two bodies, three steps",
+   "style": "Composition: two columns, body A on the left and body B on the right, in three rows for the three steps, with the pair of energy bars beside each of the lower two rows. Look: a clean 3D-modelled technical illustration, softly shaded solids in warm sand and stone tones with thin single dark outlines, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes or dividing lines, generous whitespace, precise geometry."
+  },
+  {
+   "name": "the ladder",
+   "style": "Composition: the two cutaway bodies stand left and right; between them a short ladder with three rungs, read from the bottom up. Each rung carries a small icon of the examination (radial field lines; the two-lobed squeeze; the three-lobed squeeze) and a pair of small bars for A and B: equal, equal, then one to two. Look: a clean 3D-modelled technical illustration, softly shaded solids in warm sand and stone tones with thin single dark outlines, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes or dividing lines, generous whitespace, precise geometry."
+  },
+  {
+   "name": "three balances",
+   "style": "Composition: three small laboratory beam balances in a row, each with body A on the left pan and body B on the right pan. First balance, 'one look': level. Second, after the two-lobed squeeze: still level. Third, after the three-lobed squeeze: the pan with body B hangs slightly lower. The squeeze arrows are drawn around the bodies on the second and third balances. Look: restrained, physically rendered 3D scientific visualization, brushed brass and pale stone, soft studio lighting with gentle contact shadows on a seamless white background, accents in burnt orange and deep blue only, uncluttered."
+  },
+  {
+   "name": "monograph plate",
+   "style": "Composition: a single plate: the two cutaway bodies at the top with identical field lines; below, two rows for the two squeezes with their arrows and bars. Look: fine black ink line drawing with delicate hatching for shading on white paper, in the manner of the figures in Misner, Thorne and Wheeler's Gravitation, a single burnt orange accent and a single deep blue accent used sparingly, crisp and exact, no clutter."
+  }
+ ]
+}

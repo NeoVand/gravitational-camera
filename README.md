@@ -61,7 +61,9 @@ view, decide everything.
   harmonic moments of its mass; the field at two times, its thermal tremor or its response to an applied tide, fixes
   all of it, through the same logarithm. A black hole gives away seven numbers at one time and only its temperature
   at two. The second reading can be an impulsive tide and a weighing: the weight alone, after enough impulsive tides
-  applied from outside, gives the whole density.
+  applied from outside, gives the whole density. How much is reached depends on the tide: tides of degree up to $m$
+  give $m$ radial moments of the density in every angular sector and no more, so there are bodies that no
+  quadrupolar tide tells apart and an octupolar tide does; two tides in either order give the flow inside the body.
 
 This is a thought experiment, not a proposal for an instrument. The paper ends with a conclusion and the problems
 that remain open; an appendix says where each of its results is checked.
@@ -97,6 +99,11 @@ Seven of the paper's figures on what a single pixel measures are also live, unde
 and on their own at **[/figures](https://neovand.github.io/gravitational-camera/figures/)**: the principal null
 directions of one reading, four waves separated by one pixel, the camera sees the present, a pixel's own velocity and
 the test for motion, ranging a wave source, the sky at one pixel, and beyond general relativity in one reading.
+Two more stand on their own there. In "Push and weigh", two bodies with the same field outside are given tides of
+rising degree and weighed, until one degree tells them apart (Section XII, whose figure of those two bodies links
+to it in the online paper). "A ring of marked particles" is not in
+the paper: a ring of free particles in an exact gravitational plane wave, whose marks turn against a gyroscope by
+half the area that the ring's shape sweeps in the hyperbolic plane.
 
 ## The repository
 
@@ -156,7 +163,8 @@ modelled in 3D take their charts from the first step:
 ```bash
 python3 paper/figures/make_figures.py
 python3 paper/figures/charts.py
-cd figures3d && npm install && node render.mjs --final tidal sky-integral quadrupole line-integral earth-glow
+cd figures3d && npm install && node render.mjs --final tidal sky-integral quadrupole line-integral earth-glow \
+  ladder two-readings hidden-flow near-field-geometry
 ```
 
 ## Checks

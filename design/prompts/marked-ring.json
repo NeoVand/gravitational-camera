@@ -1,0 +1,22 @@
+{
+ "size": "1536x1024",
+ "figure": "A scientific figure for a physics paper on gravitational waves. Twelve small beads float freely in space in a ring around a small gyroscope at the centre (a tiny spinning top in gimbals, which keeps a fixed direction). One bead is marked in burnt orange, with a thin orange line from the centre to it; the other eleven beads and the ring through them are deep blue. A gravitational wave passes through, face-on: it stretches the ring into an ellipse whose long axis slowly turns. Show the story in four stages. (1) 'before': a perfect circle, the marked bead at three o'clock. (2) 'during': a tilted ellipse. (3) 'after': a perfect circle again, clearly smaller, and the marked bead has moved about nine degrees round from three o'clock, although nothing ever spun the ring. (4) 'focus': the ring has shrunk to a single point. A second, mirror-image wave gives the same shrinking and moves the marked bead nine degrees the other way. The original circle is kept as a faint dotted outline in every stage for comparison. Only very short labels: 'before', 'during', 'after', 'focus'. No equations. No decorative background.",
+ "variants": [
+  {
+   "name": "two filmstrips",
+   "style": "Composition: two rows of four stages each; the top row for one wave, the bottom row for its mirror image, so that the marked bead ends nine degrees above three o'clock in one row and nine degrees below in the other, while the sizes of the rings match row to row. Look: a precise flat vector diagram, thin single dark hairlines, pale grey tints, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes, no grid lines, generous whitespace, in the manner of a figure in a careful physics journal."
+  },
+  {
+   "name": "time lapse",
+   "style": "Composition: one large time-lapse drawing: successive positions of the ring drawn over one another and fading with time, from the first circle through tilted ellipses to a small circle and then a point; the marked bead traces a short curved path and then a straight line to the centre. A second, smaller, mirror-image copy beside it. Look: a precise flat vector diagram, thin single dark hairlines, pale grey tints, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes, no grid lines, generous whitespace, in the manner of a figure in a careful physics journal."
+  },
+  {
+   "name": "beads and gyroscope",
+   "style": "Composition: a row of four stages, each a ring of polished metal beads floating around a small brass gyroscope, with a thin translucent rippled sheet passing through the second stage to stand for the wave. Look: restrained, physically rendered 3D scientific visualization, brushed brass and steel, soft studio lighting with gentle shadows on a seamless white background, the marked bead in burnt orange, the others in deep blue, uncluttered."
+  },
+  {
+   "name": "monograph plate",
+   "style": "Composition: one plate with the four stages in a row and the mirror-image result drawn small beneath the third stage. Look: fine black ink line drawing with delicate hatching for shading on white paper, in the manner of the figures in Misner, Thorne and Wheeler's Gravitation, a single burnt orange accent and a single deep blue accent used sparingly, crisp and exact, no clutter."
+  }
+ ]
+}

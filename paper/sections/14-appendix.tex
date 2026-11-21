@@ -9,19 +9,20 @@ pays the same $\sqrt2$ as the wave in the two components it shares with the
 wave, and nothing in the other three. An array that reads only $\tE$ fits the
 rotor as a point quadrupole of unknown moment and position; for a pixel and six
 neighbours at distance $b$ along three axes and $b \ll r$, the factor on the
-wave's error lies between about $0.2\,r/b$ and $0.7\,r/b$, depending on the
+wave's error lies between about $0.2\,r/b$ and $0.6\,r/b$, depending on the
 directions of the wave and of the rotor's axis, and the array overtakes the magnetic part beyond $b = 0.29\,r$.
 In return the wave costs the rotor's moment and position factors of $1.5$ and
 $1.3$ from $\tE$ alone, and $1.07$ and $1.04$ with $\tB$ too. Modelling the
 rotor as a point leaves a false wave of $0.005$ of the true one, from its next
-multipole, which matters only above $\rho \approx 270$; ignored altogether, the
+multipole, which matters only above $\rho \approx 270$, with $\rho$ the
+signal-to-noise ratio of one reading; ignored altogether, the
 rotor is read as $70$ times the wave by the array.
 
 \paragraph{Depth with noise.} For a person $3\,\mathrm{m}$ away and neighbours
 $0.5\,\mathrm{m}$ out, the Cram\'er--Rao bound of the full model on
 $\sigma_r/r$ is between $0.90/\rho$ and $1.08/\rho$, depending on direction,
 against $1.16/\rho$ from the closed form of Eq.~\eqref{eq:depth-bound}
-(Fig.~\ref{fig:separation-noise}b): wider
+(Fig.~\ref{fig:separation-noise}(b)): wider
 stencils gain from the curvature of the field across them. For a person walking
 at $1.4\,\mathrm{m\,s^{-1}}$ the magnetic bound is $\sigma_r/r =
 1.2\times10^{8}/\rho$. Bodies on one line: a rod of length $L$ pointing at the
@@ -32,11 +33,11 @@ $\rho\,(b/r)^2$ depending on direction, so that two equal masses, $s =
 \Delta/2$, are told from one when $\Delta > 2r/\rho_H^{1/2}$, between $0.62$
 and $0.70$ times $(r^2/b)/\rho^{1/2}$.
 
-\paragraph{The worked inversion.} The array of Section~\ref{sec:near-field}'s
-worked case is a square a metre across, of $11\times11$ pixels $10\,\mathrm{cm}$
-apart, centred on the camera and facing the safes; the noise on each component
-is set by $\SNR = 2Gm/z^2\sigma a$ for $m = 324\,\mathrm{kg}$, $z =
-3.5\,\mathrm{m}$ and spacing $a$. The image is the Gaussian posterior on point
+\paragraph{The worked inversion.} The array of the worked case of
+Section~\ref{sec:near-field} is a square a metre across, of $11\times11$ pixels $10\,\mathrm{cm}$
+apart, centred on the camera and facing the safes; the noise $\sigma$ on each component
+is set by $\SNR = 2Gm/z^2\sigma b$ for $m = 324\,\mathrm{kg}$, $z =
+3.5\,\mathrm{m}$ and spacing $b$ (so that $N_0 = \sigma^2b^2$). The image is the Gaussian posterior on point
 masses at the nodes of a grid $25\,\mathrm{cm}$ apart, $5\,\mathrm{m}\times
 2.5\,\mathrm{m}$, in the plane of the safes, each with prior standard deviation
 equal to the gold's mass; it is computed through the singular values of the
@@ -62,9 +63,9 @@ site joined to its six nearest neighbours by springs of unit stiffness and to
 its twelve next-nearest by springs half as stiff, which makes a stable elastic
 solid. The masses are equal within each body and add to the same total in
 both. The normal modes give the response of every moment directly: a mode of
-frequency $\omega_n$ moves $q_h$ by $c_n$ per unit of its mass-weighted
-amplitude, and in equilibrium $\langle\dot q_h^2\rangle = k_BT\sum_n c_n^2$ and
-$\langle q_h^2\rangle = k_BT\sum_n c_n^2/\omega_n^2$. The first sum equals
+frequency $\omega_n$ moves $Q_h$ by $c_n$ per unit of its mass-weighted
+amplitude, and in equilibrium $\langle\dot Q_h^2\rangle = k_BT\sum_n c_n^2$ and
+$\langle\delta Q_h^2\rangle = k_BT\sum_n c_n^2/\omega_n^2$. The first sum equals
 $k_BT\int\rho\,|\nabla h|^2\,\dd V$ to rounding error for any stiffnesses, as
 Eq.~\eqref{eq:thermal-moment} requires; for $h = x$ all of it lies in the free
 translation, the Brownian motion of Eq.~\eqref{eq:thermal-multipole} with
@@ -75,25 +76,69 @@ quadrupole $\tfrac15 MRq\,\mathrm{diag}(-1,-1,2)$ and so a tide
 $36GMRq/5r^5$ on its axis. Rayleigh's method overestimates the frequency;
 these are estimates, not the exact modes of a steel sphere.
 
-For a quantum system the jitter is no longer $k_BT\chi(0)$. With the
-static compliance $\chi_0$ and the sum $A$ of Eq.~\eqref{eq:sum-rule} both
+For a quantum system the jitter is no longer $k_BT\chi_0$, with
+$\chi_0 = \chi_h(0)$ the static compliance. With $\chi_0$ and the sum $A$ of Eq.~\eqref{eq:sum-rule} both
 finite, the measure $(2/\pi\chi_0)\,\mathrm{Im}\,\chi(\omega)\,\dd\omega/\omega$
 has unit weight and mean square frequency $A/\chi_0$, and the quantum
 fluctuation--dissipation theorem gives the jitter as its average of
 $\tfrac12\hbar\chi_0\,\omega\coth(\hbar\omega/2k_BT)$. Since
-$\sqrt{x}\coth(b\sqrt{x})$ is concave in $x$,
+$\sqrt{x}\coth(s\sqrt{x})$ is concave in $x$ for any $s > 0$,
 \begin{equation}\label{eq:jitter-bounds}
-k_BT\chi_0 \le \langle\delta q^2\rangle \le
+k_BT\chi_0 \le \langle\delta Q_h^2\rangle \le
 \frac{\hbar}{2}\sqrt{A\chi_0}\,\coth\!\Big(\frac{\hbar}{2k_BT}\sqrt{\frac{A}{\chi_0}}\Big),
 \end{equation}
 with the upper bound reached by a single mode. The shell drive of
-Eq.~\eqref{eq:thermometer} has no monopole or dipole, interacts with point
-masses outside it exactly as $-f\,D\!:\!\tE$, and makes the
-field $6GfD/a^5$ at its centre.
+Eq.~\eqref{eq:thermometer} has no monopole or dipole.
 
-\section{Three short proofs}\label{app:proofs}
+\section{Where each result is checked}\label{app:checks}
 
-Two statements of Section~\ref{sec:one-pixel} and one of
+Every number in this paper is produced by the reference implementation, a
+Python package (\texttt{reference/gravcam} in the repository of this paper,
+\url{https://github.com/NeoVand/gravitational-camera}), and is tested there.
+Table~\ref{tab:checks} says where. An interactive version of the scenes also
+exists; its images are drawn by separate code and are tested against the
+reference implementation.
+A check of this kind shows that a formula agrees with an independent
+calculation of the same model, for instance with the curvature of a metric
+taken by finite differences; it does not show that the model is the right one.
+Where the text says that a result is exact, it rests on an argument, and the
+number quoted beside it is the accuracy of the check.
+
+\begin{table*}
+\centering
+\begin{tabular}{p{0.29\linewidth}p{0.08\linewidth}p{0.25\linewidth}p{0.30\linewidth}}
+Result & Section & Module & Tests \\ \hline
+The tidal field of a scene and its trace inside matter & \ref{sec:pixel} & \texttt{tidal} & \texttt{test\_tidal} \\
+The magnetic part of moving and spinning bodies; the current column & \ref{sec:near-field} & \texttt{gravitomagnetic}, \texttt{currents} & \texttt{test\_gravitomagnetic}, \texttt{test\_currents} \\
+Same outside, different inside; the Earth from outside; silent flows; the shear zeros of a buried pair & \ref{sec:near-field} & \texttt{nullspace} & \texttt{test\_nullspace}, \texttt{test\_silent\_flows} \\
+The thermal tremor, the sum rule, the thermometer, the jitter bounds & \ref{sec:near-field}, \ref{app:benchmarks} & \texttt{response} & \texttt{test\_response} \\
+The resolution law and Table~\ref{tab:resolution} & \ref{sec:near-field} & \texttt{resolution} & \texttt{test\_resolution} \\
+The information in a near-field image & \ref{sec:near-field} & \texttt{capacity} & \texttt{test\_capacity} \\
+The worked inversion, with and without positivity & \ref{sec:near-field}, \ref{app:benchmarks} & \texttt{inversion} & \texttt{test\_inversion} \\
+A rotor's waves, their power and polarization; a source larger than its wave & \ref{sec:waves} & \texttt{waves}, \texttt{wavezone} & \texttt{test\_waves}, \texttt{test\_wavezone} \\
+Absorption, emission and the graviton budgets & \ref{sec:thermal}, \ref{sec:first-image} & \texttt{emission} & \texttt{test\_emission} \\
+The friction and glow of materials, Table~\ref{tab:materials}; the bound on the glow & \ref{sec:thermal} & \texttt{materials}, \texttt{glowbounds} & \texttt{test\_materials}, \texttt{test\_glow\_skies} \\
+The bound on optics; surface and volume glow; a black hole as a lens & \ref{sec:thermal}, \ref{sec:no-lens} & \texttt{optics}, \texttt{lens} & \texttt{test\_optics}, \texttt{test\_lens} \\
+One pixel: the square, the types, the principal null directions, the pixel's own velocity, the separation of waves, the sky's numbers, ranging & \ref{sec:one-pixel} & \texttt{pixel}, \texttt{onepixel}, \texttt{identify} & \texttt{test\_pixel}, \texttt{test\_one\_pixel}, \texttt{test\_identify}, \texttt{test\_single\_pixel\_bandlimit} \\
+The absence of aberration; other theories of gravity & \ref{sec:one-pixel} & \texttt{present}, \texttt{beyond} & \texttt{test\_present}, \texttt{test\_beyond} \\
+Separation and depth with noise & \ref{sec:one-pixel}, \ref{app:benchmarks} & \texttt{separation\_noise} & \texttt{test\_separation\_noise} \\
+The thermal Earth and its inversion & \ref{sec:first-image} & \texttt{abel} & \texttt{test\_abel} \\
+A pair of black holes; memory; the Sun as a lens & \ref{sec:vistas} & \texttt{binary}, \texttt{memory}, \texttt{sunlens}, \texttt{sunwave} & \texttt{test\_binary}, \texttt{test\_memory\_sunlens}, \texttt{test\_sunwave} \\
+The Milky Way, the primordial background, a black hole and its modes & \ref{sec:vistas} & \texttt{galaxy}, \texttt{primordial}, \texttt{schwarzschild}, \texttt{bhmodes}, \texttt{skies} & \texttt{test\_vistas}, \texttt{test\_bhmodes}, \texttt{test\_glow\_skies} \\
+Hair: the field at two times, the count of bits, a black hole's friction and tremor, an impulsive tide and a weighing, what gravity cannot decohere & \ref{sec:hair} & \texttt{hair}, \texttt{bhmodes} & \texttt{test\_hair} \\
+The two readings as one transform; the reach of a tide of given degree; the flow; the brackets of the moments; an impulsive wave & \ref{sec:hair}, \ref{app:proofs} & \texttt{readings}, \texttt{spins} & \texttt{test\_readings}, \texttt{test\_spins} \\
+The weight of a black hole's response & \ref{sec:hair} & \texttt{holeresponse}, \texttt{bhmodes} & \texttt{test\_holeresponse} \\
+The geometry of the near field; the zeros of the shear above a layer; one spin of a reading & \ref{sec:near-field}, \ref{sec:one-pixel} & \texttt{hyperbolic}, \texttt{shearzeros}, \texttt{spins} & \texttt{test\_hyperbolic}, \texttt{test\_shearzeros}, \texttt{test\_spins} \\
+The interactive version's images against the reference & \ref{sec:first-image} & \texttt{export\_fixtures} & \texttt{test\_fixtures}, and its own tests \\
+\end{tabular}
+\caption{Where each result is checked. Modules are files of
+\texttt{reference/gravcam}, tests are files of \texttt{reference/tests}; the
+name of each test says what it checks.}\label{tab:checks}
+\end{table*}
+
+\section{Five short proofs}\label{app:proofs}
+
+Two statements of Section~\ref{sec:one-pixel} and three of
 Section~\ref{sec:hair} are exact, and their proofs are short enough to give in
 full.
 
@@ -136,11 +181,13 @@ Eq.~\eqref{eq:moving-state}.
 
 \paragraph{The count of waves.} In the coordinate $z$ of Eq.~\eqref{eq:stars}
 the $2s + 1$ independent components of a reading of $N$ waves are, up to a fixed
-linear map, the moments $y_j = \sum_a c_a z_a^{\,j}$, $j = 0, \dots, 2s$. Let
+linear map, the moments $y_j = \sum_a c_a z_a^j$, $j = 0, \dots, 2s$. Let
 $p(z) = \prod_a (z - z_a) = \sum_{k=0}^{N} p_k z^k$, with $p_N = 1$. Then
 \begin{equation}\label{eq:proof-prony}
-\sum_{k=0}^{N} p_k\,y_{j+k} = \sum_a c_a z_a^{\,j}\,p(z_a) = 0,
-\qquad j = 0, \dots, 2s - N,
+\begin{gathered}
+\sum_{k=0}^{N} p_k\,y_{j+k} = \sum_a c_a z_a^j\,p(z_a) = 0,\\
+j = 0, \dots, 2s - N,
+\end{gathered}
 \end{equation}
 in every snapshot, whatever the amplitudes: $L(2s - N + 1)$ linear equations for
 the $N$ unknown coefficients of $p$. They fix $p$, and with it the directions,
@@ -169,50 +216,78 @@ By the first step every $\partial F/\partial\mathbf p_a$ vanishes, and $F$
 depends on the places alone. If its bracket with the energy vanishes too,
 $\{F, H\} = \sum_a(\mathbf p_a/m_a)\cdot\partial F/\partial\mathbf x_a = 0$
 for all momenta, then $F$ is a constant. The same first step gives the momenta
-from the pushes of Eq.~\eqref{eq:push}: its odd part is
+from the impulses of Eq.~\eqref{eq:push}: its odd part is
 $\sum_a\mathbf p_a\cdot\nabla g(\mathbf x_a)$, and $3N$ suitable $g$ make of
-these a system of full rank for the $\mathbf p_a$. For the functions that
-commute with the moments alone, which are all functions of the places, the
-second step is what the energy adds.
+these a system of full rank for the $\mathbf p_a$.
 
-\section{Where each result is checked}\label{app:checks}
+\paragraph{The reach of a tide of given degree.} Let $h$ and $g$ be harmonic
+polynomials. Every derivative of a harmonic function is harmonic, so
+$\nabla^2(\nabla h\cdot\nabla g) = 2\,\partial_i\partial_jh\,\partial_i\partial_jg$,
+a sum of products of the same kind, and $m$ such steps give
+Eq.~\eqref{eq:ladder-identity}. If $g$ has degree $m$ or less its derivatives
+of order $m + 1$ vanish, and so does $\nabla^{2m}(\nabla h\cdot\nabla g)$:
+nothing outside Eq.~\eqref{eq:ladder} is reached. For the converse it is
+enough to use complex combinations. Let $\mathbf a$ and $\mathbf b$ be complex
+vectors with $\mathbf a\cdot\mathbf a = \mathbf b\cdot\mathbf b = 0$, so that
+every power of $\mathbf a\cdot\mathbf x$ and of $\mathbf b\cdot\mathbf x$ is
+harmonic. Then
+\begin{equation}\label{eq:proof-ladder}
+\begin{aligned}
+&\nabla(\mathbf a\cdot\mathbf x)^p\cdot\nabla(\mathbf b\cdot\mathbf x)^q\\
+&\quad= pq\,(\mathbf a\cdot\mathbf b)\,(\mathbf a\cdot\mathbf x)^{p-1}(\mathbf b\cdot\mathbf x)^{q-1},\\
+&\nabla^2\bigl[(\mathbf a\cdot\mathbf x)^p(\mathbf b\cdot\mathbf x)^q\bigr]\\
+&\quad= 2pq\,(\mathbf a\cdot\mathbf b)\,(\mathbf a\cdot\mathbf x)^{p-1}(\mathbf b\cdot\mathbf x)^{q-1}.
+\end{aligned}
+\end{equation}
+Take $q = j + 1$ and $p = \ell + j + 1$, with $j < m$. The product of the
+gradients is a multiple of
+$(\mathbf a\cdot\mathbf x)^{\ell+j}(\mathbf b\cdot\mathbf x)^{j}$, and $j$
+Laplacians take it to a multiple of
+$(\mathbf a\cdot\mathbf b)^{j+1}(\mathbf a\cdot\mathbf x)^\ell$ that is not zero
+when $\mathbf a\cdot\mathbf b$ is not. The polynomials
+$(\mathbf a\cdot\mathbf x)^\ell$ span the harmonic polynomials of degree $\ell$. So
+for every harmonic $H$ of degree $\ell$ and every $j < m$ there is a combination
+$S$ of products $\nabla h\cdot\nabla g$, with $g$ of degree $j + 1$, for which
+$\nabla^{2j}S = H$. Now let $P$ be a homogeneous polynomial with
+$\nabla^{2(j+1)}P = 0$. Then $\nabla^{2j}P$ is harmonic, there is such an $S$
+with the same $\nabla^{2j}$, and $P - S$ satisfies $\nabla^{2j}(P - S) = 0$.
+Repeating the step lowers $j$ to zero and leaves a harmonic polynomial, which
+a reading at one time holds.
 
-Every number in this paper is produced by the reference implementation, a
-Python package (\texttt{reference/gravcam}), and is tested there.
-Table~\ref{tab:checks} says where. An interactive version of the scenes also
-exists; its images are drawn by separate code and are tested against the
-reference implementation.
-A check of this kind shows that a formula agrees with an independent
-calculation of the same model, for instance with the curvature of a metric
-taken by finite differences; it does not show that the model is the right one.
-Where the text says that a result is exact, it rests on an argument, and the
-number quoted beside it is the accuracy of the check.
+\paragraph{The energy given by an impulsive wave.} The wave is the metric
+$\dd s^2 = -\dd u\,\dd v + H(\mathbf x_\perp)\,\delta(u)\,\dd u^2 + \dd\mathbf x_\perp^2$,
+with $u = ct - z$ and $v = ct + z$, a solution of Einstein's equations in
+vacuum when $H$ is harmonic across the front. It does not contain $v$, so a
+free particle keeps $q = E/c - p_z$, and $u$ advances uniformly along its
+path. Across the front the geodesic obeys
+$\ddot{\mathbf x}_\perp = \tfrac12\nabla H\,\delta(u)\,\dot u^2$, which gives
+the particle the momentum $\tfrac12q\nabla H$ at $u = 0$. Its energy follows
+from $(E/c - p_z)(E/c + p_z) = m^2c^2 + p_\perp^2$, in which the first factor
+is unchanged:
+\begin{equation}\label{eq:proof-shock}
+\Delta E = \frac{c}{2q}\Bigl(\bigl|\mathbf p_\perp + \tfrac12q\nabla H\bigr|^2
+- p_\perp^2\Bigr) ,
+\end{equation}
+which is Eq.~\eqref{eq:shock}. Reversing $H$ reverses its first term and
+keeps its second, and the sum over the particles of a body is
+Eq.~\eqref{eq:shock-even}, with
+$\mathcal N = c\sum_a q_a\,\delta^2(\mathbf x_\perp - \mathbf x_a)$. For the rest mass
+$\mathcal M$ of the body let $Q = \sum_a q_a$, and let $\mathrm{Var}$ be the
+variance over its particles with the weights $q_a/Q$. Then
+\begin{equation}\label{eq:proof-mass}
+\begin{aligned}
+\mathcal M^2c^2 &= Q\sum_a\bigl(E_a/c + p_{za}\bigr)
+- \Bigl|\sum_a\mathbf p_{\perp a}\Bigr|^2\\
+&= Q\sum_a\frac{m_a^2c^2}{q_a}
++ Q^2\,\mathrm{Var}\bigl(\mathbf p_\perp/q\bigr) ,
+\end{aligned}
+\end{equation}
+and the wave adds $\tfrac12\nabla H$ to $\mathbf p_\perp/q$ at each particle.
+Hence
+$\mathcal M_+^2 + \mathcal M_-^2 - 2\mathcal M_0^2 = Q^2\,\mathrm{Var}(\nabla H)/2c^2$,
+which is not negative, and vanishes for a uniform $\nabla H$, which moves a
+body without heating it. One wave alone can lower the mass. Two equal masses
+flying apart with $p = \tfrac34mc$, across the direction of the wave, have the
+rest mass $2.5\,m$ together, and the wave whose $\nabla H$ at each is
+$-2\mathbf p_\perp/q$ stops their motion apart and leaves $2\,m$.
 
-\begin{table*}
-\centering
-\begin{tabular}{p{0.33\linewidth}p{0.1\linewidth}p{0.2\linewidth}p{0.29\linewidth}}
-Result & Section & Module & Tests \\ \hline
-The tidal field of a scene and its trace inside matter & \ref{sec:pixel} & \texttt{tidal} & \texttt{test\_tidal} \\
-The magnetic part of moving and spinning bodies; the current column & \ref{sec:near-field} & \texttt{gravitomagnetic}, \texttt{currents} & \texttt{test\_gravitomagnetic}, \texttt{test\_currents} \\
-Same outside, different inside; the Earth from outside; silent flows; the shear zeros of a buried pair & \ref{sec:near-field} & \texttt{nullspace} & \texttt{test\_nullspace}, \texttt{test\_silent\_flows} \\
-The thermal tremor, the sum rule, the thermometer, the jitter bounds & \ref{sec:near-field}, \ref{app:benchmarks} & \texttt{response} & \texttt{test\_response} \\
-The resolution law and Table~\ref{tab:resolution} & \ref{sec:near-field} & \texttt{resolution} & \texttt{test\_resolution} \\
-The information in a near-field image & \ref{sec:near-field} & \texttt{capacity} & \texttt{test\_capacity} \\
-The worked inversion, with and without positivity & \ref{sec:near-field}, \ref{app:benchmarks} & \texttt{inversion} & \texttt{test\_inversion} \\
-A rotor's waves, their power and polarization; a source larger than its wave & \ref{sec:waves} & \texttt{waves}, \texttt{wavezone} & \texttt{test\_waves}, \texttt{test\_wavezone} \\
-Absorption, emission and the graviton budgets & \ref{sec:thermal}, \ref{sec:first-image} & \texttt{emission} & \texttt{test\_emission} \\
-The friction and glow of materials, Table~\ref{tab:materials}; the bound on the glow & \ref{sec:thermal} & \texttt{materials}, \texttt{glowbounds} & \texttt{test\_materials}, \texttt{test\_glow\_skies} \\
-The bound on optics; surface and volume glow; a black hole as a lens & \ref{sec:thermal}, \ref{sec:no-lens} & \texttt{optics}, \texttt{lens} & \texttt{test\_optics}, \texttt{test\_lens} \\
-One pixel: the square, the types, the principal null directions, the pixel's own velocity, the separation of waves, the sky's numbers, ranging & \ref{sec:one-pixel} & \texttt{pixel}, \texttt{onepixel}, \texttt{identify} & \texttt{test\_pixel}, \texttt{test\_one\_pixel}, \texttt{test\_identify}, \texttt{test\_single\_pixel\_bandlimit} \\
-The absence of aberration; other theories of gravity & \ref{sec:one-pixel} & \texttt{present}, \texttt{beyond} & \texttt{test\_present}, \texttt{test\_beyond} \\
-Separation and depth with noise & \ref{sec:one-pixel}, \ref{app:benchmarks} & \texttt{separation\_noise} & \texttt{test\_separation\_noise} \\
-The thermal Earth and its inversion & \ref{sec:first-image} & \texttt{abel} & \texttt{test\_abel} \\
-A pair of black holes; memory; the Sun as a lens & \ref{sec:vistas} & \texttt{binary}, \texttt{memory}, \texttt{sunlens}, \texttt{sunwave} & \texttt{test\_binary}, \texttt{test\_memory\_sunlens}, \texttt{test\_sunwave} \\
-The Milky Way, the primordial background, a black hole and its modes & \ref{sec:vistas} & \texttt{galaxy}, \texttt{primordial}, \texttt{schwarzschild}, \texttt{bhmodes}, \texttt{skies} & \texttt{test\_vistas}, \texttt{test\_bhmodes}, \texttt{test\_glow\_skies} \\
-Hair: the field at two times, the count of bits, a black hole's friction and tremor, pushing and weighing, what gravity cannot decohere & \ref{sec:hair} & \texttt{hair}, \texttt{bhmodes} & \texttt{test\_hair} \\
-The interactive version's images against the reference & \ref{sec:first-image} & \texttt{export\_fixtures} & \texttt{test\_fixtures}, and its own tests \\
-\end{tabular}
-\caption{Where each result is checked. Modules are files of
-\texttt{reference/gravcam}, tests are files of \texttt{reference/tests}; the
-name of each test says what it checks.}\label{tab:checks}
-\end{table*}

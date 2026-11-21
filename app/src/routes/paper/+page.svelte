@@ -162,7 +162,12 @@
 						</details>
 					{/if}
 					{#if demo}
-						<a class="demo-link" href={resolve(`/demo/${demo.slug}` as '/demo/black-hole')}>
+						<a
+							class="demo-link"
+							href={demo.section === 'figures'
+								? resolve(`/figures/${demo.slug}` as '/figures/four-stars')
+								: resolve(`/demo/${demo.slug}` as '/demo/black-hole')}
+						>
 							<HugeiconsIcon icon={PlayCircleIcon} size={15} strokeWidth={1.8} />
 							{demo.label}
 						</a>

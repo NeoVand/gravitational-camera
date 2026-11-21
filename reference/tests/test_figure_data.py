@@ -46,3 +46,78 @@ def test_range_from_the_frequency_parts_converges(iota_deg, tolerance):
     assert excess[-1] < tolerance
     # the departure falls as 1/(kr)^2
     assert excess[0] / excess[-1] == pytest.approx((100 / 45) ** 2, rel=0.1)
+
+
+# --- the figures of the exterior response (Section XII) and of the near field's geometry (Section IV) ----------------
+
+
+def test_ladder_figure_two_bodies_alike_under_degree_two_and_one_to_two_under_degree_three():
+    d = figure_data.ladder()
+    assert d["bodies"] == [[[1.0, 1 / math.sqrt(2)]], [[0.5, 0.0], [0.5, 1.0]]]
+    two, three = d["tides"]
+    assert (two["degree"], three["degree"]) == (2, 3)
+    assert two["gain"] == pytest.approx([1 / 3, 1 / 3], rel=1e-12)             # in units of M R^2
+    assert three["gain"] == pytest.approx([2 / 15, 4 / 15], rel=1e-12)         # in units of M R^4
+    # the impulse at the angle t on the unit circle is (cos (n - 1) t, -sin (n - 1) t)
+    for tide in d["tides"]:
+        t = np.radians(tide["angle_deg"])
+        n = tide["degree"]
+        assert np.allclose(tide["kick"], np.stack([np.cos((n - 1) * t), -np.sin((n - 1) * t)], axis=1), atol=1e-12)
+
+
+def test_ladder_figure_beads_are_the_polynomials_reached():
+    """2L + 1 beads of each degree L on each floor j < m make, at each degree d = L + 2j, the number of polynomials
+    with Lap^m P = 0."""
+    d = figure_data.ladder()
+    for m, dims in d["dimension"].items():
+        for degree, dim in enumerate(dims):
+            beads = sum(2 * (degree - 2 * j) + 1 for j in range(int(m)) if degree - 2 * j >= 0)
+            assert beads == dim
+
+
+def test_two_readings_figure_pair_on_the_outline_reads_a_point_inside_the_cone():
+    d = figure_data.two_readings()
+    k, kp, K = (np.array(d[name]) for name in ("k", "kp", "K"))
+    assert np.allclose(k + kp, K) and np.linalg.norm(k) + np.linalg.norm(kp) == pytest.approx(d["kap"], rel=1e-12)
+    assert np.linalg.norm(K) < d["kap"] < 1.0                                  # inside the cone that is drawn
+    # each of the pair lies on a generator at which the cone turns away from the reader: tan(tilt) from the middle
+    tilt, turn = (math.radians(d[name]) for name in ("tilt_deg", "turn_deg"))
+    toward = np.array([math.cos(math.pi / 2 + turn), math.sin(math.pi / 2 + turn)])
+    for v in (k, kp):
+        assert v @ toward / np.linalg.norm(v) == pytest.approx(math.tan(tilt), rel=1e-12)
+    # every point of the ellipse is a pair with the same sum, and every pair reads the same value of the transform
+    for q in d["ellipse"] + d["others"]:
+        q = np.array(q)
+        assert np.linalg.norm(q) + np.linalg.norm(K - q) == pytest.approx(d["kap"], rel=1e-12)
+    assert d["disagreement"] < 1e-12
+    assert d["symbol"] == pytest.approx(0.5 * (d["kap"] ** 2 - K @ K), rel=1e-12) and d["symbol"] > 0
+
+
+def test_hidden_flow_figure_parts_cancel_for_degree_two_and_not_for_degree_three():
+    d = figure_data.hidden_flow()
+    u = d["inner_radius"]
+    assert u**5 == pytest.approx(0.5, rel=1e-12)
+    assert d["spin"] == pytest.approx([0.2, -0.2], rel=1e-10)                  # in units of M Omega R^2
+    assert d["quadrupolar"] == pytest.approx([-0.4, 0.4], rel=1e-10)
+    # the integrand over the radius is -c_n Omega(r) r^(2n), c_3 = 32/5
+    assert d["octupolar"] == pytest.approx([-(32 / 35) * u**7, (32 / 35) * (1 - u**7)], rel=1e-10)
+    assert sum(d["octupolar"]) == pytest.approx(d["bracket"], rel=1e-12)
+    assert f"{d['bracket']:.3f}" == "0.221"
+
+
+def test_near_field_geometry_figure_cells_of_one_size_and_patterns_as_wide_as_deep():
+    d = figure_data.near_field_geometry()
+    assert d["tops"] == pytest.approx([d["pitch"] * 2**n for n in range(4)])
+    assert d["cell_areas"] == pytest.approx([0.5] * 4, rel=1e-12)
+    assert d["width_at_half_height"] == pytest.approx(1.0014, abs=1e-4)
+    row = np.array(d["row"])
+    for (place, depth), recorded in zip(d["masses"], d["recorded"]):
+        recorded = np.array(recorded)
+        assert recorded.max() == pytest.approx(1.0) and row[recorded.argmax()] == pytest.approx(place)
+        above = row[recorded > 0.5]
+        assert above[-1] - above[0] == pytest.approx(d["width_at_half_height"] * depth, abs=2 * (row[1] - row[0]))
+        # it changes sign sqrt 2 of the depth to either side, and beyond is small
+        positive = row[recorded > 0]
+        if place - math.sqrt(2) * depth > row[0]:
+            assert positive[0] == pytest.approx(place - math.sqrt(2) * depth, abs=row[1] - row[0])
+        assert recorded.min() > -0.018

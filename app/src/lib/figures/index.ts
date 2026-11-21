@@ -1,13 +1,14 @@
 /**
- * The interactive figures: the paper's results on what one pixel measures (its Section VIII), to explore. They are
- * diagrams, not views through the camera; each also appears live under its figure in the online paper.
+ * The interactive figures: the paper's results on what one pixel measures (its Section VIII) and on what a tide
+ * applied from outside reveals (its Section XII), to explore. They are diagrams, not views through the camera; those
+ * of Section VIII also appear live under their figures in the online paper.
  */
 export interface FigureEntry {
 	slug: string;
 	title: string;
 	affordance: string;
 	summary: string;
-	/** The paper's figure it belongs to. */
+	/** The paper's figure it belongs to; empty for a result that is not in the paper. */
 	figure: string;
 }
 
@@ -67,5 +68,21 @@ export const figures: FigureEntry[] = [
 		figure: 'fig:beyond',
 		summary:
 			'One reading gives a wave’s direction, its speed and all six polarizations a theory of gravity allows, and checks that they belong to one wave. A massive graviton and a scalar differ even in sign.'
+	},
+	{
+		slug: 'push-and-weigh',
+		title: 'Push and weigh',
+		affordance: 'Same outside, told apart',
+		figure: 'fig:ladder',
+		summary:
+			'Two bodies with the same field outside. A tide of low degree gives both the same energy; a tide one degree higher tells them apart. Each degree of the tide reaches one more radial moment of the mass.'
+	},
+	{
+		slug: 'marked-ring',
+		title: 'A ring of marked particles',
+		affordance: 'A wave turns the marks',
+		figure: '',
+		summary:
+			'A ring of free particles, each with a mark, in an exact gravitational plane wave. When the wave has passed the marks have turned against a gyroscope, by half the area that the ring’s shape swept in the hyperbolic plane.'
 	}
 ];

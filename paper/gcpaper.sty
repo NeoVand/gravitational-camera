@@ -7,13 +7,17 @@
 % so \\ still ends a row.
 \g@addto@macro\@arrayparboxrestore{\rightskip\z@\@plus 2em\relax}
 %
+% REVTeX leaves 2pt between the columns of a table, the width of a word space, so
+% that one column's text reads on into the next. Give them room.
+\def\tabmidsep{4pt}
+%
 % Floats: LaTeX's defaults send any figure taller than 70% of a page to a page
 % of its own. Let figures and tables take up to 85% of a page with text, and
 % keep pages of floats alone for those that nearly fill one.
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.6}
 \renewcommand{\textfraction}{0.12}
-\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\floatpagefraction}{0.9}
 \setcounter{topnumber}{3}
 \setcounter{totalnumber}{4}
 %

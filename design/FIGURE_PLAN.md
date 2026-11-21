@@ -150,3 +150,66 @@ chart), earth-inverted (panel b in 10^-4 Pa s, with each shell's own line), clos
 through the steel; the cold one could not be seen before because the air inside was given the friction of steel),
 budget (the Earth's bar from its scene, 5.7e9 per second). Previews without LaTeX were looked at; the captions and
 the text of Sections VI and IX already describe the new figures.
+
+### 21 November 2026: five figures for the exterior response, built and in the paper
+
+Neo's words on the first code-drawn drafts (flat charts from a script since removed): "The figure is going to require
+more polish ... look for inconsistencies, bad overlaps, bad placement of things, asymmetries, bad arrowheads ...
+Also, nice textures, 3D, really good presentation." The drafts were not patched but rebuilt in the pipeline of
+`hair`, from the looks chosen among the image candidates (design/candidates/REVIEW-2026-11-22.md). Every point drawn
+as a result comes from reference/gravcam/figure_data.py (tested in reference/tests/test_figure_data.py), and each
+script throws if what it draws disagrees with those numbers.
+
+| Figure | Where | Built by | Pictorial or schematic (said in its caption) |
+|---|---|---|---|
+| `ladder` (full width) | Section XII, the reach of a tide | figures3d/figs/ladder.js, with the bodies of `hair` (figures3d/stone.js) | the bodies cut open; the thickness of the skins and the size of the central mass |
+| `two-readings` | Section XII, the two readings as one transform | figures3d/figs/two-readings.js | nothing |
+| `hidden-flow` | Section XII, the flow | figures3d/figs/hidden-flow.js | the stone of the section; the places of the arrows |
+| `hole-response` | Section XII, the weight of a hole's response | paper/figures/fig_hole_response.py | nothing |
+| `near-field-geometry` | Section IV, the geometry of the near field | figures3d/figs/near-field-geometry.js, on a slab from design/stone_slab.py | the stone; the depth of the block behind its face |
+
+What the pedantic pass changed, so that it is not undone:
+- ladder: the bars lie in their body's row (no colour or letter is needed to say whose they are); the impulses of
+  the two tides are on one scale, so the first body's are visibly shorter; short arrows have heads of at most two
+  fifths of their length; the rows of beads do not touch; the moment at which the two bodies first differ is an
+  orange bead, not a ringed one (no second outline).
+- two-readings: in a view from the side every generator of the near half of a cone crowds its outline, so the pair
+  is drawn exactly on the outline (the light-cone picture) and the section of the cone that holds all the pairs,
+  which that view sees edge-on, is drawn only in the plan, where one further pair is all that fits without crossing.
+- hidden-flow: two rings of paths, all spanning one angle; every arrow has the same halo.
+- hole-response: the curves run from zero frequency to the right edge (the first draft's grid showed as a polygon
+  and stopped short at both ends).
+- near-field-geometry: the recorded patterns are drawn between their changes of sign (their tails, 0.018 of the
+  peak at most, doubled the block's top edge); what is drawn on the stone keeps a fixed dark ink, since the site
+  swaps the paper's ink for its theme's and the stone stays pale on the dark theme.
+
+Colour balance (share of pixels near each accent, orange / blue, at 300 dpi): ladder 1.49 / 0.43, two-readings
+0.27 / 1.24, hidden-flow 0.69 / 0.39, near-field-geometry 0 / 0.52, hole-response 1.05 / 0 (`hair` itself is
+2.16 / 0.25). The marked ring remains a staged draft (paper/figures/draft_marked_ring.py): it is not in the paper.
+
+## 21 November 2026, later: the audit of all 44 figures before arXiv
+
+Every included figure was rendered at 300 dpi and looked at one by one (doubtful regions at 600 to 1800 dpi), and
+measured: ink margins against the page box, stroke weights, dash patterns, glyph sizes, colours. What changed:
+
+- **Charts (make_figures.py, charts.py, fig_*.py).** One weight for a principal curve (`CURVE`, 1.1) and one for a
+  secondary (`CURVE2`, 0.7); one dashed and one dotted pattern (`DASH`, `DOT`, fixed lengths on the page); curves
+  written in full (`path.simplify` off: the ripples of `nearfield` were visible polygons at 900 dpi); every chart
+  centred by its ink (`centre`, now by the rendered ink box) and trimmed to 2 pt above and below (`trim`), so the
+  gap between a figure and its caption no longer varies by up to 12 pt. `materials` redrawn in the palette (two
+  accents, ink and dim, told apart by pattern) with open spines; `budget` in lower case with solid accents;
+  `present` with its two letters on one vertical; `binary-field` with equal gaps; `regimes`, `silent-flows`,
+  `earth-inverted`, `sun-lens`, `speedometer`, `buried-ruler` small repairs. Thin spaces in every unit.
+- **3D figures.** `tidal` rebuilt: arrows start clear of their beads and are moved off the ring where they run
+  along it, heads at most two fifths of an arrow, dashes left out whole near an arrow, the three panels to the
+  page's edges. `quadrupole`, `two-readings`, `earth-glow` centred by their ink (`inkBox` in lib.js); the globe
+  sampled bilinearly at 648 ppi; `sky-integral`'s label off the cone's edge; `stars` without the doubled limb;
+  `voices` with the heading of (a) set as those of (b) and (c); `line-integral`'s bar in the accent.
+- **Lettering to agree with the text.** The rotor's spin is `\boldsymbol\Omega` (quadrupole); the pixel spacing is
+  `b` (near-field-geometry).
+- **Tried and not done.** Forcing Latin Modern's 10 pt designs in the charts to match MathJax's face in the 3D
+  figures: widths then agree to 0.2 %, but the weight gap grows from 12 % to 21 %, so the faces were left.
+  Blue stays the colour of the near field in `buried-ruler`, `nearfield` (a) and `near-field-geometry`, although
+  the sign code would make a stretch orange. `array`'s legend stays at 6.5 pt (no room at 7).
+- **Left for a larger texture.** At 900 dpi the globe of `earth-glow` still shows the texels of its 1024 x 512
+  map, softly.

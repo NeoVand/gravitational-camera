@@ -44,7 +44,7 @@ def tremor_figure():
         # to the right edge of the axes, x = 4
         inside = xs < 4.0
         ax.step(np.append(xs[inside], 4.0), np.append(cum[inside], cum[inside][-1]), where="post", color=colour,
-                lw=1.3)
+                lw=mf.CURVE)
         ax.text(3.9, cum[-1] + 0.03, f"{name}: {cum[-1]:.2f}", color=colour, ha="right", va="bottom", fontsize=7.5)
     ax.set_xlim(0, 4)
     ax.set_ylim(-0.04, 1.36)                 # the first tick labels of the two axes apart
@@ -52,6 +52,8 @@ def tremor_figure():
     ax.set_ylabel(r"$\langle\dot q^2\rangle$, ball's total $=1$")
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
+    mf.centre(fig)
+    mf.trim(fig)
     mf.save(fig, "tremor", web=True)
     return Is / Ib
 

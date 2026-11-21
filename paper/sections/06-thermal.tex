@@ -61,10 +61,10 @@ background of radiance $I_{\mathrm{bg}}$, a body of optical depth $\tau$
 changes what a pixel receives by $(B_\omega - I_{\mathrm{bg}})(1 -
 e^{-\tau})$, which for ordinary matter is its own glow, $\tau B_\omega$, less a
 negligible dimming of what lies behind.
-\item \emph{Brightness is temperature times high-frequency friction.} What
+\item \emph{Brightness is set by temperature and high-frequency friction.} What
 sets a material's glow is how strongly it resists being sheared at the
 frequencies of heat, which can be very different from its everyday viscosity
-(see \emph{Friction at the frequencies of heat}, below).
+(\emph{Friction at the frequencies of heat}, below).
 \item \emph{The glow is faint.} A person radiates about $10^{-36}\,\mathrm{W}$
 this way: one graviton in two hundred million years.
 \end{itemize}
@@ -73,16 +73,16 @@ this way: one graviton in two hundred million years.
 \centering
 \includegraphics[width=\columnwidth]{figures/line-integral.pdf}
 \caption{Two ways of forming a picture. A camera's line of sight passes
-through a closed door, a closed iron furnace with a hot iron block inside, and
+through a closed door, a closed steel furnace with a hot iron block inside, and
 a person. In light it ends where it meets the door's face (the dot): a pixel
 reports one point. Gravitational radiation passes through everything, so the
 line runs on, dashed where a body hides it, and the hot block shows through the
 furnace's walls. The pixel reports the sum along the whole line,
-Eq.~\eqref{eq:column}: each body $k$ adds its number emissivity $j_{N,k}$ times
-the length $\ell_k$ of the line inside it, shown below for illustrative
-values in which the hot iron is far the brightest and the door, crossed only
-through its thickness, adds little. The objects are illustrations, and their
-sizes are chosen so that one level line crosses the middle of each.}\label{fig:line-integral}
+Eq.~\eqref{eq:column} (Section~\ref{sec:first-image}): each body $k$ adds its
+number emissivity $j_{N,k}$ times the length $\ell_k$ of the line inside it,
+shown below for illustrative values in which the hot iron is by far the
+brightest and the door, crossed only through its thickness, adds little. The
+objects are illustrations.}\label{fig:line-integral}
 \end{figure}
 
 Figure~\ref{fig:closed-furnace} shows the transparency at work. Two
@@ -93,8 +93,9 @@ heat ($\Delta U/c^2$, about $10^{-11}\,\mathrm{kg}$ per megajoule
 tell them apart at any ordinary sensitivity; the hot iron glows through the
 steel. If the friction depended neither on frequency nor on temperature, the
 number of gravitons emitted would grow as $T^3$ and the hot block would outshine
-the cold one more than a hundredfold; the next paragraph explains why, for a
-material whose stresses simply relax, this is an upper estimate.
+the cold one more than a hundredfold; for a metal whose collision rate grows
+with temperature the ratio is nearer 25 (\emph{Friction at the frequencies of
+heat}, below).
 
 \begin{figure*}
 \centering
@@ -105,7 +106,7 @@ $1500\,\mathrm{K}$. (a) Ordinary light: the two are identical. (b) The expected
 thermal number radiance, Eq.~\eqref{eq:column}, from the same camera, on a
 logarithmic scale, with the outlines that light shows. Both blocks show
 through their steel, since the air about them does not glow, and the hot one is
-sixteen times the brighter through its middle (twenty-two without the glow of
+sixteen times as bright through its middle (twenty-two without the glow of
 the floor behind them). The
 room itself glows faintly, brightest where a line of sight crosses the floor
 at a slant. Iron and steel have the friction of iron in
@@ -124,8 +125,8 @@ time $\tau$ (Maxwell's model) has
 \mathrm{Re}\,\eta(\omega) = \frac{\eta_0}{1 + \omega^2\tau^2} ,
 \end{equation}
 so its everyday viscosity $\eta_0$ survives only below $\omega \approx 1/\tau$.
-Above it the friction falls as $\eta_0/(\omega\tau)^2 = G_\infty^2/\eta_0\omega^2$,
-where $G_\infty = \eta_0/\tau$ is the liquid's stiffness against sudden shear:
+Above it the friction falls as $\eta_0/(\omega\tau)^2 = \mu_\infty^2/\eta_0\omega^2$,
+where $\mu_\infty = \eta_0/\tau$ is the liquid's stiffness against sudden shear:
 at a given stiffness, the more viscous liquid glows the less. Honey is viscous
 because its molecules rearrange slowly; at the frequencies of heat that
 rearrangement is frozen, and honey need not outshine water at all. In dense matter the friction at those frequencies comes from much faster
@@ -137,11 +138,11 @@ fluctuation--dissipation theorem $\mathrm{Re}\,\eta(\omega)$ is the spectrum of
 the material's stress at zero wavenumber, and causality fixes its integral
 \cite{SrivastavaWidomPizzella2003}:
 \begin{equation}\label{eq:friction-sum}
-\frac{2}{\pi}\int_0^\infty \mathrm{Re}\,\eta(\omega)\,\dd\omega = G_\infty - G_0 ,
+\frac{2}{\pi}\int_0^\infty \mathrm{Re}\,\eta(\omega)\,\dd\omega = \mu_\infty - \mu_0 ,
 \end{equation}
-the part of the stiffness against shear that relaxes. Here $G_\infty$ resists a
-shear too fast for the atoms and the free electrons to follow, and $G_0$ a slow
-one; for Maxwell's model the integral is $G_\infty$. At the frequencies of heat
+the part of the stiffness against shear that relaxes. Here $\mu_\infty$ resists a
+shear too fast for the atoms and the free electrons to follow, and $\mu_0$ a slow
+one; for Maxwell's model the integral is $\mu_\infty$. At the frequencies of heat
 the friction is roughly the stiffness that relaxes there divided by the band
 over which it does so (Table~\ref{tab:materials}, Fig.~\ref{fig:materials}).
 
@@ -150,10 +151,10 @@ and collisions relax it in a time $\tau$:
 $\mathrm{Re}\,\eta = \tfrac15 n m v_F^2\,\tau/(1 + \omega^2\tau^2)$, with $n$ the
 density of conduction electrons, $m$ their mass and $v_F$ their Fermi speed. Its
 integral in Eq.~\eqref{eq:friction-sum}, the weight of the channel, is
-$\tfrac25 nE_F$ with $E_F$ the Fermi energy, $38\,\mathrm{GPa}$ in copper, and with its collision
-time, $2.5\times10^{-14}\,\mathrm{s}$ \cite{Hirayama2011}, $\omega\tau$ is about
-one at the frequencies of heat, where the electrons dissipate most: whatever $\tau$,
-the friction cannot exceed $\tfrac1{10}\,nmv_F^2/\omega$. For iron, whose
+$\tfrac25 nE_F$ with $E_F$ the Fermi energy, $38\,\mathrm{GPa}$ in copper. With
+copper's collision time, $2.5\times10^{-14}\,\mathrm{s}$ \cite{Hirayama2011},
+$\omega\tau$ is about one at the frequencies of heat, where the electrons
+dissipate most. Whatever $\tau$, the friction cannot exceed $\tfrac1{10}\,nmv_F^2/\omega$. For iron, whose
 electrons are not free, we give that bound: an envelope over every collision
 time, not the spectrum of any one metal.
 
@@ -187,11 +188,11 @@ volume it is $\tfrac12\,\dd^2/\dd t^2 \sum m u_x u_y$, summed over the atoms,
 which oscillates at sums of two phonon frequencies. A wave thus makes and
 unmakes pairs of phonons of opposite momentum, up to twice the highest phonon
 frequency. This weak channel, of classical weight $2nk_BT$ with $n$ the number of
-atoms per volume, about a gigapascal at room temperature (the values of
-Table~\ref{tab:materials} keep the quantum occupations, which matter for diamond, whose
-Debye temperature is $2200\,\mathrm{K}$), is the only one in an
+atoms per volume, about a gigapascal at room temperature, is the only one in an
 insulating crystal with one atom in its cell; anharmonicity changes it by a
-factor of order one, and it makes an eighth of diamond's glow. Akhiezer's
+factor of order one, and it makes an eighth of diamond's glow. The values of
+Table~\ref{tab:materials} keep the quantum occupations, which matter for
+diamond, whose Debye temperature is $2200\,\mathrm{K}$. Akhiezer's
 damping of sound, the relaxation of the thermal phonons in a time $\tau$, puts a
 similar weight near zero frequency; at a frequency $\omega$ its tail is
 smaller than the pair band by about $\omega_D\tau\,(\omega/\omega_D)^4$, with
@@ -201,13 +202,10 @@ At room temperature these materials glow at one to sixty per cent of the
 placeholder's power (Table~\ref{tab:materials}): $10^{-3}\,\mathrm{Pa\,s}$ is an
 upper estimate, and $10^{-4}\,\mathrm{Pa\,s}$ is typical. In every solid larger
 than $30\,\mathrm{nm}$ the volume outshines the glow of a lossless surface,
-Eq.~\eqref{eq:surface-glow} below. A person, taken as 70 litres of water at
-$310\,\mathrm{K}$, radiates $9\times10^{-37}\,\mathrm{W}$: one graviton in
-$2\times10^{8}$ years. Metals and water glow redder than a constant friction would; silicon glows in its line, and
+Eq.~\eqref{eq:surface-glow} below. Metals and water glow redder than a constant friction would; silicon glows in its line, and
 diamond, whose line lies in the Wien tail, glows bluer. The spectrum of the glow
-therefore records a material's mechanical losses, a kind of gravitational
-colour, and with a frequency-dependent friction the number emissivity must be
-computed as $j_N = \int \alpha(\omega)\,B_\omega\,\dd\omega/\hbar\omega$ rather
+therefore records a material's mechanical losses. With a frequency-dependent
+friction the number emissivity must be computed as $j_N = \int \alpha(\omega)\,B_\omega\,\dd\omega/\hbar\omega$ rather
 than by dividing the power by $2.70\,k_BT$. When a metal's collision rate is proportional to temperature, as it is above the
 Debye temperature \cite{Duthil2014}, $\omega\tau$ at the peak of the glow stays
 fixed and the friction falls as $1/T$, so the power grows as $T^3$ and the
@@ -229,7 +227,7 @@ should glow like water.
 \begin{tabular}{llccc}
 Material & Source of friction & $\eta_{\mathrm{eff}}$ & $P/V$ & $\bar E/k_BT$ \\ \hline
 Copper & electrons & 1.3 & 2.8 & 1.4 \\
-Iron & electrons (bound) & $\le 6$ & $\le 12$ & 1.5 \\
+Iron & electrons (upper bound) & $\le 6$ & $\le 12$ & 1.5 \\
 Silicon & Raman line & 1.6 & 3.4 & 2.6 \\
 Diamond & Raman line, pairs & 0.12 & 0.25 & 6.4 \\
 Silica glass & all vibrations & 2.3 & 4.8 & 2.1 \\
@@ -245,11 +243,11 @@ mean energy of the gravitons. Copper: one conduction electron per atom at its la
 constant \cite{Lim2026}, with the collision time of its conductivity
 \cite{Hirayama2011}. Iron: its volume per atom \cite{ShaCohen2011} and two
 conduction electrons per atom. Silicon and diamond: lattice constants, elastic
-constants and Kleinman's parameters as compiled by \cite{Tanner2021}, Raman
-lines and widths from \cite{Camassel2000,Tanner2021,StoikosGranados2022}, each
+constants and Kleinman's parameters as compiled in Ref.~\cite{Tanner2021}, Raman
+lines and widths from Refs.~\cite{Tanner2021,Camassel2000,StoikosGranados2022}, each
 line counted for three of the five shears, its share averaged over directions.
-Silica: the simulated glass of \cite{Leonforte2006,Damart2017}. Water: the
-simulated spectrum of \cite{Schulz2020}. The pair bands use the Debye
+Silica: the simulated glass of Refs.~\cite{Damart2017,Leonforte2006}. Water: the
+simulated spectrum of Ref.~\cite{Schulz2020}. The pair bands use the Debye
 temperatures of copper and of steel \cite{Duthil2014}, and those of silicon and
 diamond that follow from their elastic constants.}\label{tab:materials}
 \end{table}
@@ -260,8 +258,8 @@ diamond that follow from their elastic constants.}\label{tab:materials}
 \caption{The friction and the glow of real materials. (a) The friction against a uniform shear,
 $\mathrm{Re}\,\eta(\omega)$, of the materials of Table~\ref{tab:materials} at
 $293\,\mathrm{K}$; the shaded band is where the Planck radiance exceeds a tenth
-of its peak. Copper and iron (dotted: the bound for free electrons) relax their
-electrons; silicon and diamond have lines at their Raman frequencies, drawn as
+of its peak. In copper and iron (dotted: the upper bound for free electrons)
+the electrons relax; silicon and diamond have lines at their Raman frequencies, drawn as
 damped oscillators of the measured widths whose far wings are not modelled; the
 steps are where pair bands end; silica glass is spread evenly over its band;
 water's friction rises where its hydrogen bonds stretch. (b) The glow they
@@ -271,14 +269,17 @@ placeholder's for comparison.}\label{fig:materials}
 
 \paragraph{A bound on the glow.} The sum rule caps the glow of every
 material. Its friction is positive and its integral fixed by
-Eq.~\eqref{eq:friction-sum}, so a relaxing stiffness $\Delta\mu = G_\infty - G_0$
+Eq.~\eqref{eq:friction-sum}, so a relaxing stiffness $\Delta\mu = \mu_\infty - \mu_0$
 emits the most when all of it sits where the Planck spectrum peaks:
 \begin{equation}\label{eq:glow-bound}
-\frac{P}{V} \le 11.37\,\frac{G\,\Delta\mu\,(k_BT)^3}{\hbar^2c^5}, \qquad
+\begin{gathered}
+\frac{P}{V} \le 11.37\,\frac{G\,\Delta\mu\,(k_BT)^3}{\hbar^2c^5},\\
 \frac{\dot N}{V} \le 5.18\,\frac{G\,\Delta\mu\,(k_BT)^2}{\hbar^2c^5},
+\end{gathered}
 \end{equation}
 the constants being eight times the largest values of $x^3/(e^x - 1)$, at
-$x = \hbar\omega/k_BT = 2.82$, and of $x^2/(e^x - 1)$, at $x = 1.59$. At room
+$x = \hbar\omega/k_BT = 2.82$, and of $x^2/(e^x - 1)$, at $x = 1.59$, and
+$\dot N$ the number of gravitons a second. At room
 temperature $30\,\mathrm{GPa}$ radiates at most
 $5.6\times10^{-35}\,\mathrm{W\,m^{-3}}$. Silicon, whose line lies close to the
 best frequency, reaches $98\%$ of the power its own weight allows; silica
@@ -286,14 +287,14 @@ $69\%$, water $40\%$, copper $39\%$, and diamond, whose line is in the Wien
 tail, $16\%$. The same weight limits absorption: the optical depth of a path of
 length $L$, integrated over frequency, is $8\pi^2GL\,\Delta\mu/c^3$, which for a
 metre of $30\,\mathrm{GPa}$ is $6\times10^{-24}\,\mathrm{s^{-1}}$, so no material
-is opaque over any band of useful width (Section~\ref{sec:no-lens}). It is the
-rule by which the cross-section of a resonant bar, integrated over frequency,
-depends only on its mass and the speed of sound in it
-\cite{MisnerThorneWheeler1973}. And the
-placeholder friction is not a material at high temperature: to glow as brightly
+is opaque over any band of useful width (Section~\ref{sec:no-lens}). The same sum
+rule makes the cross-section of a resonant bar, integrated over frequency,
+depend only on its mass and the speed of sound in it
+\cite{MisnerThorneWheeler1973}. And no material has the placeholder's friction
+at high temperature: to emit as much power
 as $10^{-3}\,\mathrm{Pa\,s}$, a material needs $110\,\mathrm{GPa}$ of relaxing
 stiffness at room temperature and $2.1\,\mathrm{TPa}$ at $5500\,\mathrm{K}$,
-several times the shear stiffness of diamond (Section~\ref{sec:first-image}).
+several times the shear stiffness of diamond (to emit as many gravitons, $1.7\,\mathrm{TPa}$; Section~\ref{sec:first-image}).
 
 Temperature
 cannot be read from the glow alone: a different temperature with a different
@@ -302,18 +303,15 @@ measures temperature only when the material's response is known from elsewhere.
 
 \paragraph{Volume and surface emission.} Thermal radiation from the
 vibrations of a solid has been calculated before
-\cite{SchaeferDehnen1981,SchaeferDehnen1981erratum,DehnenRomeroSchaefer1984};
+\cite{SchaeferDehnen1981,DehnenRomeroSchaefer1984};
 for an elastic sphere without internal damping its strength was found to grow
-with the sphere's surface, not its volume. Which channel wins should depend on
-how far a sound wave travels before it is damped: where that distance is much
-shorter than the body, as in most solids at room temperature, the volume
-emission of Eq.~\eqref{eq:kirchhoff} should dominate, while a cold, pure crystal
-might glow at its surface. Both can be computed. In an elastic body without
+with the sphere's surface, not its volume. Which channel wins depends on how
+far a sound wave travels before it is damped. In an elastic body without
 loss a wave is absorbed only where the stiffness changes, at the surface, where
 it launches sound \cite{Dyson1969}; for a sphere below its Debye temperature
 the thermal glow that follows is \cite{DehnenRomeroSchaefer1984}
 \begin{equation}\label{eq:surface-glow}
-L_S = 4\pi R^2\,\frac{\pi^2}{24}\Bigl(1 + \frac{3c_T}{2c_L}\Bigr)
+P_S = 4\pi R^2\,\frac{\pi^2}{24}\Bigl(1 + \frac{3c_T}{2c_L}\Bigr)
 \frac{G\rho\,c_T^3\,(k_BT)^2}{\hbar c^5} ,
 \end{equation}
 with $c_T$ and $c_L$ the speeds of shear and compressional sound. By
@@ -322,9 +320,9 @@ $\pi^2(1 + 3c_T/2c_L)\,G\rho c_T^3/c^3\omega^2$ of a wave, which is Dyson's
 absorption with its constant. Friction inside, $\mathrm{Re}\,\eta = \rho c_T^2/\omega Q$ for
 sound of quality factor $Q$, makes the volume glow by Eq.~\eqref{eq:kirchhoff};
 since this friction falls as $1/\omega$, the power grows as $T^3$ rather than
-$T^4$, with $L_V = V\,32\zeta(3)\,G\rho c_T^2 (k_BT)^3/\pi c^5 Q\hbar^2$, and
+$T^4$, with $P_V = V\,32\zeta(3)\,G\rho c_T^2 (k_BT)^3/\pi c^5 Q\hbar^2$, and
 \begin{equation}\label{eq:volume-surface}
-\frac{L_V}{L_S} = \frac{256\,\zeta(3)}{\pi^3\,(1 + 3c_T/2c_L)}\,
+\frac{P_V}{P_S} =\frac{256\,\zeta(3)}{\pi^3\,(1 + 3c_T/2c_L)}\,
 \frac{R}{\ell_s} ,
 \end{equation}
 where $\ell_s = Q\hbar c_T/k_BT$ is the distance a thermal phonon travels

@@ -134,7 +134,8 @@ export default async function () {
 		body(P, vec(d.body));
 		P.arrow(vec(d.body).add(v3(0, 0.17, 0)), vec(d.body).add(v3(0, 0.82, 0)), { color: INK, width: 0.6, head: 3.4, layer: 3 });
 		P.label('\\mathbf v', vec(d.body).add(v3(-0.2, 0.5, 0)), { size: 7.5 });
-		greatCircle(P, v3(0, 0, 1));
+		// the paths lie on the meridian through the velocity, which is not drawn: in front it would run along the
+		// sky's outline at the lower left and read as a second outline; the paths themselves are the part that matters
 		for (const side of [-1, 1]) {
 			const path = g.track.map((t) => vec(t.stars.find(([s]) => Math.sign(s[0]) === side)[0]));
 			runs(P, path, { color: row.color, width: 0.7 });

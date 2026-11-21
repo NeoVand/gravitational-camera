@@ -84,7 +84,7 @@ $\mathbf{J}$, with the blur law of Eq.~\eqref{eq:resolution} below at a
 signal-to-noise ratio smaller by about $v/c$. Only motion across the line of sight counts:
 $\hat n\times\mathbf{J}$ removes the radial part, so the magnetic channel is
 the opposite of a Doppler radar, blind to approach and sensitive to sideways
-motion. For a single moving mass $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ to first order
+motion. For a single moving mass $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ (Frobenius norms) to first order
 in $v/c$, so one reading of one pixel gives the line on which a body lies (the
 eigenvector of $\tE$'s negative eigenvalue, up to its sign) and, from $\tB$, its
 sideways speed; at any speed, the principal null directions of the field give
@@ -100,11 +100,11 @@ outside, and so motion too can hide. A uniform ball of radius $2^{-1/5}R$
 turning one way inside a shell of the same density that fills the rest of the
 sphere out to $R$ and turns the other way at the same rate has no angular momentum, and outside it no magnetic field at all,
 though all of it moves.
-For a ball turning at angular velocity $\boldsymbol\omega$ about a point
+For a ball turning at angular velocity $\boldsymbol\Omega$ about a point
 $\mathbf{s}$, entered and left by the line of sight at distances $0 < a \le b$,
 the current column is
-$\mathbf{J} = \rho\,[(\boldsymbol\omega\times\hat n)(b-a)
-- (\boldsymbol\omega\times\mathbf{s})\ln(b/a)]$. A smooth flywheel looks the
+$\mathbf{J} = \rho\,[(\boldsymbol\Omega\times\hat n)(b-a)
+- (\boldsymbol\Omega\times\mathbf{s})\ln(b/a)]$. A smooth flywheel looks the
 same spinning or still, and pulls the same; its current column is a vortex
 that turns as the wheel turns.
 
@@ -112,41 +112,38 @@ that turns as the wheel turns.
 does not measure $S$ itself, because the field outside a body does not fix the
 arrangement of mass inside it. A hollow shell and a solid ball of equal mass
 produce the same field at every point outside both, however close. More
-generally, adding to a body the density $\delta\rho = \nabla^2\chi/4\pi G$,
-with $\chi$ any smooth function that vanishes outside it, changes the
-potential by $\chi$ and so changes nothing outside \cite{YurtseverMarzbanMeila2011};
+generally, adding to a body the density $\delta\rho = \nabla^2\psi/4\pi G$,
+with $\psi$ any smooth function that vanishes outside it, changes the
+potential by $\psi$ and so changes nothing outside \cite{YurtseverMarzbanMeila2011};
 ordinary positive densities $\rho_0 \pm \epsilon\,\delta\rho$ make such pairs
 out of real matter. The tidal column is therefore a rendering of a known
 scene, the natural picture of what the camera responds to, and not a quantity
 the camera could reconstruct uniquely. The near-field images of this paper show $S$
-computed from the scene and blurred as described next. Other channels break
-the ambiguity: the thermal glow shows a shell as a ring; a shell and a ball of
-equal mass spinning at the same rate differ in $\tB_{ij}$ by the ratio of their
-moments of inertia, $5/3$ (\emph{The magnetic picture}, above), though at equal
-angular momentum they are again alike; and heat, or a tide applied from
-outside, reveals the rest (\emph{What heat reveals}, below). The camera's position matters too: inside a closed
+computed from the scene and blurred by Eq.~\eqref{eq:resolution} below. Other channels break
+the ambiguity: the thermal glow shows a shell as a ring; a body's spin shows its moment of
+inertia (\emph{The magnetic picture}, above); and heat, or a tide applied from
+outside, reveals the rest (\emph{What heat reveals} and \emph{What an applied tide reveals}, below). The camera's position matters too: inside a closed
 spherical shell it feels no tide from the shell at all, whatever its mass.
 
 \paragraph{What the image does show.} The ambiguity has an exact shape. For a
 body whose outside is connected, every density splits in one way only into two
 parts,
 \begin{equation}\label{eq:split}
-\rho = \rho_h + \frac{\nabla^2\chi}{4\pi G} ,
+\rho = \rho_h + \frac{\nabla^2\psi}{4\pi G} ,
 \end{equation}
-where $\rho_h$ is harmonic inside the body, $\nabla^2\rho_h = 0$, and $\chi$
+where $\rho_h$ is harmonic inside the body, $\nabla^2\rho_h = 0$, and $\psi$
 vanishes on the surface together with its gradient. The field outside fixes
 $\rho_h$ completely and is blind to the rest \cite{Isakov1990}. The potential
 outside is built from the moments $\int\rho\,h\,\dd V$ of the density against
 functions $h$ harmonic in the body (the solid harmonics $r^\ell Y_{\ell m}$
 about a point inside), and the second part has none of them, since
-$\int h\,\nabla^2\chi\,\dd V = \int \chi\,\nabla^2 h\,\dd V = 0$. It follows that
+$\int h\,\nabla^2\psi\,\dd V = \int \psi\,\nabla^2 h\,\dd V = 0$. It follows that
 any estimate of the interior that is linear in the data and treats every point
 inside alike and independently, a white prior as in Eq.~\eqref{eq:wiener}, is
-itself harmonic: it is built from the data's own kernels, which are. A harmonic
-function has no maximum or minimum inside the region where it is harmonic. The
-least assuming picture of an interior that a camera outside can draw, taking
-the body's outline from light, therefore has its densest and its lightest
-points on the surface. It can never show a core. Every round body appears as a
+itself harmonic: it is built from the data's own kernels, which are. By the
+maximum principle, the least assuming picture of an interior that a camera
+outside can draw, taking the body's outline from light, has its densest and
+its lightest points on the surface. It can never show a core. Every round body appears as a
 uniform ball of its mean density, and the layered Earth, seen from outside in
 this way, as $5513\,\mathrm{kg\,m^{-3}}$ throughout.
 
@@ -179,8 +176,8 @@ in density up to $46\,m/4\pi R^3$ at the near wall. (c) Its balayage: the
 nugget's mass spread over the surface as a skin, drawn just inside the surface as a band of constant
 width shaded in the same way, in steps that double in surface density up to
 $6\,m/4\pi R^2$ over the nugget. Blue: equipotentials of the gold's share
-of the field, drawn outside each ball (the steel's share is the same in all
-three and is left out). They are the same in all three, and in (b) and (c) they
+of the field, drawn outside each ball (the steel's share, common to the
+three, is left out). They are the same in all three, and in (b) and (c) they
 centre on a nugget that is not there.}\label{fig:same-outside}
 \end{figure}
 
@@ -217,9 +214,8 @@ meridian planes, such as the simplest convection rolls inside a star or a
 planet's core, is of this form: it is silent outside, however fast it runs. Of
 such a flow only the swirl about the axis shows, and only through its harmonic
 part, of which the spin dipole is the first term.
-Figure~\ref{fig:silent-flows} shows the field of both kinds of flow inside a
-ball, integrated numerically: outside it, the rolls' field vanishes to the
-accuracy of the integration, while the swirl's does not.
+Figure~\ref{fig:silent-flows} shows both kinds of flow inside a ball and the
+field of each outside it.
 
 \begin{figure}
 \centering
@@ -230,7 +226,7 @@ other) and (b) rolls in meridian planes, drawn as stream lines, with the same
 smooth profile.
 Outside, the size of the magnetic part of the field of each, computed by the
 same integration over the ball and shaded over four decades below the swirl's
-largest value; nothing is computed in the white margin. The swirl shows; the
+largest value; nothing is computed in the white margin of (a). The swirl shows; the
 rolls are silent, to the accuracy of the integration, below $10^{-4}$ of the
 swirl's field.}\label{fig:silent-flows}
 \end{figure}
@@ -250,17 +246,17 @@ numbers cannot resolve.
 near field. In classical thermal equilibrium the velocities of the particles
 of a body are independent of their positions and of one another, with
 $\langle v_a^2\rangle = 3k_BT/m_a$, whatever forces hold the body together. Any
-moment of its mass, $q_h = \sum_a m_a\,h(\mathbf{x}_a)$, therefore changes at a
+moment of its mass, $Q_h = \sum_a m_a\,h(\mathbf{x}_a)$, therefore changes at a
 rate whose mean square follows at once:
 \begin{equation}\label{eq:thermal-moment}
-\langle \dot q_h\,\dot q_g\rangle = k_BT\int\rho\,\nabla h\cdot\nabla g\,\dd V .
+\langle \dot Q_h\,\dot Q_g\rangle = k_BT\int\rho\,\nabla h\cdot\nabla g\,\dd V .
 \end{equation}
-For $h$ harmonic, $q_h$ is one of the moments from which the field outside is
+For $h$ harmonic, $Q_h$ is one of the moments from which the field outside is
 built, and the camera reads it; but $\nabla h\cdot\nabla g = \tfrac12\nabla^2(hg)$
 is not harmonic beyond the lowest orders, so the right-hand side holds what the
 static field cannot see. For the multipoles $h = r^\ell Y_{\ell m}$, summed over $m$,
 \begin{equation}\label{eq:thermal-multipole}
-\sum_m\langle|\dot q_{\ell m}|^2\rangle = \frac{\ell(2\ell+1)^2}{4\pi}\,k_BT
+\sum_m\langle|\dot Q_{\ell m}|^2\rangle = \frac{\ell(2\ell+1)^2}{4\pi}\,k_BT
 \int\rho\,r^{2\ell-2}\,\dd V .
 \end{equation}
 The dipole gives the mass: its tremor is the Brownian motion of the body as a
@@ -295,7 +291,7 @@ tide of $3\times10^{-25}\,\mathrm{s^{-2}}$ a metre away, where $\omega r/c =
 3\times10^{-4}$. That mode emits one graviton in $7\times10^{17}$ years. The
 camera detects the ball's ringing without receiving any of its radiation: the graviton
 counts that limit the thermal glow (Section~\ref{sec:thermal}) say nothing
-about the near field. Its cost is distance. A quadrupole's tide falls as
+about the near field. The cost is distance. A quadrupole's tide falls as
 $r^{-5}$, so when the tremor is far below the noise, the information gathered
 about it grows only as the observing time over $r^{20}$: from $20\,\mathrm{cm}$
 to a metre costs $10^{14}$ times as long.
@@ -316,22 +312,22 @@ is softer, and its tremor lies at lower frequencies.}\label{fig:tremor}
 \paragraph{What an applied tide reveals.} A tide applied from outside reads the same
 numbers at any temperature. By the fluctuation--dissipation theorem
 \cite{CallenWelton1951} the tremor is the dissipative part of the body's
-response, and Eq.~\eqref{eq:thermal-moment} becomes the inertial sum rule
+response, and Eq.~\eqref{eq:thermal-moment} becomes the energy-weighted sum rule
 familiar from nuclear physics \cite{LippariniStringari1989}:
 \begin{equation}\label{eq:sum-rule}
 \frac{2}{\pi}\int_0^\infty\omega\,\mathrm{Im}\,\chi_h(\omega)\,\dd\omega
 = \int\rho\,|\nabla h|^2\,\dd V ,
 \end{equation}
-where $\chi_h$ is the response of $q_h$ to a tide whose potential is $-F h$.
+where $\chi_h$ is the response of $Q_h$ to a tide whose potential is $-F h$.
 The friction and the stiffness of the body spread the response over frequency
 but cannot change its total. The static part of the response is the body's
 tidal Love number \cite{Love1909}: a ball of rigidity $\mu$, density $\rho$ and
 surface gravity $g$ acquires a quadrupole $\tfrac13 k_2R^5/G$ times the applied
 tide, with $k_2 = \tfrac32/(1 + 19\mu/2\rho g R)$ for a uniform ball; for the
 steel ball, $k_2 = 4\times10^{-16}$. The same compliance sets the static
-jitter, $\langle\delta q_h^2\rangle = k_BT\,\chi_h(0)$. Quantum mechanics
+jitter, $\langle\delta Q_h^2\rangle = k_BT\,\chi_h(0)$. Quantum mechanics
 bounds the jitter between the classical value and that of a single mode at the
-mean frequency, $\sqrt{A/\chi_h(0)}$ with $A$ the sum of
+root-mean-square frequency, $\sqrt{A/\chi_h(0)}$ with $A$ the sum of
 Eq.~\eqref{eq:sum-rule} (Appendix~\ref{app:benchmarks}).
 
 \paragraph{A model-independent thermometer.} The ratio of tremor to response
@@ -372,31 +368,32 @@ normal with white noise of spectral density $N_0$. With $\Phi = -GM/r$ the
 normal component above a mass is negative, a stretch, so we record
 $d = -\tE_{zz}$. In Fourier space across the array the data are
 \begin{equation}\label{eq:array-data}
-\hat d(\mathbf k) = 2\pi G\,k\,e^{-kz}\,\hat\sigma(\mathbf k) + \hat n(\mathbf k),
+\tilde d(\mathbf k) = 2\pi G\,k\,e^{-kz}\,\tilde\sigma(\mathbf k) + \tilde n(\mathbf k),
 \end{equation}
 and the factor $k$ says that a uniform sheet is invisible: its pull is the
 same at every pixel and at every height, so it has no tidal field at all.
 Define the signal-to-noise ratio as the peak field of a
 point mass $m$, $2Gm/z^3$, over the noise of the field averaged across a patch
-of side $z$, $\sqrt{N_0}/z$: so $\SNR = 2Gm/(z^2\sqrt{N_0})$. Each Fourier
+of side $z$, $\sqrt{N_0}/z$, so that $\SNR = 2Gm/(z^2\sqrt{N_0})$. Each Fourier
 component of a point mass then stands above its own noise by
-$s = \pi\,\SNR\;kz\,e^{-kz}$, and the best linear reconstruction (the Wiener
+$s = \pi\,\SNR\,kz\,e^{-kz}$, and the best linear reconstruction (the Wiener
 filter, with a sheet of independent point masses $m$ as its prior, one per area
 $z^2$, whose spectrum is $S_\sigma = m^2/z^2$) keeps it with weight
 \begin{equation}\label{eq:wiener}
-H(k) = \frac{s^2}{1 + s^2}, \qquad s = \pi\,\SNR\;kz\,e^{-kz}.
+H(k) = \frac{s^2}{1 + s^2}.
 \end{equation}
-$H$ vanishes for a uniform scene, $k \to 0$, is close to one for patterns
-from $kz \approx 1/\pi\SNR$ to a little below $kz = q_c$, where it falls through
+$H$ vanishes for a uniform scene, $k \to 0$, and is close to one from
+$kz \approx 1/\pi\SNR$ to a little below $kz = q_c$, where it falls through
 one half:
 \begin{equation}\label{eq:cutoff}
-q_c\,e^{-q_c} = \frac{1}{\pi\,\SNR},
-\qquad
-q_c \approx L + \ln L, \quad L = \ln(\pi\,\SNR)
+\begin{gathered}
+q_c\,e^{-q_c} = \frac{1}{\pi\,\SNR},\\
+q_c \approx \ln(\pi\,\SNR) + \ln\ln(\pi\,\SNR)
+\end{gathered}
 \end{equation}
 (10.1 against the exact 10.4 at $\SNR = 10^3$).
 The image of a point is therefore close to the diffraction pattern of a round
-pupil of radius $q_c/z$, $2J_1(x)/x$ with $x = q_c r/z$ and $J_1$ the Bessel function. The full width at half
+pupil of radius $q_c/z$, $2J_1(x)/x$ with $x = q_c r/z$. The full width at half
 maximum of this image, an amplitude and not its square, as an angle seen from
 the array, is
 \begin{equation}\label{eq:resolution}
@@ -412,13 +409,13 @@ Fig.~\ref{fig:resolution-law} shows the law.
 \begin{table}
 \centering
 \begin{tabular}{rrrrrr}
-$\SNR$ & $q_c$ & array & row & two points & $\pi/\ln\SNR$ \\ \hline
-$10^{3}$ & 10.4 & 24.0° & 20.7° & 24.5° & 26.1° \\
-$10^{6}$ & 17.8 & 14.1° & 12.1° & 14.6° & 13.0° \\
-$10^{10}$ & 27.5 & 9.2° & 7.9° & 9.5° & 7.8° \\
-$10^{20}$ & 51.1 & 5.0° & 4.2° & 5.1° & 3.9° \\
-$10^{30}$ & 74.5 & 3.4° & 2.9° & 3.5° & 2.6° \\
-$10^{60}$ & 144.3 & 1.8° & 1.5° & 1.8° & 1.3° \\
+$\SNR$ & $q_c$ & Array & Row & Two points & $\pi/\ln\SNR$ \\ \hline
+$10^{3}$ & 10.4 & $24.0^\circ$ & $20.7^\circ$ & $24.5^\circ$ & $26.1^\circ$ \\
+$10^{6}$ & 17.8 & $14.1^\circ$ & $12.1^\circ$ & $14.6^\circ$ & $13.0^\circ$ \\
+$10^{10}$ & 27.5 & $9.2^\circ$ & $7.9^\circ$ & $9.5^\circ$ & $7.8^\circ$ \\
+$10^{20}$ & 51.1 & $5.0^\circ$ & $4.2^\circ$ & $5.1^\circ$ & $3.9^\circ$ \\
+$10^{30}$ & 74.5 & $3.4^\circ$ & $2.9^\circ$ & $3.5^\circ$ & $2.6^\circ$ \\
+$10^{60}$ & 144.3 & $1.8^\circ$ & $1.5^\circ$ & $1.8^\circ$ & $1.3^\circ$ \\
 \end{tabular}
 \caption{Blur of the near-field image. ``Array'': full width at half maximum
 of the reconstructed image of a point, for a flat array, Eq.~\eqref{eq:resolution}.
@@ -436,7 +433,7 @@ column is the first estimate.}\label{tab:resolution}
 Eq.~\eqref{eq:wiener} against spatial frequency, for four signal-to-noise
 ratios: patterns coarser than $kz = q_c$ are kept almost whole, finer ones are
 lost. Dots mark $H = \tfrac12$ at $q_c$, Eq.~\eqref{eq:cutoff}. Raising the
-sensitivity from $10^{6}$ to $10^{60}$ moves the cutoff only from 18 to 144.
+sensitivity from $10^{6}$ to $10^{60}$ moves the cut-off only from 18 to 144.
 (b) The resulting blur, the full width at half maximum of the image of a
 point, for a flat array ($4.43/q_c$) and a single row ($3.79/q_c$), with
 values computed directly (dots) and the first
@@ -451,10 +448,9 @@ sharpness of the human eye, one arcminute, would take a signal-to-noise ratio
 near $10^{6600}$. The first estimate $\pi/\ln\SNR$ is of the right size
 everywhere, but it runs sharp at high sensitivity, because the image of a point
 is wider than $\pi/q_c$. Figure~\ref{fig:nearfield} shows the reconstruction of
-two masses, and the near-field images of this paper are blurred by
-Eq.~\eqref{eq:resolution}. The same logarithmic limit is long familiar wherever
+two masses. The same logarithmic limit is long familiar wherever
 fields that obey Laplace's equation are continued back toward their sources: in
-geophysics, where gravity and magnetic surveys are continued downward
+geophysics, as the downward continuation of gravity and magnetic surveys
 \cite{Clarke1969,Parker1973}, and in near-field acoustic holography
 \cite{MaynardWilliamsLee1985}.
 
@@ -478,7 +474,7 @@ row of Table~\ref{tab:resolution}.
 \caption{The near-field blur, for a row of pixels over a
 two-dimensional scene: two line masses a distance $z/2$ apart at depth $z$, recorded
 with signal-to-noise ratio $10^6$. (a) The geometry, to scale, and what the
-pixels record: $\tE_{zz}$ along the row, a single smooth bump. (b) The best
+pixels record: $-\tE_{zz}$ along the row, a single smooth bump. (b) The best
 reconstruction of the masses that the noise allows, the Wiener filter of
 Eq.~\eqref{eq:wiener}; its ripples
 are the price of discarding the detail that noise has swamped. The bar is the
@@ -487,8 +483,8 @@ blur, $0.21\,z$.}\label{fig:nearfield}
 
 \paragraph{Other gravitational sensors.} Nothing here depends on reading
 curvature. Pixels linked into one array could compare clocks, reading the
-potential itself, or accelerometers, reading its gradient. Over a sheet their
-kernels go as $q^{-1}e^{-q}$ and $e^{-q}$, where the tidal camera's goes as
+potential itself, or accelerometers, reading its gradient. Over a sheet, with
+$q = kz$, their kernels go as $q^{-1}e^{-q}$ and $e^{-q}$, where the tidal camera's goes as
 $q\,e^{-q}$, and Eq.~\eqref{eq:cutoff} becomes $q^p e^{-q} = 1/\pi\SNR$ with
 $p = -1$, $0$ and $1$. At $\SNR = 10^3$ the cut-offs are $6.2$, $8.1$ and
 $10.4$; at $10^{20}$, $43.4$, $47.2$ and $51.1$. They differ by about the
@@ -523,15 +519,14 @@ jointly). At one metre and $\SNR = 10^3$ the mass is placed to within a
 millimetre, while its image is $24^\circ$ wide. Two equal masses, by contrast,
 can be told from one only when they are farther apart than about
 $z/\sqrt{\mathcal{R}}$, because the difference they make grows as the square
-of their separation. What limits the image is the variety of scenes allowed,
-not the precision of the data.
+of their separation.
 
 \paragraph{A worked case.} The locked safe (Fig.~\ref{fig:locked-safe}) shows
 both sides of this. Panels (e) and (f) of that figure show the field of the two
-safes itself and what a row of pixels at the camera records of it, before any
+safes and what a row of pixels at the camera records of it, before any
 image is computed: readings of a few times $10^{-9}\,\mathrm{s^{-2}}$, of which
 the gold is a tenth. The empty room and the two safes are known and subtracted;
-what remains is $324\,\mathrm{kg}$ of gold, in one safe or the other,
+what remains is a bar of gold of $324\,\mathrm{kg}$, in one safe or the other,
 $3.5\,\mathrm{m}$ in front of the camera. A square array a metre across, of
 $11\times11$ pixels, reads the five components of $\tE$ with white noise set by
 the $\SNR$ above for this mass at this depth. Asked only which safe holds the
@@ -545,8 +540,8 @@ $\SNR = 10^3$. Asked instead for an image that assumes little beyond mass lying
 in the plane of the safes, the
 same data weigh the contents of a safe only to within $\pm 730\,\mathrm{kg}$ at
 $\SNR = 10^3$: the image cannot say where the gold is. The array is a small
-camera in the sense of Eq.~\eqref{eq:handheld}, whose blur of about $33^\circ$
-is wider than the two metres between the safes, and a broad layer of mass has
+camera in the sense of Eq.~\eqref{eq:handheld}, whose blur of about $33^\circ$,
+two metres at that distance, is as wide as the gap between the safes, and a broad layer of mass has
 no tidal field at all. Appendix~\ref{app:benchmarks} gives the details, and
 the effect of tilting the array, which matters only through where its pixels
 are.
@@ -586,38 +581,53 @@ Blurring $S$ in this way treats the scene as if it lay at a single depth; it
 shows what an array as wide as the scene is deep could resolve, not a
 reconstruction from simulated data (\emph{A worked case}, in the text).
 Panels (b)--(d) share one scale. (e) The tidal field of the two safes on a
-sphere $3.8\,\mathrm{m}$ about the camera, which passes through the middle of
+sphere of radius $3.8\,\mathrm{m}$ about the camera, which passes through the middle of
 each, seen from the same camera, drawn as in Fig.~\ref{fig:tidal-field}: rings
 of free particles across the line of sight as the field distorts them
 (exaggerated, the strength compressed), over a map of the component along the
-line of sight, blue for squeeze and orange for stretch. Where the sphere cuts
-the safes it is drawn grey, and where it cuts the gold, yellow. (f) What the pixels read: two components of the tensor along a
+line of sight, blue for squeeze. Where the sphere cuts
+the safes it is drawn cream, and where it cuts the gold, yellow. (f) What the pixels read: two components of the tensor along a
 row of pixels $3.5\,\mathrm{m}$ long at the camera, with the gold (solid) and
 without it (dashed), and the gold's own part (black), at most
 $6.5\times10^{-10}\,\mathrm{s^{-2}}$. These curves, with noise, are all that an
 image of the scene is computed from.}\label{fig:locked-safe}
 \end{figure*}
 
-\paragraph{Zeros of the shear above two buried masses.} One exact feature survives the blur. Above
+\paragraph{The zeros of the shear.} One exact feature survives the blur. Above
 two equal masses $d$ apart, buried at any depth $z$ greater than
 $\tfrac{\sqrt3}{2}d$, the shear of the tidal field in the plane of the array,
 $(\tE_{xx} - \tE_{yy}) + 2i\,\tE_{xy}$, vanishes at exactly two points, on the
-perpendicular bisector of the pair (turned $90^\circ$ from the line joining
-the masses) and exactly $d$ apart, whatever the depth: with the masses at
+perpendicular bisector of the pair and exactly $d$ apart, whatever the depth: with the masses at
 $x = \pm d/2$, on the bisector $x = 0$ the term $\tE_{xy}$ vanishes by symmetry
 and $\tE_{xx} - \tE_{yy}$ is proportional to $y^2 - d^2/4$. Shallower than
 $\tfrac{\sqrt3}{2}d$, four more zeros appear off the bisector. The separation of the two zeros gives $d$ directly, with no
-reconstruction (Fig.~\ref{fig:buried-ruler}). Noise places each to within about $z^2/6\mathcal{R}d$, so they
-separate two masses once $d$ exceeds about $z/\sqrt{6\mathcal{R}}$: the limit of
+reconstruction (Fig.~\ref{fig:buried-ruler}). Noise places each to within about $z^2/2\mathcal{R}d$, so they
+separate two masses once $d$ exceeds about $z/\sqrt{2\mathcal{R}}$: the limit of
 \emph{The precision of a simple scene}, above, now reached by inspection. For unequal masses the zeros
-move with depth, and their separation gives $d$ only approximately.
+move with depth, and their separation gives $d$ only approximately. The rule
+for any thin layer of matter, seen from a height $z$ much greater than its
+width $R$, is that the two zeros stand at
+\begin{equation}\label{eq:shear-zeros}
+\begin{gathered}
+w = w_{\mathrm{cm}} \pm i\sqrt{Q_c/M},\\
+Q_c = \int\sigma\,(w' - w_{\mathrm{cm}})^2\,\dd^2w' ,
+\end{gathered}
+\end{equation}
+where $w = x + iy$ is a place on the camera's plane, $\sigma$ the surface
+density of the layer, $M$ its mass and $w_{\mathrm{cm}}$ its centre of mass.
+The zeros thus give the centre and the complex quadrupole of the layer at their
+true scale, with an error of order $(R/z)^2$. For two equal masses the rule is exact, and its
+quadratic is the one that places the secondary caustics of a double lens
+\cite{Bozza2000}; the zeros of a shear, as defects about which its axes make
+half a turn, are known from maps of gravitational lensing
+\cite{VitelliJainKamien2009}.
 
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/buried-ruler.pdf}
 \caption{The zeros of the shear above two buried masses. Two equal masses $d$ apart (crosses) lie at
 depth $z$ below the plane of a camera; each panel spans $4.4\,d$ of that plane.
-Top: the ordinary near-field picture, $-\tE_{zz}$, which blurs into one as $z$
+Top: the ordinary near-field picture, $-\tE_{zz}$, in which the two merge as $z$
 grows. Bottom: the phase of the shear in the plane,
 $(\tE_{xx} - \tE_{yy}) + 2i\,\tE_{xy}$, which turns once around each of two
 zeros (circles). The zeros lie on the perpendicular bisector of the pair,
@@ -626,8 +636,7 @@ at every depth greater than $\tfrac{\sqrt3}{2}d$.}\label{fig:buried-ruler}
 \end{figure}
 
 \paragraph{Limits on sensitivity.} The premise of arbitrary sensitivity
-eventually meets the rest of physics. A heuristic argument, not a
-theorem: a camera that fits within the distance $z$ to the scene, without
+eventually meets the rest of physics. A camera that fits within the distance $z$ to the scene, without
 becoming a black hole, has a mass below $zc^2/2G$, so its energy of interaction
 with a source of mass $M_s$ is below about $M_s c^2$. If quantum mechanics then
 limits how quickly the camera's state can become distinguishable to a rate set
@@ -635,12 +644,11 @@ by that energy, as it does for a fixed coupling and a single measurement
 task, over a time $\tau$ we would have $\SNR \lesssim M_s c^2\tau/\hbar$, with
 $G$ and $z$ cancelling. For a person watched for the age of the universe this
 is about $10^{70}$, a blur of $1.5^\circ$. On this estimate no near-field camera
-could draw a face; making the estimate rigorous needs the coupling, the
-resources and the discrimination task to be stated exactly.
-The estimate is generous in another way: a camera of mass $zc^2/2G$ three
+could draw a face.
+The estimate is generous: a camera of mass $zc^2/2G$ three
 metres away would pull on the person with $10^{15}$ times the Earth's gravity.
 Asking it to pull no harder than the Earth does lowers its mass, and the
-ceiling, by fifteen orders of magnitude, to $7\times10^{54}$, and widens the
+ceiling, by fifteen orders of magnitude, to about $10^{55}$, and widens the
 blur only from $1.5^\circ$ to $1.9^\circ$.
 
 Quantum mechanics sets a sharper limit when the scene is itself quantum. Hold a
@@ -666,11 +674,11 @@ reaches the array as a signal in additive Gaussian noise, standing above it by
 the ratio $s$ of Eq.~\eqref{eq:wiener}, and components with different
 $\mathbf k$ are independent. A real signal in Gaussian noise with power ratio
 $s^2$ carries at most $\tfrac12\log_2(1+s^2)$ bits, a bound reached when the
-signal is itself Gaussian, and a scene of area $A$ has $A\,\mathrm{d}^2k/(2\pi)^2$
-real components in each $\mathrm{d}^2k$. Per area $z^2$ of the scene, with
-$q = kz$, the data therefore hold
+signal is itself Gaussian, and a scene of area $A$ has $A\,\dd^2k/(2\pi)^2$
+real components in each $\dd^2k$. Per area $z^2$ of the scene the data
+therefore hold
 \begin{equation}\label{eq:capacity-integral}
-C = \frac{1}{4\pi}\int_0^\infty q\,\log_2\!\left(1 + \pi^2\SNR^2 q^2 e^{-2q}\right)\mathrm{d}q
+C = \frac{1}{4\pi}\int_0^\infty q\,\log_2\!\left(1 + \pi^2\SNR^2 q^2 e^{-2q}\right)\dd q
 \end{equation}
 bits about any scene with the spectrum of the prior of Eq.~\eqref{eq:wiener},
 and a scene made of point masses carries somewhat less. Where $s > 1$, which
@@ -689,12 +697,12 @@ $z^2$; the rest of Eq.~\eqref{eq:capacity} is the number of bits each carries
 on average, $(q_c/3 - \tfrac12)/\ln 2$, the mean of $2\log_2 s$ over them.
 Greater sensitivity gives both more patterns and more bits in each, so with
 $q_c \approx \ln\SNR$ the information grows, eventually, as
-$(\ln\SNR)^3/12\pi\ln 2$: as the cube of the logarithm of the sensitivity. At
+$(\ln\SNR)^3/12\pi\ln 2$. At
 $\SNR = 10^3$ a near-field picture holds 38 bits per area $z^2$, about nine
 patterns of four bits each. At $10^6$ it holds 200 bits; at $10^{30}$,
-$1.6\times10^4$. At the heuristic ceiling of the previous paragraph, a person
+$1.6\times10^4$. At the ceiling of \emph{Limits on sensitivity}, a person
 watched for the age of the universe, it holds $1.8\times10^5$ bits, some 22
-kilobytes, spread over 2{,}200 patterns of 80 bits each: about the size of a
+kilobytes, spread over 2200 patterns of 80 bits each: about the size of a
 thumbnail photograph, after sixty-seven orders of magnitude more sensitivity
 (Fig.~\ref{fig:capacity}). This is also why a blurred image and a precise
 measurement are compatible. The data hold few bits, and a scene known to be
@@ -712,22 +720,66 @@ raises the information only from 38 bits to $1.8\times10^5$, about 22
 kilobytes.}\label{fig:capacity}
 \end{figure}
 
-The camera's other channels scale differently, and the comparison shows what
-is peculiar to the near field. A wave camera of width $D$ at wavelength
+The camera's other channels scale differently. A wave camera of width $D$ at wavelength
 $\lambda$ resolves about $(D/\lambda)^2$ directions in each steradian, and each
 carries about $\log_2\SNR$ bits: the aperture fixes the number of patterns, and
 sensitivity adds bits only in proportion to its logarithm. In the near field
 there is no aperture to fix the number of patterns; sensitivity sets it
-through $e^{-kz}$, and that is why the power is three rather than one. A single
+through $e^{-kz}$, and that is why the power is three rather than one. The
+cube of the logarithm is the law of Kolmogorov and Tikhomirov for the number of
+bits that fix an analytic function to a given accuracy
+\cite{KolmogorovTikhomirov1959}. A single
 pixel, at the other extreme, is limited by geometry rather than noise: from a
 sky of many overlapping sources it learns twenty-five numbers of its
 brightness, sixty-eight with polarization, however sensitive it is
 (Section~\ref{sec:one-pixel}). And the thermal glow, recorded by
 counting gravitons, is limited by their number: $N$ gravitons over $M$
 resolution cells carry at most about $N\log_2 M$ bits. A camera a metre square
-looking down at the Earth for a year counts about 1{,}800 of them in the model
+looking down at the Earth for a year counts at most about 450 of them in the model
 of Section~\ref{sec:first-image}, so its picture of the planet's interior holds
-a few kilobytes at any reasonable resolution.
+less than a kilobyte at any reasonable resolution.
+
+\paragraph{The geometry of the near field.} The blur law and the precision of
+a simple scene share one geometry. With $z$ the depth below a flat camera and
+$u = z^{1/2}\Phi$, Laplace's equation for the potential is
+\begin{equation}\label{eq:hyperbolic}
+\bigl(\nabla_H^2 + \tfrac34\bigr)\,u = 0 ,
+\end{equation}
+where $\nabla_H^2$ is the Laplacian of the line element
+$(\dd x^2 + \dd y^2 + \dd z^2)/z^2$. This is hyperbolic space, and the camera
+lies on its boundary at infinity; the substitution is the first step of a
+known method for Calder\'on's problem \cite{Isozaki2004}. In that space a
+change of scale across the camera is a displacement in depth, which is why
+the blur is a fixed angle and why the number of patterns resolved is counted
+per area $z^2$ (Fig.~\ref{fig:near-field-geometry}). The precision with which a source can be placed is a metric
+on the scene, and it is of the same kind. Take sensors on a sphere of radius
+$R$ and a mass at radius $r$ inside it, its amount unknown. For sensors that
+read the pull, the squared distance between neighbouring places, per unit
+squared signal-to-noise ratio of the mass, is
+$[2\,\dd r^2 + (2 + r^2/R^2)\,r^2\dd\Omega^2]\,R^2/(R^2 - r^2)^2$; for
+tidal sensors it tends, as the mass nears the sensors, to
+$(4\,\dd r^2 + 10\,r^2\dd\Omega^2)\,R^2/(R^2 - r^2)^2$. Near the sensors each is the metric of
+hyperbolic space in Poincar\'e's ball,
+$R^2(\dd r^2 + r^2\dd\Omega^2)/(R^2 - r^2)^2$, with unequal scales in depth
+and across; for tidal sensors their ratio is the $5/2$ of the variances of a
+point beneath a flat array (\emph{The precision of a simple scene}, above). The
+harmonic measure of the sphere, taken as a family of probabilities, has the
+hyperbolic metric exactly \cite{ItohShishido2008}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/near-field-geometry.pdf}
+\caption{The geometry of the near field. A block of ground cut open beneath a
+flat camera whose pixels are $b$ apart. Its face is divided into cells of one
+size in the line element $(\dd x^2 + \dd y^2 + \dd z^2)/z^2$: squares as wide
+as their tops are deep. Two equal masses lie at the middles of two cells (the
+paler squares), at the depths $3b$ and $12b$. Blue: what the front row of
+pixels records of each, $-\tE_{zz}$, drawn to its own greatest value and
+between the places where it changes sign, or to the camera's edge. Each pattern is as wide, at half its
+height, as its mass is deep, so that a change of depth is a change of scale
+across the camera, and the cells of every level hold the same number of
+resolved patterns. The stone is a picture.}\label{fig:near-field-geometry}
+\end{figure}
 
 The logarithmic limit is the central result for the whole subject. The near field
 is where everyday things are visible, and it can never be sharp. Sharp images

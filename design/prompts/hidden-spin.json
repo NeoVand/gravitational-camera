@@ -1,0 +1,18 @@
+{
+ "size": "1536x1024",
+ "figure": "A scientific figure for a physics paper about reading the hidden motion inside a body from outside, by gravity alone. Two balls of the same size and weight, each cut open to show its inside. The first is at rest. In the second, the inner core turns one way (short curved arrows in burnt orange around its equator) and the outer layer turns the opposite way (curved arrows in deep blue), so that the total spin is exactly zero. A ring of small sensors around each ball reads exactly the same for both: from one look they cannot be told apart. Then the test that tells them apart: two different three-lobed tidal squeezes are applied one after the other, first in one order and then in the other order. For the ball at rest the order makes no difference; for the ball that turns inside the two orders give different answers, shown by a small needle that stays at zero for the first ball and deflects for the second. Only very short labels: 'at rest', 'turning inside', 'one look', 'two squeezes, both orders'. No equations. No decorative background.",
+ "variants": [
+  {
+   "name": "two balls, two rows",
+   "style": "Composition: two columns, the ball at rest on the left and the ball turning inside on the right; top row 'one look' with identical sensor rings; bottom row 'two squeezes, both orders' with the three-lobed squeeze arrows around each ball and the needle beneath: at zero on the left, deflected on the right. Look: a clean 3D-modelled technical illustration, softly shaded solids in warm sand and stone tones with thin single dark outlines, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes or dividing lines, generous whitespace, precise geometry."
+  },
+  {
+   "name": "one large cutaway",
+   "style": "Composition: one large cutaway ball, turning inside, at centre left, with its ring of sensors; a small ball at rest beside it for comparison; at the right, two small panels for the two orders of the squeezes and the two needles. Look: a clean 3D-modelled technical illustration, softly shaded solids in warm sand and stone tones with thin single dark outlines, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes or dividing lines, generous whitespace, precise geometry."
+  },
+  {
+   "name": "monograph plate",
+   "style": "Composition: one plate: the two cutaway balls at the top, the order test below. Look: fine black ink line drawing with delicate hatching for shading on white paper, in the manner of the figures in Misner, Thorne and Wheeler's Gravitation, a single burnt orange accent and a single deep blue accent used sparingly, crisp and exact, no clutter."
+  }
+ ]
+}

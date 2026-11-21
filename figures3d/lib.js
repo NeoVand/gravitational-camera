@@ -281,6 +281,26 @@ export async function inset(url, x, y, w) {
 	return { svg: `<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="${vb.join(' ')}" overflow="visible">${inner}</svg>`, h };
 }
 
+/** Where another drawing (an SVG made elsewhere, as for inset) has ink: `box`, [left, right, top, bottom] in its own
+ * viewBox units, and that viewBox, `vb`; found by painting it at `k` pixels per unit and finding the pixels that are not transparent. */
+export async function inkBox(url, k = 8) {
+	const text = await (await fetch(url)).text();
+	const vb = text.match(/viewBox="([^"]+)"/)[1].split(/[\s,]+/).map(Number);
+	const img = new Image();
+	img.src = URL.createObjectURL(new Blob([text], { type: 'image/svg+xml' }));
+	await img.decode();
+	const c = document.createElement('canvas');
+	c.width = Math.ceil(vb[2] * k); c.height = Math.ceil(vb[3] * k);
+	const ctx = c.getContext('2d');
+	ctx.drawImage(img, 0, 0, c.width, c.height);
+	const a = ctx.getImageData(0, 0, c.width, c.height).data;
+	let l = Infinity, r = -1, t = Infinity, b = -1;
+	for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) if (a[(y * c.width + x) * 4 + 3] > 8) {
+		if (x < l) l = x; if (x > r) r = x; if (y < t) t = y; if (y > b) b = y;
+	}
+	return { box: [vb[0] + l / k, vb[0] + (r + 1) / k, vb[1] + t / k, vb[1] + (b + 1) / k], vb };
+}
+
 /** A closed region bounded by an outer and an inner loop (an annulus), filled evenodd. */
 Panel.prototype.annulus = function (outer, inner, { fill, stroke = 'none', width = 0, layer = 0, depthBias = 0 } = {}) {
 	const depth = outer.reduce((s, p) => s + this.cam(p).z, 0) / outer.length + depthBias;
@@ -352,8 +372,10 @@ export async function sprite(url) {
 }
 
 
-/** A colour map (an equirectangular image) sampled by latitude and longitude, for colouring a globe's faces. */
-export async function globeMap(url) {
+/** A colour map (an equirectangular image) sampled by latitude and longitude, for colouring a globe's faces. With
+ * `smooth`, sampled bilinearly between the four nearest texels (wrapping in longitude), so that a globe drawn finer
+ * than the map shows soft coasts rather than the map's texels; otherwise the nearest texel. */
+export async function globeMap(url, { smooth = false } = {}) {
 	const img = new Image();
 	img.src = url;
 	await img.decode();
@@ -368,10 +390,23 @@ export async function globeMap(url) {
 		const lat = Math.asin(Math.max(-1, Math.min(1, n.y)));
 		let lon = Math.atan2(-n.z, n.x) + lon0;
 		lon = ((lon + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+		const hexOf = (rgb) => '#' + rgb.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('');
+		if (smooth) {
+			// texel centres at (i + 0.5, j + 0.5)
+			const u = ((lon + Math.PI) / (2 * Math.PI)) * img.width - 0.5, v = ((Math.PI / 2 - lat) / Math.PI) * img.height - 0.5;
+			const i0 = Math.floor(u), j0 = Math.floor(v), fu = u - i0, fv = v - j0;
+			const texel = (i, j) => {
+				const x = ((i % img.width) + img.width) % img.width, y = Math.min(img.height - 1, Math.max(0, j));
+				const k = (y * img.width + x) * 4;
+				return [d[k], d[k + 1], d[k + 2]];
+			};
+			const [a, b, c, e] = [texel(i0, j0), texel(i0 + 1, j0), texel(i0, j0 + 1), texel(i0 + 1, j0 + 1)];
+			return hexOf([0, 1, 2].map((m) => (a[m] * (1 - fu) + b[m] * fu) * (1 - fv) + (c[m] * (1 - fu) + e[m] * fu) * fv));
+		}
 		const x = Math.min(img.width - 1, Math.floor(((lon + Math.PI) / (2 * Math.PI)) * img.width));
 		const y = Math.min(img.height - 1, Math.floor(((Math.PI / 2 - lat) / Math.PI) * img.height));
 		const i = (y * img.width + x) * 4;
-		return '#' + [d[i], d[i + 1], d[i + 2]].map((v) => v.toString(16).padStart(2, '0')).join('');
+		return hexOf([d[i], d[i + 1], d[i + 2]]);
 	};
 }
 

@@ -1,0 +1,18 @@
+{
+ "size": "1536x1024",
+ "figure": "A scientific figure for a physics paper about imaging buried matter by its gravity. A side view. Along the top runs a flat row of small sensors, the camera. Below it the ground is shown in cross-section, divided into the cells that the camera can just tell apart: the cells are small just under the sensors and grow in exact proportion to their depth, so that every cell has the same shape, like a tiling of the hyperbolic plane drawn in the upper half-plane, the tiles doubling in size at each level downward. Two small masses are buried: a shallow one, which makes a sharp narrow peak in the readings of the sensors, and a deep one, which makes a broad low hump; the two profiles are drawn as curves just above the sensor row, the narrow tall one in burnt orange and the broad low one in deep blue. Under a short stretch of the sensors a semicircular dome is drawn into the ground, to show that a small camera sees clearly only inside the half-disc beneath it. Only very short labels: 'camera', 'shallow', 'deep'. No equations. No decorative background.",
+ "variants": [
+  {
+   "name": "cross-section",
+   "style": "Composition: one wide cross-section filling the frame, sensors along the top edge, the tiling in pale grey hairlines, the two buried masses as small dark dots with their profiles above, the dome as a thin dark semicircle at the right. Look: a precise flat vector diagram, thin single dark hairlines, pale grey tints, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes, no grid lines, generous whitespace, in the manner of a figure in a careful physics journal."
+  },
+  {
+   "name": "cutaway block",
+   "style": "Composition: a rectangular block of ground seen in perspective with a square array of sensors on its top face; the cells that grow with depth are visible on the two cut faces; the two buried masses glow faintly inside; their profiles are drawn above the array. Look: a clean 3D-modelled technical illustration, softly shaded solids in warm sand and stone tones with thin single dark outlines, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes or dividing lines, generous whitespace, precise geometry."
+  },
+  {
+   "name": "monograph plate",
+   "style": "Composition: one plate with the cross-section, the tiling in fine ink lines, the two profiles and the dome. Look: fine black ink line drawing with delicate hatching for shading on white paper, in the manner of the figures in Misner, Thorne and Wheeler's Gravitation, a single burnt orange accent and a single deep blue accent used sparingly, crisp and exact, no clutter."
+  }
+ ]
+}

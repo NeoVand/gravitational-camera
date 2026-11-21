@@ -697,12 +697,71 @@ test('the One pixel layer: a turning flywheel turns the motion test on, a locked
 	await expect(page.getByText(/type (I|D):/)).toBeVisible();
 });
 
+test('push and weigh: a quadrupolar tide cannot tell the two bodies apart, an octupolar one can', async ({
+	page
+}) => {
+	await page.goto('/figures/push-and-weigh/');
+	const exact = page.locator('[data-testid=exact]');
+	const verdict = page.locator('[data-testid=verdict]');
+	// as it opens: the pair with the same second moment under the octupolar tide, one twice the other
+	await expect(exact).toHaveText(['0.06667', '0.13333']);
+	await expect(verdict).toHaveAttribute('data-apart', 'true');
+	await expect(page.locator('tr[data-degree][aria-current]')).toContainText('different');
+	await page.getByRole('button', { name: 'Quadrupole', exact: true }).click();
+	await expect(exact).toHaveText(['0.16667', '0.16667']);
+	await expect(verdict).toHaveAttribute('data-apart', 'false');
+	await expect(page.locator('tr[data-degree][aria-current]')).toContainText('the same');
+	// the next pair needs one degree more
+	await page.getByRole('button', { name: 'Same second and fourth moments', exact: true }).click();
+	await page.getByRole('button', { name: 'Octupole', exact: true }).click();
+	await expect(exact).toHaveText(['0.08333', '0.08333']);
+	await page.getByRole('button', { name: 'Hexadecapole', exact: true }).click();
+	await expect(exact).toHaveText(['0.05000', '0.04464']);
+	// a point does not answer a tide at all; a shell does
+	await page.getByRole('button', { name: 'A point and a shell', exact: true }).click();
+	await page.getByRole('button', { name: 'Quadrupole', exact: true }).click();
+	await expect(exact).toHaveText(['0.00000', '0.33333']);
+	// a new push draws new noise
+	const weighed = page.locator('[data-testid=weighed]').first();
+	const before = await weighed.innerText();
+	await page.getByRole('button', { name: 'Push again', exact: true }).click();
+	await expect(weighed).not.toHaveText(before);
+});
+
+test('a ring of marked particles: the marks turn by half the area swept, and the other way in the mirror wave', async ({
+	page
+}) => {
+	await page.goto('/figures/marked-ring/');
+	const reading = (id: string) => page.locator(`[data-testid=${id}]`);
+	// as it opens: one right-handed turn at the strength 0.25
+	await expect(reading('turn-passed')).toHaveText('9.4530°');
+	await expect(reading('turn-weak')).toHaveText('6.1523°');
+	await expect(reading('focus')).toHaveText('0.2655 T after the wave');
+	// at the end of the wave the ring has shrunk, and the turn is half the area its shape has swept
+	await page.getByRole('button', { name: 'Pause', exact: true }).click();
+	await page.locator('#time').fill('1');
+	await expect(reading('radius')).toHaveText('0.4510');
+	await expect(reading('turn-now')).toHaveText('9.4530°');
+	await expect(reading('disc-turn')).toHaveText('9.4530°');
+	await expect(reading('disc-area')).toHaveText('9.4530°');
+	// part of the way through, the two still agree
+	await page.locator('#time').fill('0.5');
+	const turn = await reading('disc-turn').textContent();
+	expect(turn).not.toBe('9.4530°');
+	await expect(reading('disc-area')).toHaveText(turn!);
+	// the mirror wave turns the marks the other way, and a linear wave not at all
+	await page.getByRole('button', { name: 'Left-handed', exact: true }).click();
+	await expect(reading('turn-passed')).toHaveText('−9.4530°');
+	await page.getByRole('button', { name: 'Linear', exact: true }).click();
+	await expect(reading('turn-passed')).toHaveText('0.0000°');
+});
+
 test('interactive figures: their own section, out of the demos, and live under their figures in the paper', async ({
 	page
 }) => {
 	await page.goto('/figures/');
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Interactive figures');
-	await expect(page.locator('ol > li')).toHaveCount(7);
+	await expect(page.locator('ol > li')).toHaveCount(9);
 	await page.goto('/demo/');
 	await expect(page.getByText('Principal null directions')).toHaveCount(0);
 	await page.goto('/paper/');
@@ -713,6 +772,13 @@ test('interactive figures: their own section, out of the demos, and live under t
 		'href',
 		/figures\/four-stars/
 	);
+	// a figure of Section XII is not live in place: it links to its interactive figure
+	const ladder = page.locator('figure[id="fig:ladder"]');
+	await ladder
+		.getByRole('link', { name: 'Apply the tides yourself in the interactive figure' })
+		.click();
+	await expect(page).toHaveURL(/figures\/push-and-weigh/);
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Push and weigh');
 });
 
 test('where it is now: the ball flies, the camera draws it, and a stop is held', async ({

@@ -4,7 +4,7 @@
 // (1 + cos^2 i)/2 and |cos i| in proportion, exact, turning one way above the plane of the orbit and the
 // other way below it. The pair at the centre is schematic (not to scale). (b) The wavelength over the size
 // of the source against the speed of its parts (paper/figures/charts.py).
-import { Panel, v3, figure, inset, letter, INK, DIM, FAINT, ACCENT } from '../lib.js';
+import { Panel, v3, figure, inset, inkBox, letter, INK, DIM, FAINT, ACCENT } from '../lib.js';
 
 // the pattern's fill, and on the site's dark theme a deep shade of it (the accent at 20% over the dark page, as the
 // site tints the paper's pale accent), so that the pale ink drawn over it stays legible
@@ -14,10 +14,14 @@ const FILL = '#f3d6b6', FILL_NIGHT = '#49351f', STEEL = '#868b92';
 const TURNS_ANTICLOCKWISE = '#c2255c', TURNS_CLOCKWISE = '#2f9e44';
 // Across the full width: the drawing of (a), from the formula's left edge to the 90-degree label's right, and the
 // chart of (b), CHART_W points wide at its true size (charts.py, quadrupole_chart: its y label's left edge at its left
-// edge, its plot box ending 1 pt short of its right edge, the curve's end 0.3 pt short), each centred in its share:
-// equal margins outside and a gutter of twice that between. The panel letters stand over the left edges of the two,
-// on one baseline, LINE.
-const W = 504, H = 180, SCALE = 56, CHART_W = 250, LINE = 7;
+// edge, its plot box ending 1 pt short of its right edge, the curve's end 0.3 pt short): the two reach the page's
+// edges, as in the other figures, OUT points inside them (the side bearing of a panel letter's parenthesis, so that
+// the letter of (a) at the page's left edge and the formula start on one vertical), and the rest is the gutter
+// between. The panel letters stand over the left edges of the two, on one baseline, LINE.
+const W = 504, H = 180, SCALE = 56, CHART_W = 250, LINE = 7, OUT = 0.72;
+// the formula's ink starts this far inside its box (measured on the rendered page); where the chart's ink ends is
+// found from the chart itself (inkBox)
+const FORMULA_INK = 0.96;
 const FORMULA = '\\displaystyle \\frac{\\mathrm{d}P}{\\mathrm{d}\\Omega} \\propto \\frac{1 + 6\\cos^{2}\\iota + \\cos^{4}\\iota}{8}';
 const FORMULA_SIZE = 8.5, FORMULA_GAP = 0.5, DEGREE_SIZE = 6.5, RING = 1.33, SIZE = 0.15;
 
@@ -40,8 +44,7 @@ export default async function () {
 		ellipses.push({ deg, c, ap, ax, at, tag });
 	}
 	const left = FORMULA_GAP * SCALE + (await texWidth(FORMULA, FORMULA_SIZE));
-	const margin = (W - left - right - CHART_W + 0.3) / 4;
-	const axis = margin + left;
+	const axis = OUT - FORMULA_INK + left;
 
 	const A = new Panel({ x: 0, y: 0, w: 2 * axis, h: H, scale: SCALE });
 	const p = (t) => (1 + 6 * Math.cos(t) ** 2 + Math.cos(t) ** 4) / 8;
@@ -54,7 +57,7 @@ export default async function () {
 	A.curve(curve, { color: ACCENT, width: 0.8, layer: 1 });
 	// the spin axis, and the angular velocity
 	A.curve([v3(0, -1.12, 0), v3(0, 1.12, 0)], { color: FAINT, width: 0.45, dash: [2, 2], layer: 2 });
-	A.label('\\boldsymbol{\\omega}', v3(-0.07, 0.9, 0), { anchor: 'rc' });
+	A.label('\\boldsymbol{\\Omega}', v3(-0.07, 0.9, 0), { anchor: 'rc' });
 	// the turning pair, its orbit seen from a little above, and its sense
 	const orbit = [];
 	for (let k = 0; k <= 80; k++) {
@@ -98,8 +101,10 @@ export default async function () {
 	}
 	// the formula, left of the pattern and level with the pair at its centre
 	A.label(FORMULA, [A.at(v3(-FORMULA_GAP, 0, 0))[0], A.at(v3(0, 0, 0))[1]], { anchor: 'rc', size: FORMULA_SIZE });
-	A.labels.push(letter('a', margin, LINE - 0.75 * 8));
-	const x = W - margin - CHART_W + 0.3;
-	const chart = await inset('/paper/figures/staging/quadrupole-chart.svg', x, 0, CHART_W);
+	A.labels.push(letter('a', 0, LINE - 0.75 * 8));
+	const url = '/paper/figures/staging/quadrupole-chart.svg';
+	const { box, vb } = await inkBox(url);
+	const x = W - OUT - ((box[1] - vb[0]) * CHART_W) / vb[2];
+	const chart = await inset(url, x, 0, CHART_W);
 	return figure(W, Math.max(H, chart.h), [A], [Promise.resolve(chart.svg), letter('b', x, LINE - 0.75 * 8)]);
 }

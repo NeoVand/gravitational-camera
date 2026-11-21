@@ -121,10 +121,10 @@ def separation_noise(data=None):
         ax.set_yscale("log")
     dot = dict(ms=3.0, color=mf.ACCENT, mec="none", zorder=4, ls="none", marker="o")
     # (a) the cost of the rotor to the wave
-    a.plot(X, np.full_like(X, math.sqrt(2.0)), color=mf.INK, lw=0.7)
+    a.plot(X, np.full_like(X, math.sqrt(2.0)), color=mf.INK, lw=mf.CURVE2)
     a.plot([0.025], [dots["pixel"]], **dot)
-    a.plot(X, curves["E"], color=mf.ACCENT2, lw=1.0)
-    a.plot(X, curves["EB"], color=mf.ACCENT2, lw=1.0, ls=(0, (3.5, 2)))
+    a.plot(X, curves["E"], color=mf.ACCENT2, lw=mf.CURVE)
+    a.plot(X, curves["EB"], color=mf.ACCENT2, lw=mf.CURVE, ls=mf.DASH)
     for key in ("E", "EB"):
         a.plot(dots[key][:, 0], dots[key][:, 1], **dot)
     # each label beside its own line: the one pixel's above it, the array's with B below the dashed line, the
@@ -140,8 +140,8 @@ def separation_noise(data=None):
     a.set_ylabel(r"cost to the wave, $D$")
     mf.letter(a, "(a)")
     # (b) the range of one mass
-    b.plot(X, d_closed, color=mf.INK, lw=0.7)
-    b.plot(X, d_exact, color=mf.ACCENT2, lw=1.0)
+    b.plot(X, d_closed, color=mf.INK, lw=mf.CURVE2)
+    b.plot(X, d_exact, color=mf.ACCENT2, lw=mf.CURVE)
     b.plot(d_pts[:, 0], d_pts[:, 1], **dot)
     b.text(0.12, 2.0, r"$\bigl(\tfrac17 + \tfrac{r^2}{30 b^2}\bigr)^{1/2}$", fontsize=7.5, ha="left",
            va="bottom")
@@ -151,8 +151,8 @@ def separation_noise(data=None):
     b.set_ylabel(r"$\rho\,\sigma_r/r$")
     mf.letter(b, "(b)")
     # (c) two masses on one line
-    c.plot(X, t_closed, color=mf.INK, lw=0.7)
-    c.plot(X, t_exact, color=mf.ACCENT2, lw=1.0)
+    c.plot(X, t_closed, color=mf.INK, lw=mf.CURVE2)
+    c.plot(X, t_exact, color=mf.ACCENT2, lw=mf.CURVE)
     c.plot(t_pts[:, 0], t_pts[:, 1], **dot)
     c.text(0.1, 8.5, r"$2\,(\rho/\rho_H)^{1/2}$", fontsize=7.5, ha="left", va="bottom")
     c.set_ylim(0.8, 50)
@@ -170,6 +170,7 @@ def separation_noise(data=None):
             ax.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.07, right=0.99, top=0.91, bottom=0.18, wspace=0.36)
     mf.centre(fig)
+    mf.trim(fig)
     def over_bound(pts, curve):
         return pts[:, 1] / np.exp(np.interp(np.log(pts[:, 0]), np.log(X), np.log(curve)))
 

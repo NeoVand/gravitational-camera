@@ -25,7 +25,8 @@ def earth_glow_chart():
     from gravcam.scene import load_scene
     scene = load_scene(mf.ROOT / "scenes" / "sun-at-midnight.scene.json")
     layers = ["earth", "upper-mantle", "lower-mantle", "outer-core", "inner-core"]
-    names = ["crust, 700 K", "upper mantle, 1700 K", "lower mantle, 2800 K", "outer core, 4500 K", "inner core, 5500 K"]
+    names = [r"crust, 700\,K", r"upper mantle, 1700\,K", r"lower mantle, 2800\,K", r"outer core, 4500\,K",
+             r"inner core, 5500\,K"]
     radii = [scene[k].shape.radius for k in layers]
     angle = np.linspace(0, 89.5, 720)
     a = np.radians(angle)
@@ -41,20 +42,20 @@ def earth_glow_chart():
     for part, name, col in zip(reversed(parts), reversed(names), reversed(SHELLS)):
         ax.fill_between(angle, base / unit, (base + part) / unit, facecolor=col, edgecolor="none", lw=0, label=name)
         base = base + part
-    ax.plot(angle, total / unit, color=EDGE, lw=1.0)
+    ax.plot(angle, total / unit, color=EDGE, lw=mf.CURVE)
     top = total.max() / unit
     R = radii[0]
     # each boundary's guide stops beneath its label; the lower mantle's below the legend
     for r, label, h in ((radii[4], "inner core", 1.2), (radii[3], "core", 1.2), (radii[2], "lower mantle", 0.36)):
         edge = math.degrees(math.asin(r / R))
-        ax.plot([edge, edge], [0, top * (h - 0.08)], color=mf.FAINT, lw=0.45, ls=(0, (2, 2)), zorder=0.5)
+        ax.plot([edge, edge], [0, top * (h - 0.08)], color=mf.FAINT, lw=0.45, ls=mf.DOT, zorder=0.5)
         ax.text(edge + 1.0, top * h, label, fontsize=7, color=mf.DIM, va="top")
     ax.set_xlim(0, 90)
     ax.set_ylim(0, top * 1.22)
     ax.set_xticks([0, 15, 30, 45, 60, 75, 90])
     ax.set_xticklabels([rf"${t}^\circ$" for t in (0, 15, 30, 45, 60, 75, 90)])
     ax.set_xlabel("angle of the line of sight from straight down")
-    ax.set_ylabel(r"$N$ ($10^{-5}$ s$^{-1}$m$^{-2}$sr$^{-1}$)")
+    ax.set_ylabel(r"$N$ ($10^{-5}$ s$^{-1}$\,m$^{-2}$\,sr$^{-1}$)")
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles[::-1], labels[::-1], loc="upper right", bbox_to_anchor=(1.0, 0.86), handlelength=1.1,
               labelspacing=0.22, fontsize=7)
@@ -86,10 +87,10 @@ def quadrupole_chart():
     fig = plt.figure(figsize=(w / 72, h / 72))
     ax = fig.add_axes([left / w, bottom / h, (w - left - right) / w, (h - top - bottom) / h])
     v = np.logspace(-1, math.log10(C), 200)
-    ax.plot(v, (math.pi / 2) * C / v, color=mf.INK, lw=1.0)
+    ax.plot(v, (math.pi / 2) * C / v, color=mf.INK, lw=mf.CURVE)
     ax.axhline(1, color=mf.RULE, lw=0.5)
     ax.axvspan(0.3, 300, color=mf.ACCENT2, alpha=0.1, lw=0, zorder=0)
-    ax.text(10, 3e3, "everyday\nspeeds", ha="center", fontsize=7.5, color=mf.ACCENT2, linespacing=1.0)
+    ax.text(10, 3e3, "everyday\nspeeds", ha="center", fontsize=7.5, color=mf.ACCENT2, linespacing=1.15)
     ax.text(2e6, 2.4, r"$\lambda = d$", fontsize=7.5, color=mf.DIM)
     vv = 16 * math.pi                                             # a metre apart, sixteen turns a second
     ax.plot([vv], [(math.pi / 2) * C / vv], "o", ms=3, color=mf.ACCENT, mec="none")
@@ -128,10 +129,8 @@ def voices_chart():
         top.plot(t, y0 + 0.5 * np.array(w["re"]), color=mf.INK, lw=0.6)
         top.text(-0.035, y0, rf"${i + 1}$", ha="right", va="center", fontsize=7.5, color=mf.ACCENT)
     top.set_ylim(-3 * gap - 0.75, 0.75)
-    # the heading's baseline 7 pt below the top, on the baseline of the panel letter (a) (figures3d/figs/voices.js);
+    # the heading of (a) is drawn with the panel's letter by figures3d/figs/voices.js, as those of (b) and (c) are;
     # the faint line is the second polarization, which the third wave, linearly polarized, does not have
-    fig.text(0.1, 1 - 7 / 214, r"four waves, each with its own waveform and polarization", fontsize=7.5,
-             color=mf.DIM, va="baseline")
     tr = np.array(d["traces"])
     tr = tr / np.max(np.abs(tr))
     gap = 0.75
@@ -194,16 +193,16 @@ def beyond_chart():
     # orange is general relativity's alone, as in (a): the massive graviton in ink, the scalar in blue, and the point
     # where both meet general relativity in orange
     ax.axhline(0, color=mf.RULE, lw=0.6)
-    ax.plot(n, -2 * (1 - n ** 2), color=mf.INK, lw=0.8)
-    ax.plot(n, 1 - n ** 2, color=mf.ACCENT2, lw=0.8)
+    ax.plot(n, -2 * (1 - n ** 2), color=mf.INK, lw=mf.CURVE)
+    ax.plot(n, 1 - n ** 2, color=mf.ACCENT2, lw=mf.CURVE)
     for row in d["rows"]:
         ax.plot([row["graviton"]["n"]], [row["graviton"]["ratio"]], "o", ms=2.8, color=mf.INK, mec="none")
         ax.plot([row["scalar"]["n"]], [row["scalar"]["ratio"]], "o", ms=2.8, color=mf.ACCENT2, mec="none")
     ax.text(0.98, -1.7, "massive graviton,\nhelicity 0", color=mf.INK, fontsize=7, va="top", ha="right",
-            linespacing=1.0)
+            linespacing=1.15)
     ax.text(0.05, 1.12, "massive scalar", color=mf.ACCENT2, fontsize=7, va="bottom")
     ax.plot([1], [0], "o", ms=3.6, mfc="#fffffe", mec=mf.ACCENT, mew=0.8, zorder=5)
-    ax.text(1.0, 0.6, "general\nrelativity", color=mf.ACCENT, fontsize=7, ha="right", va="bottom", linespacing=1.0)
+    ax.text(1.0, 0.6, "general\nrelativity", color=mf.ACCENT, fontsize=7, ha="right", va="bottom", linespacing=1.15)
     ax.set_xlim(0, 1.02)
     ax.set_ylim(-2.2, 1.5)
     ax.set_xticks([0, 0.5, 1])

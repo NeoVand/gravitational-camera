@@ -59,11 +59,23 @@ export const liveFigures: Record<string, LiveFigure> = {
 	'fig:beyond': { label: 'Try it: choose a theory, add a second wave', drawing: BeyondLive }
 };
 
-/** Figures whose scene can be explored in a demo of its own, with the demo's path. */
-export const figureDemos: Record<string, { label: string; slug: string }> = {
+/**
+ * Figures that link to a page of their own, with the page's slug: a demo of the
+ * figure's scene (section 'demo', the default when none is given) or an
+ * interactive figure of its own (section 'figures').
+ */
+export const figureDemos: Record<
+	string,
+	{ label: string; slug: string; section?: 'demo' | 'figures' }
+> = {
 	'fig:binary-field': { label: 'Watch it turn in the demo', slug: 'two-black-holes' },
 	'fig:milky-way': { label: 'Look around this sky in the demo', slug: 'milky-way' },
-	'fig:black-hole': { label: 'Fly closer in the demo', slug: 'black-hole' }
+	'fig:black-hole': { label: 'Fly closer in the demo', slug: 'black-hole' },
+	'fig:ladder': {
+		label: 'Apply the tides yourself in the interactive figure',
+		slug: 'push-and-weigh',
+		section: 'figures'
+	}
 };
 
 /** The static images in /paper/figures, as URLs the site can serve. */

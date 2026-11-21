@@ -19,14 +19,15 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 from gravcam import materials as M  # noqa: E402
 
-# categorical slots 1-6 of the validated palette (the dataviz skill's reference instance), in the table's order
-COLOURS = {
-    "copper": "#2a78d6",
-    "iron": "#eb6834",
-    "silicon": "#1baf7a",
-    "diamond": "#eda100",
-    "silica": "#e87ba4",
-    "water": "#008300",
+# the paper's palette only: each colour twice at most, told apart by the dash (the bound iron dotted, as before);
+# the two Raman lines are also named on their peaks in (b)
+STYLES = {
+    "copper": (mf.ACCENT2, "-"),
+    "iron": (mf.ACCENT, mf.DOT),
+    "silicon": (mf.INK, "-"),
+    "diamond": (mf.DIM, "-"),
+    "silica": (mf.ACCENT2, mf.DASH),
+    "water": (mf.ACCENT, "-"),
 }
 NAMES = {"copper": "copper", "iron": "iron (bound)", "silicon": "silicon", "diamond": "diamond",
          "silica": "silica glass", "water": "water"}
@@ -55,11 +56,12 @@ def materials_figure():
         ax.axvspan(hot[0], hot[-1], color=mf.RULE, alpha=0.35, lw=0, zorder=0)
 
     # (a) the friction
-    a.axhline(M.PLACEHOLDER, color=mf.INK, lw=0.8, ls=(0, (4, 2)), zorder=2)
+    a.axhline(M.PLACEHOLDER, color=mf.INK, lw=0.8, ls=mf.DASH, zorder=2)
     for key, m in tab.items():
         eta = m.re_eta(w, T)
-        ls = (0, (1.2, 1.2)) if m.bound else "-"
-        a.plot(f, np.where(eta >= 1e-8, eta, np.nan), color=COLOURS[key], lw=1.0, ls=ls, zorder=3, label=NAMES[key])
+        colour, ls = STYLES[key]
+        assert (ls == mf.DOT) == m.bound
+        a.plot(f, np.where(eta >= 1e-8, eta, np.nan), color=colour, lw=1.0, ls=ls, zorder=3, label=NAMES[key])
     a.set_xscale("log")
     a.set_yscale("log")
     a.set_xlim(1, 100)
@@ -78,11 +80,11 @@ def materials_figure():
         fb = np.union1d(fb, (centre + width * np.linspace(-40, 40, 801)) / M.THZ)
     wb = fb * M.THZ
     per_thz = 4 * np.pi * M.THZ
-    b.plot(fb, per_thz * M.spectral_emissivity(flat, wb, T), color=mf.INK, lw=0.8, ls=(0, (4, 2)), zorder=2)
+    b.plot(fb, per_thz * M.spectral_emissivity(flat, wb, T), color=mf.INK, lw=0.8, ls=mf.DASH, zorder=2)
     for key, m in tab.items():
         g = per_thz * M.spectral_emissivity(m, wb, T)
-        ls = (0, (1.2, 1.2)) if m.bound else "-"
-        b.plot(fb, np.where(g >= 1e-40, g, np.nan), color=COLOURS[key], lw=1.0, ls=ls, zorder=3)
+        colour, ls = STYLES[key]
+        b.plot(fb, np.where(g >= 1e-40, g, np.nan), color=colour, lw=1.0, ls=ls, zorder=3)
     b.set_yscale("log")
     b.set_xlim(0, 60)
     b.set_ylim(1e-40, 1e-33)
@@ -99,10 +101,18 @@ def materials_figure():
                color=mf.DIM, ha="right", va="center", arrowprops=dict(arrowstyle="-", lw=0.5, color=mf.FAINT,
                                                                       shrinkA=1, shrinkB=1))
 
+    # open at the top and the right, as the other charts
+    for ax in (a, b):
+        for side in ("top", "right"):
+            ax.spines[side].set_visible(False)
+        ax.tick_params(which="both", top=False, right=False)
     handles, labels = a.get_legend_handles_labels()
-    ph, = a.plot([], [], color=mf.INK, lw=0.8, ls=(0, (4, 2)))
-    fig.legend(handles + [ph], labels + ["placeholder"], loc="center left",
-               bbox_to_anchor=(0.845, 0.55), fontsize=7, handlelength=1.8)
+    ph, = a.plot([], [], color=mf.INK, lw=0.8, ls=mf.DASH)
+    # hung on (b), so that it moves with the axes when the figure is centred
+    b.legend(handles + [ph], labels + ["placeholder"], loc="center left", bbox_to_anchor=(1.03, 0.5), fontsize=7,
+             handlelength=2.2)
+    mf.centre(fig)
+    mf.trim(fig)
     mf.save(fig, "materials", web=True)
 
 

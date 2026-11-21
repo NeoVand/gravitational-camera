@@ -1,6 +1,6 @@
 /**
  * Stills of each demo, by slug: those drawn on a canvas made by scripts/posters.mjs, the drawn ones (the one-pixel
- * demos) from a screenshot of their stage.
+ * demos and the interactive figures) from a screenshot of their stage, as scripts/figure-posters.mjs takes it.
  */
 import { asset } from '$app/paths';
 
@@ -25,5 +25,7 @@ export const posters: Record<string, string> = {
 	speedometer: asset('posters/speedometer.jpg'),
 	ranging: asset('posters/ranging.jpg'),
 	'one-pixel-sky': asset('posters/one-pixel-sky.jpg'),
-	'beyond-einstein': asset('posters/beyond-einstein.jpg')
+	'beyond-einstein': asset('posters/beyond-einstein.jpg'),
+	'push-and-weigh': asset('posters/push-and-weigh.jpg'),
+	'marked-ring': asset('posters/marked-ring.jpg')
 };

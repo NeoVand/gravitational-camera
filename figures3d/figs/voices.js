@@ -10,6 +10,7 @@ import { THREE, Panel, v3, figure, inset, letter, ACCENT, ACCENT2 } from '../lib
 // edge as far from the right edge as the panel letter (a) is from the left (its parenthesis's side bearing)
 const W = 504, LEFT = 248, SCALE = 60, SPACING = 132, BEARING = 0.7;
 const CENTRES = [W - BEARING - SCALE - SPACING, W - BEARING - SCALE];
+const FORMULA = 15;
 
 const c = (re, im = 0) => ({ re, im });
 const mul = (a, b) => c(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re);
@@ -86,10 +87,11 @@ export default async function () {
 			const R = P.scale + 8;
 			P.label(`${i + 1}`, [(ox + (u[0] / L) * R) - P.x, (oy + (u[1] / L) * R) - P.y], { size: 7.5, color: s.mark });
 		});
-		P.label(s.formula, v3(0, -1, 0), { size: 8, anchor: 'ct', dy: 9 });
+		// the two formulas on one baseline, FORMULA points below the sky
+		P.label(s.formula, v3(0, -1, 0), { size: 8, anchor: 'cB', dy: FORMULA });
 		P.labels.push(letter('bc'[j], P.x, 1, s.title));
 	});
-	// (a): its letter on the baseline of the chart's first heading (charts.py, voices_chart)
-	const extra = [Promise.resolve(chart.svg), letter('a', 0)];
+	// (a): its letter and heading as those of (b) and (c), over the chart (charts.py, voices_chart, draws no heading)
+	const extra = [Promise.resolve(chart.svg), letter('a', 0, 1, '\\text{four waves, each with its own waveform and polarization}')];
 	return figure(W, H, panels, extra);
 }

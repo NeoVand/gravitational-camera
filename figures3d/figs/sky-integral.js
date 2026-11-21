@@ -62,7 +62,8 @@ export default async function () {
 	A.sphere(O, 0.12, '#868b92', { spec: 0.6, layer: 4 });
 	A.label('\\text{pixel}', v3(0, 0.2, 0), { size: 7.5, anchor: 'cb' });
 	A.arrow(n.clone().multiplyScalar(0.16), n.clone().multiplyScalar(1.3), { width: 0.8, head: 4.4, layer: 5 });
-	A.label('\\hat n', n.clone().multiplyScalar(0.8).add(v3(0, 0.26, 0)));
+	// its name under the arrow's tip, inside the cone, clear of the cone's edges
+	A.label('\\hat n', n.clone().multiplyScalar(1.2), { anchor: 'ct', dy: 1.4 });
 	A.label('\\mathrm{d}\\Omega', n.clone().multiplyScalar(reach + 0.05).add(v3(0.12, 0.0, 0)), { anchor: 'lc', size: 8 });
 	// the distance r, measured along the cone's lower edge from the pixel to the element, on a dimension line just
 	// outside the cone, with short extension lines to the pixel and to the element's near rim

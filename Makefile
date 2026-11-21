@@ -127,7 +127,8 @@ figures: ## Redraw the paper's charts and renders from the reference implementat
 	@for f in paper/figures/fig_*.py; do echo "$(PY) $$f"; $(PY) $$f || exit 1; done
 
 figures-3d: ## Render the figures modelled in 3D (after make figures and make setup-3d)
-	cd figures3d && node render.mjs --final tidal sky-integral quadrupole line-integral earth-glow
+	cd figures3d && node render.mjs --final tidal sky-integral quadrupole line-integral earth-glow \
+		ladder two-readings hidden-flow near-field-geometry
 
 # --- cleaning -----------------------------------------------------------------------------------------------------
 

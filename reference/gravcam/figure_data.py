@@ -8,6 +8,7 @@ never ahead of the reference implementation.
 from __future__ import annotations
 
 import json
+import math
 import pathlib
 
 import numpy as np
@@ -369,9 +370,145 @@ def silent_flows():
     return out
 
 
+def ladder():
+    """The reach of a tide of given degree (Fig. ladder). The pair of bodies of readings.ladder_pair, each as
+    (mass, radius) shells in units of M and R; the energy that an impulsive tide of profile g = Re (x + iy)^n / n
+    gives each, int rho |grad g|^2 dV in units of M R^(2n-2) (to be multiplied by half the square of the tide's
+    strength), for n = 2 and 3; the gradient of each profile at a few places, for the arrows of the drawing; and,
+    for its panel (b), the number of polynomials of each degree d with Lap^m P = 0 (readings.ladder_dimension),
+    which a figure that draws 2L + 1 beads on each of the floors j < m must reproduce."""
+    from . import hair, readings
+
+    bodies = readings.ladder_pair(1.0, 1.0)
+    tides = []
+    for n in (2, 3):
+        gain = []
+        for body in bodies:
+            p, m = readings.shells_as_points(body)
+            grad = readings.power_gradient((1, 1j, 0), n, p).real
+            gain.append(float(np.real(hair.bilinear(m, grad, grad))))
+        # the kick of a part at the angle t on the unit circle of the plane z = 0, for checking the arrows
+        t = np.radians(np.arange(0.0, 360.0, 7.5))
+        ring = np.stack([np.cos(t), np.sin(t), np.zeros_like(t)], axis=1)
+        kick = readings.power_gradient((1, 1j, 0), n, ring).real
+        tides.append({"degree": n, "gain": gain, "angle_deg": np.degrees(t).tolist(), "kick": kick[:, :2].tolist()})
+    dimension = {str(m): [readings.ladder_dimension(d, m) for d in range(5)] for m in (1, 2, 3, 4)}
+    return {"bodies": [[list(shell) for shell in body] for body in bodies], "tides": tides, "dimension": dimension}
+
+
+TWO_READINGS_VIEW = (18.0, 25.0)
+"""The view of the cone in Fig. two-readings: degrees above the plane of K, and degrees turned about the axis of kap."""
+
+
+def two_readings():
+    """The two readings as one transform (Fig. two-readings). The cone kap = |K| is drawn from TWO_READINGS_VIEW, and
+    the pair (k, k') drawn in full lies on the two generators that are its outline from there, with |k| = 0.38 and
+    |k'| = 0.19 of the greatest kap drawn. Their sum is the point (K, kap) = (k + k', |k| + |k'|) inside the cone
+    (readings.cone_point). Returned with it: the ellipse of all the pairs that read that point, |k| + |k'| = kap
+    with k + k' = K (readings.pair_on_the_ellipse), the pair drawn and one more pair further
+    round it; and, for a scene of three masses, how far the transform found from the second reading of each
+    pair is from the scene's own at that point (readings.transform_from_second_reading against
+    readings.scene_transform): the pairs agree."""
+    from . import readings
+
+    tilt, turn = (math.radians(a) for a in TWO_READINGS_VIEW)
+    # the azimuth, in the plane of K, of the direction to the reader, and the half-width of the part of the cone
+    # whose outside faces the reader: the generators at its ends are the outline
+    toward = math.pi / 2 + turn
+    half = math.acos(math.tan(tilt))
+    k = 0.38 * np.array([math.cos(toward + half), math.sin(toward + half)])
+    kp = 0.19 * np.array([math.cos(toward - half), math.sin(toward - half)])
+    K, kap = readings.cone_point(k, kp)
+    # where the pair sits on its ellipse
+    focus = np.linalg.norm(K) / 2
+    e1 = K / (2 * focus)
+    e2 = np.array([-e1[1], e1[0]])
+    major, minor = kap / 2, math.sqrt((kap / 2) ** 2 - focus**2)
+    shown = math.atan2((k - K / 2) @ e2 / minor, (k - K / 2) @ e1 / major)
+    again = readings.pair_on_the_ellipse(K, kap, shown)
+    assert np.allclose(again[0], k) and np.allclose(again[1], kp)
+    angles = np.radians(np.arange(0.0, 360.0, 3.0))
+    ellipse = [readings.pair_on_the_ellipse(K, kap, t)[0].tolist() for t in angles]
+    others = [readings.pair_on_the_ellipse(K, kap, shown + math.radians(a))[0].tolist() for a in (225.0,)]
+    # a scene: three masses beneath the camera, at depths of the order of 1 / kap
+    points = np.array([[0.4, -0.3, 1.2], [-0.9, 0.5, 2.0], [0.2, 0.8, 0.7]])
+    masses = np.array([1.0, 2.0, 0.5])
+    exact = readings.scene_transform(points, masses, K, kap)
+    worst = max(abs(readings.transform_from_second_reading(points, masses, K, kap, t) - exact) for t in angles)
+    return {"tilt_deg": TWO_READINGS_VIEW[0], "turn_deg": TWO_READINGS_VIEW[1], "K": K.tolist(), "kap": kap,
+            "k": k.tolist(), "kp": kp.tolist(), "ellipse": ellipse, "others": others,
+            "axes": [major, minor], "symbol": readings.laplacian_symbol(K, kap),
+            "disagreement": float(worst / abs(exact))}
+
+
+def hidden_flow():
+    """The flow that two tides find (Fig. hidden-flow): the counter-rotating sphere of readings.py, uniform, its
+    inner ball of radius 2^(-1/5) R turning at +Omega and the rest at -Omega. Returned: that radius; the angular
+    momentum of each part, in units of M Omega R^2, to which the bracket of every quadrupolar pair is proportional;
+    and the share of each part in the bracket {dQ_h/dt, dQ_g/dt} of the octupolar pair h + ig = (x + iy)^3 / 3
+    (readings.rate_bracket), in units of M Omega R^4, with their sum. The first two cancel; the last two do not."""
+    from . import readings
+
+    M = Omega = R = 1.0
+    points, masses, velocities = readings.counter_rotating_sphere(M, Omega, R)
+    inner = np.linalg.norm(points, axis=1) < readings.INNER_RADIUS * R
+    momenta = masses[:, None] * velocities
+    spin = lambda part: float(np.sum(masses[part] * (points[part, 0] * velocities[part, 1]
+                                                       - points[part, 1] * velocities[part, 0])))
+
+    def bracket(part, n):
+        a = (1, 1j, 0)
+        g, H = readings.power_gradient(a, n, points[part]), readings.power_hessian(a, n, points[part])
+        return readings.rate_bracket(momenta[part], g.real, H.real, g.imag, H.imag)
+
+    out = {"inner_radius": readings.INNER_RADIUS,
+           "spin": [spin(inner), spin(~inner)],
+           "quadrupolar": [bracket(inner, 2), bracket(~inner, 2)],
+           "octupolar": [bracket(inner, 3), bracket(~inner, 3)],
+           "bracket": readings.hidden_spin_rate_bracket(M, Omega, R)}
+    assert abs(sum(out["octupolar"]) - out["bracket"]) < 1e-12 and abs(sum(out["spin"])) < 1e-12
+    return out
+
+
+def near_field_geometry():
+    """The geometry of the near field (Fig. near-field-geometry). Beneath a flat camera whose pixels are p apart,
+    cells of one size in the metric (dx^2 + dy^2 + dz^2) / z^2: the level n lies between the depths p 2^n and
+    p 2^(n+1) and its cells are p 2^n across, as wide as their tops are deep. Lengths here are in units of the
+    deepest level's top, 8 p. Two equal masses, each at the middle of a cell; what a row of pixels above them
+    records of each, -E_zz from tidal.point_mass_tidal_tensor, divided by its greatest value; the width of that
+    pattern at half its height, in units of the depth of the mass, which is the same for any depth; and the area
+    of a cell of each level in that metric, across and in depth, which is the same for every level."""
+    from scipy.optimize import brentq
+
+    from . import tidal
+
+    pitch, levels, width = 0.125, 4, 4.0                       # in units of 8 p: the block is 32 p wide and 16 p deep
+    tops = [pitch * 2**n for n in range(levels)]
+    masses = [[-1.375, 0.375], [0.5, 1.5]]                     # (place across, depth): in levels 1 and 3
+    for place, depth in masses:
+        n = int(math.floor(math.log2(depth / pitch)))
+        side = pitch * 2**n
+        assert abs((place + width / 2) / side % 1 - 0.5) < 1e-12 and abs(depth - 1.5 * side) < 1e-12
+    row = np.linspace(-width / 2, width / 2, 641)
+
+    def recorded(x, place, depth):
+        return -tidal.point_mass_tidal_tensor(np.array([x, 0.0, 0.0]), np.array([place, 0.0, -depth]), 1.0)[2, 2]
+
+    profiles = []
+    for place, depth in masses:
+        peak = recorded(place, place, depth)
+        profiles.append([recorded(x, place, depth) / peak for x in row])
+    half = brentq(lambda t: recorded(t, 0.0, 1.0) / recorded(0.0, 0.0, 1.0) - 0.5, 0.0, 1.0)
+    areas = [side * (1 / side - 1 / (2 * side)) for side in tops]            # int dx dz / z^2 over a cell
+    return {"pitch": pitch, "width": width, "tops": tops, "masses": masses, "row": row.tolist(),
+            "recorded": profiles, "width_at_half_height": 2 * half, "cell_areas": areas}
+
+
 FIGURES = {"stars": stars, "voices": voices, "ranging": ranging, "present": present_past,
            "speedometer": speedometer, "beyond": beyond_gr,
-           "two-pixels": two_pixels, "silent-flows": silent_flows}
+           "two-pixels": two_pixels, "silent-flows": silent_flows, "ladder": ladder,
+           "two-readings": two_readings, "hidden-flow": hidden_flow,
+           "near-field-geometry": near_field_geometry}
 
 
 def main(names=None) -> None:

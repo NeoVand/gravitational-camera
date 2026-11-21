@@ -9,14 +9,14 @@ dot. The dot does carry a message: its polarization tells which way the dumbbell
 is turning.
 \end{quote}
 
-Outside the near zone a source of mass quadrupole moment $Q_{ij}(t)$ produces
+Outside the near zone a source of mass quadrupole moment $I_{ij}(t)$ produces
 the strain
 \begin{equation}\label{eq:quadrupole}
 h_{ij}^{\TT}(t, r) = \frac{2G}{c^{4} r}\,
-\ddot Q_{ij}^{\TT}\!\left(t - \frac{r}{c}\right),
+\ddot I_{ij}^{\TT}\!\left(t - \frac{r}{c}\right),
 \end{equation}
-and radiates the power $P = (G/5c^{5})\,\langle \dddot Q_{ij}\,\dddot Q_{ij}
-\rangle$. For two masses $m$ a distance $d$ apart, turning about their centre
+and radiates the power $P = (G/5c^{5})\,\langle \dddot I_{ij}\,\dddot I_{ij}
+\rangle$, with the trace of $I_{ij}$ removed. For two masses $m$ a distance $d$ apart, turning about their centre
 at angular velocity $\Omega$,
 \begin{equation}\label{eq:dumbbell}
 P = \frac{8}{5}\,\frac{G m^{2} d^{4}\,\Omega^{6}}{c^{5}} .
@@ -31,8 +31,7 @@ while the masses move at $v = \Omega d/2$. Hence
 \frac{\lambda}{d} = \frac{\pi}{2}\,\frac{c}{v} ,
 \end{equation}
 and the same holds, up to a factor of order one, for any body whose parts move
-at speed $v$ through distances comparable with its size. The wavelength then
-exceeds the body by the factor by which light outruns it. No aperture can
+at speed $v$ through distances comparable with its size. No aperture can
 resolve an object much smaller than the wavelength it is seen by, so a compact,
 slowly moving body is a point in its own radiation. The exceptions are sources whose motion is
 small compared with their size: a large body vibrating with small amplitude,
@@ -42,15 +41,15 @@ show a form (Eq.~\eqref{eq:wave-zone} below).
 \paragraph{A source larger than its wave.} Far from any source, of whatever
 size and speed, the wave is
 \begin{equation}\label{eq:wave-zone}
-h_{ij}^{\TT}(\omega, R\hat n) = \frac{4G}{c^4 R}\,e^{i\omega R/c}\,
+h_{ij}^{\TT}(\omega, r\hat n) = \frac{4G}{c^4 r}\,e^{i\omega r/c}\,
 \Lambda_{ij,kl}(\hat n)\,\tilde T_{kl}\!\left(\omega, \frac{\omega\hat n}{c}\right),
 \end{equation}
-with $\Lambda$ the transverse traceless projection and $\tilde T_{kl}(\omega,
+with $\Lambda$ the transverse trace-free projection and $\tilde T_{kl}(\omega,
 \mathbf k) = \int T_{kl}\,e^{i\omega t - i\mathbf k\cdot\mathbf x}\,\dd t\,
 \dd^3x$: each direction carries one Fourier component of the stress, on the
-sphere $|\mathbf k| = \omega/c$. A camera at distance $R$ whose aperture $D$
-spans the directions within $D/R$ of the source reads a cap of that sphere,
-and so sees the source with detail $\lambda R/D$, as any aperture does. A
+sphere $|\mathbf k| = \omega/c$. A camera at distance $r$ whose aperture $D$
+spans the directions within $D/r$ of the source reads a cap of that sphere,
+and so sees the source with detail $\lambda r/D$, as any aperture does. A
 compact source is the point $\mathbf k \to 0$, Eq.~\eqref{eq:quadrupole}. The
 simplest source larger than its wave is many compact ones driven in step,
 such as the generators of a continental power grid, which turn together over
@@ -61,31 +60,30 @@ add their amplitudes, and $N$ rotors radiate $N^2$ times the power of one; far
 apart they add their powers, $N$ times. Such a source does show its form, but
 the camera must undo, for each point of the source, the delays from that
 point, not those of a plane wave, because an aperture wide enough to resolve
-it lies in its Fresnel zone, $D^2 \gg \lambda R$; and two sources in step are
-separated only once $D \gtrsim 1.4\,\lambda R/s$ for a separation $s$, against
-about $\lambda R/s$ for sources that are not, the familiar penalty of imaging
+it lies in its Fresnel zone, $D^2 \gg \lambda r$; and two sources in step are
+separated only once $D \gtrsim 1.4\,\lambda r/s$ for a separation $s$, against
+about $\lambda r/s$ for sources that are not, the familiar penalty of imaging
 in coherent light.
 
 \paragraph{The polarization of an unresolved source.} The radiation is not the same in all
 directions, and it is polarized (Fig.~\ref{fig:quadrupole}). Along the axis
 of rotation it is strongest and circularly polarized, with the handedness of
 the rotation; in the plane of rotation it is eight times weaker and linearly
-polarized. From the polarization alone, a camera can read the axis and sense
-of a rotor it cannot resolve.
+polarized.
 
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/quadrupole.pdf}
 \caption{Radiation from a spinning pair of masses. (a) The power sent in each
 direction, $(1 + 6\cos^2\iota + \cos^4\iota)/8$, against the angle $\iota$ from
-the spin $\boldsymbol\omega$, drawn as a curve in a plane containing the spin:
+the spin $\boldsymbol\Omega$, drawn as a curve in a plane containing the spin:
 strongest along the axis and eight times weaker in the plane of the orbit.
 Around it, at every $30^\circ$, the polarization an observer there sees, face
 on: an ellipse with semi-axes in proportion to $(1 + \cos^2\iota)/2$ and
 $|\cos\iota|$, filled magenta where the pattern of stretching turns
 anticlockwise as that observer sees it ($V/I > 0$) and green where it turns
-clockwise, as in Fig.~\ref{fig:which-way}, and as strongly as its circular
-share $|V/I|$ (Eq.~\eqref{eq:circular}); in the plane
+clockwise, as in Fig.~\ref{fig:which-way}, the depth of colour in proportion
+to $|V/I|$ (Eq.~\eqref{eq:circular}); in the plane
 of the orbit the wave is linearly polarized (a line). The pair at the centre is
 schematic. (b) The wavelength over the size of the source,
 Eq.~\eqref{eq:unresolved}, against the speed of its moving parts: for anything
@@ -102,23 +100,22 @@ h_+ = A\,\frac{1 + \cos^2\iota}{2}, \qquad h_\times = A\cos\iota,\\
 A = \frac{4G\,\Delta I\,\Omega^2}{c^4 r},
 \end{gathered}
 \end{equation}
-a quarter of a cycle apart, $h_+(t) = h_+\cos 2\Omega t'$ and
-$h_\times(t) = h_\times\sin 2\Omega t'$ with $t' = t - r/c$, measured on axes
-across the line of sight one of which lies along the projection of the spin
-(on axes turned by an angle $\psi$ the two mix as a spin-2 pair, while $I$
-and $V$ below do not change), where $\Delta I$ is the
-difference between the two
-principal moments of inertia in the plane of rotation ($md^2/2$ for the pair of
-Eq.~\eqref{eq:dumbbell}). The pattern of stretching that passes over the camera
+a quarter of a cycle apart: $h_+(t) = h_+\cos 2\Omega u$ and
+$h_\times(t) = h_\times\sin 2\Omega u$, with $u = t - r/c$. Here $\Delta I$ is
+the difference between the two principal moments of inertia in the plane of
+rotation ($md^2/2$ for the pair of Eq.~\eqref{eq:dumbbell}), and the axes lie
+across the line of sight, one of them along the projection of the spin; on
+axes turned through any angle the two amplitudes mix as a spin-two pair, while
+the Stokes parameters $I$ and $V$ below do not change. The pattern of stretching that passes over the camera
 therefore turns, and the share of the signal that is circularly polarized,
 the ratio of the Stokes parameters $V$ and $I$,
 \begin{equation}\label{eq:circular}
 \frac{V}{I} = \frac{2\,h_+ h_\times}{h_+^2 + h_\times^2},
 \end{equation}
 is positive when that pattern turns anticlockwise as the camera sees it, which
-is the sense in which the rotor itself appears to turn. It is $+1$ seen
-along the spin ($\iota = 0$, the rotor turning anticlockwise as seen), $-1$
-seen against it, and zero edge-on. The camera reads the sense of rotation
+is the sense in which the rotor itself appears to turn. It is $+1$ when the
+spin points at the camera ($\iota = 0$, the rotor turning anticlockwise as
+seen), $-1$ when it points away, and zero edge-on. The camera reads the sense of rotation
 from the sign of $V$ and the tilt of the axis from its size, without resolving
 the rotor at all (Fig.~\ref{fig:polarization}).
 
@@ -126,8 +123,8 @@ the rotor at all (Fig.~\ref{fig:polarization}).
 \centering
 \includegraphics[width=\columnwidth]{figures/polarization.pdf}
 \caption{The wave of a rotor seen from different directions: the amplitudes of
-its two polarizations, Eq.~\eqref{eq:rotor-amplitudes}, and its circular share
-$V/I$, Eq.~\eqref{eq:circular}, against the angle $\iota$ between the spin and
+its two polarizations, Eq.~\eqref{eq:rotor-amplitudes}, and its degree of
+circular polarization $V/I$, Eq.~\eqref{eq:circular}, against the angle $\iota$ between the spin and
 the direction of the camera. $V/I$ is $\pm1$ along the axis and changes sign
 edge-on, where the wave is linearly polarized: its sign gives the sense of
 rotation, its size the tilt.}\label{fig:polarization}
@@ -145,30 +142,27 @@ exactly by the projection in Eq.~\eqref{eq:quadrupole}, a statement we have
 verified numerically. The camera sees shear and lopsided motion, not pressure.
 
 Because everyday speeds are so far below that of light, these effects cannot
-be shown at human scale. A pair of balls turning once a second radiates waves
-150{,}000 km long, and a room is deep inside their near zone.
+be shown at human scale: a pair of balls turning once a second radiates waves
+$150{,}000\,\mathrm{km}$ long, and a room is deep inside their near zone.
 Figure~\ref{fig:which-way} is therefore drawn with the speed of light, and of
-gravity with it, set to twenty centimetres a second. The waves are then ten
-centimetres long, an array a metre
-and a half across resolves them to $4^\circ$, and each rotor appears as a spot.
-The change rescales the wavelength for display and nothing else; it is not a
-consistent world. The balls of the figure move at $1.4\,\mathrm{m/s}$, seven
-times faster than the slowed light, where Eq.~\eqref{eq:dumbbell} would not
-hold. Brightness is shown on a relative scale, and the polarization is that of
-Eq.~\eqref{eq:circular}, which does not depend on the speed of light: what the
-spot's colour says about the sense of turning is the same at any speed.
+gravity with it, set to twenty centimetres a second, so that the waves are ten
+centimetres long and an array a metre and a half across shows each rotor as a
+spot. The change rescales the wavelength and nothing else: the balls move at
+$1.4\,\mathrm{m\,s^{-1}}$, seven times faster than the slowed light, where
+Eq.~\eqref{eq:dumbbell} would not hold. The polarization,
+Eq.~\eqref{eq:circular}, does not depend on the speed of light.
 
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/which-way.pdf}
 \caption{Which way it turns, computed with the speed of light
-set to $20\,\mathrm{cm/s}$, so that the waves are $10\,\mathrm{cm}$ long and
+set to $20\,\mathrm{cm\,s^{-1}}$, so that the waves are $10\,\mathrm{cm}$ long and
 an array $1.5\,\mathrm{m}$ wide can resolve the boxes. Three sealed steel boxes on a shelf;
 in the top and middle ones a pair of balls turns once a second, in opposite
 senses, and the bottom pair is still. (a) Ordinary light, from the same
 camera: the boxes are sealed and look the same. (b) The waves: each turning
 pair is an Airy spot, Eq.~\eqref{eq:diffraction}, and the still pair is dark;
-the colour is the circular share $V/I$ of Eq.~\eqref{eq:circular}, magenta
+the colour is the degree of circular polarization $V/I$ of Eq.~\eqref{eq:circular}, magenta
 where the pattern of stretching turns anticlockwise as the camera sees it and
 green where it turns clockwise. At the true speed of light the waves are
 $1.5\times10^{8}\,\mathrm{m}$ long and nothing is resolved, but the

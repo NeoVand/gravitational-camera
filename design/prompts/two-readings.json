@@ -1,0 +1,18 @@
+{
+ "size": "1536x1024",
+ "figure": "A scientific figure for a physics paper about imaging buried matter by its gravity. On the left, a scene: a flat square array of small sensors floats above translucent ground that holds a few dense buried lumps. On the right, a diagram of what the array can learn, drawn as an upright cone standing on its tip in a three-axis frame: the two horizontal axes are the fineness of a pattern across the array in two directions, the vertical axis is how fast the pattern fades with depth. The thin surface of the cone is drawn in deep blue and labelled 'one look': a single reading of gravity knows the scene only on this surface. The solid inside of the cone is filled softly in burnt orange and labelled 'a push, then a look': pushing the scene with a tide and reading again fills in the interior. Two thin arrows run from the tip of the cone to two points on its blue surface, and a third arrow, their sum, ends at a marked point inside the cone: two readings on the surface combine to reach one point inside. A faint horizontal ellipse inside the cone passes through the two points, to show that many such pairs reach the same point. The only text allowed is the labels 'one look' and 'a push, then a look' and at most two short axis words. No equations. No decorative background.",
+ "variants": [
+  {
+   "name": "scene and cone",
+   "style": "Composition: the scene at left, about two fifths of the width; the cone diagram at right, large, the cone glassy so its filled interior, the arrows and the ellipse are visible. Look: a clean 3D-modelled technical illustration, softly shaded solids in warm sand and stone tones with thin single dark outlines, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes or dividing lines, generous whitespace, precise geometry."
+  },
+  {
+   "name": "the cone alone",
+   "style": "Composition: the cone alone, large and centred, seen slightly from above, its surface a thin blue skin cut away on the near side to show the softly filled orange interior, the three arrows and the ellipse; a very small sensor array and buried lumps as an inset at lower left. Look: a precise flat vector diagram, thin single dark hairlines, pale grey tints, exactly two accent colours, burnt orange (#b0560a) and deep blue (#2a67ad), pure white background, no boxes, no grid lines, generous whitespace, in the manner of a figure in a careful physics journal."
+  },
+  {
+   "name": "monograph plate",
+   "style": "Composition: one plate with the cone diagram, the three arrows and the ellipse, and a small sketch of the array above buried lumps. Look: fine black ink line drawing with delicate hatching for shading on white paper, in the manner of the figures in Misner, Thorne and Wheeler's Gravitation, a single burnt orange accent and a single deep blue accent used sparingly, crisp and exact, no clutter."
+  }
+ ]
+}

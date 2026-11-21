@@ -8,7 +8,7 @@
 // proportion between door and person; the hearth raises the furnace so that the line crosses its middle.
 import { sprite, tex, DIM, RULE, ACCENT, ACCENT2 } from '../lib.js';
 
-const TINT = { door: '#f1cfa9', iron: '#e5873a', person: '#eab489' };
+const TINT = { door: '#f1cfa9', iron: ACCENT, person: '#eab489' };   // the hot iron, brightest, in the accent itself
 const BODY_CENTRE = 0.6;           // the furnace's body (without hearth or chimney), its centre as a fraction of its height
 const FACE = 0.87;                 // the door's face, as a fraction of its drawn width; the rest is its thickness
 

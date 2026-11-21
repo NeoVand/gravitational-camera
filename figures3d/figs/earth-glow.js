@@ -5,10 +5,16 @@
 // from straight down, 50 below the horizon, as in Fig. 1: exact. Schematic: the observer, the stars,
 // the Sun's size and distance. (b) Brightness against angle, from the reference implementation
 // (paper/figures/charts.py), in the shells' colours.
-import { THREE, Panel, v3, figure, inset, globeMap, letter, INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
+import { THREE, Panel, v3, figure, inset, inkBox, globeMap, letter, INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
 
 const SHELLS = ['#f1e9de', '#f1d9bd', '#ebc59c', '#e2a86f', '#d48a46'];
 const SURFACE = '#a9b0b8';
+// the chart of (b), CHART_W points wide, its ink OUT points from the page's right edge, as the panel letter (a)'s is
+// from the left (the side bearing of its parenthesis); the page ends BELOW points under the lowest ink, that of the
+// chart or that of (a) (its label 11 degrees, LOW_A, measured on the rendered page)
+const CHART_W = 256, OUT = 0.72, BELOW = 2, LOW_A = 180.5;
+// the globe's raster: pixels per point (9: 648 per inch)
+const DENSITY = 9;
 
 function circle(r, n = 360, z = 0) {
 	const pts = [];
@@ -30,7 +36,7 @@ export default async function () {
 	const H = 196;
 	const P = new Panel({ x: 0, y: 0, w: 252, h: H, cx: 0.34, cy: -0.07, scale: 76, tilt: 14, turn: -26 });
 	// three quarters of the globe: the quarter in front of the reader (x > 0, z > 0) is cut away
-	const earth = await globeMap('/figures3d/textures/earth.jpg');
+	const earth = await globeMap('/figures3d/textures/earth.jpg', { smooth: true });
 	// the camera stands at latitude 40 north (the top of the figure), so the globe's axis leans 50 degrees from the
 	// figure's vertical, in the plane of the lines of sight (z = 0), toward the side on which the Sun lies: at local
 	// midnight at an equinox the Sun is below the northern horizon, at right angles to the axis. The map is sampled
@@ -38,7 +44,7 @@ export default async function () {
 	const lean = (50 * Math.PI) / 180;
 	const geographic = (q) => v3(q.x * Math.cos(lean) - q.y * Math.sin(lean), q.x * Math.sin(lean) + q.y * Math.cos(lean), q.z);
 	P.rasterSphere(v3(0, 0, 0), 1, (q) => earth(geographic(q), -Math.PI - 0.065), {
-		keep: (q) => !(q.x > 0 && q.z > 0), o: { spec: 0.1, shininess: 14, wrap: 0.45, ambient: 0.55, key: 0.6 }, density: 4, layer: -1
+		keep: (q) => !(q.x > 0 && q.z > 0), o: { spec: 0.1, shininess: 14, wrap: 0.45, ambient: 0.55, key: 0.6 }, density: DENSITY, layer: -1
 	});
 	// the globe's outline: the limb, only where the surface it belongs to is there. Where the limb would cross the
 	// cut-away quarter there is no surface; a line of sight there passes through the gap, and the outline of what
@@ -109,7 +115,10 @@ export default async function () {
 	P.sphere(sun, 0.15, '#f2a54a', { layer: 4, spec: 0.25, ambient: 0.75, key: 0.35 });
 	P.label('\\text{Sun}', sun.clone().add(v3(0.24, -0.02, 0)), { size: 7.5, anchor: 'lc', color: ACCENT });
 
-	const chart = await inset('/paper/figures/staging/earth-glow-chart.svg', 248, 4, 256);
-	const extra = [Promise.resolve(chart.svg), letter('a', 0), letter('b', 248)];
-	return figure(504, Math.ceil(Math.max(H, chart.h + 4)), [P], extra);
+	const url = '/paper/figures/staging/earth-glow-chart.svg';
+	const { box, vb } = await inkBox(url);
+	const f = CHART_W / vb[2], cx = 504 - OUT - (box[1] - vb[0]) * f, cy = 4;
+	const chart = await inset(url, cx, cy, CHART_W);
+	const extra = [Promise.resolve(chart.svg), letter('a', 0), letter('b', cx)];
+	return figure(504, Math.ceil(Math.max(LOW_A, cy + (box[3] - vb[1]) * f) + BELOW), [P], extra);
 }

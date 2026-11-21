@@ -58,6 +58,13 @@ FULL = 7.0              # inches: the width of the page's text
 WIDTH = FULL
 C = 299_792_458.0
 
+# One dashed and one dotted line for every figure, in points on the page whatever the line's weight (dashes are not
+# scaled by the weight: setup_fonts), and the weights of a chart's principal curve and of a secondary one
+DASH = (0, (3.2, 1.8))
+DOT = (0, (1.0, 1.0))
+CURVE = 1.1
+CURVE2 = 0.7
+
 
 def setup_fonts() -> None:
     """LaTeX and Latin Modern for every piece of text, as in the paper."""
@@ -84,6 +91,9 @@ def setup_fonts() -> None:
         "ytick.direction": "in",
         "text.color": INK,
         "lines.linewidth": 1.2,
+        "lines.scale_dashes": False,        # DASH and DOT are lengths on the page
+        # every curve written with all its points: simplified, it shows straight pieces and corners at 900 dpi
+        "path.simplify": False,
         "legend.frameon": False,
         "svg.fonttype": "path",
         "svg.hashsalt": "gravitational-camera",
@@ -275,14 +285,41 @@ def letter(ax, text: str) -> None:
     ax.set_title(text, loc="left", fontsize=8, pad=3)
 
 
+def ink_box(fig, dpi=300):
+    """The extent of what is drawn, in inches from the figure's lower left corner (x0, y0, x1, y1): every pixel of a
+    render at `dpi` that is not white, as the figures are measured."""
+    old = fig.dpi
+    fig.set_dpi(dpi)
+    fig.canvas.draw()
+    rgb = np.asarray(fig.canvas.buffer_rgba())[..., :3].astype(int)
+    fig.set_dpi(old)
+    ys, xs = np.nonzero(rgb.sum(axis=2) < 3 * 250)
+    rows = rgb.shape[0]
+    return xs.min() / dpi, (rows - 1 - ys.max()) / dpi, (xs.max() + 1) / dpi, (rows - ys.min()) / dpi
+
+
 def centre(fig) -> None:
     """Shift every axes sideways so that the drawing, labels included, has equal margins left and right."""
-    fig.canvas.draw()
-    box = fig.get_tightbbox(fig.canvas.get_renderer())        # inches
-    dx = ((fig.get_figwidth() - box.x1) - box.x0) / 2 / fig.get_figwidth()
-    for ax in fig.axes:
-        p = ax.get_position()
-        ax.set_position([p.x0 + dx, p.y0, p.width, p.height])
+    for _ in range(2):                  # the second pass takes up what the first one's rounding left
+        x0, _, x1, _ = ink_box(fig)
+        dx = ((fig.get_figwidth() - x1) - x0) / 2 / fig.get_figwidth()
+        for ax in fig.axes:
+            p = ax.get_position(original=True)
+            ax.set_position([p.x0 + dx, p.y0, p.width, p.height])
+
+
+def trim(fig, pad=2.0) -> None:
+    """Make the figure as tall as its drawing and `pad` points more above and below it, keeping the size of every
+    axes on the page (so every panel's proportions): the gap between a figure and its caption the same for all."""
+    for _ in range(2):
+        _, y0, _, y1 = ink_box(fig)
+        H = fig.get_figheight()
+        new = (y1 - y0) + 2 * pad / 72
+        shift = y0 - pad / 72
+        for ax in fig.axes:
+            p = ax.get_position(original=True)
+            ax.set_position([p.x0, (p.y0 * H - shift) / new, p.width, p.height * H / new])
+        fig.set_figheight(new)
 
 
 def arrow(ax, start, end, color=INK, width=0.8, head=5, both=False, z=3):
@@ -356,7 +393,7 @@ def regimes():
     ax.fill_between(f, np.clip(edge, r0, r1), r1, color=ACCENT, alpha=0.10, lw=0)
     # the edge itself, only where it crosses the chart
     inside = np.logspace(math.log10(C / (2 * np.pi * r1)), math.log10(C / (2 * np.pi * r0)), 100)
-    ax.plot(inside, C / (2 * np.pi * inside), color=INK, lw=0.9)
+    ax.plot(inside, C / (2 * np.pi * inside), color=INK, lw=CURVE)
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_xlim(f0, f1)
@@ -367,8 +404,11 @@ def regimes():
     ax.tick_params(labelsize=7)
     ax.set_xlabel(r"frequency of the source, $f$ (Hz)", fontsize=7.5)
     ax.set_ylabel(r"distance, $r$ (m)", fontsize=7.5)
-    ax.text(8e-9, 1e3, r"\textit{near field}", color=ACCENT2, fontsize=8.5, va="center")
-    ax.text(6e18, 1e3, r"\textit{wave zone}", color=ACCENT, fontsize=8.5, ha="right", va="center")
+    # the two zones' names the same distance in from the left and the right frame
+    for x, dx, name, colour, ha in ((0, 5, r"\textit{near field}", ACCENT2, "left"),
+                                    (1, -5, r"\textit{wave zone}", ACCENT, "right")):
+        ax.annotate(name, (x, 1e3), xycoords=("axes fraction", "data"), xytext=(dx, 0), textcoords="offset points",
+                    color=colour, fontsize=8.5, ha=ha, va="center")
     ax.annotate(r"$r = c/2\pi f$", xy=(3e5, C / (2 * np.pi * 3e5)), xytext=(3e7, 3e4),
                 fontsize=7, arrowprops=dict(arrowstyle="-", lw=0.5, color=DIM), color=INK, va="center")
     sources = [
@@ -386,12 +426,14 @@ def regimes():
     for fx, ry, label, (dx, dy), ha, thermal in sources:
         ax.plot(fx, ry, "o", ms=3.2, color=ACCENT if thermal else ACCENT2, mec="none")
         ax.annotate(label.replace("'", "’"), (fx, ry), xytext=(dx, dy), textcoords="offset points",
-                    ha=ha, va="center", fontsize=6.5, linespacing=1.0)
+                    ha=ha, va="center", fontsize=6.5, linespacing=1.15)
     # at the frequency of the last orbits, about two kilohertz
     ax.annotate("", xy=(2e3, 9e11), xytext=(2e3, 1e10), arrowprops=dict(arrowstyle="-|>", lw=0.7, color=INK))
     ax.text(8e2, 5e9, "neutron stars merging,\n$10^{12}$ times farther", fontsize=6.5, ha="left", va="top",
-            linespacing=1.0)
-    fig.subplots_adjust(left=0.15, right=0.97, top=0.98, bottom=0.15)
+            linespacing=1.15)
+    fig.subplots_adjust(left=0.15, right=0.97, top=0.96, bottom=0.15)
+    centre(fig)
+    trim(fig)
     save(fig, "regimes", web=True)
 
 
@@ -428,11 +470,11 @@ def nearfield():
     base = 0.45
     top.axhline(base, color=RULE, lw=0.5)
     top.fill_between(u, base, base + 0.85 * rec, color=ACCENT2, alpha=0.12, lw=0)
-    top.plot(u, base + 0.85 * rec, color=ACCENT2, lw=1.2)
+    top.plot(u, base + 0.85 * rec, color=ACCENT2, lw=CURVE)
     top.plot(np.linspace(-3.6, 3.6, 49), np.zeros(49), "s", ms=2.2, color=FAINT, mec="none")
     top.axhline(0, color=FAINT, lw=0.5)
     for c in sources:
-        top.plot([c, c], [-1, 0], color=FAINT, lw=0.5, ls=(0, (2, 2)))
+        top.plot([c, c], [-1, 0], color=FAINT, lw=0.5, ls=DOT)
         top.plot([c], [-1], "o", ms=5, color=ACCENT, mec="none", zorder=4)
     top.annotate("", xy=(-1.4, 0), xytext=(-1.4, -1), arrowprops=dict(arrowstyle="<->", lw=0.5, color=DIM))
     top.text(-1.32, -0.5, r"$z$", va="center", color=DIM)
@@ -446,8 +488,8 @@ def nearfield():
     # (b) the Wiener reconstruction
     bottom.axhline(0, color=FAINT, lw=0.5)
     for c in sources:
-        bottom.axvline(c, color=FAINT, lw=0.5, ls=(0, (2, 2)))
-    bottom.plot(u, rebuilt, color=ACCENT, lw=1.2)
+        bottom.axvline(c, color=FAINT, lw=0.5, ls=DOT)
+    bottom.plot(u, rebuilt, color=ACCENT, lw=CURVE)
     x1 = 3.55
     bottom.plot([x1 - fwhm, x1], [0.6, 0.6], color=INK, lw=0.8)
     for x in (x1 - fwhm, x1):
@@ -462,6 +504,7 @@ def nearfield():
     for side in ("top", "right"):
         bottom.spines[side].set_visible(False)
     centre(fig)
+    trim(fig)
     save(fig, "nearfield", web=True)
 
 
@@ -470,10 +513,10 @@ def nearfield():
 def resolution_law():
     fig, (left, right) = plt.subplots(1, 2, figsize=(FULL, 2.5), gridspec_kw={"wspace": 0.28})
     q = np.logspace(-1, math.log10(400), 800)
-    styles = [(3, INK, "-"), (6, ACCENT2, "-"), (20, ACCENT, "-"), (60, DIM, (0, (4, 2)))]
+    styles = [(3, INK, "-"), (6, ACCENT2, "-"), (20, ACCENT, "-"), (60, DIM, DASH)]
     for decades, color, ls in styles:
         snr = 10.0 ** decades
-        left.plot(q, resolution.transfer(q, snr), color=color, ls=ls, lw=1.1, label=rf"$10^{{{decades}}}$")
+        left.plot(q, resolution.transfer(q, snr), color=color, ls=ls, lw=CURVE, label=rf"$10^{{{decades}}}$")
         qc = resolution.cutoff(snr)
         left.plot([qc], [0.5], "o", ms=2.6, color=color, mec="none", zorder=3)
     left.set_xscale("log")
@@ -497,12 +540,12 @@ def resolution_law():
     dense = np.linspace(2, 100, 200)
     qcs = np.array([resolution.cutoff(10.0 ** x) for x in dense])
     lim = study["limits"]
-    right.plot(dense, lim["array_fwhm_times_q_c"] / qcs * deg, color=INK, lw=1.0, label=r"array, $4.43/q_c$")
-    right.plot(dense, lim["slice_fwhm_times_q_c"] / qcs * deg, color=ACCENT2, lw=1.0, label=r"row, $3.79/q_c$")
+    right.plot(dense, lim["array_fwhm_times_q_c"] / qcs * deg, color=INK, lw=CURVE, label=r"array, $4.43/q_c$")
+    right.plot(dense, lim["slice_fwhm_times_q_c"] / qcs * deg, color=ACCENT2, lw=CURVE, label=r"row, $3.79/q_c$")
     # the last points sit on the edge of the axes: drawn whole
     right.plot(d, array, "o", ms=2.6, color=INK, mec="none", clip_on=False, zorder=3)
     right.plot(d, row, "o", ms=2.6, color=ACCENT2, mec="none", clip_on=False, zorder=3)
-    right.plot(dense, math.pi / (dense * math.log(10)) * deg, color=ACCENT, ls=(0, (4, 2)), lw=1.0,
+    right.plot(dense, math.pi / (dense * math.log(10)) * deg, color=ACCENT, ls=DASH, lw=CURVE,
                label=r"estimate, $\pi/\ln\mathrm{SNR}$")
     right.set_xscale("log")
     right.set_yscale("log")
@@ -522,6 +565,7 @@ def resolution_law():
             ax.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.075, right=0.975, top=0.91, bottom=0.17)
     centre(fig)
+    trim(fig)
     save(fig, "resolution-law", web=True)
 
 
@@ -660,9 +704,9 @@ def polarization_curves():
     iota = np.linspace(0, 180, 361)
     values = [polarization(math.cos(math.radians(x))) for x in iota]
     ax.axhline(0, color=RULE, lw=0.5)
-    ax.plot(iota, [p["a_plus"] for p in values], color=ACCENT, lw=1.1, label=r"$h_+/A = (1+\cos^{2}\iota)/2$")
-    ax.plot(iota, [p["a_cross"] for p in values], color=ACCENT2, lw=1.1, label=r"$h_\times/A = \cos\iota$")
-    ax.plot(iota, [p["circular"] for p in values], color=INK, lw=1.1, ls=(0, (4, 2)), label=r"$V/I$")
+    ax.plot(iota, [p["a_plus"] for p in values], color=ACCENT, lw=CURVE, label=r"$h_+/A = (1+\cos^{2}\iota)/2$")
+    ax.plot(iota, [p["a_cross"] for p in values], color=ACCENT2, lw=CURVE, label=r"$h_\times/A = \cos\iota$")
+    ax.plot(iota, [p["circular"] for p in values], color=INK, lw=CURVE, ls=DASH, label=r"$V/I$")
     ax.set_xlim(0, 180)
     ax.set_ylim(-1.08, 1.08)
     ax.set_xticks([0, 45, 90, 135, 180])
@@ -674,6 +718,7 @@ def polarization_curves():
         ax.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.1, right=0.93, top=0.97, bottom=0.25)
     centre(fig)
+    trim(fig)
     save(fig, "polarization", web=True)
 
 
@@ -778,11 +823,11 @@ def array():
         g0, g1, c0, c1 = g[k - 1], g[k], curve[k - 1], curve[k]
         return 2 * (g0 + (c0 - 0.5) * (g1 - g0) / (c0 - c1))
 
-    curves = [(single, "one pixel", DIM, (0, (4, 2))), (airy(2), r"$D = 2\lambda$", ACCENT2, "-"),
+    curves = [(single, "one pixel", DIM, DASH), (airy(2), r"$D = 2\lambda$", ACCENT2, "-"),
               (airy(5), r"$D = 5\lambda$", INK, "-"), (airy(30), r"$D = 30\lambda$", ACCENT, "-")]
     ax.axhline(0, color=RULE, lw=0.5)
     for curve, name, color, ls in curves:
-        ax.plot(g, curve, color=color, ls=ls, lw=1.1, label=f"{name}: {fwhm(curve):.0f}°" if fwhm(curve) >= 10
+        ax.plot(g, curve, color=color, ls=ls, lw=CURVE, label=f"{name}: {fwhm(curve):.0f}°" if fwhm(curve) >= 10
                 else f"{name}: {fwhm(curve):.1f}°")
     ax.set_xlim(-90, 90)
     ax.set_ylim(-0.3, 1.05)
@@ -792,12 +837,15 @@ def array():
     ax.set_xlabel("angle away from the source")
     ax.set_ylabel("response")
     # the legend below the tick at 1.0 beside it
+    # 6.5 pt: at 7 pt the legend meets the curve of one pixel
     ax.legend(title="width at half height", title_fontsize=6.5, fontsize=6.5, loc="upper left",
               bbox_to_anchor=(0.0, 0.935), handlelength=1.25, handletextpad=0.6, labelspacing=0.2,
               borderaxespad=0.2)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.13, right=0.96, top=0.97, bottom=0.2)
+    centre(fig)
+    trim(fig)
     save(fig, "array", web=True)
 
 
@@ -817,45 +865,47 @@ def budget():
                 for i, (k, r) in enumerate(zip(shells, outer_r)))
     assert abs(earth / 5.7e9 - 1) < 0.02
     rows = [
-        ("The Sun", 2.1e23, True),
-        ("The Earth's interior*", earth, True),
-        ("Steel beam spun to breaking", 3.8e3, False),
-        ("Two 1-t masses, 48 turns/s", 8.1, False),
-        ("Two 1-kg masses, 16 turns/s", 2.1e-9, False),
-        ("A person", person, True),
-        ("A litre of boiling water", litre, True),
+        ("the Sun", 2.1e23, True),
+        ("the Earth's interior*", earth, True),
+        ("a steel beam spun to breaking", 3.8e3, False),
+        ("two 1-t masses, 48 turns/s", 8.1, False),
+        ("two 1-kg masses, 16 turns/s", 2.1e-9, False),
+        ("a person", person, True),
+        ("a litre of boiling water", litre, True),
     ]
     fig, ax = plt.subplots(figsize=(COL, 2.5))
     y = np.arange(len(rows))[::-1]
     lo = 1e-19
     for (name, rate, thermal), yy in zip(rows, y):
-        ax.barh(yy, rate - lo, left=lo, height=0.55, color=ACCENT if thermal else ACCENT2, alpha=0.85, lw=0)
+        ax.barh(yy, rate - lo, left=lo, height=0.55, color=ACCENT if thermal else ACCENT2, lw=0)
     ax.set_yticks(y)
-    ax.set_yticklabels([r[0].replace("'", "’") for r in rows], fontsize=6.5)
+    ax.set_yticklabels([r[0].replace("'", "’") for r in rows], fontsize=7.5)
     ax.tick_params(axis="y", length=0)
     ax.set_xscale("log")
     ax.set_xlim(lo, 1e25)
     ax.set_xticks([1e-18, 1e-9, 1, 1e9, 1e18])
     ax.minorticks_off()
-    ax.tick_params(axis="x", labelsize=6.5)
-    ax.set_xlabel("gravitons per second, whole object", fontsize=7)
-    marks = ((1 / 4.35e17, "one per age\nof universe"), (1.0, "one a\nsecond"))
+    ax.tick_params(axis="x", labelsize=7)
+    ax.set_xlabel("gravitons per second, whole object", fontsize=7.5)
+    marks = ((1 / 4.35e17, "one per age\nof the universe"), (1.0, "one a\nsecond"))
     for value, _ in marks:
-        ax.axvline(value, color=FAINT, lw=0.5, ls=(0, (2, 2)))
+        ax.axvline(value, color=FAINT, lw=0.5, ls=DOT)
     top = ax.secondary_xaxis("top")
     top.set_xticks([m[0] for m in marks])
-    top.set_xticklabels([m[1] for m in marks], fontsize=6.5, color=DIM, linespacing=1.0)
+    top.set_xticklabels([m[1] for m in marks], fontsize=7, color=DIM, linespacing=1.15)
     top.tick_params(length=0, pad=2)
     top.spines["top"].set_visible(False)
-    # swatches of the bars' own colour and opacity
+    # swatches of the bars' own colour
     from matplotlib.patches import Patch
-    swatches = [Patch(facecolor=ACCENT, alpha=0.85, lw=0, label="thermal glow"),
-                Patch(facecolor=ACCENT2, alpha=0.85, lw=0, label="bulk motion")]
-    ax.legend(handles=swatches, loc="lower right", handlelength=1.0, handleheight=1.0, fontsize=6.5)
+    swatches = [Patch(facecolor=ACCENT, lw=0, label="thermal glow"),
+                Patch(facecolor=ACCENT2, lw=0, label="bulk motion")]
+    ax.legend(handles=swatches, loc="lower right", handlelength=1.0, handleheight=1.0, fontsize=7)
     for side in ("top", "right", "left"):
         ax.spines[side].set_visible(False)
     ax.set_ylim(-0.6, len(rows) - 0.3)
     fig.subplots_adjust(left=0.45, right=0.97, top=0.88, bottom=0.17)
+    centre(fig)
+    trim(fig)
     save(fig, "budget", web=True)
 
 
@@ -1040,11 +1090,10 @@ def sun_at_midnight():
     # in light the Sun is hidden: mark where it is, with a circle that is round on the page (the panel is 16:9, its
     # axes run -1 to 1 both ways), its radius 0.055 of the panel's half-width
     ring = 0.055
-    axes[0].add_patch(Ellipse((px, py), 2 * ring, 2 * ring * w / h, fill=False, ec="#ffffff", lw=0.8,
-                              ls=(0, (1.5, 1.5))))
+    axes[0].add_patch(Ellipse((px, py), 2 * ring, 2 * ring * w / h, fill=False, ec="#ffffff", lw=0.8, ls=DOT))
     ring_pt = ring * axes[0].get_position().width * FULL * 72 / 2
     _on_image(axes[0].annotate("the Sun, behind\nthe Earth", (px, py), xytext=(px + 0.34, py - 0.06),
-                               fontsize=7, ha="left", va="center", linespacing=1.1,
+                               fontsize=7, ha="left", va="center", linespacing=1.15,
                                arrowprops=dict(arrowstyle="-", lw=0.6, color="#ffffff", shrinkA=2,
                                                shrinkB=ring_pt + 1.5)))
     # The Sun's core is a tenth of a degree across, smaller than a pixel, so
@@ -1069,7 +1118,7 @@ def sun_at_midnight():
                                arrowprops=dict(arrowstyle="-", lw=0.6, shrinkA=2, shrinkB=4)), dark=True)
     # the horizon, which light shows as the edge of the ground
     y_h = math.tan(math.radians(-pitch)) / t
-    axes[1].axhline(y_h, color="#ffffff", lw=0.5, ls=(0, (2, 2)), alpha=0.7)
+    axes[1].axhline(y_h, color="#ffffff", lw=0.5, ls=DOT, alpha=0.7)
     _on_image(axes[1].text(0.95, y_h + 0.04, "horizon", fontsize=6.5, ha="right", va="bottom"))
     # the bands are the Earth's shells: name each where it crosses the left of the picture
     nadir = np.degrees(np.arccos(np.clip(-d[..., 1], -1, 1)))
@@ -1089,7 +1138,9 @@ def sun_at_midnight():
         _on_image(axes[1].text(0.0, y, "the Earth’s core", fontsize=6.5, ha="center", va="center"), dark=True)
     _panel(axes[0], "(a) light, long exposure")
     _panel(axes[1], "(b) thermal gravitons")
-    _logscale_bar(fig, im, cax, low, high, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
+    _logscale_bar(fig, im, cax, low, high, r"$N$ (s$^{-1}$\,m$^{-2}$\,sr$^{-1}$)")
+    centre(fig)
+    trim(fig)
     print(f"  Sun's core: N = {sun_N:.3g} per s m^2 sr, flux {flux:.2f} per s m^2, at ({px:.2f}, {py:.2f})")
     save(fig, "sun-at-midnight", web=True)
 
@@ -1246,9 +1297,9 @@ def locked_safe():
     u = 1e-9
     a_read.axhline(0, color=RULE, lw=0.5)
     for (i, k), color in (((2, 2), ACCENT), ((0, 2), ACCENT2)):
-        a_read.plot(x, (both - alone)[:, i, k] / u, color=color, lw=0.7, ls=(0, (3, 2)))
-        a_read.plot(x, both[:, i, k] / u, color=color, lw=1.0)
-    a_read.plot(x, alone[:, 2, 2] / u, color=INK, lw=0.9)
+        a_read.plot(x, (both - alone)[:, i, k] / u, color=color, lw=CURVE2, ls=DASH)
+        a_read.plot(x, both[:, i, k] / u, color=color, lw=CURVE)
+    a_read.plot(x, alone[:, 2, 2] / u, color=INK, lw=CURVE)
     a_read.set_xlim(-row, row)
     a_read.set_ylim(-7.6, 3.6)
     a_read.set_yticks([-6, -4, -2, 0, 2])
@@ -1267,6 +1318,8 @@ def locked_safe():
 
     print(f"  locked-safe: the gold's largest component along the row {np.abs(alone).max():.2e} s^-2; "
           f"the safes' {np.abs(both).max():.2e}")
+    centre(fig)
+    trim(fig)
     save(fig, "locked-safe", web=True)
 
 
@@ -1301,11 +1354,13 @@ def closed_furnace():
     _outline(axes[1], scene, view, extent)
     axes[1].set_xlim(-1, 1)
     axes[1].set_ylim(-1, 1)
-    _on_image(axes[1].text(0.47, -0.78, "1500 K", ha="center", va="center", fontsize=7))
-    _on_image(axes[1].text(-0.47, -0.78, "293 K", ha="center", va="center", fontsize=7))
+    _on_image(axes[1].text(0.47, -0.78, r"1500\,K", ha="center", va="center", fontsize=7))
+    _on_image(axes[1].text(-0.47, -0.78, r"293\,K", ha="center", va="center", fontsize=7))
     _panel(axes[0], "(a) light")
     _panel(axes[1], "(b) thermal gravitons")
-    _logscale_bar(fig, im, cax, hi - 3, hi, r"$N$ (s$^{-1}$ m$^{-2}$ sr$^{-1}$)")
+    _logscale_bar(fig, im, cax, hi - 3, hi, r"$N$ (s$^{-1}$\,m$^{-2}$\,sr$^{-1}$)")
+    centre(fig)
+    trim(fig)
     save(fig, "closed-furnace", web=True)
 
 
@@ -1354,6 +1409,8 @@ def which_way():
     cb.set_ticklabels(["$-1$", "$0$", "$+1$"])
     cb.set_label(r"$V/I$", fontsize=7)
     cb.ax.tick_params(labelsize=6.5)
+    centre(fig)
+    trim(fig)
     save(fig, "which-way", web=True)
 
 
@@ -1430,6 +1487,8 @@ def tidal_field():
         ax.set_xticks([])
         ax.set_yticks([])
     fig.subplots_adjust(left=0.01, right=0.99, top=0.9, bottom=0.02)
+    centre(fig)
+    trim(fig)
     save(fig, "tidal-field", web=True)
 
 
@@ -1489,7 +1548,7 @@ def binary_field():
             ax.add_patch(Circle((sx, 0), 0.32 if half < 20 * d else 1.4, color=INK, lw=0, zorder=5))
         t = np.linspace(0, 2 * np.pi, 300)
         rn = lam / (2 * np.pi) / d
-        ax.plot(rn * np.cos(t), rn * np.sin(t), color=INK, lw=0.6, ls=(0, (2, 2)))
+        ax.plot(rn * np.cos(t), rn * np.sin(t), color=INK, lw=0.6, ls=DOT)
         ax.set_xlim(-half / d, half / d)
         ax.set_ylim(-half / d, half / d)
         ax.set_aspect("equal")
@@ -1518,9 +1577,9 @@ def binary_field():
         inside = (y >= low) & (y <= high)
         ax.loglog(x[inside], y[inside], **style)
 
-    curve(radii * amp, color=INK, lw=1.2, zorder=4)
-    curve(radii * newton, color=ACCENT2, lw=0.9, ls=(0, (3, 2)))
-    curve(radii * wave, color=ACCENT, lw=0.9, ls=(0, (3, 2)))
+    curve(radii * amp, color=INK, lw=CURVE, zorder=4)
+    curve(radii * newton, color=ACCENT2, lw=CURVE2, ls=DASH)
+    curve(radii * wave, color=ACCENT, lw=CURVE2, ls=DASH)
     ax.axvline(1 / (2 * np.pi), color=RULE, lw=0.6)
     ax.text(1 / (2 * np.pi) * 1.15, 1500, r"$\lambda/2\pi$", fontsize=7, ha="left", va="top", color=DIM)
     ax.set_xlim(x[0], x[-1])
@@ -1534,7 +1593,13 @@ def binary_field():
     ax.text(3.0, 1.6, "waves", color=ACCENT, fontsize=7, ha="left")
     ax.set_title("(c) strength", fontsize=8, loc="left", pad=3)
     fig.subplots_adjust(left=0.01, right=0.955, top=0.9, bottom=0.17)
+    # the same gap between the frames of (b) and (c) as between those of (a) and (b): (a) and (b) are square, and
+    # shrink inside their cells
+    fig.canvas.draw()
+    pa, pb, pc = (a.get_position() for a in axes)
+    axes[2].set_position([pb.x1 + (pb.x0 - pa.x1), pc.y0, pc.width, pc.height])
     centre(fig)
+    trim(fig)
     # scale bars, in units of the separation and of the wavelength: under (a) and (b), ending at their right
     # edges, level with the label of (c)'s axis
     from matplotlib.transforms import blended_transform_factory
@@ -1660,6 +1725,8 @@ def milky_way():
         cb.set_label("brightness", fontsize=7.5, labelpad=2)
     print(f"  waves: centre / anticentre = {waves[h // 2, w // 2] / waves[h // 2, 3]:.0f}; "
           f"light: {light[h // 2 + 3, w // 2, 1] / light[h // 2, 3, 1]:.2f}")
+    centre(fig)
+    trim(fig)
     save(fig, "milky-way", web=True)
 
 
@@ -1713,8 +1780,8 @@ def black_hole():
     ring = brentq(lambda p: sw.sweep(r_obs, p)[0] - math.pi, 1.0001 * sw.shadow_radius(r_obs), 1.2)
     phi = np.linspace(0, 2 * np.pi, 400)
     ex, ey = math.tan(ring) * np.cos(phi) / tx, math.tan(ring) * np.sin(phi) / (tx * h / w)
-    axes[0].plot(ex, ey, color="#ffffff", lw=0.6, ls=(0, (3, 2.5)), alpha=0.75)
-    axes[1].plot(ex, ey, color=INK, lw=0.6, ls=(0, (3, 2.5)), alpha=0.8)
+    axes[0].plot(ex, ey, color="#ffffff", lw=0.6, ls=DASH, alpha=0.75)
+    axes[1].plot(ex, ey, color=INK, lw=0.6, ls=DASH, alpha=0.8)
     for ax in axes[:2]:
         ax.set_xlim(-1, 1)
         ax.set_ylim(-1, 1)
@@ -1727,6 +1794,8 @@ def black_hole():
     cb.ax.tick_params(labelsize=6.5)
     cb.set_label(r"$T - %.3f\,\mathrm{K}$, in mK" % mean, fontsize=7, labelpad=2)
     print(f"  shadow radius {math.degrees(sw.shadow_radius(r_obs)):.1f} deg; mean T {mean:.4f} K")
+    centre(fig)
+    trim(fig)
     save(fig, "black-hole", web=True)
 
 
@@ -1742,10 +1811,10 @@ def sun_lens():
     fig, axes = plt.subplots(2, 1, figsize=(COL, 3.7), gridspec_kw={"hspace": 0.55})
     ax = axes[0]
     ax.axvline(1, color=RULE, lw=0.6)
-    ax.plot(b, arcsec, color=ACCENT, lw=1.2)
-    ax.plot(b[b >= 1], 1.7512 / b[b >= 1], color=ACCENT, lw=1.2)
+    ax.plot(b, arcsec, color=ACCENT, lw=CURVE)
+    ax.plot(b[b >= 1], 1.7512 / b[b >= 1], color=ACCENT, lw=CURVE)
     inner = (b < 1) & (1.7512 / b < 5.4)
-    ax.plot(b[inner], 1.7512 / b[inner], color=FAINT, lw=0.8, ls=(0, (3, 2)))
+    ax.plot(b[inner], 1.7512 / b[inner], color=FAINT, lw=CURVE2, ls=DASH)
     ax.set_xlim(0, 3)
     ax.set_ylim(-0.3, 5.5)                   # the first tick labels of the two axes apart
     ax.set_xlabel(r"impact parameter $b/R_\odot$")
@@ -1753,21 +1822,22 @@ def sun_lens():
     ax.text(1.06, 5.3, "the Sun's surface", fontsize=6.5, color=DIM, ha="left", va="top")
     ax.text(1.75, 1.55, r"$1.75''\,R_\odot/b$", fontsize=7, color=DIM, ha="left")
     ax.text(0.13, 4.4, r"$4.2''$", fontsize=7, color=ACCENT, ha="center", va="bottom")
-    ax.annotate("a point mass", (0.45, 1.7512 / 0.45), xytext=(1.06, 4.3), fontsize=6.5, color=FAINT,
-                ha="left", va="center", arrowprops=dict(arrowstyle="-", lw=0.5, color=FAINT, shrinkA=1, shrinkB=2))
+    # inside the Sun's surface, so that its leader does not cross the rule
+    ax.annotate("a point\nmass", (0.45, 1.7512 / 0.45), xytext=(0.7, 4.75), fontsize=6.5, color=DIM,
+                ha="center", va="center", linespacing=1.15, arrowprops=dict(arrowstyle="-", lw=0.5, color=FAINT, shrinkA=1, shrinkB=2))
     letter(ax, "(a) bending")
     ax = axes[1]
     ax.axvline(1, color=RULE, lw=0.6)
-    ax.semilogy(b, focus, color=ACCENT2, lw=1.2)
-    ax.axhline(23.5, color=FAINT, lw=0.7, ls=(0, (3, 2)))
-    ax.text(2.95, 26, "23.5 AU, standard solar model", fontsize=6.5, color=DIM, ha="right", va="bottom")
+    ax.semilogy(b, focus, color=ACCENT2, lw=CURVE)
+    ax.axhline(23.5, color=FAINT, lw=CURVE2, ls=DASH)
+    ax.text(2.95, 26, r"23.5\,AU, standard solar model", fontsize=6.5, color=DIM, ha="right", va="bottom")
     # above the curve's start, with a short grey leader down the gap between the axis and the curve, so that it
     # does not read as a curve
-    ax.annotate(f"{focus[0]:.1f} AU\nat the\ncentre", (0.0, focus[0]), xytext=(0.1, 420), fontsize=7,
+    ax.annotate(f"{focus[0]:.1f}\\,AU\nat the\ncentre", (0.0, focus[0]), xytext=(0.1, 420), fontsize=7,
                 color=ACCENT2, ha="left", va="center", linespacing=1.0,
                 arrowprops=dict(arrowstyle="-", lw=0.45, color=FAINT, shrinkA=0, shrinkB=2.5,
                                 relpos=(0.0, 0.0)))
-    ax.text(1.05, 548 / 1.6, "548 AU", fontsize=7, color=ACCENT2, ha="left", va="top")
+    ax.text(1.05, 548 / 1.6, r"548\,AU", fontsize=7, color=ACCENT2, ha="left", va="top")
     ax.set_xlim(0, 3)
     ax.set_ylim(10, 2e4)                     # the top tick below the panel's letter
     ax.set_yticks([1e2, 1e3, 1e4])
@@ -1780,6 +1850,7 @@ def sun_lens():
             a.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.17, right=0.97, top=0.95, bottom=0.11)
     centre(fig)
+    trim(fig)
     peak = b[np.argmax(arcsec)]
     print(f"  peak bending {arcsec.max():.2f} arcsec at b = {peak:.2f} R; shortest focus {focus[0]:.1f} AU")
     save(fig, "sun-lens", web=True)
@@ -1797,17 +1868,17 @@ def memory_patterns():
     fig, axes = plt.subplots(2, 1, figsize=(COL, 3.7), gridspec_kw={"hspace": 0.55})
     deg = np.degrees(angles)
     ax = axes[0]
-    ax.plot(deg, wave / wave.max(), color=ACCENT2, lw=1.1, label="oscillating wave")
-    ax.plot(deg, merger / merger.max(), color=ACCENT, lw=1.2, label="memory")
+    ax.plot(deg, wave / wave.max(), color=ACCENT2, lw=CURVE, label="oscillating wave")
+    ax.plot(deg, merger / merger.max(), color=ACCENT, lw=CURVE, label="memory")
     ax.legend(loc="lower center", bbox_to_anchor=(0.5, 0.02), fontsize=7, handlelength=1.6, labelspacing=0.2,
               frameon=False)
     letter(ax, "(a) a merger")
     ax.set_ylabel("strain (largest = 1)")
     ax = axes[1]
     one = 0.5 * (1 + ci)
-    ax.plot(deg, one, color=ACCENT, lw=1.2, label="one jet")
-    ax.plot(deg, np.full_like(deg, 0.5), color=ACCENT2, lw=1.1, label="two opposite jets")
-    ax.plot(deg, np.zeros_like(deg), color=INK, lw=1.1, ls=(0, (4, 2)), label="spherical")
+    ax.plot(deg, one, color=ACCENT, lw=CURVE, label="one jet")
+    ax.plot(deg, np.full_like(deg, 0.5), color=ACCENT2, lw=CURVE, label="two opposite jets")
+    ax.plot(deg, np.zeros_like(deg), color=INK, lw=CURVE, ls=DASH, label="spherical")
     ax.legend(loc="upper right", fontsize=7, handlelength=1.6, labelspacing=0.2, frameon=False)
     letter(ax, "(b) an explosion")
     ax.set_ylabel(r"$\Delta h \,/\, (4GE/c^4 r)$")
@@ -1821,6 +1892,7 @@ def memory_patterns():
             a.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.17, right=0.95, top=0.95, bottom=0.11)
     centre(fig)
+    trim(fig)
     save(fig, "memory", web=True)
 
 
@@ -1836,9 +1908,9 @@ def capacity():
     approx = np.array([cap.near_field_asymptotic(s) for s in snr])
     modes = np.array([cap.near_field_modes(s) for s in snr])
     fig, ax = plt.subplots(figsize=(COL, 2.35))
-    ax.plot(snr, exact, color=ACCENT, lw=1.1, label=r"bits, $C$")
-    ax.plot(snr, approx, color=INK, lw=0.7, ls=(0, (3, 2)), label=r"$(q_c^3/3 - q_c^2/2)/4\pi\ln 2$")
-    ax.plot(snr, modes, color=ACCENT2, lw=1.0, label=r"patterns resolved, $q_c^2/4\pi$")
+    ax.plot(snr, exact, color=ACCENT, lw=CURVE, label=r"bits, $C$")
+    ax.plot(snr, approx, color=INK, lw=CURVE2, ls=DASH, label=r"$(q_c^3/3 - q_c^2/2)/4\pi\ln 2$")
+    ax.plot(snr, modes, color=ACCENT2, lw=CURVE, label=r"patterns resolved, $q_c^2/4\pi$")
     # each value set above and to the left of its point, where the rising curves leave room; the first, close to
     # the axis, higher up, between the ticks, with a leader
     for s, label, (dx, dy) in ((1e3, r"38", (2, 20)), (1e30, r"$1.6\times10^{4}$", (-5, 7)),
@@ -1863,6 +1935,7 @@ def capacity():
         ax.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.15, right=0.96, top=0.97, bottom=0.19)
     centre(fig)
+    trim(fig)
     save(fig, "capacity", web=True)
 
 
@@ -1960,10 +2033,10 @@ def ranging():
     for s in d["instant"]:
         col = colours[s["iota"]]
         p = np.array(s["points"])
-        a.plot(kr, s["C"] / kr ** 2, color=col, lw=0.8)
+        a.plot(kr, s["C"] / kr ** 2, color=col, lw=CURVE)
         a.plot(p[:, 0], p[:, 1], "o", ms=2.8, color=col, mec="none", zorder=4)
         a.text(140, s["C"] / 130 ** 2, rf"${s['iota']}^\circ$", fontsize=7, color=col, va="center")
-    a.plot(kr, 0.5 / kr, color=FAINT, lw=0.6, ls=(0, (2.5, 2)))
+    a.plot(kr, 0.5 / kr, color=FAINT, lw=0.6, ls=DASH)
     a.text(9, 0.5 / 9 * 1.35, r"$\propto 1/kr$", fontsize=7, color=FAINT, ha="left", va="bottom")
     a.set_xscale("log")
     a.set_yscale("log")
@@ -1989,7 +2062,7 @@ def ranging():
     letter(b, "(b)")
     # (c) the two helicities point apart
     iota = np.linspace(6, 84, 200)
-    c.plot(iota, [pixel.helicity_split(math.radians(i)) for i in iota], color=INK, lw=0.8)
+    c.plot(iota, [pixel.helicity_split(math.radians(i)) for i in iota], color=INK, lw=CURVE)
     p = np.array(d["split"])
     c.plot(p[:, 0], p[:, 1], "o", ms=2.8, color=ACCENT, mec="none", zorder=4)
     c.text(30, 8 / math.tan(math.radians(30)) * 1.25, r"$8\,|\cot\iota|$", fontsize=7.5, ha="left", va="bottom")
@@ -2013,6 +2086,7 @@ def ranging():
     b.set_xticklabels(["10", "30", "100"])
     fig.subplots_adjust(left=0.075, right=0.985, top=0.91, bottom=0.19, wspace=0.42)
     centre(fig)
+    trim(fig)
     save(fig, "ranging", web=True)
 
 
@@ -2027,9 +2101,11 @@ def present_past():
     d = json.loads((ROOT / "reference/results/figures/present.json").read_text())
     H = 3.75
     fig = plt.figure(figsize=(COL, H))
-    a = fig.add_axes([0.0, 1.72 / H, 1.0, 1.85 / H])
-    b = fig.add_axes([0.17, 0.32 / H, 0.79, 1.17 / H])
+    # (a) and (b) with one left edge, so that their letters stand on one vertical; (a), drawn to scale, from there
+    a = fig.add_axes([0.15, 1.72 / H, 0.84, 1.85 / H])
+    b = fig.add_axes([0.15, 0.32 / H, 0.81, 1.17 / H])
     bare(a)
+    a.set_anchor("W")
     now, then, axis = (np.array(d[k][:2]) for k in ("present", "retarded", "axis"))
     y = now[1]
     a.plot([-1.25, 1.05], [y, y], color=RULE, lw=0.6, zorder=1)
@@ -2038,18 +2114,18 @@ def present_past():
     # the stretch axis of the exact field, through the present position, and the line light arrives along
     reach = 1.22 / axis[1]
     a.plot([0, axis[0] * reach], [0, axis[1] * reach], color=ACCENT, lw=0.9, zorder=2)
-    a.plot([0, then[0] * 1.0], [0, then[1] * 1.0], color=ACCENT2, lw=0.9, ls=(0, (3, 2)), zorder=2)
+    a.plot([0, then[0] * 1.0], [0, then[1] * 1.0], color=ACCENT2, lw=0.9, ls=DASH, zorder=2)
     a.plot(*now, "o", ms=6.5, color=INK, mec="none", zorder=4)
     a.plot(*then, "o", ms=6.5, mfc="#fffffe", mec=ACCENT2, mew=0.9, zorder=4)
     a.text(now[0] + 0.1, y - 0.1, "now", fontsize=7.5, va="top", ha="left")
     a.text(then[0] - 0.1, y - 0.1, "where light\nshows it", fontsize=7.5, va="top", ha="right", color=ACCENT2,
-           linespacing=1.0)
+           linespacing=1.15)
     a.text(axis[0] * 0.62 + 0.06, axis[1] * 0.62, r"stretch axis of $\mathcal{E}$", fontsize=7.5, color=ACCENT,
            ha="left", va="center")
     a.text(then[0] * 0.55 - 0.07, then[1] * 0.55, "light", fontsize=7.5, color=ACCENT2, ha="right", va="center")
     # the pixel, a ring of free masses stretched along the axis (exaggerated)
     ang = math.degrees(math.atan2(axis[1], axis[0]))
-    a.add_patch(Ellipse((0, 0), 0.2, 0.2, fill=False, ec=FAINT, lw=0.5, ls=(0, (1.5, 1.5)), zorder=3))
+    a.add_patch(Ellipse((0, 0), 0.2, 0.2, fill=False, ec=FAINT, lw=0.5, ls=DOT, zorder=3))
     a.add_patch(Ellipse((0, 0), 0.27, 0.15, angle=ang, fill=False, ec=ACCENT, lw=0.8, zorder=3))
     a.plot([0], [0], "o", ms=2.6, color=INK, mec="none", zorder=4)
     a.text(0.2, -0.04, "pixel", fontsize=7.5, va="center", ha="left")
@@ -2059,9 +2135,9 @@ def present_past():
     # (b) near an orbiting pair
     p = np.array(d["pair"])
     kr = np.logspace(math.log10(0.015), math.log10(0.4), 50)
-    b.plot(kr, kr, color=ACCENT2, lw=0.6, ls=(0, (3, 2)))
+    b.plot(kr, kr, color=ACCENT2, lw=0.6, ls=DASH)
     k2 = float(np.median(p[:, 1] / p[:, 0] ** 2))
-    b.plot(kr, k2 * kr ** 2, color=ACCENT, lw=0.6, ls=(0, (3, 2)))
+    b.plot(kr, k2 * kr ** 2, color=ACCENT, lw=0.6, ls=DASH)
     b.plot(p[:, 0], p[:, 2], "o", ms=2.8, color=ACCENT2, mec="none", zorder=4)
     b.plot(p[:, 0], p[:, 1], "o", ms=2.8, color=ACCENT, mec="none", zorder=4)
     b.text(0.017, 0.2, r"retarded positions, $kr$", fontsize=7, color=ACCENT2, ha="left", va="bottom")
@@ -2079,6 +2155,8 @@ def present_past():
     letter(b, "(b)")
     for side in ("top", "right"):
         b.spines[side].set_visible(False)
+    centre(fig)
+    trim(fig)
     save(fig, "present", web=True)
 
 
@@ -2128,10 +2206,12 @@ def buried_ruler():
             ax.set_yticks([])
             for sp in ax.spines.values():
                 sp.set_linewidth(0.4)
-                sp.set_color(RULE)
+                sp.set_color(INK)
     axes[0, 0].set_ylabel(r"$-\mathcal{E}_{zz}$", fontsize=8)
     axes[1, 0].set_ylabel(r"phase of the shear", fontsize=7.5)
     fig.subplots_adjust(left=0.075, right=0.995, top=0.925, bottom=0.005, wspace=0.05, hspace=0.05)
+    centre(fig)
+    trim(fig)
     save(fig, "buried-ruler", web=True)
 
 
@@ -2156,9 +2236,9 @@ def speedometer():
     a = fig.add_axes([left / COL, (foot + low_h + between) / height, width / COL, top_h / height])
     b = fig.add_axes([left / COL, foot / height, width / COL, low_h / height])
     bare(a)
-    a.plot([-4.0, 4.0], [0, 0], color=RULE, lw=0.6, ls=(0, (3, 2)), zorder=1)
+    a.plot([-4.0, 4.0], [0, 0], color=RULE, lw=0.6, ls=DASH, zorder=1)
     for i, (m, (x, y, _)) in enumerate(zip(d["masses"], room)):
-        a.add_patch(Circle((x, y), 0.16 * m ** (1 / 3), color="#a7a299", ec="none", zorder=3))
+        a.add_patch(Circle((x, y), 0.16 * m ** (1 / 3), color=FAINT, ec="none", zorder=3))
         if i == d["moving"]:
             arrow(a, (x + 0.5, y - 0.2), (x + 0.5, y + 0.55), color=ACCENT, width=0.7, head=4)
             a.text(x + 0.65, y + 0.15, rf"${d['u']}\,c$", color=ACCENT, fontsize=7.5, va="center")
@@ -2176,9 +2256,9 @@ def speedometer():
     moving = np.array([r["moving"]["alarm"] for r in path])
     still = np.array([r["still"]["alarm"] for r in path])
     error = np.array([r["still"]["error"] for r in path])
-    b.semilogy(x, moving, color=ACCENT, lw=0.9)
-    b.semilogy(x, still, color=INK, lw=0.7)
-    b.semilogy(x, error, color=ACCENT2, lw=0.7, ls=(0, (3, 2)))
+    b.semilogy(x, moving, color=ACCENT, lw=CURVE)
+    b.semilogy(x, still, color=INK, lw=CURVE2)
+    b.semilogy(x, error, color=ACCENT2, lw=CURVE2, ls=DASH)
     # each label just clear of its curve: above the highest point beneath it, or below the lowest
     def beneath(x0, half, values):
         return values[(x >= x0 - half) & (x <= x0 + half)]
@@ -2199,6 +2279,7 @@ def speedometer():
     for side in ("top", "right"):
         b.spines[side].set_visible(False)
     centre(fig)
+    trim(fig)
     save(fig, "speedometer", web=True)
 
 
@@ -2215,7 +2296,7 @@ def two_pixels():
     deg = np.degrees(p[:, 0])
     a.plot(deg, p[:, 1], color=FAINT, lw=0.45)
     a.plot(deg, p[:, 2], color=ACCENT, lw=0.6)
-    a.plot(deg, np.cos(p[:, 0] / 2) ** 8, color=INK, lw=0.7, ls=(0, (3, 2)))
+    a.plot(deg, np.cos(p[:, 0] / 2) ** 8, color=INK, lw=0.7, ls=DASH)
     a.text(0, 1.04, r"$\cos^8(\vartheta/2)$", fontsize=7.5, ha="center", va="bottom")
     a.text(-178, 1.09, "scalar sensors", color=DIM, fontsize=7, ha="left", va="bottom")
     a.text(178, 1.09, "two pixels", color=ACCENT, fontsize=7, ha="right", va="bottom")
@@ -2230,9 +2311,9 @@ def two_pixels():
     c = np.array(d["capon"])
     rho = np.logspace(0, 4, 100)
     th1 = d["theta1"]
-    b.loglog(rho, 1 + rho ** 2 * (1 - math.cos(th1 / 2) ** 8), color=ACCENT, lw=0.8)
+    b.loglog(rho, 1 + rho ** 2 * (1 - math.cos(th1 / 2) ** 8), color=ACCENT, lw=CURVE)
     b.loglog(c[:, 0], c[:, 1], "o", ms=2.8, color=ACCENT, mec="none")
-    b.loglog(rho, np.ones_like(rho), color=FAINT, lw=0.8)
+    b.loglog(rho, np.ones_like(rho), color=FAINT, lw=CURVE2)
     b.text(9000, 1.3, "scalar sensors", color=DIM, fontsize=7, va="bottom", ha="right")
     b.text(90, 12, "two pixels", color=ACCENT, fontsize=7, ha="right", va="bottom")
     b.set_xlim(0.9, 1.15e4)
@@ -2240,13 +2321,14 @@ def two_pixels():
     b.set_yticks([1, 10, 100, 1e3, 1e4, 1e5])
     b.minorticks_off()
     b.set_xlabel(rf"signal-to-noise ratio $\rho$, pixels ${d['D_capon']:g}\lambda$ apart", labelpad=2)
-    b.set_ylabel("true fringe over\nnearest false one")
+    b.set_ylabel("true fringe over\nnearest false one", linespacing=1.15)
     letter(b, "(b)")
     for ax in (a, b):
         for side in ("top", "right"):
             ax.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.2, right=0.97, top=0.95, bottom=0.11, hspace=0.62)
     centre(fig)
+    trim(fig)
     save(fig, "two-pixels", web=True)
 
 
@@ -2259,6 +2341,7 @@ def silent_flows():
     from matplotlib.colors import LinearSegmentedColormap
     from matplotlib.patches import Circle
     from scipy import ndimage
+    from scipy.optimize import brentq
     d = json.loads((ROOT / "reference/results/figures/silent-flows.json").read_text())
     g = np.array(d["g"])
     ramp = LinearSegmentedColormap.from_list("b", ["#fbf8f3", "#e8b98b", ACCENT, "#3d1b03"])
@@ -2280,13 +2363,15 @@ def silent_flows():
         B = B[tuple(idx)]
         ax.imshow(np.log10(np.maximum(B, 1e-12)), extent=(g[0], g[-1], g[0], g[-1]), origin="lower", cmap=ramp,
                   vmin=-4, vmax=0, interpolation="bilinear")
-        ax.add_patch(Circle((0, 0), 1.1, fc=PAGE, ec="none", zorder=1.5))
+        if key == "swirl":
+            # the white margin; outside the rolls the field is nil, the map's palest tone, which needs none
+            ax.add_patch(Circle((0, 0), 1.1, fc=PAGE, ec="none", zorder=1.5))
         ax.add_patch(Circle((0, 0), 1.0, fc=PAGE, ec=INK, lw=0.6, zorder=2))
-        ax.plot([0, 0], [-1.25, 1.25], color=RULE, lw=0.5, ls=(0, (2, 2)), zorder=2.5)
+        ax.plot([0, 0], [-1.25, 1.25], color=RULE, lw=0.5, ls=DOT, zorder=2.5)
         if key == "swirl":
             for x, z in ((0.5, 0.0), (0.38, 0.45), (0.38, -0.45)):
                 ax.plot([x], [z], marker="o", ms=5, mfc=PAGE, mec=ACCENT2, mew=0.7, zorder=3)
-                ax.plot([x], [z], marker="x", ms=3.2, mec=ACCENT2, mew=0.7, zorder=3.1)
+                ax.plot([x], [z], marker="x", ms=3.2, mec=ACCENT2, mfc="none", mew=0.7, zorder=3.1)
                 ax.plot([-x], [z], marker="o", ms=5, mfc=PAGE, mec=ACCENT2, mew=0.7, zorder=3)
                 ax.plot([-x], [z], marker="o", ms=1.4, color=ACCENT2, zorder=3.1)
         else:
@@ -2295,15 +2380,30 @@ def silent_flows():
             fractions = (0.12, 0.4, 0.75)
             ax.contour(X, Z, Psi, levels=[f * top_psi for f in fractions], colors=ACCENT2, linewidths=0.55,
                        zorder=3)
-            for f in fractions:
-                # each line crosses the equator twice on each side, rising on the inner crossing and sinking on the
-                # outer: an arrowhead on the outer one
-                xs = h[(h > 0) & (h < 1)]
-                ps = 2 * p * xs * xs * (1 - xs * xs) ** (p - 1) - f * top_psi
-                k = np.nonzero(np.diff(np.sign(ps)))[0][-1]
-                x0 = xs[k] - ps[k] * (xs[k + 1] - xs[k]) / (ps[k + 1] - ps[k])
+            # one arrowhead on each line, at different places round the roll's centre (varpi^2 = 1/(2p - 1), z = 0),
+            # so that the three do not stand abreast: on the right the flow turns clockwise, on the left anticlockwise
+            def psi(x, z):
+                r2 = x * x + z * z
+                return 2 * p * x * x * max(1 - r2, 0.0) ** (p - 1)
+
+            centre_x = (1 / (2 * p - 1)) ** 0.5
+            for f, clock in zip(fractions, (10, 8, 9)):            # where the lines run straight
+                th = math.radians(90 - 30 * clock)                  # o'clock, as on a clock face
+                u = np.array([math.cos(th), math.sin(th)])
+                ts = np.linspace(1e-6, 1, 2001)                      # out to the axis or the wall
+                ts = ts[(centre_x + ts * u[0] > 0) & ((centre_x + ts * u[0]) ** 2 + (ts * u[1]) ** 2 < 1)]
+                t0 = brentq(lambda t: psi(centre_x + t * u[0], t * u[1]) - f * top_psi, ts[0], ts[-1])
+                x0, z0 = centre_x + t0 * u[0], t0 * u[1]
+                e = 1e-6                                            # the gradient, and clockwise along the line
+                gx = (psi(x0 + e, z0) - psi(x0 - e, z0)) / (2 * e)
+                gz = (psi(x0, z0 + e) - psi(x0, z0 - e)) / (2 * e)
+                along = np.array([-gz, gx]) / math.hypot(gx, gz)
+                if along @ np.array([u[1], -u[0]]) < 0:             # clockwise about the centre
+                    along = -along
                 for sx in (1, -1):
-                    arrow(ax, (sx * x0, 0.06), (sx * x0, -0.06), color=ACCENT2, width=0.0, head=3.0, z=3.2)
+                    d = along * [sx, 1]
+                    arrow(ax, (sx * x0 - 0.06 * d[0], z0 - 0.06 * d[1]), (sx * x0 + 0.06 * d[0], z0 + 0.06 * d[1]),
+                          color=ACCENT2, width=0.0, head=3.0, z=3.2)
         letter(ax, title)
         ax.set_xlim(g[0], g[-1])
         ax.set_ylim(g[0], g[-1])
@@ -2311,9 +2411,11 @@ def silent_flows():
         ax.set_yticks([])
         for sp in ax.spines.values():
             sp.set_linewidth(0.4)
-            sp.set_color(RULE)
+            sp.set_color(INK)
     axes[1].text(1.9, -1.88, r"$\mathcal{B} = 0$ outside", fontsize=7, ha="right", va="bottom", color=DIM)
     fig.subplots_adjust(left=0.01, right=0.99, top=0.91, bottom=0.01, wspace=0.05)
+    centre(fig)
+    trim(fig)
     save(fig, "silent-flows", web=True)
 
 
@@ -2327,7 +2429,7 @@ def earth_inverted():
     from gravcam.scene import load_scene
     scene = load_scene(ROOT / "scenes" / "sun-at-midnight.scene.json")
     layers = ["inner-core", "outer-core", "lower-mantle", "upper-mantle", "earth"]
-    names = ["inner\ncore", "outer core", "lower mantle", "upper\nmantle", "crust"]
+    names = ["inner\ncore", "outer core", "lower mantle", "upper mantle", "crust"]
     shells = ["#d48a46", "#e2a86f", "#ebc59c", "#f1d9bd", "#f1e9de"]      # as in Fig. earth-glow
     radii = np.array([scene[k].shape.radius for k in layers])
     jN = emission.number_emissivities(scene)
@@ -2360,8 +2462,8 @@ def earth_inverted():
     # all four fitted boundaries (the outer radius is known and held); the last two stop below the legend
     for r, top in zip(r_fit[:-1], (top_a, top_a, 0.65 * top_a, 0.65 * top_a)):
         g = math.degrees(math.asin(r / rho))
-        ax.plot([g, g], [0, top], color=FAINT, lw=0.45, ls=(0, (2, 2)), zorder=0.5)
-    ax.plot(np.degrees(theta), abel.radiance(r_fit, j_fit, theta, rho) / unit, color=ACCENT, lw=0.9, zorder=2,
+        ax.plot([g, g], [0, top], color=FAINT, lw=0.45, ls=DOT, zorder=0.5)
+    ax.plot(np.degrees(theta), abel.radiance(r_fit, j_fit, theta, rho) / unit, color=ACCENT, lw=CURVE, zorder=2,
             label="fit: five shells")
     ax.errorbar(mid, est, yerr=bar, fmt="o", ms=1.6, color=INK, mec="none", elinewidth=0.45, capsize=0, zorder=3,
                 label="counts in rings of $1^\\circ$")
@@ -2370,7 +2472,7 @@ def earth_inverted():
     ax.set_xticks([0, 15, 30, 45, 60, 75, 90])
     ax.set_xticklabels([rf"${t}^\circ$" for t in (0, 15, 30, 45, 60, 75, 90)])
     ax.set_xlabel("angle of the line of sight from straight down")
-    ax.set_ylabel(r"$N$ ($10^{-5}$ s$^{-1}$m$^{-2}$sr$^{-1}$)")
+    ax.set_ylabel(r"$N$ ($10^{-5}$ s$^{-1}$\,m$^{-2}$\,sr$^{-1}$)")
     ax.legend(loc="upper right", handlelength=1.4, labelspacing=0.25)
     letter(ax, "(a)")
     # (b) each shell's friction, read from its emissivity at its assumed temperature, against radius; the dashed
@@ -2381,7 +2483,7 @@ def earth_inverted():
     u = 1e-4
     true = np.array([abel.friction_from_counts(a, t) for a, t in zip(j, temps)])
     edge = np.concatenate([[0.0], radii]) / 1e6
-    given = dict(color=DIM, lw=0.75, ls=(0, (2.2, 1.4)), zorder=4)
+    given = dict(color=DIM, lw=0.75, ls=DASH, zorder=4)
     for k in range(4):
         bx.plot([edge[k], edge[k + 1]], [true[k] / u] * 2, **given)
     bx.plot([6.358 - 0.09, 6.358 + 0.09], [true[4] / u] * 2, **given)
@@ -2390,12 +2492,16 @@ def earth_inverted():
         bx.add_patch(plt.Rectangle((inner[k], lo / u), outer[k] - inner[k], (hi - lo) / u, facecolor=shells[k],
                                    edgecolor=ACCENT, lw=0.6, zorder=2))
         bx.plot([inner[k], outer[k]], [eta[k] / u] * 2, color=ACCENT, lw=0.9, zorder=3)
-        # each name clear of its box and of the model's line: above, or for the thin upper mantle below
+        # each name above its box and the model's line; the thin upper mantle's on one line to the left of its box,
+        # so that the crust's dash, below and to the right, stands alone
         lines = 1 + names[k].count("\n")
-        y = (min(lo, true[k]) / u - 0.22 * lines - 0.12) if k == 3 else (max(hi, true[k]) / u + 0.22 * lines + 0.1)
-        # the upper mantle's name ends short of the crust's bar beside it
-        bx.text(outer[k] - 0.16 if k == 3 else 0.5 * (inner[k] + outer[k]), y, names[k], fontsize=6.5, color=DIM,
-                ha="right" if k == 3 else "center", va="center", linespacing=1.0)
+        if k == 3:
+            bx.text(inner[k] - 0.08, 0.5 * (min(lo, true[k]) + max(hi, true[k])) / u, "upper mantle", fontsize=6.5,
+                    color=DIM, ha="right", va="center")
+            continue
+        y = max(hi, true[k]) / u + 0.22 * lines + 0.1
+        bx.text(0.5 * (inner[k] + outer[k]), y, names[k], fontsize=6.5, color=DIM, ha="center", va="center",
+                linespacing=1.15)
     # no caps: the model's dash crosses the bar near its foot
     bx.errorbar([6.358], [eta[4] / u], yerr=[eta_err[4] / u], fmt="o", ms=2.2, color=ACCENT, elinewidth=0.6,
                 capsize=0, zorder=3)
@@ -2406,13 +2512,14 @@ def earth_inverted():
     bx.set_yticks(np.arange(1, top_b + 0.5, 1.0))
     bx.set_xticks([0, 1, 2, 3, 4, 5, 6])
     bx.set_xlabel(r"radius ($10^3$ km)")
-    bx.set_ylabel(r"friction, $\eta$ ($10^{-4}$ Pa s)")
+    bx.set_ylabel(r"friction, $\eta$ ($10^{-4}$ Pa\,s)")
     letter(bx, "(b)")
     for a in (ax, bx):
         for side in ("top", "right"):
             a.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.15, right=0.97, top=0.955, bottom=0.09)
     centre(fig)
+    trim(fig)
     save(fig, "earth-inverted", web=True)
 
 
@@ -2505,6 +2612,8 @@ def same_outside():
     print(f"  same outside: flush peak {peak / unit:.1f} m/(4 pi R^3), far wall "
           f"{float(ns.harmonic_point(m, s, R, R, -1.0)) / unit:.3f}; trace moments", ns.trace_moments(m, s, R),
           "inertia x", ns.inertia(m, s, R, "x"))
+    centre(fig)
+    trim(fig)
     save(fig, "same-outside", web=True)
 
 
@@ -2522,24 +2631,24 @@ def black_hole_camera():
     far = lens.distance_for_tide(M, person)
     d = np.logspace(math.log10(rs), math.log10(2.9e7), 400)
     fig, ax = plt.subplots(figsize=(COL, 2.3))
-    ax.plot(d, lens.tide(M, d), color=INK, lw=0.9)
-    ax.axhline(person, color=ACCENT2, lw=0.7, ls=(0, (3, 2)), zorder=1)
-    ax.text(1.6e-4, person * 3.5, r"a person a metre from the camera, $10^{-8}$ s$^{-2}$", fontsize=6.5, color=ACCENT2, va="bottom")
-    pts = [(rs, "horizon, 0.2 mm", (6, 0), "left"),
-           (1.0, r"1 m: ring $1.2^\circ$", (6, 2), "left"),
-           (cam, "the camera: 26 km,\n" r"ring $25''$, orbit 9 s", (-6, -2), "right"),
-           (far, "12,500 km", (-4, -4), "right")]
+    ax.plot(d, lens.tide(M, d), color=INK, lw=CURVE)
+    ax.axhline(person, color=ACCENT2, lw=CURVE2, ls=DASH, zorder=1)
+    ax.text(1.6e-4, person * 3.5, r"a person a metre from the camera, $10^{-8}$\,s$^{-2}$", fontsize=6.5, color=ACCENT2, va="bottom")
+    pts = [(rs, r"horizon, 0.2\,mm", (6, 0), "left"),
+           (1.0, r"1\,m: ring $1.2^\circ$", (6, 2), "left"),
+           (cam, "the camera: 26\\,km,\n" r"ring $25''$, orbit 9\,s", (-6, -2), "right"),
+           (far, r"12,500\,km", (-4, -4), "right")]
     for x, label, (dx, dy), ha in pts:
         y = lens.tide(M, x)
         ax.plot([x], [y], "o", ms=3.0, color=ACCENT, mec="none", zorder=4)
         ax.annotate(label, (x, y), xytext=(dx, dy), textcoords="offset points", fontsize=6.5, ha=ha,
-                    va="bottom" if dy >= 0 else "top", linespacing=1.1)
+                    va="bottom" if dy >= 0 else "top", linespacing=1.15)
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_xlim(1e-4, 3e7)
     ax.set_ylim(1e-12, 1e27)
     ax.set_xticks([1e-4, 1e-2, 1, 1e2, 1e4, 1e6])
-    ax.set_xticklabels(["0.1 mm", "1 cm", "1 m", "100 m", "10 km", "1000 km"])
+    ax.set_xticklabels([r"0.1\,mm", r"1\,cm", r"1\,m", r"100\,m", r"10\,km", r"1000\,km"])
     ax.set_yticks([1e-10, 1e-5, 1, 1e5, 1e10, 1e15, 1e20, 1e25])
     ax.minorticks_off()
     ax.set_xlabel("distance from the hole")
@@ -2547,6 +2656,8 @@ def black_hole_camera():
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
     fig.subplots_adjust(left=0.17, right=0.97, top=0.97, bottom=0.18)
+    centre(fig)
+    trim(fig)
     save(fig, "black-hole-camera", web=True)
 
 
