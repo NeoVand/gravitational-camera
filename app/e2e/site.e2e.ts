@@ -548,14 +548,21 @@ test('two black holes: the field turns, and stops when told to', async ({ page }
 	const canvas = page.locator('canvas');
 	const frames = async () => Number(await canvas.getAttribute('data-frames'));
 	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(5);
+	// the field turns: a pixel's colour moves on, however slowly the frames come (on the software adapter
+	// a fixed wait can catch the turn where that pixel barely changes)
 	const a = await sample(page, 0.75, 0.5);
-	await page.waitForTimeout(400);
-	const b = await sample(page, 0.75, 0.5);
-	expect(distance(a, b), JSON.stringify({ a, b })).toBeGreaterThan(5);
+	await expect
+		.poll(async () => distance(a, await sample(page, 0.75, 0.5)), { timeout: 15_000 })
+		.toBeGreaterThan(5);
+	// still: the loop keeps drawing with the clock stopped, so frames drawn after the click agree
 	await page.getByRole('button', { name: 'Still' }).click();
-	await page.waitForTimeout(200);
+	const stopped = await frames();
+	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(stopped + 1);
 	const c = await sample(page, 0.75, 0.5);
+	const held = await frames();
+	// long enough for a running field to have moved on, and at least two frames drawn meanwhile
 	await page.waitForTimeout(400);
+	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(held + 1);
 	const d = await sample(page, 0.75, 0.5);
 	expect(distance(c, d), JSON.stringify({ c, d })).toBeLessThan(1);
 });
