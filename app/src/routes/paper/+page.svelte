@@ -112,7 +112,7 @@
 		</ol>
 	</nav>
 
-	<article {@attach followReading} {@attach fitEquations}>
+	<article class="paper" {@attach followReading} {@attach fitEquations}>
 		<header>
 			<p class="kicker">Working draft</p>
 			<h1>{@html paper.title}</h1>
@@ -514,6 +514,21 @@
 	@media (prefers-color-scheme: dark) {
 		:global(:root:not([data-theme='light']) svg.drawing image.ink) {
 			filter: invert(1);
+		}
+	}
+
+	/* a long page of reading at night wants a darker ground than the pictures' umber */
+	:global(:root[data-theme='dark']:has(article.paper)) {
+		--bg: #18120c;
+		--bg-raised: #21190f;
+		--bg-sunken: #110d08;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:global(:root:not([data-theme='light']):has(article.paper)) {
+			--bg: #18120c;
+			--bg-raised: #21190f;
+			--bg-sunken: #110d08;
 		}
 	}
 

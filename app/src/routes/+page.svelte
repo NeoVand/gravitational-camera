@@ -217,6 +217,7 @@
 					bind:view
 					bind:divider={seam}
 					embedded
+					seamless
 					leftLabel="Light"
 					rightLabel="Gravity"
 				/>
@@ -307,7 +308,8 @@
 		color: #fff;
 	}
 
-	/* the seam, from the top of the page to the bottom: a hairline in a strip wide enough to grab */
+	/* the seam, from the top of the page to the bottom: an invisible strip wide enough to grab, whose
+	   handle shows where the pointer is */
 	.seam {
 		position: absolute;
 		top: 0;
@@ -319,17 +321,6 @@
 		cursor: ew-resize;
 		touch-action: pan-y;
 		user-select: none;
-	}
-
-	.seam::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 50%;
-		width: 1px;
-		translate: -0.5px 0;
-		background: rgb(232 164 90 / 0.75);
 	}
 
 	/* the same handle as the picture's divider, where the pointer meets the seam */

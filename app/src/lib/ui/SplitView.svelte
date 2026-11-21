@@ -100,6 +100,8 @@
 		overlay?: Snippet;
 		/** Darken the right-hand picture so an overlay reads clearly. */
 		dimRight?: boolean;
+		/** No hairline along the divider: the two views simply meet, and only the handle shows. */
+		seamless?: boolean;
 	}
 
 	let {
@@ -132,7 +134,8 @@
 		image,
 		noise,
 		overlay,
-		dimRight = false
+		dimRight = false,
+		seamless = false
 	}: Props = $props();
 
 	const MIN_FOV = (0.4 * Math.PI) / 180;
@@ -442,7 +445,7 @@
 		{/if}
 		{#if showLight && showGravity}
 			<div
-				class="divider"
+				class={['divider', { seamless }]}
 				style:left="{split * 100}%"
 				role="slider"
 				tabindex="0"
@@ -568,6 +571,10 @@
 		left: 50%;
 		width: 1px;
 		background: rgb(255 255 255 / 0.7);
+	}
+
+	.divider.seamless::before {
+		display: none;
 	}
 
 	.divider:focus-visible {
