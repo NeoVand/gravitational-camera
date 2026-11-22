@@ -274,12 +274,27 @@ found from the Regge--Wheeler equation, and $x = GM\omega/c^3$,
 \end{aligned}
 \end{equation}
 A round body of the hole's mass has this sum if its mass lies at a
-root-mean-square radius of $1.02\,r_s$: to a changing tide a hole that does
+root-mean-square radius of $1.02\,r_s$: to a changing quadrupolar tide a hole that does
 not turn has the inertia of a shell of its own mass just outside its horizon
 (Fig.~\ref{fig:hole-response}).
+The same sum can be taken for the tide of every degree. For a round body each
+tide of degree $\ell$ gives $\int\rho\,r^{2\ell-2}\,\dd V$,
+Eq.~\eqref{eq:thermal-multipole}, and the sequence fixes the density at every
+radius. For the hole, written as the radius of the shell of its own mass that
+has the same sum, they are $1.02$, $1.46$, $1.61$, $1.69$ and $1.73\,r_s$ for
+$\ell = 2$ to $6$, and tend to $(3\sqrt3/e)\,r_s = 1.91\,r_s$. No body has
+these sums. For any distribution of positive mass
+$\int\rho\,r^2(r^2 - a)^2\,\dd V$ cannot be negative, and with the hole's sums
+for $\ell = 2$, $3$ and $4$ it is $-2.04\,Mr_s^6$ at $a = 4.34\,r_s^2$. Read
+through the conversion that holds for every body, the absorption of a black
+hole is therefore the tidal inertia of no distribution of positive mass: one
+tide lets it be drawn as a shell, and three allow no drawing. Any absorber
+that takes all that comes within a fixed radius fails in the same way, and no
+matter does that to a gravitational wave (Sections~\ref{sec:thermal}
+and~\ref{sec:no-lens}).
 The same absorption, put into the dispersion relation that holds for matter,
 $\chi(0) = (2/\pi)\int\mathrm{Im}\,\chi\,\dd\omega/\omega$, would give a body
-of radius $r_s$ the Love number $k_2 = 1.35$, and the hole's is zero. That the
+of radius $r_s$ the Love number $k_2 = 1.35$ in the convention of Section~\ref{sec:near-field}, and the hole's is zero. That the
 relation cannot hold for a hole without a subtraction, and that a term local
 in time cancels the dispersive part of its static response, are known
 \cite{Porto2016,GoldbergerLiRothstein2021,KehagiasRiotto2026}; the two numbers
@@ -306,6 +321,8 @@ Bits, at $\SNR$ & $[L^3/3\Lambda^2 + L^2/2\Lambda]/\ln 2$ & $7\log_2\SNR$ \\
 A steady tide & its Love numbers & nothing, if it does not turn \\
 A changing tide & when fast, $-\omega^{-2}\int\rho\,\nabla h\cdot\nabla g\,\dd V$: the density & when slow, friction, $\nu$ \\
 Tides of degree up to $m$ & the moments $\int\rho\,r^{\ell+2j}Y_\ell\,\dd V$ with $j < m$ & nothing more \\
+The sums, tide by tide & $\int\rho\,r^{2\ell-2}\,\dd V$: the density of a round body & the moments of no distribution of positive mass \\
+A mass that passes & its own loss of energy, $\tfrac12C^2\int\Sigma\,|\mathbf b - \mathbf s|^{-2}\,\dd^2s$: the density & what the hole absorbs, set by its mass and spin \\
 Two tides, in either order & $\{\dot Q_h, \dot Q_g\}$: the flow & nothing more \\
 Its tremor & $\langle\dot Q_h\dot Q_g\rangle = k_BT\int\rho\,\nabla h\cdot\nabla g\,\dd V$: the density, at a known temperature & $S_Q = 2k_BT\nu$ at low frequencies: the temperature \\
 Its weight, after a tide & after an impulsive one, $\tfrac12\epsilon^2\int\rho\,|\nabla g|^2\,\dd V$ more: the density & after a slow one, $\nu\int(\dot{\tE}_{ij}\dot{\tE}_{ij} + \dot{\tB}_{ij}\dot{\tB}_{ij})\,\dd t$ more: its mass \\
@@ -322,7 +339,7 @@ changes little in the time $r_s/c$.}\label{tab:hair}
 quantum mechanics. Put a body into a superposition of two arrangements of its
 mass that have the same field outside: a ball and a shell, the nugget and its
 skin, or two stages of any motion that keeps a body round. At any one time the
-field outside is the same in both branches. It holds no record of which, and
+field outside is the same in both branches, if they have the same energy. It holds no record of which, and
 nothing outside that touches the body through its field alone can learn which
 from a reading at one time; if the superposition is made by a motion that leaves the field
 outside unchanged throughout, as a round motion does, no graviton is emitted in
@@ -362,9 +379,7 @@ gained is
 \end{equation}
 exactly in Newton's mechanics; it is the sum rule of Eq.~\eqref{eq:sum-rule}
 in time instead of frequency, and it holds of the operators of quantum
-mechanics, where the impulse is $e^{i\epsilon Q_g/\hbar}$. Its second term is
-the heating of a star cluster by a passing mass, in the impulse approximation
-of stellar dynamics \cite{Spitzer1958}. Energy has weight:
+mechanics, where the impulse is $e^{i\epsilon Q_g/\hbar}$. Energy has weight:
 the mass that the monopole of the body's field reports rises by $\Delta E/c^2$, and
 an isolated body keeps the gain until it is read. Impulses of both signs,
 given to two copies of the body prepared alike, and two weighings give $\int\rho\,|\nabla g|^2\,\dd V$ and,
@@ -389,6 +404,49 @@ away in; fine detail costs
 exponentially in sensitivity, as before; the impulse must be over before the body can respond,
 which requires that the body's own motions be slow compared with light; and
 Eq.~\eqref{eq:push} is the first order in $1/c^2$, not the whole theory.
+
+\paragraph{A mass that passes.} Neither the weighing nor the contrived instant
+is needed. The pull of the body on a mass $\mu$ outside it is of first order
+in $\mu$, and holds the harmonic moments only: Newton's shell theorem is a
+theorem about the first order. What the body does in reply, and so what the
+mass gains or loses, is of second order. Held for an instant at the point
+$\mathbf y$, the mass is the impulsive tide of profile
+$1/|\mathbf x - \mathbf y|$, and by Eq.~\eqref{eq:push} a body at rest gains
+in proportion to $\int\rho\,|\mathbf x - \mathbf y|^{-4}\,\dd V$. The kernel
+of the field, $1/|\mathbf x - \mathbf y|$, is harmonic; that of the energy is
+not, and its values at points outside the body fix the density
+(Appendix~\ref{app:proofs}).
+
+Let the mass now fly past the body on a straight line at the speed $V$, fast
+enough that the parts of the body do not move meanwhile, and let $\mathbf b$
+be the point where its path crosses the plane through the body at right angles
+to it. A part of the body that lies over the point $\mathbf s$ of that plane
+receives the velocity $C(\mathbf b - \mathbf s)/|\mathbf b - \mathbf s|^2$,
+with $C = 2G\mu/V$, wherever it lies along the path: the impulsive tide of
+profile $-\ln|\mathbf s - \mathbf b|$, which is harmonic in a body that the
+path misses. By Eq.~\eqref{eq:push} the body gains
+\begin{equation}\label{eq:pass}
+\Delta E(\mathbf b) = \frac{C^2}{2}\int
+\frac{\Sigma(\mathbf s)}{|\mathbf b - \mathbf s|^2}\,\dd^2s ,
+\end{equation}
+with $\Sigma$ its mass per area, projected along the path. This is the heating
+of a star cluster by a passing mass, in the impulse approximation of stellar
+dynamics \cite{Spitzer1958}. What the body gains the passing mass has lost,
+and it leaves slower by $\Delta E/\mu V$: nothing is weighed, and the speed of
+light does not enter. The losses on the paths that miss the body give every
+moment of $\Sigma$, and paths in the directions of one great circle give the
+density (Appendix~\ref{app:proofs}). The deflection of the passing mass is of
+first order and holds only the moments of $\Sigma$ against the powers of
+$x + iy$: it is the shell theorem in the plane. For a round body the integral
+of Eq.~\eqref{eq:pass} is
+$M/b^2 + \tfrac23\int\rho\,r^2\,\dd V/b^4 + \tfrac{8}{15}\int\rho\,r^4\,\dd V/b^6$
+and so on, of which the first term is the recoil of the whole body. The two
+bodies of Fig.~\ref{fig:ladder}, alike in the first two terms, differ by
+$30\%$ in the internal energy that one pass at $b = 1.5R$ leaves in them, and
+by $MC^2R^4/15b^6$ far away. The loss is as far beyond reach as the weighing:
+a tonne that passes a metre from the edge of a steel ball a metre across at
+$44\,\mathrm{km\,s^{-1}}$ gives that edge the impulse of the last paragraph,
+and leaves with its speed lower by five parts in $10^{33}$.
 
 The pair $h_\pm$ of Eq.~\eqref{eq:calderon} varies in two directions only. Each
 is the profile of a wave with flat fronts that travels along the third, and in
@@ -444,8 +502,8 @@ In each angular sector these are the radial moments
 $\int\rho\,r^{\ell+2j}\,Y_\ell\,\dd V$, with $Y_\ell$ a surface harmonic of
 degree $\ell$ and $j < m$, of which a reading at one
 time has only $j = 0$. A quadrupolar tide adds one radial moment to every
-sector, an octupolar tide the next (Fig.~\ref{fig:ladder}(b)). No tide of degree $m$ reaches further,
-whatever is read, because for harmonic $h$ and $g$
+sector, an octupolar tide the next (Fig.~\ref{fig:ladder}(b)). To leading order in the strength of the tide, no tide of degree $m$ reaches
+further, whatever is read, because for harmonic $h$ and $g$
 \begin{equation}\label{eq:ladder-identity}
 \nabla^{2m}(\nabla h\cdot\nabla g) = 2^m\,
 (\partial_{i_1}\!\cdots\partial_{i_{m+1}}h)\,
@@ -470,8 +528,8 @@ a thin shell of mass $M$ and radius $R/\sqrt2$, and a point of mass $M/2$ at the
 radius $R$ that holds the other half. The two have the same exterior field
 and the same $\int\rho\,r^2\,\dd V$. An impulsive tide of profile
 $(x^2 - y^2)/2$ gives each the energy $\tfrac12\epsilon^2\,MR^2/3$ of
-Eq.~\eqref{eq:push}, and every other quadrupolar tide treats them alike,
-whichever moment is read. A tide of profile $(x^3 - 3xy^2)/3$ gives the first
+Eq.~\eqref{eq:push}, and every other quadrupolar tide treats them alike
+to leading order, whichever moment is read. A tide of profile $(x^3 - 3xy^2)/3$ gives the first
 $\tfrac12\epsilon^2\,(2/15)\,MR^4$ and the second twice as much.
 
 \begin{figure*}

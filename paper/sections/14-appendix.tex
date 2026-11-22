@@ -127,7 +127,8 @@ A pair of black holes; memory; the Sun as a lens & \ref{sec:vistas} & \texttt{bi
 The Milky Way, the primordial background, a black hole and its modes & \ref{sec:vistas} & \texttt{galaxy}, \texttt{primordial}, \texttt{schwarzschild}, \texttt{bhmodes}, \texttt{skies} & \texttt{test\_vistas}, \texttt{test\_bhmodes}, \texttt{test\_glow\_skies} \\
 Hair: the field at two times, the count of bits, a black hole's friction and tremor, an impulsive tide and a weighing, what gravity cannot decohere & \ref{sec:hair} & \texttt{hair}, \texttt{bhmodes} & \texttt{test\_hair} \\
 The two readings as one transform; the reach of a tide of given degree; the flow; the brackets of the moments; an impulsive wave & \ref{sec:hair}, \ref{app:proofs} & \texttt{readings}, \texttt{spins} & \texttt{test\_readings}, \texttt{test\_spins} \\
-The weight of a black hole's response & \ref{sec:hair} & \texttt{holeresponse}, \texttt{bhmodes} & \texttt{test\_holeresponse} \\
+The weight of a black hole's response, tide by tide & \ref{sec:hair} & \texttt{holeresponse}, \texttt{bhmodes} & \texttt{test\_holeresponse} \\
+A mass that passes; the two bodies of Fig.~\ref{fig:ladder} & \ref{sec:hair} & \texttt{passing} & \texttt{test\_passing} \\
 The geometry of the near field; the zeros of the shear above a layer; one spin of a reading & \ref{sec:near-field}, \ref{sec:one-pixel} & \texttt{hyperbolic}, \texttt{shearzeros}, \texttt{spins} & \texttt{test\_hyperbolic}, \texttt{test\_shearzeros}, \texttt{test\_spins} \\
 The interactive version's images against the reference & \ref{sec:first-image} & \texttt{export\_fixtures} & \texttt{test\_fixtures}, and its own tests \\
 \end{tabular}
@@ -136,9 +137,9 @@ The interactive version's images against the reference & \ref{sec:first-image} &
 name of each test says what it checks.}\label{tab:checks}
 \end{table*}
 
-\section{Five short proofs}\label{app:proofs}
+\section{Six short proofs}\label{app:proofs}
 
-Two statements of Section~\ref{sec:one-pixel} and three of
+Two statements of Section~\ref{sec:one-pixel} and four of
 Section~\ref{sec:hair} are exact, and their proofs are short enough to give in
 full.
 
@@ -253,6 +254,28 @@ $\nabla^{2(j+1)}P = 0$. Then $\nabla^{2j}P$ is harmonic, there is such an $S$
 with the same $\nabla^{2j}$, and $P - S$ satisfies $\nabla^{2j}(P - S) = 0$.
 Repeating the step lowers $j$ to zero and leaves a harmonic polynomial, which
 a reading at one time holds.
+
+\paragraph{What the passes of a mass determine.} Write the points $\mathbf s$
+and $\mathbf b$ of the plane across the path as complex numbers $z$ and $b$.
+For $|b| > |z|$,
+$1/|b - z|^2 = \sum_{p,q\ge0}z^p\bar z^q/b^{p+1}\bar b^{q+1}$, so that the
+integral of Eq.~\eqref{eq:pass} is $\sum_{p,q}m_{pq}/b^{p+1}\bar b^{q+1}$ with
+$m_{pq} = \int z^p\bar z^q\,\Sigma\,\dd^2z$. The term $(p, q)$ varies as
+$|b|^{-(p+q+2)}e^{i(q-p)\varphi}$, with $\varphi$ the angle of $b$, and no two
+terms share both the power and the angular frequency. Its values on an annulus
+of impact points around the body therefore give every $m_{pq}$: all the
+polynomial moments of $\Sigma$, which fix a distribution of bounded support.
+The Fourier transform of $\Sigma$ for a path along $\hat n$ is that of $\rho$ on
+the plane $\mathbf k\cdot\hat n = 0$, and every $\mathbf k$ is perpendicular to
+some $\hat n$ of a given great circle. The momentum given to the body is
+$C\sum_q m_{0q}/\bar b^{q+1}$, which holds only the moments against the powers
+of $\bar z$, the harmonic ones. For a mass held at the point $\mathbf y$, at
+the angle $\gamma$ from $\mathbf x$,
+$|\mathbf x - \mathbf y|^{-4} = \sum_n C^{(2)}_n(\cos\gamma)\,|\mathbf x|^n/|\mathbf y|^{n+4}$,
+and the Gegenbauer polynomial $C^{(2)}_n$ is a sum, with positive
+coefficients, of every Legendre polynomial of its parity up to the degree $n$;
+the values at points outside the body therefore give every moment
+$\int\rho\,r^{\ell+2j}Y_\ell\,\dd V$.
 
 \paragraph{The energy given by an impulsive wave.} The wave is the metric
 $\dd s^2 = -\dd u\,\dd v + H(\mathbf x_\perp)\,\delta(u)\,\dd u^2 + \dd\mathbf x_\perp^2$,
