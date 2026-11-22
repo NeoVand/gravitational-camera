@@ -213,3 +213,11 @@ measured: ink margins against the page box, stroke weights, dash patterns, glyph
   the sign code would make a stretch orange. `array`'s legend stays at 6.5 pt (no room at 7).
 - **Left for a larger texture.** At 900 dpi the globe of `earth-glow` still shows the texels of its 1024 x 512
   map, softly.
+
+## 22 November 2026: a figure for the passing mass, and a third panel for the hole
+
+- `passing` (figures3d/figs/passing.js, data `passing_mass` in figure_data.py): the two bodies of `ladder` seen
+  along the path of a passing mass, with the impulses less the recoil at the four places where they are radial,
+  bars for the internal energies (0.0803, 0.1041), and the energy against b/R drawn by the script. Sparser than
+  `ladder`: with b fixed at 1.5 R the near arrow must stop short of the bead, which caps the scale of all of them.
+- `hole-response` gains panel (c): the shell radius for the tide of each degree, 2 to 8, with the limit 1.91.

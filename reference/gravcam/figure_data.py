@@ -504,11 +504,69 @@ def near_field_geometry():
             "recorded": profiles, "width_at_half_height": 2 * half, "cell_areas": areas}
 
 
+PASSING_IMPACT = 1.5
+"""Where the path of the mass in Fig. passing crosses the plane across it, in units of R."""
+PASSING_SKIN = 0.96
+"""Where the drawing puts a part of a shell, in units of its radius: the middle of the skin of figures3d/stone.js,
+whose inner radius is 0.92 of the outer."""
+
+
+def passing_mass():
+    """A mass that passes (Fig. passing). The pair of bodies of readings.ladder_pair (as in Fig. ladder), seen along
+    the straight path of a point mass that crosses the plane through their centres at b = PASSING_IMPACT R. Units: M,
+    R and C = 2 G mu / V, so that a part at the projected place s receives the velocity (b - s) / |b - s|^2 and the
+    energies are in units of M C^2 / 2 R^2. Returned: for each body, on the circle of radius PASSING_SKIN times each
+    shell's radius, the four places at which the impulse less the recoil of the whole body lies along the radius
+    (the recoil, for a round body, is b / b^2: passing.recoil_F, so that a mass at the centre receives none), with
+    those impulses; the internal energies at b
+    (passing.twin_energies), the excess of the second over the first, and both against b/R from 1.1 to 4 for panel
+    (b); the far limits, (1/3) (R/b)^4 for both and (2/15) (R/b)^6 for the difference; and, as a check, the total
+    momentum of the impulses less the recoil over each body made of particles (passing.particles), which is zero,
+    and the energy of those relative motions, which is the internal energy."""
+    from scipy.optimize import brentq
+
+    from . import passing as ps
+
+    b = PASSING_IMPACT
+    bodies = ps.twins()
+    relative = lambda s: (b - s) / np.abs(b - s) ** 2 - 1.0 / b            # complex: x + i y, b on the x axis
+    across = lambda t, r: (relative(r * np.exp(1j * t)) * np.exp(-1j * t)).imag    # the part across the radius
+    kicks = []
+    for body in bodies:
+        rings = []
+        for m, r in body:
+            if r == 0.0:
+                rings.append({"radius": 0.0, "angle_deg": [], "kick": [[float(relative(0j).real), float(relative(0j).imag)]]})
+                continue
+            # the four places on the circle at which the impulse less the recoil lies along the radius: towards b and
+            # away from it, and the pair between, where it points in
+            turn = brentq(across, math.radians(30.0), math.radians(120.0), args=(PASSING_SKIN * r,), xtol=1e-15)
+            t = np.array([0.0, turn, math.pi, 2.0 * math.pi - turn])
+            k = relative(PASSING_SKIN * r * np.exp(1j * t))
+            rings.append({"radius": r, "angle_deg": np.degrees(t).tolist(), "kick": np.stack([k.real, k.imag], axis=1).tolist()})
+        kicks.append(rings)
+    net, energy = [], []
+    for body in bodies:
+        points, masses = ps.particles(body, n_mu=24, n_phi=96)
+        k = relative(points[:, 0] + 1j * points[:, 1])
+        net.append(abs(complex(np.sum(masses * k))))
+        energy.append(float(np.sum(masses * np.abs(k) ** 2)))
+    energies = list(ps.twin_energies(b))
+    grid = np.geomspace(1.1, 4.0, 241)
+    curves = [[ps.twin_energies(x)[i] for x in grid] for i in (0, 1)]
+    return {"bodies": [[list(shell) for shell in body] for body in bodies], "b": b, "skin": PASSING_SKIN,
+            "kicks": kicks, "recoil": [1.0 / b, 0.0],
+            "energies": energies, "excess": energies[1] / energies[0] - 1.0,
+            "curve_b": grid.tolist(), "curves": curves,
+            "far": {"common": 1.0 / 3.0, "difference": 2.0 / 15.0},
+            "net_momentum": net, "relative_energy": energy}
+
+
 FIGURES = {"stars": stars, "voices": voices, "ranging": ranging, "present": present_past,
            "speedometer": speedometer, "beyond": beyond_gr,
            "two-pixels": two_pixels, "silent-flows": silent_flows, "ladder": ladder,
            "two-readings": two_readings, "hidden-flow": hidden_flow,
-           "near-field-geometry": near_field_geometry}
+           "near-field-geometry": near_field_geometry, "passing": passing_mass}
 
 
 def main(names=None) -> None:

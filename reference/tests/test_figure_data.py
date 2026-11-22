@@ -121,3 +121,38 @@ def test_near_field_geometry_figure_cells_of_one_size_and_patterns_as_wide_as_de
         if place - math.sqrt(2) * depth > row[0]:
             assert positive[0] == pytest.approx(place - math.sqrt(2) * depth, abs=row[1] - row[0])
         assert recorded.min() > -0.018
+
+
+def test_passing_figure_shell_at_the_centre_takes_thirty_per_cent_more_and_the_relative_kicks_carry_no_momentum():
+    d = figure_data.passing_mass()
+    assert d["bodies"] == [[[1.0, 1 / math.sqrt(2)]], [[0.5, 0.0], [0.5, 1.0]]]
+    assert d["b"] == 1.5
+    ea, eb = d["energies"]                                                    # in units of M C^2 / 2 R^2
+    assert (f"{ea:.4f}", f"{eb:.4f}") == ("0.0803", "0.1041")
+    assert round(100 * d["excess"]) == 30 and d["excess"] == pytest.approx(eb / ea - 1, rel=1e-12)
+    # the impulses less the recoil of the whole body: no momentum, and their energy is the internal energy
+    assert max(d["net_momentum"]) < 1e-12
+    assert d["relative_energy"] == pytest.approx(d["energies"], rel=1e-10)
+    # the arrows: (b - s) / |b - s|^2 - b / b^2 at s = skin r e^(it), along the radius, out at t = 0 and pi and in
+    # between; none for the mass at the centre
+    for body, rings in zip(d["bodies"], d["kicks"]):
+        for (m, r), ring in zip(body, rings):
+            if r == 0.0:
+                assert ring["kick"] == [[0.0, 0.0]]
+                continue
+            t = np.radians(ring["angle_deg"])
+            s = d["skin"] * r * np.exp(1j * t)
+            k = (d["b"] - s) / np.abs(d["b"] - s) ** 2 - 1 / d["b"]
+            assert np.allclose(ring["kick"], np.stack([k.real, k.imag], axis=1), atol=1e-14)
+            radial = (k * np.exp(-1j * t)).real / np.abs(k)
+            assert np.allclose(radial, [1, -1, 1, -1], atol=1e-12)
+    # the curves of panel (b): B above A everywhere, and the far limits (1/3) (R/b)^4 and (2/15) (R/b)^6
+    a, bb = (np.array(c) for c in d["curves"])
+    x = np.array(d["curve_b"])
+    assert np.all(bb > a)
+    far = 40.0
+    from gravcam import passing
+    ea_far, eb_far = passing.twin_energies(far)
+    assert ea_far * far**4 == pytest.approx(d["far"]["common"], rel=1e-2)
+    assert (eb_far - ea_far) * far**6 == pytest.approx(d["far"]["difference"], rel=1e-2)
+    assert x[0] == pytest.approx(1.1) and x[-1] == pytest.approx(4.0)

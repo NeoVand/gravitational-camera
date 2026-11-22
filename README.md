@@ -164,7 +164,7 @@ modelled in 3D take their charts from the first step:
 python3 paper/figures/make_figures.py
 python3 paper/figures/charts.py
 cd figures3d && npm install && node render.mjs --final tidal sky-integral quadrupole line-integral earth-glow \
-  ladder two-readings hidden-flow near-field-geometry
+  ladder two-readings hidden-flow near-field-geometry passing
 ```
 
 ## Checks

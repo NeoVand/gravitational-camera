@@ -128,7 +128,7 @@ figures: ## Redraw the paper's charts and renders from the reference implementat
 
 figures-3d: ## Render the figures modelled in 3D (after make figures and make setup-3d)
 	cd figures3d && node render.mjs --final tidal sky-integral quadrupole line-integral earth-glow \
-		ladder two-readings hidden-flow near-field-geometry
+		ladder two-readings hidden-flow near-field-geometry passing
 
 # --- cleaning -----------------------------------------------------------------------------------------------------
 
