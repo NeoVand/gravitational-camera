@@ -168,3 +168,128 @@ def test_the_tonne_that_passes_a_steel_ball_a_metre_across():
         coefficient *= (2 * p + 2) / (2 * p + 3)
     lost = 0.5 * C**2 * F / (mu * V**2)
     assert f"{lost:.0e}" == "5e-33"
+
+
+# --- how many bits a second reading holds ---------------------------------------------------------------------------
+
+from gravcam import hair  # noqa: E402
+
+
+def test_the_moments_of_each_degree_and_the_kernel_of_the_energy():
+    from scipy.special import eval_gegenbauer, eval_legendre
+    assert [ps.degree_count(n) for n in range(25)] == [(n + 1) * (n + 2) // 2 for n in range(25)]
+    assert [2 * n + 1 for n in range(4)] == [1, 3, 5, 7]                           # the first reading's
+    c = np.linspace(-1, 1, 7)
+    for n in range(12):
+        a = [ps.gegenbauer_legendre(n, l) for l in range(n + 1)]
+        assert all(x > 0 for x in a[n % 2::2]) and all(x == 0 for x in a[1 - n % 2::2])
+        assert np.allclose(sum(x * eval_legendre(l, c) for l, x in enumerate(a)), eval_gegenbauer(n, 2, c),
+                           rtol=1e-12, atol=1e-12)
+    # |x - y|^-4 = sum_n C^(2)_n(cos gamma) |x|^n / |y|^(n+4)
+    x, y = np.array([0.3, -0.5, 0.4]), np.array([1.5, 2.0, -1.0])
+    r, R = np.linalg.norm(x), np.linalg.norm(y)
+    g = x @ y / (r * R)
+    series = sum(eval_gegenbauer(n, 2, g) * r**n / R ** (n + 4) for n in range(200))
+    assert series == pytest.approx(np.sum((x - y) ** 2) ** -2, rel=1e-13)
+
+
+def test_on_one_sphere_the_second_reading_holds_what_the_first_does():
+    # one number per (l, m): with free moments exactly Eq. hair-bits, with a body about as much
+    for snr in (1e3, 1e6, 1e12):
+        assert ps.second_reading_bits(snr, 3.0, body=False, region="sphere") == pytest.approx(
+            hair.hair_bits(snr, 3.0), rel=1e-9)
+    assert f"{ps.second_reading_bits(1e6, 3.0, region='sphere'):.0f}" == "1220"
+
+
+def test_the_exact_sum_against_the_brute_force():
+    """A white density on a quadrature of the ball, the true kernel |x - y|^-4, probes on a quadrature of the volume
+    outside R_c, of the shell R_c..2R_c, or of the sphere: the same bits as the sum over sectors."""
+    for region in ("outside", "shell", "sphere"):
+        sv = ps.held_mass_singular_values(3.0, nr=16, nt=24, lmax=20, region=region)
+        for snr in (1e3, 1e6):
+            assert ps.sampled_bits(sv, snr) == pytest.approx(ps.second_reading_bits(snr, 3.0, region=region),
+                                                             abs=0.1)
+    sv = ps.held_mass_singular_values(3.0, nr=28, nt=44, lmax=40)
+    assert ps.sampled_bits(sv, 1e12) == pytest.approx(ps.second_reading_bits(1e12, 3.0), rel=1e-4)
+
+
+def test_what_the_second_reading_holds_beside_the_first():
+    """Section XII: from three radii, at SNR = 10^6, 1300 bits for a body (1500 for free moments; the naive count
+    2600), against the first reading's 1200; at 10^70, 9.6 x 10^6 (1.4 x 10^7), against 1.7 x 10^6."""
+    body, free = ps.second_reading_bits(1e6, 3.0), ps.second_reading_bits(1e6, 3.0, body=False)
+    assert f"{body:.0f}" == "1319" and f"{free:.0f}" == "1475"
+    assert f"{ps.second_reading_naive(1e6, 3.0):.0f}" == "2626"
+    assert f"{hair.hair_bits(1e6, 3.0):.0f}" == "1197"
+    assert f"{ps.second_reading_bits(1e3, 3.0):.0f}" == "159" and f"{ps.second_reading_bits(1e12, 3.0):.0f}" == "13675"
+    # the shell R_c..2R_c holds nearly all of what the whole outside does
+    assert ps.second_reading_bits(1e6, 3.0, region="shell") == pytest.approx(body, rel=0.005)
+    big_body, big_free = ps.second_reading_bits(1e70, 3.0), ps.second_reading_bits(1e70, 3.0, body=False)
+    assert f"{big_body:.2g}" == "9.6e+06" and f"{big_free:.3g}" == "1.45e+07"
+    assert f"{big_body / hair.hair_bits(1e70, 3.0):.1f}" == "5.7"
+    # the naive count is an upper bound (Hadamard), and far above
+    for snr in (1e3, 1e6, 1e12):
+        assert ps.second_reading_bits(snr, 3.0) < ps.second_reading_bits(snr, 3.0, body=False) < \
+            ps.second_reading_naive(snr, 3.0)
+
+
+def test_the_fourth_power_and_its_coefficient():
+    lam3 = math.log(3.0) ** 3
+    assert ps.second_reading_kappa(3.0, None) == pytest.approx(1 / (24 * lam3), rel=1e-10)
+    assert f"{24 * lam3 * ps.second_reading_kappa(3.0, True):.2f}" == "0.26"
+    assert f"{24 * lam3 * ps.second_reading_kappa(3.0, False):.2f}" == "0.44"
+    # 1 / 24 Lam^3 is reached only as R_c / a grows, and slowly
+    shares = [24 * math.log(r) ** 3 * ps.second_reading_kappa(r, True) for r in (3.0, 10.0, 1e2, 1e6)]
+    assert np.all(np.diff(shares) > 0) and shares[-1] < 0.9
+    # the naive count's leading term
+    L = math.log(1e70)
+    assert ps.second_reading_naive_leading(1e70, 3.0) == pytest.approx(L**4 / (24 * lam3 * math.log(2)))
+    assert ps.second_reading_naive(1e140, 3.0) / ps.second_reading_naive_leading(1e140, 3.0) == pytest.approx(1, abs=0.06)
+    # the pivot sum is close to the exact one; the leading term is approached as 1 / L
+    for snr in (1e6, 1e30):
+        assert ps.second_reading_closed(snr, 3.0, False) == pytest.approx(
+            ps.second_reading_bits(snr, 3.0, body=False), rel=0.003)
+        assert ps.second_reading_closed(snr, 3.0) == pytest.approx(ps.second_reading_bits(snr, 3.0), rel=0.04)
+    gaps = [ps.second_reading_closed(s, 3.0) / ps.second_reading_leading(s, 3.0) - 1 for s in (1e70, 1e140, 1e280)]
+    assert gaps[0] / gaps[1] == pytest.approx(2.0, rel=0.15) and gaps[1] / gaps[2] == pytest.approx(2.0, rel=0.15)
+
+
+def test_powers_of_one_sector_fall_at_the_condenser_rate():
+    # the l = 0 sector of free moments: e^-mu(t^2) a power; of a body: e^-2 mu(t); the binomials' rates close by
+    t = 1 / 3
+    assert ps.grotzsch_modulus(t * t) == pytest.approx(2 * math.log(3) + math.log(4), rel=1e-3)
+    assert 2 * ps.grotzsch_modulus(t) == pytest.approx(2 * math.log(3) + math.log(16), rel=0.013)
+    import mpmath
+    G = ps._block_gram(0, t, 1e40, False, "outside")
+    mpmath.mp.dps = 150
+    s = sorted((float(mpmath.log(x)) for x in mpmath.eigsy(G, eigvals_only=True) if x > 0), reverse=True)
+    assert (s[15] - s[16]) / 2 == pytest.approx(ps.grotzsch_modulus(t * t), rel=2e-3)
+
+
+def test_a_passing_mass_reads_the_same_moments_at_the_same_rate():
+    """Paths in every direction, impact points beyond R_c: fewer bits than the held mass at reachable SNR (708 against
+    1319 at 10^6), the same rate along the radial powers, and the angular rate tending to Lam."""
+    pv = ps.passing_mass_singular_values(3.0, nr=20, nt=24, lmax=24)
+    hv = ps.held_mass_singular_values(3.0, nr=20, nt=24, lmax=24)
+    assert f"{ps.sampled_bits(pv, 1e6):.0f}" == "708" and f"{ps.sampled_bits(pv, 1e3):.0f}" == "75"
+    assert f"{ps.sampled_bits(pv, 1e12):.2g}" == "8.7e+03"
+    ratios = [ps.sampled_bits(pv, s) / ps.sampled_bits(hv, s) for s in (1e3, 1e6, 1e12)]
+    assert np.all(np.diff(ratios) > 0) and ratios[-1] < 1
+    rate = 2 * ps.grotzsch_modulus(1 / 3)
+    for sv in (pv, hv):
+        d = -np.diff(np.log(sv[0][:8]))
+        assert d[5] == pytest.approx(rate, rel=0.04)
+    tops = -np.diff([math.log(sv.max()) for sv in pv[:12]])
+    assert np.all(np.diff(tops) < 0) and np.all(tops > math.log(3))
+
+
+def test_the_second_reading_is_far_weaker_than_the_first():
+    # the tonne past the steel ball: the energy it leaves against its energy of interaction, G M mu / b, is the
+    # ratio of the two SNRs read against the same noise: 2 G mu / b V^2 = 5e-17 (more by the ball's F b^2 / M)
+    assert f"{ps.second_order_ratio_pass(1000.0, 4.4e4, 1.5):.1e}" == "4.6e-17"
+    G, mu, V, R, b = 6.674e-11, 1000.0, 4.4e4, 0.5, 1.5
+    M = 7850.0 * 4 / 3 * math.pi * R**3
+    C = 2 * G * mu / V
+    ball = readings.uniform_layer(M, 0.0, R, n=16)
+    ratio = 0.5 * C * C * ps.body_F(ball, b) / (G * M * mu / b)
+    assert f"{ratio:.0e}" == "5e-17"
+    assert ps.second_order_ratio_held(1.0, 2.0, 3.0, G=1.0) == pytest.approx(4.0 / 54.0)

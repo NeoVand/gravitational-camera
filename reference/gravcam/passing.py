@@ -48,6 +48,12 @@ the internal energy the particles take approaches the formula as 1 / V^2, and th
 the change of its potential energy among the particles, so carried to large distance, is the energy they gain. Units
 G = M = R = 1 there.
 
+How much. The energies left by a mass held at the points outside a sphere of radius R_c, or by paths that miss it,
+hold every moment int rho r^(l+2j) Y_lm dV, (n+1)(n+2)/2 of total degree n; the bits they hold grow as the fourth
+power of ln SNR, against the cube for the field at one time (hair.hair_bits), with a coefficient below the naive
+1 / 24 Lam^3 because radial powers that fall from the same radius are told apart only at a binomial price (the
+section "how many bits a second reading holds" below).
+
 Tested in tests/test_passing.py.
 """
 from __future__ import annotations
@@ -300,3 +306,268 @@ def full_pass(points, masses, mu: float, V: float, b: float, Z: float = 200.0, r
     return {"gained": gained, "internal": internal, "lost": float(lost), "C": C, "steps": sol.t.size,
             "impulse_gained": 0.5 * C * C * F,
             "impulse_internal": 0.5 * C * C * (F - abs(kick) ** 2 / M)}
+
+
+# --- how many bits a second reading holds ---------------------------------------------------------------------------
+#
+# A mass held for an instant at y outside a body of radius a leaves it the energy  Delta E(y) ~ int rho |x - y|^-4 dV.
+# With |x - y|^-4 = sum_n C^(2)_n(cos gamma) |x|^n / |y|^(n+4) and C^(2)_n = sum_l a_nl P_l (l = n, n-2, ..., a_nl > 0),
+#
+#     Delta E(y) ~ sum_(l, j, m) alpha_lj  q_ljm  Y_lm(y^) / |y|^(l + 2j + 4),     q_ljm = int rho r^(l+2j) Y_lm dV,
+#
+# alpha_lj = 4 pi a_(l+2j, l) / (2l + 1): every moment of total degree n = l + 2j, (n+1)(n+2)/2 of them against the
+# 2n + 1 of a reading at one time, each weakened by (a / |y|)^n. Angles separate the l and m exactly; the j of one
+# sector are separated only by how the data fall off with |y|, and powers that all fall from the same radius are told
+# apart at a price. In the sector l the moment with radial power 2j is read as if weakened by
+#
+#     (a / R_c)^n / binom(n, j)          moments taken free (Muntz: the k-th power less its fit by the lower ones)
+#     (a / R_c)^n / binom(n, j)^2        moments of a body (the same price again inside: the moments of a density
+#                                        in the ball are not free, the Hausdorff moment problem)
+#
+# to within factors that grow as powers of n, so that with L = ln SNR, Lam = ln(R_c / a), h(p) = -p ln p - (1-p)
+# ln(1-p) and c = 1 or 2,
+#
+#     H = kappa L^4 / ln 2,     kappa = int_0^(1/2) (1 - 2p) dp / [6 (Lam + c h(p))^3]  ->  1 / (24 Lam^3)  (R_c >> a),
+#
+# p = j / n the share of the degree spent on the radial power. On a single sphere the data are a function of two
+# angles and hold, for each (l, m), the one sum sum_j alpha_lj R_c^-2j q_ljm: the count of the first reading.
+# Conventions: probes white over the volume outside R_c (or the shell R_c..2R_c, or the sphere), noise of relative
+# size 1/SNR on the leading singular value; bits sum (1/2) log2(1 + SNR^2 s^2) over the singular values s, as
+# hair.hair_bits. The density of a body is white in the ball.
+
+from scipy.special import gammaln as _gammaln, sph_harm_y as _sph_harm_y, xlogy as _xlogy
+import mpmath as _mp
+
+
+def degree_count(n: int) -> int:
+    """The moments int rho r^(l+2j) Y_lm dV of total degree n = l + 2j: sum over l = n, n-2, ... of 2l + 1."""
+    return sum(2 * l + 1 for l in range(n % 2, n + 1, 2))
+
+
+def gegenbauer_legendre(n: int, l: int) -> float:
+    """a_nl in C^(2)_n = sum_l a_nl P_l: (2)_(n-k) (3/2)_k (2l+1) / ((3/2)_(n-k) k!), k = (n - l) / 2; zero unless
+    l = n, n-2, ..."""
+    if l > n or (n - l) % 2:
+        return 0.0
+    k = (n - l) // 2
+    return float(_mp.rf(2, n - k) * _mp.rf(1.5, k) * (2 * l + 1) / (_mp.rf(1.5, n - k) * _mp.factorial(k)))
+
+
+def _alpha(l: int, j: int):
+    """alpha_lj / 4 pi = a_(l+2j, l) / (2l + 1), as an mpf."""
+    return _mp.rf(2, l + j) * _mp.rf(_mp.mpf(3) / 2, j) / (_mp.rf(_mp.mpf(3) / 2, l + j) * _mp.factorial(j))
+
+
+def second_reading_naive(snr: float, ratio: float) -> float:
+    """The count if every moment of degree n stood at (a / R_c)^n and were read alone, sum_n (n+1)(n+2)/2 (1/2)
+    log2(1 + snr^2 ratio^-2n); an upper bound on second_reading_bits(..., body=False) (Hadamard's inequality)."""
+    L, lam = math.log(snr), math.log(ratio)
+    n = np.arange(0, int(L / lam) + 60)
+    return float(np.sum((n + 1) * (n + 2) / 2 * np.logaddexp(0.0, 2 * (L - n * lam))) / (2 * math.log(2)))
+
+
+def second_reading_naive_leading(snr: float, ratio: float) -> float:
+    """Its leading term, L^4 / (24 Lam^3 ln 2)."""
+    return math.log(snr) ** 4 / (24 * math.log(ratio) ** 3 * math.log(2))
+
+
+def _log_pivot(l, k, off):
+    """log of k! Gamma(l+k+off) / Gamma(l+2k+off) sqrt(2 off / (2l+4k+2 off)): the part of the k-th power
+    u^(l+2k+off-1/2) not fitted by the lower ones in L^2(0, 1), relative to that of u^(off-1/2)."""
+    return (_gammaln(k + 1) + _gammaln(l + k + off) - _gammaln(l + 2 * k + off)
+            + 0.5 * np.log(2 * off / (2 * l + 4 * k + 2 * off)))
+
+
+def _log_alpha(l, k):
+    return (_gammaln(2 + l + k) + _gammaln(1.5 + k) - _gammaln(1.5 + l + k) - _gammaln(k + 1)
+            - _gammaln(2) - _gammaln(1.5) + _gammaln(1.5))
+
+
+def second_reading_closed(snr: float, ratio: float, body: bool = True) -> float:
+    """The bits with each moment (l, j) at its pivot, sum (2l+1) (1/2) log2(1 + snr^2 s_lj^2) with
+    s_lj = (a/R_c)^(l+2j) x (the pivots of the powers outside) [x alpha_lj x (those inside), for a body]."""
+    L, lam = math.log(snr), math.log(ratio)
+    N = int((L + 40) / lam) + 10
+    l, k = np.meshgrid(np.arange(N), np.arange(N // 2 + 2), indexing="ij")
+    ls = -(l + 2 * k) * lam + _log_pivot(l, k, 2.5)
+    if body:
+        ls = ls + _log_pivot(l, k, 1.5) + _log_alpha(l, k)
+    return float(np.sum((2 * l + 1) * np.logaddexp(0.0, 2 * (L + ls))) / (2 * math.log(2)))
+
+
+def entropy_nats(p):
+    return -_xlogy(p, p) - _xlogy(1 - p, 1 - p)
+
+
+def second_reading_kappa(ratio: float, body: bool = True) -> float:
+    """kappa = int_0^(1/2) (1 - 2p) dp / [6 (Lam + c h(p))^3], c = 2 for a body (body=True), 1 for free moments
+    (body=False), 0 for the naive count, 1 / 24 Lam^3 (body=None)."""
+    from scipy.integrate import quad
+    lam, c = math.log(ratio), (2 if body else 1) if body is not None else 0
+    return quad(lambda p: (1 - 2 * p) / (6 * (lam + c * entropy_nats(p)) ** 3), 0, 0.5, epsabs=0, epsrel=1e-12)[0]
+
+
+def second_reading_leading(snr: float, ratio: float, body: bool = True) -> float:
+    """The leading term, kappa L^4 / ln 2."""
+    return second_reading_kappa(ratio, body) * math.log(snr) ** 4 / math.log(2)
+
+
+def _block_gram(l: int, t: float, snr: float, body: bool, region: str):
+    """The Gram matrix of the sector l (one of its 2l + 1 members), exact in multiple precision, before
+    normalization; None when the whole sector lies far below the noise."""
+    L, lam = math.log(snr), -math.log(t)
+    rest = L - l * lam
+    if rest < -12:
+        return None
+    # the powers of a sector fall by at least e^-(2 Lam + 1.2) each, or e^-(2 Lam + 2.5) for a body
+    J = max(1, int((rest + 24) / (2 * lam + (2.0 if body else 1.0))) + 8)
+    # det(1 + snr^2 G) needs G to about e^(-2 rest) of its largest entry, and the inside Gram (a Hilbert matrix)
+    # loses about 1.2 digits for each power
+    _mp.mp.dps = int((2 * rest + 30) / math.log(10) + (1.3 * J if body else 0)) + 30
+    tt = _mp.mpf(t)
+    v = [tt ** (l + 2 * j) * (_alpha(l, j) if body else 1) for j in range(J)]
+    Gi = _mp.matrix([[_mp.mpf(3) / (2 * l + 2 * j + 2 * k + 3) for k in range(J)] for j in range(J)])
+    if region == "sphere":                                   # one number per (l, m): rank one
+        if body:
+            return _mp.matrix([[(_mp.matrix(v).T * Gi * _mp.matrix(v))[0]]])
+        return _mp.matrix([[_mp.fsum(x * x for x in v)]])
+    lo = {"outside": _mp.mpf(0), "shell": _mp.mpf(1) / 2}[region]
+
+    def gout(e):                                             # int_lo^1 u^e du
+        return (1 - lo ** (e + 1)) / (e + 1)
+
+    norm = gout(4)
+    G = _mp.matrix(J, J)
+    for j in range(J):
+        for k in range(J):
+            G[j, k] = v[j] * v[k] * gout(2 * l + 2 * j + 2 * k + 4) / norm
+    if body:
+        C = _mp.cholesky(Gi)
+        G = C.T * (G * C)
+    return G
+
+
+def _half_log2_det(G, scale) -> float:
+    """(1/2) log2 det(1 + scale G) = sum (1/2) log2(1 + scale s^2) over the eigenvalues s^2 of G, by Cholesky."""
+    n = G.rows
+    M = _mp.eye(n) + G * scale
+    C = _mp.cholesky(M)
+    return float(_mp.fsum(_mp.log(C[i, i], 2) for i in range(n)))
+
+
+def second_reading_bits(snr: float, ratio: float, body: bool = True, region: str = "outside") -> float:
+    """The exact sum: the singular values of the map from the moments (body=False: free, each of degree n normalized
+    to stand at (a/|y|)^n) or from a density white in the ball (body=True: the true kernel |x - y|^-4) to the energies
+    left by a mass held at the points y outside R_c = ratio * a (region "outside"), between R_c and 2 R_c ("shell"),
+    or on the sphere R_c ("sphere"); white noise over the points, of size 1/snr against the largest singular value;
+    bits sum (2l + 1) (1/2) log2(1 + snr^2 s^2) = sum (2l + 1) (1/2) log2 det(1 + snr^2 G_l), sector by sector in
+    multiple precision."""
+    t, L, lam = 1.0 / ratio, math.log(snr), math.log(ratio)
+    grams = [_block_gram(l, t, snr, body, region) for l in range(int((L + 12) / lam) + 2)]
+    G0 = np.array(grams[0].tolist(), dtype=float)
+    top = float(np.linalg.eigvalsh(G0).max())                # the leading singular value, squared
+    total = 0.0
+    for l, G in enumerate(grams):
+        if G is not None:
+            _mp.mp.dps = int((2 * max(L - l * lam, 0) + 30) / math.log(10)) + 30
+            total += (2 * l + 1) * _half_log2_det(G, _mp.mpf(snr) ** 2 / top)
+    return total
+
+
+# the same by brute force: a white density f(r) Y_l0 on a quadrature of the ball, the true kernels, white noise on a
+# quadrature of the probes; the 2l + 1 members of a sector have the same singular values
+
+
+def _gl(n, a=0.0, b=1.0):
+    x, w = np.polynomial.legendre.leggauss(n)
+    return a + (b - a) * (x + 1) / 2, w * (b - a) / 2
+
+
+def _ball_sectors(nr: int, nt: int, lmax: int):
+    """Points of the unit ball (Gauss in r and cos theta, uniform in phi) and the matrix that takes values of a
+    kernel on them to its sectors: column (l, a) is Y_l0 times the quadrature weight on the shell r_a, times
+    sqrt(r_a^2 w_a)."""
+    nph = 2 * nt
+    r, wr = _gl(nr)
+    wr = wr * r**2
+    c, wc = np.polynomial.legendre.leggauss(nt)
+    ph = (np.arange(nph) + 0.5) * 2 * np.pi / nph
+    C, P = np.meshgrid(c, ph, indexing="ij")
+    th, P = np.arccos(C).ravel(), P.ravel()
+    wang = np.repeat(wc, nph) * 2 * np.pi / nph
+    d = np.stack([np.sin(th) * np.cos(P), np.sin(th) * np.sin(P), np.cos(th)], -1)
+    pts = (r[:, None, None] * d[None]).reshape(-1, 3)
+    Y = np.stack([_sph_harm_y(l, 0, th, P).real for l in range(lmax + 1)], -1) * wang[:, None]
+    S = np.zeros((nr, len(th), lmax + 1, nr))
+    for a in range(nr):
+        S[a, :, :, a] = Y * math.sqrt(wr[a])
+    return pts, S.reshape(nr * len(th), (lmax + 1) * nr)
+
+
+def held_mass_singular_values(ratio: float, nr: int = 20, nt: int = 32, lmax: int = 30,
+                              region: str = "outside") -> list:
+    """Singular values, sector by sector, of the map from a white density in the unit ball to int rho |x - y|^-4 dV
+    at probes y (unit-weighted over r^2 dr dOmega) outside R_c = ratio, in the shell R_c..2R_c, or on the sphere R_c."""
+    pts, S = _ball_sectors(nr, nt, lmax)
+    if region == "sphere":
+        r, wr = np.array([ratio]), np.array([1.0])
+    else:
+        u, wu = _gl(nr, {"outside": 0.0, "shell": 0.5}[region], 1.0)
+        r, wr = ratio / u, wu * ratio**3 / u**4                                 # r^2 dr, r = R_c / u
+    c, wc = np.polynomial.legendre.leggauss(nt + 8)
+    s = np.sqrt(1 - c**2)
+    Y = (r[:, None, None] * np.stack([s, 0 * s, c], -1)[None]).reshape(-1, 3)     # the sector m = 0 is axial
+    W = (wr[:, None] * wc[None] * 2 * np.pi).ravel()
+    K = np.sqrt(W)[:, None] * (((Y[:, None, :] - pts[None]) ** 2).sum(-1)) ** -2
+    A = (K @ S).reshape(len(Y), lmax + 1, nr)
+    return [np.linalg.svd(A[:, l, :], compute_uv=False) for l in range(lmax + 1)]
+
+
+def passing_mass_singular_values(ratio: float, nr: int = 20, nt: int = 24, lmax: int = 24, nb: int | None = None,
+                                 npsi: int | None = None) -> list:
+    """The same for the passing mass, Eq. pass: F = int Sigma |b - s|^-2 d^2s = int rho |b - x_perp|^-2 dV, for paths
+    in every direction (Gauss in the cosine of its angle to the axis; the sector m = 0 is axial) and impact points b
+    with |b| > R_c in the plane across each (unit-weighted over d^2b)."""
+    nb, npsi = nb or nr, npsi or 2 * nt
+    pts, S = _ball_sectors(nr, nt, lmax)
+    u, wu = _gl(nb)
+    rb, wrb = ratio / u, wu * ratio**2 / u**3                                     # |b| d|b|
+    psi = (np.arange(npsi) + 0.5) * 2 * np.pi / npsi
+    B = (rb[:, None, None] * np.stack([np.cos(psi), np.sin(psi)], -1)[None]).reshape(-1, 2)
+    wB = np.repeat(wrb, npsi) * 2 * np.pi / npsi
+    cn, wn = np.polynomial.legendre.leggauss(nt)
+    rows = []
+    for c, w in zip(cn, wn):
+        s = math.sqrt(1 - c * c)
+        e1, e2 = np.array([c, 0.0, -s]), np.array([0.0, 1.0, 0.0])               # across the path (s, 0, c)
+        xs = np.stack([pts @ e1, pts @ e2], -1)
+        K = np.sqrt(wB * w * 2 * np.pi)[:, None] / ((B[:, None, :] - xs[None]) ** 2).sum(-1)
+        rows.append((K @ S).reshape(len(B), lmax + 1, nr))
+    A = np.concatenate(rows, 0)
+    return [np.linalg.svd(A[:, l, :], compute_uv=False) for l in range(lmax + 1)]
+
+
+def sampled_bits(svals: list, snr: float) -> float:
+    """sum over sectors l of (2l + 1) sum (1/2) log2(1 + snr^2 s^2), s relative to the largest."""
+    top = max(float(s.max()) for s in svals)
+    return sum((2 * l + 1) * float(np.sum(np.log2(1 + (snr * s / top) ** 2)) / 2) for l, s in enumerate(svals))
+
+
+def grotzsch_modulus(r: float) -> float:
+    """mu(r) = (pi/2) K'(r) / K(r), the modulus of the unit disc slit along [0, r]; ln(4/r) for small r. The powers
+    of one sector fall at the exact rate e^-mu(t^2) each for free moments and e^-2mu(t) for a body, t = a / R_c
+    (2 Lam + ln 4 and 2 Lam + ln 16 for small t: the binomials)."""
+    return float(_mp.pi / 2 * _mp.ellipk(1 - _mp.mpf(r) ** 2) / _mp.ellipk(_mp.mpf(r) ** 2))
+
+
+def second_order_ratio_pass(mu: float, V: float, b: float, G: float = 6.674e-11) -> float:
+    """The energy a passing mass leaves, C^2 M / 2 b^2 at least, against the first-order interaction energy G M mu
+    / b: 2 G mu / (b V^2) = (mu / M) (2 G M / b V^2), the ratio of the two signal-to-noise ratios when both are read
+    against the same noise in energy."""
+    return 2 * G * mu / (b * V * V)
+
+
+def second_order_ratio_held(mu: float, tau: float, R_c: float, G: float = 6.674e-11) -> float:
+    """The same for a mass held for a time tau at R_c: (1/2) (G mu tau)^2 M / R_c^4 against G M mu / R_c, that is
+    G mu tau^2 / 2 R_c^3 = (mu / M) (G M tau^2 / 2 R_c^3)."""
+    return G * mu * tau * tau / (2 * R_c**3)
