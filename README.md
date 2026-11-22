@@ -100,7 +100,7 @@ and on their own at **[/figures](https://neovand.github.io/gravitational-camera/
 directions of one reading, four waves separated by one pixel, the camera sees the present, a pixel's own velocity and
 the test for motion, ranging a wave source, the sky at one pixel, and beyond general relativity in one reading.
 Two more stand on their own there. In "Push and weigh", two bodies with the same field outside are given tides of
-rising degree and weighed, until one degree tells them apart (Section XII, whose figure of those two bodies links
+rising degree and weighed, until one degree tells them apart (Section XIII, whose figure of those two bodies links
 to it in the online paper). "A ring of marked particles" is not in
 the paper: a ring of free particles in an exact gravitational plane wave, whose marks turn against a gyroscope by
 half the area that the ring's shape sweeps in the hyperbolic plane.

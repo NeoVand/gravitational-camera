@@ -1,4 +1,4 @@
-\section{The exterior field and the interior: gravitational hair}\label{sec:hair}
+\section{The exterior field and the interior}\label{sec:hair}
 
 \begin{quote}
 \textbf{In plain words.} Physicists say that a black hole has no hair: from
@@ -19,8 +19,8 @@ The limits of the near field were met one at a time in
 Section~\ref{sec:near-field}: an ambiguity, a blur, a count of bits, a tie
 broken by heat. They are one subject, and its natural name is hair:
 what the field outside a body fixes of its interior. This
-section puts them together, in the form that quantum mechanics gives them, and
-compares a black hole with an ordinary body.
+section and the three that follow put them together, in the form that
+quantum mechanics gives them, and compare a black hole with an ordinary body.
 
 \paragraph{The field at one time.} Outside a body, with no waves coming in from elsewhere,
 the field at one time is built from the moments
@@ -36,6 +36,78 @@ cancelled, on that one slice, by a free field added to them
 enough ball can be joined, across a shell, to a slice of the field of a black
 hole, spinning and in general moving, outside it \cite{CorvinoSchoen2006}. The statements of this paper suppose that no such field
 has been added (Section~\ref{sec:one-pixel}).
+
+\paragraph{The number of bits.} Read on a sphere of radius $R_c$ about a
+body of radius $R$, the multipole of degree $\ell$ is weaker than the monopole
+by $(R/R_c)^\ell$, and there are $2\ell + 1$ of each. If the monopole is read at
+the signal-to-noise ratio $\SNR$, the argument that gave
+Eq.~\eqref{eq:capacity} gives, for the whole body at one time,
+\begin{equation}\label{eq:hair-bits}
+\begin{gathered}
+H \approx \frac{1}{\ln 2}\left[\frac{L^3}{3\Lambda^2} + \frac{L^2}{2\Lambda}\right],\\
+L = \ln\SNR, \qquad \Lambda = \ln\frac{R_c}{R}
+\end{gathered}
+\end{equation}
+bits, whose leading term is that of Eq.~\eqref{eq:capacity} for a camera close
+to the surface, and is the $\varepsilon$-entropy of the harmonic functions
+between the two spheres, the number of bits that fix one of them to the
+accuracy $\varepsilon = 1/\SNR$ \cite{KolmogorovTikhomirov1959,SkibaZahariuta2000}. From a distance of three of its radii, a camera with $\SNR = 10^6$ reads
+$1200$ bits of a body, and at the ceiling of
+Section~\ref{sec:near-field}, $10^{70}$, it reads $1.7\times10^6$: two hundred
+kilobytes, for a person watched for the age of the universe. A black hole has
+less. All the moments of its field are fixed by its mass and its spin
+\cite{Hansen1974}, which with its place make seven numbers in the frame in
+which it is at rest (its velocity adds three, as any body's does): at most
+$7\log_2\SNR$ bits, $140$ at $10^6$ and $1600$ at $10^{70}$, whatever its
+size. A neutron star is nearly as bald, its moment of inertia, its quadrupole
+and its yielding to a tide being tied to one another, to about one per cent,
+whatever it is made of \cite{YagiYunes2013}. Having no hair is the end of a scale on which every body
+lies, and the scale is short. Between a person and a black hole there is a
+factor of nearly nine in what gravity can tell at $\SNR = 10^6$, and of a thousand at
+that ceiling (Fig.~\ref{fig:hair}(b)).
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/hair.pdf}
+\caption{What the exterior field determines. (a) Three bodies of one size and one mass: a
+uniform ball, a shell whose skin is eight per cent of its radius thick, and a
+ball of light rock whose core, of $0.4$ of its radius, holds half the mass.
+The field: outside, the pull of the three is the same at any one time (grey
+arrows). A tide: an
+impulsive tide of potential proportional to $x^2 - y^2$ gives each part an
+impulse along
+$(x, -y)$ and in proportion to its distance from the $z$ axis, outward near one
+axis (orange) and inward near the other (blue), drawn on sections of the
+three. The weight: the energy each gains, Eq.~\eqref{eq:push}, is proportional to
+its $\int\rho\,r^2\,\dd V$, which is $0.60$, $0.92$ and $0.37\,MR^2$ (bars).
+(b) The numbers that the field outside carries, a bead for each. A stone read
+at $\SNR = 10^6$ from three of its radii shows the $169$ moments of degree
+twelve and below, the $2\ell + 1$ of each degree in a row, each bead's area in
+proportion to the bits it holds, about $1200$ in all,
+Eq.~\eqref{eq:hair-bits}; a black hole at rest shows seven. The cutaway bodies and
+the stone's layers are pictures.}\label{fig:hair}
+\end{figure*}
+
+\section{Newton's theorem at second order}\label{sec:second-order}
+
+\begin{quote}
+\textbf{In plain words.} Newton showed that a hollow shell and a solid ball of
+the same weight pull alike on everything outside them. That is true of the
+pull. It is not true of what the pull does next. A mass that flies past a body
+pulls harder on its near parts than on its far ones and leaves it ringing, and
+the energy of the ringing is taken from the mass's own motion, which ends a
+little slower. How much slower depends on where the mass inside the body lies.
+From the amounts lost on all the ways of missing the body, its inside can be
+drawn.
+\end{quote}
+
+The ambiguity of Section~\ref{sec:hair} is that of Newton's shell theorem, and
+the theorem holds to first order only. The pull of a body on a mass outside it
+is of first order in that mass, and holds the harmonic moments; what the body
+does in reply, and so what the mass gains or loses, is of second order. The
+readings of this section are of second order: a variance of the field, a
+response to a second mass, or an energy exchanged with one. They have no null
+space.
 
 \paragraph{The field at two times.} A second reading, a moment later, does not
 repeat the first, because the moments change. For matter whose forces do not depend on
@@ -149,231 +221,6 @@ problem, whose stability, for conductivities bounded beforehand, is logarithmic
 and cannot be better \cite{Alessandrini1988,Mandache2001}. Readings at two
 times remove the ambiguity and keep the blur.
 
-\paragraph{The number of bits.} Read on a sphere of radius $R_c$ about a
-body of radius $R$, the multipole of degree $\ell$ is weaker than the monopole
-by $(R/R_c)^\ell$, and there are $2\ell + 1$ of each. If the monopole is read at
-the signal-to-noise ratio $\SNR$, the argument that gave
-Eq.~\eqref{eq:capacity} gives, for the whole body at one time,
-\begin{equation}\label{eq:hair-bits}
-\begin{gathered}
-H \approx \frac{1}{\ln 2}\left[\frac{L^3}{3\Lambda^2} + \frac{L^2}{2\Lambda}\right],\\
-L = \ln\SNR, \qquad \Lambda = \ln\frac{R_c}{R}
-\end{gathered}
-\end{equation}
-bits, whose leading term is that of Eq.~\eqref{eq:capacity} for a camera close
-to the surface, and is the $\varepsilon$-entropy of the harmonic functions
-between the two spheres, the number of bits that fix one of them to the
-accuracy $\varepsilon = 1/\SNR$ \cite{KolmogorovTikhomirov1959,SkibaZahariuta2000}. From a distance of three of its radii, a camera with $\SNR = 10^6$ reads
-$1200$ bits of a body, and at the ceiling of
-Section~\ref{sec:near-field}, $10^{70}$, it reads $1.7\times10^6$: two hundred
-kilobytes, for a person watched for the age of the universe. A black hole has
-less. All the moments of its field are fixed by its mass and its spin
-\cite{Hansen1974}, which with its place make seven numbers in the frame in
-which it is at rest (its velocity adds three, as any body's does): at most
-$7\log_2\SNR$ bits, $140$ at $10^6$ and $1600$ at $10^{70}$, whatever its
-size. A neutron star is nearly as bald, its moment of inertia, its quadrupole
-and its yielding to a tide being tied to one another, to about one per cent,
-whatever it is made of \cite{YagiYunes2013}. Having no hair is the end of a scale on which every body
-lies, and the scale is short. Between a person and a black hole there is a
-factor of nearly nine in what gravity can tell at $\SNR = 10^6$, and of a thousand at
-that ceiling (Fig.~\ref{fig:hair}(b)).
-
-\begin{figure*}
-\centering
-\includegraphics[width=\textwidth]{figures/hair.pdf}
-\caption{What the exterior field determines. (a) Three bodies of one size and one mass: a
-uniform ball, a shell whose skin is eight per cent of its radius thick, and a
-ball of light rock whose core, of $0.4$ of its radius, holds half the mass.
-The field: outside, the pull of the three is the same at any one time (grey
-arrows). A tide: an
-impulsive tide of potential proportional to $x^2 - y^2$ gives each part an
-impulse along
-$(x, -y)$ and in proportion to its distance from the $z$ axis, outward near one
-axis (orange) and inward near the other (blue), drawn on sections of the
-three. The weight: the energy each gains, Eq.~\eqref{eq:push}, is proportional to
-its $\int\rho\,r^2\,\dd V$, which is $0.60$, $0.92$ and $0.37\,MR^2$ (bars).
-(b) The numbers that the field outside carries, a bead for each. A stone read
-at $\SNR = 10^6$ from three of its radii shows the $169$ moments of degree
-twelve and below, the $2\ell + 1$ of each degree in a row, each bead's area in
-proportion to the bits it holds, about $1200$ in all,
-Eq.~\eqref{eq:hair-bits}; a black hole at rest shows seven. The cutaway bodies and
-the stone's layers are pictures.}\label{fig:hair}
-\end{figure*}
-
-\paragraph{The response of a black hole to a tide.} A black hole responds to a tide as no ordinary body does.
-Its Love numbers are zero \cite{BinningtonPoisson2009,DamourNagar2009}, with
-spin as without \cite{CharalambousDubovskyIvanov2021}: a steady tide raises no
-moment on a hole that does not turn, and on one that turns it raises one by
-friction only, since a tide that is not symmetric about the axis of spin is
-not steady to the turning horizon. In
-a tide that changes slowly a hole of mass $M$ and Schwarzschild radius $r_s$,
-not turning, absorbs energy at the rate \cite{Poisson2004}
-\begin{equation}\label{eq:horizon-friction}
-\begin{gathered}
-\frac{\dd E}{\dd t} = \nu\,\bigl(\dot{\tE}_{ij}\dot{\tE}_{ij}
-+ \dot{\tB}_{ij}\dot{\tB}_{ij}\bigr),\\
-\nu = \frac{16}{45}\,\frac{G^5M^6}{c^{13}} = \frac{M r_s^5}{90\,c^3} ,
-\end{gathered}
-\end{equation}
-so that its quadrupole $Q_{ij}$, defined by the energy $Q_{ij}\tE_{ij}$ in a
-tide (half of Newton's $\int\rho\,(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$),
-responds with $\mathrm{Im}\,\chi = \nu\omega$ and no elastic part
-\cite{GoldbergerRothstein2006}. This is the
-absorption of long gravitons, seen in the near field: through that coupling
-and its magnetic counterpart, which the horizon answers with the same friction,
-the limit of Section~\ref{sec:vistas} for the absorption of a quadrupole wave is
-$(16/5)\,G\nu\,\omega^6/c^5$ \cite{GoldbergerRothstein2020}.
-
-\paragraph{The fluctuations of a black hole's quadrupole.} For a hole formed by
-collapse and left alone, that quadrupole also fluctuates, at frequencies far below
-$c/r_s$, with a flat spectrum \cite{GoldbergerRothstein2020}:
-\begin{equation}\label{eq:hole-noise}
-\begin{gathered}
-\langle Q_{ij}(t)\,Q_{kl}(0)\rangle
-= \Pi_{ijkl}\int S_Q\,e^{-i\omega t}\,\frac{\dd\omega}{2\pi},\\
-S_Q = \frac{\hbar\,r_s^5}{360\pi G} ,
-\end{gathered}
-\end{equation}
-with $\Pi_{ijkl} = \tfrac12(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})
-- \tfrac13\delta_{ij}\delta_{kl}$. The spectrum was found by matching to Hawking's radiation, for which at
-these frequencies the chance of emitting a quantum and the chance of absorbing
-one are both the classical absorption times $k_BT/\hbar\omega$. Inserting
-Eqs.~\eqref{eq:horizon-friction} and~\eqref{eq:hole-noise} into the thermometer
-of Eq.~\eqref{eq:thermometer} gives
-\begin{equation}\label{eq:hole-thermometer}
-T = \frac{S_Q}{2k_B\,\nu} = \frac{\hbar c^3}{8\pi G M k_B} ,
-\end{equation}
-the Hawking temperature. The result is not independent, the noise
-having been fixed by matching to radiation at that temperature; what it confirms
-is that the friction, found from the growth of the horizon, and the absorption,
-found from the scattering of waves, are the same number. A hole's near field
-therefore obeys the rule of every warm body, noise equal to
-friction at its own temperature, so that a camera beside it reads that
-temperature from the field that does not radiate, without absorbing any quantum of
-the radiation. The signal is far beyond reach, like most in this
-paper: for a hole as warm as the graviton sky, $0.905\,\mathrm{K}$, it is
-$4\times10^{-32}\,\mathrm{s^{-2}}$ in a second, a metre away, where the hole's
-steady tide is $2\times10^{13}\,\mathrm{s^{-2}}$. The tremor carries nothing
-else. A stone's tremor carries $\int\rho\,\nabla h\cdot\nabla g\,\dd V$ for
-every pair of harmonic functions, and so the whole of its interior; a hole's
-carries $M$ again (Table~\ref{tab:hair}).
-
-\paragraph{The weight of a black hole's response.} For ordinary matter the sum
-of Eq.~\eqref{eq:sum-rule} is the inertia that a tide has to move: for a round
-body under a quadrupolar tide, $\tfrac13\int\rho\,r^2\,\dd V$. The response of
-a hole can be weighed in the same way. At any frequency its dissipative part
-is fixed by the fraction $\Gamma_2$ of a quadrupole wave that the hole
-absorbs, $\mathrm{Im}\,\chi = 5c^5\Gamma_2/16G\omega^5$, of which
-Eq.~\eqref{eq:horizon-friction} is the limit at low frequency. With $\Gamma_2$
-found from the Regge--Wheeler equation, and $x = GM\omega/c^3$,
-\begin{equation}\label{eq:hole-sum-rule}
-\begin{aligned}
-\frac{2}{\pi}\int_0^\infty\omega\,\mathrm{Im}\,\chi\,\dd\omega
-&= \frac{5}{32\pi}\,Mr_s^2\int_0^\infty\frac{\Gamma_2}{x^4}\,\dd x\\
-&= 0.345\,Mr_s^2 .
-\end{aligned}
-\end{equation}
-A round body of the hole's mass has this sum if its mass lies at a
-root-mean-square radius of $1.02\,r_s$: to a changing quadrupolar tide a hole that does
-not turn has the inertia of a shell of its own mass just outside its horizon
-(Fig.~\ref{fig:hole-response}(b)).
-The same sum can be taken for the tide of every degree. For a round body each
-tide of degree $\ell$ gives $\int\rho\,r^{2\ell-2}\,\dd V$,
-Eq.~\eqref{eq:thermal-multipole}, and the sequence fixes the density at every
-radius. For the hole, written as the radius of the shell of its own mass that
-has the same sum, they are $1.02$, $1.46$, $1.61$, $1.69$ and $1.73\,r_s$ for
-$\ell = 2$ to $6$, and tend to $(3\sqrt3/e)\,r_s = 1.91\,r_s$ (Fig.~\ref{fig:hole-response}(c)). No body has
-these sums. For any distribution of positive mass
-$\int\rho\,r^2(r^2 - a)^2\,\dd V$ cannot be negative, and with the hole's sums
-for $\ell = 2$, $3$ and $4$ it is $-2.04\,Mr_s^6$ at $a = 4.34\,r_s^2$. Read
-through the conversion that holds for every body, the absorption of a black
-hole is therefore the tidal inertia of no distribution of positive mass: one
-tide lets it be drawn as a shell, and three allow no drawing. The moments in
-frequency of the response to one tide are those of a positive measure
-\cite{KehagiasRiotto2026}; it is the sums across the degrees that belong to no
-body. Any absorber
-that takes all that comes within a fixed radius fails in the same way, and no
-matter does that to a gravitational wave (Sections~\ref{sec:thermal}
-and~\ref{sec:no-lens}).
-The same absorption, put into the dispersion relation that holds for matter,
-$\chi(0) = (2/\pi)\int\mathrm{Im}\,\chi\,\dd\omega/\omega$, would give a body
-of radius $r_s$ the Love number $k_2 = 1.35$ in the convention of Section~\ref{sec:near-field}, and the hole's is zero. That the
-relation cannot hold for a hole without a subtraction, and that a term local
-in time cancels the dispersive part of its static response, are known
-\cite{Porto2016,GoldbergerLiRothstein2021,KehagiasRiotto2026}; the two numbers
-give the sizes.
-
-\begin{figure}
-\centering
-\includegraphics[width=\columnwidth]{figures/hole-response.pdf}
-\caption{The weight of a black hole's response to a tide. (a) The integrand
-of Eq.~\eqref{eq:hole-sum-rule}, $(5/32\pi)\,\Gamma_2/x^4$ with
-$x = GM\omega/c^3$, in units of $Mr_s^2$. It is greatest at $x = 0.40$. (b) Its
-sum below each frequency, which tends to $0.345\,Mr_s^2$. The lines are the
-sums of two round bodies of the hole's mass,
-$\tfrac13\int\rho\,r^2\,\dd V$: a thin shell of radius $r_s$ and a uniform
-ball of that radius. (c) The same sum for the tide of each degree, as the
-radius of the shell of the hole's mass that has it. The radii tend to
-$(3\sqrt3/e)\,r_s$, and the first three belong to no distribution of positive
-mass.}\label{fig:hole-response}
-\end{figure}
-
-\begin{table*}
-\centering
-\begin{tabular}{p{0.2\textwidth}p{0.4\textwidth}p{0.34\textwidth}}
- & A stone, a planet, a star & A black hole \\ \hline
-The field at one time & the harmonic moments of its mass and its flow & at rest, mass, place and spin: seven numbers \\
-Bits, at $\SNR$ & $[L^3/3\Lambda^2 + L^2/2\Lambda]/\ln 2$ & $7\log_2\SNR$ \\
-A steady tide & its Love numbers & nothing, if it does not turn \\
-A changing tide & when fast, $-\omega^{-2}\int\rho\,\nabla h\cdot\nabla g\,\dd V$: the density & when slow, friction, $\nu$ \\
-Tides of degree up to $m$ & the moments $\int\rho\,r^{\ell+2j}Y_\ell\,\dd V$ with $j < m$ & nothing more \\
-The sums, tide by tide & $\int\rho\,r^{2\ell-2}\,\dd V$: the density of a round body & the moments of no distribution of positive mass \\
-A mass that passes & its own loss of energy, $\tfrac12C^2\int\Sigma\,|\mathbf b - \mathbf s|^{-2}\,\dd^2s$: the density & what the hole absorbs, set by its mass and spin \\
-Two tides, in either order & $\{\dot Q_h, \dot Q_g\}$: the flow & nothing more \\
-Its tremor & $\langle\dot Q_h\dot Q_g\rangle = k_BT\int\rho\,\nabla h\cdot\nabla g\,\dd V$: the density, at a known temperature & $S_Q = 2k_BT\nu$ at low frequencies: the temperature \\
-Its weight, after a tide & after an impulsive one, $\tfrac12\epsilon^2\int\rho\,|\nabla g|^2\,\dd V$ more: the density & after a slow one, $\nu\int(\dot{\tE}_{ij}\dot{\tE}_{ij} + \dot{\tB}_{ij}\dot{\tB}_{ij})\,\dd t$ more: its mass \\
-\end{tabular}
-\caption{What the field outside a body determines of its interior, for ordinary matter
-and for a black hole. $L = \ln\SNR$ and $\Lambda = \ln(R_c/R)$ are those of
-Eq.~\eqref{eq:hair-bits}; $h$ and $g$ are harmonic functions; $\nu$ is the
-horizon's friction, Eq.~\eqref{eq:horizon-friction}; in the last line the
-stone's entry is Eq.~\eqref{eq:push}, and the hole's holds for a tide that
-changes little in the time $r_s/c$.}\label{tab:hair}
-\end{table*}
-
-\paragraph{What gravity cannot decohere.} The null space has a meaning in
-quantum mechanics. Put a body into a superposition of two arrangements of its
-mass that have the same field outside: a ball and a shell, the nugget and its
-skin, or two stages of any motion that keeps a body round. At any one time the
-field outside is the same in both branches, if they have the same energy. It holds no record of which, and
-nothing outside that touches the body through its field alone can learn which
-from a reading at one time; if the superposition is made by a motion that leaves the field
-outside unchanged throughout, as a round motion does, no graviton is emitted in
-making it. To the outside the branches differ only in readings at two times, in their
-tremor and in their response to a tide, Eq.~\eqref{eq:dust}. Yet they differ at
-once in the measure by which Di\'osi
-and Penrose proposed that gravity itself ends superpositions
-\cite{Diosi1987,Penrose1996}, the gravitational self-energy of the difference
-of the two densities:
-\begin{equation}\label{eq:dp-energy}
-E_G = \frac{1}{8\pi G}\int|\mathbf g_1 - \mathbf g_2|^2\,\dd V = \frac{GM^2}{10R}
-\end{equation}
-for a ball and a shell of mass $M$ and radius $R$, whose fields
-$\mathbf g_{1,2}$ differ only inside (the numerical factor in front of $E_G$ is
-a matter of convention). For the mass and size of a glass bead a micrometre in
-radius, $\hbar/E_G$ is a fifth of a second; a real bead cannot move its mass to
-its surface, and if it only breathes, by a part $\delta/R$ of its radius,
-$E_G = \tfrac{9}{10}(\delta/R)^2GM^2/R$ and the time is longer by
-$R^2/9\delta^2$. Such a pair would separate two ways in which gravity might end
-a superposition. The ordinary way, by carrying away a record of it
-\cite{Belenchia2018,DanielsonSatishchandranWald2022}, is closed (save for
-tides from outside, which the branches answer differently, Eq.~\eqref{eq:dust},
-at second order in the coupling), and a collapse
-of Di\'osi's and Penrose's kind is not (in its simplest form, with no free
-length, it has since been excluded by experiment \cite{DonadiEtAl2021}). A spherical
-disturbance with no change of mass has been noted, for dark matter, to be the
-kind most robust against decoherence by gravity \cite{AllaliHertzberg2020}.
-
 \paragraph{An impulsive tide and a weighing.} The second reading can be of a single
 number. Let a tide act on the body impulsively: masses outside make, for
 an instant, the potential $-\epsilon\,g(\mathbf x)\,\delta(t)$, with $g$
@@ -412,11 +259,8 @@ which requires that the body's own motions be slow compared with light; and
 Eq.~\eqref{eq:push} is the first order in $1/c^2$, not the whole theory.
 
 \paragraph{A mass that passes.} Neither the weighing nor the contrived instant
-is needed. The pull of the body on a mass $\mu$ outside it is of first order
-in $\mu$, and holds the harmonic moments only: Newton's shell theorem is a
-theorem about the first order. What the body does in reply, and so what the
-mass gains or loses, is of second order. Held for an instant at the point
-$\mathbf y$, the mass is the impulsive tide of profile
+is needed. Held for an instant at a point $\mathbf y$ outside the body, a
+mass $\mu$ is the impulsive tide of profile
 $1/|\mathbf x - \mathbf y|$, and by Eq.~\eqref{eq:push} a body at rest gains
 in proportion to $\int\rho\,|\mathbf x - \mathbf y|^{-4}\,\dd V$. The kernel
 of the field, $1/|\mathbf x - \mathbf y|$, is harmonic; that of the energy is
@@ -672,6 +516,167 @@ Eq.~\eqref{eq:hair-commutator}. In quantum mechanics the zero-point motion
 supplies them at any temperature, which is why the correlations of
 a quantum state contain its commutators, and a cold classical body's do not.
 
+\section{A black hole under a tide}\label{sec:hole}
+
+\begin{quote}
+\textbf{In plain words.} A black hole yields to a tide, as a body does, and
+the yielding can be weighed in the same way. Weighed with one shape of tide,
+it looks like a shell of its own mass just outside its edge. Weighed with
+three, it looks like nothing that could be made of matter.
+\end{quote}
+
+\paragraph{The response of a black hole to a tide.} A black hole responds to a tide as no ordinary body does.
+Its Love numbers are zero \cite{BinningtonPoisson2009,DamourNagar2009}, with
+spin as without \cite{CharalambousDubovskyIvanov2021}: a steady tide raises no
+moment on a hole that does not turn, and on one that turns it raises one by
+friction only, since a tide that is not symmetric about the axis of spin is
+not steady to the turning horizon. In
+a tide that changes slowly a hole of mass $M$ and Schwarzschild radius $r_s$,
+not turning, absorbs energy at the rate \cite{Poisson2004}
+\begin{equation}\label{eq:horizon-friction}
+\begin{gathered}
+\frac{\dd E}{\dd t} = \nu\,\bigl(\dot{\tE}_{ij}\dot{\tE}_{ij}
++ \dot{\tB}_{ij}\dot{\tB}_{ij}\bigr),\\
+\nu = \frac{16}{45}\,\frac{G^5M^6}{c^{13}} = \frac{M r_s^5}{90\,c^3} ,
+\end{gathered}
+\end{equation}
+so that its quadrupole $Q_{ij}$, defined by the energy $Q_{ij}\tE_{ij}$ in a
+tide (half of Newton's $\int\rho\,(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$),
+responds with $\mathrm{Im}\,\chi = \nu\omega$ and no elastic part
+\cite{GoldbergerRothstein2006}. This is the
+absorption of long gravitons, seen in the near field: through that coupling
+and its magnetic counterpart, which the horizon answers with the same friction,
+the limit of Section~\ref{sec:vistas} for the absorption of a quadrupole wave is
+$(16/5)\,G\nu\,\omega^6/c^5$ \cite{GoldbergerRothstein2020}.
+
+\paragraph{The fluctuations of a black hole's quadrupole.} For a hole formed by
+collapse and left alone, that quadrupole also fluctuates, at frequencies far below
+$c/r_s$, with a flat spectrum \cite{GoldbergerRothstein2020}:
+\begin{equation}\label{eq:hole-noise}
+\begin{gathered}
+\langle Q_{ij}(t)\,Q_{kl}(0)\rangle
+= \Pi_{ijkl}\int S_Q\,e^{-i\omega t}\,\frac{\dd\omega}{2\pi},\\
+S_Q = \frac{\hbar\,r_s^5}{360\pi G} ,
+\end{gathered}
+\end{equation}
+with $\Pi_{ijkl} = \tfrac12(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})
+- \tfrac13\delta_{ij}\delta_{kl}$. The spectrum was found by matching to Hawking's radiation, for which at
+these frequencies the chance of emitting a quantum and the chance of absorbing
+one are both the classical absorption times $k_BT/\hbar\omega$. Inserting
+Eqs.~\eqref{eq:horizon-friction} and~\eqref{eq:hole-noise} into the thermometer
+of Eq.~\eqref{eq:thermometer} gives
+\begin{equation}\label{eq:hole-thermometer}
+T = \frac{S_Q}{2k_B\,\nu} = \frac{\hbar c^3}{8\pi G M k_B} ,
+\end{equation}
+the Hawking temperature. The result is not independent, the noise
+having been fixed by matching to radiation at that temperature; what it confirms
+is that the friction, found from the growth of the horizon, and the absorption,
+found from the scattering of waves, are the same number. A hole's near field
+therefore obeys the rule of every warm body, noise equal to
+friction at its own temperature, so that a camera beside it reads that
+temperature from the field that does not radiate, without absorbing any quantum of
+the radiation. The signal is far beyond reach, like most in this
+paper: for a hole as warm as the graviton sky, $0.905\,\mathrm{K}$, it is
+$4\times10^{-32}\,\mathrm{s^{-2}}$ in a second, a metre away, where the hole's
+steady tide is $2\times10^{13}\,\mathrm{s^{-2}}$. The tremor carries nothing
+else. A stone's tremor carries $\int\rho\,\nabla h\cdot\nabla g\,\dd V$ for
+every pair of harmonic functions, and so the whole of its interior; a hole's
+carries $M$ again (Table~\ref{tab:hair}).
+
+\paragraph{The weight of a black hole's response.} For ordinary matter the sum
+of Eq.~\eqref{eq:sum-rule} is the inertia that a tide has to move: for a round
+body under a quadrupolar tide, $\tfrac13\int\rho\,r^2\,\dd V$. The response of
+a hole can be weighed in the same way. At any frequency its dissipative part
+is fixed by the fraction $\Gamma_2$ of a quadrupole wave that the hole
+absorbs, $\mathrm{Im}\,\chi = 5c^5\Gamma_2/16G\omega^5$, of which
+Eq.~\eqref{eq:horizon-friction} is the limit at low frequency. With $\Gamma_2$
+found from the Regge--Wheeler equation, and $x = GM\omega/c^3$,
+\begin{equation}\label{eq:hole-sum-rule}
+\begin{aligned}
+\frac{2}{\pi}\int_0^\infty\omega\,\mathrm{Im}\,\chi\,\dd\omega
+&= \frac{5}{32\pi}\,Mr_s^2\int_0^\infty\frac{\Gamma_2}{x^4}\,\dd x\\
+&= 0.345\,Mr_s^2 .
+\end{aligned}
+\end{equation}
+A round body of the hole's mass has this sum if its mass lies at a
+root-mean-square radius of $1.02\,r_s$: to a changing quadrupolar tide a hole that does
+not turn has the inertia of a shell of its own mass just outside its horizon
+(Fig.~\ref{fig:hole-response}(b)).
+The same sum can be taken for the tide of every degree. For a round body each
+tide of degree $\ell$ gives $\int\rho\,r^{2\ell-2}\,\dd V$,
+Eq.~\eqref{eq:thermal-multipole}, and the sequence fixes the density at every
+radius. For the hole, written as the radius of the shell of its own mass that
+has the same sum, they are $1.02$, $1.46$, $1.61$, $1.69$ and $1.73\,r_s$ for
+$\ell = 2$ to $6$, and tend to $(3\sqrt3/e)\,r_s = 1.91\,r_s$ (Fig.~\ref{fig:hole-response}(c)). No body has
+these sums. For any distribution of positive mass
+$\int\rho\,r^2(r^2 - a)^2\,\dd V$ cannot be negative, and with the hole's sums
+for $\ell = 2$, $3$ and $4$ it is $-2.04\,Mr_s^6$ at $a = 4.34\,r_s^2$. Read
+through the conversion that holds for every body, the absorption of a black
+hole is therefore the tidal inertia of no distribution of positive mass: one
+tide lets it be drawn as a shell, and three allow no drawing. The moments in
+frequency of the response to one tide are those of a positive measure
+\cite{KehagiasRiotto2026}; it is the sums across the degrees that belong to no
+body. Any absorber
+that takes all that comes within a fixed radius fails in the same way, and no
+matter does that to a gravitational wave (Sections~\ref{sec:thermal}
+and~\ref{sec:no-lens}).
+The same absorption, put into the dispersion relation that holds for matter,
+$\chi(0) = (2/\pi)\int\mathrm{Im}\,\chi\,\dd\omega/\omega$, would give a body
+of radius $r_s$ the Love number $k_2 = 1.35$ in the convention of Section~\ref{sec:near-field}, and the hole's is zero. That the
+relation cannot hold for a hole without a subtraction, and that a term local
+in time cancels the dispersive part of its static response, are known
+\cite{Porto2016,GoldbergerLiRothstein2021,KehagiasRiotto2026}; the two numbers
+give the sizes.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/hole-response.pdf}
+\caption{The weight of a black hole's response to a tide. (a) The integrand
+of Eq.~\eqref{eq:hole-sum-rule}, $(5/32\pi)\,\Gamma_2/x^4$ with
+$x = GM\omega/c^3$, in units of $Mr_s^2$. It is greatest at $x = 0.40$. (b) Its
+sum below each frequency, which tends to $0.345\,Mr_s^2$. The lines are the
+sums of two round bodies of the hole's mass,
+$\tfrac13\int\rho\,r^2\,\dd V$: a thin shell of radius $r_s$ and a uniform
+ball of that radius. (c) The same sum for the tide of each degree, as the
+radius of the shell of the hole's mass that has it. The radii tend to
+$(3\sqrt3/e)\,r_s$, and the first three belong to no distribution of positive
+mass.}\label{fig:hole-response}
+\end{figure}
+
+\begin{table*}
+\centering
+\begin{tabular}{p{0.2\textwidth}p{0.4\textwidth}p{0.34\textwidth}}
+ & A stone, a planet, a star & A black hole \\ \hline
+The field at one time & the harmonic moments of its mass and its flow & at rest, mass, place and spin: seven numbers \\
+Bits, at $\SNR$ & $[L^3/3\Lambda^2 + L^2/2\Lambda]/\ln 2$ & $7\log_2\SNR$ \\
+A steady tide & its Love numbers & nothing, if it does not turn \\
+A changing tide & when fast, $-\omega^{-2}\int\rho\,\nabla h\cdot\nabla g\,\dd V$: the density & when slow, friction, $\nu$ \\
+Tides of degree up to $m$ & the moments $\int\rho\,r^{\ell+2j}Y_\ell\,\dd V$ with $j < m$ & nothing more \\
+The sums, tide by tide & $\int\rho\,r^{2\ell-2}\,\dd V$: the density of a round body & the moments of no distribution of positive mass \\
+A mass that passes & its own loss of energy, $\tfrac12C^2\int\Sigma\,|\mathbf b - \mathbf s|^{-2}\,\dd^2s$: the density & what the hole absorbs, set by its mass and spin \\
+Two tides, in either order & $\{\dot Q_h, \dot Q_g\}$: the flow & nothing more \\
+Its tremor & $\langle\dot Q_h\dot Q_g\rangle = k_BT\int\rho\,\nabla h\cdot\nabla g\,\dd V$: the density, at a known temperature & $S_Q = 2k_BT\nu$ at low frequencies: the temperature \\
+Its weight, after a tide & after an impulsive one, $\tfrac12\epsilon^2\int\rho\,|\nabla g|^2\,\dd V$ more: the density & after a slow one, $\nu\int(\dot{\tE}_{ij}\dot{\tE}_{ij} + \dot{\tB}_{ij}\dot{\tB}_{ij})\,\dd t$ more: its mass \\
+\end{tabular}
+\caption{What the field outside a body determines of its interior, for ordinary matter
+and for a black hole. $L = \ln\SNR$ and $\Lambda = \ln(R_c/R)$ are those of
+Eq.~\eqref{eq:hair-bits}; $h$ and $g$ are harmonic functions; $\nu$ is the
+horizon's friction, Eq.~\eqref{eq:horizon-friction}; in the last line the
+stone's entry is Eq.~\eqref{eq:push}, and the hole's holds for a tide that
+changes little in the time $r_s/c$.}\label{tab:hair}
+\end{table*}
+
+\section{What remains of holography}\label{sec:holography}
+
+\begin{quote}
+\textbf{In plain words.} It has been argued that in quantum gravity everything
+inside a region can be learnt at its edge. In ordinary physics a weaker thing
+is true, and it can be said exactly. The pull of a body, read on a surface
+around it, holds a surface's worth of what is inside, and no more. The rest
+can still be had from outside, but not by looking: something must be done to
+the body, and the energy counted afterwards.
+\end{quote}
+
 \paragraph{Black holes and the classical limit.} For ordinary matter, then,
 the exterior field determines the interior, with a precision that grows as the
 logarithm of the sensitivity. The statement is one about operations. For a
@@ -715,3 +720,36 @@ Eq.~\eqref{eq:hole-thermometer} being proportional to it: without $\hbar$ a
 hole is at zero temperature and has no tremor, and under a tide it gives only its mass. Whatever more the
 exterior field holds of a hole is of order $\hbar$, beyond the classical
 account given here.
+
+\paragraph{What gravity cannot decohere.} The null space has a meaning in
+quantum mechanics. Put a body into a superposition of two arrangements of its
+mass that have the same field outside: a ball and a shell, the nugget and its
+skin, or two stages of any motion that keeps a body round. At any one time the
+field outside is the same in both branches, if they have the same energy. It holds no record of which, and
+nothing outside that touches the body through its field alone can learn which
+from a reading at one time; if the superposition is made by a motion that leaves the field
+outside unchanged throughout, as a round motion does, no graviton is emitted in
+making it. To the outside the branches differ only in readings at two times, in their
+tremor and in their response to a tide, Eq.~\eqref{eq:dust}. Yet they differ at
+once in the measure by which Di\'osi
+and Penrose proposed that gravity itself ends superpositions
+\cite{Diosi1987,Penrose1996}, the gravitational self-energy of the difference
+of the two densities:
+\begin{equation}\label{eq:dp-energy}
+E_G = \frac{1}{8\pi G}\int|\mathbf g_1 - \mathbf g_2|^2\,\dd V = \frac{GM^2}{10R}
+\end{equation}
+for a ball and a shell of mass $M$ and radius $R$, whose fields
+$\mathbf g_{1,2}$ differ only inside (the numerical factor in front of $E_G$ is
+a matter of convention). For the mass and size of a glass bead a micrometre in
+radius, $\hbar/E_G$ is a fifth of a second; a real bead cannot move its mass to
+its surface, and if it only breathes, by a part $\delta/R$ of its radius,
+$E_G = \tfrac{9}{10}(\delta/R)^2GM^2/R$ and the time is longer by
+$R^2/9\delta^2$. Such a pair would separate two ways in which gravity might end
+a superposition. The ordinary way, by carrying away a record of it
+\cite{Belenchia2018,DanielsonSatishchandranWald2022}, is closed (save for
+tides from outside, which the branches answer differently, Eq.~\eqref{eq:dust},
+at second order in the coupling), and a collapse
+of Di\'osi's and Penrose's kind is not (in its simplest form, with no free
+length, it has since been excluded by experiment \cite{DonadiEtAl2021}). A spherical
+disturbance with no change of mass has been noted, for dark matter, to be the
+kind most robust against decoherence by gravity \cite{AllaliHertzberg2020}.

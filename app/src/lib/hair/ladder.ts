@@ -1,5 +1,5 @@
 /**
- * Push and weigh (paper, Section XII, Eqs. push and ladder; reference/gravcam/readings.py, "The ladder"). A body's
+ * Push and weigh (paper, Section XIII, Eqs. push and ladder; reference/gravcam/readings.py, "The ladder"). A body's
  * field outside it, read at one time, gives only the harmonic moments of its mass. A tide applied from outside as an
  * impulse, followed by a weighing, gives more: an impulse of profile g, a harmonic polynomial, and strength eps
  * gives every part of the body the velocity eps grad g where it stands, and a body at rest gains the energy

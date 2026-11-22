@@ -49,8 +49,8 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 		'Gravitational Camera: A Thought Experiment'
 	);
 	expect(await page.locator('.equation .katex').count()).toBeGreaterThanOrEqual(18);
-	// fourteen numbered sections and three appendices
-	expect(await page.locator('nav.contents li').count()).toBe(17);
+	// seventeen numbered sections and three appendices
+	expect(await page.locator('nav.contents li').count()).toBe(20);
 	expect(await page.locator('aside.plain').count()).toBeGreaterThanOrEqual(6);
 	await expect(page.locator('a.xref').first()).toBeVisible();
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
@@ -772,7 +772,7 @@ test('interactive figures: their own section, out of the demos, and live under t
 		'href',
 		/figures\/four-stars/
 	);
-	// a figure of Section XII is not live in place: it links to its interactive figure
+	// a figure of Section XIII is not live in place: it links to its interactive figure
 	const ladder = page.locator('figure[id="fig:ladder"]');
 	await ladder
 		.getByRole('link', { name: 'Apply the tides yourself in the interactive figure' })

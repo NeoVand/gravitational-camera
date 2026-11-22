@@ -21,9 +21,9 @@
 	<h1>Interactive figures</h1>
 	<p class="intro">
 		What a single pixel of the camera measures, from the paper’s Section VIII, and what a tide
-		applied from outside reveals, from its Section XII, as figures to explore. These are diagrams of
-		the results, not views through the camera; those of Section VIII also appear under their figures
-		in the <a href={resolve('/paper')}
+		applied from outside reveals, from its Section XIII, as figures to explore. These are diagrams
+		of the results, not views through the camera; those of Section VIII also appear under their
+		figures in the <a href={resolve('/paper')}
 			><HugeiconsIcon icon={BookOpen01Icon} size={17} strokeWidth={1.5} />online paper</a
 		>.
 	</p>

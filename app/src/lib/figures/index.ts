@@ -1,6 +1,6 @@
 /**
  * The interactive figures: the paper's results on what one pixel measures (its Section VIII) and on what a tide
- * applied from outside reveals (its Section XII), to explore. They are diagrams, not views through the camera; those
+ * applied from outside reveals (its Section XIII), to explore. They are diagrams, not views through the camera; those
  * of Section VIII also appear live under their figures in the online paper.
  */
 export interface FigureEntry {
