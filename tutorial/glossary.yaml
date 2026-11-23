@@ -2044,3 +2044,90 @@ terms:
     definition: 'The table $\int\rho\,x_ix_j\,\mathrm dV$, in kg m², of how a body''s mass is spread along each pair of directions. For a uniform ball of mass $M$ and radius $R$ it is $\tfrac15MR^2\delta_{ij}$.'
     chapter: '4.3'
     anchor: a-guessed-shape-overestimates-the-lowest-note-and-a-good-guess-comes-close
+  - term: shear viscosity
+    definition: 'The number $\eta$, in pascal seconds, with which a Newtonian fluid''s stress answers its rate of shear, $T_{ij} = -p\,\delta_{ij} + 2\eta\,\dot{\tilde u}_{ij}$. Between plates a gap $d$ apart, one sliding at the speed $v$, the stress is $\eta v/d$.'
+    role: matter
+    chapter: '4.4'
+    anchor: viscosity-is-a-stress-that-answers-how-fast-a-shape-changes
+  - term: rate of strain
+    definition: 'The strain made per second in a flowing material, $\dot u_{ij} = \tfrac12(\partial_iv_j + \partial_jv_i)$ with $\boldsymbol v$ the velocity, in $\mathrm{s^{-1}}$.'
+    chapter: '4.4'
+    anchor: viscosity-is-a-stress-that-answers-how-fast-a-shape-changes
+  - term: rate of shear
+    definition: 'The trace-free part $\dot{\tilde u}_{ij}$ of the rate of strain: how fast each small piece of a material changes its shape.'
+    chapter: '4.4'
+    anchor: viscosity-is-a-stress-that-answers-how-fast-a-shape-changes
+  - term: Newtonian fluid
+    definition: 'A fluid whose stress is its pressure plus a viscous stress in proportion to the rate of shear, with a viscosity that does not depend on the rate. Water stirred slowly is one.'
+    chapter: '4.4'
+    anchor: viscosity-is-a-stress-that-answers-how-fast-a-shape-changes
+  - term: viscous stress
+    definition: 'The part $2\eta\,\dot{\tilde u}_{ij}$ of a fluid''s stress that answers the rate of shear. The work done against it becomes heat, $2\eta\,\dot{\tilde u}_{ij}\dot{\tilde u}_{ij}$ per cubic metre per second.'
+    chapter: '4.4'
+    anchor: friction-turns-the-work-of-a-shear-into-heat-more-at-higher-frequency
+  - term: dashpot
+    definition: 'A piston in a cylinder of oil, which does not resist being held at any position but resists motion with a force in proportion to its speed: the picture of pure viscosity, as a spring is of pure elasticity.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: Maxwell model
+    definition: 'A spring of rigidity $\mu_\infty$ and a dashpot of viscosity $\eta_0$ in series: a liquid when sheared slowly and a solid when sheared fast, with the friction $\mathrm{Re}\,\eta = \eta_0/(1 + \omega^2\tau^2)$ and $\tau = \eta_0/\mu_\infty$.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: relaxation
+    definition: 'The dying away of the stress in a material held at a fixed shear, as its parts give way. In Maxwell''s model the stress falls as $e^{-t/\tau}$.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: relaxation time
+    definition: 'The time $\tau$ in which a held stress falls by a factor $e$; in Maxwell''s model $\tau = \eta_0/\mu_\infty$. A material sheared slowly compared with it flows, and one sheared fast holds like a solid.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: dynamic viscosity
+    definition: 'The viscosity at a frequency $\omega$, a complex number $\eta(\omega)$ like a response function. Its real part is the friction at that frequency, which turns work into heat; its imaginary part is stored and returned.'
+    role: matter
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: complex modulus
+    definition: 'The stress per shear at a frequency $\omega$, $\mu(\omega) = -i\omega\eta(\omega)$, in pascals. It runs from the relaxed rigidity at low frequency to the unrelaxed rigidity at high frequency.'
+    role: matter
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: unrelaxed rigidity
+    definition: 'The stiffness $\mu_\infty$ of a material against a shear too sudden for it to relax, in pascals.'
+    role: matter
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: relaxed rigidity
+    definition: 'The stiffness $\mu_0$ of a material against a slow shear, in pascals: zero for a liquid. The difference $\mu_\infty - \mu_0$ is the stiffness that relaxes, which the paper also calls the weight of a source of friction.'
+    role: matter
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: weight
+    definition: 'The paper''s name for the stiffness that relaxes, $\Delta\mu = \mu_\infty - \mu_0$, in pascals, because it fixes a source''s friction added up over all frequencies: $\tfrac2\pi\int_0^\infty\mathrm{Re}\,\eta\,\mathrm d\omega = \Delta\mu$. For copper''s free electrons it is 38 GPa.'
+    role: matter
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - term: placeholder friction
+    definition: 'The paper''s reference friction for the thermal glow, a constant $10^{-3}$ Pa s, about water''s everyday viscosity. Real materials glow at one to sixty per cent of its power at room temperature.'
+    chapter: '4.4'
+    anchor: at-fixed-stiffness-the-more-viscous-liquid-has-less-friction-at-the-frequencies-of-heat
+  - term: effective friction
+    definition: 'The constant friction $\eta_{\rm eff}$, the same at every frequency, that would make a body glow with the same total power as its real friction: an average of $\mathrm{Re}\,\eta$ over the glow''s band, weighted by the Planck spectrum. Water''s is $5.4\times10^{-5}$ Pa s and copper''s $1.3\times10^{-4}$ Pa s at room temperature.'
+    role: matter
+    chapter: '4.4'
+    anchor: at-fixed-stiffness-the-more-viscous-liquid-has-less-friction-at-the-frequencies-of-heat
+  - term: free electrons
+    definition: 'The electrons of a metal that belong to no single atom and move through the whole crystal; copper has one per atom. Their collisions relax a shear, so they add a Maxwell-like friction.'
+    chapter: '4.4'
+    anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling
+  - term: collision time
+    definition: 'The mean time between the collisions of a metal''s free electrons with its vibrating atoms, $2.5\times10^{-14}$ s in copper at room temperature. It is the relaxation time of the electrons'' friction.'
+    chapter: '4.4'
+    anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling
+  - term: Fermi energy
+    definition: 'The energy of the fastest free electrons of a metal. Quantum mechanics allows at most two electrons in each state of motion, so the electrons fill the states from the slowest upward, up to this energy: 7.0 eV in copper (chapter 10.3 derives it).'
+    chapter: '4.4'
+    anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling
+  - term: Fermi speed
+    definition: 'The speed $v_F$ of a metal''s fastest free electrons, with $E_F = \tfrac12mv_F^2$: $1.57\times10^6$ m/s in copper.'
+    chapter: '4.4'
+    anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling

@@ -1236,3 +1236,91 @@ symbols:
     meaning: 'The table that gives the kinetic energy of a set of masses, $\tfrac12\dot{\mathbf q}^{\mathsf T}\mathbf M\dot{\mathbf q}$, with each mass on the diagonal once for each of its coordinates. The normal modes are the eigenvectors of $\mathbf M^{-1/2}\mathbf K\mathbf M^{-1/2}$. (Bold, so that it is not a mass $M$.)'
     chapter: '4.3'
     anchor: masses-on-springs-move-in-normal-modes
+  - key: viscosity
+    title: Shear viscosity
+    tex: '\matter{\eta}'
+    role: matter
+    kind: A number; in pascal seconds (Pa s)
+    meaning: 'The stress with which a fluid answers a rate of shear: the viscous stress is $2\eta\,\dot{\tilde u}_{ij}$, and between two plates a gap $d$ apart, one sliding at the speed $v$, it is $\eta v/d$. Water has about $10^{-3}$ Pa s, honey about 10 Pa s. At a frequency $\omega$ the friction that counts is $\mathrm{Re}\,\eta(\omega)$. (Not the rapidity or the $\eta_{\mu\nu}$ of Parts 6 and 7, nor the vector $\boldsymbol\eta$ of chapter 13.2.)'
+    chapter: '4.4'
+    anchor: viscosity-is-a-stress-that-answers-how-fast-a-shape-changes
+  - key: static-viscosity
+    title: Everyday (static) viscosity
+    tex: '\matter{\eta_0}'
+    role: matter
+    kind: A number; in pascal seconds
+    meaning: 'The viscosity felt when a liquid is stirred slowly, the limit of the dynamic viscosity $\eta(\omega)$ as $\omega \to 0$. In Maxwell''s model $\eta_0 = \mu_\infty\tau$.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - key: dynamic-viscosity
+    title: Dynamic viscosity
+    tex: '\matter{\eta(\omega)}'
+    role: matter
+    kind: A complex function of the angular frequency; in pascal seconds
+    meaning: 'The viscosity at the frequency $\omega$, defined by the stress phasor $\tilde T = 2\eta(\omega)(-i\omega U)$ for a shear of phasor $U$. Its real part $\mathrm{Re}\,\eta$ is the friction, which turns work into heat; its imaginary part is stored and returned. For Maxwell''s model $\eta(\omega) = \eta_0/(1 - i\omega\tau)$, so $\mathrm{Re}\,\eta = \eta_0/(1 + \omega^2\tau^2)$.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - key: relaxation-time
+    title: Relaxation time
+    tex: '\tau'
+    role: none
+    kind: A time; in seconds
+    meaning: 'The time in which a held stress dies away by a factor $e$, $\tau = \eta_0/\mu_\infty$ in Maxwell''s model: about 10 ns for honey with an assumed rigidity of 1 GPa. In a metal it is the collision time of the free electrons, $2.5\times10^{-14}$ s in copper. (Not the averaging time of chapter 3.2, the optical depth of chapter 5.5 or the proper time of Part 6.)'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - key: unrelaxed-modulus
+    title: Unrelaxed rigidity
+    tex: '\matter{\mu_\infty}'
+    role: matter
+    kind: A number; in pascals
+    meaning: 'The stiffness of a material against a shear too sudden for it to relax, $\mu_\infty = \eta_0/\tau$ in Maxwell''s model. Far above $1/\tau$ the material answers as a solid of this rigidity, and its friction falls as $\mu_\infty^2/\eta_0\omega^2$. For copper''s free electrons it is $\tfrac25nE_F = 38$ GPa.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - key: relaxed-modulus
+    title: Relaxed rigidity
+    tex: '\matter{\mu_0}'
+    role: matter
+    kind: A number; in pascals
+    meaning: 'The stiffness of a material against a slow shear. It is zero for a liquid, including a Maxwell liquid. The difference $\Delta\mu = \mu_\infty - \mu_0$ is the stiffness that relaxes, the paper''s weight of a source of friction, which fixes the total friction in its sum rule.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - key: complex-modulus
+    title: Complex modulus
+    tex: '\matter{\mu(\omega)}'
+    role: matter
+    kind: A complex function of the angular frequency; in pascals
+    meaning: 'The stress per shear at the frequency $\omega$, $\tilde T = 2\mu(\omega)U$, equal to $-i\omega\eta(\omega)$. It runs from the relaxed rigidity $\mu_0$ at low frequency to the unrelaxed $\mu_\infty$ at high frequency, and its imaginary part, $-\omega\,\mathrm{Re}\,\eta$, is negative.'
+    chapter: '4.4'
+    anchor: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast
+  - key: effective-friction
+    title: Effective friction
+    tex: '\matter{\eta_{\rm eff}}'
+    role: matter
+    kind: A number; in pascal seconds
+    meaning: 'The constant friction, the same at every frequency, that would make a body glow with the same total power as its real friction $\mathrm{Re}\,\eta(\omega)$: an average over the glow''s band weighted by the Planck spectrum. The paper''s Table of materials lists it; water''s is $5.4\times10^{-5}$ Pa s and copper''s $1.3\times10^{-4}$ Pa s at 293 K.'
+    chapter: '4.4'
+    anchor: at-fixed-stiffness-the-more-viscous-liquid-has-less-friction-at-the-frequencies-of-heat
+  - key: electron-density
+    title: Density of free electrons
+    tex: '\matter{n}'
+    role: matter
+    kind: A number per volume; in m⁻³
+    meaning: 'The number of free (conduction) electrons in each cubic metre of a metal: $8.47\times10^{28}\ \mathrm{m^{-3}}$ in copper, one per atom. (Not the refractive index $n$ of chapter 5.1, nor a noise.)'
+    chapter: '4.4'
+    anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling
+  - key: fermi-energy
+    title: Fermi energy
+    tex: 'E_F'
+    role: none
+    kind: An energy; in joules or electronvolts
+    meaning: 'The energy of a metal''s fastest free electrons, $E_F = \tfrac12mv_F^2$. At most two electrons can share a state of motion, so they fill the states from the slowest upward to this energy: 7.0 eV in copper. Stated in chapter 4.4 and derived in chapter 10.3.'
+    chapter: '4.4'
+    anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling
+  - key: fermi-speed
+    title: Fermi speed
+    tex: 'v_F'
+    role: none
+    kind: A speed; in m s⁻¹
+    meaning: 'The speed of the fastest free electrons of a metal, $v_F = \sqrt{2E_F/m}$: $1.57\times10^6\ \mathrm{m\,s^{-1}}$ in copper, half a per cent of the speed of light.'
+    chapter: '4.4'
+    anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling
