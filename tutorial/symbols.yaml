@@ -1140,6 +1140,14 @@ symbols:
     meaning: 'The work a push does per second, averaged over a swing: $\bar P = \tfrac12\omega\,\mathrm{Im}\,\chi(\omega)\,|\tilde F|^2$ for a push of phasor $\tilde F$. Plotted against the frequency it is a line of width $\Gamma$. (Not a projector $P_{ij}$.)'
     chapter: '4.1'
     anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push
+  - key: wave-field
+    title: Wave field
+    tex: 'u'
+    role: none
+    kind: A number at each point and time; for a shear wave, a sideways displacement in metres
+    meaning: 'The quantity that obeys the wave equation $\partial_t^2u = c^2\nabla^2u$: in chapter 5.1 the sideways displacement of a sheared solid, and in Part 5 any field that travels as a wave. (Not the paper''s retarded time $u = t - r/c$, nor the scaled radius $u$ of chapters 3.6 and 3.7.)'
+    chapter: '5.1'
+    anchor: a-shear-in-a-solid-travels-and-its-law-is-the-wave-equation
   - key: shear-speed
     title: Speed of shear waves
     tex: 'c_T'
@@ -1148,6 +1156,54 @@ symbols:
     meaning: 'The speed $c_T = \sqrt{\mu/\rho}$ at which a shear travels through a solid of shear modulus $\mu$ and density $\rho$. Steel has $c_T \approx 3000\ \mathrm{m\,s^{-1}}$, a hundred-thousandth of the speed of light.'
     chapter: '4.3'
     anchor: a-solid-carries-two-kinds-of-sound
+  - key: angular-frequency
+    title: Angular frequency
+    tex: '\omega'
+    role: none
+    kind: A rate; in radians per second (s⁻¹)
+    meaning: 'How fast an oscillation turns, $2\pi$ times its frequency $f$. A wave of one frequency varies in time as $e^{-i\omega t}$, and in empty space $\omega = ck$.'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - key: wavelength
+    title: Wavelength
+    tex: '\lambda'
+    role: none
+    kind: A length; in metres
+    meaning: 'The distance between neighbouring crests of a wave, $\lambda = 2\pi/k = c/f$. A gravitational wave of 1 kHz is 300 km long. (Not an eigenvalue, as in chapter 3.4, nor a mass per length, as in chapter 2.4.)'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - key: frequency
+    title: Frequency
+    tex: 'f'
+    role: none
+    kind: A rate; in hertz (cycles per second)
+    meaning: 'The number of crests of a wave that pass a fixed point each second, $f = \omega/2\pi$. The wavelength is $\lambda = c/f$.'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - key: decay-rate
+    title: Rate of fading across a plane
+    tex: '\kappa'
+    role: none
+    kind: A rate per length; in m⁻¹
+    meaning: 'The rate $\kappa = \sqrt{k^2 - \omega^2/c^2}$ at which a ripple of wavenumber $k$ across a plane fades with the height $z$, as $e^{-\kappa z}$, when its crests are closer together than a wavelength. At zero frequency it is $k$, the fade of Laplace''s equation: at zero frequency this is the paper''s cone $\kappa = K$ of its scene transform.'
+    chapter: '5.1'
+    anchor: a-ripple-finer-than-a-wavelength-across-a-plane-fades-instead-of-travelling
+  - key: refractive-index
+    title: Refractive index
+    tex: 'n'
+    role: none
+    kind: A pure number
+    meaning: 'The speed of a wave in empty space over its phase speed in a medium, $n = ck/\omega$. A slab of thickness $L$ delays the phase by $(n - 1)\omega L/c$. For a gravitational wave in steel at 1 kHz, $n - 1 = 8.3 \times 10^{-14}$. (Not the noise $n(t)$ of chapter 3.2.)'
+    chapter: '5.1'
+    anchor: a-medium-can-slow-a-wave-and-its-refractive-index-measures-how-much
+  - key: absorption-coefficient
+    title: Absorption coefficient
+    tex: '\alpha'
+    role: none
+    kind: A rate per length; in m⁻¹
+    meaning: 'The fraction of a wave''s energy lost per metre, $\alpha = \Gamma/c$ for a damping rate $\Gamma$. For a gravitational wave in matter of viscosity $\eta$ it is $16\pi G\eta/c^3$, about $10^{-37}\ \mathrm{m^{-1}}$ in water. (Not the phase $\alpha$ of chapter 1.5b.)'
+    chapter: '5.1'
+    anchor: a-damping-term-makes-a-wave-fade-at-a-fixed-rate-per-metre
   - key: temperature
     title: Temperature
     tex: 'T'

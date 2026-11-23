@@ -402,10 +402,11 @@ with temperature.
 
 ## A wave in a viscous medium fades, at the friction of its own frequency
 
-A friction in a wave equation makes the wave's energy fall by the same factor in each metre (chapter 5.1 derives
-this). For a gravitational wave the paper's [](/paper/#eq:damped) gives the damping rate in time, $\Gamma = 16\pi
-G\matter\eta/c^2$ in $\mathrm{s^{-1}}$, Hawking's result, which chapter 7.8 derives. The wave moves at $c$, so its
-energy falls per metre at the rate
+A friction in a wave equation makes the wave's energy fall by the same factor in each metre ([chapter
+5.1](/tutorial/waves/wave-equation/#a-damping-term-makes-a-wave-fade-at-a-fixed-rate-per-metre) derives this). For a
+gravitational wave the paper's [](/paper/#eq:damped) gives the damping rate in time, $\Gamma = 16\pi G\matter\eta/c^2$
+in $\mathrm{s^{-1}}$, Hawking's result, which chapter 7.8 derives. The wave moves at $c$, so its energy falls per metre
+at the rate
 
 $$\alpha = \frac{\Gamma}{c} = \frac{16\pi G\matter\eta}{c^3} ,$$
 

@@ -1911,6 +1911,66 @@ terms:
     definition: 'Said of a response that is zero before the push that causes it: $\chi(t) = 0$ for $t < 0$.'
     chapter: '4.1'
     anchor: the-answer-to-a-single-blow-comes-after-the-blow
+  - term: wave equation
+    definition: 'The law $\partial_t^2u = c^2\nabla^2u$: the acceleration of a field at each point is $c^2$ times how much it curves there. Its solutions travel at the speed $c$; at zero frequency it becomes Laplace''s equation.'
+    chapter: '5.1'
+    anchor: a-shear-in-a-solid-travels-and-its-law-is-the-wave-equation
+  - term: travelling wave
+    definition: 'A shape that moves through a medium at a fixed speed without changing, such as $u(x - ct)$.'
+    chapter: '5.1'
+    anchor: any-shape-travels-without-changing
+  - term: "d'Alembert's solution"
+    definition: 'Every solution of the wave equation along a line is a shape moving right plus a shape moving left: $u = u_{\rm R}(x - ct) + u_{\rm L}(x + ct)$.'
+    chapter: '5.1'
+    anchor: any-shape-travels-without-changing
+  - term: plane wave
+    definition: 'A wave of one frequency whose crests are flat planes, $\mathrm{Re}[\tilde u\,e^{i(\boldsymbol k\cdot\boldsymbol x - \omega t)}]$; it travels along its wavevector $\boldsymbol k$.'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - term: dispersion relation
+    definition: 'The rule that ties a wave''s angular frequency to its wavenumber. For the wave equation it is $\omega = ck$.'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - term: phase speed
+    definition: 'The speed $\omega/k$ at which the crests of a wave move. For the wave equation it is $c$ at every frequency.'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - term: wavelength
+    definition: 'The distance between neighbouring crests of a wave, $\lambda = 2\pi/k = c/f$. A gravitational wave of one kilohertz is 300 km long.'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - term: frequency
+    definition: 'The number of crests of a wave that pass a fixed point each second, in hertz: $f = \omega/2\pi$.'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - term: standing wave
+    definition: 'A wave pattern whose crests stay in place, such as $\cos kx\cos\omega t$: the sum of two equal waves moving in opposite directions, as on a plucked string.'
+    chapter: '5.1'
+    anchor: a-plane-wave-is-a-turning-number-that-travels
+  - term: energy flux
+    definition: 'The energy a wave carries across each square metre per second, in watts per square metre. For a travelling wave it is the energy per volume times the speed.'
+    chapter: '5.1'
+    anchor: a-wave-carries-its-energy-along-at-its-own-speed
+  - term: refractive index
+    definition: 'The speed of a wave in empty space divided by its phase speed in a medium, $n = ck/\omega$. A slab of thickness $L$ delays the phase by $(n - 1)\omega L/c$.'
+    chapter: '5.1'
+    anchor: a-medium-can-slow-a-wave-and-its-refractive-index-measures-how-much
+  - term: dispersive
+    definition: 'Said of a medium whose refractive index depends on the frequency, so that waves of different frequencies travel at different speeds and a pulse changes shape as it goes.'
+    chapter: '5.1'
+    anchor: a-medium-can-slow-a-wave-and-its-refractive-index-measures-how-much
+  - term: absorption coefficient
+    definition: 'The fraction of a wave''s energy lost per metre, $\alpha$, in m⁻¹. A damping rate $\Gamma$ gives $\alpha = \Gamma/c$; for a gravitational wave in water it is about $10^{-37}$ per metre.'
+    chapter: '5.1'
+    anchor: a-damping-term-makes-a-wave-fade-at-a-fixed-rate-per-metre
+  - term: attenuation length
+    definition: 'The distance $1/\alpha$ over which a wave''s energy falls by the factor $e$: about $10^{21}$ light-years for a gravitational wave in water.'
+    chapter: '5.1'
+    anchor: a-damping-term-makes-a-wave-fade-at-a-fixed-rate-per-metre
+  - term: wave camera
+    definition: 'A camera that forms its picture from the waves that reach it. It can show detail down to about a wavelength: the smallest angle it resolves is about the wavelength divided by the camera''s width.'
+    chapter: '5.1'
+    anchor: a-ripple-finer-than-a-wavelength-across-a-plane-fades-instead-of-travelling
   - term: thermal equilibrium
     definition: 'The state of two bodies in contact once heat has stopped flowing between them on average: they still trade energy, but as much flows each way. Bodies in thermal equilibrium have the same temperature.'
     chapter: '4.2'

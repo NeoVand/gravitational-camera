@@ -83,8 +83,8 @@ So chapter 1.5's
 [split](/tutorial/newton/five-numbers/#every-symmetric-table-splits-into-a-part-that-changes-size-and-a-part-that-changes-shape)
 applies to the strain as it did to the tide. The trace part $\tfrac13u_{kk}\delta_{ij}$ changes the volume, and so the
 density. The trace-free part $\tilde u_{ij} = u_{ij} - \tfrac13\delta_{ij}u_{kk}$ changes only the shape, and a
-deformation that has only this part is a **shear**. Figure [](#fig:strain) sets a shear, a change of volume and a
-rigid turn side by side.
+deformation that has only this part is a **shear**. Figure [](#fig:strain) sets a shear, a change of volume and a rigid
+turn side by side.
 
 **An example.** Appendix A's displacement in a ball of radius $R$ is $\vect u = (q/R)(-x/2, -y/2, z)$, where the
 amplitude $q$ is in metres. Its table $\partial_ju_i$ is $(q/R)\,\mathrm{diag}(-\tfrac12, -\tfrac12, 1)$, already
@@ -231,9 +231,9 @@ $$\boxed{\;\sym{shear-speed}{c_T} = \sqrt{\frac{\matter\mu}{\matter\rho}}, \qqua
 \sym{compressional-speed}{c_L} = \sqrt{\frac{\matter K + \tfrac43\matter\mu}{\matter\rho}} .\;}$$
 
 The first is the speed of **shear sound** (transverse, hence $T$), the second that of **compressional sound**
-(longitudinal, hence $L$). The units agree: a pascal over kilograms per cubic metre is a square metre per square
-second. Chapter 5.1
-solves such wave equations in full.
+(longitudinal, hence $L$). The units agree: a pascal over kilograms per cubic metre is a square metre per square second.
+Chapter [5.1](/tutorial/waves/wave-equation/#a-shear-in-a-solid-travels-and-its-law-is-the-wave-equation) solves such
+wave equations in full.
 
 **Numbers.** The paper prints no constants for its steel. The tutorial takes $c_T = 3000\unit{m\,s^{-1}}$, the value
 behind the paper's numbers, and a density $\matter\rho = 7850\unit{kg\,m^{-3}}$, so $\matter\mu = \matter\rho c_T^2 =
@@ -554,7 +554,7 @@ surface $3z^2 - R^2 = 2R^2P_2$, so the layer has $\matter Q_{zz} = \int\matter\r
     [R1](/tutorial/newton/reading-section-ii/#near-slow-matter-the-tide-is-the-hessian-and-in-a-wave-it-is-the-strains-acceleration)
     shows where the half comes from). This is why the paper says that a wave "shears" a medium "at the rate
     $\tfrac12\dot h_{ij}$" (chapter
-    5.1).
+    [5.1](/tutorial/waves/wave-equation/#a-damping-term-makes-a-wave-fade-at-a-fixed-rate-per-metre)).
 
 [^sites]: The nearest neighbours of a site lie one edge of a cube away, along the axes, and the twelve next-nearest
     across the diagonal of a face of a cube, $\sqrt2$ edges away.
@@ -588,7 +588,7 @@ surface $3z^2 - R^2 = 2R^2P_2$, so the layer has $\matter Q_{zz} = \int\matter\r
 
 [^wavenumber]: So at the same frequency a gravitational wave is a hundred thousand times longer than shear sound, which
     is the paper's "a wave's wavenumber is about $10^{-5}$ of that of a sound wave of the same frequency" (chapter
-    5.1).
+    [5.1](/tutorial/waves/wave-equation/#a-plane-wave-is-a-turning-number-that-travels)).
 
 [^bold]: The matrices are bold so that $\mathbf M$ is not the ball's mass $\matter M$ and $\mathbf K$ is not the bulk
     modulus $\matter K$, to which it is related in idea: each is a stiffness.
