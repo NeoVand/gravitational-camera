@@ -57,11 +57,14 @@ one along them. An arrow of length one is called a **unit vector**. Any vector i
 $$\vect a = a_1\,\vect e_1 + a_2\,\vect e_2 + a_3\,\vect e_3 ,$$
 
 and the three numbers $a_1$, $a_2$ and $a_3$ are its **components**. Each component is the shadow of the arrow on
-one axis, cast by light that falls at right angles to that axis. The shadow on the east axis has the length $a_1$,
-counted as negative when it points west. A component has the unit of the vector itself, so the components of a step
-are in metres.
+one axis, cast by light that falls at right angles to that axis (Figure [](#fig:shadows)). The shadow on the east
+axis has the length $a_1$, counted as negative when it points west. A component has the unit of the vector itself,
+so the components of a step are in metres.
 
-<!-- diagram: one arrow from the origin, with three axes east, north and up; light falling at right angles to each axis casts the arrow's shadow on it, and the three shadows are labelled a₁, a₂ and a₃, one of them pointing the negative way. -->
+![A dotted line falls from the tip of the arrow $\vect a$ onto each axis at right angles, like light that falls at
+right angles to that axis. The orange arrow from the origin to the point where it lands is the shadow of $\vect a$
+on that axis, and its length is the component $a_1$, $a_2$ or $a_3$. This arrow points downward, so its shadow on
+the up axis points down, and $a_3$ is negative.](tut-vec-shadows){#fig:shadows}
 
 The dot product of two vectors is $\vect a\cdot\vect b = |\vect a|\,|\vect b|\cos\vartheta$, where $\vartheta$ (a
 rounded form of the Greek letter theta) is the angle between them. The unit vectors along the axes have
@@ -118,10 +121,14 @@ The Kronecker delta replaces one index by another.
 
 The components of an arrow depend on the axes we chose, and turning the axes mixes them. A step of 1 cm due east has
 the components $(1, 0, 0)$ in centimetres. If we turn the axes so that the first one points north-east, the same step
-has the components $(0.707, -0.707, 0)$. The second number is negative because the second new axis points
-north-west, partly against the step. The length of the step, 1 cm, has not changed.
+has the components $(0.707, -0.707, 0)$, as Figure [](#fig:turned-axes) shows. The second number is negative
+because the second new axis points north-west, partly against the step. The length of the step, 1 cm, has not
+changed.
 
-<!-- diagram: one arrow pointing east, drawn once under two sets of axes in the horizontal plane: east and north, and the same axes turned by 45° to north-east and north-west. Its shadows on each set are marked: (1, 0) on the first, (0.707, −0.707) on the second. The arrow itself is the same in both. -->
+![One step of 1 cm due east is drawn once, seen from above, under two sets of axes: east and north (blue), and the
+same axes turned by 45° (orange). On the blue axes the step lies along the east axis, so its components are 1 and 0.
+On the orange axes the dotted lines fall from its tip at right angles, and the shadows they mark give the components
+0.707 and −0.707, although the arrow has not changed.](tut-vec-turn){#fig:turned-axes}
 
 A shop's record of the temperature of a room, the mass of a parcel and the price of a stamp is also a list of three
 numbers, but it is not a vector. No turn of any axes can make a temperature partly a price. The components of a
@@ -186,8 +193,8 @@ centre toward the north-east, at $\vect\xi = (0.707, 0.707, 0)\unit{cm}$. The ta
 so each equation keeps one term. The first gives
 $\ddot\xi_1 = -\curv{\tE}_{11}\,\xi_1 = 2 \times 4.67\times10^{-9} \times 0.00707\unit{m\,s^{-2}} = +6.6\times10^{-11}\unit{m\,s^{-2}}$,
 toward the east. The others give $\ddot\xi_2 = -3.3\times10^{-11}\unit{m\,s^{-2}}$, toward the south, and
-$\ddot\xi_3 = 0$. So this ball drifts outward along the line to the person and inward across it, as the figure above
-shows. Its acceleration, $7.4\times10^{-11}\unit{m\,s^{-2}}$ in all, is $7.5\times10^{-12}$ times the
+$\ddot\xi_3 = 0$. So this ball drifts outward along the line to the person and inward across it, as panel (a) of the
+paper's Figure [](/paper/#fig:tidal) shows. Its acceleration, $7.4\times10^{-11}\unit{m\,s^{-2}}$ in all, is $7.5\times10^{-12}$ times the
 $9.8\unit{m\,s^{-2}}$ of a falling apple.
 
 The minus sign in the equation decides which entries pull balls apart. The entry $\curv{\tE}_{11}$ is negative, so
@@ -231,13 +238,15 @@ Taking that part away leaves the part of $\vect\xi$ across $\hat n$. The table t
 $$\boxed{\;\sym{projector}{P}_{ij} = \delta_{ij} - \hat n_i\hat n_j\;}, \qquad P_{ij}\,\xi_j = \xi_i - \hat n_i\,(\hat n\cdot\vect\xi).$$
 
 It flattens every arrow onto the plane at right angles to $\hat n$, as the shadow of a pencil falls flat onto a
-table top when the light comes from straight above. It sends $\hat n$ itself to zero, because
+table top when the light comes from straight above (Figure [](#fig:projector)). It sends $\hat n$ itself to zero, because
 $P_{ij}\hat n_j = \hat n_i - \hat n_i = 0$, and it leaves every arrow already in that plane as it is. A table with
 these two properties is called a **projector**. Its trace is $P_{ii} = 3 - 1 = 2$, the number of directions in the
 plane. The paper uses $P_{ij}$ in its equation [](/paper/#eq:pixel-kernel), with $\hat n$ along the line from the
 pixel toward a source of waves, to keep only the directions across that line.
 
-<!-- diagram: a plane drawn in perspective with the unit vector n̂ standing at right angles to it; one arrow ξ leaning out of the plane, its part along n̂ dashed, and its flattened image Pξ lying in the plane directly below it, like a pencil's shadow under light from straight above. -->
+![The unit vector $\hat n$ (blue) stands at right angles to a plane, and the arrow $\vect\xi$ leans out of the plane.
+The projector removes the part of $\vect\xi$ along $\hat n$ (dashed) and leaves $P\vect\xi$ (orange), which lies in
+the plane directly below $\vect\xi$, as a pencil's shadow lies under light from straight above.](tut-vec-projector){#fig:projector}
 
 ::: example
 ### The table of one mass
@@ -385,9 +394,11 @@ of $\vect a$, then the index of $\vect b$. The term $a_2b_3$ of the first compon
 sign, and the term $a_3b_2$ reads $1, 3, 2$ and has a minus sign. In the second component the term with a plus sign
 reads $2, 3, 1$, and in the third it reads $3, 1, 2$. These three orders are the **cyclic orders**: each one comes from
 the one before by moving the first number to the end. The other three orders, $1, 3, 2$ and $3, 2, 1$ and $2, 1, 3$,
-carry a minus sign.
+carry a minus sign. Figure [](#fig:cyclic) reads both sets of orders round a circle.
 
-<!-- diagram: the numbers 1, 2 and 3 placed round a circle, with arrows 1 → 2 → 3 → 1 going one way (the cyclic orders 123, 231, 312, sign +) and, beside it, the same circle read the other way (132, 321, 213, sign −). -->
+![The numbers 1, 2 and 3 stand round a circle. Reading round the left circle the way its orange arrows go, starting
+from each number in turn, gives the three cyclic orders, which carry a plus sign. Reading the other way, along the
+blue arrows on the right, gives the other three orders, which carry a minus sign.](tut-vec-cyclic){#fig:cyclic}
 
 The **Levi-Civita symbol** records this pattern. It is a table with three indices, and so with 27 entries:
 
