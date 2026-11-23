@@ -40,7 +40,8 @@ trembling of a warm body and its reply to an applied tide (Part 4).
 
 ## The first half of Section IV is a map of what Part 2 has proved
 
-Each row is one stretch of the section, in order. A row marked *mixed* holds claims of more than one kind.
+Each row is one stretch of the section, in order. A row marked *mixed* holds claims of more than one kind. Figure
+[](#fig:read-iv-map) draws the same map.
 
 | Stretch of Section IV | Its main claim | Taught in | Mark |
 |---|---|---|---|
@@ -55,13 +56,9 @@ Each row is one stretch of the section, in order. A row marked *mixed* holds cla
 | *What heat reveals* to *A model-independent thermometer* | Heat and an applied tide break every tie. | Part 4 | read in R4 |
 | *How sharp*, first paragraph, [](/paper/#eq:evanescent), [](/paper/#eq:array-data) | Fine detail fades as $e^{-kz}$; a uniform sheet has no tide. | 2.5, 2.7 | checked here |
 
-<!-- diagram: tut-read-iv-map — A strip of ten boxes in a row (two rows of five on a phone), one per row of the table
-above, in its order, each labelled with the stretch's short name and its equation numbers. Fill by the table's mark:
-solid fill for "checked here" (How bright, What the image is, How sharp); half solid, half outlined for "mixed" (Plain
-words, The magnetic picture, What the image cannot show, What the image does show, What breaks the tie, The Earth);
-dotted outline for "read in R4" (heat, applied tide, thermometer). Under each box the chapters that teach it (for
-example "1.4" under How bright, "2.1, 2.4, 2.5" under What the image does show, "R4" under the dotted box). A thin
-bracket under the last box points right, to a greyed box "R3: the blur, the precision, the bits". No other text. -->
+![The ten stretches of the table, in order, each with its equation numbers if it has any and the chapters that teach
+it beneath. A filled box is checked here, a half-filled box holds claims of more than one kind, and the dotted box is
+read in R4. The rest of *How sharp* is read in R3.](tut-read-iv-map){#fig:read-iv-map}
 
 ## The plain words hold, number by number, to the second limit
 
