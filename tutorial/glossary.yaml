@@ -1708,3 +1708,47 @@ terms:
     definition: 'The share of the light of an image that falls inside a circle round its centre. For the Airy pattern it is $1 - J_0^2 - J_1^2$ at the circle, 83.8% inside the first dark ring.'
     chapter: '3.6'
     anchor: a-lens-draws-a-star-as-the-square-of-that-pattern
+  - term: entropy
+    definition: 'The uncertainty of an unknown, measured as the average number of well-chosen yes-or-no questions needed to find it: $H(x) = -\sum_i p_i\log_2 p_i$ bits, $\log_2 N$ for $N$ equally likely cases.'
+    chapter: '3.8'
+    anchor: a-bit-is-the-answer-to-one-yes-or-no-question
+  - term: differential entropy
+    definition: 'The entropy of a continuous number, $h = -\int p\log_2 p\,\mathrm dx$. It depends on the unit, so only its differences are measured; for a Gaussian it is $\tfrac12\log_2(2\pi e)$ plus the base-2 logarithm of the standard deviation.'
+    chapter: '3.8'
+    anchor: a-number-with-a-spread-has-a-differential-entropy-and-only-its-changes-count
+  - term: conditional entropy
+    definition: 'The uncertainty about one quantity that remains, on average, once another is known: $h(x|y) = -\langle\log_2 p(x|y)\rangle$.'
+    chapter: '3.8'
+    anchor: a-number-with-a-spread-has-a-differential-entropy-and-only-its-changes-count
+  - term: mutual information
+    definition: 'What a reading removes of the uncertainty about the quantity it measures, $I(x;y) = h(x) - h(x|y)$, in bits. It is the same counted either way round.'
+    chapter: '3.8'
+    anchor: a-number-with-a-spread-has-a-differential-entropy-and-only-its-changes-count
+  - term: channel
+    definition: 'Any path that carries a number to a reading and adds noise on the way, such as one ripple of a scene reaching a camera.'
+    chapter: '3.8'
+    anchor: one-number-read-through-gaussian-noise-carries-at-most-tfrac12log_21-s2-bits
+  - term: capacity
+    definition: 'The largest information that a channel can carry in one use, over all inputs of a given variance. For the near-field camera, the bits per area $z^2$ of the scene, $C$.'
+    chapter: '3.8'
+    anchor: a-picture-is-many-ripples-with-independent-noise-and-their-bits-add
+  - term: Gaussian channel
+    definition: 'A channel whose noise is Gaussian and added to the signal. Its capacity is $\tfrac12\log_2(1 + s^2)$ bits per real number, where $s$ is the signal''s standard deviation over the noise''s (Shannon, 1948).'
+    chapter: '3.8'
+    anchor: one-number-read-through-gaussian-noise-carries-at-most-tfrac12log_21-s2-bits
+  - term: pattern
+    definition: 'In the paper''s count of bits, a ripple that the near-field camera keeps, one with $kz < q_c$. There are $q_c^2/4\pi$ of them per area $z^2$: about nine at a signal-to-noise ratio of a thousand.'
+    chapter: '3.8'
+    anchor: where-a-ripple-stands-well-above-its-noise-it-carries-log_2-s-bits
+  - term: kilobyte
+    definition: 'A thousand bytes of eight bits each, 8000 bits.'
+    chapter: '3.8'
+    anchor: a-picture-is-many-ripples-with-independent-noise-and-their-bits-add
+  - term: ε-entropy
+    definition: 'The number of bits needed to fix any function of a given class to an accuracy $\varepsilon$ everywhere (Kolmogorov and Tikhomirov, 1959).'
+    chapter: '3.8'
+    anchor: sensitivity-buys-more-patterns-and-more-bits-in-each-so-the-bits-grow-as-the-cube-of-its-logarithm
+  - term: Kolmogorov–Tikhomirov law
+    definition: 'For functions of $n$ variables, wanted on one region, that extend as bounded analytic functions to a larger region of complex values of their variables, the $\varepsilon$-entropy grows as $(\log_2 1/\varepsilon)^{n+1}$. For a near-field image, $n = 2$ and $\varepsilon = 1/\mathrm{SNR}$, which gives the cube of the logarithm.'
+    chapter: '3.8'
+    anchor: sensitivity-buys-more-patterns-and-more-bits-in-each-so-the-bits-grow-as-the-cube-of-its-logarithm

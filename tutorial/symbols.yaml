@@ -996,3 +996,43 @@ symbols:
     meaning: 'The function $J_1 = -J_0''$, so that $\frac{\mathrm d}{\mathrm du}(uJ_1) = uJ_0$ and $\int_0^uJ_0(t)\,t\,\mathrm dt = uJ_1(u)$; near zero $J_1(u) \approx u/2$. A round opening of radius $R$ transforms to $\pi R^2\cdot2J_1(kR)/kR$. Its first zeros are 3.832, 7.016 and 10.173.'
     chapter: '3.6'
     anchor: the-function-of-order-one-adds-up-the-circular-ripple-over-a-disc
+  - key: entropy
+    title: Entropy
+    tex: 'H(x)'
+    role: none
+    kind: A number for an unknown that takes one of several values; in bits
+    meaning: 'The uncertainty of an unknown $x$ that takes the value $x_i$ with the probability $p_i$: $H(x) = -\sum_i p_i\log_2 p_i$, the average number of well-chosen yes-or-no questions needed to find it. For $N$ equally likely cases it is $\log_2 N$. Always written with its argument, since the bare $H$ is the Wiener weight (chapter 3.5) and the $H$ of Section XII a number of bits, written $C_{\rm body}$ in chapter 3.8.'
+    chapter: '3.8'
+    anchor: a-bit-is-the-answer-to-one-yes-or-no-question
+  - key: differential-entropy
+    title: Differential entropy
+    tex: 'h(x)'
+    role: none
+    kind: A number for a continuous unknown; in bits, shifted by the choice of unit
+    meaning: 'The entropy of a continuous number $x$ with density $p(x)$, $h(x) = -\int p\log_2 p\,\mathrm dx$. Naming $x$ to within a bin of width $\Delta$ takes about $h(x) - \log_2\Delta$ bits, so only differences of $h$ are measured. For a Gaussian of standard deviation $\sigma_x$ it is $\tfrac12\log_2(2\pi e\,\sigma_x^2)$, the largest of all densities with that variance.'
+    chapter: '3.8'
+    anchor: a-number-with-a-spread-has-a-differential-entropy-and-only-its-changes-count
+  - key: mutual-information
+    title: Mutual information
+    tex: 'I(x;y)'
+    role: none
+    kind: A number for a pair of unknowns; in bits
+    meaning: 'What a reading $y$ removes of the uncertainty about $x$: $I(x;y) = h(x) - h(x|y) = h(y) - h(y|x)$. For a reading $y = Tx + n$ in Gaussian noise it is at most $\tfrac12\log_2(1 + s^2)$, with $s = T\sigma_x/\sigma_n$, reached when $x$ is Gaussian. (Not the invariant $I = \mathrm{tr}\,\mathcal W^2$, nor a moment of inertia.)'
+    chapter: '3.8'
+    anchor: a-number-with-a-spread-has-a-differential-entropy-and-only-its-changes-count
+  - key: capacity
+    title: Information of a near-field picture
+    tex: 'C'
+    role: none
+    kind: A pure number; bits per area $z^2$ of the scene
+    meaning: 'The most bits that a near-field camera''s data carry about a flat scene, per patch of side $z$: $C = \frac1{4\pi}\int_0^\infty q\log_2(1 + \pi^2\mathrm{SNR}^2q^2e^{-2q})\,\mathrm dq$, close to $(q_c^3/3 - q_c^2/2)/4\pi\ln 2$. It is a bound, reached by a scene whose ripples are Gaussian with the prior''s spectrum. It is 37.9 bits at $\mathrm{SNR} = 10^3$ and $1.78\times10^5$ at $10^{70}$. (Not the flyby constant $C$ of chapter 1.8.)'
+    chapter: '3.8'
+    anchor: a-picture-is-many-ripples-with-independent-noise-and-their-bits-add
+  - key: hair-bits
+    title: Bits of a body's field
+    tex: 'C_{\rm body}'
+    role: none
+    kind: A pure number; bits
+    meaning: 'The bits that the field outside a body holds at one time, read on a sphere of radius $R_c$ about a body of radius $R$ with the monopole at the signal-to-noise ratio $\mathrm{SNR}$: $C_{\rm body} \approx [L^3/3\Lambda^2 + L^2/2\Lambda]/\ln 2$, with the paper''s $L = \ln\mathrm{SNR}$ and $\Lambda = \ln(R_c/R)$. The paper writes it $H$. From three radii at $10^6$ it is about 1200 bits; a black hole at rest gives at most $7\log_2\mathrm{SNR}$.'
+    chapter: '3.8'
+    anchor: a-bodys-field-at-one-time-holds-about-1200-bits-from-three-radii-away
