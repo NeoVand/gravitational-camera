@@ -1380,3 +1380,35 @@ symbols:
     meaning: 'The speed of the fastest free electrons of a metal, $v_F = \sqrt{2E_F/m}$: $1.57\times10^6\ \mathrm{m\,s^{-1}}$ in copper, half a per cent of the speed of light.'
     chapter: '4.4'
     anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling
+  - key: principal-value
+    title: Principal value
+    tex: '\mathrm P'
+    role: none
+    kind: A rule for an integral; no unit of its own
+    meaning: 'Written before an integral whose integrand grows without bound at one point with opposite signs on the two sides, as $1/(\omega'' - \omega)$ does: leave out the interval from $\omega - \delta$ to $\omega + \delta$, integrate over the rest, and let $\delta$ shrink to zero. (Not a power or a projector.)'
+    chapter: '4.5'
+    anchor: causality-ties-the-stiffness-of-a-response-to-its-friction
+  - key: response-sum
+    title: Sum of a response
+    tex: 'A'
+    role: none
+    kind: A number; in the unit of the response function times s⁻²
+    meaning: 'The constant in a response''s answer to a fast push, $\chi \to -A/\omega^2$, equal by causality to $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi\,\mathrm d\omega$. For a cart of mass $m$ it is $1/m$; for a body under the tide of shape $h$ it is the paper''s $A = \int\rho\,|\nabla h|^2\,\mathrm dV$. (Not the amplitude of a swing, the area of a patch, a design matrix or a vector potential.)'
+    chapter: '4.5'
+    anchor: at-the-two-ends-of-the-spectrum-the-relation-becomes-two-sums
+  - key: tide-strength
+    title: Strength of an applied tide
+    tex: 'F'
+    role: none
+    kind: A number that may change in time; in the unit that makes $Fh$ an energy per kilogram
+    meaning: 'The strength of a tide whose potential across a body is $\Phi = -F(t)\,h(\boldsymbol x)$, with $h$ harmonic. The body''s energy in it is $-FQ_h$, so $F$ pushes on the moment $Q_h$. For $h = x$ it is an acceleration; for $h = xy$ it is in s⁻², a tide. (Not a force in newtons.)'
+    chapter: '4.5'
+    anchor: driven-faster-than-its-bonds-every-body-answers-as-dust
+  - key: tide-response
+    title: Response to an applied tide
+    tex: '\chi_h'
+    role: none
+    kind: A complex function of the angular frequency; a moment per unit of tide strength
+    meaning: 'The response of the moment $Q_h = \int\rho h\,\mathrm dV$ to a tide of potential $-Fh$, $\tilde Q_h = \chi_h\tilde F$; $\chi_{gh}$ is the response of a second moment $Q_g$. Far above every frequency of the body, $\chi_{gh} \to -\int\rho\,\nabla g\cdot\nabla h\,\mathrm dV/\omega^2$, the response of dust, and so $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi_h\,\mathrm d\omega = \int\rho\,|\nabla h|^2\,\mathrm dV$.'
+    chapter: '4.5'
+    anchor: driven-faster-than-its-bonds-every-body-answers-as-dust

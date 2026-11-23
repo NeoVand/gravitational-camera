@@ -2191,3 +2191,47 @@ terms:
     definition: 'The speed $v_F$ of a metal''s fastest free electrons, with $E_F = \tfrac12mv_F^2$: $1.57\times10^6$ m/s in copper.'
     chapter: '4.4'
     anchor: a-metals-electrons-relax-like-a-maxwell-liquid-and-their-friction-has-a-ceiling
+  - term: linear response
+    definition: 'An answer that adds up the answers to every earlier piece of a push, $y(t) = \int\chi(t - t'')\,F(t'')\,\mathrm dt''$, as any body in equilibrium gives to a small enough push.'
+    chapter: '4.5'
+    anchor: a-linear-response-adds-up-the-answers-to-every-earlier-push
+  - term: causality
+    definition: 'The rule that an effect cannot come before its cause: a response kernel vanishes before the push, $\chi(t) = 0$ for $t < 0$.'
+    chapter: '4.5'
+    anchor: a-linear-response-adds-up-the-answers-to-every-earlier-push
+  - term: upper half plane
+    definition: 'The complex numbers with a positive imaginary part. Causality makes a response function holomorphic there, with all its poles below the real axis.'
+    chapter: '4.5'
+    anchor: causality-ties-the-stiffness-of-a-response-to-its-friction
+  - term: Kramers–Kronig relation
+    definition: 'The relation, a consequence of causality, that gives the real part of a response function from its imaginary part at all frequencies: $\mathrm{Re}\,\chi(\omega) = \tfrac2\pi\,\mathrm P\int_0^\infty\omega''\,\mathrm{Im}\,\chi(\omega'')\,\mathrm d\omega''/(\omega''^2 - \omega^2)$.'
+    chapter: '4.5'
+    anchor: causality-ties-the-stiffness-of-a-response-to-its-friction
+  - term: pole
+    definition: 'A point where a function grows without bound, as $1/(\omega - \omega_1)$ does at $\omega_1$. A response function has all its poles below the real axis of the complex frequency.'
+    chapter: '4.5'
+    anchor: causality-ties-the-stiffness-of-a-response-to-its-friction
+  - term: "Cauchy's theorem"
+    definition: 'The integral of a holomorphic function round a closed loop, inside the region where it is holomorphic, is zero. It gives the Kramers–Kronig relation; the tutorial states it without proof.'
+    chapter: '4.5'
+    anchor: causality-ties-the-stiffness-of-a-response-to-its-friction
+  - term: principal value
+    definition: 'The value of an integral whose integrand grows without bound at one point with opposite signs on the two sides, found by leaving out a small interval round the point and letting it shrink to zero.'
+    chapter: '4.5'
+    anchor: causality-ties-the-stiffness-of-a-response-to-its-friction
+  - term: dispersion relation of a response
+    definition: 'A relation between the two parts of a response function, such as the paper''s "dispersion relation that holds for matter", $\chi(0) = \tfrac2\pi\int_0^\infty\mathrm{Im}\,\chi\,\mathrm d\omega/\omega$. (Not the dispersion relation of a wave, which ties its frequency to its wavenumber.)'
+    chapter: '4.5'
+    anchor: at-the-two-ends-of-the-spectrum-the-relation-becomes-two-sums
+  - term: sum rule
+    definition: 'An exact statement about the dissipative part of a response added up over all frequencies, such as $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi\,\mathrm d\omega = 1/m$ for a cart of mass $m$, whatever its spring and friction.'
+    chapter: '4.5'
+    anchor: at-the-two-ends-of-the-spectrum-the-relation-becomes-two-sums
+  - term: dust
+    definition: 'The paper''s word for matter whose particles exert no forces on one another. Driven faster than its bonds can act, every body answers a tide as dust would.'
+    chapter: '4.5'
+    anchor: driven-faster-than-its-bonds-every-body-answers-as-dust
+  - term: energy-weighted sum rule
+    definition: 'A sum rule in which each frequency is weighted by $\omega$, which in quantum mechanics is in proportion to the energy of one quantum: for a body under a tide of shape $h$, $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi_h\,\mathrm d\omega = \int\rho\,|\nabla h|^2\,\mathrm dV$, the paper''s sum rule for an applied tide.'
+    chapter: '4.5'
+    anchor: driven-faster-than-its-bonds-every-body-answers-as-dust
