@@ -1228,3 +1228,186 @@ terms:
     definition: 'A description of the expected statistics of a scene before any reading is taken. The paper''s prior for the near-field camera is a sheet of point masses dropped at random, one in each area $z^2$.'
     chapter: '3.2'
     anchor: randomly-placed-masses-are-a-noise-too
+  - term: confined
+    definition: 'Said of a function that is zero outside a body, with its gradient continuous, so that both vanish on the surface. Adding the Laplacian of a confined function, divided by $4\pi G$, to a body changes nothing outside it.'
+    chapter: '2.5'
+    anchor: a-confined-laplacian-added-to-a-body-changes-nothing-outside
+  - term: inverse problem
+    definition: 'A problem that asks for causes from their effects, such as a density from its field.'
+    chapter: '2.5'
+    anchor: a-confined-laplacian-added-to-a-body-changes-nothing-outside
+  - term: exterior inverse problem
+    definition: 'Finding a body''s density from its field outside. It has many answers, because a confined Laplacian can be added to any of them.'
+    chapter: '2.5'
+    anchor: a-confined-laplacian-added-to-a-body-changes-nothing-outside
+  - term: impossibility result
+    definition: 'Two scenes, built explicitly, that a camera cannot tell apart at any sensitivity: the paper''s main device for saying what it cannot see.'
+    chapter: '2.5'
+    anchor: a-confined-laplacian-added-to-a-body-changes-nothing-outside
+  - term: inner product
+    definition: 'For two functions in a body, $\langle f, g\rangle = \int f\,g\,\mathrm dV$, the dot product with one entry for each point. Two functions are orthogonal when it is zero.'
+    chapter: '2.5'
+    anchor: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see
+  - term: harmonic part
+    definition: 'The part $\rho_h$ of a density that is harmonic in the body, in the split $\rho = \rho_h + \nabla^2\psi/4\pi G$. The field outside fixes it completely and sees nothing else.'
+    role: matter
+    chapter: '2.5'
+    anchor: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see
+  - term: harmonic projection
+    definition: 'The harmonic density closest to a given density, in the sense of the smallest $\int(\rho - \rho_h)^2\,\mathrm dV$. It is the harmonic part.'
+    chapter: '2.5'
+    anchor: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see
+  - term: null space
+    definition: 'Of the field outside a body: the densities $\nabla^2\psi/4\pi G$, with $\psi$ confined, that change no reading outside it.'
+    chapter: '2.5'
+    anchor: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see
+  - term: least assuming picture
+    definition: 'Of all the interiors with a given field outside, the one with the smallest $\int\rho^2\,\mathrm dV$, which is the harmonic part. It has its densest and lightest points on the surface, so it never shows a core.'
+    chapter: '2.5'
+    anchor: the-least-assuming-interior-is-the-harmonic-part-and-it-never-shows-a-core
+  - term: reproducing kernel
+    definition: 'For a ball, the function $K(\mathbf x, \mathbf s)$ whose integral against any harmonic function over the ball gives that function''s value at $\mathbf s$; also called the harmonic Bergman kernel. A nugget''s flush is its mass times this kernel.'
+    chapter: '2.5'
+    anchor: the-harmonic-part-of-a-nugget-is-a-flush-on-the-near-wall
+  - term: flush
+    definition: 'The paper''s word for the harmonic part of a nugget inside a ball: the nugget''s mass spread through the ball, densest at the wall nearest the nugget, with the same field outside.'
+    role: matter
+    chapter: '2.5'
+    anchor: the-harmonic-part-of-a-nugget-is-a-flush-on-the-near-wall
+  - term: skin
+    definition: 'The paper''s word for the balayage of a nugget: its mass spread over the ball''s surface, thickest over the nugget, with the same field outside.'
+    role: matter
+    chapter: '2.5'
+    anchor: the-nugget-the-flush-and-the-skin-differ-only-in-what-the-outside-cannot-read
+  - term: phase of a ripple
+    definition: 'The angle $\alpha$, in radians, in a ripple $\cos(kx + \alpha)$: it shifts the crests along the line, so that the crest that would stand at $x = 0$ stands at $x = -\alpha/k$.'
+    chapter: '2.6'
+    anchor: a-ripple-in-space-is-a-turning-number-as-an-oscillation-in-time-is
+  - term: complex amplitude
+    definition: 'The complex number in front of a ripple $e^{ikx}$: its modulus gives the size of the ripple and its argument the shift of its crests. A real pattern has conjugate amplitudes at $k$ and $-k$.'
+    chapter: '2.6'
+    anchor: a-ripple-in-space-is-a-turning-number-as-an-oscillation-in-time-is
+  - term: Fourier series
+    definition: 'A pattern that repeats with period $L$, written as a sum of the ripples that repeat with it: $f = \sum_n c_n e^{2\pi inx/L}$.'
+    chapter: '2.6'
+    anchor: a-repeating-pattern-is-a-sum-of-ripples
+  - term: Fourier coefficient
+    definition: 'The amount $c_n$ of one ripple in a Fourier series: the average over a period of the pattern times the complex conjugate of the ripple.'
+    chapter: '2.6'
+    anchor: a-repeating-pattern-is-a-sum-of-ripples
+  - term: Gibbs phenomenon
+    definition: 'The overshoot of a Fourier series next to a jump: it narrows as more ripples are added, and its peak falls slowly toward 9% of the jump but never below. It is the ringing left when the finest ripples of a sharp edge are cut away.'
+    chapter: '2.6'
+    anchor: a-repeating-pattern-is-a-sum-of-ripples
+  - term: Fourier transform
+    definition: 'How much of each ripple a pattern on an endless line or plane holds. In this tutorial, $\tilde f(k) = \int f\,e^{-ikx}\,\mathrm dx$ in space and $\tilde f(\omega) = \int f\,e^{i\omega t}\,\mathrm dt$ in time, the paper''s convention.'
+    chapter: '2.6'
+    anchor: on-an-endless-line-the-sum-becomes-an-integral
+  - term: inverse transform
+    definition: 'The integral that adds the ripples back into the pattern: $f(x) = \int\tilde f(k)\,e^{ikx}\,\mathrm dk/2\pi$. The factor $2\pi$ always goes with the integral over wavenumbers or frequencies.'
+    chapter: '2.6'
+    anchor: on-an-endless-line-the-sum-becomes-an-integral
+  - term: wavevector
+    definition: 'The vector $\boldsymbol k$ of a ripple $e^{i\boldsymbol k\cdot\boldsymbol a}$ on a plane, in m⁻¹. It points across the crests, and its length is the wavenumber.'
+    chapter: '2.6'
+    anchor: across-a-plane-a-ripples-wavevector-points-across-its-crests
+  - term: convolution
+    definition: 'The blur of a pattern $f$ by a weight $g$: $(g * f)(x) = \int g(x - x'')\,f(x'')\,\mathrm dx''$, each value replaced by a weighted average of its neighbours.'
+    chapter: '2.6'
+    anchor: a-blur-multiplies-each-ripple-by-a-number
+  - term: kernel
+    definition: 'The weight $g$ of a blur or of any convolution: $g(x - x'')$ says how much the value at $x''$ counts in the result at $x$.'
+    chapter: '2.6'
+    anchor: a-blur-multiplies-each-ripple-by-a-number
+  - term: convolution theorem
+    definition: 'The transform of a convolution is the product of the transforms, $\widetilde{g * f} = \tilde g\,\tilde f$: a blur multiplies each ripple by its own number and mixes none of them.'
+    chapter: '2.6'
+    anchor: a-blur-multiplies-each-ripple-by-a-number
+  - term: power of a pattern
+    definition: 'The integral of the square of a pattern, $\int|f|^2\,\mathrm dx$, a name taken from circuits.'
+    chapter: '2.6'
+    anchor: the-power-of-a-pattern-is-the-same-counted-point-by-point-or-ripple-by-ripple
+  - term: "Parseval's theorem"
+    definition: 'The power of a pattern is the same counted point by point or ripple by ripple: $\int|f|^2\,\mathrm dx = \int|\tilde f|^2\,\mathrm dk/2\pi$. Different ripples share no power.'
+    chapter: '2.6'
+    anchor: the-power-of-a-pattern-is-the-same-counted-point-by-point-or-ripple-by-ripple
+  - term: aliasing
+    definition: 'The confusion, on pixels a distance $b$ apart, of ripples whose wavenumbers differ by $2\pi/b$: they take the same value at every pixel. A ripple finer than $\pi/b$ cannot be told apart from one inside the range from $-\pi/b$ to $\pi/b$.'
+    chapter: '2.6'
+    anchor: an-area-holds-a-countable-number-of-ripples
+  - term: convergence in the mean
+    definition: 'The sense in which the Fourier series of any pattern with a finite integral of its square approaches it: the integral of the squared difference goes to zero, though the sum may miss the pattern at some points.'
+    chapter: '2.6'
+    anchor: a-repeating-pattern-is-a-sum-of-ripples
+  - term: uncertainty relation
+    definition: 'No pattern is narrow both along the line and in wavenumber: treating $|f|^2$ and $|\tilde f|^2$ as distributions, the product of their standard deviations is at least $\tfrac12$, and a Gaussian reaches that bound.'
+    chapter: '2.6'
+    anchor: on-an-endless-line-the-sum-becomes-an-integral
+  - term: parameter
+    definition: 'An unknown number of a scene, such as a mass or a depth, that readings are used to measure.'
+    chapter: '3.3'
+    anchor: the-likelihood-scores-each-scene-by-how-well-it-explains-the-data
+  - term: likelihood
+    definition: 'The probability density of the readings that were recorded, seen as a function of the unknown parameters of the scene. It scores each candidate scene by how probable it would have made the data.'
+    chapter: '3.3'
+    anchor: the-likelihood-scores-each-scene-by-how-well-it-explains-the-data
+  - term: maximum-likelihood estimate
+    definition: 'The value of a parameter that makes the likelihood largest. With independent Gaussian noise it is the least-squares fit.'
+    chapter: '3.3'
+    anchor: the-likelihood-scores-each-scene-by-how-well-it-explains-the-data
+  - term: hypothesis
+    definition: 'One possible answer to a question about a scene, made complete enough to predict every reading.'
+    chapter: '3.3'
+    anchor: choosing-between-two-scenes-comes-down-to-one-gaussian-number
+  - term: hypothesis test
+    definition: 'A rule that picks one of several hypotheses from the data. Between two equally likely ones, the rule with the fewest errors picks the one with the larger likelihood.'
+    chapter: '3.3'
+    anchor: choosing-between-two-scenes-comes-down-to-one-gaussian-number
+  - term: likelihood ratio
+    definition: 'The likelihood of one hypothesis divided by that of another. The best test between two equally likely hypotheses compares it with one.'
+    chapter: '3.3'
+    anchor: choosing-between-two-scenes-comes-down-to-one-gaussian-number
+  - term: error probability
+    definition: 'The chance that a test picks the wrong hypothesis. Between two scenes whose predicted readings lie $D$ noise standard deviations apart, the best test errs with probability $P(Z > D/2)$.'
+    chapter: '3.3'
+    anchor: choosing-between-two-scenes-comes-down-to-one-gaussian-number
+  - term: estimator
+    definition: 'Any rule that turns the readings into a value of a parameter, such as the maximum-likelihood fit.'
+    chapter: '3.3'
+    anchor: the-fisher-information-measures-how-sharply-the-likelihood-peaks
+  - term: unbiased estimator
+    definition: 'An estimator whose mean over the noise is the true value of the parameter, whatever that value is.'
+    chapter: '3.3'
+    anchor: the-fisher-information-measures-how-sharply-the-likelihood-peaks
+  - term: Fisher information
+    definition: 'The sum over the readings of the squared rate at which each predicted reading changes with a parameter, in units of the noise. It measures how sharply the likelihood peaks.'
+    chapter: '3.3'
+    anchor: the-fisher-information-measures-how-sharply-the-likelihood-peaks
+  - term: score
+    definition: 'The slope of the logarithm of the likelihood with respect to a parameter, at its true value. Its mean is zero and its variance is the Fisher information.'
+    chapter: '3.3'
+    anchor: the-fisher-information-measures-how-sharply-the-likelihood-peaks
+  - term: Cauchy–Schwarz inequality
+    definition: 'For any two random quantities, the square of their covariance is at most the product of their variances. It is why a correlation lies between $-1$ and 1.'
+    chapter: '3.3'
+    anchor: the-fisher-information-measures-how-sharply-the-likelihood-peaks
+  - term: Cramér–Rao bound
+    definition: 'The variance of any unbiased estimate of a parameter is at least one over its Fisher information, or, with several parameters, the diagonal entry of the inverse Fisher matrix.'
+    chapter: '3.3'
+    anchor: the-fisher-information-measures-how-sharply-the-likelihood-peaks
+  - term: Fisher matrix
+    definition: 'The Fisher information of several parameters at once: a symmetric table whose entries pair the rates at which the predicted readings change with each parameter.'
+    chapter: '3.3'
+    anchor: an-unknown-we-do-not-want-can-only-enlarge-the-error-of-one-we-do
+  - term: nuisance parameter
+    definition: 'An unknown that must be fitted although it is not wanted. It can only enlarge the error of the parameters that are wanted, and it does so when it changes the data in a similar way.'
+    chapter: '3.3'
+    anchor: an-unknown-we-do-not-want-can-only-enlarge-the-error-of-one-we-do
+  - term: signal-to-noise ratio of the whole pattern
+    definition: 'For one point mass below a flat camera that fills its plane, how many noise standard deviations separate its data from those of an empty scene: $\mathcal R = (\sqrt{3\pi}/4)\,\mathrm{SNR}$.'
+    chapter: '3.3'
+    anchor: one-mass-a-metre-away-is-placed-to-a-millimetre
+  - term: radiometer equation
+    definition: 'For a random signal far below the noise, watched for a time $T$, the separation from no signal is $D^2 \approx T\int(S_s/S_n)^2\,\mathrm d\omega/2\pi$ over positive frequencies: $D = (S_s/S_n)\sqrt{BT}$ over a band of $B$ hertz.'
+    chapter: '3.3'
+    anchor: a-tremor-far-below-the-noise-can-still-be-detected

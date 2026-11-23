@@ -722,3 +722,139 @@ symbols:
     meaning: 'The mean number of randomly placed point masses in each square metre of a sheet. The count in an area $A$ is a Poisson count with mean $\nu A$. (In Section XIV of the paper, $\nu$ is a black hole''s friction.)'
     chapter: '3.2'
     anchor: randomly-placed-masses-are-a-noise-too
+  - key: null-potential
+    title: Potential of a confined change of density
+    tex: '\field{\psi}'
+    role: field
+    kind: A number at each point, zero outside the body; an energy per unit mass, in J/kg
+    meaning: 'A function that vanishes outside a body together with its gradient. Adding the density $\nabla^2\psi/4\pi G$ to the body changes its potential by $\psi$, so nothing outside changes: this is the paper''s null space.'
+    chapter: '2.5'
+    anchor: a-confined-laplacian-added-to-a-body-changes-nothing-outside
+  - key: inner-product
+    title: Inner product of two functions
+    tex: '\langle f, g\rangle'
+    role: none
+    kind: A number; the product of the units of f and g times m³
+    meaning: 'The integral $\int f\,g\,\mathrm dV$ over a body, which plays the part of a dot product with one entry for each point. Two functions are orthogonal when it is zero.'
+    chapter: '2.5'
+    anchor: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see
+  - key: harmonic-family
+    title: The harmonic densities of a body
+    tex: '\mathcal H'
+    role: none
+    kind: A family of functions
+    meaning: 'All the densities in a body that are harmonic there, $\nabla^2\rho = 0$. Every member is orthogonal to every member of the null space $\mathcal N$.'
+    chapter: '2.5'
+    anchor: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see
+  - key: null-family
+    title: The null space of the field outside
+    tex: '\mathcal N'
+    role: none
+    kind: A family of functions
+    meaning: 'All the densities $\nabla^2\psi/4\pi G$ with $\psi$ confined to the body: the densities that change no reading outside it. (The paper''s $\mathcal N$ of Section XIII, an energy crossing a front, is another object.)'
+    chapter: '2.5'
+    anchor: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see
+  - key: harmonic-part
+    title: Harmonic part of a density
+    tex: '\matter{\rho}_h'
+    role: matter
+    kind: A number at each point of a body; in kg/m³
+    meaning: 'The harmonic density closest to $\rho$, its harmonic projection: $\rho = \rho_h + \nabla^2\psi/4\pi G$. The field outside fixes it completely, and it is the least assuming picture of the interior.'
+    chapter: '2.5'
+    anchor: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see
+  - key: wavenumber
+    title: Wavenumber
+    tex: 'k'
+    role: none
+    kind: A number; an angle per unit length, in m⁻¹
+    meaning: 'How fast a ripple advances along a line: $2\pi$ divided by the distance between its crests. Crests 10 cm apart have $k = 62.8\ \mathrm{m^{-1}}$. On a plane it is the length of the wavevector, $k = |\mathbf k|$.'
+    chapter: '2.6'
+    anchor: a-ripple-in-space-is-a-turning-number-as-an-oscillation-in-time-is
+  - key: wavevector
+    title: Wavevector
+    tex: '\boldsymbol{k}'
+    role: none
+    kind: A vector in the plane of a ripple; in m⁻¹
+    meaning: 'The vector of a ripple $e^{i\boldsymbol k\cdot\boldsymbol a}$ on a plane. It points across the crests, at right angles to them, and its length is the wavenumber, $2\pi$ divided by the distance between crests.'
+    chapter: '2.6'
+    anchor: across-a-plane-a-ripples-wavevector-points-across-its-crests
+  - key: fourier-coefficient
+    title: Fourier coefficient
+    tex: 'c_n'
+    role: none
+    kind: A complex number, in the unit of the pattern
+    meaning: 'The amount of the ripple $e^{2\pi inx/L}$ in a pattern that repeats with period $L$: $c_n = \frac1L\int_0^L f\,e^{-2\pi inx/L}\,\mathrm dx$. The coefficient $c_0$ is the mean, and a real pattern has $c_{-n} = c_n^*$.'
+    chapter: '2.6'
+    anchor: a-repeating-pattern-is-a-sum-of-ripples
+  - key: fourier-transform
+    title: Fourier transform
+    tex: '\tilde f'
+    role: none
+    kind: A complex function of the wavenumber or wavevector; in the unit of the pattern times a length (a line) or an area (a plane)
+    meaning: 'How much of each ripple a pattern holds, in this tutorial''s convention: $\tilde f(\boldsymbol k) = \int f\,e^{-i\boldsymbol k\cdot\boldsymbol a}\,\mathrm d^2a$ across a plane, and back again $f = \int\tilde f\,e^{i\boldsymbol k\cdot\boldsymbol a}\,\mathrm d^2k/(2\pi)^2$. In time the signs are reversed, $\tilde f(\omega) = \int f\,e^{i\omega t}\,\mathrm dt$.'
+    chapter: '2.6'
+    anchor: on-an-endless-line-the-sum-becomes-an-integral
+  - key: patch-area
+    title: Area of a patch
+    tex: 'A'
+    role: none
+    kind: An area, in m²
+    meaning: 'The area of the patch on which ripples are counted. A region $\mathrm d^2k$ of wavevectors holds $A\,\mathrm d^2k/(2\pi)^2$ independent ripples, so an array of pixels $b$ apart holds $A/b^2$ of them, one per pixel.'
+    chapter: '2.6'
+    anchor: an-area-holds-a-countable-number-of-ripples
+  - key: parameter
+    title: Parameter
+    tex: '\theta'
+    role: none
+    kind: A number of the scene to be measured, in its own unit
+    meaning: 'An unknown number of a scene, such as a mass, a depth or which safe holds the gold, that the readings are used to measure. With several unknowns they are written $\theta_1, \dots, \theta_K$. (Elsewhere $\theta$ is an angular size.)'
+    chapter: '3.3'
+    anchor: the-likelihood-scores-each-scene-by-how-well-it-explains-the-data
+  - key: likelihood
+    title: Likelihood
+    tex: 'L(\theta)'
+    role: none
+    kind: A function of the parameter, for fixed data
+    meaning: 'The probability density of the readings that were recorded, seen as a function of the parameter $\theta$. For independent Gaussian noise $\ln L = -\sum_a (y_a - f_a(\theta))^2/2\sigma_n^2$ plus a constant. It is not a probability for $\theta$.'
+    chapter: '3.3'
+    anchor: the-likelihood-scores-each-scene-by-how-well-it-explains-the-data
+  - key: scene-separation
+    title: Separation of two scenes
+    tex: 'D'
+    role: none
+    kind: A pure number
+    meaning: 'How far apart the readings predicted by two scenes lie, in standard deviations of the noise: $D = |\mathbf f_A - \mathbf f_B|/\sigma_n$. The best test between them errs with probability $P(Z > D/2)$. It grows in proportion to the signal-to-noise ratio. (The paper''s $d$ is the data.)'
+    chapter: '3.3'
+    anchor: choosing-between-two-scenes-comes-down-to-one-gaussian-number
+  - key: error-probability
+    title: Error probability
+    tex: 'P_{\rm err}'
+    role: none
+    kind: A probability, between 0 and ½
+    meaning: 'The chance that a test between two equally likely scenes picks the wrong one. For the best test with Gaussian noise it is $P(Z > D/2)$: 18% for the locked safe at a signal-to-noise ratio of 10.'
+    chapter: '3.3'
+    anchor: choosing-between-two-scenes-comes-down-to-one-gaussian-number
+  - key: fisher
+    title: Fisher information
+    tex: 'F'
+    role: none
+    kind: A number; in the inverse square of the unit of the parameter
+    meaning: 'How fast the predicted readings change with a parameter, in units of the noise, squared and summed: $F = \sum_a (\partial f_a/\partial\theta)^2/\sigma_n^2$. A change $1/\sqrt F$ moves the predictions by one standard deviation, and no unbiased estimate has a variance below $1/F$.'
+    chapter: '3.3'
+    anchor: the-fisher-information-measures-how-sharply-the-likelihood-peaks
+  - key: fisher-matrix
+    title: Fisher matrix
+    tex: 'F_{kl}'
+    role: none
+    kind: A symmetric table, one row and column for each parameter
+    meaning: 'The Fisher information of several parameters at once, $F_{kl} = \sum_a (\partial f_a/\partial\theta_k)(\partial f_a/\partial\theta_l)/\sigma_n^2$. The variance of an unbiased estimate of $\theta_1$ is at least $(F^{-1})_{11}$, which is never less than $1/F_{11}$.'
+    chapter: '3.3'
+    anchor: an-unknown-we-do-not-want-can-only-enlarge-the-error-of-one-we-do
+  - key: pattern-snr
+    title: Signal-to-noise ratio of the whole pattern
+    tex: '\mathcal R'
+    role: none
+    kind: A pure number
+    meaning: 'How many standard deviations of the noise separate the data of one point mass from the data of an empty scene, for a flat camera that fills its plane: $\mathcal R^2 = N_0^{-1}\int d^2\,\mathrm d^2a$, so $\mathcal R = (\sqrt{3\pi}/4)\,\mathrm{SNR}$. It is 767 at $\mathrm{SNR} = 10^3$.'
+    chapter: '3.3'
+    anchor: one-mass-a-metre-away-is-placed-to-a-millimetre
