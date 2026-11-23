@@ -99,9 +99,15 @@ $$\omega = \sqrt{\frac{k}{\matter m}} .$$
 For the cart of 2 kg on $50\unit{N\,m^{-1}}$, $\omega = 5\unit{s^{-1}}$ and one swing there and back takes
 $2\pi/\omega = 1.26\unit{s}$. With this $\omega$ the area of the last section is $2\pi E/\omega$, and the numbers
 agree: $2\pi \times 0.25/5 = 0.314\unit{J\,s}$. Drawn with $q$ to the right and $p$ upward, the point goes round its
-ellipse clockwise: at the right-hand end of the swing $p = 0$ and $\dot p = -kq$ is negative, so the point moves down.
+ellipse clockwise: at the right-hand end of the swing $p = 0$ and $\dot p = -kq$ is negative, so the point moves down
+(Figure [](#fig:phase)).
 
-<!-- diagram: the cart's phase space, q to the right and p up; three nested ellipses of energy 0.0625, 0.25 and 0.56 J (half-axes 0.05, 0.1, 0.15 m by 0.5, 1, 1.5 kg m/s); short arrows of (∂H/∂p, −∂H/∂q) on a grid, turning clockwise along the ellipses; the cart on its track drawn below, at the position of one marked point -->
+![The cart's phase space, with the ellipses $H = 0.0625$, $0.25$ and $0.56\unit{J}$ and, on a grid, the arrows
+$(\partial H/\partial p, -\partial H/\partial q)$, each multiplied by the same time, $0.04\unit{s}$: they turn clockwise along
+the ellipses. The marked point is the state $q = 0.05\unit{m}$, $p = -0.87\unit{kg\,m\,s^{-1}}$, $0.21\unit{s}$ after the
+right-hand end of the swing; below it the cart stands at the same $q$ on its track, drawn to the same scale, with its
+velocity over the same $0.04\unit{s}$. The ellipses, the arrows and the cart's place are exact; the scales of the two axes,
+the grid and the size of the cart are chosen for the drawing.](tut-ham-phase){#fig:phase}
 
 ## The Poisson bracket gives the rate of change of anything
 
@@ -309,9 +315,13 @@ $-\epsilon$ gives
 $$\boxed{\;\vect p_a \to \vect p_a + \epsilon\,\matter m_a\nabla g(\vect x_a),\;} \label{eq:tide-kick}$$
 
 with every $\vect x_a$ unchanged. This is the paper's "impulse $\epsilon m\nabla g$ where it stands", a vertical jump
-in phase space.
+in phase space (Figure [](#fig:kick)).
 
-<!-- diagram: the phase plane (x, p_x) for three parts of a body at x = −0.5, 0.1 and 0.6 (arbitrary units), each a dot before the kick; under the tide g = x²/2 each jumps straight up or down by ε m g′(x) = ε m x (down for the part at −0.5, a little up at 0.1, more up at 0.6), drawn as vertical arrows; no dot moves sideways -->
+![Three parts of a body, of equal mass, in the plane $(x, p_x)$, before the impulsive tide $g = \tfrac12x^2$ (open
+circles) and after it (dots), in arbitrary units. Each state jumps straight up or down by $\epsilon\matter m\,g'(x) =
+\epsilon\matter mx$, drawn to one scale with $\epsilon\matter m = 1$, and no state moves sideways; every kick points
+away from $x = 0$, so the jumps are orange, the colour of a stretch. The places are the chapter's, and the momenta
+before the kick are chosen for the drawing.](tut-ham-kick){#fig:kick}
 
 Any other quantity $F$ changes along the same motion. Because $\dd F/\dd\lambda = \{F, Q_g\}$ holds for every
 quantity, it holds for $\{F, Q_g\}$ too, so the second derivative is $\{\{F, Q_g\}, Q_g\}$, and each further
