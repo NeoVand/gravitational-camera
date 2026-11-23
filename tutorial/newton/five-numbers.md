@@ -141,16 +141,18 @@ The sum of the eigenvalues is the trace, so, for grains at rest,
 $$\boxed{\;\frac{\ddot V}{V} = -\curv{\tE}_{kk} = -4\pi G\matter\rho .\;}$$
 
 Only the trace part changes the volume. The trace-free part changes only the shape: a ball of dust beside the person
-becomes a cigar that points at the person, with the same volume. The trace part alone, as inside the ball of dust of
+becomes a cigar that points at the person, with the same volume (Figure [](#fig:split)). The trace part alone, as inside the ball of dust of
 chapter 1.4, shrinks every edge at the same rate. At the density of water a cloud starting at rest loses 1 per cent of
 its volume in about two and a half minutes, since
 $\tfrac12 \times 8.4\times10^{-7}\unit{s^{-2}} \times (154\unit{s})^2 = 0.01$. Beside the person in empty space
 $\ddot V = 0$ at the start, and the volume changes later only through the products $\dot L_1\dot L_2$ and their like,
 which grow from zero as the grains begin to move.[^ricci]
 
-<!-- diagram: a sphere of free particles under the trace part alone (it shrinks, keeping its shape) beside the same
-sphere under a trace-free part (it becomes an ellipsoid of the same volume); dashed sphere for the start, orange
-stretch and blue squeeze, theme-aware -->
+![Two small balls of free dust at rest, seen from slightly above, with each ball's starting outline dashed and its
+table below it. The trace part alone (left) squeezes every direction equally, so the ball shrinks and stays a ball,
+while the person's table (right), which has no trace, stretches the ball along $x$ (orange) and squeezes it across
+(blue), so it becomes a cigar whose volume does not change at first order. Both movements are exaggerated by the same
+factor.](tut-five-split){#fig:split}
 
 ## The five numbers are the components of a vector with its own length
 
@@ -202,11 +204,13 @@ $\tfrac{3}{\sqrt6}\times\tfrac{2}{\sqrt6}\,\curv{\tE}_{zz} = \curv{\tE}_{zz}$. T
 $\tfrac12(\curv{\tE}_{xx} - \curv{\tE}_{yy}) - \tfrac12\curv{\tE}_{zz}$, which is $\curv{\tE}_{xx}$ because the
 trace is zero; the $yy$ place works in the same way. A set of tables of length one, at right angles to one another,
 that builds every table of its kind is an **orthonormal basis**. Each of the five, drawn as a ring of free balls, is
-a basic pattern of stretch and squeeze.
+a basic pattern of stretch and squeeze (Figure [](#fig:basis)).
 
-<!-- diagram: the five basis tables b^1 ... b^5 drawn as five small rings of twelve free particles, each deformed by
-one table (b^1, b^4 in the xy plane, b^2 in yz, b^3 in zx, b^5 as a ring in the xz plane stretched along x and
-squeezed along z, or two rings), orange stretch and blue squeeze, theme-aware -->
+![The five basis tables, each drawn as a ring of twelve free balls pushed by that table alone, seen face on, with the
+two axes of its plane at its lower left. Each of $b^1$, $b^2$ and $b^3$ squeezes its ring along one diagonal of its
+plane and stretches it along the other, $b^4$ squeezes along $x$ and stretches along $y$, and $b^5$ squeezes along $z$
+twice as hard as it stretches along $x$ (and along $y$, where the ring looks the same). Orange arrows mark a stretch and
+blue arrows a squeeze, all at one scale, and the movements are exaggerated.](tut-five-basis){#fig:basis}
 
 We write the sum as $\curv{\tE}_{ij} = c_B\,b^B_{ij}$, summed over $B$. The number $\sym{stf-coefficient}{c_B}$ is
 the **coefficient** of the table along $b^B$, in the units of the table. We contract both sides with $b^A$ and use
@@ -413,8 +417,8 @@ $\cos 2\theta = \cos^2\theta - \sin^2\theta$ and $\sin 2\theta = 2\sin\theta\cos
 
 $$\boxed{\;\begin{pmatrix} \curv{\tE}'_+\\ \curv{\tE}'_\times\end{pmatrix} = \begin{pmatrix}\cos 2\theta & \sin 2\theta\\ -\sin 2\theta & \cos 2\theta\end{pmatrix}\begin{pmatrix} \curv{\tE}_+\\ \curv{\tE}_\times\end{pmatrix}.\;} \label{eq:twice}$$
 
-The point $(\curv{\tE}_+, \curv{\tE}_\times)$ turns by $2\theta$ when the axes turn by $\theta$, in the opposite sense,
-while an arrow $(v_x, v_y)$ becomes $R\,\vect v$ and turns by $\theta$ only. Chapter 1.5b writes the pair as one complex
+The point $(\curv{\tE}_+, \curv{\tE}_\times)$ turns by $2\theta$ when the axes turn by $\theta$, in the opposite sense
+(Figure [](#fig:twice)), while an arrow $(v_x, v_y)$ becomes $R\,\vect v$ and turns by $\theta$ only. Chapter 1.5b writes the pair as one complex
 number, the shear $\curv{s} = 2(\curv{\tE}_+ + i\curv{\tE}_\times)$, and [](#eq:twice) is then its rule $\curv{s}' =
 e^{-2i\theta}\curv{s}$ for the same turn, so the two chapters agree.
 
@@ -434,9 +438,11 @@ the axes by $\theta = -45°$, and [](#eq:twice) gives $\curv{\tE}'_+ = 0$ and $\
 the $-\tfrac12$ put back on the diagonal, this is the table of the worked example. Since $c_4 = \sqrt2\,\curv{\tE}_+$
 and $c_1 = \sqrt2\,\curv{\tE}_\times$, the coefficient moved from $b^4$ to $b^1$.
 
-<!-- diagram: the 2x2 trace-free table drawn as a point (E+, Ex) on its own plane, beside a ring under that table;
-turning the ring's axes anticlockwise by theta moves the point round a circle by 2 theta in the opposite sense;
-marks at 45° (plus to minus cross), 90° and 180° -->
+![Left, a ring under the plus table with $\curv{\tE}_+ > 0$, and its axes $x$, $y$ beside the same axes turned
+anticlockwise by $\theta = 30°$. Right, the two numbers $(\curv{\tE}_+, \curv{\tE}_\times)$ as a point of a plane: in
+the turned axes the point has moved clockwise by $2\theta = 60°$, and each marked point is where it stands after the
+axes have turned by the angle written beside it. At 45° the plus table has become the cross table with the opposite
+sign, and at 180° the point is back where it began.](tut-five-turn){#fig:twice}
 
 ### A pixel that also reads the twist records ten numbers
 

@@ -96,9 +96,12 @@ $u_1u_2 = r_1r_2\bigl[\cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2)\big
 
 $$\boxed{\;|u_1u_2| = |u_1|\,|u_2|, \qquad \arg(u_1u_2) = \arg u_1 + \arg u_2 .\;} \label{eq:product}$$
 
-<!-- diagram: the complex plane with u₁ = 2e^{i·20°}, u₂ = 1.5e^{i·50°} and their product u₁u₂ = 3e^{i·70°}, each drawn as an arrow from 0 with its length and its angle from the real axis marked; the angle of the product is the sum of the two angles, and its length the product of the two lengths. Neutral colours; the real axis labelled Re, the imaginary axis Im. -->
+![Two complex numbers drawn as arrows from 0 at their true values: $u_1$, with modulus 2 and argument 20°, and $u_2$,
+with modulus 1.5 and argument 50°. Their product $u_1u_2$ has the modulus $2 \times 1.5 = 3$ and the argument
+$20° + 50° = 70°$.](tut-cx-product){#fig:product}
 
-The square of $3 + 4i$ checks this. Multiplying out gives $9 - 16 + 24i = -7 + 24i$, whose modulus is 25, the square
+Figure [](#fig:product) draws one product in the complex plane, and the square of $3 + 4i$ checks the rule in
+numbers. Multiplying out gives $9 - 16 + 24i = -7 + 24i$, whose modulus is 25, the square
 of 5, and whose argument is $106.3°$, twice $53.1°$.
 
 So multiplication by a number of modulus 1 is a turn. If $|u_1| = 1$, then $u_1u_2$ has the same distance from the
@@ -122,11 +125,13 @@ the same function. So $f(\theta)$ is $e^{i\theta}$, which is **Euler's formula**
 
 $$\boxed{\;e^{i\theta} = \cos\theta + i\sin\theta .\;} \label{eq:euler}$$
 
-The equation $f' = if$ also has a picture. The point $f(\theta)$ lies on the circle of radius 1. Its velocity, as
+The equation $f' = if$ also has a picture (Figure [](#fig:unit-circle)). The point $f(\theta)$ lies on the circle of radius 1. Its velocity, as
 $\theta$ grows, is $i$ times its position: the position turned by a quarter turn, with length 1. So the point moves
 round the circle at unit speed, and after an arc of length $\theta$ it stands at the angle $\theta$.
 
-<!-- diagram: the unit circle in the complex plane, with the point e^{iθ} at θ = 40° drawn as an arrow from 0 and, from its tip, its derivative ie^{iθ} drawn as an arrow of the same length tangent to the circle, at right angles to the first; the arc from 1 to e^{iθ} marked θ. -->
+![The point $e^{i\theta}$ on the circle of radius 1, at $\theta = 40°$, and its derivative $ie^{i\theta}$ (orange),
+drawn from its tip. The derivative has length 1 and stands at right angles to the position, so it is tangent to the
+circle, and the heavy arc from 1 to $e^{i\theta}$ has the length $\theta$.](tut-cx-euler){#fig:unit-circle}
 
 ::: derivation
 ### Only one function, and the power series
@@ -301,9 +306,13 @@ turning the axes by $-\beta$, so it multiplies the shear by $e^{2i\beta}$. The t
 first when $2\beta = 90°$, so $\beta = 45°$. The electric field of light across its beam is an arrow $v$. Two arrows
 have the dot product $\mathrm{Re}(v_1v_2^*)$, which is zero when they point 90° apart, and turning an arrow by $\beta$
 multiplies $v$ by $e^{i\beta}$, so light needs $\beta = 90°$. Light's two polarizations are arrows 90° apart, and
-gravity's are patterns of spin two, 45° apart.
+gravity's are patterns of spin two, 45° apart. Figure [](#fig:spin-two) shows both rules for a turn of 45°.
 
-<!-- diagram: left, a ring of twelve free balls under a shear s = 2 (squeeze along x in blue, stretch along y in orange), with the axes x and y drawn; middle, the same ring with the axes turned anticlockwise by 45°; right, the complex plane with the point s = 2 and, after the turn, the point s' = −2i, joined by an arc of −90° labelled e^{−2iθ}, beside the point v of an arrow along x moving by only −45°. Theme-aware, orange stretch and blue squeeze. -->
+![Left, a ring of free balls under the shear $\curv{s} = 2$, squeezed along $x$ (blue) and stretched along $y$
+(orange), its movement exaggerated. Middle, the same ring with the axes turned anticlockwise by $\theta = 45°$ (the old
+axes grey). Right, the complex plane: the turn multiplies the shear by $e^{-2i\theta} = -i$, which carries it from 2
+to $\curv{s}' = -2i$, while the number $v = 1$ of an arrow along $x$ is multiplied by $e^{-i\theta}$ and turns back
+by only 45°.](tut-cx-spin){#fig:spin-two}
 
 ::: try {#spin-two-dial}
 Panel (a) shows a ring of twelve free balls under the shear $\curv{s} = 2$, squeezed along $x$ and stretched along

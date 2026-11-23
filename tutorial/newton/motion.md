@@ -71,11 +71,14 @@ We differentiate once with respect to time, which gives $\matter M\dot{\vect x}_
 $$\boxed{\;\matter M\,\ddot{\vect x}_{\rm cm} = \sum_a \vect F_a^{\rm out}.\;}$$
 
 The centre of mass moves as one particle that carries the whole mass and feels only the outside forces. No force
-inside a body can move it. A body with no outside force on it keeps its total momentum, which is the **conservation of
-momentum**.
+inside a body can move it (Figure [](#fig:parts)). A body with no outside force on it keeps its total momentum, which
+is the **conservation of momentum**.
 
-<!-- diagram: a body of five parts joined by springs; the inner forces drawn in equal and opposite pairs along each
-spring; the parts jostle, while the centre of mass (quartered mark) moves on a straight line at steady speed -->
+![A body of five parts joined by springs, drawn at three equal intervals of time. At the first, each spring pulls on
+its two parts with forces of equal size in opposite directions, such as $\vect F_{ab}$ and $\vect F_{ba}$; the parts
+then move on wavy paths, while the centre of mass, the quartered circle, moves along the dotted straight line by equal
+steps. The masses, the springs and the scale of the arrows are chosen for the drawing, and the motion is
+computed from them.](tut-motion-parts){#fig:parts}
 
 ## Work changes kinetic energy, and a steady field keeps the energy fixed
 
@@ -150,10 +153,12 @@ chapter.[^gyro]
 A **rigid body** is one whose parts keep their distances from one another. We let it turn about its centre of mass,
 which we take as the origin, with the **angular velocity** $\sym{angular-velocity}{\vect\Omega}$ of chapter 1.1, a
 vector along the axis whose length is the angle turned per second, in radians per second. Chapter 1.1 showed that each
-point then moves with velocity $\vect v = \vect\Omega\times\vect x$.
+point then moves with velocity $\vect v = \vect\Omega\times\vect x$ (Figure [](#fig:spin)).
 
-<!-- diagram: a rigid body turning about a vertical axis Ω; arrows v = Ω × x at several points, growing in length
-with the distance from the axis and zero on it -->
+![A slab turning about a vertical axis with the angular velocity $\vect\Omega$. Each marked point moves on a circle
+about the axis, and its velocity $\vect v = \vect\Omega\times\vect x$ points along that circle, with a length in
+proportion to the point's distance from the axis; the point on the axis does not move. The slab's shape and the scale
+of the arrows are chosen for the drawing.](tut-motion-spin){#fig:spin}
 
 We want the angular momentum of the turning body. For one part of mass $\matter m$ it is
 $\matter m\,\vect x\times(\vect\Omega\times\vect x)$. Chapter 1.1 proved the rule
@@ -230,14 +235,16 @@ belong to chapter 1.3.
 
 Chapter 1.3 built two Earths that no reading of the steady field outside can tell apart. The first is a uniform ball
 of density $5513\unit{kg\,m^{-3}}$. The second has a core of radius $R_{\rm c} = 3480\unit{km}$ and density
-$\matter\rho_{\rm c}$ inside a mantle of density $\matter\rho_{\rm m}$. We now find the two densities from what the
-outside of the Earth and its turning tell us: the mass and the moment of inertia. The radius of the core comes from a
-third channel, the glow of heat, the faint gravitational waves that the warm interior gives off. Seen from the ground,
-its brightness steps at the direction whose line of sight grazes the core, 33° from straight down (the paper's
+$\matter\rho_{\rm c}$ inside a mantle of density $\matter\rho_{\rm m}$ (Figure [](#fig:earths)). We now find the two
+densities from what the outside of the Earth and its turning tell us: the mass and the moment of inertia. The radius
+of the core comes from a third channel, the glow of heat, the faint gravitational waves that the warm interior gives
+off. Seen from the ground, its brightness steps at the direction whose line of sight grazes the core, 33° from straight down (the paper's
 [Section IV](/paper/#sec:near-field) and Figure [](/paper/#fig:earth-glow)).
 
-<!-- diagram: the two-layer Earth to scale, a core of 3480 km inside a mantle out to 6371 km, shaded by density and
-labelled 12,500 and 4150 kg m⁻³, beside the uniform Earth of 5513 kg m⁻³; the same pull drawn outside both -->
+![The two Earths of chapter 1.3, cut through the centre and drawn to scale: on the left, a core of radius 3480 km
+inside a mantle out to 6371 km, with the densities that this section finds; on the right, the uniform Earth. The
+arrows outside are the pull, the same for both at every distance. The stone and the metal are pictures, and their
+shades show only which layer is denser.](tut-motion-earths){#fig:earths}
 
 We write $q = R_{\rm c}/R = 0.5462$ and $\matter{\bar\rho} = 5513\unit{kg\,m^{-3}}$ for the mean density. The mass is
 $\tfrac43\pi$ times $\matter\rho_{\rm c}R_{\rm c}^3 + \matter\rho_{\rm m}(R^3 - R_{\rm c}^3)$, and it must equal
@@ -380,9 +387,9 @@ $$\begin{aligned}
 &+ \obs\Omega^2\bigl(\delta_{ij} - \hat\Omega_i\hat\Omega_j\bigr)\xi_j .
 \end{aligned}$$
 
-Two balls separated across the axis drift apart, and two balls separated along it do not. That is a stretch across
-the axis, and by the sign rule of chapter 1.4 a stretch is a negative entry. We write the extra term in the same form
-as the tide, $-\obs{\tE}^{\rm pseudo}_{ij}\xi_j$, which gives
+Two balls separated across the axis drift apart, and two balls separated along it do not (Figure [](#fig:frame)).
+That is a stretch across the axis, and by the sign rule of chapter 1.4 a stretch is a negative entry. We write the
+extra term in the same form as the tide, $-\obs{\tE}^{\rm pseudo}_{ij}\xi_j$, which gives
 
 $$\boxed{\;\obs{\tE}^{\rm pseudo}_{ij} = -\obs\Omega^2\bigl(\delta_{ij} - \hat\Omega_i\hat\Omega_j\bigr).\;}$$
 
@@ -395,9 +402,12 @@ matter of density $-\obs\Omega^2/2\pi G$, which for the Earth's rate is $-12.7\u
 times as large as the density of air. When the balls move, the Coriolis term adds
 $-2\obs{\vect\Omega}\times\dot{\vect\xi}$, which turns the ring rather than stretching it.
 
-<!-- diagram: the turning frame seen from outside and from inside; from outside, two free balls released at rest in
-the frame move in straight lines; from inside, the pair separated across the axis drifts apart (orange arrows) and
-the pair separated along the axis does not -->
+![Four free balls let go at rest on a turning table, seen from outside (left) and from the table (right); the painted
+arrow shows how far the table has turned. From outside, the two balls on either side of the axis move on straight
+lines while the table turns beneath them, and from the table the same two balls drift apart across the axis on
+curves, while the two balls on the axis stay where they are. The orange arrows are the acceleration of each ball at the
+start, as the turning observer measures it, $\obs\Omega^2\vect x_\perp$ away from the axis; their length is
+schematic.](tut-motion-frame){#fig:frame}
 
 For the Earth's turning, $\obs\Omega^2 = (7.29 \times 10^{-5}\unit{s^{-1}})^2 = 5.3 \times 10^{-9}\unit{s^{-2}}$. That
 is 31,000 times the Moon's tide at the Earth, $1.7 \times 10^{-13}\unit{s^{-2}}$, and 57 per cent of the person's
