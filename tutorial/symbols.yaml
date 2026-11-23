@@ -1934,6 +1934,46 @@ symbols:
     meaning: 'A particle''s mass times its four-velocity, $p^\mu = m u^\mu$. An observer with four-velocity $u^\mu$ measures its energy $E = -p_\mu u^\mu$: $1.25\,mc^2$ for a particle at $0.6c$ seen from the room, $mc^2$ for an observer moving with it. Chapter 6.4 builds it.'
     chapter: '6.2'
     anchor: what-an-observer-measures-is-a-contraction-with-its-own-four-velocity
+  - key: travel-direction
+    title: Direction of travel of a wave
+    tex: '\hat k'
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'The unit vector $\hat k = \vect k/|\vect k|$ along which a plane wave travels, across its crests. The source is seen the other way, along $\hat n = -\hat k$. A boost changes it by the aberration $\hat k'' = [\hat k_\perp + \gamma(\hat k_\parallel - \boldsymbol\beta)]/\gamma(1 - \boldsymbol\beta\cdot\hat k)$, with the parts of $\hat k$ along and across the motion.'
+    chapter: '6.3'
+    anchor: a-ray-of-light-is-a-null-four-vector-and-a-boost-changes-its-frequency-and-its-direction-together
+  - key: source-angle
+    title: Angle of a source from the direction of motion
+    tex: '\alpha'
+    role: none
+    kind: An angle; in radians or degrees, from 0 to 180°
+    meaning: 'The angle between the direction in which an observer sees a source, $\hat n$, and the observer''s direction of motion. A boost changes it by $\cos\alpha'' = (\cos\alpha + \beta)/(1 + \beta\cos\alpha)$, so every source moves forward: a source at $90°$ is seen at $53.1°$ from $0.6c$. The paper''s free-fall paragraph uses it in $\cos\alpha = 23/31$. (Not the absorption coefficient $\alpha$ of chapter 5.5.)'
+    chapter: '6.3'
+    anchor: a-ray-of-light-is-a-null-four-vector-and-a-boost-changes-its-frequency-and-its-direction-together
+  - key: aberration-angle
+    title: Aberration angle
+    tex: '\delta'
+    role: none
+    kind: An angle; in radians
+    meaning: 'The angle by which motion shifts the direction in which a source is seen: about $v_\perp/c$ for an observer whose speed across the line of sight is $v_\perp$, $9.93\times10^{-5}$ rad or $20.5''''$ for the Earth on its orbit. For a body passing at $0.6c$, the angle between its present position and its retarded position at closest approach is $\arctan\gamma\beta = 36.9°$.'
+    chapter: '6.3'
+    anchor: at-small-speeds-the-shift-is-the-speed-across-the-line-of-sight-over-c
+  - key: rest-direction
+    title: Direction of a body in its own frame
+    tex: '\hat n_0'
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'In the paper''s Appendix C, the unit vector from the pixel toward a body, in the body''s rest frame, where the body''s tide is $(GM/R_*^3)(1 - 3\hat n_0\hat n_0^{\mathsf T})$ and its principal null directions are $\pm\hat n_0$. With $a = \boldsymbol\beta\cdot\hat n_0$ it splits as $(a/\beta)\hat\beta + \vect n_\perp$.'
+    chapter: '6.3'
+    anchor: one-step-of-appendix-c-the-directions-of-a-moving-body-are-its-directions-at-rest-aberrated
+  - key: pnd-pairs
+    title: The two pairs of directions of a moving body
+    tex: '\hat p_\pm'
+    role: none
+    kind: Two vectors of length one; no unit
+    meaning: 'The paper''s two pairs of principal null directions of a single moving body: its directions at rest, $\pm\hat n_0$, aberrated as rays. Their half sum is the body''s velocity across the line to where it is now, over $c$ (the paper''s eq:star-velocity), and their half difference lies along that line with the length $(1 - v_\perp^2/c^2)^{1/2}$.'
+    chapter: '6.3'
+    anchor: one-step-of-appendix-c-the-directions-of-a-moving-body-are-its-directions-at-rest-aberrated
   - key: rest-mass
     title: Rest mass
     tex: '\matter{m}'

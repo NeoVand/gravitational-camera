@@ -2736,3 +2736,39 @@ terms:
     definition: 'The mean square distance from the weighted mean, $\langle|\mathbf x|^2\rangle - |\langle\mathbf x\rangle|^2$ with weights that are positive and add to 1. Appendix C weights a body''s particles by $q_a/Q$.'
     chapter: '6.4'
     anchor: a-bodys-rest-mass-in-light-cone-form-is-a-sum-and-a-weighted-variance
+  - term: direction of travel
+    definition: 'The unit vector $\hat k$ along which a wave moves, across its crests. A source of light is seen in the opposite direction, $\hat n = -\hat k$.'
+    chapter: '6.3'
+    anchor: a-ray-of-light-is-a-null-four-vector-and-a-boost-changes-its-frequency-and-its-direction-together
+  - term: Doppler factor
+    definition: 'The ratio $\omega''/\omega$ of the frequency of a wave measured by a moving observer to its frequency in the frame of the source, $\gamma(1 - \boldsymbol\beta\cdot\hat k)$. Met head-on it is $e^\eta$: 2 at $0.6c$.'
+    chapter: '6.3'
+    anchor: a-ray-of-light-is-a-null-four-vector-and-a-boost-changes-its-frequency-and-its-direction-together
+  - term: aberration angle
+    definition: 'The angle by which motion shifts the direction in which a source is seen, about the observer''s speed across the line of sight over the speed of light, in radians: $20.5''''$ for the Earth on its orbit.'
+    chapter: '6.3'
+    anchor: at-small-speeds-the-shift-is-the-speed-across-the-line-of-sight-over-c
+  - term: retarded position
+    definition: 'The place where a moving body was when the light now reaching an observer left it. The observer sees the body there.'
+    chapter: '6.3'
+    anchor: light-shows-a-moving-body-where-it-was
+  - term: present position
+    definition: 'The place where a moving body is at the observer''s own time, on the observer''s slice of simultaneity. The steady field of a body moving at a constant velocity depends only on it.'
+    chapter: '6.3'
+    anchor: light-shows-a-moving-body-where-it-was
+  - term: blueshift
+    definition: 'A rise in the frequency of a wave seen by an observer, a Doppler factor above 1, so called because blue light has a higher frequency than red.'
+    chapter: '6.3'
+    anchor: light-from-ahead-is-bluer-and-light-from-behind-is-redder
+  - term: redshift
+    definition: 'A fall in the frequency of a wave seen by an observer, a Doppler factor below 1.'
+    chapter: '6.3'
+    anchor: light-from-ahead-is-bluer-and-light-from-behind-is-redder
+  - term: transverse Doppler shift
+    definition: 'The change of frequency of light that crosses the line of motion at right angles: a factor $\gamma$ if the angle is right in the frame of the source, $1/\gamma$ if it is right in the frame of the observer. Both are the slowing of a moving clock.'
+    chapter: '6.3'
+    anchor: light-from-ahead-is-bluer-and-light-from-behind-is-redder
+  - term: black body
+    definition: 'Radiation in thermal equilibrium at one temperature, the glow inside a closed box whose walls are at that temperature (chapter 10.1 derives its spectrum). Seen by a moving observer it is a black body in every direction, at the temperature $T/\gamma(1 - \beta\cos\alpha'')$.'
+    chapter: '6.3'
+    anchor: a-moving-black-body-is-still-a-black-body-hotter-ahead
