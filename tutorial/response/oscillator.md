@@ -472,10 +472,10 @@ x^2 + y^2$ with $x = \Gamma/2 - i\omega$ and $y = \omega_d$. The third expands $
 i\Gamma\omega - \omega^2$ and uses $\omega_d^2 + \Gamma^2/4 = \omega_0^2$. The result is [](#eq:chi). The response to a
 blow and the response to a steady push are one function, seen in time and in frequency.
 
-The impulse response is zero before the blow. Nothing moves before it is pushed: the response is **causal**.
-Chapter 4.5 shows that it ties the real part of $\chi(\omega)$ to the
-imaginary part, and that with the free-mass limit it fixes the total area under
-[the line of power](#only-the-imaginary-part-of-the-response-takes-energy-from-the-push), whatever the friction.
+The impulse response is zero before the blow. Nothing moves before it is pushed: the response is **causal**. Chapter
+[4.5](/tutorial/response/causality/#causality-ties-the-stiffness-of-a-response-to-its-friction) shows that it ties the
+real part of $\chi(\omega)$ to the imaginary part, and that with the free-mass limit it fixes the total area under [the
+line of power](#only-the-imaginary-part-of-the-response-takes-energy-from-the-push), whatever the friction.
 
 ::: check
 ### Q
@@ -604,7 +604,7 @@ $\omega r/c = 9.42\times10^4 \times 1/3.00\times10^8 = 3.1\times10^{-4}$. Both a
 [^units]: Check: $\matter m\omega^2$ is in $\mathrm{kg\,s^{-2}} = \mathrm{N\,m^{-1}}$, so $\chi$ is in
     $\mathrm{m\,N^{-1}}$, a length per force.
 
-[^dust]: Chapter 4.5 makes this free-mass limit the key to the sum rules. The paper's equation
+[^dust]: Chapter [4.5](/tutorial/response/causality/#driven-faster-than-its-bonds-every-body-answers-as-dust) makes this free-mass limit the key to the sum rules. The paper's equation
     [](/paper/#eq:dust) is the same limit for a whole body: driven faster than its bonds can act, it answers as a cloud
     of free mass.
 

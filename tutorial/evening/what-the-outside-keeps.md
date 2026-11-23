@@ -284,5 +284,5 @@ About a million numbers against a billion cells, the square and the cube of a th
 
 [^holography]: Chapter 13.8.
 
-[^sums]: The paper's equation [](/paper/#eq:hole-sum-rule). Chapter 4.5 explains such sums, and chapter 13.7 the
+[^sums]: The paper's equation [](/paper/#eq:hole-sum-rule). Chapter [4.5](/tutorial/response/causality/#a-blow-holds-every-frequency-and-the-energy-it-leaves-is-the-same-total) explains such sums, and chapter 13.7 the
     test.

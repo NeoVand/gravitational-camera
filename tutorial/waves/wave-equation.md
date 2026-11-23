@@ -449,7 +449,7 @@ the paper's expression, since $c/\omega = \bar\lambda$.
   [section on fading ripples](#a-ripple-finer-than-a-wavelength-across-a-plane-fades-instead-of-travelling) shows its
   near field to be the wave equation's slow limit.
 - [Section III](/paper/#sec:regimes) divides the near field from the wave zone by the wavelength $\lambda = c/f$
-  (chapter 5.2).
+  (chapter [5.2](/tutorial/waves/retarded-waves/#beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1)).
 - [Section V](/paper/#sec:waves) gives a rotor's wavelength, $\pi c/\Omega$, and compares it with the source in
   [](/paper/#eq:unresolved).
 - [*Absorption*](/paper/#par:absorption): [](/paper/#eq:damped) and [](/paper/#eq:alpha), with the step from the

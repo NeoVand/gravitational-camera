@@ -258,4 +258,4 @@ thumb to little finger, held at arm's length. Chapter 0.2 shows why a better det
     main text of [Section II](/paper/#sec:pixel) gives $7 \times 10^{-11}$ for the same sway, because it means a
     detector much smaller than its distance from the person. Chapter 1.4 explains both readings.
 
-[^zones]: Chapter 5.2 derives both regions and the boundary between them, with its $2\pi$.
+[^zones]: Chapter [5.2](/tutorial/waves/retarded-waves/#beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1) derives both regions and the boundary between them, with its $2\pi$.

@@ -195,11 +195,12 @@ falls as
 $$\mathrm{Re}\,\matter\eta \to \frac{\matter\eta_0}{(\omega\tau)^2} = \frac{\matter\mu_\infty^2}{\matter\eta_0\,\omega^2} ,$$
 
 the tail of the paper's sentence. The rigidity against a sudden shear, $\matter\mu_\infty$, is the **unrelaxed
-rigidity**. The rigidity against a slow one, $\sym{relaxed-modulus}{\matter\mu_0}$, is the **relaxed rigidity**, and
-for a Maxwell liquid it is zero, because a held shear loses all its stress. The paper calls their difference,
+rigidity**. The rigidity against a slow one, $\sym{relaxed-modulus}{\matter\mu_0}$, is the **relaxed rigidity**, and for
+a Maxwell liquid it is zero, because a held shear loses all its stress. The paper calls their difference,
 $\Delta\matter\mu = \matter\mu_\infty - \matter\mu_0$, the stiffness that relaxes. It also calls the same quantity the
-**weight** of a source of friction, because it fixes the friction added up over all frequencies (chapter 4.5 shows
-why, and the Stretch problem below checks it for Maxwell's model).
+**weight** of a source of friction, because it fixes the friction added up over all frequencies (chapter
+[4.5](/tutorial/response/causality/#causality-fixes-a-materials-total-friction) shows why, and the Stretch problem below
+checks it for Maxwell's model).
 
 **A number.** Honey's everyday viscosity is about $10\unit{Pa\,s}$. We assume, for illustration, an unrelaxed
 rigidity of $1\unit{GPa}$, a plausible size: about half of water's stiffness against compression, 2.2 GPa
@@ -461,12 +462,12 @@ $\tau = 1/10^9 = 1\unit{ns}$. At 1 MHz, $\omega = 2\pi \times 10^6 = 6.3 \times 
 
 ### Stretch
 
-A spring of stiffness $k$ and a dashpot whose force is $b$ times its speed are joined end to end, and the far end of
-the spring is moved by $x(t)$. Show that the junction $q$ obeys 4.1's law with no mass, $b\dot q + kq = kx$, so that
-$b$ plays the part of $\matter m\Gamma$. Show that the force on the moving end, $k(x - q)$, has the phasor
-$k\,\tilde x\,(-i\omega\tau)/(1 - i\omega\tau)$ with $\tau = b/k$, Maxwell's form. Then check that the weight,
+A spring of stiffness $k$ and a dashpot whose force is $b$ times its speed are joined end to end, and the far end of the
+spring is moved by $x(t)$. Show that the junction $q$ obeys 4.1's law with no mass, $b\dot q + kq = kx$, so that $b$
+plays the part of $\matter m\Gamma$. Show that the force on the moving end, $k(x - q)$, has the phasor $k\,\tilde
+x\,(-i\omega\tau)/(1 - i\omega\tau)$ with $\tau = b/k$, Maxwell's form. Then check that the weight,
 $\tfrac2\pi\int_0^\infty\mathrm{Re}\,\matter\eta\,\dd\omega$, is $\matter\mu_\infty$ for [](#eq:dynamic), whatever
-$\matter\eta_0$ (chapter 4.5 shows why).
+$\matter\eta_0$ (chapter [4.5](/tutorial/response/causality/#causality-fixes-a-materials-total-friction) shows why).
 
 ::: solution
 The dashpot and the spring carry the same force, so $b\dot q = k(x - q)$. In phasors, $(k - i\omega b)\tilde q =
@@ -505,7 +506,7 @@ for $Q = 173$.
 - [*Friction at the frequencies of heat*](/paper/#par:friction-at-the-frequencies-of-heat) writes
   [](/paper/#eq:maxwell), $\matter\mu_\infty = \matter\eta_0/\tau$, the free electrons with $\tfrac25\matter nE_F$ and
   the ceiling $\matter nmv_F^2/10\omega$, silicon's 0.03 Pa s and water's $2 \times 10^{-4}\unit{Pa\,s}$ near 8 THz;
-  its sum rule [](/paper/#eq:friction-sum) is chapter 4.5's. Table [](/paper/#tab:materials) gives each material's
+  its sum rule [](/paper/#eq:friction-sum) is chapter [4.5](/tutorial/response/causality/#causality-fixes-a-materials-total-friction)'s. Table [](/paper/#tab:materials) gives each material's
   effective friction, and Figure [](/paper/#fig:materials) its friction at each frequency.
 - [*Volume and surface emission*](/paper/#par:volume-and-surface-emission) uses
   $\mathrm{Re}\,\matter\eta = \matter\rho c_T^2/\omega Q$.
@@ -548,7 +549,7 @@ law for highly viscous fluids in their *Theory of Elasticity*.
     friction shows as $\mathrm{Im}\,\matter\mu = -\omega\,\mathrm{Re}\,\matter\eta < 0$, the opposite sign to 4.1's
     $\mathrm{Im}\,\chi$, because a modulus is a force per displacement, the inverse of 4.1's displacement per force.
     Books on the flow of materials write oscillations as $e^{+i\omega t}$, and there the same loss appears as a positive
-    "loss modulus". The paper works with $\mathrm{Re}\,\matter\eta > 0$, and chapter 4.5 treats $\matter\eta(\omega)$
+    "loss modulus". The paper works with $\mathrm{Re}\,\matter\eta > 0$, and chapter [4.5](/tutorial/response/causality/#causality-fixes-a-materials-total-friction) treats $\matter\eta(\omega)$
     as a response function.
 
 [^peak]: Chapter 10.1 derives the number 2.82 from Planck's law. Here it only fixes the frequency at which to compare.

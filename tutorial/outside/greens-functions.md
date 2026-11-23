@@ -424,13 +424,14 @@ $\vect s$, which is what "analytic" asks; we take that step on trust.
 ## Where Green's functions go next
 
 The field of one point, added up over all the sources, returns three times in the paper. The wave equation has a
-**retarded Green's function**, which delivers the field of each piece of a source late by the time light takes to
-cross the distance; chapter 5.2 derives it for the paper's equation [](/paper/#eq:wave-zone). The transform of
-equation [](/paper/#eq:scene-transform) weighs the scene against the continued ripples of
-[the flat camera](#above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height), written
-$e^{i\vect k\cdot\vect a - |\vect k|z}$, where $\vect k$ is a vector in the camera's plane that points across the
-crests and has the length $k$ (chapter 13.2). Equation [](/paper/#eq:abel), an Abel transform, adds up a round planet's
-glow along straight chords, with a weight fixed by geometry; chapter 5.6 inverts it.
+**retarded Green's function**, which delivers the field of each piece of a source late by the time light takes to cross
+the distance; chapter [5.2](/tutorial/waves/retarded-waves/#a-source-sends-its-news-outward-at-the-speed-of-the-wave)
+derives it for the paper's equation [](/paper/#eq:wave-zone). The transform of equation [](/paper/#eq:scene-transform)
+weighs the scene against the continued ripples of [the flat
+camera](#above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height), written $e^{i\vect k\cdot\vect a -
+|\vect k|z}$, where $\vect k$ is a vector in the camera's plane that points across the crests and has the length $k$
+(chapter 13.2). Equation [](/paper/#eq:abel), an Abel transform, adds up a round planet's glow along straight chords,
+with a weight fixed by geometry; chapter 5.6 inverts it.
 
 ::: check
 ### Q

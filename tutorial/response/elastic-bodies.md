@@ -528,7 +528,7 @@ surface $3z^2 - R^2 = 2R^2P_2$, so the layer has $\matter Q_{zz} = \int\matter\r
 - [Section VI](/paper/#sec:thermal) compares a wave with "a sound wave of the same frequency" and uses $c_T$ and $c_L$
   in [](/paper/#eq:surface-glow); [Section VII](/paper/#sec:no-lens) uses $c_T$ in [](/paper/#eq:optics-bound)
   (chapter 5.5); [Section V](/paper/#sec:waves) writes the stress $\matter T_{kl}$ in [](/paper/#eq:wave-zone)
-  (chapter 5.2).
+  (chapter [5.2](/tutorial/waves/retarded-waves/#far-away-each-direction-carries-one-ripple-of-the-source)).
 :::
 
 ::: deeper

@@ -288,7 +288,7 @@ a patch as wide as the mass is deep.
 
 [^bright]: Derived in [1.4](/tutorial/newton/tides/#tidal-brightness-is-density-times-the-cube-of-angular-size).
 
-[^zones]: Derived in chapter 5.2.
+[^zones]: Derived in chapter [5.2](/tutorial/waves/retarded-waves/#beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1).
 
 [^blur]: Derived in [3.7](/tutorial/noise/blur-law/), which recomputes the table. The first line of Equation
     [](/paper/#eq:cutoff) gives $q_c = 10.4$; its approximate second line gives 10.1.
