@@ -1411,3 +1411,15 @@ terms:
     definition: 'For a random signal far below the noise, watched for a time $T$, the separation from no signal is $D^2 \approx T\int(S_s/S_n)^2\,\mathrm d\omega/2\pi$ over positive frequencies: $D = (S_s/S_n)\sqrt{BT}$ over a band of $B$ hertz.'
     chapter: '3.3'
     anchor: a-tremor-far-below-the-noise-can-still-be-detected
+  - term: separation of variables
+    definition: 'Looking for a solution as a product of functions of one variable each, such as $\cos(\mathbf k\cdot\mathbf a)\,f(h)$, so that an equation in several variables falls apart into equations in one.'
+    chapter: '2.7'
+    anchor: in-empty-space-a-ripple-can-only-fade
+  - term: boundary condition at infinity
+    definition: 'A condition that a solution must meet far away, such as a potential staying bounded far above all its sources. It removes the growing solution $e^{kh}$ and keeps the fading one.'
+    chapter: '2.7'
+    anchor: in-empty-space-a-ripple-can-only-fade
+  - term: noise amplification
+    definition: 'The growth of the noise when a fade is undone: dividing a ripple of the data by its fade $e^{-kz}$ multiplies its noise by $e^{kz}$, so the finest ripples are lost first.'
+    chapter: '2.7'
+    anchor: undoing-the-fade-multiplies-the-noise

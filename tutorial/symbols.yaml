@@ -131,6 +131,7 @@ symbols:
     kind: A number at each point of a sheet; mass per unit area, in kg/m²
     meaning: 'How much mass a thin sheet holds in each square metre. The near-field camera''s scene is described as a surface density at a depth $z$. (In Part 3, $\sigma$ never stands for a standard deviation.)'
     chapter: '2.7'
+    anchor: a-thin-sheet-makes-each-ripple-of-the-potential-on-its-own
   - key: noise-density
     title: Spatial noise density
     tex: 'N_0'
@@ -815,7 +816,7 @@ symbols:
     tex: 'L(\theta)'
     role: none
     kind: A function of the parameter, for fixed data
-    meaning: 'The probability density of the readings that were recorded, seen as a function of the parameter $\theta$. For independent Gaussian noise $\ln L = -\sum_a (y_a - f_a(\theta))^2/2\sigma_n^2$ plus a constant. It is not a probability for $\theta$.'
+    meaning: 'The probability density of the readings that were recorded, seen as a function of the parameter $\theta$. For independent Gaussian noise $\ln L = -\sum_i (y_i - f_i(\theta))^2/2\sigma_n^2$ plus a constant. It is not a probability for $\theta$.'
     chapter: '3.3'
     anchor: the-likelihood-scores-each-scene-by-how-well-it-explains-the-data
   - key: scene-separation
@@ -823,7 +824,7 @@ symbols:
     tex: 'D'
     role: none
     kind: A pure number
-    meaning: 'How far apart the readings predicted by two scenes lie, in standard deviations of the noise: $D = |\mathbf f_A - \mathbf f_B|/\sigma_n$. The best test between them errs with probability $P(Z > D/2)$. It grows in proportion to the signal-to-noise ratio. (The paper''s $d$ is the data.)'
+    meaning: 'How far apart the readings predicted by two scenes lie, in standard deviations of the noise: $D = |\mathbf f_A - \mathbf f_B|/\sigma_n$. The best test between them errs with probability $P(Z > D/2)$. It grows in proportion to the signal-to-noise ratio. (Chapters 2.3 and 3.7 and the paper''s Section IV use $D$ for the width of a camera; the paper''s Figure separation-noise, in Section VIII, uses it for the factor by which a nuisance parameter enlarges an error, which chapter 3.3 writes $1/\sqrt{1 - \gamma^2}$.)'
     chapter: '3.3'
     anchor: choosing-between-two-scenes-comes-down-to-one-gaussian-number
   - key: error-probability
@@ -839,7 +840,7 @@ symbols:
     tex: 'F'
     role: none
     kind: A number; in the inverse square of the unit of the parameter
-    meaning: 'How fast the predicted readings change with a parameter, in units of the noise, squared and summed: $F = \sum_a (\partial f_a/\partial\theta)^2/\sigma_n^2$. A change $1/\sqrt F$ moves the predictions by one standard deviation, and no unbiased estimate has a variance below $1/F$.'
+    meaning: 'How fast the predicted readings change with a parameter, in units of the noise, squared and summed: $F = \sum_i (\partial f_i/\partial\theta)^2/\sigma_n^2$. A change $1/\sqrt F$ moves the predictions by one standard deviation, and no unbiased estimate has a variance below $1/F$.'
     chapter: '3.3'
     anchor: the-fisher-information-measures-how-sharply-the-likelihood-peaks
   - key: fisher-matrix
@@ -847,7 +848,7 @@ symbols:
     tex: 'F_{kl}'
     role: none
     kind: A symmetric table, one row and column for each parameter
-    meaning: 'The Fisher information of several parameters at once, $F_{kl} = \sum_a (\partial f_a/\partial\theta_k)(\partial f_a/\partial\theta_l)/\sigma_n^2$. The variance of an unbiased estimate of $\theta_1$ is at least $(F^{-1})_{11}$, which is never less than $1/F_{11}$.'
+    meaning: 'The Fisher information of several parameters at once, $F_{kl} = \sum_i (\partial f_i/\partial\theta_k)(\partial f_i/\partial\theta_l)/\sigma_n^2$. The variance of an unbiased estimate of $\theta_1$ is at least $(F^{-1})_{11}$, which is never less than $1/F_{11}$.'
     chapter: '3.3'
     anchor: an-unknown-we-do-not-want-can-only-enlarge-the-error-of-one-we-do
   - key: pattern-snr
@@ -855,6 +856,14 @@ symbols:
     tex: '\mathcal R'
     role: none
     kind: A pure number
-    meaning: 'How many standard deviations of the noise separate the data of one point mass from the data of an empty scene, for a flat camera that fills its plane: $\mathcal R^2 = N_0^{-1}\int d^2\,\mathrm d^2a$, so $\mathcal R = (\sqrt{3\pi}/4)\,\mathrm{SNR}$. It is 767 at $\mathrm{SNR} = 10^3$.'
+    meaning: 'How many standard deviations of the noise separate the data of one point mass from the data of an empty scene, for a flat camera that fills its plane and reads $d = -\mathcal E_{zz}$: $\mathcal R^2 = N_0^{-1}\int d^2\,\mathrm d^2a$, so $\mathcal R = (\sqrt{3\pi}/4)\,\mathrm{SNR}$. It is 767 at $\mathrm{SNR} = 10^3$.'
     chapter: '3.3'
     anchor: one-mass-a-metre-away-is-placed-to-a-millimetre
+  - key: array-reading
+    title: Reading of the array
+    tex: '\curv{d}'
+    role: curv
+    kind: A number at each pixel; in s⁻²
+    meaning: 'What each pixel of a flat array records: the vertical entry of the tidal tensor with its sign changed, $d = -\mathcal E_{zz}$, so that a mass below gives a positive bump. Across the array its transform is $\tilde d = 2\pi G\,k\,e^{-kz}\,\tilde\sigma + \tilde n$ for a sheet at depth $z$.'
+    chapter: '2.7'
+    anchor: the-camera-records-a-tide-which-weights-each-ripple-by-k

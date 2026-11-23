@@ -1,0 +1,630 @@
+---
+id: '3.3'
+title: 'Measuring a number: likelihood, detection, Fisher information, Cramér–Rao'
+question: 'The tide of a mass one metre from the camera makes a bump about a metre wide; how can the same data place that mass to within a millimetre?'
+part: '3'
+requires: ['1.4', '3.1', '3.2']
+paper: [sec:near-field, fig:locked-safe, app:benchmarks, eq:depth-bound, sec:one-pixel, sec:first-image]
+figures: []
+live: [which-safe]
+depth: A
+---
+
+A mass at a distance $z$ from a flat array makes a bump of tide on it about $z$ wide (chapter
+[3.2](/tutorial/noise/random-signals/#the-variance-of-noise-spread-over-a-plane-falls-as-one-over-the-area)), so a
+person one metre away makes a bump about a metre across, even when it stands a thousand times above the
+noise.[^blur] Yet the paper's paragraph [*The precision of a simple
+scene*](/paper/#par:the-precision-of-a-simple-scene) says that the same data place the mass to within a millimetre.
+Its [worked case](/paper/#par:a-worked-case) makes a similar claim about the locked safe: 324 kg of gold lie in one of
+two safes 3.5 m away, and at a signal-to-noise ratio of 10 "the two possibilities give readings 1.8 standard
+deviations apart", so the camera picks the wrong safe 18% of the time. So this chapter asks how a bump a metre wide
+can place a mass to a millimetre.
+
+The answer is that a measurement of a known kind of scene does not depend on the width of its picture. It depends on
+how fast the data the camera expects change when the number being measured changes, counted in standard deviations
+of the noise.
+
+<!-- diagram: tut-measure-safe — Hero. Left: the 11 × 11 array's expected readings of one component (say E_xz) for
+the gold in the left safe and in the right safe, side by side, on one diverging scale. Middle: their difference map.
+Right: two Gaussians of unit width whose centres are 1.81 apart, with the decision line midway between them and the
+tail beyond it shaded on each side (18.3%). Caption: the 605 readings differ by 1.81 noise standard deviations in all;
+projected on their difference, the choice between the safes is a choice between two bells. -->
+
+::: plain
+To measure something, the camera compares what it read with what each possible scene would have produced. The scene
+whose expected readings lie closest to the real ones, in units of the noise, is the best explanation.
+
+To choose between two scenes, what matters is how far apart their expected readings lie. At 1.8 noise standard
+deviations apart, the noise carries the readings past the midpoint 18% of the time.
+
+A number, such as the depth of a mass, is measured as precisely as its expected readings change when it changes.
+When the mass moves by a millimetre, every one of the many readings changes a little, and together those small
+changes give a precision far finer than the width of the bump. A rule called
+the Cramér–Rao bound says that no method that is right on average can do better.
+:::
+
+## The likelihood scores each scene by how well it explains the data
+
+A camera records $N$ readings $y_1, \dots, y_N$, numbered by $i$, such as the five numbers that each of the 121
+pixels of the safe's array reports. We write each one as a prediction plus noise,
+
+$$y_i = f_i(\theta) + n_i .$$
+
+Here $\sym{parameter}{\theta}$ is the **parameter**, the unknown number of the scene that we want: a mass in
+kilograms, a depth in metres, or which safe holds the gold. (Elsewhere in the tutorial $\theta$ is an angular size;
+here it is always a parameter.) The **prediction** $f_i(\theta)$ is the reading that the scene with this value of
+$\theta$ would give at reading $i$ without noise, computed from the laws of Part 1. The noise $n_i$ is Gaussian,
+with mean zero and standard deviation $\sigma_n$, and the noises of different readings are independent, as in
+chapter [3.1](/tutorial/noise/probability/#averaging-independent-readings-shrinks-the-noise-as-a-square-root). This
+$\sigma_n$ is chapter 3.2's $\sigma_n(\tau)$ for an averaging time $\tau$ that stays fixed, so we leave $\tau$ out.
+
+The probability density of one reading is the Gaussian of chapter
+[3.1](/tutorial/noise/probability/#most-noise-follows-the-gaussian-bell) centred on $f_i(\theta)$. The readings are
+independent, so the density of the whole list $\mathbf y = (y_1, \dots, y_N)$ is the product of the $N$ densities.
+We write it $p(\mathbf y|\theta)$, read "$p$ of $\mathbf y$ given $\theta$". Seen as a function of $\theta$, with the
+data fixed at what was recorded, it is the **likelihood** $\sym{likelihood}{L(\theta)} = p(\mathbf y|\theta)$. Its
+logarithm turns the product into a sum:
+
+$$\ln L(\theta) = -\sum_{i=1}^{N}\frac{\bigl(y_i - f_i(\theta)\bigr)^2}{2\sigma_n^2} + \text{const}. \label{eq:loglike}$$
+
+The constant comes from the factors $1/(\sqrt{2\pi}\,\sigma_n)$ and does not depend on $\theta$. So the likelihood
+scores each candidate scene by the sum of its squared misfits, each in units of the noise. The value of $\theta$ that
+makes $L$ largest is the **maximum-likelihood estimate**, written $\hat\theta$. For Gaussian noise it is the
+least-squares fit.
+
+**An example.** A gradiometer reads one steady tide $x_0$ (the parameter) $N$ times, so every prediction is
+$f_i = x_0$. We set the derivative of [](#eq:loglike) to zero:
+
+$$\frac{\partial\ln L}{\partial x_0} = \sum_i\frac{y_i - x_0}{\sigma_n^2} = 0, \qquad \hat x_0 = \frac1N\sum_i y_i .$$
+
+The maximum-likelihood estimate is the average of the readings, the estimate whose noise chapter 3.1 found to be
+$\sigma_n/\sqrt N$.
+
+**A non-example.** The likelihood is not the probability that $\theta$ is the true value: its integral over
+$\theta$ need not be one. Turning it into a probability for $\theta$ needs a prior, the subject of chapter 3.5.
+
+## Choosing between two scenes comes down to one Gaussian number
+
+We want the probability that the camera picks the wrong safe, because it measures how well data decide a question.
+
+Each possible answer is a **hypothesis**, a complete scene that predicts every reading. Hypothesis $A$ (the gold in
+the left safe) predicts the list of readings $\mathbf f_A = (f_{A,1}, \dots, f_{A,N})$, and hypothesis $B$ (the gold
+in the right safe) predicts $\mathbf f_B$. A **hypothesis test** is a rule that picks one of them from the data. We
+assume that **the noise is Gaussian, independent and of the same standard deviation $\sigma_n$ in every reading**,
+and that **the two hypotheses are equally likely before we look**.
+
+**The best rule.** Any rule answers $A$ for some sets of readings and $B$ for the others. Each hypothesis is true
+half the time, so the rule's **error probability**, the chance of a wrong answer, is
+
+$$\begin{aligned}
+P_{\rm err} &= \tfrac12\int_{\text{answer }B} p_A\,\dd\mathbf y + \tfrac12\int_{\text{answer }A} p_B\,\dd\mathbf y\\
+&= \tfrac12 - \tfrac12\int_{\text{answer }A}(p_A - p_B)\,\dd\mathbf y ,
+\end{aligned}$$
+
+where $p_A$ and $p_B$ are the densities of the data under the two hypotheses, $\dd\mathbf y$ is the $N$-fold integral
+over all the readings, and the second form uses $\int p_A\,\dd\mathbf y = 1$. The error is smallest when the region
+"answer $A$" holds every set of readings where $p_A > p_B$ and no other. So the best rule picks the hypothesis with
+the larger likelihood: it compares the **likelihood ratio** $L_A/L_B$ with one. This is the rule that chapter 3.1
+applied to the safe.
+
+**The rule measures a distance.** By [](#eq:loglike), the rule picks $A$ when $|\mathbf y - \mathbf f_A|^2 < |\mathbf
+y - \mathbf f_B|^2$, where $|\mathbf v|^2 = \sum_i v_i^2$. So it picks the hypothesis whose predicted readings lie
+closer to the real ones. We expand both squares; the terms in $|\mathbf y|^2$ cancel, and the rest can be written
+
+$$|\mathbf y - \mathbf f_B|^2 - |\mathbf y - \mathbf f_A|^2 = 2\,(\mathbf f_A - \mathbf f_B)\cdot\Bigl(\mathbf y -
+\frac{\mathbf f_A + \mathbf f_B}{2}\Bigr).$$
+
+Let $\mathbf e = (\mathbf f_A - \mathbf f_B)/|\mathbf f_A - \mathbf f_B|$ be the unit vector along the difference of
+the predictions. The rule picks $A$ when the number $t = \mathbf e\cdot\bigl(\mathbf y - \tfrac12(\mathbf f_A +
+\mathbf f_B)\bigr)$ is positive. Of all the $N$ readings, only this one combination matters.
+
+**The error.** Suppose that $A$ is true, so $\mathbf y = \mathbf f_A + \mathbf n$. Then
+
+$$t = \tfrac12|\mathbf f_A - \mathbf f_B| + \mathbf e\cdot\mathbf n .$$
+
+The second term is a sum of the noises with the weights $e_i$, so by chapter 3.1's rule for a [weighted
+sum](/tutorial/noise/probability/#covariance-describes-noise-that-two-readings-share) its variance is
+$\sigma_n^2\sum_i e_i^2 = \sigma_n^2$, because $\mathbf e$ has length one. A weighted sum of independent
+Gaussian numbers is itself Gaussian (we state this without proof; chapter 3.2 used the same fact), so
+$\mathbf e\cdot\mathbf n = \sigma_n Z$ with $Z$ a standard Gaussian. The rule errs when $t < 0$, that is when
+$Z < -\tfrac12|\mathbf f_A - \mathbf f_B|/\sigma_n$. We name the separation of the predictions in units of the noise
+
+$$\sym{scene-separation}{D} = \frac{|\mathbf f_A - \mathbf f_B|}{\sigma_n},$$
+
+a pure number. (Chapters 2.3 and 3.7 and the paper's Section IV use $D$ for the width of a camera, and the paper's
+Figure [](/paper/#fig:separation-noise) in Section VIII uses it for the factor by which an unwanted unknown enlarges an
+error, which this chapter writes $1/\sqrt{1 - \gamma^2}$
+[below](#an-unknown-we-do-not-want-can-only-enlarge-the-error-of-one-we-do). Here $D$ is always the separation of two
+scenes.) The Gaussian is symmetric, and the case where $B$ is true gives the same, so
+
+$$\boxed{\sym{error-probability}{P_{\rm err}} = P\bigl(Z > D/2\bigr)} .$$
+
+**A number.** The safe's inputs are those of the paper's [Appendix A](/paper/#par:the-worked-inversion). The array is an
+upright square a metre across, of $11\times11$ pixels $b = 10\unit{cm}$ apart, facing the safes. We take $x$ to the
+right, $y$ up and $z$ forward; in this chapter $z$ always runs from the camera's plane toward the scene. Each pixel
+reads five components of the tide, $\curv{\tE}_{xx}$, $\curv{\tE}_{yy}$, $\curv{\tE}_{xy}$, $\curv{\tE}_{xz}$ and
+$\curv{\tE}_{yz}$, which fix the rest because the tide is symmetric and, in empty space, trace-free (chapter 1.4). So $N
+= 605$. The noise on each reading is $\sigma_n = 2G\matter m/(z^2b\,\SNR)$ (the appendix writes a bare $\sigma$), with
+$\matter m = 324\unit{kg}$ and $z = 3.5\unit{m}$: $3.5\times10^{-9}\unit{s^{-2}}$ at $\SNR = 10$ (chapter 3.2, *The
+paper*). The gold is a bar of $0.3\times0.14\times0.4\unit{m}$, 3.5 m in front of the array, 1.1 m to the left or the
+right of its axis and 1.37 m below it. Summing the squares of the 605 differences between the two safes' predicted
+readings gives $D = 1.81$, and
+
+$$P_{\rm err} = P(Z > 0.906) = 0.183 ,$$
+
+the paper's 18%.[^safe] No single reading decides: the largest difference between the two predictions is under a
+fifth of $\sigma_n$. The test works because all 605 differences add up in $D^2$.
+
+**The signal-to-noise ratio enters in proportion.** Because $\sigma_n$ is proportional to $1/\SNR$, $D =
+0.181\,\SNR$ for the safe. At $\SNR = 34$, $D = 6.16$ and $P_{\rm err} = P(Z > 3.08) = 1.04\times10^{-3}$, the
+paper's "once in a thousand". **A limit.** As $D \to 0$, $P_{\rm err} \to \tfrac12$: when the two predictions agree,
+the data are no better than a coin. For large $D$ the error falls faster than any power of $D$.
+
+::: try {#which-safe}
+The figure is the locked safe as a test. Each trial puts the gold in one safe at random, adds noise to the 605 predicted
+readings, and picks the safe whose predictions lie closer. Answer the two predictions at its top first, then set the
+signal-to-noise ratio and run trials until the count of wrong answers settles beside $P(Z > D/2)$.
+:::
+
+## The Fisher information measures how sharply the likelihood peaks
+
+We want the smallest error with which any method can measure a number $\theta$ from the data, because that is the
+precision the paper quotes.
+
+An **estimator** $\hat\theta(\mathbf y)$ is any rule that turns the readings into a value of $\theta$, such as the
+maximum-likelihood fit. It is **unbiased** when its mean over the noise is the true value, $\langle\hat\theta\rangle
+= \theta$, for every possible true value. The rule "always answer zero" has no scatter, but it is biased.
+
+**How fast the predictions change.** Two values of $\theta$ a small step $\delta\theta$ apart predict readings that
+differ by $f_i'\,\delta\theta$, where $f_i' = \partial f_i/\partial\theta$. Their separation in units of the noise is
+$D = \sqrt F\,\delta\theta$, where
+
+$$\sym{fisher}{F} = \sum_{i=1}^{N}\frac{(\partial f_i/\partial\theta)^2}{\sigma_n^2} \label{eq:fisher}$$
+
+is the **Fisher information**, in the inverse square of the unit of $\theta$. A step $\delta\theta = 1/\sqrt F$
+moves the predicted data by one standard deviation of the noise. The same number is the sharpness of the likelihood:
+averaged over the noise, [](#eq:loglike) is $-\sum_i\bigl(f_i(\theta) - f_i(\theta_0)\bigr)^2/2\sigma_n^2$ plus a
+constant, where $\theta_0$ is the true value,[^average] and with $f_i(\theta) - f_i(\theta_0) \approx
+f_i'\,(\theta - \theta_0)$ this is $-\tfrac12F(\theta - \theta_0)^2$. So the likelihood peaks with a width of about
+$1/\sqrt F$.
+
+<!-- diagram: tut-measure-peak — The log-likelihood of one mass's depth, averaged over noise, −½F(θ − θ₀)², drawn
+for three signal-to-noise ratios (R = 3, 10, 30) on one axis of depth in units of z, each curve marked at the width
+1/√F where it has fallen by one half. The peak narrows in proportion to the signal. -->
+
+**The bound.** We assume that **the estimator is unbiased**, and that **the readings that can occur at all are the
+same whatever $\theta$ is**: $\theta$ changes how probable each reading is, but not which readings are possible.
+Gaussian noise meets the second assumption, because every reading is possible at every $\theta$. Readings spread
+evenly between 0 and $\theta$ do not: there the largest of $N$ readings finds $\theta$ with an error that falls as
+$1/N$, faster than the bound below, because the edge of the possible readings moves with $\theta$. The assumption
+lets us differentiate under the integral sign. We define the **score**, the slope of the log-likelihood at the true
+value, in the inverse of the unit of $\theta$:
+
+$$U = \frac{\partial\ln p(\mathbf y|\theta)}{\partial\theta} = \frac{1}{p}\frac{\partial p}{\partial\theta} .$$
+
+First, the mean of the score is zero, because the total probability is one whatever $\theta$ is:
+
+$$\langle U\rangle = \int\frac{\partial p}{\partial\theta}\,\dd\mathbf y = \frac{\partial}{\partial\theta}\int
+p\,\dd\mathbf y = 0 .$$
+
+Next, we differentiate the condition of no bias, $\int\hat\theta\,p\,\dd\mathbf y = \theta$, with respect to
+$\theta$. The estimator depends on the data only, so
+
+$$\int\hat\theta\,\frac{\partial p}{\partial\theta}\,\dd\mathbf y = \langle\hat\theta\,U\rangle = 1 .$$
+
+Because $\langle U\rangle = 0$, this mean of a product is the covariance: $\mathrm{Cov}(\hat\theta, U) = 1$.
+
+For any two random numbers $X$ and $Y$ and any constant $c$, the variance of $X - cY$ cannot be negative. By the
+rule for the variance of a [difference](/tutorial/noise/probability/#covariance-describes-noise-that-two-readings-share),
+
+$$0 \le \mathrm{Var}(X - cY) = \mathrm{Var}\,X - 2c\,\mathrm{Cov}(X, Y) + c^2\,\mathrm{Var}\,Y .$$
+
+We choose $c = \mathrm{Cov}(X, Y)/\mathrm{Var}\,Y$, which gives the **Cauchy–Schwarz inequality**
+$\mathrm{Cov}(X, Y)^2 \le \mathrm{Var}\,X\,\mathrm{Var}\,Y$. (It is why a correlation lies between $-1$ and 1.) With
+$X = \hat\theta$ and $Y = U$, the left side is 1, so $\mathrm{Var}\,\hat\theta \ge 1/\mathrm{Var}\,U$. For Gaussian
+noise the score is, from [](#eq:loglike), $U = \sum_i n_if_i'/\sigma_n^2$, a weighted sum of independent noises, and
+its variance is $\sum_i (f_i'/\sigma_n^2)^2\sigma_n^2$, which is $F$ of [](#eq:fisher). (For any other noise,
+$\mathrm{Var}\,U$ is taken as the definition of $F$.) So
+
+$$\boxed{\mathrm{Var}\,\hat\theta \ge \frac{1}{F}} .$$
+
+This is the **Cramér–Rao bound**. The units agree: $\mathrm{Var}\,\hat\theta$ is in the square of the unit of
+$\theta$, and $1/F$ too.
+
+**When equality holds.** The Cauchy–Schwarz inequality is an equality only when $X - cY$ has no variance, that is
+when $\hat\theta - \theta$ is a fixed multiple of the score. This happens for a **linear model**,
+$f_i = \theta\,g_i$ with fixed $g_i$. The least-squares fit is then $\hat\theta = \sum_i y_ig_i/\sum_i g_i^2 = \theta +
+U/F$, which is unbiased and has the variance $1/F$ exactly.
+
+**A check.** For $N$ readings of one number, $g_i = 1$ and $F = N/\sigma_n^2$: the bound is the square-root law,
+$\sigma_n/\sqrt N$, and the average reaches it.
+
+**Near equality and far from it.** One mass under a flat camera is not a linear model in its position, but at a high
+signal-to-noise ratio it is nearly linear over the small range that the noise explores. In 4000 simulated fits of
+both coordinates of one mass's place across the plane, with its depth and mass known, the scatter is within 2% of
+the bound when the whole pattern stands 10 noise standard deviations above zero (the ratio $\mathcal R$ of [the
+section on one mass](#one-mass-a-metre-away-is-placed-to-a-millimetre)). At $\mathcal R = 2$ it is 6.1 times the
+bound, and 69% of the fits land more than half a depth away, on a bump of the noise.[^weak] A weak signal gives a
+likelihood with several peaks, and the curvature of one peak no longer describes the error.
+
+## An unknown we do not want can only enlarge the error of one we do
+
+A real scene has several unknowns: one mass has two coordinates across the plane, a depth and a mass. We write them
+$\theta_1, \dots, \theta_K$, numbered by $k$ and $l$. The **Fisher matrix** generalizes [](#eq:fisher),
+
+$$\sym{fisher-matrix}{F_{kl}} = \sum_i\frac{1}{\sigma_n^2}\frac{\partial f_i}{\partial\theta_k}\frac{\partial
+f_i}{\partial\theta_l} ,$$
+
+a symmetric $K\times K$ table, whose entry $F_{kl}$ is in the inverse of the product of the units of $\theta_k$ and
+$\theta_l$. Each parameter has its own score $U_k = \partial\ln p/\partial\theta_k$, and the argument of the last
+section, with Gaussian noise, gives $\mathrm{Cov}(U_k, U_l) = F_{kl}$.
+
+We want the bound on $\theta_1$ when the others must be fitted too. The estimator $\hat\theta_1$ is unbiased whatever
+the values of all the parameters, so differentiating its mean with respect to each $\theta_l$ gives
+$\mathrm{Cov}(\hat\theta_1, U_l) = 1$ for $l = 1$ and 0 otherwise. Take any combination $Y = w_lU_l$ of the scores,
+with fixed weights $w_l$ and the repeated index summed. Then $\mathrm{Cov}(\hat\theta_1, Y) = w_1$, and by the rule
+for a weighted sum $\mathrm{Var}\,Y = w_kF_{kl}w_l$. Cauchy–Schwarz gives
+$\mathrm{Var}\,\hat\theta_1 \ge w_1^2/w_kF_{kl}w_l$ for every choice of weights. We choose the weights that make the
+right side largest, the first column of the inverse matrix, $w_l = (F^{-1})_{l1}$.[^weights] Then $F_{kl}w_l$ is 1
+for $k = 1$ and 0 otherwise, so $w_kF_{kl}w_l = w_1 = (F^{-1})_{11}$, and
+
+$$\boxed{\mathrm{Var}\,\hat\theta_1 \ge (F^{-1})_{11}} .$$
+
+Chapter 3.4 extends this to every combination of the parameters.
+
+**Two unknowns.** The inverse of a $2\times2$ symmetric matrix gives
+
+$$(F^{-1})_{11} = \frac{F_{22}}{F_{11}F_{22} - F_{12}^2} = \frac{1}{F_{11}\,(1 - \gamma^2)}, \qquad \gamma =
+\frac{F_{12}}{\sqrt{F_{11}F_{22}}} .$$
+
+The pure number $\gamma$ is the correlation of chapter 3.1 between the two scores (which that chapter wrote $r$; here
+$r$ is a distance). It is also the cosine of the angle between the two lists of rates of change, $\partial
+f_i/\partial\theta_1$ and $\partial f_i/\partial\theta_2$, each divided by $\sigma_n$. Since $\gamma^2 \ge 0$,
+$(F^{-1})_{11} \ge 1/F_{11}$. An unknown that we must fit but do not want, a **nuisance parameter**, can only enlarge
+the error of the one we want, by the factor $1/\sqrt{1 - \gamma^2}$. The cost is large when the two change the
+predicted data in similar ways, so that $\gamma$ is close to $\pm1$.
+
+**A number.** The next section finds, for the depth $z$ and the mass $\matter m$ of one mass, the matrix
+
+$$F = \mathcal R^2\begin{pmatrix}5/z^2 & -2/\matter mz\\ -2/\matter mz & 1/\matter m^2\end{pmatrix},$$
+
+where $\mathcal R$ is a pure number, the strength of the whole pattern in units of the noise. Here $\gamma^2 = 4/5$,
+so the factor is $\sqrt5 = 2.24$. With the mass known, the depth would be measured to $1/\sqrt{F_{zz}} =
+z/(\sqrt5\,\mathcal R)$; with the mass unknown, to $\sqrt{(F^{-1})_{zz}} = z/\mathcal R$. A deeper, heavier mass
+gives nearly the same readings over the middle of the bump as a shallower, lighter one, and the data spend most of
+their information telling the two apart.
+
+<!-- diagram: tut-measure-ellipse — The Fisher ellipse of depth and mass for one mass: axes δz/z and δm/m in units
+of 1/R, the ellipse (δθ)ᵀF(δθ) = 1 tilted along the line where a deeper mass is also heavier (correlation 0.89). Its
+shadow on the depth axis, the error with the mass fitted, reaches ±1; the cut through the ellipse at δm = 0, the
+error with the mass known, reaches ±1/√5. A second tick pair does the same for the mass axis: √5 against 1. -->
+
+## One mass a metre away is placed to a millimetre
+
+We want the paper's bounds for one point mass below a flat camera, because they answer the chapter's question.
+
+**A simpler camera.** The safe's array was a metre wide and read five components at each pixel. The paper states its
+bounds for the model camera of its Section IV instead, [](/paper/#eq:array-data): a plane wide enough to catch the
+whole bump of tide, which reads one component, $\curv d = -\curv{\tE}_{zz}$, in $\mathrm{s^{-2}}$, at every place
+$\vect a$ of the plane, with white noise of density $N_0$ (chapter 3.2). Here $z$ runs straight down from the plane
+to the mass. One component keeps every integral short, and a plane many depths across sees the whole bump. The minus
+sign makes the reading positive directly above a mass, where the tide stretches along the vertical and
+$\curv{\tE}_{zz}$ is negative (chapter 1.4).
+
+**The data.** A point mass $\matter m$ lies at depth $z$, at a distance $a = |\vect a - \vect a_0|$ across the
+plane from the place $\vect a_0$ above it. In chapter 1.4's [tide of a point
+mass](/tutorial/newton/tides/#beside-one-mass-the-ring-stretches-along-the-line-and-squeezes-across-it), the unit
+vector from the camera toward the mass, which lies below, has the vertical component $-z/\sqrt{z^2 + a^2}$, so
+$\curv{\tE}_{zz} = G\matter m\,(1 - 3z^2/(z^2 + a^2))/(z^2 + a^2)^{3/2}$ and
+
+$$\curv d(\vect a) = \frac{G\matter m\,(2z^2 - a^2)}{(z^2 + a^2)^{5/2}} .$$
+
+It is $2G\matter m/z^3$ directly above the mass, falls to zero at $a = \sqrt2\,z$, and is slightly negative beyond.
+
+**From readings to an integral.** Pixels a distance $b$ apart each carry the noise $\sigma_n$, with $N_0 =
+\sigma_n^2b^2$ (chapter [3.2](/tutorial/noise/random-signals/#the-variance-of-noise-spread-over-a-plane-falls-as-one-over-the-area)).
+So $1/\sigma_n^2 = b^2/N_0$, and a sum over pixels of $b^2$ times a smooth function is the integral of that function
+over the plane. The sums of the last sections become
+
+$$F_{kl} = \frac{1}{N_0}\int\frac{\partial\curv d}{\partial\theta_k}\,\frac{\partial\curv d}{\partial\theta_l}\,\dd^2a,
+\qquad D^2 = \frac{1}{N_0}\int\bigl(\curv d_A - \curv d_B\bigr)^2\,\dd^2a .$$
+
+**The whole pattern.** The scene "one mass here" and the empty scene, whose prediction is zero, are separated by
+
+$$\sym{pattern-snr}{\mathcal R}^2 = \frac{1}{N_0}\int\curv d^{\,2}\,\dd^2a ,$$
+
+the **signal-to-noise ratio of the whole pattern**. The integrand depends only on $a$, so $\dd^2a = 2\pi a\,\dd a$,
+and we substitute $v = 1 + a^2/z^2$, which gives $2\pi a\,\dd a = \pi z^2\,\dd v$, $2z^2 - a^2 = z^2(3 - v)$ and
+$z^2 + a^2 = z^2v$:
+
+$$\begin{aligned}
+\int\curv d^{\,2}\,\dd^2a &= \frac{\pi G^2\matter m^2}{z^4}\int_1^\infty\frac{(3 - v)^2}{v^5}\,\dd v\\
+&= \frac{\pi G^2\matter m^2}{z^4}\Bigl(\frac94 - 2 + \frac12\Bigr) = \frac{3\pi}{4}\,\frac{G^2\matter m^2}{z^4} .
+\end{aligned}$$
+
+The three terms are the integrals of $9v^{-5}$, $-6v^{-4}$ and $v^{-3}$. Chapter 3.2 measured such a camera by
+comparing the peak tide $2G\matter m/z^3$ with $\sqrt{N_0}/z$, the noise averaged over a square of side $z$, so that
+$\SNR = 2G\matter m/(z^2\sqrt{N_0})$. Then $G^2\matter m^2/(z^4N_0) = \SNR^2/4$, and
+
+$$\boxed{\mathcal R = \frac{\sqrt{3\pi}}{4}\,\SNR = 0.767\,\SNR} .$$
+
+Both sides are pure numbers. The ratio $\SNR$ compares the peak with the noise on one square of side $z$, while
+$\mathcal R$ counts the whole pattern. The integral above is $(3\pi/16)(2G\matter m/z^3)^2z^2$, so the whole pattern
+holds as much signal as a patch of area $0.59\,z^2$ at the height of its peak, and $\mathcal R$ is a little below
+$\SNR$: 767 at $\SNR = 10^3$. As a check, $\partial\curv d/\partial\matter m = \curv d/\matter m$, so $F_{mm} = \mathcal
+R^2/\matter m^2$: with everything else known, the mass is measured to $1/\mathcal R$ of itself.
+
+**The full matrix.** The parameters are the two coordinates $x_0, y_0$ of $\vect a_0$, the depth $z$ and the mass
+$\matter m$. The box below computes every entry. The result, with $\mathcal R$ as above, is
+
+$$F = \mathcal R^2\begin{pmatrix}
+5/2z^2 & 0 & 0 & 0\\
+0 & 5/2z^2 & 0 & 0\\
+0 & 0 & 5/z^2 & -2/\matter mz\\
+0 & 0 & -2/\matter mz & 1/\matter m^2
+\end{pmatrix}.$$
+
+The coordinates across the plane are separate from the rest, because moving the mass sideways changes the data in a
+pattern that is odd about the point above it, while the depth and the mass change it evenly. The depth and the mass
+form the $2\times2$ block of the last section, whose inverse is
+
+$$\frac{1}{\mathcal R^2}\begin{pmatrix}z^2 & 2\matter mz\\ 2\matter mz & 5\matter m^2\end{pmatrix}.$$
+
+The square roots of the diagonal entries of $F^{-1}$ are the smallest errors that any unbiased method can reach:
+
+$$\boxed{\sigma_{x_0} = \sqrt{\frac25}\,\frac{z}{\mathcal R}, \qquad \sigma_z = \frac{z}{\mathcal R}, \qquad
+\frac{\sigma_m}{\matter m} = \frac{\sqrt5}{\mathcal R}} ,$$
+
+the paper's bounds.[^quad]
+
+::: derivation
+### The entries of the Fisher matrix of one mass
+
+We use $v = 1 + a^2/z^2$ as above, and write $\vect a - \vect a_0 = a(\cos\varphi, \sin\varphi)$.
+
+**Across.** The product rule gives $\partial\curv d/\partial a = 3G\matter m\,a\,(a^2 - 4z^2)/(z^2 + a^2)^{7/2}$. Moving
+the mass by $\delta x_0$ moves the pattern, so $\partial\curv d/\partial x_0 = -\cos\varphi\,\partial\curv d/\partial
+a$. The integral of $\cos^2\varphi$ over a turn is $\pi$. With $a\,\dd a = \tfrac12z^2\,\dd v$ this gives
+
+$$\begin{aligned}
+F_{x_0x_0} &= \frac{\pi}{N_0}\int\Bigl(\frac{\partial\curv d}{\partial a}\Bigr)^2a\,\dd a\\
+&= \frac{9\pi G^2\matter m^2}{2N_0z^6}\int_1^\infty\frac{(v - 1)(v - 5)^2}{v^7}\,\dd v\\
+&= \frac{9\pi G^2\matter m^2}{2N_0z^6}\Bigl(\frac13 - \frac{11}{4} + 7 - \frac{25}{6}\Bigr)\\
+&= \frac{15\pi}{8}\,\frac{G^2\matter m^2}{N_0z^6} = \frac52\,\frac{\mathcal R^2}{z^2} .
+\end{aligned}$$
+
+**Depth.** Differentiating with respect to $z$ at fixed $a$ gives $\partial\curv d/\partial z = 3G\matter m\,z\,(3a^2
+- 2z^2)/(z^2 + a^2)^{7/2}$, and $3a^2 - 2z^2 = z^2(3v - 5)$:
+
+$$\begin{aligned}
+F_{zz} &= \frac{9\pi G^2\matter m^2}{N_0z^6}\int_1^\infty\frac{(3v - 5)^2}{v^7}\,\dd v\\
+&= \frac{9\pi G^2\matter m^2}{N_0z^6}\Bigl(\frac94 - 6 + \frac{25}{6}\Bigr) = 5\,\frac{\mathcal R^2}{z^2} .
+\end{aligned}$$
+
+**Depth with mass.** With $\partial\curv d/\partial\matter m = \curv d/\matter m$,
+
+$$\begin{aligned}
+F_{zm} &= \frac{3\pi G^2\matter m}{N_0z^5}\int_1^\infty\frac{(3v - 5)(3 - v)}{v^6}\,\dd v\\
+&= \frac{3\pi G^2\matter m}{N_0z^5}\Bigl(-1 + \frac72 - 3\Bigr) = -2\,\frac{\mathcal R^2}{\matter mz} .
+\end{aligned}$$
+
+**The rest.** The entry $F_{mm} = \mathcal R^2/\matter m^2$ was found above. Every entry that pairs $x_0$ or $y_0$
+with another parameter holds $\cos\varphi$ or $\sin\varphi$ once, or their product, and its integral over a turn is
+zero.
+
+:::
+
+**Numbers.** At $\SNR = 10^3$ and $z = 1\unit{m}$, $\mathcal R = 767$. The mass is placed to
+$0.632/767\unit{m} = 0.82\unit{mm}$ across and $1.3\unit{mm}$ in depth, and weighed to $2.24/767 = 0.29\%$ of
+itself. Its bump of tide is about a metre wide, more than a thousand times the error across.
+
+**A limit.** As $z$ grows at a fixed noise, $\SNR \propto 1/z^2$, so $\sigma_z = z/\mathcal R$ grows as $z^3$: a mass
+twice as far away is placed eight times less precisely in depth.
+
+This answers the guiding question. The width of the bump is what the data say about a scene that might hold anything.
+Here the scene is known to hold one mass, so only four numbers are unknown, and each is measured by how far the whole
+pattern, 767 noise standard deviations strong, moves when that number changes. A bump about $z$ wide is located to
+its width divided by its strength: $1\unit{m}/767 \approx 1.3\unit{mm}$.
+
+## Two masses are hard to tell from one
+
+We want the separation at which the camera can tell two masses from one, which the paper sets beside the millimetre.
+
+Take two masses $\matter m/2$ a distance $\delta$ apart, at $x = \pm\delta/2$, against one mass $\matter m$ at their
+centre, both at depth $z$. The data of the pair are the average of the single mass's data shifted by $\pm\delta/2$,
+and Taylor's formula to second order gives
+
+$$\tfrac12\bigl[\curv d(x - \tfrac\delta2) + \curv d(x + \tfrac\delta2)\bigr] - \curv d(x) = \frac{\delta^2}{8}\,
+\frac{\partial^2\curv d}{\partial x^2} + \dots$$
+
+The first-order terms cancel, because the two shifts are opposite. The two scenes have the same mass and the same
+centre of mass, so they first differ in their **quadrupole**: a pattern of pull with two lobes, the part of a body's
+field that falls as the inverse fourth power of the distance (chapter
+[2.3](/tutorial/outside/multipoles/#the-first-three-degrees-are-the-mass-the-centre-of-mass-and-a-trace-free-quadrupole)
+treats it). The pair's quadrupole is proportional to $\matter m\delta^2$. The difference in the data is the fixed
+pattern $\partial^2\curv d/\partial x^2$ times $\delta^2$, so
+
+$$D = \kappa\,\mathcal R\,\frac{\delta^2}{z^2},$$
+
+with $\kappa$ a pure number: 0.55 if the single mass is held fixed, and 0.34 if it may also change its depth and mass
+to mimic the pair (box below). A camera that does not know the scene must allow the second, so we use 0.34.
+
+**The numbers.** Solving for the separation gives $\delta = z\sqrt{D/\kappa\mathcal R}$. The paper's scale
+$z/\sqrt{\mathcal R}$ is the separation at which $D = \kappa = 0.34$, far too small to decide: at $\mathcal R = 767$
+and $z = 1\unit{m}$ it is 3.6 cm. The pair reaches $D = 1$ at 6.2 cm, and $D = 2$ at 8.8 cm, where the test is wrong
+$P(Z > 1) = 16\%$ of the time. So the camera that places one mass to 0.82 mm tells two masses from one, wrong one time
+in six, only when they are about 9 cm apart. A shift changes the data in proportion to its size, while a split changes
+them in proportion to its square. At $\SNR = 10^6$ the scale $z/\sqrt{\mathcal R}$ falls to 1.1 mm: a few compact
+masses can be resolved far more finely than an arbitrary scene, as chapters 3.7 and 3.9 explain.
+
+::: gap
+This sketch skips the value of $\kappa$. With the single mass held fixed, $\kappa^2 = z^4\int(\partial^2\curv
+d/\partial x^2)^2\,\dd^2a\,\big/\,64\int\curv d^{\,2}\,\dd^2a$, and $\kappa = 0.555$. If the single mass may change its
+depth and mass, the part of the difference that those changes can produce is removed first, a projection that chapter
+3.4 treats; computed numerically, this leaves $\kappa = 0.335$. Moving the single mass sideways does not help, by the
+symmetry of the pair. "One mass or two" also compares two families of scenes rather than two fixed ones, so $P(Z >
+D/2)$ holds only approximately.
+:::
+
+<!-- diagram: tut-measure-pair — One mass against two close ones. Left: the profile of d across the plane for one
+mass m at depth z and for two masses m/2 at ±δ/2 with δ = 0.3z, nearly on top of each other. Right: their difference,
+scaled up, which has the shape of ∂²d/∂x²; beneath it, the same difference for δ = 0.15z, four times smaller. -->
+
+## A tremor far below the noise can still be detected
+
+Every warm body trembles, and the paper's paragraph [*What heat reveals*](/paper/#par:what-heat-reveals) reads its
+interior from the tremor (Part 4 derives its size). The tremor is a random signal with mean zero and a spectrum
+$S_s(\omega)$, added to noise of spectrum $S_n(\omega)$, in the sense of chapter
+[3.2](/tutorial/noise/random-signals/#the-spectrum-says-how-the-noise-is-shared-among-frequencies). It has no fixed
+shape to predict, so its only mark is extra power, and we want to know how well that power can be detected when
+$S_s \ll S_n$. This section is a sketch.
+
+A record of length $T$, in seconds, holds independent frequencies spaced $2\pi/T$ apart, so a band $\dd\omega$ holds
+$T\,\dd\omega/2\pi$ of them, counting positive frequencies only. At each frequency the power $|\tilde
+y(\omega)|^2/T$ is one reading. Chapter 3.2 found its mean, $S_n$ without the tremor and $S_n + S_s$ with it; its
+standard deviation equals its mean (box below). We write the tremor's spectrum as $S_s = A\,g(\omega)$, with $g$ a
+fixed shape and the pure number $A$ its strength, the parameter. Each reading's mean then changes with $A$ at the
+rate $g$, and its standard deviation is $S_n$ while $A$ is small, so by [](#eq:fisher) it adds $(g/S_n)^2$ to the
+Fisher information. The frequencies add up to $F_A = T\int(g/S_n)^2\,\dd\omega/2\pi$. The record with the tremor lies
+a step $A$ from the record without it, so $D = \sqrt{F_A}\,A$, which is
+
+$$\boxed{D^2 \approx T\int_0^\infty\Bigl(\frac{S_s(\omega)}{S_n(\omega)}\Bigr)^2\frac{\dd\omega}{2\pi}} .$$
+
+This is the **radiometer equation**, named after the radiometers of radio astronomy, which detect noise from the sky
+beneath the noise of their own receivers. For a flat ratio over a band of $B$ hertz it reads $D =
+(S_s/S_n)\sqrt{BT}$. A tremor a hundred times weaker than the noise, spread over a kilohertz, reaches $D = 5$ when
+$BT = (5/0.01)^2 = 2.5\times10^5$, in 250 s.
+
+**The cost of distance.** The forces of a tremor act inside the body, so they move neither its mass nor its centre of
+mass. The first part of its field that can tremble is therefore the quadrupole, whose pull falls as $r^{-4}$ with the
+distance $r$ from the body, and whose tide, one derivative more, falls as $r^{-5}$. The spectrum is a mean square of the
+tide, so it falls as $r^{-10}$, and the information holds the square of the spectrum, so it falls as $r^{-20}$. This is
+the paper's "observing time over $r^{20}$": to keep the same precision from 20 cm out to a metre, the time must grow by
+$5^{20} = 9.5\times10^{13}$, the paper's $10^{14}$. A signal of fixed shape would cost only $5^{10}$, because its
+information holds its amplitude squared.
+
+::: gap
+The sketch skips three steps, which Kay's volume II (*Go deeper*) gives. First, chapter 3.2 found only the mean of one
+frequency's power. Its spread follows from Gaussian noise: the real and imaginary parts of $\tilde n(\omega)$ are
+independent Gaussian numbers of variance $TS/2$, and a Gaussian number of variance $v$ has $\langle x^4\rangle =
+3v^2$, so $|\tilde n|^2$ has the mean $TS$ and the variance $(TS)^2$. Second, the power is not Gaussian but
+exponential, while [](#eq:fisher) assumed Gaussian readings; the variance of the exponential's score, stated here
+without proof, gives the same $(g/S_n)^2$. Third, neighbouring frequencies mix a little on a record of finite length.
+:::
+
+::: check
+### Q
+
+Why can the position of one mass be measured far more finely than the width of its bump of tide?
+
+### A
+
+Precision depends on how fast the predicted data change when the position changes, in units of the noise, not on
+the width of the bump. Every reading under the pattern changes a little, and together they move by one noise
+standard deviation when the mass moves by less than a millimetre.
+
+### Q
+
+What is $D$ for the safe at $\SNR = 100$, and how often is the camera then wrong?
+
+### A
+
+The separation grows in proportion to $\SNR$. From the unrounded $D = 1.811$ at $\SNR = 10$, $D = 18.11$, so $D/2 =
+9.056$ and $P(Z > 9.056) = 6.8\times10^{-20}$, about $7\times10^{-20}$.
+:::
+
+**The idea to keep: how precisely a number can be measured depends on how fast the data change when the number
+changes, measured in units of the noise. That is the Fisher information, and one over it bounds every unbiased
+estimate.**
+
+::: problems
+### Practice
+
+At what signal-to-noise ratio is the safe's camera wrong once in a million choices? How much longer must it watch
+than at $\SNR = 34$, if its noise is white?
+
+::: solution
+An error of $10^{-6}$ needs $D/2 = 4.75$, so $D = 9.51$ and $\SNR = 9.51/0.181 = 52.5$. The ratio grows as the
+square root of the observing time (chapter 3.1), so the time grows by $(52.5/34.1)^2 = 2.4$: errors a thousand times
+rarer cost less than three times the watching, because the Gaussian tail falls so fast.
+:::
+
+### Stretch
+
+The gradiometer of chapter 3.1, with $\sigma_n = 0.02\unit{E}$ per reading, reads at $t_i = 1, 2, \dots,
+100\unit{s}$ while its reading drifts as $y = \alpha + \beta t$. Find the Fisher matrix of $\alpha$ and $\beta$, their
+smallest errors, and the factor by which the unknown slope enlarges the error of $\alpha$. Repeat with time measured
+from the middle of the run, $t_i' = t_i - 50.5\unit{s}$.
+
+::: solution
+The predictions are $f_i = \alpha + \beta t_i$, so $\partial f_i/\partial\alpha = 1$ and $\partial
+f_i/\partial\beta = t_i$, and
+
+$$F = \frac{1}{\sigma_n^2}\begin{pmatrix}N & \sum t_i\\ \sum t_i & \sum t_i^2\end{pmatrix} =
+\frac{1}{\sigma_n^2}\begin{pmatrix}100 & 5050\\ 5050 & 338{,}350\end{pmatrix}.$$
+
+Here $\gamma = 5050/\sqrt{100\times338{,}350} = 0.868$, so the slope enlarges the error of $\alpha$ by $1/\sqrt{1 -
+\gamma^2} = 2.01$, from $0.002\unit{E}$ to $0.0040\unit{E}$; the slope is found to $6.9\times10^{-5}\unit{E\,s^{-1}}$.
+With centred times $\sum t_i' = 0$, the matrix is diagonal, the intercept (the reading at mid-run) is found to
+0.002 E, and the slope is unchanged.
+:::
+
+### The paper
+
+The paper's [worked case](/paper/#par:a-worked-case) says that the gold bar's shape departs from a point's by only 0.6
+standard deviations at $\SNR = 10^3$. At what ratio would the camera tell the bar from a point of the same mass, at the
+same place, with errors once in a thousand?
+
+::: solution
+For two fixed scenes, the separation grows in proportion to $\SNR$. Errors of $10^{-3}$ need $D = 2\times3.09 =
+6.18$, ten times 0.6, so $\SNR \approx 10^4$ ($1.07\times10^4$ with the unrounded $D = 0.58$). A shape is a finer
+detail than a place, so it costs more.
+:::
+:::
+
+::: paper
+- [*The precision of a simple scene*](/paper/#par:the-precision-of-a-simple-scene) (Section IV) states the three
+  bounds, $\mathcal R$ and the two-mass scale $z/\sqrt{\mathcal R}$.
+- [*A worked case*](/paper/#par:a-worked-case) (Section IV) and [*The worked
+  inversion*](/paper/#par:the-worked-inversion) (Appendix A) give the safe's separation of 1.8 and its error rates.
+- [*The zeros of the shear*](/paper/#par:the-zeros-of-the-shear) (Section IV) reaches the two-mass scale by
+  inspection (chapter 3.9).
+- [*What heat reveals*](/paper/#par:what-heat-reveals) (Section IV) uses the information $T/r^{20}$ of a tremor.
+- [Section VIII](/paper/#sec:one-pixel) gives Cramér–Rao bounds for one pixel, [](/paper/#eq:depth-bound), with
+  $\rho$ the signal-to-noise ratio of one reading (not a density), checked in [*Depth with
+  noise*](/paper/#par:depth-with-noise) (Appendix A).
+- [Section IX](/paper/#sec:first-image) fits five shells to graviton counts by maximum likelihood, with Poisson
+  counts in place of Gaussian noise.
+:::
+
+::: deeper
+- S. M. Kay, *Fundamentals of Statistical Signal Processing*, volume I, *Estimation Theory* (1993), derives the
+  Cramér–Rao bound for vectors and many models; volume II, *Detection Theory* (1998), treats tests between
+  hypotheses and the detection of random signals.
+- T. M. Cover and J. A. Thomas, *Elements of Information Theory* (2nd edition, 2006), chapter 11, places Fisher
+  information beside entropy, the subject of chapter 3.8.
+:::
+
+[^blur]: Chapter [3.7](/tutorial/noise/blur-law/) finds that a camera which assumes nothing about the scene draws
+    this mass as a blur 24° wide, 42 cm across. This chapter does not use that result.
+
+[^safe]: The bar is computed as a uniform box of gold; a point of the same mass gives $D = 1.805$. The paper's
+    reference implementation computes the number in `reference/gravcam/inversion.py` and tests it in
+    `reference/tests/test_inversion.py`.
+
+[^average]: The mean of $(y_i - f_i(\theta))^2 = (f_i(\theta_0) - f_i(\theta) + n_i)^2$ is $(f_i(\theta_0) -
+    f_i(\theta))^2 + \sigma_n^2$, because $\langle n_i\rangle = 0$; the $\sigma_n^2$ goes into the constant.
+
+[^weak]: The simulated camera is a square 32 depths across, with pixels a quarter of a depth apart, each reading
+    $\curv d = -\curv{\tE}_{zz}$ with independent Gaussian noise of density $N_0 = \sigma_n^2b^2$; opposite edges are
+    joined, so that it has no rim. Each fit is the maximum-likelihood place of a mass of known depth and mass,
+    searched within four depths of the true place in each coordinate and then refined. The scatter is the
+    root-mean-square error of one coordinate, against the bound $\sqrt{2/5}\,z/\mathcal R$: 4000 fits at each
+    $\mathcal R$, from a fixed random seed.
+
+[^weights]: Cauchy–Schwarz again shows why. With $v_l = (F^{-1})_{l1}$, $w_1 = v_kF_{kl}w_l$, whose square is at
+    most $(v_kF_{kl}v_l)(w_kF_{kl}w_l) = (F^{-1})_{11}\,w_kF_{kl}w_l$. So no weights give more than $(F^{-1})_{11}$,
+    and $w = v$ gives that.
+
+[^quad]: The integrals can be checked by a direct sum over a grid of $241\times241$ points reaching 12 depths on each
+    side of the mass: every entry agrees to $2\times10^{-5}$ of itself.
