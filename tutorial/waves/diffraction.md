@@ -6,7 +6,7 @@ part: '5'
 requires: ['2.6', '3.2', '3.6', '3.8', '5.1', '5.2']
 paper: [sec:no-lens, eq:beam, eq:diffraction, fig:array, sec:waves, fig:which-way, sec:near-field, sec:one-pixel]
 figures: [fig:array, fig:which-way]
-live: [array]
+live: [array, delay-and-sum]
 depth: A
 ---
 
@@ -157,20 +157,11 @@ $$u(\vect x, t) = F\Bigl(t + \frac{\hat n\cdot\vect x}{c}\Bigr) ,$$
 where $F$ is the record at the origin, in the unit of $u$. A crest keeps a fixed value of $t + \hat n\cdot\vect x/c$,
 so as $t$ grows, $\hat n\cdot\vect x$ falls, and the crest moves along $-\hat n$, away from the source. The pixel at
 $\vect x_p$ records $u_p(t) = F(t + \hat n\cdot\vect x_p/c)$: it sees each crest earlier than the origin by
-$\hat n\cdot\vect x_p/c$, because it is nearer to the source by $\hat n\cdot\vect x_p$.
+$\hat n\cdot\vect x_p/c$, because it is nearer to the source by $\hat n\cdot\vect x_p$ (Figure [](#fig:das-delays)).
 
-<!-- diagram: tut-das-delays — Two panels. Left: a row of six pixels (small squares, ink) along a horizontal line, the
-origin at the left pixel; straight crests of a plane wave (thin lines, five of them, light grey) arriving from the upper
-left at 30° from the vertical, with the unit vector n̂ drawn from the middle of the row toward the source (pointing up
-and to the left, along the normal to the crests) and labelled "n̂ (toward the source)". From each pixel a thin dashed
-segment, perpendicular to the crests, runs to the crest that passes the origin; these segments are labelled at the
-first and last pixel "n̂·x_p" (their lengths are p b sin 30°, exact for b = λ/3). Right: the six records stacked
-vertically, one per pixel, each a short sine wave against time (4 cycles), first as recorded (each shifted earlier by
-n̂·x_p/c, so the crests make a slanted line, drawn as a thin dashed line through the first crest of each), then, after
-an arrow labelled "shift by n̂·x_p/c", the same six records with their crests lined up vertically, and below them their
-sum, six times as tall, labelled "sum". Caption: "Look first at the slanted line through the crests of the records on
-the right: each pixel hears the wave earlier by its extra closeness to the source, n̂·x_p/c. Shifting each record by
-that delay lines the crests up, and the records add in step. Geometry exact; the records are schematic." -->
+![Look first at the slanted line through the crests of the records on the right: each pixel hears the wave
+earlier by its extra closeness to the source, $\hat n\cdot\vect x_p/c$. Shifting each record by that delay lines the
+crests up, and the records add in step. Geometry exact; the records are schematic.](tut-das-delays){#fig:das-delays}
 
 **Delay and sum.** To make the picture for a chosen direction $\sym{steered-direction}{\hat n'}$, the camera shifts
 each record later by the delay that belongs to $\hat n'$ and adds:
@@ -290,7 +281,8 @@ $$|\mathcal A|^2 = \frac{\sin^2(N\psi/2)}{\sin^2(\psi/2)} .$$
 
 Near $\psi = 0$ both sines are small and the ratio is $N^2$, the main lobe. It first falls to zero at $\psi = 2\pi/N$,
 which is $\sin\theta - \sin\theta' = \lambda/Nb$: the angle $\lambda/D$ for the width $D = Nb$, as for a filled slit.
-The side lobes lie between the later zeros; for eight pixels the largest of them reaches 5.3% of the main lobe.
+The side lobes lie between the later zeros; for eight pixels the largest of them reaches 5.3% of the main lobe
+(Figure [](#fig:das-lobes)).
 
 **The copies.** The denominator $\sin^2(\psi/2)$ also vanishes at $\psi = 2\pi$, $4\pi$, and so on, and there the
 ratio is $N^2$ again: the array responds to these directions as strongly as to the steered one. They are the
@@ -326,15 +318,9 @@ but the image now holds four equal sources where there is one.
 them. For the array of the paper's Figure [](/paper/#fig:which-way), 1.5 m across at a wavelength of 10 cm, that is
 $30^2 = 900$; a round array of the same width needs about $\pi/4$ of that, 707.
 
-<!-- diagram: tut-das-lobes — One panel, the horizontal axis sin θ from −1 to 1 (ticks every 0.25, with the matching
-angles −90°, −30°, 0°, 30°, 90° marked above as a second scale), the vertical axis |𝒜|²/N² from 0 to 1. Two curves
-for a row of eight pixels steered straight ahead (θ' = 0): b = λ/2 (solid, ink), with its main lobe at 0 (first zeros
-at ±0.25) and side lobes, the largest 0.053 at ±0.36; and b = 2λ (dashed, in a second neutral grey), with a main lobe
-four times narrower (first zeros at ±0.0625) and grating lobes of full height at sin θ = ±0.5 and ±1, each labelled
-"m = ±1", "m = ±2". A thin bracket under the dashed curve between 0 and 0.5 is labelled "λ/b". Caption: "Look first
-at the dashed curve's extra peaks of full height: with pixels two wavelengths apart, the directions whose sin θ differ
-by λ/b = 0.5 give the same records, and the array cannot tell them apart. With pixels half a wavelength apart (solid)
-there is only one peak. Curves exact." -->
+![Look first at the dashed curve's extra peaks of full height: with pixels two wavelengths apart, the directions
+whose $\sin\theta$ differ by $\lambda/b = 0.5$ give the same records, and the array cannot tell them apart. With pixels
+half a wavelength apart (solid) there is only one peak. Curves exact.](tut-das-lobes){#fig:das-lobes}
 
 ## An array resolves as many directions as its area holds square wavelengths
 
@@ -375,22 +361,13 @@ $a = D/2$, they miss $D^2/8r$ of path, which is the phase $kD^2/8r = \pi D^2/4\l
 phase. The delays are right when it is much less than one radian, that is, when $r \gg D^2/\lambda$ up to a factor near
 one: chapter 3.6's [far field](/tutorial/noise/bessel-and-airy/#a-lens-draws-a-star-as-the-square-of-that-pattern).
 The distances closer than about $D^2/\lambda$ make up the array's **Fresnel zone**. There the fronts of a source's wave
-are curved across the array by a sizeable part of a wavelength, and plane-wave delays fail.
+are curved across the array by a sizeable part of a wavelength, and plane-wave delays fail
+(Figure [](#fig:das-fresnel)).
 
-<!-- diagram: tut-das-fresnel — Two panels side by side, the same scale in both: 1 m of the scene = 400 px, so the array
-is 600 px wide. In each, the array is a row of sixteen small squares (ink), 1.5 m wide, centred on a vertical axis (thin
-dotted grey), along the bottom. Left panel, "near": a source (small filled circle, ink) on the axis 4.5 m above the
-array's centre, off the top of the panel, marked by an arrow and the label "source 4.5 m away". One front of its wave is
-drawn as the arc of the circle of radius 4.5 m centred on the source, passing through the array's centre (solid, in the
-light colour of the site's accent); the straight line tangent to it at the centre is drawn thin dashed grey and labelled
-"plane front". At the right rim (a = 0.75 m) a small vertical bracket between the line and the arc is labelled
-"0.062 m = 0.62 λ" (the exact gap, √(4.5² + 0.75²) − 4.5 = 0.0620 m, drawn to scale as 25 px). Right panel, "far": the
-same array, a source 225 m away, off the panel, marked "source 225 m away"; its front through the array's centre is the
-arc of radius 225 m, which at this scale lies on the tangent line (the gap at the rim is 1.25 mm, 0.5 px), drawn as one
-solid accent line with the label "gap 1.25 mm = 0.0125 λ". A short scale bar "λ = 10 cm" (40 px) under each panel.
-Caption: "Look first at the bracket at the left rim: a source 4.5 m away curves its fronts across a 1.5 m array by
-0.62 of a wavelength, so plane-wave delays are wrong there and the array must be focused. A source 225 m away, ten times
-beyond D²/λ = 22.5 m, leaves its fronts flat to a hundredth of a wavelength. Geometry exact, to scale." -->
+![Look first at the short segment at the right-hand rim of the upper array: a source 4.5 m away curves its fronts
+across a 1.5 m array by 0.62 of a wavelength, so plane-wave delays are wrong there and the array must be focused. A
+source 225 m away, ten times beyond $D^2/\lambda = 22.5$ m, leaves its fronts flat to a hundredth of a wavelength.
+Geometry exact, to scale.](tut-das-fresnel){#fig:das-fresnel}
 
 **Focusing.** In the Fresnel zone the array uses the delays from a point. A wave sent from the point $\vect y$ at the
 time $t$ reaches the pixel at $\vect x_p$ at the time $t + |\vect x_p - \vect y|/c$. Reading each record at that time
@@ -443,7 +420,8 @@ If the phases of the two sources wander independently, they are **incoherent**: 
 often, $\cos\phi$ averages to zero, and the two images add as intensities, $a_1^2 + a_2^2$, as in chapter
 [5.2's incoherent addition](/tutorial/waves/retarded-waves/#many-sources-in-step-add-their-amplitudes). If they
 oscillate in step, with $\phi = 0$, they are **coherent**: the amplitudes add first, and the image is
-$(a_1 + a_2)^2$. Between the two peaks both amplitudes are positive, so the cross term $2a_1a_2$ fills the dip.
+$(a_1 + a_2)^2$. Between the two peaks both amplitudes are positive, so the cross term $2a_1a_2$ fills the dip
+(Figure [](#fig:das-pair)).
 
 **The inputs and the method.** We take a row aperture of width $D$, whose amplitude pattern is $\sin x/x$ with $x =
 \pi D\theta/\lambda$ (chapter 3.6's slit). The pair counts as separated when the image midway between the peaks falls
@@ -459,14 +437,9 @@ appear, or with a round aperture, the factor lies between 1.4 and 1.6, so its si
 shape of the aperture. Sources in opposite phase, $\phi = \pi$, cancel midway between them and always show a dip, so
 equal phases are the worst case.
 
-<!-- diagram: tut-das-pair — One panel, the horizontal axis the angle across the image in units of λ/D, from −2.5 to 2.5;
-the vertical axis the image divided by its largest value, from 0 to 1. Two equal sources at ±0.6 (separation 1.2 λ/D),
-for a row aperture (amplitude sin x/x, x = πDθ/λ). Thin grey: the two single images sinc² of each source. Solid ink:
-the incoherent pair, sinc²(θ − 0.6) + sinc²(θ + 0.6), normalized, with its dip at the middle to 0.50 of its peaks marked
-by a short horizontal tick labelled "dip". Dashed ink: the coherent pair, (sinc(θ − 0.6) + sinc(θ + 0.6))², normalized,
-a single peak at the middle with no dip. Two small markers on the axis at ±0.6 labelled "sources". Caption: "Look first
-at the middle: the pair out of step (solid) dips to half its peaks there, and the pair in step (dashed) has its peak
-there, because their amplitudes add before they are squared. The sources are 1.2 λr/D apart. Curves exact." -->
+![Look first at the middle: the pair out of step (solid) dips to half its peaks there, and the pair in step
+(dashed) has its peak there, because their amplitudes add before they are squared. The sources are
+$1.2\,\lambda r/D$ apart. Curves exact.](tut-das-pair){#fig:das-pair}
 
 **What it means.** Waves that keep their phases interfere, and between two sources in step the interference is
 constructive, so it fills the gap that tells them apart.
@@ -530,23 +503,20 @@ sum needs: the pixels must record together in pairs, and different pairs may rec
 that record together. In the near field, in the paper's words,
 "there are no delays to undo": its image comes from the inversion of the paper's Section IV, which Part 3 builds.
 
-<!-- try: delay-and-sum — DelayAndSum. A row of pixels (number N from 2 to 32, default 16; spacing b from λ/4 to 3λ,
-default λ/2), drawn as small squares along the bottom of the upper panel, with the straight crests of a plane wave
-arriving from an angle θ that the reader drags with a handle on a semicircle above the row (default 20°), in light
-grey, animated in time. Beside each pixel, its record as a small trace (a few cycles); to the right, the same traces
-shifted by the delays for a steered angle θ' (a second handle on the semicircle, in the site's accent colour) and
-stacked, with their sum below them. The lower panel is the image I(θ')/max against θ' from −90° to 90°, with θ' marked
-by a thin vertical line and the source's θ by a small triangle on the axis. A toggle adds a second equal source at an
-angle the reader drags, either in step (equal phases) or out of step (a random phase redrawn every frame, so the image
-shown is a running average over the last 50 frames). Readouts: the main lobe's full width at half height in degrees,
-the angles of any grating lobes from sin θ − sin θ' = mλ/b, the width D = Nb in wavelengths, and, with two sources, their
-separation in units of λ/D and the dip at the midpoint as a fraction of the peaks. Opens with 16 pixels at λ/2 and one
-source at 20°, steered to 20°. Predict first: "Spread the pixels to two wavelengths apart, keeping their number. What
-appears in the pattern?" (Copies of the source of full height, grating lobes, wherever sin θ differs from sin 20° by a
-multiple of 0.5: at 57°, −9° and −41°; the main lobe narrows from 6.8° to 1.7°.) Then: "Put two sources 1.2λ/D apart.
-Are they separate when they are in step? When they are not?" (Out of step, yes: the dip reaches about 0.5 of the peaks.
-In step, no: the image has one peak between them.) Keyboard: arrow keys move the focused handle by 1°; both themes;
-on a phone the two panels stack. -->
+::: try {#delay-and-sum}
+A row of pixels on the floor of a half-circle, with the crests of a plane wave arriving from the direction $\theta$
+that you drag. Beneath, the pixels' records as they arrive, the same records delayed for the steered direction
+$\theta'$, and their sum; below that, the image $I(\theta')$ against $\theta'$ from $-90°$ to $90°$, with a copy
+marked by its order $m$. The sliders set the number of pixels and their spacing $b$. A switch adds a second equal
+source, in step or out of step, and draws each source's own image and the dashed level 0.8 of the peaks. Press on
+the image to steer there, or choose a handle with Tab and use the arrow keys (Shift for tenths of a degree). The
+readouts give the width of the main lobe, the angles of the copies, the width $D = Nb$ in wavelengths and, with two
+sources, their separation in units of $\lambda/D$ and the depth of the dip.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, move
+the second source until the pair out of step first shows a dip of a fifth, and compare its separation with the one the
+pair in step needs.
+:::
 
 ::: history
 ### Huygens, Fresnel and Kirchhoff
