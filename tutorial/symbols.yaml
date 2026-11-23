@@ -1869,3 +1869,75 @@ symbols:
     meaning: 'The measure of speed defined by $\beta = \tanh\eta$, so that $\gamma = \cosh\eta$ and $\gamma\beta = \sinh\eta$. Boosts along one line add their rapidities; $0.6c$ is $\eta = \ln 2$, and $\eta \to \infty$ as the speed approaches $c$. (Not the viscosity $\eta$ of chapter 4.4, the $\eta_{\mu\nu}$ of chapter 6.2 or the vector $\boldsymbol\eta$ of chapter 13.2.)'
     chapter: '6.1'
     anchor: rapidities-add-where-velocities-do-not
+  - key: four-position
+    title: Event as a four-vector
+    tex: 'x^\mu'
+    role: none
+    kind: A four-vector; each component in metres
+    meaning: 'The time and place of an event as one list, $x^\mu = (x^0, x^1, x^2, x^3) = (ct, x, y, z)$, with the time multiplied by $c$ so that all four are lengths. The paper''s $x^0 = ct$. A boost changes it by $x''^\mu = \Lambda^\mu{}_\nu x^\nu$.'
+    chapter: '6.2'
+    anchor: an-event-is-a-vector-of-four-components
+  - key: lorentz-matrix
+    title: Lorentz transformation as a table
+    tex: '\Lambda^\mu{}_\nu'
+    role: none
+    kind: A table of four rows and four columns of pure numbers
+    meaning: 'The boost written as one table, $x''^\mu = \Lambda^\mu{}_\nu x^\nu$. For a boost along $x$ its top left block is $\begin{pmatrix}\gamma & -\gamma\beta\\ -\gamma\beta & \gamma\end{pmatrix}$, with 1.25 and 0.75 at $0.6c$. It keeps the metric, $\eta_{\alpha\beta}\Lambda^\alpha{}_\mu\Lambda^\beta{}_\nu = \eta_{\mu\nu}$. Always written with its indices. (Not the paper''s $3\times3$ complex $\Lambda = \exp(-i\eta\,\hat u\cdot\mathbf L)$ of chapter 6.6, the projector $\Lambda_{ij,kl}$ of chapter 5.2, a logarithm or the cosmological constant.)'
+    chapter: '6.2'
+    anchor: an-event-is-a-vector-of-four-components
+  - key: minkowski-metric
+    title: Minkowski metric
+    tex: '\field{\eta}_{\mu\nu}'
+    role: field
+    kind: A symmetric table of four rows of pure numbers
+    meaning: 'The table $\eta_{\mu\nu} = \mathrm{diag}(-1, 1, 1, 1)$ of the dot product of four-vectors, $a\cdot b = \eta_{\mu\nu}a^\mu b^\nu = -a^0b^0 + \vect a\cdot\vect b$, and of lowering an index, $a_\mu = \eta_{\mu\nu}a^\nu$. It is the same in every inertial frame; in curved spacetime a general metric $g_{\mu\nu}$ takes its place. Always written with its indices. (Not the rapidity $\eta$, the viscosity $\eta$ or the paper''s vector $\boldsymbol\eta$ of Section XIII.)'
+    chapter: '6.2'
+    anchor: the-minkowski-metric-measures-the-interval-with-one-minus-sign-for-time
+  - key: four-velocity
+    title: Four-velocity
+    tex: '\obs{u}^\mu'
+    role: obs
+    kind: A four-vector; in m/s
+    meaning: 'The rate $u^\mu = \mathrm dx^\mu/\mathrm d\tau = \gamma(c, \vect v)$ of a body''s event along its worldline, with $\tau$ its own proper time. Every body has $u\cdot u = -c^2$. An observer''s $u^\mu$ is its direction in time, and its "now" is the set of steps orthogonal to it; at $0.6c$, $u^\mu = (1.25c, 0.75c, 0, 0)$.'
+    chapter: '6.2'
+    anchor: the-four-velocity-has-the-same-length-for-every-body
+  - key: inverse-minkowski-metric
+    title: Inverse Minkowski metric
+    tex: '\field{\eta}^{\mu\nu}'
+    role: field
+    kind: A symmetric table of four rows of pure numbers
+    meaning: 'The inverse of $\eta_{\mu\nu}$, defined by $\eta^{\mu\alpha}\eta_{\alpha\nu} = \delta^\mu{}_\nu$. In flat spacetime it is the same table, $\mathrm{diag}(-1, 1, 1, 1)$. It raises an index, $a^\mu = \eta^{\mu\nu}a_\nu$, and builds the wave operator $\Box = \eta^{\mu\nu}\partial_\mu\partial_\nu$.'
+    chapter: '6.2'
+    anchor: lowering-an-index-changes-only-the-sign-of-time
+  - key: four-gradient
+    title: Four-gradient
+    tex: '\partial_\mu'
+    role: none
+    kind: An operator with a lower index; in m⁻¹
+    meaning: 'The rates $\partial_\mu = \partial/\partial x^\mu = (c^{-1}\partial_t, \nabla)$. Under a boost it changes by the inverse table, $\partial''_\mu = (\Lambda^{-1})^\nu{}_\mu\partial_\nu$, so its pairing with a step, $\partial_\mu f\,\mathrm dx^\mu = \mathrm df$, is the same for every observer.'
+    chapter: '6.2'
+    anchor: lowering-an-index-changes-only-the-sign-of-time
+  - key: wave-operator
+    title: "d'Alembert operator"
+    tex: '\Box'
+    role: none
+    kind: An operator; in m⁻²
+    meaning: 'The square of the four-gradient, $\Box = \eta^{\mu\nu}\partial_\mu\partial_\nu = -c^{-2}\partial_t^2 + \nabla^2$, the same for every observer. $\Box\phi = 0$ is the wave equation for waves at $c$, and a plane wave $e^{ik_\mu x^\mu}$ solves it when $k\cdot k = 0$. For a static field it is $\nabla^2$.'
+    chapter: '6.2'
+    anchor: the-gradient-is-a-lower-index-vector-and-the-wave-operator-is-its-square
+  - key: wave-four-vector
+    title: Wave four-vector
+    tex: 'k^\mu'
+    role: none
+    kind: A four-vector; in m⁻¹
+    meaning: 'The four-vector $k^\mu = (\omega/c, \vect k)$ of a plane wave $e^{ik_\mu x^\mu}$, whose phase $k_\mu x^\mu = \vect k\cdot\vect x - \omega t$ has the paper''s signs. A wave that travels at $c$ has $k\cdot k = 0$: a gravitational wave of 1 kHz has $\omega/c = |\vect k| = 2.10\times10^{-5}\,\mathrm{m^{-1}}$.'
+    chapter: '6.2'
+    anchor: the-gradient-is-a-lower-index-vector-and-the-wave-operator-is-its-square
+  - key: four-momentum
+    title: Four-momentum
+    tex: 'p^\mu'
+    role: none
+    kind: A four-vector; in kg m s⁻¹
+    meaning: 'A particle''s mass times its four-velocity, $p^\mu = m u^\mu$. An observer with four-velocity $u^\mu$ measures its energy $E = -p_\mu u^\mu$: $1.25\,mc^2$ for a particle at $0.6c$ seen from the room, $mc^2$ for an observer moving with it. Chapter 6.4 builds it.'
+    chapter: '6.2'
+    anchor: what-an-observer-measures-is-a-contraction-with-its-own-four-velocity

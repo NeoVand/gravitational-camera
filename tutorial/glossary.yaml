@@ -2606,3 +2606,81 @@ terms:
     role: obs
     chapter: '6.1'
     anchor: rapidities-add-where-velocities-do-not
+  - term: four-vector
+    definition: 'A list of four components, such as an event''s $x^\mu = (ct, \vect x)$, whose entries change by the Lorentz transformation when the observer changes, $x''^\mu = \Lambda^\mu{}_\nu x^\nu$. Also called a spacetime vector.'
+    chapter: '6.2'
+    anchor: an-event-is-a-vector-of-four-components
+  - term: Greek index
+    definition: 'An index such as $\mu$, $\nu$, $\alpha$ or $\beta$ that runs over the four values 0, 1, 2, 3 of spacetime, with 0 for time. A Latin index such as $i$ runs over the three directions of space only.'
+    chapter: '6.2'
+    anchor: an-event-is-a-vector-of-four-components
+  - term: Minkowski metric
+    definition: 'The table $\eta_{\mu\nu} = \mathrm{diag}(-1, 1, 1, 1)$ that gives the dot product of four-vectors. Every boost keeps it, $\eta_{\alpha\beta}\Lambda^\alpha{}_\mu\Lambda^\beta{}_\nu = \eta_{\mu\nu}$, as a turn keeps $\delta_{ij}$. Its list of signs is the paper''s signature $-{+}{+}{+}$.'
+    role: field
+    chapter: '6.2'
+    anchor: the-minkowski-metric-measures-the-interval-with-one-minus-sign-for-time
+  - term: dot product of four-vectors
+    definition: 'The number $a\cdot b = \eta_{\mu\nu}a^\mu b^\nu = -a^0b^0 + \vect a\cdot\vect b$, the same for every inertial observer. The dot product of a step with itself is the interval between its two events.'
+    chapter: '6.2'
+    anchor: the-minkowski-metric-measures-the-interval-with-one-minus-sign-for-time
+  - term: time-like
+    definition: 'A four-vector with $a\cdot a < 0$, whose time component is larger than its length in space: a step along the path of a clock, which moves slower than light.'
+    chapter: '6.2'
+    anchor: the-minkowski-metric-measures-the-interval-with-one-minus-sign-for-time
+  - term: null four-vector
+    definition: 'A four-vector that is not zero but has $a\cdot a = 0$: a step along the path of a flash of light, or the wave four-vector of a wave that travels at $c$. Also called light-like.'
+    chapter: '6.2'
+    anchor: the-minkowski-metric-measures-the-interval-with-one-minus-sign-for-time
+  - term: space-like
+    definition: 'A four-vector with $a\cdot a > 0$: a step between two events too far apart for light to cross between them in the time between them, so that no clock can attend both. Two events simultaneous for some observer are space-like apart.'
+    chapter: '6.2'
+    anchor: the-minkowski-metric-measures-the-interval-with-one-minus-sign-for-time
+  - term: light cone
+    definition: 'The null steps from one event: the events that a flash from it reaches, and those whose flashes reach it. Clocks through the event stay inside it.'
+    chapter: '6.2'
+    anchor: the-minkowski-metric-measures-the-interval-with-one-minus-sign-for-time
+  - term: four-velocity
+    definition: 'The rate of change of a body''s event along its worldline with its own proper time, $u^\mu = \mathrm dx^\mu/\mathrm d\tau = \gamma(c, \vect v)$, in m/s. Every body has $u\cdot u = -c^2$; at $0.6c$, $u^\mu = (1.25c, 0.75c, 0, 0)$.'
+    role: obs
+    chapter: '6.2'
+    anchor: the-four-velocity-has-the-same-length-for-every-body
+  - term: lowering an index
+    definition: 'Forming $a_\mu = \eta_{\mu\nu}a^\nu$ from $a^\mu$. Only the time component changes sign, so in the Cartesian axes of an inertial frame (or of a freely falling observer''s local frame) a spatial index means the same up or down.'
+    chapter: '6.2'
+    anchor: lowering-an-index-changes-only-the-sign-of-time
+  - term: raising an index
+    definition: 'Forming $a^\mu = \eta^{\mu\nu}a_\nu$ with the inverse metric, which in flat spacetime is the same table $\mathrm{diag}(-1, 1, 1, 1)$. It undoes lowering.'
+    chapter: '6.2'
+    anchor: lowering-an-index-changes-only-the-sign-of-time
+  - term: upper and lower index
+    definition: 'The two positions of a spacetime index. An upper index, as in a step $\mathrm dx^\mu$, changes by the boost $\Lambda^\mu{}_\nu$; a lower index, as in a gradient $\partial_\mu f$, by its inverse. A sum over one of each is the same for every observer. Also called contravariant and covariant.'
+    chapter: '6.2'
+    anchor: lowering-an-index-changes-only-the-sign-of-time
+  - term: four-gradient
+    definition: 'The list of rates $\partial_\mu = \partial/\partial x^\mu = (c^{-1}\partial_t, \nabla)$, in m⁻¹, a vector with a lower index. Its pairing with a step, $\partial_\mu f\,\mathrm dx^\mu$, is the change of $f$ across the step.'
+    chapter: '6.2'
+    anchor: the-gradient-is-a-lower-index-vector-and-the-wave-operator-is-its-square
+  - term: "d'Alembert operator"
+    definition: 'The wave operator $\Box = \eta^{\mu\nu}\partial_\mu\partial_\nu = -c^{-2}\partial_t^2 + \nabla^2$, in m⁻², the same for every observer. $\Box\phi = 0$ is the wave equation for waves at $c$; for a static field $\Box$ is $\nabla^2$.'
+    chapter: '6.2'
+    anchor: the-gradient-is-a-lower-index-vector-and-the-wave-operator-is-its-square
+  - term: wave four-vector
+    definition: 'The four-vector $k^\mu = (\omega/c, \vect k)$ of a plane wave $e^{ik_\mu x^\mu}$, whose phase is $\vect k\cdot\vect x - \omega t$. A wave that travels at $c$ has $k\cdot k = 0$.'
+    chapter: '6.2'
+    anchor: the-gradient-is-a-lower-index-vector-and-the-wave-operator-is-its-square
+  - term: tensor of spacetime
+    definition: 'A table with Greek indices whose every index changes with its own copy of the boost, $T''^{\mu\nu} = \Lambda^\mu{}_\alpha\Lambda^\nu{}_\beta T^{\alpha\beta}$ (lower indices with the inverse). An equation between tensors that holds in one frame holds in all.'
+    chapter: '6.2'
+    anchor: a-tensor-is-a-table-whose-every-index-changes-with-the-boost
+  - term: rank of a tensor
+    definition: 'The number of its indices: 0 for an invariant number, 1 for a four-vector, 2 for a table such as $\eta_{\mu\nu}$, 4 for the Riemann tensor. (Not the rank of a matrix in chapter 3.4.)'
+    chapter: '6.2'
+    anchor: a-tensor-is-a-table-whose-every-index-changes-with-the-boost
+  - term: contraction of indices
+    definition: 'A sum over one upper and one lower index, such as $a_\mu b^\mu$ or $\eta_{\mu\nu}T^{\mu\nu}$. It removes both indices, and a quantity with every index contracted is the same for every observer.'
+    chapter: '6.2'
+    anchor: a-tensor-is-a-table-whose-every-index-changes-with-the-boost
+  - term: Lorentz invariant
+    definition: 'A number that every inertial observer computes alike, such as a dot product of four-vectors, $u\cdot u = -c^2$, or the energy $-p_\mu u^\mu$ that a given observer measures.'
+    chapter: '6.2'
+    anchor: a-tensor-is-a-table-whose-every-index-changes-with-the-boost

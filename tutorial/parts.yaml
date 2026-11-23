@@ -95,7 +95,7 @@ parts:
     title: Special relativity and the light field
     chapters:
       - { id: '6.1', slug: relativity/lorentz, title: 'Clocks, light and the Lorentz transformation; rapidity', short: The Lorentz transformation, size: L, status: published }
-      - { id: '6.2', slug: relativity/spacetime-vectors, title: 'Spacetime vectors: η, raising and lowering indices', short: Spacetime vectors, size: M, status: planned }
+      - { id: '6.2', slug: relativity/spacetime-vectors, title: 'Spacetime vectors: η, raising and lowering indices', short: Spacetime vectors, size: M, status: published }
       - { id: '6.3', slug: relativity/aberration, title: 'Aberration, Doppler, and seeing where things are now', short: Aberration and Doppler, size: M, status: planned }
       - { id: '6.4', slug: relativity/energy-and-momentum, title: 'Energy and momentum; the weight of heat; light-cone coordinates', short: Energy and momentum, size: M, status: planned }
       - { id: '6.5', slug: relativity/stress-energy, title: 'What gravitates: the stress–energy tensor', short: The stress-energy tensor, size: M, status: planned }
