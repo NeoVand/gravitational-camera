@@ -638,6 +638,6 @@ tells the story in *An Imaginary Tale* (Princeton, 1998).
     $10^{-10}$ in $|\curv{s}|$ relative to $G\matter M/d^3$. The paper's code checks the two zeros on the bisector at the
     depths $0.9d$, $2d$ and $7d$ (`reference/tests/test_shearzeros.py`).
 
-[^magnetic]: Chapter 7.5 defines the magnetic tide $\curv{\tB}$ and shows that in a wave it is
+[^magnetic]: Chapter 7.5 defines the magnetic tide $\curv{\tB}$, and chapter 7.6 shows that in a wave it is
     $\curv{\tB}_{ij} = \epsilon_{ipq}\hat k_p\curv{\tE}_{qj}$, which with $\hat k\times\vect m = -i\vect m$ gives the
     paper's equation [](/paper/#eq:square). Chapter 9.3 studies $\curv{\mathcal W}$ itself.

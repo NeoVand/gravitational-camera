@@ -273,7 +273,7 @@ instead of recording mostly noise.
 
 [^count]: Derived in chapter 9.5.
 
-[^ratio]: The paper's equation [](/paper/#eq:magnetic-ratio), derived in chapter 7.5.
+[^ratio]: The paper's equation [](/paper/#eq:magnetic-ratio), derived in chapters 7.5 and 7.6.
 
 [^price]: Derived in chapter 9.5.
 

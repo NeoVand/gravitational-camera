@@ -51,6 +51,7 @@ import NearToWave from './live/NearToWave.svelte';
 import Tremor from './live/Tremor.svelte';
 import DelayAndSum from './live/DelayAndSum.svelte';
 import RotorPolarization from './live/RotorPolarization.svelte';
+import RadiativeTransfer from './live/RadiativeTransfer.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -228,6 +229,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A rotor tilted toward a camera, and the ring its wave moves: the ellipse of (h₊, h×), the Stokes parameters that change when the camera’s axes turn and those that do not, and the which-way spot coloured by V/I',
 		component: RotorPolarization
+	},
+	'radiative-transfer': {
+		label: 'A slab in front of a background, and what one pixel receives',
+		component: RadiativeTransfer
 	},
 	'noise-spectrum': {
 		label:

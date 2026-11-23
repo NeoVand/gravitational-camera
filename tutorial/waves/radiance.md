@@ -6,7 +6,7 @@ part: '5'
 requires: ['2.2', '4.4', '5.1', '5.2', '5.3']
 paper: [sec:thermal, eq:kirchhoff, eq:alpha, fig:line-integral, fig:closed-furnace, tab:materials, sec:first-image, eq:column, eq:jN-friction, fig:sun-at-midnight, sec:no-lens, eq:index, eq:optics-bound, eq:lens-compactness, fig:black-hole-camera]
 figures: [fig:line-integral, fig:sun-at-midnight]
-live: [scene-closed-furnace]
+live: [radiative-transfer, scene-closed-furnace]
 depth: A
 ---
 
@@ -93,7 +93,7 @@ to its line of sight and not to the distance of what it sees. Take two small fla
 distance $r$ apart and facing each other. We assume **empty space between them, where nothing emits or absorbs**, and
 **patches much smaller than $r$**, so that every ray from one to the other has nearly the same length and direction.
 Rays leave $\dd A_1$ toward $\dd A_2$ with the radiance $I_1$ and arrive at $\dd A_2$ with the radiance $I_2$
-(see the diagram below).
+(Figure [](#fig:rad-patches)).
 
 Seen from $\dd A_1$, the patch $\dd A_2$ covers the solid angle $\dd A_2/r^2$. By [](#eq:radiance), the power that
 leaves $\dd A_1$ toward $\dd A_2$ in the band $\dd\omega$ is
@@ -111,16 +111,9 @@ $$\boxed{I_2 = I_1 .}$$
 The factor $1/r^2$ appears in both lines and cancels. The spreading of the rays, which dims the flux, is exactly
 matched by the shrinking of the cone in which a distant patch is seen.
 
-<!-- diagram: tut-rad-patches — One panel, about 640 × 240 px at 1440. Two small squares drawn in light perspective
-as thin-stroked parallelograms, 40 px tall: dA₁ at the left (x = 80), dA₂ at the right (x = 560), both facing each
-other across a horizontal axis (thin grey dashed line) through their centres. Between them a thin solid cone (two
-straight lines, light fill at 10% ink) from the centre of dA₁ to the top and bottom edges of dA₂, labelled above its
-middle "dΩ₁ = dA₂ / r²"; a second cone, dashed outline and no fill, from the centre of dA₂ to the edges of dA₁, labelled
-below its middle "dΩ₂ = dA₁ / r²". Three small arrowheads on the axis pointing right, labelled "rays" once. A
-dimension line below the axis from x = 80 to x = 560, labelled "r". Labels "dA₁, I₁" under the left square and
-"dA₂, I₂" under the right. No colour roles (radiances are neutral). Caption: "Look first at the two cones: each patch
-sees the other in a solid angle that shrinks as 1/r², and the power between them, I dA dΩ, is the same counted from
-either end. So the radiance I₁ that leaves equals the radiance I₂ that arrives. The cones' angles are exaggerated." -->
+![Look first at the two cones: each patch sees the other in a solid angle that shrinks as $1/r^2$, and the power
+between them, $I\,\dd A\,\dd\Omega$, is the same counted from either end. So the radiance $I_1$ that leaves equals
+the radiance $I_2$ that arrives. The cones' angles are exaggerated.](tut-rad-patches){#fig:rad-patches}
 
 **A number.** Mars is 1.52 times as far from the Sun as the Earth is. From Mars the Sun's disc covers $1/1.52^2 =
 0.43$ of the solid angle it covers from the Earth, so the flux of sunlight there is 0.43 of the Earth's. A pixel aimed
@@ -179,23 +172,15 @@ $1/\alpha$ deep. A slab is **optically thin** when $\tau \ll 1$. Then $1 - e^{-\
 
 $$I_\omega \approx I_{\rm bg}\,(1 - \tau) + j_\omega L :$$
 
-the slab adds its whole glow, $j_\omega$ times its length, and dims the background by the small fraction $\tau$. Fog
-is thick for light, and [below](#when-nothing-absorbs-a-pixel-adds-the-glow-along-its-line) we find that all ordinary matter is thin for
+the slab adds its whole glow, $j_\omega$ times its length, and dims the background by the small fraction $\tau$
+(Figure [](#fig:rad-slab)). Fog is thick for light, and
+[below](#when-nothing-absorbs-a-pixel-adds-the-glow-along-its-line) we find that all ordinary matter is thin for
 gravitational waves.
 
-<!-- diagram: tut-rad-slab — Two panels side by side, same axes, each about 340 × 260 px at 1440 (stacked on a
-phone). Horizontal axis s/L from −0.2 to 1.2; the slab is a light grey band from 0 to 1, a small eye-and-arrow glyph at
-the right edge labelled "pixel", and an arrow entering at the left labelled "I_bg". Vertical axis radiance in units of
-j/α, from 0 to 1.1, with a thin dotted horizontal line at 1 labelled "j/α". Before s = 0 the curve is flat at I_bg =
-0.3. Inside the slab, two filled stacked areas computed exactly: the background's share 0.3 e^{−τ s/L} (lower area, in
-the paper's blue) and the slab's own glow (1 − e^{−τ s/L}) stacked on top (in the paper's orange), with their sum as a
-thin ink line; after s = 1 the sum is flat. Left panel titled "thick, τ = 5": the blue share falls to 0.3 e^{−5} =
-0.002 and the sum rises to 0.995. Right panel titled "thin, τ = 0.1": the blue share falls only to 0.3 e^{−0.1} = 0.271
-and the orange share rises almost linearly to 1 − e^{−0.1} = 0.095, so the sum ends at 0.366. Labels "background,
-I_bg e^{−τ}" and "glow, (j/α)(1 − e^{−τ})" beside the two areas in the left panel only. Caption: "Look first at the
-blue share: through a thick slab the background dies away and the radiance climbs to the slab's own j/α; through a
-thin one the background passes almost whole and the slab adds a straight ramp, jL. Both curves are exact solutions of
-the equation of transfer with I_bg = 0.3 j/α." -->
+![Look first at the blue share: through a thick slab the background dies away and the radiance climbs to the slab's
+own $j_\omega/\alpha$; through a thin one the background passes almost whole and the slab adds a straight ramp,
+$j_\omega L$. Both curves are exact solutions of the equation of transfer with
+$I_{\rm bg} = 0.3\,j_\omega/\alpha$.](tut-rad-slab){#fig:rad-slab}
 
 ## A warm body's glow over its absorption is the radiance of an enclosure at its temperature
 
@@ -251,21 +236,17 @@ glazed pots that reflect, because a pot's own emission and its reflection of the
 walls' radiance. In the thin limit the change is $(B_\omega - I_{\rm bg})\,\tau$, which is the body's own glow, $\tau
 B_\omega$, less the dimming $\tau I_{\rm bg}$ of what lies behind, as the paper says.
 
-<!-- try: radiative-transfer — RadiativeTransfer (optional, new). One panel: on the left a background (a tall
-rectangle filled with a warm grey whose lightness follows I_bg), in the middle a slab (a band whose opacity follows
-1 − e^{−τ} and whose tint follows B(T_slab)), on the right a small pixel glyph. Sliders: the slab's optical depth τ on a
-logarithmic scale from 10^{−37} to 10^{2} (default 1), the slab's temperature T_slab and the background's temperature
-T_bg, each from 50 K to 3000 K (defaults 600 K and 300 K). The radiance is taken at one frequency, ħω = 2.82 k_B × 300 K,
-and B_ω(T) is computed from Planck's law. Beside the pixel, one vertical bar with two stacked parts: the background's
-share I_bg e^{−τ} (the paper's blue) and the slab's glow B(1 − e^{−τ}) (the paper's orange); a thin line marks the
-background alone, I_bg, so that the difference I − I_bg reads as the gap between the bar's top and the line. Readouts:
-τ, e^{−τ}, I_bg, B, I and (I − I_bg)/I_bg. Presets: "fog in light" (τ = 3, T_slab = T_bg = 300 K, then the reader warms
-the slab) and "steel in gravity" (τ = 1.2 × 10^{−37}, a hot body behind: T_bg = 1500 K, a cold slab T_slab = 293 K).
-Predict first: "Set the slab as warm as the background. What does the pixel see as you thicken it from transparent to
-opaque?" (Answer: no change at all; the bar's two parts trade places while its top stays on the line.) Then: "In gravity,
-with τ = 10^{−30}, can a cold slab hide a hot body behind it?" (Answer: no; it dims the background by the fraction
-10^{−30}, far below the width of a line.) Keyboard: arrow keys move the focused slider by one step, Page Up and Page Down
-by a decade on τ; both themes; on a phone the sliders stack below the panel. -->
+::: try {#radiative-transfer}
+A background on the left, a slab in the middle and a pixel on the right, at one frequency near the peak of the glow
+at 300 K. The sliders set the slab's optical depth $\tau$, on a logarithmic scale from $10^{-37}$ to $10^2$, and the
+temperatures of the slab and of the background; each grey shows the temperature whose Planck radiance it is. Beside
+the pixel, one bar holds what the pixel receives: the background's share $I_{\rm bg}e^{-\tau}$ in blue under the
+slab's glow $B_\omega(1 - e^{-\tau})$ in orange, with a line at $I_{\rm bg}$ and a dotted line at $B_\omega$. The
+presets set up fog in light and a cold steel wall in front of a hot body, in gravity.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards,
+choose the steel preset and read how much the wall changes the pixel's reading.
+:::
 
 ## When nothing absorbs, a pixel adds the glow along its line
 
@@ -303,29 +284,17 @@ width, every material is far from opaque (chapter 10.3). The approximation does 
 whatever falls into it: in the paper's words, "only black holes cast shadows".
 
 **What it means.** Every body on a line of sight adds its glow, and none hides another. In light a pixel reports the
-first surface its line meets. In gravity it reports the sum of everything on the line, near and far: in chapter 0.3's
-words, an X-ray in which every object is its own lamp. Looking straight down through
-the whole Earth, the paper's camera on its surface finds a number radiance of at most $1.2 \times
-10^{-5}$ gravitons $\mathrm{s^{-1}\,m^{-2}\,sr^{-1}}$. Beyond the Earth, the Sun's core shines straight through it, at
-$4 \times 10^5$: its surface brightness is $3 \times 10^{10}$ times the Earth's interior's, although it is
-$1.5 \times 10^{11}$ m away.
+first surface its line meets. In gravity it reports the sum of everything on the line, near and far
+(Figure [](#fig:rad-columns)): in chapter 0.3's words, an X-ray in which every object is its own lamp. Looking
+straight down through the whole Earth, the paper's camera on its surface finds a number radiance of at most
+$1.2 \times 10^{-5}$ gravitons $\mathrm{s^{-1}\,m^{-2}\,sr^{-1}}$. Beyond the Earth, the Sun's core shines straight
+through it, at $4 \times 10^5$: its surface brightness is $3 \times 10^{10}$ times the Earth's interior's, although
+it is $1.5 \times 10^{11}$ m away.
 
-<!-- diagram: tut-rad-columns — Three panels stacked, each about 640 × 150 px at 1440, sharing one horizontal line of
-sight from a pixel glyph at the left (x = 30) to the right edge. Along the line, the same four bodies in every panel,
-drawn as simple outlines with no colour roles: a door (thin vertical slab at x = 120 to 130), a furnace (a steel box
-from x = 220 to 380 with walls 10 px thick, holding a small block from x = 280 to 320), and a person (a rounded
-rectangle from x = 470 to 520). Panel (a), titled "light": the line is solid from the pixel to the door's face, a dot
-there, and faint dashed beyond; one bar under the door, height 1, labelled "the first surface". Panel (b), titled "a
-thick glow (τ = 3 per body)": the line is solid through the door and fades; bars under each body give its share of the
-pixel's reading for bodies of equal j/α, exactly (1 − e^{−3}) e^{−3k} for the k-th body crossed (k = 0, 1, 2, 3: door
-0.950, furnace wall 0.047, block 0.0024, person 0.0001 drawn as a hairline), labelled "only the near layer shows".
-Panel (c), titled "the gravitational glow (τ ≈ 10^{−30})": the line is solid all the way; bars under each body equal to
-j_k ℓ_k with the illustrative values door 0.1, steel walls 0.3 (split as two thin bars, 0.15 each), hot block 3.0,
-person 0.4, and a total bar at the right edge, 3.8, labelled "the pixel: the sum". Bars in ink, the hot block's in
-the paper's orange. Caption: "Look first at the bottom panel: every body on the line adds its glow, and the hot block
-counts in full although the furnace's steel surrounds it. In light (top) the pixel reports only the door; in a thick
-glow (middle) each body hides most of what lies behind it. The values in (c) are illustrative, as in the paper's
-fig:line-integral." -->
+![Look first at the bottom panel: every body on the line adds its glow, and the hot block counts in full although
+the furnace's steel surrounds it. In light (top) the pixel reports only the door; in a thick glow (middle) each body
+hides most of what lies behind it. The values in (c) are illustrative, as in the paper's
+Figure [](/paper/#fig:line-integral).](tut-rad-columns){#fig:rad-columns}
 
 {{paper fig:sun-at-midnight}}
 
@@ -420,8 +389,9 @@ the paper warns.
 This section is brief, and chapter R11 reads the rest of the paper's [Section VII](/paper/#sec:no-lens). A glass lens
 focuses light because it delays the wave more at its centre, where it is thick, than at its edge, where it is thin.
 We want the focal length of such a lens. Take a lens of radius $R$, in metres, whose thickness falls from $h$ on its
-axis to zero at its rim along a parabola: at the distance $a$ from the axis it is $h(1 - a^2/R^2)$ thick (see the
-diagram below).[^h] We assume that **the lens is thin**, so that every ray crosses it nearly parallel to the axis.
+axis to zero at its rim along a parabola: at the distance $a$ from the axis it is $h(1 - a^2/R^2)$ thick
+(Figure [](#fig:rad-lenses)).[^h] We assume that **the lens is thin**, so that every ray crosses it nearly parallel
+to the axis.
 
 By chapter [5.1](/tutorial/waves/wave-equation/#a-medium-can-slow-a-wave-and-its-refractive-index-measures-how-much),
 a slab of thickness $L$ holds a wave back by the phase $(n - 1)\,\omega L/c$, with $\sym{refractive-index}{n}$ its
@@ -487,30 +457,12 @@ $1.6 \times 10^{27}\unit{kg\,m^{-3}}$, $7 \times 10^9$ times that of an atomic n
 10^{17}\unit{kg\,m^{-3}}$. Only a black hole is compact enough, and the paper's Figure
 [](/paper/#fig:black-hole-camera) puts one in front of its camera.
 
-<!-- diagram: tut-rad-lenses — Two panels side by side, each 340 × 240 px at 1440 (stacked on a phone), no colour roles
-except the mass in matter's colour. In each panel x runs right from the panel's left edge and y up from the axis, a
-thin grey dashed horizontal line at mid-height from x = 0 to 330.
-Left panel, titled "a thin lens". The lens (thin ink outline, light fill at 10% ink): a flat face, the vertical segment
-x = 60 from y = −80 to 80, and a parabolic face x = 60 + 24(1 − y²/6400), so that R = 80 px and h = 24 px
-(exaggerated). Five rays (thin ink lines) at y = 0, ±40, ±70: each horizontal from x = 0 to the curved face, which it
-leaves at x = 84, 78 and 65.6 for |y| = 0, 40 and 70, then straight to F = (284, 0); a small dot at F labelled "F"
-below the axis. Wavefronts in thin grey: two straight vertical segments at x = 20 and x = 40, y from −80 to 80; and two
-circular arcs centred on F, of radii 180 and 110 px, each drawn only between the two outer rays. Dimension lines in
-thin grey with small end ticks, labels beside them, never on a ray: "R" on a vertical line at x = 50 from y = 0 to 80
-(label at its left, y = 55); "a" on a vertical line at x = 10 from y = 0 to 40 (label at its right, y = 20); "h" on a
-horizontal line at y = −20 from x = 60 to 84 (label below it, at y = −30); "f" on a horizontal line at y = −100 from
-x = 84 to 284 (label below its middle). Beside the ray at y = 40, above its middle (x = 181, y = 32), the label
-"f + a²/2f". Below the panel the formula "f = R²/2(n − 1)h".
-Right panel, titled "a mass as a lens". A dot of mass M (radius 6 px, matter's colour) on the axis at x = 40. Three
-rays at b = 30, 45 and 60 px above the axis and their mirror images below (thin ink lines): each horizontal from
-x = 0 to x = 40, then straight through the axis at x = 40 + b²/15 = 100, 175 and 280, continuing to x = 330. Small
-ticks on the axis at the three crossings, labelled "f(b)" once, below the farthest. Below the panel the formula
-"f = b²/2r_s".
-Caption: "Look first at the curved crests behind the thin lens: they are circles centred on F, so the crest on the axis
-trails the crest at the height a. The glass makes it trail, because the wave on the axis crosses the most glass, and
-the path from a to F is longer by a²/2f, so all the parts arrive in step. A mass (right) bends near rays more and sends
-them to a nearer focus, so its foci lie along a line, at distances growing as b². The lens's thickness and all the
-angles are greatly exaggerated: the Earth bends a grazing ray by 2.8 × 10⁻⁹ radians." -->
+![Look first at the curved crests behind the thin lens: they are circles centred on $F$, so the crest on the axis
+trails the crest at the height $a$. The glass makes it trail, because the wave on the axis crosses the most glass, and
+the path from $a$ to $F$ is longer by $a^2/2f$, so all the parts arrive in step. A mass (right) bends near rays more and
+sends them to a nearer focus, so its foci lie along a line, at distances growing as $b^2$. The lens's thickness and all
+the angles are greatly exaggerated: the Earth bends a grazing ray by $2.8 \times 10^{-9}$
+radians.](tut-rad-lenses){#fig:rad-lenses}
 
 ::: check
 ### Q
