@@ -233,13 +233,14 @@ belong to chapter 1.3.
 
 ## The moment of inertia tells a cored planet from a uniform one
 
-Chapter 1.3 built two Earths that no reading of the steady field outside can tell apart. The first is a uniform ball
-of density $5513\unit{kg\,m^{-3}}$. The second has a core of radius $R_{\rm c} = 3480\unit{km}$ and density
+Chapter 1.3 built two Earths that no reading of the steady field outside can tell apart. The first is a uniform ball of
+density $5513\unit{kg\,m^{-3}}$. The second has a core of radius $R_{\rm c} = 3480\unit{km}$ and density
 $\matter\rho_{\rm c}$ inside a mantle of density $\matter\rho_{\rm m}$ (Figure [](#fig:earths)). We now find the two
-densities from what the outside of the Earth and its turning tell us: the mass and the moment of inertia. The radius
-of the core comes from a third channel, the glow of heat, the faint gravitational waves that the warm interior gives
-off. Seen from the ground, its brightness steps at the direction whose line of sight grazes the core, 33° from straight down (the paper's
-[Section IV](/paper/#sec:near-field) and Figure [](/paper/#fig:earth-glow)).
+densities from what the outside of the Earth and its turning tell us: the mass and the moment of inertia. The radius of
+the core comes from a third channel, the glow of heat, the faint gravitational waves that the warm interior gives off.
+Seen from the ground, its brightness has a kink, a sudden change of slope, at the direction whose line of sight grazes
+the core, 33° from straight down (the paper's [Section IV](/paper/#sec:near-field) and Figure
+[](/paper/#fig:earth-glow)).
 
 ![The two Earths of chapter 1.3, cut through the centre and drawn to scale: on the left, a core of radius 3480 km
 inside a mantle out to 6371 km, with the densities that this section finds; on the right, the uniform Earth. The

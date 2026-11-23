@@ -619,7 +619,7 @@ so at $(r, 0, 0)$ the entries are $-2G\matter\lambda/r^2$, $+2G\matter\lambda/r^
 the line to the rod, is a stretch: the pull grows toward the rod, so two balls on that line drift apart. The trace is
 zero, as it must be outside matter. For the rail the field is $2 \times 6.674 \times 10^{-11} \times 60/1 =
 8.0 \times 10^{-9}\unit{m\,s^{-2}}$, and the stretch has the size $8.0 \times 10^{-9}\unit{s^{-2}}$, close to the
-person's. Chapters 2.7 and 3.6 use rows of such rods.
+person's. Chapters 3.5 and 3.7 use rows of such rods.
 :::
 
 ### The paper
