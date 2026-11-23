@@ -41,6 +41,7 @@ import ToyCamera from './live/ToyCamera.svelte';
 import RoundPupil from './live/RoundPupil.svelte';
 import BitsPerPatch from './live/BitsPerPatch.svelte';
 import PositiveImage from './live/PositiveImage.svelte';
+import DrivenCart from './live/DrivenCart.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -168,6 +169,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'Masses in a row of cells under a row of sensors: the truth, the Gaussian image and the positive image',
 		component: PositiveImage
+	},
+	'driven-cart': {
+		label:
+			'A cart on a spring with friction, pushed back and forth by a hand: its swing, its lag and the line of power it takes',
+		component: DrivenCart
 	},
 	'noise-spectrum': {
 		label:

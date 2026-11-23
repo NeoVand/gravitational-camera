@@ -615,7 +615,7 @@ tides the integrand goes as $\varpi^2$, the same as in the angular momentum, and
 [^quad]: The column is $\matter\rho\,\Omega\sin\theta\,(b - a)$, with $\sin\theta = 0.0500$ for the angle between the
     line of sight and the axis; a numerical integral along the line gives the same.
 
-[^chi]: The paper uses $\chi$ for response functions (chapter 4.5); here it is the stream function only.
+[^chi]: The paper uses $\chi$ for response functions ([chapter 4.1](/tutorial/response/oscillator/)); here it is the stream function only.
 
 [^TP]: The letters $T$ and $P$ are not a temperature and a power here. $T$ is in $\mathrm{kg\,m^{-2}\,s^{-1}}$ and $P$
     in $\mathrm{kg\,m^{-1}\,s^{-1}}$.

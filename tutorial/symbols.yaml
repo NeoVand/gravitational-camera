@@ -1084,3 +1084,59 @@ symbols:
     meaning: 'The potential times the square root of the depth, $u = z^{1/2}\Phi$. It obeys $(\nabla^2_H + \tfrac34)u = 0$ wherever $\nabla^2\Phi = 0$. (Not the scaled radius $u$ of chapters 3.6 and 3.7.)'
     chapter: '3.9'
     anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - key: stiffness
+    title: Stiffness
+    tex: 'k'
+    role: none
+    kind: A number; in N m⁻¹
+    meaning: 'The force a spring pulls back with per metre of stretch, so that its force is $-kq$. With the mass $m$ it sets the natural frequency $\omega_0 = \sqrt{k/m}$. (Not the wavenumber $k$ of chapter 2.6, nor Boltzmann''s constant $k_B$.)'
+    chapter: '4.1'
+    anchor: a-mass-on-a-spring-swings-at-one-frequency
+  - key: natural-frequency
+    title: Natural frequency
+    tex: '\omega_0'
+    role: none
+    kind: A number; an angular frequency, in s⁻¹ (radians per second)
+    meaning: 'The angular frequency at which an oscillator swings when left alone without friction, $\omega_0 = \sqrt{k/m}$ for a mass on a spring. For chapter 1.7''s cart it is $5\,\mathrm{s^{-1}}$, a period of 1.26 s.'
+    chapter: '4.1'
+    anchor: a-mass-on-a-spring-swings-at-one-frequency
+  - key: damping-rate
+    title: Damping rate
+    tex: '\Gamma'
+    role: none
+    kind: A number; a rate, in s⁻¹
+    meaning: 'The friction of an oscillator, defined by the law of motion $m\ddot q + m\Gamma\dot q + kq = 0$. The amplitude of a free swing falls as $e^{-\Gamma t/2}$ and its energy as $e^{-\Gamma t}$, and $\Gamma$ is also the full width at half maximum of the oscillator''s line. A subscript $n$ counts modes: $\Gamma_n$ is the damping rate of mode $n$. (Not the greybody factors $\Gamma_\ell$ of Section XIV, which carry the degree $\ell$.)'
+    chapter: '4.1'
+    anchor: friction-makes-the-swing-die-away-and-the-quality-factor-counts-how-slowly
+  - key: damped-frequency
+    title: Frequency of a damped swing
+    tex: '\omega_d'
+    role: none
+    kind: A number; an angular frequency, in s⁻¹
+    meaning: 'The angular frequency of a dying swing, $\omega_d = \sqrt{\omega_0^2 - \Gamma^2/4}$, a little below the natural frequency. It is imaginary when $Q < \tfrac12$, and then the oscillator does not swing.'
+    chapter: '4.1'
+    anchor: friction-makes-the-swing-die-away-and-the-quality-factor-counts-how-slowly
+  - key: quality-factor
+    title: Quality factor
+    tex: 'Q'
+    role: none
+    kind: A pure number
+    meaning: 'How slowly an oscillator rings down, $Q = \omega_0/\Gamma$: the energy falls by a factor $e$ in $Q/2\pi$ swings, and $Q$ is also the frequency of the line over its width. In Part 4 a bare $Q$ is always a quality factor; a moment of the mass always carries a subscript ($Q_h$, $Q_{\ell m}$, $Q_{ij}$).'
+    chapter: '4.1'
+    anchor: friction-makes-the-swing-die-away-and-the-quality-factor-counts-how-slowly
+  - key: response-function
+    title: Response function
+    tex: '\chi(\omega)'
+    role: none
+    kind: A complex function of the angular frequency; for a cart, in m N⁻¹
+    meaning: 'The steady swing per unit of a push that rises and falls at the angular frequency $\omega$, $\tilde q = \chi(\omega)\tilde F$ in phasors. For a damped oscillator $\chi = 1/m(\omega_0^2 - \omega^2 - i\Gamma\omega)$. Its imaginary part, positive in the paper''s convention $e^{-i\omega t}$, takes energy from the push; its real part stores and returns it. The same letter with a time, $\chi(t)$, is the answer to a single blow. (Not the stream function $\chi$ of chapter 2.8.)'
+    chapter: '4.1'
+    anchor: a-steady-push-gets-a-steady-answer-the-response-function-times-the-push
+  - key: mean-power
+    title: Average power
+    tex: '\bar P'
+    role: none
+    kind: A number; in watts
+    meaning: 'The work a push does per second, averaged over a swing: $\bar P = \tfrac12\omega\,\mathrm{Im}\,\chi(\omega)\,|\tilde F|^2$ for a push of phasor $\tilde F$. Plotted against the frequency it is a line of width $\Gamma$. (Not a projector $P_{ij}$.)'
+    chapter: '4.1'
+    anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push

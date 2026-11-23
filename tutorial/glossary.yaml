@@ -1831,3 +1831,83 @@ terms:
     definition: 'The squared distance between two neighbouring scenes in units of the noise, $D^2 = F_{kl}\,\mathrm d\theta_k\,\mathrm d\theta_l$. For one mass under a flat array, with its signal-to-noise ratio held fixed, it is hyperbolic once the coordinates across are stretched by $\sqrt{5/2}$.'
     chapter: '3.9'
     anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - term: oscillator
+    definition: 'Anything whose coordinate is pulled back toward a resting place with a force in proportion to its distance from it, such as a mass on a spring. Left alone, it swings at one frequency.'
+    chapter: '4.1'
+    anchor: a-mass-on-a-spring-swings-at-one-frequency
+  - term: natural frequency
+    definition: 'The angular frequency at which an oscillator swings when left alone without friction, $\omega_0 = \sqrt{k/m}$ for a mass $m$ on a spring of stiffness $k$.'
+    chapter: '4.1'
+    anchor: a-mass-on-a-spring-swings-at-one-frequency
+  - term: normal mode
+    definition: 'One of the ways in which a body of many parts can swing with every part at the same frequency. Each normal mode, on its own, is an oscillator.'
+    chapter: '4.1'
+    anchor: a-mass-on-a-spring-swings-at-one-frequency
+  - term: damping rate
+    definition: 'The friction of an oscillator, $\Gamma$ in $m\ddot q + m\Gamma\dot q + kq = 0$, in $\mathrm{s^{-1}}$. The energy of a free swing falls by a factor $e$ in the time $1/\Gamma$.'
+    chapter: '4.1'
+    anchor: friction-makes-the-swing-die-away-and-the-quality-factor-counts-how-slowly
+  - term: ring-down
+    definition: 'The dying swing of an oscillator left to itself after a push, $q = Ae^{-\Gamma t/2}\cos(\omega_dt - \alpha)$.'
+    chapter: '4.1'
+    anchor: friction-makes-the-swing-die-away-and-the-quality-factor-counts-how-slowly
+  - term: quality factor
+    definition: 'A pure number, $Q = \omega_0/\Gamma$, that says how slowly an oscillator rings down: its energy falls by $e$ in $Q/2\pi$ swings. It is also the frequency of the oscillator''s line over the width of the line.'
+    chapter: '4.1'
+    anchor: friction-makes-the-swing-die-away-and-the-quality-factor-counts-how-slowly
+  - term: critical damping
+    definition: 'The friction at which an oscillator stops swinging and creeps back to rest instead, $\Gamma = 2\omega_0$, or $Q = \tfrac12$.'
+    chapter: '4.1'
+    anchor: friction-makes-the-swing-die-away-and-the-quality-factor-counts-how-slowly
+  - term: steady state
+    definition: 'The motion of a pushed oscillator once the ring-down from its start has died away: a swing at the frequency of the push, which lasts as long as the push does.'
+    chapter: '4.1'
+    anchor: a-steady-push-gets-a-steady-answer-the-response-function-times-the-push
+  - term: response function
+    definition: 'The steady answer of a system per unit of a push that rises and falls at the angular frequency $\omega$, $\tilde q = \chi(\omega)\tilde F$ in phasors; also called the susceptibility. For a damped oscillator $\chi = 1/m(\omega_0^2 - \omega^2 - i\Gamma\omega)$.'
+    chapter: '4.1'
+    anchor: a-steady-push-gets-a-steady-answer-the-response-function-times-the-push
+  - term: static compliance
+    definition: 'The response function at zero frequency, the stretch per unit of a steady force; $1/k$ for a spring of stiffness $k$.'
+    chapter: '4.1'
+    anchor: a-steady-push-gets-a-steady-answer-the-response-function-times-the-push
+  - term: resonance
+    definition: 'The large answer of an oscillator pushed near its natural frequency: at $\omega_0$ it swings $Q$ times as far as a steady push of the same size would move it, a quarter of a swing behind the push.'
+    chapter: '4.1'
+    anchor: a-steady-push-gets-a-steady-answer-the-response-function-times-the-push
+  - term: dissipative part
+    definition: 'The imaginary part of a response function, $\mathrm{Im}\,\chi$: the part of the motion a quarter of a swing behind the push, which takes energy from the push and turns it into heat.'
+    chapter: '4.1'
+    anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push
+  - term: reactive part
+    definition: 'The real part of a response function, $\mathrm{Re}\,\chi$: the part of the motion in step with the push or opposite to it, which stores energy and gives it back in every swing.'
+    chapter: '4.1'
+    anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push
+  - term: line
+    definition: 'A narrow peak against frequency, such as the average power $\tfrac12\omega\,\mathrm{Im}\,\chi\,|\tilde F|^2$ that a push delivers to an oscillator, largest at its natural frequency.'
+    chapter: '4.1'
+    anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push
+  - term: linewidth
+    definition: 'The full width at half maximum of a line. For a damped oscillator it is exactly the damping rate $\Gamma$.'
+    chapter: '4.1'
+    anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push
+  - term: wavenumber in inverse centimetres
+    definition: 'The spectroscopists'' measure of a frequency: the number of wavelengths of light at that frequency in one centimetre, $1/\lambda$, without the factor $2\pi$ of the wavenumber $k$. A line at $520\,\mathrm{cm^{-1}}$ has the frequency $1.56\times10^{13}\,\mathrm{Hz}$.'
+    chapter: '4.1'
+    anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push
+  - term: mode weight
+    definition: 'In a sum of oscillators, $\chi = \sum_n c_n^2/(\omega_n^2 - \omega^2 - i\Gamma_n\omega)$, the factor $c_n^2$ that says how strongly a push reaches mode $n$. For a push on one mass $m$ the weights add to $1/m$.'
+    chapter: '4.1'
+    anchor: a-body-with-many-modes-answers-as-a-sum-of-oscillators
+  - term: tremor
+    definition: 'The random trembling of a warm body''s shape, kept going by heat in every normal mode at once; the paper''s word for it. A mode''s share is the part of the tremor it carries; in the paper''s lattice ball one mode carries 85% of the quadrupole''s tremor.'
+    chapter: '4.1'
+    anchor: a-body-with-many-modes-answers-as-a-sum-of-oscillators
+  - term: impulse response
+    definition: 'The motion that follows a single blow of unit impulse, $\chi(t)$; for a damped oscillator $e^{-\Gamma t/2}\sin(\omega_dt)/m\omega_d$ after the blow and zero before. Its Fourier transform in time is the response function.'
+    chapter: '4.1'
+    anchor: the-answer-to-a-single-blow-comes-after-the-blow
+  - term: causal
+    definition: 'Said of a response that is zero before the push that causes it: $\chi(t) = 0$ for $t < 0$.'
+    chapter: '4.1'
+    anchor: the-answer-to-a-single-blow-comes-after-the-blow
