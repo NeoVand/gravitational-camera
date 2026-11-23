@@ -68,7 +68,8 @@ mass inside any region changes only by what crosses its surface. Take chapter 1.
 [small box](/tutorial/newton/gauss-and-poisson/#divergence-is-the-outflow-per-unit-volume) of volume $\Delta V$. The
 mass inside it is $\matter\rho\,\Delta V$, which changes by $(\partial\matter\rho/\partial t)\,\Delta V$ per second.
 Chapter 1.3 found that the flux out of the six faces of a small box is the divergence times its volume, so the mass
-leaving per second is $\nabla\cdot\matter{\vect J}\,\Delta V$. What the box gains is what it does not lose:
+leaving per second is $\nabla\cdot\matter{\vect J}\,\Delta V$. What the box gains is what it does not lose
+(Figure [](#fig:flow-box)):
 
 $$\frac{\partial\matter\rho}{\partial t}\,\Delta V = -\nabla\cdot\matter{\vect J}\,\Delta V .$$
 
@@ -97,9 +98,11 @@ vanishes, because $\nabla\matter\rho$ points along $\vect x$ and $\vect v$ is pe
 because $\partial_i(\epsilon_{ijk}\Omega_jx_k) = \epsilon_{ijk}\Omega_j\delta_{ik} = \epsilon_{iji}\Omega_j =
 0$. So a turning round body is a steady, confined flow: all of it moves, and its density at each point never changes.
 
-<!-- diagram: tut-flow-box — Chapter 1.3's small box (as tut-gauss-box), with mass flowing in through the face at x
-(blue arrow, shorter) and out through the face at x + Δx (orange arrow, longer); inside, a fill level or shade that
-drops between two instants, labelled ∂ρ/∂t < 0. One story: more leaves than enters, so the density inside falls. -->
+![Chapter 1.3's small box with mass flowing through it. The mass flux $\matter J_x(x)$ enters through the blue face at
+$x$, and the larger $\matter J_x(x + \Delta x)$ leaves through the orange face at $x + \Delta x$, so more mass leaves
+than enters. Beneath, the same box at the times $t$ and $t + \Delta t$: the density inside falls,
+$\partial\matter\rho/\partial t < 0$; the arrows' lengths and the shades are chosen for the
+drawing.](tut-flow-box){#fig:flow-box}
 
 ## A flow has a potential of its own, built like the gravitational one
 
@@ -187,7 +190,7 @@ We want the column of a turning ball. We assume a **ball of uniform density $\ma
 velocity $\vect\Omega$ about its centre $\vect s$**, which is measured from the pixel. The pixel is outside the ball,
 and a line of sight that meets it enters at the distance $a$ and leaves at $b$. At the point $r\hat n$ the velocity is
 $\vect\Omega\times(r\hat n - \vect s)$, chapter 1.1's rule with the centre moved to $\vect s$. Only the stretch from $a$
-to $b$ contributes:
+to $b$ contributes (Figure [](#fig:flow-column)):
 
 $$\vect J(\hat n) = \matter\rho\int_a^b\vect\Omega\times(r\hat n - \vect s)\,\frac{\dd r}{r} .$$
 
@@ -212,10 +215,12 @@ its current column shows it.
 $\matter\rho(b - a)\,\vect\Omega\times(a\hat n - \vect s)/a$: the mass flux where the line crosses, times the thickness,
 divided by the distance, as the weight $\dd r/r$ says.
 
-<!-- diagram: tut-flow-column — A ball turning about an axis across the page, a pixel at the left, and one line of
-sight through the ball, with the entry and exit distances a and b marked along it. Velocity arrows at five points on the
-chord; each split into its part along the line (faint, thin) and its part across it (bold), with only the bold parts
-labelled "counts". -->
+![A ball turning about an axis at right angles to the page, cut through the plane that holds the pixel, the ball's
+centre and one line of sight, which enters the ball at the distance $a$ from the pixel and leaves at $b$. At five
+points of the chord the velocity is split into its part along the line (faint), which adds nothing to $\curv{\tB}$, and
+its part across the line (bold), which counts. The part along the line is the same at every point, and the part across
+vanishes at the point nearest the centre; the sizes and the arrows' scale are chosen for the
+drawing.](tut-flow-column){#fig:flow-column}
 
 <!-- try: current-column — A disc of uniform density turning about a point the reader drags, seen from a camera at the
 left. A fan of lines of sight, each with its current column drawn as an arrow at the camera's sky (only the part across
@@ -260,13 +265,14 @@ An example, in a ball of radius $R$, is
 $$\chi = \frac{4K\varpi^2}{R^2}\Bigl(1 - \frac{r^2}{R^2}\Bigr) ,$$
 
 where $\varpi = r\sin\vartheta$ is the distance from the axis, in metres, and $K$ is a constant in kilograms per second.
-It vanishes on the axis and on the surface, and its contours make one roll in each half-plane (the stretch problem
-below).
+It vanishes on the axis and on the surface, and its contours make one roll in each half-plane
+(Figure [](#fig:flow-stream) and the stretch problem below).
 
-<!-- diagram: tut-flow-stream — Left: a meridian section of a ball (axis vertical) with contours of the example χ, one
-closed roll in each half, arrows along them; one point P with its circle about the axis drawn in perspective as a thin
-ellipse and the disc it spans lightly shaded, labelled "2πχ(P) crosses". Right: the same section with a swirl, dots on
-one side of the axis and crosses on the other (out of and into the page). -->
+![A ball cut in half through its axis and seen a little from above. Left, rolls: the contours of the example $\chi$ at
+0.35, 0.65 and 0.9 of its greatest value $K$, along which the matter rises near the axis and sinks near the surface;
+the circle about the axis through the point $P$ bounds a disc, shaded in front of the section, and $2\pi\chi(P)$ is the
+mass that crosses it each second. Right, a swirl: the matter comes out of the page on one side of the axis and goes
+into it on the other; the place of $P$ and the view are chosen for the drawing.](tut-flow-stream){#fig:flow-stream}
 
 The two parts can be written with two functions of position, $T$ and $P$, as[^TP]
 
@@ -430,11 +436,11 @@ It vanishes when $a^5 = R^5/2$:
 $$\boxed{\;a = 2^{-1/5}R = 0.871\,R .\;}$$
 
 The inner ball holds $2^{-3/5} = 66$ per cent of the mass, and the outer third, lying farther from the axis, carries
-as much angular momentum. Outside, $\field{\vect A} = 0$ and there is no magnetic part at all, "though all of it moves",
-in the paper's words. The paper's Section XIII reads this flow with two octupolar tides, the next finer pattern after
-the simple stretch and squeeze. Their bracket has the size $0.221\,\matter M\Omega R^4$, in $\mathrm{kg\,m^4\,s^{-1}}$
-(equation [](/paper/#eq:hidden-spin), chapter 13.4), while two quadrupolar tides give zero, because their bracket is
-proportional to $\vect L$.
+as much angular momentum (Figure [](#fig:flow-hidden)). Outside, $\field{\vect A} = 0$ and there is no magnetic part at
+all, "though all of it moves", in the paper's words. The paper's Section XIII reads this flow with two octupolar tides,
+the next finer pattern after the simple stretch and squeeze. Their bracket has the size $0.221\,\matter M\Omega R^4$,
+in $\mathrm{kg\,m^4\,s^{-1}}$ (equation [](/paper/#eq:hidden-spin), chapter 13.4), while two quadrupolar tides give
+zero, because their bracket is proportional to $\vect L$.
 
 
 ::: try {#hidden-flow}
@@ -446,10 +452,10 @@ below it, so the two vanish together. Find where the sum of degree three reads z
 much more the outer layers count there.
 :::
 
-<!-- diagram: tut-flow-hidden — The hidden swirl in section through the equator, seen along the axis: an inner disc of
-radius 0.871R with arrows turning one way (orange), the outer ring to R turning the other way (blue). Beside it two
-bars, the inner ball's angular momentum and the shell's, equal and opposite, with the masses 66% and 34% written
-under them. -->
+![The hidden swirl in section through its equator, seen along the axis. The inner ball, out to $0.871R$, turns one way
+(orange) and the shell out to $R$ turns the other way (blue) at the same rate; each arrow is the path of a part in one
+interval of time. The bars are the two angular momenta, equal and opposite, although the inner ball holds 66 per cent
+of the mass and the shell 34 per cent.](tut-flow-hidden){#fig:flow-hidden}
 
 ## The density and the flow each have a null space
 
