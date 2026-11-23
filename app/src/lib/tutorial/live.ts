@@ -43,6 +43,7 @@ import BitsPerPatch from './live/BitsPerPatch.svelte';
 import PositiveImage from './live/PositiveImage.svelte';
 import DrivenCart from './live/DrivenCart.svelte';
 import Equipartition from './live/Equipartition.svelte';
+import NormalModes from './live/NormalModes.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -180,6 +181,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'Six masses on springs in a heat bath: their velocities, and the running averages of ½m⟨v²⟩, ⟨Q̇_x²⟩ and ⟨Q̇_xy²⟩ against what the chapter predicts',
 		component: Equipartition
+	},
+	'normal-modes': {
+		label:
+			'A disc of nineteen masses on springs, its normal modes and the quotient of a shape you drag',
+		component: NormalModes
 	},
 	'noise-spectrum': {
 		label:

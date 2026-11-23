@@ -6,7 +6,7 @@ part: '4'
 requires: ['1.1', '1.3', '1.4', '1.5', '1.6', '2.2', '2.3', '3.4', '4.1', '4.2']
 paper: [sec:near-field, app:benchmarks, fig:tremor, sec:thermal, eq:surface-glow, eq:wave-zone, eq:optics-bound]
 figures: []
-live: []
+live: [normal-modes]
 depth: A
 ---
 
@@ -83,7 +83,8 @@ So chapter 1.5's
 [split](/tutorial/newton/five-numbers/#every-symmetric-table-splits-into-a-part-that-changes-size-and-a-part-that-changes-shape)
 applies to the strain as it did to the tide. The trace part $\tfrac13u_{kk}\delta_{ij}$ changes the volume, and so the
 density. The trace-free part $\tilde u_{ij} = u_{ij} - \tfrac13\delta_{ij}u_{kk}$ changes only the shape, and a
-deformation that has only this part is a **shear**.
+deformation that has only this part is a **shear**. Figure [](#fig:strain) sets a shear, a change of volume and a
+rigid turn side by side.
 
 **An example.** Appendix A's displacement in a ball of radius $R$ is $\vect u = (q/R)(-x/2, -y/2, z)$, where the
 amplitude $q$ is in metres. Its table $\partial_ju_i$ is $(q/R)\,\mathrm{diag}(-\tfrac12, -\tfrac12, 1)$, already
@@ -92,14 +93,10 @@ $q$ and the equator moves inward by $q/2$: the ball becomes slightly longer alon
 the paper says that it "changes the density nowhere". **A non-example** is the rigid turn above, which moves every bit
 and strains none.
 
-<!-- diagram: tut-elastic-strain — Three small squares of material side by side, each with its rest outline dashed
-and its deformed outline solid, the deformation exaggerated. Left: a shear, the square stretched along one diagonal
-(orange) and squeezed along the other (blue) with the same area, its strain table (0, s; s, 0) below it. Middle: a
-change of volume, the square grown equally in every direction, its table (e, 0; 0, e) below. Right: a small rigid turn,
-the square turned by a few degrees and not deformed, its table of ∂_j u_i (0, −θ; θ, 0) below with the label "no
-strain". Caption: "Look first at the right-hand square: it has moved, but no distance within it has changed, so its
-strain is zero. The shear changes the shape at fixed area, the middle square the area at fixed shape. Deformations
-exaggerated." -->
+![Look first at the right-hand square: it has turned, but no distance within it has changed, so its strain is
+zero. The shear on the left stretches the square along one diagonal (orange) and squeezes it along the other
+(blue) at fixed area, and the middle square changes its area at fixed shape. The deformations are
+exaggerated.](tut-elastic-strain){#fig:strain}
 
 ## Stress is force per area, and it too is a symmetric table
 
@@ -118,7 +115,8 @@ faces parallel to the $z$ axis give it a torque $(\matter T_{yx} - \matter T_{xy
 [moment of inertia](/tutorial/newton/motion/#a-turning-body-keeps-the-spread-of-its-mass-in-a-table-of-inertia) about
 it is $\matter\rho a^5/6$.[^cube] It would turn with the angular acceleration, torque over moment of inertia,
 $6(\matter T_{yx} - \matter T_{xy})/\matter\rho a^2$, which grows without limit as the cube shrinks. Small bits of a
-solid do not spin up in this way, so $\matter T_{xy} = \matter T_{yx}$.
+solid do not spin up in this way, so $\matter T_{xy} = \matter T_{yx}$. Figure [](#fig:stress) shows these entries on
+two faces of a cube.
 
 A fluid at rest pushes straight inward on every face, equally in every direction, so its stress is
 $\matter T_{ij} = -p\,\delta_{ij}$, with $p$ the **pressure**. For any stress we define the pressure as the average push,
@@ -131,12 +129,9 @@ $$\matter\rho\,\ddot u_i = \partial_j\matter T_{ij} . \label{eq:newton-solid}$$
 
 The units agree: a pascal per metre is a newton per cubic metre.
 
-<!-- diagram: tut-elastic-stress — A small cube in perspective with axes x, y, z. On the visible face normal to x,
-three arrows from its centre: T_xx along x (outward, labelled "tension"), T_yx along y and T_zx along z, the last two
-lying in the face. On the face normal to y, the arrow T_xy along x, drawn the same length as T_yx, with a small mark
-"T_xy = T_yx". Caption: "Look first at the face normal to x: the force on it per area is the column T_ix, one
-component along its normal and two along the face. The equal lengths of T_xy and T_yx keep the cube from spinning.
-Arrow lengths schematic." -->
+![Look first at the face normal to $x$: the force on it per area is the column $\matter T_{ix}$, one component along
+its normal and two along the face. The ticks mark the equal lengths of $\matter T_{xy}$ and $\matter T_{yx}$, which keep
+the cube from spinning. The arrows' lengths are schematic.](tut-elastic-stress){#fig:stress}
 
 ## In a uniform solid the stress answers each part of the strain with its own modulus
 
@@ -362,31 +357,27 @@ moves no mass toward or away from the centre, so it leaves the quadrupole unchan
 none of it.[^twist] So [](#eq:ball-note) bounds the 12.6 kHz mode, and the paper's "lowest quadrupole mode" is the
 lowest mode that changes the mass quadrupole. Rayleigh's $\sqrt{10} = 3.16$ lies 20% above 2.645, on the side the bound
 requires, because the true mode is not a uniform shear. **A check** the reader can make: [](#eq:ball-note) and Lamb's
-value both scale as $c_T/R$, so a ball of half the radius rings an octave higher.
+value both scale as $c_T/R$, so a ball of half the radius rings an octave higher. Figure [](#fig:trial) shows the
+shape and the three notes.
 
-<!-- diagram: tut-elastic-trial — Left: a meridian section of the ball (circle of radius R, z up), with short arrows
-of u = (q/R)(−x/2, z) on a square grid of about 9 × 9 points inside the circle (orange where the arrow points away from
-the equatorial plane, blue where it points toward the axis), and the outlines r = R(1 ± 0.15 P₂(cos θ)) dashed, the
-taller labelled "+q" and the flatter "−q". Right: a vertical frequency axis from 0 to 16 kHz with three ticks, "Rayleigh's
-bound 15.1 kHz", "Lamb, exact 12.6 kHz" and, in grey, "twist 11.9 kHz (moves no mass)", and a small down arrow between
-the first two labelled "the true note lies below". Caption: "Look first at the arrows: the shape pulls the ball out along
-its axis and in round its equator, most at the surface. The outlines are exaggerated; the frequencies are exact, for
-c_T = 3000 m/s and R = 10 cm." -->
+![Look first at the arrows, Appendix A's displacement in a section through the axis: the shape pulls the ball out
+along its axis (orange, away from the centre) and in round its equator (blue, toward it), most at the surface. The
+dashed outlines are the surface $r = R + q\,P_2(\cos\vartheta)$ at the two ends of a swing, with $q = \pm0.15R$; they
+and the arrows are exaggerated, and the frequencies are exact, for $c_T = 3000\unit{m\,s^{-1}}$ and
+$R = 10\unit{cm}$.](tut-elastic-trial){#fig:trial}
 
-<!-- try: normal-modes — A disc of 19 equal masses on a triangular lattice (a hexagon of side two spacings), each joined
-to its nearest neighbours by 42 equal springs, unstretched at rest, in the plane; 38 coordinates, 3 zero modes (two
-slides and a turn), 35 ringing modes. Exact frequencies in units of √(k/m): 0.603 (twice: two squashes 45° apart, the
-disc's quadrupole), 0.680 (twice), 0.806, 0.915 (twice), 0.917, 0.937, ... up to 2.295 (twice). Left panel: the disc,
-animated in the chosen mode, or holding a shape the reader drags (select a mass with the mouse or Tab, move it with the
-arrow keys; "release" lets the shape swing as the sum of its modes). A "squash" button sets the shape u = (x, −y).
-Right panel: bars of the shares a_n²/Σa² of the current shape in each mode, ordered by frequency, and two readouts: the
-Rayleigh quotient of the shape with its zero-mode parts removed (as the bound assumes), as a frequency, and the lowest
-ringing frequency 0.603. A list picks a mode (the three zero modes first, then by frequency). Opens on the lowest
-ringing mode. Prediction above it: "Can any shape you make give a quotient below the lowest note?" (No.) Then: "Press
-squash. How far above the lowest note is it, and how much of the shape lies in that mode?" (0.661, 9.6% above, with 89%
-of the shape in the lowest pair; compare the lattice ball, whose quotient lies 14% above its mode, with 85% of the shape
-at that frequency.) "Now pull one edge mass outward alone." (2.09 times the lowest note, with the zero-mode parts
-removed: a jagged shape mixes in high modes.) Both themes, phone width. -->
+::: try {#normal-modes}
+A disc of nineteen equal masses on a triangular lattice, each joined to its nearest neighbours by equal springs, lies
+in a plane: thirty-eight coordinates, three zero modes and thirty-five modes that ring. On the left the disc rings in
+the mode you pick from the list, or holds a shape you make by dragging its masses (or by choosing a mass with Tab and
+moving it with the arrow keys); a stretched spring is tinted orange and a squeezed one blue. *Release* lets the shape
+swing as the sum of its modes, and *Squash* sets the shape $\vect u = (x, -y)$. On the right, bars show the share of
+the shape in each mode, in order of frequency, and the readouts give the shape's Rayleigh quotient, with its parts
+along the zero modes removed, beside the lowest note.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, pick
+the two modes of the lowest note and compare them with the squash.
+:::
 
 ## A ringing quadrupole makes a tide
 
