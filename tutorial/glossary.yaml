@@ -2772,3 +2772,91 @@ terms:
     definition: 'Radiation in thermal equilibrium at one temperature, the glow inside a closed box whose walls are at that temperature (chapter 10.1 derives its spectrum). Seen by a moving observer it is a black body in every direction, at the temperature $T/\gamma(1 - \beta\cos\alpha'')$.'
     chapter: '6.3'
     anchor: a-moving-black-body-is-still-a-black-body-hotter-ahead
+  - term: charge
+    definition: 'The property of a body by which it feels and makes electric and magnetic forces, measured in coulombs. It may be positive or negative, and like charges repel.'
+    chapter: '6.6'
+    anchor: the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge
+  - term: test charge
+    definition: 'A charge so small that it does not move the charges around it, so that the force on it measures the field there without changing it.'
+    chapter: '6.6'
+    anchor: the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge
+  - term: electric field
+    definition: 'The force per unit charge on a test charge at rest, $\mathbf E$, in volts per metre. In light it is one of the two fields of the wave.'
+    role: light
+    chapter: '6.6'
+    anchor: the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge
+  - term: magnetic field
+    definition: 'The field $\mathbf B$, in teslas, that adds the force $q\,\mathbf v\times\mathbf B$ on a charge $q$ moving with velocity $\mathbf v$. Times the speed of light it has the unit of the electric field.'
+    role: light
+    chapter: '6.6'
+    anchor: the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge
+  - term: Lorentz force
+    definition: 'The whole force $q(\mathbf E + \mathbf v\times\mathbf B)$ on a charge $q$ moving with velocity $\mathbf v$ through an electric field $\mathbf E$ and a magnetic field $\mathbf B$.'
+    chapter: '6.6'
+    anchor: the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge
+  - term: sensor of light
+    definition: 'In the paper, an instrument at one point that reads the electric and magnetic fields there: six numbers, against the ten of a gravitational pixel.'
+    chapter: '6.6'
+    anchor: the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge
+  - term: "Maxwell's equations"
+    definition: 'The four laws of the electric and magnetic fields: Gauss''s law $\nabla\cdot\mathbf E = \rho_q/\varepsilon_0$, $\nabla\cdot\mathbf B = 0$, Faraday''s law and the Ampère–Maxwell law. With $\mathbf F = \mathbf E + ic\mathbf B$ they become two complex equations.'
+    chapter: '6.6'
+    anchor: maxwells-four-equations-are-two-equations-for-one-complex-vector
+  - term: "Faraday's law"
+    definition: 'The law $\nabla\times\mathbf E = -\partial\mathbf B/\partial t$: a magnetic field that changes in time makes an electric field that swirls round it.'
+    chapter: '6.6'
+    anchor: maxwells-four-equations-are-two-equations-for-one-complex-vector
+  - term: Ampère–Maxwell law
+    definition: 'The law $\nabla\times\mathbf B = \mu_0\mathbf J_q + c^{-2}\partial\mathbf E/\partial t$: a current, or an electric field that changes in time, makes a magnetic field that swirls round it.'
+    chapter: '6.6'
+    anchor: maxwells-four-equations-are-two-equations-for-one-complex-vector
+  - term: Riemann–Silberstein vector
+    definition: 'The complex vector $\mathbf F = \mathbf E + ic\mathbf B$, which holds light''s six numbers as three complex ones. A moving observer reads it turned by an imaginary angle.'
+    role: light
+    chapter: '6.6'
+    anchor: maxwells-four-equations-are-two-equations-for-one-complex-vector
+  - term: energy density
+    definition: 'Energy per unit volume, in joules per cubic metre. For the electric and magnetic fields it is $\tfrac12\varepsilon_0(E^2 + c^2B^2)$, about $4.5\times10^{-6}\,\mathrm{J\,m^{-3}}$ in sunlight at the Earth.'
+    chapter: '6.6'
+    anchor: the-energy-of-the-field-and-its-flow-are-two-products-of-the-complex-field
+  - term: Poynting vector
+    definition: 'The flow of the energy of the electric and magnetic fields, $\mathbf E\times\mathbf B/\mu_0$, in watts per square metre. In a light wave it points along the wave and equals the speed of light times the energy density.'
+    chapter: '6.6'
+    anchor: the-energy-of-the-field-and-its-flow-are-two-products-of-the-complex-field
+  - term: field tensor
+    definition: 'The antisymmetric table $F^{\mu\nu}$ of four rows that holds the electric and magnetic fields, $F^{0i} = E_i/c$ and $F^{ij} = \epsilon_{ijk}B_k$, and changes as a tensor when the observer changes.'
+    role: light
+    chapter: '6.6'
+    anchor: a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle
+  - term: imaginary angle
+    definition: 'An angle $i\eta$ with $\eta$ real. A turn by it has $\cos(i\eta) = \cosh\eta$ and $\sin(i\eta) = i\sinh\eta$, and acting on $\mathbf E + ic\mathbf B$ it is a boost with rapidity $\eta$.'
+    chapter: '6.6'
+    anchor: a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle
+  - term: complex rotation
+    definition: 'A $3\times3$ table $P$ of complex numbers with $P^{\mathsf T}P = 1$ and determinant 1. Real turns and boosts both act on $\mathbf E + ic\mathbf B$ as complex rotations, which keep the dot product without conjugates.'
+    chapter: '6.6'
+    anchor: one-complex-number-is-the-same-for-every-observer
+  - term: conjugate transpose
+    definition: 'The table $P^\dagger$ made from a complex table $P$ by swapping its rows and columns and replacing every entry by its complex conjugate. A table keeps the Hermitian product $\mathbf a\cdot\mathbf b^*$ only if $P^\dagger P = 1$; a boost has $\Lambda^\dagger = \Lambda$, so it does not.'
+    chapter: '6.6'
+    anchor: one-complex-number-is-the-same-for-every-observer
+  - term: null field
+    definition: 'A field of light with $\mathbf F\cdot\mathbf F = 0$: the electric and magnetic fields are at right angles and $|\mathbf E| = c|\mathbf B|$, for every observer. A plane wave is one.'
+    chapter: '6.6'
+    anchor: one-complex-number-is-the-same-for-every-observer
+  - term: stereographic coordinate
+    definition: 'A complex number $z$ that labels a direction on the sky: $z = 0$ is one pole, $|z| = 1$ the equator, and $z \to \infty$ the other pole. The paper writes the null vector of a direction as $\mathbf m(z)$.'
+    chapter: '6.6'
+    anchor: light-has-two-special-directions-where-gravity-has-four
+  - term: Wigner rotation
+    definition: 'The turn of the axes that two boosts in different directions leave behind: they make one boost followed by a turn. For $0.6c$ along $x$ and then $0.6c$ along $y$ it is $12.7°$ about $z$.'
+    chapter: '6.6'
+    anchor: two-boosts-make-a-boost-and-a-turn
+  - term: polar decomposition
+    definition: 'The splitting of a complex rotation into a pure boost followed by a real turn, $P = R_0e^{iK_0}$ with $e^{2iK_0} = P^\dagger P$; the paper''s way of reading an orientation and a velocity from one reading.'
+    chapter: '6.6'
+    anchor: two-boosts-make-a-boost-and-a-turn
+  - term: group
+    definition: 'A set of operations, such as turns and boosts, in which the product of any two is again in the set, every operation can be undone, and doing nothing is included.'
+    chapter: '6.6'
+    anchor: two-boosts-make-a-boost-and-a-turn

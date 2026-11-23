@@ -99,7 +99,7 @@ parts:
       - { id: '6.3', slug: relativity/aberration, title: 'Aberration, Doppler, and seeing where things are now', short: Aberration and Doppler, size: M, status: published }
       - { id: '6.4', slug: relativity/energy-and-momentum, title: 'Energy and momentum; the weight of heat; light-cone coordinates', short: Energy and momentum, size: M, status: published }
       - { id: '6.5', slug: relativity/stress-energy, title: 'What gravitates: the stress–energy tensor', short: The stress-energy tensor, size: M, status: planned }
-      - { id: '6.6', slug: relativity/maxwell-complex, title: "Maxwell's field as one complex vector F = E + icB; boosts as complex rotations", short: "Maxwell's field", size: L, status: planned }
+      - { id: '6.6', slug: relativity/maxwell-complex, title: "Maxwell's field as one complex vector F = E + icB; boosts as complex rotations", short: "Maxwell's field", size: L, status: published }
 
   - id: '7'
     slug: geometry

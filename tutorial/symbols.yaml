@@ -47,6 +47,14 @@ symbols:
     meaning: 'How fast the one who measures is moving, and in which direction, relative to the frame in which the scene is described. In chapter 6.1 it is the steady velocity of one inertial frame through another, such as the pixel''s $0.6c$ through the room, or a body''s through the pixel''s frame.'
     chapter: '6.1'
     anchor: every-observer-measures-the-same-speed-of-light
+  - key: electric-field
+    title: Electric field
+    tex: '\light{E}'
+    role: light
+    kind: A vector at each point; in V/m
+    meaning: 'The force per unit charge on a charge at rest. In light it is one half of the wave; the magnetic field $B$ is the other.'
+    chapter: '6.6'
+    anchor: the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge
   - key: mean-density
     title: Mean density
     tex: '\matter{\bar\rho}'
@@ -2054,3 +2062,91 @@ symbols:
     meaning: 'The sum $Q = \sum_aq_a$ over the particles of a body. With the weights $q_a/Q$, the rest mass is $\mathcal M^2c^2 = Q\sum_am_a^2c^2/q_a + Q^2\,\mathrm{Var}(\mathbf p_\perp/q)$. (Not a moment $Q_h$ nor a quality factor.)'
     chapter: '6.4'
     anchor: a-bodys-rest-mass-in-light-cone-form-is-a-sum-and-a-weighted-variance
+  - key: magnetic-field
+    title: Magnetic field
+    tex: '\light{B}'
+    role: light
+    kind: A vector at each point; in teslas (V s/m²)
+    meaning: 'The field that pushes on a moving charge: a charge $q$ moving with velocity $\mathbf v$ feels $q\,\mathbf v\times\mathbf B$ on top of $q\mathbf E$. Multiplied by $c$ it is in V/m, like $\mathbf E$; in a light wave $c|\mathbf B| = |\mathbf E|$, and sunlight has $B_{\rm rms} = 2.39\,\mu\mathrm T$. (Not the magnetic part $\mathcal B_{ij}$ of the curvature, nor the Planck radiance $B_\omega$.)'
+    chapter: '6.6'
+    anchor: the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge
+  - key: complex-field
+    title: Riemann–Silberstein vector
+    tex: '\light{\boldsymbol F}'
+    role: light
+    kind: A complex vector at each point; in V/m
+    meaning: 'Light''s two fields as one complex vector, $\mathbf F = \mathbf E + ic\mathbf B$; the paper writes $\mathbf E + ic\mathbf B$ without a letter. Maxwell''s equations become $\nabla\cdot\mathbf F = \rho_q/\varepsilon_0$ and $\nabla\times\mathbf F = (i/c)\partial_t\mathbf F + i\mu_0c\mathbf J_q$; a plane wave is $a\mathbf m$; a moving sensor reads $\Lambda\mathbf F$; and $\mathbf F\cdot\mathbf F = E^2 - c^2B^2 + 2ic\,\mathbf E\cdot\mathbf B$ is the same for every observer. (Not the paper''s energy flux $\mathbf F$, nor a force.)'
+    chapter: '6.6'
+    anchor: maxwells-four-equations-are-two-equations-for-one-complex-vector
+  - key: field-tensor
+    title: Electromagnetic field tensor
+    tex: '\light{F}^{\mu\nu}'
+    role: light
+    kind: An antisymmetric table of four rows; in teslas
+    meaning: 'The six numbers of light as one tensor of spacetime: $F^{0i} = E_i/c$, $F^{ij} = \epsilon_{ijk}B_k$, and with both indices lowered $F_{0i} = -E_i/c$. A boost changes it by $\Lambda^\mu{}_\alpha\Lambda^\nu{}_\beta F^{\alpha\beta}$, which is the same change as the paper''s $3\times3$ complex $\Lambda$ acting on $\mathbf E + ic\mathbf B$.'
+    chapter: '6.6'
+    anchor: a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle
+  - key: complex-boost
+    title: Boost as a complex rotation
+    tex: '\Lambda'
+    role: none
+    kind: A 3×3 table of complex numbers with ΛᵀΛ = 1
+    meaning: 'The paper''s $\Lambda = \exp(-i\eta\,\hat u\cdot\mathbf L)$: a sensor moving with rapidity $\eta$ along $\hat u$ reads $\Lambda\mathbf F$ for light and $\Lambda\mathcal W\Lambda^{\mathsf T}$ for gravity. It is the table of a turn of the axes about $\hat u$ by the imaginary angle $i\eta$. For $\hat u = \hat z$ its rows are $(\cosh\eta, i\sinh\eta, 0)$, $(-i\sinh\eta, \cosh\eta, 0)$, $(0, 0, 1)$. (Not the $4\times4$ $\Lambda^\mu{}_\nu$ of chapter 6.2, which always carries its indices, the projector $\Lambda_{ij,kl}$, a logarithm or the cosmological constant.)'
+    chapter: '6.6'
+    anchor: a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle
+  - key: electric-constant
+    title: Electric constant
+    tex: '\varepsilon_0'
+    role: none
+    kind: A constant; 8.854 × 10⁻¹² C V⁻¹ m⁻¹
+    meaning: 'The constant in Gauss''s law for electricity, $\nabla\cdot\mathbf E = \rho_q/\varepsilon_0$, and in the energy density of the field, $u = \tfrac12\varepsilon_0(E^2 + c^2B^2)$. With the magnetic constant it obeys $\varepsilon_0\mu_0c^2 = 1$.'
+    chapter: '6.6'
+    anchor: maxwells-four-equations-are-two-equations-for-one-complex-vector
+  - key: magnetic-constant
+    title: Magnetic constant
+    tex: '\mu_0'
+    role: none
+    kind: A constant; 1.257 × 10⁻⁶ V s A⁻¹ m⁻¹
+    meaning: 'The constant in the Ampère–Maxwell law, $\nabla\times\mathbf B = \mu_0\mathbf J_q + c^{-2}\partial_t\mathbf E$, and in Poynting''s vector $\mathbf E\times\mathbf B/\mu_0$. It obeys $\varepsilon_0\mu_0c^2 = 1$. (Not a shear modulus $\mu$.)'
+    chapter: '6.6'
+    anchor: maxwells-four-equations-are-two-equations-for-one-complex-vector
+  - key: charge-density
+    title: Charge density
+    tex: '\rho_q'
+    role: none
+    kind: A number at each point; in C/m³
+    meaning: 'Electric charge per unit volume, the source of the electric field in Gauss''s law $\nabla\cdot\mathbf E = \rho_q/\varepsilon_0$. Its current density $\mathbf J_q$, in A/m², is the charge crossing a unit area per second. The subscript keeps both apart from the mass density $\rho$ and mass flux $\mathbf J$.'
+    chapter: '6.6'
+    anchor: maxwells-four-equations-are-two-equations-for-one-complex-vector
+  - key: light-amplitude
+    title: Complex amplitude of light
+    tex: 'a'
+    role: none
+    kind: A complex number; in V/m
+    meaning: 'The number in $\mathbf E + ic\mathbf B = a\,\mathbf m$ for a plane wave, $a = \sqrt2(E_1 - iE_2)$. Its path in the complex plane as the wave passes is the polarization: a circle for circular, a line for linear. A sensor that runs with the wave at rapidity $\eta$ reads $e^{-\eta}a$, the Doppler factor.'
+    chapter: '6.6'
+    anchor: in-a-light-wave-the-complex-field-is-a-multiple-of-one-null-vector
+  - key: em-energy-density
+    title: Energy density of the field
+    tex: 'u'
+    role: none
+    kind: A number at each point; in J/m³
+    meaning: 'The energy of the electric and magnetic fields per unit volume, $u = \tfrac12\varepsilon_0(E^2 + c^2B^2) = \tfrac12\varepsilon_0\,\mathbf F^*\cdot\mathbf F$. Sunlight at the Earth has $u = 4.54\times10^{-6}\,\mathrm{J\,m^{-3}}$. It changes from one observer to another. (Not a four-velocity $u^\mu$.)'
+    chapter: '6.6'
+    anchor: the-energy-of-the-field-and-its-flow-are-two-products-of-the-complex-field
+  - key: poynting-vector
+    title: Poynting vector
+    tex: '\boldsymbol S'
+    role: none
+    kind: A vector at each point; in W/m²
+    meaning: 'The flow of the field''s energy, $\mathbf S = \mathbf E\times\mathbf B/\mu_0 = \tfrac12\varepsilon_0c\,i\,\mathbf F\times\mathbf F^*$: the energy crossing a unit area per second. In a plane wave $\mathbf S = cu\,\hat k$; for sunlight $|\mathbf S| = 1361\,\mathrm{W\,m^{-2}}$. The paper builds gravity''s direction of travel from the same product of $\mathbf m$.'
+    chapter: '6.6'
+    anchor: the-energy-of-the-field-and-its-flow-are-two-products-of-the-complex-field
+  - key: null-vector-z
+    title: Null vector of a direction on the sky
+    tex: '\boldsymbol m(z)'
+    role: none
+    kind: A complex vector with no unit, for each complex number z
+    meaning: 'The paper''s $\mathbf m(z) = (1 - z^2, i(1 + z^2), -2z)$, a null vector for the direction $\hat n(z) = (2\,\mathrm{Re}\,z, 2\,\mathrm{Im}\,z, 1 - |z|^2)/(1 + |z|^2)$, labelled by its stereographic coordinate $z$. Light''s principal null directions solve $\mathbf m(z)\cdot\mathbf F = 0$, two roots; gravity''s solve $\mathbf m(z)^{\mathsf T}\mathcal W\mathbf m(z) = 0$, four.'
+    chapter: '6.6'
+    anchor: light-has-two-special-directions-where-gravity-has-four
