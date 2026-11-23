@@ -2544,3 +2544,65 @@ terms:
     definition: 'The two-dimensional Fourier transform of a projection along $\hat n$ equals the body''s three-dimensional transform on the plane of wavevectors at right angles to $\hat n$. Projections from all the directions of one plane therefore fix the body.'
     chapter: '5.6'
     anchor: a-body-that-is-not-round-needs-views-from-many-directions
+  - term: event
+    definition: 'A place at a time, such as a flash or the tick of a clock. Every observer agrees that an event happens, though not on its time and place.'
+    chapter: '6.1'
+    anchor: every-observer-measures-the-same-speed-of-light
+  - term: worldline
+    definition: 'The path of a body through space and time: the list of events it passes through. A body at rest has a worldline straight up a diagram of time against place.'
+    chapter: '6.1'
+    anchor: every-observer-measures-the-same-speed-of-light
+  - term: rest frame
+    definition: 'The inertial frame in which a body or an observer is at rest: its own point of view, with its own rulers and clocks.'
+    role: obs
+    chapter: '6.1'
+    anchor: every-observer-measures-the-same-speed-of-light
+  - term: synchronized clocks
+    definition: 'Clocks of one frame set by Einstein''s rule: a flash sent from A at $t_1$ and returned from B at $t_2$ reached B at $(t_1 + t_2)/2$. Each frame synchronizes its own clocks with its own light.'
+    chapter: '6.1'
+    anchor: every-observer-measures-the-same-speed-of-light
+  - term: Lorentz transformation
+    definition: 'The rule that carries the time and place of an event from one inertial frame to another moving at $\beta c$ along $x$: $ct'' = \gamma(ct - \beta x)$, $x'' = \gamma(x - \beta ct)$, with $\gamma = (1 - \beta^2)^{-1/2}$ and the directions across the motion unchanged.'
+    role: obs
+    chapter: '6.1'
+    anchor: steady-motion-along-a-line-mixes-time-and-distance
+  - term: boost
+    definition: 'A change from one inertial frame to another that moves steadily relative to it, with axes kept parallel. It is described by the Lorentz transformation.'
+    role: obs
+    chapter: '6.1'
+    anchor: steady-motion-along-a-line-mixes-time-and-distance
+  - term: interval
+    definition: 'The quantity $-c^2\Delta t^2 + \Delta x^2 + \Delta y^2 + \Delta z^2$ between two events, in square metres. Every inertial observer finds the same interval, though not the same $\Delta t$ or $\Delta x$.'
+    chapter: '6.1'
+    anchor: steady-motion-along-a-line-mixes-time-and-distance
+  - term: signature
+    definition: 'The list of signs in front of the squares of the interval: minus for the time and plus for each of the three directions of space. The paper''s signature is $-{+}{+}{+}$.'
+    chapter: '6.1'
+    anchor: steady-motion-along-a-line-mixes-time-and-distance
+  - term: relativity of simultaneity
+    definition: 'The fact that two separated events at the same time for one observer happen at different times for another: $\Delta t'' = -\gamma\beta\,\Delta x/c$. At $0.6c$, two flashes a light-second apart are 0.75 s apart.'
+    chapter: '6.1'
+    anchor: moving-observers-disagree-about-what-happens-at-the-same-time
+  - term: slice of simultaneity
+    definition: 'The set of all events that one observer calls "now". For an observer moving at $\beta c$ it is tilted, in a diagram of $ct$ against $x$, to the line $ct = \beta x$.'
+    role: obs
+    chapter: '6.1'
+    anchor: moving-observers-disagree-about-what-happens-at-the-same-time
+  - term: time dilation
+    definition: 'The slowing of a moving clock as judged by a frame it moves through: while it ticks $\Delta t''$, the frame''s clocks advance $\gamma\Delta t''$. At $0.6c$ it ticks 8 s while they tick 10.'
+    chapter: '6.1'
+    anchor: a-moving-clock-runs-slow-and-a-clocks-own-time-is-the-length-of-its-path
+  - term: proper time
+    definition: 'The time that a clock itself reads along its path, $\tau = \int\sqrt{1 - v^2/c^2}\,\mathrm dt$: the length of the path measured with the interval, divided by $c$. Every observer computes the same value. Chapter 7.1 extends it to curved spacetime.'
+    role: obs
+    chapter: '6.1'
+    anchor: a-moving-clock-runs-slow-and-a-clocks-own-time-is-the-length-of-its-path
+  - term: length contraction
+    definition: 'The shortening of a moving rod along its motion, measured at one time of the frame it moves through: a rod of its own length $L$ measures $L/\gamma$, 0.8 of it at $0.6c$. Across the motion nothing changes.'
+    chapter: '6.1'
+    anchor: a-moving-ruler-is-shorter-along-its-motion-and-distances-in-a-bodys-own-frame-are-longer
+  - term: rapidity
+    definition: 'The measure of speed $\eta$ defined by $v = c\tanh\eta$, so that $\gamma = \cosh\eta$. Along one line rapidities add where speeds do not; $0.6c$ is the rapidity $\ln 2$, and the speed of light is never reached.'
+    role: obs
+    chapter: '6.1'
+    anchor: rapidities-add-where-velocities-do-not

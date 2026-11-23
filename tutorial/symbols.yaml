@@ -39,6 +39,14 @@ symbols:
     kind: A vector; in metres
     meaning: 'The small displacement from one free test mass to a neighbour. The tide changes it; the ring of test masses that is the paper''s pixel is a circle of such separations.'
     chapter: '1.4'
+  - key: velocity
+    title: Velocity of the observer
+    tex: '\obs{v}'
+    role: obs
+    kind: A vector; in m/s
+    meaning: 'How fast the one who measures is moving, and in which direction, relative to the frame in which the scene is described. In chapter 6.1 it is the steady velocity of one inertial frame through another, such as the pixel''s $0.6c$ through the room, or a body''s through the pixel''s frame.'
+    chapter: '6.1'
+    anchor: every-observer-measures-the-same-speed-of-light
   - key: electric-field
     title: Electric field
     tex: '\light{E}'
@@ -1821,3 +1829,43 @@ symbols:
     meaning: 'The number radiance of the line of sight that passes the centre of a round body at the distance $b$, the Abel transform $N(b) = 2\int_b^R j_N(r)\,r\,\mathrm dr/\sqrt{r^2 - b^2}$ of its glow. For a uniform ball it is $2j\sqrt{R^2 - b^2}$, the glow times the chord.'
     chapter: '5.6'
     anchor: from-the-surface-of-a-round-planet-each-line-of-sight-is-a-chord
+  - key: speed-ratio
+    title: Speed as a fraction of light's
+    tex: '\obs{\beta}'
+    role: obs
+    kind: A pure number between 0 and 1 (a vector $\boldsymbol\beta = \mathbf v/c$ when its direction matters)
+    meaning: 'The speed of one frame through another divided by the speed of light, $\beta = v/c$. The paper''s pixel crosses the room at $\beta = 0.6$; the Earth moves round the Sun, at $29.8\,\mathrm{km\,s^{-1}}$, at $\beta = 9.94\times10^{-5}$.'
+    chapter: '6.1'
+    anchor: steady-motion-along-a-line-mixes-time-and-distance
+  - key: lorentz-factor
+    title: Lorentz factor
+    tex: '\obs{\gamma}'
+    role: obs
+    kind: A pure number, 1 or more
+    meaning: 'The factor $\gamma = (1 - \beta^2)^{-1/2}$ of the Lorentz transformation, by which a moving clock runs slow and a moving rod is shortened. It is 1.25 at $0.6c$ and $1 + 4.9\times10^{-9}$ for the Earth on its orbit. (Not a damping rate, which the tutorial writes $\Gamma$.)'
+    chapter: '6.1'
+    anchor: steady-motion-along-a-line-mixes-time-and-distance
+  - key: proper-time
+    title: Proper time
+    tex: '\obs{\tau}'
+    role: obs
+    kind: A time; in seconds
+    meaning: 'The time a clock itself reads along its path, $\tau = \int\sqrt{1 - v^2/c^2}\,\mathrm dt$, the same for every observer. A traveller at $0.6c$ ages 8 years in 10 years of the room. (Not the averaging time of chapter 3.2, the relaxation time of chapter 4.4 or the optical depth of chapter 5.5.)'
+    chapter: '6.1'
+    anchor: a-moving-clock-runs-slow-and-a-clocks-own-time-is-the-length-of-its-path
+  - key: rest-frame-distance
+    title: Distance in a body's rest frame
+    tex: 'R_*'
+    role: none
+    kind: A distance; in metres
+    meaning: 'The distance from the pixel to a steadily moving body in the body''s own frame, at the pixel''s "now": $R_*^2 = \gamma^2r_\parallel^2 + r_\perp^2 = \gamma^2(r^2 - |\mathbf v\times\mathbf r|^2/c^2)$, with $\mathbf r$ the vector to where the body is now. The body''s tide is $GM/R_*^3$.'
+    chapter: '6.1'
+    anchor: a-moving-ruler-is-shorter-along-its-motion-and-distances-in-a-bodys-own-frame-are-longer
+  - key: rapidity
+    title: Rapidity
+    tex: '\obs{\eta}'
+    role: obs
+    kind: A pure number
+    meaning: 'The measure of speed defined by $\beta = \tanh\eta$, so that $\gamma = \cosh\eta$ and $\gamma\beta = \sinh\eta$. Boosts along one line add their rapidities; $0.6c$ is $\eta = \ln 2$, and $\eta \to \infty$ as the speed approaches $c$. (Not the viscosity $\eta$ of chapter 4.4, the $\eta_{\mu\nu}$ of chapter 6.2 or the vector $\boldsymbol\eta$ of chapter 13.2.)'
+    chapter: '6.1'
+    anchor: rapidities-add-where-velocities-do-not
