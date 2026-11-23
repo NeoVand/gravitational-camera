@@ -18,9 +18,14 @@ second, has a noise of 0.02 E, "a signal-to-noise ratio of five hundred on that 
 ratios from a thousand to $10^{60}$. So this chapter asks how long the same instrument must watch to reach a thousand,
 or a million.
 
-The answer rests on one fact about random numbers: independent errors add in their squares.
+The answer rests on one fact about random numbers: independent errors add in their squares. Figure [](#fig:average)
+shows what that means for the gradiometer.
 
-<!-- diagram: tut-prob-average — Hero. Histograms of 10,000 simulated readings of the person's tide (true value 9.34 E) by the superconducting gradiometer, on one horizontal axis in eötvös: one-second readings, standard deviation 0.020 E, and four-second averages, standard deviation 0.010 E, the second histogram half as wide and twice as tall. The true value is marked as the signal and the half-widths as the noise, in Part 3's signal and noise colours. Caption: averaging four readings halves the spread; it does not quarter it. -->
+![Histograms of 10,000 simulated one-second readings of the person's tide (grey) and of 10,000 averages of four
+such readings (outline), in bins 0.005 E wide. The orange line is the signal, the true value $x_0 = 9.34\unit{E}$; the
+blue lines under the axis reach one standard deviation of the noise on either side of it, $\sigma_n = 0.020\unit{E}$ for
+one second and $\sigma_n(4\unit{s}) = 0.010\unit{E}$ for four. Averaging four readings halves the spread; it does not
+quarter it.](tut-prob-average){#fig:average}
 
 ::: plain
 Every instrument has noise: its reading wobbles at random even when there is nothing to measure. The typical size
@@ -106,9 +111,12 @@ on one side only, is[^erfc]
 
 $$P(Z > 3) = 1.35\times10^{-3},$$
 
-about one reading in 740.
+about one reading in 740 (Figure [](#fig:tails)).
 
-<!-- diagram: tut-prob-tails — The standard Gaussian density, with the bands of ±1, ±2 and ±3 standard deviations shaded and labelled 68.3%, 95.4% and 99.73%, and the one-sided tail beyond +3 picked out with its area, 1.35 × 10⁻³. -->
+![The standard Gaussian density, with the bands within one, two and three standard deviations of the mean shaded in
+blue, the colour of the noise, and their probabilities named under the axis. The one-sided tail beyond $Z = 3$ is the thin
+blue sliver under the curve, with the area $P(Z > 3) = 1.35\times10^{-3}$; the dashed curve is the density there drawn
+twenty times taller.](tut-prob-tails){#fig:tails}
 
 These tails decide how often a camera is wrong. In the paper's [worked case](/paper/#par:a-worked-case), gold lies in
 one of two safes 3.5 m away, at a signal-to-noise ratio of 10. That ratio compares the gold's largest tide with the
@@ -262,9 +270,13 @@ model because it shows the principle.
 The signal survives, because $g_1 - g_2$ is the tide times the distance between the accelerometers. The
 Earth's pull cancels too, apart from its tide, the bias of the first section. The person's tide across 10 cm is
 $9.3\times10^{-10}\unit{m\,s^{-2}}$, ten billion times smaller than the $9.8\unit{m\,s^{-2}}$ that each accelerometer
-feels, and only the difference can find it.
+feels, and only the difference can find it. Figure [](#fig:shared) draws two such readings and their difference.
 
-<!-- diagram: tut-prob-shared — Two accelerometer traces over a few seconds, both dominated by the same large shaking (strongly correlated), drawn one above the other, and below them their difference: a quiet trace with a small steady offset (the tide times the separation) and only the two own noises left. A small scatter plot of a₁ against a₂ beside it, elongated along the diagonal, with its correlation r. -->
+![Two accelerometers on one table share a large shaking, so their readings $a_1$ and $a_2$ move together, and plotted
+against each other (right) they lie close to a line, with the correlation $r = 0.98$. Their difference, on the same
+scale, keeps only the two own noises (the blue band, one standard deviation wide on either side) about the steady
+signal $g_1 - g_2$ in orange. The units are arbitrary, and the sizes of the shaking, the noise and the signal are
+chosen so that all three can be seen.](tut-prob-shared){#fig:shared}
 
 **Zero covariance does not mean independence.** Let $x$ be Gaussian with mean zero and let $y = x^2$. Then $y$ is
 fixed completely by $x$, yet
@@ -346,9 +358,13 @@ Gaussian, with mean $\lambda$ and standard deviation $\sqrt\lambda$.
 At $\lambda = 50$ the chance of exactly 50 is $P(50) = 0.0563$. Counts are one apart, so this should match the
 Gaussian's area over an interval one unit wide, its peak density times one: $1/\sqrt{2\pi\times50} = 0.0564$. At
 $\lambda = 2$ the distribution is lopsided (0.135 for 0, and 0.271 each for 1 and 2), because a count cannot be
-negative.
+negative. Figure [](#fig:poisson) draws both distributions with the Gaussian over them.
 
-<!-- diagram: tut-prob-poisson — Poisson bars for λ = 2 (lopsided, P(0) = 0.135, P(1) = P(2) = 0.271) and for λ = 50, each with the Gaussian of mean λ and standard deviation √λ drawn over it as a thin curve: far off for λ = 2, nearly on the bars for λ = 50. -->
+![The Poisson probabilities of a count $N$ (grey bars) for the means $\lambda = 2$ and $\lambda = 50$, each with the
+Gaussian of mean $\lambda$ and standard deviation $\sqrt\lambda$ drawn over it. For $\lambda = 2$ the bars are
+lopsided and the curve spills below zero, where no count can lie; for $\lambda = 50$ the curve runs nearly through the
+bars' tops. The orange line marks the mean, the signal, and the blue line under each axis reaches one standard
+deviation of the counting noise on either side of it.](tut-prob-poisson){#fig:poisson}
 
 ::: try {#graviton-count}
 Predict first: the figure opens on a year of the Earth below, with $\lambda = 438$ gravitons expected on one square
