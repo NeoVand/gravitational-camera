@@ -1660,3 +1660,51 @@ terms:
     definition: 'An integral over a body of its mass flux times a fixed function of position. The angular momentum $\int\mathbf x\times\rho\mathbf v\,\mathrm dV$ is one; a swirl shows outside only through such moments.'
     chapter: '2.8'
     anchor: a-swirl-shows-through-its-angular-momentum-and-two-swirls-can-cancel
+  - term: Bessel function of order zero
+    definition: 'The average of a ripple over all the directions it could run in across a plane: $J_0(u) = \frac1{2\pi}\int_0^{2\pi}e^{iu\cos\varphi}\,\mathrm d\varphi = 1 - u^2/4 + \dots$. It is one at the centre and swings with falling height, first vanishing at $u = 2.405$.'
+    chapter: '3.6'
+    anchor: a-pattern-that-looks-the-same-in-every-direction-is-built-from-circular-ripples
+  - term: circular ripple
+    definition: 'The pattern $J_0(ka)$ on a plane, a ripple of wavenumber $k$ averaged over every direction, whose crests are circles round one point. Any pattern that is the same in every direction round that point is a sum of circular ripples.'
+    chapter: '3.6'
+    anchor: a-pattern-that-looks-the-same-in-every-direction-is-built-from-circular-ripples
+  - term: Hankel transform
+    definition: 'The Fourier transform on a plane of a pattern that depends only on the distance $a$ from a point: $\tilde f(k) = 2\pi\int_0^\infty f(a)\,J_0(ka)\,a\,\mathrm da$. The transform then depends only on the wavenumber $k$.'
+    chapter: '3.6'
+    anchor: a-pattern-that-looks-the-same-in-every-direction-is-built-from-circular-ripples
+  - term: "Bessel's equation"
+    definition: 'The equation $u^2J'''' + uJ'' + u^2J = 0$ that the circular ripple $J_0$ obeys. It is the plane''s ripple equation $\nabla^2f = -k^2f$ written for a pattern that depends only on the distance, with $u = ka$.'
+    chapter: '3.6'
+    anchor: the-circular-ripple-obeys-bessels-equation
+  - term: Bessel function of order one
+    definition: 'The function $J_1 = -J_0''$, with $\frac{\mathrm d}{\mathrm du}(uJ_1) = uJ_0$ and $J_1(0) = 0$, so that $\int_0^uJ_0(t)\,t\,\mathrm dt = uJ_1(u)$. Near zero $J_1(u) \approx u/2$; it first vanishes again at $u = 3.832$.'
+    chapter: '3.6'
+    anchor: the-function-of-order-one-adds-up-the-circular-ripple-over-a-disc
+  - term: asymptotic form
+    definition: 'A simple formula that a function approaches as its argument grows, with an error that shrinks relative to it. For the circular ripple it is $J_0(u) \approx \sqrt{2/\pi u}\,\cos(u - \pi/4)$.'
+    chapter: '3.6'
+    anchor: far-from-the-centre-the-circular-ripple-is-a-fading-cosine
+  - term: Airy pattern
+    definition: 'The picture that a lens with a round opening of diameter $D$ makes of a distant point: the intensity $(2J_1(x)/x)^2$ with $x = \pi D\theta/\lambda$, a bright disc with faint rings. Its first dark ring lies at the angle $1.22\lambda/D$.'
+    chapter: '3.6'
+    anchor: a-lens-draws-a-star-as-the-square-of-that-pattern
+  - term: Fraunhofer diffraction
+    definition: 'The rule that a lens, or a distant screen, receives from a plane wave the Fourier transform of the opening the wave passed through, at the wavenumber $2\pi\sin\theta/\lambda$ for the angle $\theta$. It holds in the far field.'
+    chapter: '3.6'
+    anchor: a-lens-draws-a-star-as-the-square-of-that-pattern
+  - term: far field
+    definition: 'The distances from an opening of width $D$ beyond about $D^2/\lambda$, where the fronts of a wave from a source are flat enough across the opening to be treated as a plane wave, and Fraunhofer diffraction applies.'
+    chapter: '3.6'
+    anchor: a-lens-draws-a-star-as-the-square-of-that-pattern
+  - term: shadow
+    definition: 'For a pattern on a plane, its integral across one direction, a function of the position along the other. The transform of the pattern along a wavevector is the one-dimensional transform of its shadow on that direction.'
+    chapter: '3.6'
+    anchor: a-round-opening-transforms-to-a-wider-pattern-than-a-slit
+  - term: first dark ring
+    definition: 'The circle round the centre of an Airy pattern where the light first vanishes, at the first zero of $J_1$, $x = 3.832$: the angle $1.22\lambda/D$ for an opening of diameter $D$.'
+    chapter: '3.6'
+    anchor: a-lens-draws-a-star-as-the-square-of-that-pattern
+  - term: encircled energy
+    definition: 'The share of the light of an image that falls inside a circle round its centre. For the Airy pattern it is $1 - J_0^2 - J_1^2$ at the circle, 83.8% inside the first dark ring.'
+    chapter: '3.6'
+    anchor: a-lens-draws-a-star-as-the-square-of-that-pattern

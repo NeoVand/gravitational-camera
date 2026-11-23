@@ -980,3 +980,19 @@ symbols:
     meaning: 'The vector $\mathbf V$ added up as a potential, $\mathbf W(\mathbf x) = \int\mathbf V(\mathbf y)/|\mathbf x - \mathbf y|\,\mathrm d^3y$. The flow''s potential is $\mathbf A = \nabla\times\nabla\times\mathbf W$, which outside the body is the gradient $\nabla(\nabla\cdot\mathbf W)$. Not the paper''s complex curvature $\mathcal W$.'
     chapter: '2.8'
     anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
+  - key: bessel-j0
+    title: Bessel function of order zero
+    tex: 'J_0'
+    role: none
+    kind: A function of a pure number; no unit
+    meaning: 'The circular ripple: a ripple averaged over all its directions in a plane, $J_0(u) = \frac1{2\pi}\int_0^{2\pi}e^{iu\cos\varphi}\,\mathrm d\varphi = 1 - u^2/4 + u^4/64 - \dots$. It turns the Fourier transform of a pattern that is the same in every direction into $\tilde f(k) = 2\pi\int_0^\infty f(a)\,J_0(ka)\,a\,\mathrm da$. Its first zeros are 2.405, 5.520 and 8.654.'
+    chapter: '3.6'
+    anchor: a-pattern-that-looks-the-same-in-every-direction-is-built-from-circular-ripples
+  - key: bessel-j1
+    title: Bessel function of order one
+    tex: 'J_1'
+    role: none
+    kind: A function of a pure number; no unit
+    meaning: 'The function $J_1 = -J_0''$, so that $\frac{\mathrm d}{\mathrm du}(uJ_1) = uJ_0$ and $\int_0^uJ_0(t)\,t\,\mathrm dt = uJ_1(u)$; near zero $J_1(u) \approx u/2$. A round opening of radius $R$ transforms to $\pi R^2\cdot2J_1(kR)/kR$. Its first zeros are 3.832, 7.016 and 10.173.'
+    chapter: '3.6'
+    anchor: the-function-of-order-one-adds-up-the-circular-ripple-over-a-disc

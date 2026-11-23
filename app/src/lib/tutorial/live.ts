@@ -38,6 +38,7 @@ import FadingRipple from './live/FadingRipple.svelte';
 import HiddenFlow from '../paper/figures/hair/HiddenFlow.svelte';
 import OneModeWiener from './live/OneModeWiener.svelte';
 import ToyCamera from './live/ToyCamera.svelte';
+import RoundPupil from './live/RoundPupil.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -151,6 +152,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'toy-camera': {
 		label: 'A camera of three pixels and its three patterns',
 		component: ToyCamera
+	},
+	'round-pupil': {
+		label: 'A round opening or a slit, and its pattern: amplitude against intensity',
+		component: RoundPupil
 	},
 	'noise-spectrum': {
 		label:
