@@ -22,7 +22,7 @@ condition [](/paper/#eq:nearzone), Figure [](/paper/#fig:regimes), Table [](/pap
 [*Spin, speed and compactness*](/paper/#par:spin-speed-and-compactness). As in
 [R4](/tutorial/response/reading-section-iv-3/), each claim is marked *checked here*, *read now, derived in Part N*
 or *stated in the paper*. The chapter ends with Part 5's capstone, the three sealed boxes of the paper's Figure
-[](/paper/#fig:which-way).
+[](/paper/#fig:which-way). Figure [](#fig:read-iii-map) draws the five stretches in order.
 
 {{paper fig:regimes}}
 
@@ -40,24 +40,10 @@ gravitational waves. Part 5 has derived most of this. At the end of the chapter,
 three spots in one of the paper's pictures, and with them the way two hidden pairs of balls turn.
 :::
 
-<!-- diagram: tut-read-iii-map — Drawn as R4's map (tut-read-iv3-map: the same box sizes, strokes, fills and type),
-portrait, about 282 pt by 300 pt. At the top, one small box with a thin grey stroke: "Part 5: waves and optics".
-Below it, five boxes 58 pt wide and 66 pt tall, three in the first row and two in the second, joined in reading order
-by thin grey arrows. Boxes 1 to 4 are filled in the light orange of R4's filled boxes (every number in them is checked
-here); box 5 is half-filled, as R3's mixed boxes are (its claims are of more than one kind). Each box holds, in
-order: the stretch's name, its equation number in the paper if it has one, and beneath, in small type, the chapters
-that teach it; a chapter that comes later stands in its own small dotted box. (1) "Plain words: the compass, the
-regimes, the three facts", no equation, "1.4 1.5b 5.1 5.2", dotted "7.5" and "11.1". (2) "The near zone", "(6)",
-"1.4 5.1 5.2", dotted "7.6". (3) "Fig. regimes: where sources lie", no equation, "4.2 5.2", dotted "10.1" and "12.1".
-(4) "Sources divide again; Table regimes", no equation, "3.7 5.2 5.3 5.5", dotted "7.7", "8" and "10". (5) "Spin, speed
-and compactness", no equation, "1.5 1.5b 5.1 5.2 5.3 5.5", dotted "7.5", "7.7", "9" and "11.1". (The equation
-number is that of the rendered paper.) At the foot, a thin arrow from all five to a last box with an orange stroke:
-"The capstone: which way it turns", with "5.1 5.2 5.3 5.4" beneath and a dotted "7.7". No colour other than R4's
-map's. Caption: "The five stretches of Section III, in order, each with its equation number if it has one and the
-chapters that teach it beneath. A filled box is checked here and the half-filled box holds claims of more than one
-kind; a dotted chapter number marks a claim read now and derived later. All five meet in the capstone, which is
-Section V's scene." Label for the text: #fig:read-iii-map; when the figure is placed, end the second paragraph of the
-chapter with "Figure [](#fig:read-iii-map) draws the five stretches in order." -->
+![The five stretches of Section III, in order, each with its equation number if it has one and the chapters that
+teach it beneath. A filled box is checked here and the half-filled box holds claims of more than one kind; a dotted
+chapter number marks a claim read now and derived later. All five meet in the capstone, which is Section V's
+scene.](tut-read-iii-map){#fig:read-iii-map}
 
 ## The plain words hold, number by number, from the compass to the three facts
 
@@ -264,41 +250,18 @@ Figure [](/paper/#fig:which-way). Three sealed steel boxes stand on a shelf, the
 1.5 m wide, and their centres 1.04 m apart, one above another. In the top and middle boxes a pair of steel balls,
 10 cm in radius with centres 0.44 m apart, turns once a second about an axis pointing at the camera, the two pairs in
 opposite senses; the bottom pair is still. The figure is "computed with the speed of light set to
-$20\,\mathrm{cm\,s^{-1}}$". We follow it in seven steps, each with the chapter that supplies it.
+$20\,\mathrm{cm\,s^{-1}}$". We follow it in seven steps, each with the chapter that supplies it. Figure
+[](#fig:read-iii-capstone) draws the seven numbers on the scene.
 
 {{paper fig:which-way}}
 
-<!-- diagram: tut-read-iii-capstone — Two panels side by side at 1440 px (left about 3:2, right square), stacked at
-390 px; thin single strokes, the paper's palette, labels short and off the geometry. (a) Side view, to scale, of the
-plane through the camera's axis: a horizontal axis "distance from the array (m)" from 0 to 5 with ticks at 0, 1, 2,
-3, 4, 4.5, then an axis break (two short slashes) and one more tick at 22.5 labelled "D²/λ = 22.5 m: the Fresnel
-zone ends"; heights from 0 to 3.2 m on the same scale as the distances. The array is a vertical segment at distance 0
-from height 0.75 to 2.25 m (thick ink, labelled "array, D = 1.5 m"). The three boxes are squares 0.7 m deep by 0.95 m
-tall, front faces at 4.15 m, centred at heights 2.555, 1.515 and 0.475 m (the steel grey of the paper's scenes); in the
-top and middle box a short curved arrow marks the turning pair (schematic), the top one green, the middle magenta,
-the bottom box holding two grey dots. Thin dotted lines from the centre of the array (height 1.5 m) to the three pair
-centres. Along the axis near the array, a bar 0.10 m long labelled "λ = 10 cm" (step a); round the middle pair a
-circle of radius 1.6 cm, too small to see at this scale, so drawn in a round inset magnified twenty times beside
-the box with the label "λ/2π = 1.6 cm: the camera is 283 times farther" (step b); at the rim of the array, the arc of
-a sphere centred on the middle pair, with the gap between it and the flat plane through the array's centre marked
-"6.25 cm of path, 3.9 rad" (step c; the gap is exaggerated tenfold and the caption says so). (b) The camera's view,
-in degrees: azimuth from −20° to 20° across, elevation from −22° to 22° up, ticks every 10°, on the dark ground of the
-paper's panel (b). The front faces of the boxes as thin outlines at azimuth ±6.19° and elevations 7.96° to 20.24°,
-−6.33° to 6.73° and −19.87° to −7.55°. Two Airy spots, intensity (2J₁(x)/x)² with x = π(1.5/0.1)sin γ, γ the angle from
-each spot's centre, exact: the top one centred at elevation 13.19°, coloured green (V/I = −1.000), the middle one at
-0.19°, magenta (V/I = +1.000), each with its brightness from the intensity as in the paper's figure; a thin dashed
-circle of radius 4.66° round each centre labelled once "first dark ring 4.7° (0.37 m on the shelf)" (step d), and a
-short bracket across the middle spot at half height labelled "3.9°". The bottom box empty and dark, labelled "still:
-no wave" (step e). Below the panel, one line: "At c = 3 × 10⁸ m s⁻¹: λ = 1.5 × 10⁸ m, no spot, the same sense of
-turning" (step f). Caption: "The capstone's scene with Part 5's numbers. (a) Side view, to scale: the wavelength of 10 cm, the near
-zone of 1.6 cm (magnified twenty times in the inset), and the curvature of the fronts across the array, exaggerated
-tenfold, which makes the array focus at the shelf because the shelf lies inside the Fresnel zone, which ends near
-22.5 m. (b) What the focused
-array sees: an Airy spot for each turning pair, 3.9° wide at half height with its first dark ring 4.7° from its
-centre, green where the pattern turns clockwise as the camera sees it and magenta where it turns anticlockwise; the
-still pair is dark. The turning arrows are schematic; the spots, the rings and the geometry are exact." Label for the
-text: #fig:read-iii-capstone; when the figure is placed, end the capstone's first paragraph with "Figure
-[](#fig:read-iii-capstone) draws the seven numbers on the scene." -->
+![The capstone's scene with Part 5's numbers. (a) Side view, to scale: the wavelength of 10 cm, the near zone of
+1.6 cm (magnified twenty times in the inset), and the curvature of the fronts across the array, exaggerated tenfold,
+which makes the array focus at the shelf because the shelf lies inside the Fresnel zone, which ends near 22.5 m.
+(b) What the focused array sees: an Airy spot for each turning pair, 3.9° wide at half height with its first dark ring
+4.7° from its centre, green where the pattern turns clockwise as the camera sees it and magenta where it turns
+anticlockwise; the still pair is dark. The turning arrows and the still pair's dots are schematic; the spots, the
+rings and the geometry are exact.](tut-read-iii-capstone){#fig:read-iii-capstone}
 
 **(a) The wavelength.** A turning pair looks the same after half a turn
 ([1.5b](/tutorial/newton/complex-numbers/#a-steady-oscillation-is-a-turning-complex-number)), so its wave repeats twice
