@@ -22,6 +22,7 @@ import FiveNumbers from './live/FiveNumbers.svelte';
 import TurningPixel from './live/TurningPixel.svelte';
 import RegimeMap from './live/RegimeMap.svelte';
 import GravitonCount from './live/GravitonCount.svelte';
+import FlybyKick from './live/FlybyKick.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -97,5 +98,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'graviton-count': {
 		label: 'Gravitons counted one at a time, and the picture they allow',
 		component: GravitonCount
+	},
+	'flyby-kick': {
+		label:
+			'A tonne passing a steel ball: the pull on one part, its area and the kick to every part',
+		component: FlybyKick
 	}
 };
