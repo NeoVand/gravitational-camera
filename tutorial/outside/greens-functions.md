@@ -104,9 +104,9 @@ and the small sphere is left:
 
 $$\int_{r > \varepsilon}\frac{\nabla^2 f}{r}\,\dd^3x = \oint_{r = \varepsilon}\Bigl(\frac1r\,\nabla f - f\,\nabla\frac1r\Bigr)\cdot\dd\vect A .$$
 
-The element $\dd\vect A$ points out of $V$, which on the small sphere is toward the origin, so
-$\dd\vect A = -\hat{\vect x}\,\varepsilon^2\,\dd\Omega$, where $\hat{\vect x}$ is the unit vector away from the origin
-and $\dd\Omega$ the solid angle. The first term is at most $(1/\varepsilon) \times |\nabla f|_{\max} \times
+The element $\dd\vect A$ points out of $V$, which on the small sphere is toward the origin (Figure [](#fig:grn-hole)),
+so $\dd\vect A = -\hat{\vect x}\,\varepsilon^2\,\dd\Omega$, where $\hat{\vect x}$ is the unit vector away from the
+origin and $\dd\Omega$ the solid angle. The first term is at most $(1/\varepsilon) \times |\nabla f|_{\max} \times
 4\pi\varepsilon^2$, which tends to zero with $\varepsilon$. In the second term $\nabla(1/r) = -\hat{\vect x}/r^2$
 (chapter 1.2), so
 
@@ -147,9 +147,9 @@ for every such $f$. A continuous function with this property is zero, because a 
 function is positive would give a positive integral. So $\nabla^2\field\Phi = 4\pi G\matter\rho$ wherever
 $\matter\rho$ is smooth.
 
-<!-- diagram: the small ball of radius ε cut out round the origin, inside a large region V; on the small sphere,
-arrows of dA pointing inward, toward the origin (the outward normal of V), drawn thin in one neutral colour; a label
-"r > ε" in the region and "ε" on a radius of the small ball. -->
+![The region $V$ of the proof, drawn in section: the shell between a small sphere of radius $\varepsilon$ round the
+origin and a large sphere of radius $L$. On the small sphere each element $\dd\vect A$ points out of $V$, which there is
+toward the origin. The two radii and the lengths of the arrows are chosen for the drawing.](tut-grn-hole){#fig:grn-hole}
 
 ## Along a long rod the Green's function is a logarithm
 
@@ -171,9 +171,11 @@ $\matter\lambda\,\delta^2(x, y)$, so its potential is $4\pi G\matter\lambda\,\ma
 
 $$\field\Phi = 2G\matter\lambda\ln r + \text{a constant} .$$
 
-Its pull toward the line has the size $2G\matter\lambda/r$. For a steel rail of $60\unit{kg\,m^{-1}}$ at 1 m this is
-$8.0 \times 10^{-9}\unit{m\,s^{-2}}$, as [chapter 1.3](/tutorial/newton/gauss-and-poisson/) found with a cylinder,
-and 1.7 times the pull of a 70 kg person at a metre, $4.7 \times 10^{-9}\unit{m\,s^{-2}}$.
+Doubling $r$ adds $2G\matter\lambda\ln 2$ to the potential, so circles round the line whose radii double are equal steps
+of potential apart (Figure [](#fig:grn-rail)). The pull toward the line has the size $2G\matter\lambda/r$. For a steel
+rail of $60\unit{kg\,m^{-1}}$ at 1 m this is $8.0 \times 10^{-9}\unit{m\,s^{-2}}$, as
+[chapter 1.3](/tutorial/newton/gauss-and-poisson/) found with a cylinder, and 1.7 times the pull of a 70 kg person at a
+metre, $4.7 \times 10^{-9}\unit{m\,s^{-2}}$.
 
 The logarithm grows without limit far from the line, so no constant makes this potential vanish far away. Only its
 differences, its pull and its tide are fixed, and a camera reads tides, so nothing is lost. The paper's single row of
@@ -182,9 +184,11 @@ angle seen from the row, is $3.79/q_c$ (beside equation [](/paper/#eq:resolution
 chapter 3.7 that measures how fine a detail still rises above the noise; that chapter computes the picture of a point
 in [its step 5](/tutorial/noise/blur-law/#step-5-the-picture-of-a-point-is-the-pattern-of-a-round-opening).
 
-<!-- diagram: a rail seen end-on as a dot at the centre, with its equipotentials as circles at radii 0.25, 0.5, 1, 2
-and 4 m (equal steps in ln r, so equal steps of potential), labelled by the potential difference from the 1 m circle
-in units of 2Gλ (−1.39, −0.69, 0, 0.69, 1.39); a few field arrows pointing to the rail. -->
+![A rail seen end-on, with the circles on which its potential is constant at 0.25, 0.5, 1, 2 and 4 m from it. Each
+circle is labelled by its potential less that of the 1 m circle, in units of $2G\matter\lambda$: the radii double from
+one circle to the next, so the steps of potential are equal. The square in the middle is enlarged on the right, where
+the rail's profile is drawn to scale; the arrows show the pull toward the rail, and their length is chosen for the
+drawing.](tut-grn-rail){#fig:grn-rail}
 
 ## Inside an empty region, the values on its boundary write the potential
 
@@ -264,10 +268,11 @@ down, $\hat{\vect\nu} = -\hat{\vect z}$, which changes the sign. With [](#eq:dir
 $$\boxed{\;\begin{gathered}\field\Phi(\vect a, z) = \int\sym{half-space-kernel}{P_z}(\vect a - \vect a')\,\field\Phi(\vect a', 0)\,\dd^2a',\\ P_z(\vect a) = \frac{z}{2\pi\,(a^2 + z^2)^{3/2}} .\end{gathered}\;} \label{eq:half-space}$$
 
 The kernel $P_z$, in $\mathrm{m^{-2}}$, is the Poisson kernel of the half-space.[^P] It is a bell centred under the
-point, of height $1/2\pi z^2$. It falls to half that height where $(1 + a^2/z^2)^{-3/2} = \tfrac12$, so its full width
-there is $2z\sqrt{2^{2/3} - 1} = 1.53z$. Its integral over the plane is 1, because in polar coordinates
-$-1/\sqrt{a^2 + z^2}$ is an antiderivative of $a/(a^2 + z^2)^{3/2}$. As $z$ shrinks to zero the bell grows narrow and
-tall with its area fixed, like chapter 1.3's narrow Gaussian, so [](#eq:half-space) returns the values on the plane.
+point, of height $1/2\pi z^2$ (Figure [](#fig:grn-mirror)). It falls to half that height where $(1 + a^2/z^2)^{-3/2} =
+\tfrac12$, so its full width there is $2z\sqrt{2^{2/3} - 1} = 1.53z$. Its integral over the plane is 1, because in polar
+coordinates $-1/\sqrt{a^2 + z^2}$ is an antiderivative of $a/(a^2 + z^2)^{3/2}$. As $z$ shrinks to zero the bell grows
+narrow and tall with its area fixed, like chapter 1.3's narrow Gaussian, so [](#eq:half-space) returns the values on the
+plane.
 
 **A number.** A person of $70\unit{kg}$ stands 1 m below the plane, so that the potential on it is
 $-G\matter m/\sqrt{a'^2 + 1}$, with lengths in metres. Put into [](#eq:half-space) at $\vect a = 0$, it gives
@@ -301,10 +306,11 @@ $\curv{\tE}_{ij} = \partial_i\partial_j\field\Phi$, in $\mathrm{s^{-2}}$. Among 
 vertical component with its sign changed so that a mass below gives a positive bump, which the paper writes
 $\curv d = -\curv{\tE}_{zz}$.
 
-<!-- diagram: the half-space. Left: the plane as a horizontal line, a point x above it at height z and its mirror
-image x* below at depth z, joined by a dashed vertical line; a point y on the plane at equal distances from both.
-Right: the kernel P_z(a) drawn as a bell over the plane for z = 0.5 m and z = 1 m on one pair of axes (a from −3 to
-3 m); peaks 0.64 and 0.16 m⁻², full widths at half height 0.77 and 1.53 m marked. -->
+![Left: a point $\vect x$ at the height $z$ above the plane and its mirror image $\vect x^*$ at the depth $z$ below it.
+Every point $\vect y$ of the plane is as far from one as from the other, so $\mathcal G_D$ vanishes there. Right: the
+kernel $P_z$ along a line of the plane through the point under $\vect x$, for $z = 0.5$ and $1\unit{m}$: doubling the
+height divides the peak by four, from 0.64 to $0.16\unit{m^{-2}}$, and doubles the width at half height, from 0.77 to
+1.53 m.](tut-grn-mirror){#fig:grn-mirror}
 
 ## On a sphere, Kelvin's image gives the potential inside and the skin of balayage
 
@@ -359,10 +365,10 @@ $\matter m(R^2 - s^2)/4\pi R\,|\vect x - \vect s|^3$.
 
 **Numbers.** For the nugget at $s = R/2$, the point of the sphere over it is $R/2$ away, and there the skin has the
 surface density $6\,\matter m/4\pi R^2$, six times the nugget's mass spread evenly, as the caption below says. The
-opposite point is $3R/2$ away, where the skin has $0.22\,\matter m/4\pi R^2$. With $t = s/R$, the factor over the
-nugget is $(1 + t)/(1 - t)^2$, and at $t = 0.9$ it is 190. At $\vect X = (2R, 0, R)$, with the nugget on the $z$ axis, a
-numerical integral over the sphere gives the skin's potential as $-0.485071\,G\matter m/R$, the nugget's own value to
-$10^{-14}$.
+opposite point is $3R/2$ away, where the skin has $0.22\,\matter m/4\pi R^2$ (Figure [](#fig:grn-kelvin)). With $t =
+s/R$, the factor over the nugget is $(1 + t)/(1 - t)^2$, and at $t = 0.9$ it is 190. At $\vect X = (2R, 0, R)$, with the
+nugget on the $z$ axis, a numerical integral over the sphere gives the skin's potential as $-0.485071\,G\matter m/R$,
+the nugget's own value to $10^{-14}$.
 
 {{paper fig:same-outside}}
 
@@ -377,10 +383,11 @@ mode, drag the source in the ball or above the plane and watch its image move, a
 cancel fall on the boundary.
 :::
 
-<!-- diagram: the ball of radius R in cross-section with the nugget at R/2 on the vertical axis and its Kelvin image
-at 2R above the centre, marked with its weight 2; the skin drawn as a band just inside the circle, shaded by P in
-steps that double, 6 over the nugget and 0.22 opposite (units m/4πR²); a point x on the circle joined to s and to s*,
-with the two lengths in the ratio 2. -->
+![A ball of radius $R$ cut through its centre, with a nugget at $\vect s$, halfway from the centre to the sphere, and
+its Kelvin image $\vect s^*$ at $2R$ from the centre, of weight 2: every point $\vect x$ of the sphere is twice as far
+from $\vect s^*$ as from $\vect s$. The band along the inside of the sphere is the skin of balayage, shaded in steps
+that double in surface density, from $6\,\matter m/4\pi R^2$ over the nugget to $0.22\,\matter m/4\pi R^2$ opposite. The
+band's width, the nugget's size and the place of $\vect x$ are chosen for the drawing.](tut-grn-kelvin){#fig:grn-kelvin}
 
 ::: derivation
 ### Harmonic functions are analytic
