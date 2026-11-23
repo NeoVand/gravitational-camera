@@ -48,18 +48,16 @@ square metre that the material beyond $x$ exerts on the material before it, and 
 [4.3](/tutorial/response/elastic-bodies/#in-a-uniform-solid-the-stress-answers-each-part-of-the-strain-with-its-own-modulus)
 gives $\matter T_{xy} = \matter\mu\,\partial_xu$, with $\matter\mu$ the shear modulus in pascals.
 
-<!-- diagram: tut-wave-slab — A long block of solid seen from the side, x to the right and y up. Thin vertical lines
-mark slices; each is shifted up by u(x) (a smooth hump, exaggerated), shown by short vertical arrows from the rest
-line. One slice between x and x + dx is shaded; on its right face an arrow T_xy(x + dx) A points up, on its left face an
-arrow −T_xy(x) A points down (drawn where both pulls have these signs), and beside the slice the net force
-(∂_x T_xy) dx A. T_xy in the colour of matter. Caption: "Look first at the shaded slice: the material on each side
-pulls it sideways, and only the difference of the two pulls moves it. The displacements are exaggerated." -->
+![Look first at the shaded slice: the material on each side pulls it sideways, and only the difference of the two
+pulls moves it. The slice lies at the foot of the hump, where the slope still grows, so the pull up on its right face
+wins; the dashed line is the lower edge at rest. The displacements and the slice's width are
+exaggerated.](tut-wave-slab){#fig:wave-slab}
 
-A slice between $x$ and $x + \dd x$, of area $A$ across the block, is pulled by $\matter T_{xy}(x + \dd x)\,A$ on one
-face and by $-\matter T_{xy}(x)\,A$ on the other, so the net force on it is $\partial_x\matter T_{xy}\,\dd x\,A$. Its
-mass is $\matter\rho\,A\,\dd x$, where $\sym{density}{\matter\rho}$ is the density in kilograms per cubic metre.
-Newton's law, divided by $A\,\dd x$, reads $\matter\rho\,\partial_t^2u = \partial_x\matter T_{xy} =
-\matter\mu\,\partial_x^2u$, so
+A slice between $x$ and $x + \dd x$, of area $A$ across the block (Figure [](#fig:wave-slab)), is pulled by
+$\matter T_{xy}(x + \dd x)\,A$ on one face and by $-\matter T_{xy}(x)\,A$ on the other, so the net force on it is
+$\partial_x\matter T_{xy}\,\dd x\,A$. Its mass is $\matter\rho\,A\,\dd x$, where $\sym{density}{\matter\rho}$ is the
+density in kilograms per cubic metre. Newton's law, divided by $A\,\dd x$, reads
+$\matter\rho\,\partial_t^2u = \partial_x\matter T_{xy} = \matter\mu\,\partial_x^2u$, so
 
 $$\frac{\partial^2u}{\partial t^2} = c_T^2\,\frac{\partial^2u}{\partial x^2}, \qquad
 \sym{shear-speed}{c_T} = \sqrt{\matter\mu/\matter\rho} , \label{eq:wave-1d}$$
@@ -119,14 +117,13 @@ $\tfrac12(-c\,s' + c\,s')$, is zero. So the shape splits into two halves that mo
 The equation is linear, so two waves add without disturbing each other. Let a hump $u_{\rm R}(x - ct)$ moving right
 meet the equal dip $-u_{\rm R}(x + ct)$ moving left. At $t = 0$ the line is flat for an instant, but it is not at rest,
 because its velocity is $\dot u = -2c\,u_{\rm R}'(x)$. The half of the line ahead of the hump, where $u_{\rm R}$ falls,
-moves up, and the half behind it moves down. A moment later both shapes emerge unchanged.
+moves up, and the half behind it moves down. A moment later both shapes emerge unchanged (Figure [](#fig:wave-pulses)).
 
-<!-- diagram: tut-wave-pulses — Five stacked copies of a horizontal line at five instants (t = −2, −1, 0, 1, 2 in units
-of the pulse width over c), sharing one x axis. A hump starts at the left moving right, a dip of the same shape starts
-at the right moving left, both drawn thin and dashed, their sum bold. At t = 0 the sum is flat, with small vertical
-arrows showing the velocity −2c u_R′(x): up on the right half, ahead of the hump, and down on the left half; at t = 1
-and 2 the hump is on the right and the dip on the left, unchanged. Caption: "Look first at the middle line: the sum is
-flat but moving. Exact sums of two Gaussian pulses." -->
+![Look first at the middle line: the sum is flat but moving, up ahead of the hump and down behind it. A hump moving
+right (orange, dashed) and an equal dip moving left (blue, dashed) add to the bold line. Time runs down the page in
+steps of $w/c$, where $w$ is the pulses' width. The dashed pulses are drawn only where they overlap; elsewhere the
+bold line is the one pulse alone. Exact sums of two Gaussian pulses; the arrows' scale is chosen for the
+drawing.](tut-wave-pulses){#fig:wave-pulses}
 
 ## A plane wave is a turning number that travels
 
@@ -185,7 +182,7 @@ height acts on $F$ alone. So the wave equation reads $-\omega^2F = c^2(F'' - k^2
 $$F''(z) = \Bigl(k^2 - \frac{\omega^2}{c^2}\Bigr)F(z) .$$
 
 This is the equation of chapter [2.7](/tutorial/outside/evanescent/#in-empty-space-a-ripple-can-only-fade),
-$F'' = k^2F$, with $k^2$ lowered by $\omega^2/c^2$. There are two cases.
+$F'' = k^2F$, with $k^2$ lowered by $\omega^2/c^2$. There are two cases, drawn in Figure [](#fig:wave-evanescent).
 
 **Crests on the plane farther apart than a wavelength**, $k < \omega/c$. The bracket is negative, and the solutions are
 $e^{\pm ik_zz}$ with $k_z = \sqrt{\omega^2/c^2 - k^2}$. The solution $e^{+ik_zz}$ is a plane wave with the
@@ -212,13 +209,11 @@ smaller than the wavelength, where every ripple fades and $\kappa$ equals $k$. T
 shorter than the detail. A **wave camera**, one that forms its picture from the waves that reach it, resolves angles
 down to about the wavelength divided by the camera's width, the distance across its detectors (chapter 5.3).
 
-<!-- diagram: tut-wave-evanescent — Two panels side by side, in the style of 2.7's tut-evan-hero (same plane, same
-ripple on it, the height axis labelled z, not 2.7's h). Left: crests on the plane farther apart than λ (kc/ω = 0.6);
-above the plane, straight crests of a plane wave leaving at the angle θ from the vertical, with the vector (k, k_z) and
-sin θ = kc/ω. Right: crests closer than λ (kc/ω = 2); above the plane, the same ripple fading as e^{−κz}, with
-κ = √3 ω/c, drawn as 2.7 draws it, with no crests travelling. A scale bar of one wavelength λ = 2πc/ω in each panel.
-Caption: "Look first at the scale bars: detail coarser than a wavelength leaves as a wave, finer detail fades. Exact
-for the drawn ratios." -->
+![Look first at the scale bars: detail coarser than a wavelength leaves as a wave, finer detail fades. Both slabs carry
+the same ripple, and the upright pane shows the field above it at one instant: on the left, crests $5/3$ of a
+wavelength apart send a plane wave up at the angle $\theta$; on the right, crests half a wavelength apart give a field
+that fades as $e^{-\kappa z}$. Exact for the drawn ratios; the slab's relief and the depth of the colours are chosen
+for the drawing.](tut-wave-evanescent){#fig:wave-evanescent}
 
 ## A wave carries its energy along at its own speed
 
@@ -308,8 +303,8 @@ $\sqrt{1 + \epsilon} \approx 1 + \epsilon/2$ for small $\epsilon$,
 $$k = \frac{\omega}{c}\sqrt{1 + \frac{i\Gamma}{\omega}} \approx \frac{\omega}{c} + \frac{i\Gamma}{2c} .$$
 
 So $e^{ikx} = e^{i\omega x/c}\,e^{-\Gamma x/2c}$: the wave keeps its wavelength, and its amplitude falls as
-$e^{-\Gamma x/2c}$. Its energy, which goes as the square of the amplitude, falls as $e^{-\Gamma x/c}$. The fraction of
-the energy lost per metre is the **absorption coefficient**,
+$e^{-\Gamma x/2c}$ (Figure [](#fig:wave-damped)). Its energy, which goes as the square of the amplitude, falls as
+$e^{-\Gamma x/c}$. The fraction of the energy lost per metre is the **absorption coefficient**,
 
 $$\boxed{\sym{absorption-coefficient}{\alpha} = \frac{\Gamma}{c} ,} \label{eq:alpha-gamma}$$
 
@@ -344,12 +339,10 @@ losing much of its energy". The visible universe is about $10^{11}$ light-years 
 eight or nine billion times. Chapter 4.4 explains why the friction to use is the one at the wave's own frequency, which
 can be far below the friction measured by stirring.
 
-<!-- diagram: tut-wave-damped — A wave train entering a medium from the left at x = 0 (the medium lightly shaded from
-x = 0 on), drawn as a thin sinusoid of constant amplitude before x = 0 that falls as e^{−Γx/2c} after it; the envelope
-±e^{−Γx/2c} dashed; the attenuation length c/Γ marked on the axis, where the energy has fallen by e and the amplitude
-by √e. Γ/ω = 0.05, so that c/Γ is 3.2 wavelengths and the decay shows within the drawing, and the caption says so.
-Caption: "Look first at the dashed envelope: the crests keep their spacing while the amplitude falls by the same factor
-in each wavelength. The damping is drawn far stronger than in any real medium." -->
+![Look first at the dashed envelope: the crests keep their spacing while the amplitude falls by the same factor in
+each wavelength. The wave enters the shaded medium at $x = 0$ with $\Gamma/\omega = 0.05$, so that $c/\Gamma$ is 3.2
+wavelengths: there the energy has fallen by $e$ and the amplitude by $\sqrt e$. The damping is drawn far stronger than
+in any real medium.](tut-wave-damped){#fig:wave-damped}
 
 <!-- try: damped-wave — DampedWave. A horizontal line of medium with a source at the left sending a wave train to the
 right. Sliders: frequency (0.5–4, arbitrary units), damping Γ (0 to 0.2 of the highest frequency), and the refractive
