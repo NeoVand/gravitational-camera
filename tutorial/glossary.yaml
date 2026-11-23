@@ -2323,3 +2323,75 @@ terms:
     definition: 'The addition of waves with random or varying phases, so that on average their powers add: $N$ equal sources radiate $N$ times the power of one.'
     chapter: '5.2'
     anchor: many-sources-in-step-add-their-amplitudes
+  - term: wavelet
+    definition: 'The spherical wave $e^{ikR}/R$ sent out from one point by a source that oscillates at one frequency. Huygens''s principle builds the wave beyond an opening from the wavelets of its points.'
+    chapter: '5.3'
+    anchor: beyond-an-opening-a-wave-is-a-sum-of-wavelets-from-every-point-of-it
+  - term: "Huygens's principle"
+    definition: 'The rule that every point of an opening sends out a wavelet in proportion to the wave arriving there, and that the wave beyond is their sum: $\tilde u(P) = (1/i\lambda)\int\tilde u\,e^{ikR}/R\,\mathrm d^2a$ at small angles. Far away it becomes Fraunhofer diffraction, with an intensity on the axis $A^2/\lambda^2r^2$ times the arriving one.'
+    chapter: '5.3'
+    anchor: beyond-an-opening-a-wave-is-a-sum-of-wavelets-from-every-point-of-it
+  - term: array (of pixels)
+    definition: 'A set of pixels spread over a region, each recording the field at its own place, whose records are combined by computation into a picture.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - term: aperture
+    definition: 'The region an array of pixels covers, or the opening of a lens. Its width $D$ in wavelengths sets the sharpness of the picture, about $\lambda/D$.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - term: delay and sum
+    definition: 'Another name for beamforming: each pixel''s record is shifted by the delay $\hat n''\cdot\vect x_p/c$ that a wave from the chosen direction $\hat n''$ has at that pixel, and the records are added.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - term: steering
+    definition: 'Choosing the direction for which an array''s records are delayed and added, so that the array''s picture is formed for that direction.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - term: reciprocity (of an array)
+    definition: 'The rule that an array receives from each direction as strongly as it would send toward it, used as a set of sources with the phases of its steering. The camera''s delay-and-sum factor is the array factor of chapter 5.2 for those phases.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - term: beam pattern
+    definition: 'The response $|\mathcal A_{\hat n''}(\hat n)|^2/N^2$ of an array steered to $\hat n''$, drawn against the direction $\hat n$ of a source. For a filled round aperture it is the Airy pattern.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - term: main lobe
+    definition: 'The peak of a beam pattern at the steered direction, where every record adds in step. Its width is about $\lambda/D$.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - term: side lobe
+    definition: 'One of the smaller peaks of a beam pattern around its main lobe. For a row of eight pixels the largest reaches 5.3% of the main lobe.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - term: grating lobe
+    definition: 'A copy of the main lobe, of full height, that appears when pixels are more than half a wavelength apart: at $\sin\theta - \sin\theta'' = m\lambda/b$ for a row of spacing $b$. It is aliasing seen in the directions of the sky.'
+    chapter: '5.3'
+    anchor: gaps-between-pixels-make-copies-of-the-image
+  - term: resolved direction
+    definition: 'One of the spots, about $\lambda/D$ wide each way, into which an array divides the sky. A steradian holds about $(D/\lambda)^2$ of them, or $A/\lambda^2$ for an aperture of area $A$.'
+    chapter: '5.3'
+    anchor: an-array-resolves-as-many-directions-as-its-area-holds-square-wavelengths
+  - term: Fresnel zone
+    definition: 'The distances from an array closer than about $D^2/\lambda$, where the fronts of a source''s wave are curved across the array by a sizeable part of a wavelength, so that plane-wave delays fail and the array must be focused.'
+    chapter: '5.3'
+    anchor: a-near-source-needs-the-delays-from-a-point
+  - term: focusing (an array)
+    definition: 'Delaying each record by the travel time $|\vect x_p - \vect y|/c$ from a chosen point $\vect y$, so that the crests that left that point together add in step. The picture is then a function of a point, not of a direction.'
+    chapter: '5.3'
+    anchor: a-near-source-needs-the-delays-from-a-point
+  - term: coherent sources
+    definition: 'Sources that oscillate in step, with fixed phases. Their amplitudes add before the picture is squared, so two of them with equal phases need a separation of about $1.4\lambda r/D$ to show a dip of a fifth, against $1.0\lambda r/D$ for incoherent sources.'
+    chapter: '5.3'
+    anchor: sources-in-step-blur-more-than-sources-out-of-step
+  - term: incoherent sources
+    definition: 'Sources whose phases wander independently, so that their relative phase takes every value, the cross term of their waves averages to zero, and their pictures add as intensities.'
+    chapter: '5.3'
+    anchor: sources-in-step-blur-more-than-sources-out-of-step
+  - term: aperture synthesis
+    definition: 'Forming the picture of a filled array from one pixel, or a few, carried through the positions of its pixels in turn. One pixel needs the source to keep its phase while it moves; for thermal light, pairs of pixels that record together are enough, because the image is a sum over pairs.'
+    chapter: '5.3'
+    anchor: one-moving-pixel-can-image-a-steady-source-but-thermal-light-needs-pixels-that-record-together-in-pairs
+  - term: coherence time
+    definition: 'The time over which a wave keeps its phase, about one over the width of its spectrum in angular frequency: about $\hbar/k_BT = 2.6 \times 10^{-14}$ s for thermal radiation at 293 K.'
+    chapter: '5.3'
+    anchor: one-moving-pixel-can-image-a-steady-source-but-thermal-light-needs-pixels-that-record-together-in-pairs

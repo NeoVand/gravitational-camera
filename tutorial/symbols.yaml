@@ -1564,3 +1564,83 @@ symbols:
     meaning: 'The factor by which the far wave of $N$ equal compact sources exceeds the wave of one: $\mathcal A = \sum_s e^{-i\phi_s - i\omega\hat n\cdot\vect x_s/c}$, the paper''s sum. It is $N$ for sources close together and in step.'
     chapter: '5.2'
     anchor: many-sources-in-step-add-their-amplitudes
+  - key: pixel-position
+    title: Place of a pixel
+    tex: '\vect x_p'
+    role: none
+    kind: A vector; in metres
+    meaning: 'The place of the pixel numbered $p$ in an array. A plane wave from the direction $\hat n$ reaches it earlier than the origin by $\hat n\cdot\vect x_p/c$.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - key: look-direction
+    title: Direction from the camera toward a source
+    tex: '\hat n'
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'The unit vector from the camera toward a source, as in the paper''s Sections IV, VII and VIII; the wave travels along $-\hat n$. (In chapter 5.2 and the paper''s Sections V and XI, $\hat n$ points the other way, from a source toward the field point.)'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - key: steered-direction
+    title: Steered direction
+    tex: '\hat n'''
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'The direction for which an array''s records are delayed and added, so that its picture is formed for that direction. The paper writes it $\hat n$, since its image is a function of it.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - key: steered-array-factor
+    title: Array factor of a steered array
+    tex: '\mathcal A_{\hat n''}(\hat n)'
+    role: none
+    kind: A complex number for each pair of directions; no unit
+    meaning: 'The sum $\sum_pe^{-ik(\hat n - \hat n'')\cdot\vect x_p}$ over the pixels of an array steered to $\hat n''$, for a wave from $\hat n$. It is chapter 5.2''s array factor $\mathcal A$ with the pixels as sources and the phases $\phi_p = -k\hat n''\cdot\vect x_p$; it reaches $N$ when $\hat n'' = \hat n$.'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - key: beam-image
+    title: Computed image
+    tex: 'I(\hat n'')'
+    role: none
+    kind: A number for each steered direction; in the square of the unit of the field
+    meaning: 'The mean square of the delayed and added records, $\tfrac12|\tilde u|^2|\mathcal A_{\hat n''}(\hat n)|^2$ for one wave of one frequency: the paper''s $I(\hat n)$ of its equation beam. (Not the invariant $\mathrm{tr}\,\mathcal W^2$, the Stokes $I$ or a moment of inertia.)'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - key: aperture-width
+    title: Width of an aperture
+    tex: 'D'
+    role: none
+    kind: A length; in metres
+    meaning: 'The width of an array or a lens, the paper''s $D$. Its picture of a point is about $\lambda/D$ wide: $1.03\lambda/D$ at half height for a round aperture. (Not 3.3''s separation of two scenes nor 4.6''s table $D$.)'
+    chapter: '5.3'
+    anchor: delaying-and-adding-the-records-of-many-pixels-points-the-array
+  - key: pixel-spacing
+    title: Spacing of pixels
+    tex: 'b'
+    role: none
+    kind: A length; in metres
+    meaning: 'The distance between neighbouring pixels of a row or grid, as in chapter 2.6 and the paper''s Appendix A. Waves can be steered anywhere without grating lobes only if $b \le \lambda/2$. (Not the strength of a point source of chapter 5.2 nor an impact parameter.)'
+    chapter: '5.3'
+    anchor: gaps-between-pixels-make-copies-of-the-image
+  - key: lobe-order
+    title: Order of a grating lobe
+    tex: 'm'
+    role: none
+    kind: A whole number; no unit
+    meaning: 'The label of a grating lobe, at $\sin\theta - \sin\theta'' = m\lambda/b$. (Not a mass, nor the order of a spherical harmonic.)'
+    chapter: '5.3'
+    anchor: gaps-between-pixels-make-copies-of-the-image
+  - key: source-separation
+    title: Separation of two sources
+    tex: '\Delta y'
+    role: none
+    kind: A length; in metres
+    meaning: 'The distance between two equal sources at the distance $r$ from a camera, which the paper writes $s$. In step they need $\Delta y \gtrsim 1.4\lambda r/D$ to show a dip of a fifth, out of step about $\lambda r/D$.'
+    chapter: '5.3'
+    anchor: sources-in-step-blur-more-than-sources-out-of-step
+  - key: coherence-time
+    title: Coherence time
+    tex: '\tau_c'
+    role: none
+    kind: A time; in seconds
+    meaning: 'How long a wave keeps its phase: the correlation time of chapter 3.2 for its field, about $1/\Delta\omega$ for a spectrum $\Delta\omega$ wide. For thermal radiation it is about $\hbar/k_BT$, $2.6 \times 10^{-14}$ s at 293 K, far too short for one moving pixel to image it.'
+    chapter: '5.3'
+    anchor: one-moving-pixel-can-image-a-steady-source-but-thermal-light-needs-pixels-that-record-together-in-pairs
