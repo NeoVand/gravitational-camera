@@ -22,7 +22,8 @@ This chapter reads the three paragraphs that [reading chapter R2](/tutorial/outs
 after Part 4: *What heat reveals*, *What an applied tide reveals* and *A model-independent thermometer*. It also reads
 Figure [](/paper/#fig:tremor), Appendix A's *The trembling lattice* and a list in Section XIII. As in
 [R1](/tutorial/newton/reading-section-ii/), each claim is marked *checked here*, *read now, derived in Part N* or
-*stated in the paper*. The chapter ends by following the steel ball from its heat to a thermometer.
+*stated in the paper*. The chapter ends by following the steel ball from its heat to a thermometer. Figure
+[](#fig:read-iv3-map) draws the seven stretches in order.
 
 {{paper fig:tremor}}
 
@@ -41,22 +42,9 @@ The paper's steel ball rings about thirteen thousand times a second. A metre awa
 than ten million billion times weaker than a person's, but it is there.
 :::
 
-<!-- diagram: tut-read-iv3-map — Drawn as R3's map (tut-read-iv2-map: the same box sizes, strokes, fills and type),
-portrait, about 282 pt by 330 pt. At the top, one small box with a thin grey stroke: "The first half: R2. How sharp: R3."
-Below it, seven boxes 58 pt wide and 66 pt tall, filled in the light orange of R3's filled boxes (all are checked here),
-four in the first row and three in the second, joined in reading order by thin grey arrows. Each box holds, in order:
-the stretch's name, its equations in the paper's numbers if it has any, and beneath, in small type, the chapters that
-teach it; a chapter that comes later stands in its own small dotted box. (1) "Plain words: Heat; A tide applied from
-outside", no equation, "4.2 4.3 4.5 4.6". (2) "What heat reveals, first paragraph", "(13) (14)", "2.1 2.2 3.9 4.2 4.6",
-dotted "13.2". (3) "What heat reveals, second paragraph: three conditions, the lattice, the steel ball", no equation,
-"3.3 4.2 4.3 4.6", dotted "5.2" and "7.7". (4) "Fig. tremor and App. A, The trembling lattice", "(102)", "4.3 4.5 4.6",
-dotted "8.7". (5) "What an applied tide reveals", "(15)", "4.5 4.6", dotted "8.7". (6) "A model-independent
-thermometer", "(16)", "2.2 2.3 4.6". (7) "Sec. XIII, The field at two times", "(82) (83)", "1.7 4.2 4.5",
-dotted "8.2". (The equation numbers are those of the rendered paper.) At the foot, a thin arrow from all
-seven to a last box with an orange stroke: "The capstone: the steel ball". No colour other than R3's map's.
-Caption: "The seven stretches read here, in order, each with its equation numbers if it has any and the chapters that
-teach it beneath. Every box is checked here; a dotted chapter number marks a claim inside it that is read now and
-derived later. All seven meet in the capstone." Label for the text: #fig:read-iv3-map; when the figure is placed, end the second paragraph of the chapter with "Figure [](#fig:read-iv3-map) draws the seven stretches in order." -->
+![The seven stretches read here, in order, each with its equation numbers if it has any and the chapters that teach
+it beneath. Every box is checked here; a dotted chapter number marks a claim inside it that is read now and derived
+later. All seven meet in the capstone.](tut-read-iv3-map){#fig:read-iv3-map}
 
 ## The plain words promise that heat and a push break the tie
 
@@ -424,34 +412,16 @@ null space of R2, can therefore differ in it. Section XIII builds on this with C
 ## The capstone: the steel ball, from its heat to a thermometer
 
 We now follow the paper's steel ball with the whole of Part 4, in eight steps. Each step gives one number and the
-chapter that supplies it.
+chapter that supplies it. Figure [](#fig:read-iv3-capstone) draws the eight.
 
-<!-- diagram: tut-read-iv3-capstone — Eight small panels, (a) to (h), in two rows of four at 1440 px and four rows of
-two at 390 px, each about 3:2, thin single strokes, the paper's palette; labels in the panels short and off the
-geometry. (a) The ball cut open: a circle of radius 10 cm (the steel ball's grey) holding about 40 small dots
-(atoms, schematic), each with a short dark arrow whose components are drawn from a Gaussian (fixed seed; lengths
-schematic); label "32.9 kg · 3.5 × 10²⁶ atoms · 366 m s⁻¹". (b) Left half: a section through the axis with Appendix A's
-displacement arrows (as tut-elastic-trial: orange outward along the axis, blue inward round the equator; 12 arrows,
-exaggerated). Right half: a vertical frequency scale from 11 to 16 kHz with three ticks: 11.9 kHz in grey ("twist, no
-tide"), 12.6 kHz solid ("exact"), 15.1 kHz dashed ("Rayleigh"). (c) The Gaussian of the pole swing: horizontal axis q
-in units of 10⁻¹⁶ m from −8 to 8, ticks every 2; the curve exp(−q²/2q_rms²) with q_rms = 2.16 (exact), the two points
-±q_rms marked by thin verticals; label "q_rms = 2.2 × 10⁻¹⁶ m". (d) Log–log axes: distance r from 0.1 to 10 m (ticks at
-0.1, 1, 10), tide from 10⁻³⁰ to 10⁻¹⁹ s⁻² (ticks every two decades); the exact line 3.41 × 10⁻²⁵ (r / 1 m)⁻⁵, in the
-\curv orange; dots at r = 0.2 m (1.07 × 10⁻²¹) and 1 m (3.41 × 10⁻²⁵); a small slope triangle labelled "r⁻⁵". (e) Two
-bars on one axis from 0 to 10 × 10⁻²² kg² m⁴ s⁻²: "ball" 5.45 and "thin shell" 9.08 (exact ratio 5 : 3); a thin bracket
-"5/3" between their tops. (f) Two bars on one axis from 0 to 4 × 10⁻¹⁶: "Kelvin" 3.83 and "trial shape" 2.91, both for
-the text's μ = 71 GPa; label "the guess is stiffer". (g) One resonance line S_q(ω) = 2k_BT·Γ/m_eff/[(ω₀² − ω²)² + Γ²ω²] against ω/ω₀ from 0.5 to
-1.5, drawn for Q = 5 (thin) and Q = 20 (thicker), both exact, areas shaded lightly in the same neutral grey; label
-"same area, k_BT/K"; the Q values are chosen for the drawing. (h) The thermometer: a circle (the shell) whose stroke
-is orange round the equator and blue at the poles (the pattern −n̂·D·n̂ for D = diag(−½, −½, 1), as tut-fd-thermometer),
-a small ring of twelve dots at its centre (the pixel), the steel ball outside it at the right; label "T = ω S_yy / 2k_B
-Im χ_yy = 300 K". Caption: "The capstone in eight panels. (a) The ball and its atoms, each moving at random. (b) Its
-lowest note: Rayleigh's bound, Lamb's exact mass-quadrupole note and the twist below it, which makes no tide. (c) The
-spread of the swing of its poles at 300 K. (d) The tide of that swing on the axis, against distance: it falls as r⁻⁵,
-3.4 × 10⁻²⁵ s⁻² at a metre. (e) The mean square rate of change of the quadrupole xy for the ball and for a thin shell
-of the same mass and radius. (f) The ball's Love number, from Kelvin's formula and from the trial shape. (g) A line of
-the tremor at two quality factors: the same area. (h) The thermometer's push and the pixel. The atoms, the arrows and
-the push's pattern in (h) are schematic; the curves and the bars are exact." Label for the text: #fig:read-iv3-capstone; when the figure is placed, end the capstone's first paragraph with "Figure [](#fig:read-iv3-capstone) draws the eight." -->
+![The capstone in eight panels. (a) The ball and its atoms, each moving at random. (b) Its lowest note: Rayleigh's
+bound, Lamb's exact mass-quadrupole note and the twist below it, which makes no tide. (c) The spread of the swing of its
+poles at 300 K. (d) The tide of that swing on the axis, against distance: it falls as $r^{-5}$,
+$3.4\times10^{-25}\unit{s^{-2}}$ at a metre. (e) The mean square rate of change of the quadrupole $xy$ for the ball and
+for a thin shell of the same mass and radius. (f) The ball's Love number, from Kelvin's formula and from the trial
+shape. (g) A line of the tremor at two quality factors: over all frequencies, the same area. (h) The thermometer's push
+and the pixel. The atoms, the arrows and the sizes in (h) are schematic; the curves and the bars are
+exact.](tut-read-iv3-capstone){#fig:read-iv3-capstone}
 
 **(a) The body.** The ball has $R = 10\unit{cm}$ and $\matter M = 32.9\unit{kg}$. It holds $3.5\times10^{26}$ iron
 atoms, each moving at a root mean square speed of $366\unit{m\,s^{-1}}$ in a random direction, independently of all the
