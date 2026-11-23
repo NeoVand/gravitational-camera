@@ -75,17 +75,13 @@ $\mathrm{Im}\,\chi$ an odd one, with $\mathrm{Im}\,\chi(0) = 0$. The cart's $\ma
 \omega^2$ on top, is even, and its $\mathrm{Im}\,\chi$, with $\Gamma\omega$ on top, is odd.
 
 **A non-example.** A kernel that is the same forwards and backwards in time, such as $e^{-|t|/\tau}$, starts before
-the blow. The imaginary part of its transform is $\int\chi(t)\sin\omega t\,\dd t$, whose integrand is odd, so it
-vanishes, and the transform, $2\tau/(1 + \omega^2\tau^2)$, is real. By 4.1's power $\tfrac12\omega\,\mathrm{Im}\,\chi
-\,|\tilde F|^2$, such a body could never take energy from a push. Friction needs an answer that differs forwards and
-backwards in time, and causality guarantees one.
+the blow (Figure [](#fig:kernels), right). The imaginary part of its transform is $\int\chi(t)\sin\omega t\,\dd t$,
+whose integrand is odd, so it vanishes, and the transform, $2\tau/(1 + \omega^2\tau^2)$, is real. By 4.1's power
+$\tfrac12\omega\,\mathrm{Im}\,\chi\,|\tilde F|^2$, such a body could never take energy from a push. Friction needs an
+answer that differs forwards and backwards in time, and causality guarantees one.
 
-<!-- diagram: tut-caus-kernels — Two panels side by side, the same axes: time t from −3 to 8 (in units of 1/ω₀),
-vertical axis χ(t) in units of 1/mω₀. Left, "causal": a blow drawn as a short vertical arrow at t = 0, and 4.1's
-impulse response for Q = 5, e^{−Γt/2} sin(ω_d t)/mω_d, zero (a flat line on the axis) for t < 0 and a decaying sine
-after; the region t < 0 lightly shaded and labelled "before the blow". Right, "not a response": the even kernel
-e^{−|t|} (τ = 1), the same arrow at t = 0, the curve rising before it and symmetric about it. Caption: "Look first at
-the shaded time before the blow: a response is zero there, and the even kernel on the right is not. Curves exact." -->
+![Look first at the shaded time before the blow: a response is zero there, and the even kernel on the right is not.
+Curves exact.](tut-caus-kernels){#fig:kernels}
 
 ## Causality ties the stiffness of a response to its friction
 
@@ -120,18 +116,8 @@ for the **principal value**. The integrand grows without bound at $\omega' = \om
 sides, so we leave out the interval from $\omega - \delta$ to $\omega + \delta$, integrate over the rest, and let
 $\delta$ shrink to zero; the large parts on the two sides cancel.[^kk-units]
 
-<!-- diagram: tut-caus-contour — The complex ω plane, real axis horizontal (labelled "Re ω"), imaginary axis vertical
-("Im ω"). The cart's two poles for Q = 3 as crosses at ±ω_d − iΓ/2 below the real axis (ω₀ = 1, Γ = 1/3, ω_d =
-0.986). The upper half plane lightly shaded, labelled "χ holomorphic". The contour: along the real axis from −R to R
-(R = 2.5), with a small half-circle of radius 0.15 bulging upward over a dot at ω (= 0.6) on the real axis, closed by
-the large half-circle |ω'| = R in the upper half, arrows anticlockwise. Labels: "ω" at the dot, "R" on the big arc.
-Caption: "Look first at the poles: causality keeps them below the real axis, so the loop above encloses none. The
-poles are exact for Q = 3; the radii of the loop are chosen for the drawing." Exact geometry: the real axis from −2.8
-to 2.8, the imaginary axis from −0.5 to 2.8, one scale on both; poles at (±0.986, −0.167); the loop runs from −2.5 to
-0.45 along the axis, over the dot at 0.6 by the half-circle 0.6 + 0.15e^{iθ} with θ from π to 0 (it passes through
-0.6 + 0.15i), on from 0.75 to 2.5, and back by 2.5e^{iθ} with θ from 0 to π; one arrowhead on each of the four pieces;
-"δ" beside the small half-circle. Place it as ![caption](tut-caus-contour){#fig:contour} just before the gap box, and
-then change the box's "The loop runs" to "The loop, drawn in Figure [](#fig:contour), runs". -->
+![Look first at the poles: causality keeps them below the real axis, so the loop above encloses none. The poles are
+exact for $Q = 3$; the radii of the loop are chosen for the drawing.](tut-caus-contour){#fig:contour}
 
 ::: gap
 This box uses two tools that the tutorial has not taught. One is the integral of a complex function along a path in
@@ -142,9 +128,9 @@ course in complex analysis, such as the first three chapters of E. M. Stein and 
 (Princeton, 2003).
 
 Fix a real $\omega$ and take $\chi(\omega')/(\omega' - \omega)$, which is holomorphic in the upper half plane but grows
-without bound at $\omega' = \omega$ on its edge. The loop runs along the real axis from $-R$ to $R$, steps over the
-point $\omega$ by a small half-circle of radius $\delta$ so that it never touches it, and comes back from $R$ to $-R$
-by a large half-circle of radius $R$. By Cauchy's theorem its three pieces add to zero.
+without bound at $\omega' = \omega$ on its edge. The loop, drawn in Figure [](#fig:contour), runs along the real axis
+from $-R$ to $R$, steps over the point $\omega$ by a small half-circle of radius $\delta$ so that it never touches it,
+and comes back from $R$ to $-R$ by a large half-circle of radius $R$. By Cauchy's theorem its three pieces add to zero.
 
 On the large half-circle the integrand falls faster than $1/R$, because $\chi$ tends to zero, while the path is $\pi R$
 long, so that piece vanishes as $R$ grows. On the small one $\omega' = \omega + \delta e^{i\theta}$, with
