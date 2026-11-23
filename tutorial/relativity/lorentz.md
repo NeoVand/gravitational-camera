@@ -6,7 +6,7 @@ part: '6'
 requires: ['1.1', '1.6']
 paper: [sec:pixel, eq:tidal, sec:one-pixel, eq:W, eq:moving-state, fig:speedometer, fig:present, fig:stars, app:proofs, sec:vistas]
 figures: [fig:speedometer]
-live: []
+live: [lorentz-diagram]
 depth: A
 ---
 
@@ -24,15 +24,9 @@ happen at the same time. The whole answer follows from one fact of experiment: l
 observer. From it we derive the rule that carries the times and places of events from one observer to another, and the
 distance $R_*$ that the paper uses to weigh a moving body.
 
-<!-- diagram: tut-lorentz-hero — The hero figure of Part 6, built later in the 3D stone pipeline with candidates in two
-runs as style references (PLAN.md section 9). One event, drawn as a small bright point, with its light cone (a thin
-glass double cone, half-angle 45°, time up). Two worldlines through the event: a ring of twelve stone test masses at
-rest (its worldline vertical) and a second ring moving at 0.6c (its worldline tilted by arctan 0.6 = 31.0° from the
-vertical). Through the event, each ring's slice of simultaneity as a thin glass sheet: horizontal for the ring at rest,
-tilted by the same 31.0° toward the light cone for the moving ring. No labels on the geometry. Caption: "Look first at
-the two glass sheets: they are the two rings' 'now' through the same event. The ring at rest calls the horizontal sheet
-'now'; the ring moving at 0.6 of the speed of light calls the tilted sheet 'now'. Both sheets lie outside the light
-cone." -->
+![Look first at the two glass sheets: they are the two rings' "now" through the same event. The ring at rest
+calls the horizontal sheet "now"; the ring moving at 0.6 of the speed of light calls the tilted sheet "now". Both
+sheets lie outside the light cone.](tut-lorentz-hero){#fig:two-nows}
 
 ::: plain
 Light travels at the same speed for everyone, however fast they move. That single fact forces time and distance to mix
@@ -211,20 +205,12 @@ This is the **relativity of simultaneity**: whether two separated events happen 
 observer. The set of all events that one observer calls "now" is that observer's **slice of simultaneity**. In a
 diagram with the room's $x$ across and its $ct$ upward, the room's slice is a horizontal line. The pixel's slice
 $t' = 0$ is the line $ct = \obs\beta x$, tilted up toward the path of light by the same angle by which the pixel's
-worldline $x = \obs\beta ct$ is tilted from the vertical.
+worldline $x = \obs\beta ct$ is tilted from the vertical (Figure [](#fig:boost-axes)).
 
-<!-- diagram: tut-lorentz-axes — One square panel, about 520 × 520 px at 1440 (full width on a phone). Room's axes in
-thin ink: x across from −1.2 to 1.8 light-seconds, ct upward from −1.2 to 1.8 light-seconds, equal scales, labelled "x"
-and "ct" at their ends. The two light lines x = ±ct as thin dashed lines in the light role's colour, labelled "light"
-once, beside the upper right one. The pixel's axes in the observer colour, through the origin: its time axis (x′ = 0)
-along x = 0.6 ct, labelled "ct′", and its space axis (t′ = 0) along ct = 0.6 x, labelled "x′"; each tilted by
-arctan 0.6 = 31.0° from the room's axis toward the light line. Unit marks: small ticks on ct′ at (x, ct) = (0.75, 1.25)
-and on x′ at (1.25, 0.75), labelled "1". Two flashes as small filled dots on the room's x axis: at (0, 0) labelled "A"
-and at (1, 0) labelled "B". Through B, a thin dashed line in the observer colour parallel to the x′ axis, ct = 0.6 x −
-0.6, labelled "pixel's now at t′ = −0.75 s" below its right end. Labels never on a line. Caption: "Look first at the two
-dots on the room's horizontal axis: the room calls the flashes A and B simultaneous. The pixel at 0.6 of the speed of
-light calls the tilted line through A 'now'; B lies below it, on the parallel line of t′ = −0.75 s, so for the pixel B
-came first. Units are light-seconds; the light lines are at 45°." -->
+![Look first at the two dots on the room's horizontal axis: the room calls the flashes A and B simultaneous. The
+pixel at 0.6 of the speed of light calls the tilted line through A "now"; B lies below it, on the parallel line of
+$t' = -0.75\unit{s}$, so for the pixel B came first. Units are light-seconds; the light lines are at
+45°.](tut-lorentz-axes){#fig:boost-axes}
 
 Two events can be ordered differently by different observers only if light cannot connect them. In general
 $\Delta t' = \obs\gamma(\Delta t - \obs\beta\Delta x/c)$, which changes sign for some $\obs\beta < 1$ only when
@@ -248,21 +234,13 @@ contradiction, because the two judgements compare different pairs of clocks.
 
 A clock made of light shows the same factor. Two mirrors a distance $L$ apart, across the motion, bounce a flash between
 them, and one tick is the flash's trip up and back, $2L/c$ in the clock's own frame. In the room the mirrors move on by
-$\obs v\Delta t/2$ while the flash goes up, so the flash runs along a diagonal. Its length is $c\Delta t/2$, and by
-Pythagoras $(c\Delta t/2)^2 = L^2 + (\obs v\Delta t/2)^2$. So $\Delta t = (2L/c)/\sqrt{1 - \obs\beta^2}$, which is
-$\obs\gamma$ times the tick in the clock's own frame.
+$\obs v\Delta t/2$ while the flash goes up, so the flash runs along a diagonal (Figure [](#fig:light-clock)). Its
+length is $c\Delta t/2$, and by Pythagoras $(c\Delta t/2)^2 = L^2 + (\obs v\Delta t/2)^2$. So
+$\Delta t = (2L/c)/\sqrt{1 - \obs\beta^2}$, which is $\obs\gamma$ times the tick in the clock's own frame.
 
-<!-- diagram: tut-lorentz-light-clock — Two panels side by side, each about 300 × 260 px at 1440 (stacked on a phone).
-Left, "at rest": two short horizontal mirrors (thin ink, 60 px wide) 160 px apart, one above the other; a flash path in
-the light role's colour straight up and straight down, drawn as two slightly separated vertical arrows; the gap
-labelled "L" beside a thin dimension line at the left. Right, "moving at 0.6c": the lower mirror drawn at three
-positions, 0, 120 and 240 px to the right (the first and last faint), the upper mirror at 120 px; the flash path as two
-diagonals from (0, 0) up to (120, 160) and down to (240, 0), each 200 px long, so that the triangle has sides 120, 160,
-200 in the ratio 0.75 : 1 : 1.25 for L = 1. A thin dimension line under the base labelled "vΔt/2" under its left half,
-and the left diagonal labelled "cΔt/2" outside the triangle. An arrow in the observer colour along the bottom labelled
-"0.6c". Caption: "Look first at the diagonal: in the room, the flash travels 1.25 times as far per tick as in the
-clock's own frame, at the same speed c, so each tick lasts 1.25 times as long. The triangle is the 3 : 4 : 5 triangle of
-0.6c." -->
+![Look first at the diagonal: in the room, the flash travels 1.25 times as far per tick as in the clock's own frame,
+at the same speed $c$, so each tick lasts 1.25 times as long. The triangle is the 3 : 4 : 5 triangle of
+$0.6c$.](tut-lorentz-light-clock){#fig:light-clock}
 
 **A clock on any path.** A clock may change its speed. We assume that **a clock that speeds up or slows down ticks, at
 each moment, like a clock moving steadily with its velocity of that moment**.[^clock] In a short time $\dd t$ of the
@@ -348,18 +326,11 @@ which is the distance of the paper's [*The state of a moving body*](/paper/#par:
 A body at $0.6c$ seen directly across its path, $r_\parallel = 0$, is at $R_* = r$ in its own frame. Seen ahead of the
 pixel along its path, $r_\perp = 0$, it is at $R_* = 1.25\,r$. The distance in the body's frame is longer along the
 motion, because the pixel measures the gap at one of its own times, as the room measured the moving rod, and so finds
-it contracted. When $\obs v \to 0$, $R_* = r$.
+it contracted (Figure [](#fig:rest-frame-distance)). When $\obs v \to 0$, $R_* = r$.
 
-<!-- diagram: tut-lorentz-rstar — Two panels side by side, each about 320 × 280 px at 1440 (stacked on a phone), the
-same scale (100 px per metre). Left, "pixel's frame, at the pixel's now": the pixel as a small ring of twelve dots at
-(0, 0); the body as a filled dot in the matter colour at (1.2, 1.6) m, with an arrow in the observer colour from it
-pointing along +x labelled "v = 0.6c"; the vector r from pixel to body in ink, labelled "r = 2.0 m" beside its middle,
-off the line; its parts as thin dashed lines, r∥ = 1.2 m along x (labelled below) and r⊥ = 1.6 m along y (labelled at
-the right). Right, "body's frame": the same with the part along x stretched by γ = 1.25, the body at (1.5, 1.6) m at
-rest (no arrow), and the line from the pixel's event to it labelled "R* = 2.19 m"; the dashed parts labelled
-"γ r∥ = 1.5 m" and "r⊥ = 1.6 m". Caption: "Look first at the horizontal dashed parts: along the motion the body's frame
-finds the gap 1.25 times longer, and across it the same. So R* = √(1.5² + 1.6²) = 2.19 m, against r = 2.0 m in the
-pixel's frame. The pixel is drawn at its event t = 0." -->
+![Look first at the horizontal dashed parts: along the motion the body's frame finds the gap 1.25 times longer, and
+across it the same. So $R_* = \sqrt{1.5^2 + 1.6^2}\unit{m} = 2.19\unit{m}$, against $r = 2.0\unit{m}$ in the pixel's
+frame. The pixel is drawn at its event $t = 0$.](tut-lorentz-rstar){#fig:rest-frame-distance}
 
 A body of mass $\matter M$ at rest a distance $R$ away squeezes a ring across the line to it at the rate
 $G\matter M/R^3$, the same in both directions across (chapter
@@ -431,19 +402,14 @@ Multiplying the tables of two boosts and using the addition formulas gives the t
 (e^{2\obs\eta} - 1)/(e^{2\obs\eta} + 1)$, and solving $\tanh\obs\eta = \obs\beta$ for the exponential gives
 $e^{2\obs\eta} = (1 + \obs\beta)/(1 - \obs\beta)$. At $0.6c$ this is $1.6/0.4 = 4$, so the pixel's rapidity is exactly
 $\obs\eta = \ln 2 = 0.693$. Two such boosts give $\ln 4$, where $e^{2\obs\eta} = 16$, and
-$\tanh(\ln 4) = (16 - 1)/(16 + 1) = 15/17 = 0.882$, as [](#eq:addition) found. For small speeds $\obs\eta \approx
-\obs\beta$. As $\obs\beta \to 1$, $\obs\eta \to \infty$: $0.9c$ is the rapidity 1.47 and $0.99c$ is 2.65. Each boost
-adds a finite rapidity, so no number of boosts reaches the speed of light.
+$\tanh(\ln 4) = (16 - 1)/(16 + 1) = 15/17 = 0.882$, as [](#eq:addition) found (Figure [](#fig:rapidity-hyperbola)).
+For small speeds $\obs\eta \approx \obs\beta$. As $\obs\beta \to 1$, $\obs\eta \to \infty$: $0.9c$ is the rapidity 1.47
+and $0.99c$ is 2.65. Each boost adds a finite rapidity, so no number of boosts reaches the speed of light.
 
-<!-- diagram: tut-lorentz-hyperbola — One panel, about 520 × 440 px at 1440 (full width on a phone). Axes x across from
-0 to 2.4 and ct upward from 0 to 2.4 (equal scales, units of cτ), labelled "x" and "ct". The light line x = ct, thin
-dashed in the light role's colour. The upper branch of the hyperbola −c²t² + x² = −c²τ² with cτ = 1, drawn for x from 0
-to 2.3, thin ink, labelled "−c²t² + x² = −c²τ²" near its upper end, off the curve. Three points on it as filled dots in
-the observer colour, at (x, ct) = (sinh η, cosh η): (0, 1) labelled "η = 0", (0.75, 1.25) labelled "η = ln 2, 0.6c", and
-(1.875, 2.125) labelled "η = ln 4, 0.882c". A thin line in the observer colour from the origin to each dot (the time
-axes of the three observers). Caption: "Look first at the three dots: each is one tick of a clock, cτ = 1, for an
-observer at rest, at 0.6c and at 0.882c. The steps between them are equal in rapidity, ln 2 each, though they look
-unequal on the page; the hyperbola is the set of events one tick from the origin for every observer." -->
+![Look first at the three dots: each is one tick of a clock, $c\obs\tau = 1$, for an observer at rest, at $0.6c$
+and at $0.882c$. The steps between them are equal in rapidity, $\ln 2$ each, though they look unequal on the page;
+the hyperbola is the set of events one tick from the origin for every
+observer.](tut-lorentz-hyperbola){#fig:rapidity-hyperbola}
 
 The paper writes the pixel's speed in this form, "with rapidity $\eta$ along a unit vector $\hat u$ (speed
 $c\tanh\eta$)", in [*One complex matrix*](/paper/#par:one-complex-matrix), beside [](/paper/#eq:W). Chapter 6.6 shows that
@@ -471,20 +437,18 @@ Two boosts along different directions do not make a single boost. They make a bo
 state this without proof here; chapter 6.6 computes it, and for $0.6c$ along $x$ followed by $0.6c$ along $y$ the turn
 is $12.7°$. Only boosts along one line combine by adding their rapidities.
 
-<!-- try: lorentz-diagram — LorentzDiagram (new; the GR course has no boost or Minkowski diagram). One panel, square,
-about 560 × 560 px at 1440 (full width on a phone): the room's axes x and ct (−2 to 2 light-seconds), the light lines
-x = ±ct dashed in the light role's colour, and the pixel's tilted axes ct′ and x′ in the observer colour, with unit ticks
-at (sinh η, cosh η) and (cosh η, sinh η). A rapidity slider from −2 to 2 (step 0.01; arrow keys move it by 0.05), with
-readouts β = tanh η, γ = cosh η and η, all to three figures. Two draggable events, A and B, each with the hyperbola of
-constant interval through it from the origin drawn faintly, and a readout table: each event's t and t′ (in seconds) and
-x and x′, the interval −c²Δt² + Δx² between them (constant as η changes) and the sign of Δt′, shown as "A first",
-"B first" or "together". Opens at η = ln 2 (β = 0.6) with A at (0, 0) and B at (1, 0) light-seconds, the two flashes.
-Predict first: "The pixel moves toward the far flash B. Which flash does it call earlier?" (Answer: B, by 0.75 s.)
-Then: "Find a speed at which the order of A and B is reversed. Can you do it for two events that light can connect?"
-(Answer: only when |Δx| > c|Δt|, which for these events on the line of motion means a positive interval; for
-events light can connect the sign of Δt′ never changes.) A second tab, "Two boosts", stacks two boosts of 0.6c and shows the axes of the second at η = ln 2 + ln 2 =
-ln 4, with readouts β = 15/17 = 0.882 against β₁ + β₂ = 1.2. Keyboard: Tab reaches the slider and each event, arrows
-move them; both themes; static on reduced motion. -->
+::: try {#lorentz-diagram}
+The room's axes $x$ and $ct$ in light-seconds, the light lines dashed, and the pixel's axes $ct'$ and $x'$ drawn over
+them in the observer's colour, each with a tick at one light-second of the pixel's own measure. The slider sets the
+pixel's rapidity $\obs\eta$, with its $\obs\beta$ and $\obs\gamma$ beside it. Two events, A and B, can be dragged
+anywhere; through each runs the faint hyperbola of its interval from the origin, and the table lists each event's
+times and places for the room and for the pixel, the interval between them, and which of the two the pixel calls
+first. It opens on the two flashes with the pixel at $0.6c$. The second view, *Two boosts*, adds a boost on top of the
+pixel's and reads the speed of the result.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, open
+*Two boosts*, set the second boost to $0.6c$, and compare the speed it reads with $0.6c + 0.6c$.
+:::
 
 ::: check
 ### Q
