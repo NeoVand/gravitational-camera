@@ -4,6 +4,7 @@ import NearFieldFigure from '../paper/figures/NearFieldFigure.svelte';
 import LockedSafeFigure from '../paper/figures/LockedSafeFigure.svelte';
 import WhichWayFigure from '../paper/figures/WhichWayFigure.svelte';
 import ClosedFurnaceFigure from '../paper/figures/ClosedFurnaceFigure.svelte';
+import ArrayFigure from '../paper/figures/ArrayFigure.svelte';
 import QuadrupoleFigure from '../paper/figures/QuadrupoleFigure.svelte';
 import Speedometer from '../paper/figures/interactive/Speedometer.svelte';
 import Stars from '../paper/figures/interactive/Stars.svelte';
@@ -43,6 +44,7 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label: 'The two furnaces, in light and in gravity',
 		component: ClosedFurnaceFigure as Component
 	},
+	array: { label: 'An array of pixels, and how wide it must be', component: ArrayFigure },
 	quadrupole: { label: 'A source of waves, at the speed you choose', component: QuadrupoleFigure },
 	speedometer: { label: 'One pixel reads its own velocity', component: Speedometer },
 	stars: { label: 'The four special directions of the tide', component: Stars },
