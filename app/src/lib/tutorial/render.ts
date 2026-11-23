@@ -52,7 +52,17 @@ export interface PaperFigureBlock {
 	captionHtml: string;
 }
 
-export type ChapterBlock = HtmlBlock | TryBlock | PaperFigureBlock;
+/** One of the tutorial's own figures (tutorial/figures/<name>.svg, drawn by figures3d/), numbered in its chapter. */
+export interface OwnFigureBlock {
+	kind: 'figure';
+	id: string;
+	number: number;
+	/** the drawing, ready to inline */
+	html: string;
+	captionHtml: string;
+}
+
+export type ChapterBlock = HtmlBlock | TryBlock | PaperFigureBlock | OwnFigureBlock;
 
 export interface RenderedChapter {
 	meta: ChapterMeta;
@@ -77,6 +87,8 @@ export interface ChapterContext {
 	symbols: ReadonlySet<string>;
 	/** the paper: its labels and equations, and its rendered figures by id */
 	paper: { index: PaperIndex; figures: ReadonlyMap<string, FigureBlock> };
+	/** the tutorial's own figures, by name (the file's name without .svg), as drawings ready to inline */
+	figures: ReadonlyMap<string, string>;
 }
 
 /** The boxes a chapter may hold, as fenced-div classes. */
@@ -165,6 +177,7 @@ export function renderChapter(
 	const labels = new Map<string, string>();
 	const sections = new Map<string, Node[]>();
 	const citeNumbers = new Map<string, number>();
+	const figureNumbers = new Map<string, number>();
 	let equations = 0;
 	const scan = (x: any, top: boolean): void => {
 		if (Array.isArray(x)) return x.forEach((y) => scan(y, top));
@@ -184,6 +197,14 @@ export function renderChapter(
 			return;
 		}
 		if (n.t === 'Header' && top && n.c[0] === 2) sections.set(n.c[1][0], n.c[2]);
+		if (n.t === 'Figure') {
+			const id = String(n.c[0][0]);
+			if (!/^fig:[a-z0-9-]+$/.test(id))
+				fail(`a figure needs an id "fig:<name>", as ![caption](drawing){#fig:name} (got "${id}")`);
+			if (figureNumbers.has(id)) fail(`the figure id "${id}" is used twice`);
+			if (ctx.paper.index.labels.has(id)) fail(`the figure id "${id}" is also a label of the paper`);
+			figureNumbers.set(id, figureNumbers.size + 1);
+		}
 		if (n.t === 'Cite') {
 			for (const c of n.c[0])
 				if (!citeNumbers.has(c.citationId)) citeNumbers.set(c.citationId, citeNumbers.size + 1);
@@ -340,6 +361,10 @@ export function renderChapter(
 					});
 					return `<span class="cite">[${items.join(', ')}]</span>`;
 				}
+				case 'Image':
+					return fail(
+						'a drawing stands alone in its paragraph, with a caption and an id: ![caption](name){#fig:name}'
+					);
 				case 'Superscript':
 					return `<sup>${r.inlines(n.c)}</sup>`;
 				case 'Subscript':
@@ -354,6 +379,11 @@ export function renderChapter(
 						const target = local[1];
 						if (target.startsWith('eq:'))
 							return `<a class="xref" href="#${esc(target)}">(${ref(target)})</a>`;
+						if (target.startsWith('fig:')) {
+							const k = figureNumbers.get(target);
+							if (!k) fail(`link to unknown figure "#${target}"`);
+							return `<a class="xref" href="#${esc(target)}">${k}</a>`;
+						}
 						const title = sections.get(target);
 						if (!title) fail(`link to unknown section "#${target}"`);
 						return `<a class="xref" href="#${esc(target)}">${r.inlines(title!)}</a>`;
@@ -402,6 +432,33 @@ export function renderChapter(
 					if (/\{\{paper\b/.test(words))
 						fail(`a paper label must stand alone in its paragraph: ${words}`);
 					return undefined;
+				}
+				case 'Figure': {
+					// ![caption](name){#fig:id}: one of the tutorial's own drawings, by the name of its file
+					const id = String(n.c[0][0]);
+					atTop(n, `the figure ${id}`);
+					const content = n.c[2] as Node[];
+					const image =
+						content.length === 1 && content[0].t === 'Plain' && content[0].c.length === 1
+							? (content[0].c[0] as Node)
+							: undefined;
+					if (image?.t !== 'Image') fail(`the figure ${id} holds something other than one drawing`);
+					const name = String(image!.c[2][0]);
+					const html = ctx.figures.get(name);
+					if (!html)
+						fail(
+							`the figure ${id}: no drawing "${name}" in tutorial/figures (render it with figures3d/render.mjs ${name} --tutorial --final)`
+						);
+					const caption = r.blocksHtml(n.c[1][1]).replace(/^<p>([\s\S]*)<\/p>$/, '$1');
+					if (!caption.trim()) fail(`the figure ${id} has no caption`);
+					out.push({
+						kind: 'figure',
+						id,
+						number: figureNumbers.get(id)!,
+						html: html!,
+						captionHtml: caption
+					});
+					return '';
 				}
 				case 'DefinitionList':
 					return `<dl>${(n.c as [Node[], Node[][]][])
@@ -513,7 +570,15 @@ export function renderChapter(
 
 	// symbol keys and colour roles, read back from the typeset HTML
 	const all = out
-		.map((b) => (b.kind === 'html' ? b.html : b.kind === 'try' ? b.introHtml : ''))
+		.map((b) =>
+			b.kind === 'html'
+				? b.html
+				: b.kind === 'try'
+					? b.introHtml
+					: b.kind === 'figure'
+						? b.captionHtml
+						: ''
+		)
 		.join('\n');
 	const symbols = [...new Set([...all.matchAll(/\bsymbol-([a-z0-9-]+)/g)].map((m) => m[1]))];
 	for (const key of symbols)

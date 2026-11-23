@@ -23,6 +23,14 @@ distance exponentially, while the noise does not fade at all. So each factor of 
 fixed small step in the finest detail that survives, and the sharpness grows with the logarithm of the
 sensitivity rather than with the sensitivity itself.
 
+![Two iron balls buried side by side, and what a flat sheet of sensors would record of them at four heights:
+orange where the tide stretches, blue where it squeezes. A quarter of the balls' separation above them, the two
+peaks stand apart; higher up they spread and close in, and above 1.28 separations they merge, so the pixels at two
+separations see one broad bump. Each tile of the pixels is coloured by its own reading, and the noise added to each
+tile is a tenth of the bump's height, larger than anything that would tell two balls from one. Each sheet is drawn
+to its own scale, since the signal weakens eightfold each time the height doubles; the sheets' spacing, the balls'
+depth and size and the height of the relief are not to scale.](tut-blur){#fig:sheets}
+
 ::: plain
 The camera records the tide of every mass below it: how the pull of the mass changes from place to place. Its sensitivity is its signal-to-noise ratio: how many times the strongest signal
 of one mass exceeds the noise. Fine detail in the scene, such as two masses close together,
@@ -145,6 +153,13 @@ sheet cannot do that, because all its sources lie below, so $f = e^{-kh}$ up to 
 faded by $e^{-kz}$. This is the paper's equation:[^paper-x]
 
 {{paper eq:evanescent}}
+
+![A picture of buried masses is a sum of ripples, and each ripple fades as it rises toward the camera, the finer one
+faster. A coarse ripple and one three times finer start equal at the lowest line; by the pixels the coarse one keeps
+half its size and the fine one an eighth, the cube of a half. The noise, which does not fade, is a quarter of the
+starting size: the coarse ripple stands twice above it, while the fine one is lost in it. The heights are stretched
+about ten times so that the lines can be told apart; the sizes of the ripples and of the noise are
+exact.](tut-ripples){#fig:ripples}
 
 **What the array records.** The constant in front of the fade comes from Gauss's law at the sheet. Chapter 2.7
 finds it, and gives the potential of a ripple of surface density $\tilde{\matter{\sigma}}$ as

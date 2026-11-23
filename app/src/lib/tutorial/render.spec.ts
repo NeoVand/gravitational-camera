@@ -38,7 +38,8 @@ part: X
 const context = (): ChapterContext => ({
 	live: new Set(['tidal-rings']),
 	symbols: symbolKeys(),
-	paper: paperContext()
+	paper: paperContext(),
+	figures: new Map([['ring', '<svg class="drawing" role="img"></svg>']])
 });
 
 /** Markdown (front matter added) → the rendered chapter. */
@@ -223,6 +224,23 @@ describe('the paper’s equations and figures by label', () => {
 	it('fail for a label the paper lacks', () => {
 		expect(() => html('{{paper eq:not-in-the-paper}}')).toThrow(/no equation with that label/);
 		expect(() => html('{{paper fig:not-in-the-paper}}')).toThrow(/no figure with that label/);
+	});
+});
+
+describe('the tutorial’s own figures', () => {
+	it('show the drawing by name, numbered in the chapter, and an empty link gives the number', () => {
+		const c = chapter('See Figure [](#fig:ring-one).\n\n![A ring of beads, $r = 1$.](ring){#fig:ring-one}\n');
+		const fig = c.blocks.find((b) => b.kind === 'figure');
+		expect(fig).toMatchObject({ kind: 'figure', id: 'fig:ring-one', number: 1 });
+		expect(fig!.kind === 'figure' && fig!.html).toContain('<svg');
+		expect(fig!.kind === 'figure' && fig!.captionHtml).toContain('katex');
+		expect(c.blocks[0].kind === 'html' && c.blocks[0].html).toContain('href="#fig:ring-one">1</a>');
+	});
+
+	it('fail for a drawing not in tutorial/figures, a missing id or a caption', () => {
+		expect(() => chapter('![A caption.](nothing){#fig:x}\n')).toThrow(/no drawing "nothing"/);
+		expect(() => chapter('![A caption.](ring)\n')).toThrow(/needs an id/);
+		expect(() => chapter('![](ring){#fig:x}\n')).toThrow(/with a caption/);
 	});
 });
 

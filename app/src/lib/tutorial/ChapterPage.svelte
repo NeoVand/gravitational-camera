@@ -166,7 +166,15 @@
 					{@html block.introHtml}
 					<div class="try-figure"><live.component /></div>
 				</section>
-			{:else}
+			{:else if block.kind === 'figure'}
+				<figure class="plate own" id={block.id}>
+					<div class="art drawn">{@html block.html}</div>
+					<figcaption>
+						<span class="label">Figure {block.number}.</span>
+						{@html block.captionHtml}
+					</figcaption>
+				</figure>
+			{:else if block.kind === 'paper-figure'}
 				{@const drawing = figureDrawing(block.image)}
 				{@const image = figureImage(block.image)}
 				<figure class="plate from-paper" id="paper-{block.id}">

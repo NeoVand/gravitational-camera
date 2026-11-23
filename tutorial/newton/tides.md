@@ -27,6 +27,14 @@ paper's gravitational camera records, and most of the tutorial builds on it. By 
 a person swaying beside the mirrors of LIGO, the observatory that detects gravitational waves, makes a signal far
 larger than the waves themselves, and why the paper's camera wants that signal.
 
+![A person of 70 kg stands with their centre of mass 1 m from the centre of a ring of twelve small free balls. The
+quartered mark on the arm stands in front of the centre of mass, which lies inside the body at the height of the hips.
+The person's tide stretches the ring along the line to the person and squeezes it across that line, so the circle the
+balls started on (dashed) becomes an ellipse. The arrows show how the balls accelerate relative to the centre of the
+ring: each orange stretch is exactly twice as long as each blue squeeze, as the table of numbers says. The person and
+the 1 m are drawn to one scale, but the ring is far larger than a real one could be, and its distortion is greatly
+exaggerated.](tut-tides){#fig:person-ring}
+
 ::: plain
 Gravity gives every body at the same place the same acceleration, whatever the body is made of. So if you fall
 freely, everything near you falls with you, and you cannot feel the pull at all.

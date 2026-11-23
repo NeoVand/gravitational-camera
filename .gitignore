@@ -21,3 +21,6 @@ paper/*.log
 paper/*.out
 paper/main.pdf
 app/static/gravitational-camera.pdf
+
+# drafts of the tutorial's figures (figures3d/render.mjs --tutorial)
+tutorial/figures/staging/

@@ -6,13 +6,14 @@
  * so that edits to the sources show up on reload.
  */
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { parse as parseYaml } from 'yaml';
 import { indexPaper, renderPaper } from '#lib/paper/render.js';
 import type { FigureBlock, PaperIndex, RenderedPaper } from '#lib/paper/render.js';
 import { esc } from '#lib/render/pandoc.js';
+import { inlineDrawing } from '#lib/paper/drawing.js';
 import { allChapters, parseCatalogue } from '#lib/tutorial/catalogue.js';
 import type { Catalogue, Chapter } from '#lib/tutorial/catalogue.js';
 import { normalizeFences, renderChapter, tutorialMath } from '#lib/tutorial/render.js';
@@ -171,12 +172,29 @@ export function chapterTree(file: string): { meta: Record<string, any>; blocks: 
 
 export const symbolKeys = (): Set<string> => new Set(symbols().map((s) => s.key));
 
+/** The tutorial's own figures (tutorial/figures/*.svg, drawn by figures3d/render.mjs --tutorial --final), by name,
+ * ready to inline. Drafts in tutorial/figures/staging/ are not among them. */
+export function tutorialFigures(): Map<string, string> {
+	return once('tutorial:figures', () => {
+		const dir = path.join(TUTORIAL_DIR, 'figures');
+		const names = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.svg')) : [];
+		return new Map(
+			names.map((f) => [f.replace(/\.svg$/, ''), inlineDrawing(readFileSync(path.join(dir, f), 'utf8'))])
+		);
+	});
+}
+
 /** A chapter rendered, from its file under tutorial/ (as "newton/tides.md"). */
 export function renderChapterFile(file: string): RenderedChapter {
 	return once(`tutorial:chapter:${file}`, () =>
 		renderChapter(
 			chapterTree(file),
-			{ live: new Set(Object.keys(tutorialLive)), symbols: symbolKeys(), paper: paperContext() },
+			{
+				live: new Set(Object.keys(tutorialLive)),
+				symbols: symbolKeys(),
+				paper: paperContext(),
+				figures: tutorialFigures()
+			},
 			file
 		)
 	);

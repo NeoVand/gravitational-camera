@@ -89,6 +89,8 @@ function split(text, yaml) {
 		.replace(/```[\s\S]*?```/g, blank)
 		.replace(/`[^`\n]*`/g, blank)
 		.replace(/\]\([^)\s]*\)/g, (m) => ']' + blank(m.slice(1)))
+		// the ! that opens a figure, ![caption](drawing), is not an exclamation
+		.replace(/!\[/g, ' [')
 		.replace(/https?:\/\/\S+/g, blank);
 	const maths = [];
 	prose = prose.replace(/\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g, (m, offset) => {

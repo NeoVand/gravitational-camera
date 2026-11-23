@@ -214,3 +214,17 @@ test('the paper: a margin note from the map stands level with its anchor and pre
 	await chip.click();
 	await expect(page).toHaveURL(/\/dev\/tutorial-sample\/$/);
 });
+
+test('a chapter shows its own figures, numbered, drawn in the theme’s colours', async ({
+	page
+}) => {
+	await page.goto('/tutorial/noise/blur-law/');
+	const sheets = page.locator('figure[id="fig:sheets"]');
+	await expect(sheets.locator('svg.drawing')).toHaveCount(1);
+	await expect(sheets.locator('figcaption')).toContainText('Figure 1.');
+	await expect(page.locator('figure[id="fig:ripples"] figcaption')).toContainText('Figure 2.');
+	// the palette is swapped for the theme's variables, so no ink of the paper's own colours is left
+	const html = await sheets.locator('svg.drawing').evaluate((s) => s.outerHTML);
+	expect(html).toContain('var(--text)');
+	expect(html).not.toMatch(/#1c1a16|#b0560a|#2a67ad/);
+});

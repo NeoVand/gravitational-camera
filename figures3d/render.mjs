@@ -1,6 +1,7 @@
 // Render figures modelled in three.js to SVG and PDF.
 //   node figures3d/render.mjs tidal [more names]   writes paper/figures/staging/<name>.svg and .pdf
 //   ... --final                                    writes into paper/figures/
+//   ... --tutorial [--final]                       the tutorial's own figures: tutorial/figures/staging/ (or tutorial/figures/)
 import { createRequire } from 'node:module';
 import http from 'node:http';
 import fs from 'node:fs';
@@ -14,7 +15,7 @@ const args = process.argv.slice(2);
 const final = args.includes('--final');
 const names = args.filter((a) => !a.startsWith('--'));
 const root = path.join(here, '..');
-const out = path.join(root, 'paper', 'figures', final ? '' : 'staging');
+const out = path.join(root, args.includes('--tutorial') ? 'tutorial' : 'paper', 'figures', final ? '' : 'staging');
 fs.mkdirSync(out, { recursive: true });
 
 const types = { '.svg': 'image/svg+xml', '.js': 'text/javascript', '.mjs': 'text/javascript', '.html': 'text/html', '.json': 'application/json' };

@@ -60,6 +60,7 @@ depth: A
 | `[](/paper/#eq:tidal)` | the paper's number, linked into the paper |
 | `{{paper eq:tidal}}` (its own paragraph) | the paper's equation, tagged "paper (1)" and linked |
 | `{{paper fig:tidal}}` (its own paragraph) | the paper's figure with its caption |
+| `![Caption.](tut-tides){#fig:person-ring}` (its own paragraph) | one of the tutorial's own drawings, `tutorial/figures/tut-tides.svg`, numbered "Figure 1" in the chapter; `[](#fig:person-ring)` gives its number |
 | `text[^n]` and `[^n]: note` | a margin note (right margin at 1240 px and wider, a toggle below that) |
 | `[@ThorneWinstein1999]` | a numbered citation from `paper/refs.bib`, listed at the chapter's end |
 | `\curv{\tE}_{ij}`, `\sym{tidal-tensor}{\curv{\tE}}` | colour role; clickable symbol card |
@@ -77,4 +78,8 @@ Fenced divs (`::: name` … `:::`):
 - `try {#live-id}`: the interactive figure registered under that id in `app/src/lib/tutorial/live.ts`, after the
   div's text (the prediction to make, then what to do).
 
-`try` and `{{paper fig:…}}` stand at the top level of the chapter, not inside another box.
+`try`, `{{paper fig:…}}` and the tutorial's own figures stand at the top level of the chapter, not inside another box.
+
+The tutorial's own figures are drawn by `figures3d/` like the paper's (`node render.mjs <name> --tutorial` stages
+`tutorial/figures/staging/<name>.svg`, not committed; `--final` writes `tutorial/figures/<name>.svg`, which the site
+reads). They keep to the paper's palette, which the site swaps for each theme.
