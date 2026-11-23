@@ -71,6 +71,8 @@
 
 	let drag: { x: number; y: number; yaw: number; pitch: number } | undefined;
 	function down(e: PointerEvent) {
+		// a drag is not a click: nothing under it takes the focus, and no text is selected
+		e.preventDefault();
 		(e.currentTarget as Element).setPointerCapture(e.pointerId);
 		drag = { x: e.clientX, y: e.clientY, yaw, pitch };
 	}
@@ -135,7 +137,7 @@
 		justify-content: center;
 		gap: 0.5rem;
 		padding: var(--stage-pad, 5rem 1rem 6rem);
-		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
+		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
 	}
 	.sky {
 		width: var(--figure-width, min(24cqw, 46cqh));
@@ -155,9 +157,10 @@
 			width: min(60cqw, 26cqh);
 		}
 	}
+	/* the spheres are pictures of a sky, dark in either theme; the lines and sources drawn on them keep to that dark */
 	.disc {
 		fill: #0e1016;
-		stroke: rgb(255 255 255 / 0.3);
+		stroke: var(--line-strong);
 	}
 	.front {
 		fill: none;
@@ -182,12 +185,12 @@
 		pointer-events: none;
 	}
 	.title {
-		fill: #e9e6df;
+		fill: var(--text);
 		font-size: 14px;
 		font-weight: 600;
 	}
 	.sub {
-		fill: #a09d96;
+		fill: var(--text-dim);
 		font-size: 11.5px;
 	}
 </style>

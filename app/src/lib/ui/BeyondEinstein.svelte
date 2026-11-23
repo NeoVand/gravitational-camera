@@ -37,11 +37,11 @@
 	);
 	const gridTop = $derived(Math.max(1e-30, ...E.flat().map(Math.abs), ...B.flat().map(Math.abs)));
 
+	/** A number of a grid as a colour of the theme: the accent where it is positive, light's colour where negative. */
 	function cell(v: number) {
 		const t = Math.min(1, Math.abs(v) / gridTop);
-		return v >= 0
-			? `rgba(232, 164, 90, ${0.12 + 0.88 * t})`
-			: `rgba(127, 180, 255, ${0.12 + 0.88 * t})`;
+		const ink = v >= 0 ? 'var(--accent)' : 'var(--c-light)';
+		return `color-mix(in srgb, ${ink} ${(100 * (0.12 + 0.88 * t)).toFixed(1)}%, transparent)`;
 	}
 </script>
 
@@ -53,7 +53,7 @@
 				<text x="75" y="16" class="sub">{sub}</text>
 				{#each M as number[][] as row, i (i)}
 					{#each row as v, j (j)}
-						<rect x={j * 52} y={28 + i * 40} width="48" height="36" rx="4" fill={cell(v)} />
+						<rect x={j * 52} y={28 + i * 40} width="48" height="36" rx="4" style:fill={cell(v)} />
 					{/each}
 				{/each}
 			</g>
@@ -106,7 +106,20 @@
 		justify-content: center;
 		gap: 0.4rem;
 		padding: var(--stage-pad, 4.5rem 1rem 6rem);
-		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
+		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
+		/* light's colour, for the negative numbers beside the positive (the accent), in either theme */
+		--c-light: #7fb4ff;
+	}
+	:global(:root[data-theme='light']) .frame {
+		--c-light: #2d5f8e;
+	}
+	@media (prefers-color-scheme: light) {
+		:global(:root:not([data-theme='dark'])) .frame {
+			--c-light: #2d5f8e;
+		}
+	}
+	:global(:root .always-dark) .frame {
+		--c-light: #7fb4ff;
 	}
 	svg {
 		width: var(--figure-width, min(54cqw, 100cqh));
@@ -120,55 +133,55 @@
 		text-anchor: start;
 	}
 	.head {
-		fill: #e9e6df;
+		fill: var(--text);
 		font-size: 15px;
 		font-weight: 600;
 	}
 	.sub {
-		fill: #a09d96;
+		fill: var(--text-dim);
 		font-size: 11.5px;
 	}
 	.zero {
-		stroke: rgb(255 255 255 / 0.3);
+		stroke: color-mix(in srgb, var(--text) 36%, transparent);
 	}
 	.set {
 		fill: none;
-		stroke: #e9e6df;
+		stroke: var(--text);
 		stroke-width: 1.2;
 		stroke-dasharray: 3 2;
 	}
 	.read {
-		fill: #a09d96;
+		fill: var(--text-dim);
 	}
 	.read.gr {
-		fill: #e8a45a;
+		fill: var(--accent);
 	}
 	.name {
-		fill: #a09d96;
+		fill: var(--text-dim);
 		font-size: 12px;
 	}
 	.name.gr {
-		fill: #e8a45a;
+		fill: var(--accent);
 	}
 	.reads {
 		display: flex;
 		gap: 1.6rem;
-		color: #e9e6df;
+		color: var(--text);
 		font: 500 0.85rem/1.2 var(--font-mono);
 	}
 	.reads p {
 		margin: 0;
 	}
 	.dim {
-		color: #a09d96;
+		color: var(--text-dim);
 		font-family: var(--font-sans);
 	}
 	.pass {
-		color: #7bd88f;
+		color: var(--good);
 		font-family: var(--font-sans);
 	}
 	.fail {
-		color: #ff9c8a;
+		color: var(--bad);
 		font-family: var(--font-sans);
 	}
 </style>

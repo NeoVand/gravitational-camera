@@ -25,15 +25,18 @@
 	/>
 </div>
 <p class="hint">
-	Live figure: drag to look around, or drag the divider. <a href={resolve('/demo/sun-at-midnight')}
-		>Open the full demo</a
+	Live figure: drag to look around, or drag the divider. <a
+		href={resolve(
+			`/demo/sun-at-midnight/?from=${encodeURIComponent('fig:sun-at-midnight')}` as '/demo/sun-at-midnight'
+		)}>Open the full demo</a
 	> to change the time of day.
 </p>
 
 <style>
 	.live {
 		aspect-ratio: 16 / 9;
-		border-radius: 6px;
+		border: 1px solid var(--line);
+		border-radius: 12px;
 		overflow: hidden;
 	}
 

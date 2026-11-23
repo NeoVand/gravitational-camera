@@ -132,8 +132,8 @@
 	.presets button {
 		padding: 0.22rem 0.5rem;
 		border-radius: 7px;
-		border: 1px solid rgb(255 255 255 / 0.1);
-		background: rgb(255 255 255 / 0.04);
+		border: 1px solid var(--line);
+		background: color-mix(in srgb, var(--text) 5%, transparent);
 		color: var(--text-dim);
 		font: 400 0.7rem/1.2 var(--font-sans);
 		font-variant-numeric: tabular-nums;
@@ -142,13 +142,13 @@
 
 	.presets button:hover {
 		color: var(--text);
-		border-color: rgb(255 255 255 / 0.2);
+		border-color: var(--line-strong);
 	}
 
 	.presets button[aria-pressed='true'] {
 		color: var(--text);
-		background: rgb(232 164 90 / 0.12);
-		border-color: rgb(232 164 90 / 0.45);
+		background: color-mix(in srgb, var(--accent) 13%, transparent);
+		border-color: color-mix(in srgb, var(--accent) 55%, transparent);
 	}
 
 	.presets button:focus-visible {

@@ -47,9 +47,65 @@
 
 	/** The wash is worked out at no more than this many points and smoothed between them: the field is smooth. */
 	const POINTS = 90_000;
-	/** What lies beneath the wash, in linear light: the dark of the page, and within the orbit a lighter grey. */
-	const BENEATH = (11 / 255) ** 2.2;
-	const ORBIT = 'rgb(38 40 48)';
+
+	type Rgb255 = [number, number, number];
+
+	/**
+	 * The colours of the map, from the theme, which a canvas cannot read for itself: they are read from the element it
+	 * is drawn in. `beneath` is what lies beneath the wash, in linear light: the ground of the page, as its least
+	 * channel (on the dark ground, the dark of the page). On a dark ground the strokes are white, the shade about them
+	 * black, and within the orbit is a lighter grey; on a light ground the strokes are the page's ink, the shade about
+	 * them white, and within the orbit a darker grey.
+	 */
+	type Palette = {
+		ground: string;
+		beneath: number;
+		ink: Rgb255;
+		shade: Rgb255;
+		orbit: string;
+	};
+
+	/** A colour as the canvas reads it, as three channels 0 to 255 (the canvas normalizes any CSS colour it is given). */
+	function channels(ctx: CanvasRenderingContext2D, colour: string): Rgb255 {
+		ctx.fillStyle = '#000';
+		ctx.fillStyle = colour;
+		const c = String(ctx.fillStyle);
+		if (c.startsWith('#')) return [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16)) as Rgb255;
+		const [r = 0, g = 0, b = 0] = (c.match(/[\d.]+/g) ?? []).map(Number);
+		return [r, g, b];
+	}
+
+	function readPalette(node: HTMLCanvasElement, ctx: CanvasRenderingContext2D): Palette {
+		const css = getComputedStyle(node);
+		const ground = css.getPropertyValue('--bg-sunken').trim() || '#18120b';
+		const g = channels(ctx, ground);
+		const light = (0.2126 * g[0] + 0.7152 * g[1] + 0.0722 * g[2]) / 255 > 0.5;
+		const text = channels(ctx, css.getPropertyValue('--text').trim() || '#2d2218');
+		const ink: Rgb255 = light ? text : [255, 255, 255];
+		const mix = (t: number) => g.map((v, k) => Math.round(v + (text[k] - v) * t)).join(' ');
+		return {
+			ground,
+			beneath: (Math.min(...g) / 255) ** 2.2,
+			ink,
+			shade: light ? [255, 255, 255] : [0, 0, 0],
+			orbit: light ? `rgb(${mix(0.16)})` : 'rgb(38 40 48)'
+		};
+	}
+
+	/** Calls `changed` whenever the theme may have changed: the site's switch, or the system's own setting. */
+	function watchTheme(changed: () => void) {
+		const observer = new MutationObserver(changed);
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme', 'class']
+		});
+		const media = window.matchMedia('(prefers-color-scheme: light)');
+		media.addEventListener('change', changed);
+		return () => {
+			observer.disconnect();
+			media.removeEventListener('change', changed);
+		};
+	}
 
 	/** A linear value as the screen shows it, 0 to 255, from a table: the wash needs it at every point and frame. */
 	const SHOWN = (() => {
@@ -200,6 +256,9 @@
 		let cellAt: [number, number][] = [];
 		let strokes = new Float64Array(0);
 		let reference = 1;
+		// every frame is drawn afresh, so a change of theme shows at the next one
+		let palette = readPalette(node, ctx);
+		const unwatch = watchTheme(() => (palette = readPalette(node, ctx)));
 
 		const frame = (now: number) => {
 			raf = requestAnimationFrame(frame);
@@ -234,7 +293,8 @@
 			const scale = Math.min(w, h) / 2 / reach;
 			const ratio = w / Math.max(1, width);
 
-			ctx.fillStyle = '#18120b';
+			const { beneath: BENEATH, ink, shade } = palette;
+			ctx.fillStyle = palette.ground;
 			ctx.fillRect(0, 0, w, h);
 			let drawn = 0;
 			if (field && small && image) {
@@ -258,8 +318,8 @@
 				ctx.imageSmoothingQuality = 'high';
 				ctx.drawImage(small, 0, 0, cols, rows, -block / 2, -block / 2, cols * block, rows * block);
 
-				// one stroke to a cell along the stretch, white mixed in at 0.38 in linear light, with a hairline of
-				// shade about it where the look asks for one; strokes of one strength of white are drawn together
+				// one stroke to a cell along the stretch, the ink (white, on the dark) mixed in at 0.38 in linear light,
+				// with a hairline of shade about it where the look asks for one; strokes of one strength are drawn together
 				const [cell, , weight] = strokeUniforms(look);
 				if (cell >= 1) {
 					const ck = `${key}|${cell}`;
@@ -271,6 +331,9 @@
 								cellAt.push([(cx + 0.5) * cell, (cy + 0.5) * cell]);
 						strokes = lattice(cellAt.map(([x, y]) => place(x, y)));
 					}
+					// the ink as the screen shows it and in linear light (white is 1 in both)
+					const inkShown = (ink[0] + ink[1] + ink[2]) / 3 / 255;
+					const inkLinear = ink.reduce((s, c) => s + (c / 255) ** 2.2, 0) / 3;
 					const edges = new Path2D();
 					const lines = Array.from({ length: 16 }, () => new Path2D());
 					cellAt.forEach(([x, y], p) => {
@@ -286,20 +349,20 @@
 						segment(edges);
 						const washed = at.tone.map((t) => BENEATH * 0.85 * (1 - at.cover) + t * at.cover);
 						const under = washed.reduce((s, c) => s + toDisplay(c), 0) / 3;
-						const lit = washed.reduce((s, c) => s + toDisplay(0.62 * c + 0.38), 0) / 3;
-						const alpha = (lit - under) / (1 - under);
+						const lit = washed.reduce((s, c) => s + toDisplay(0.62 * c + 0.38 * inkLinear), 0) / 3;
+						const alpha = (lit - under) / (inkShown - under);
 						segment(lines[Math.max(0, Math.min(15, Math.round(alpha * 15)))]);
 						drawn++;
 					});
 					ctx.lineCap = 'round';
 					if (look.edge > 0) {
 						ctx.lineWidth = 2 * weight + 1.5;
-						ctx.strokeStyle = `rgb(0 0 0 / ${1 - toDisplay(1 - 0.55 * look.edge)})`;
+						ctx.strokeStyle = `rgb(${shade.join(' ')} / ${1 - toDisplay(1 - 0.55 * look.edge)})`;
 						ctx.stroke(edges);
 					}
 					ctx.lineWidth = 2 * weight;
 					lines.forEach((path, i) => {
-						ctx.strokeStyle = `rgb(255 255 255 / ${i / 15})`;
+						ctx.strokeStyle = `rgb(${ink.join(' ')} / ${i / 15})`;
 						ctx.stroke(path);
 					});
 				}
@@ -307,7 +370,7 @@
 
 			// within the orbit there is no field to draw; without the field, nothing but the pair
 			const d = separationOverWavelength(speed) * scale;
-			ctx.fillStyle = ORBIT;
+			ctx.fillStyle = palette.orbit;
 			if (field) {
 				ctx.beginPath();
 				ctx.arc(w / 2, h / 2, 0.8 * d, 0, 2 * Math.PI);
@@ -318,7 +381,7 @@
 			// waves: each drawn at its horizon's size, 4 v^2 of the separation, or two screen pixels if larger
 			const angle = Math.PI * tau;
 			const hole = Math.max(2 * ratio, 4 * speed * speed * d);
-			ctx.strokeStyle = 'rgb(255 255 255 / 0.55)';
+			ctx.strokeStyle = `rgb(${ink.join(' ')} / 0.55)`;
 			ctx.lineWidth = ratio;
 			ctx.setLineDash([3 * ratio, 3 * ratio]);
 			ctx.beginPath();
@@ -334,16 +397,20 @@
 					0,
 					2 * Math.PI
 				);
+				// black in either theme: they are black holes
 				ctx.fillStyle = '#000';
 				ctx.fill();
-				ctx.strokeStyle = 'rgb(255 255 255 / 0.7)';
+				ctx.strokeStyle = `rgb(${ink.join(' ')} / 0.7)`;
 				ctx.stroke();
 			}
 			node.dataset.strokes = String(drawn);
 			node.dataset.frames = String(Number(node.dataset.frames ?? 0) + 1);
 		};
 		raf = requestAnimationFrame(frame);
-		return () => cancelAnimationFrame(raf);
+		return () => {
+			cancelAnimationFrame(raf);
+			unwatch();
+		};
 	}
 
 	/** Drawn at the screen's own resolution, as the other views are: the strokes are a pixel or two wide. */
@@ -370,7 +437,7 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		background: #18120b;
+		background: var(--bg-sunken);
 	}
 
 	canvas {

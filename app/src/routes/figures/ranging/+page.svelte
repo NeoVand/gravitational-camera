@@ -88,17 +88,16 @@
 			plane, and one pixel can read how far they have come, in two ways.
 		</p>
 		<p>
-			<strong style="color: #7fb4ff">The rank.</strong> A plane wave makes the pixel’s complex
-			matrix a perfect square, of rank one. A nearby source spoils this by
+			<strong class="curve rank">The rank.</strong> A plane wave makes the pixel’s complex matrix a
+			perfect square, of rank one. A nearby source spoils this by
 			<Tex math={'C/(kr)^2'} />: so little that it is lost in the noise once
 			<Tex math={'kr'} /> is of order <Tex math={'\\sqrt\\rho'} />.
 		</p>
 		<p>
-			<strong style="color: #e8a45a">The split.</strong> Over a cycle, the waves of the two senses
-			of rotation point in directions that differ by <Tex math={'8|\\cot\\iota|/kr'} />. Directions
-			are read to about <Tex math={'1/\\rho'} />, so this ranges the source out to <Tex
-				math={'kr'}
-			/> of order
+			<strong class="curve split">The split.</strong> Over a cycle, the waves of the two senses of
+			rotation point in directions that differ by <Tex math={'8|\\cot\\iota|/kr'} />. Directions are
+			read to about <Tex math={'1/\\rho'} />, so this ranges the source out to <Tex math={'kr'} /> of
+			order
 			<Tex math={'\\rho'} />, much farther.
 		</p>
 		<dl>
@@ -145,3 +144,20 @@
 		</p>
 	{/snippet}
 </DemoShell>
+
+<style>
+	/* each name is underlined in the colour of its curve on the chart, and stays in the ink of the panel, so that it
+	   reads in either theme */
+	.curve {
+		text-decoration: underline 2px;
+		text-underline-offset: 0.22em;
+	}
+
+	.rank {
+		text-decoration-color: #7fb4ff;
+	}
+
+	.split {
+		text-decoration-color: #e8a45a;
+	}
+</style>

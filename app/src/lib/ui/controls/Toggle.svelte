@@ -28,9 +28,9 @@
 		gap: 0.3rem;
 		padding: 0.55rem 0.4rem 0.45rem;
 		border-radius: 10px;
-		border: 1px solid rgb(255 255 255 / 0.08);
-		background: rgb(255 255 255 / 0.03);
-		color: var(--text-faint);
+		border: 1px solid var(--line);
+		background: color-mix(in srgb, var(--text) 4%, transparent);
+		color: var(--text-dim);
 		font-size: 0.68rem;
 		line-height: 1;
 		/* a name of two words may take two lines */
@@ -44,14 +44,14 @@
 	}
 
 	.toggle:hover {
-		color: var(--text-dim);
-		border-color: rgb(255 255 255 / 0.16);
+		color: var(--text);
+		border-color: var(--line-strong);
 	}
 
 	.toggle.on {
 		color: var(--text);
-		background: rgb(232 164 90 / 0.12);
-		border-color: rgb(232 164 90 / 0.45);
+		background: color-mix(in srgb, var(--accent) 13%, transparent);
+		border-color: color-mix(in srgb, var(--accent) 55%, transparent);
 	}
 
 	.toggle.on :global(svg) {

@@ -121,36 +121,49 @@
 		justify-content: center;
 		gap: 0.6rem;
 		padding: var(--stage-pad, 4.5rem 1rem 6rem);
-		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
+		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
+		/* the rank's colour, light's, beside the split's (the accent), in either theme */
+		--c-light: #7fb4ff;
+	}
+	:global(:root[data-theme='light']) .frame {
+		--c-light: #2d5f8e;
+	}
+	@media (prefers-color-scheme: light) {
+		:global(:root:not([data-theme='dark'])) .frame {
+			--c-light: #2d5f8e;
+		}
+	}
+	:global(:root .always-dark) .frame {
+		--c-light: #7fb4ff;
 	}
 	svg {
 		width: var(--figure-width, min(56cqw, 110cqh));
 		height: auto;
 	}
 	.axis {
-		stroke: rgb(255 255 255 / 0.4);
+		stroke: color-mix(in srgb, var(--text) 45%, transparent);
 	}
 	.noise {
-		stroke: rgb(255 255 255 / 0.55);
+		stroke: color-mix(in srgb, var(--text) 60%, transparent);
 		stroke-dasharray: 4 4;
 	}
 	.split {
 		fill: none;
-		stroke: #e8a45a;
+		stroke: var(--accent);
 		stroke-width: 2.5;
 	}
 	.rank {
 		fill: none;
-		stroke: #7fb4ff;
+		stroke: var(--c-light);
 		stroke-width: 2;
 	}
 	.source {
-		stroke: #e9e6df;
+		stroke: var(--text);
 		stroke-width: 1.2;
 	}
 	text {
 		font-family: var(--font-sans);
-		fill: #a09d96;
+		fill: var(--text-dim);
 	}
 	.tick {
 		font-size: 11px;
@@ -162,21 +175,21 @@
 	.label {
 		font-size: 12px;
 		text-anchor: middle;
-		fill: #e9e6df;
+		fill: var(--text);
 	}
 	.note {
 		font-size: 12px;
 	}
 	.split-note {
-		fill: #e8a45a;
+		fill: var(--accent);
 	}
 	.rank-note {
-		fill: #7fb4ff;
+		fill: var(--c-light);
 	}
 	.reads {
 		display: flex;
 		gap: 1.6rem;
-		color: #e9e6df;
+		color: var(--text);
 		font: 500 0.85rem/1.2 var(--font-mono);
 	}
 	.reads p {
@@ -188,9 +201,9 @@
 		margin-right: 0.4em;
 	}
 	.split-key {
-		color: #e8a45a;
+		color: var(--accent);
 	}
 	.rank-key {
-		color: #7fb4ff;
+		color: var(--c-light);
 	}
 </style>

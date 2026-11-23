@@ -25,7 +25,7 @@
 		divider?: number;
 		/** Leave the empty room out of the gravity view. */
 		subtract?: boolean;
-		/** The demo page to send the reader to. */
+		/** The demo page to send the reader to; the figure in the paper is `fig:` and the same name. */
 		demo: 'locked-safe' | 'closed-furnace' | 'which-way';
 		poster?: string;
 	}
@@ -79,15 +79,18 @@
 	/>
 </div>
 <p class="hint">
-	Live figure: drag to look around, or drag the divider. <a href={resolve(`/demo/${demo}`)}
-		>Open the full demo</a
+	Live figure: drag to look around, or drag the divider. <a
+		href={resolve(
+			`/demo/${demo}/?from=${encodeURIComponent(`fig:${demo}`)}` as `/demo/${typeof demo}`
+		)}>Open the full demo</a
 	> for every control.
 </p>
 
 <style>
 	.live {
 		aspect-ratio: 16 / 9;
-		border-radius: 6px;
+		border: 1px solid var(--line);
+		border-radius: 12px;
 		overflow: hidden;
 	}
 

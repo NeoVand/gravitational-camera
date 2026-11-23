@@ -484,6 +484,8 @@
 		height: 0.9rem;
 		border-radius: 50%;
 		flex: none;
+		/* a rim, so that the pale chip shows on a pale panel */
+		box-shadow: 0 0 0 1px var(--line-strong);
 	}
 
 	/* the same colours as WAVE_* in engine/wgsl/waves.wgsl */

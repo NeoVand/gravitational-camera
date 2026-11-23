@@ -25,12 +25,45 @@
 
 	const CAMERA: Vec3 = [0, -2.7, 0];
 	const SPAN = { x: 6.6, y: 3.6 };
-	const GRAVITY = '#e8a45a';
-	const LIGHT = '#7fb4ff';
+
+	/** The colours of the drawing, from the theme: the ground, gravity's and light's colours, and the ink. */
+	type Palette = { ground: string; gravity: string; light: string; ink: string; dim: string };
+
+	/** A canvas cannot read the theme's custom properties: they are read from the element it is drawn in. */
+	function readPalette(node: Element): Palette {
+		const css = getComputedStyle(node);
+		const token = (name: string, otherwise: string) =>
+			css.getPropertyValue(name).trim() || otherwise;
+		return {
+			ground: token('--bg-sunken', '#18120b'),
+			gravity: token('--accent', '#e8a45a'),
+			light: token('--c-light', '#7fb4ff'),
+			ink: token('--text', '#d2dde7'),
+			dim: token('--text-dim', '#a2acb4')
+		};
+	}
+
+	/** Calls `changed` whenever the theme may have changed: the site's switch, or the system's own setting. */
+	function watchTheme(changed: () => void) {
+		const observer = new MutationObserver(changed);
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme', 'class']
+		});
+		const media = window.matchMedia('(prefers-color-scheme: light)');
+		media.addEventListener('change', changed);
+		return () => {
+			observer.disconnect();
+			media.removeEventListener('change', changed);
+		};
+	}
 
 	function draw(canvas: HTMLCanvasElement) {
 		const ctx = canvas.getContext('2d')!;
 		let raf = 0;
+		// every frame is drawn afresh, so a change of theme shows at the next one
+		let palette = readPalette(canvas);
+		const unwatch = watchTheme(() => (palette = readPalette(canvas)));
 		const frame = () => {
 			const dpr = window.devicePixelRatio || 1;
 			const w = canvas.clientWidth,
@@ -40,22 +73,26 @@
 				canvas.height = Math.round(h * dpr);
 			}
 			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-			paint(ctx, w, h);
+			paint(ctx, w, h, palette);
 			canvas.dataset.frames = String(Number(canvas.dataset.frames ?? 0) + 1);
 			raf = requestAnimationFrame(frame);
 		};
 		raf = requestAnimationFrame(frame);
-		return () => cancelAnimationFrame(raf);
+		return () => {
+			cancelAnimationFrame(raf);
+			unwatch();
+		};
 	}
 
-	function paint(ctx: CanvasRenderingContext2D, w: number, h: number) {
+	function paint(ctx: CanvasRenderingContext2D, w: number, h: number, colours: Palette) {
+		const { ground, gravity: GRAVITY, light: LIGHT, ink, dim } = colours;
 		const k = crossing;
 		const s = Math.min((w * 0.9) / (2 * SPAN.x), (h * 0.78) / (2 * SPAN.y));
 		const ox = w / 2,
 			oy = h * 0.47;
 		const X = (p: Vec3) => ox + p[0] * s,
 			Y = (p: Vec3) => oy - p[1] * s;
-		ctx.fillStyle = '#18120b';
+		ctx.fillStyle = ground;
 		ctx.fillRect(0, 0, w, h);
 
 		const now = position(k, t);
@@ -65,6 +102,8 @@
 		// the field: a short line along the stretch axis at points of the plane, fainter where it is weaker
 		const step = 0.5;
 		ctx.lineCap = 'round';
+		ctx.strokeStyle = GRAVITY;
+		ctx.lineWidth = 1.4;
 		for (let gx = -SPAN.x + step / 2; gx < SPAN.x; gx += step) {
 			for (let gy = -SPAN.y + step / 2; gy < SPAN.y; gy += step) {
 				const p: Vec3 = [gx, gy, 0];
@@ -73,8 +112,7 @@
 				const { axis } = stretchAxis(k, p, t);
 				const reach = 0.19 * s;
 				const a = Math.max(0.14, Math.min(0.85, 1.25 / (d + 0.3)));
-				ctx.strokeStyle = `rgba(232, 164, 90, ${a.toFixed(3)})`;
-				ctx.lineWidth = 1.4;
+				ctx.globalAlpha = a;
 				ctx.beginPath();
 				ctx.moveTo(X(p) - axis[0] * reach, Y(p) + axis[1] * reach);
 				ctx.lineTo(X(p) + axis[0] * reach, Y(p) - axis[1] * reach);
@@ -84,7 +122,8 @@
 
 		// the track and, after a stop, the ring of news
 		ctx.setLineDash([4, 6]);
-		ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+		ctx.strokeStyle = ink;
+		ctx.globalAlpha = 0.18;
 		ctx.lineWidth = 1;
 		ctx.beginPath();
 		ctx.moveTo(X([-SPAN.x, now[1], 0]), Y(now));
@@ -92,13 +131,14 @@
 		ctx.stroke();
 		if (stopped) {
 			const r = k.c * (t - (k.stop as number)) * s;
-			ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+			ctx.globalAlpha = 0.55;
 			ctx.setLineDash([3, 4]);
 			ctx.beginPath();
 			ctx.arc(X(now), Y(now), r, 0, 2 * Math.PI);
 			ctx.stroke();
 		}
 		ctx.setLineDash([]);
+		ctx.globalAlpha = 1;
 
 		// what each kind of pixel at the camera says: light's image, and gravity's stretch axis
 		const image = retarded(k, CAMERA, t);
@@ -126,15 +166,15 @@
 		ctx.stroke();
 		label(ctx, 'light shows it here', X(image), Y(image) + 0.48 * s, LIGHT);
 		// the body itself
-		ctx.fillStyle = '#d9d4ca';
+		ctx.fillStyle = ink;
 		ctx.beginPath();
 		ctx.arc(X(now), Y(now), 0.2 * s, 0, 2 * Math.PI);
 		ctx.fill();
-		label(ctx, stopped ? 'stopped' : 'now', X(now), Y(now) - 0.38 * s, '#e9e6df');
+		label(ctx, stopped ? 'stopped' : 'now', X(now), Y(now) - 0.38 * s, ink);
 		// the camera
-		ctx.fillStyle = '#e9e6df';
+		ctx.fillStyle = ink;
 		ctx.fillRect(X(CAMERA) - 7, Y(CAMERA) - 5, 14, 10);
-		label(ctx, 'camera', X(CAMERA), Y(CAMERA) + 22, '#a09d96');
+		label(ctx, 'camera', X(CAMERA), Y(CAMERA) + 22, dim);
 	}
 
 	function ray(
@@ -182,7 +222,20 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		background: #18120b;
+		background: var(--bg-sunken);
+		/* light's colour, beside gravity's (the accent), in either theme */
+		--c-light: #7fb4ff;
+	}
+	:global(:root[data-theme='light']) .frame {
+		--c-light: #2d5f8e;
+	}
+	@media (prefers-color-scheme: light) {
+		:global(:root:not([data-theme='dark'])) .frame {
+			--c-light: #2d5f8e;
+		}
+	}
+	:global(:root .always-dark) .frame {
+		--c-light: #7fb4ff;
 	}
 	canvas {
 		display: block;
@@ -197,9 +250,9 @@
 		margin: 0;
 		padding: 0.4em 0.75em;
 		border-radius: 999px;
-		background: rgb(24 18 11 / 0.6);
-		border: 1px solid rgb(255 255 255 / 0.14);
-		color: rgb(255 255 255 / 0.8);
+		background: color-mix(in srgb, var(--bg-sunken) 60%, transparent);
+		border: 1px solid var(--line-strong);
+		color: var(--text-dim);
 		font: 500 0.7rem/1.2 var(--font-sans);
 		white-space: nowrap;
 		pointer-events: none;

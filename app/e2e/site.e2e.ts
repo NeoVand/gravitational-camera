@@ -1493,3 +1493,76 @@ test('counts, the Sun at midnight: eighty years on a square metre, single gravit
 	await openTab(page, 'About');
 	await expect(page.getByTestId('counts-verdict')).toContainText('lifetimes');
 });
+
+test('paper: the contents sit at the window’s left, the text centred in it', async ({ page }) => {
+	for (const width of [1240, 1440, 1920]) {
+		await page.setViewportSize({ width, height: 900 });
+		await page.goto('/paper/');
+		const viewport = await page.evaluate(() => document.documentElement.clientWidth);
+		const article = await page.locator('article.paper').boundingBox();
+		const contents = await page.locator('nav.contents').boundingBox();
+		if (!article || !contents) throw new Error('paper layout not found');
+		expect(Math.abs(article.x + article.width / 2 - viewport / 2)).toBeLessThan(2);
+		// the contents start near the window's edge and end well short of the text
+		expect(contents.x).toBeLessThan(120);
+		expect(contents.x + contents.width).toBeLessThan(article.x - 40);
+		if (width >= 1440) expect(article.x - (contents.x + contents.width)).toBeGreaterThan(64);
+	}
+});
+
+test('paper: a live version spans its figure, on the caption’s edge, in one frame', async ({
+	page
+}) => {
+	await page.goto('/paper/');
+	const figure = page.locator('[id="fig:nearfield"]');
+	await figure.locator('details.live > summary').click();
+	const art = figure.locator('details.live > .art');
+	await expect(art.locator('.gfig')).toBeVisible();
+	const box = await art.boundingBox();
+	const caption = await figure.locator('figcaption').boundingBox();
+	if (!box || !caption) throw new Error('figure not found');
+	expect(Math.abs(box.x - caption.x)).toBeLessThan(1);
+	expect(Math.abs(box.width - caption.width)).toBeLessThan(1);
+	// the box around the live version is gone: the card inside is its only frame
+	const frame = await art.evaluate((el) => {
+		const style = getComputedStyle(el);
+		return [style.borderTopWidth, style.paddingTop, style.backgroundColor];
+	});
+	expect(frame).toEqual(['0px', '0px', 'rgba(0, 0, 0, 0)']);
+});
+
+test('paper: Back from a full-screen figure returns to that figure', async ({ page }) => {
+	await page.goto('/paper/');
+	const ladder = page.locator('figure[id="fig:ladder"]');
+	const link = ladder.getByRole('link', {
+		name: 'Apply the tides yourself in the interactive figure'
+	});
+	await expect(link).toHaveAttribute('href', /\/figures\/push-and-weigh\/\?from=fig%3Aladder$/);
+	await link.scrollIntoViewIfNeeded();
+	await link.click();
+	await expect(page).toHaveURL(/\/figures\/push-and-weigh\/\?from=fig%3Aladder$/);
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Push and weigh');
+	await page.goBack();
+	await expect(page).toHaveURL(/\/paper\/#fig:ladder$/);
+	await expect(ladder).toBeInViewport();
+	// and it stays there once the page has settled
+	await page.waitForTimeout(1000);
+	await expect(ladder).toBeInViewport();
+});
+
+test('paper: arriving at a figure’s hash opens the live figures opened before, and lands on it', async ({
+	page
+}) => {
+	await page.goto('/paper/');
+	const nearfield = page.locator('figure[id="fig:nearfield"]');
+	await nearfield.locator('details.live > summary').click();
+	await expect(nearfield.locator('.gfig')).toBeVisible();
+	await page.goto('/');
+	await page.goto('/paper/#fig:nearfield');
+	await expect(nearfield.locator('details.live')).toHaveAttribute('open', '');
+	await expect(nearfield.locator('.gfig')).toBeVisible();
+	await expect(nearfield).toBeInViewport();
+	const top = await nearfield.evaluate((el) => el.getBoundingClientRect().top);
+	expect(top).toBeGreaterThan(0);
+	expect(top).toBeLessThan(200);
+});

@@ -106,20 +106,25 @@
 
 {#snippet colours()}
 	{#if fieldLook.colour === 'direction'}
-		Colour is its direction: <span class="r">red</span> across, <span class="g">green</span> up and
-		down, <span class="b">blue</span> toward you.
+		Colour is its direction: <span class="tone r">red</span> across,
+		<span class="tone g">green</span>
+		up and down, <span class="tone b">blue</span> toward you.
 	{:else if fieldLook.colour === 'strength'}
-		Colour is the strength, from <span style:color={css(strengthRamp(0.35))}>violet</span> to
-		<span style:color={css(strengthRamp(1))}>yellow</span>.
+		Colour is the strength, from <span class="tone" style:--tone={css(strengthRamp(0.35))}
+			>violet</span
+		>
+		to
+		<span class="tone" style:--tone={css(strengthRamp(1))}>yellow</span>.
 	{:else if sign}
-		<span style:color={css(STRETCH)}>Orange</span> where {sign.stretch},{#if sign.zero}{' '}<span
-				style:color={css(PALE)}>pale</span
+		<span class="tone" style:--tone={css(STRETCH)}>Orange</span> where {sign.stretch},{#if sign.zero}{' '}<span
+				class="tone"
+				style:--tone={css(PALE)}>pale</span
 			>
 			where {sign.zero},{/if}
-		<span style:color={css(SQUEEZE)}>blue</span> where {sign.squeeze}.
+		<span class="tone" style:--tone={css(SQUEEZE)}>blue</span> where {sign.squeeze}.
 	{:else}
-		<span style:color={css(STRETCH)}>Orange</span> where stretch leads,
-		<span style:color={css(SQUEEZE)}>blue</span> where squeeze does.
+		<span class="tone" style:--tone={css(STRETCH)}>Orange</span> where stretch leads,
+		<span class="tone" style:--tone={css(SQUEEZE)}>blue</span> where squeeze does.
 	{/if}
 {/snippet}
 
@@ -193,20 +198,38 @@
 
 	strong {
 		font-weight: 600;
-		color: #fff;
+		color: var(--text);
 	}
 
-	/* the tones of the wash itself, as muted as it is */
+	/* The tones of the wash itself, as muted as it is. The word is the tone mixed into the ink, which reads on either
+	   theme's ground; the dot before it is the tone itself, as the picture shows it. */
+	.tone {
+		color: color-mix(in oklab, var(--tone) 45%, var(--text));
+		white-space: nowrap;
+	}
+
+	.tone::before {
+		content: '';
+		display: inline-block;
+		width: 0.6em;
+		height: 0.6em;
+		margin-right: 0.25em;
+		border-radius: 50%;
+		background: var(--tone);
+		box-shadow: 0 0 0 1px var(--line-strong);
+		vertical-align: 0.05em;
+	}
+
 	.r {
-		color: rgb(240 150 150);
+		--tone: rgb(240 150 150);
 	}
 
 	.g {
-		color: rgb(150 225 150);
+		--tone: rgb(150 225 150);
 	}
 
 	.b {
-		color: rgb(160 170 250);
+		--tone: rgb(160 170 250);
 	}
 
 	.scale {
@@ -221,7 +244,7 @@
 		display: block;
 		height: 0.7rem;
 		border-radius: 2px;
-		border: 1px solid rgb(255 255 255 / 0.16);
+		border: 1px solid var(--line-strong);
 	}
 
 	.scale span {

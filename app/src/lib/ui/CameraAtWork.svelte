@@ -452,7 +452,7 @@
 		padding: var(--clear-top, 5rem) var(--clear-right, 1rem) var(--clear-bottom, 5rem)
 			var(--clear-left, 1rem);
 		/* opaque: nothing of the picture beneath shows through */
-		background: #090b10;
+		background: var(--bg);
 		color: var(--text);
 		font: 400 0.78rem/1.5 var(--font-sans);
 	}
@@ -462,7 +462,7 @@
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scrollbar-width: thin;
-		scrollbar-color: rgb(255 255 255 / 0.18) transparent;
+		scrollbar-color: var(--line-strong) transparent;
 		padding-right: 0.35rem;
 		container-type: inline-size;
 	}
@@ -483,7 +483,7 @@
 		justify-content: space-between;
 		gap: 1.5rem;
 		padding-bottom: 0.8rem;
-		border-bottom: 1px solid rgb(255 255 255 / 0.1);
+		border-bottom: 1px solid var(--line);
 	}
 
 	.kicker {
@@ -562,8 +562,8 @@
 		min-width: 0;
 		padding: 0.85rem 0.95rem 0.95rem;
 		border-radius: 12px;
-		border: 1px solid rgb(255 255 255 / 0.08);
-		background: rgb(255 255 255 / 0.025);
+		border: 1px solid var(--line);
+		background: color-mix(in srgb, var(--text) 3%, transparent);
 	}
 
 	h2 {
@@ -628,7 +628,7 @@
 		position: relative;
 		height: 7px;
 		border-radius: 2px;
-		outline: 1px solid rgb(255 255 255 / 0.12);
+		outline: 1px solid var(--line-strong);
 	}
 
 	/* the noise, one standard deviation either side of zero */
@@ -637,7 +637,7 @@
 		top: -3px;
 		bottom: -3px;
 		width: 1px;
-		background: #fff;
+		background: var(--text);
 	}
 
 	.ends {
@@ -697,6 +697,7 @@
 		margin-top: 0.4rem;
 	}
 
+	/* the outlines and labels drawn over the maps keep their own light and dark, whatever the theme */
 	svg rect,
 	svg path {
 		fill: none;
@@ -784,7 +785,7 @@
 		margin-top: 0.6rem;
 		padding: 0.5rem 0.65rem;
 		border-left: 2px solid var(--accent);
-		background: rgb(232 164 90 / 0.08);
+		background: color-mix(in srgb, var(--accent) 9%, transparent);
 		color: var(--text);
 		font-size: 0.72rem;
 		line-height: 1.45;
@@ -816,7 +817,7 @@
 
 	.facts div {
 		padding-top: 0.45rem;
-		border-top: 1px solid rgb(255 255 255 / 0.07);
+		border-top: 1px solid var(--line);
 	}
 
 	.facts dd {
@@ -842,7 +843,7 @@
 
 	.apart li {
 		padding-left: 0.7rem;
-		border-left: 2px solid rgb(255 255 255 / 0.12);
+		border-left: 2px solid var(--line-strong);
 	}
 
 	.apart li.now {

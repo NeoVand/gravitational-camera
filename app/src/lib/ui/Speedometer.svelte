@@ -33,6 +33,8 @@
 	let dragging = false;
 	function down(e: PointerEvent) {
 		if (!(e.target as Element).closest('[data-pixel]')) return;
+		// a drag is not a click: the pixel does not take the focus, and no ring is drawn round it
+		e.preventDefault();
 		(e.currentTarget as SVGSVGElement).setPointerCapture(e.pointerId);
 		dragging = true;
 	}
@@ -58,7 +60,7 @@
 		onpointercancel={() => (dragging = false)}
 	>
 		<defs>
-			{#each [['white', '#e9e6df'], ['g', '#e8a45a'], ['l', '#7fb4ff'], ['m', '#ff9c8a']] as [id, c] (id)}
+			{#each [['white', 'var(--text)'], ['g', 'var(--accent)'], ['l', 'var(--c-light)'], ['m', 'var(--bad)']] as [id, c] (id)}
 				<marker
 					id="sp-{id}"
 					viewBox="0 0 10 10"
@@ -68,7 +70,7 @@
 					markerHeight="5"
 					orient="auto"
 				>
-					<path d="M0,0L10,5L0,10z" fill={c} />
+					<path d="M0,0L10,5L0,10z" style:fill={c} />
 				</marker>
 			{/each}
 		</defs>
@@ -86,7 +88,7 @@
 					class="walk"
 					marker-end="url(#sp-m)"
 				/>
-				<text x={X(t.position) + 22} y={Y(t.position) - 22} class="tag" fill="#ff9c8a">moving</text>
+				<text x={X(t.position) + 22} y={Y(t.position) - 22} class="tag moving">moving</text>
 			{/if}
 		{/each}
 		<!-- light cannot see along its field: the whole line is possible -->
@@ -110,7 +112,7 @@
 		/>
 		<!-- the test for motion -->
 		<g transform="translate(0 228)">
-			<text x="-160" y="4" class="tag end" fill={lit ? '#ff9c8a' : '#a09d96'}
+			<text x="-160" y="4" class={['tag', 'end', { moving: lit }]}
 				>{lit ? 'something moves' : 'all still'}</text
 			>
 			<line x1="-150" x2="150" class="scale" />
@@ -119,7 +121,7 @@
 				<text x={meter(d)} y="18" class="tick">10<tspan dy="-5" font-size="8">{d}</tspan></text>
 			{/each}
 			<line x1={meter(-12)} x2={meter(-12)} y1="-9" y2="9" class="threshold" />
-			<circle cx={meter(decades)} cy="0" r="6" fill={lit ? '#ff9c8a' : '#7bd88f'} />
+			<circle cx={meter(decades)} cy="0" r="6" class={['reading', { moving: lit }]} />
 			<text x="160" y="4" class="tag">motion test</text>
 		</g>
 	</svg>
@@ -137,7 +139,20 @@
 		display: grid;
 		place-items: center;
 		padding: var(--stage-pad, 4.5rem 1rem 6.5rem);
-		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
+		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
+		/* light's colour, beside gravity's (the accent), in either theme */
+		--c-light: #7fb4ff;
+	}
+	:global(:root[data-theme='light']) .frame {
+		--c-light: #2d5f8e;
+	}
+	@media (prefers-color-scheme: light) {
+		:global(:root:not([data-theme='dark'])) .frame {
+			--c-light: #2d5f8e;
+		}
+	}
+	:global(:root .always-dark) .frame {
+		--c-light: #7fb4ff;
 	}
 	svg {
 		width: var(--figure-width, min(62cqw, 120cqh));
@@ -146,48 +161,55 @@
 		user-select: none;
 	}
 	.room {
-		fill: rgb(255 255 255 / 0.03);
-		stroke: rgb(255 255 255 / 0.18);
+		fill: color-mix(in srgb, var(--text) 3%, transparent);
+		stroke: color-mix(in srgb, var(--text) 24%, transparent);
 	}
 	.mass {
-		fill: #a7a299;
+		fill: var(--text-dim);
 	}
 	.walk {
-		stroke: #ff9c8a;
+		stroke: var(--bad);
 		stroke-width: 2;
 	}
 	.truth {
-		stroke: #e9e6df;
+		stroke: var(--text);
 		stroke-width: 1.5;
 		stroke-dasharray: 5 4;
 	}
 	.gravity {
-		stroke: #e8a45a;
+		stroke: var(--accent);
 		stroke-width: 3;
 		stroke-linecap: round;
 	}
 	.light {
-		stroke: #7fb4ff;
+		stroke: var(--c-light);
 		stroke-width: 2;
 	}
 	.unknown {
-		stroke: #7fb4ff;
+		stroke: var(--c-light);
 		stroke-width: 1;
 		stroke-dasharray: 2 5;
 		opacity: 0.7;
 	}
 	.pixel {
-		fill: #e9e6df;
-		stroke: #18120b;
+		fill: var(--text);
+		stroke: var(--bg-sunken);
 		stroke-width: 2;
 		cursor: grab;
 	}
+	/* reached by the pointer alone (tabindex -1): no focus ring */
+	.pixel:focus {
+		outline: none;
+	}
 	.scale {
-		stroke: rgb(255 255 255 / 0.3);
+		stroke: color-mix(in srgb, var(--text) 36%, transparent);
 	}
 	.threshold {
-		stroke: rgb(255 255 255 / 0.5);
+		stroke: color-mix(in srgb, var(--text) 56%, transparent);
 		stroke-dasharray: 2 2;
+	}
+	.reading {
+		fill: var(--good);
 	}
 	text {
 		font-family: var(--font-sans);
@@ -195,14 +217,18 @@
 	}
 	.tag {
 		font-size: 12px;
-		fill: #a09d96;
+		fill: var(--text-dim);
+	}
+	.reading.moving,
+	.tag.moving {
+		fill: var(--bad);
 	}
 	.end {
 		text-anchor: end;
 	}
 	.tick {
 		font-size: 10px;
-		fill: #a09d96;
+		fill: var(--text-dim);
 		text-anchor: middle;
 	}
 	.legend {
@@ -213,20 +239,20 @@
 		margin: 0;
 		padding: 0.4em 0.75em;
 		border-radius: 999px;
-		background: rgb(24 18 11 / 0.6);
-		border: 1px solid rgb(255 255 255 / 0.14);
-		color: rgb(255 255 255 / 0.8);
+		background: color-mix(in srgb, var(--bg-sunken) 60%, transparent);
+		border: 1px solid var(--line-strong);
+		color: var(--text-dim);
 		font: 500 0.7rem/1.2 var(--font-sans);
 		white-space: nowrap;
 		pointer-events: none;
 	}
 	.w {
-		color: #e9e6df;
+		color: var(--text);
 	}
 	.g {
-		color: #e8a45a;
+		color: var(--accent);
 	}
 	.l {
-		color: #7fb4ff;
+		color: var(--c-light);
 	}
 </style>

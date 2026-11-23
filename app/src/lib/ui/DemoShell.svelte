@@ -17,6 +17,7 @@
 	import type { Snippet } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
 	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
 	import {
 		ArrowLeft02Icon,
@@ -58,6 +59,11 @@
 		onsave?: () => Promise<Blob | null>;
 		/** Which list the page belongs to, for the way back: the demos or the interactive figures. */
 		section?: 'demos' | 'figures';
+		/**
+		 * How to work this page's picture, for the Help tab, in place of the general lines for its section. The keys
+		 * the frame itself answers are listed after it in any case.
+		 */
+		help?: Snippet;
 	}
 
 	let {
@@ -71,15 +77,36 @@
 		foot,
 		onreset,
 		onsave,
-		section = 'demos'
+		section = 'demos',
+		help
 	}: Props = $props();
 
 	const kicker = $derived(
 		(section === 'figures' ? figures : demos).find((d) => d.title === title)?.affordance
 	);
 	const fileName = $derived(title.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
-	const home = $derived(section === 'figures' ? resolve('/figures') : resolve('/demo'));
-	const homeName = $derived(section === 'figures' ? 'All figures' : 'All demos');
+	/**
+	 * The figure of the paper the reader came from, if they came from one: a link from the paper adds
+	 * `?from=<figure id>`, e.g. `?from=fig%3Astars`. Only an id of the paper's own form is taken. The pages are
+	 * prerendered, where the query cannot be read, so it is read in the browser only, once the page is live: in an
+	 * effect, which prerendering never runs, and not a derived value, since hydration keeps the prerendered `href`.
+	 */
+	let fromPaper = $state<string>();
+	$effect(() => {
+		const from = page.url.searchParams.get('from');
+		fromPaper = from && /^fig:[A-Za-z0-9:_-]+$/.test(from) ? from : undefined;
+	});
+	// every character the id may hold stands as it is in a fragment, so it needs no escaping
+	const home = $derived(
+		fromPaper
+			? resolve(`paper/#${fromPaper}`)
+			: section === 'figures'
+				? resolve('/figures')
+				: resolve('/demo')
+	);
+	const homeName = $derived(
+		fromPaper ? 'Back to the paper' : section === 'figures' ? 'All figures' : 'All demos'
+	);
 
 	interface Tab {
 		name: TabName;
@@ -227,7 +254,7 @@
 <svelte:window onkeydown={onKey} />
 <svelte:document onfullscreenchange={() => (fullscreen = !!document.fullscreenElement)} />
 
-<main class={['always-dark', { bare, open }]} data-ready={ready || undefined} {@attach start}>
+<main class={{ bare, open }} data-ready={ready || undefined} {@attach start}>
 	<div class="stage">{@render stage()}</div>
 
 	{#if !bare}
@@ -266,21 +293,40 @@
 							{:else if current === 'key' && legend}
 								{@render legend()}
 							{:else if current === 'help'}
+								{#if help}<div class="help">{@render help()}</div>{/if}
 								<dl class="keys">
-									<dt>Drag the picture</dt>
-									<dd>look around</dd>
-									<dt>Scroll</dt>
-									<dd>zoom</dd>
-									<dt>Drag the line</dt>
-									<dd>move between light and gravity (arrow keys when it is selected)</dd>
+									{#if !help}
+										{#if section === 'figures'}
+											<dt>Drag in the figure</dt>
+											<dd>move what it lets you move; About says what that is</dd>
+										{:else}
+											<dt>Drag the picture</dt>
+											<dd>look around</dd>
+											<dt>Scroll</dt>
+											<dd>zoom</dd>
+											<dt>Drag the line</dt>
+											<dd>
+												where the picture is split, move between light and gravity (arrow keys when
+												it is selected)
+											</dd>
+										{/if}
+									{/if}
 									<dt><kbd>N</kbd> <kbd>C</kbd> <kbd>?</kbd></dt>
 									<dd>about, controls, this help; the same key again puts the panel away</dd>
 									{#if legend}
 										<dt><kbd>K</kbd></dt>
 										<dd>the key to the colours of the picture</dd>
 									{/if}
-									<dt><kbd>R</kbd> <kbd>S</kbd></dt>
-									<dd>reset the view, save a still</dd>
+									{#if onreset && onsave}
+										<dt><kbd>R</kbd> <kbd>S</kbd></dt>
+										<dd>reset the view, save a still</dd>
+									{:else if onreset}
+										<dt><kbd>R</kbd></dt>
+										<dd>reset the view</dd>
+									{:else if onsave}
+										<dt><kbd>S</kbd></dt>
+										<dd>save a still</dd>
+									{/if}
 									<dt><kbd>F</kbd> <kbd>H</kbd></dt>
 									<dd>full screen, hide everything but the picture</dd>
 								</dl>
@@ -389,11 +435,13 @@
 		inset: 0;
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
-		background: #000;
+		background: var(--bg);
 		color: var(--text);
 		font-family: var(--font-sans);
-		--surface: #1c150e;
-		--line: rgb(255 255 255 / 0.09);
+		/* the sidebar's ground, and the faint washes that mark what is pointed at or chosen, in either theme */
+		--surface: var(--bg-sunken);
+		--wash: color-mix(in srgb, var(--text) 7%, transparent);
+		--wash-strong: color-mix(in srgb, var(--text) 11%, transparent);
 		--rail: 3.9rem;
 	}
 
@@ -440,11 +488,11 @@
 		min-width: 0;
 	}
 
-	/* the way back, at the head of the rail: the one light thing in the sidebar */
+	/* the way back, at the head of the rail: the one thing in the sidebar inked in reverse */
 	.tool.back {
 		margin-bottom: 0.45rem;
-		background: #d2dde7;
-		color: #2d2218;
+		background: var(--text);
+		color: var(--bg);
 	}
 
 	.away {
@@ -462,7 +510,7 @@
 	}
 
 	.away:hover {
-		background: rgb(255 255 255 / 0.08);
+		background: var(--wash-strong);
 		color: var(--text);
 	}
 
@@ -508,7 +556,7 @@
 		overscroll-behavior: contain;
 		padding: 1rem 1rem 1.2rem;
 		scrollbar-width: thin;
-		scrollbar-color: rgb(255 255 255 / 0.18) transparent;
+		scrollbar-color: var(--line-strong) transparent;
 		animation: arrive 0.14s ease-out;
 	}
 
@@ -521,7 +569,7 @@
 	footer {
 		padding: 0.6rem 1rem 0.7rem;
 		border-top: 1px solid var(--line);
-		background: rgb(255 255 255 / 0.025);
+		background: color-mix(in srgb, var(--text) 3%, transparent);
 		font-size: 0.72rem;
 		line-height: 1.45;
 		color: var(--text-dim);
@@ -544,7 +592,7 @@
 
 	.about :global(strong),
 	.key :global(strong) {
-		color: #fff;
+		color: var(--text);
 		font-weight: 600;
 	}
 
@@ -555,7 +603,7 @@
 		gap: 0.55rem;
 		padding: 0.75rem 0.8rem;
 		border-radius: 10px;
-		background: rgb(255 255 255 / 0.04);
+		background: color-mix(in srgb, var(--text) 5%, transparent);
 	}
 
 	.about :global(dt),
@@ -636,6 +684,17 @@
 		font-family: var(--font-sans);
 	}
 
+	.help {
+		margin-bottom: 1rem;
+		font-size: 0.86rem;
+		line-height: 1.55;
+	}
+
+	.help :global(p) {
+		margin: 0 0 0.8rem;
+		text-wrap: pretty;
+	}
+
 	.keys {
 		display: grid;
 		grid-template-columns: auto 1fr;
@@ -695,23 +754,23 @@
 	/* a finger leaves no pointer behind: only a pointer that hovers lights what it is over */
 	@media (hover: hover) {
 		.tabs button:hover {
-			background: rgb(255 255 255 / 0.06);
+			background: var(--wash);
 			color: var(--text);
 		}
 
 		.tool:hover {
-			background: rgb(255 255 255 / 0.08);
+			background: var(--wash-strong);
 			color: var(--text);
 		}
 
 		.tool.back:hover {
-			background: #e8eef3;
-			color: #2d2218;
+			background: color-mix(in srgb, var(--text) 82%, var(--accent));
+			color: var(--bg);
 		}
 	}
 
 	.tabs button[aria-selected='true'] {
-		background: rgb(255 255 255 / 0.08);
+		background: var(--wash-strong);
 		color: var(--text);
 	}
 
@@ -762,8 +821,9 @@
 		z-index: 2;
 		padding: 0.4rem 0.55rem;
 		border-radius: 8px;
-		background: rgb(20 23 30 / 0.97);
-		border: 1px solid var(--line);
+		background: var(--bg-raised);
+		border: 1px solid var(--line-strong);
+		box-shadow: 0 4px 14px rgb(0 0 0 / 0.18);
 		color: var(--text);
 		font: 400 0.72rem/1.4 var(--font-sans);
 		text-align: left;
@@ -808,7 +868,7 @@
 		min-width: 1.3em;
 		padding: 0.05em 0.35em;
 		border-radius: 4px;
-		border: 1px solid rgb(255 255 255 / 0.18);
+		border: 1px solid var(--line-strong);
 		font: 500 0.66rem/1.4 var(--font-mono);
 		color: var(--text-dim);
 		text-align: center;
@@ -824,8 +884,9 @@
 		gap: 0.5rem;
 		padding: 0.5rem 0.8rem;
 		border-radius: 999px;
-		border: 1px solid var(--line);
-		background: rgb(12 15 21 / 0.5);
+		border: 1px solid var(--line-strong);
+		background: color-mix(in srgb, var(--bg-raised) 72%, transparent);
+		backdrop-filter: blur(6px);
 		color: var(--text-dim);
 		font-size: 0.74rem;
 		cursor: pointer;

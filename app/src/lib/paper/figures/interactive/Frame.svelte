@@ -1,7 +1,9 @@
 <script lang="ts">
 	/**
-	 * An interactive figure inside the online paper: its picture on a dark stage of fixed shape, its few controls
-	 * below, and a way to open it full screen with all of them.
+	 * An interactive figure inside the online paper: its picture on a stage of fixed shape, in the site's theme, its
+	 * few controls below, and a way to open it full screen with all of them. The full-screen link says which figure of
+	 * the paper it was opened from (`?from=`, the id of the figure the frame stands in), so that the page can lead
+	 * back to it.
 	 */
 	import type { Snippet } from 'svelte';
 	import { resolve } from '$app/paths';
@@ -19,13 +21,25 @@
 	}
 
 	let { slug, aspect = 16 / 10, vars = '', stage, controls }: Props = $props();
+
+	/** The id of the paper's figure this frame stands in, read from the page once it is there. */
+	let from = $state('');
+	const href = $derived(
+		resolve(
+			`figures/${slug}/${from ? `?from=${encodeURIComponent(from)}` : ''}` as 'figures/four-stars/'
+		)
+	);
+
+	function figureOf(node: HTMLElement) {
+		from = node.closest('figure[id]')?.id ?? '';
+	}
 </script>
 
-<div class="interactive always-dark">
+<div class="interactive" {@attach figureOf}>
 	<div class="stage" style="aspect-ratio: {aspect}; {vars}">{@render stage()}</div>
 	<div class="bar">
 		{#if controls}<div class="controls">{@render controls()}</div>{/if}
-		<a class="full" href={resolve(`/figures/${slug}` as '/figures/four-stars')}>
+		<a class="full" {href}>
 			<HugeiconsIcon icon={FullScreenIcon} size={15} strokeWidth={1.8} />
 			Full screen
 		</a>

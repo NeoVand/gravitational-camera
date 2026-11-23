@@ -157,6 +157,8 @@
 	}
 	function down(e: PointerEvent) {
 		if (!onscrub) return;
+		// a drag is not a click: nothing under it takes the focus, and no text is selected
+		e.preventDefault();
 		dragging = true;
 		scrub(e);
 		(e.currentTarget as Element).setPointerCapture(e.pointerId);

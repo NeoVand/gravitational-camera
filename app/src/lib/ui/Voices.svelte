@@ -32,7 +32,8 @@
 	}: Props = $props();
 
 	const R = 120; // drawing units for the sky's radius
-	const VOICE = ['#e8a45a', '#7fb4ff', '#7bd88f', '#d9a6ff', '#ff9c8a'];
+	/** One colour to a source, from the theme (the style below sets those it lacks): SVG attributes cannot take var(). */
+	const VOICE = ['var(--accent)', 'var(--c-light)', 'var(--good)', 'var(--c-violet)', 'var(--bad)'];
 	const view = $derived({ yaw, pitch });
 	const at = (p: Vec3) => project(view, p, R);
 	const circles = $derived([greatCircle(view, [0, 1, 0], R), greatCircle(view, [0, 0, 1], R)]);
@@ -122,6 +123,8 @@
 		| undefined;
 
 	function down(e: PointerEvent) {
+		// a drag is not a click: nothing under it takes the focus, and no ring is drawn round it
+		e.preventDefault();
 		const svg = e.currentTarget as SVGSVGElement;
 		svg.setPointerCapture(e.pointerId);
 		const target = (e.target as Element).closest('[data-source]');
@@ -163,7 +166,7 @@
 		onpointerup={() => (drag = undefined)}
 		onpointercancel={() => (drag = undefined)}
 	>
-		<text class="title" x="0" y="-146" fill={colour}>{name}</text>
+		<text class="title" x="0" y="-146" style:fill={colour}>{name}</text>
 		<circle r={R} class="sky-disc" />
 		{#if map}<image
 				href={map}
@@ -185,20 +188,20 @@
 					cy={p.y}
 					r="11"
 					class="ring"
-					stroke={VOICE[i]}
+					style:stroke={VOICE[i]}
 					data-source={i}
 					role="button"
 					tabindex="-1"
 					aria-label="source {i + 1}: drag to move"
 				/>
-				<text class="num" x={p.x + 15} y={p.y - 11} fill={VOICE[i]}>{i + 1}</text>
+				<text class="num" x={p.x + 15} y={p.y - 11} style:fill={VOICE[i]}>{i + 1}</text>
 			{:else}
-				<circle cx={p.x} cy={p.y} r="8" class="ring behind" stroke={VOICE[i]} />
+				<circle cx={p.x} cy={p.y} r="8" class="ring behind" style:stroke={VOICE[i]} />
 			{/if}
 		{/each}
 		{#each found.directions as d, i (i)}
 			{@const p = at(d)}
-			<circle cx={p.x} cy={p.y} r="4" fill={colour} class={['found', { behind: p.z < 0 }]} />
+			<circle cx={p.x} cy={p.y} r="4" style:fill={colour} class={['found', { behind: p.z < 0 }]} />
 		{/each}
 		<text class="words" x="0" y="150">
 			{#if found.silent === 0}
@@ -227,8 +230,8 @@
 		{/each}
 	</svg>
 	<div class="skies">
-		{@render sky('gravity: up to four', '#e8a45a', gravity, maps.gravity, 5)}
-		{@render sky('light: up to two', '#7fb4ff', light, maps.light, 3)}
+		{@render sky('gravity: up to four', 'var(--accent)', gravity, maps.gravity, 5)}
+		{@render sky('light: up to two', 'var(--c-light)', light, maps.light, 3)}
 	</div>
 </div>
 
@@ -243,7 +246,24 @@
 		justify-content: center;
 		gap: 0.5rem;
 		padding: var(--stage-pad, 4.5rem 1rem 5.5rem);
-		background: radial-gradient(circle at 50% 55%, #2a2016 0%, #18120b 70%);
+		background: radial-gradient(circle at 50% 55%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
+		/* light's colour, beside gravity's (the accent), and a fourth source's, in either theme */
+		--c-light: #7fb4ff;
+		--c-violet: #d9a6ff;
+	}
+	:global(:root[data-theme='light']) .stage {
+		--c-light: #2d5f8e;
+		--c-violet: #7a3fa8;
+	}
+	@media (prefers-color-scheme: light) {
+		:global(:root:not([data-theme='dark'])) .stage {
+			--c-light: #2d5f8e;
+			--c-violet: #7a3fa8;
+		}
+	}
+	:global(:root .always-dark) .stage {
+		--c-light: #7fb4ff;
+		--c-violet: #d9a6ff;
 	}
 	.traces {
 		width: var(--traces-width, min(52cqw, 640px));
@@ -269,16 +289,16 @@
 		}
 	}
 	.sky-disc {
-		fill: rgb(255 255 255 / 0.04);
-		stroke: rgb(255 255 255 / 0.3);
+		fill: color-mix(in srgb, var(--text) 4%, transparent);
+		stroke: color-mix(in srgb, var(--text) 34%, transparent);
 	}
 	.front-line {
 		fill: none;
-		stroke: rgb(255 255 255 / 0.22);
+		stroke: color-mix(in srgb, var(--text) 26%, transparent);
 	}
 	.back-line {
 		fill: none;
-		stroke: rgb(255 255 255 / 0.1);
+		stroke: color-mix(in srgb, var(--text) 13%, transparent);
 		stroke-dasharray: 3 4;
 	}
 	.ring {
@@ -286,13 +306,17 @@
 		stroke-width: 2;
 		cursor: grab;
 	}
+	/* reached by the pointer alone (tabindex -1): no focus ring */
+	.ring:focus {
+		outline: none;
+	}
 	.ring.behind {
 		opacity: 0.35;
 		stroke-dasharray: 2 2;
 		pointer-events: none;
 	}
 	.found {
-		stroke: #18120b;
+		stroke: var(--bg-sunken);
 		stroke-width: 1.2;
 	}
 	.found.behind {
@@ -300,11 +324,11 @@
 	}
 	.trace {
 		fill: none;
-		stroke: #e9e6df;
+		stroke: var(--text);
 		stroke-width: 1;
 	}
 	.trace.b {
-		stroke: #a09d96;
+		stroke: var(--text-dim);
 	}
 	text {
 		font-family: var(--font-sans);
@@ -319,7 +343,7 @@
 		font-weight: 600;
 	}
 	.words {
-		fill: #a09d96;
+		fill: var(--text-dim);
 		font-size: 12px;
 	}
 	.num {
@@ -327,7 +351,7 @@
 		font-weight: 600;
 	}
 	.trace-name {
-		fill: #a09d96;
+		fill: var(--text-dim);
 		font-size: 10px;
 		text-anchor: end;
 		font-style: italic;

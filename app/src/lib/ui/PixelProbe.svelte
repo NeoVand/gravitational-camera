@@ -84,7 +84,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.9rem;
-		color: #e9e6df;
+		color: var(--text);
 		font: 500 0.8rem/1.35 var(--font-sans);
 	}
 
@@ -94,7 +94,7 @@
 
 	.line strong {
 		font-weight: 600;
-		color: #fff;
+		color: var(--text);
 	}
 
 	.what {
@@ -116,25 +116,26 @@
 		height: auto;
 	}
 	.disc {
-		fill: rgb(255 255 255 / 0.05);
-		stroke: rgb(255 255 255 / 0.3);
+		fill: color-mix(in srgb, var(--text) 5%, transparent);
+		stroke: var(--line-strong);
 	}
 	.mark {
-		stroke: rgb(255 255 255 / 0.25);
+		stroke: var(--line-strong);
 	}
 	.star {
-		fill: #e8a45a;
-		stroke: #18120b;
+		fill: var(--accent);
+		/* a ring of the panel's ground keeps touching dots apart */
+		stroke: var(--bg-sunken);
 		stroke-width: 1;
 	}
 	.star.behind {
 		opacity: 0.35;
 	}
 	.still {
-		color: #7bd88f;
+		color: var(--good);
 	}
 
 	.alarm {
-		color: #ff9c8a;
+		color: var(--bad);
 	}
 </style>

@@ -337,7 +337,7 @@
 		width: 6.4rem;
 		height: auto;
 		border-radius: 10px;
-		background: rgb(255 255 255 / 0.04);
+		background: color-mix(in srgb, var(--text) 5%, transparent);
 	}
 
 	.pair svg {
@@ -368,21 +368,21 @@
 
 	.rest {
 		fill: none;
-		stroke: rgb(255 255 255 / 0.32);
+		stroke: color-mix(in srgb, var(--text) 36%, transparent);
 		stroke-width: 0.8;
 		stroke-dasharray: 2 2.4;
 	}
 
 	.bent {
 		fill: none;
-		stroke: rgb(255 255 255 / 0.62);
+		stroke: color-mix(in srgb, var(--text) 66%, transparent);
 		stroke-width: 0.9;
 	}
 
 	line {
 		stroke-width: 1.3;
 		stroke-linecap: round;
-		stroke: rgb(255 255 255 / 0.5);
+		stroke: color-mix(in srgb, var(--text) 52%, transparent);
 	}
 
 	line.stretch {
@@ -394,8 +394,8 @@
 	}
 
 	.mass {
-		fill: rgb(255 255 255 / 0.75);
-		stroke: #18120b;
+		fill: color-mix(in srgb, var(--text) 78%, transparent);
+		stroke: var(--bg-sunken);
 		stroke-width: 0.6;
 	}
 

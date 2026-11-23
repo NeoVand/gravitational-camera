@@ -49,8 +49,8 @@
 		gap: 0.4rem;
 		padding: 0.45rem 0.75rem;
 		border-radius: 9px;
-		border: 1px solid rgb(255 255 255 / 0.1);
-		background: rgb(255 255 255 / 0.04);
+		border: 1px solid var(--line);
+		background: color-mix(in srgb, var(--text) 5%, transparent);
 		color: var(--text);
 		font-size: 0.76rem;
 		cursor: pointer;
@@ -60,8 +60,8 @@
 	}
 
 	.body :global(.action:hover) {
-		background: rgb(255 255 255 / 0.09);
-		border-color: rgb(255 255 255 / 0.2);
+		background: color-mix(in srgb, var(--text) 10%, transparent);
+		border-color: var(--line-strong);
 	}
 
 	.body :global(.action:focus-visible) {

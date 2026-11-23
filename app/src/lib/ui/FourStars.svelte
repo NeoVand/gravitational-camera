@@ -27,8 +27,9 @@
 	let { sources, wave, yaw = $bindable(), pitch = $bindable(), onmove }: Props = $props();
 
 	const U = 100; // drawing units per metre: the sky has radius 1
-	const GRAVITY = '#e8a45a';
-	const LIGHT = '#7fb4ff';
+	// the two colours of the theme (light's is set in the style below); SVG's presentation attributes cannot take var()
+	const GRAVITY = 'var(--accent)';
+	const LIGHT = 'var(--c-light)';
 
 	const gravity = $derived(readGravity(sources, wave));
 	const light = $derived(readLight(sources, wave));
@@ -95,6 +96,8 @@
 	}
 
 	function down(e: PointerEvent) {
+		// a drag is not a click: nothing under it takes the focus, and no ring is drawn round it
+		e.preventDefault();
 		const svg = e.currentTarget as SVGSVGElement;
 		const target = (e.target as Element).closest('[data-source]');
 		svg.setPointerCapture(e.pointerId);
@@ -159,7 +162,7 @@
 				markerHeight="5"
 				orient="auto-start-reverse"
 			>
-				<path d="M0,0L10,5L0,10z" fill={colour} />
+				<path d="M0,0L10,5L0,10z" style:fill={colour} />
 			</marker>
 			<marker
 				id="{marker}-ink"
@@ -170,10 +173,10 @@
 				markerHeight="5"
 				orient="auto-start-reverse"
 			>
-				<path d="M0,0L10,5L0,10z" fill="#e9e6df" />
+				<path d="M0,0L10,5L0,10z" class="ink" />
 			</marker>
 		</defs>
-		<text class="title" x="0" y="-188" fill={colour}
+		<text class="title" x="0" y="-188" style:fill={colour}
 			>{name} <tspan class="dim">· {count}</tspan></text
 		>
 		<!-- what lies behind the sky, faint, then the sky over it -->
@@ -186,7 +189,7 @@
 						cx={d.x}
 						cy={d.y}
 						r="4"
-						fill={colour}
+						style:fill={colour}
 						opacity="0.35"
 						class="star behind"
 					/>{/if}
@@ -233,7 +236,7 @@
 		<!-- the stars in front -->
 		{#each stars as s, i (i)}
 			{#each dots(s) as d, j (j)}
-				{#if d.z >= 0}<circle cx={d.x} cy={d.y} r="4" fill={colour} class="star" />{/if}
+				{#if d.z >= 0}<circle cx={d.x} cy={d.y} r="4" style:fill={colour} class="star" />{/if}
 			{/each}
 		{/each}
 		{#if mid}
@@ -284,7 +287,20 @@
 		justify-content: center;
 		gap: 0.5rem;
 		padding: var(--stage-pad, 4.5rem 1rem 5.5rem);
-		background: radial-gradient(circle at 50% 45%, #2a2016 0%, #18120b 70%);
+		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
+		/* light's colour, beside gravity's (the accent), in either theme */
+		--c-light: #7fb4ff;
+	}
+	:global(:root[data-theme='light']) .skies {
+		--c-light: #2d5f8e;
+	}
+	@media (prefers-color-scheme: light) {
+		:global(:root:not([data-theme='dark'])) .skies {
+			--c-light: #2d5f8e;
+		}
+	}
+	:global(:root .always-dark) .skies {
+		--c-light: #7fb4ff;
 	}
 
 	/* gravity above light, in a column between the cards */
@@ -306,29 +322,29 @@
 	}
 
 	.sky-disc {
-		fill: rgb(255 255 255 / 0.055);
-		stroke: rgb(255 255 255 / 0.3);
+		fill: color-mix(in srgb, var(--text) 5.5%, transparent);
+		stroke: color-mix(in srgb, var(--text) 34%, transparent);
 		stroke-width: 1;
 	}
 	.front-line {
 		fill: none;
-		stroke: rgb(255 255 255 / 0.24);
+		stroke: color-mix(in srgb, var(--text) 28%, transparent);
 		stroke-width: 1;
 	}
 	.back-line {
 		fill: none;
-		stroke: rgb(255 255 255 / 0.14);
+		stroke: color-mix(in srgb, var(--text) 18%, transparent);
 		stroke-width: 1;
 		stroke-dasharray: 3 4;
 	}
 	.tether {
-		stroke: rgb(255 255 255 / 0.35);
+		stroke: color-mix(in srgb, var(--text) 40%, transparent);
 		stroke-width: 1;
 		stroke-dasharray: 3 4;
 	}
 	.velocity,
 	.wave {
-		stroke: #e9e6df;
+		stroke: var(--text);
 		stroke-width: 1.6;
 		fill: none;
 	}
@@ -338,22 +354,27 @@
 	}
 	.truth {
 		fill: none;
-		stroke: #e9e6df;
+		stroke: var(--text);
 		stroke-width: 1;
 		stroke-dasharray: 2 2;
 	}
 	.source {
-		fill: #a7a299;
-		stroke: #e9e6df;
+		fill: var(--text-dim);
+		stroke: var(--text);
 		stroke-width: 1;
 		cursor: grab;
 	}
+	/* reached by the pointer alone (tabindex -1): no focus ring */
+	.source:focus {
+		outline: none;
+	}
 	.star {
-		stroke: #18120b;
+		stroke: var(--bg-sunken);
 		stroke-width: 1.1;
 	}
-	.pixel {
-		fill: #e9e6df;
+	.pixel,
+	.ink {
+		fill: var(--text);
 	}
 	text {
 		font-family: var(--font-sans);
@@ -365,16 +386,16 @@
 		font-weight: 600;
 	}
 	.dim {
-		fill: #a09d96;
+		fill: var(--text-dim);
 		font-weight: 400;
 	}
 	.label {
-		fill: #e9e6df;
+		fill: var(--text);
 		font-size: 14px;
 		font-style: italic;
 	}
 	.words {
-		fill: #a09d96;
+		fill: var(--text-dim);
 		font-size: 13px;
 	}
 </style>

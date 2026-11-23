@@ -50,8 +50,9 @@
 		padding: 3px;
 		gap: 3px;
 		border-radius: 11px;
-		background: rgb(0 0 0 / 0.35);
-		border: 1px solid rgb(255 255 255 / 0.07);
+		/* a groove a shade off the ground it sits on, whichever theme */
+		background: color-mix(in srgb, var(--text) 6%, transparent);
+		border: 1px solid var(--line);
 	}
 
 	button {
@@ -82,9 +83,9 @@
 	}
 
 	button[aria-pressed='true'] {
-		background: rgb(255 255 255 / 0.1);
+		background: var(--bg-raised);
 		color: var(--text);
-		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+		box-shadow: inset 0 0 0 1px var(--line-strong);
 	}
 
 	button:focus-visible {

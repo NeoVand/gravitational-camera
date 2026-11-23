@@ -48,7 +48,7 @@
 		width: 100%;
 		border-radius: 3px;
 		overflow: hidden;
-		outline: 1px solid rgb(255 255 255 / 0.1);
+		outline: 1px solid var(--line-strong);
 	}
 
 	canvas {

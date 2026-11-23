@@ -1,5 +1,11 @@
-/* Shared look of the paper's drawn figures. Colours come from the theme. */
+/* Shared look of the paper's drawn figures. Colours come from the theme.
+   They are the live versions of figures, shown under the paper's own drawing,
+   so they sit on a card of the same look as the interactive figures' frame. */
 .gfig {
+	padding: clamp(0.8rem, 2.5vw, 1.4rem);
+	border: 1px solid var(--line);
+	border-radius: 12px;
+	background: var(--bg-raised);
 	font-family: var(--font-sans);
 	color: var(--text);
 }

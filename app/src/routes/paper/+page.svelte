@@ -1,5 +1,7 @@
 <script lang="ts">
 	import 'katex/dist/katex.min.css';
+	import { onDestroy } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import { Pdf01Icon, PlayCircleIcon } from '@hugeicons/core-free-icons';
@@ -14,6 +16,103 @@
 	let active = $state('');
 	/** Which live figures' panels are open: the drawn ones are only made, and set running, when they are. */
 	let opened: Record<string, boolean> = $state({});
+
+	/** Where the drawn live figures the reader has opened are remembered, for the length of the visit. */
+	const OPENED_KEY = 'paper:opened-live';
+
+	function saveOpened() {
+		const ids = Object.keys(opened).filter(
+			(id) => opened[id] && liveFigures[id] && !('picture' in liveFigures[id])
+		);
+		try {
+			sessionStorage.setItem(OPENED_KEY, JSON.stringify(ids));
+		} catch {
+			// storage may be blocked; the figures then simply open closed
+		}
+	}
+
+	function restoreOpened() {
+		let ids: unknown = [];
+		try {
+			ids = JSON.parse(sessionStorage.getItem(OPENED_KEY) ?? '[]');
+		} catch {
+			// as above
+		}
+		if (!Array.isArray(ids)) return;
+		for (const id of ids) if (typeof id === 'string' && id in liveFigures) opened[id] = true;
+	}
+
+	/** A figure's link to its full-screen page, which names the figure so that the page can send the reader back to it. */
+	const from = (id: string) => `?from=${encodeURIComponent(id)}`;
+
+	/**
+	 * Before a link from a figure to its full-screen page is followed, the paper's
+	 * own history entry is made to point at that figure, so that Back returns to it.
+	 * The router keeps its bookkeeping in history.state, which is carried over
+	 * unchanged; only the address gains the figure's hash.
+	 */
+	function rememberPlace(article: HTMLElement) {
+		const onClick = (event: MouseEvent) => {
+			if (event.defaultPrevented || event.button !== 0) return;
+			if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+			const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+			if (!(link instanceof HTMLAnchorElement)) return;
+			if (link.target && link.target !== '_self') return;
+			const url = new URL(link.href);
+			const figure = url.searchParams.get('from');
+			if (url.origin !== location.origin || !figure || !document.getElementById(figure)) return;
+			const here = `${location.href.split('#')[0]}#${figure}`;
+			if (here !== location.href) history.replaceState(history.state, '', here);
+		};
+		article.addEventListener('click', onClick);
+		return () => article.removeEventListener('click', onClick);
+	}
+
+	let stopSettling = () => {};
+
+	/**
+	 * Brings the element with this id to the top of the window and keeps it
+	 * there while the page above it settles (fonts, equations, live figures
+	 * being made), until the reader scrolls, types or clicks, or a few seconds pass.
+	 */
+	function settleAt(id: string) {
+		stopSettling();
+		const target = document.getElementById(id);
+		if (!target) return;
+		let settled = false;
+		const place = () => {
+			if (!settled) target.scrollIntoView({ block: 'start', behavior: 'instant' });
+		};
+		const inputs = ['wheel', 'touchstart', 'keydown', 'pointerdown'] as const;
+		const watch = new ResizeObserver(place);
+		const stop = () => {
+			settled = true;
+			watch.disconnect();
+			clearTimeout(timer);
+			for (const type of inputs) removeEventListener(type, stop, true);
+		};
+		const timer = setTimeout(stop, 4000);
+		for (const type of inputs) addEventListener(type, stop, { capture: true, passive: true });
+		stopSettling = stop;
+		watch.observe(target.closest('article') ?? document.body);
+		document.fonts?.ready.then(place);
+		place();
+	}
+
+	// Arriving at the paper with a hash, by a link, a reload or Back from a
+	// full-screen figure: the figures the reader had opened open again, and the
+	// target is held in view while the page settles. Moves within the paper are
+	// left to the browser.
+	afterNavigate((navigation) => {
+		if (navigation.type !== 'enter' && navigation.from?.route.id === navigation.to?.route.id)
+			return;
+		const id = decodeURIComponent(location.hash.slice(1));
+		if (!id) return;
+		restoreOpened();
+		settleAt(id);
+	});
+
+	onDestroy(() => stopSettling());
 
 	function followReading(article: HTMLElement) {
 		const headings = Array.from(article.querySelectorAll<HTMLElement>('h2[id]'));
@@ -112,7 +211,7 @@
 		</ol>
 	</nav>
 
-	<article class="paper" {@attach followReading} {@attach fitEquations}>
+	<article class="paper" {@attach followReading} {@attach fitEquations} {@attach rememberPlace}>
 		<header>
 			<p class="kicker">Working draft</p>
 			<h1>{@html paper.title}</h1>
@@ -148,8 +247,11 @@
 					{#if live}
 						<details
 							class="live"
-							open={'picture' in live}
-							ontoggle={(e) => (opened[block.id] = e.currentTarget.open)}
+							open={opened[block.id] ?? 'picture' in live}
+							ontoggle={(e) => {
+								opened[block.id] = e.currentTarget.open;
+								if (!('picture' in live)) saveOpened();
+							}}
 						>
 							<summary>{live.label}</summary>
 							<div class="art">
@@ -165,8 +267,8 @@
 						<a
 							class="demo-link"
 							href={demo.section === 'figures'
-								? resolve(`/figures/${demo.slug}` as '/figures/four-stars')
-								: resolve(`/demo/${demo.slug}` as '/demo/black-hole')}
+								? resolve(`/figures/${demo.slug}/${from(block.id)}` as '/figures/four-stars')
+								: resolve(`/demo/${demo.slug}/${from(block.id)}` as '/demo/black-hole')}
 						>
 							<HugeiconsIcon icon={PlayCircleIcon} size={15} strokeWidth={1.8} />
 							{demo.label}
@@ -212,8 +314,8 @@
 		font-optical-sizing: auto;
 	}
 
-	/* Wide screens: the text stays centred on the page and the contents sit in
-	   the left margin. */
+	/* Wide screens: the text stays centred in the window and the contents sit at
+	   the window's left side, set in from the edge a little more as the window widens. */
 	@media (min-width: 1240px) {
 		.layout {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 44rem) minmax(0, 1fr);
@@ -228,8 +330,10 @@
 		.contents {
 			display: block;
 			grid-column: 1;
-			justify-self: end;
+			justify-self: start;
+			box-sizing: border-box;
 			width: min(15rem, 100%);
+			padding-left: clamp(0rem, 6vw - 4.5rem, 2.5rem);
 			position: sticky;
 			top: 4.5rem;
 			align-self: start;
@@ -409,7 +513,9 @@
 		color: var(--text-dim);
 	}
 
-	article :global(details.plain > summary) {
+	/* the summary line of a plain-words box, shared by the live version of a figure */
+	article :global(details.plain > summary),
+	.live > summary {
 		display: flex;
 		align-items: baseline;
 		gap: 0.5em;
@@ -421,12 +527,14 @@
 		border-radius: 2px;
 	}
 
-	article :global(details.plain > summary::-webkit-details-marker) {
+	article :global(details.plain > summary::-webkit-details-marker),
+	.live > summary::-webkit-details-marker {
 		display: none;
 	}
 
 	/* the disclosure mark: a small chevron in the accent, pointing right when closed, down when open */
-	article :global(details.plain > summary::before) {
+	article :global(details.plain > summary::before),
+	.live > summary::before {
 		content: '';
 		flex: none;
 		width: 0.36em;
@@ -437,17 +545,20 @@
 		transition: transform 0.15s ease;
 	}
 
-	article :global(details.plain[open] > summary::before) {
+	article :global(details.plain[open] > summary::before),
+	.live[open] > summary::before {
 		transform: translateY(-0.22em) rotate(45deg);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		article :global(details.plain > summary::before) {
+		article :global(details.plain > summary::before),
+		.live > summary::before {
 			transition: none;
 		}
 	}
 
-	article :global(details.plain > summary:focus-visible) {
+	article :global(details.plain > summary:focus-visible),
+	.live > summary:focus-visible {
 		outline: 1px solid var(--accent);
 		outline-offset: 3px;
 	}
@@ -614,8 +725,24 @@
 		}
 	}
 
+	/* The live version of a figure: its own card (that of the interactive
+	   figures, of the live scenes, or of the drawn figures in figure.css) is its
+	   only frame, and it spans the figure's full width, on the caption's left edge. */
 	.live {
 		margin-top: 0.7rem;
+	}
+
+	.live > summary {
+		width: fit-content;
+		font: italic 500 1.06rem/1.6 var(--font-serif);
+	}
+
+	.plate .live .art {
+		margin-top: 0.6rem;
+		padding: 0;
+		background: none;
+		border: 0;
+		border-radius: 0;
 	}
 
 	.demo-link {
@@ -630,33 +757,6 @@
 
 	.demo-link:hover {
 		text-decoration: underline;
-	}
-
-	.live summary {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		cursor: pointer;
-		font: 500 0.8rem/1.4 var(--font-sans);
-		color: var(--accent);
-		list-style: none;
-	}
-
-	.live summary::-webkit-details-marker {
-		display: none;
-	}
-
-	.live summary::before {
-		content: '▸';
-		transition: transform 0.15s;
-	}
-
-	.live[open] summary::before {
-		transform: rotate(90deg);
-	}
-
-	.live .art {
-		margin-top: 0.6rem;
 	}
 
 	article :global(figcaption) {
