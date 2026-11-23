@@ -98,14 +98,13 @@ misfit, and it puts negative mass in the second cell. The best positive scene li
 $f = (1 - \matter m_1)^2 + (0.3 - 0.6\matter m_1)^2$. Its slope is $\partial f/\partial\matter m_1 = 2.72\matter m_1 -
 2.36$, which is zero at $\matter m_1 = 0.87$. There $A\matter{\mathbf m} - \mathbf y = (-0.13, 0.22)$, so the slope in
 the second cell is $\partial f/\partial\matter m_2 = 2\,(0.6\times(-0.13) + 0.22) = +0.28$. Both conditions hold, so the
-answer is $(0.87, 0)$, with the misfit 0.066.
+answer is $(0.87, 0)$, with the misfit 0.066 (Figure [](#fig:nnls)).
 
-<!-- diagram: tut-pos-nnls — The plane of the two cell masses m₁ (across) and m₂ (up), from −0.7 to 1.6 on each axis.
-The quarter where both are positive is lightly shaded. The misfit's elliptic contours (A = [[1, 0.6], [0.6, 1]], y = (1,
-0.3)) are centred on the signed minimum (1.28, −0.47), outside the shaded quarter, marked with an open circle. The
-positive minimum (0.87, 0) on the m₁ axis, a filled dot, is where a contour touches that edge; at it, a short arrow of the
-misfit's downhill direction points down and out of the shaded quarter, into negative m₂. Labels only beside the two
-points: "best signed", "best positive". -->
+![The misfit of the two-cell example, drawn as contours in the plane of the two cell masses, is a bowl of ellipses
+about the best signed scene $(1.28, -0.47)$, which lies outside the shaded quarter of positive masses. The best positive
+scene $(0.87, 0)$ lies where the darker contour, the misfit 0.066, touches the edge $\matter m_2 = 0$, and there the
+downhill direction, minus the slopes $(0, 0.28)$, points out of the quarter. The arrow's length is
+schematic.](tut-pos-nnls){#fig:nnls}
 
 **Most cells end at exactly zero.** A scene with mass in only a few of its places is called **sparse**. At $\SNR =
 10^3$ the positive image of the safe has mass in a median of 6 of its 231 cells. With no noise it has mass in 5 cells:
@@ -156,7 +155,7 @@ So the four moments $\matter\mu_0$ to $\matter\mu_3$ give $c_0$ and $c_1$, the q
 $\matter\mu_0$ and $\matter\mu_1$ then give the two masses. A matrix of moments whose entries depend only on the sum of
 the row and column numbers is a **Hankel matrix**. **A number:** masses of 2 and 1 kg at $x = 0.3$ and $-0.5$ m have
 the moments 3, 0.1, 0.43 and $-0.071$. Equation [](#eq:hankel) gives $c_0 = 0.15$ and $c_1 = -0.2$, so the quadratic is
-$x^2 + 0.2x - 0.15$, and its roots are 0.3 and $-0.5$.
+$x^2 + 0.2x - 0.15$, and its roots are 0.3 and $-0.5$ (Figure [](#fig:moments)).
 
 Four moments are enough when we know that the scene is two points. The fifth, $\matter\mu_4$, rules out every other
 positive scene, with any number of masses.
@@ -185,10 +184,10 @@ matrix of the example has the eigenvalues 3.004 and 0.426. The $3\times3$ matrix
 non-example:** $+1$ kg at 0.1 m and $-1$ kg at $-0.1$ m have the moments $(0, 0.2, 0, 0.002)$, whose $2\times2$ Hankel
 matrix has the eigenvalue $-0.2$, so no positive scene has these moments.
 
-<!-- diagram: tut-pos-moments — A horizontal line from −1 to 1 m with two upright bars, 2 kg at 0.3 and 1 kg at −0.5,
-drawn in the matter colour with heights in proportion. Beneath, on the same horizontal scale, the parabola p(x) = x² + 0.2x
-− 0.15, crossing zero exactly below the two bars (thin vertical guides join each bar to its root). Beside it, small, the
-four moments 3, 0.1, 0.43, −0.071 as the 2×2 Hankel matrix and its right-hand side. -->
+![Two masses on a line and the quadratic whose roots are their places. The bars stand at $-0.5$ and 0.3 m, their
+heights in proportion to their 1 and 2 kg, and below them $p(x) = x^2 + 0.2x - 0.15$, whose coefficients the four
+moments give through equation [](#eq:hankel) (upper right), crosses zero exactly beneath each bar. The bars and
+the parabola have their own vertical scales.](tut-pos-moments){#fig:moments}
 
 ## Positivity resolves as a power of the sensitivity, not its logarithm
 
@@ -310,15 +309,14 @@ because on the bisector the two distances are equal and Step 2 changes nothing. 
 and the two zeros merge into the double zero of $w^2$ directly above it.
 
 **The size of the error.** Take three masses of 1.0, 0.7 and 1.4 units at $0.2 + 0.1i$, $-0.3 + 0.05i$ and $0.05 -
-0.25i$, a layer about 0.5 across. The rule puts its zeros at $0.034 + 0.014i$ and $0.005 - 0.153i$. The true zeros,
-found numerically, lie at most 0.018, 0.0017 and 0.00015 from them at the heights 1, 3 and 10: each threefold rise in
-height cuts the error about ninefold, as an error of order $(R/z)^2$ should.
+0.25i$, a layer about 0.5 across. The rule puts its zeros at $0.034 + 0.014i$ and $0.005 - 0.153i$
+(Figure [](#fig:layer)). The true zeros, found numerically, lie at most 0.018, 0.0017 and 0.00015 from them at the
+heights 1, 3 and 10: each threefold rise in height cuts the error about ninefold, as an error of order $(R/z)^2$ should.
 
-<!-- diagram: tut-pos-layer — A thin layer seen from above: three dots of masses 1.0, 0.7 and 1.4 (areas in proportion) at
-0.2 + 0.1i, −0.3 + 0.05i and 0.05 − 0.25i, their centre of mass as a small cross at 0.019 − 0.069i, and the dashed
-long axis of the layer through it. The two predicted zeros w_cm ± i√(Q_c/M), at 0.034 + 0.014i and 0.005 − 0.153i,
-as open circles on the line through the centre across the long axis. A faint copy of the layer turned by 40° about its
-centre, with its zeros turned by the same 40°, and a curved arrow showing the turn. -->
+![A thin layer of three masses seen from above, each dot's area in proportion to its mass. The rule puts the two zeros
+of the shear (open circles) on the dotted line through the centre of mass $w_{\rm cm}$ (cross), across the layer's long
+axis (dashed). Turned by 40° about its centre (faint), the layer has its $\matter Q_c$
+multiplied by $e^{2i\beta}$, and its zeros turn by the same 40°.](tut-pos-layer){#fig:layer}
 
 **How precisely noise places a zero.** Noise moves each zero by a distance of the order of the paper's estimate
 $z^2/2\mathcal Rd$ (the box below sketches why). So the zeros, $d$ apart, are told apart once $d > z/\sqrt{2\mathcal
