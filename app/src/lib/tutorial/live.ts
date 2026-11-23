@@ -32,6 +32,7 @@ import MeanValue from './live/MeanValue.svelte';
 import NoiseSpectrum from './live/NoiseSpectrum.svelte';
 import ImageCharge from './live/ImageCharge.svelte';
 import Multipoles from './live/Multipoles.svelte';
+import FourierBuild from './live/FourierBuild.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -118,6 +119,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A source in a ball or above a plane, its image, and the skin that copies its pull outside',
 		component: ImageCharge
+	},
+	'fourier-build': {
+		label: 'A narrow bump rebuilt from its ripples',
+		component: FourierBuild
 	},
 	'noise-spectrum': {
 		label:
