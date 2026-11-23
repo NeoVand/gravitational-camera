@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROLES = ['matter', 'field', 'curv', 'obs', 'light'];
 /** Standard TeX commands that happen to be spelt close to a role macro (\right is one letter from \light). */
-const TEX_COMMANDS = new Set(['right', 'Right', 'curl', 'circ', 'cdot', 'ddot', 'dot', 'lbrace', 'rbrace', 'bigr', 'Bigr']);
+const TEX_COMMANDS = new Set(['right', 'sum', 'Right', 'curl', 'circ', 'cdot', 'ddot', 'dot', 'lbrace', 'rbrace', 'bigr', 'Bigr']);
 
 /** Words ending in -ise that have no -ize spelling (matched whole, never as endings: "theorise" ends in "rise"). */
 const ISE_OK = [

@@ -138,3 +138,255 @@ symbols:
     kind: A number; in s⁻⁴ m²
     meaning: 'The strength of white noise spread over the plane of the sensors. Averaged over a patch of area $A$, the noise of the tide has variance $N_0/A$, so over a square of side $z$ its standard deviation is $\sqrt{N_0}/z$.'
     chapter: '3.2'
+  - key: test-mass
+    title: Test mass
+    tex: '\matter{m}'
+    role: matter
+    kind: A number; in kilograms
+    meaning: 'The mass of a small body put at a point to feel the pull of gravity there, small enough that its own pull does not move the bodies it measures. The pull on it divided by $m$ is the gravitational field.'
+    chapter: '1.2'
+    anchor: gravity-pulls-with-a-force-proportional-to-both-masses
+  - key: gravitational-constant
+    title: Gravitational constant
+    tex: 'G'
+    role: none
+    kind: A constant of nature; in m³ kg⁻¹ s⁻²
+    meaning: 'The constant in Newton''s law of gravitation, $G = 6.674 \times 10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}}$. Two masses $M$ and $m$ a distance $r$ apart attract each other with the force $GMm/r^2$.'
+    chapter: '1.2'
+    anchor: gravity-pulls-with-a-force-proportional-to-both-masses
+  - key: gravitational-field
+    title: Gravitational field
+    tex: '\boldsymbol{g}'
+    role: none
+    kind: A vector at each point; an acceleration, in m s⁻²
+    meaning: 'The pull of gravity on a small test mass, divided by its mass: the acceleration with which a free body at that point falls. It is the downhill slope of the potential, $\mathbf g = -\nabla\Phi$, and the fields of many bodies add as vectors. Near a point mass $M$ it is $-GM\mathbf x/r^3$.'
+    chapter: '1.2'
+    anchor: the-field-is-the-pull-per-unit-mass-and-fields-add
+  - key: nabla
+    title: Gradient
+    tex: '\nabla'
+    role: none
+    kind: An operator; it turns a number at each point into a vector at each point
+    meaning: 'The gradient $\nabla f$ of a function $f$ of position is the vector of its three partial derivatives, $(\nabla f)_i = \partial_i f$. It points in the direction in which $f$ grows fastest, and its length is that fastest rate. The rate along a unit vector $\hat u$ is $\hat u\cdot\nabla f$.'
+    chapter: '1.2'
+    anchor: the-gradient-points-uphill
+  - key: unit-vector
+    title: Unit vector
+    tex: '\hat{\mathbf x}'
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'A vector divided by its own length, so that only its direction is left: $\hat{\mathbf x} = \mathbf x/r$ for the position $\mathbf x$ at distance $r$, and $\hat x_i\hat x_i = 1$. The paper writes $\hat n$ for the unit vector from a pixel toward a source (in Sections V and XI, from a source toward the field point).'
+    chapter: '1.1'
+    anchor: an-index-stands-for-all-three-directions
+  - key: kronecker-delta
+    title: Kronecker delta
+    tex: '\delta_{ij}'
+    role: none
+    kind: A table of nine pure numbers, the identity matrix
+    meaning: 'The dot product of two unit vectors along the axes, $\delta_{ij} = \mathbf e_i\cdot\mathbf e_j$: 1 when $i = j$ and 0 otherwise. In a sum it replaces one index by another, $\delta_{ij}a_j = a_i$, and its trace is $\delta_{ii} = 3$.'
+    chapter: '1.1'
+    anchor: an-index-stands-for-all-three-directions
+  - key: projector
+    title: Projector across a direction
+    tex: 'P_{ij}'
+    role: none
+    kind: A symmetric table of nine pure numbers
+    meaning: 'The table $P_{ij} = \delta_{ij} - \hat n_i\hat n_j$, which flattens every arrow onto the plane at right angles to $\hat n$: it sends $\hat n$ to zero and leaves arrows in the plane unchanged, and $P_{ij}P_{jk} = P_{ik}$. The paper uses it to keep the directions across the line to a source of waves.'
+    chapter: '1.1'
+    anchor: a-table-built-from-two-arrows
+  - key: rotation
+    title: Rotation of the axes
+    tex: 'R_{ij}'
+    role: none
+    kind: An orthogonal table of nine pure numbers
+    meaning: 'The components of the new axes in the old ones, $R_{ij} = \mathbf e''_i\cdot\mathbf e_j$. Its transpose is its inverse, $R^{\mathsf T}R = 1$. When the axes turn, a vector changes as $a''_i = R_{ij}a_j$ and a tensor as $T'' = RTR^{\mathsf T}$, so dot products and traces stay the same.'
+    chapter: '1.1'
+    anchor: turning-the-axes-changes-the-components-not-the-arrow
+  - key: levi-civita
+    title: Levi-Civita symbol
+    tex: '\epsilon_{ijk}'
+    role: none
+    kind: A table of 27 pure numbers, each +1, −1 or 0
+    meaning: 'The symbol with $\epsilon_{123} = +1$, $+1$ for the cyclic orders of 1, 2, 3, $-1$ for the others, and $0$ when two indices are equal. It writes the cross product, $(\mathbf a\times\mathbf b)_i = \epsilon_{ijk}a_jb_k$, and two of them sharing an index give Kronecker deltas, $\epsilon_{kij}\epsilon_{klm} = \delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}$.'
+    chapter: '1.1'
+    anchor: the-cross-product-is-written-with-the-levi-civita-symbol
+  - key: generators
+    title: Generators of rotations
+    tex: '(L_k)_{ij}'
+    role: none
+    kind: Three antisymmetric tables of pure numbers
+    meaning: 'The tables $(L_k)_{ij} = -\epsilon_{kij}$. A small turn by the angle vector $\boldsymbol\theta$ changes a vector by $\delta a_i = \theta_k(L_k)_{ij}a_j$, which is $\boldsymbol\theta\times\mathbf a$. The paper uses them to turn, and to boost, the curvature one pixel reads.'
+    chapter: '1.7'
+  - key: angular-velocity
+    title: Angular velocity
+    tex: '\boldsymbol\Omega'
+    role: none
+    kind: A vector; in radians per second, s⁻¹
+    meaning: 'A vector along the axis of a turning body, pointing by the right-hand rule, whose length is the angle turned per second. A point at position $\mathbf x$, measured from a point on the axis, moves with velocity $\boldsymbol\Omega\times\mathbf x$. For the Earth $|\boldsymbol\Omega| = 7.29\times10^{-5}\,\mathrm{s^{-1}}$, so the ground at the equator moves at 465 m/s.'
+    chapter: '1.1'
+    anchor: the-ground-at-the-equator
+  - key: solid-angle
+    title: Solid angle
+    tex: '\mathrm{d}\Omega'
+    role: none
+    kind: A pure number; in steradians (sr)
+    meaning: 'The area that a patch covers on a sphere of radius 1 centred on the point from which it is seen. A small patch of area $\mathrm{d}A$ at distance $r$, tilted by the angle $\alpha$ from the line of sight, covers $\mathrm{d}\Omega = \cos\alpha\,\mathrm{d}A/r^2$. The whole sky is $4\pi$ sr; the Moon covers $6.4\times10^{-5}$ sr. (In the paper $\Omega$ alone is also a rate of turning.)'
+    chapter: '1.3'
+    anchor: solid-angle-measures-how-large-a-patch-looks
+  - key: enclosed-mass
+    title: Enclosed mass
+    tex: '\matter{M}_{\mathrm{enc}}'
+    role: matter
+    kind: A number for a region; in kilograms
+    meaning: 'The mass inside a closed surface, $\int_V \rho\,\mathrm{d}V$. By Gauss''s law the flux of gravity out of the surface is $-4\pi G M_{\mathrm{enc}}$, whatever the shape of the surface and however the mass is arranged inside.'
+    chapter: '1.3'
+    anchor: the-flux-out-of-a-closed-surface-counts-the-mass-inside
+  - key: delta-function
+    title: Delta function
+    tex: '\delta^3'
+    role: none
+    kind: A distribution, not a function; in m⁻³
+    meaning: 'The rule $\int\delta^3(\mathbf x)\,f(\mathbf x)\,\mathrm{d}^3x = f(0)$ for every smooth $f$. A point mass $M$ at $\mathbf x_0$ has the density $M\,\delta^3(\mathbf x - \mathbf x_0)$, and $\nabla^2(1/r) = -4\pi\,\delta^3(\mathbf x)$. Not to be confused with the Kronecker delta $\delta_{ij}$.'
+    chapter: '1.3'
+    anchor: a-point-mass-is-density-gathered-at-one-point
+  - key: frobenius-norm
+    title: Frobenius norm
+    tex: '|T|'
+    role: none
+    kind: A number for a table; in the units of its entries (s⁻² for a tide)
+    meaning: 'The length of a table, $|T| = \sqrt{T_{ij}T_{ij}}$, the square root of the sum of the squares of its nine entries. Turning the axes does not change it. For a symmetric trace-free table it is $\sqrt{c_1^2 + \dots + c_5^2}$; for the person one metre away $|\mathcal{E}| = \sqrt6\,GM/r^3 = 1.14\times10^{-8}\,\mathrm{s^{-2}}$.'
+    chapter: '1.5'
+    anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
+  - key: stf-basis
+    title: Orthonormal basis of symmetric trace-free tables
+    tex: 'b^A_{ij}'
+    role: none
+    kind: Five symmetric trace-free tables of pure numbers, labelled A = 1, …, 5
+    meaning: 'Three off-diagonal shapes, $(\mathbf e_x\mathbf e_y + \mathbf e_y\mathbf e_x)/\sqrt2$ and its two companions, with $\mathrm{diag}(1,-1,0)/\sqrt2$ and $\mathrm{diag}(-1,-1,2)/\sqrt6$. They satisfy $b^A_{ij}b^B_{ij} = \delta^{AB}$, and every symmetric trace-free table is $c_A b^A_{ij}$. The index $A$ counts tables, not directions.'
+    chapter: '1.5'
+    anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
+  - key: stf-coefficient
+    title: Coefficient along a basis table
+    tex: 'c_A'
+    role: none
+    kind: Five numbers; in the units of the table (s⁻² for a tide)
+    meaning: 'The component of a symmetric trace-free table along the basis table $b^A$, read off by contraction, $c_A = b^A_{ij}\mathcal{E}_{ij}$. The five are the five numbers of the tide, and $\sum_A c_A^2 = \mathcal{E}_{ij}\mathcal{E}_{ij}$. An entry off the diagonal is a coefficient divided by $\sqrt2$.'
+    chapter: '1.5'
+    anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
+  - key: stf-projector
+    title: Symmetric trace-free projector
+    tex: '\Pi_{ijkl}'
+    role: none
+    kind: An isotropic table of 81 pure numbers
+    meaning: 'The table $\Pi_{ijkl} = \tfrac12(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk}) - \tfrac13\delta_{ij}\delta_{kl}$. Applied to any table it keeps the trace-free part of its symmetric part, and it sends $\delta_{kl}$ to zero. Its trace $\Pi_{ijij} = 5$ counts the five numbers it keeps, and $\Pi_{ijkl} = b^A_{ij}b^A_{kl}$.'
+    chapter: '1.5'
+    anchor: tables-that-look-the-same-in-every-set-of-axes
+  - key: degree
+    title: Degree of a pattern
+    tex: '\ell'
+    role: none
+    kind: A whole number, with no unit
+    meaning: 'The number of indices of a symmetric table, and the degree of the pattern $T_{i_1\cdots i_\ell}\hat n_{i_1}\cdots\hat n_{i_\ell}$ it makes on the sky: 0 a constant, 1 a dipole, 2 a quadrupole. A trace-free table of degree $\ell$ holds $2\ell + 1$ numbers. (In the paper $\ell$ also names a mean free path and a path length.)'
+    chapter: '1.5'
+    anchor: tables-with-more-indices-hold-1-3-5-7-and-more-numbers
+  - key: force
+    title: Force
+    tex: '\mathbf F'
+    role: none
+    kind: A vector; in newtons, N = kg m s⁻²
+    meaning: 'A push or a pull. It changes a body''s momentum at the rate $\mathbf F = \mathrm d\mathbf p/\mathrm dt$, so a force $\mathbf F$ on a mass $m$ gives it the acceleration $\mathbf F/m$.'
+    chapter: '1.6'
+    anchor: force-changes-momentum-and-forces-inside-a-body-cancel
+  - key: momentum
+    title: Momentum
+    tex: '\mathbf p'
+    role: none
+    kind: A vector; in kg m s⁻¹
+    meaning: 'Mass times velocity, $\mathbf p = m\mathbf v$. Forces change it; the total momentum of a body changes only by outside forces, because the forces between its parts cancel in pairs.'
+    chapter: '1.6'
+    anchor: force-changes-momentum-and-forces-inside-a-body-cancel
+  - key: centre-of-mass
+    title: Centre of mass
+    tex: '\mathbf x_{\rm cm}'
+    role: none
+    kind: A position; in metres
+    meaning: 'The average of the positions of a body''s parts, each weighted by its mass. It moves as one particle carrying the whole mass, pushed only by outside forces, $M\ddot{\mathbf x}_{\rm cm} = \sum\mathbf F^{\rm out}$.'
+    chapter: '1.6'
+    anchor: force-changes-momentum-and-forces-inside-a-body-cancel
+  - key: kinetic-energy
+    title: Kinetic energy
+    tex: 'K'
+    role: none
+    kind: A number; in joules
+    meaning: 'The energy of motion, $\tfrac12 mv^2$ for a body, $\tfrac12\Omega_iI_{ij}\Omega_j$ for a turning rigid body. A kick of impulse $\mathbf J$ changes it by $\mathbf v\cdot\mathbf J + J^2/2m$.'
+    chapter: '1.6'
+    anchor: work-changes-kinetic-energy-and-a-sudden-kick-changes-it-in-two-parts
+  - key: impulse
+    title: Impulse
+    tex: '\mathbf J'
+    role: none
+    kind: A vector; in newton seconds, the unit of momentum
+    meaning: 'The integral of a force over the time it acts, $\mathbf J = \int\mathbf F\,\mathrm dt$, equal to the change of momentum it causes. (In the paper $\mathbf J$ is also the current column and a momentum density.)'
+    chapter: '1.6'
+    anchor: work-changes-kinetic-energy-and-a-sudden-kick-changes-it-in-two-parts
+  - key: angular-momentum
+    title: Angular momentum
+    tex: '\mathbf L'
+    role: none
+    kind: A vector; in kg m² s⁻¹
+    meaning: 'The moment of momentum about a point, $\mathbf L = \mathbf x\times\mathbf p$. Torque changes it; it stays fixed under a central force and for any body that nothing outside twists. The Earth''s is $5.8\times10^{33}\,\mathrm{kg\,m^2\,s^{-1}}$.'
+    chapter: '1.6'
+    anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
+  - key: inertia-tensor
+    title: Inertia tensor
+    tex: 'I_{ij}'
+    role: none
+    kind: A symmetric table of nine numbers; in kg m²
+    meaning: 'The table $I_{ij} = \int\rho\,(r^2\delta_{ij} - x_ix_j)\,\mathrm dV$ that turns a rigid body''s angular velocity into its angular momentum, $L_i = I_{ij}\Omega_j$. Its eigenvectors are the body''s principal axes. (In the paper $I_{ij}$ is the second moment $\int\rho\,x_ix_j\,\mathrm dV$.)'
+    chapter: '1.6'
+    anchor: a-turning-body-keeps-the-spread-of-its-mass-in-a-table-of-inertia
+  - key: moment-of-inertia
+    title: Moment of inertia
+    tex: 'I'
+    role: none
+    kind: A number; in kg m²
+    meaning: 'How hard it is to set a body spinning about an axis: $\int\rho\,s^2\,\mathrm dV$, with $s$ the distance from the axis. For a round body $I = \tfrac23\int\rho\,r^2\,\mathrm dV$: $\tfrac25MR^2$ for a uniform ball, $\tfrac23MR^2$ for a thin shell, $0.331\,MR^2$ for the Earth. (The paper writes it $C$ in Section VIII, where $I$ is an invariant.)'
+    chapter: '1.6'
+    anchor: a-round-body-has-the-same-moment-about-every-axis
+  - key: imaginary-unit
+    title: Imaginary unit
+    tex: 'i'
+    role: none
+    kind: A number with no unit
+    meaning: 'The number whose square is $-1$. In the complex plane it is one step along the second axis, and multiplying by it turns every point by a quarter turn. A complex number is $z = x + iy$.'
+    chapter: '1.5b'
+    anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
+  - key: shear
+    title: Shear of the tide in a plane
+    tex: '\curv{s}'
+    role: curv
+    kind: A complex number; in s⁻²
+    meaning: 'The part of the tide in a plane that changes the shape of a ring, held as one complex number, $s = (\mathcal E_{xx} - \mathcal E_{yy}) + 2i\,\mathcal E_{xy}$. The squeeze axis lies at half its argument, and the two eigenvalues in the plane differ by $|s|$. Turning the axes by $\theta$ multiplies it by $e^{-2i\theta}$: it has spin two. (Chapter 3.7 uses $s$ for a different quantity, the ratio of a ripple to its noise.)'
+    chapter: '1.5b'
+  - key: complex-place
+    title: Place on the camera's plane, as a complex number
+    tex: 'w'
+    role: none
+    kind: A complex number; in metres
+    meaning: 'A place or a horizontal offset on the plane of a camera, written as $w = x + iy$. The shear of one point mass at horizontal offset $w$ and distance $r$ is $s = -3GMw^2/r^5$. (The paper also writes $w$ for an eigenvalue of $\mathcal W$.)'
+    chapter: '1.5b'
+  - key: wave-polarizations
+    title: Polarization amplitudes of a wave's tide
+    tex: '\curv{\mathcal{E}}_+,\ \curv{\mathcal{E}}_\times'
+    role: curv
+    kind: Two numbers; in s⁻²
+    meaning: 'The tides of the two patterns of a gravitational wave across its direction of travel: the table in that plane is $\begin{pmatrix}\mathcal E_+ & \mathcal E_\times\\ \mathcal E_\times & -\mathcal E_+\end{pmatrix}$, and its shear is $2(\mathcal E_+ + i\mathcal E_\times)$. The two patterns differ by a turn of 45°. They are not the strains $h_+$ and $h_\times$, which are pure numbers.'
+    chapter: '1.5b'
+  - key: null-vector
+    title: Complex null vector
+    tex: '\mathbf{m}'
+    role: none
+    kind: A complex vector with no unit
+    meaning: 'The vector $\mathbf m = (\mathbf e_1 + i\mathbf e_2)/\sqrt2$ across a wave travelling along $\hat k = \mathbf e_1\times\mathbf e_2$. It has $\mathbf m\cdot\mathbf m = 0$, $\mathbf m\cdot\mathbf m^* = 1$ and $\hat k\times\mathbf m = -i\mathbf m$. Light''s field in a wave is a multiple of $\mathbf m$, and gravity''s a multiple of the square $\mathbf m\mathbf m^{\mathsf T}$.'
+    chapter: '1.5b'
+    anchor: complex-vectors-a-direction-whose-square-is-zero

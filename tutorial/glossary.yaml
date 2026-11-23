@@ -123,3 +123,426 @@ terms:
     definition: 'A point where a curve stops curving downward and starts curving upward, or the reverse: its second derivative changes sign there.'
     chapter: '3.7'
     anchor: step-7-an-exact-calculation-reproduces-the-papers-table
+  - term: force
+    definition: 'A push or a pull. A force $\mathbf F$ on a body of mass $m$ gives it the acceleration $\mathbf F/m$. It is a vector, measured in newtons, $1\,\mathrm N = 1\,\mathrm{kg\,m\,s^{-2}}$.'
+    chapter: '1.2'
+    anchor: gravity-pulls-with-a-force-proportional-to-both-masses
+  - term: gravitational constant
+    definition: 'The constant $G = 6.674 \times 10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}}$ in Newton''s law of gravitation, by which two masses $M$ and $m$ a distance $r$ apart attract with the force $GMm/r^2$.'
+    chapter: '1.2'
+    anchor: gravity-pulls-with-a-force-proportional-to-both-masses
+  - term: inverse-square law
+    definition: 'Newton''s law that the pull of gravity between two bodies falls as the square of the distance between them: twice as far, four times weaker.'
+    chapter: '1.2'
+    anchor: gravity-pulls-with-a-force-proportional-to-both-masses
+  - term: gravitational field
+    definition: 'The pull of gravity on a small test mass divided by its mass: an acceleration, in m s⁻², at each point. It does not depend on the test mass, so it describes the place.'
+    chapter: '1.2'
+    anchor: the-field-is-the-pull-per-unit-mass-and-fields-add
+  - term: test mass
+    definition: 'A small body put at a point to feel the pull of gravity there, small enough that its own pull does not move the bodies it measures.'
+    chapter: '1.2'
+    anchor: the-field-is-the-pull-per-unit-mass-and-fields-add
+  - term: superposition
+    definition: 'The rule that the pull of many bodies is the vector sum of the pulls each would exert alone. For gravity it means that fields add, and so do potentials.'
+    chapter: '1.2'
+    anchor: the-field-is-the-pull-per-unit-mass-and-fields-add
+  - term: density
+    definition: 'Mass per unit volume at a point, in kilograms per cubic metre.'
+    role: matter
+    chapter: '1.2'
+    anchor: the-field-is-the-pull-per-unit-mass-and-fields-add
+  - term: partial derivative
+    definition: 'The rate at which a function of several variables changes when one variable changes and the others are held fixed, written $\partial_i f = \partial f/\partial x_i$.'
+    chapter: '1.2'
+    anchor: the-gradient-points-uphill
+  - term: directional derivative
+    definition: 'The rate, per metre, at which a function changes as we move from a point along a unit vector $\hat u$. It equals $\hat u\cdot\nabla f$.'
+    chapter: '1.2'
+    anchor: the-gradient-points-uphill
+  - term: equipotential
+    definition: 'A surface on which the potential has the same value everywhere. The field crosses it at right angles, toward lower potential; around a point mass the equipotentials are spheres.'
+    role: field
+    chapter: '1.2'
+    anchor: equipotentials
+  - term: work
+    definition: 'The energy a force gives to a body as the body moves: $\mathbf F\cdot\mathrm d\mathbf x$ for a small step, summed along the path, in joules.'
+    chapter: '1.2'
+    anchor: the-work-done-by-gravity-depends-only-on-the-ends-of-the-path
+  - term: conservative force
+    definition: 'A force whose work between two points is the same along every path joining them. Gravity is one: its work on a mass $m$ from $A$ to $B$ is $-m[\Phi(B) - \Phi(A)]$.'
+    chapter: '1.2'
+    anchor: the-work-done-by-gravity-depends-only-on-the-ends-of-the-path
+  - term: potential energy
+    definition: 'The energy a body has because of where it is. In gravity it is $m\Phi$, the body''s mass times the potential, in joules.'
+    chapter: '1.2'
+    anchor: the-work-done-by-gravity-depends-only-on-the-ends-of-the-path
+  - term: kinetic energy
+    definition: 'The energy of motion, $\tfrac12 mv^2$ for a body of mass $m$ moving at speed $v$, in joules.'
+    chapter: '1.2'
+    anchor: the-work-done-by-gravity-depends-only-on-the-ends-of-the-path
+  - term: vector
+    definition: 'A quantity with a size and a direction, drawn as an arrow. Its three components change in one fixed way, $a''_i = R_{ij}a_j$, when the axes are turned.'
+    chapter: '1.1'
+    anchor: a-vector-is-an-arrow-and-its-components-are-its-shadows-on-three-axes
+  - term: scalar
+    definition: 'A quantity that is a single number with no direction, such as a mass or the length of an arrow. It stays the same when the axes are turned.'
+    chapter: '1.1'
+    anchor: a-vector-is-an-arrow-and-its-components-are-its-shadows-on-three-axes
+  - term: unit vector
+    definition: 'A vector of length one. Dividing a vector by its length gives the unit vector in its direction.'
+    chapter: '1.1'
+    anchor: a-vector-is-an-arrow-and-its-components-are-its-shadows-on-three-axes
+  - term: component
+    definition: 'One of the three numbers that describe a vector in chosen axes: the length of its shadow on one axis, $a_1 = \mathbf a\cdot\mathbf e_1$.'
+    chapter: '1.1'
+    anchor: a-vector-is-an-arrow-and-its-components-are-its-shadows-on-three-axes
+  - term: index
+    definition: 'A small letter, such as $i$ in $a_i$, that stands for any one of the three directions 1, 2 and 3.'
+    chapter: '1.1'
+    anchor: an-index-stands-for-all-three-directions
+  - term: summation convention
+    definition: 'The rule, introduced by Einstein, that an index appearing twice in one product is summed over its three values, so that $a_ib_i$ means $a_1b_1 + a_2b_2 + a_3b_3$.'
+    chapter: '1.1'
+    anchor: an-index-stands-for-all-three-directions
+  - term: Kronecker delta
+    definition: 'The table $\delta_{ij}$, equal to 1 when $i = j$ and 0 otherwise: the identity matrix. In a sum it replaces one index by another, $\delta_{ij}a_j = a_i$.'
+    chapter: '1.1'
+    anchor: an-index-stands-for-all-three-directions
+  - term: free index
+    definition: 'An index that appears once in each term of an equation. The equation then holds for each of its three values, so it is a list of three equations.'
+    chapter: '1.1'
+    anchor: a-table-of-nine-numbers-turns-one-arrow-into-another
+  - term: dummy index
+    definition: 'An index that appears twice in one term, and so is summed. Its letter can be changed without changing the sum.'
+    chapter: '1.1'
+    anchor: a-table-of-nine-numbers-turns-one-arrow-into-another
+  - term: symmetric
+    definition: 'Said of a table equal to its own transpose, $T_{ij} = T_{ji}$. A symmetric $3\times3$ table has six independent entries; the tidal tensor is one.'
+    chapter: '1.1'
+    anchor: the-trace-and-the-symmetric-and-antisymmetric-parts
+  - term: antisymmetric
+    definition: 'Said of a table that changes sign when its rows and columns are exchanged, $A_{ij} = -A_{ji}$. Its diagonal is zero, it has three independent entries, and it carries a vector, $w_k = \tfrac12\epsilon_{kij}A_{ij}$.'
+    chapter: '1.1'
+    anchor: the-trace-and-the-symmetric-and-antisymmetric-parts
+  - term: outer product
+    definition: 'The table $a_ib_j$ made from two vectors. Applied to a third vector $\mathbf c$, it gives $\mathbf a$ times the number $\mathbf b\cdot\mathbf c$.'
+    chapter: '1.1'
+    anchor: a-table-built-from-two-arrows
+  - term: projector
+    definition: 'A table that flattens every arrow onto a plane or a line and leaves arrows already there unchanged, such as $P_{ij} = \delta_{ij} - \hat n_i\hat n_j$, which removes the part along $\hat n$.'
+    chapter: '1.1'
+    anchor: a-table-built-from-two-arrows
+  - term: orthogonal matrix
+    definition: 'A matrix whose transpose is its inverse, $R^{\mathsf T}R = 1$. The table that describes turned axes is one, and it leaves lengths and angles unchanged.'
+    chapter: '1.1'
+    anchor: turning-the-axes-changes-the-components-not-the-arrow
+  - term: cross product
+    definition: 'The vector $\mathbf a\times\mathbf b$, at right angles to both $\mathbf a$ and $\mathbf b$, of length $|\mathbf a||\mathbf b|\sin\vartheta$, given by the right-hand rule. In components, $(\mathbf a\times\mathbf b)_i = \epsilon_{ijk}a_jb_k$.'
+    chapter: '1.1'
+    anchor: the-cross-product-is-written-with-the-levi-civita-symbol
+  - term: cyclic order
+    definition: 'One of the orders 1, 2, 3 and 2, 3, 1 and 3, 1, 2 of the three indices, each made from the last by moving the first number to the end.'
+    chapter: '1.1'
+    anchor: the-cross-product-is-written-with-the-levi-civita-symbol
+  - term: Levi-Civita symbol
+    definition: 'The table $\epsilon_{ijk}$ with $\epsilon_{123} = +1$: $+1$ for the cyclic orders of 1, 2, 3, $-1$ for the other orders, and 0 when two indices are equal. It writes cross products in index notation.'
+    chapter: '1.1'
+    anchor: the-cross-product-is-written-with-the-levi-civita-symbol
+  - term: angular velocity
+    definition: 'A vector along the axis of a turning body, by the right-hand rule, whose length is the angle turned per second. A point at position $\mathbf r$ moves with velocity $\boldsymbol\Omega\times\mathbf r$.'
+    chapter: '1.1'
+    anchor: the-ground-at-the-equator
+  - term: flux
+    definition: 'The amount of a field that crosses a surface: the part of the field perpendicular to each small patch, times the patch''s area, added over the surface. For gravity it is measured in m³ s⁻².'
+    chapter: '1.3'
+    anchor: flux-counts-how-much-field-crosses-a-surface
+  - term: closed surface
+    definition: 'A surface with no edge that encloses a region of space, such as a sphere, the six faces of a box, or the skin of a potato.'
+    chapter: '1.3'
+    anchor: flux-counts-how-much-field-crosses-a-surface
+  - term: outward normal
+    definition: 'At a point of a closed surface, the unit vector perpendicular to the surface that points out of the enclosed region.'
+    chapter: '1.3'
+    anchor: flux-counts-how-much-field-crosses-a-surface
+  - term: surface integral
+    definition: 'The sum of a quantity over the small patches of a surface, in the limit in which the patches become very small. The flux is a surface integral.'
+    chapter: '1.3'
+    anchor: flux-counts-how-much-field-crosses-a-surface
+  - term: solid angle
+    definition: 'How large a patch looks from a point: the area it covers on a sphere of radius 1 centred on the point. Measured in steradians; the whole sky is $4\pi$.'
+    chapter: '1.3'
+    anchor: solid-angle-measures-how-large-a-patch-looks
+  - term: steradian
+    definition: 'The unit of solid angle, a pure number: an area on a sphere of radius 1. The whole sphere of directions is $4\pi$ steradians.'
+    chapter: '1.3'
+    anchor: solid-angle-measures-how-large-a-patch-looks
+  - term: "Gauss's law"
+    definition: 'The flux of gravity out of any closed surface is $-4\pi G$ times the mass inside it, $\oint\mathbf g\cdot\mathrm{d}\mathbf A = -4\pi G M_{\mathrm{enc}}$. Mass outside the surface adds nothing.'
+    chapter: '1.3'
+    anchor: the-flux-out-of-a-closed-surface-counts-the-mass-inside
+  - term: enclosed mass
+    definition: 'The mass inside a closed surface. Gauss''s law says that it alone sets the flux of gravity out of the surface.'
+    role: matter
+    chapter: '1.3'
+    anchor: the-flux-out-of-a-closed-surface-counts-the-mass-inside
+  - term: divergence
+    definition: 'The flux of a field out of a small region per unit of its volume, as the region shrinks to a point: $\nabla\cdot\mathbf g = \partial_i g_i$. Positive where more field leaves than enters.'
+    chapter: '1.3'
+    anchor: divergence-is-the-outflow-per-unit-volume
+  - term: divergence theorem
+    definition: 'The flux of a smooth vector field out of a closed surface equals the integral of its divergence over the region inside: $\oint_S\mathbf g\cdot\mathrm{d}\mathbf A = \int_V\nabla\cdot\mathbf g\,\mathrm{d}V$.'
+    chapter: '1.3'
+    anchor: the-divergence-theorem-adds-up-the-boxes
+  - term: Laplacian
+    definition: 'The sum of the three second derivatives of a function along the axes, $\nabla^2 f = \partial_i\partial_i f$: the divergence of its gradient. Of the potential, it is the trace of the tide.'
+    chapter: '1.3'
+    anchor: poissons-equation-is-gausss-law-at-every-point
+  - term: "Poisson's equation"
+    definition: 'The law $\nabla^2\Phi = 4\pi G\rho$: Gauss''s law at each point. The density at a point fixes how the potential curves there.'
+    chapter: '1.3'
+    anchor: poissons-equation-is-gausss-law-at-every-point
+  - term: "Laplace's equation"
+    definition: 'Poisson''s equation in empty space, $\nabla^2\Phi = 0$. It holds everywhere between a scene and the camera.'
+    chapter: '1.3'
+    anchor: poissons-equation-is-gausss-law-at-every-point
+  - term: empty space
+    definition: 'A region with no matter in it, where the density is zero and the potential obeys Laplace''s equation. The paper calls it vacuum.'
+    chapter: '1.3'
+    anchor: poissons-equation-is-gausss-law-at-every-point
+  - term: delta function
+    definition: 'The distribution $\delta^3(\mathbf x)$ defined by $\int\delta^3(\mathbf x) f(\mathbf x)\,\mathrm{d}^3x = f(0)$ for every smooth $f$. It is the density of a unit point mass at the origin.'
+    chapter: '1.3'
+    anchor: a-point-mass-is-density-gathered-at-one-point
+  - term: distribution
+    definition: 'A rule that turns each smooth function into a number, in the way that integrating against an ordinary density does. The delta function is the rule that turns $f$ into $f(0)$.'
+    chapter: '1.3'
+    anchor: a-point-mass-is-density-gathered-at-one-point
+  - term: spherically symmetric
+    definition: 'Unchanged by every rotation about a centre. A body is spherically symmetric when its density depends only on the distance from its centre.'
+    chapter: '1.3'
+    anchor: outside-a-round-body-only-its-mass-counts
+  - term: shell theorem
+    definition: 'The field of a spherically symmetric body at the distance $r$ from its centre is that of a point mass at the centre holding all the mass within $r$. A shell and a ball of equal mass pull alike outside, and a hollow shell has no field inside.'
+    chapter: '1.3'
+    anchor: outside-a-round-body-only-its-mass-counts
+  - term: moment of inertia
+    definition: 'How hard it is to set a body spinning about an axis: the sum of each piece''s mass times the square of its distance from the axis. A uniform ball has $0.4\,MR^2$; the Earth, denser toward its centre, has $0.331\,MR^2$.'
+    chapter: '1.3'
+    anchor: the-outside-of-the-earth-cannot-tell-a-core-from-a-uniform-ball
+  - term: surface density
+    definition: 'The mass per unit area of a thin layer, in kilograms per square metre. A uniform infinite sheet pulls with $2\pi G\sigma$ at every height.'
+    role: matter
+    chapter: '1.3'
+    anchor: a-uniform-sheet-pulls-equally-at-every-height
+  - term: pillbox
+    definition: 'A short cylinder that stands across a sheet, used as the closed surface in Gauss''s law to find the field of the sheet.'
+    chapter: '1.3'
+    anchor: a-uniform-sheet-pulls-equally-at-every-height
+  - term: independent component
+    definition: 'One of a set of numbers that can each be chosen freely and that together fix a table. A symmetric $3\times3$ table has six; one that is also trace-free has five.'
+    chapter: '1.5'
+    anchor: a-tidal-table-is-symmetric-so-six-numbers-are-enough
+  - term: eigen-axes
+    definition: 'The three directions, at right angles, of the eigenvectors of a symmetric table. Along each, a tide is a pure stretch or a pure squeeze, and in axes along them the table is diagonal.'
+    chapter: '1.5'
+    anchor: the-same-five-numbers-counted-by-axes-and-strengths
+  - term: trace part
+    definition: 'The part $\tfrac13\delta_{ij}T_{kk}$ of a symmetric table, which treats every direction alike. For a tide it changes the volume of a cloud of free dust and not its shape.'
+    chapter: '1.5'
+    anchor: every-symmetric-table-splits-into-a-part-that-changes-size-and-a-part-that-changes-shape
+  - term: trace-free part
+    definition: 'What is left of a symmetric table when its trace part is removed, $T_{ij} - \tfrac13\delta_{ij}T_{kk}$. For a tide it changes the shape of a cloud of free dust and not its volume.'
+    chapter: '1.5'
+    anchor: every-symmetric-table-splits-into-a-part-that-changes-size-and-a-part-that-changes-shape
+  - term: contraction
+    definition: 'The dot product of two tables, $D\!:\!T = D_{ij}T_{ij}$, the sum of the products of their matching entries. It does not change when the axes turn.'
+    chapter: '1.5'
+    anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
+  - term: Frobenius norm
+    definition: 'The length of a table, $|T| = \sqrt{T_{ij}T_{ij}}$. For a symmetric trace-free table it is the length of the arrow made by its five coefficients.'
+    chapter: '1.5'
+    anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
+  - term: orthonormal basis
+    definition: 'A set of tables (or arrows) of length one, each at right angles to the others in the sense of the contraction, from which every table of the kind can be built. Five tables $b^A$ form one for the symmetric trace-free tables.'
+    chapter: '1.5'
+    anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
+  - term: coefficient
+    definition: 'The component of a table along one table of a basis, read off by contraction: $c_A = b^A_{ij}T_{ij}$.'
+    chapter: '1.5'
+    anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
+  - term: tidal weight
+    definition: 'The table $\delta_{ij} - 3\hat n_i\hat n_j$ with which matter in the direction $\hat n$ adds to the tide at the pixel. It averages to zero over the sky.'
+    chapter: '1.5'
+    anchor: averaged-over-the-sky-the-tidal-weight-vanishes
+  - term: isotropic
+    definition: 'Said of a table whose entries are the same in every set of turned axes, such as $\delta_{ij}$, $\epsilon_{ijk}$ and $\Pi_{ijkl}$.'
+    chapter: '1.5'
+    anchor: tables-that-look-the-same-in-every-set-of-axes
+  - term: degree
+    definition: 'The number of indices of a symmetric table, and of the pattern it makes on the sky. A trace-free table of degree $\ell$ holds $2\ell + 1$ numbers.'
+    chapter: '1.5'
+    anchor: tables-with-more-indices-hold-1-3-5-7-and-more-numbers
+  - term: dipole
+    definition: 'A pattern on the sky of degree 1, $\mathbf a\cdot\hat n$, larger on one side than on the opposite side. It holds three numbers.'
+    chapter: '1.5'
+    anchor: tables-with-more-indices-hold-1-3-5-7-and-more-numbers
+  - term: quadrupole
+    definition: 'A pattern on the sky of degree 2, $\hat n_iT_{ij}\hat n_j$ with $T$ symmetric and trace-free, the same in opposite directions. It holds five numbers; a pixel reads the quadrupole of the tidal column.'
+    chapter: '1.5'
+    anchor: tables-with-more-indices-hold-1-3-5-7-and-more-numbers
+  - term: momentum
+    definition: 'Mass times velocity, $\mathbf p = m\mathbf v$, in kg m s⁻¹. A force changes it at the rate $\mathbf F = \mathrm d\mathbf p/\mathrm dt$.'
+    chapter: '1.6'
+    anchor: force-changes-momentum-and-forces-inside-a-body-cancel
+  - term: "Newton's third law"
+    definition: 'When two bodies act on each other, the force of the first on the second is equal in size and opposite in direction to the force of the second on the first.'
+    chapter: '1.6'
+    anchor: force-changes-momentum-and-forces-inside-a-body-cancel
+  - term: centre of mass
+    definition: 'The average of the positions of the parts of a body, each weighted by its mass. It moves as one particle of the whole mass, pushed only by outside forces.'
+    chapter: '1.6'
+    anchor: force-changes-momentum-and-forces-inside-a-body-cancel
+  - term: conservation of momentum
+    definition: 'The total momentum of a system that no outside force acts on stays the same, because the forces between its parts cancel in pairs.'
+    chapter: '1.6'
+    anchor: force-changes-momentum-and-forces-inside-a-body-cancel
+  - term: mass dipole
+    definition: 'The integral $\int\rho\,\mathbf x\,\mathrm dV = M\mathbf x_{\rm cm}$ of a body, in kg m. It vanishes about the centre of mass, so the field of a body described about that point has no dipole part.'
+    role: matter
+    chapter: '1.6'
+    anchor: force-changes-momentum-and-forces-inside-a-body-cancel
+  - term: conservation of energy
+    definition: 'For a body that only gravity acts on, the kinetic energy plus the potential energy, $\tfrac12mv^2 + m\Phi$, stays the same.'
+    chapter: '1.6'
+    anchor: work-changes-kinetic-energy-and-a-sudden-kick-changes-it-in-two-parts
+  - term: impulse
+    definition: 'The integral of a force over the time it acts, $\mathbf J = \int\mathbf F\,\mathrm dt$, equal to the change of momentum. A sudden kick of impulse $\mathbf J$ changes the kinetic energy by $\mathbf v\cdot\mathbf J + J^2/2m$.'
+    chapter: '1.6'
+    anchor: work-changes-kinetic-energy-and-a-sudden-kick-changes-it-in-two-parts
+  - term: angular momentum
+    definition: 'The moment of momentum about a point, $\mathbf L = \mathbf x\times\mathbf p$, in kg m² s⁻¹. Torque changes it.'
+    chapter: '1.6'
+    anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
+  - term: torque
+    definition: 'How strongly a force twists a body about a point: $\mathbf x\times\mathbf F$, in newton metres. It is the rate of change of angular momentum.'
+    chapter: '1.6'
+    anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
+  - term: central force
+    definition: 'A force that points along the line from a body to a fixed centre, toward it or away from it. It exerts no torque about the centre, so it keeps the angular momentum fixed.'
+    chapter: '1.6'
+    anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
+  - term: conservation of angular momentum
+    definition: 'The total angular momentum of a system that nothing outside twists stays the same in size and direction.'
+    chapter: '1.6'
+    anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
+  - term: gyroscope
+    definition: 'A wheel spun fast about its axis of symmetry on bearings that twist it as little as possible. Its axis keeps its direction relative to the distant stars, so it holds a frame from turning.'
+    chapter: '1.6'
+    anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
+  - term: rigid body
+    definition: 'A body whose parts keep their distances from one another. When it turns with angular velocity $\boldsymbol\Omega$, each point moves at $\boldsymbol\Omega\times\mathbf x$.'
+    chapter: '1.6'
+    anchor: a-turning-body-keeps-the-spread-of-its-mass-in-a-table-of-inertia
+  - term: inertia tensor
+    definition: 'The symmetric table $I_{ij} = \int\rho\,(r^2\delta_{ij} - x_ix_j)\,\mathrm dV$, in kg m², that gives a turning rigid body''s angular momentum, $L_i = I_{ij}\Omega_j$, and its kinetic energy, $\tfrac12\Omega_iI_{ij}\Omega_j$.'
+    chapter: '1.6'
+    anchor: a-turning-body-keeps-the-spread-of-its-mass-in-a-table-of-inertia
+  - term: principal axes
+    definition: 'The three perpendicular eigenvectors of a body''s inertia tensor. Spun about one of them, the body has its angular momentum along the axis.'
+    chapter: '1.6'
+    anchor: a-turning-body-keeps-the-spread-of-its-mass-in-a-table-of-inertia
+  - term: moment-of-inertia factor
+    definition: 'The moment of inertia of a round body divided by $MR^2$: 0.4 for a uniform ball, $\tfrac23$ for a thin shell, 0.3307 for the Earth. The smaller it is, the more of the mass lies near the centre.'
+    chapter: '1.6'
+    anchor: a-round-body-has-the-same-moment-about-every-axis
+  - term: harmonic function
+    definition: 'A function $h$ with $\nabla^2h = 0$, a solution of Laplace''s equation. The field outside a body is built only from the integrals of its density against harmonic functions.'
+    chapter: '1.6'
+    anchor: the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one
+  - term: inertial frame
+    definition: 'A frame in which a body that nothing pushes or pulls keeps its speed and its direction. Its axes do not turn relative to the distant stars.'
+    chapter: '1.6'
+    anchor: in-a-turning-frame-two-extra-accelerations-appear
+  - term: turning frame
+    definition: 'A frame whose axes turn at an angular velocity $\boldsymbol\Omega$ relative to an inertial frame, such as a laboratory on the turning Earth.'
+    chapter: '1.6'
+    anchor: in-a-turning-frame-two-extra-accelerations-appear
+  - term: Coriolis acceleration
+    definition: 'The acceleration $-2\boldsymbol\Omega\times\mathbf v$ that a body moving with velocity $\mathbf v$ in a turning frame appears to have, at right angles to its motion. For 1 m/s on the Earth it is about $1.5\times10^{-4}\,\mathrm{m\,s^{-2}}$.'
+    chapter: '1.6'
+    anchor: in-a-turning-frame-two-extra-accelerations-appear
+  - term: centrifugal acceleration
+    definition: 'The acceleration $\Omega^2\mathbf x_\perp$ that every body in a turning frame appears to have, straight away from the axis and growing with the distance from it: $0.034\,\mathrm{m\,s^{-2}}$ on the equator.'
+    chapter: '1.6'
+    anchor: in-a-turning-frame-two-extra-accelerations-appear
+  - term: complex number
+    definition: 'A number $z = x + iy$, with $x$ and $y$ ordinary numbers and $i^2 = -1$. It is a point of a plane that can be multiplied by another such point.'
+    chapter: '1.5b'
+    anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
+  - term: real part
+    definition: 'The ordinary number $x$ in the complex number $z = x + iy$, written $\mathrm{Re}\,z$.'
+    chapter: '1.5b'
+    anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
+  - term: imaginary part
+    definition: 'The ordinary number $y$ in the complex number $z = x + iy$, written $\mathrm{Im}\,z$.'
+    chapter: '1.5b'
+    anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
+  - term: complex plane
+    definition: 'The plane in which the complex number $x + iy$ is drawn as the point $(x, y)$: 1 is one step along the first axis and $i$ one step along the second.'
+    chapter: '1.5b'
+    anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
+  - term: modulus
+    definition: 'The distance $|z| = \sqrt{x^2 + y^2}$ of the complex number $z = x + iy$ from the centre of the complex plane.'
+    chapter: '1.5b'
+    anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
+  - term: argument
+    definition: 'The angle $\arg z$ of a complex number, measured anticlockwise from the positive real axis. Multiplying two complex numbers adds their arguments.'
+    chapter: '1.5b'
+    anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
+  - term: complex conjugate
+    definition: 'The mirror image $z^* = x - iy$ of $z = x + iy$ in the real axis, also written $\bar z$. A number times its conjugate is the square of its modulus.'
+    chapter: '1.5b'
+    anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
+  - term: "Euler's formula"
+    definition: '$e^{i\theta} = \cos\theta + i\sin\theta$: the complex number of modulus 1 and argument $\theta$ is an exponential, so turns combine by multiplication.'
+    chapter: '1.5b'
+    anchor: eulers-formula-a-turn-is-an-exponential
+  - term: polar form
+    definition: 'A complex number written by its modulus and argument, $z = re^{i\theta}$. For example $3 + 4i = 5e^{0.927i}$.'
+    chapter: '1.5b'
+    anchor: eulers-formula-a-turn-is-an-exponential
+  - term: phasor
+    definition: 'The fixed complex number $\tilde q = Ae^{i\phi}$ that holds the amplitude and the phase of a steady oscillation, $q(t) = \mathrm{Re}[\tilde q\,e^{-i\omega t}]$, in the paper''s sign convention.'
+    chapter: '1.5b'
+    anchor: a-steady-oscillation-is-a-turning-complex-number
+  - term: spin
+    definition: 'In this tutorial, the power $n$ of $e^{-i\theta}$ by which a quantity is multiplied when the axes turn by $\theta$ about the direction we look along. An arrow has spin one, a pattern of stretch and squeeze spin two.'
+    chapter: '1.5b'
+  - term: shear
+    definition: 'The part of a tide in a plane that changes the shape of a ring, held as one complex number, $s = (\mathcal E_{xx} - \mathcal E_{yy}) + 2i\,\mathcal E_{xy}$.'
+    role: curv
+    chapter: '1.5b'
+  - term: polarization
+    definition: 'One of the independent patterns of a wave across its direction of travel. Light has two, arrows 90° apart; a gravitational wave has two, patterns of stretch and squeeze 45° apart.'
+    chapter: '1.5b'
+  - term: zero of a field
+    definition: 'A point where the field vanishes. The zeros of the shear above two equal buried masses stand exactly as far apart as the masses.'
+    chapter: '1.5b'
+    anchor: where-the-shear-vanishes-its-axes-make-half-a-turn-round-the-zero
+  - term: phase winding
+    definition: 'The number of whole turns that the phase of a complex field makes along a small circle round one of its zeros. Round a zero of the shear the phase turns once, so the axes of stretch and squeeze turn by half a turn.'
+    chapter: '1.5b'
+    anchor: where-the-shear-vanishes-its-axes-make-half-a-turn-round-the-zero
+  - term: complex vector
+    definition: 'A vector whose three components are complex numbers, such as $\mathbf m = (1, i, 0)/\sqrt2$.'
+    chapter: '1.5b'
+    anchor: complex-vectors-a-direction-whose-square-is-zero
+  - term: Hermitian product
+    definition: 'The product $\mathbf a\cdot\mathbf b^* = a_ib_i^*$ of two complex vectors, with the second conjugated. Its value for $\mathbf a$ with itself is the square of the length of $\mathbf a$.'
+    chapter: '1.5b'
+    anchor: complex-vectors-a-direction-whose-square-is-zero
+  - term: null vector
+    definition: 'A complex vector that is not zero but whose dot product with itself, taken without a conjugate, is zero, such as $\mathbf m = (1, i, 0)/\sqrt2$.'
+    chapter: '1.5b'
+    anchor: complex-vectors-a-direction-whose-square-is-zero
