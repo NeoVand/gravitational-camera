@@ -43,7 +43,7 @@ ripple whose enlarged noise is still smaller than its signal sets the sharpness 
 ## In empty space a ripple can only fade
 
 We want to know how a ripple of the potential changes with height above a scene, and to show that Laplace's equation
-leaves it no choice.
+leaves it no choice. Figure [](#fig:evan-hero) shows the answer for three ripples.
 
 We use one geometry for the whole chapter. The scene lies in a flat horizontal plane, and the sensors lie in a
 parallel plane above it. A position across the planes is $\vect a = (a_1, a_2)$, in metres, as in chapter
@@ -57,13 +57,12 @@ other jobs:
 | $h$ | a height above the scene, which varies | a harmonic function | a harmonic function |
 | $z$ | the fixed height of the sensors above the scene | a height above the camera's plane, which varies | the depth of the scene below the sensors; the varying height in equation [](/paper/#eq:evanescent); a depth into the scene in Section XIII |
 
-<!-- diagram: tut-evan-hero — Hero (stone pipeline). A stone slab whose top carries three corrugations side by side,
-of crest spacings in the ratio 4 : 2 : 1, orange where the density is above the mean and blue where it is below. Two
-translucent planes above it, at the heights z and 2z, carry the ripple of the potential over each corrugation in the
-same colours, drawn with the exact amplitude e^{−kh}: over the coarse one the ripple is still plain at 2z, over the
-middle one faint at z, and over the finest one already flat at z. Small labels h (an arrow up from the slab) and z (the
-height of the first plane, the plane of the sensors). Caption: a finer ripple fades faster; the planes are at the
-heights z and 2z, and the vertical scale of the ripples on each plane is exact. -->
+![A slab whose density has three corrugations, with crests spaced in the ratio 4 : 2 : 1, is orange where its
+density is above the mean and blue where it is below. On planes at the heights $z$ and $2z$, where $z$ is half the
+finest spacing, each corrugation's ripple of the potential dips over its dense crests and keeps the fraction $e^{-kh}$
+of its size at the slab, so the finest ripple is nearly flat at $z$ and has faded by $e^{2\pi} = 535$ at $2z$. The
+heights of the planes and of the ripples are chosen for the drawing, and the ratios between the ripples are
+exact.](tut-evan-hero){#fig:evan-hero}
 
 We assume that **the space above the scene is empty**, so that the potential
 $\sym{potential}{\field\Phi}$, in joules per kilogram, obeys Laplace's equation $\nabla^2\field\Phi = 0$ there
@@ -123,10 +122,12 @@ camera.
 exponent is $kh = 2\pi$, so the ripple is weaker than at the scene by $e^{2\pi} = 535$. At $h = 20\unit{cm}$ the
 exponent is $4\pi$, and the factor is $e^{4\pi} = 2.9 \times 10^5$. These are the paper's 500 and 300,000. Doubling
 the height squares the factor, because $e^{2kh} = (e^{kh})^2$, and that is the answer to this chapter's question.
+Figure [](#fig:evan-fade) draws the fade for three spacings of the crests.
 
-<!-- diagram: tut-evan-fade — The fade e^{−kh} against the height h from 0 to 0.3 m, on a logarithmic vertical axis
-from 1 down to 10⁻⁹, for crests 1 m, 30 cm and 10 cm apart: three straight lines through 1 at h = 0, of slopes in
-the ratio 1 : 3.3 : 10. Dots on the 10 cm line at h = 0.1 m (1/535) and h = 0.2 m (1/2.9 × 10⁵). -->
+![On a logarithmic scale the fade $e^{-kh}$ is a straight line against the height $h$, here for crests 1 m, 30 cm
+and 10 cm apart, with slopes in the ratio 1 : 3.3 : 10. The dots on the 10 cm line mark the paper's numbers, $1/535$
+at 10 cm and $1/(2.9 \times 10^5)$ at 20 cm. The 30 cm line reaches $1/535$ at 30 cm, because only the product $kh$
+enters.](tut-evan-fade){#fig:evan-fade}
 
 **A limit.** As $k \to 0$, the factor $e^{-kh}$ tends to 1 at every height. So a ripple whose crests are very far
 apart hardly fades, and neither does its vertical pull, $-\partial_h\field\Phi = kA\cos(\vect k\cdot\vect a)\,e^{-kh}$,
@@ -193,8 +194,9 @@ $4\pi G\,\tilde{\matter\sigma}$. The second derivative integrates to the change 
 $$\partial_h\tilde{\field\Phi}\big|_{h = 0^+} - \partial_h\tilde{\field\Phi}\big|_{h = 0^-} = 4\pi G\,\tilde{\matter\sigma} .$$
 
 This is chapter 1.3's pillbox, ripple by ripple: the slope of the potential, which is the vertical pull with its sign
-changed, jumps by $4\pi G$ times the surface density across the sheet. The slope is $-kC$ on the upper side and $+kC$ on
-the lower side, so $-2kC = 4\pi G\,\tilde{\matter\sigma}$, and
+changed, jumps by $4\pi G$ times the surface density across the sheet. Figure [](#fig:evan-jump) shows the corner that
+this jump makes. The slope is $-kC$ on the upper side and $+kC$ on the lower side, so
+$-2kC = 4\pi G\,\tilde{\matter\sigma}$, and
 
 $$\boxed{\;\tilde{\field\Phi}(\vect k, h) = -\frac{2\pi G}{k}\,\tilde{\matter\sigma}(\vect k)\,e^{-k|h|} .\;} \label{eq:sheet}$$
 
@@ -204,10 +206,10 @@ times a square metre. A real sheet $\matter\sigma_1\cos(\vect k\cdot\vect a)$, w
 $\mathrm{kg\,m^{-2}}$, has by the same steps the potential
 $-(2\pi G\matter\sigma_1/k)\cos(\vect k\cdot\vect a)\,e^{-k|h|}$, the size $A$ of [](#eq:fade).
 
-<!-- diagram: tut-evan-jump — The transformed potential of one ripple, −e^{−k|h|}, against the height h (vertical
-axis) for h from −2/k to 2/k: a curve with a sharp corner at the sheet, h = 0. Short tangent segments just above and
-just below the corner, of slopes +k and −k in the drawn orientation, with the difference between them labelled 4πGσ̃.
-A thin horizontal band at h = 0 marks the sheet, orange. -->
+![The transformed potential of one ripple, $\tilde{\field\Phi} = C\,e^{-k|h|}$, against the height $h$ drawn upward,
+has a sharp corner at the sheet, which is marked in orange. Its slope is $-kC$ on the upper side of the sheet and
+$kC$ on the lower side, so the slope jumps by $-2kC = 4\pi G\tilde{\matter\sigma}$ across the sheet. The horizontal
+scale is chosen for the drawing.](tut-evan-jump){#fig:evan-jump}
 
 **A number.** Chapter 1.3 treats the floor of the locked safe's room as a sheet of $720\unit{kg\,m^{-2}}$. Across a
 sheet of that density the slope jumps by $4\pi G\matter\sigma = 6.0 \times 10^{-7}\unit{m\,s^{-2}}$. That is twice
@@ -274,12 +276,14 @@ tide at a metre.
 
 **The best-seen ripples.** At a fixed depth the factor $k\,e^{-kz}$ rises from zero, because of $k$, and then falls,
 because of the fade. Its slope, $(1 - kz)\,e^{-kz}$, is zero at $kz = 1$, so the ripples the camera sees most
-strongly have crests $2\pi z$ apart: 6.3 m apart for a scene a metre below.
+strongly have crests $2\pi z$ apart: 6.3 m apart for a scene a metre below. Figure [](#fig:evan-kernel) marks this peak
+beside the factors of the two sensors described next.
 
-<!-- diagram: tut-evan-kernel — The three factors (the transforms of the three kernels) against q = kz from 0 to 8:
-q e^{−q} (the tide) multiplied by e, so that its peak at q = 1 is 1; e^{−q} (the pull), which starts at 1 and has no
-peak; and, on the same axes but clipped at 3, q^{−1}e^{−q} (the potential), which has no peak and grows without limit
-as q → 0. A dot at the tide's peak, q = 1. -->
+![The factors with which three sensors record a ripple, against $q = kz$ and up to constant factors: the tide's
+$q\,e^{-q}$, multiplied by $e$ so that its peak at $q = 1$ is 1, the pull's $e^{-q}$, and the potential's
+$q^{-1}e^{-q}$, drawn up to 3. Only the tide's factor has a peak, and it vanishes for the broadest ripples, while the
+potential's grows without limit as $q \to 0$. All three share the fade at large
+$q$.](tut-evan-kernel){#fig:evan-kernel}
 
 **Other sensors.** The same steps give the factors for sensors that read other parts of the field, which the paper
 compares in [*Other gravitational sensors*](/paper/#par:other-gravitational-sensors). A sensor that compares clocks
