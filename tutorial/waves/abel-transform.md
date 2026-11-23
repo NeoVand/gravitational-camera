@@ -57,28 +57,17 @@ the horizon has $\theta = 90^\circ$ and $b = R$.
 **The chord.** The line enters the ground at the camera and leaves the planet on the far side. The straight piece
 between, inside the planet, is a **chord**. By symmetry $M$ is its midpoint, and its length is $2\sqrt{R^2 - b^2} =
 2R\cos\theta$. Let $s$ be the distance along the chord from $M$, in metres.[^s] A point of the chord, $M$ and $O$ form
-another right triangle, so Pythagoras's theorem gives the point's distance from the centre:
+another right triangle, so Pythagoras's theorem gives the point's distance from the centre
+(Figure [](#fig:abel-chords)):
 
 $$r^2 = b^2 + s^2 .$$
 
-<!-- diagram: tut-abel-chords — One panel, about 560 × 560 px at 1440 (full width on a phone). A planet in section, a
-circle of radius 240 px centred at (280, 300), with three filled discs inside it drawn to the paper's Earth: radius 46 px
-(1222/6371 × 240, the inner core), 131 px (3480 km, the core) and 215 px (5701 km, the lower mantle), in the paper's
-fig:earth-glow shell colours at low saturation, the region between 215 and 240 px left as the outer shell. The camera, a
-small dark triangle glyph, at the top of the circle, (280, 60), labelled "camera". A thin dashed vertical line from the
-camera to the centre O, labelled "straight down". Three lines of sight from the camera, thin solid ink, each drawn
-across the whole planet to its exit point: at θ = 11.1°, 33.1° and 63.5° from the dashed line, each tangent to one of the
-three discs (the inner core, the core, the lower mantle). Their chords are drawn in a slightly heavier stroke inside the
-circle. On the 33.1° line only: the perpendicular from O to the line (thin dotted), its foot labelled "M" with a small
-right-angle mark, its length labelled "b = R sin θ"; the angle θ marked by a small arc at the camera between the dashed
-line and this line of sight; a point on the chord halfway between M and the exit point, marked by a small unlabelled
-dot, with the segment from O to the dot labelled "r" and the segment from M to the dot labelled "s". The radius OC
-labelled "R" along the dashed line, and the letters "O" and "C" at the centre and the camera. No other labels on the
-geometry. Caption: "Look first at the line marked b: from the camera at the top it misses the centre by its impact
-parameter b = R sin θ and crosses the planet along a chord whose midpoint is M. A point of the chord at the distance s
-from M lies at the radius r, with r² = b² + s². The three lines are drawn at 11.1°, 33.1° and 63.5° from straight down,
-where they graze the inner core, the core and the lower mantle of the paper's Earth, drawn to scale; the outer shell
-holds the upper mantle and the crust." -->
+![Look first at the line whose distance $b$ from the centre is drawn: from the camera at the top it misses the centre
+by its impact parameter $b = R\sin\theta$ and crosses the planet along a chord whose midpoint is $M$. A point of the
+chord at the distance $s$ from $M$ lies at the radius $r$, with $r^2 = b^2 + s^2$. The three lines are drawn at
+$11.1^\circ$, $33.1^\circ$ and $63.5^\circ$ from straight down, where they graze the inner core, the core and the lower
+mantle of the paper's Earth, drawn to scale; the outer shell holds the upper mantle and the
+crust.](tut-abel-chords){#fig:abel-chords}
 
 **The integral.** The paper's [](/paper/#eq:column) adds $j_N$ along the line, and the sum is the line's number
 radiance $\sym{chord-brightness}{N(b)}$ of chapter 5.5, in gravitons $\mathrm{s^{-1}\,m^{-2}\,sr^{-1}}$. The two halves
@@ -126,7 +115,7 @@ For this illustration we assume that **the gold glows and the steel does not**.
 Abel transforms. We put the nugget at the centre instead. Then its flush is the gold spread evenly through the ball, and
 its skin is a layer of even thickness
 ([chapter 2.5](/tutorial/outside/null-space/#the-harmonic-part-of-a-nugget-is-a-flush-on-the-near-wall)). All three are
-round, and [](#eq:abel-transform) gives their pictures.
+round, and [](#eq:abel-transform) gives their pictures (Figure [](#fig:abel-three-glows)).
 
 - The nugget, a small ball, glows only on the lines that pass through it, those whose $b$ is smaller than its radius:
   a small bright spot.
@@ -145,18 +134,10 @@ bright ring round a faint disc.
 **The paper's caution.** The glow measures friction and temperature, not mass. These pictures show where the gold is
 only if the gold glows differently from the steel.
 
-<!-- diagram: tut-abel-three-glows — Three columns, each about 200 × 330 px at 1440 (stacked on a phone). Top row: three
-discs of radius 80 px in light steel grey, the paper's fig:same-outside bodies in their round case. (a) A gold disc of
-radius 16 px (0.2 R) at the centre. (b) The whole disc tinted gold evenly. (c) A gold ring band from 76 to 80 px
-(t = 0.05R) on the rim. Bottom row, under each disc and aligned with it: its glow N(b) plotted across the picture, the
-horizontal axis from −R to R in the disc's own scale, each curve normalized to its own maximum (vertical axis 0 to 1, 90
-px tall, no tick labels), drawn as a thin ink line with a light gold fill: (a) 2j√(0.04R² − b²) for |b| < 0.2R, zero
-elsewhere, "spot"; (b) 2j√(R² − b²), "dome"; (c) 2j[√(R² − b²) − √((R − t)² − b²)] for |b| < R − t and 2j√(R² − b²)
-beyond, peaking at |b| = 0.95R where its value is √(2 × 20 − 1) = 6.24 times its value at b = 0, "ring". Short labels
-"spot", "dome", "ring" under the plots. Caption: "Look first at the right-hand curve: a thin glowing skin is faint through
-the middle and bright at the rim, where the line runs along the skin. The three bodies of chapter 2.5 with the nugget at
-the centre, if only the gold glows; each curve is scaled to its own maximum, and the skin is drawn 0.05 R thick (its rim
-is then 6.2 times as bright as its middle; for 0.01 R, 14 times)." -->
+![Look first at the right-hand curve: a thin glowing skin is faint through the middle and bright at the rim, where the
+line runs along the skin. The three bodies of chapter 2.5 with the nugget at the centre, if only the gold glows; each
+curve is scaled to its own maximum, and the skin is drawn $0.05R$ thick (its rim is then 6.2 times as bright as its
+middle; for $0.01R$, 14 times).](tut-abel-three-glows){#fig:abel-three-glows}
 
 ## The transform can be undone
 
@@ -257,7 +238,7 @@ $$\begin{aligned}\frac{\dd\,\Delta N}{\dd b} &= -\frac{2\,\Delta j\,b}{\sqrt{(r_
 where the second form holds for $b$ near $r_0$. The slope grows without bound as $(r_0 - b)^{-1/2}$ as $b$ approaches
 $r_0$ from below, as the paper says. The curve has a **kink** there: it stays continuous, but its slope changes
 abruptly, here from a finite value outside the boundary to an infinite one inside. The kink lies at the line that grazes
-the boundary, where $b = r_0$, at the angle
+the boundary, where $b = r_0$ (Figure [](#fig:abel-kink)), at the angle
 
 $$\boxed{\sin\theta = \frac{r_0}{R} .}$$
 
@@ -283,17 +264,10 @@ friction and the temperature set $\Delta j$, through the paper's [](/paper/#eq:j
 many gravitons are counted, so they change only how high the curve climbs at the kink. In the paper's words, "their
 places are geometry".
 
-<!-- diagram: tut-abel-kink — One panel, about 640 × 300 px at 1440, with an inset. The curve N(b) of the two-shell planet
-of the inversion section, exactly: N = 2√(1 − b²) + 4√(0.36 − b²) for b < 0.6 and 2√(1 − b²) beyond, in units of jR (j
-the outer glow), b/R from 0 to 1 on the horizontal axis, N from 0 to 4.5 on the vertical. A thin ink line for N; a thin
-dashed grey line for the outer shell's part alone, 2√(1 − b²), labelled "without the inner layer". A thin dotted
-vertical at b = 0.6R labelled "b = r₀". Values to check: N(0) = 4.4, N(0.6) = 1.6, N(1) = 0. An inset box, 200 × 150
-px, at the upper right, magnifying b from 0.55R to 0.62R and N from 1.4 to 2.8: the curve's vertical tangent at b = r₀,
-with the square-root edge 1.6 + 4√(0.36 − b²) visible, and a short label "slope ∝ (r₀ − b)^(−1/2)". A thin rectangle on
-the main plot marks the magnified region. Caption: "Look first at the inset: just inside the boundary the brightness
-rises with a vertical tangent, and the corner sits exactly at the line that grazes the boundary. At the scale of the
-main plot this continuous rise looks like the step of the paper's figure. The curve is exact for a planet glowing three
-times as brightly inside 0.6 R as outside; only the height of the rise, not its place, depends on the glow." -->
+![Look first at the inset: close inside the boundary the brightness rises with a vertical tangent, and the corner sits
+exactly at the line that grazes the boundary. At the scale of the main plot this continuous rise looks like the step of
+the paper's figure. The curve is exact for a planet glowing three times as brightly inside $0.6R$ as outside; only the
+height of the rise, not its place, depends on the glow.](tut-abel-kink){#fig:abel-kink}
 
 ## Uniform shells are peeled from the outside in
 
@@ -320,8 +294,8 @@ brightness $4.4R$. Taking away the outer shell's $0.8R$ leaves $3.6R$, and $j_2 
 
 **Errors grow inward.** Each step subtracts the shells above it, together with their errors. Take five shells of equal
 width $R/5$, all glowing equally, and let each grazing line's brightness be measured to 1%, with independent errors.
-Carrying the errors through the peeling gives the five glows to 1.0, 1.6, 2.2, 3.1 and 5.8%, from the outside in: the
-centre is known six times less well than any single reading.
+Carrying the errors through the peeling gives the five glows to 1.0, 1.6, 2.2, 3.1 and 5.8%, from the outside in
+(Figure [](#fig:abel-peel)): the centre is known six times less well than any single reading.
 
 ::: gap
 These errors belong to the peeling model, not to the paper. The paper fits the radii and glows of five shells together
@@ -333,17 +307,10 @@ chapter R10 reads the rest.
 
 {{paper fig:earth-inverted}}
 
-<!-- diagram: tut-abel-peel — One panel, about 640 × 280 px at 1440. A staircase of glow against radius: horizontal axis
-r/R from 0 to 1 (centre at the left, surface at the right), vertical axis glow from 0 to 1.3 in units of the true glow.
-The five shells of equal width of the "Errors grow inward" paragraph, all with true glow 1: a thin dashed grey
-horizontal line at 1 across the whole axis, labelled "true". The recovered values drawn as five short horizontal bars in
-ink, one across each shell, at 1, with vertical error bars of half-height 1.0%, 1.6%, 2.2%, 3.1% and 5.8% for the shells
-from the surface (0.8 to 1) inward to the centre (0 to 0.2), drawn with the vertical scale exaggerated tenfold (state it
-in a corner: "error bars × 10"). Small numerals 1 to 5 above the bars, from the right, giving the order in which they
-are read. A thin arrow along the top from right to left labelled "peeling order". Caption: "Look first at the error
-bars: each brightness is measured to 1%, yet the glow comes out less certain at every step inward, because each step
-subtracts the shells already found. Five equal shells of equal glow; the errors are carried exactly through the
-peeling and drawn ten times their size. The paper's own errors come from a joint fit, not from a peeling." -->
+![Look first at the error bars: each brightness is measured to 1%, yet the glow comes out less certain at every step
+inward, because each step subtracts the shells already found. Five equal shells of equal glow; the errors are carried
+exactly through the peeling and drawn ten times their size. The paper's own errors come from a joint fit, not from a
+peeling.](tut-abel-peel){#fig:abel-peel}
 
 <!-- try: onion-peel — OnionPeel (new). Left panel: a round planet in section with up to five shells, whose radii (drag
 the boundaries, or type) and glows (a slider per shell, 0 to 10 in arbitrary units) the reader sets; a camera glyph at
