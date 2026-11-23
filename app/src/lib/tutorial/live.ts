@@ -30,6 +30,8 @@ import AveragingNoise from './live/AveragingNoise.svelte';
 import SkyPatterns from './live/SkyPatterns.svelte';
 import MeanValue from './live/MeanValue.svelte';
 import NoiseSpectrum from './live/NoiseSpectrum.svelte';
+import ImageCharge from './live/ImageCharge.svelte';
+import Multipoles from './live/Multipoles.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -106,6 +108,16 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'graviton-count': {
 		label: 'Gravitons counted one at a time, and the picture they allow',
 		component: GravitonCount
+	},
+	multipoles: {
+		label:
+			'Masses in a plane, a ring of readout, and the strength of each degree against the noise',
+		component: Multipoles
+	},
+	'image-charge': {
+		label:
+			'A source in a ball or above a plane, its image, and the skin that copies its pull outside',
+		component: ImageCharge
 	},
 	'noise-spectrum': {
 		label:
