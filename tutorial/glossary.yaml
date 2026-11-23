@@ -895,3 +895,195 @@ terms:
     definition: 'The smallest uncertainty in the position of a mass watched for a time that quantum mechanics allows when the watching is the only disturbance, $\sqrt{\hbar\tau/m}$: $3 \times 10^{-16}$ m for a gram watched for a second.'
     chapter: R1
     anchor: what-the-premise-asks-existing-instruments-nearly-supply
+  - term: random variable
+    definition: 'A quantity whose value is drawn anew each time it is measured, such as the reading of an instrument.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - term: probability density
+    definition: 'For a random quantity $x$, the function $p(x)$ such that $p(x)\,\mathrm{d}x$ is the probability that $x$ falls between $x$ and $x + \mathrm{d}x$. Its integral is one.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - term: mean
+    definition: 'The average of a random quantity over many draws, written $\langle x\rangle$.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - term: variance
+    definition: 'The mean square of the departure from the mean, $\langle(x - \langle x\rangle)^2\rangle$. Variances of independent quantities add.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - term: standard deviation
+    definition: 'The square root of the variance, the typical size of a random departure from the mean, written $\sigma$ with a subscript naming its quantity.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - term: signal
+    definition: 'The part of a reading that the instrument is meant to measure, as distinct from its noise.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - term: bias
+    definition: 'A fixed offset that is the same in every reading. Averaging does not reduce it, so it must be measured and subtracted, as the Earth''s own tide is.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - term: Gaussian distribution
+    definition: 'The bell-shaped distribution fixed by a mean and a standard deviation. A Gaussian reading lies within one, two and three standard deviations of its mean 68.3%, 95.4% and 99.73% of the time.'
+    chapter: '3.1'
+    anchor: most-noise-follows-the-gaussian-bell
+  - term: cumulative probability
+    definition: 'The probability $P(Z < x)$ that a random quantity $Z$ falls below a given number $x$.'
+    chapter: '3.1'
+    anchor: most-noise-follows-the-gaussian-bell
+  - term: central limit theorem
+    definition: 'The theorem that a sum of many independent random numbers with finite variance, shifted by its mean and divided by its standard deviation, approaches the standard Gaussian distribution.'
+    chapter: '3.1'
+    anchor: most-noise-follows-the-gaussian-bell
+  - term: independent
+    definition: 'Said of two random quantities when the value of one tells nothing about the other: their joint density is the product of their own.'
+    chapter: '3.1'
+    anchor: averaging-independent-readings-shrinks-the-noise-as-a-square-root
+  - term: square-root law
+    definition: 'Averaging $N$ independent readings divides their standard deviation by $\sqrt N$, so a signal-to-noise ratio grows as the square root of the observing time.'
+    chapter: '3.1'
+    anchor: averaging-independent-readings-shrinks-the-noise-as-a-square-root
+  - term: covariance
+    definition: 'The mean product of the departures of two random quantities from their means. It is zero for independent quantities.'
+    chapter: '3.1'
+    anchor: averaging-independent-readings-shrinks-the-noise-as-a-square-root
+  - term: correlation
+    definition: 'The covariance of two random quantities divided by both their standard deviations, a pure number between $-1$ and $1$.'
+    chapter: '3.1'
+    anchor: covariance-describes-noise-that-two-readings-share
+  - term: covariance matrix
+    definition: 'The table of the covariances of a set of readings, with their variances on its diagonal.'
+    chapter: '3.1'
+    anchor: covariance-describes-noise-that-two-readings-share
+  - term: uncorrelated
+    definition: 'Said of two random quantities whose covariance is zero. They may still depend on each other, as $x$ and $x^2$ do.'
+    chapter: '3.1'
+    anchor: covariance-describes-noise-that-two-readings-share
+  - term: Poisson distribution
+    definition: 'The distribution of a count of independent random arrivals with mean $\lambda$: $P(N) = \lambda^N e^{-\lambda}/N!$. Its variance equals its mean.'
+    chapter: '3.1'
+    anchor: rare-events-are-counted-with-the-poisson-distribution
+  - term: counting noise
+    definition: 'The spread of a count of random arrivals about its mean, the square root of the mean: a count of 100 varies by about 10.'
+    chapter: '3.1'
+    anchor: rare-events-are-counted-with-the-poisson-distribution
+  - term: spherical coordinates
+    definition: 'The distance $r$ from the origin, the polar angle $\vartheta$ from the $z$ axis and the azimuth $\varphi$ round it. A small patch of sky has the solid angle $\mathrm d\Omega = \sin\vartheta\,\mathrm d\vartheta\,\mathrm d\varphi$, and a small volume is $r^2\,\mathrm dr\,\mathrm d\Omega$.'
+    chapter: '2.2'
+    anchor: a-direction-is-two-angles-and-a-small-patch-of-sky-has-the-solid-angle-sinvarthetamathrmdvarthetamathrmdvarphi
+  - term: polar angle
+    definition: 'The angle $\vartheta$ between a direction and the $z$ axis, from 0 at the north pole to $\pi$ at the south pole.'
+    chapter: '2.2'
+    anchor: a-direction-is-two-angles-and-a-small-patch-of-sky-has-the-solid-angle-sinvarthetamathrmdvarthetamathrmdvarphi
+  - term: azimuth
+    definition: 'The angle $\varphi$ of a direction round the $z$ axis, measured in the $xy$ plane from the $x$ axis.'
+    chapter: '2.2'
+    anchor: a-direction-is-two-angles-and-a-small-patch-of-sky-has-the-solid-angle-sinvarthetamathrmdvarthetamathrmdvarphi
+  - term: Laplacian on the sphere
+    definition: 'The part $\nabla_\Omega^2$ of the Laplacian that differentiates only with respect to the two angles, so that it acts on patterns on the sky. It has no unit.'
+    chapter: '2.2'
+    anchor: the-laplacian-splits-into-a-part-along-the-radius-and-a-part-on-the-sphere
+  - term: homogeneous polynomial
+    definition: 'A polynomial whose terms all have the same degree, such as $xy$ or $x^2 + z^2$. A harmonic one of degree $\ell$ is $r^\ell$ times a pattern of degree $\ell$.'
+    chapter: '2.2'
+    anchor: each-pattern-of-one-degree-gives-two-harmonic-functions-the-solid-harmonics
+  - term: solid harmonic
+    definition: 'A harmonic function $r^\ell Y$ or $Y/r^{\ell+1}$, with $Y$ a pattern of degree $\ell$. Inside an empty ball about the origin the potential is a sum of the first kind only, outside all matter a sum of the second only, and in an empty shell a sum of both.'
+    chapter: '2.2'
+    anchor: each-pattern-of-one-degree-gives-two-harmonic-functions-the-solid-harmonics
+  - term: Legendre polynomial
+    definition: 'The polynomial $P_\ell(\mu)$ that multiplies $t^\ell$ in the expansion of $(1 - 2t\mu + t^2)^{-1/2}$. With $\mu = \cos\vartheta$ it is the pattern of degree $\ell$ that is unchanged by turns about the $z$ axis.'
+    chapter: '2.2'
+    anchor: the-patterns-symmetric-about-an-axis-are-the-legendre-polynomials-and-the-inverse-distance-generates-them
+  - term: generating function
+    definition: 'A function whose expansion in powers of a variable $t$ has a family of functions as its coefficients. The inverse distance $(1 - 2t\mu + t^2)^{-1/2}$ generates the Legendre polynomials.'
+    chapter: '2.2'
+    anchor: the-patterns-symmetric-about-an-axis-are-the-legendre-polynomials-and-the-inverse-distance-generates-them
+  - term: axially symmetric
+    definition: 'Unchanged when turned about an axis. The axially symmetric pattern of degree $\ell$ about a direction $\hat{\mathbf x}$ is $P_\ell(\hat{\mathbf x}\cdot\hat n)$.'
+    chapter: '2.2'
+    anchor: the-patterns-symmetric-about-an-axis-are-the-legendre-polynomials-and-the-inverse-distance-generates-them
+  - term: orthogonal
+    definition: 'Two patterns $f$ and $g$ on the sky are orthogonal when $\oint f^*g\,\mathrm d\Omega = 0$, the integral that plays the part of a dot product. Patterns of different degree are always orthogonal.'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - term: orthonormal
+    definition: 'Orthogonal to one another and each of unit length, as the spherical harmonics are: $\oint Y_{\ell m}^*Y_{\ell''m''}\,\mathrm d\Omega = \delta_{\ell\ell''}\delta_{mm''}$.'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - term: spherical harmonic
+    definition: 'One of the basic patterns $Y_{\ell m}$ on the sky, $2\ell + 1$ of each degree $\ell$, labelled by the order $m$ and depending on the azimuth through $e^{im\varphi}$. Every pattern on the sky is a sum of them.'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - term: order
+    definition: 'The whole number $m$, from $-\ell$ to $\ell$, that labels a spherical harmonic within its degree: the pattern changes with the azimuth as $e^{im\varphi}$.'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - term: associated Legendre function
+    definition: 'The function $P_\ell^m(\mu) = (-1)^m(1 - \mu^2)^{m/2}\,\mathrm d^mP_\ell/\mathrm d\mu^m$ that gives the dependence of $Y_{\ell m}$ on the polar angle.'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - term: completeness
+    definition: 'The property of the spherical harmonics that every pattern on the sky is a sum of them, with an error whose average square goes to zero as more degrees are added. Stated in chapter 2.2 without proof.'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - term: addition theorem
+    definition: 'The identity $\sum_m Y_{\ell m}^*(\hat n)Y_{\ell m}(\hat n'') = \tfrac{2\ell + 1}{4\pi}P_\ell(\hat n\cdot\hat n'')$, which turns a sum over the orders of one degree into one Legendre polynomial.'
+    chapter: '2.2'
+    anchor: the-addition-theorem-turns-a-sum-over-m-into-one-legendre-polynomial
+  - term: harmonic polynomial
+    definition: 'A polynomial in the coordinates whose Laplacian is zero, such as $x^2 - y^2$ or $xy$. A quadratic $T_{ij}x_ix_j$ is harmonic exactly when its table is trace-free; in each degree $\ell$ there are $2\ell + 1$ independent ones.'
+    chapter: '2.1'
+    anchor: the-harmonic-quadratics-are-the-trace-free-tables
+  - term: mean value property
+    definition: 'The value of a harmonic function at the centre of any sphere inside its region equals its average over that sphere.'
+    chapter: '2.1'
+    anchor: the-value-at-the-centre-of-a-sphere-is-the-average-over-the-sphere
+  - term: maximum principle
+    definition: 'A harmonic function that is not constant takes its largest and smallest values only on the boundary of its region, never inside it.'
+    chapter: '2.1'
+    anchor: in-empty-space-the-potential-has-no-peak-and-no-pit
+  - term: saddle
+    definition: 'A point where a function rises along some directions and falls along others. In empty space a point where the gravitational field vanishes and the tide does not is a saddle of the potential; where both vanish, the maximum principle still forbids a pit.'
+    chapter: '2.1'
+    anchor: in-empty-space-the-potential-has-no-peak-and-no-pit
+  - term: "Earnshaw's theorem"
+    definition: 'No arrangement of masses, or of electric charges, can hold a free body at rest stably by inverse-square forces alone, because the potential has no minimum in empty space.'
+    chapter: '2.1'
+    anchor: in-empty-space-the-potential-has-no-peak-and-no-pit
+  - term: boundary
+    definition: 'The closed surface that encloses a region of space, written $\partial V$ for the region $V$.'
+    chapter: '2.1'
+    anchor: in-empty-space-the-potential-has-no-peak-and-no-pit
+  - term: "Green's first identity"
+    definition: 'The rule $\int_V(\nabla u\cdot\nabla v + u\nabla^2v)\,\mathrm dV = \oint_{\partial V}u\nabla v\cdot\mathrm d\mathbf A$: the divergence theorem applied to $u\nabla v$.'
+    chapter: '2.1'
+    anchor: greens-identities-move-a-laplacian-from-one-function-to-the-other
+  - term: "Green's second identity"
+    definition: 'The rule $\int_V(u\nabla^2v - v\nabla^2u)\,\mathrm dV = \oint_{\partial V}(u\nabla v - v\nabla u)\cdot\mathrm d\mathbf A$, which moves a Laplacian from one function to the other inside an integral.'
+    chapter: '2.1'
+    anchor: greens-identities-move-a-laplacian-from-one-function-to-the-other
+  - term: boundary condition
+    definition: 'Values of a function, or of its slope, prescribed on the boundary of a region.'
+    chapter: '2.1'
+    anchor: the-values-on-a-closed-surface-fix-the-potential-inside
+  - term: uniqueness
+    definition: 'A function harmonic in a bounded region is fixed by its values on the boundary. Outside a closed surface, the potential made by the matter inside it is fixed by its values on the surface and its fall to zero far away.'
+    chapter: '2.1'
+    anchor: the-values-on-a-closed-surface-fix-the-potential-inside
+  - term: analytic
+    definition: 'Equal, round every point, to the sum of its Taylor series. Every harmonic function is analytic.'
+    chapter: '2.1'
+    anchor: a-harmonic-function-is-fixed-by-its-values-in-any-small-ball
+  - term: unique continuation
+    definition: 'Two functions harmonic in a connected region that agree in any small ball agree everywhere in it. Noise, not the theorem, limits what a real camera recovers.'
+    chapter: '2.1'
+    anchor: a-harmonic-function-is-fixed-by-its-values-in-any-small-ball
+  - term: Cauchy–Riemann equations
+    definition: 'The equations $\partial_xu = \partial_yv$ and $\partial_yu = -\partial_xv$ obeyed by the real and imaginary parts of a holomorphic function $u + iv$; they make both parts harmonic in the plane.'
+    chapter: '2.1'
+    anchor: the-harmonic-quadratics-are-the-trace-free-tables
+  - term: holomorphic
+    definition: 'A function of the complex variable $w = x + iy$ that has a derivative in $w$ at every point of a region, such as any polynomial in $w$.'
+    chapter: '2.1'
+    anchor: the-harmonic-quadratics-are-the-trace-free-tables

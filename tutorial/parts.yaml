@@ -41,8 +41,8 @@ parts:
     slug: outside
     title: What the outside of a body reveals
     chapters:
-      - { id: '2.1', slug: outside/laplace, title: "Laplace's equation and harmonic functions; Green's identities; the maximum principle", short: Harmonic functions, size: L, status: planned }
-      - { id: '2.2', slug: outside/spherical-harmonics, title: 'Solid angle, spherical harmonics and Legendre polynomials', short: Spherical harmonics, size: L, status: planned }
+      - { id: '2.1', slug: outside/laplace, title: "Laplace's equation and harmonic functions; Green's identities; the maximum principle", short: Harmonic functions, size: L, status: published }
+      - { id: '2.2', slug: outside/spherical-harmonics, title: 'Solid angle, spherical harmonics and Legendre polynomials', short: Spherical harmonics, size: L, status: published }
       - { id: '2.3', slug: outside/multipoles, title: 'Multipole moments, and the tidal column', short: Multipoles, size: M, status: planned }
       - { id: '2.4', slug: outside/greens-functions, title: "Green's functions", short: "Green's functions", size: M, status: planned }
       - { id: '2.5', slug: outside/null-space, title: 'Interiors the outside cannot see: the null space, harmonic projection, balayage; a uniform sheet is invisible', short: The null space, size: L, status: planned }
@@ -55,7 +55,7 @@ parts:
     slug: noise
     title: Noise, estimation and information
     chapters:
-      - { id: '3.1', slug: noise/probability, title: 'The probability we use: Gaussian, Poisson, covariance, the square-root law', short: Probability, size: M, status: planned }
+      - { id: '3.1', slug: noise/probability, title: 'The probability we use: Gaussian, Poisson, covariance, the square-root law', short: Probability, size: M, status: published }
       - { id: '3.2', slug: noise/random-signals, title: 'Random signals: noise and its spectrum', short: Noise and its spectrum, size: M, status: planned }
       - { id: '3.3', slug: noise/measuring-a-number, title: 'Measuring a number: likelihood, detection, Fisher information, Cramér–Rao', short: Measuring a number, size: L, status: planned }
       - { id: '3.4', slug: noise/symmetric-matrices, title: 'Symmetric matrices at work: eigen-decomposition, SVD, whitening, the Rayleigh quotient', short: Symmetric matrices, size: M, status: planned }

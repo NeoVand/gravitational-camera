@@ -513,3 +513,107 @@ symbols:
     meaning: 'The second kind of tide, made by moving masses. It does not stretch or squeeze a ring of free balls; it makes gyroscopes at nearby points turn slightly relative to one another. Near slow matter it is smaller than $\mathcal{E}_{ij}$ by about $v/c$, and in a gravitational wave the two are equal in size. The paper defines it as $\tfrac12 c^2\epsilon_{ipq}R_{pqj0}$; chapter 7.5 derives it.'
     chapter: R1
     anchor: an-ideal-pixel-reads-ten-numbers-and-must-not-turn
+  - key: mean-value
+    title: Mean
+    tex: '\langle x\rangle'
+    role: none
+    kind: A number; in the unit of $x$
+    meaning: 'The average of a random quantity $x$ over many draws, $\int x\,p(x)\,\mathrm{d}x$. The tutorial writes every mean with angle brackets, never $E[x]$, which would collide with the tide $\mathcal{E}$ and the eötvös.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - key: standard-deviation
+    title: Standard deviation
+    tex: '\sigma_x'
+    role: none
+    kind: A number; in the unit of $x$
+    meaning: 'The typical size of the random departures of $x$ from its mean, the square root of the variance $\langle(x - \langle x\rangle)^2\rangle$. It is always written with a subscript naming its quantity, such as $\sigma_n$ for the noise; a bare $\sigma$ is a surface density. Averaging $N$ independent readings divides it by $\sqrt N$.'
+    chapter: '3.1'
+    anchor: a-reading-is-a-signal-plus-a-random-number
+  - key: covariance-matrix
+    title: Covariance matrix
+    tex: 'C_{ab}'
+    role: none
+    kind: A symmetric table, one row and column for each reading; in the product of the readings' units
+    meaning: 'The covariances $\mathrm{Cov}(x_a, x_b)$ of a set of readings, with their variances on the diagonal. A weighted sum $w_a x_a$ has the variance $w_a C_{ab} w_b$.'
+    chapter: '3.1'
+    anchor: covariance-describes-noise-that-two-readings-share
+  - key: poisson-mean
+    title: Mean count
+    tex: '\lambda'
+    role: none
+    kind: A pure number
+    meaning: 'The mean number of random, independent arrivals in an exposure: the rate times the time (and the area, for a detector of gravitons). The count follows the Poisson distribution $\lambda^N e^{-\lambda}/N!$ and varies by $\sqrt\lambda$. It is not a wavelength.'
+    chapter: '3.1'
+    anchor: rare-events-are-counted-with-the-poisson-distribution
+  - key: polar-angle
+    title: Polar angle
+    tex: '\vartheta'
+    role: none
+    kind: An angle; in radians, from 0 to $\pi$
+    meaning: 'The angle between a direction and the $z$ axis: 0 at the north pole, $\pi/2$ on the equator, $\pi$ at the south pole. With the azimuth $\varphi$ it fixes a direction, $\hat n = (\sin\vartheta\cos\varphi, \sin\vartheta\sin\varphi, \cos\vartheta)$. Written as a curly theta to keep it apart from the angular size $\theta = R/r$ of the paper''s equation for tidal brightness.'
+    chapter: '2.2'
+    anchor: a-direction-is-two-angles-and-a-small-patch-of-sky-has-the-solid-angle-sinvarthetamathrmdvarthetamathrmdvarphi
+  - key: azimuth
+    title: Azimuth
+    tex: '\varphi'
+    role: none
+    kind: An angle; in radians, from 0 to $2\pi$
+    meaning: 'The angle of a direction round the $z$ axis, measured in the $xy$ plane from the $x$ axis, anticlockwise as seen from the side toward which $z$ points. Not the potential $\Phi$.'
+    chapter: '2.2'
+    anchor: a-direction-is-two-angles-and-a-small-patch-of-sky-has-the-solid-angle-sinvarthetamathrmdvarthetamathrmdvarphi
+  - key: sphere-laplacian
+    title: Laplacian on the sphere
+    tex: '\nabla_\Omega^2'
+    role: none
+    kind: A differential operator on patterns on the sky; no unit
+    meaning: 'The part of the Laplacian that acts on the direction alone: $\nabla^2 f = r^{-2}\partial_r(r^2\partial_r f) + r^{-2}\nabla_\Omega^2 f$, with $\nabla_\Omega^2 f = (\sin\vartheta)^{-1}\partial_\vartheta(\sin\vartheta\,\partial_\vartheta f) + (\sin\vartheta)^{-2}\partial_\varphi^2 f$. A pattern of degree $\ell$ has $\nabla_\Omega^2 Y = -\ell(\ell + 1)Y$.'
+    chapter: '2.2'
+    anchor: the-laplacian-splits-into-a-part-along-the-radius-and-a-part-on-the-sphere
+  - key: legendre
+    title: Legendre polynomial
+    tex: 'P_\ell'
+    role: none
+    kind: A polynomial of degree $\ell$ in $\mu = \cos\gamma$; no unit
+    meaning: 'The coefficient of $t^\ell$ in $(1 - 2t\mu + t^2)^{-1/2}$, so that $1/|\mathbf x - \mathbf y| = \sum_\ell r''^\ell P_\ell(\cos\gamma)/r^{\ell+1}$ for $r'' < r$. $P_0 = 1$, $P_1 = \mu$, $P_2 = \tfrac12(3\mu^2 - 1)$, $P_3 = \tfrac12(5\mu^3 - 3\mu)$, and $P_\ell(1) = 1$. $P_\ell(\cos\gamma)$ is the pattern of degree $\ell$ symmetric about an axis; $P_2$ vanishes at 54.7°.'
+    chapter: '2.2'
+    anchor: the-patterns-symmetric-about-an-axis-are-the-legendre-polynomials-and-the-inverse-distance-generates-them
+  - key: spherical-harmonic
+    title: Spherical harmonic
+    tex: 'Y_{\ell m}'
+    role: none
+    kind: A complex pattern on the sky; no unit
+    meaning: 'The orthonormal patterns of degree $\ell$ and order $m$, $2\ell + 1$ of each degree, which depend on the azimuth through $e^{im\varphi}$ and satisfy $\oint Y_{\ell m}^*Y_{\ell''m''}\,\mathrm d\Omega = \delta_{\ell\ell''}\delta_{mm''}$. For example $Y_{20} = \sqrt{5/16\pi}\,(3\cos^2\vartheta - 1)$. Every pattern on the sky is a sum of them.'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - key: order
+    title: Order of a pattern
+    tex: 'm'
+    role: none
+    kind: A whole number from $-\ell$ to $\ell$; no unit
+    meaning: 'The label of a spherical harmonic within its degree: $Y_{\ell m}$ depends on the azimuth through $e^{im\varphi}$, so its real part goes through $|m|$ whole waves round the $z$ axis. (Elsewhere $m$ is a mass, which chapter 2.2 writes as $M$.)'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - key: harmonic-coefficient
+    title: Coefficient of a spherical harmonic
+    tex: 'a_{\ell m}'
+    role: none
+    kind: A complex number, in the unit of the pattern it describes
+    meaning: 'How much of $Y_{\ell m}$ a pattern $f$ on the sky holds: $a_{\ell m} = \oint Y_{\ell m}^*f\,\mathrm d\Omega$, and $f = \sum a_{\ell m}Y_{\ell m}$. One pixel reads only the five of degree two of its tidal column.'
+    chapter: '2.2'
+    anchor: patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them
+  - key: sphere-average
+    title: Average over a sphere
+    tex: '\bar h(R)'
+    role: none
+    kind: A number for each radius; in the unit of the function averaged
+    meaning: 'The average of a function $h$ over the sphere of radius $R$ about a point, $\frac{1}{4\pi R^2}\oint h\,\mathrm dA$. For a harmonic $h$ it does not depend on $R$ and equals the value at the centre: the mean value property.'
+    chapter: '2.1'
+    anchor: the-value-at-the-centre-of-a-sphere-is-the-average-over-the-sphere
+  - key: boundary
+    title: Boundary of a region
+    tex: '\partial V'
+    role: none
+    kind: A closed surface
+    meaning: 'The closed surface that encloses a region $V$ of space. A harmonic function takes its largest and smallest values on it, and its values there fix the function inside.'
+    chapter: '2.1'
+    anchor: in-empty-space-the-potential-has-no-peak-and-no-pit
