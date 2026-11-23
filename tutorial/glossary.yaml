@@ -2512,3 +2512,35 @@ terms:
     definition: 'The amplitude of a reflected wave divided by that of the arriving wave. For a gravitational wave the paper gives $4\pi G\mu/c^2\omega^2$, so the tutorial''s steel, with $\mu = 71$ GPa, reflects $1.7 \times 10^{-23}$ of a 1 kHz wave''s amplitude (the paper''s stiffer steel, $2 \times 10^{-23}$).'
     chapter: '5.5'
     anchor: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact
+  - term: chord
+    definition: 'The straight piece of a line that lies inside a round body. A line that passes the centre at the distance $b$ crosses a ball of radius $R$ along a chord of length $2\sqrt{R^2 - b^2}$.'
+    chapter: '5.6'
+    anchor: from-the-surface-of-a-round-planet-each-line-of-sight-is-a-chord
+  - term: Abel transform
+    definition: 'The brightness of the lines of sight through a round body as a function of their impact parameter $b$, the distance by which they miss the centre, $N(b) = 2\int_b^R j_N(r)\,r\,\mathrm dr/\sqrt{r^2 - b^2}$, made from the glow as a function of the radius. It is the paper''s eq:abel.'
+    chapter: '5.6'
+    anchor: from-the-surface-of-a-round-planet-each-line-of-sight-is-a-chord
+  - term: Abel inversion
+    definition: 'The formula that recovers the glow of a round body at each radius from the slope of its brightness curve, $j_N(r) = -(1/\pi)\int_r^R (\mathrm dN/\mathrm db)\,\mathrm db/\sqrt{b^2 - r^2}$. Only the lines that pass outside the radius $r$ contribute.'
+    chapter: '5.6'
+    anchor: the-transform-can-be-undone
+  - term: kink
+    definition: 'A point where a curve stays continuous but its slope changes abruptly. A boundary at the radius $r_0$ inside a glowing planet makes a kink in the brightness at $\sin\theta = r_0/R$, where the slope grows as $(r_0 - b)^{-1/2}$.'
+    chapter: '5.6'
+    anchor: a-boundary-shows-as-a-kink-at-an-angle-that-only-geometry-sets
+  - term: onion peeling
+    definition: 'Recovering the glows of uniform shells one at a time from the outside in: the line that grazes the bottom of the outer shell crosses only that shell, and each deeper line adds one shell whose glow is the only unknown. Errors grow at each step inward.'
+    chapter: '5.6'
+    anchor: uniform-shells-are-peeled-from-the-outside-in
+  - term: tomography
+    definition: 'The recovery of the inside of a body from line integrals through it in many directions, as a medical X-ray scanner does. A round body needs only one direction, because its symmetry supplies the others.'
+    chapter: '5.6'
+    anchor: a-body-that-is-not-round-needs-views-from-many-directions
+  - term: projection
+    definition: 'The line integrals of a body along parallel lines in one direction $\hat n$, as a function of where each line crosses the plane at right angles to $\hat n$: $P(\boldsymbol a) = \int j(\boldsymbol a + s\hat n)\,\mathrm ds$.'
+    chapter: '5.6'
+    anchor: a-body-that-is-not-round-needs-views-from-many-directions
+  - term: projection–slice theorem
+    definition: 'The two-dimensional Fourier transform of a projection along $\hat n$ equals the body''s three-dimensional transform on the plane of wavevectors at right angles to $\hat n$. Projections from all the directions of one plane therefore fix the body.'
+    chapter: '5.6'
+    anchor: a-body-that-is-not-round-needs-views-from-many-directions
