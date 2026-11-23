@@ -18,15 +18,17 @@ the best laboratory gradiometer reads the tide to 0.02 eötvös (E) in a second,
 10^{-9}\unit{s^{-2}}$. So this chapter asks what that phrase means exactly, and how the same thing is said of an array
 whose noise is spread over a plane.
 
-The answer is to describe noise by its spectrum: how the strength of the noise is shared among frequencies in time,
-or among ripples across a plane.
+The answer is to describe noise by its spectrum: how the strength of the noise is shared among frequencies in time, or
+among ripples across a plane. Figure [](#fig:white-noise) draws both for white noise, which has the same strength at
+every frequency.
 
-<!-- diagram: tut-noise-hero — Hero. Top row, three linked panels for white noise in time: a trace n(t) over two
-seconds; its spectrum S(ω), a flat line over negative and positive ω with the band between ±ω marked; its
-autocorrelation C(t), a single spike at t = 0 of area S. Bottom row: the 11 × 11 array's noise map (pixels 10 cm
-apart, each pixel's value drawn from one Gaussian, in a diverging palette) and beside it the mean of |ñ(k)|² over
-many such maps, flat across the grid of wavevectors. Caption: the trace never repeats, but its spectrum is flat, and
-the map's spectrum is flat across the plane in the same way. -->
+![Top, white noise in time, in arbitrary units: a record $n(t)$ over two seconds; its spectrum $S(\omega)$, the same at
+every frequency, negative and positive, with the band from $-\omega$ to $\omega$ shaded; and its autocorrelation $C(t)$,
+a single spike at zero lag of area $S(0)$. Bottom, the noise of an array of $11\times11$ pixels, each pixel's reading
+drawn from one Gaussian (orange above zero, blue below), and beside it the mean of $|\tilde n(\mathbf k)|^2$, a column
+on each wavevector of the array, the same on every one (16,000 simulated maps agree with it within 3%). The trace never
+repeats, but its spectrum is flat, and the map's spectrum is flat across the plane in the same
+way.](tut-noise-hero){#fig:white-noise}
 
 ::: plain
 Noise can be split into steady oscillations of every frequency, slow and fast. Its spectrum says how strong each
@@ -261,12 +263,13 @@ always holds the part that grows, however long $\tau$ is. For a spectrum proport
 substitution $x = \omega\tau/2$ makes the variance of the average proportional to $\tau^{\alpha - 1}$. For
 $\alpha < 1$ it falls more slowly than $1/\tau$; for $\alpha \geq 1$, as for a random walk, the integral diverges, and
 two averages taken an hour apart differ by the drift, however long each one is. The law of chapter 3.1 needs a
-spectrum that is finite and flat near zero frequency.
+spectrum that is finite and flat near zero frequency. Figure [](#fig:red-white) compares a white and a red record.
 
-<!-- diagram: tut-noise-red-white — Two traces over 100 s, one white and one red (a random walk added to a small
-white part), with the same scatter over one second. Under each, the averages over successive blocks of 1 s and of
-10 s drawn as steps. The white averages narrow by √10; the red ones follow the wander and barely narrow. A small
-log–log inset shows both spectra: flat, and rising as 1/ω² toward zero frequency. -->
+![Two records of noise over 100 s, white (top) and red, a random walk with a small white part added (bottom), scaled
+so that their averages over one second scatter equally; under each are its averages over successive blocks of 1 s (thin
+steps) and of 10 s (thick steps). The white averages over 10 s scatter $\sqrt{10} = 3.2$ times less than those over 1 s,
+while the red ones follow the wander and barely narrow. The inset shows the two spectra on logarithmic axes: the white
+one is flat, and the red one rises as $1/\omega^2$ toward zero frequency.](tut-noise-red-white){#fig:red-white}
 
 ::: try {#noise-spectrum}
 Predict first: for red noise, does averaging ten times longer shrink the scatter of the averages by $\sqrt{10}$? The
@@ -354,12 +357,14 @@ Gaussian too, and jointly Gaussian variables that are uncorrelated are independe
 the noise in one ripple tells nothing about the noise in another, and each ripple can be read on its own.
 
 This answers the second half of the question: for an array, $\sqrt{N_0}/z$, the noise averaged over a square of side
-$z$, plays the part that the noise after one second plays for one instrument.
+$z$, plays the part that the noise after one second plays for one instrument. Figure [](#fig:patch) draws the array with
+such a square on it.
 
-<!-- diagram: tut-noise-patch — The 11 × 11 array seen from above, pixels b = 10 cm apart, each a small square
-shaded by its noise. A square patch of side z outlined over it, holding (z/b)² pixels, with the labels "variance of
-one pixel σ_n²" and "variance of the patch average N_0/z² = σ_n² b²/z²". A second, larger patch drawn dashed to show
-that the variance falls as the area grows. -->
+![The array of $11\times11$ pixels a distance $b = 10\unit{cm}$ apart, each pixel shaded by its own noise (orange above
+zero, blue below); the plate's thickness and the slant of the view are drawn for clarity. One pixel's reading has the
+variance $\sigma_n(\tau)^2$, the average over the patch of side $z = 3b$, nine pixels, has the variance
+$N_0/z^2 = \sigma_n(\tau)^2b^2/z^2$, and the average over the dashed patch of side $2z$ has a quarter of
+that.](tut-noise-patch){#fig:patch}
 
 ## Randomly placed masses are a noise too
 
@@ -417,7 +422,7 @@ $\matter m$. A square metre holds 70 kg give or take 70 kg: one person more or l
 $S_\sigma = (\nu\matter{m})\,\matter{m}$ falls in proportion to $\matter{m}$. The same 70 kg in each square metre as
 grains of 1 g, 70,000 of them, gives $S_\sigma = 0.07\unit{kg^2\,m^{-2}}$, and the mass in a square metre varies by
 0.26 kg, a part in 260. A sheet of sand is smooth where a sheet of people is grainy, and as $\matter m \to 0$ the sheet
-becomes uniform.
+becomes uniform. Figure [](#fig:points) draws both sheets with their spectra.
 
 **Shot noise.** The same calculation in time describes arrivals at independent random instants $t_j$, such as photons
 on a detector or the gravitons of the paper's [Section IX](/paper/#sec:first-image). At a mean rate $r$ per second,
@@ -427,10 +432,12 @@ $\tau$, by [](#eq:var-time), the rate has the variance $r/\tau$, so the count, t
 $r\tau = \lambda$. That is the Poisson variance of chapter 3.1, now derived from a spectrum: the 438 gravitons that
 the Earth sends to a square metre in a year vary by $\sqrt{438} = 21$.
 
-<!-- diagram: tut-noise-points — Left: a square region with about 400 points dropped at random (Poisson), each a
-small dot of mass m in the matter colour. Right: the mean of |σ̃(k)|²/A over many such drawings, on a grid of
-wavevectors: flat at ν m² everywhere except a single tall spike at k = 0 (the mean sheet). Beneath, the same region
-with 40 times as many points of a fortieth of the mass, and its spectrum 40 times lower. -->
+![Top left, 402 masses $\matter{m}$ dropped at random on a square region, each a dot whose area is in proportion to its
+mass; top right, the mean of $|\tilde{\matter\sigma}(\mathbf k)|^2/A$, a column on each wavevector, flat at
+$\nu\matter{m}^2$ except at $\mathbf k = 0$, where the mean sheet gives 401 times as much (off the scale, drawn as an
+arrow), as 8000 simulated drawings confirm. Below, the same region holds 40 times as many masses of a fortieth of the
+mass: the page carries the same ink, the spectrum is 40 times lower, and the spike at $\mathbf k = 0$ is the
+same.](tut-noise-points){#fig:points}
 
 ::: check
 ### Q
