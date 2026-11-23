@@ -642,7 +642,7 @@ $33^\circ$"; its two metres stand.
   explains the Schwarzschild radius behind "without becoming a black hole", and [section
   22.8](https://neovand.github.io/general-relativity/chapter-22.html#22-8-entropy-is-written-in-area) meets another
   bound on information set by gravity.
-- Reading chapter R4 reads Section IV's heat, applied tide and thermometer after Part 4; R5 reads Section III and the
+- Reading chapter [R4](/tutorial/response/reading-section-iv-3/) reads Section IV's heat, applied tide and thermometer after Part 4; R5 reads Section III and the
   waves that make sharp pictures.
 - Robert L. Parker, *Geophysical Inverse Theory* (Princeton, 1994): the geophysicist's view of non-uniqueness,
   regularization and positivity, the three ideas of this part.

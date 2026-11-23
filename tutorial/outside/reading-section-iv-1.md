@@ -16,14 +16,15 @@ person, a steel ball with gold inside it, convection inside a star and the Earth
 behind us, which of Section IV's claims about what a near-field image is, and what it can never show, can we now check
 for ourselves?
 
-This chapter reads that part in order, one heading for each stretch of text, and derives nothing new. It runs from
-the section's first line to the end of *What breaks the tie*, then from the first paragraph of *How sharp* to the first
+This chapter reads that part in order, one heading for each stretch of text, and derives nothing new. It runs from the
+section's first line to the end of *What breaks the tie*, then from the first paragraph of *How sharp* to the first
 sentences after equation [](/paper/#eq:array-data). The three paragraphs in between, *What heat reveals*, *What an
-applied tide reveals* and *A model-independent thermometer*, are read in reading chapter R4, after Part 4. The rest of
-*How sharp* is read in R3, after Part 3. As in [reading chapter R1](/tutorial/newton/reading-section-ii/), each claim
-gets the chapter that teaches it and a mark: *checked here* (Parts 1 and 2 derive it, and we recompute its numbers),
-*read now, derived in Part N* (its proof comes later), or *stated in the paper* (the paper takes it from outside its
-own argument, such as a theorem from a book or a measured property of the Earth).
+applied tide reveals* and *A model-independent thermometer*, are read in reading chapter
+[R4](/tutorial/response/reading-section-iv-3/), after Part 4. The rest of *How sharp* is read in R3, after Part 3. As in
+[reading chapter R1](/tutorial/newton/reading-section-ii/), each claim gets the chapter that teaches it and a mark:
+*checked here* (Parts 1 and 2 derive it, and we recompute its numbers), *read now, derived in Part N* (its proof comes
+later), or *stated in the paper* (the paper takes it from outside its own argument, such as a theorem from a book or a
+measured property of the Earth).
 
 ::: plain
 The first half of Section IV says what the gravitational camera's pictures show. Near a scene, the camera reads the

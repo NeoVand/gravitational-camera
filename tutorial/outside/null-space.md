@@ -443,7 +443,7 @@ than the steady pull outside:
   part measures its angular momentum (chapter 7.5);
 - **a kick**: a brief tide from outside leaves an energy that grows with $\int\matter\rho\,r^2\,\dd V$
   ([chapter 1.7](/tutorial/newton/hamilton/#the-bracket-of-two-moments-weighs-the-inside));
-- **heat**: a warm body's pull trembles, and the size of the tremble holds the same integral (chapter R4);
+- **heat**: a warm body's pull trembles, and the size of the tremble holds the same integral (chapter [R4](/tutorial/response/reading-section-iv-3/));
 - **a pixel inside the matter**, whose trace $4\pi G\matter\rho$ reads the density where it stands
   ([chapter 1.3](/tutorial/newton/gauss-and-poisson/#poissons-equation-is-gausss-law-at-every-point)).
 

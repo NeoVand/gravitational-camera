@@ -590,7 +590,7 @@ pattern, so the number resolved under an area of the camera depends only on that
   [](/paper/#eq:hyperbolic) and Figure [](/paper/#fig:near-field-geometry), and gives the precision metrics for
   sensors on a sphere round a mass, which near the sensors are those of hyperbolic space in Poincaré's ball.
 - [*What heat reveals*](/paper/#par:what-heat-reveals) (Section IV) reads a round body's density at every radius from
-  its moments (chapter R4). When only a few moments are known, positivity is what makes them enough.
+  its moments (chapter [R4](/tutorial/response/reading-section-iv-3/#a-warm-bodys-moments-change-at-a-rate-set-by-its-temperature-and-its-density-alone)). When only a few moments are known, positivity is what makes them enough.
 - [Section XIV](/paper/#sec:hole) shows that a black hole's tidal response belongs to no positive mass, from the
   inequality $\int\matter\rho\,r^2(r^2 - a)^2\,\dd V \ge 0$, a Hankel condition of this chapter's kind.
 :::

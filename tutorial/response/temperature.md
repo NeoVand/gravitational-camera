@@ -367,7 +367,9 @@ for a round body $\int\matter\rho\,(x^2 + y^2)^2\,\dd V = \tfrac{8}{15}\int\matt
 $\int\matter\rho\,r^4\,\dd V$. Chapter
 [4.6](/tutorial/response/fluctuation-dissipation/#each-degree-of-the-tremor-holds-one-moment-of-the-density) adds up
 every degree in the paper's [](/paper/#eq:thermal-multipole) and finds at which frequencies the tremor lies (Figure
-[](/paper/#fig:tremor)); reading chapter R4 reads the paragraph whole.
+[](/paper/#fig:tremor)); reading chapter
+[R4](/tutorial/response/reading-section-iv-3/#a-warm-bodys-moments-change-at-a-rate-set-by-its-temperature-and-its-density-alone)
+reads the paragraph whole.
 
 ::: try {#equipartition}
 Six masses at the corners of a hexagon, each joined to its neighbours by springs, sit in a heat bath that slows them

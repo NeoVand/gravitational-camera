@@ -416,7 +416,9 @@ In the ball, "85% of the quadrupole's tremor lies at one frequency": one line ho
 paper can speak of the steel ball's one quadrupole mode. The shell's curve ends 1.22 times higher. Each total is set by
 each piece's mass times the square of its distance from the centre, added up over the body, whatever the springs, and
 the shell's mass lies farther out. The shell is also softer, so its steps come at lower frequencies. Chapter 4.6 derives
-the curves, and reading chapter R4 checks the 85%.
+the curves, and reading chapter
+[R4](/tutorial/response/reading-section-iv-3/#the-tremor-lies-in-a-few-classical-notes-and-the-camera-reads-it-without-one-graviton)
+checks the 85%.
 
 {{paper fig:tremor}}
 
