@@ -137,13 +137,14 @@ steel boxes, 0.8 m wide, 0.8 m deep and 1.0 m tall, with their middles at $(\pm 
 3.5 m is therefore measured straight ahead. The middle of each safe is
 $\sqrt{1.1^2 + 3.5^2 + 1.0^2}\unit{m} = 3.8\unit{m}$ from the camera, which is the radius of the sphere in panel (e).
 The gold is a bar 0.30 m wide, 0.40 m deep and 0.14 m tall on the floor of the right-hand safe, with its middle at
-$(1.1, 3.5, 0.13)\unit{m}$. The floor and the walls are described in the margin.[^room]
+$(1.1, 3.5, 0.13)\unit{m}$. The floor and the walls are described in the margin.[^room] Figure [](#fig:room) draws
+the whole room to scale.
 
-<!-- diagram: plan of the locked-safe room seen from above, with the axes x₁ (right) and x₂ (ahead) drawn from the
-origin below the camera; the two safes as squares 0.8 m across centred at x₁ = ±1.1 m, x₂ = 3.5 m, the gold bar inside
-the right-hand safe, the back wall at x₂ = 8.0 m and the side walls at x₁ = ±6.0 m; the straight-ahead distance 3.5 m
-marked along x₂, and a line from the camera to each safe's middle labelled 3.8 m. A small side view gives the
-heights: camera 1.5 m, safes' middles 0.5 m, gold 0.13 m. -->
+![The room of the locked safe, drawn to scale from the paper's scene. Above, the room seen from above: the floor
+(tinted), the three walls, the two hollow steel safes and, in the right-hand one, the gold (orange), with the axes
+$x_1$ and $x_2$ drawn from the point on the floor below the camera. Below, the camera and the safes seen from behind
+the camera, twice as large, with their heights; each line from the camera to a safe's middle is 3.8 m long, but from
+above it looks shorter, because it also falls by 1.0 m.](tut-pot-room){#fig:room}
 
 The table gives the size of each part's pull at the camera.[^cubes] The concrete floor is the largest source by far,
 because it is heavy and close.
@@ -213,11 +214,12 @@ An example shows these properties. Take $f = x^2 + y^2$ in the plane of $x$ and 
 $\nabla f = (2x, 2y)$, which points straight away from the origin. At the point $(3, 4)$ the gradient is $(6, 8)$, of
 length 10, so $f$ grows by 10 per unit of distance in that direction. The curves on which $f$ is constant are circles
 about the origin, and the gradient, which points along a radius, crosses each circle at a right angle.
+Figure [](#fig:contours) shows the circles and the arrows.
 
-<!-- diagram: contour map of f = x² + y² in the plane, the circles f = 1, 4, 9, 16, 25 about the origin (radii 1 to 5),
-with gradient arrows ∇f = (2x, 2y) drawn at a few points, each pointing outward along a radius, crossing its circle at
-a right angle, and longer the farther it is from the origin; the point (3, 4) marked on the circle f = 25 with its
-arrow (6, 8), of length 10. -->
+![The curves on which $f = x^2 + y^2$ is constant are circles about the origin; the numbers are the values of $f$ on
+them. The arrows show the gradient $\nabla f = (2x, 2y)$ at points on the circles: each points straight away from the
+origin, crosses its circle at a right angle and is longer the farther out it starts. Every arrow is drawn at a tenth of
+its length, so the arrow at $(3, 4)$, of length 10, is one unit long.](tut-pot-contours){#fig:contours}
 
 ### The potential of one mass
 
@@ -269,11 +271,13 @@ the person.
 | $g_x = -\partial_x\field\Phi$ | $-4.7 \times 10^{-9}\unit{m\,s^{-2}}$ | the field points back toward the person |
 
 The ball falls toward the person, as it must. The field points downhill on the potential, toward lower values, and
-lower values lie nearer the mass.
+lower values lie nearer the mass. Figure [](#fig:well) shows both signs on the curve of the potential.
 
-<!-- diagram: the curve Φ(x) = −GM/|x| along the x axis for the person of 70 kg at the origin, a well that rises toward
-zero on both sides; the point x = 1 m, Φ = −4.7 × 10⁻⁹ J kg⁻¹ marked, with its tangent rising to the right (∂ₓΦ > 0),
-and under the axis the field arrow g_x pointing left, back toward the person and down the slope. -->
+![The potential $\field\Phi = -G\matter M/|x|$ of the person of 70 kg, drawn along the $x$ axis with the person at the
+origin: a well that rises toward zero on both sides. At 1 m the potential is $-4.7 \times 10^{-9}\unit{J\,kg^{-1}}$,
+and its tangent rises to the right, so $\partial_x\field\Phi$ is positive. The field $g_x$, the arrow under the axis,
+points the other way, back toward the person; the curve and the tangent are exact, but the arrow's length is not to
+scale.](tut-pot-well){#fig:well}
 
 We check the result at a large distance. As $r$ grows, $\field\Phi$ rises toward zero as $1/r$, and the field falls
 as $1/r^2$, one power faster, because a derivative with respect to distance divides by one more power of it. Far from
