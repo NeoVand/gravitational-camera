@@ -6,7 +6,7 @@ part: '1'
 requires: ['1.1', '1.2', '1.3', '1.4', '1.5b', '1.6']
 paper: [sec:second-order, eq:push, eq:hair-commutator, eq:flow-bracket, app:proofs, eq:thermal-moment, sec:one-pixel]
 figures: [fig:hair]
-live: []
+live: [phase-space]
 depth: A
 ---
 
@@ -418,7 +418,15 @@ gains two fifths of the equator's share, $1.0 \times 10^{-42}$, because two fift
 $(x^2 + y^2)/R^2$. The paper's "five parts in $10^{41}$" is $\tfrac12(\Delta v/c)^2$ for the whole
 $\Delta v$ of $3 \times 10^{-12}\unit{m\,s^{-1}}$, recoil included: fifty times the share of the inside.
 
-<!-- try: phase-space — a Svelte 5 port of the GR course's phase lab (#hamiltonian-phase-space, model web/mechanics-model.js) with a kick button: a 2 kg cart on a 50 N/m spring shown on its track and as a point moving clockwise on its ellipse in the (q, p) plane; sliders for the energy and for ε; a choice of tide, uniform (g = x, the kick adds ε m to p) or tidal (g = x²/2, the kick adds ε m q to p); the kick moves the point straight up or down and puts it on a new ellipse; the readout gives ΔE split into ε p g′(q) and ½ ε² m g′(q)², and the area of the ellipse before and after. Prediction first: "Kick the cart as it passes the centre of its swing, moving: does it gain the same energy as a kick at the end of its swing, at rest?" (No: with g = x the first term is ε p, largest at the centre and zero at the end; with g = x²/2 a kick at the centre gives nothing at all, since g′(0) = 0.) Then: a "two copies" switch shows a second, pale cart prepared alike, moving in step with the first; one kick button gives the first cart ε and the second −ε at the same place, and the readout gives the two gains and their average, ½ ε² m g′². (Kicking one cart twice would not do: the second kick acts on the state the first left.) Keyboard and reduced motion as in the GR course's lab; both themes. -->
+::: try {#phase-space}
+Predict first: kick the cart as it passes the centre of its swing, moving, and again at the end of its swing, at rest.
+Does it gain the same energy both times? The plane shows the state $(q, p)$ going clockwise round its ellipse, with
+the cart below it on its track. A kick moves the point straight up or down onto a new ellipse, and the readout splits
+the energy gained into $\epsilon\,p\,g'(q)$ and $\tfrac12\epsilon^2\matter m\,g'(q)^2$. Try both tides: with the
+uniform tide $g = x$ the first part is largest at the centre, and with the tidal one $g = \tfrac12x^2$ a kick at the
+centre gives nothing. Then switch on the second copy, kicked the other way, and compare the average of the two gains
+with the second part alone.
+:::
 
 ## The bracket of two moments weighs the inside
 

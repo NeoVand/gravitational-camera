@@ -24,6 +24,8 @@ import TurningPixel from './live/TurningPixel.svelte';
 import RegimeMap from './live/RegimeMap.svelte';
 import GravitonCount from './live/GravitonCount.svelte';
 import FlybyKick from './live/FlybyKick.svelte';
+import PhaseSpace from './live/PhaseSpace.svelte';
+import ScaleLadder from './live/ScaleLadder.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -100,6 +102,14 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'graviton-count': {
 		label: 'Gravitons counted one at a time, and the picture they allow',
 		component: GravitonCount
+	},
+	'scale-ladder': {
+		label: 'The paper’s tides and lengths on one ladder of powers of ten',
+		component: ScaleLadder
+	},
+	'phase-space': {
+		label: 'A cart on a spring in phase space, kicked by a sudden tide',
+		component: PhaseSpace
 	},
 	'flyby-kick': {
 		label:
