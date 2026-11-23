@@ -22,13 +22,15 @@ can place a mass to a millimetre.
 
 The answer is that a measurement of a known kind of scene does not depend on the width of its picture. It depends on
 how fast the data the camera expects change when the number being measured changes, counted in standard deviations
-of the noise.
+of the noise. Figure [](#fig:safe) shows the simplest case, the choice between the two safes.
 
-<!-- diagram: tut-measure-safe — Hero. Left: the 11 × 11 array's expected readings of one component (say E_xz) for
-the gold in the left safe and in the right safe, side by side, on one diverging scale. Middle: their difference map.
-Right: two Gaussians of unit width whose centres are 1.81 apart, with the decision line midway between them and the
-tail beyond it shaded on each side (18.3%). Caption: the 605 readings differ by 1.81 noise standard deviations in all;
-projected on their difference, the choice between the safes is a choice between two bells. -->
+![The locked safe as a choice between two scenes, at $\SNR = 10$. Above, one of the five components that each pixel
+reads, $\curv{\tE}_{xz}$, with the gold in the left safe ($\mathbf f_A$) and in the right ($\mathbf f_B$), and their
+difference, orange where positive and blue where negative, on one scale whose full tint would be a fifth of
+$\sigma_n$; this component carries 82% of $D^2$, and the slant of the view is chosen for the drawing. In all, the 605
+readings differ by $D = 1.81$ noise standard deviations, so that, projected on their difference, the choice between
+the safes is a choice between two bells of unit width, and the shaded tails beyond the midline, 18.3% on each side,
+are the wrong answers.](tut-measure-safe){#fig:safe}
 
 ::: plain
 To measure something, the camera compares what it read with what each possible scene would have produced. The scene
@@ -186,11 +188,12 @@ moves the predicted data by one standard deviation of the noise. The same number
 averaged over the noise, [](#eq:loglike) is $-\sum_i\bigl(f_i(\theta) - f_i(\theta_0)\bigr)^2/2\sigma_n^2$ plus a
 constant, where $\theta_0$ is the true value,[^average] and with $f_i(\theta) - f_i(\theta_0) \approx
 f_i'\,(\theta - \theta_0)$ this is $-\tfrac12F(\theta - \theta_0)^2$. So the likelihood peaks with a width of about
-$1/\sqrt F$.
+$1/\sqrt F$. Figure [](#fig:peak) draws the peak for the depth of one mass.
 
-<!-- diagram: tut-measure-peak — The log-likelihood of one mass's depth, averaged over noise, −½F(θ − θ₀)², drawn
-for three signal-to-noise ratios (R = 3, 10, 30) on one axis of depth in units of z, each curve marked at the width
-1/√F where it has fallen by one half. The peak narrows in proportion to the signal. -->
+![The log-likelihood of the depth $\theta$ of one mass whose mass is known, averaged over the noise, for three
+strengths $\mathcal R$ of the whole pattern; here $F = 5\mathcal R^2/z^2$, as the section on one mass below finds.
+Each curve has fallen by one half at $\theta - \theta_0 = \pm1/\sqrt F$ (the blue dots), and the widths marked under
+the axis, $0.149z$, $0.045z$ and $0.015z$, shrink in proportion to $1/\mathcal R$.](tut-measure-peak){#fig:peak}
 
 **The bound.** We assume that **the estimator is unbiased**, and that **the readings that can occur at all are the
 same whatever $\theta$ is**: $\theta$ changes how probable each reading is, but not which readings are possible.
@@ -292,12 +295,14 @@ where $\mathcal R$ is a pure number, the strength of the whole pattern in units 
 so the factor is $\sqrt5 = 2.24$. With the mass known, the depth would be measured to $1/\sqrt{F_{zz}} =
 z/(\sqrt5\,\mathcal R)$; with the mass unknown, to $\sqrt{(F^{-1})_{zz}} = z/\mathcal R$. A deeper, heavier mass
 gives nearly the same readings over the middle of the bump as a shallower, lighter one, and the data spend most of
-their information telling the two apart.
+their information telling the two apart. Figure [](#fig:ellipse) draws the matrix as an ellipse.
 
-<!-- diagram: tut-measure-ellipse — The Fisher ellipse of depth and mass for one mass: axes δz/z and δm/m in units
-of 1/R, the ellipse (δθ)ᵀF(δθ) = 1 tilted along the line where a deeper mass is also heavier (correlation 0.89). Its
-shadow on the depth axis, the error with the mass fitted, reaches ±1; the cut through the ellipse at δm = 0, the
-error with the mass known, reaches ±1/√5. A second tick pair does the same for the mass axis: √5 against 1. -->
+![The steps of the depth and the mass that move the predicted data by one noise standard deviation,
+$(\delta\theta)^{\mathsf T}F\,(\delta\theta) = 1$, in units of $z/\mathcal R$ and $\matter m/\mathcal R$; the scales
+of the two axes are chosen for the drawing. The ellipse leans along the line where a deeper mass is also heavier,
+with correlation $2/\sqrt5 = 0.89$, so its shadow on the depth axis, the error with the mass fitted, reaches $\pm1$,
+while its cut by that axis, the error with the mass known, reaches only $\pm1/\sqrt5$; on the mass axis the two are
+$\pm\sqrt5$ and $\pm1$.](tut-measure-ellipse){#fig:ellipse}
 
 ## One mass a metre away is placed to a millimetre
 
@@ -437,9 +442,9 @@ and Taylor's formula to second order gives
 $$\tfrac12\bigl[\curv d(x - \tfrac\delta2) + \curv d(x + \tfrac\delta2)\bigr] - \curv d(x) = \frac{\delta^2}{8}\,
 \frac{\partial^2\curv d}{\partial x^2} + \dots$$
 
-The first-order terms cancel, because the two shifts are opposite. The two scenes have the same mass and the same
-centre of mass, so they first differ in their **quadrupole**: a pattern of pull with two lobes, the part of a body's
-field that falls as the inverse fourth power of the distance (chapter
+The first-order terms cancel, because the two shifts are opposite, and Figure [](#fig:pair) draws what is left. The
+two scenes have the same mass and the same centre of mass, so they first differ in their **quadrupole**: a pattern of
+pull with two lobes, the part of a body's field that falls as the inverse fourth power of the distance (chapter
 [2.3](/tutorial/outside/multipoles/#the-first-three-degrees-are-the-mass-the-centre-of-mass-and-a-trace-free-quadrupole)
 treats it). The pair's quadrupole is proportional to $\matter m\delta^2$. The difference in the data is the fixed
 pattern $\partial^2\curv d/\partial x^2$ times $\delta^2$, so
@@ -466,9 +471,11 @@ symmetry of the pair. "One mass or two" also compares two families of scenes rat
 D/2)$ holds only approximately.
 :::
 
-<!-- diagram: tut-measure-pair — One mass against two close ones. Left: the profile of d across the plane for one
-mass m at depth z and for two masses m/2 at ±δ/2 with δ = 0.3z, nearly on top of each other. Right: their difference,
-scaled up, which has the shape of ∂²d/∂x²; beneath it, the same difference for δ = 0.15z, four times smaller. -->
+![Left, the datum $\curv d$ along the line through the masses, in units of $G\matter m/z^3$, for one mass $\matter m$
+at depth $z$ under $x = 0$ and for two masses $\matter m/2$ at $x = \pm\delta/2$ with $\delta = 0.3z$: the two lie
+nearly on top of each other. Right, the pair's data less the single mass's, drawn ten times taller: a trough between
+two low ridges, with the shape of $\partial^2\curv d/\partial x^2$, and about four times smaller for $\delta = 0.15z$
+(below, on the same scale).](tut-measure-pair){#fig:pair}
 
 ## A tremor far below the noise can still be detected
 
