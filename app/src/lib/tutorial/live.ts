@@ -6,6 +6,9 @@ import BlurLaw from './live/BlurLaw.svelte';
 import RingMatrix from './live/RingMatrix.svelte';
 import PotentialMap from './live/PotentialMap.svelte';
 import ShellTheorem from './live/ShellTheorem.svelte';
+import SpinTwoDial from './live/SpinTwoDial.svelte';
+import FiveNumbers from './live/FiveNumbers.svelte';
+import TurningPixel from './live/TurningPixel.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -29,6 +32,18 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'ring-matrix': {
 		label: 'A ring of free particles under a table you set',
 		component: RingMatrix
+	},
+	'five-numbers': {
+		label: 'Five numbers, one table and three rings of free particles',
+		component: FiveNumbers
+	},
+	'spin-two-dial': {
+		label: 'A ring, an arrow and axes you turn, with their numbers in the complex plane',
+		component: SpinTwoDial
+	},
+	'turning-pixel': {
+		label: 'A ring of free balls seen from outside and from a turning frame',
+		component: TurningPixel
 	},
 	'blur-law': {
 		label: 'The cut-off, the weight of each ripple and the picture of a point',

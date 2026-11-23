@@ -211,7 +211,7 @@
 
 	const entries: { key: keyof Table; label: string }[] = [
 		{ key: 'a', label: 'a, along x' },
-		{ key: 'b', label: 'b, the shear' },
+		{ key: 'b', label: 'b' },
 		{ key: 'd', label: 'd, along y' }
 	];
 </script>
@@ -316,8 +316,8 @@
 		</dl>
 		<p class="note">
 			Each ball starts on the dashed circle at <Tex math="\xi = (\cos\theta, \sin\theta)" /> and is drawn
-			at <Tex math="\xi - s\,T\xi" />, with <Tex math={`s = ${SCALE}`} />, so that the largest table
-			the sliders allow moves it by three tenths of the radius. Each arrow is
+			at <Tex math={`\\xi - ${SCALE}\\,T\\xi`} />, a scale chosen so that the largest table the
+			sliders allow moves it by three tenths of the radius. Each arrow is
 			<Tex math="-T\xi" />, all on one scale.
 			<span class="stretch">Orange</span>: the ball moves outward,
 			<Tex math="\xi \cdot (-T\xi) > 0" />, a stretch.
