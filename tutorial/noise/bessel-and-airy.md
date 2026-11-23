@@ -74,7 +74,7 @@ through a whole turn, so the average over $\varphi$ is the average over every di
 run. So $J_0(ka)$ is the value, at the distance $a$ from the origin, of a ripple of wavenumber $k$ averaged over all
 its directions. All of these ripples have a crest at the origin, so they add up there, and elsewhere they partly
 cancel. The average depends only on the distance, so its crests are circles round the origin. We call $J_0(ka)$ a
-**circular ripple**.
+**circular ripple**. Figure [](#fig:average) draws one ripple, its turned copies and their average.
 
 **The result.** Putting the definition into the transform gives
 
@@ -102,10 +102,11 @@ e^{-(k_1^2 + k_2^2)/2} = 2\pi\,e^{-k^2/2}$. Then [](#eq:hankel) requires $\int_0
 mass, so it is not the same in every direction. Its transform depends on the direction of $\vect k$, and it needs the
 Bessel functions of higher order.[^jn]
 
-<!-- diagram: tut-bessel-average — Left, a plane ripple cos(k·a) drawn as a contour map on a square, with its
-wavevector arrow; a fan of faint copies turned through 0°, 30°, 60°, … beside it. Right, their average J₀(ka) on the
-same square, a contour map of concentric rings: positive (orange) inside the first zero at ka = 2.405, negative (blue)
-out to 5.520, and so on, with the rings' heights fading. One colour scale for both panels. -->
+![Left, a plane ripple $\cos(\vect k\cdot\vect a)$ on a square, orange where it is above zero and blue where it is
+below, with its wavevector $\vect k$ as an arrow across the crests; beside it, faint copies of the same ripple turned
+in steps of 30°. Right, the average over all the directions, $J_0(ka)$, on the same colour scale: a crest of height 1
+inside the first zero at $ka = 2.405$, a trough of $-0.403$ out to 5.520, and fainter rings beyond. The thin lines are
+the zeros, and the lengths of the arrows are schematic.](tut-bessel-average){#fig:average}
 
 ## The circular ripple is a power series with only even powers
 
@@ -243,7 +244,7 @@ of $J_1$.
 
 The zeros of $J_1$ are where $J_0$ has its troughs and crests. The deepest trough of $J_0$, for example, is
 $-0.403$ at 3.832, between 2.405 and 5.520. The gaps between successive zeros of $J_0$ are 3.115, 3.134 and 3.138,
-and they approach $\pi$.[^drum]
+and they approach $\pi$.[^drum] Figure [](#fig:zeros) draws the two functions with their zeros.
 
 ## Far from the centre the circular ripple is a fading cosine
 
@@ -278,9 +279,10 @@ integral with an imaginary width and is stated here without proof. It supplies b
 shift $\pi/4$, and it makes the sketch a proof of the leading term. The correction of order $1/u$ is not derived.
 :::
 
-<!-- diagram: tut-bessel-j0-j1 — J₀ and J₁ against u from 0 to 15, J₀ in one colour and J₁ in another, with their
-zeros marked (2.405, 5.520, 8.654, 11.79; 3.832, 7.016, 10.173, 13.32), the deepest trough of J₀ at (3.832, −0.403)
-lying exactly above J₁'s first zero, and the envelope ±√(2/πu) dashed from u = 1 on. -->
+![The circular ripple $J_0$ (orange) and $J_1 = -J_0'$ (blue) against $u$, with their zeros marked on the line at zero
+and numbered on the axis below. The zeros alternate, and the deepest trough of $J_0$, $-0.403$, lies at $u = 3.832$,
+the first zero of $J_1$. Both functions fade inside the dashed envelope $\pm\sqrt{2/\pi u}$ of the far
+form.](tut-bessel-j0-j1){#fig:zeros}
 
 ## A round opening transforms to a wider pattern than a slit
 
@@ -313,6 +315,7 @@ band of ripples made a pattern in space, and here a band of space makes a patter
 
 **The disc's pattern is wider.** The slit's pattern reaches zero first at $x = \pi = 3.142$, the disc's at $x =
 3.832$, which is 22% later. The disc's pattern also falls to half its height later, at $x = 2.215$ against 1.895.
+Figure [](#fig:disc-slit) draws the two openings, their shadows and their patterns.
 
 **Why it is wider near the peak.** We turn the axes so that $\vect k$ points along the first one. Then
 $e^{-i\vect k\cdot\vect a} = e^{-ika_1}$ does not depend on $a_2$, so we can do the integral over $a_2$ first:
@@ -344,10 +347,11 @@ By the far form of $J_1$, this softer edge makes $2J_1(x)/x$ die away as $x^{-3/
 that the filter keeps. The same integral, with $\vect a$ and $\vect k$ exchanged, then draws a point as
 $2J_1(x)/x$.
 
-<!-- diagram: tut-bessel-disc-slit — Left, a disc of radius R and a slit of half-width R, each with its shadow on the
-first axis drawn beneath it (a half-ellipse of height 2R and a flat bar). Right, on one pair of axes from x = 0 to 12,
-2J₁(x)/x and sin x/x, with the line at one half, the first zeros at 3.832 and π marked, and the first dips at
-(5.136, −0.132) and (4.493, −0.217). -->
+![Left, a disc of radius $R$ and a slit of half-width $R$, which runs on past its faded ends, each with its shadow on
+the first axis beneath it: the disc's is a half-ellipse of height $2R$, and the slit's a flat bar drawn with the same
+area. Right, their patterns $2J_1(x)/x$ (orange) and $\sin x/x$ (blue, dashed), each divided by its peak. The disc's
+falls to one half later, at 2.215 against 1.895, reaches zero later, at 3.832 against $\pi$, and dips less deep,
+to $-0.132$ against $-0.217$.](tut-bessel-disc-slit){#fig:disc-slit}
 
 ## A lens draws a star as the square of that pattern
 
@@ -387,7 +391,7 @@ $$\frac{2J_1(x)}{x},\qquad x = kR = \frac{\pi D\sin\theta}{\lambda} \approx \fra
 
 A detector records the **intensity**, the energy per unit area per second, which is proportional to the square of the
 amplitude. So a lens draws a star as $\bigl(2J_1(x)/x\bigr)^2$, a bright disc surrounded by faint rings. This is the
-**Airy pattern**.
+**Airy pattern**. Figure [](#fig:airy) draws it beside the amplitude.
 
 **The first dark ring.** The intensity is zero where $J_1$ is, first at $x = 3.832$, which is $\theta =
 3.832\,\lambda/\pi D$. Since $3.832/\pi = 1.2197$,
@@ -439,10 +443,10 @@ $1 - J_0^2(X) - J_1^2(X)$. At the first dark ring, $J_1 = 0$ and $J_0 = -0.403$,
 Inside the second dark ring, at 7.016, it is 0.910.
 :::
 
-<!-- diagram: tut-bessel-airy — Left, the profiles of the amplitude 2J₁(x)/x and the intensity (2J₁(x)/x)² against x
-from −12 to 12, the first dark ring at ±3.832 marked on both, and their half maxima at ±2.215 and ±1.616. Right, the
-intensity as an image in the plane, on a logarithmic grey scale from 10⁻⁴ to 1, so that the rings show, with the first
-dark ring circled at x = 3.832. -->
+![Left, the amplitude $2J_1(x)/x$ (orange) and the intensity, its square, against $x$. Both vanish at the first dark
+ring, $x = \pm3.832$, and they fall to one half at $\pm2.215$ and $\pm1.616$; the rings of the intensity, at most 1.75%
+of its peak, are too faint to show on this scale. Right, the intensity across the plane on a logarithmic grey scale
+from $10^{-4}$ to 1, which shows its rings, with the first dark ring circled.](tut-bessel-airy){#fig:airy}
 
 ::: try {#round-pupil}
 Panel (a) is an opening in a screen, across $a_1$ and $a_2$ in metres: a disc of radius $R$, or a slit of half-width
