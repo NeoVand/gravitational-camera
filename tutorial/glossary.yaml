@@ -1911,3 +1911,47 @@ terms:
     definition: 'Said of a response that is zero before the push that causes it: $\chi(t) = 0$ for $t < 0$.'
     chapter: '4.1'
     anchor: the-answer-to-a-single-blow-comes-after-the-blow
+  - term: thermal equilibrium
+    definition: 'The state of two bodies in contact once heat has stopped flowing between them on average: they still trade energy, but as much flows each way. Bodies in thermal equilibrium have the same temperature.'
+    chapter: '4.2'
+    anchor: temperature-is-what-bodies-in-contact-come-to-share
+  - term: temperature
+    definition: 'What bodies in thermal equilibrium have in common, measured in kelvin. Times Boltzmann''s constant it is an energy, $k_BT$, about $4 \times 10^{-21}$ J at room temperature.'
+    chapter: '4.2'
+    anchor: temperature-is-what-bodies-in-contact-come-to-share
+  - term: heat bath
+    definition: 'A body so large that the energy it trades with a small system leaves its temperature unchanged: the room or the table that a body touches.'
+    chapter: '4.2'
+    anchor: the-chance-of-a-state-falls-exponentially-with-its-energy
+  - term: Boltzmann distribution
+    definition: 'The law that a system in contact with a heat bath at the temperature $T$ is found in a state of energy $E$ with a probability proportional to $e^{-E/k_BT}$. Also called the canonical distribution.'
+    chapter: '4.2'
+    anchor: the-chance-of-a-state-falls-exponentially-with-its-energy
+  - term: Boltzmann factor
+    definition: 'The factor $e^{-E/k_BT}$ by which a state of energy $E$ is weighted in thermal equilibrium: each extra $k_BT$ of energy makes a state $e = 2.7$ times less likely.'
+    chapter: '4.2'
+    anchor: the-chance-of-a-state-falls-exponentially-with-its-energy
+  - term: Maxwell distribution
+    definition: 'The law of the velocities in thermal equilibrium: every component of every velocity is an independent Gaussian with mean zero and variance $k_BT/m$, whatever the forces, if they do not depend on velocity.'
+    chapter: '4.2'
+    anchor: in-phase-space-the-weight-splits-and-the-velocities-are-independent-gaussians
+  - term: root mean square speed
+    definition: 'The square root of the mean of the squared speed, $\sqrt{\langle v^2\rangle}$. In thermal equilibrium it is $\sqrt{3k_BT/m}$: 366 m/s for an iron atom and 517 m/s for a nitrogen molecule at 300 K.'
+    chapter: '4.2'
+    anchor: in-phase-space-the-weight-splits-and-the-velocities-are-independent-gaussians
+  - term: equipartition
+    definition: 'The rule that in classical thermal equilibrium every quadratic term of the energy holds $\tfrac12k_BT$ on average, whatever its constant. An oscillator, with two such terms, holds $k_BT$.'
+    chapter: '4.2'
+    anchor: heat-gives-every-quadratic-term-in-the-energy-the-same-share
+  - term: degree of freedom
+    definition: 'One independent coordinate of a system, one way in which it can move: an atom has three, and a cart on a track has one.'
+    chapter: '4.2'
+    anchor: heat-gives-every-quadratic-term-in-the-energy-the-same-share
+  - term: static jitter
+    definition: 'The random displacement of an oscillator, or of a moment of a body, in thermal equilibrium: $\langle q^2\rangle = k_BT/k = k_BT\,\chi(0)$, the temperature times the static compliance. For a cart of 2 kg on 50 N/m at 300 K it is $9 \times 10^{-12}$ m.'
+    chapter: '4.2'
+    anchor: heat-gives-every-quadratic-term-in-the-energy-the-same-share
+  - term: Brownian motion
+    definition: 'The random wandering of a whole body in a warm bath: its centre of mass moves like one particle of the whole mass, with $\langle\dot x_{\rm cm}^2\rangle = k_BT/M$.'
+    chapter: '4.2'
+    anchor: the-first-case-is-brownian-motion-and-the-next-ones-see-inside

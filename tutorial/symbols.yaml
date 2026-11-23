@@ -1140,3 +1140,19 @@ symbols:
     meaning: 'The work a push does per second, averaged over a swing: $\bar P = \tfrac12\omega\,\mathrm{Im}\,\chi(\omega)\,|\tilde F|^2$ for a push of phasor $\tilde F$. Plotted against the frequency it is a line of width $\Gamma$. (Not a projector $P_{ij}$.)'
     chapter: '4.1'
     anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push
+  - key: temperature
+    title: Temperature
+    tex: 'T'
+    role: none
+    kind: A number; in kelvin
+    meaning: 'What two bodies in contact come to share when heat stops flowing between them on average. As an energy, $k_BT = 4.14 \times 10^{-21}\,\mathrm{J}$ at 300 K; heat gives $\tfrac12k_BT$ on average to each quadratic term of a body''s energy, and so $k_BT$ to each mode of vibration. Defined by $1/k_BT = \mathrm d\ln\Omega/\mathrm dE$. (In Part 4 a $T$ without indices is always a temperature; earlier it was also a period, a record''s length and a gain.)'
+    chapter: '4.2'
+    anchor: temperature-is-what-bodies-in-contact-come-to-share
+  - key: state-count
+    title: Count of states
+    tex: '\Omega(E)'
+    role: none
+    kind: A pure number, as a function of energy
+    meaning: 'The number of states of a large body, its heat bath, that have the energy $E$: the volume of phase space at that energy, cut into cells. Its logarithm grows smoothly, and its slope is $1/k_BT$. (Not a rotation rate or a solid angle.)'
+    chapter: '4.2'
+    anchor: the-chance-of-a-state-falls-exponentially-with-its-energy

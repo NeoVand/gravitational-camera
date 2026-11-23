@@ -71,7 +71,7 @@ parts:
     title: Oscillation, heat and response
     chapters:
       - { id: '4.1', slug: response/oscillator, title: 'The oscillator; phasors; damping, driving, resonance, Q', short: The oscillator, size: L, status: published }
-      - { id: '4.2', slug: response/temperature, title: 'Temperature, the Boltzmann distribution and equipartition', short: Temperature, size: M, status: planned }
+      - { id: '4.2', slug: response/temperature, title: 'Temperature, the Boltzmann distribution and equipartition', short: Temperature, size: M, status: published }
       - { id: '4.3', slug: response/elastic-bodies, title: 'Elastic bodies: stress, strain, moduli, normal modes', short: Elastic bodies, size: M, status: planned }
       - { id: '4.4', slug: response/viscosity, title: 'Viscosity and relaxation; the Maxwell model', short: Viscosity, size: M, status: planned }
       - { id: '4.5', slug: response/causality, title: 'Response, causality and sum rules', short: Response and causality, size: M, status: planned }
