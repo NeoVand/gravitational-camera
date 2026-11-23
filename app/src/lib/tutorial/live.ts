@@ -37,6 +37,7 @@ import WhichSafe from './live/WhichSafe.svelte';
 import FadingRipple from './live/FadingRipple.svelte';
 import HiddenFlow from '../paper/figures/hair/HiddenFlow.svelte';
 import OneModeWiener from './live/OneModeWiener.svelte';
+import ToyCamera from './live/ToyCamera.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -146,6 +147,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			"One pattern seen through noise: the naive guess y/T against the Wiener guess H y/T, and their errors beside the prior's variance",
 		component: OneModeWiener
+	},
+	'toy-camera': {
+		label: 'A camera of three pixels and its three patterns',
+		component: ToyCamera
 	},
 	'noise-spectrum': {
 		label:

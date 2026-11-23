@@ -1622,7 +1622,6 @@ terms:
     anchor: a-flow-has-a-potential-of-its-own-built-like-the-gravitational-one
   - term: current column
     definition: 'The mass flux along one line of sight, each part weighted by the inverse of its distance, $\mathbf J(\hat n) = \int\rho\mathbf v\,\mathrm dr/r$. The magnetic part of the camera images it, and only its part across the line of sight counts.'
-    role: matter
     chapter: '2.8'
     anchor: the-current-column-is-the-flow-along-a-line-of-sight-weighted-by-inverse-distance
   - term: axially symmetric flow
@@ -1642,7 +1641,7 @@ terms:
     chapter: '2.8'
     anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
   - term: stream function
-    definition: 'For a steady axially symmetric flow, the function $\chi$ for which $2\pi\chi$ is the mass per second crossing the circle about the axis through a point. The flow in the meridian planes runs along its contours.'
+    definition: 'For a steady axially symmetric flow, the function $\chi$ for which $2\pi\chi$ is the mass per second crossing upward through the disc spanned by the circle about the axis through a point. The flow in the meridian planes runs along its contours.'
     chapter: '2.8'
     anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
   - term: silent flow
@@ -1651,5 +1650,13 @@ terms:
     anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
   - term: spin dipole
     definition: 'The pattern of the field outside a round body whose layers turn rigidly: its flow potential is $\mathbf L\times\mathbf x/2r^3$, fixed by the angular momentum $\mathbf L$ alone.'
+    chapter: '2.8'
+    anchor: a-swirl-shows-through-its-angular-momentum-and-two-swirls-can-cancel
+  - term: integration by parts in a volume
+    definition: 'Moving a derivative from one function to the other inside a volume integral, with a change of sign: $\int f\,\partial_jg\,\mathrm dV = -\int(\partial_jf)\,g\,\mathrm dV$ when $f$ vanishes outside a bounded region. It follows from the product rule and the divergence theorem.'
+    chapter: '2.8'
+    anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
+  - term: moment of a flow
+    definition: 'An integral over a body of its mass flux times a fixed function of position. The angular momentum $\int\mathbf x\times\rho\mathbf v\,\mathrm dV$ is one; a swirl shows outside only through such moments.'
     chapter: '2.8'
     anchor: a-swirl-shows-through-its-angular-momentum-and-two-swirls-can-cancel

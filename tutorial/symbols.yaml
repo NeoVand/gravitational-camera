@@ -950,10 +950,10 @@ symbols:
     anchor: a-flow-has-a-potential-of-its-own-built-like-the-gravitational-one
   - key: current-column
     title: Current column
-    tex: '\matter{\mathbf J(\hat n)}'
-    role: matter
+    tex: '\mathbf J(\hat n)'
+    role: none
     kind: A vector for each direction; in kg m⁻² s⁻¹
-    meaning: 'The mass flux along the line of sight in the direction $\hat n$, each part weighted by the inverse of its distance: $\mathbf J(\hat n) = \int\rho\mathbf v(r\hat n)\,\mathrm dr/r$. Only its part across the line of sight enters the magnetic part of the tide. The twin of the tidal column $S(\hat n)$.'
+    meaning: 'The mass flux along the line of sight in the direction $\hat n$, each part weighted by the inverse of its distance: $\mathbf J(\hat n) = \int\rho\mathbf v(r\hat n)\,\mathrm dr/r$. Only its part across the line of sight enters the magnetic part of the tide. The twin of the tidal column $S(\hat n)$, and like it set plain; always written with its direction, so that it is not mistaken for the mass flux at a point.'
     chapter: '2.8'
     anchor: the-current-column-is-the-flow-along-a-line-of-sight-weighted-by-inverse-distance
   - key: stream-function
@@ -961,7 +961,7 @@ symbols:
     tex: '\chi'
     role: none
     kind: A number at each point of a meridian plane; in kg/s
-    meaning: 'For a steady flow that is the same all round an axis, $2\pi\chi(P)$ is the mass per second crossing a surface bounded by the circle about the axis through $P$. The flow in the meridian planes runs along the contours of $\chi$, which is zero on the axis and on the surface of a confined flow. Not the paper''s response functions $\chi_h$.'
+    meaning: 'For a steady flow that is the same all round an axis, $2\pi\chi$ at a point is the mass per second crossing upward, along $+z$, through the disc spanned by the circle about the axis through that point (or through any other surface bounded by that circle). The flow in the meridian planes runs along the contours of $\chi$, which is zero on the axis and on the surface of a confined flow. Not the paper''s response functions $\chi_h$.'
     chapter: '2.8'
     anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
   - key: roll-vector
