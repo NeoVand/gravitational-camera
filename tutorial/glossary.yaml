@@ -2235,6 +2235,50 @@ terms:
     definition: 'A sum rule in which each frequency is weighted by $\omega$, which in quantum mechanics is in proportion to the energy of one quantum: for a body under a tide of shape $h$, $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi_h\,\mathrm d\omega = \int\rho\,|\nabla h|^2\,\mathrm dV$, the paper''s sum rule for an applied tide.'
     chapter: '4.5'
     anchor: driven-faster-than-its-bonds-every-body-answers-as-dust
+  - term: random force
+    definition: 'The uneven kicks that the molecules of a bath give a body, with mean zero. For a body that the bath slows at the rate $\Gamma$, they are white noise of strength $S_F = 2m\Gamma k_BT$.'
+    chapter: '4.6'
+    anchor: a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked
+  - term: Langevin equation
+    definition: 'Newton''s law for a particle in a bath, $m\dot v = -m\Gamma v + F_{\rm th}(t)$: a drag in proportion to the velocity plus a random force.'
+    chapter: '4.6'
+    anchor: a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked
+  - term: diffusion
+    definition: 'Wandering whose mean square distance grows in proportion to the time, not its square: $\langle x^2\rangle = 2(k_BT/m\Gamma)\,t$ along each axis for a particle in a bath, once $t \gg 1/\Gamma$.'
+    chapter: '4.6'
+    anchor: a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked
+  - term: diffusion constant
+    definition: 'The rate $k_BT/m\Gamma$, in m² s⁻¹, at which a wandering particle''s mean square distance along one axis grows, divided by two. A bead of radius 0.5 µm in water at 293 K has $4.3\times10^{-13}$ m² s⁻¹.'
+    chapter: '4.6'
+    anchor: a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked
+  - term: Einstein relation
+    definition: 'Einstein''s link (1905) between a particle''s wandering and its friction: the diffusion constant is $k_BT$ divided by the drag per unit speed, $m\Gamma$.'
+    chapter: '4.6'
+    anchor: a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked
+  - term: "Stokes's law"
+    definition: 'The drag on a sphere of radius $R_{\rm b}$ moving slowly at speed $v$ through a liquid of viscosity $\eta$: $6\pi\eta R_{\rm b}v$ (Stokes, 1851).'
+    chapter: '4.6'
+    anchor: a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked
+  - term: conjugate push
+    definition: 'The push $f$ that enters a body''s energy as $-fy$, for a reading $y$. The fluctuation–dissipation theorem links each reading to its own conjugate push; a tide of potential $-Fh$ is the conjugate push of the moment $Q_h$.'
+    chapter: '4.6'
+    anchor: the-theorem-holds-for-every-linear-body-at-every-frequency
+  - term: static form of the fluctuation–dissipation theorem
+    definition: 'The theorem integrated over all frequencies: $\langle\delta y^2\rangle = k_BT\,\chi_{yy}(0)$, the static jitter of any reading of any body.'
+    chapter: '4.6'
+    anchor: the-theorem-holds-for-every-linear-body-at-every-frequency
+  - term: Love number
+    definition: 'The pure number $k_2$ that says how much a round body yields to a steady tide: its new quadrupole adds, at its surface, $k_2$ times the tide''s potential. A uniform fluid ball has $\tfrac32$, a rigid one 0, the Earth about 0.30.'
+    chapter: '4.6'
+    anchor: the-static-end-of-the-response-is-the-love-number
+  - term: surface gravity
+    definition: 'The pull of gravity at the surface of a body, $g_{\rm s} = GM/R^2$: 9.81 m s⁻² for the Earth.'
+    chapter: '4.6'
+    anchor: the-static-end-of-the-response-is-the-love-number
+  - term: model-independent thermometer
+    definition: 'The paper''s reading of a body''s temperature as $T = \omega S_{yy}/2k_B\,\mathrm{Im}\,\chi_{yy}$, from the noise of a reading and its response to a conjugate push, in which every unknown about the body cancels (Levin''s method, 1998).'
+    chapter: '4.6'
+    anchor: a-push-shaped-like-the-reading-makes-a-thermometer-that-needs-no-model-of-the-body
   - term: source (of a wave field)
     definition: 'The given function $s(\vect x, t)$ on the right of the wave equation $c^{-2}\partial_t^2u - \nabla^2u = s$, which drives the field. At rest the equation is Poisson''s, with $s = -4\pi G\rho$ for Newton''s potential.'
     chapter: '5.2'

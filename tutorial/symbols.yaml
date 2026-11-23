@@ -1412,6 +1412,70 @@ symbols:
     meaning: 'The response of the moment $Q_h = \int\rho h\,\mathrm dV$ to a tide of potential $-Fh$, $\tilde Q_h = \chi_h\tilde F$; $\chi_{gh}$ is the response of a second moment $Q_g$. Far above every frequency of the body, $\chi_{gh} \to -\int\rho\,\nabla g\cdot\nabla h\,\mathrm dV/\omega^2$, the response of dust, and so $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi_h\,\mathrm d\omega = \int\rho\,|\nabla h|^2\,\mathrm dV$.'
     chapter: '4.5'
     anchor: driven-faster-than-its-bonds-every-body-answers-as-dust
+  - key: thermal-force
+    title: Random force of a bath
+    tex: 'F_{\rm th}'
+    role: none
+    kind: A random function of time; a force in newtons, mean zero
+    meaning: 'The uneven kicks that the molecules of a bath give a body, in the Langevin equation $m\dot v = -m\Gamma v + F_{\rm th}$. Its spectrum is white, $S_F = 2m\Gamma k_BT$: the kicks are as strong as the friction requires.'
+    chapter: '4.6'
+    anchor: a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked
+  - key: force-spectrum
+    title: Spectrum of the random force
+    tex: 'S_F'
+    role: none
+    kind: A constant (two-sided spectrum of white noise); in N² s
+    meaning: 'The strength of a bath''s random kicks, $S_F = 2m\Gamma k_BT$, fixed by equipartition: a body that the bath slows harder must be kicked harder.'
+    chapter: '4.6'
+    anchor: a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked
+  - key: reading-spectrum
+    title: Spectrum of a reading
+    tex: 'S_{yy}'
+    role: none
+    kind: A real, even function of the angular frequency (two-sided); the square of the unit of y times a second
+    meaning: 'How the trembling of a reading $y$ of a warm body is shared among frequencies, $\langle y(t)y(0)\rangle = \int S_{yy}e^{-i\omega t}\,\mathrm d\omega/2\pi$. By the fluctuation–dissipation theorem it is $2k_BT\,\mathrm{Im}\,\chi_{yy}/\omega$.'
+    chapter: '4.6'
+    anchor: the-theorem-holds-for-every-linear-body-at-every-frequency
+  - key: reading-response
+    title: Response of a reading to its own push
+    tex: '\chi_{yy}'
+    role: none
+    kind: A complex function of the angular frequency; the unit of y per unit of f
+    meaning: 'The response of a reading $y$ to the push $f$ that enters the energy as $-fy$, its conjugate push. For a body of modes, $\chi_{yy} = \sum_nc_n^2/(\omega_n^2 - \omega^2 - i\Gamma_n\omega)$, with the same weights $c_n^2$ as the noise of $y$.'
+    chapter: '4.6'
+    anchor: the-theorem-holds-for-every-linear-body-at-every-frequency
+  - key: drive-amplitude
+    title: Strength of a conjugate push
+    tex: 'f'
+    role: none
+    kind: A number that may change in time; in the unit that makes fy an energy
+    meaning: 'The strength of a push that enters a body''s energy as $-fy$. In the paper''s thermometer it is the amplitude of the shell drive, in kg m², with $y = D\!:\!\mathcal E$. (Not a frequency in hertz.)'
+    chapter: '4.6'
+    anchor: the-theorem-holds-for-every-linear-body-at-every-frequency
+  - key: drive-table
+    title: The thermometer's table
+    tex: 'D'
+    role: none
+    kind: A fixed symmetric trace-free table of pure numbers
+    meaning: 'The table that picks the combination $y = D\!:\!\mathcal E = D_{ij}\mathcal E_{ij}$ that the pixel reads, and shapes the shell drive $\delta\sigma = -15f\,\hat n\cdot D\cdot\hat n/4\pi a^4$ that pushes on exactly it. (Not 4.3''s matrix $\mathbf M^{-1/2}\mathbf K\mathbf M^{-1/2}$, 3.3''s separation or a camera''s width.)'
+    chapter: '4.6'
+    anchor: a-push-shaped-like-the-reading-makes-a-thermometer-that-needs-no-model-of-the-body
+  - key: love-number
+    title: Love number
+    tex: 'k_2'
+    role: none
+    kind: A pure number
+    meaning: 'How much a round body yields to a steady tide: it acquires the quadrupole $Q_{ij} = -k_2R^5\mathcal E_{ij}/G$ (with chapter 2.3''s quadrupole $Q_{ij} = \int\rho(3x_ix_j - r^2\delta_{ij})\,\mathrm dV$; a third of that for the trace-free second moment, the paper''s form), so that its new potential at the surface is $k_2$ times the tide''s. A uniform fluid ball has $\tfrac32$, a rigid one 0, the Earth about 0.30 and the steel ball $4\times10^{-16}$. (Not a stiffness or a wavenumber.)'
+    chapter: '4.6'
+    anchor: the-static-end-of-the-response-is-the-love-number
+  - key: surface-gravity
+    title: Surface gravity
+    tex: 'g_{\rm s}'
+    role: none
+    kind: A number; an acceleration in m s⁻²
+    meaning: 'The pull of gravity at the surface of a body of mass $M$ and radius $R$, $g_{\rm s} = GM/R^2$: 9.81 m s⁻² for the Earth, $2.2\times10^{-7}$ m s⁻² for the steel ball. The paper writes it $g$; the tutorial keeps $g$ for the second profile of a moment and $\boldsymbol g$ for the field.'
+    chapter: '4.6'
+    anchor: the-static-end-of-the-response-is-the-love-number
   - key: wave-source
     title: Source of a wave field
     tex: 's(\vect x, t)'

@@ -75,7 +75,7 @@ parts:
       - { id: '4.3', slug: response/elastic-bodies, title: 'Elastic bodies: stress, strain, moduli, normal modes', short: Elastic bodies, size: M, status: published }
       - { id: '4.4', slug: response/viscosity, title: 'Viscosity and relaxation; the Maxwell model', short: Viscosity, size: M, status: published }
       - { id: '4.5', slug: response/causality, title: 'Response, causality and sum rules', short: Response and causality, size: M, status: published }
-      - { id: '4.6', slug: response/fluctuation-dissipation, title: 'Fluctuation and dissipation; Brownian motion; the Love number', short: Fluctuation and dissipation, size: L, status: planned }
+      - { id: '4.6', slug: response/fluctuation-dissipation, title: 'Fluctuation and dissipation; Brownian motion; the Love number', short: Fluctuation and dissipation, size: L, status: published }
       - { id: R4, slug: response/reading-section-iv-3, title: 'Reading Section IV, part 3: what heat and an applied tide reveal', short: Reading Section IV (3), size: M, status: planned, reads: [sec:near-field] }
 
   - id: '5'
