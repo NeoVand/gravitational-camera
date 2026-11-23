@@ -10,6 +10,9 @@ export default defineConfig({
 	fullyParallel: true,
 	workers: process.env.CI ? 3 : undefined,
 	retries: process.env.CI ? 1 : 0,
+	// the runner draws the WebGPU scenes in software for three workers at once, so a frame or a page
+	// can take far longer than on a desk; waiting longer costs nothing when the check passes at once
+	expect: { timeout: process.env.CI ? 20_000 : 5_000 },
 	webServer: {
 		command: 'pnpm run build && pnpm run preview',
 		port: 4173,
