@@ -50,6 +50,7 @@ import DampedWave from './live/DampedWave.svelte';
 import NearToWave from './live/NearToWave.svelte';
 import Tremor from './live/Tremor.svelte';
 import DelayAndSum from './live/DelayAndSum.svelte';
+import RotorPolarization from './live/RotorPolarization.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -222,6 +223,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'Delay and sum: a row of pixels steered by delaying and adding its records, with grating lobes when the pixels spread and one or two sources in or out of step',
 		component: DelayAndSum
+	},
+	'rotor-polarization': {
+		label:
+			'A rotor tilted toward a camera, and the ring its wave moves: the ellipse of (h₊, h×), the Stokes parameters that change when the camera’s axes turn and those that do not, and the which-way spot coloured by V/I',
+		component: RotorPolarization
 	},
 	'noise-spectrum': {
 		label:

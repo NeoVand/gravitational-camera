@@ -6,7 +6,7 @@ part: '5'
 requires: ['1.4', '1.5', '1.5b', 'R1', '2.3', '5.1', '5.2']
 paper: [sec:waves, eq:quadrupole, eq:rotor-amplitudes, eq:circular, eq:dumbbell, eq:wave, fig:quadrupole, fig:polarization, fig:which-way, sec:thermal, sec:one-pixel]
 figures: [fig:quadrupole, fig:polarization, fig:which-way]
-live: [spin-two-dial]
+live: [rotor-polarization]
 depth: A
 ---
 
@@ -95,20 +95,13 @@ sees them, the two strains obey chapter 1.5b's rule for a tide across a directio
 
 $$\field h'_+(t) + i\field h'_\times(t) = e^{-2i\theta}\,\bigl(\field h_+(t) + i\field h_\times(t)\bigr). \label{eq:h-turn}$$
 
-The number has spin two: a turn of 45° makes a plus pattern into a cross pattern, and a half turn brings it back.
+The number has spin two: a turn of 45° makes a plus pattern into a cross pattern (Figure [](#fig:pol-patterns)),
+and a half turn brings it back.
 
-<!-- diagram: tut-pol-patterns — Two panels side by side, same scale. Each: a ring of twelve free balls (small filled
-circles, ink) on a thin grey circle of radius 1 at rest, drawn displaced by δξ = ½h ξ with the strain exaggerated to
-h = 0.36 so that the deformed ring is an ellipse of semi-axes 1.18 and 0.82; at each ball a short arrow from its rest
-place to its displaced place, orange where the ball has moved outward (stretch) and blue where it has moved inward
-(squeeze); thin axis lines e₁ (right) and e₂ (up), and the dot of n̂ pointing out of the page at the centre. Left
-panel: the plus pattern, h₊ = 0.36, h× = 0, stretch along e₁ and squeeze along e₂; label "plus, e⁺". Right panel: the
-cross pattern, h₊ = 0, h× = 0.36, stretch along the diagonal at 45° and squeeze along 135°; label "cross, e×". Under
-each, the table in small type: diag(1, −1) and the off-diagonal table. Caption: "The two patterns of a gravitational
-wave on a ring of free balls, the wave travelling out of the page toward the reader. Look first at the orange
-arrows: in the plus pattern (left) they lie along e₁, in the cross pattern (right) along the diagonal, a turn of 45°.
-Orange marks a ball that has moved outward, blue one that has moved inward. The strain is exaggerated about 10²⁰
-times beyond LIGO's." -->
+![The two patterns of a gravitational wave on a ring of free balls, the wave travelling out of the page toward the
+reader. Look first at the orange arrows: in the plus pattern (left) they lie along $\vect e_1$, in the cross pattern
+(right) along the diagonal, a turn of 45°. Orange marks a ball that has moved outward, blue one that has moved inward.
+The strain is exaggerated about $10^{20}$ times beyond LIGO's.](tut-pol-patterns){#fig:pol-patterns}
 
 ## Two oscillations a quarter cycle apart make a pattern that turns
 
@@ -145,7 +138,7 @@ pattern does depends on the sizes of the two circles.
 - **Equal amplitudes, $b = a$.** The second circle vanishes and $\field h_+(t) + i\field h_\times(t) = a\,e^{i\omega
   t}$. The size of the pattern stays $a$, and its phase grows steadily, so the stretch axis, at half the phase, turns
   anticlockwise at the rate $\omega/2$. This is **circular polarization**, a pattern that turns round at a steady
-  size. With $b = -a$ it turns clockwise instead.
+  size (Figure [](#fig:pol-instants), top). With $b = -a$ it turns clockwise instead.
 - **One amplitude alone, $b = 0$.** The number $a\cos\omega t$ is real. It swings from $a$ to $-a$ and back, so the
   stretch lies along $\vect e_1$ for half the cycle and along $\vect e_2$ for the other half, with the pattern passing
   through zero between. This is **linear polarization**, a pattern that pulses along fixed directions. The two
@@ -161,19 +154,11 @@ pattern back to itself. This sense is the wave's **sense of turning**, or **hand
 facing the source sees it. A linear wave has none: its phase only jumps between 0
 and a half turn.
 
-<!-- diagram: tut-pol-instants — Two rows of eight small rings, the instants ωt = 0°, 45°, 90°, …, 315° from left to
-right (labelled above the top row). Each ring: twelve balls displaced by δξ = ½h ξ as in tut-pol-patterns, h
-exaggerated to amplitude 0.36, the deformed ring drawn as a thin ink ellipse over the grey rest circle, with a short
-orange bar through the centre along the stretch axis (at ½ arg(h₊ + i h×)) and a blue bar across it along the squeeze
-axis, both of length proportional to |h₊ + i h×|. Top row, circular: h₊ = 0.36 cos ωt, h× = 0.36 sin ωt; the ellipse
-keeps its shape and its orange bar turns anticlockwise by 22.5° from one ring to the next, a half turn across the row.
-Bottom row, linear: h₊ = 0.36 cos ωt, h× = 0; the orange bar lies along e₁ at 0° and 45°, the ring is round (no bars)
-at 90° and 270°, and the orange bar lies along e₂ at 135°, 180° and 225°. Row labels at left: "a = b" and "b = 0".
-Axes e₁, e₂ drawn once at the far left. Caption: "Eight instants of one cycle of a wave travelling toward the reader.
-Look first at the orange bar, the line of strongest stretch. Top: the two patterns are equal and a quarter cycle
-apart, and the bar turns anticlockwise at a steady length, half a turn per cycle (circular polarization). Bottom:
-the plus pattern alone, and the bar only grows, vanishes and reappears across its first direction (linear
-polarization). Orange marks stretch, blue squeeze; the strain is exaggerated." -->
+![Eight instants of one cycle of a wave travelling toward the reader. Look first at the orange bar, the line of
+strongest stretch. Top: the two patterns are equal and a quarter cycle apart, and the bar turns anticlockwise at a
+steady length, half a turn per cycle (circular polarization). Bottom: the plus pattern alone, and the bar only grows,
+vanishes and reappears across its first direction (linear polarization). Orange marks stretch, blue squeeze; the
+strain is exaggerated.](tut-pol-instants){#fig:pol-instants}
 
 ## Projecting a turning quadrupole onto the sky gives the two amplitudes of a rotor
 
@@ -218,7 +203,8 @@ because each time derivative of $\cos2\Omega t$ or $\sin2\Omega t$ brings a fact
 $-4\Omega^2$. The table repeats after half a turn of the rod, so the wave has the angular frequency $\omega = 2\Omega$.
 
 **The view from the camera.** The **inclination** $\sym{inclination}{\iota}$ is the angle between the rotor's spin
-and the direction $\hat n$ from the rotor to the camera, in degrees or radians. We put the camera in the $xz$ plane:
+and the direction $\hat n$ from the rotor to the camera, in degrees or radians. We put the camera in the $xz$ plane
+(Figure [](#fig:pol-geometry)):
 
 $$\begin{gathered}
 \hat n = (\sin\iota,\ 0,\ \cos\iota),\\
@@ -229,19 +215,10 @@ The cross product, component by component, is $\vect e_1\times\vect e_2 = (\sin\
 \hat n$, as the first section requires. The spin's shadow on the sky, the part of $\hat z$ across $\hat n$, is $\hat
 z - \cos\iota\,\hat n = -\sin\iota\,\vect e_1$, so $\vect e_1$ lies along the line of that shadow, as in the paper.
 
-<!-- diagram: tut-pol-geometry — One panel, a 3D sketch in light perspective (figures3d pipeline, the camera looking
-from about (3, −4, 2) toward the origin, z up). Thin grey axes x, y, z through the origin, length 1.6, labelled at
-their tips. At the origin the rotor: two matter-coloured stone spheres of radius 0.12 at ±0.5(−sin 30°, cos 30°, 0)
-on a thin ink rod, their dashed orbit a circle of radius 0.5 in the xy plane, with a small arrowhead on it pointing
-anticlockwise as seen from +z. The spin: an ink arrow from the origin along +z, length 1.3, labelled "spin". The line
-of sight: an ink arrow n̂ from the origin at ι = 50° from z in the xz plane, (sin 50°, 0, cos 50°) = (0.766, 0, 0.643),
-length 1.3, labelled n̂; a thin grey arc of radius 0.6 between the spin and n̂, labelled ι. At the tip of n̂, a small
-square of side 0.9 in faint grey, the sky as the camera sees it, lying across n̂; on it, from the tip, two short ink
-arrows of length 0.4: e₁ = (cos 50°, 0, −sin 50°) = (0.643, 0, −0.766) and e₂ = (0, 1, 0), labelled; and a dashed grey
-arrow of length 0.4 sin 50° = 0.31 along −e₁, labelled "spin's shadow". Caption: "Where the camera stands. Look first
-at the angle ι between the spin, along z, and the line n̂ from the rotor to the camera, which lies in the xz plane.
-The camera's axes e₁ and e₂ lie across n̂, with e₁ × e₂ = n̂; the spin's shadow on the sky, −sin ι e₁, lies along e₁.
-Drawn at ι = 50°; the rotor is schematic." -->
+![Where the camera stands. Look first at the angle $\iota$ between the spin, along $z$, and the line $\hat n$ from the
+rotor to the camera, which lies in the $xz$ plane. The camera's axes $\vect e_1$ and $\vect e_2$ lie across $\hat n$,
+with $\vect e_1\times\vect e_2 = \hat n$; the spin's shadow on the sky, $-\sin\iota\,\vect e_1$, lies along $\vect
+e_1$. Drawn at $\iota = 50°$; the rotor is schematic.](tut-pol-geometry){#fig:pol-geometry}
 
 The components of $\ddot{\matter I}$ across the line of sight are its contractions with these axes,
 $\ddot{\matter I}_{11} = e_{1i}\ddot{\matter I}_{ij}e_{1j}$ and so on. Only the $xy$ block of $\ddot{\matter I}$ is
@@ -280,24 +257,17 @@ is circularly polarized and turns anticlockwise, as the rotor does when its spin
 amplitude. At $\iota = 180°$, $\field h_\times = -\field A$ and the pattern turns clockwise, as the rotor then appears
 to.
 
-**What it means.** The camera sees the rotor's turning table foreshortened. The part along the line of the spin's
-shadow shrinks by $\cos\iota$ in each of its two directions, so the cross amplitude falls as $\cos\iota$ and the plus
-amplitude, which also has a part from the direction across the shadow, falls only to a half.
+**What it means.** The camera sees the rotor's turning table foreshortened (Figure [](#fig:pol-rotor-views)). The
+part along the line of the spin's shadow shrinks by $\cos\iota$ in each of its two directions, so the cross amplitude
+falls as $\cos\iota$ and the plus amplitude, which also has a part from the direction across the shadow, falls only
+to a half.
 
-<!-- diagram: tut-pol-rotor-views — Three panels in a row, for ι = 0°, 60° and 90°, each titled with its angle. In each,
-the top half shows the rotor as the camera sees it: the two masses (matter colour, small spheres) on their rod at the
-instant 2Ωu = 30°, and the dashed orbit of the masses, a circle of radius 1 seen as an ellipse with semi-axes 1 (along
-e₂) and |cos ι| (along e₁): a circle at 0°, an ellipse of semi-axis 0.5 at 60°, a line at 90°; a small arrow on the
-orbit showing the sense of turning as seen (anticlockwise at 0° and 60°, along the line at 90°); the spin's shadow on
-the sky drawn as a thin grey arrow along −e₁, of length sin ι (absent at 0°). The bottom half shows the plane of the
-two amplitudes (h₊ horizontal, h× vertical, ticks at ±0.5 and ±1 in units of A) with the ellipse traced by the point
-(h₊(t), h×(t)) over one cycle: semi-axes (1 + cos²ι)/2 and cos ι, that is 1 and 1 (a circle), 0.625 and 0.5, and 0.5
-and 0 (a segment from −0.5 to 0.5 on the h₊ axis); filled magenta with depth in proportion to V/I = 1, 0.976 and 0
-(the edge-on segment drawn in ink), with an arrowhead showing that the point goes anticlockwise. Caption: "A rotor
-seen from three directions. Look first at the lower row: the point (h₊, h×) goes round a circle face on, an ellipse at
-60° and a line edge on. Its semi-axes are (1 + cos²ι)/2 and cos ι in units of A, and it goes round in the sense in
-which the camera sees the rotor turn. The upper row shows the turning pair foreshortened by the tilt; the rotor is
-schematic. The magenta fill follows the paper's fig:quadrupole: its depth is V/I." -->
+![A rotor seen from three directions. Look first at the lower row: the point $(\field h_+, \field h_\times)$ goes
+round a circle face on, an ellipse at 60° and to and fro along a line edge on. Its semi-axes are $(1 + \cos^2\iota)/2$
+and $\cos\iota$ in units of $\field A$, and it goes round in the sense in which the camera sees the rotor turn. The
+upper row shows the turning pair foreshortened by the tilt, and the spin's shadow on the sky; the rotor is schematic.
+The magenta fill follows the paper's Figure [](/paper/#fig:quadrupole): it deepens with $V/I$, printed under
+each.](tut-pol-rotor-views){#fig:pol-rotor-views}
 
 ## Four numbers describe a polarization, and two of them do not depend on the axes
 
@@ -401,20 +371,13 @@ For a single steady wave the four numbers are tied together. By [](#eq:stokes-he
 16|\tilde{\field h}_{\rm a}|^2|\tilde{\field h}_{\rm c}|^2 = Q^2 + U^2$, so $I^2 = Q^2 + U^2 + V^2$. The point $(Q/I,
 U/I, V/I)$ then lies on a sphere of radius 1, **Poincaré's sphere**. Its poles are the two circular polarizations and
 its equator the linear ones, and by [](#eq:stokes-turn) a turn of the axes carries the point round the vertical axis
-by $-4\theta$ while its height $V/I$ stays.
+by $-4\theta$ while its height $V/I$ stays (Figure [](#fig:pol-poincare)).
 
-<!-- diagram: tut-pol-poincare — One panel: a sphere of radius 1 drawn in light perspective (thin grey outline, equator
-as a thin grey ellipse, the vertical axis as a thin line), its three axes labelled Q/I (toward the viewer and right),
-U/I (right and back) and V/I (up). The north pole marked "anticlockwise, circular" and the south pole "clockwise,
-circular"; the equator labelled "linear". One point P in ink at height V/I = 0.785 (the rotor at ι = 75°) on the
-meridian U = 0, Q > 0, so at Q/I = √(1 − 0.785²) = 0.62. A thin circle of latitude through P (dashed), and on it the
-point P′ (hollow) reached after the axes turn by θ = 22.5°: P′ is P carried round the vertical axis by −4θ = −90°, so
-at Q/I = 0, U/I = −0.62. A curved arrow along the latitude from P to P′ labelled "−4θ". Beside it, a second, smaller
-sphere for light, with the same P and its P″ carried by −2θ = −45°, labelled "light: −2θ". Caption: "The Stokes
-parameters of a fully polarized wave as a point on a sphere of radius 1, (Q/I, U/I, V/I): Poincaré's sphere. Look
-first at the dashed circle: turning the camera's axes by θ carries the point round the vertical by −4θ for a
-gravitational wave (left) and by −2θ for light (right), while its height V/I stays. The poles are the two circular
-polarizations, the equator the linear ones. The point is the rotor seen at ι = 75°." -->
+![The Stokes parameters of a fully polarized wave as a point on a sphere of radius 1, $(Q/I, U/I, V/I)$: Poincaré's
+sphere. Look first at the dashed circle: turning the camera's axes by $\theta$ carries the point round the vertical
+by $-4\theta$ for a gravitational wave (left) and by $-2\theta$ for light (right), while its height $V/I$ stays.
+The poles are the two circular polarizations, the equator the linear ones. The point is the rotor seen at $\iota =
+75°$, the turn $\theta = 22.5°$.](tut-pol-poincare){#fig:pol-poincare}
 
 **Light, for comparison.** The electric field of light across its beam is an arrow, the complex number $E_1 +
 iE_2$, which a turn of the axes multiplies by $e^{-i\theta}$ (chapter 1.5b). The same algebra then multiplies its $Q +
@@ -522,54 +485,18 @@ chapter 5.3's diffraction spot, and the colour of the spot is its $V/I$.
 
 {{paper fig:which-way}}
 
-::: try {#spin-two-dial}
-This is chapter 1.5b's dial, and the two predictions at its top belong to that chapter. Switch on *A rotor's wave*: the
-ring moves under the rotor's wave at the inclination $\iota$, which opens at 60° and runs from face on, 0°, to edge on,
-90°. Panel (b) draws the shear of the tide, $\omega^2(\field h_+(t) + i\field h_\times(t))$ in a steady wave by the
-paper's [](/paper/#eq:wave), going round its ellipse. The readout *The rotor's wave* gives $\field h_+$ and $\field
-h_\times$ in units of $\field A$, the radii of the two circles and $V/I$.
+::: try {#rotor-polarization}
+On the left, the rotor and the camera; drag the knob on the arc, or use the slider, to tilt the rotor's spin away
+from the line to the camera by the inclination $\iota$, from face on, 0°, past edge on, 90°, to the spin pointing
+away, 180°. On the right, the ring of free balls as the camera sees it, moved by the rotor's wave (orange outward,
+blue inward), with an inset that traces the point $(\field h_+(t), \field h_\times(t))$ round its ellipse, and a spot
+coloured as in the paper's Figure [](/paper/#fig:which-way). A second knob turns the camera's own axes by $\theta$.
+The readouts fall in two groups: those that change when the axes turn, the two amplitudes and $Q$ and $U$, and those
+that do not, $I$, $V$, $V/I$ and the power relative to face on.
 
-Before you move anything, predict at what inclination $V/I$ has fallen to one half. Then drag $\iota$. The readout
-shows 0.51 at 82° and 0.45 at 83°, because the clockwise circle, of radius $\field A\sin^4(\iota/2)$, stays small
-until the rotor is nearly edge-on.
-
-Next, set $\iota$ to 60°, press *Pause* and set the phase $2\Omega u$ to 0°. Predict what a turn of the camera's axes
-by 45° does to the ellipse and to the readout *The shear*. Then turn them. The ellipse turns by $-90°$ and keeps its
-shape, and $\arg s'$ falls from 0° to $-90°$ while $|s'|$ stays, as [](#eq:h-turn) says. The readout *The rotor's
-wave* is computed in the first axes, $x$ and $y$, so it does not move; its radii and $V/I$ would be the same in any
-axes, because they are the sizes of the two helicities.
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, turn
+the axes by 90° and check that every readout comes back.
 :::
-
-<!-- try: rotor-polarization — RotorPolarization, to replace the spin-two-dial block above when built. Left panel: a
-rotor (two masses on a rod, matter colour) drawn in light perspective, turning, with its spin arrow; the camera drawn
-as a small square to the right, the line from rotor to camera thin grey. The reader tilts the rotor with a handle on
-an arc or with a slider, setting the inclination ι between the spin and the line to the camera from 0° to 180° in
-steps of 0.1° (arrow keys 1°, Page Up and Page Down 10°; default 0°, face on; marks at 0°, 60°, 82.2°, 90°, 120°,
-180°, labelled "face on", "V/I = ½", "edge on", "spin away"). Right panel: the ring of twelve free balls as the camera
-sees it, animated at the wave's phase 2Ω(t − r/c), each ball displaced by ½h ξ with h exaggerated to amplitude 0.3
-face on, orange arrows for outward and blue for inward movement; an inset with the ellipse traced by the point
-(h₊(t), h×(t)) in the turned axes, semi-axes (1 + cos²ι)/2 and |cos ι| in units of A, with an arrowhead for its sense
-of turning (anticlockwise for ι < 90°, clockwise for ι > 90°, none at 90°); the camera's own axes e₁, e₂ drawn at the
-ring's centre, which a second handle (a knob at the end of e₁, or a slider) turns by θ from 0° to 180° (arrow keys
-1°, Page Up and Page Down 5°; default 0°; marks at 22.5°, 45°, 90°). A play/pause button and a phase slider for 2Ωu,
-0° to 360°. Every slider and handle has an accessible name and an aria-valuetext with its unit: "Inclination ι,
-degrees", "Turn of the camera's axes θ, degrees", "Wave phase 2Ωu, degrees"; the play button is named "Play the wave"
-or "Pause the wave". The model: h₊ = (1 + cos²ι)/2 and h× = cos ι in units of A; helicities h̃_a = (h₊ + h×)/2 and
-h̃_c = (h₊ − h×)/2 in the first axes; in the turned axes h̃′_a = e^{2iθ}h̃_a, h̃′_c = e^{−2iθ}h̃_c, h̃′₊ = h̃′_a +
-h̃′_c and h̃′× = i(h̃′_a − h̃′_c). Readouts, to two decimals (three for V/I), in two groups. Under "change with θ":
-|h̃′₊| and |h̃′×| in units of A and their phase difference arg(h̃′×/h̃′₊) in degrees, Q/A² and U/A², with
-Q + iU = e^{−4iθ}(h₊² − h×²). Under "do not change with θ": I/A² = h₊² + h×², V/A² = 2h₊h×, V/I, and the power
-relative to face on, (1 + 6cos²ι + cos⁴ι)/8. A spot beside the ring coloured as in the paper's fig:which-way: magenta
-for V > 0, green for V < 0, its depth |V/I|, grey when V = 0. Checks the spec must pass: at ι = 60°, θ = 0: I/A² =
-0.64, Q/A² = 0.14, U/A² = 0, V/A² = 0.63, V/I = 0.976, power 0.320; at ι = 60°, θ = 22.5°: Q/A² = 0, U/A² = −0.14;
-at ι = 60°, θ = 45°: Q/A² = −0.14, |h̃′₊| = 0.50, |h̃′×| = 0.63; at θ = 90° every readout as at θ = 0; at ι = 82.2°,
-V/I = 0.500; at ι = 90°: I/A² = 0.25, Q/A² = 0.25, V = 0, power 0.125; at ι = 120°: V/A² = −0.63, V/I = −0.976 and
-the spot green; at ι = 180°, V/I = −1. Predictions shown at the top and answered once done: "Tilt the rotor. At what
-angle has V/I fallen to one half?" (82.2°: it stays near 1 until the rotor is nearly edge-on.) "Tilt it past edge on,
-to 120°. What happens to V?" (It turns negative, V/I = −0.976: the pattern turns clockwise, as the rotor now appears
-to.) "Turn the camera's axes by 45°. Which readouts change?" (The amplitudes in the turned axes mix, and Q changes
-sign; I, V, V/I and the power stay.) Keyboard: every handle focusable; both themes; at 390 px the two panels stack.
-Chapters 0.3 and R5 can reuse it. -->
 
 ::: check
 ### Q
