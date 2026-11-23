@@ -15,10 +15,10 @@ Chapters [0.2](/tutorial/evening/through-walls/#the-outside-of-a-body-does-not-s
 showed that a camera for gravity can read the inside of a body from the way the body moves. A steel ball that rings
 changes its quadrupole moment, the measure of how far its mass is drawn out along one axis ([chapter
 2.3](/tutorial/outside/multipoles/#the-first-three-degrees-are-the-mass-the-centre-of-mass-and-a-trace-free-quadrupole)),
-so a pixel a metre away sees a tide that rises and falls at the ball's frequency, near 15 kHz. Heat keeps every way of
-ringing going at once, and the way this random trembling is shared among them shows how the mass inside is arranged. The
-friction at each frequency sets how strongly a warm body trembles there, and a tide applied from outside is a push,
-whose reply this chapter describes.
+so a pixel a metre away sees a tide that rises and falls at the ball's frequency, near 15 kHz (Figure
+[](#fig:ringing-ball)). Heat keeps every way of ringing going at once, and the way this random trembling is shared
+among them shows how the mass inside is arranged. The friction at each frequency sets how strongly a warm body
+trembles there, and a tide applied from outside is a push, whose reply this chapter describes.
 
 The paper's paragraph [*What heat reveals*](/paper/#par:what-heat-reveals) says that "a steel ball ten centimetres in
 radius rings in its lowest quadrupole mode near 15 kHz".[^ball] In Section VI, the paper's figure of real materials
@@ -31,14 +31,14 @@ simplest thing that rings: 1.7's cart on a spring, with friction added. The rest
 (4.2), the ways a solid body rings (4.3), the friction inside materials (4.4), the rules that cause and effect impose
 on a response (4.5), and the link between trembling and response (4.6).[^letters]
 
-<!-- diagram: tut-osc-hero — The hero of Part 4, built in the stone pipeline. The paper's steel ball of radius 10 cm
-drawn twice, side by side, at the two extremes of its lowest quadrupole mode: squashed and stretched along a vertical
-axis by the displacement u = (q/R)(−x/2, −y/2, z), exaggerated 10¹⁴ times and labelled so ("shape change × 10¹⁴"):
-the thermal swing of the pole, q_rms = 2.2 × 10⁻¹⁶ m (from ½Kq² = ½k_BT with K = 3μV/R² = 8.8 × 10¹⁰ N/m at 300 K),
-becomes a 2.2 cm squash on the 10 cm ball.
-A metre to the right, the ring of free test masses (the paper's pixel), drawn as in 1.4's hero, stretched along the
-axis in the first panel and squeezed in the second, with a small label "15 kHz". Orange for stretch, blue for squeeze,
-as in the paper. Serves 4.1, 4.3, 4.6 and R4's capstone. -->
+![The steel ball of radius 10 cm, on the left, at the two ends of one swing of its lowest quadrupole mode: longer
+along its axis (top) and, half a swing later, shorter along it (bottom), with the dashed circle showing the ball at
+rest. The change of shape is exaggerated $10^{14}$ times, so that the swing that heat gives each pole at room
+temperature, $2.2 \times 10^{-16}\unit{m}$ (a root-mean-square value), appears as 2.2 cm; the ball and the metre are
+drawn to one scale, and the swing repeats 15 000 times a second. A metre away on the axis, the ring of free balls of
+chapter 1.4 is stretched along the axis while the ball is longer along it and squeezed along it while the ball is
+shorter; the ring shows only the part of the ball's tide that rises and falls, and its size and its change of shape
+are far larger than a real ring's.](tut-osc-hero){#fig:ringing-ball}
 
 ::: plain
 An **oscillator** is anything that is pulled back toward a resting place with a force that grows with the distance
@@ -143,8 +143,9 @@ $Q/2\pi$ swings. It is measured in two ways: by counting the swings of a ring-do
 line, which the section after next defines.
 
 **An example.** Give 1.7's cart a friction with $Q = 10$. Then $\Gamma = 0.5\unit{s^{-1}}$, the energy falls by $e$ in
-2 s, which is 1.6 swings, and each swing ends with 73% of the amplitude it started with. The frequency
-$\omega_d = 4.994\unit{s^{-1}}$ is only 0.1% below $\omega_0$, because $\Gamma^2/4$ is small beside $\omega_0^2$.
+2 s, which is 1.6 swings, and each swing ends with 73% of the amplitude it started with (Figure
+[](#fig:ring-down)). The frequency $\omega_d = 4.994\unit{s^{-1}}$ is only 0.1% below $\omega_0$, because
+$\Gamma^2/4$ is small beside $\omega_0^2$.
 
 **A non-example.** A door closer is a spring with so much friction that the door does not swing at all: it creeps back
 to shut. When $\Gamma > 2\omega_0$, that is $Q < \tfrac12$, the square root in $\omega_d$ is imaginary, both roots are
@@ -158,11 +159,12 @@ $e^{-\Gamma t/2}$ tends to 1, and the first section's swing returns.
 In Part 4 a bare $Q$ always means a quality factor. A moment of the mass, such as the moments $\matter Q_h$,
 $\matter Q_{\ell m}$ and $\matter Q_{ij}$ of chapter 2.3, always carries its subscript.[^Q]
 
-<!-- diagram: tut-osc-ringdown — One panel: the ring-down of the cart with Q = 10 (m = 2 kg, k = 50 N/m, Γ = 0.5 s⁻¹,
-ω_d = 4.994 s⁻¹), released from rest at q = 0.1 m: q(t) = 0.1 e^{−t/4}[cos ω_d t + (Γ/2ω_d) sin ω_d t] m, for t from 0
-to 8 s, as one thin solid curve. The envelope ±0.1 e^{−t/4} m dashed. A vertical tick at t = 2 s labelled "energy ÷ e"
-and one at t = 4 s labelled "amplitude ÷ e". Axes: t in s, q in m (−0.1 to 0.1). Caption: what to look at first (the
-swing shrinking inside its envelope), then that the envelope and curve are exact. -->
+![The cart with $Q = 10$, let go from rest 0.1 m from the place where its spring is relaxed: look first at the swing
+shrinking inside the dashed envelope $\pm A\,e^{-\Gamma t/2}$, which falls by a factor $e$ every 4 s. The tick at 2 s
+marks where the energy has fallen by $e$, and the tick at 4 s where the amplitude has. The curve and the envelope are
+both exact; the envelope's amplitude is the boxed form's $A = 0.1001\unit{m}$, a little more than 0.1 m because the
+cart starts from rest, so the curve touches the envelope shortly after each turning
+point.](tut-osc-ringdown){#fig:ring-down}
 
 ## A steady push gets a steady answer, the response function times the push
 
@@ -193,7 +195,8 @@ The complex number $\chi(\omega)$ is the oscillator's **response function**, als
 measured in metres per newton.[^units] Its modulus $|\chi|$ is the amplitude of the swing per newton of push. Its
 argument, the angle $\varphi$, in radians, in $\chi = |\chi|\,e^{i\varphi}$, tells the timing: since $\tilde q =
 \chi\tilde F$, the phase of the swing is the phase of the push plus $\varphi$. In 1.5b's form $A\cos(\omega t -
-\alpha)$, a larger phase $\alpha$ puts each peak later, so the cart is behind the push by the angle $\varphi$.
+\alpha)$, a larger phase $\alpha$ puts each peak later, so the cart is behind the push by the angle $\varphi$ (Figure
+[](#fig:phasors)).
 
 The imaginary part of $\chi$ is positive at every positive frequency:
 
@@ -209,7 +212,7 @@ of it. This sign belongs to the paper's convention, $e^{-i\omega t}$. Books that
 opposite sign for every imaginary part, as 1.5b warned, so a positive $\mathrm{Im}\,\chi$ is a useful check that a
 formula uses the paper's convention.
 
-Three limits show what $\chi$ holds.
+Three limits show what $\chi$ holds, and Figure [](#fig:response) draws it between them for three values of $Q$.
 
 **A slow push.** At $\omega \to 0$, $\chi = 1/\matter m\omega_0^2 = 1/k$. The cart follows the push in step, stretching
 the spring as a steady force would. This number is the **static compliance**, the stretch per newton: for the cart,
@@ -232,20 +235,20 @@ F$. The minus sign means that the cart moves opposite to the push, half a swing 
 because the spring's force grows with the displacement, which shrinks as $1/\omega^2$, while the force needed to
 accelerate the mass stays equal to the push.[^dust]
 
-<!-- diagram: tut-osc-response — Three stacked panels sharing a horizontal axis ω/ω₀ from 0 to 2, each with three
-curves for Q = 3, 10 and 30 (one hue, three weights, labelled at the curves' ends). Top: k|χ| on a log scale from 0.1
-to 40, which starts at 1, peaks near Q just below ω/ω₀ = 1 (3.04 at 0.972, 10.01 at 0.9975, 30.00 at 0.9997), and falls
-as (ω₀/ω)² at the right. Middle: the lag φ = arg χ from 0° to 180°, passing 90° at ω₀ for every Q, steeper for larger
-Q. Bottom: ω Im χ in units of 1/(mΓ) for each curve, so that all three peak at 1 exactly at ω₀; the half-height width
-marked on each by a short horizontal bar of length Γ/ω₀ = 1/Q (0.333, 0.1, 0.033), with the bar's ends at the exact
-half-power points (for Q = 10: 0.9512 and 1.0512). A thin vertical line at ω/ω₀ = 1 through all three panels. -->
+![The response of an oscillator with $Q = 3$, 10 and 30, against the frequency of the push in units of $\omega_0$.
+Look first at the top panel: the swing per newton, $k|\chi|$, is 1 for a slow push, rises to about $Q$ a little below
+$\omega_0$, and approaches the free mass's $(\omega_0/\omega)^2$ above it; the middle panel shows the lag $\varphi$,
+which passes $90^\circ$ at $\omega_0$ for every $Q$ and steepens as $Q$ grows. The bottom panel shows
+$\omega\,\mathrm{Im}\,\chi$ in units of $1/\matter m\Gamma$, which the next section shows to be the power taken from
+the push: it peaks at 1 exactly at $\omega_0$, and the bars under it run between its two half-power points (the
+dots), so each is $1/Q$ long.](tut-osc-response){#fig:response}
 
-<!-- diagram: tut-osc-phasors — Three small complex planes side by side, for the cart with Q = 10 driven at ω = 3, 5
-and 8 s⁻¹. In each, the force phasor F̃ = 1 N along the positive real axis, and the swing phasor q̃ = χF̃ drawn in m on
-its own scale (the same scale in all three, with an arrow to scale): at 3 s⁻¹, |q̃| = 0.0311 m at 5.4° (nearly along
-F̃); at 5 s⁻¹, 0.200 m at 90°; at 8 s⁻¹, 0.0128 m at 174.1°. The angle φ marked as an arc from F̃ to q̃ in each. Since
-both phasors turn clockwise as e^{−iωt}, an angle measured anticlockwise from F̃ is a lag; the caption says so. Labels
-under the panels: "below resonance: in step", "at resonance: a quarter swing behind", "above: opposite". -->
+![The push's phasor $\tilde F$, 1 N, and the swing's phasor $\tilde q = \chi\tilde F$ for the cart with $Q = 10$,
+pushed below its natural frequency ($3\unit{s^{-1}}$), at it ($5\unit{s^{-1}}$) and above it ($8\unit{s^{-1}}$);
+$\tilde q$ is drawn to the scale of the bar, 0.0311 m, 0.200 m and 0.0128 m long. Both phasors turn clockwise
+together, as $e^{-i\omega t}$ does, so the angle $\varphi$ measured anticlockwise from $\tilde F$ to $\tilde q$ is
+how far the swing lags behind the push: $5.4^\circ$, $90^\circ$ and $174.1^\circ$. The length that stands for 1 N
+is chosen for the drawing.](tut-osc-phasors){#fig:phasors}
 
 ## Only the imaginary part of the response takes energy from the push
 
