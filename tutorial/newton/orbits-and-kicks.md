@@ -64,12 +64,13 @@ The International Space Station flies about 420 km above the ground, at $r = 679
 With $G\matter M = 3.986 \times 10^{14}\unit{m^3\,s^{-2}}$ for the Earth, equation [](#eq:circle) gives
 $v = 7.66\unit{km\,s^{-1}}$ and $T = 92.8$ minutes. The Earth pulls there with 0.88 of its strength on the ground,
 $8.6\unit{m\,s^{-2}}$, the "nine tenths" of chapter 1.4. In one second the station moves 7.66 km sideways and falls
-4.3 m toward the Earth. Over 7.66 km, the curved surface of the Earth drops away from a straight line by the same
-4.3 m, so the station never comes closer. The crew float because they fall with it.
+4.3 m toward the Earth (Figure [](#fig:falls)). Over 7.66 km, the curved surface of the Earth drops away from a
+straight line by the same 4.3 m, so the station never comes closer. The crew float because they fall with it.
 
-<!-- diagram: an orbit as a sequence of falls that miss: from a point on a circle round the Earth, a straight dashed
-step of one second (7.66 km, drawn exaggerated) along the velocity, then a short fall of 4.3 m back onto the circle;
-three such steps in a row, the planet's curved surface beneath -->
+![The space station's orbit seen face on, with the Earth cut through the plane of the orbit. From each place the
+station moves for one second along its velocity, on the dashed straight line, and falls back onto the circle along the
+orange arrow, toward the centre. The Earth and the height of the orbit are to scale, but each step is drawn 600 times
+longer than the station's 7.66 km, which makes each fall about 330,000 times deeper than 4.3 m.](tut-orb-falls){#fig:falls}
 
 Two limits check the formula. Close to the ground, at $r = 6371\unit{km}$, the orbit takes 84.3 minutes at
 $7.91\unit{km\,s^{-1}}$, the quickest orbit round the Earth. Far away, $v$ falls as $1/\sqrt r$. For the Earth
@@ -96,8 +97,9 @@ orbit, 8.7 Hz,[^twice] and so a wavelength of 34,400 km, close to the paper's 35
 
 Chapter 1.4 found the tide beside a mass $\matter M$ at the distance $r$. With $x$ along the line to the mass, the
 tidal tensor $\curv{\tE}_{ij}$, in $\mathrm{s^{-2}}$, has the entry $\curv{\tE}_{xx} = -2G\matter M/r^3$ (a stretch
-along the line) and $\curv{\tE}_{yy} = \curv{\tE}_{zz} = G\matter M/r^3$ (a squeeze across it). The orbit's rate of
-turning, $\Omega = 2\pi/T$, is by equation [](#eq:circle)
+along the line) and $\curv{\tE}_{yy} = \curv{\tE}_{zz} = G\matter M/r^3$ (a squeeze across it), as
+Figure [](#fig:orbit-ring) shows round an orbit. The orbit's rate of turning, $\Omega = 2\pi/T$, is by equation
+[](#eq:circle)
 
 $$\Omega^2 = \frac{G\matter M}{r^3} = \curv{\tE}_{yy} = \tfrac12\,|\curv{\tE}_{xx}| .$$
 
@@ -109,9 +111,10 @@ $$\boxed{\;T = 2\pi\sqrt{\frac{2}{|\curv{\tE}_{xx}|}}.\;} \label{eq:tide-period}
 The units agree, because $1/\mathrm{s^{-2}}$ is a time squared. The mass and the distance no longer appear separately:
 wherever the stretch is the same, a free orbit takes the same time.
 
-<!-- diagram: one ring of free balls drawn at four places round a circular orbit, each stretched along the line to
-the central mass (orange) and squeezed across it (blue); the stretch axis turns once per orbit, keeping pace with the
-orbit -->
+![One ring of free beads drawn at four places round a circular orbit. At each place the tide of the central mass
+stretches the ring along the line to the mass twice as much as it squeezes it across (the orange and blue arrows), so
+the ring's long axis turns once in each orbit. The stretch is exaggerated, the same at all four places, and the rings
+are drawn far larger than any ring could be beside a real orbit.](tut-orb-ring){#fig:orbit-ring}
 
 Three numbers show the range. At the Earth's surface the stretch is $3.08 \times 10^{-6}\unit{s^{-2}}$, and
 equation [](#eq:tide-period) gives 84.3 minutes, as before. Beside the person of chapter 1.4, whose stretch at 1 m is
@@ -213,13 +216,16 @@ $$\boxed{\;\Delta v = \frac{2G\matter\mu}{BV},\;} \label{eq:kick}$$
 
 pointing from the part straight toward the path. The unit is $\mathrm{m^3\,kg^{-1}\,s^{-2}}$ times kilograms, divided by
 metres and by metres per second: a velocity. The kick is the peak pull $G\matter\mu/B^2$ times the time $2B/V$. We call
-$2B/V$ the **duration** of the pass at that part: it is how long the peak pull would have to act to give the same kick.
-A faster mass gives a smaller kick, though its peak pull is the same, because the pass is shorter.
+$2B/V$ the **duration** of the pass at that part: it is how long the peak pull would have to act to give the same kick
+(Figure [](#fig:flyby)). A faster mass gives a smaller kick, though its peak pull is the same, because the pass is
+shorter.
 
-<!-- diagram: the flyby geometry: the passing mass's straight path, the plane at right angles to it through the
-body, a part of the body over the point s of that plane at the distance B from the path; beside it, the sideways pull
-on that part against time, a bell-shaped curve of height Gμ/B², its shaded area labelled 2Gμ/BV, with a dashed
-rectangle of the same height and area whose width is the duration 2B/V -->
+![Left, the passing mass $\matter\mu$ on its straight path, the plane at right angles to the path through the body, and
+a part of the body over the point $\vect s$ of that plane, at the distance $B$ from the point $\vect b$ where the path
+crosses it; the part's kick $\Delta\vect v$ points along $\vect b - \vect s$. Right, the sideways pull on that part
+against time: a bell of height $G\matter\mu/B^2$ whose shaded area, the kick $2G\matter\mu/BV$, equals that of the
+dashed rectangle of the same height and of width $2B/V$. The ball and the path are drawn to the scale of the paper's
+scene, while the place of the part and the length of its arrow are chosen for the drawing.](tut-orb-flyby){#fig:flyby}
 
 Now the guiding question. Take a second part, also at the distance $B$ from the line, but farther along the path, at
 $z = z_0$. The passing mass reaches its closest point to this part at $t_0 = z_0/V$, later than for the first. This
