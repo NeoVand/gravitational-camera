@@ -2,6 +2,19 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { devices, expect, test, type Page } from '@playwright/test';
 import { screenPosition } from '../src/lib/engine/camera';
 
+/**
+ * A page of the site opens in plain words; most of these tests work its controls, so they start as a reader who
+ * last chose the Controls tab would (the page keeps the tab chosen). A test tagged @fresh starts as a first visit.
+ */
+test.beforeEach(async ({ page }, testInfo) => {
+	if (testInfo.tags.includes('@fresh')) return;
+	await page.addInitScript(() => {
+		const kept = 'gravitational-camera:sidebar';
+		if (!localStorage.getItem(kept))
+			localStorage.setItem(kept, JSON.stringify({ open: true, tab: 'controls' }));
+	});
+});
+
 test('landing page links to the demos and the paper', async ({ page }) => {
 	await page.goto('/');
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Gravitational Camera');
@@ -161,6 +174,16 @@ test('the Moon: lit grey in light, a faint warm glow in gravity', async ({ page 
 		.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
 		.toBeGreaterThan(0);
 	const frames = Number(await canvas.getAttribute('data-frames'));
+	// the divider is moved off the middle first, so that Find the Moon has to bring it back
+	const divider = page.getByRole('slider', {
+		name: 'Divider between the light view and the gravity view'
+	});
+	await divider.focus();
+	await page.keyboard.press('Shift+ArrowLeft');
+	await page.keyboard.press('Shift+ArrowLeft');
+	await expect
+		.poll(async () => Number(await canvas.getAttribute('data-split')), { timeout: 30_000 })
+		.toBeLessThan(0.45);
 	await page.getByRole('button', { name: 'Find the Moon' }).click();
 	// the Moon sits on the divider: half of it in each picture
 	await expect
@@ -370,7 +393,7 @@ test('closed furnace: both blocks show through the steel, the hot one far the br
 test('honey and water: both glow, the honey by a small factor more, not by its viscosity', async ({
 	page
 }) => {
-	const demo = await openDemo(page, '/demo/honey-and-water/', { yaw: 0, pitch: -12 });
+	const demo = await openDemo(page, '/demo/honey-and-water/', { yaw: 14, pitch: -12 });
 	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
 	const honey = await demo.at(sceneObject('honey-and-water', 'bottle-left-contents').center);
 	const water = await demo.at(sceneObject('honey-and-water', 'bottle-right-contents').center);
@@ -379,12 +402,12 @@ test('honey and water: both glow, the honey by a small factor more, not by its v
 	const detail = JSON.stringify({ honey, water, between });
 	expect(honey[0], detail).toBeGreaterThan(water[0] + 10);
 	expect(water[0], detail).toBeGreaterThan(between[0] + 40);
-	await openTab(page, 'About');
+	await openTab(page, 'Physics');
 	await expect(page.getByText(/the honey here is 3\.8 times as bright as the water/)).toBeVisible();
 });
 
 test('which way it turns: the polarization tells the sense of turning', async ({ page }) => {
-	const demo = await openDemo(page, '/demo/which-way/', { yaw: 13, pitch: 0 });
+	const demo = await openDemo(page, '/demo/which-way/', { yaw: 1, pitch: 0 });
 	const canvas = page.locator('canvas');
 	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
 	const centre = (name: string) => sceneObject('which-way', `drum-${name}`).center;
@@ -561,7 +584,7 @@ test('two black holes: the field turns, and stops when told to', async ({ page }
 		.poll(async () => distance(a, await sample(page, 0.75, 0.5)), { timeout: 15_000 })
 		.toBeGreaterThan(5);
 	// still: the loop keeps drawing with the clock stopped, so frames drawn after the click agree
-	await page.getByRole('button', { name: 'Still' }).click();
+	await page.getByRole('button', { name: 'Paused', exact: true }).click();
 	const stopped = await frames();
 	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(stopped + 1);
 	const c = await sample(page, 0.75, 0.5);
@@ -645,12 +668,16 @@ test('own velocity: gravity reads the pixel’s speed exactly, and a walking per
 	page
 }) => {
 	await page.goto('/figures/speedometer/');
-	await expect(page.getByText('all still')).toBeVisible();
-	await expect(page.locator('dd').first()).toContainText('0.6000');
+	await expect(page.getByText('all still', { exact: true })).toBeVisible();
+	// the first reading, gravity's, is the pixel's own speed; the readings are under Physics
+	await openTab(page, 'Physics');
+	const speed = page.locator('dt', { hasText: 'Gravity reads the speed' }).locator('+ dd');
+	await expect(speed).toContainText('0.6000');
+	await openTab(page, 'Controls');
 	await page.getByRole('button', { name: 'Walks', exact: true }).click();
-	await expect(page.getByText('something moves')).toBeVisible();
+	await expect(page.getByText('something moves', { exact: true })).toBeVisible();
 	await page.getByRole('button', { name: 'Still', exact: true }).click();
-	await expect(page.getByText('all still')).toBeVisible();
+	await expect(page.getByText('all still', { exact: true })).toBeVisible();
 });
 
 test('ranging: the split reaches farther than the rank, and farther still with more signal', async ({
@@ -686,7 +713,7 @@ test('beyond Einstein: one reading tells the theory, and a second wave fails the
 	await expect(page.getByText('a massive graviton’s helicity-zero wave')).toBeVisible();
 	await page.getByRole('button', { name: 'Scalar', exact: true }).click();
 	await expect(page.getByText('a massive scalar’s wave')).toBeVisible();
-	await page.getByRole('checkbox', { name: 'A second wave' }).check();
+	await page.getByRole('button', { name: 'A second wave', exact: true }).click();
 	await expect(page.getByText('not one wave of the metric')).toBeVisible();
 	await expect(page.getByText(/the checks fail/)).toBeVisible();
 });
@@ -696,7 +723,7 @@ test('the One pixel layer: a turning flywheel turns the motion test on, a locked
 }) => {
 	await page.goto('/demo/sealed-flywheel/');
 	await page.getByRole('checkbox', { name: 'Pixel', exact: true }).check();
-	await expect(page.getByText(/something moves: \de-\d+/)).toBeVisible();
+	await expect(page.getByText(/^something moves/)).toBeVisible();
 	await page.goto('/demo/locked-safe/');
 	await page.getByRole('checkbox', { name: 'Pixel', exact: true }).check();
 	await expect(page.getByText('all still')).toBeVisible();
@@ -730,7 +757,7 @@ test('push and weigh: a quadrupolar tide cannot tell the two bodies apart, an oc
 	// a new push draws new noise
 	const weighed = page.locator('[data-testid=weighed]').first();
 	const before = await weighed.innerText();
-	await page.getByRole('button', { name: 'Push again', exact: true }).click();
+	await page.getByRole('button', { name: 'Push', exact: true }).click();
 	await expect(weighed).not.toHaveText(before);
 });
 
@@ -744,7 +771,7 @@ test('a ring of marked particles: the marks turn by half the area swept, and the
 	await expect(reading('turn-weak')).toHaveText('6.1523°');
 	await expect(reading('focus')).toHaveText('0.2655 T after the wave');
 	// at the end of the wave the ring has shrunk, and the turn is half the area its shape has swept
-	await page.getByRole('button', { name: 'Pause', exact: true }).click();
+	await page.getByRole('button', { name: 'Paused', exact: true }).click();
 	await page.locator('#time').fill('1');
 	await expect(reading('radius')).toHaveText('0.4510');
 	await expect(reading('turn-now')).toHaveText('9.4530°');
@@ -767,7 +794,7 @@ test('interactive figures: their own section, out of the demos, and live under t
 }) => {
 	await page.goto('/figures/');
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Interactive figures');
-	await expect(page.locator('ol > li')).toHaveCount(9);
+	await expect(page.locator('ol > li')).toHaveCount(12);
 	await page.goto('/demo/');
 	await expect(page.getByText('Principal null directions')).toHaveCount(0);
 	await page.goto('/paper/');
@@ -813,7 +840,7 @@ test('behind the wall: one pixel detects that someone walks, and not when they s
 		})
 		.toBeGreaterThan(1);
 	await expect(page.getByRole('heading', { name: 'Behind the wall', level: 1 })).toBeVisible();
-	await expect(page.getByText(/something moves: \de-\d+/)).toBeVisible();
+	await expect(page.getByText(/^something moves/)).toBeVisible();
 	await expect(page.getByLabel('Flow', { exact: true })).toBeChecked();
 	await page.getByRole('button', { name: 'Stands', exact: true }).click();
 	await expect(page.getByText('all still')).toBeVisible();
@@ -937,7 +964,10 @@ test('tidal field, the sky: the same switch in the vista demos, and in the map o
 		.poll(async () => Number(await wash.getAttribute('data-strokes')), { timeout: 60_000 })
 		.toBeGreaterThan(50);
 	await expect(legend).toContainText('on a sphere 40 GM/c² about the camera');
-	await expect(legend).toContainText(/Strength: \d\.\d\d × 10. s⁻² to \d\.\d\d × 10. s⁻²/);
+	// each end plain below ten thousand ("734 s⁻²"), in a power of ten above
+	await expect(legend).toContainText(
+		/Strength: [\d.,]+( × 10[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)? s⁻² to [\d.,]+( × 10[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)? s⁻²/
+	);
 	// the ticks: the photon sphere and the horizon on either side of the hole's centre
 	await page.getByRole('button', { name: 'Go to the horizon, near side, 38 GM/c²' }).click();
 	await expect(legend).toContainText('on a sphere 38 GM/c² about the camera');
@@ -1200,104 +1230,117 @@ test('the locked safe: the camera at work reads, decides and images, and its err
 	await expect(bench.getByTestId('fit')).toHaveText(/χ² = [\d,]+ for 605 readings/);
 });
 
-test('the sidebar: one docked panel of tabs that collapses to a rail, gives the picture its width, and is remembered', async ({
-	page
-}) => {
-	await page.goto('/demo/locked-safe/?present=readback');
-	await shellReady(page);
-	const canvas = page.locator('canvas').first();
-	await firstFrame(page);
-	const width = async () => (await canvas.boundingBox())!.width;
-	const tab = (name: string) => page.getByRole('tab', { name, exact: true });
-	const panel = page.getByRole('tabpanel');
+test(
+	'the sidebar: one docked panel of tabs that collapses to a rail, gives the picture its width, and is remembered',
+	{
+		tag: '@fresh'
+	},
+	async ({ page }) => {
+		await page.goto('/demo/locked-safe/?present=readback');
+		await shellReady(page);
+		const canvas = page.locator('canvas').first();
+		await firstFrame(page);
+		const width = async () => (await canvas.boundingBox())!.width;
+		const tab = (name: string) => page.getByRole('tab', { name, exact: true });
+		const panel = page.getByRole('tabpanel');
 
-	// it opens on the controls, with the title and the way back in the sidebar and nothing over the picture
-	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
-	await expect(panel.getByRole('button', { name: 'Tidal field', exact: true })).toBeVisible();
-	await expect(page.getByRole('heading', { name: 'The locked safe', level: 1 })).toBeVisible();
-	await expect(page.getByRole('link', { name: 'All demos' })).toHaveAttribute('href', /\/demo\/?$/);
-	await expect(page.locator('.stage').locator('aside, [role="dialog"], nav')).toHaveCount(0);
-	const beside = await width();
-	const side = (await page.locator('aside').boundingBox())!;
-	expect(beside + side.width).toBeCloseTo(page.viewportSize()!.width, 0);
+		// it opens in plain words, with the title and the way back in the sidebar and nothing over the picture
+		await expect(tab('Plain words')).toHaveAttribute('aria-selected', 'true');
+		await expect(panel).toContainText(/\w+/);
+		await tab('Controls').click();
+		await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
+		await expect(panel.getByRole('button', { name: 'Tidal field', exact: true })).toBeVisible();
+		await expect(page.getByRole('heading', { name: 'The locked safe', level: 1 })).toBeVisible();
+		await expect(page.getByRole('link', { name: 'All demos' })).toHaveAttribute(
+			'href',
+			/\/demo\/?$/
+		);
+		await expect(page.locator('.stage').locator('aside, [role="dialog"], nav')).toHaveCount(0);
+		const beside = await width();
+		const side = (await page.locator('aside').boundingBox())!;
+		expect(beside + side.width).toBeCloseTo(page.viewportSize()!.width, 0);
 
-	// the open tab's own icon puts the panel away: the rail stays, and the picture takes the width
-	await tab('Controls').click();
-	await expect(panel).toHaveCount(0);
-	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'false');
-	await expect.poll(width).toBeGreaterThan(beside + 300);
-	const wide = await width();
-	const rail = (await page.locator('aside').boundingBox())!;
-	expect(rail.width).toBeLessThan(80);
-	// the picture is drawn again at its new size
-	const frames = Number(await canvas.getAttribute('data-frames'));
-	await expect
-		.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
-		.toBeGreaterThan(frames);
-	expect(await canvas.evaluate((c: HTMLCanvasElement) => c.width / c.clientWidth)).toBeCloseTo(
-		1,
-		1
-	);
-	// at the new size the divider still answers, where it is drawn, and a still can be saved
-	const divider = page.getByRole('slider', {
-		name: 'Divider between the light view and the gravity view'
-	});
-	const at = (await divider.boundingBox())!;
-	const split = Number(await canvas.getAttribute('data-split'));
-	expect((at.x + at.width / 2) / wide).toBeCloseTo(split, 1);
-	await divider.focus();
-	await page.keyboard.press('ArrowLeft');
-	await expect
-		.poll(async () => Number(await canvas.getAttribute('data-split')), { timeout: 60_000 })
-		.toBeLessThan(split);
-	const still = page.waitForEvent('download');
-	await page.getByRole('button', { name: 'Save a still' }).click();
-	expect((await still).suggestedFilename()).toBe('the-locked-safe.png');
+		// the open tab's own icon puts the panel away: the rail stays, and the picture takes the width
+		await tab('Controls').click();
+		await expect(panel).toHaveCount(0);
+		await expect(tab('Controls')).toHaveAttribute('aria-selected', 'false');
+		await expect.poll(width).toBeGreaterThan(beside + 300);
+		const wide = await width();
+		const rail = (await page.locator('aside').boundingBox())!;
+		expect(rail.width).toBeLessThan(80);
+		// the picture is drawn again at its new size
+		const frames = Number(await canvas.getAttribute('data-frames'));
+		await expect
+			.poll(async () => Number(await canvas.getAttribute('data-frames')), { timeout: 60_000 })
+			.toBeGreaterThan(frames);
+		expect(await canvas.evaluate((c: HTMLCanvasElement) => c.width / c.clientWidth)).toBeCloseTo(
+			1,
+			1
+		);
+		// at the new size the divider still answers, where it is drawn, and a still can be saved
+		const divider = page.getByRole('slider', {
+			name: 'Divider between the light view and the gravity view'
+		});
+		const at = (await divider.boundingBox())!;
+		const split = Number(await canvas.getAttribute('data-split'));
+		expect((at.x + at.width / 2) / wide).toBeCloseTo(split, 1);
+		await divider.focus();
+		await page.keyboard.press('ArrowLeft');
+		await expect
+			.poll(async () => Number(await canvas.getAttribute('data-split')), { timeout: 60_000 })
+			.toBeLessThan(split);
+		const still = page.waitForEvent('download');
+		await page.getByRole('button', { name: 'Save a still' }).click();
+		expect((await still).suggestedFilename()).toBe('the-locked-safe.png');
 
-	// a tab's icon on the rail opens the panel at that tab
-	await tab('Physics').click();
-	await expect(tab('Physics')).toHaveAttribute('aria-selected', 'true');
-	await expect(panel.getByRole('heading', { name: 'The tidal field at the camera' })).toBeVisible();
-	await expect.poll(width).toBeCloseTo(beside, 0);
+		// a tab's icon on the rail opens the panel at that tab
+		await tab('Physics').click();
+		await expect(tab('Physics')).toHaveAttribute('aria-selected', 'true');
+		await expect(
+			panel.getByRole('heading', { name: 'The tidal field at the camera' })
+		).toBeVisible();
+		await expect.poll(width).toBeCloseTo(beside, 0);
 
-	// the tabs are a list of tabs: the arrow keys walk them, and the keys of old still work
-	await tab('Physics').focus();
-	await page.keyboard.press('ArrowDown');
-	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
-	await expect(tab('Controls')).toBeFocused();
-	await page.keyboard.press('ArrowUp');
-	await page.keyboard.press('ArrowUp');
-	await expect(tab('About')).toHaveAttribute('aria-selected', 'true');
-	await expect(panel).toContainText('Two steel safes stand in a room');
-	await page.keyboard.press('c');
-	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
-	await page.keyboard.press('c');
-	await expect(panel).toHaveCount(0);
-	await page.keyboard.press('?');
-	await expect(panel).toContainText('reset the view, save a still');
-	await page.keyboard.press('n');
-	await expect(tab('About')).toHaveAttribute('aria-selected', 'true');
+		// the tabs are a list of tabs: the arrow keys walk them, and the keys of old still work
+		await tab('Physics').focus();
+		await page.keyboard.press('ArrowUp');
+		await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
+		await expect(tab('Controls')).toBeFocused();
+		await page.keyboard.press('ArrowDown');
+		await expect(tab('Physics')).toHaveAttribute('aria-selected', 'true');
+		await page.keyboard.press('Home');
+		await expect(tab('Plain words')).toHaveAttribute('aria-selected', 'true');
+		await expect(panel).toContainText('safe');
+		await page.keyboard.press('c');
+		await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
+		await page.keyboard.press('c');
+		await expect(panel).toHaveCount(0);
+		await page.keyboard.press('?');
+		await expect(panel).toContainText('reset the view, save a still');
+		await page.keyboard.press('n');
+		await expect(tab('Plain words')).toHaveAttribute('aria-selected', 'true');
 
-	// the tab and whether the panel is open are kept, here and in the next demo
-	await tab('Physics').click();
-	await page.reload();
-	await shellReady(page);
-	await expect(tab('Physics')).toHaveAttribute('aria-selected', 'true');
-	await tab('Physics').click();
-	await page.goto('/demo/closed-furnace/?present=readback');
-	await shellReady(page);
-	await expect(panel).toHaveCount(0);
-	await expect.poll(width).toBeCloseTo(wide, 0);
-	await tab('Controls').click();
-	await expect(panel.getByRole('button', { name: 'Tidal field', exact: true })).toBeVisible();
+		// the tab and whether the panel is open are kept, here and in the next demo
+		await tab('Physics').click();
+		await page.reload();
+		await shellReady(page);
+		await expect(tab('Physics')).toHaveAttribute('aria-selected', 'true');
+		await tab('Physics').click();
+		await page.goto('/demo/closed-furnace/?present=readback');
+		await shellReady(page);
+		await expect(panel).toHaveCount(0);
+		await expect.poll(width).toBeCloseTo(wide, 0);
+		await tab('Controls').click();
+		await expect(panel.getByRole('button', { name: 'Tidal field', exact: true })).toBeVisible();
 
-	// "hide the interface" hides the rail too
-	await page.getByRole('button', { name: 'Hide the interface' }).click();
-	await expect(page.locator('aside')).toHaveCount(0);
-	await expect.poll(width).toBe(page.viewportSize()!.width);
-	await page.getByRole('button', { name: /Show the interface/ }).click();
-	await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
-});
+		// "hide the interface" hides the rail too
+		await page.getByRole('button', { name: 'Hide the interface' }).click();
+		await expect(page.locator('aside')).toHaveCount(0);
+		await expect.poll(width).toBe(page.viewportSize()!.width);
+		await page.getByRole('button', { name: /Show the interface/ }).click();
+		await expect(tab('Controls')).toHaveAttribute('aria-selected', 'true');
+	}
+);
 
 test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
@@ -1429,7 +1472,7 @@ test('one exposure, the near field: the reconstruction carries the noise of the 
 test('counts, a thermal room: a lifetime on a square metre counts nothing, and long enough shows the bottles', async ({
 	page
 }) => {
-	const demo = await openDemo(page, '/demo/honey-and-water/', { yaw: 0, pitch: -12 });
+	const demo = await openDemo(page, '/demo/honey-and-water/', { yaw: 14, pitch: -12 });
 	const canvas = page.locator('canvas');
 	await openTab(page, 'Controls');
 	await demo.show(0, () => page.getByLabel('Light', { exact: true }).uncheck());
@@ -1489,8 +1532,11 @@ test('counts, the Sun at midnight: eighty years on a square metre, single gravit
 		.toBe('5');
 	const readings = page.getByRole('region', { name: 'Readings' });
 	// the Sun's core alone sends a square metre about a graviton a second: some 10^9 in a lifetime, in one element
-	await expect(readings.getByText(/^[12]\.\d × 10⁹, in [\d,]+ of [\d,]+ elements$/)).toBeVisible();
-	await openTab(page, 'About');
+	const counted = readings.locator('dt', { hasText: 'Counted in this exposure' }).locator('+ dd');
+	// the count is set in KaTeX: its text, with the spacing taken out, reads "1.2×109,in…" for 1.2 × 10⁹
+	const plainly = async () => ((await counted.textContent()) ?? '').replace(/[\s\u200b]/g, '');
+	await expect.poll(plainly).toMatch(/^[12]\.\d×109,in[\d,]+of[\d,]+elements$/);
+	await openTab(page, 'Physics');
 	await expect(page.getByTestId('counts-verdict')).toContainText('lifetimes');
 });
 
@@ -1566,3 +1612,63 @@ test('paper: arriving at a figure’s hash opens the live figures opened before,
 	expect(top).toBeGreaterThan(0);
 	expect(top).toBeLessThan(200);
 });
+
+test(
+	'paper: the three live figures of what a field keeps, each with its full-screen page and the way back',
+	{
+		tag: '@fresh'
+	},
+	async ({ page }) => {
+		const live: [string, string, string][] = [
+			['fig:passing', 'a-mass-that-passes', 'Try it: move the passing mass'],
+			['fig:hidden-flow', 'a-hidden-flow', 'Try it: move the boundary between the two flows'],
+			['fig:hole-response', 'black-hole-response', 'Try it: choose the tide, move the test']
+		];
+		for (const [id, slug, label] of live) {
+			await page.goto('/paper/');
+			const figure = page.locator(`figure[id="${id}"]`);
+			const summary = figure.locator('details.live > summary');
+			await expect(summary).toContainText(label);
+			await summary.click();
+			const art = figure.locator('details.live > .art');
+			await expect(art.locator('svg').first()).toBeVisible();
+			const full = art.getByRole('link', { name: 'Full screen' });
+			const href = new RegExp(`/figures/${slug}/\\?from=${encodeURIComponent(id)}$`);
+			await expect(full).toHaveAttribute('href', href);
+			await full.scrollIntoViewIfNeeded();
+			await full.click();
+			await expect(page).toHaveURL(href);
+			await expect(page.locator('#shell-tab-plain')).toHaveAttribute('aria-selected', 'true');
+			await expect(page.locator('#shell-panel')).toContainText(/\w{4,}/);
+			const back = page.getByRole('link', { name: 'Back to the paper' });
+			await expect(back).toHaveAttribute('href', new RegExp(`/paper/#${id}$`));
+			await back.click();
+			await expect(page).toHaveURL(new RegExp(`/paper/#${id}$`));
+			await expect(figure).toBeInViewport();
+		}
+	}
+);
+
+test(
+	'every figure and demo page opens on the In plain words tab, with something to read',
+	{
+		tag: '@fresh'
+	},
+	async ({ page }) => {
+		test.setTimeout(240_000);
+		const pages = ['figures', 'demo'].flatMap((section) =>
+			readdirSync(new URL(`../src/routes/${section}`, import.meta.url), { withFileTypes: true })
+				.filter((entry) => entry.isDirectory())
+				.map((entry) => `/${section}/${entry.name}/`)
+		);
+		expect(pages.length).toBeGreaterThan(20);
+		for (const path of pages) {
+			await page.goto(path);
+			const tab = page.locator('#shell-tab-plain');
+			await expect(tab, path).toHaveAttribute('aria-selected', 'true');
+			await expect(tab, path).toHaveAttribute('title', /^In plain words/);
+			const words = (await page.locator('#shell-panel').innerText()).trim();
+			expect(words.split(/\s+/).length, path).toBeGreaterThan(40);
+		}
+	}
+);

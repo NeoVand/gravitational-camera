@@ -2,6 +2,7 @@
 	import { Orbit01Icon, RulerIcon, SignalFull02Icon } from '@hugeicons/core-free-icons';
 	import RangeChart from '../../../ui/RangeChart.svelte';
 	import Slider from '../../../ui/controls/Slider.svelte';
+	import { grouped } from '../../../ui/format';
 	import Frame from './Frame.svelte';
 
 	let logKr = $state(2.5);
@@ -11,7 +12,12 @@
 	const rho = $derived(10 ** logRho);
 </script>
 
-<Frame slug="ranging" aspect={16 / 10.5} vars="--figure-width: min(96cqw, 150cqh)">
+<Frame
+	slug="ranging"
+	aspect={16 / 10.5}
+	vars="--figure-width: min(96cqw, 150cqh)"
+	narrow={{ aspect: 1, vars: '--stage-pad: 1.1rem 0.6rem 0.8rem' }}
+>
 	{#snippet stage()}
 		<RangeChart {kr} {rho} iota={(degrees * Math.PI) / 180} />
 	{/snippet}
@@ -24,7 +30,7 @@
 			max={5.5}
 			step={0.01}
 			bind:value={logKr}
-			readout="kr = {kr < 100 ? kr.toFixed(1) : Math.round(kr)}"
+			readout="kr = {kr < 100 ? kr.toFixed(1) : grouped(kr)}"
 		/>
 		<Slider
 			id="ranging-snr"
@@ -34,7 +40,7 @@
 			max={6}
 			step={0.01}
 			bind:value={logRho}
-			readout="ρ = {rho < 1e4 ? Math.round(rho) : rho.toExponential(0)}"
+			readout="ρ = {grouped(rho)}"
 		/>
 		<Slider
 			id="ranging-inclination"

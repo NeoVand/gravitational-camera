@@ -4,6 +4,7 @@
 	 * (lib/pixel/speedometer.ts): gravity every component, light only the part across its field. A meter shows the
 	 * test for motion, the size of the eigenvalues' imaginary part, on a scale of decades. Drag the pixel to move it.
 	 */
+	import { fitText } from './figure-text';
 	import type { Vec3 } from '../pixel/complex';
 	import type { Thing } from '../pixel/speedometer';
 
@@ -28,7 +29,10 @@
 	const tip: Vec3 = $derived([pixel[0] + light.read[0], pixel[1] + light.read[1], 0]);
 	const decades = $derived(Math.log10(Math.max(alarm, 1e-17)));
 	const lit = $derived(alarm > 1e-12);
-	const meter = (d: number) => -150 + ((d + 17) / 16) * 300;
+	const meter = (d: number) => -150 + ((d + 17) / 17) * 300;
+	/** The size of the drawing's words in its units: the foot of the drawing makes room for the meter's numbers. */
+	let em = $state(12);
+	const foot = $derived(Math.max(250, 236 + 1.4 * em));
 
 	let dragging = false;
 	function down(e: PointerEvent) {
@@ -51,13 +55,14 @@
 
 <div class="frame">
 	<svg
-		viewBox="-330 -250 660 500"
+		viewBox="-330 -250 660 {250 + foot}"
 		role="img"
 		aria-label="A room of masses seen from above, a pixel crossing it, and the velocity it reads"
 		onpointerdown={down}
 		onpointermove={move}
 		onpointerup={() => (dragging = false)}
 		onpointercancel={() => (dragging = false)}
+		{@attach fitText((_, size) => (em = size))}
 	>
 		<defs>
 			{#each [['white', 'var(--text)'], ['g', 'var(--accent)'], ['l', 'var(--c-light)'], ['m', 'var(--bad)']] as [id, c] (id)}
@@ -73,6 +78,10 @@
 					<path d="M0,0L10,5L0,10z" style:fill={c} />
 				</marker>
 			{/each}
+			<!-- what is drawn in the room stays in it, clear of the meter under it -->
+			<clipPath id="sp-room">
+				<rect x={-4.9 * S} y={-3.2 * S} width={9.8 * S} height={6.4 * S} rx="10" />
+			</clipPath>
 		</defs>
 		<rect x={-4.9 * S} y={-3.2 * S} width={9.8 * S} height={6.4 * S} rx="10" class="room" />
 		{#each room as t, i (i)}
@@ -88,11 +97,12 @@
 					class="walk"
 					marker-end="url(#sp-m)"
 				/>
-				<text x={X(t.position) + 22} y={Y(t.position) - 22} class="tag moving">moving</text>
+				<text x={X(t.position) + 22} y={Y(t.position) - 22} class="tag moving halo">moving</text>
 			{/if}
 		{/each}
-		<!-- light cannot see along its field: the whole line is possible -->
+		<!-- light cannot see along its field: the whole line is possible, as far as the walls -->
 		<path
+			clip-path="url(#sp-room)"
 			d="M{X(tip) - light.along[0] * 2 * ARROW},{Y(tip) + light.along[1] * 2 * ARROW}L{X(tip) +
 				light.along[0] * 2 * ARROW},{Y(tip) - light.along[1] * 2 * ARROW}"
 			class="unknown"
@@ -112,22 +122,25 @@
 		/>
 		<!-- the test for motion -->
 		<g transform="translate(0 228)">
-			<text x="-160" y="4" class={['tag', 'end', { moving: lit }]}
+			<text x="-162" y="0" dy="0.35em" class={['tag', 'end', { moving: lit }]}
 				>{lit ? 'something moves' : 'all still'}</text
 			>
 			<line x1="-150" x2="150" class="scale" />
 			{#each [-16, -12, -8, -4, 0] as d (d)}
 				<line x1={meter(d)} x2={meter(d)} y1="-4" y2="4" class="scale" />
-				<text x={meter(d)} y="18" class="tick">10<tspan dy="-5" font-size="8">{d}</tspan></text>
+				<text x={meter(d)} y="8" dy="1em" class="tick"
+					>10<tspan class="sup" dy="-0.5em">{d}</tspan></text
+				>
 			{/each}
-			<line x1={meter(-12)} x2={meter(-12)} y1="-9" y2="9" class="threshold" />
+			<line x1={meter(-12)} x2={meter(-12)} y1="-10" y2="5" class="threshold" />
 			<circle cx={meter(decades)} cy="0" r="6" class={['reading', { moving: lit }]} />
-			<text x="160" y="4" class="tag">motion test</text>
+			<text x="162" y="0" dy="0.35em" class="tag">motion test</text>
 		</g>
 	</svg>
 	<p class="legend">
 		<span class="w">true velocity</span> · <span class="g">read by gravity</span> ·
-		<span class="l">read by light, which cannot see along the dashed line</span>
+		<span class="l">read by light,</span>
+		<span class="l">which cannot see along the dotted line</span>
 	</p>
 </div>
 
@@ -138,7 +151,9 @@
 		inset: 0;
 		display: grid;
 		place-items: center;
-		padding: var(--stage-pad, 4.5rem 1rem 6.5rem);
+		padding: var(--stage-pad, 1.5rem 1.5rem 4rem);
+		/* the size of the words on the screen, as on every figure */
+		--t: 12px;
 		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
 		/* light's colour, beside gravity's (the accent), in either theme */
 		--c-light: #7fb4ff;
@@ -154,11 +169,18 @@
 	:global(:root .always-dark) .frame {
 		--c-light: #7fb4ff;
 	}
+	/* the room as large as the picture allows */
 	svg {
-		width: var(--figure-width, min(62cqw, 120cqh));
-		max-height: 100%;
+		display: block;
+		width: var(--figure-width, min(100cqw, 64rem, calc(100cqh * 660 / 500)));
+		height: auto;
 		touch-action: none;
 		user-select: none;
+	}
+	@container (max-width: 34rem) {
+		svg {
+			--t: 11px;
+		}
 	}
 	.room {
 		fill: color-mix(in srgb, var(--text) 3%, transparent);
@@ -208,16 +230,28 @@
 		stroke: color-mix(in srgb, var(--text) 56%, transparent);
 		stroke-dasharray: 2 2;
 	}
+	/* the meter's mark: the accent while all is still, the theme's red once something moves */
 	.reading {
-		fill: var(--good);
+		fill: var(--accent);
+		stroke: var(--bg-sunken);
+		stroke-width: 1.5;
 	}
 	text {
 		font-family: var(--font-sans);
+		font-size: calc(var(--t) * var(--u, 1));
 		pointer-events: none;
 	}
+	.sup {
+		font-size: 0.85em;
+	}
 	.tag {
-		font-size: 12px;
 		fill: var(--text-dim);
+	}
+	.halo {
+		paint-order: stroke;
+		stroke: var(--bg-sunken);
+		stroke-width: calc(4px * var(--u, 1));
+		stroke-linejoin: round;
 	}
 	.reading.moving,
 	.tag.moving {
@@ -227,24 +261,32 @@
 		text-anchor: end;
 	}
 	.tick {
-		font-size: 10px;
 		fill: var(--text-dim);
 		text-anchor: middle;
 	}
+	/* the caption, as on every figure: a pill at the foot of the picture; on a narrow picture it takes two lines,
+	   breaking only between its parts */
 	.legend {
 		position: absolute;
 		left: 50%;
 		bottom: var(--tag-inset, 14px);
 		translate: -50% 0;
+		width: max-content;
+		max-width: calc(100% - 2rem);
 		margin: 0;
-		padding: 0.4em 0.75em;
-		border-radius: 999px;
-		background: color-mix(in srgb, var(--bg-sunken) 60%, transparent);
+		padding: 0.4em 0.85em;
+		border-radius: 1em;
+		background: color-mix(in srgb, var(--bg-sunken) 72%, transparent);
 		border: 1px solid var(--line-strong);
+		backdrop-filter: blur(6px);
 		color: var(--text-dim);
-		font: 500 0.7rem/1.2 var(--font-sans);
-		white-space: nowrap;
+		font: 500 0.75rem/1.35 var(--font-sans);
+		text-align: center;
+		text-wrap: balance;
 		pointer-events: none;
+	}
+	.legend span {
+		white-space: nowrap;
 	}
 	.w {
 		color: var(--text);

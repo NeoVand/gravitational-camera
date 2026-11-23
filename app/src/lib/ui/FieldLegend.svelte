@@ -22,7 +22,7 @@
 		type Rgb
 	} from '../pixel/field-view';
 	import { fieldLook } from './field-look.svelte';
-	import { tidal } from './format';
+	import { tideText } from './tide-text';
 
 	interface Props {
 		/** Where the points lie: "on a sphere 3.5 m about the camera". */
@@ -141,9 +141,9 @@
 		<p>
 			Strength, the wash’s brightness and cover{fieldLook.strokes
 				? ' and the strokes’ length'
-				: ''}: logarithmic, from {tidal(ends.none)} to {tidal(ends.full)}.
-			{#if median}{median} {tidal(reference)}.{:else}Half the picture is stronger than
-				{tidal(reference)}.{/if}
+				: ''}: logarithmic, from {tideText(ends.none)} to {tideText(ends.full)}.
+			{#if median}{median} {tideText(reference)}.{:else}Half the picture is stronger than
+				{tideText(reference)}.{/if}
 		</p>
 		{@render children?.()}
 		<div class="scale" aria-hidden="true">
@@ -151,7 +151,7 @@
 				<i style:background={row.paint}></i>
 				<span>{row.name}</span>
 			{/each}
-			<div class="ends"><span>{tidal(ends.none)}</span><span>{tidal(ends.full)}</span></div>
+			<div class="ends"><span>{tideText(ends.none)}</span><span>{tideText(ends.full)}</span></div>
 		</div>
 		<p class="fine">
 			The strengths are true; the picture’s lengths and brightness are not to scale. “Tidal field”
@@ -173,7 +173,7 @@
 				Orange where stretch leads, blue where squeeze does.
 			{/if}
 		</span>
-		Strength: {tidal(ends.none)} to {tidal(ends.full)}, logarithmic.
+		Strength: {tideText(ends.none)} to {tideText(ends.full)}, logarithmic.
 	</p>
 	{@render children?.()}
 {/if}
@@ -254,7 +254,8 @@
 	.ends {
 		display: flex;
 		justify-content: space-between;
-		font: 400 0.72rem/1.3 var(--font-mono);
+		font: 400 0.72rem/1.3 var(--font-sans);
+		font-variant-numeric: tabular-nums;
 		color: var(--text-dim);
 	}
 

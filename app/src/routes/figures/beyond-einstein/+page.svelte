@@ -1,12 +1,16 @@
 <script lang="ts">
-	import { DashboardSpeed01Icon, WaveIcon, Add01Icon } from '@hugeicons/core-free-icons';
+	import {
+		Add01Icon,
+		DashboardSpeed01Icon,
+		MinusSignIcon,
+		WaveIcon
+	} from '@hugeicons/core-free-icons';
 	import { AtomIcon, Orbit01Icon, StarIcon, SparklesIcon } from '@hugeicons/core-free-icons';
 	import DemoShell from '#lib/ui/DemoShell.svelte';
 	import BeyondEinstein from '#lib/ui/BeyondEinstein.svelte';
 	import Group from '#lib/ui/controls/Group.svelte';
 	import Segmented from '#lib/ui/controls/Segmented.svelte';
 	import Slider from '#lib/ui/controls/Slider.svelte';
-	import Toggle from '#lib/ui/controls/Toggle.svelte';
 	import Tex from '#lib/ui/Tex.svelte';
 	import type { Vec3 } from '#lib/pixel/complex.js';
 	import {
@@ -130,13 +134,80 @@
 			{/each}
 		</Group>
 		<Group title="The reading">
-			<Toggle
-				icon={Add01Icon}
-				label="A second wave"
-				bind:checked={second}
-				hint="Add a wave from another direction"
+			<Segmented
+				label="Waves in the reading"
+				options={[
+					{ value: 'one', label: 'One wave', icon: MinusSignIcon },
+					{ value: 'two', label: 'A second wave', icon: Add01Icon }
+				]}
+				bind:value={() => (second ? 'two' : 'one'), (v) => (second = v === 'two')}
 			/>
 		</Group>
+	{/snippet}
+
+	{#snippet plain()}
+		<p>
+			A <strong>gravitational wave</strong> is a ripple in gravity. It stretches and squeezes space
+			in a pattern called its <strong>polarization</strong>. Einstein's theory of gravity allows two
+			patterns. <em>Plus</em> stretches space along one line while squeezing it along the line at
+			right angles. <em>Cross</em> does the same, turned by 45 degrees. In Einstein's theory, waves
+			also travel exactly at the speed of light. Other theories of gravity allow up to six patterns,
+			and other speeds. <em>Breathing</em> makes a ring grow and shrink evenly.
+			<em>Longitudinal</em>
+			stretches space along the direction of travel. The two <em>vector</em> patterns slide layers of
+			space along the direction of travel.
+		</p>
+		<p>
+			At the top are two grids of nine squares. The grid marked ℰ is the pixel's reading of the
+			tide, how gravity stretches and squeezes space. The grid marked ℬ is its reading of the twist.
+			Orange squares are positive numbers and blue squares are negative ones. The stronger the
+			colour, the larger the number.
+		</p>
+		<p>
+			Below are six bars, one for each pattern. The outline is the strength set with the controls.
+			The filled bar is the strength worked out from the one reading above. Plus and cross,
+			Einstein's two patterns, are filled in orange. Under the bars, the page gives the <strong
+				>phase speed</strong
+			> that was read, beside the speed that was set. The phase speed is the speed at which the crests
+			of the wave travel. An orange line of words says that five checks pass. A red line says that they
+			fail.
+		</p>
+		<p>
+			For any wave of this kind, in any theory, the two grids are tied together by the geometry of
+			space and time alone. So one reading gives the wave's direction, its speed, and all six
+			patterns. Five numbers are left over, and they must agree. If they do not, the reading was not
+			one wave.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>
+				Choose <em>Massive</em>, a theory in which the particle of gravity has a small mass. A
+				breathing bar and a longitudinal bar appear, and the speed changes. Choose <em>Scalar</em>,
+				a theory with an extra kind of field, and compare the signs of those two bars.
+			</li>
+			<li>
+				Move any polarization slider, or the <em>Phase speed</em> slider. The filled bars follow the outlines.
+			</li>
+			<li>Choose <em>A second wave</em>. The checks fail.</li>
+		</ul>
+		<p>
+			Section VIII of the paper, “One pixel, sparse arrays and depth”, explains this test of
+			Einstein's theory.
+		</p>
+	{/snippet}
+
+	{#snippet help()}
+		<p>
+			Nothing in this drawing is dragged. Everything is set in the Controls tab. <em>Einstein</em>,
+			<em>Massive</em>
+			and <em>Scalar</em> set the wave that each theory predicts. <em>Free</em> lets you set your
+			own. The <em>Phase speed</em> slider sets how fast the crests travel, as a fraction of the
+			speed of light. The six sliders below it set the strength of each pattern: plus, cross, the
+			two vector patterns, breathing and longitudinal. Moving any of them switches to <em>Free</em>.
+			<em>A second wave</em>
+			adds a wave from another direction, and <em>One wave</em> takes it away. Reset returns to Einstein's
+			wave.
+		</p>
 	{/snippet}
 
 	{#snippet notes()}

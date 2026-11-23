@@ -1,8 +1,13 @@
 <script lang="ts">
-	import { Add01Icon, AtomIcon, Orbit01Icon, StarIcon } from '@hugeicons/core-free-icons';
+	import {
+		Add01Icon,
+		AtomIcon,
+		MinusSignIcon,
+		Orbit01Icon,
+		StarIcon
+	} from '@hugeicons/core-free-icons';
 	import BeyondEinstein from '../../../ui/BeyondEinstein.svelte';
 	import Segmented from '../../../ui/controls/Segmented.svelte';
-	import Toggle from '../../../ui/controls/Toggle.svelte';
 	import type { Vec3 } from '../../../pixel/complex';
 	import {
 		invertOneReading,
@@ -41,7 +46,12 @@
 	const read = $derived(invertOneReading(reading.E, reading.B));
 </script>
 
-<Frame slug="beyond-einstein" aspect={16 / 11} vars="--figure-width: min(94cqw, 136cqh)">
+<Frame
+	slug="beyond-einstein"
+	aspect={16 / 11}
+	vars="--figure-width: min(94cqw, 136cqh)"
+	narrow={{ aspect: 5 / 6, vars: '--stage-pad: 1rem 0.6rem 1rem' }}
+>
 	{#snippet stage()}
 		<BeyondEinstein E={reading.E} B={reading.B} set={set.pol} {read} speed={set.speed} />
 	{/snippet}
@@ -55,6 +65,13 @@
 			]}
 			bind:value={theory}
 		/>
-		<Toggle icon={Add01Icon} label="A second wave" bind:checked={second} />
+		<Segmented
+			label="Waves in the reading"
+			options={[
+				{ value: 'one', label: 'One wave', icon: MinusSignIcon },
+				{ value: 'two', label: 'A second wave', icon: Add01Icon }
+			]}
+			bind:value={() => (second ? 'two' : 'one'), (v) => (second = v === 'two')}
+		/>
 	{/snippet}
 </Frame>

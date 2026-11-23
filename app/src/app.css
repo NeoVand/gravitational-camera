@@ -27,8 +27,12 @@
 	--line-strong: rgb(210 221 231 / 0.3);
 	--text: #d2dde7;
 	--text-dim: #a2acb4;
-	--text-faint: #747c82;
+	--text-faint: #848c92;
 	--accent: #e8a45a;
+	/* the accent for small text on the sidebar's darker ground */
+	--accent-ink: #e8a45a;
+	/* a well a shade off the ground it is set in, for a box of readings */
+	--well: rgb(210 221 231 / 0.05);
 	--accent-2: #8fb6dd;
 	--good: #7bd88f;
 	--bad: #ff7b72;
@@ -42,12 +46,14 @@
 	--line: rgb(45 34 24 / 0.13);
 	--line-strong: rgb(45 34 24 / 0.32);
 	--text: #2d2218;
-	--text-dim: #5d5046;
-	--text-faint: #85786c;
+	--text-dim: #54473d;
+	--text-faint: #675a4f;
 	--accent: #9a5212;
+	--accent-ink: #86460d;
+	--well: rgb(255 255 255 / 0.35);
 	--accent-2: #2d5f8e;
-	--good: #1f7a3a;
-	--bad: #b3261e;
+	--good: #17642d;
+	--bad: #a3221b;
 	color-scheme: light;
 }
 
@@ -59,12 +65,14 @@
 		--line: rgb(45 34 24 / 0.13);
 		--line-strong: rgb(45 34 24 / 0.32);
 		--text: #2d2218;
-		--text-dim: #5d5046;
-		--text-faint: #85786c;
+		--text-dim: #54473d;
+		--text-faint: #675a4f;
 		--accent: #9a5212;
+		--accent-ink: #86460d;
+		--well: rgb(255 255 255 / 0.35);
 		--accent-2: #2d5f8e;
-		--good: #1f7a3a;
-		--bad: #b3261e;
+		--good: #17642d;
+		--bad: #a3221b;
 		color-scheme: light;
 	}
 }

@@ -27,6 +27,7 @@
 		type Mat2,
 		type Wave
 	} from '../ring/ring';
+	import { fitText } from './figure-text';
 
 	interface Props {
 		wave: Wave;
@@ -48,6 +49,26 @@
 	const R = 134; // the ring's first radius, in drawing units; a strong wave draws it out to 1.26 of that
 	const ARC = 190; // the radius at which the angle is drawn, clear of the ring at its longest; its arm runs 10 further
 	const PLOT = 80; // the radius of each small panel
+	/** The size of the small panels' words, in their units: the panels make room for them above and below. */
+	let em = $state(12);
+	/** The size of the words of the ring and its strip, in their units (the two are drawn to one scale). */
+	let ringEm = $state(12);
+	/** The top of the ring's drawing, with room for the angle's words over the arc. */
+	const ringTop = $derived(Math.min(-212, -ARC - 6 - 1.15 * ringEm));
+	/** Small panels, as on a phone: their scales are left out, to leave the drawing room. */
+	const cramped = $derived(em > 18);
+	const panel = $derived.by(() => {
+		const edge = PLOT + 18;
+		const top = -edge - 1.9 * em;
+		const scale = edge + 1.25 * em;
+		return {
+			top,
+			title: -edge - 0.75 * em,
+			scale,
+			/** each panel ends under its scale */
+			height: (cramped ? edge + 0.3 * em : scale + 0.55 * em) - top
+		};
+	});
 	const STRIDE = 4; // every fourth sample of the run is drawn in the panels
 	const ROOM = 1.18; // the disc panel shows this much further out than the shape has been
 	const STRIP = { left: -195, right: 195, base: 31, height: 17 };
@@ -278,11 +299,12 @@
 		<div class="main">
 			<svg
 				class="ring"
-				viewBox="-215 -212 430 412"
+				viewBox="-215 {ringTop} 430 {200 - ringTop}"
 				role="img"
 				aria-label="A ring of sixteen particles round a gyroscope. The marks have turned by {degrees(
 					theta
 				)} against it."
+				{@attach fitText((_, size) => (ringEm = size))}
 			>
 				<!-- the ring as it began, with a tick where the marked particle was -->
 				<circle r={R} class="first" />
@@ -333,6 +355,7 @@
 				onpointermove={move}
 				onpointerup={() => (dragging = false)}
 				onpointercancel={() => (dragging = false)}
+				{@attach fitText()}
 			>
 				<!-- time runs on to the end of the view, but the run ends at the focus if the ring comes to one -->
 				<line x1={STRIP.left} x2={finish} y1={STRIP.base} y2={STRIP.base} class="axis" />
@@ -344,18 +367,22 @@
 				<g transform="translate({STRIP.right - (wave.hand === 0 ? 34 : 78)} 9)">
 					<line x1="0" x2="14" y1="-3.5" y2="-3.5" class="trace" />
 					<text x="18" class="legend"
-						><tspan class="symbol">h</tspan><tspan dy="3" font-size="8">+</tspan></text
+						><tspan class="symbol">h</tspan><tspan class="sub" dy="0.3em">+</tspan></text
 					>
 					{#if wave.hand !== 0}
 						<line x1="44" x2="58" y1="-3.5" y2="-3.5" class="trace cross" />
 						<text x="62" class="legend"
-							><tspan class="symbol">h</tspan><tspan dy="3" font-size="8">×</tspan></text
+							><tspan class="symbol">h</tspan><tspan class="sub" dy="0.3em">×</tspan></text
 						>
 					{/if}
 				</g>
 				<text x={STRIP.left} y="68.5" class="tick">0</text>
 				<text x={stripX(1)} y="68.5" class="tick"><tspan class="symbol">T</tspan></text>
-				<text x={STRIP.right} y="68.5" class="tick">{end} <tspan class="symbol">T</tspan></text>
+				{#if !focus || STRIP.right - finish > 4.4 * ringEm}
+					<text x={STRIP.right + 8} y="68.5" class="tick" style:text-anchor="end"
+						>{end} <tspan class="symbol">T</tspan></text
+					>
+				{/if}
 				{#if focus}
 					<line x1={finish} x2={finish} y1={STRIP.base - 9} y2={STRIP.base + 9} class="focus" />
 					<text x={finish} y="58" class="tick">focus</text>
@@ -375,73 +402,86 @@
 		<div class="side">
 			<svg
 				class="panel"
-				viewBox="-120 -122 230 224"
+				viewBox="-120 {panel.top} 230 {panel.height}"
 				role="img"
 				aria-label="The wave’s strain: the path of its two parts in their plane, up to the present moment"
+				{@attach fitText((_, size) => (em = size))}
 			>
-				<text x="-100" y="-106" class="title">The wave’s strain</text>
+				<text x="-100" y={panel.title} class="title">The wave’s strain</text>
 				<line x1={-PLOT - 10} x2={PLOT + 12} y1="0" y2="0" class="axis" />
 				<line x1="0" x2="0" y1={-PLOT - 10} y2={PLOT + 10} class="axis" />
 				<text x={PLOT + 26} y="-6" class="label end"
-					><tspan class="symbol">h</tspan><tspan dy="3" font-size="8.5">+</tspan></text
+					><tspan class="symbol">h</tspan><tspan class="sub" dy="0.3em">+</tspan></text
 				>
 				<text x="7" y={-PLOT - 3} class="label"
-					><tspan class="symbol">h</tspan><tspan dy="3" font-size="8.5">×</tspan></text
+					><tspan class="symbol">h</tspan><tspan class="sub" dy="0.3em">×</tspan></text
 				>
 				<path d={'M' + strain.join('L')} class="whole-path" />
 				<path d={strainSoFar} class="path" />
 				<circle cx={strainNow.x} cy={strainNow.y} r="4" class="here" />
-				<text x="-100" y="96" class="scale">largest strain {(2 * wave.epsilon).toFixed(2)}</text>
+				<text x="-100" y={panel.scale} class={['scale', { cramped }]}
+					>largest strain {(2 * wave.epsilon).toFixed(2)}</text
+				>
 			</svg>
 
-			<svg
-				class="panel"
-				viewBox="-120 -122 230 260"
-				role="img"
-				aria-label="The ring’s shape as a point of the hyperbolic plane, with the area swept from the centre. Half that area is {degrees(
-					swept
-				)}."
-			>
-				<text x="-100" y="-106" class="title">The ring’s shape</text>
-				<circle r={PLOT} class={['rim', { edge: span === 1 }]} />
-				<!-- which way the ring is stretched at each side of the disc: psi is twice the angle of its long axis -->
-				<ellipse cx={PLOT + 11} rx="6.5" ry="3.6" class="key" />
-				<ellipse
-					cy={-PLOT - 11}
-					rx="6.5"
-					ry="3.6"
-					class="key"
-					transform="rotate(-45 0 {-PLOT - 11})"
-				/>
-				<ellipse cx={-PLOT - 11} rx="3.6" ry="6.5" class="key" />
-				<ellipse
-					cy={PLOT + 11}
-					rx="6.5"
-					ry="3.6"
-					class="key"
-					transform="rotate(45 0 {PLOT + 11})"
-				/>
-				<g transform="scale({zoom})">
-					{#each sweeps as sweep (sweep.turn)}
-						<path d={sweep.d} class="swept" />
-					{/each}
-					<path d={shapeSoFar} class="path shape" />
-					<line x1="0" y1="0" x2={shapeNow.x} y2={shapeNow.y} class="radius" />
-				</g>
-				<circle r="3" class="key" />
-				<circle cx={zoom * shapeNow.x} cy={zoom * shapeNow.y} r="4" class="here shape" />
-				<text x="-100" y="96" class="scale">
-					{#if Number.isFinite(shown)}
-						out to <tspan class="symbol">r</tspan> = {shown.toPrecision(2)}
-					{:else}
-						the whole disc
-					{/if}
-				</text>
-				<text x="-100" y="114" class="label">turn of the marks</text>
-				<text x="100" y="114" class="number end" data-testid="disc-turn">{degrees(theta)}</text>
-				<text x="-100" y="130" class="label">half the area swept</text>
-				<text x="100" y="130" class="number end" data-testid="disc-area">{degrees(swept)}</text>
-			</svg>
+			<div class="disc">
+				<svg
+					class="panel"
+					viewBox="-120 {panel.top} 230 {panel.height}"
+					role="img"
+					aria-label="The ring’s shape as a point of the hyperbolic plane, with the area swept from the centre. Half that area is {degrees(
+						swept
+					)}."
+					{@attach fitText()}
+				>
+					<text x="-100" y={panel.title} class="title">The ring’s shape</text>
+					<circle r={PLOT} class={['rim', { edge: span === 1 }]} />
+					<!-- which way the ring is stretched at each side of the disc: psi is twice the angle of its long axis -->
+					<ellipse cx={PLOT + 11} rx="6.5" ry="3.6" class="key" />
+					<ellipse
+						cy={-PLOT - 11}
+						rx="6.5"
+						ry="3.6"
+						class="key"
+						transform="rotate(-45 0 {-PLOT - 11})"
+					/>
+					<ellipse cx={-PLOT - 11} rx="3.6" ry="6.5" class="key" />
+					<ellipse
+						cy={PLOT + 11}
+						rx="6.5"
+						ry="3.6"
+						class="key"
+						transform="rotate(45 0 {PLOT + 11})"
+					/>
+					<g transform="scale({zoom})">
+						{#each sweeps as sweep (sweep.turn)}
+							<path d={sweep.d} class="swept" />
+						{/each}
+						<path d={shapeSoFar} class="path shape" />
+						<line x1="0" y1="0" x2={shapeNow.x} y2={shapeNow.y} class="radius" />
+					</g>
+					<circle r="3" class="key" />
+					<circle cx={zoom * shapeNow.x} cy={zoom * shapeNow.y} r="4" class="here shape" />
+					<text x="-100" y={panel.scale} class={['scale', { cramped }]}>
+						{#if Number.isFinite(shown)}
+							out to <tspan class="symbol">r</tspan> = {shown.toPrecision(2)}
+						{:else}
+							the whole disc
+						{/if}
+					</text>
+				</svg>
+				<!-- the two numbers under the disc, worked out separately: the turn, and half the area swept -->
+				<dl class="agree">
+					<div>
+						<dt>turn of the marks</dt>
+						<dd data-testid="disc-turn">{degrees(theta)}</dd>
+					</div>
+					<div>
+						<dt>half the area swept</dt>
+						<dd data-testid="disc-area">{degrees(swept)}</dd>
+					</div>
+				</dl>
+			</div>
 		</div>
 	</div>
 
@@ -461,8 +501,9 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 0.7rem;
-		padding: var(--stage-pad, 2.5rem 1.25rem 3.4rem);
+		padding: var(--stage-pad, 2rem 1.5rem 3.6rem);
+		/* the size of the words on the screen, as on every figure */
+		--t: 12px;
 		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
 		color: var(--text);
 		font-family: var(--font-sans);
@@ -472,7 +513,9 @@
 	.figure {
 		display: flex;
 		flex: none;
-		width: var(--figure-width, min(100cqw, 136cqh - 3.4rem));
+		/* as wide as the frame allows, or as its height allows for the ring and its strip (484 units in 660), or the
+		   two panels beside them, which grow with their words (--tall) */
+		width: var(--figure-width, min(100cqw, 72rem, calc((100cqh - 3rem) * 660 / 484)));
 	}
 	.main {
 		flex: 430 1 0;
@@ -487,16 +530,63 @@
 	@container (aspect-ratio < 0.86) {
 		.figure {
 			display: block;
-			width: var(--figure-width, min(100cqw, 59cqh - 1.5rem));
+			/* the ring and strip, 484 units in 430, over the two panels, each half the width */
+			width: var(--figure-width, min(100cqw, calc((100cqh - 3rem) / 1.75)));
 		}
 		.side {
 			display: flex;
 			align-items: flex-start;
 		}
-		.panel {
+		.panel,
+		.disc {
 			flex: 1 1 0;
 			min-width: 0;
 		}
+	}
+
+	/* a small picture, as on a phone with its controls open: the ring and its strip alone, the panels left for a
+	   larger view */
+	@container (max-width: 34rem) and (max-height: 28rem) {
+		.figure {
+			width: var(--figure-width, min(100cqw, calc((100cqh - 3rem) * 430 / 484)));
+		}
+		.side {
+			display: none;
+		}
+	}
+
+	/* the two numbers under the disc: a name and its number on a line, the number under its name if they do not fit */
+	.agree {
+		display: grid;
+		gap: 0.15rem;
+		margin: 0.2rem 0 0;
+		padding-left: calc(100% * 20 / 230);
+		padding-right: calc(100% * 10 / 230);
+		font-size: 0.75rem;
+		line-height: 1.35;
+		font-variant-numeric: tabular-nums;
+	}
+	.agree div {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		column-gap: 0.6rem;
+	}
+	.agree dt {
+		color: var(--text-dim);
+	}
+	.agree dd {
+		margin: 0;
+		color: var(--accent);
+		font-weight: 500;
+	}
+	@container (max-width: 34rem) {
+		.agree {
+			font-size: 0.6875rem;
+		}
+	}
+	.scale.cramped {
+		display: none;
 	}
 
 	svg {
@@ -504,6 +594,11 @@
 		width: 100%;
 		height: auto;
 		user-select: none;
+	}
+	@container (max-width: 34rem) {
+		svg {
+			--t: 11px;
+		}
 	}
 	.strip.live {
 		cursor: ew-resize;
@@ -642,73 +737,71 @@
 	}
 
 	/* the words */
+	/* the words: one size on the screen, as on every figure, whatever the size of the drawing */
 	text {
 		font-family: var(--font-sans);
-		font-size: 11.5px;
+		font-size: calc(var(--t) * var(--u, 1));
+		font-variant-numeric: tabular-nums;
 		fill: var(--text-dim);
 	}
 	.symbol {
 		font-style: italic;
 	}
+	.sub {
+		font-size: 0.85em;
+	}
 	.end {
 		text-anchor: end;
 	}
 	.note {
-		font-size: 12.5px;
 		transition: opacity 0.25s;
 	}
 	.note.away {
 		opacity: 0;
 	}
 	.angle {
-		font-size: 14.5px;
-		font-weight: 500;
+		font-size: calc((var(--t) + 1px) * var(--u, 1));
+		font-weight: 600;
 		fill: var(--accent);
 	}
 	.aside {
-		font-size: 11.5px;
+		font-size: calc(var(--t) * var(--u, 1));
 		font-weight: 400;
 		fill: var(--text-dim);
 	}
 	.tick {
-		font-size: 10.5px;
-		fill: var(--text-faint);
 		text-anchor: middle;
 	}
-	.legend {
-		font-size: 10.5px;
-	}
 	.title {
-		font-size: 13px;
+		font-size: calc((var(--t) + 1px) * var(--u, 1));
 		font-weight: 600;
 		fill: var(--text);
 	}
-	.label {
-		font-size: 11.5px;
-	}
-	.scale {
-		font-size: 10.5px;
-		fill: var(--text-faint);
-	}
-	.number {
-		font-family: var(--font-mono);
-		font-size: 11.5px;
-		fill: var(--accent);
-	}
 
-	/* the line under the drawing: the moment, and whether the turning is drawn larger than it is */
+	/* the caption, as on every figure: a pill at the foot of the picture, with the moment, and whether the turning
+	   is drawn larger than it is */
 	.tag {
-		flex: none;
-		max-width: 100%;
+		position: absolute;
+		left: 50%;
+		bottom: var(--tag-inset, 14px);
+		translate: -50% 0;
+		width: max-content;
+		max-width: calc(100% - 2rem);
 		margin: 0;
-		padding: 0.4em 0.75em;
-		border-radius: 999px;
-		background: color-mix(in srgb, var(--bg-sunken) 60%, transparent);
+		padding: 0.4em 0.85em;
+		border-radius: 1em;
+		background: color-mix(in srgb, var(--bg-sunken) 72%, transparent);
 		border: 1px solid var(--line-strong);
+		backdrop-filter: blur(6px);
 		color: var(--text-dim);
-		font: 500 0.7rem/1.2 var(--font-sans);
+		font: 500 0.75rem/1.35 var(--font-sans);
 		font-variant-numeric: tabular-nums;
 		text-align: center;
+		text-wrap: balance;
+		pointer-events: none;
+	}
+	.tag span {
+		white-space: nowrap;
 	}
 	.tag span + span::before {
 		content: '·';

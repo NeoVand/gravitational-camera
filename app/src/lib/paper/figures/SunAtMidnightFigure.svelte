@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import { objectsAt, scene, sunDirection } from '../../demos/sun-at-midnight';
 	import type { View } from '../../engine';
 	import SplitView from '../../ui/SplitView.svelte';
+	import Frame from './interactive/Frame.svelte';
 
 	let { poster }: { poster?: string } = $props();
 
@@ -13,36 +13,21 @@
 	const sun = sunDirection(0);
 </script>
 
-<div class="live">
-	<SplitView
-		{objects}
-		observer={scene.observer.position}
-		sunDirection={sun}
-		bind:view
-		bind:divider
-		embedded
-		{poster}
-	/>
-</div>
-<p class="hint">
-	Live figure: drag to look around, or drag the divider. <a
-		href={resolve(
-			`/demo/sun-at-midnight/?from=${encodeURIComponent('fig:sun-at-midnight')}` as '/demo/sun-at-midnight'
-		)}>Open the full demo</a
-	> to change the time of day.
-</p>
-
-<style>
-	.live {
-		aspect-ratio: 16 / 9;
-		border: 1px solid var(--line);
-		border-radius: 12px;
-		overflow: hidden;
-	}
-
-	.hint {
-		margin: 0.5rem 0 0;
-		font: 400 0.76rem/1.4 var(--font-sans);
-		color: var(--text-faint);
-	}
-</style>
+<Frame
+	slug="sun-at-midnight"
+	section="demo"
+	aspect={16 / 9}
+	hint="Drag to look around, or drag the divider."
+>
+	{#snippet stage()}
+		<SplitView
+			{objects}
+			observer={scene.observer.position}
+			sunDirection={sun}
+			bind:view
+			bind:divider
+			embedded
+			{poster}
+		/>
+	{/snippet}
+</Frame>

@@ -114,23 +114,23 @@
 <RoomDemo
 	{scene}
 	subjectDistance={4}
-	startDivider={0.18}
 	subtract
 	look={{ yaw: 0, pitch: -6 }}
 	subject={{ id: 'ball-mass', name: 'the ball' }}
+	caption="light slowed to {c.toFixed(1)} m/s"
 >
 	{#snippet extraControls()}
 		<Group title="The ball">
 			<Slider
 				id="beta"
-				label="Light slowed to"
+				label="Ball against light"
 				icon={DashboardSpeed01Icon}
 				min={0.15}
 				max={0.9}
 				step={0.01}
 				bind:value={() => beta, setBeta}
-				readout="{c.toFixed(1)} m/s: the ball at {beta.toFixed(2)} c"
-				ends={['nearly normal', 'barely faster']}
+				readout="{beta.toFixed(2)} c · light at {c.toFixed(1)} m/s"
+				ends={['light much faster', 'light barely faster']}
 			/>
 			<Segmented
 				label="Stop or go"
@@ -141,9 +141,6 @@
 				bind:value={() => (stop === undefined ? 'moving' : 'stopped'), setPhase}
 			/>
 		</Group>
-	{/snippet}
-	{#snippet extraOverlay()}
-		<p class="slow">light slowed to {c.toFixed(1)} m/s</p>
 	{/snippet}
 	{#snippet intro()}
 		<p>
@@ -176,21 +173,64 @@
 			well, to second order (the paper, Section VIII).
 		</p>
 	{/snippet}
+	{#snippet plain()}
+		<p>
+			A bronze ball flies across a room from left to right, 3.6 metres from the camera. In this view
+			light has been slowed down to a few metres a second, so that the ball moves at a good fraction
+			of light's speed. The label at the foot of the picture gives the slowed speed.
+		</p>
+		<p>
+			The picture is split by a vertical line. To the left, marked <em>Light</em>, is what an
+			ordinary camera sees. Light takes time to travel from the ball to the camera. So the camera
+			sees the ball where it was when that light set out, which is behind its true place. To the
+			right, marked <em>Gravity · near field</em>, is what an imagined
+			<strong>gravitational camera</strong> would show. Each pixel of this camera measures how the pull
+			of gravity changes from one point to the next. The glow is the ball's mass. The faint outline is
+			where light shows the ball. The pull of the empty room has been taken away, so that only the ball
+			and a marble plinth show.
+		</p>
+		<p>
+			The glow is ahead of the outline. The field of a body that moves steadily is its field at
+			rest, carried along with it. So it points at where the ball is now, however slow light is.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>Drag the dividing line to the right, and compare the two halves.</li>
+			<li>
+				Move the <em>Ball against light</em> slider. It sets the ball's speed as a fraction of the speed
+				of light. Its readout gives that fraction and the speed of light in metres a second. The faster
+				the ball goes compared with light, the farther behind the light picture falls.
+			</li>
+			<li>
+				Press <em>Stop it</em>. Neither half of the picture shows the stop at once. Light goes on
+				showing the ball flying until light from the stop arrives. The glow goes on moving, to where
+				the ball would have been. It stops only when news of the stop reaches the camera. That news
+				travels at the speed of light, as a ripple in gravity. Then both halves agree. Press
+				<em>Flying</em> to start again.
+			</li>
+		</ul>
+		<p>
+			In the same way, the gravity of the Sun points to where the Sun is now. Section VIII of the
+			paper, “One pixel, sparse arrays and depth”, finds that the Sun seen in gravity lies 20.5
+			arcseconds ahead of the Sun seen in light. An arcsecond is a 3600th of a degree.
+		</p>
+	{/snippet}
+	{#snippet help()}
+		<p>
+			Drag the picture to look around, and scroll to zoom. Drag the vertical dividing line to show
+			more light or more gravity.
+		</p>
+		<p>
+			In the Controls tab, the <em>Ball against light</em> slider sets how fast the ball goes
+			compared with light, and so how slow light is in this view. <em>Stop it</em> stops the ball,
+			and <em>Flying</em> sends it across again. <em>Image</em> shows the gravity picture,
+			<em>Tidal field</em>
+			shows how gravity stretches and squeezes space at points around the camera, and
+			<em>One exposure</em>
+			adds the noise of one set of readings. <em>Sensitivity</em> sets how far the signal stands
+			above the noise, and <em>Exposure</em> brightens the gravity side. The <em>Layers</em>
+			switches show or hide each part; <em>Outline</em> shows where light sees the ball. Reset puts the
+			view back.
+		</p>
+	{/snippet}
 </RoomDemo>
-
-<style>
-	.slow {
-		position: absolute;
-		left: 50%;
-		top: 1rem;
-		translate: -50% 0;
-		margin: 0;
-		padding: 0.35em 0.8em;
-		border-radius: 999px;
-		background: rgb(24 18 11 / 0.65);
-		border: 1px solid rgb(255 255 255 / 0.18);
-		color: rgb(255 255 255 / 0.85);
-		font: 500 0.72rem/1.2 var(--font-sans);
-		pointer-events: none;
-	}
-</style>

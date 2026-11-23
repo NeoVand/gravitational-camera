@@ -4,7 +4,7 @@
 	 * the visitor can drag. Dragging the picture looks around; the wheel zooms.
 	 */
 	import type { Snippet } from 'svelte';
-	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
+	import type { IconSvgElement } from '@hugeicons/svelte';
 	import {
 		Camera01Icon,
 		Layers01Icon,
@@ -16,6 +16,7 @@
 	import { massPoints, sliceReference } from '../engine/tidal';
 	import { lookUniforms } from '../pixel/field-view';
 	import { fieldLook } from './field-look.svelte';
+	import SideTag from './SideTag.svelte';
 	import { G } from '../engine/physics/constants';
 	import {
 		Engine,
@@ -84,6 +85,11 @@
 		embedded?: boolean;
 		leftLabel?: string;
 		rightLabel?: string;
+		/**
+		 * A few words about the whole picture, such as that light has been slowed down: a pill centred at its foot,
+		 * above the names of the two sides.
+		 */
+		caption?: string;
 		/** Still image shown until the engine draws, and if it cannot start. */
 		poster?: string;
 		/**
@@ -130,6 +136,7 @@
 		embedded = false,
 		leftLabel = 'Light',
 		rightLabel = 'Gravity · thermal',
+		caption,
 		poster,
 		image,
 		noise,
@@ -422,27 +429,24 @@
 			</div>
 		{/if}
 		{#if showLight && split > 0.12}
-			<span
-				class="tag left"
-				style:right="calc({(1 - split) * 100}% + 14px)"
-				style:max-width="calc({split * 100}% - 28px)"
-			>
-				<HugeiconsIcon icon={MODE_ICONS[leftMode]} size={13} strokeWidth={2} /><span class="text"
-					>{leftLabel}</span
-				>
-			</span>
+			<SideTag
+				icon={MODE_ICONS[leftMode]}
+				label={leftLabel}
+				side="left"
+				{split}
+				width={frameWidth}
+			/>
 		{/if}
 		{#if showGravity && split < 0.88}
-			<span
-				class="tag right"
-				style:left="calc({split * 100}% + 14px)"
-				style:max-width="calc({(1 - split) * 100}% - 28px)"
-			>
-				<HugeiconsIcon icon={MODE_ICONS[rightMode]} size={13} strokeWidth={2} /><span class="text"
-					>{rightLabel}</span
-				>
-			</span>
+			<SideTag
+				icon={MODE_ICONS[rightMode]}
+				label={rightLabel}
+				side="right"
+				{split}
+				width={frameWidth}
+			/>
 		{/if}
+		{#if caption}<p class="caption">{caption}</p>{/if}
 		{#if showLight && showGravity}
 			<div
 				class={['divider', { seamless }]}
@@ -522,33 +526,24 @@
 		background: rgb(4 6 10 / 0.62);
 	}
 
-	/* The labels sit at the foot of the picture, clear of page headers; a page
-	   with controls along the bottom raises them with --tag-inset. */
-	.tag {
+	/* above the names of the two sides, centred on the whole picture, as the figures' captions are */
+	.caption {
 		position: absolute;
-		bottom: var(--tag-inset, 14px);
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45em;
-		font: italic 400 0.92rem/1 var(--font-serif);
-		color: rgb(255 255 255 / 0.82);
-		background: rgb(33 25 16 / 0.6);
-		border: 1px solid rgb(255 255 255 / 0.14);
-		padding: 0.45em 0.7em;
+		left: 50%;
+		bottom: calc(var(--tag-inset, 14px) + 2.6rem);
+		translate: -50% 0;
+		max-width: calc(100% - 28px);
+		margin: 0;
+		padding: 0.4em 0.75em;
 		border-radius: 999px;
-		backdrop-filter: blur(6px);
+		background: rgb(24 18 11 / 0.65);
+		border: 1px solid rgb(255 255 255 / 0.18);
+		color: rgb(255 255 255 / 0.85);
+		font: 500 0.72rem/1.2 var(--font-sans);
+		text-align: center;
 		pointer-events: none;
-		white-space: nowrap;
-	}
-
-	.tag .text {
-		min-width: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	.tag :global(svg) {
-		flex: none;
+		/* over the divider's line, which would otherwise cross it */
+		z-index: 1;
 	}
 
 	.divider {

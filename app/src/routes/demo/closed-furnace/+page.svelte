@@ -37,7 +37,7 @@
 	/>
 </svelte:head>
 
-<RoomDemo {scene} subjectDistance={3.5} startDivider={0.42} gravity="thermal">
+<RoomDemo {scene} subjectDistance={3.5} gravity="thermal">
 	{#snippet intro()}
 		<p>
 			Two closed steel furnaces hold the same block of iron. In the right-hand one the iron is at
@@ -48,8 +48,9 @@
 			In <strong>thermal gravitational radiation</strong> both blocks show through the steel, and
 			the hot one far outshines the cold. Along a line of sight through the middle of each block it
 			is {hotOverCold(true)} times the brighter, or {hotOverCold(false)} times with the glow of the floor
-			behind counted. Matter is transparent to its own gravitational glow, so the camera reads the temperature
-			inside, not the temperature of the skin.
+			behind counted; the paper’s “about sixteen times as bright” is the second, with the floor. Matter
+			is transparent to its own gravitational glow, so the camera reads the temperature inside, not the
+			temperature of the skin.
 		</p>
 		<p>
 			Every solid thing at room temperature glows faintly too. The bright line along the foot of the
@@ -62,6 +63,68 @@
 			{perVolume.toFixed(0)} times the cold block’s gravitons, not the {cube.toFixed(0)} that equal friction
 			would give. Silica glass stands for concrete and plaster. Air is given no friction, so the air inside
 			each furnace adds nothing.
+		</p>
+	{/snippet}
+	{#snippet plain()}
+		<p>
+			Two closed steel furnaces stand 3.5 metres from the camera. Each holds the same block of iron.
+			The block in the right-hand furnace is at 1500 kelvin. The block in the left-hand furnace is
+			at room temperature. The picture is split by a vertical line. To the left, marked <em
+				>Light</em
+			>, the two furnaces look the same. To the right, marked <em>Gravity · thermal</em>, is what an
+			imagined <strong>gravitational camera</strong> would show.
+		</p>
+		<p>
+			This camera collects <strong>gravitational waves</strong>, which are ripples in gravity that
+			travel at the speed of light. Every warm object sends out a very weak glow of these waves,
+			made by the jiggling of its atoms. This is the <strong>thermal glow</strong>. Almost nothing
+			absorbs it, so steel walls do not block it. Each point of the picture adds up the glow of
+			everything along its line of sight, like an X-ray in which things shine by their own heat.
+			Brightness shows how much glow arrives. Colour shows the temperature of what sent it. Matter
+			at room temperature is a dark red, and the hot iron is a bright orange-red.
+		</p>
+		<p>
+			Along a line of sight through the middle of each block, the hot one is about 22 times brighter
+			than the cold one. Counting the glow of the floor behind it, it is about 16 times brighter.
+		</p>
+		<p>Try these first.</p>
+		<ul>
+			<li>Drag the dividing line to the left, so that the gravity side covers both furnaces.</li>
+			<li>
+				Look at the foot of the far wall. The bright line there is the floor itself, seen at a
+				slant. A line of sight along the floor crosses much more concrete than one that points down.
+			</li>
+			<li>
+				Open the Controls tab and turn off the <em>Room</em> switch. The glow of the floor and walls is
+				taken away, and only the furnaces remain.
+			</li>
+			<li>
+				Under View, choose <em>Counts</em>, then press <em>Long enough</em>. This shows the picture
+				as a real detector would build it, one <strong>graviton</strong> at a time. A graviton is the
+				smallest packet of gravitational-wave energy.
+			</li>
+		</ul>
+		<p>
+			The camera reads the temperature inside a body, not the temperature of its skin. The glow also
+			depends on the material's internal friction, which is how strongly the material resists having
+			its layers slid past one another. So the camera can read a temperature only if it knows the
+			material. Section VI of the paper, “The thermal glow”, describes these two furnaces.
+		</p>
+	{/snippet}
+	{#snippet help()}
+		<p>
+			Drag the picture to look around, and scroll to zoom. Drag the vertical dividing line to show
+			more light or more gravity.
+		</p>
+		<p>
+			In the Controls tab, <em>Image</em> shows the expected glow, <em>Tidal field</em> shows how
+			gravity stretches and squeezes space at points around the camera, and <em>Counts</em> shows
+			the gravitons that one exposure would collect. Under <em>Counts</em>, the sliders set the
+			detector's area, the exposure time and the number of picture elements. <em>New exposure</em>
+			draws the counts again, and <em>Long enough</em> sets a time that makes the picture clear.
+			<em>Exposure</em>
+			brightens or darkens the gravity side. The <em>Layers</em> switches show or hide each part.
+			<em>Room</em> adds or removes the glow of the floor and walls.
 		</p>
 	{/snippet}
 </RoomDemo>

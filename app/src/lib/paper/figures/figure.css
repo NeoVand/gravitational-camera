@@ -24,13 +24,21 @@
 	font-size: 14px;
 }
 
-.gfig text.strong {
-	fill: var(--text);
-	font-weight: 600;
+/* The labels in the drawing are set as the paper's own figures are, in the
+   Computer Modern of LaTeX (KaTeX's, which the paper page loads for its
+   equations); the controls under it keep the site's sans. A title in the
+   drawing is told by its ink, not its weight, as in the printed figures. */
+.gfig > svg text {
+	font-family: KaTeX_Main, var(--font-serif);
+	font-size: 15px;
 }
 
-.gfig text.small {
-	font-size: 12px;
+.gfig > svg text.strong {
+	fill: var(--text);
+}
+
+.gfig > svg text.small {
+	font-size: 13px;
 }
 
 .gfig text.faint {
@@ -100,4 +108,10 @@
 
 .gfig .verdict {
 	font-weight: 600;
+}
+
+/* a variable in a label, in the math italic of the paper's equations */
+.gfig > svg .math {
+	font-family: KaTeX_Math, var(--font-serif);
+	font-style: italic;
 }

@@ -6,7 +6,7 @@
 	 */
 	import { ENOUGH, LIFETIME, UNIVERSE, YEAR, type CountPicture } from '../measure/counts';
 	import type { CountExposure } from '../measure/exposure.svelte';
-	import { area, duration, texSci, times } from './format';
+	import { area, duration, texSci } from './format';
 	import Tex from './Tex.svelte';
 
 	interface Props {
@@ -18,13 +18,16 @@
 
 	let { picture, exposure, elements }: Props = $props();
 
-	/** A count, whole: "0", "37", "1,204", or past a million "2.4 × 10⁹". */
-	const whole = (n: number) => (n < 1e6 ? Math.round(n).toLocaleString('en-US') : times(n));
 	/** Square-metre-years for the picture, and how long they take on a square metre and on a square kilometre. */
 	const neededYears = $derived(picture.needed / YEAR);
 	const onMetre = $derived(picture.needed);
 	const onKilometre = $derived(picture.needed / 1e6);
 </script>
+
+<!-- a count, whole: "0", "37", "1,204", or past a million in powers of ten -->
+{#snippet whole(n: number)}
+	{#if n < 1e6}{Math.round(n).toLocaleString('en-US')}{:else}<Tex math={texSci(n, 1)} />{/if}
+{/snippet}
 
 <dl>
 	<div>
@@ -39,9 +42,9 @@
 		<div>
 			<dt>Counted in this exposure</dt>
 			<dd>
-				{whole(picture.counted)}{#if picture.counted > 0}, in {whole(picture.lit ?? 0)} of {elements.toLocaleString(
-						'en-US'
-					)} elements{/if}
+				{@render whole(picture.counted)}{#if picture.counted > 0}, in {@render whole(
+						picture.lit ?? 0
+					)} of {elements.toLocaleString('en-US')} elements{/if}
 			</dd>
 		</div>
 	{/if}

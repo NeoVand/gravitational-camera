@@ -1,3 +1,10 @@
+<script module lang="ts">
+	import type { Vec3 } from '../pixel/complex';
+
+	/** Where the camera stands in the scene, below the body's track. */
+	export const CAMERA: Vec3 = [0, -2.7, 0];
+</script>
+
 <script lang="ts">
 	/**
 	 * A body crossing a scene with light slowed down (labelled so): the stretch axis of the tidal field at points
@@ -5,7 +12,6 @@
 	 * and whose gravitational pixel points at where it is. After a stop, the ring of news spreads at the speed of
 	 * light (lib/pixel/present.ts).
 	 */
-	import type { Vec3 } from '../pixel/complex';
 	import {
 		extrapolated,
 		informed,
@@ -23,7 +29,6 @@
 
 	let { crossing, t }: Props = $props();
 
-	const CAMERA: Vec3 = [0, -2.7, 0];
 	const SPAN = { x: 6.6, y: 3.6 };
 
 	/** The colours of the drawing, from the theme: the ground, gravity's and light's colours, and the ink. */
@@ -200,7 +205,7 @@
 		y: number,
 		colour: string
 	) {
-		ctx.font = '500 13px Inter Variable, system-ui, sans-serif';
+		ctx.font = '500 12px Inter Variable, system-ui, sans-serif';
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 		ctx.fillStyle = colour;
@@ -242,19 +247,25 @@
 		width: 100%;
 		height: 100%;
 	}
+	/* the caption, as on every figure: a pill at the foot of the picture */
 	.tag {
 		position: absolute;
 		left: 50%;
 		bottom: var(--tag-inset, 14px);
 		translate: -50% 0;
+		width: max-content;
+		max-width: calc(100% - 2rem);
 		margin: 0;
-		padding: 0.4em 0.75em;
-		border-radius: 999px;
-		background: color-mix(in srgb, var(--bg-sunken) 60%, transparent);
+		padding: 0.4em 0.85em;
+		border-radius: 1em;
+		background: color-mix(in srgb, var(--bg-sunken) 72%, transparent);
 		border: 1px solid var(--line-strong);
+		backdrop-filter: blur(6px);
 		color: var(--text-dim);
-		font: 500 0.7rem/1.2 var(--font-sans);
-		white-space: nowrap;
+		font: 500 0.75rem/1.35 var(--font-sans);
+		font-variant-numeric: tabular-nums;
+		text-align: center;
+		text-wrap: balance;
 		pointer-events: none;
 	}
 </style>

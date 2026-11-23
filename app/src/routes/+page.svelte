@@ -18,9 +18,11 @@
 		GeologyCrustIcon,
 		GithubIcon,
 		MirrorIcon,
+		Moon02Icon,
 		PlayCircleIcon,
 		Rotate01Icon,
 		SafeIcon,
+		Sun03Icon,
 		TemperatureIcon,
 		WeightScale01Icon,
 		WorkoutRunIcon
@@ -59,6 +61,22 @@
 
 	function release() {
 		dragging = false;
+	}
+
+	/** The site's theme switch, as in the header of every other page. This page is drawn the same in both
+	 * themes (it is both sides of the seam); the choice carries to the pages it leads to. */
+	function toggleTheme() {
+		const root = document.documentElement;
+		const now =
+			root.dataset.theme ??
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		const next = now === 'light' ? 'dark' : 'light';
+		root.dataset.theme = next;
+		try {
+			localStorage.setItem('theme', next);
+		} catch {
+			/* storage unavailable: the choice lasts for this page only */
+		}
 	}
 
 	/** The scenes, rooms first; from `skyFrom` on, the sky. */
@@ -156,28 +174,36 @@
 		<span class="grip" style:top="{gripAt}px"></span>
 	</div>
 
+	<!-- the site's header, item for item as on every other page (SiteHeader), drawn in this page's ink -->
 	<header class="ink top">
+		<a class="brand" href={resolve('/')}>
+			<HugeiconsIcon icon={GeologyCrustIcon} size={22} strokeWidth={1.5} />
+			<span>Gravitational Camera</span>
+		</a>
 		<nav aria-label="Site">
-			<a class="brand" href={resolve('/')} aria-label="Gravitational Camera, home">
-				<HugeiconsIcon icon={GeologyCrustIcon} size={22} strokeWidth={1.5} />
+			<a href={resolve('/paper')}>
+				<HugeiconsIcon icon={BookOpen01Icon} size={18} strokeWidth={1.6} />
+				<span>Paper</span>
 			</a>
 			<a href={resolve('/demo')}>
-				<HugeiconsIcon icon={PlayCircleIcon} size={18} strokeWidth={1.5} />
+				<HugeiconsIcon icon={PlayCircleIcon} size={18} strokeWidth={1.6} />
 				<span>Demos</span>
 			</a>
 			<a href={resolve('/figures')}>
-				<HugeiconsIcon icon={Chart01Icon} size={18} strokeWidth={1.5} />
+				<HugeiconsIcon icon={Chart01Icon} size={18} strokeWidth={1.6} />
 				<span>Figures</span>
 			</a>
-			<span class="gap"></span>
-			<a href={resolve('/paper')}>
-				<HugeiconsIcon icon={BookOpen01Icon} size={18} strokeWidth={1.5} />
-				<span>Paper</span>
+			<a
+				href="https://github.com/NeoVand/gravitational-camera"
+				aria-label="Source code on GitHub"
+				title="Source code"
+			>
+				<HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.6} />
 			</a>
-			<a href="https://github.com/NeoVand/gravitational-camera">
-				<HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.5} />
-				<span>Source</span>
-			</a>
+			<button type="button" onclick={toggleTheme} aria-label="Switch between light and dark">
+				<span class="to-light"><HugeiconsIcon icon={Sun03Icon} size={18} strokeWidth={1.6} /></span>
+				<span class="to-dark"><HugeiconsIcon icon={Moon02Icon} size={18} strokeWidth={1.6} /></span>
+			</button>
 		</nav>
 	</header>
 
@@ -388,33 +414,95 @@
 
 	/* --- the top line -------------------------------------------------------- */
 
+	/* the same measures as SiteHeader's, so that the header does not move between pages */
+	.top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.6rem var(--g);
+		/* SiteHeader's bottom rule, kept as space */
+		border-bottom: 1px solid transparent;
+		font: 400 1rem/1 var(--font-serif);
+	}
+
+	.top .brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font: 500 1.05rem/1.2 var(--font-serif);
+		letter-spacing: -0.005em;
+	}
+
+	.top .brand :global(svg) {
+		flex: none;
+	}
+
+	/* the serif sets its capitals high in the line: lower them so that they are centred on the icons */
+	.top .brand span,
+	.top nav a span {
+		position: relative;
+		top: 0.08em;
+	}
+
 	.top nav {
 		display: flex;
 		align-items: center;
-		gap: clamp(1rem, 2.4vw, 2rem);
-		padding: 1.25rem var(--g);
-		font-size: 1.0625rem;
+		gap: 0.2rem;
 	}
 
-	.top .gap {
-		flex: 1;
+	.top nav a,
+	.top nav button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		height: 2.1rem;
+		padding: 0 0.65rem;
+		line-height: 1;
+		border: 0;
+		background: none;
+		color: inherit;
+		font: inherit;
+		cursor: pointer;
 	}
 
-	.top a,
+	.top nav :global(svg) {
+		display: block;
+	}
+
+	.top nav a:hover span {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.25em;
+	}
+
+	.top nav button:focus-visible {
+		outline: 1.5px solid #fff;
+		outline-offset: -2px;
+		border-radius: 2px;
+	}
+
 	.calls a {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45em;
 	}
 
-	.top .brand {
-		margin-right: clamp(0.25rem, 1vw, 0.75rem);
+	@media (max-width: 560px) {
+		.top nav a span {
+			display: none;
+		}
+
+		.top .brand {
+			font-size: 0.95rem;
+		}
 	}
 
-	.top a:hover {
-		text-decoration: underline;
-		text-decoration-thickness: 1px;
-		text-underline-offset: 0.25em;
+	@media (max-width: 380px) {
+		.top nav a,
+		.top nav button {
+			padding: 0 0.45rem;
+		}
 	}
 
 	/* --- the opening ------------------------------------------------------- */

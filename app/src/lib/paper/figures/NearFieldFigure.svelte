@@ -82,7 +82,7 @@
 
 		<!-- the scene: two masses at depth z -->
 		<line class="hair" x1={px(-SPAN)} y1="150" x2={px(-SPAN)} y2="214" stroke-dasharray="2 4" />
-		<text class="small" x={px(-SPAN) + 8} y="186">depth z</text>
+		<text class="small" x={px(-SPAN) + 8} y="186">depth <tspan class="math">z</tspan></text>
 		{#each sources as c (c)}
 			<line class="hair" x1={px(c)} y1="146" x2={px(c)} y2="372" stroke-dasharray="3 5" />
 			<circle cx={px(c)} cy="214" r="8" fill="var(--accent)" />
@@ -100,7 +100,9 @@
 			d="M {barStart} 271 v 10 M {barStart} 276 H {X1} M {X1} 271 v 10"
 		/>
 		<text class="small" x={X1} y="262" text-anchor="end">
-			blur at signal-to-noise 10{superscript(decades)}: {((blur * 180) / Math.PI).toFixed(1)}°
+			blur at signal-to-noise 10<tspan dy="-6" font-size="10">{decades}</tspan><tspan dy="6"
+				>: {blur.toFixed(2)} × depth</tspan
+			>
 		</text>
 	</svg>
 
@@ -129,7 +131,6 @@
 		/>
 	</div>
 	<p class="note">
-		<span class="readout">blur = {blur.toFixed(2)} × depth</span>
 		<span class="verdict" style:color={resolved ? 'var(--good)' : 'var(--bad)'}>
 			{resolved ? 'The two masses are told apart.' : 'The two masses merge into one.'}
 		</span>

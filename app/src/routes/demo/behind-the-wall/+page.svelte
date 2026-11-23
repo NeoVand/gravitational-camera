@@ -87,11 +87,10 @@
 <RoomDemo
 	{scene}
 	subjectDistance={5}
-	startDivider={0.2}
 	subtract
 	startProbe
 	startSensitivity={30}
-	look={{ yaw: 0, pitch: -8 }}
+	look={{ yaw: 18.5, pitch: -8 }}
 	subject={{ id: 'standing', name: 'the person standing' }}
 >
 	{#snippet extraControls()}
@@ -131,6 +130,68 @@
 			<Tex math={'v/c \\approx 5\\times10^{-9}'} />, so the flow image is that much fainter than the
 			mass image, and more blurred at the same sensitivity. The pixel’s test for motion, the
 			imaginary part of its eigenvalues, needs no image at all.
+		</p>
+	{/snippet}
+	{#snippet plain()}
+		<p>
+			A wall stands across a room, 2.8 metres from the camera. Behind it are two people. One stands
+			still. The other walks back and forth at a steady walking pace. Light cannot pass the wall, so
+			an ordinary camera sees only the wall.
+		</p>
+		<p>
+			The picture is split by a vertical line. To the left, marked <em>Light</em>, is what an
+			ordinary camera sees. To the right is what an imagined <strong>gravitational camera</strong> would
+			show. Each pixel of this camera measures how the pull of gravity changes from one point to the next.
+			On the gravity side, the dark blue to white glow shows mass along each line of sight. Both people
+			show through the wall, because no wall can block a pull. The pull of the wall itself, and of the
+			rest of the empty room, is known in advance and taken away.
+		</p>
+		<p>
+			Moving mass also produces a second kind of gravitational effect, much as a moving electric
+			charge produces magnetism. Each pixel measures this too. It shows the walker in colour, and
+			the colour gives the direction of walking.
+		</p>
+		<p>
+			A single pixel can even tell that something moves without forming any picture. The line at the
+			foot of the panel, headed <em>One pixel, at the camera</em>, reports a test on that one
+			pixel's reading. The test gives exactly zero when nothing in the scene moves, whatever the
+			camera does. When someone walks, it gives a small number, and the line turns red with the
+			words “something moves”.
+		</p>
+		<p>Try these first.</p>
+		<ul>
+			<li>Drag the dividing line to the right to see the wall in light, then back again.</li>
+			<li>
+				Open the Controls tab. Under <em>The people</em>, choose <em>Stands</em>. The colour on the
+				second person goes, and the line at the foot of the panel says “all still”. Choose
+				<em>Walks</em> to set the person moving again.
+			</li>
+			<li>
+				With both people standing, drag the picture to turn the camera. The test still says “all
+				still”.
+			</li>
+		</ul>
+		<p>
+			Walking pace is about five billionths of the speed of light, so the colour is drawn far
+			brighter than its true strength. Section VIII of the paper, “One pixel, sparse arrays and
+			depth”, explains the test for motion.
+		</p>
+	{/snippet}
+	{#snippet help()}
+		<p>
+			Drag the picture to look around, and scroll to zoom. Drag the vertical dividing line to show
+			more light or more gravity.
+		</p>
+		<p>
+			In the Controls tab, <em>Walks</em> and <em>Stands</em> set what the second person does.
+			<em>Image</em>
+			shows the gravity picture, <em>Tidal field</em> shows how gravity stretches and squeezes space
+			at points around the camera, and <em>One exposure</em> adds the noise of one set of readings.
+			<em>Sensitivity</em>
+			sets how far the signal stands above the noise, and <em>Exposure</em> brightens the gravity
+			side. Under Layers, <em>Flow</em> shows or hides the colour of moving mass, <em>Pixel</em>
+			shows or hides the line about one pixel's reading, and <em>Room</em> brings back the wall, the floor
+			and the walls. Reset puts the view back.
 		</p>
 	{/snippet}
 </RoomDemo>

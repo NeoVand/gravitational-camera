@@ -15,7 +15,12 @@
 	let pitch = $state(0.35);
 </script>
 
-<Frame slug="one-pixel-sky" aspect={16 / 7} vars="--figure-width: min(31cqw, 82cqh)">
+<Frame
+	slug="one-pixel-sky"
+	aspect={16 / 8}
+	vars="--figure-width: min(25cqw, calc(100cqh - 5.5rem)); --stage-pad: 1rem 1.2rem 0.8rem"
+	narrow={{ aspect: 1.15, vars: '--figure-width: initial' }}
+>
 	{#snippet stage()}
 		<OnePixelSky sources={SKIES[choice].sources} bind:yaw bind:pitch />
 	{/snippet}

@@ -144,10 +144,76 @@
 			/>
 			<div class="actions">
 				<button type="button" class="action" onclick={() => figure?.push()}>
-					<HugeiconsIcon icon={DiceIcon} size={16} strokeWidth={1.8} /> Push again
+					<HugeiconsIcon icon={DiceIcon} size={16} strokeWidth={1.8} /> Push
 				</button>
 			</div>
 		</Group>
+	{/snippet}
+
+	{#snippet plain()}
+		<p>
+			Two round bodies, A and B, are drawn cut through their centres. Each is made of thin shells of
+			mass, drawn as circles. Some also have a point of mass at the centre. The dots are small
+			pieces of the shells. The two bodies have the same mass. By Newton's <strong
+				>shell theorem</strong
+			>, a round body pulls on everything outside it as if all its mass were at its centre. So A and
+			B pull in exactly the same way. A reading of their gravity at one time gives their mass and
+			nothing more.
+		</p>
+		<p>
+			A tide can tell them apart. A <strong>tide</strong> is a pull that is stronger in some places than
+			in others. The coloured lobes round each body show one: it pushes outward where the lobes are orange
+			and inward where they are blue. Here the tide acts for an instant, so it gives every piece of the
+			body a small kick. The short lines on the dots are those kicks. The body gains energy of motion.
+			By Einstein's E = mc², energy has mass. So the body becomes a little heavier, and weighing it measures
+			the energy gained.
+		</p>
+		<p>
+			Under each body, the bar is the exact energy gained, and the mark is the energy found by
+			weighing, with its error. The table on the right, called the ladder, lists what each kind of
+			tide gives A and B, and whether the two are the same or different.
+		</p>
+		<p>
+			Tides come in degrees. A tide of degree two, the <strong>quadrupole</strong>, has four lobes.
+			Degree three, the <strong>octupole</strong>, has six. Each higher degree has two more lobes.
+			Each also reaches one step deeper into how the mass is spread between the centre and the
+			surface.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>
+				At the start, the mass of each body lies, on average, equally far from its centre. More
+				exactly, the average of the squared distance is the same. Press <em>Push</em>, in the
+				Controls tab under <em>The weighing</em>. The octupole tells them apart.
+			</li>
+			<li>
+				Choose <em>Quadrupole</em>, and push again. Now they gain the same energy, and they are not
+				told apart.
+			</li>
+			<li>
+				Raise the <em>Noise</em> slider and lower <em>Pushes</em>. With fewer, noisier weighings,
+				the difference can be lost.
+			</li>
+		</ul>
+		<p>
+			Section XIII of the paper, “Newton's theorem at second order”, shows that such tides can
+			reveal the whole inside of a body.
+		</p>
+	{/snippet}
+
+	{#snippet help()}
+		<p>
+			Press <em>Push</em>, in the Controls tab under <em>The weighing</em>, to push both bodies and
+			weigh them again.
+		</p>
+		<p>
+			In the Controls tab, the first choice picks the pair of bodies: <em>A point and a shell</em>,
+			<em>Same second moment</em>, or <em>Same second and fourth moments</em>. The next choice picks
+			the degree of the tide, from <em>Quadrupole</em> to <em>Degree five</em>. The <em>Noise</em>
+			slider sets the error of each weighing. The <em>Pushes</em> slider sets how many times each
+			body is pushed and weighed. Each press of <em>Push</em> repeats the weighings with new noise. Reset
+			returns the page to how it started.
+		</p>
 	{/snippet}
 
 	{#snippet notes()}

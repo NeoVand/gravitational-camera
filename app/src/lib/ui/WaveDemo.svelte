@@ -8,7 +8,6 @@
 	 */
 	import type { Snippet } from 'svelte';
 	import { posters } from '../demos/posters';
-	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		ContrastIcon,
 		DashedLineCircleIcon,
@@ -71,6 +70,10 @@
 		/** The slowed speed of light the demo starts with, m/s. */
 		slowSpeed?: number;
 		intro: Snippet;
+		/** The page in plain words, for a reader new to it: DemoShell's first tab. */
+		plain?: Snippet;
+		/** What there is to do on the page, in plain words: the head of DemoShell's Help tab. */
+		help?: Snippet;
 	}
 
 	let {
@@ -79,7 +82,9 @@
 		look = { yaw: 0, pitch: -10 },
 		aperture: startAperture = 1,
 		slowSpeed = 0.2,
-		intro
+		intro,
+		plain,
+		help
 	}: Props = $props();
 
 	const DEG = Math.PI / 180;
@@ -200,6 +205,8 @@
 {/snippet}
 
 <DemoShell
+	{plain}
+	{help}
 	title={scene.title}
 	legend={field ? fieldKey : undefined}
 	foot={field || inNearZone ? status : undefined}
@@ -230,11 +237,8 @@
 			{subtractRoom}
 			room
 			{outline}
-			rightLabel={field
-				? 'Gravity · tidal field'
-				: trueSpeed
-					? 'Gravity · waves'
-					: `Gravity · waves · light slowed to ${speedText(speed)}`}
+			rightLabel={field ? 'Gravity · tidal field' : 'Gravity · waves'}
+			caption={field || trueSpeed ? undefined : `light slowed to ${speedText(speed)}`}
 			dimRight={!field && (rawPixels || inNearZone)}
 		>
 			{#snippet overlay()}
@@ -284,14 +288,22 @@
 				readout="{trueSpeed ? 'true' : speedText(speed)} · waves {length(lambda)}"
 				ends={['crawling', 'true speed']}
 			/>
-			<div class="actions">
-				<button type="button" class="action" onclick={() => (logSpeed = Math.log10(slowSpeed))}>
-					<HugeiconsIcon icon={SnailIcon} size={16} strokeWidth={1.7} /> Slow light
-				</button>
-				<button type="button" class="action" onclick={() => (logSpeed = LOG_C)}>
-					<HugeiconsIcon icon={RabbitIcon} size={16} strokeWidth={1.7} /> True speed
-				</button>
-			</div>
+			<Segmented
+				label="The speed of light"
+				options={[
+					{ value: 'slow', label: 'Slow light', icon: SnailIcon },
+					{ value: 'true', label: 'True speed', icon: RabbitIcon }
+				]}
+				bind:value={
+					() =>
+						trueSpeed
+							? 'true'
+							: Math.abs(logSpeed - Math.log10(slowSpeed)) < 1e-9
+								? 'slow'
+								: 'between',
+					(v) => (logSpeed = v === 'true' ? LOG_C : Math.log10(slowSpeed))
+				}
+			/>
 		</Group>
 		<Group title="Camera">
 			<Slider
@@ -367,9 +379,8 @@
 			<div>
 				<dt>Power radiated by one turning pair, at the true speed of light</dt>
 				<dd>
-					<Tex
-						math={`P = ${texSci(powerTrue)}\\,\\mathrm{W}:\\ \\text{one graviton every } ${texSci(yearsPerGraviton)}\\ \\text{years}`}
-					/>
+					<Tex math={`P = ${texSci(powerTrue)}\\,\\mathrm{W}`} />: one graviton every
+					<Tex math={texSci(yearsPerGraviton)} /> years
 				</dd>
 			</div>
 		</dl>

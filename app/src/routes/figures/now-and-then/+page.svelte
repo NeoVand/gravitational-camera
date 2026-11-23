@@ -7,12 +7,20 @@
 		WorkoutRunIcon
 	} from '@hugeicons/core-free-icons';
 	import DemoShell from '#lib/ui/DemoShell.svelte';
-	import NowAndThen from '#lib/ui/NowAndThen.svelte';
+	import NowAndThen, { CAMERA } from '#lib/ui/NowAndThen.svelte';
 	import Group from '#lib/ui/controls/Group.svelte';
 	import Segmented from '#lib/ui/controls/Segmented.svelte';
 	import Slider from '#lib/ui/controls/Slider.svelte';
 	import Tex from '#lib/ui/Tex.svelte';
-	import { position, type Crossing } from '#lib/pixel/present.js';
+	import { minus } from '#lib/pixel/complex.js';
+	import {
+		informed,
+		lineAngle,
+		position,
+		retarded,
+		stretchAxis,
+		type Crossing
+	} from '#lib/pixel/present.js';
 
 	const C = 1.5; // light's speed in the scene, units per second
 	const Y = 1.4;
@@ -40,6 +48,18 @@
 		};
 		raf = requestAnimationFrame(tick);
 		return () => cancelAnimationFrame(raf);
+	});
+
+	/** What the camera's two pixels say, as angles from the line to where the body is now, in degrees. */
+	const seen = $derived.by(() => {
+		const now = position(crossing, t);
+		const toNow = minus(now, CAMERA);
+		const degrees = (a: number) => (a * 180) / Math.PI;
+		return {
+			light: degrees(lineAngle(minus(retarded(crossing, CAMERA, t), CAMERA), toNow)),
+			gravity: degrees(lineAngle(stretchAxis(crossing, CAMERA, t).axis, toNow)),
+			heard: stop === undefined || informed(crossing, CAMERA, t)
+		};
 	});
 
 	function restart() {
@@ -100,12 +120,67 @@
 			<Segmented
 				label="Motion"
 				options={[
-					{ value: 'play', label: 'Running', icon: PlayIcon },
+					{ value: 'play', label: 'Playing', icon: PlayIcon },
 					{ value: 'pause', label: 'Paused', icon: PauseIcon }
 				]}
 				bind:value={motion}
 			/>
 		</Group>
+	{/snippet}
+
+	{#snippet plain()}
+		<p>
+			A body crosses the scene from left to right along a faint dashed track. In this drawing light
+			has been slowed down, so that the body moves at a good fraction of light's speed. The label at
+			the foot of the drawing says how much faster than the body light now travels.
+		</p>
+		<p>
+			The filled dot labelled <em>now</em> is where the body really is. The small box labelled
+			<em>camera</em>
+			sits below. Light takes time to travel, so the camera's light shows the body where it was when that
+			light set out. The blue line from the camera ends at a blue ring labelled
+			<em>light shows it here</em>. That ring marks where light shows the body, behind its true
+			place.
+		</p>
+		<p>
+			The camera also has a gravitational pixel. It measures the <strong>tide</strong>, the way the
+			body's gravity stretches space in one direction and squeezes it in another. The orange line
+			from the camera follows the direction of that stretch, and it points straight at where the
+			body is now. The short orange lines all over the scene show the direction of the stretch at
+			each point. All of them point at the body's present place too. The field of a body moving
+			steadily is its field at rest, carried along with it.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>
+				Move the <em>Speed</em> slider toward <em>nearly light</em>. The blue ring falls farther
+				behind, while the orange line still points at the body.
+			</li>
+			<li>
+				Press <em>Stop it</em>. The camera cannot learn of the stop at once. The news of the stop
+				spreads from the body as a dashed ring, at the speed of light. Outside the ring, the field
+				still points at where the body would have been if it had gone on. The dashed orange circle
+				labelled <em>where it would be</em> marks that place. Inside the ring, the field points at where
+				the body stopped. The camera learns of the stop, in light and in gravity, when the ring reaches
+				it.
+			</li>
+			<li>Choose <em>Paused</em> to freeze the moment.</li>
+		</ul>
+		<p>
+			In the same way, the Sun seen in gravity lies 20.5 arcseconds ahead of the Sun seen in light,
+			along its yearly path. An arcsecond is a 3600th of a degree. Section VIII of the paper, “One
+			pixel, sparse arrays and depth”, explains this.
+		</p>
+	{/snippet}
+
+	{#snippet help()}
+		<p>
+			Nothing in this drawing is dragged. Everything is set in the Controls tab. The <em>Speed</em>
+			slider sets the body's speed as a fraction of the slowed speed of light. <em>Moving</em> and
+			<em>Stop it</em>
+			send the body on or stop it. <em>Playing</em> and <em>Paused</em> run or freeze time. Reset sends
+			the body across from the start again.
+		</p>
 	{/snippet}
 
 	{#snippet notes()}
@@ -122,6 +197,24 @@
 			points at where the body would have been, had it gone on; inside, at where it stopped. The
 			camera learns of the stop, in light and in gravity, when the ring reaches it.
 		</p>
+		<dl>
+			<div>
+				<dt>Seen from the camera: light’s image of the body, from where it is now</dt>
+				<dd><Tex math={`${seen.light.toFixed(1)}^\\circ`} /></dd>
+			</div>
+			<div>
+				<dt>
+					The tidal field’s stretch at the camera, from where the body is now{seen.heard
+						? ''
+						: ' (the camera has not yet heard of the stop)'}
+				</dt>
+				<dd><Tex math={`${seen.gravity.toFixed(1)}^\\circ`} /></dd>
+			</div>
+			<div>
+				<dt>Light, slowed for the picture, against the body</dt>
+				<dd><Tex math={`${(1 / beta).toFixed(2)}\\ \\text{times its speed}`} /></dd>
+			</div>
+		</dl>
 		<p class="fine">
 			For a body moving steadily the field is exact: its field at rest, carried along. The stop is a
 			cartoon: something must stop the body, and its own field is left out, as is the wave in the

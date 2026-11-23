@@ -63,12 +63,13 @@
 	const WAVE = 300; // drawn length of one wavelength
 	const sizePx = $derived(Math.max(1.2, WAVE / ratio));
 
+	/** A number as a mantissa and a power of ten, the power to be set as a superscript in the drawing. */
 	const sci = (v: number) => {
-		if (v < 1000) return v.toFixed(v < 10 ? 1 : 0);
+		if (v < 1000) return { mantissa: v.toFixed(v < 10 ? 1 : 0), power: undefined };
 		const e = Math.floor(Math.log10(v));
-		const sup = String(e).replace(/[0-9]/g, (c) => '⁰¹²³⁴⁵⁶⁷⁸⁹'[Number(c)]);
-		return `${(v / 10 ** e).toFixed(1)} × 10${sup}`;
+		return { mantissa: `${(v / 10 ** e).toFixed(1)} × 10`, power: e };
 	};
+	const size = $derived(sci(ratio));
 	const speedLabel = $derived(
 		speed < 1000
 			? `${speed.toFixed(speed < 10 ? 1 : 0)} m/s`
@@ -141,7 +142,9 @@
 			>the source, to the same scale</text
 		>
 		<text class="strong" x="540" y="282" text-anchor="middle">
-			wavelength = {sci(ratio)} × the size of the source
+			wavelength = {size.mantissa}<tspan dy="-6" font-size="11">{size.power ?? ''}</tspan><tspan
+				dy="6">&nbsp;× the size of the source</tspan
+			>
 		</text>
 		<text class="small" x="540" y="302" text-anchor="middle">
 			for moving parts at {speedLabel}

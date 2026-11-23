@@ -5,6 +5,7 @@
 	 * every combination the readings leave at zero, with the sources ringed and the directions found as dots.
 	 * Drag a source to move it; drag anywhere else on a sky to turn it.
 	 */
+	import { fitText } from './figure-text';
 	import type { Vec3 } from '../pixel/complex';
 	import { vec5 } from '../pixel/pixel';
 	import { greatCircle, project, toWorld } from '../pixel/view';
@@ -117,6 +118,12 @@
 	});
 
 	// --- dragging ----------------------------------------------------------------------------------------------------
+	/** The size of the words of the traces, in their drawing's units: each row is named only if there is room. */
+	let traceEm = $state(12);
+	const named = $derived(traceEm < 17);
+	/** The size of the words of the skies, in their units: the foot of each sky makes room for two lines of them. */
+	let skyEm = $state(12);
+
 	let drag:
 		| { kind: 'source'; index: number }
 		| { kind: 'turn'; x: number; y: number; yaw: number; pitch: number }
@@ -157,7 +164,7 @@
 
 {#snippet sky(name: string, colour: string, found: Found, map: string, capacity: number)}
 	<svg
-		viewBox="-150 -168 300 328"
+		viewBox="-150 -168 300 {292 + 2.7 * skyEm}"
 		class="sky"
 		role="img"
 		aria-label="{name}: the sky as found from the readings"
@@ -165,8 +172,9 @@
 		onpointermove={move}
 		onpointerup={() => (drag = undefined)}
 		onpointercancel={() => (drag = undefined)}
+		{@attach fitText((_, size) => (skyEm = size))}
 	>
-		<text class="title" x="0" y="-146" style:fill={colour}>{name}</text>
+		<text class="title" x="0" y="-140" style:fill={colour}>{name}</text>
 		<circle r={R} class="sky-disc" />
 		{#if map}<image
 				href={map}
@@ -203,11 +211,12 @@
 			{@const p = at(d)}
 			<circle cx={p.x} cy={p.y} r="4" style:fill={colour} class={['found', { behind: p.z < 0 }]} />
 		{/each}
-		<text class="words" x="0" y="150">
+		<text class="words" x="0" y="124">
 			{#if found.silent === 0}
-				{sources.length} waves fill all {capacity * 2} numbers: nothing to find
+				<tspan x="0" dy="1.1em">{sources.length} waves fill all {capacity * 2} numbers:</tspan>
+				<tspan x="0" dy="1.15em">nothing to find</tspan>
 			{:else}
-				found {found.directions.length} of {sources.length}
+				<tspan x="0" dy="1.1em">found {found.directions.length} of {sources.length}</tspan>
 			{/if}
 		</text>
 	</svg>
@@ -215,16 +224,22 @@
 
 <div class="stage">
 	<svg
-		viewBox="-40 -14 820 210"
+		viewBox="-52 {-14 - 1.7 * traceEm} 824 {210 + 1.7 * traceEm}"
 		class="traces"
 		role="img"
 		aria-label="The ten numbers the pixel reads, over time"
+		{@attach fitText((_, size) => (traceEm = size))}
 	>
+		<text x="380" y={-14 - 0.55 * traceEm} class="trace-title"
+			>the ten numbers the pixel reads, as they come</text
+		>
 		{#each traces as d, i (i)}
 			<g transform="translate(0 {i * 19 + 4})">
-				<text x="-8" y="4" class="trace-name"
-					>{i % 2 ? 'B' : 'E'}<tspan dy="3" font-size="8">{Math.floor(i / 2) + 1}</tspan></text
-				>
+				{#if named}
+					<text x="-10" y="0" dy="0.35em" class="trace-name"
+						>{i % 2 ? 'B' : 'E'}<tspan class="sub" dy="0.3em">{Math.floor(i / 2) + 1}</tspan></text
+					>
+				{/if}
 				<path {d} class={['trace', { b: i % 2 }]} />
 			</g>
 		{/each}
@@ -244,8 +259,10 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 0.5rem;
-		padding: var(--stage-pad, 4.5rem 1rem 5.5rem);
+		gap: 1rem;
+		padding: var(--stage-pad, 2rem 1.5rem);
+		/* the size of the words on the screen, as on every figure */
+		--t: 12px;
 		background: radial-gradient(circle at 50% 55%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
 		/* light's colour, beside gravity's (the accent), and a fourth source's, in either theme */
 		--c-light: #7fb4ff;
@@ -265,27 +282,40 @@
 		--c-light: #7fb4ff;
 		--c-violet: #d9a6ff;
 	}
+	/* the numbers above, as wide as the two skies under them; the skies as large as what is left allows */
 	.traces {
-		width: var(--traces-width, min(52cqw, 640px));
+		flex: none;
+		width: var(--traces-width, min(100%, 52rem));
 		height: auto;
 	}
 	.skies {
 		display: flex;
-		gap: 1.5cqw;
+		gap: 2cqw;
 	}
 	.sky {
-		width: var(--figure-width, min(26cqw, 38cqh));
+		flex: none;
+		width: var(
+			--figure-width,
+			min(46cqw, 25rem, calc((100cqh - 0.27 * min(100cqw, 52rem) - 2.5rem) * 300 / 328))
+		);
 		height: auto;
 		touch-action: none;
 		user-select: none;
 		cursor: grab;
 	}
-	@container (aspect-ratio < 1) {
-		.traces {
-			width: 92cqw;
+	/* a tall picture: the two skies one above the other */
+	@container (aspect-ratio < 0.8) {
+		.skies {
+			flex-direction: column;
+			gap: 1rem;
 		}
 		.sky {
-			width: 44cqw;
+			width: var(--figure-width, min(86cqw, calc((100cqh - 0.27 * 100cqw - 4rem) / 2 * 300 / 328)));
+		}
+	}
+	@container (max-width: 34rem) {
+		svg {
+			--t: 11px;
 		}
 	}
 	.sky-disc {
@@ -332,28 +362,31 @@
 	}
 	text {
 		font-family: var(--font-sans);
+		font-size: calc(var(--t) * var(--u, 1));
 		pointer-events: none;
 	}
 	.title,
-	.words {
+	.words,
+	.trace-title {
 		text-anchor: middle;
 	}
 	.title {
-		font-size: 15px;
+		font-size: calc((var(--t) + 1px) * var(--u, 1));
 		font-weight: 600;
 	}
-	.words {
+	.words,
+	.trace-title {
 		fill: var(--text-dim);
-		font-size: 12px;
 	}
 	.num {
-		font-size: 13px;
 		font-weight: 600;
 	}
 	.trace-name {
 		fill: var(--text-dim);
-		font-size: 10px;
 		text-anchor: end;
 		font-style: italic;
+	}
+	.sub {
+		font-size: 0.85em;
 	}
 </style>

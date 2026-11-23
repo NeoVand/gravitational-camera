@@ -3,6 +3,7 @@
 	 * Two skies around one point: the principal null directions of gravity's field there (four) and of light's (two), for the same
 	 * sources (lib/pixel/scene.ts). Drag a source to move it; drag anywhere else to turn the sky.
 	 */
+	import { fitText } from './figure-text';
 	import { norm, type Vec3 } from '../pixel/complex';
 	import { greatCircle, project, toCamera, toWorld } from '../pixel/view';
 	import {
@@ -151,6 +152,7 @@
 		onpointermove={move}
 		onpointerup={up}
 		onpointercancel={up}
+		{@attach fitText()}
 	>
 		<defs>
 			<marker
@@ -176,7 +178,7 @@
 				<path d="M0,0L10,5L0,10z" class="ink" />
 			</marker>
 		</defs>
-		<text class="title" x="0" y="-188" style:fill={colour}
+		<text class="title" x="0" y="-180" style:fill={colour}
 			>{name} <tspan class="dim">· {count}</tspan></text
 		>
 		<!-- what lies behind the sky, faint, then the sky over it -->
@@ -251,29 +253,31 @@
 			/>
 		{/if}
 		<circle r="3" class="pixel" />
-		<text class="words" x="0" y="146">{words}</text>
+		<text class="words" x="0" y="128" dy="1em">{words}</text>
 	</svg>
 {/snippet}
 
 <div class="skies">
-	{@render sky(
-		'gravity',
-		'four directions',
-		gravity.stars,
-		GRAVITY,
-		'g',
-		gravity.read,
-		typeWords[gravity.type] ?? gravity.type
-	)}
-	{@render sky(
-		'light',
-		'two directions',
-		light.stars,
-		LIGHT,
-		'l',
-		midLight,
-		sources.length > 1 ? 'the same two for one charge or many' : 'always two'
-	)}
+	<div class="pair">
+		{@render sky(
+			'gravity',
+			'four directions',
+			gravity.stars,
+			GRAVITY,
+			'g',
+			gravity.read,
+			typeWords[gravity.type] ?? gravity.type
+		)}
+		{@render sky(
+			'light',
+			'two directions',
+			light.stars,
+			LIGHT,
+			'l',
+			midLight,
+			sources.length > 1 ? 'the same two for one charge or many' : 'always two'
+		)}
+	</div>
 </div>
 
 <style>
@@ -282,11 +286,11 @@
 		container-type: size;
 		inset: 0;
 		display: flex;
-		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 0.5rem;
-		padding: var(--stage-pad, 4.5rem 1rem 5.5rem);
+		padding: var(--stage-pad, 2rem 1.5rem);
+		/* the size of the words on the screen, as on every figure */
+		--t: 12px;
 		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
 		/* light's colour, beside gravity's (the accent), in either theme */
 		--c-light: #7fb4ff;
@@ -303,21 +307,37 @@
 		--c-light: #7fb4ff;
 	}
 
-	/* gravity above light, in a column between the cards */
+	/* gravity above light, each as large as half the picture allows */
 	.sky {
-		width: var(--figure-width, min(43cqh, 36cqw));
+		flex: none;
+		width: var(--figure-width, min(86cqw, calc((50cqh - 0.5rem) * 380 / 372)));
 		height: auto;
 		touch-action: none;
 		user-select: none;
 		cursor: grab;
 	}
 
-	@container (aspect-ratio < 1) {
-		.skies {
-			padding: 4.5rem 1rem 7rem;
+	/* a wide picture: the two side by side */
+	.pair {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	@container (aspect-ratio > 1.05) {
+		.pair {
+			flex-direction: row;
+			gap: 2cqw;
 		}
 		.sky {
-			width: min(86cqw, 40cqh);
+			width: var(--figure-width, min(47cqw, 34rem, calc(100cqh * 380 / 372)));
+		}
+	}
+
+	@container (max-width: 34rem) {
+		.sky {
+			--t: 11px;
 		}
 	}
 
@@ -378,11 +398,12 @@
 	}
 	text {
 		font-family: var(--font-sans);
+		font-size: calc(var(--t) * var(--u, 1));
 		text-anchor: middle;
 		pointer-events: none;
 	}
 	.title {
-		font-size: 17px;
+		font-size: calc((var(--t) + 1px) * var(--u, 1));
 		font-weight: 600;
 	}
 	.dim {
@@ -391,11 +412,10 @@
 	}
 	.label {
 		fill: var(--text);
-		font-size: 14px;
+		font-size: calc((var(--t) + 1px) * var(--u, 1));
 		font-style: italic;
 	}
 	.words {
 		fill: var(--text-dim);
-		font-size: 13px;
 	}
 </style>

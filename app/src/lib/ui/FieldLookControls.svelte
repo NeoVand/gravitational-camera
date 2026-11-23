@@ -22,7 +22,7 @@
 	import Segmented from './controls/Segmented.svelte';
 	import Slider from './controls/Slider.svelte';
 	import { fieldLook, keepLook, lookChanged, resetLook } from './field-look.svelte';
-	import { tidal } from './format';
+	import { tideText } from './tide-text';
 
 	interface Props {
 		/** The median strength over the picture, s⁻²: what the scale is set against. */
@@ -80,7 +80,7 @@
 		max={2}
 		step={0.05}
 		bind:value={() => fieldLook.shift, (v) => set('shift', v)}
-		readout={tidal(ends.full)}
+		readout={tideText(ends.full)}
 		ends={['tame the strong', 'bring up the weak']}
 	/>
 	<Slider
@@ -192,8 +192,10 @@
 		border-radius: 4px;
 	}
 
+	/* as the sliders' readings are: the text's own face, figures in columns */
 	.state {
-		font: 400 0.7rem/1 var(--font-mono);
+		font: 400 0.74rem/1.2 var(--font-sans);
+		font-variant-numeric: tabular-nums;
 		color: var(--accent);
 	}
 

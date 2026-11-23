@@ -97,3 +97,32 @@ export function area(m2: number): string {
 	if (m2 < 9.95e4) return `${twoFigures(m2)} m²`;
 	return `${twoFigures(m2 / 1e6)} km²`;
 }
+
+/**
+ * A number for a reader, as LaTeX: plain from a hundredth up to ten thousand ("0.042", "316", "3013"), and outside
+ * that in powers of ten ("2.4 \times 10^{-6}", "1.2 \times 10^{5}"), a mantissa of one left out ("10^{5}"). Never a
+ * computer's "2.4e-6". `figures` is the number of significant figures kept below a hundred and in a mantissa.
+ */
+export function texNumber(x: number, figures = 2): string {
+	if (x === 0) return '0';
+	if (!Number.isFinite(x)) return x > 0 ? '\\infty' : '-\\infty';
+	const sign = x < 0 ? '-' : '';
+	const a = Math.abs(x);
+	if (a >= 0.01 && a < 1e4) {
+		if (a >= 10 ** (figures - 1)) return sign + String(Math.round(a));
+		return sign + String(Number(a.toPrecision(figures)));
+	}
+	let e = Math.floor(Math.log10(a));
+	let mantissa = (a / 10 ** e).toFixed(Math.max(0, figures - 1));
+	if (Number(mantissa) >= 10) {
+		e += 1;
+		mantissa = (1).toFixed(Math.max(0, figures - 1));
+	}
+	return Number(mantissa) === 1 ? `${sign}10^{${e}}` : `${sign}${mantissa} \\times 10^{${e}}`;
+}
+
+/** A count in plain digits, to two significant figures beyond a thousand, grouped by commas: "316", "1,000", "320,000". */
+export function grouped(x: number): string {
+	const n = Math.abs(x) >= 1000 ? Number(x.toPrecision(2)) : Math.round(x);
+	return n.toLocaleString('en-US');
+}

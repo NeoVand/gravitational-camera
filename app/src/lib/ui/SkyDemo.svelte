@@ -42,6 +42,10 @@
 		startRight?: 'waves' | 'primordial';
 		look: { yaw: number; pitch: number; fov: number };
 		intro: Snippet;
+		/** The page in plain words, for a reader new to it: DemoShell's first tab. */
+		plain?: Snippet;
+		/** What there is to do on the page, in plain words: the head of DemoShell's Help tab. */
+		help?: Snippet;
 		physics: Snippet;
 	}
 
@@ -52,6 +56,8 @@
 		startRight = 'waves',
 		look,
 		intro,
+		plain,
+		help,
 		physics: pagePhysics
 	}: Props = $props();
 
@@ -149,6 +155,8 @@
 {/snippet}
 
 <DemoShell
+	{plain}
+	{help}
 	{title}
 	legend={display === 'field' ? fieldKey : undefined}
 	foot={display === 'field' ? status : undefined}

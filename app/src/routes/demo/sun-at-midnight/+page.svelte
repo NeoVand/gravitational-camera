@@ -49,7 +49,7 @@
 	import FieldLookControls from '#lib/ui/FieldLookControls.svelte';
 	import TidalReading from '#lib/ui/TidalReading.svelte';
 	import Segmented from '#lib/ui/controls/Segmented.svelte';
-	import { km, length, superscript, texSci, texWait } from '#lib/ui/format.js';
+	import { length, superscript, texLength, texSci, texWait } from '#lib/ui/format.js';
 	import Tex from '#lib/ui/Tex.svelte';
 	import DemoShell from '#lib/ui/DemoShell.svelte';
 	import SplitView from '#lib/ui/SplitView.svelte';
@@ -63,7 +63,7 @@
 
 	let hours = $state(0);
 	let view: View = $state(START);
-	let divider = $state(0.4);
+	let divider = $state(0.5);
 	let showLight = $state(true);
 	let showGravity = $state(true);
 	/** Exposure in decades relative to "exposed for Earth's interior". */
@@ -191,6 +191,10 @@
 				counting.seed
 			)
 	);
+
+	/** The exposure as a factor: "× 1", "× 10", then powers of ten. */
+	const exposureReading = (d: number) =>
+		d === 0 ? '× 1' : d === 1 ? '× 10' : `× 10${superscript(d)}`;
 
 	function lookDown() {
 		view = { ...DOWN };
@@ -347,7 +351,7 @@
 				max={3}
 				step={0.05}
 				bind:value={decades}
-				readout="× 10{superscript(Math.round(decades))}"
+				readout={exposureReading(Math.round(decades))}
 				ends={['for the Sun', 'for the Earth']}
 			/>
 		</Group>
@@ -368,7 +372,9 @@
 		<dl>
 			<div>
 				<dt>Centre of view passes through</dt>
-				<dd>{centre.path > 0 ? km(centre.path) + ' of Earth' : 'no rock'}</dd>
+				<dd>
+					{#if centre.path > 0}<Tex math={texLength(centre.path)} /> of Earth{:else}no rock{/if}
+				</dd>
 			</div>
 			<div>
 				<dt>Expected brightness there</dt>
@@ -380,14 +386,15 @@
 			</div>
 			<div>
 				<dt>Sun’s core against Earth’s interior</dt>
-				<dd><Tex math={`${texSci(sunRatio)}\\times\\ \\text{brighter}`} /></dd>
+				<dd><Tex math={texSci(sunRatio)} /> times brighter</dd>
 			</div>
 			<div>
 				<dt>Moon’s centre against Earth’s interior</dt>
 				<dd>
-					<Tex math={`${texSci(1 / moonRatio)}\\times\\ \\text{fainter}`} />, {Math.abs(
-						moonAltitude
-					).toFixed(0)}° {moonAltitude < 0 ? 'below' : 'above'} the horizon
+					<Tex math={texSci(1 / moonRatio)} /> times fainter, <Tex
+						math={`${Math.abs(moonAltitude).toFixed(0)}^\\circ`}
+					/>
+					{moonAltitude < 0 ? 'below' : 'above'} the horizon
 				</dd>
 			</div>
 		</dl>
@@ -472,6 +479,64 @@
 		</p>
 		<h4>The tidal field at the camera</h4>
 		<TidalReading reading={tide} basis={cameraBasis(view)} />
+	{/snippet}
+	{#snippet plain()}
+		<p>
+			You are standing on the night side of the Earth at midnight, two metres above the ground, and
+			looking down. The picture is split by a vertical line. To the left of the line, marked <em
+				>Light</em
+			>, is what your eyes would see: dark ground and the night sky. To the right, marked
+			<em>Gravity · thermal</em>, is what an imagined <strong>gravitational camera</strong> would see.
+		</p>
+		<p>
+			This camera collects <strong>gravitational waves</strong>, which are ripples in gravity that
+			travel at the speed of light. Every warm object sends out a very weak glow of these waves,
+			made by the jiggling of its atoms. This is the <strong>thermal glow</strong>. Almost nothing
+			absorbs it, so the whole Earth is transparent to it. Each point of the picture adds up the
+			glow of everything along its line of sight, near and far.
+		</p>
+		<p>
+			On the gravity side, brightness shows how much glow arrives from each direction. Colour shows
+			the temperature of what sent it. Red is the crust, at about 700 kelvin. Orange is the hotter
+			mantle. Yellow to pale cream is the core, at up to 5500 kelvin. Lines of sight that point
+			steeply down pass through the hot core, so they are the brightest. The Sun is below your feet
+			at midnight. Its core, at millions of kelvin, shines up through the planet as a small and very
+			bright point.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>
+				Press <em>Find the Sun</em>. The view zooms in on the Sun and the exposure is lowered, so
+				that its core is not drawn as a white blot. In this glow the Sun looks five times smaller
+				than its visible disc, because its gravitational glow comes from its hot core.
+			</li>
+			<li>
+				Press <em>Find the Moon</em>. The Moon sits on the dividing line. In light it is bright, but
+				that light is sunlight reflected from its surface. In the glow it shines only by its own
+				warmth, and it is far fainter than the ground under you.
+			</li>
+		</ul>
+		<p>
+			This is the expected picture of an impossibly long exposure. A detector with an area of one
+			square metre would receive at most one <strong>graviton</strong>, the smallest packet of
+			gravitational-wave energy, from the whole Earth below every twenty hours or so. Section IX of
+			the paper, “A first image”, works out this view.
+		</p>
+	{/snippet}
+	{#snippet help()}
+		<p>
+			Drag the picture to look around, and scroll to zoom in or out. Drag the vertical dividing line
+			to show more of the light view or more of the gravity view.
+		</p>
+		<p>
+			In the Controls tab, <em>Image</em>, <em>Tidal field</em> and <em>Counts</em> choose what the
+			gravity side shows. The <em>Local time</em> slider moves the clock through the day, and
+			<em>Play the day</em>
+			runs it. <em>Look down</em>, <em>Find the Sun</em> and <em>Find the Moon</em> turn the view
+			for you. The <em>Exposure</em> slider brightens or darkens the gravity side. The
+			<em>Light</em>
+			and <em>Gravity</em> switches show or hide each side. Reset puts the view and the exposure back.
+		</p>
 	{/snippet}
 </DemoShell>
 

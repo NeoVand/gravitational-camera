@@ -55,7 +55,10 @@
 </svelte:head>
 
 {#snippet circle()}
-	<p class="circle">The dashed circle is λ/2π, where Newton’s field gives way to the waves.</p>
+	<p class="circle">
+		The dashed circle is λ/2π, about a sixth of a wavelength out, where Newton’s field gives way to
+		the waves.
+	</p>
 {/snippet}
 
 {#snippet key(full: boolean)}
@@ -72,7 +75,8 @@
 		}}
 		median="Half the picture is stronger, as a root mean square over a wave period, than"
 	>
-		{@render circle()}
+		<!-- in brief, under every tab, the place and the scale alone: the Key tab has the rest -->
+		{#if full}{@render circle()}{/if}
 	</FieldLegend>
 {/snippet}
 
@@ -132,8 +136,8 @@
 			<Segmented
 				label="Motion"
 				options={[
-					{ value: 'play', label: 'Turning', icon: PlayIcon },
-					{ value: 'pause', label: 'Still', icon: PauseIcon }
+					{ value: 'play', label: 'Playing', icon: PlayIcon },
+					{ value: 'pause', label: 'Paused', icon: PauseIcon }
 				]}
 				bind:value={motion}
 			/>
@@ -225,6 +229,62 @@
 		<p>
 			The paper’s reference implementation computes the field by finite differences of the curvature
 			and checks it against Newton’s near the pair and the quadrupole wave far away.
+		</p>
+	{/snippet}
+	{#snippet plain()}
+		<p>
+			Two black holes, each thirty times the mass of the Sun, orbit each other. This page is a map
+			of their gravity, seen from above, in the plane in which they orbit. It is not a camera's
+			picture. Each point of the map is coloured by the <strong>tide</strong> at that point: the way gravity
+			stretches space in one direction and squeezes it in another. Only the part of the tide that changes
+			as the holes turn is drawn.
+		</p>
+		<p>
+			Unless you have changed it, colour shows the direction of the stretch. Red means across the
+			picture, green means up and down, and blue means toward you. Brightness shows how strong the
+			tide is. The fine strokes lie along the stretch. The Key tab explains the scale. Nothing is
+			drawn inside the orbit itself.
+		</p>
+		<p>
+			The dashed circle lies about a sixth of a wavelength from the pair. Inside it, the pattern is
+			simply Newton's pull of two masses, turning rigidly with them. A camera there could see the
+			pair as two bodies. Farther out, the pattern falls behind the turning holes, because changes
+			in gravity travel at the speed of light. It winds into a two-armed spiral. This spiral is the <strong
+				>gravitational wave</strong
+			>, a ripple in gravity that travels outward. In the wave the pair looks like a single point.
+			The change from one picture to the other is gradual, not a sharp edge.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>
+				Move the <em>Zoom</em> slider toward <em>the waves</em> to see the spiral, and toward
+				<em>the pair</em> to see the turning pull.
+			</li>
+			<li>
+				Move the <em>Orbital speed</em> slider toward <em>about to merge</em>. The holes move closer
+				and faster, and their waves become shorter. The About tab gives their separation, the length
+				of their waves, and the time left before they merge.
+			</li>
+			<li>
+				Under <em>Tidal field</em>, colour the map by <em>Stretch or squeeze</em>. Orange then marks
+				where space across the plane is stretched at this moment, and blue where it is squeezed.
+			</li>
+		</ul>
+		<p>
+			The motion is slowed or quickened so that one wave passes every 1.6 seconds on the screen.
+			Section XI of the paper, “Astrophysical and cosmological scenes”, describes this change from
+			pull to wave.
+		</p>
+	{/snippet}
+	{#snippet help()}
+		<p>
+			Nothing on this map is dragged. Everything is set in the Controls tab. <em>Image</em> shows
+			only the two holes on their orbit, and <em>Tidal field</em> shows the map of their gravity.
+			The <em>Zoom</em> slider sets how many wavelengths the map spans. <em>Playing</em> and
+			<em>Paused</em> start and stop the motion. The <em>Orbital speed</em> slider sets how fast the
+			holes move, and so how close they are. Under <em>Tidal field</em>, you can choose what the
+			colour shows, and set the contrast, the strength scale, the wash and the strokes. Reset puts
+			the zoom back.
 		</p>
 	{/snippet}
 </DemoShell>

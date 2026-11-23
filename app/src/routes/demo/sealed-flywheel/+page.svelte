@@ -21,7 +21,6 @@
 <RoomDemo
 	{scene}
 	subjectDistance={3.8}
-	startDivider={0.5}
 	look={{ yaw: 6, pitch: -12 }}
 	subtract
 	subject={{ id: 'flywheel-right', name: 'one flywheel' }}
@@ -73,6 +72,64 @@
 			blurred. The flow image is drawn at its own brightness, magnified against the mass image; its
 			spread is that blur. Its hue is the direction in which mass moves across the view (the wheel
 			in the corner), so a turning body shows as a ring of hues going round.
+		</p>
+	{/snippet}
+	{#snippet plain()}
+		<p>
+			Two sealed steel boxes stand 3.6 metres from the camera. Each holds a smooth steel flywheel, a
+			ball 70 centimetres across. The right-hand wheel turns fifty times a second. The left-hand
+			wheel is still. In light the two boxes look the same.
+		</p>
+		<p>
+			The picture is split by a vertical line. To the left, marked <em>Light</em>, is what an
+			ordinary camera sees. To the right, marked <em>Gravity · near field and flow</em>, is what an
+			imagined <strong>gravitational camera</strong> would show. Each pixel of this camera measures how
+			the pull of gravity changes from one point to the next. On the gravity side, the dark blue to white
+			glow shows mass along each line of sight. The pull of the empty room has been taken away to begin
+			with.
+		</p>
+		<p>
+			A smooth wheel has the same shape whether it turns or not, so it pulls in the same way. The
+			mass picture therefore shows two equal blurs. But moving mass also produces a second kind of
+			gravitational effect, much as a moving electric charge produces magnetism. This effect is
+			called the <strong>magnetic part</strong> of the field. Each pixel measures it as well. It
+			shows the <strong>flow</strong> of mass inside the right-hand box as a ring of colours. The colours
+			go round the ring in the direction in which the wheel turns. Each colour says which way the mass
+			moves across the view, as the colour wheel in a corner of the picture shows.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>
+				Turn the <em>Flow</em> switch off and on. With it off, the two boxes look the same to gravity
+				too.
+			</li>
+			<li>
+				Move the <em>Sensitivity</em> slider to the left. The <strong>sensitivity</strong> is the size
+				of the signal divided by the size of the random noise in the readings. The flow blurs away first,
+				because its signal is much weaker.
+			</li>
+		</ul>
+		<p>
+			The flow is drawn far brighter than it really is. Its true strength is the speed of the rim
+			divided by the speed of light. The rim moves at 110 metres a second, so the flow is about four
+			ten-millionths of the mass signal. Section X of the paper, “What the camera can do that light
+			cannot”, lists this among the camera's abilities: it can see mass flowing inside a sealed
+			body.
+		</p>
+	{/snippet}
+	{#snippet help()}
+		<p>
+			Drag the picture to look around, and scroll to zoom. Drag the vertical dividing line to show
+			more light or more gravity.
+		</p>
+		<p>
+			In the Controls tab, <em>Image</em> shows the gravity picture, <em>Tidal field</em> shows how
+			gravity stretches and squeezes space at points around the camera, and <em>One exposure</em>
+			adds the noise of one set of readings. <em>Sensitivity</em> sets how far the signal stands
+			above the noise, and <em>Exposure</em> brightens or darkens the gravity side. Under Layers,
+			<em>Flow</em>
+			shows or hides the colours of moving mass, and <em>Room</em> adds or removes the pull of the floor
+			and walls. The other switches show or hide each part of the picture. Reset puts the view back.
 		</p>
 	{/snippet}
 </RoomDemo>

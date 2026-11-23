@@ -7,9 +7,10 @@
 	 */
 	import type { Snippet } from 'svelte';
 	import { asset } from '$app/paths';
-	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
+	import type { IconSvgElement } from '@hugeicons/svelte';
 	import { Sun03Icon } from '@hugeicons/core-free-icons';
 	import { EngineUnavailable } from '../engine';
+	import SideTag from './SideTag.svelte';
 	import { SkyRenderer, type SkyParams, type SkyView, type Vec3 } from '../vistas/sky';
 
 	interface Props {
@@ -52,6 +53,8 @@
 
 	let status: 'starting' | 'running' | 'unavailable' | 'failed' = $state('starting');
 	let message = $state('');
+	/** The picture's width on the page, CSS pixels, for the names of its two sides. */
+	let frameWidth = $state(0);
 	let capture: (() => Promise<Blob | null>) | undefined;
 
 	/** The picture as it is now, drawn again off screen, as a PNG. */
@@ -196,7 +199,11 @@
 	}
 </script>
 
-<div class="frame" style:background-image={poster ? `url("${poster}")` : undefined}>
+<div
+	class="frame"
+	style:background-image={poster ? `url("${poster}")` : undefined}
+	bind:clientWidth={frameWidth}
+>
 	<canvas
 		{@attach mount}
 		class={{ ready: status === 'running' }}
@@ -213,24 +220,16 @@
 			<div class="right-side" style:left="{divider * 100}%">{@render overlay()}</div>
 		{/if}
 		{#if divider > 0.12}
-			<span
-				class="tag"
-				style:right="calc({(1 - divider) * 100}% + 14px)"
-				style:max-width="calc({divider * 100}% - 28px)"
-			>
-				<HugeiconsIcon icon={Sun03Icon} size={13} strokeWidth={2} /><span class="text">Light</span>
-			</span>
+			<SideTag icon={Sun03Icon} label="Light" side="left" split={divider} width={frameWidth} />
 		{/if}
 		{#if divider < 0.88}
-			<span
-				class="tag"
-				style:left="calc({divider * 100}% + 14px)"
-				style:max-width="calc({(1 - divider) * 100}% - 28px)"
-			>
-				<HugeiconsIcon icon={rightIcon} size={13} strokeWidth={2} /><span class="text"
-					>{rightLabel}</span
-				>
-			</span>
+			<SideTag
+				icon={rightIcon}
+				label={rightLabel}
+				side="right"
+				split={divider}
+				width={frameWidth}
+			/>
 		{/if}
 		<div
 			class="divider"
@@ -293,33 +292,6 @@
 
 	canvas:active {
 		cursor: grabbing;
-	}
-
-	.tag {
-		position: absolute;
-		bottom: var(--tag-inset, 14px);
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45em;
-		font: italic 400 0.92rem/1 var(--font-serif);
-		color: rgb(255 255 255 / 0.82);
-		background: rgb(33 25 16 / 0.6);
-		border: 1px solid rgb(255 255 255 / 0.14);
-		padding: 0.45em 0.7em;
-		border-radius: 999px;
-		backdrop-filter: blur(6px);
-		pointer-events: none;
-		white-space: nowrap;
-	}
-
-	.tag .text {
-		min-width: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	.tag :global(svg) {
-		flex: none;
 	}
 
 	.divider {

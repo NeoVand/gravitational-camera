@@ -113,13 +113,17 @@
 		</label>
 		<output for={id}>{readout}</output>
 	</div>
+	<!-- Not bound: a bound range would hand back, on loading, the value as the browser rounds it to the step, and
+	     what depends on it would then differ from the page as it was first drawn. Only what the reader does is
+	     taken from it. -->
 	<input
 		{id}
 		type="range"
 		{min}
 		{max}
 		{step}
-		bind:value
+		{value}
+		oninput={(e) => (value = e.currentTarget.valueAsNumber)}
 		style:--fill="{fill}%"
 		onpointerdown={down}
 		onpointermove={move}
@@ -190,8 +194,10 @@
 		align-self: center;
 	}
 
+	/* a reading in the text's own face, its figures in columns: the same as the readings under the controls */
 	output {
-		font: 400 0.72rem/1.2 var(--font-mono);
+		font: 500 0.74rem/1.2 var(--font-sans);
+		font-variant-numeric: tabular-nums;
 		color: var(--accent);
 		text-align: right;
 		white-space: nowrap;
@@ -278,7 +284,7 @@
 	.ends {
 		display: flex;
 		justify-content: space-between;
-		font-size: 0.66rem;
+		font-size: 0.69rem;
 		color: var(--text-faint);
 		margin-top: -0.2rem;
 	}

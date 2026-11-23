@@ -83,12 +83,18 @@
 		startSensitivity?: number;
 		startBrightness?: number;
 		intro: Snippet;
+		/** The page in plain words, for a reader new to it: DemoShell's first tab. */
+		plain?: Snippet;
+		/** What there is to do on the page, in plain words: the head of DemoShell's Help tab. */
+		help?: Snippet;
 		/** Lines about this scene for the end of the physics tab. */
 		physicsExtra?: Snippet;
 		/** Controls of this scene's own, above the common ones. */
 		extraControls?: Snippet;
-		/** Drawn over the picture, such as a label that light has been slowed down. */
+		/** Drawn over the gravity side of the picture. */
 		extraOverlay?: Snippet;
+		/** A few words about the whole picture at its foot, such as that light has been slowed down. */
+		caption?: string;
 		/** Start with the "Pixel" layer on. */
 		startProbe?: boolean;
 		/**
@@ -122,9 +128,12 @@
 		startSensitivity = 20,
 		startBrightness = 0,
 		intro,
+		plain,
+		help,
 		physicsExtra,
 		extraControls,
 		extraOverlay,
+		caption,
 		startProbe = false,
 		subject,
 		work
@@ -313,6 +322,8 @@
 {/snippet}
 
 <DemoShell
+	{plain}
+	{help}
 	title={scene.title}
 	legend={display === 'pixels' ? fieldKey : undefined}
 	foot={display === 'pixels' || probe ? status : undefined}
@@ -347,6 +358,7 @@
 			room
 			{outline}
 			{subtractRoom}
+			{caption}
 			rightLabel={display === 'pixels'
 				? 'Gravity · tidal field'
 				: measuring
@@ -434,10 +446,10 @@
 		{:else if measuring && gravity === 'near' && subject}
 			<dl>
 				<div>
-					<dt>Signal to noise, for {subject.name}</dt>
-					<dd>
-						<Tex math={`10^{${sensitivity}}`} />: {times(subjectMass)} kg, {length(subjectDepth)} away
-					</dd>
+					<dt>
+						Signal to noise, for {subject.name}: {times(subjectMass)} kg, {length(subjectDepth)} away
+					</dt>
+					<dd><Tex math={`10^{${sensitivity}}`} /></dd>
 				</div>
 				<div>
 					<dt>Noise in the picture, one standard deviation</dt>
@@ -446,9 +458,8 @@
 				<div>
 					<dt>A point of that mass there peaks at</dt>
 					<dd>
-						<Tex math={`${texSci(subjectPeak, 2)}\\ \\mathrm{kg\\,m^{-3}}`} />, {times(
-							subjectPeak / noiseSigma
-						)} standard deviations
+						<Tex math={`${texSci(subjectPeak, 2)}\\ \\mathrm{kg\\,m^{-3}}`} />, or
+						<Tex math={texSci(subjectPeak / noiseSigma)} /> standard deviations
 					</dd>
 				</div>
 			</dl>

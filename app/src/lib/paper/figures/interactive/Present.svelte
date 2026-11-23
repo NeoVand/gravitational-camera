@@ -44,7 +44,7 @@
 	}
 </script>
 
-<Frame slug="now-and-then" aspect={16 / 10}>
+<Frame slug="now-and-then" aspect={16 / 10} narrow={{ aspect: 1 }}>
 	{#snippet stage()}
 		<NowAndThen {crossing} {t} />
 	{/snippet}

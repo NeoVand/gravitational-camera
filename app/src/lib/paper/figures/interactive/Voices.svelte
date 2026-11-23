@@ -76,7 +76,7 @@
 			label="Motion"
 			options={[
 				{ value: 'play', label: 'Playing', icon: PlayIcon },
-				{ value: 'pause', label: 'Still', icon: PauseIcon }
+				{ value: 'pause', label: 'Paused', icon: PauseIcon }
 			]}
 			bind:value={motion}
 		/>

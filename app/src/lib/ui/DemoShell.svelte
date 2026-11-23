@@ -3,15 +3,19 @@
 	 * The frame shared by every demo: the picture, and beside it one docked sidebar that holds everything else.
 	 * Nothing floats over the picture.
 	 *
-	 * The sidebar is a panel and, at the window's edge, a rail. The rail holds the tabs (About, Physics, Controls,
-	 * and where a demo has them Pixel and Key, then Help) and the tools (reset the view, save a still, full screen,
+	 * The sidebar is a panel and, at the window's edge, a rail. The rail holds the tabs (In plain words, Controls,
+	 * Physics, and where a demo has them Pixel and Key, then Help) and the tools (reset the view, save a still, full screen,
 	 * hide the interface). One tab is open at a time; pressing the open tab's icon puts the panel away, and the
 	 * picture takes its width. With the panel put away, the Key tab still opens it at the colour key (its tip shows the
 	 * key in brief). On a phone the rail is a bar along the bottom, the tabs in one row and the tools, named, in a row
 	 * beneath, and the panel a sheet above it. Whether the panel is open, and at which tab, is kept from one demo to
 	 * the next.
 	 *
-	 * Keys: N about, C controls, K the colour key (where the picture has one), R reset the view, S save a still,
+	 * The page's notes are shared out among the tabs: their prose is the plain account (unless the page gives one of
+	 * its own, when the prose moves to Physics, "In detail"), their lists of readings sit under the controls, and their
+	 * fine print, on how to read the picture, goes to Help.
+	 *
+	 * Keys: N in plain words, C controls, K the colour key (where the picture has one), R reset the view, S save a still,
 	 * F full screen, H hide everything but the picture, ? help.
 	 */
 	import type { Snippet } from 'svelte';
@@ -23,9 +27,9 @@
 		ArrowLeft02Icon,
 		ArrowRight01Icon,
 		Atom02Icon,
+		BubbleChatIcon,
 		Camera01Icon,
 		HelpCircleIcon,
-		InformationCircleIcon,
 		FullScreenIcon,
 		Key01Icon,
 		MinimizeScreenIcon,
@@ -38,13 +42,20 @@
 	import { demos } from '../demos';
 	import { figures } from '../figures';
 
-	type TabName = 'about' | 'physics' | 'controls' | 'pixel' | 'key' | 'help';
+	type TabName = 'plain' | 'controls' | 'physics' | 'pixel' | 'key' | 'help';
 
 	interface Props {
 		title: string;
 		stage: Snippet;
 		controls: Snippet;
+		/**
+		 * The page's notes: prose, then lists of readings (`dl`) and fine print (`p.fine`). The lists go under the
+		 * controls and the fine print to Help; the prose is the plain account, or, if `plain` is given, the first part
+		 * of Physics.
+		 */
 		notes: Snippet;
+		/** The page in plain words, for a reader new to it: the first tab. */
+		plain?: Snippet;
 		/** The physics behind the demo, with its equations. */
 		physics?: Snippet;
 		/** What one pixel at the camera reads, where the demo shows it: the Pixel tab. */
@@ -71,6 +82,7 @@
 		stage,
 		controls,
 		notes,
+		plain,
 		physics,
 		pixel,
 		legend,
@@ -111,15 +123,24 @@
 	interface Tab {
 		name: TabName;
 		label: string;
+		/** A shorter name for the rail, where the full one would not fit. */
+		short?: string;
 		icon: IconSvgElement;
 		/** Its key on the keyboard, if it has one. */
 		key?: string;
 	}
 
 	const tabs = $derived<Tab[]>([
-		{ name: 'about', label: 'About', icon: InformationCircleIcon, key: 'N' },
-		...(physics ? [{ name: 'physics' as const, label: 'Physics', icon: Atom02Icon }] : []),
+		{
+			name: 'plain',
+			label: 'In plain words',
+			short: 'Plain words',
+			icon: BubbleChatIcon,
+			key: 'N'
+		},
 		{ name: 'controls', label: 'Controls', icon: SlidersHorizontalIcon, key: 'C' },
+		// with a plain account of its own, the page's notes move here, so there is always something to read
+		...(physics || plain ? [{ name: 'physics' as const, label: 'Physics', icon: Atom02Icon }] : []),
 		...(pixel ? [{ name: 'pixel' as const, label: 'Pixel', icon: CenterFocusIcon }] : []),
 		...(legend ? [{ name: 'key' as const, label: 'Key', icon: Key01Icon, key: 'K' }] : []),
 		{ name: 'help', label: 'Help', icon: HelpCircleIcon, key: '?' }
@@ -127,9 +148,9 @@
 
 	/** Whether the panel is open, and the tab last chosen. */
 	let open = $state(true);
-	let chosen = $state<TabName>('controls');
-	// a tab this demo does not have gives way to the controls
-	const current = $derived(tabs.some((t) => t.name === chosen) ? chosen : 'controls');
+	let chosen = $state<TabName>('plain');
+	// a tab this demo does not have gives way to the first
+	const current = $derived(tabs.some((t) => t.name === chosen) ? chosen : 'plain');
 
 	let bare = $state(false);
 	let fullscreen = $state(false);
@@ -149,9 +170,11 @@
 		try {
 			kept = JSON.parse(localStorage.getItem(KEPT) ?? '{}') ?? {};
 		} catch {
-			// nothing kept, or nothing can be: start with the controls open
+			// nothing kept, or nothing can be: start in plain words
 		}
-		if (typeof kept.tab === 'string') chosen = kept.tab as TabName;
+		// the first tab was once called About
+		if (typeof kept.tab === 'string')
+			chosen = (kept.tab === 'about' ? 'plain' : kept.tab) as TabName;
 		open = window.innerWidth >= ROOMY && kept.open !== false;
 		ready = true;
 		const phone = window.matchMedia('(max-width: 720px)');
@@ -238,7 +261,7 @@
 		if (t?.isContentEditable || t?.tagName === 'TEXTAREA') return;
 		if (t instanceof HTMLInputElement && !['range', 'checkbox'].includes(t.type)) return;
 		const key = e.key.toLowerCase();
-		if (key === 'n') choose('about');
+		if (key === 'n') choose('plain');
 		else if (key === 'c') choose('controls');
 		else if (key === 'k' && legend) choose('key');
 		else if (key === 'r' && onreset) onreset();
@@ -278,58 +301,91 @@
 					</header>
 					{#key current}
 						<div
-							class={['scroll', current]}
+							class={['scroll', current === 'help' ? 'help-tab' : current]}
 							role="tabpanel"
 							id="shell-panel"
 							aria-labelledby="shell-tab-{current}"
 							tabindex="0"
 						>
-							{#if current === 'about'}
-								{@render notes()}
-							{:else if current === 'physics' && physics}
-								{@render physics()}
+							{#if current === 'plain'}
+								{#if plain}
+									{@render plain()}
+								{:else}
+									<div class="prose">{@render notes()}</div>
+								{/if}
+							{:else if current === 'physics'}
+								{#if plain}
+									<!-- the page's own notes, which the plain account has taken the place of -->
+									<section class="detail" aria-labelledby="shell-detail">
+										<h4 id="shell-detail">In detail</h4>
+										<div class="prose">{@render notes()}</div>
+									</section>
+								{/if}
+								{#if physics}{@render physics()}{/if}
 							{:else if current === 'pixel' && pixel}
 								{@render pixel()}
 							{:else if current === 'key' && legend}
 								{@render legend()}
 							{:else if current === 'help'}
-								{#if help}<div class="help">{@render help()}</div>{/if}
-								<dl class="keys">
-									{#if !help}
+								{#if help}
+									<div class="help">{@render help()}</div>
+								{:else}
+									<p class="intro">
 										{#if section === 'figures'}
-											<dt>Drag in the figure</dt>
-											<dd>move what it lets you move; About says what that is</dd>
+											The figure is live: it redraws as soon as anything under Controls is changed,
+											and some of it can be moved by hand.
 										{:else}
-											<dt>Drag the picture</dt>
-											<dd>look around</dd>
-											<dt>Scroll</dt>
-											<dd>zoom</dd>
-											<dt>Drag the line</dt>
-											<dd>
-												where the picture is split, move between light and gravity (arrow keys when
-												it is selected)
-											</dd>
+											The picture is live: it answers the controls at once, and dragging it looks
+											around.
 										{/if}
-									{/if}
-									<dt><kbd>N</kbd> <kbd>C</kbd> <kbd>?</kbd></dt>
-									<dd>about, controls, this help; the same key again puts the panel away</dd>
-									{#if legend}
-										<dt><kbd>K</kbd></dt>
-										<dd>the key to the colours of the picture</dd>
-									{/if}
-									{#if onreset && onsave}
-										<dt><kbd>R</kbd> <kbd>S</kbd></dt>
-										<dd>reset the view, save a still</dd>
-									{:else if onreset}
-										<dt><kbd>R</kbd></dt>
-										<dd>reset the view</dd>
-									{:else if onsave}
-										<dt><kbd>S</kbd></dt>
-										<dd>save a still</dd>
-									{/if}
-									<dt><kbd>F</kbd> <kbd>H</kbd></dt>
-									<dd>full screen, hide everything but the picture</dd>
-								</dl>
+									</p>
+								{/if}
+								<!-- the notes' fine print: how to read what is drawn -->
+								<section class="guide" aria-labelledby="shell-guide">
+									<h3 id="shell-guide">How to read it</h3>
+									<div class="fine-print">{@render notes()}</div>
+								</section>
+								<section class="ways" aria-labelledby="shell-ways">
+									<h3 id="shell-ways">What to do</h3>
+									<dl class="keys">
+										{#if !help}
+											{#if section === 'figures'}
+												<dt>Drag in the figure</dt>
+												<dd>move what it lets you move</dd>
+											{:else}
+												<dt>Drag the picture</dt>
+												<dd>look around</dd>
+												<dt class="keyboard">Scroll</dt>
+												<dd class="keyboard">zoom</dd>
+												<dt>Drag the line</dt>
+												<dd>
+													where the picture is split, to move between light and gravity
+													<span class="keyboard">(the arrow keys move it when it is selected)</span>
+												</dd>
+											{/if}
+										{/if}
+										<dt class="keyboard"><kbd>N</kbd> <kbd>C</kbd> <kbd>?</kbd></dt>
+										<dd class="keyboard">
+											in plain words, controls, this help; the same key again puts the panel away
+										</dd>
+										{#if legend}
+											<dt class="keyboard"><kbd>K</kbd></dt>
+											<dd class="keyboard">the key to the colours of the picture</dd>
+										{/if}
+										{#if onreset && onsave}
+											<dt class="keyboard"><kbd>R</kbd> <kbd>S</kbd></dt>
+											<dd class="keyboard">reset the view, save a still</dd>
+										{:else if onreset}
+											<dt class="keyboard"><kbd>R</kbd></dt>
+											<dd class="keyboard">reset the view</dd>
+										{:else if onsave}
+											<dt class="keyboard"><kbd>S</kbd></dt>
+											<dd class="keyboard">save a still</dd>
+										{/if}
+										<dt class="keyboard"><kbd>F</kbd> <kbd>H</kbd></dt>
+										<dd class="keyboard">full screen, hide everything but the picture</dd>
+									</dl>
+								</section>
 							{:else}
 								{@render controls()}
 								<!-- The numbers that answer the controls are kept beside them: the lists of readings in
@@ -376,7 +432,7 @@
 							onclick={() => choose(t.name)}
 						>
 							<HugeiconsIcon icon={t.icon} size={19} strokeWidth={1.6} />
-							<span>{t.label}</span>
+							<span class="label">{t.short ?? t.label}</span>
 							{#if t.name === 'key' && !open}
 								<!-- with the panel away, the key in brief, and what opens it in full -->
 								<span class="tip wide" aria-hidden="true">
@@ -442,7 +498,7 @@
 		--surface: var(--bg-sunken);
 		--wash: color-mix(in srgb, var(--text) 7%, transparent);
 		--wash-strong: color-mix(in srgb, var(--text) 11%, transparent);
-		--rail: 3.9rem;
+		--rail: 4.2rem;
 	}
 
 	/* the picture has the window but for the sidebar: nothing lies over it */
@@ -463,6 +519,8 @@
 		min-height: 0;
 		background: var(--surface);
 		border-left: 1px solid var(--line);
+		/* small text in the accent, on the sidebar's darker ground, takes the accent's deeper ink */
+		--accent: var(--accent-ink);
 	}
 
 	/* --- the panel ---------------------------------------------------------------- */
@@ -488,11 +546,12 @@
 		min-width: 0;
 	}
 
-	/* the way back, at the head of the rail: the one thing in the sidebar inked in reverse */
+	/* the way back, at the head of the rail: drawn round, in full ink, apart from the tabs; not filled, which
+	   would read as a choice made */
 	.tool.back {
 		margin-bottom: 0.45rem;
-		background: var(--text);
-		color: var(--bg);
+		color: var(--text);
+		box-shadow: inset 0 0 0 1px var(--line-strong);
 	}
 
 	.away {
@@ -577,47 +636,83 @@
 
 	/* --- what the tabs hold --------------------------------------------------------- */
 
-	.about,
+	/* nothing below the last line of a tab but the panel's own padding, so a tab that fits does not scroll */
+	.scroll > :global(:last-child),
+	.prose > :global(:last-child),
+	.help > :global(:last-child) {
+		margin-bottom: 0;
+	}
+
+	.plain,
 	.pixel,
 	.key {
 		font-size: 0.86rem;
 		line-height: 1.55;
 	}
 
-	.about :global(p),
-	.key :global(p) {
+	/* the plain account is the first thing read: set a little larger */
+	.plain {
+		font-size: 0.9rem;
+		line-height: 1.6;
+	}
+
+	.plain :global(p),
+	.key :global(p),
+	.plain :global(li) {
 		margin: 0 0 0.8rem;
 		text-wrap: pretty;
 	}
 
-	.about :global(strong),
+	.plain :global(h4) {
+		margin: 1.1rem 0 0.35rem;
+		font: italic 400 1rem/1.3 var(--font-serif);
+		color: var(--accent);
+	}
+
+	.plain :global(h4:first-child) {
+		margin-top: 0;
+	}
+
+	.plain :global(strong),
 	.key :global(strong) {
 		color: var(--text);
 		font-weight: 600;
 	}
 
-	.about :global(dl),
+	/* the notes' prose, wherever it is read: its lists of readings and its fine print are kept elsewhere */
+	.prose > :global(dl),
+	.prose > :global(.fine) {
+		display: none;
+	}
+
+	/* the lists of readings, under the controls */
 	.answers :global(dl) {
-		margin: 0.9rem 0;
+		margin: 0;
 		display: grid;
 		gap: 0.55rem;
 		padding: 0.75rem 0.8rem;
 		border-radius: 10px;
-		background: color-mix(in srgb, var(--text) 5%, transparent);
+		background: var(--well);
+		font-size: 0.86rem;
+		line-height: 1.55;
 	}
 
-	.about :global(dt),
 	.answers :global(dt) {
 		color: var(--text-faint);
-		font-size: 0.72rem;
+		font-size: 0.74rem;
+		line-height: 1.4;
 	}
 
-	.about :global(dd),
+	/* a reading is a value: in KaTeX when it is set as one, else in the text's own face, its figures in columns */
 	.answers :global(dd) {
 		margin: 0.1rem 0 0;
-		font-family: var(--font-mono);
-		font-size: 0.78rem;
+		font: 400 0.84rem/1.45 var(--font-sans);
+		font-variant-numeric: tabular-nums;
 		color: var(--text);
+	}
+
+	.answers :global(dd .katex) {
+		font-size: 1.08em;
 	}
 
 	/* under the controls, the notes' lists of readings and no other part of the notes */
@@ -629,7 +724,8 @@
 		display: none;
 	}
 
-	.readings h3 {
+	.readings h3,
+	.help-tab h3 {
 		margin: 0 0 0.6rem;
 		font: italic 400 0.95rem/1.3 var(--font-serif);
 		color: var(--text-faint);
@@ -639,23 +735,7 @@
 		display: none;
 	}
 
-	.answers :global(dl) {
-		margin: 0;
-		font-size: 0.86rem;
-		line-height: 1.55;
-	}
-
 	.answers :global(dl + dl) {
-		margin-top: 0.6rem;
-	}
-
-	.about :global(.fine) {
-		color: var(--text-faint);
-		font-size: 0.76rem;
-		margin: 0;
-	}
-
-	.about :global(.fine + .fine) {
 		margin-top: 0.6rem;
 	}
 
@@ -684,15 +764,70 @@
 		font-family: var(--font-sans);
 	}
 
-	.help {
-		margin-bottom: 1rem;
+	/* the page's own notes, at the head of Physics when the plain account has taken their place */
+	.detail {
+		margin-bottom: 1.4rem;
+		padding-bottom: 0.4rem;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.detail:last-child {
+		margin-bottom: 0;
+		padding-bottom: 0;
+		border-bottom: 0;
+	}
+
+	.detail .prose :global(p) {
+		text-wrap: pretty;
+	}
+
+	/* a displayed equation wider than the panel scrolls sideways in its own box (Tex), never the panel */
+	.physics :global(.display) {
+		max-width: 100%;
+	}
+
+	/* --- help --- */
+
+	.help-tab {
 		font-size: 0.86rem;
 		line-height: 1.55;
 	}
 
+	.help-tab section + section,
+	.help + section,
+	.intro + section {
+		margin-top: 1.15rem;
+	}
+
+	.intro,
 	.help :global(p) {
 		margin: 0 0 0.8rem;
 		text-wrap: pretty;
+	}
+
+	.intro {
+		color: var(--text);
+	}
+
+	/* of the notes, only the fine print; and no heading over nothing */
+	.fine-print > :global(:not(.fine)) {
+		display: none;
+	}
+
+	.guide:not(:has(.fine)) {
+		display: none;
+	}
+
+	.fine-print :global(.fine) {
+		margin: 0;
+		color: var(--text-dim);
+		font-size: 0.82rem;
+		line-height: 1.55;
+		text-wrap: pretty;
+	}
+
+	.fine-print :global(.fine + .fine) {
+		margin-top: 0.6rem;
 	}
 
 	.keys {
@@ -712,6 +847,17 @@
 	.keys dd {
 		margin: 0;
 		color: var(--text-dim);
+	}
+
+	/* where nothing hovers and there is no keyboard to hand, neither the keys nor the scroll wheel are named */
+	@media (hover: none) and (pointer: coarse) {
+		.keyboard {
+			display: none;
+		}
+
+		.ways:not(:has(dt:not(.keyboard))) {
+			display: none;
+		}
 	}
 
 	/* --- the rail: the tabs, then the tools ------------------------------------------ */
@@ -737,18 +883,25 @@
 		position: relative;
 		display: grid;
 		justify-items: center;
-		gap: 0.28rem;
-		width: 3.3rem;
-		padding: 0.5rem 0 0.42rem;
+		gap: 0.3rem;
+		width: 3.7rem;
+		padding: 0.5rem 0.1rem 0.45rem;
 		border: 0;
 		border-radius: 10px;
 		background: transparent;
-		color: var(--text-faint);
-		font: 500 0.6rem/1 var(--font-sans);
+		color: var(--text-dim);
+		font: 500 0.6875rem/1.1 var(--font-sans);
 		cursor: pointer;
 		transition:
 			background-color 0.15s,
 			color 0.15s;
+	}
+
+	/* a name of two words may take two lines */
+	.tabs .label {
+		max-width: 100%;
+		text-align: center;
+		text-wrap: balance;
 	}
 
 	/* a finger leaves no pointer behind: only a pointer that hovers lights what it is over */
@@ -764,8 +917,7 @@
 		}
 
 		.tool.back:hover {
-			background: color-mix(in srgb, var(--text) 82%, var(--accent));
-			color: var(--bg);
+			box-shadow: inset 0 0 0 1px var(--text-dim);
 		}
 	}
 
@@ -865,12 +1017,14 @@
 
 	kbd {
 		display: inline-block;
-		min-width: 1.3em;
-		padding: 0.05em 0.35em;
-		border-radius: 4px;
+		min-width: 1.6em;
+		padding: 0.1em 0.4em;
+		border-radius: 5px;
 		border: 1px solid var(--line-strong);
-		font: 500 0.66rem/1.4 var(--font-mono);
-		color: var(--text-dim);
+		border-bottom-width: 2px;
+		background: var(--well);
+		font: 500 0.74rem/1.35 var(--font-mono);
+		color: var(--text);
 		text-align: center;
 	}
 
@@ -991,7 +1145,8 @@
 			max-width: 4.4rem;
 			width: auto;
 			min-height: 2.75rem;
-			white-space: nowrap;
+			align-content: start;
+			padding-inline: 0;
 		}
 
 		.tabs button[aria-selected='true']::before {

@@ -112,6 +112,64 @@
 		{/if}
 	{/snippet}
 
+	{#snippet plain()}
+		<p>
+			A pixel of the gravitational camera measures ten numbers at one point. Five describe how
+			gravity stretches and squeezes space there. Five describe how it twists space, which is the
+			effect that moving masses produce. Together, the ten numbers pick out four special directions
+			in the sky around the pixel. Along these directions the field takes its simplest form. They
+			are called the <strong>principal null directions</strong> of the reading. A sensor of light at one
+			point picks out only two such directions.
+		</p>
+		<p>
+			The page shows two round skies. On the sky labelled <em>gravity · four directions</em>, the
+			directions and the arrow are drawn in orange. On the sky labelled
+			<em>light · two directions</em>, they are drawn in blue. Each disc is the sky around one
+			pixel, with the pixel as a small dot at its centre. The two grey curves show how the sky is
+			turned. The coloured dots on each sky are the special directions. Dots that touch are
+			directions that coincide. Faint dots are on the far side. The grey disc outside the sky is a
+			body, with a line to the pixel. Its arrow shows its velocity. The line of words under each sky
+			says what the reading shows.
+		</p>
+		<p>
+			At the start, one body moves up the screen at 0.6 of the speed of light. In the gravity sky,
+			the four directions lean toward its motion. A coloured arrow from the centre points to their
+			midpoint. This arrow gives the body's velocity across the line of sight exactly, at any speed.
+			The dotted ring marks the true value.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>
+				Move the <em>Speed</em> slider to <em>at rest</em>. The four dots fall into two pairs, on
+				the line through the body.
+			</li>
+			<li>
+				Choose <em>Two</em> under Sources. The four dots separate, and the words say that the field is
+				not that of one round body or one wave. The light sky still shows only two directions.
+			</li>
+			<li>
+				Choose <em>A wave</em>. All four dots gather on the wave's direction of travel, the arrow
+				marked k̂.
+			</li>
+		</ul>
+		<p>
+			One reading therefore tells whether the field could come from one body, from one wave, or from
+			something more. Physicists call this sorting the Petrov classification. Section VIII of the
+			paper, “One pixel, sparse arrays and depth”, explains it.
+		</p>
+	{/snippet}
+
+	{#snippet help()}
+		<p>Drag a grey body to move it. Drag anywhere else on a sky to turn that sky.</p>
+		<p>
+			In the Controls tab, <em>Sources</em> chooses the scene: <em>One body</em>, <em>Two</em>
+			bodies, <em>A wave</em>, or <em>Both</em> a body and a wave. The <em>Speed</em> slider sets
+			how fast the first body moves up the screen. When <em>Both</em> is chosen, the
+			<em>Strength</em> slider sets how strong the wave is compared with the body's pull. Reset turns
+			the skies back and returns the bodies to their places.
+		</p>
+	{/snippet}
+
 	{#snippet notes()}
 		<p>
 			A pixel of this camera reads ten numbers. Put together, they single out four directions on the
@@ -124,7 +182,9 @@
 			across the line of sight, exactly, at any speed (the dotted ring is the true value). One wave
 			puts all four on its direction of travel. A second body separates them, and the one reading
 			shows that no single body could make this field. Light, at one point, gives the same two
-			directions for one charge or many.
+			directions for one charge or many. For one moving charge its arrow reads the sideways velocity
+			too, the same two directions folded the same way; what light cannot do is tell one source from
+			several, since its two directions look alike either way.
 		</p>
 		<dl>
 			<div>

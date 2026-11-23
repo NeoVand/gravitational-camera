@@ -14,6 +14,9 @@ import SkyLive from './figures/interactive/Sky.svelte';
 import SpeedometerLive from './figures/interactive/Speedometer.svelte';
 import StarsLive from './figures/interactive/Stars.svelte';
 import VoicesLive from './figures/interactive/Voices.svelte';
+import HiddenFlowLive from './figures/hair/HiddenFlow.svelte';
+import HoleResponseLive from './figures/hair/HoleResponse.svelte';
+import PassingLive from './figures/hair/Passing.svelte';
 
 /**
  * Interactive versions of some figures, offered under the figure itself (which
@@ -26,37 +29,56 @@ export type LiveFigure = { label: string } & (
 );
 
 export const liveFigures: Record<string, LiveFigure> = {
+	// the scenes, running: what they show, in light and in gravity
 	'fig:sun-at-midnight': {
-		label: 'Live: the same night, beside ordinary light',
+		label: 'Live: the same night, in light and in gravity',
 		picture: SunAtMidnightFigure,
 		open: true
 	},
 	'fig:locked-safe': {
-		label: 'Live: beside ordinary light',
+		label: 'Live: the two safes, in light and in gravity',
 		picture: LockedSafeFigure,
 		open: true
 	},
 	'fig:closed-furnace': {
-		label: 'Live: beside ordinary light',
+		label: 'Live: the two furnaces, in light and in gravity',
 		picture: ClosedFurnaceFigure,
 		open: true
 	},
-	'fig:which-way': { label: 'Live: beside ordinary light', picture: WhichWayFigure, open: true },
-	'fig:tidal': { label: 'See it move', drawing: TidalFigure },
-	'fig:nearfield': { label: 'Try it: change the sensitivity', drawing: NearFieldFigure },
-	'fig:quadrupole': { label: 'Try it: change the speed', drawing: QuadrupoleFigure },
-	'fig:array': { label: 'Try it: change the width of the array', drawing: ArrayFigure },
+	'fig:which-way': {
+		label: 'Live: the three boxes, in light and in gravity',
+		picture: WhichWayFigure,
+		open: true
+	},
+	// the drawings: one that only moves, then those with controls
+	'fig:tidal': { label: 'Live: the three rings, in motion', drawing: TidalFigure },
+	'fig:nearfield': {
+		label: 'Try it: change the sensitivity and the separation',
+		drawing: NearFieldFigure
+	},
+	'fig:quadrupole': { label: 'Try it: change the speed of the source', drawing: QuadrupoleFigure },
+	'fig:array': { label: 'Try it: widen the array', drawing: ArrayFigure },
 	// the interactive figures of Section VIII (also at /figures)
-	'fig:stars': { label: 'Try it: move the bodies, set one moving', drawing: StarsLive },
-	'fig:voices': { label: 'Try it: up to five waves at once', drawing: VoicesLive },
-	'fig:present': { label: 'Try it: stop the body, with light slowed down', drawing: PresentLive },
+	'fig:stars': { label: 'Try it: drag the bodies, set one moving', drawing: StarsLive },
+	'fig:voices': { label: 'Try it: add waves, drag their sources', drawing: VoicesLive },
+	'fig:present': { label: 'Try it: change the speed, stop the body', drawing: PresentLive },
 	'fig:speedometer': {
-		label: 'Try it: cross the room, set a mass moving',
+		label: 'Try it: drag the pixel, set a mass moving',
 		drawing: SpeedometerLive
 	},
-	'fig:ranging': { label: 'Try it: move the source, change the signal', drawing: RangingLive },
-	'fig:sky-count': { label: 'Try it: choose a sky', drawing: SkyLive },
-	'fig:beyond': { label: 'Try it: choose a theory, add a second wave', drawing: BeyondLive }
+	'fig:ranging': { label: 'Try it: change the distance and the signal', drawing: RangingLive },
+	'fig:sky-count': { label: 'Try it: choose a sky, turn it', drawing: SkyLive },
+	'fig:beyond': { label: 'Try it: choose a theory, add a second wave', drawing: BeyondLive },
+	// the figures of the section on what a field keeps and loses (also at /figures)
+	'fig:passing': { label: 'Try it: move the passing mass', drawing: PassingLive },
+	'fig:hidden-flow': {
+		label: 'Try it: move the boundary between the two flows',
+		drawing: HiddenFlowLive
+	},
+	'fig:hole-response': {
+		label: 'Try it: choose the tide, move the test',
+		drawing: HoleResponseLive
+	}
 };
 
 /**

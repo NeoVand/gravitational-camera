@@ -61,12 +61,15 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.4rem;
-		padding: 0.5rem 0.6rem;
+		/* as tall, groove and all, as a row of actions (Group) */
+		min-height: calc(var(--control-height, 2.55rem) - 8px);
+		padding: 0.3rem 0.6rem;
 		border: 0;
 		border-radius: 8px;
 		background: transparent;
 		color: var(--text-dim);
-		font-size: 0.76rem;
+		font-size: 0.78rem;
+		line-height: 1.2;
 		white-space: nowrap;
 		cursor: pointer;
 		transition:
@@ -78,14 +81,20 @@
 		grid-column: 1 / -1;
 	}
 
-	button:hover {
-		color: var(--text);
+	@media (hover: hover) {
+		button:hover {
+			color: var(--text);
+		}
 	}
 
 	button[aria-pressed='true'] {
 		background: var(--bg-raised);
 		color: var(--text);
 		box-shadow: inset 0 0 0 1px var(--line-strong);
+	}
+
+	button[aria-pressed='true'] :global(svg) {
+		color: var(--accent);
 	}
 
 	button:focus-visible {

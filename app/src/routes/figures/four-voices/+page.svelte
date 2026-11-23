@@ -96,7 +96,7 @@
 				label="Motion"
 				options={[
 					{ value: 'play', label: 'Playing', icon: PlayIcon },
-					{ value: 'pause', label: 'Still', icon: PauseIcon }
+					{ value: 'pause', label: 'Paused', icon: PauseIcon }
 				]}
 				bind:value={motion}
 			/>
@@ -116,6 +116,65 @@
 		</Group>
 	{/snippet}
 
+	{#snippet plain()}
+		<p>
+			Several gravitational waves cross one point at the same time. A <strong
+				>gravitational wave</strong
+			>
+			is a ripple in gravity that travels at the speed of light. Each wave here comes from its own direction.
+			Each also has its own <strong>waveform</strong>, the pattern of its rises and falls over time:
+			a rising chirp, short bursts, a steady hum or a low rumble.
+		</p>
+		<p>
+			The ten wavy lines at the top are what one pixel of the gravitational camera measures, moment
+			by moment. The lines marked E are the five numbers for how gravity stretches and squeezes
+			space. The lines marked B are the five numbers for how it twists space. The pixel measures
+			only the sum of all the waves.
+		</p>
+		<p>
+			Below are two round skies. Each disc is the sky around the pixel. The one labelled <em
+				>gravity: up to four</em
+			>
+			is drawn in orange. The one labelled <em>light: up to two</em> is drawn in blue, for a sensor of
+			light at the same point. The numbered coloured rings show where the waves really come from. The
+			small dots in each sky's own colour show the directions that the pixel finds from its readings alone.
+			The shading is dark where a direction fits the readings well. The line of words under each sky says
+			how many waves it found.
+		</p>
+		<p>
+			Each wave can change the ten numbers only in a fixed proportion, which is set by its
+			direction. With four waves or fewer, some combination of the ten numbers therefore stays
+			exactly zero at every moment, whatever the waveforms do. That silent combination picks out
+			exactly four directions in the sky, and these are the four sources.
+		</p>
+		<p>Try these first. Open the Controls tab.</p>
+		<ul>
+			<li>
+				At the start, four waves cross the pixel. Gravity finds all four. Light finds none, because
+				four waves are too many for it.
+			</li>
+			<li>Move the <em>How many</em> slider to two. Now light finds both waves as well.</li>
+			<li>Move it to five. No combination stays silent, and gravity finds nothing.</li>
+			<li>
+				Move the <em>Noise</em> slider to the right. The found dots wander a little from the rings.
+			</li>
+		</ul>
+		<p>
+			Section VIII of the paper, “One pixel, sparse arrays and depth”, explains how one pixel
+			separates waves.
+		</p>
+	{/snippet}
+
+	{#snippet help()}
+		<p>Drag a numbered ring to move that wave's source. Drag anywhere else on a sky to turn it.</p>
+		<p>
+			In the Controls tab, the <em>How many</em> slider sets how many waves cross the pixel, from
+			one to five. <em>Playing</em> and <em>Paused</em> run or stop the waves. The <em>Noise</em> slider
+			adds random error to the pixel's readings, as a fraction of the size of a wave. Reset turns the
+			skies back and returns the sources to their places.
+		</p>
+	{/snippet}
+
 	{#snippet notes()}
 		<p>
 			Up to five waves cross one point, each from its own direction and each with a waveform of its
@@ -131,10 +190,12 @@
 		</p>
 		<dl>
 			<div>
-				<dt>Gravity · light</dt>
-				<dd>
-					found {gravity.directions.length} of {count} · {light.directions.length} of {count}
-				</dd>
+				<dt>Sources found by the gravitational pixel</dt>
+				<dd>{gravity.directions.length} of {count}</dd>
+			</div>
+			<div>
+				<dt>Sources found by a sensor of light at the same point</dt>
+				<dd>{light.directions.length} of {count}</dd>
 			</div>
 		</dl>
 		<p class="fine">

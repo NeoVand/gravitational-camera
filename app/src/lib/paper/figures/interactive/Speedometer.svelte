@@ -43,6 +43,7 @@
 	slug="speedometer"
 	aspect={16 / 11}
 	vars="--figure-width: min(96cqw, 128cqh); --stage-pad: 0.6rem 0.6rem 2.6rem"
+	narrow={{ aspect: 1, vars: '--stage-pad: 0.6rem 0.6rem 4rem' }}
 >
 	{#snippet stage()}
 		<SpeedometerView

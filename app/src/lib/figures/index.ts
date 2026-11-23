@@ -78,6 +78,30 @@ export const figures: FigureEntry[] = [
 			'Two bodies with the same field outside. A tide of low degree gives both the same energy; a tide one degree higher tells them apart. Each degree of the tide reaches one more radial moment of the mass.'
 	},
 	{
+		slug: 'a-mass-that-passes',
+		title: 'A mass that passes',
+		affordance: 'Told apart by one pass',
+		figure: 'fig:passing',
+		summary:
+			'The same two bodies, and a mass that flies past them. The energy the pass leaves inside each differs by 30% at one and a half radii, and comes out of the passing mass’s own motion: nothing is weighed.'
+	},
+	{
+		slug: 'a-hidden-flow',
+		title: 'A hidden flow',
+		affordance: 'A flow the outside hides',
+		figure: 'fig:hidden-flow',
+		summary:
+			'A sphere whose inner ball turns one way and the rest the other, with no angular momentum and no field outside to show it. Two tides of degree three, applied in either order, read it.'
+	},
+	{
+		slug: 'black-hole-response',
+		title: 'A black hole’s response',
+		affordance: 'The response of no body',
+		figure: 'fig:hole-response',
+		summary:
+			'A black hole’s response to tides of each degree, weighed and written as a shell of its own mass. Each shell alone could be a body; three together fail a test that every positive mass passes.'
+	},
+	{
 		slug: 'marked-ring',
 		title: 'A ring of marked particles',
 		affordance: 'A wave turns the marks',

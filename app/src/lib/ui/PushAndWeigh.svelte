@@ -323,7 +323,6 @@
 
 		<div class="side">
 			<div class="act">
-				<button type="button" class="push" onclick={push}>Push</button>
 				<p class="verdict" aria-live="polite" data-testid="verdict" data-apart={weighed.apart}>
 					<strong class={{ apart: weighed.apart }}
 						>{weighed.apart ? 'Told apart.' : 'Not told apart.'}</strong
@@ -452,7 +451,7 @@
 	.caption {
 		align-self: end;
 		color: var(--text-dim);
-		font-size: 0.76rem;
+		font-size: 0.8125rem;
 		line-height: 1.3;
 		text-align: center;
 		text-wrap: balance;
@@ -541,8 +540,8 @@
 
 	.label {
 		margin-bottom: 0.3rem;
-		color: var(--text-faint);
-		font-size: 0.7rem;
+		color: var(--text-dim);
+		font-size: 0.75rem;
 	}
 
 	.track {
@@ -611,8 +610,8 @@
 	}
 
 	.numbers dt {
-		color: var(--text-faint);
-		font-size: 0.7rem;
+		color: var(--text-dim);
+		font-size: 0.75rem;
 		white-space: nowrap;
 	}
 
@@ -638,15 +637,15 @@
 
 	.numbers dd {
 		margin: 0;
-		font: 400 0.76rem/1.4 var(--font-mono);
+		font: 500 0.8125rem/1.4 var(--font-sans);
 		font-variant-numeric: tabular-nums;
 		white-space: nowrap;
 	}
 
 	.note {
 		grid-column: 1 / -1;
-		color: var(--text-faint);
-		font-size: 0.7rem;
+		color: var(--text-dim);
+		font-size: 0.75rem;
 		line-height: 1.4;
 	}
 
@@ -666,37 +665,10 @@
 		gap: 0.8rem;
 	}
 
-	.push {
-		flex: none;
-		padding: 0.55rem 1.15rem;
-		border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
-		border-radius: 9px;
-		background: color-mix(in srgb, var(--accent) 16%, transparent);
-		color: var(--text);
-		font: 600 0.82rem/1 var(--font-sans);
-		cursor: pointer;
-		transition:
-			background-color 0.15s,
-			border-color 0.15s;
-	}
-
-	.push:hover {
-		border-color: var(--accent);
-		background: color-mix(in srgb, var(--accent) 26%, transparent);
-	}
-
-	.push:active {
-		background: color-mix(in srgb, var(--accent) 36%, transparent);
-	}
-
-	.push:focus-visible {
-		outline: 2px solid var(--accent);
-		outline-offset: 2px;
-	}
-
 	.verdict {
 		color: var(--text-dim);
-		line-height: 1.35;
+		font-size: 0.8125rem;
+		line-height: 1.4;
 	}
 
 	.verdict strong {
@@ -713,7 +685,7 @@
 	.ladder {
 		width: 100%;
 		border-collapse: collapse;
-		font-size: 0.74rem;
+		font-size: 0.78rem;
 		line-height: 1.3;
 		font-variant-numeric: tabular-nums;
 	}
@@ -740,7 +712,7 @@
 
 	thead th {
 		border-bottom-color: var(--line-strong);
-		color: var(--text-faint);
+		color: var(--text-dim);
 	}
 
 	th:first-child {

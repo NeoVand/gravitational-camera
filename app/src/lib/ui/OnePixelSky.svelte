@@ -84,47 +84,51 @@
 </script>
 
 {#snippet sphere(title: string, sub: string, map: string, points: boolean)}
-	<svg
-		viewBox="-140 -160 280 318"
-		class="sky"
-		role="img"
-		aria-label={title}
-		onpointerdown={down}
-		onpointermove={move}
-		onpointerup={() => (drag = undefined)}
-		onpointercancel={() => (drag = undefined)}
-	>
-		<text class="title" x="0" y="-138">{title}</text>
-		<circle r={R} class="disc" />
-		{#if map}<image href={map} x={-R} y={-R} width={2 * R} height={2 * R} />{/if}
-		{#each circles as c, i (i)}
-			<path d={c.back} class="back" />
-			<path d={c.front} class="front" />
-		{/each}
-		{#if points && sources !== 'uniform'}
-			{#each sources as s, i (i)}
-				{@const p = project(view, s.direction, R)}
-				<circle
-					cx={p.x}
-					cy={p.y}
-					r={4 + Math.sqrt(s.weight) * 1.6}
-					class={['source', { behind: p.z < 0 }]}
-				/>
+	<figure class="sphere">
+		<p class="title">{title}</p>
+		<svg
+			viewBox="{-R - 3} {-R - 3} {2 * R + 6} {2 * R + 6}"
+			class="sky"
+			role="img"
+			aria-label="{title}: {sub}"
+			onpointerdown={down}
+			onpointermove={move}
+			onpointerup={() => (drag = undefined)}
+			onpointercancel={() => (drag = undefined)}
+		>
+			<circle r={R} class="disc" />
+			{#if map}<image href={map} x={-R} y={-R} width={2 * R} height={2 * R} />{/if}
+			{#each circles as c, i (i)}
+				<path d={c.back} class="back" />
+				<path d={c.front} class="front" />
 			{/each}
-		{/if}
-		<text class="sub" x="0" y="140">{sub}</text>
-	</svg>
+			{#if points && sources !== 'uniform'}
+				{#each sources as s, i (i)}
+					{@const p = project(view, s.direction, R)}
+					<circle
+						cx={p.x}
+						cy={p.y}
+						r={4 + Math.sqrt(s.weight) * 1.6}
+						class={['source', { behind: p.z < 0 }]}
+					/>
+				{/each}
+			{/if}
+		</svg>
+		<figcaption>{sub}</figcaption>
+	</figure>
 {/snippet}
 
 <div class="row">
-	{@render sphere('the sky', 'its sources, independent and alike', maps.sky, true)}
-	{@render sphere(
-		'one pixel, second moments',
-		'harmonics of degree four and below',
-		maps.second,
-		false
-	)}
-	{@render sphere('fourth moments', 'up to degree eight, if not Gaussian', maps.fourth, false)}
+	<div class="spheres">
+		{@render sphere('the sky', 'its sources, independent and alike', maps.sky, true)}
+		{@render sphere(
+			'one pixel, second moments',
+			'harmonics of degree four and below',
+			maps.second,
+			false
+		)}
+		{@render sphere('fourth moments', 'up to degree eight, if not Gaussian', maps.fourth, false)}
+	</div>
 </div>
 
 <style>
@@ -135,26 +139,65 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.5rem;
-		padding: var(--stage-pad, 5rem 1rem 6rem);
+		padding: var(--stage-pad, 2rem 1.5rem);
 		background: radial-gradient(circle at 50% 45%, var(--bg-raised) 0%, var(--bg-sunken) 70%);
 	}
+	/* the three side by side, their names on one line and their spheres on another, whatever the names' lengths */
+	.spheres {
+		display: grid;
+		grid-template-columns: repeat(3, auto);
+		grid-template-rows: repeat(3, auto);
+		column-gap: 2.5cqw;
+	}
+	/* each sphere with its name above and what it shows under it, the words wrapping to the sphere's width */
+	.sphere {
+		grid-row: span 3;
+		display: grid;
+		grid-template-rows: subgrid;
+		justify-items: center;
+		row-gap: 0.55rem;
+		width: var(--figure-width, min(30cqw, 20rem, calc(100cqh - 5.5rem)));
+		margin: 0;
+		font: 400 0.75rem/1.35 var(--font-sans);
+		text-align: center;
+	}
+	.title {
+		align-self: end;
+		margin: 0;
+		color: var(--text);
+		font-size: 0.8125rem;
+		font-weight: 600;
+		text-wrap: balance;
+	}
+	figcaption {
+		color: var(--text-dim);
+		text-wrap: balance;
+	}
 	.sky {
-		width: var(--figure-width, min(24cqw, 46cqh));
+		display: block;
+		width: 100%;
 		height: auto;
 		touch-action: none;
 		user-select: none;
 		cursor: grab;
 	}
-	/* a tall frame: one sphere above another (the row cannot query its own shape, so the page's is used) */
-	@media (orientation: portrait) {
-		.row {
-			flex-direction: column;
+	/* a tall picture: one sphere above another */
+	@container (aspect-ratio < 0.8) {
+		.spheres {
+			grid-template-columns: auto;
+			grid-template-rows: repeat(9, auto);
+			row-gap: 0.9rem;
+		}
+		.sphere {
+			width: var(--figure-width, min(70cqw, calc((100cqh - 2rem) / 3 - 4.5rem)));
 		}
 	}
-	@container (aspect-ratio < 1) {
-		.sky {
-			width: min(60cqw, 26cqh);
+	@container (max-width: 34rem) {
+		.sphere {
+			font-size: 0.6875rem;
+		}
+		.title {
+			font-size: 0.75rem;
 		}
 	}
 	/* the spheres are pictures of a sky, dark in either theme; the lines and sources drawn on them keep to that dark */
@@ -178,19 +221,5 @@
 	}
 	.source.behind {
 		opacity: 0.25;
-	}
-	text {
-		font-family: var(--font-sans);
-		text-anchor: middle;
-		pointer-events: none;
-	}
-	.title {
-		fill: var(--text);
-		font-size: 14px;
-		font-weight: 600;
-	}
-	.sub {
-		fill: var(--text-dim);
-		font-size: 11.5px;
 	}
 </style>

@@ -158,9 +158,14 @@
 		top: 84px;
 		width: 64px;
 	}
+	/* the picture under it may be pale or dark: a dark rim keeps the word legible on either */
 	.key text {
-		fill: rgb(255 255 255 / 0.75);
-		font: 500 9px var(--font-sans);
+		fill: rgb(255 255 255 / 0.92);
+		stroke: rgb(20 16 12 / 0.75);
+		stroke-width: 2.4px;
+		stroke-linejoin: round;
+		paint-order: stroke;
+		font: 600 9px var(--font-sans);
 		text-anchor: middle;
 	}
 </style>

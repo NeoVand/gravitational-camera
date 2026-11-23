@@ -99,7 +99,8 @@
 		<line class="hair" x1={X0} y1={BASE} x2={X1} y2={BASE} />
 		{#each [-90, -60, -30, 0, 30, 60, 90] as a (a)}
 			<line class="grid" x1={px(a)} y1={TOP - 6} x2={px(a)} y2={BASE} />
-			<text class="small" x={px(a)} y={BASE + 20} text-anchor="middle">{a}°</text>
+			<text class="small" x={px(a)} y={BASE + 20} text-anchor="middle">{a < 0 ? `−${-a}` : a}°</text
+			>
 		{/each}
 		<path d="{path} L {X1} {BASE} L {X0} {BASE} Z" fill="var(--accent)" opacity="0.14" />
 		<path d={path} stroke="var(--accent)" stroke-width="2.2" fill="none" stroke-linejoin="round" />

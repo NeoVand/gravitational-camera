@@ -64,4 +64,56 @@
 			direction. Its thermometer tells how deep it sits.
 		</p>
 	{/snippet}
+	{#snippet plain()}
+		<p>
+			A black hole hangs just above the centre of our galaxy, the Milky Way. The camera is held at
+			rest a little way from it. The picture is split by a vertical line. To the left, marked <em
+				>Light</em
+			>, is the sky in ordinary light. The hole's gravity bends the light that passes near it. So
+			the Milky Way is bent into a ring round the hole, with a second image above it. Near the edge
+			of the hole the stars are smeared into arcs. The black disc in the middle is the hole's
+			<strong>shadow</strong>: the directions from which no light can reach the camera, because
+			light from there would have to come out of the hole.
+		</p>
+		<p>
+			To the right is the same sky as an imagined <strong>gravitational camera</strong> would see it,
+			in the glow that a hot Big Bang would have left in gravitational waves. If the early universe was
+			hot enough, this glow would fill the whole sky, at 0.905 kelvin, just under one degree above absolute
+			zero. Orange marks where it is a little warmer and blue where it is a little cooler. The glow is
+			the same in every direction, apart from a faint difference caused by our own motion. Bending cannot
+			show in a glow that is the same everywhere. Ordinary matter absorbs almost none of this glow. So
+			the hole's shadow is the only dark thing in this sky.
+		</p>
+		<p>
+			A black hole also glows a little. Stephen Hawking found its temperature, which is lower for
+			heavier holes. This hole is dark because it is colder than the glow. A hole of about 1.4 ×
+			10²³ kilograms, about twice the mass of the Moon, would be exactly as warm as the glow, and it
+			could not be seen at all.
+		</p>
+		<p>Try these first.</p>
+		<ul>
+			<li>Drag the dividing line across the hole, and compare the two halves.</li>
+			<li>
+				Open the Controls tab and move the <em>Distance</em> slider toward <em>close</em>. The
+				shadow grows. The whole sky also warms. The camera sits deep in the hole's gravity, and the
+				waves gain energy as they fall in toward it. The label at the foot of the gravity side gives
+				the temperature.
+			</li>
+			<li>Drag the picture to look away from the hole. There the sky is almost undisturbed.</li>
+		</ul>
+		<p>Section XI of the paper, “Astrophysical and cosmological scenes”, describes this view.</p>
+	{/snippet}
+	{#snippet help()}
+		<p>
+			Drag the picture to look around, and scroll to zoom. Drag the vertical dividing line to show
+			more of the light view or more of the gravity view.
+		</p>
+		<p>
+			In the Controls tab, <em>Image</em> shows the sky and <em>Tidal field</em> shows how gravity
+			stretches and squeezes space at points around the camera. The <em>Field of view</em> slider
+			widens or narrows the view. The <em>Distance</em> slider moves the camera nearer to the hole or
+			farther from it. Its readout gives the distance in units of half the radius of the hole's edge,
+			and the size of the shadow in degrees. Reset puts the view back.
+		</p>
+	{/snippet}
 </SkyDemo>

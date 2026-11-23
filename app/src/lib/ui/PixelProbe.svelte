@@ -7,6 +7,7 @@
 	import { cameraBasis, type View } from '../engine/camera';
 	import type { AnalyzedObject, Vec3 } from '../engine/types';
 	import { describe, readingAt } from '../pixel/probe';
+	import Tex from './Tex.svelte';
 
 	interface Props {
 		objects: AnalyzedObject[];
@@ -38,14 +39,20 @@
 		O: 'no field'
 	};
 	const lit = $derived(d.alarm > 1e-12);
+	/** The test for motion as LaTeX, to one figure: three times ten to the minus five, or ten to the minus five. */
+	const alarm = $derived.by(() => {
+		const [m, e] = d.alarm.toExponential(0).split('e');
+		const power = `10^{${Number(e)}}`;
+		return m === '1' ? power : `${m} \\times ${power}`;
+	});
 </script>
 
 {#if brief}
 	<p class="line">
 		<strong>One pixel, at the camera:</strong>
 		{words[d.type] ?? d.type};
-		<span class={lit ? 'alarm' : 'still'}>
-			{lit ? `something moves: ${d.alarm.toExponential(0)}` : 'all still'}</span
+		<span class={lit ? 'alarm' : 'still'}
+			>{#if lit}something moves: <Tex math={alarm} />{:else}all still{/if}</span
 		>.
 	</p>
 {:else}
@@ -66,16 +73,15 @@
 			<p class="head">One pixel, at the camera</p>
 			<p>{words[d.type] ?? d.type}</p>
 			<p class={lit ? 'alarm' : 'still'}>
-				{lit ? `something moves: ${d.alarm.toExponential(0)}` : 'all still'}
+				{#if lit}something moves: <Tex math={alarm} />{:else}all still{/if}
 			</p>
 		</div>
 	</div>
 	<p class="what">
-		The disc is the sky about the pixel, seen as the camera sees it: the centre is where the camera
-		looks. The four dots are the reading’s four principal null directions, which every tidal reading
-		singles out; a faint dot is behind you. Where they fall together tells the reading’s type. The
-		last line is the test for motion: the eigenvalues of the reading are real for a scene at rest,
-		however the pixel moves, and complex when something in it moves.
+		The disc is the sky about the pixel, as the camera sees it: its centre is where the camera
+		looks. The dots are the reading’s four principal null directions, a faint one behind you; how
+		they fall together gives its type. The last line tests for motion: the reading’s eigenvalues are
+		real when nothing in the scene moves, however the pixel moves, and complex when something does.
 	</p>
 {/if}
 
@@ -114,6 +120,17 @@
 		width: 7rem;
 		flex: none;
 		height: auto;
+	}
+
+	/* on a phone the panel is a short sheet: a smaller disc, and the words closer under it */
+	@media (max-width: 720px) {
+		svg {
+			width: 5.2rem;
+		}
+
+		.what {
+			margin-top: 0.6rem;
+		}
 	}
 	.disc {
 		fill: color-mix(in srgb, var(--text) 5%, transparent);

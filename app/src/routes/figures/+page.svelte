@@ -1,10 +1,13 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
+	import { asset, resolve } from '$app/paths';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import { BookOpen01Icon } from '@hugeicons/core-free-icons';
 	import { figures } from '#lib/figures/index.js';
-	import { posters } from '#lib/demos/posters.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
+
+	/** Each figure's drawing, cropped to the marks it fills, in the theme's colours (scripts/figure-thumbs.mjs). */
+	const thumb = (slug: string, theme: 'dark' | 'light') =>
+		asset(`figure-thumbs/${slug}-${theme}.jpg` as 'figure-thumbs/four-stars-dark.jpg');
 </script>
 
 <svelte:head>
@@ -21,9 +24,10 @@
 	<h1>Interactive figures</h1>
 	<p class="intro">
 		What a single pixel of the camera measures, from the paper’s Section VIII, and what a tide
-		applied from outside reveals, from its Section XIII, as figures to explore. These are diagrams
-		of the results, not views through the camera; those of Section VIII also appear under their
-		figures in the <a href={resolve('/paper')}
+		applied from outside reveals, from its Sections XIII and XIV, as figures to explore. These are
+		diagrams of the results, not views through the camera. Those of Section VIII, and the three of a
+		mass that passes, a hidden flow and a black hole’s response, also appear under their figures in
+		the <a href={resolve('/paper')}
 			><HugeiconsIcon icon={BookOpen01Icon} size={17} strokeWidth={1.5} />online paper</a
 		>.
 	</p>
@@ -32,7 +36,23 @@
 		{#each figures as f (f.slug)}
 			<li>
 				<a class="figure" href={resolve(`/figures/${f.slug}` as '/figures/four-stars')}>
-					<img src={posters[f.slug]} alt="" loading="lazy" width="1280" height="720" />
+					<!-- one per theme; the hidden one is not loaded -->
+					<img
+						class="dark"
+						src={thumb(f.slug, 'dark')}
+						alt=""
+						loading="lazy"
+						width="960"
+						height="540"
+					/>
+					<img
+						class="light"
+						src={thumb(f.slug, 'light')}
+						alt=""
+						loading="lazy"
+						width="960"
+						height="540"
+					/>
 					<h2>{f.title}</h2>
 					<p class="summary"><em>{f.affordance}.</em> {f.summary}</p>
 				</a>
@@ -98,7 +118,31 @@
 		aspect-ratio: 16 / 9;
 		object-fit: cover;
 		border-radius: 3px;
+		/* the drawing's own stage, edge to edge with the page: a hairline gives it its frame */
+		box-shadow: 0 0 0 1px var(--line);
 		background: var(--bg-sunken);
+	}
+
+	img.light {
+		display: none;
+	}
+
+	:global(:root[data-theme='light']) img.light {
+		display: block;
+	}
+
+	:global(:root[data-theme='light']) img.dark {
+		display: none;
+	}
+
+	@media (prefers-color-scheme: light) {
+		:global(:root:not([data-theme='dark'])) img.light {
+			display: block;
+		}
+
+		:global(:root:not([data-theme='dark'])) img.dark {
+			display: none;
+		}
 	}
 
 	h2 {
