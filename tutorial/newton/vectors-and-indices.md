@@ -734,5 +734,5 @@ summation sign in his 1916 paper on the foundations of general relativity.
 [^code]: A computer can check all 81 cases in a few lines: build the 27 entries of $\epsilon$, form both sides for
     every $i$, $j$, $l$ and $m$, and compare them.
 
-[^generators]: Chapter 1.7 writes this rule as three fixed tables built from $\epsilon$, which the paper's Section VIII
-    uses to turn the curvature one pixel reads.
+[^generators]: Chapter 1.7 writes this rule as three fixed tables built from $\epsilon$. The paper's Section VIII
+    uses them, with an imaginary angle, for the boost of a moving pixel.
