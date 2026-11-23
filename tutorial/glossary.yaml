@@ -2448,3 +2448,67 @@ terms:
     definition: 'How a source shares its power among directions. For a rotor it is $(1 + 6\cos^2\iota + \cos^4\iota)/8$ of the power along its axis: an eighth edge-on, two fifths on average.'
     chapter: '5.4'
     anchor: the-rotor-shines-eight-times-less-edge-on
+  - term: radiance
+    definition: 'The power that arrives per square metre, per steradian of directions and per unit of angular frequency, $I_\omega$, in W m⁻² sr⁻¹ per s⁻¹. Also called the specific intensity. It belongs to the rays, not the detector, and it is what a pixel of a glow camera measures.'
+    chapter: '5.5'
+    anchor: a-pixel-measures-radiance-power-per-area-per-solid-angle-and-per-frequency
+  - term: number radiance
+    definition: 'The number of quanta that arrive per second, per square metre and per steradian, added over all frequencies: the paper''s $N(\hat n)$, in gravitons s⁻¹ m⁻² sr⁻¹. About $4 \times 10^5$ through the centre of the Sun''s core.'
+    chapter: '5.5'
+    anchor: a-pixel-measures-radiance-power-per-area-per-solid-angle-and-per-frequency
+  - term: surface brightness
+    definition: 'The radiance of the rays that leave a body. In empty space it is the same at every distance, so a far body looks smaller but not dimmer.'
+    chapter: '5.5'
+    anchor: radiance-does-not-fade-along-a-ray-in-empty-space
+  - term: emissivity
+    definition: 'The power that matter sends out per cubic metre, per steradian and per unit of angular frequency, $j_\omega$. Added over frequency it is the energy emissivity $j_E$, in W m⁻³ sr⁻¹.'
+    chapter: '5.5'
+    anchor: along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes
+  - term: equation of transfer
+    definition: 'The law of how matter changes the radiance along a ray, $\mathrm dI_\omega/\mathrm ds = j_\omega - \alpha I_\omega$: each metre adds its glow and removes the fraction $\alpha$ of what passes.'
+    chapter: '5.5'
+    anchor: along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes
+  - term: optical depth
+    definition: 'The absorption coefficient added along a path, $\tau = \alpha L$ for a uniform slab: a pure number. A slab passes the fraction $e^{-\tau}$ of what lies behind it. A line of sight through the Earth''s diameter of matter with the placeholder friction has $\tau \approx 10^{-30}$ for gravitational waves.'
+    chapter: '5.5'
+    anchor: along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes
+  - term: optically thick
+    definition: 'Said of a body whose optical depth is much larger than one. It hides what lies behind it and shows only the glow of its front layer, $j_\omega/\alpha$.'
+    chapter: '5.5'
+    anchor: along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes
+  - term: optically thin
+    definition: 'Said of a body whose optical depth is much smaller than one. It adds its whole glow, $j_\omega$ times its length, and dims what lies behind it by the small fraction $\tau$. All ordinary matter is optically thin for gravitational waves.'
+    chapter: '5.5'
+    anchor: along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes
+  - term: enclosure radiation
+    definition: 'The radiation inside a closed box whose walls are at one temperature, after it has settled. Its radiance is the same everywhere and in every direction, and it depends only on the temperature and the frequency, not on the walls. Also called cavity radiation.'
+    chapter: '5.5'
+    anchor: a-warm-bodys-glow-over-its-absorption-is-the-radiance-of-an-enclosure-at-its-temperature
+  - term: Planck radiance
+    definition: 'The radiance $B_\omega(T)$ of enclosure radiation at the temperature $T$. For gravitational waves, summed over both polarizations, $B_\omega = \hbar\omega^3/[4\pi^3c^2(e^{\hbar\omega/k_BT} - 1)]$.'
+    chapter: '5.5'
+    anchor: a-warm-bodys-glow-over-its-absorption-is-the-radiance-of-an-enclosure-at-its-temperature
+  - term: number emissivity
+    definition: 'The number of quanta that matter sends out per second, per cubic metre and per steradian, added over all frequencies: the paper''s $j_N$. For the placeholder friction at 293 K it is $1.5 \times 10^{-15}$ gravitons s⁻¹ m⁻³ sr⁻¹.'
+    chapter: '5.5'
+    anchor: when-nothing-absorbs-a-pixel-adds-the-glow-along-its-line
+  - term: line integral
+    definition: 'A sum of a quantity along a line, $\int f(s\hat n)\,\mathrm ds$. A thermal gravitational image is one: each pixel adds the number emissivity along its line of sight.'
+    chapter: '5.5'
+    anchor: when-nothing-absorbs-a-pixel-adds-the-glow-along-its-line
+  - term: Stefan–Boltzmann constant
+    definition: 'The constant $\sigma_{\rm SB} = \pi^2k_B^4/60\hbar^3c^2 = 5.67 \times 10^{-8}$ W m⁻² K⁻⁴, with which the Planck radiance added over all frequencies is $\sigma_{\rm SB}T^4/\pi$. The paper writes it $\sigma$.'
+    chapter: '5.5'
+    anchor: a-materials-brightness-is-its-friction-times-a-power-of-its-temperature
+  - term: focal length
+    definition: 'The distance behind a lens at which rays that arrive parallel to its axis cross. A thin lens of radius $R$ and central thickness $h$ has $f = R^2/2(n - 1)h$; a mass bends rays passing at $b$ to a focus at $b^2/2r_s$.'
+    chapter: '5.5'
+    anchor: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact
+  - term: focal ratio
+    definition: 'A lens''s focal length divided by its width, $N = f/2R$. A pocket lens might be at $f/10$; the Earth used as a gravitational lens is at $1.8 \times 10^8$.'
+    chapter: '5.5'
+    anchor: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact
+  - term: reflection amplitude
+    definition: 'The amplitude of a reflected wave divided by that of the arriving wave. For a gravitational wave the paper gives $4\pi G\mu/c^2\omega^2$, so the tutorial''s steel, with $\mu = 71$ GPa, reflects $1.7 \times 10^{-23}$ of a 1 kHz wave''s amplitude (the paper''s stiffer steel, $2 \times 10^{-23}$).'
+    chapter: '5.5'
+    anchor: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact

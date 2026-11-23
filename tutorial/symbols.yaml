@@ -1708,3 +1708,99 @@ symbols:
     meaning: 'Four numbers built from the two helicities: $I = 2(|\tilde h_{\rm a}|^2 + |\tilde h_{\rm c}|^2)$, $V = 2(|\tilde h_{\rm a}|^2 - |\tilde h_{\rm c}|^2)$ and $Q + iU = 4\tilde h^*_{\rm a}\tilde h_{\rm c}$; in the two polarizations, $I = |\tilde h_+|^2 + |\tilde h_\times|^2$ (twice the sum of the mean squares), $Q = |\tilde h_+|^2 - |\tilde h_\times|^2$, $U = 2\,\mathrm{Re}(\tilde h_+^*\tilde h_\times)$ and $V = 2\,\mathrm{Im}(\tilde h_+^*\tilde h_\times)$. A turn of the axes by $\theta$ leaves $I$ and $V$ as they were and multiplies $Q + iU$ by $e^{-4i\theta}$ (by $e^{-2i\theta}$ for light). The first, $I$, measures the energy flux; $V/I$ is positive when the pattern turns anticlockwise as the camera sees it. (Stokes $I$ is not a second moment, a moment of inertia or the invariant $\mathrm{tr}\,\mathcal W^2$; Stokes $Q$ is not a quality factor.)'
     chapter: '5.4'
     anchor: four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes
+  - key: radiance
+    title: Radiance (specific intensity)
+    tex: 'I_\omega'
+    role: none
+    kind: A number for each place, direction and frequency; in W m⁻² sr⁻¹ per s⁻¹
+    meaning: 'The power that arrives per square metre, per steradian and per unit of angular frequency: a pixel of area $\mathrm dA$ that accepts the cone $\mathrm d\Omega$ and the band $\mathrm d\omega$ receives $I_\omega\,\mathrm dA\,\mathrm d\Omega\,\mathrm d\omega$. It does not change along a ray in empty space. (Not the Stokes $I$, a moment of inertia, the invariant $\mathrm{tr}\,\mathcal W^2$ or the image $I$ of chapter 5.3.)'
+    chapter: '5.5'
+    anchor: a-pixel-measures-radiance-power-per-area-per-solid-angle-and-per-frequency
+  - key: number-radiance
+    title: Number radiance
+    tex: 'N(\hat n)'
+    role: none
+    kind: A number for each direction; in gravitons s⁻¹ m⁻² sr⁻¹
+    meaning: 'The gravitons that arrive per second, per square metre and per steradian from the direction $\hat n$, added over all frequencies: $N = \int I_\omega/\hbar\omega\,\mathrm d\omega$. With no absorption it is the line integral $\int_0^\infty j_N(s\hat n)\,\mathrm ds$. About $4 \times 10^5$ through the centre of the Sun''s core, at most $1.2 \times 10^{-5}$ looking straight down through the Earth. (Not the focal ratio $N$ of Section VII.)'
+    chapter: '5.5'
+    anchor: a-pixel-measures-radiance-power-per-area-per-solid-angle-and-per-frequency
+  - key: background-radiance
+    title: Background radiance
+    tex: 'I_{\rm bg}'
+    role: none
+    kind: A radiance; in W m⁻² sr⁻¹ per s⁻¹
+    meaning: 'The radiance that enters a body from behind, along the pixel''s line of sight. A body of optical depth $\tau$ passes $I_{\rm bg}e^{-\tau}$ of it and changes what the pixel receives by $(B_\omega - I_{\rm bg})(1 - e^{-\tau})$.'
+    chapter: '5.5'
+    anchor: along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes
+  - key: emissivity
+    title: Emissivity
+    tex: 'j_\omega'
+    role: none
+    kind: A number at each point; in W m⁻³ sr⁻¹ per s⁻¹
+    meaning: 'The power that matter sends out per cubic metre, per steradian and per unit of angular frequency. It adds $j_\omega\,\mathrm ds$ to a ray''s radiance over the length $\mathrm ds$. By Kirchhoff''s law, $j_\omega = \alpha B_\omega(T)$.'
+    chapter: '5.5'
+    anchor: along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes
+  - key: energy-emissivity
+    title: Energy emissivity
+    tex: 'j_E'
+    role: none
+    kind: A number at each point; in W m⁻³ sr⁻¹
+    meaning: 'The emissivity added over all frequencies, $\int j_\omega\,\mathrm d\omega$. For a friction the same at every frequency it is $\alpha\sigma_{\rm SB}T^4/\pi$: $1.7 \times 10^{-35}$ W m⁻³ sr⁻¹ for the placeholder friction at 293 K, so that a cubic metre sends $4\pi j_E = 2.1 \times 10^{-34}$ W.'
+    chapter: '5.5'
+    anchor: a-materials-brightness-is-its-friction-times-a-power-of-its-temperature
+  - key: number-emissivity
+    title: Number emissivity
+    tex: 'j_N'
+    role: none
+    kind: A number at each point; in gravitons s⁻¹ m⁻³ sr⁻¹
+    meaning: 'The gravitons that matter sends out per second, per cubic metre and per steradian, $\int j_\omega/\hbar\omega\,\mathrm d\omega$. For a friction $\eta$ the same at every frequency, $j_N = 16G\eta\sigma_{\rm SB}T^3/2.70\,k_Bc^3$: $1.5 \times 10^{-15}$ for the placeholder at 293 K.'
+    chapter: '5.5'
+    anchor: when-nothing-absorbs-a-pixel-adds-the-glow-along-its-line
+  - key: optical-depth
+    title: Optical depth
+    tex: '\tau'
+    role: none
+    kind: A pure number
+    meaning: 'The absorption coefficient added along a path, $\alpha L$ for a uniform slab of thickness $L$. A slab passes the fraction $e^{-\tau}$ of its background; it is thick when $\tau \gg 1$ and thin when $\tau \ll 1$. For gravitational waves through the Earth''s diameter of matter with the placeholder friction, $\tau = 1.6 \times 10^{-30}$. (Not the relaxation time $\tau$ of chapter 4.4.)'
+    chapter: '5.5'
+    anchor: along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes
+  - key: planck-radiance
+    title: Planck radiance
+    tex: 'B_\omega(T)'
+    role: none
+    kind: A radiance for each frequency and temperature; in W m⁻² sr⁻¹ per s⁻¹
+    meaning: 'The radiance of enclosure radiation at the temperature $T$, the same for walls of any material. For gravitational waves, summed over both polarizations, $B_\omega = \hbar\omega^3/[4\pi^3c^2(e^{\hbar\omega/k_BT} - 1)]$; added over frequency it gives $\sigma_{\rm SB}T^4/\pi$. (Not the magnetic part of the tide $\mathcal B_{ij}$.)'
+    chapter: '5.5'
+    anchor: a-warm-bodys-glow-over-its-absorption-is-the-radiance-of-an-enclosure-at-its-temperature
+  - key: stefan-boltzmann
+    title: Stefan–Boltzmann constant
+    tex: '\sigma_{\rm SB}'
+    role: none
+    kind: A constant; in W m⁻² K⁻⁴
+    meaning: '$\sigma_{\rm SB} = \pi^2k_B^4/60\hbar^3c^2 = 5.67 \times 10^{-8}$ W m⁻² K⁻⁴, the same for gravitational waves as for light because both have two polarizations. The paper writes a bare $\sigma$; the tutorial keeps a bare $\sigma$ for surface density.'
+    chapter: '5.5'
+    anchor: a-materials-brightness-is-its-friction-times-a-power-of-its-temperature
+  - key: focal-length
+    title: Focal length
+    tex: 'f'
+    role: none
+    kind: A length; in metres
+    meaning: 'The distance behind a lens at which rays arriving parallel to its axis cross: $R^2/2(n - 1)h$ for a thin lens of radius $R$ and central thickness $h$, and $b^2/2r_s$ for rays passing a mass at the distance $b$. A steel lens 1 m in radius and 1 m thick focuses a 1 kHz wave at $6.0 \times 10^{12}$ m. (Not a frequency.)'
+    chapter: '5.5'
+    anchor: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact
+  - key: focal-ratio
+    title: Focal ratio
+    tex: 'N'
+    role: none
+    kind: A pure number
+    meaning: 'The focal length over the width of a lens, the paper''s $N = f/2R$ of Section VII. A gravitational lens of radius $R$ needs $r_s/R = 1/4N$; the Earth as a lens has $N = 1/8\mathcal C = 1.8 \times 10^8$. (Not the number radiance $N(\hat n)$.)'
+    chapter: '5.5'
+    anchor: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact
+  - key: schwarzschild-radius
+    title: Schwarzschild radius
+    tex: 'r_s'
+    role: none
+    kind: A length; in metres
+    meaning: 'The length $r_s = 2GM/c^2$ of a mass $M$: 8.9 mm for the Earth, 3.0 km for the Sun. A ray passing the mass at the distance $b$ is bent by $2r_s/b$. For a black hole it is the radius of the horizon.'
+    chapter: '5.5'
+    anchor: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact
