@@ -47,13 +47,6 @@ symbols:
     meaning: 'How fast the one who measures is moving, and in which direction, relative to the frame in which the scene is described. In chapter 6.1 it is the steady velocity of one inertial frame through another, such as the pixel''s $0.6c$ through the room, or a body''s through the pixel''s frame.'
     chapter: '6.1'
     anchor: every-observer-measures-the-same-speed-of-light
-  - key: electric-field
-    title: Electric field
-    tex: '\light{E}'
-    role: light
-    kind: A vector at each point; in V/m
-    meaning: 'The force per unit charge on a charge at rest. In light it is one half of the wave; the magnetic field $B$ is the other.'
-    chapter: '6.6'
   - key: mean-density
     title: Mean density
     tex: '\matter{\bar\rho}'
@@ -1941,3 +1934,83 @@ symbols:
     meaning: 'A particle''s mass times its four-velocity, $p^\mu = m u^\mu$. An observer with four-velocity $u^\mu$ measures its energy $E = -p_\mu u^\mu$: $1.25\,mc^2$ for a particle at $0.6c$ seen from the room, $mc^2$ for an observer moving with it. Chapter 6.4 builds it.'
     chapter: '6.2'
     anchor: what-an-observer-measures-is-a-contraction-with-its-own-four-velocity
+  - key: rest-mass
+    title: Rest mass
+    tex: '\matter{m}'
+    role: matter
+    kind: A number that every observer agrees on; in kilograms
+    meaning: 'The energy of a body at rest divided by $c^2$. It is the length of the four-momentum, $p\cdot p = -m^2c^2$, so $E^2 = |\mathbf p|^2c^2 + m^2c^4$ at every speed. Light has $m = 0$.'
+    chapter: '6.4'
+    anchor: momentum-and-energy-are-the-parts-of-one-four-vector
+  - key: energy
+    title: Energy of a body
+    tex: 'E'
+    role: none
+    kind: A number; in joules
+    meaning: 'The time component of the four-momentum times $c$, $E = \gamma mc^2$: the rest energy $mc^2$ plus the energy of motion, $\tfrac12mv^2$ for a slow body. It depends on the observer: $1.25\,mc^2$ at $0.6c$. (Not the electric field of light, nor the tidal tensor.)'
+    chapter: '6.4'
+    anchor: momentum-and-energy-are-the-parts-of-one-four-vector
+  - key: total-four-momentum
+    title: Total four-momentum
+    tex: 'P^\mu'
+    role: none
+    kind: A four-vector; in kg m s⁻¹
+    meaning: 'The sum $P^\mu = \sum_a p_a^\mu$ of the four-momenta of the parts of a system. In a collision with nothing outside it is kept, $\Delta P^\mu = 0$: energy and momentum together. Its length gives the mass of the system, $M^2c^2 = -P\cdot P$.'
+    chapter: '6.4'
+    anchor: if-momentum-is-kept-in-every-frame-so-is-energy
+  - key: system-mass
+    title: Mass of a system
+    tex: '\matter{M}'
+    role: matter
+    kind: A number that every observer agrees on; in kilograms
+    meaning: 'The rest mass of a body of many parts, $M^2c^2 = (\sum_aE_a/c)^2 - |\sum_a\mathbf p_a|^2$. In its rest frame it is the total energy over $c^2$, so heat adds $\Delta U/c^2$, about $10^{-11}$ kg per megajoule. The paper writes it $\mathcal M$ in Appendix C.'
+    chapter: '6.4'
+    anchor: a-bodys-mass-is-its-total-energy-so-heat-has-weight
+  - key: light-cone-u
+    title: Light-cone coordinate u
+    tex: 'u'
+    role: none
+    kind: A coordinate; in metres
+    meaning: 'The combination $u = ct - z$ of the paper''s Appendix C. A flash moving along $+z$ keeps its $u$, so a surface of constant $u$ is the front of a wave along $+z$. A boost along $z$ of rapidity $\eta$ multiplies it by $e^{\eta}$. (Not the four-velocity $u^\mu$, nor the retarded time $t - r/c$.)'
+    chapter: '6.4'
+    anchor: along-one-line-light-cone-coordinates-turn-a-boost-into-a-stretch
+  - key: light-cone-v
+    title: Light-cone coordinate v
+    tex: 'v'
+    role: none
+    kind: A coordinate; in metres
+    meaning: 'The combination $v = ct + z$ of the paper''s Appendix C, kept by a flash moving along $-z$. With $u$ it gives $-c^2\mathrm dt^2 + \mathrm dz^2 = -\mathrm du\,\mathrm dv$. A boost along $z$ multiplies it by $e^{-\eta}$. (Not a speed.)'
+    chapter: '6.4'
+    anchor: along-one-line-light-cone-coordinates-turn-a-boost-into-a-stretch
+  - key: light-cone-q
+    title: Light-cone momentum q
+    tex: 'q'
+    role: none
+    kind: A momentum; in kg m s⁻¹
+    meaning: 'The light-cone component $q = E/c - p_z$ of a body''s four-momentum: about $mc$ for slow matter, $mc/2$ at $0.6c$ along $+z$, zero for light along $+z$. With the other component, $q(E/c + p_z) = m^2c^2 + p_\perp^2$. An impulsive plane wave along $z$ keeps it. (Not chapter 3.7''s $q = kz$.)'
+    chapter: '6.4'
+    anchor: along-one-line-light-cone-coordinates-turn-a-boost-into-a-stretch
+  - key: transverse-momentum
+    title: Momentum across the line
+    tex: '\mathbf p_\perp'
+    role: none
+    kind: A vector of two components; in kg m s⁻¹
+    meaning: 'The part $(p_x, p_y)$ of a body''s momentum across the direction $z$ of a wave, with square $p_\perp^2$. A boost along $z$ leaves it alone; a kick that keeps $q$ and changes it gives the energy $(c/2q)\,\Delta(p_\perp^2)$.'
+    chapter: '6.4'
+    anchor: along-one-line-light-cone-coordinates-turn-a-boost-into-a-stretch
+  - key: wave-profile
+    title: Profile of an impulsive wave
+    tex: 'H'
+    role: none
+    kind: A function across the wave front; in metres
+    meaning: 'The profile $H(\mathbf x_\perp)$ of the paper''s impulsive plane wave, $\mathrm ds^2 = -\mathrm du\,\mathrm dv + H\delta(u)\,\mathrm du^2 + \mathrm d\mathbf x_\perp^2$. A particle that crosses it receives the sideways momentum $\tfrac12q\nabla H$. (Not the Hamiltonian, the Wiener filter or the bits $H$.)'
+    chapter: '6.4'
+    anchor: a-sideways-kick-that-keeps-q-fixes-the-energy-gained
+  - key: light-cone-total
+    title: Total light-cone momentum Q
+    tex: 'Q'
+    role: none
+    kind: A momentum; in kg m s⁻¹
+    meaning: 'The sum $Q = \sum_aq_a$ over the particles of a body. With the weights $q_a/Q$, the rest mass is $\mathcal M^2c^2 = Q\sum_am_a^2c^2/q_a + Q^2\,\mathrm{Var}(\mathbf p_\perp/q)$. (Not a moment $Q_h$ nor a quality factor.)'
+    chapter: '6.4'
+    anchor: a-bodys-rest-mass-in-light-cone-form-is-a-sum-and-a-weighted-variance

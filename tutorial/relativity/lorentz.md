@@ -267,7 +267,7 @@ which is 0.16 s a year.[^sun] A clock on the equator moves at $465\unit{m\,s^{-1
 [1.1](/tutorial/newton/vectors-and-indices/#a-small-turn-is-a-cross-product-and-the-equator-moves-faster-than-sound)),
 so, gravity aside, it runs slow against a clock that does not turn with the Earth by $\obs\beta^2/2 =
 1.2\times10^{-12}$, a tenth of a microsecond a day. Chapter 7.1 adds the effect of gravity, which slows a clock at the
-ground by $6.95\times10^{-10}$, some 580 times the equator's effect of motion. What cancels is the difference between
+ground by $6.96\times10^{-10}$, some 580 times the equator's effect of motion. What cancels is the difference between
 clocks on the equator and at the pole. The surface of the sea has the same potential of gravity and of the Earth's
 turning, taken together, everywhere on it (chapter [1.2](/tutorial/newton/field-and-potential/) defines the potential),
 so every clock at sea level ticks at the same rate (N. Ashby, *Living Reviews in Relativity* 6, 1, 2003).

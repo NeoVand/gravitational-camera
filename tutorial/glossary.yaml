@@ -2684,3 +2684,55 @@ terms:
     definition: 'A number that every inertial observer computes alike, such as a dot product of four-vectors, $u\cdot u = -c^2$, or the energy $-p_\mu u^\mu$ that a given observer measures.'
     chapter: '6.2'
     anchor: a-tensor-is-a-table-whose-every-index-changes-with-the-boost
+  - term: rest mass
+    definition: 'The energy a body has at rest, divided by $c^2$: from the mass shell, $E = mc^2$ when $\mathbf p = 0$. Every observer agrees on it, and for a slow body it is the mass that resists a push. For a body of many parts it is the mass of the system, its total energy over $c^2$ in the frame where its momentum is zero. Also called the invariant mass.'
+    role: matter
+    chapter: '6.4'
+    anchor: momentum-and-energy-are-the-parts-of-one-four-vector
+  - term: four-momentum
+    definition: 'A body''s rest mass times its four-velocity, $p^\mu = mu^\mu = (E/c, \mathbf p)$, with energy $E = \gamma mc^2$ and momentum $\mathbf p = \gamma m\mathbf v$. Its length gives the rest mass: $p\cdot p = -m^2c^2$.'
+    chapter: '6.4'
+    anchor: momentum-and-energy-are-the-parts-of-one-four-vector
+  - term: energy (of a body)
+    definition: 'The time component of the four-momentum times $c$, $E = \gamma mc^2$. It is the rest energy plus the energy of motion, and it depends on the observer.'
+    chapter: '6.4'
+    anchor: momentum-and-energy-are-the-parts-of-one-four-vector
+  - term: mass shell
+    definition: 'The set of energies and momenta allowed to a body of rest mass $m$, $E^2 = |\mathbf p|^2c^2 + m^2c^4$: a hyperbola in a plot of $E$ against $|\mathbf p|c$, with the light lines $E = |\mathbf p|c$ as its asymptotes.'
+    chapter: '6.4'
+    anchor: momentum-and-energy-are-the-parts-of-one-four-vector
+  - term: rest energy
+    definition: 'The energy $mc^2$ that a body has at rest, the first term of $E = mc^2 + \tfrac12mv^2 + \dots$ It is kept in collisions only as part of the total energy, not on its own.'
+    role: matter
+    chapter: '6.4'
+    anchor: momentum-and-energy-are-the-parts-of-one-four-vector
+  - term: conservation of four-momentum
+    definition: 'In a collision with nothing outside, the total energy and the total momentum are both kept, $\Delta P^\mu = 0$. It follows from the conservation of momentum in every inertial frame; rest masses need not be kept.'
+    chapter: '6.4'
+    anchor: if-momentum-is-kept-in-every-frame-so-is-energy
+  - term: mass of a system
+    definition: 'The rest mass of a body of many parts, $M^2c^2 = (\sum_aE_a/c)^2 - |\sum_a\mathbf p_a|^2$, the same for every observer. In its rest frame it is the sum of the parts'' rest masses plus their energy of motion and of their bonds, over $c^2$. Also called the invariant mass.'
+    role: matter
+    chapter: '6.4'
+    anchor: a-bodys-mass-is-its-total-energy-so-heat-has-weight
+  - term: binding energy
+    definition: 'The energy needed to pull a bound body apart into its parts. The body is lighter than its parts apart by this energy over $c^2$: a deuteron by 2.22 MeV, 0.12 per cent.'
+    chapter: '6.4'
+    anchor: a-bodys-mass-is-its-total-energy-so-heat-has-weight
+  - term: weight of heat
+    definition: 'The mass $\Delta U/c^2$ that a body at rest gains when it is heated by $\Delta U$: about $10^{-11}$ kg per megajoule, under one part in $10^{11}$ for the paper''s iron heated to 1500 K.'
+    role: matter
+    chapter: '6.4'
+    anchor: a-bodys-mass-is-its-total-energy-so-heat-has-weight
+  - term: light-cone coordinates
+    definition: 'The coordinates $u = ct - z$ and $v = ct + z$, in metres, with $-c^2\mathrm dt^2 + \mathrm dz^2 = -\mathrm du\,\mathrm dv$. A boost along $z$ stretches one by $e^{\eta}$ and squeezes the other by $e^{-\eta}$. Also called null coordinates.'
+    chapter: '6.4'
+    anchor: along-one-line-light-cone-coordinates-turn-a-boost-into-a-stretch
+  - term: light-cone components
+    definition: 'The combinations $q = E/c - p_z$ and $E/c + p_z$ of a body''s energy and momentum, whose product is $m^2c^2 + p_\perp^2$. At $0.6c$ along $+z$ they are $mc/2$ and $2mc$.'
+    chapter: '6.4'
+    anchor: along-one-line-light-cone-coordinates-turn-a-boost-into-a-stretch
+  - term: weighted variance
+    definition: 'The mean square distance from the weighted mean, $\langle|\mathbf x|^2\rangle - |\langle\mathbf x\rangle|^2$ with weights that are positive and add to 1. Appendix C weights a body''s particles by $q_a/Q$.'
+    chapter: '6.4'
+    anchor: a-bodys-rest-mass-in-light-cone-form-is-a-sum-and-a-weighted-variance
