@@ -78,3 +78,32 @@ describe('the glossary and the symbol cards', () => {
 		expect(broken).toEqual([]);
 	});
 });
+
+describe('links between chapters', () => {
+	it('point only at sections the linked chapter has, when it is published', () => {
+		const chapters = published().map((c) => {
+			const chapter = loadChapter(c);
+			const html = chapter.blocks
+				.map((b) => {
+					if (b.kind === 'html') return b.html;
+					if (b.kind === 'try') return b.introHtml;
+					if (b.kind === 'figure') return b.captionHtml;
+					return '';
+				})
+				.join('\n');
+			const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
+			return { id: c.id, href: `/tutorial/${c.slug}/`, html, ids };
+		});
+		const byHref = new Map(chapters.map((c) => [c.href, c]));
+		const broken: string[] = [];
+		let seen = 0;
+		for (const c of chapters)
+			for (const m of c.html.matchAll(/href="(\/tutorial\/[^"#]+\/)#([^"]+)"/g)) {
+				seen++;
+				const target = byHref.get(m[1]);
+				if (target && !target.ids.has(m[2])) broken.push(`${c.id} → ${m[1]}#${m[2]}`);
+			}
+		expect(seen).toBeGreaterThan(50);
+		expect(broken).toEqual([]);
+	});
+});
