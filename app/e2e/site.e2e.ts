@@ -23,7 +23,7 @@ test('landing page links to the demos and the paper', async ({ page }) => {
 	await expect(start.getByRole('link', { name: 'Read the paper' })).toBeVisible();
 });
 
-test('landing picture: dragging turns the view, and the wheel still scrolls the page', async ({
+test('landing picture: dragging turns the view, and the wheel still scrolls the page @gpu', async ({
 	page
 }) => {
 	await page.goto('/?present=readback');
@@ -130,14 +130,14 @@ test('theme switch changes the page colours and is remembered', async ({ page })
 	expect(await background()).toBe(light);
 });
 
-test('GPU self-test agrees with the reference implementation', async ({ page }) => {
+test('GPU self-test agrees with the reference implementation @gpu', async ({ page }) => {
 	await page.goto('/dev/selftest/');
 	await expect(page.locator('#summary')).not.toHaveText('running', { timeout: 60_000 });
 	const report = await page.locator('main').innerText();
 	expect(report, report).toContain('all 4 passed');
 });
 
-test('demo draws frames and responds to its controls', async ({ page }) => {
+test('demo draws frames and responds to its controls @gpu', async ({ page }) => {
 	// headless browsers do not composite WebGPU canvases, so read frames back
 	await page.goto('/demo/sun-at-midnight/?present=readback');
 	const canvas = page.locator('canvas');
@@ -167,7 +167,7 @@ test('demo draws frames and responds to its controls', async ({ page }) => {
 	expect(sum(after.light)).toBeGreaterThan(sum(before.light) + 30);
 });
 
-test('the Moon: lit grey in light, a faint warm glow in gravity', async ({ page }) => {
+test('the Moon: lit grey in light, a faint warm glow in gravity @gpu', async ({ page }) => {
 	await page.goto('/demo/sun-at-midnight/?present=readback');
 	const canvas = page.locator('canvas');
 	await expect
@@ -208,7 +208,7 @@ test('the Moon: lit grey in light, a faint warm glow in gravity', async ({ page 
 	expect(gravity[0]).toBeGreaterThan(gravity[2] + 40);
 });
 
-test('near-field demo: gold shows through steel, and blurs away at low sensitivity', async ({
+test('near-field demo: gold shows through steel, and blurs away at low sensitivity @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/locked-safe/?present=readback');
@@ -268,7 +268,7 @@ test('near-field demo: gold shows through steel, and blurs away at low sensitivi
 	expect(sharp.peak, JSON.stringify({ sharp, blurred })).toBeGreaterThan(blurred.peak + 60);
 });
 
-test('near-field demo can show the tidal field as a coloured slice', async ({ page }) => {
+test('near-field demo can show the tidal field as a coloured slice @gpu', async ({ page }) => {
 	await page.goto('/demo/full-or-empty/?present=readback');
 	const canvas = page.locator('canvas');
 	await expect
@@ -428,7 +428,7 @@ test('which way it turns: the polarization tells the sense of turning', async ({
 	await expect(page.locator('.tag.right')).toHaveText('Gravity · waves');
 });
 
-test('sealed flywheel: the flow of the turning wheel shows as an anticlockwise vortex', async ({
+test('sealed flywheel: the flow of the turning wheel shows as an anticlockwise vortex @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/sealed-flywheel/?present=readback');
@@ -533,7 +533,9 @@ async function framesAfter(page: Page, action: () => Promise<unknown>) {
 	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(before);
 }
 
-test('the Milky Way: dust hides the centre from light, not from the waves', async ({ page }) => {
+test('the Milky Way: dust hides the centre from light, not from the waves @gpu', async ({
+	page
+}) => {
 	await page.goto('/demo/milky-way/?present=readback');
 	await firstFrame(page);
 	// the divider is in the middle: the centre of the Galaxy is on the line; look just either side
@@ -548,7 +550,7 @@ test('the Milky Way: dust hides the centre from light, not from the waves', asyn
 	await expect(page.locator('canvas')).toHaveAttribute('data-right', 'primordial');
 });
 
-test('a black hole: its shadow is black in both pictures and shrinks with distance', async ({
+test('a black hole: its shadow is black in both pictures and shrinks with distance @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/black-hole/?present=readback');
@@ -814,7 +816,7 @@ test('interactive figures: their own section, out of the demos, and live under t
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Push and weigh');
 });
 
-test('where it is now: the ball flies, the camera draws it, and a stop is held', async ({
+test('where it is now: the ball flies, the camera draws it, and a stop is held @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/where-it-is/?present=readback');
@@ -829,7 +831,7 @@ test('where it is now: the ball flies, the camera draws it, and a stop is held',
 	await expect.poll(frames, { timeout: 30_000 }).toBeGreaterThan(drawn);
 });
 
-test('behind the wall: one pixel detects that someone walks, and not when they stand', async ({
+test('behind the wall: one pixel detects that someone walks, and not when they stand @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/behind-the-wall/?present=readback');
@@ -846,7 +848,7 @@ test('behind the wall: one pixel detects that someone walks, and not when they s
 	await expect(page.getByText('all still')).toBeVisible();
 });
 
-test('tidal field, the Sun at midnight: the switch turns the gravity side into the field about the camera', async ({
+test('tidal field, the Sun at midnight: the switch turns the gravity side into the field about the camera @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/sun-at-midnight/?present=readback');
@@ -915,7 +917,7 @@ test('tidal field, the Sun at midnight: the switch turns the gravity side into t
 	await expect(reading.getByText('−1.67 × 10⁻¹³ s⁻²')).toBeVisible();
 });
 
-test('tidal field, which way it turns: the same switch shows the field of the drums, turning with the pairs', async ({
+test('tidal field, which way it turns: the same switch shows the field of the drums, turning with the pairs @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/which-way/?present=readback');
@@ -1009,7 +1011,7 @@ test('tidal field, the sky: the same switch in the vista demos, and in the map o
 	await expect(page.getByText(/no camera picture here/)).toBeVisible();
 });
 
-test('tidal field, the rooms: the switch turns the gravity side into the field, near-field room and thermal room alike', async ({
+test('tidal field, the rooms: the switch turns the gravity side into the field, near-field room and thermal room alike @gpu', async ({
 	page
 }) => {
 	const legend = page.getByTestId('field-legend');
@@ -1069,7 +1071,7 @@ test('tidal field, the rooms: the switch turns the gravity side into the field, 
 	await expect(reading.getByText('−1.83 × 10⁻⁹ s⁻²').first()).toBeVisible();
 });
 
-test('tidal field, its look: colour and contrast change the picture, are kept across demos, and can be reset', async ({
+test('tidal field, its look: colour and contrast change the picture, are kept across demos, and can be reset @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/locked-safe/?present=readback');
@@ -1231,7 +1233,7 @@ test('the locked safe: the camera at work reads, decides and images, and its err
 });
 
 test(
-	'the sidebar: one docked panel of tabs that collapses to a rail, gives the picture its width, and is remembered',
+	'the sidebar: one docked panel of tabs that collapses to a rail, gives the picture its width, and is remembered @gpu',
 	{
 		tag: '@fresh'
 	},
@@ -1342,7 +1344,9 @@ test(
 	}
 );
 
-test('on a phone, a slider follows the finger anywhere along its track', async ({ browser }) => {
+test('on a phone, a slider follows the finger anywhere along its track @gpu', async ({
+	browser
+}) => {
 	const context = await browser.newContext({ ...devices['iPhone 13'] });
 	const page = await context.newPage();
 	await page.goto('/demo/milky-way/?present=readback');
@@ -1520,7 +1524,7 @@ test('counts, a thermal room: a lifetime on a square metre counts nothing, and l
 	expect((await demo.at(honey))[0]).toBeGreaterThan(80);
 });
 
-test('counts, the Sun at midnight: eighty years on a square metre, single gravitons from the planet, the Sun’s core in thousands', async ({
+test('counts, the Sun at midnight: eighty years on a square metre, single gravitons from the planet, the Sun’s core in thousands @gpu', async ({
 	page
 }) => {
 	await page.goto('/demo/sun-at-midnight/?present=readback');

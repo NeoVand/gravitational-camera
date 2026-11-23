@@ -6,9 +6,16 @@ export default defineConfig({
 	testMatch: '**/*.e2e.ts',
 	timeout: 90_000,
 	// every test opens its own pages, so they run side by side; on CI, three workers on the
-	// runner's four cores, which also draw the WebGPU scenes in software
+	// runner's four cores
 	fullyParallel: true,
 	workers: process.env.CI ? 3 : undefined,
+	// the runner draws WebGPU in software, and two scenes drawn at once starve each other until
+	// neither shows a new frame; so the tests that draw (tagged @gpu) take one worker, one at a time,
+	// beside the rest
+	projects: [
+		{ name: 'gpu', grep: /@gpu/, workers: process.env.CI ? 1 : undefined },
+		{ name: 'pages', grepInvert: /@gpu/ }
+	],
 	retries: process.env.CI ? 1 : 0,
 	// the runner draws the WebGPU scenes in software for three workers at once, so a frame or a page
 	// can take far longer than on a desk; waiting longer costs nothing when the check passes at once
