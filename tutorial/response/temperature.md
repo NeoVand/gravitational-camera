@@ -249,8 +249,9 @@ agree, since $\mathrm{J}/(\mathrm{N\,m^{-1}}) = \mathrm{m^2}$. The paper's [*Wha
 reveals*](/paper/#par:what-an-applied-tide-reveals) writes the same rule for a moment of a body's mass, $\matter Q_h$
 ([defined below](#the-mean-square-rate-of-change-of-a-warm-bodys-moments-is-fixed-by-its-temperature-and-density)):
 $\langle\delta Q_h^2\rangle = \kB T\,\chi_h(0)$. Here $\delta Q_h$ is the departure of $\matter Q_h$ from its mean, and
-$\chi_h(0)$ is how far $\matter Q_h$ moves per unit of steady tide. Chapter 4.6 calls this rule the static form of the
-fluctuation–dissipation theorem.
+$\chi_h(0)$ is how far $\matter Q_h$ moves per unit of steady tide. Chapter
+[4.6](/tutorial/response/fluctuation-dissipation/#the-theorem-holds-for-every-linear-body-at-every-frequency) calls this
+rule the static form of the fluctuation–dissipation theorem.
 
 **A number.** For 1.7's cart, $\matter m = 2\unit{kg}$ on $k = 50\unit{N\,m^{-1}}$ at 300 K, the jitter is
 $\sqrt{4.14\times10^{-21}/50}\unit{m} = 9.1\times10^{-12}\unit{m}$, about a tenth of the width of a small atom. **A limit.**
@@ -336,10 +337,11 @@ $$\langle\dot x_{\rm cm}^2\rangle = \frac{\kB T}{\matter M} .$$
 
 The centre of mass moves like one particle that carries the whole mass, at the temperature of the bath.[^bath] This
 random wandering of a whole body is **Brownian motion**. It is named for Robert Brown, who studied it in 1827 in the
-particles, about 1 to 8 µm across, that grains of pollen release into water.[^brown] Chapter 4.6 follows it in time.
-For the steel ball of 32.9 kg at 300 K the speed along each axis is $\sqrt{\kB T/\matter M} = 1.1\times10^{-11}
-\unit{m\,s^{-1}}$, and for a person of 70 kg it is $7.7\times10^{-12}\unit{m\,s^{-1}}$. If the ball kept its direction,
-it would cross the width of one of its iron atoms, about 0.25 nm, in 22 seconds.
+particles, about 1 to 8 µm across, that grains of pollen release into water.[^brown] Chapter
+[4.6](/tutorial/response/fluctuation-dissipation/#a-grain-in-water-is-kicked-at-random-and-slowed-by-friction-and-the-two-are-linked)
+follows it in time. For the steel ball of 32.9 kg at 300 K the speed along each axis is $\sqrt{\kB T/\matter M} =
+1.1\times10^{-11} \unit{m\,s^{-1}}$, and for a person of 70 kg it is $7.7\times10^{-12}\unit{m\,s^{-1}}$. If the ball
+kept its direction, it would cross the width of one of its iron atoms, about 0.25 nm, in 22 seconds.
 
 Now take $h = g = xy$, which is harmonic, since $\nabla^2(xy) = 0$. Its gradient is $(y, x, 0)$, so
 $\nabla h\cdot\nabla g = x^2 + y^2$. The integral of $\matter\rho\,(x^2 + y^2)$ is the moment of inertia about the $z$
@@ -356,15 +358,16 @@ $0.1315\unit{kg\,m^2}$, so at 300 K its $\langle\matter{\dot Q}_{xy}^2\rangle$ i
 $4.14\times10^{-21}\unit{J} \times 0.1315\unit{kg\,m^2} = 5.4\times10^{-22}\unit{kg^2\,m^4\,s^{-2}}$.
 
 The tremor can read what the steady pull cannot because $x^2 + y^2$ is not harmonic. It is $\tfrac12\nabla^2(x^2y^2)$,
-as the rule of [chapter 2.1](/tutorial/outside/laplace/#the-product-of-two-harmonic-functions-is-not-harmonic) says,
-and its Laplacian is 4. The steady field outside reads the density only through harmonic functions, so
-$\int\matter\rho\,r^2\,\dd V$ is exactly what it cannot read
-([chapter 2.5](/tutorial/outside/null-space/#the-nugget-the-flush-and-the-skin-differ-only-in-what-the-outside-cannot-read)).
-A profile of degree 3 reaches further. For $h = g = x^3 - 3xy^2$, which is harmonic, $|\nabla h|^2 = 9(x^2 + y^2)^2$,
-and for a round body $\int\matter\rho\,(x^2 + y^2)^2\,\dd V = \tfrac{8}{15}\int\matter\rho\,r^4\,\dd V$, so the tremor
-reads $\int\matter\rho\,r^4\,\dd V$. Chapter 4.6 adds up every degree in the paper's [](/paper/#eq:thermal-multipole)
-and finds at which frequencies the tremor lies (Figure [](/paper/#fig:tremor)); reading chapter R4 reads the paragraph
-whole.
+as the rule of [chapter 2.1](/tutorial/outside/laplace/#the-product-of-two-harmonic-functions-is-not-harmonic) says, and
+its Laplacian is 4. The steady field outside reads the density only through harmonic functions, so
+$\int\matter\rho\,r^2\,\dd V$ is exactly what it cannot read ([chapter
+2.5](/tutorial/outside/null-space/#the-nugget-the-flush-and-the-skin-differ-only-in-what-the-outside-cannot-read)). A
+profile of degree 3 reaches further. For $h = g = x^3 - 3xy^2$, which is harmonic, $|\nabla h|^2 = 9(x^2 + y^2)^2$, and
+for a round body $\int\matter\rho\,(x^2 + y^2)^2\,\dd V = \tfrac{8}{15}\int\matter\rho\,r^4\,\dd V$, so the tremor reads
+$\int\matter\rho\,r^4\,\dd V$. Chapter
+[4.6](/tutorial/response/fluctuation-dissipation/#each-degree-of-the-tremor-holds-one-moment-of-the-density) adds up
+every degree in the paper's [](/paper/#eq:thermal-multipole) and finds at which frequencies the tremor lies (Figure
+[](/paper/#fig:tremor)); reading chapter R4 reads the paragraph whole.
 
 ::: try {#equipartition}
 Six masses at the corners of a hexagon, each joined to its neighbours by springs, sit in a heat bath that slows them

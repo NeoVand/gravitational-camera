@@ -304,7 +304,9 @@ chapter 4.1 stated, now proved for every body of masses and springs whose fricti
 number $c_n$ is how far mode $n$ moves the pushed coordinate per unit of its mass-weighted amplitude, as Appendix A
 words it, and its square $c_n^2$ is 4.1's weight. The weights add up to $1/m_a$, because the $\mathbf e_n$ are the
 columns of an orthogonal matrix, whose rows have length one, so $\sum_ne_{n,a}^2 = 1$. The same steps work for any push
-and any reading; chapter 4.6 reads the $c_n$ of a body's moments off its mode shapes.
+and any reading; chapter
+[4.6](/tutorial/response/fluctuation-dissipation/#each-degree-of-the-tremor-holds-one-moment-of-the-density) reads the
+$c_n$ of a body's moments off its mode shapes.
 
 ::: gap
 A solid is the limit of such a lattice as the spacing shrinks. Its modes are displacement fields $\vect u_n(\vect x)$,
@@ -518,11 +520,11 @@ surface $3z^2 - R^2 = 2R^2P_2$, so the layer has $\matter Q_{zz} = \int\matter\r
 ::: paper
 - [*What heat reveals*](/paper/#par:what-heat-reveals) (Section IV) uses "a lattice ball of 924 masses joined by
   springs" and its modes, and gives the steel ball's note, tremor and tide of $3 \times 10^{-25}\unit{s^{-2}}$; its
-  Figure [](/paper/#fig:tremor) adds the modes up (chapter 4.6).
+  Figure [](/paper/#fig:tremor) adds the modes up (chapter [4.6](/tutorial/response/fluctuation-dissipation/#each-degree-of-the-tremor-holds-one-moment-of-the-density)).
 - [*The trembling lattice*](/paper/#par:the-trembling-lattice) (Appendix A) builds the lattice, defines the weights
   $c_n$, and gives the trial shape with its effective mass, stiffness, quadrupole and tide.
 - [*What an applied tide reveals*](/paper/#par:what-an-applied-tide-reveals) puts the rigidity $\matter\mu$ into the
-  Love number of a ball (chapter 4.6).
+  Love number of a ball (chapter [4.6](/tutorial/response/fluctuation-dissipation/#the-static-end-of-the-response-is-the-love-number)).
 - [Section VI](/paper/#sec:thermal) compares a wave with "a sound wave of the same frequency" and uses $c_T$ and $c_L$
   in [](/paper/#eq:surface-glow); [Section VII](/paper/#sec:no-lens) uses $c_T$ in [](/paper/#eq:optics-bound)
   (chapter 5.5); [Section V](/paper/#sec:waves) writes the stress $\matter T_{kl}$ in [](/paper/#eq:wave-zone)

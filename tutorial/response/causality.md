@@ -337,15 +337,15 @@ time: the blow gives each particle the velocity $\epsilon\nabla h$ before any bo
 
 {{paper eq:push}}
 
-in the paper's letters, with $g$ for our $h$. For a body at rest $\dot Q_g = 0$, so $W = \tfrac12\epsilon^2A$, with
-$A = \int\matter\rho\,|\nabla h|^2\,\dd V$. With the sum rule [](#eq:sum) the count in frequency is
-$(\epsilon^2/\pi)(\pi/2)A = \tfrac12\epsilon^2A$, the count in time, and the two agree only if the rule holds. A blow
-is too short for the bonds, as a tide far above the body's frequencies is too fast for them, so the two routes rest on
-one fact. The paper calls its equation "the sum rule of [](/paper/#eq:sum-rule) in time instead of frequency". This is
-chapter 0.5's
+in the paper's letters, with $g$ for our $h$. For a body at rest $\dot Q_g = 0$, so $W = \tfrac12\epsilon^2A$, with $A =
+\int\matter\rho\,|\nabla h|^2\,\dd V$. With the sum rule [](#eq:sum) the count in frequency is $(\epsilon^2/\pi)(\pi/2)A
+= \tfrac12\epsilon^2A$, the count in time, and the two agree only if the rule holds. A blow is too short for the bonds,
+as a tide far above the body's frequencies is too fast for them, so the two routes rest on one fact. The paper calls its
+equation "the sum rule of [](/paper/#eq:sum-rule) in time instead of frequency". This is chapter 0.5's
 [promise](/tutorial/evening/what-the-outside-keeps/#a-black-hole-replies-with-friction-and-a-temperature): "the total
-depends only on how far out its mass lies". Chapter 4.6 reaches the same sum a third way, from the trembling of a warm
-body.
+depends only on how far out its mass lies". Chapter
+[4.6](/tutorial/response/fluctuation-dissipation/#the-tremor-and-the-applied-tide-are-one-fact) reaches the same sum a
+third way, from the trembling of a warm body.
 
 **A number.** Chapter 1.7's tonne passes a larger steel ball than the paper's ball of 32.9 kg: one of radius
 $0.5\unit{m}$ and mass 4110 kg, at the speed $V = 44\unit{km\,s^{-1}}$ and $b = 1.5\unit{m}$ from its centre.
@@ -366,14 +366,15 @@ and a round body's sum is $\tfrac12 \times \tfrac23 = \tfrac13\int\matter\rho\,r
 $0.345\,\matter Mr_s^2$, with $r_s$ the radius of the horizon, so it answers like a thin shell of its own mass at
 $\sqrt{3 \times 0.345}\,r_s = 1.02\,r_s$.
 
-The paper takes the same sum for tides of degree three and four, which for a round body give $\int\matter\rho\,r^4\,
-\dd V$ and $\int\matter\rho\,r^6\,\dd V$. For a density that is nowhere negative, $\int\matter\rho\,r^2(r^2 -
-a)^2\,\dd V$ cannot be negative, whatever the number $a$. This integral combines the three totals, and the hole's
-totals make it $-2.04\,\matter Mr_s^6$ at $a = 4.34\,r_s^2$. So no arrangement of positive mass has the hole's sums:
-a shell can stand in for the hole under one tide, but nothing can under three. A body's Love number is its tidal
-deformability, the moment that a steady tide raises on it, as a pure number (chapter 4.6 derives it). Put into the slow
-end's relation [](#eq:static-sum), the hole's friction would give a Love number of 1.35, and the hole's is zero.
-Chapters 11.4 and 13.7 derive these results.[^greybody]
+The paper takes the same sum for tides of degree three and four, which for a round body give $\int\matter\rho\,r^4\, \dd
+V$ and $\int\matter\rho\,r^6\,\dd V$. For a density that is nowhere negative, $\int\matter\rho\,r^2(r^2 - a)^2\,\dd V$
+cannot be negative, whatever the number $a$. This integral combines the three totals, and the hole's totals make it
+$-2.04\,\matter Mr_s^6$ at $a = 4.34\,r_s^2$. So no arrangement of positive mass has the hole's sums: a shell can stand
+in for the hole under one tide, but nothing can under three. A body's Love number is its tidal deformability, the moment
+that a steady tide raises on it, as a pure number (chapter
+[4.6](/tutorial/response/fluctuation-dissipation/#the-static-end-of-the-response-is-the-love-number) derives it). Put
+into the slow end's relation [](#eq:static-sum), the hole's friction would give a Love number of 1.35, and the hole's is
+zero. Chapters 11.4 and 13.7 derive these results.[^greybody]
 
 {{paper fig:hole-response}}
 
