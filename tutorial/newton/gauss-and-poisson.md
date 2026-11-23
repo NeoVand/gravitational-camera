@@ -113,13 +113,15 @@ than its centre and are seen at a slant.[^window] Seen edge-on, it covers none.
 Now take a small patch of area $\dd A$ at a distance $r$ from the point, tilted so that its normal makes an angle
 $\alpha$ with the direction $\hat{\vect x}$ from the point to the patch. Only the patch's cross-section perpendicular
 to the line of sight, $\cos\alpha\,\dd A$, faces the point. Moving this cross-section in to the unit sphere shrinks
-each of its lengths by the factor $1/r$, and so its area by $1/r^2$. The solid angle of the patch is therefore
+each of its lengths by the factor $1/r$, and so its area by $1/r^2$ (Figure [](#fig:solid-angle)). The solid angle
+of the patch is therefore
 
 $$\sym{solid-angle}{\dd\Omega} = \frac{\cos\alpha\,\dd A}{r^2} = \frac{\hat{\vect x}\cdot\dd\vect A}{r^2}.$$
 
-<!-- diagram: a small flat patch at distance r from a point O, its normal tilted by the angle α from the line of sight
-x̂; the patch's cross-section cos α dA facing O drawn dashed; the thin cone from O through the patch's edges, and its
-shadow dΩ on the unit sphere about O, shaded. Label r, α, dA, dΩ and the sphere's radius 1. -->
+![A flat patch of area $\dd A$ at the distance $r$ from the point $O$, its normal tilted by the angle $\alpha$ from the
+line of sight $\hat{\vect x}$. Moved along the thin cone toward $O$, the patch lands on the sphere of radius 1 as its
+shadow $\dd\Omega$ (orange), which is drawn exactly; the dashed square is the cross-section $\cos\alpha\,\dd A$ that
+faces $O$.](tut-gauss-solid-angle){#fig:solid-angle}
 
 We keep the sign of $\cos\alpha$: the solid angle is positive when the patch's normal points away from the point, and
 negative when it points toward it.[^omega]
@@ -145,15 +147,16 @@ for a surface with folds: out, back in, and out again. Each crossing cuts a smal
 cone leaves the region, the outward normal points away from the mass, and the patch covers $+\dd\Omega$. Where it
 enters, the patch covers $-\dd\Omega$. The cone starts inside the region and ends outside it, so its crossings
 alternate between outward and inward, and the first and the last are outward. Every inward crossing therefore cancels
-one outward crossing, and $+\dd\Omega$ is left. Adding over all the cones gives the solid angle of the whole closed
+one outward crossing (Figure [](#fig:crossings)), and $+\dd\Omega$ is left. Adding over all the cones gives the solid
+angle of the whole closed
 surface seen from inside it, $4\pi$, and by the last section the flux is $-G\matter M$ times this:
 
 $$\oint_S \vect g\cdot\dd\vect A = -4\pi G\matter M \qquad \text{(mass inside)}.$$
 
-<!-- diagram: a closed surface with a fold, drawn in section, and a point mass inside it; one thin cone from the mass
-crosses the surface three times, the patches cut at the crossings marked +, −, + with the outward normal drawn at
-each (away from the mass at the two outward crossings, toward it at the inward one); a second cone from a mass
-outside the surface enters and leaves, its two patches marked − and +. -->
+![A closed surface $S$ with a fold, cut through its middle. The thin cone from the mass $\matter{m_1}$ inside crosses $S$
+out, back in and out again, so its patches count $+\dd\Omega$, $-\dd\Omega$, $+\dd\Omega$; the cone from $\matter{m_2}$, outside
+in the fold, enters and leaves, and its two patches cancel. Each arrow is the outward normal, orange where it points
+away from the mass and blue where it points toward it.](tut-gauss-crossings){#fig:crossings}
 
 Now put the mass outside the surface. A cone from the mass either misses the region or enters and leaves it an equal
 number of times. Its crossings cancel in pairs, so the total solid angle is zero, and so is the flux:
@@ -189,16 +192,16 @@ perpendicular to the $x$ axis, each of area $\Delta y\,\Delta z$. On the face at
 points along $+x$, so the flux through it is $g_x(x + \Delta x)\,\Delta y\,\Delta z$, where $g_x$ is the $x$ component
 of the field and we write only the coordinate that changes. On the face at $x$ the outward normal points along $-x$,
 so the flux is $-g_x(x)\,\Delta y\,\Delta z$. By the first-order Taylor expansion of chapter 1.2, the two faces
-together give
+(Figure [](#fig:box)) together give
 
 $$\begin{aligned}
 &\bigl[g_x(x + \Delta x) - g_x(x)\bigr]\,\Delta y\,\Delta z\\
 &\qquad\approx \partial_x g_x\;\Delta x\,\Delta y\,\Delta z .
 \end{aligned}$$
 
-<!-- diagram: a small box with edges Δx, Δy, Δz along the axes, one corner at (x, y, z); the two faces perpendicular to
-x shaded, with the field arrow g_x(x) entering the near face and the longer g_x(x + Δx) leaving the far face, and the
-outward normals −x and +x drawn on them. -->
+![A small box with one corner at $(x, y, z)$. The field $g_x(x)$ enters through the blue face at $x$, whose outward
+normal points along $-x$, and the longer $g_x(x + \Delta x)$ leaves through the orange face at $x + \Delta x$, whose
+outward normal points along $+x$; the arrows' lengths are schematic.](tut-gauss-box){#fig:box}
 
 The other two pairs of faces give the same with $y$ and $z$ in place of $x$. We add the three pairs and write
 $\Delta V = \Delta x\,\Delta y\,\Delta z$ for the volume of the box:
@@ -232,11 +235,12 @@ and covers the small solid angle $\Delta\Omega$. Its side faces run along the fi
 inner face has area $r^2\Delta\Omega$ and its outer face $(r + \Delta r)^2\Delta\Omega$. The field enters through the
 outer face with the flux $-G\matter M/(r + \Delta r)^2 \times (r + \Delta r)^2\Delta\Omega = -G\matter M\,\Delta\Omega$,
 and it leaves through the inner face with $+G\matter M\,\Delta\Omega$. The two cancel. The field is stronger on the
-inner face, and that face is smaller, by exactly the same factor.
+inner face, and that face is smaller, by exactly the same factor
+(Figure [](#fig:cone-box)).
 
-<!-- diagram: a point mass and, some way from it, a small box cut from a cone of solid angle ΔΩ, between the distances r
-and r + Δr; field arrows converging toward the mass pass through the larger outer face and the smaller inner face, with
-the shorter arrow on the outer face and the longer on the inner; the side faces lie along the arrows. -->
+![A box cut from a cone of directions from the mass $\matter M$. The field enters through the outer face (blue) and leaves
+through the inner face (orange); the inner arrow is longer by $(r + \Delta r)^2/r^2$ and the inner face is smaller by
+the same factor, as drawn, so the two fluxes cancel.](tut-gauss-cone-box){#fig:cone-box}
 
 ## The divergence theorem adds up the boxes
 
@@ -491,15 +495,16 @@ same size at the heights $z$ and $-z$. Every piece of the sheet attracts, so on 
 sheet.
 
 For the closed surface we take a **pillbox**: a short cylinder that stands across the sheet, with flat ends of area $A$
-at the heights $z$ and $-z$. The field runs along the curved side, so no flux crosses it. On each flat end the field
+at the heights $z$ and $-z$ (Figure [](#fig:pillbox)). The field runs along the curved side, so no flux crosses it.
+On each flat end the field
 points inward with some size $g$, so each end has the flux $-gA$. The mass inside is $\matter\sigma A$, and Gauss's law
 [](#eq:gauss) gives $-2gA = -4\pi G\matter\sigma A$, so
 
 $$\boxed{\;g = 2\pi G\matter\sigma, \quad\text{toward the sheet, at every height} .\;}$$
 
-<!-- diagram: a flat sheet seen edge-on, with a pillbox standing across it, flat ends of area A at heights z and −z;
-field arrows of equal length pointing toward the sheet from above and from below, crossing the two ends, and running
-parallel to the curved side; the shaded disc of sheet inside the pillbox, of mass σA. -->
+![A pillbox standing across a uniform sheet, with flat ends of area $A$ at the heights $z$ and $-z$ and the disc of
+mass $\matter\sigma A$ (orange) inside it. The field has the same size everywhere and points toward the sheet: it
+crosses both ends inward (blue) and runs along the curved side (grey), where no flux crosses.](tut-gauss-pillbox){#fig:pillbox}
 
 The unit is $\mathrm{m^3\,kg^{-1}\,s^{-2}} \times \mathrm{kg\,m^{-2}} = \mathrm{m\,s^{-2}}$. The height has dropped
 out, and the solid angle shows why. A small patch of the sheet, of area $\dd A$, at a distance $s$ and seen at the
