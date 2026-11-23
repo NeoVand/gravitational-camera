@@ -64,7 +64,7 @@ parts:
       - { id: '3.7', slug: noise/blur-law, title: 'The blur law: the cut-off, the logarithm, the Lambert W function, the width of a blur', short: The blur law, size: L, status: published }
       - { id: '3.8', slug: noise/bits, title: 'Bits: entropy, capacity, and how much an image holds', short: Bits, size: M, status: published }
       - { id: '3.9', slug: noise/positivity, title: 'Positivity, super-resolution, and the geometry of the near field', short: Positivity, size: L, status: published }
-      - { id: R3, slug: noise/reading-section-iv-2, title: 'Reading Section IV, part 2, with the capstone: imaging the locked safe', short: Reading Section IV (2), size: L, status: planned, reads: [sec:near-field] }
+      - { id: R3, slug: noise/reading-section-iv-2, title: 'Reading Section IV, part 2, with the capstone: imaging the locked safe', short: Reading Section IV (2), size: L, status: published, reads: [sec:near-field] }
 
   - id: '4'
     slug: response
