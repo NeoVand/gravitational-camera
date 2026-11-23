@@ -162,7 +162,7 @@ symbols:
     tex: '\boldsymbol{g}'
     role: none
     kind: A vector at each point; an acceleration, in m s⁻²
-    meaning: 'The pull of gravity on a small test mass, divided by its mass: the acceleration with which a free body at that point falls. It is the downhill slope of the potential, $\mathbf g = -\nabla\Phi$, and the fields of many bodies add as vectors. Near a point mass $M$ it is $-GM\mathbf x/r^3$.'
+    meaning: 'The pull of gravity on a small test mass, divided by its mass: the acceleration with which a free body at that point falls. It is the downhill slope of the potential, $\vect g = -\nabla\Phi$, and the fields of many bodies add as vectors. Near a point mass $M$ it is $-GM\vect x/r^3$.'
     chapter: '1.2'
     anchor: the-field-is-the-pull-per-unit-mass-and-fields-add
   - key: nabla
@@ -175,10 +175,10 @@ symbols:
     anchor: the-gradient-points-uphill
   - key: unit-vector
     title: Unit vector
-    tex: '\hat{\mathbf x}'
+    tex: '\hat{\vect x}'
     role: none
     kind: A vector of length one; no unit
-    meaning: 'A vector divided by its own length, so that only its direction is left: $\hat{\mathbf x} = \mathbf x/r$ for the position $\mathbf x$ at distance $r$, and $\hat x_i\hat x_i = 1$. The paper writes $\hat n$ for the unit vector from a pixel toward a source (in Sections V and XI, from a source toward the field point).'
+    meaning: 'A vector divided by its own length, so that only its direction is left: $\hat{\vect x} = \vect x/r$ for the position $\vect x$ at distance $r$, and $\hat x_i\hat x_i = 1$. The paper writes $\hat n$ for the unit vector from a pixel toward a source (in Sections V and XI, from a source toward the field point).'
     chapter: '1.1'
     anchor: an-index-stands-for-all-three-directions
   - key: kronecker-delta
@@ -186,7 +186,7 @@ symbols:
     tex: '\delta_{ij}'
     role: none
     kind: A table of nine pure numbers, the identity matrix
-    meaning: 'The dot product of two unit vectors along the axes, $\delta_{ij} = \mathbf e_i\cdot\mathbf e_j$: 1 when $i = j$ and 0 otherwise. In a sum it replaces one index by another, $\delta_{ij}a_j = a_i$, and its trace is $\delta_{ii} = 3$.'
+    meaning: 'The dot product of two unit vectors along the axes, $\delta_{ij} = \vect e_i\cdot\vect e_j$: 1 when $i = j$ and 0 otherwise. In a sum it replaces one index by another, $\delta_{ij}a_j = a_i$, and its trace is $\delta_{ii} = 3$.'
     chapter: '1.1'
     anchor: an-index-stands-for-all-three-directions
   - key: projector
@@ -202,7 +202,7 @@ symbols:
     tex: 'R_{ij}'
     role: none
     kind: An orthogonal table of nine pure numbers
-    meaning: 'The components of the new axes in the old ones, $R_{ij} = \mathbf e''_i\cdot\mathbf e_j$. Its transpose is its inverse, $R^{\mathsf T}R = 1$. When the axes turn, a vector changes as $a''_i = R_{ij}a_j$ and a tensor as $T'' = RTR^{\mathsf T}$, so dot products and traces stay the same.'
+    meaning: 'The components of the new axes in the old ones, $R_{ij} = \vect e''_i\cdot\vect e_j$. Its transpose is its inverse, $R^{\mathsf T}R = 1$. When the axes turn, a vector changes as $a''_i = R_{ij}a_j$ and a tensor as $T'' = RTR^{\mathsf T}$, so dot products and traces stay the same.'
     chapter: '1.1'
     anchor: turning-the-axes-changes-the-components-not-the-arrow
   - key: levi-civita
@@ -210,7 +210,7 @@ symbols:
     tex: '\epsilon_{ijk}'
     role: none
     kind: A table of 27 pure numbers, each +1, −1 or 0
-    meaning: 'The symbol with $\epsilon_{123} = +1$, $+1$ for the cyclic orders of 1, 2, 3, $-1$ for the others, and $0$ when two indices are equal. It writes the cross product, $(\mathbf a\times\mathbf b)_i = \epsilon_{ijk}a_jb_k$, and two of them sharing an index give Kronecker deltas, $\epsilon_{kij}\epsilon_{klm} = \delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}$.'
+    meaning: 'The symbol with $\epsilon_{123} = +1$, $+1$ for the cyclic orders of 1, 2, 3, $-1$ for the others, and $0$ when two indices are equal. It writes the cross product, $(\vect a\times\vect b)_i = \epsilon_{ijk}a_jb_k$, and two of them sharing an index give Kronecker deltas, $\epsilon_{kij}\epsilon_{klm} = \delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}$.'
     chapter: '1.1'
     anchor: the-cross-product-is-written-with-the-levi-civita-symbol
   - key: generators
@@ -218,7 +218,7 @@ symbols:
     tex: '(L_k)_{ij}'
     role: none
     kind: Three antisymmetric tables of pure numbers
-    meaning: 'The tables $(L_k)_{ij} = -\epsilon_{kij}$. A small turn by the angle vector $\boldsymbol\theta$ changes a vector by $\delta a_i = \theta_k(L_k)_{ij}a_j$, which is $\boldsymbol\theta\times\mathbf a$. The paper uses them, with an imaginary angle, to boost the curvature that a moving pixel reads.'
+    meaning: 'The tables $(L_k)_{ij} = -\epsilon_{kij}$. A small turn by the angle vector $\boldsymbol\theta$ changes a vector by $\delta a_i = \theta_k(L_k)_{ij}a_j$, which is $\boldsymbol\theta\times\vect a$. The paper uses them, with an imaginary angle, to boost the curvature that a moving pixel reads.'
     chapter: '1.7'
     anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
   - key: angular-velocity
@@ -226,7 +226,7 @@ symbols:
     tex: '\boldsymbol\Omega'
     role: none
     kind: A vector; in radians per second, s⁻¹
-    meaning: 'A vector along the axis of a turning body, pointing by the right-hand rule, whose length is the angle turned per second. A point at position $\mathbf x$, measured from a point on the axis, moves with velocity $\boldsymbol\Omega\times\mathbf x$. For the Earth $|\boldsymbol\Omega| = 7.29\times10^{-5}\,\mathrm{s^{-1}}$, so the ground at the equator moves at 465 m/s. The spin of a body is set plain; the angular velocity of a turning frame, the observer''s own turning (chapter 1.6), takes the observer''s colour.'
+    meaning: 'A vector along the axis of a turning body, pointing by the right-hand rule, whose length is the angle turned per second. A point at position $\vect x$, measured from a point on the axis, moves with velocity $\boldsymbol\Omega\times\vect x$. For the Earth $|\boldsymbol\Omega| = 7.29\times10^{-5}\,\mathrm{s^{-1}}$, so the ground at the equator moves at 465 m/s. The spin of a body is set plain; the angular velocity of a turning frame, the observer''s own turning (chapter 1.6), takes the observer''s colour.'
     chapter: '1.1'
     anchor: the-ground-at-the-equator
   - key: solid-angle
@@ -250,7 +250,7 @@ symbols:
     tex: '\delta^3'
     role: none
     kind: A distribution, not a function; in m⁻³
-    meaning: 'The rule $\int\delta^3(\mathbf x)\,f(\mathbf x)\,\mathrm{d}^3x = f(0)$ for every smooth $f$. A point mass $M$ at $\mathbf x_0$ has the density $M\,\delta^3(\mathbf x - \mathbf x_0)$, and $\nabla^2(1/r) = -4\pi\,\delta^3(\mathbf x)$. Not to be confused with the Kronecker delta $\delta_{ij}$.'
+    meaning: 'The rule $\int\delta^3(\vect x)\,f(\vect x)\,\mathrm{d}^3x = f(0)$ for every smooth $f$. A point mass $M$ at $\vect x_0$ has the density $M\,\delta^3(\vect x - \vect x_0)$, and $\nabla^2(1/r) = -4\pi\,\delta^3(\vect x)$. Not to be confused with the Kronecker delta $\delta_{ij}$.'
     chapter: '1.3'
     anchor: a-point-mass-is-density-gathered-at-one-point
   - key: frobenius-norm
@@ -266,7 +266,7 @@ symbols:
     tex: 'b^A_{ij}'
     role: none
     kind: Five symmetric trace-free tables of pure numbers, labelled A = 1, …, 5
-    meaning: 'Three off-diagonal shapes, $(\mathbf e_x\mathbf e_y + \mathbf e_y\mathbf e_x)/\sqrt2$ and its two companions, with $\mathrm{diag}(1,-1,0)/\sqrt2$ and $\mathrm{diag}(-1,-1,2)/\sqrt6$. They satisfy $b^A_{ij}b^B_{ij} = \delta^{AB}$, and every symmetric trace-free table is $c_A b^A_{ij}$. The index $A$ counts tables, not directions.'
+    meaning: 'Three off-diagonal shapes, $(\vect e_x\vect e_y + \vect e_y\vect e_x)/\sqrt2$ and its two companions, with $\mathrm{diag}(1,-1,0)/\sqrt2$ and $\mathrm{diag}(-1,-1,2)/\sqrt6$. They satisfy $b^A_{ij}b^B_{ij} = \delta^{AB}$, and every symmetric trace-free table is $c_A b^A_{ij}$. The index $A$ counts tables, not directions.'
     chapter: '1.5'
     anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
   - key: stf-coefficient
@@ -295,26 +295,26 @@ symbols:
     anchor: patterns-of-higher-degree-hold-7-9-and-more-numbers
   - key: force
     title: Force
-    tex: '\mathbf F'
+    tex: '\vect F'
     role: none
     kind: A vector; in newtons, N = kg m s⁻²
-    meaning: 'A push or a pull. It changes a body''s momentum at the rate $\mathbf F = \mathrm d\mathbf p/\mathrm dt$, so a force $\mathbf F$ on a mass $m$ gives it the acceleration $\mathbf F/m$.'
+    meaning: 'A push or a pull. It changes a body''s momentum at the rate $\vect F = \mathrm d\vect p/\mathrm dt$, so a force $\vect F$ on a mass $m$ gives it the acceleration $\vect F/m$.'
     chapter: '1.6'
     anchor: force-changes-momentum-and-forces-inside-a-body-cancel
   - key: momentum
     title: Momentum
-    tex: '\mathbf p'
+    tex: '\vect p'
     role: none
     kind: A vector; in kg m s⁻¹
-    meaning: 'Mass times velocity, $\mathbf p = m\mathbf v$. Forces change it; the total momentum of a body changes only by outside forces, because the forces between its parts cancel in pairs.'
+    meaning: 'Mass times velocity, $\vect p = m\vect v$. Forces change it; the total momentum of a body changes only by outside forces, because the forces between its parts cancel in pairs.'
     chapter: '1.6'
     anchor: force-changes-momentum-and-forces-inside-a-body-cancel
   - key: centre-of-mass
     title: Centre of mass
-    tex: '\mathbf x_{\rm cm}'
+    tex: '\vect x_{\rm cm}'
     role: none
     kind: A position; in metres
-    meaning: 'The average of the positions of a body''s parts, each weighted by its mass. It moves as one particle carrying the whole mass, pushed only by outside forces, $M\ddot{\mathbf x}_{\rm cm} = \sum\mathbf F^{\rm out}$.'
+    meaning: 'The average of the positions of a body''s parts, each weighted by its mass. It moves as one particle carrying the whole mass, pushed only by outside forces, $M\ddot{\vect x}_{\rm cm} = \sum\vect F^{\rm out}$.'
     chapter: '1.6'
     anchor: force-changes-momentum-and-forces-inside-a-body-cancel
   - key: kinetic-energy
@@ -322,23 +322,23 @@ symbols:
     tex: 'K'
     role: none
     kind: A number; in joules
-    meaning: 'The energy of motion, $\tfrac12 mv^2$ for a body, $\tfrac12\Omega_iI_{ij}\Omega_j$ for a turning rigid body. A kick of impulse $\mathbf J$ changes it by $\mathbf v\cdot\mathbf J + J^2/2m$.'
+    meaning: 'The energy of motion, $\tfrac12 mv^2$ for a body, $\tfrac12\Omega_iI_{ij}\Omega_j$ for a turning rigid body. A kick of impulse $\vect J$ changes it by $\vect v\cdot\vect J + J^2/2m$.'
     chapter: '1.6'
     anchor: work-changes-kinetic-energy-and-a-steady-field-keeps-the-energy-fixed
   - key: impulse
     title: Impulse
-    tex: '\mathbf J'
+    tex: '\vect J'
     role: none
     kind: A vector; in newton seconds, the unit of momentum
-    meaning: 'The integral of a force over the time it acts, $\mathbf J = \int\mathbf F\,\mathrm dt$, equal to the change of momentum it causes. (In the paper $\mathbf J$ is also the current column and a momentum density.)'
+    meaning: 'The integral of a force over the time it acts, $\vect J = \int\vect F\,\mathrm dt$, equal to the change of momentum it causes. (In the paper $\vect J$ is also the current column and a momentum density.)'
     chapter: '1.6'
     anchor: work-changes-kinetic-energy-and-a-steady-field-keeps-the-energy-fixed
   - key: angular-momentum
     title: Angular momentum
-    tex: '\mathbf L'
+    tex: '\vect L'
     role: none
     kind: A vector; in kg m² s⁻¹
-    meaning: 'The moment of momentum about a point, $\mathbf L = \mathbf x\times\mathbf p$. Torque changes it; it stays fixed under a central force and for any body that nothing outside twists. The Earth''s is $5.8\times10^{33}\,\mathrm{kg\,m^2\,s^{-1}}$.'
+    meaning: 'The moment of momentum about a point, $\vect L = \vect x\times\vect p$. Torque changes it; it stays fixed under a central force and for any body that nothing outside twists. The Earth''s is $5.8\times10^{33}\,\mathrm{kg\,m^2\,s^{-1}}$.'
     chapter: '1.6'
     anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
   - key: inertia-tensor
@@ -390,10 +390,10 @@ symbols:
     chapter: '1.5b'
   - key: null-vector
     title: Complex null vector
-    tex: '\mathbf{m}'
+    tex: '\vect{m}'
     role: none
     kind: A complex vector with no unit
-    meaning: 'The vector $\mathbf m = (\mathbf e_1 + i\mathbf e_2)/\sqrt2$ across a wave travelling along $\hat k = \mathbf e_1\times\mathbf e_2$. It has $\mathbf m\cdot\mathbf m = 0$, $\mathbf m\cdot\mathbf m^* = 1$ and $\hat k\times\mathbf m = -i\mathbf m$. Light''s field in a wave is a multiple of $\mathbf m$, and gravity''s a multiple of the square $\mathbf m\mathbf m^{\mathsf T}$.'
+    meaning: 'The vector $\vect m = (\vect e_1 + i\vect e_2)/\sqrt2$ across a wave travelling along $\hat k = \vect e_1\times\vect e_2$. It has $\vect m\cdot\vect m = 0$, $\vect m\cdot\vect m^* = 1$ and $\hat k\times\vect m = -i\vect m$. Light''s field in a wave is a multiple of $\vect m$, and gravity''s a multiple of the square $\vect m\vect m^{\mathsf T}$.'
     chapter: '1.5b'
     anchor: complex-vectors-a-direction-whose-square-is-zero
   - key: weyl-complex
@@ -401,7 +401,7 @@ symbols:
     tex: '\curv{\mathcal{W}}'
     role: curv
     kind: A symmetric trace-free table of complex numbers (five complex numbers); in s⁻²
-    meaning: 'The paper''s one complex table for the ten numbers a pixel reads, $\mathcal W = \mathcal E + i\mathcal B$, with the tide $\mathcal E$ as its real part and the magnetic part $\mathcal B$ as its imaginary part. For a plane wave it is a square, $\mathcal W = 2(\mathcal E_+ - i\mathcal E_\times)\,\mathbf m\mathbf m^{\mathsf T}$. Chapter 9.3 studies it.'
+    meaning: 'The paper''s one complex table for the ten numbers a pixel reads, $\mathcal W = \mathcal E + i\mathcal B$, with the tide $\mathcal E$ as its real part and the magnetic part $\mathcal B$ as its imaginary part. For a plane wave it is a square, $\mathcal W = 2(\mathcal E_+ - i\mathcal E_\times)\,\vect m\vect m^{\mathsf T}$. Chapter 9.3 studies it.'
     chapter: '1.5b'
     anchor: complex-vectors-a-direction-whose-square-is-zero
   - key: orbital-period
@@ -441,7 +441,7 @@ symbols:
     tex: '\matter{\Sigma}'
     role: matter
     kind: A number at each point of a plane; mass per unit area, in kg/m²
-    meaning: 'The density of a body added up along a direction, $\Sigma(\mathbf s) = \int\rho\,\mathrm dz$: the mass that lies over each square metre of a plane at right angles to that direction. The energy a passing mass leaves in a body is a weighted integral of it, the paper''s Eq. (pass).'
+    meaning: 'The density of a body added up along a direction, $\Sigma(\vect s) = \int\rho\,\mathrm dz$: the mass that lies over each square metre of a plane at right angles to that direction. The energy a passing mass leaves in a body is a weighted integral of it, the paper''s Eq. (pass).'
     chapter: '1.8'
     anchor: what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass
   - key: hamiltonian
@@ -457,7 +457,7 @@ symbols:
     tex: '\{F, G\}'
     role: none
     kind: An operation on two quantities; unit that of $FG$ divided by a joule second
-    meaning: 'The sum $\sum_a(\partial F/\partial\mathbf x_a\cdot\partial G/\partial\mathbf p_a - \partial F/\partial\mathbf p_a\cdot\partial G/\partial\mathbf x_a)$, in the paper''s order. It gives the rate of change of any quantity, $\dot F = \{F, H\}$, and the motion a quantity generates, $\mathrm dF/\mathrm ds = \{F, G\}$. The basic brackets are $\{x_i, p_j\} = \delta_{ij}$.'
+    meaning: 'The sum $\sum_a(\partial F/\partial\vect x_a\cdot\partial G/\partial\vect p_a - \partial F/\partial\vect p_a\cdot\partial G/\partial\vect x_a)$, in the paper''s order. It gives the rate of change of any quantity, $\dot F = \{F, H\}$, and the motion a quantity generates, $\mathrm dF/\mathrm ds = \{F, G\}$. The basic brackets are $\{x_i, p_j\} = \delta_{ij}$.'
     chapter: '1.7'
     anchor: the-poisson-bracket-gives-the-rate-of-change-of-anything
   - key: mass-moment
@@ -465,7 +465,7 @@ symbols:
     tex: 'Q_h'
     role: none
     kind: A number; in kilograms times the unit of $h$
-    meaning: 'The integral of the density against a function of position, $Q_h = \int\rho\,h\,\mathrm dV = \sum_a m_ah(\mathbf x_a)$. For $h$ harmonic these are the numbers the steady field outside a body holds. Its rate of change is $\dot Q_h = \sum_a\mathbf p_a\cdot\nabla h(\mathbf x_a)$, and an impulsive tide of profile $g$ is the motion generated by $Q_g$.'
+    meaning: 'The integral of the density against a function of position, $Q_h = \int\rho\,h\,\mathrm dV = \sum_a m_ah(\vect x_a)$. For $h$ harmonic these are the numbers the steady field outside a body holds. Its rate of change is $\dot Q_h = \sum_a\vect p_a\cdot\nabla h(\vect x_a)$, and an impulsive tide of profile $g$ is the motion generated by $Q_g$.'
     chapter: '1.7'
     anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass
   - key: impulse-strength
@@ -473,7 +473,7 @@ symbols:
     tex: '\epsilon'
     role: none
     kind: A number; its product with the profile $g$ is in m² s⁻¹
-    meaning: 'The strength of the impulsive tide whose potential is $-\epsilon\,g(\mathbf x)\,\delta(t)$. Each part of mass $m$ receives the impulse $\epsilon m\nabla g$, so $\epsilon\nabla g$ is the velocity it gains. Not the Levi-Civita symbol $\epsilon_{ijk}$, which has three indices.'
+    meaning: 'The strength of the impulsive tide whose potential is $-\epsilon\,g(\vect x)\,\delta(t)$. Each part of mass $m$ receives the impulse $\epsilon m\nabla g$, so $\epsilon\nabla g$ is the velocity it gains. Not the Levi-Civita symbol $\epsilon_{ijk}$, which has three indices.'
     chapter: '1.7'
     anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass
   - key: speed-of-light
@@ -577,7 +577,7 @@ symbols:
     tex: 'P_\ell'
     role: none
     kind: A polynomial of degree $\ell$ in $\mu = \cos\gamma$; no unit
-    meaning: 'The coefficient of $t^\ell$ in $(1 - 2t\mu + t^2)^{-1/2}$, so that $1/|\mathbf x - \mathbf y| = \sum_\ell r''^\ell P_\ell(\cos\gamma)/r^{\ell+1}$ for $r'' < r$. $P_0 = 1$, $P_1 = \mu$, $P_2 = \tfrac12(3\mu^2 - 1)$, $P_3 = \tfrac12(5\mu^3 - 3\mu)$, and $P_\ell(1) = 1$. $P_\ell(\cos\gamma)$ is the pattern of degree $\ell$ symmetric about an axis; $P_2$ vanishes at 54.7°.'
+    meaning: 'The coefficient of $t^\ell$ in $(1 - 2t\mu + t^2)^{-1/2}$, so that $1/|\vect x - \vect y| = \sum_\ell r''^\ell P_\ell(\cos\gamma)/r^{\ell+1}$ for $r'' < r$. $P_0 = 1$, $P_1 = \mu$, $P_2 = \tfrac12(3\mu^2 - 1)$, $P_3 = \tfrac12(5\mu^3 - 3\mu)$, and $P_\ell(1) = 1$. $P_\ell(\cos\gamma)$ is the pattern of degree $\ell$ symmetric about an axis; $P_2$ vanishes at 54.7°.'
     chapter: '2.2'
     anchor: the-patterns-symmetric-about-an-axis-are-the-legendre-polynomials-and-the-inverse-distance-generates-them
   - key: spherical-harmonic
@@ -622,10 +622,10 @@ symbols:
     anchor: in-empty-space-the-potential-has-no-peak-and-no-pit
   - key: greens-function
     title: "Green's function"
-    tex: '\mathcal G(\mathbf x, \mathbf y)'
+    tex: '\mathcal G(\vect x, \vect y)'
     role: none
     kind: A function of two points; in m⁻¹
-    meaning: 'The potential of a unit point source at $\mathbf y$, seen at $\mathbf x$: $\nabla^2\mathcal G = \delta^3(\mathbf x - \mathbf y)$, and in all space $\mathcal G = -1/4\pi|\mathbf x - \mathbf y|$. The potential of any body is $\Phi = 4\pi G\int\mathcal G\rho\,\mathrm d^3y$. Written in script to keep it apart from Newton''s constant $G$.'
+    meaning: 'The potential of a unit point source at $\vect y$, seen at $\vect x$: $\nabla^2\mathcal G = \delta^3(\vect x - \vect y)$, and in all space $\mathcal G = -1/4\pi|\vect x - \vect y|$. The potential of any body is $\Phi = 4\pi G\int\mathcal G\rho\,\mathrm d^3y$. Written in script to keep it apart from Newton''s constant $G$.'
     chapter: '2.4'
     anchor: the-potential-of-one-point-builds-every-potential
   - key: greens-function-2d
@@ -654,7 +654,7 @@ symbols:
     anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
   - key: half-space-kernel
     title: Poisson kernel of the half-space
-    tex: 'P_z(\mathbf a)'
+    tex: 'P_z(\vect a)'
     role: none
     kind: A function of the position across a plane; in m⁻²
     meaning: 'The weight $z/2\pi(a^2 + z^2)^{3/2}$ that continues a potential known on a plane to the height $z$ above it, when no matter lies above: upward continuation. A bell of area 1 and full width $1.53z$; a ripple $\cos kx$ continues to $\cos(kx)\,e^{-kz}$.'
@@ -662,10 +662,10 @@ symbols:
     anchor: above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height
   - key: ball-kernel
     title: Poisson kernel of the ball
-    tex: 'P(\mathbf x, \mathbf s)'
+    tex: 'P(\vect x, \vect s)'
     role: none
     kind: A function of a point on a sphere and a point inside it; in m⁻²
-    meaning: 'The weight $(R^2 - s^2)/4\pi R|\mathbf x - \mathbf s|^3$ that gives a harmonic function at $\mathbf s$ inside a ball of radius $R$ from its values at the points $\mathbf x$ of the sphere. A mass $m$ at $\mathbf s$ and a skin of surface density $mP$ on the sphere pull alike outside: balayage. Not the Legendre polynomial $P_\ell$.'
+    meaning: 'The weight $(R^2 - s^2)/4\pi R|\vect x - \vect s|^3$ that gives a harmonic function at $\vect s$ inside a ball of radius $R$ from its values at the points $\vect x$ of the sphere. A mass $m$ at $\vect s$ and a skin of surface density $mP$ on the sphere pull alike outside: balayage. Not the Legendre polynomial $P_\ell$.'
     chapter: '2.4'
     anchor: on-a-sphere-kelvins-image-gives-the-potential-inside-and-the-skin-of-balayage
   - key: multipole-moment
@@ -689,7 +689,7 @@ symbols:
     tex: 'n(t)'
     role: none
     kind: A random function of time, in the unit of the reading (s⁻² for a tide)
-    meaning: 'The random part of an instrument''s reading at the time $t$, with mean zero. Across a plane, $n(\mathbf a)$ is the noise of the reading at the place $\mathbf a$; its Fourier transform is $\tilde n$.'
+    meaning: 'The random part of an instrument''s reading at the time $t$, with mean zero. Across a plane, $n(\vect a)$ is the noise of the reading at the place $\vect a$; its Fourier transform is $\tilde n$.'
     chapter: '3.2'
     anchor: a-noisy-record-is-a-random-function-of-time
   - key: autocorrelation
@@ -769,7 +769,7 @@ symbols:
     tex: 'k'
     role: none
     kind: A number; an angle per unit length, in m⁻¹
-    meaning: 'How fast a ripple advances along a line: $2\pi$ divided by the distance between its crests. Crests 10 cm apart have $k = 62.8\ \mathrm{m^{-1}}$. On a plane it is the length of the wavevector, $k = |\mathbf k|$.'
+    meaning: 'How fast a ripple advances along a line: $2\pi$ divided by the distance between its crests. Crests 10 cm apart have $k = 62.8\ \mathrm{m^{-1}}$. On a plane it is the length of the wavevector, $k = |\vect k|$.'
     chapter: '2.6'
     anchor: a-ripple-in-space-is-a-turning-number-as-an-oscillation-in-time-is
   - key: wavevector
@@ -905,7 +905,7 @@ symbols:
     tex: 'T'
     role: none
     kind: A number; in the unit of the reading per unit of the unknown
-    meaning: 'The reading that one unit of the unknown produces, in the model $y = Tx + n$. For the flat tidal camera it depends on the ripple, $T(\mathbf k) = 2\pi G\,k\,e^{-kz}$, in m² kg⁻¹ s⁻². (Elsewhere $T$ is a temperature.)'
+    meaning: 'The reading that one unit of the unknown produces, in the model $y = Tx + n$. For the flat tidal camera it depends on the ripple, $T(\vect k) = 2\pi G\,k\,e^{-kz}$, in m² kg⁻¹ s⁻². (Elsewhere $T$ is a temperature.)'
     chapter: '3.5'
     anchor: the-best-guess-of-one-number-weighs-the-reading-against-what-was-expected
   - key: point-spread-function
@@ -926,34 +926,34 @@ symbols:
     anchor: seen-in-space-a-filter-is-a-blur
   - key: flow-velocity
     title: Velocity of the matter
-    tex: '\mathbf v(\mathbf x)'
+    tex: '\vect v(\vect x)'
     role: none
     kind: A vector at each point; in m/s
-    meaning: 'The velocity of the matter at each point of a body: its velocity field. A rigidly turning body has $\mathbf v = \boldsymbol\Omega\times\mathbf x$. It is set plain, because it describes the scene, not the observer.'
+    meaning: 'The velocity of the matter at each point of a body: its velocity field. A rigidly turning body has $\vect v = \boldsymbol\Omega\times\vect x$. It is set plain, because it describes the scene, not the observer.'
     chapter: '2.8'
     anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
   - key: mass-flux
     title: Mass flux
-    tex: '\matter{\mathbf J}'
+    tex: '\matter{\vect J}'
     role: matter
     kind: A vector at each point; in kg m⁻² s⁻¹
-    meaning: 'The density times the velocity, $\mathbf J = \rho\mathbf v$: the mass that crosses a unit area per second, and also the momentum per unit volume (the paper''s density of momentum in Section XIII). Mass is conserved, so $\partial\rho/\partial t + \nabla\cdot\mathbf J = 0$. Not the impulse of chapter 1.6, nor the current column $\mathbf J(\hat n)$.'
+    meaning: 'The density times the velocity, $\vect J = \rho\vect v$: the mass that crosses a unit area per second, and also the momentum per unit volume (the paper''s density of momentum in Section XIII). Mass is conserved, so $\partial\rho/\partial t + \nabla\cdot\vect J = 0$. Not the impulse of chapter 1.6, nor the current column $\vect J(\hat n)$.'
     chapter: '2.8'
     anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
   - key: flow-potential
     title: Potential of a flow
-    tex: '\field{\mathbf A}'
+    tex: '\field{\vect A}'
     role: field
     kind: A vector at each point; in kg/s
-    meaning: 'The mass flux added up as chapter 2.4 adds up the density for the potential: $\mathbf A(\mathbf x) = \int\mathbf J(\mathbf y)/|\mathbf x - \mathbf y|\,\mathrm d^3y$, so that $\nabla^2\mathbf A = -4\pi\mathbf J$. Outside a body the magnetic part of the tide is made from its curl (chapter 7.5), so a flow whose $\mathbf A$ is a gradient outside is silent there.'
+    meaning: 'The mass flux added up as chapter 2.4 adds up the density for the potential: $\vect A(\vect x) = \int\vect J(\vect y)/|\vect x - \vect y|\,\mathrm d^3y$, so that $\nabla^2\vect A = -4\pi\vect J$. Outside a body the magnetic part of the tide is made from its curl (chapter 7.5), so a flow whose $\vect A$ is a gradient outside is silent there.'
     chapter: '2.8'
     anchor: a-flow-has-a-potential-of-its-own-built-like-the-gravitational-one
   - key: current-column
     title: Current column
-    tex: '\mathbf J(\hat n)'
+    tex: '\vect J(\hat n)'
     role: none
     kind: A vector for each direction; in kg m⁻² s⁻¹
-    meaning: 'The mass flux along the line of sight in the direction $\hat n$, each part weighted by the inverse of its distance: $\mathbf J(\hat n) = \int\rho\mathbf v(r\hat n)\,\mathrm dr/r$. Only its part across the line of sight enters the magnetic part of the tide. The twin of the tidal column $S(\hat n)$, and like it set plain; always written with its direction, so that it is not mistaken for the mass flux at a point.'
+    meaning: 'The mass flux along the line of sight in the direction $\hat n$, each part weighted by the inverse of its distance: $\vect J(\hat n) = \int\rho\vect v(r\hat n)\,\mathrm dr/r$. Only its part across the line of sight enters the magnetic part of the tide. The twin of the tidal column $S(\hat n)$, and like it set plain; always written with its direction, so that it is not mistaken for the mass flux at a point.'
     chapter: '2.8'
     anchor: the-current-column-is-the-flow-along-a-line-of-sight-weighted-by-inverse-distance
   - key: stream-function
@@ -966,18 +966,18 @@ symbols:
     anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
   - key: roll-vector
     title: Vector of a silent flow
-    tex: '\mathbf V'
+    tex: '\vect V'
     role: none
     kind: A vector at each point; in kg/s
-    meaning: 'A vector confined to a body, zero outside it with its first derivatives, whose curl of a curl is the flow: $\mathbf J = \nabla\times\nabla\times\mathbf V$. The meridional rolls of an axially symmetric flow are of this form, with $\mathbf V = P\mathbf x$, and every such flow is silent outside.'
+    meaning: 'A vector confined to a body, zero outside it with its first derivatives, whose curl of a curl is the flow: $\vect J = \nabla\times\nabla\times\vect V$. The meridional rolls of an axially symmetric flow are of this form, with $\vect V = P\vect x$, and every such flow is silent outside.'
     chapter: '2.8'
     anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
   - key: roll-potential
     title: Potential of the vector of a silent flow
-    tex: '\mathbf W'
+    tex: '\vect W'
     role: none
     kind: A vector at each point; in kg m² s⁻¹
-    meaning: 'The vector $\mathbf V$ added up as a potential, $\mathbf W(\mathbf x) = \int\mathbf V(\mathbf y)/|\mathbf x - \mathbf y|\,\mathrm d^3y$. The flow''s potential is $\mathbf A = \nabla\times\nabla\times\mathbf W$, which outside the body is the gradient $\nabla(\nabla\cdot\mathbf W)$. Not the paper''s complex curvature $\mathcal W$.'
+    meaning: 'The vector $\vect V$ added up as a potential, $\vect W(\vect x) = \int\vect V(\vect y)/|\vect x - \vect y|\,\mathrm d^3y$. The flow''s potential is $\vect A = \nabla\times\nabla\times\vect W$, which outside the body is the gradient $\nabla(\nabla\cdot\vect W)$. Not the paper''s complex curvature $\mathcal W$.'
     chapter: '2.8'
     anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
   - key: bessel-j0

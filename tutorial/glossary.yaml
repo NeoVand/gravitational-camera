@@ -114,7 +114,7 @@ terms:
     chapter: '3.7'
     anchor: step-6-the-blur-is-the-width-of-the-picture-at-half-its-height
   - term: ripple
-    definition: 'A pattern across a sheet that varies as $\cos(\mathbf k\cdot\mathbf a)$ with position $\mathbf a$. Any pattern on the sheet is a sum of ripples, by Fourier analysis.'
+    definition: 'A pattern across a sheet that varies as $\cos(\vect k\cdot\vect a)$ with position $\vect a$. Any pattern on the sheet is a sum of ripples, by Fourier analysis.'
     chapter: '3.7'
     anchor: step-2-each-ripple-stands-above-its-noise-by-a-factor-that-depends-on-two-numbers
   - term: wavenumber
@@ -126,7 +126,7 @@ terms:
     chapter: '3.7'
     anchor: step-7-an-exact-calculation-reproduces-the-papers-table
   - term: force
-    definition: 'A push or a pull. A force $\mathbf F$ on a body of mass $m$ gives it the acceleration $\mathbf F/m$. It is a vector, measured in newtons, $1\,\mathrm N = 1\,\mathrm{kg\,m\,s^{-2}}$.'
+    definition: 'A push or a pull. A force $\vect F$ on a body of mass $m$ gives it the acceleration $\vect F/m$. It is a vector, measured in newtons, $1\,\mathrm N = 1\,\mathrm{kg\,m\,s^{-2}}$.'
     chapter: '1.2'
     anchor: gravity-pulls-with-a-force-proportional-to-both-masses
   - term: gravitational constant
@@ -168,7 +168,7 @@ terms:
     chapter: '1.2'
     anchor: equipotentials
   - term: work
-    definition: 'The energy a force gives to a body as the body moves: $\mathbf F\cdot\mathrm d\mathbf x$ for a small step, summed along the path, in joules.'
+    definition: 'The energy a force gives to a body as the body moves: $\vect F\cdot\mathrm d\vect x$ for a small step, summed along the path, in joules.'
     chapter: '1.2'
     anchor: the-work-done-by-gravity-depends-only-on-the-ends-of-the-path
   - term: conservative force
@@ -196,7 +196,7 @@ terms:
     chapter: '1.1'
     anchor: a-vector-is-an-arrow-and-its-components-are-its-shadows-on-three-axes
   - term: component
-    definition: 'One of the three numbers that describe a vector in chosen axes: the length of its shadow on one axis, $a_1 = \mathbf a\cdot\mathbf e_1$.'
+    definition: 'One of the three numbers that describe a vector in chosen axes: the length of its shadow on one axis, $a_1 = \vect a\cdot\vect e_1$.'
     chapter: '1.1'
     anchor: a-vector-is-an-arrow-and-its-components-are-its-shadows-on-three-axes
   - term: index
@@ -228,7 +228,7 @@ terms:
     chapter: '1.1'
     anchor: the-trace-and-the-symmetric-and-antisymmetric-parts
   - term: outer product
-    definition: 'The table $a_ib_j$ made from two vectors. Applied to a third vector $\mathbf c$, it gives $\mathbf a$ times the number $\mathbf b\cdot\mathbf c$.'
+    definition: 'The table $a_ib_j$ made from two vectors. Applied to a third vector $\vect c$, it gives $\vect a$ times the number $\vect b\cdot\vect c$.'
     chapter: '1.1'
     anchor: a-table-built-from-two-arrows
   - term: projector
@@ -240,7 +240,7 @@ terms:
     chapter: '1.1'
     anchor: turning-the-axes-changes-the-components-not-the-arrow
   - term: cross product
-    definition: 'The vector $\mathbf a\times\mathbf b$, at right angles to both $\mathbf a$ and $\mathbf b$, of length $|\mathbf a||\mathbf b|\sin\vartheta$, given by the right-hand rule. In components, $(\mathbf a\times\mathbf b)_i = \epsilon_{ijk}a_jb_k$.'
+    definition: 'The vector $\vect a\times\vect b$, at right angles to both $\vect a$ and $\vect b$, of length $|\vect a||\vect b|\sin\vartheta$, given by the right-hand rule. In components, $(\vect a\times\vect b)_i = \epsilon_{ijk}a_jb_k$.'
     chapter: '1.1'
     anchor: the-cross-product-is-written-with-the-levi-civita-symbol
   - term: cyclic order
@@ -252,7 +252,7 @@ terms:
     chapter: '1.1'
     anchor: the-cross-product-is-written-with-the-levi-civita-symbol
   - term: angular velocity
-    definition: 'A vector along the axis of a turning body, by the right-hand rule, whose length is the angle turned per second. A point at position $\mathbf r$ moves with velocity $\boldsymbol\Omega\times\mathbf r$.'
+    definition: 'A vector along the axis of a turning body, by the right-hand rule, whose length is the angle turned per second. A point at position $\vect r$ moves with velocity $\boldsymbol\Omega\times\vect r$.'
     chapter: '1.1'
     anchor: the-ground-at-the-equator
   - term: flux
@@ -280,7 +280,7 @@ terms:
     chapter: '1.3'
     anchor: solid-angle-measures-how-large-a-patch-looks
   - term: "Gauss's law"
-    definition: 'The flux of gravity out of any closed surface is $-4\pi G$ times the mass inside it, $\oint\mathbf g\cdot\mathrm{d}\mathbf A = -4\pi G M_{\mathrm{enc}}$. Mass outside the surface adds nothing.'
+    definition: 'The flux of gravity out of any closed surface is $-4\pi G$ times the mass inside it, $\oint\vect g\cdot\mathrm{d}\vect A = -4\pi G M_{\mathrm{enc}}$. Mass outside the surface adds nothing.'
     chapter: '1.3'
     anchor: the-flux-out-of-a-closed-surface-counts-the-mass-inside
   - term: enclosed mass
@@ -289,11 +289,11 @@ terms:
     chapter: '1.3'
     anchor: the-flux-out-of-a-closed-surface-counts-the-mass-inside
   - term: divergence
-    definition: 'The flux of a field out of a small region per unit of its volume, as the region shrinks to a point: $\nabla\cdot\mathbf g = \partial_i g_i$. Positive where more field leaves than enters.'
+    definition: 'The flux of a field out of a small region per unit of its volume, as the region shrinks to a point: $\nabla\cdot\vect g = \partial_i g_i$. Positive where more field leaves than enters.'
     chapter: '1.3'
     anchor: divergence-is-the-outflow-per-unit-volume
   - term: divergence theorem
-    definition: 'The flux of a smooth vector field out of a closed surface equals the integral of its divergence over the region inside: $\oint_S\mathbf g\cdot\mathrm{d}\mathbf A = \int_V\nabla\cdot\mathbf g\,\mathrm{d}V$.'
+    definition: 'The flux of a smooth vector field out of a closed surface equals the integral of its divergence over the region inside: $\oint_S\vect g\cdot\mathrm{d}\vect A = \int_V\nabla\cdot\vect g\,\mathrm{d}V$.'
     chapter: '1.3'
     anchor: the-divergence-theorem-adds-up-the-boxes
   - term: Laplacian
@@ -313,7 +313,7 @@ terms:
     chapter: '1.3'
     anchor: poissons-equation-is-gausss-law-at-every-point
   - term: delta function
-    definition: 'The distribution $\delta^3(\mathbf x)$ defined by $\int\delta^3(\mathbf x) f(\mathbf x)\,\mathrm{d}^3x = f(0)$ for every smooth $f$. It is the density of a unit point mass at the origin.'
+    definition: 'The distribution $\delta^3(\vect x)$ defined by $\int\delta^3(\vect x) f(\vect x)\,\mathrm{d}^3x = f(0)$ for every smooth $f$. It is the density of a unit point mass at the origin.'
     chapter: '1.3'
     anchor: a-point-mass-is-density-gathered-at-one-point
   - term: distribution
@@ -390,7 +390,7 @@ terms:
     chapter: '1.5'
     anchor: patterns-of-higher-degree-hold-7-9-and-more-numbers
   - term: dipole
-    definition: 'A pattern on the sky of degree 1, $\mathbf a\cdot\hat n$, larger on one side than on the opposite side. It holds three numbers.'
+    definition: 'A pattern on the sky of degree 1, $\vect a\cdot\hat n$, larger on one side than on the opposite side. It holds three numbers.'
     chapter: '1.5'
     anchor: patterns-of-higher-degree-hold-7-9-and-more-numbers
   - term: quadrupole
@@ -398,7 +398,7 @@ terms:
     chapter: '1.5'
     anchor: patterns-of-higher-degree-hold-7-9-and-more-numbers
   - term: momentum
-    definition: 'Mass times velocity, $\mathbf p = m\mathbf v$, in kg m s⁻¹. A force changes it at the rate $\mathbf F = \mathrm d\mathbf p/\mathrm dt$.'
+    definition: 'Mass times velocity, $\vect p = m\vect v$, in kg m s⁻¹. A force changes it at the rate $\vect F = \mathrm d\vect p/\mathrm dt$.'
     chapter: '1.6'
     anchor: force-changes-momentum-and-forces-inside-a-body-cancel
   - term: "Newton's third law"
@@ -414,7 +414,7 @@ terms:
     chapter: '1.6'
     anchor: force-changes-momentum-and-forces-inside-a-body-cancel
   - term: mass dipole
-    definition: 'The integral $\int\rho\,\mathbf x\,\mathrm dV = M\mathbf x_{\rm cm}$ of a body, in kg m. It vanishes about the centre of mass, so the field of a body described about that point has no dipole part.'
+    definition: 'The integral $\int\rho\,\vect x\,\mathrm dV = M\vect x_{\rm cm}$ of a body, in kg m. It vanishes about the centre of mass, so the field of a body described about that point has no dipole part.'
     role: matter
     chapter: '1.6'
     anchor: force-changes-momentum-and-forces-inside-a-body-cancel
@@ -423,15 +423,15 @@ terms:
     chapter: '1.6'
     anchor: work-changes-kinetic-energy-and-a-steady-field-keeps-the-energy-fixed
   - term: impulse
-    definition: 'The integral of a force over the time it acts, $\mathbf J = \int\mathbf F\,\mathrm dt$, equal to the change of momentum.'
+    definition: 'The integral of a force over the time it acts, $\vect J = \int\vect F\,\mathrm dt$, equal to the change of momentum.'
     chapter: '1.6'
     anchor: work-changes-kinetic-energy-and-a-steady-field-keeps-the-energy-fixed
   - term: angular momentum
-    definition: 'The moment of momentum about a point, $\mathbf L = \mathbf x\times\mathbf p$, in kg m² s⁻¹. Torque changes it.'
+    definition: 'The moment of momentum about a point, $\vect L = \vect x\times\vect p$, in kg m² s⁻¹. Torque changes it.'
     chapter: '1.6'
     anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
   - term: torque
-    definition: 'How strongly a force twists a body about a point: $\mathbf x\times\mathbf F$, in newton metres. It is the rate of change of angular momentum.'
+    definition: 'How strongly a force twists a body about a point: $\vect x\times\vect F$, in newton metres. It is the rate of change of angular momentum.'
     chapter: '1.6'
     anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
   - term: central force
@@ -447,7 +447,7 @@ terms:
     chapter: '1.6'
     anchor: angular-momentum-stays-fixed-when-the-force-points-at-a-centre
   - term: rigid body
-    definition: 'A body whose parts keep their distances from one another. When it turns with angular velocity $\boldsymbol\Omega$, each point moves at $\boldsymbol\Omega\times\mathbf x$.'
+    definition: 'A body whose parts keep their distances from one another. When it turns with angular velocity $\boldsymbol\Omega$, each point moves at $\boldsymbol\Omega\times\vect x$.'
     chapter: '1.6'
     anchor: a-turning-body-keeps-the-spread-of-its-mass-in-a-table-of-inertia
   - term: inertia tensor
@@ -475,11 +475,11 @@ terms:
     chapter: '1.6'
     anchor: in-a-turning-frame-two-extra-accelerations-appear
   - term: Coriolis acceleration
-    definition: 'The acceleration $-2\boldsymbol\Omega\times\mathbf v$ that a body moving with velocity $\mathbf v$ in a turning frame appears to have, at right angles to its motion. For 1 m/s on the Earth it is about $1.5\times10^{-4}\,\mathrm{m\,s^{-2}}$.'
+    definition: 'The acceleration $-2\boldsymbol\Omega\times\vect v$ that a body moving with velocity $\vect v$ in a turning frame appears to have, at right angles to its motion. For 1 m/s on the Earth it is about $1.5\times10^{-4}\,\mathrm{m\,s^{-2}}$.'
     chapter: '1.6'
     anchor: in-a-turning-frame-two-extra-accelerations-appear
   - term: centrifugal acceleration
-    definition: 'The acceleration $\Omega^2\mathbf x_\perp$ that every body in a turning frame appears to have, straight away from the axis and growing with the distance from it: $0.034\,\mathrm{m\,s^{-2}}$ on the equator.'
+    definition: 'The acceleration $\Omega^2\vect x_\perp$ that every body in a turning frame appears to have, straight away from the axis and growing with the distance from it: $0.034\,\mathrm{m\,s^{-2}}$ on the equator.'
     chapter: '1.6'
     anchor: in-a-turning-frame-two-extra-accelerations-appear
   - term: complex number
@@ -541,15 +541,15 @@ terms:
     chapter: '1.5b'
     anchor: where-the-shear-vanishes-its-axes-make-half-a-turn-round-the-zero
   - term: complex vector
-    definition: 'A vector whose three components are complex numbers, such as $\mathbf m = (1, i, 0)/\sqrt2$.'
+    definition: 'A vector whose three components are complex numbers, such as $\vect m = (1, i, 0)/\sqrt2$.'
     chapter: '1.5b'
     anchor: complex-vectors-a-direction-whose-square-is-zero
   - term: Hermitian product
-    definition: 'The product $\mathbf a\cdot\mathbf b^* = a_ib_i^*$ of two complex vectors, with the second conjugated. Its value for $\mathbf a$ with itself is the square of the length of $\mathbf a$.'
+    definition: 'The product $\vect a\cdot\vect b^* = a_ib_i^*$ of two complex vectors, with the second conjugated. Its value for $\vect a$ with itself is the square of the length of $\vect a$.'
     chapter: '1.5b'
     anchor: complex-vectors-a-direction-whose-square-is-zero
   - term: null vector
-    definition: 'A complex vector that is not zero but whose dot product with itself, taken without a conjugate, is zero, such as $\mathbf m = (1, i, 0)/\sqrt2$.'
+    definition: 'A complex vector that is not zero but whose dot product with itself, taken without a conjugate, is zero, such as $\vect m = (1, i, 0)/\sqrt2$.'
     chapter: '1.5b'
     anchor: complex-vectors-a-direction-whose-square-is-zero
   - term: gravitational wave
@@ -726,7 +726,7 @@ terms:
     chapter: '1.7'
     anchor: hamiltons-equations-are-newtons-law-split-in-two
   - term: Poisson bracket
-    definition: 'The combination $\{F, G\} = \sum_a(\partial F/\partial\mathbf x_a\cdot\partial G/\partial\mathbf p_a - \partial F/\partial\mathbf p_a\cdot\partial G/\partial\mathbf x_a)$ of two quantities. Any quantity changes in time at the rate $\{F, H\}$.'
+    definition: 'The combination $\{F, G\} = \sum_a(\partial F/\partial\vect x_a\cdot\partial G/\partial\vect p_a - \partial F/\partial\vect p_a\cdot\partial G/\partial\vect x_a)$ of two quantities. Any quantity changes in time at the rate $\{F, H\}$.'
     chapter: '1.7'
     anchor: the-poisson-bracket-gives-the-rate-of-change-of-anything
   - term: generator
@@ -746,15 +746,15 @@ terms:
     chapter: '1.7'
     anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
   - term: generators of rotation
-    definition: 'The three fixed tables $(L_k)_{ij} = -\epsilon_{kij}$. A small turn changes an arrow by $\delta a_i = \theta_k(L_k)_{ij}a_j = (\boldsymbol\theta\times\mathbf a)_i$, and a finite one is $\exp(\theta\,\hat u\cdot L)$.'
+    definition: 'The three fixed tables $(L_k)_{ij} = -\epsilon_{kij}$. A small turn changes an arrow by $\delta a_i = \theta_k(L_k)_{ij}a_j = (\boldsymbol\theta\times\vect a)_i$, and a finite one is $\exp(\theta\,\hat u\cdot L)$.'
     chapter: '1.7'
     anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
   - term: kick
-    definition: 'A force that acts for so short a time that the body does not move while it acts. A kick of impulse $\mathbf J$ changes the kinetic energy by $\mathbf v\cdot\mathbf J + J^2/2m$.'
+    definition: 'A force that acts for so short a time that the body does not move while it acts. A kick of impulse $\vect J$ changes the kinetic energy by $\vect v\cdot\vect J + J^2/2m$.'
     chapter: '1.7'
     anchor: a-sudden-kick-changes-the-kinetic-energy-in-two-parts
   - term: impulsive tide
-    definition: 'A tide that acts for an instant, with the potential $-\epsilon\,g(\mathbf x)\,\delta(t)$. It gives each part of a body the impulse $\epsilon m\nabla g$ where it stands and leaves the energy $\epsilon\dot Q_g + \tfrac12\epsilon^2\int\rho|\nabla g|^2\,\mathrm dV$.'
+    definition: 'A tide that acts for an instant, with the potential $-\epsilon\,g(\vect x)\,\delta(t)$. It gives each part of a body the impulse $\epsilon m\nabla g$ where it stands and leaves the energy $\epsilon\dot Q_g + \tfrac12\epsilon^2\int\rho|\nabla g|^2\,\mathrm dV$.'
     chapter: '1.7'
     anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass
   - term: moment of the mass
@@ -1002,7 +1002,7 @@ terms:
     chapter: '2.2'
     anchor: the-patterns-symmetric-about-an-axis-are-the-legendre-polynomials-and-the-inverse-distance-generates-them
   - term: axially symmetric
-    definition: 'Unchanged when turned about an axis. The axially symmetric pattern of degree $\ell$ about a direction $\hat{\mathbf x}$ is $P_\ell(\hat{\mathbf x}\cdot\hat n)$.'
+    definition: 'Unchanged when turned about an axis. The axially symmetric pattern of degree $\ell$ about a direction $\hat{\vect x}$ is $P_\ell(\hat{\vect x}\cdot\hat n)$.'
     chapter: '2.2'
     anchor: the-patterns-symmetric-about-an-axis-are-the-legendre-polynomials-and-the-inverse-distance-generates-them
   - term: orthogonal
@@ -1058,11 +1058,11 @@ terms:
     chapter: '2.1'
     anchor: in-empty-space-the-potential-has-no-peak-and-no-pit
   - term: "Green's first identity"
-    definition: 'The rule $\int_V(\nabla u\cdot\nabla v + u\nabla^2v)\,\mathrm dV = \oint_{\partial V}u\nabla v\cdot\mathrm d\mathbf A$: the divergence theorem applied to $u\nabla v$.'
+    definition: 'The rule $\int_V(\nabla u\cdot\nabla v + u\nabla^2v)\,\mathrm dV = \oint_{\partial V}u\nabla v\cdot\mathrm d\vect A$: the divergence theorem applied to $u\nabla v$.'
     chapter: '2.1'
     anchor: greens-identities-move-a-laplacian-from-one-function-to-the-other
   - term: "Green's second identity"
-    definition: 'The rule $\int_V(u\nabla^2v - v\nabla^2u)\,\mathrm dV = \oint_{\partial V}(u\nabla v - v\nabla u)\cdot\mathrm d\mathbf A$, which moves a Laplacian from one function to the other inside an integral.'
+    definition: 'The rule $\int_V(u\nabla^2v - v\nabla^2u)\,\mathrm dV = \oint_{\partial V}(u\nabla v - v\nabla u)\cdot\mathrm d\vect A$, which moves a Laplacian from one function to the other inside an integral.'
     chapter: '2.1'
     anchor: greens-identities-move-a-laplacian-from-one-function-to-the-other
   - term: boundary condition
@@ -1090,11 +1090,11 @@ terms:
     chapter: '2.1'
     anchor: the-harmonic-quadratics-are-the-trace-free-tables
   - term: "Green's function"
-    definition: 'The potential of a single point source of unit strength: a solution of $\nabla^2\mathcal G = \delta^3(\mathbf x - \mathbf y)$. In all space, falling to zero far away, it is $-1/4\pi|\mathbf x - \mathbf y|$, and every potential is a sum of such terms.'
+    definition: 'The potential of a single point source of unit strength: a solution of $\nabla^2\mathcal G = \delta^3(\vect x - \vect y)$. In all space, falling to zero far away, it is $-1/4\pi|\vect x - \vect y|$, and every potential is a sum of such terms.'
     chapter: '2.4'
     anchor: the-potential-of-one-point-builds-every-potential
   - term: reciprocity
-    definition: 'The symmetry $\mathcal G(\mathbf x, \mathbf y) = \mathcal G(\mathbf y, \mathbf x)$ of a Green''s function: the potential at one point of a unit mass at another is unchanged when the two points are swapped.'
+    definition: 'The symmetry $\mathcal G(\vect x, \vect y) = \mathcal G(\vect y, \vect x)$ of a Green''s function: the potential at one point of a unit mass at another is unchanged when the two points are swapped.'
     chapter: '2.4'
     anchor: the-potential-of-one-point-builds-every-potential
   - term: linear
@@ -1102,7 +1102,7 @@ terms:
     chapter: '2.4'
     anchor: the-potential-of-one-point-builds-every-potential
   - term: "Green's representation formula"
-    definition: 'The formula that writes a function harmonic in a region from its values and its normal slope on the boundary, $\Phi(\mathbf x) = \oint(\Phi\nabla\mathcal G - \mathcal G\nabla\Phi)\cdot\mathrm d\mathbf A$.'
+    definition: 'The formula that writes a function harmonic in a region from its values and its normal slope on the boundary, $\Phi(\vect x) = \oint(\Phi\nabla\mathcal G - \mathcal G\nabla\Phi)\cdot\mathrm d\vect A$.'
     chapter: '2.4'
     anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
   - term: Dirichlet problem
@@ -1114,7 +1114,7 @@ terms:
     chapter: '2.4'
     anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
   - term: Poisson kernel
-    definition: 'The weight on the boundary that gives a harmonic function inside a region from its values on the boundary: the outward slope of the Dirichlet Green''s function. For a plane it is $z/2\pi(a^2 + z^2)^{3/2}$; for a ball, $(R^2 - s^2)/4\pi R|\mathbf x - \mathbf s|^3$.'
+    definition: 'The weight on the boundary that gives a harmonic function inside a region from its values on the boundary: the outward slope of the Dirichlet Green''s function. For a plane it is $z/2\pi(a^2 + z^2)^{3/2}$; for a ball, $(R^2 - s^2)/4\pi R|\vect x - \vect s|^3$.'
     chapter: '2.4'
     anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
   - term: method of images
@@ -1134,7 +1134,7 @@ terms:
     chapter: '2.4'
     anchor: on-a-sphere-kelvins-image-gives-the-potential-inside-and-the-skin-of-balayage
   - term: balayage
-    definition: 'French for sweeping: replacing the mass inside a region by a skin on its boundary that has the same field everywhere outside. For a point mass $m$ inside a ball the skin has the surface density $m(R^2 - s^2)/4\pi R|\mathbf x - \mathbf s|^3$.'
+    definition: 'French for sweeping: replacing the mass inside a region by a skin on its boundary that has the same field everywhere outside. For a point mass $m$ inside a ball the skin has the surface density $m(R^2 - s^2)/4\pi R|\vect x - \vect s|^3$.'
     chapter: '2.4'
     anchor: on-a-sphere-kelvins-image-gives-the-potential-inside-and-the-skin-of-balayage
   - term: retarded Green's function
@@ -1268,7 +1268,7 @@ terms:
     chapter: '2.5'
     anchor: the-least-assuming-interior-is-the-harmonic-part-and-it-never-shows-a-core
   - term: reproducing kernel
-    definition: 'For a ball, the function $K(\mathbf x, \mathbf s)$ whose integral against any harmonic function over the ball gives that function''s value at $\mathbf s$; also called the harmonic Bergman kernel. A nugget''s flush is its mass times this kernel.'
+    definition: 'For a ball, the function $K(\vect x, \vect s)$ whose integral against any harmonic function over the ball gives that function''s value at $\vect s$; also called the harmonic Bergman kernel. A nugget''s flush is its mass times this kernel.'
     chapter: '2.5'
     anchor: the-harmonic-part-of-a-nugget-is-a-flush-on-the-near-wall
   - term: flush
@@ -1414,7 +1414,7 @@ terms:
     chapter: '3.3'
     anchor: a-tremor-far-below-the-noise-can-still-be-detected
   - term: separation of variables
-    definition: 'Looking for a solution as a product of functions of one variable each, such as $\cos(\mathbf k\cdot\mathbf a)\,f(h)$, so that an equation in several variables falls apart into equations in one.'
+    definition: 'Looking for a solution as a product of functions of one variable each, such as $\cos(\vect k\cdot\vect a)\,f(h)$, so that an equation in several variables falls apart into equations in one.'
     chapter: '2.7'
     anchor: in-empty-space-a-ripple-can-only-fade
   - term: boundary condition at infinity
@@ -1595,16 +1595,16 @@ terms:
     chapter: '2.8'
     anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
   - term: mass flux
-    definition: 'The density times the velocity, $\rho\mathbf v$: the mass that crosses a unit area per second, in kg m⁻² s⁻¹. It is also the momentum per unit volume, which the paper calls the density of momentum.'
+    definition: 'The density times the velocity, $\rho\vect v$: the mass that crosses a unit area per second, in kg m⁻² s⁻¹. It is also the momentum per unit volume, which the paper calls the density of momentum.'
     role: matter
     chapter: '2.8'
     anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
   - term: continuity equation
-    definition: 'The law that mass is neither made nor destroyed, at each point: $\partial\rho/\partial t + \nabla\cdot\mathbf J = 0$. The density in a small box falls by what flows out of it.'
+    definition: 'The law that mass is neither made nor destroyed, at each point: $\partial\rho/\partial t + \nabla\cdot\vect J = 0$. The density in a small box falls by what flows out of it.'
     chapter: '2.8'
     anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
   - term: steady flow
-    definition: 'A flow in which the density at every point stays the same, so that $\nabla\cdot\mathbf J = 0$: as much mass leaves each small box as enters it.'
+    definition: 'A flow in which the density at every point stays the same, so that $\nabla\cdot\vect J = 0$: as much mass leaves each small box as enters it.'
     chapter: '2.8'
     anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
   - term: confined flow
@@ -1612,16 +1612,16 @@ terms:
     chapter: '2.8'
     anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
   - term: potential of a flow
-    definition: 'The vector $\mathbf A(\mathbf x) = \int\mathbf J(\mathbf y)/|\mathbf x - \mathbf y|\,\mathrm d^3y$, built from the mass flux as the gravitational potential is built from the density. The magnetic part of the tide outside a body is made from its curl.'
+    definition: 'The vector $\vect A(\vect x) = \int\vect J(\vect y)/|\vect x - \vect y|\,\mathrm d^3y$, built from the mass flux as the gravitational potential is built from the density. The magnetic part of the tide outside a body is made from its curl.'
     role: field
     chapter: '2.8'
     anchor: a-flow-has-a-potential-of-its-own-built-like-the-gravitational-one
   - term: curl
-    definition: 'The vector $(\nabla\times\mathbf F)_i = \epsilon_{ijk}\partial_jF_k$, which measures how a field turns round each point. A gradient has no curl, and the curl of a rigid turning is twice its angular velocity.'
+    definition: 'The vector $(\nabla\times\vect F)_i = \epsilon_{ijk}\partial_jF_k$, which measures how a field turns round each point. A gradient has no curl, and the curl of a rigid turning is twice its angular velocity.'
     chapter: '2.8'
     anchor: a-flow-has-a-potential-of-its-own-built-like-the-gravitational-one
   - term: current column
-    definition: 'The mass flux along one line of sight, each part weighted by the inverse of its distance, $\mathbf J(\hat n) = \int\rho\mathbf v\,\mathrm dr/r$. The magnetic part of the camera images it, and only its part across the line of sight counts.'
+    definition: 'The mass flux along one line of sight, each part weighted by the inverse of its distance, $\vect J(\hat n) = \int\rho\vect v\,\mathrm dr/r$. The magnetic part of the camera images it, and only its part across the line of sight counts.'
     chapter: '2.8'
     anchor: the-current-column-is-the-flow-along-a-line-of-sight-weighted-by-inverse-distance
   - term: axially symmetric flow
@@ -1633,11 +1633,11 @@ terms:
     chapter: '2.8'
     anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
   - term: toroidal flow
-    definition: 'The part of a flow that goes round the axis, a swirl. It is written $\nabla\times(T\mathbf x)$; a rigid turning is one.'
+    definition: 'The part of a flow that goes round the axis, a swirl. It is written $\nabla\times(T\vect x)$; a rigid turning is one.'
     chapter: '2.8'
     anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
   - term: poloidal flow
-    definition: 'The part of an axially symmetric flow that lies in the meridian planes; when it is steady and confined it runs in closed rolls. It is written $\nabla\times\nabla\times(P\mathbf x)$.'
+    definition: 'The part of an axially symmetric flow that lies in the meridian planes; when it is steady and confined it runs in closed rolls. It is written $\nabla\times\nabla\times(P\vect x)$.'
     chapter: '2.8'
     anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
   - term: stream function
@@ -1645,11 +1645,11 @@ terms:
     chapter: '2.8'
     anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
   - term: silent flow
-    definition: 'A flow that makes no magnetic part of the tide outside its body, however fast it runs, such as $\nabla\times\nabla\times\mathbf V$ with $\mathbf V$ confined, or a swirl with no angular momentum.'
+    definition: 'A flow that makes no magnetic part of the tide outside its body, however fast it runs, such as $\nabla\times\nabla\times\vect V$ with $\vect V$ confined, or a swirl with no angular momentum.'
     chapter: '2.8'
     anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
   - term: spin dipole
-    definition: 'The pattern of the field outside a round body whose layers turn rigidly: its flow potential is $\mathbf L\times\mathbf x/2r^3$, fixed by the angular momentum $\mathbf L$ alone.'
+    definition: 'The pattern of the field outside a round body whose layers turn rigidly: its flow potential is $\vect L\times\vect x/2r^3$, fixed by the angular momentum $\vect L$ alone.'
     chapter: '2.8'
     anchor: a-swirl-shows-through-its-angular-momentum-and-two-swirls-can-cancel
   - term: integration by parts in a volume
@@ -1657,7 +1657,7 @@ terms:
     chapter: '2.8'
     anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
   - term: moment of a flow
-    definition: 'An integral over a body of its mass flux times a fixed function of position. The angular momentum $\int\mathbf x\times\rho\mathbf v\,\mathrm dV$ is one; a swirl shows outside only through such moments.'
+    definition: 'An integral over a body of its mass flux times a fixed function of position. The angular momentum $\int\vect x\times\rho\vect v\,\mathrm dV$ is one; a swirl shows outside only through such moments.'
     chapter: '2.8'
     anchor: a-swirl-shows-through-its-angular-momentum-and-two-swirls-can-cancel
   - term: Bessel function of order zero
