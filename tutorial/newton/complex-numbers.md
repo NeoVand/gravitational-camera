@@ -412,12 +412,16 @@ $\delta\tilde L/L = \delta\curv{\tE}_{xx}/\omega^2$, the result of chapter 1.4 i
 A shear that oscillates is a complex number that moves. The paper's rotor, a pair of masses spinning at the angular
 velocity $\Omega$, looks the same after half a turn, so its wave repeats at $2\Omega$. Seen along its axis of spin, its
 two polarizations have the same size and are a quarter period apart (the paper's equation
-[](/paper/#eq:rotor-amplitudes), derived in chapter 7.7): $\curv{\tE}_+ = \curv{\tE}_0\cos2\Omega t$ and
-$\curv{\tE}_\times = \curv{\tE}_0\sin2\Omega t$, with the amplitude $\curv{\tE}_0$ in $\mathrm{s^{-2}}$ and $t$ the time
-at the camera. The shear $2\curv{\tE}_0\,e^{2i\Omega t}$ keeps its size while its phase grows at $2\Omega$, so its
-axes, at half the phase, turn at $\Omega$, with the rotor. Seen edge on, only the plus pattern is left, and the shear
-swings along the real axis. The paper's circular fraction, equation [](/paper/#eq:circular), measures the motion in
-between, and chapters 7.7 and 7.8 work it out.
+[](/paper/#eq:rotor-amplitudes); chapter
+[5.4](/tutorial/waves/polarization/#projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor)
+derives how they depend on the direction of view, and chapter 7.7 their size): $\curv{\tE}_+ = \curv{\tE}_0\cos2\Omega
+t$ and $\curv{\tE}_\times = \curv{\tE}_0\sin2\Omega t$, with the amplitude $\curv{\tE}_0$ in $\mathrm{s^{-2}}$ and $t$
+the time at the camera. The shear $2\curv{\tE}_0\,e^{2i\Omega t}$ keeps its size while its phase grows at $2\Omega$, so
+its axes, at half the phase, turn at $\Omega$, with the rotor. Seen edge on, only the plus pattern is left, and the
+shear swings along the real axis. The paper's circular fraction, equation [](/paper/#eq:circular), measures the motion
+in between, and chapter
+[5.4](/tutorial/waves/polarization/#four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes)
+works it out.
 
 ## Complex vectors: a direction whose square is zero
 

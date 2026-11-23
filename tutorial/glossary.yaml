@@ -2395,3 +2395,56 @@ terms:
     definition: 'The time over which a wave keeps its phase, about one over the width of its spectrum in angular frequency: about $\hbar/k_BT = 2.6 \times 10^{-14}$ s for thermal radiation at 293 K.'
     chapter: '5.3'
     anchor: one-moving-pixel-can-image-a-steady-source-but-thermal-light-needs-pixels-that-record-together-in-pairs
+  - term: transverse wave
+    definition: 'A wave whose effect lies across its direction of travel. A gravitational wave stretches and squeezes only across its direction, with no trace there.'
+    chapter: '5.4'
+    anchor: a-wave-across-the-line-of-sight-has-two-patterns-of-stretch
+  - term: polarization amplitudes
+    definition: 'The largest values $h_+$ and $h_\times$ of the two strains $h_+(t)$ and $h_\times(t)$ that make up a gravitational wave across its direction of travel, one for the plus pattern and one for the cross pattern.'
+    role: field
+    chapter: '5.4'
+    anchor: a-wave-across-the-line-of-sight-has-two-patterns-of-stretch
+  - term: plus pattern
+    definition: 'The pattern of a gravitational wave that stretches a ring of free balls along one axis across the wave and squeezes it along the other.'
+    chapter: '5.4'
+    anchor: a-wave-across-the-line-of-sight-has-two-patterns-of-stretch
+  - term: cross pattern
+    definition: 'The pattern of a gravitational wave that stretches and squeezes a ring of free balls along the two diagonals: the plus pattern turned by 45°.'
+    chapter: '5.4'
+    anchor: a-wave-across-the-line-of-sight-has-two-patterns-of-stretch
+  - term: elliptical polarization
+    definition: 'A wave whose two patterns are a quarter cycle apart with unequal sizes, so that the point $(h_+, h_\times)$ goes round an ellipse: the pattern turns while its size swells and shrinks.'
+    chapter: '5.4'
+    anchor: two-oscillations-a-quarter-cycle-apart-make-a-pattern-that-turns
+  - term: sense of turning
+    definition: 'Whether a wave''s pattern of stretch turns anticlockwise or clockwise, as the camera facing the source sees it; also called its handedness.'
+    chapter: '5.4'
+    anchor: two-oscillations-a-quarter-cycle-apart-make-a-pattern-that-turns
+  - term: inclination
+    definition: 'The angle $\iota$ between a rotor''s spin and the direction from the rotor to the camera: 0 face-on with the spin toward the camera, 90° edge-on.'
+    chapter: '5.4'
+    anchor: projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor
+  - term: helicity
+    definition: 'One of the two circular parts of a wave: the part whose pattern turns anticlockwise as the camera sees it (helicity $+2$ for gravity), or the part that turns clockwise ($-2$). A turn of the axes changes their phases but not their sizes.'
+    chapter: '5.4'
+    anchor: four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes
+  - term: Stokes parameters
+    definition: 'Four numbers $I$, $Q$, $U$, $V$ made from the two helicities of a wave, or from its two polarizations. $I$ is its strength and $V$ the anticlockwise minus the clockwise part; both stay the same when the axes turn, while $Q$ and $U$ turn by four times the angle for a gravitational wave and by twice the angle for light.'
+    chapter: '5.4'
+    anchor: four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes
+  - term: Poincaré's sphere
+    definition: 'The sphere of radius 1 on which the point $(Q/I, U/I, V/I)$ of a fully polarized wave lies. Its poles are the two circular polarizations and its equator the linear ones; a turn of the axes by $\theta$ carries the point round the vertical axis by $-4\theta$ for a gravitational wave.'
+    chapter: '5.4'
+    anchor: four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes
+  - term: degree of circular polarization
+    definition: 'The ratio $V/I$, between $-1$ and $1$: the anticlockwise power minus the clockwise power, over their sum. The paper calls it the circular fraction.'
+    chapter: '5.4'
+    anchor: four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes
+  - term: unpolarized
+    definition: 'Said of a wave, such as a glow from many independent atoms, whose Stokes parameters $Q$, $U$ and $V$ are all zero: its pattern has no preferred direction and no preferred sense of turning.'
+    chapter: '5.4'
+    anchor: four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes
+  - term: radiation pattern
+    definition: 'How a source shares its power among directions. For a rotor it is $(1 + 6\cos^2\iota + \cos^4\iota)/8$ of the power along its axis: an eighth edge-on, two fifths on average.'
+    chapter: '5.4'
+    anchor: the-rotor-shines-eight-times-less-edge-on

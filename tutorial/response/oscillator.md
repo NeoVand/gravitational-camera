@@ -600,7 +600,7 @@ $\omega r/c = 9.42\times10^4 \times 1/3.00\times10^8 = 3.1\times10^{-4}$. Both a
     modes: $\Gamma_n$ is the damping rate of mode $n$. The paper's greybody factors $\Gamma_\ell$ of Section XIV carry
     the degree $\ell$ instead and do not appear in this chapter.
 
-[^Q]: Chapter 2.3's note promised this rule. Chapter 5.4 adds the Stokes parameter $Q$ of polarization, used only in
+[^Q]: Chapter 2.3's note promised this rule. Chapter [5.4](/tutorial/waves/polarization/#four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes) adds the Stokes parameter $Q$ of polarization, used only in
     that chapter.
 
 [^units]: Check: $\matter m\omega^2$ is in $\mathrm{kg\,s^{-2}} = \mathrm{N\,m^{-1}}$, so $\chi$ is in

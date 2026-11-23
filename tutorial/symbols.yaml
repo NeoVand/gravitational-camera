@@ -1644,3 +1644,67 @@ symbols:
     meaning: 'How long a wave keeps its phase: the correlation time of chapter 3.2 for its field, about $1/\Delta\omega$ for a spectrum $\Delta\omega$ wide. For thermal radiation it is about $\hbar/k_BT$, $2.6 \times 10^{-14}$ s at 293 K, far too short for one moving pixel to image it.'
     chapter: '5.3'
     anchor: one-moving-pixel-can-image-a-steady-source-but-thermal-light-needs-pixels-that-record-together-in-pairs
+  - key: strain-polarizations
+    title: The two strains of a wave and their amplitudes
+    tex: '\field{h}_+,\ \field{h}_\times'
+    role: field
+    kind: Two numbers that change in time, $h_+(t)$ and $h_\times(t)$, and their amplitudes $h_+$ and $h_\times$; pure numbers
+    meaning: 'The two entries of a gravitational wave''s strain across its direction of travel, $h^{\rm TT}_{ij}(t) = h_+(t)e^+_{ij} + h_\times(t)e^\times_{ij}$: the plus pattern stretches along $\vect e_1$ and squeezes along $\vect e_2$, the cross pattern does the same along the diagonals. Written without the $(t)$, as in the paper, they are the amplitudes, the largest values over a cycle. The ring''s pattern is the one complex number $h_+(t) + ih_\times(t)$, multiplied by $e^{-2i\theta}$ when the axes turn by $\theta$. For a rotor seen at the inclination $\iota$ the amplitudes are $A(1 + \cos^2\iota)/2$ and $A\cos\iota$, with $h_+(t) = h_+\cos2\Omega u$ and $h_\times(t) = h_\times\sin2\Omega u$. (Not the tides $\mathcal E_+$, $\mathcal E_\times$, which are $\tfrac12\omega^2$ times them in a steady wave.)'
+    chapter: '5.4'
+    anchor: a-wave-across-the-line-of-sight-has-two-patterns-of-stretch
+  - key: polarization-tensors
+    title: Polarization tables
+    tex: 'e^+_{ij},\ e^\times_{ij}'
+    role: none
+    kind: Two fixed symmetric trace-free tables of pure numbers
+    meaning: 'In axes $\vect e_1$, $\vect e_2$ across a wave''s direction, $e^+ = \mathrm{diag}(1, -1, 0)$, and $e^\times$ has 1 in the places $12$ and $21$ and zeros elsewhere. Each has $e^A_{ij}e^A_{ij} = 2$, the paper''s normalization, and $e^+_{ij}e^\times_{ij} = 0$.'
+    chapter: '5.4'
+    anchor: a-wave-across-the-line-of-sight-has-two-patterns-of-stretch
+  - key: second-moment
+    title: Second moment of the mass
+    tex: '\matter{I}_{ij}'
+    role: matter
+    kind: A symmetric table of nine numbers; in kg m²
+    meaning: 'The paper''s $I_{ij} = \int\rho\,x_ix_j\,\mathrm dV$, measured from the centre of mass. Its trace-free part is a third of chapter 2.3''s quadrupole. Far from a compact source the wave is $2G/c^4r$ times the part of $\ddot I_{ij}$ across the line of sight with no trace. (Not chapter 1.6''s inertia tensor, nor Stokes $I$.)'
+    chapter: '5.4'
+    anchor: projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor
+  - key: moment-difference
+    title: Difference of the principal moments
+    tex: '\matter{\Delta I}'
+    role: matter
+    kind: A number; in kg m²
+    meaning: 'The difference between a rotor''s two principal second moments in its plane of rotation: $\tfrac12md^2$ for two masses $m$ a distance $d$ apart, $ML^2/12$ for a thin rod. Only this difference sends waves; a wheel turning about its axle has none.'
+    chapter: '5.4'
+    anchor: projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor
+  - key: inclination
+    title: Inclination
+    tex: '\iota'
+    role: none
+    kind: An angle; in degrees or radians
+    meaning: 'The angle between a rotor''s spin and the direction from the rotor to the camera: 0 when the spin points at the camera, 90° edge-on, 180° when it points away.'
+    chapter: '5.4'
+    anchor: projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor
+  - key: rotor-amplitude
+    title: Face-on amplitude of a rotor's wave
+    tex: '\field{A}'
+    role: field
+    kind: A pure number
+    meaning: 'The paper''s $A = 4G\,\Delta I\,\Omega^2/c^4r$, the strain of each polarization of a rotor''s wave seen along its axis at the distance $r$. Two 1 kg masses 1 m apart at sixteen turns a second give $4.3 \times 10^{-49}$ at the distance of the Moon. (Not the sum $A$ of chapter 4.5 nor an area.)'
+    chapter: '5.4'
+    anchor: projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor
+  - key: strain-phasors
+    title: Phasors of the two polarizations
+    tex: '\tilde{\field{h}}_+,\ \tilde{\field{h}}_\times'
+    role: field
+    kind: Two fixed complex numbers; pure numbers
+    meaning: 'The complex amplitudes of a steady wave in the paper''s time dependence $e^{-i\omega t}$: $h_+(t) = \mathrm{Re}[\tilde h_+e^{-i\omega t}]$, and the same for $\times$. Their sizes are the amplitudes and their arguments the phases. The combinations $\tilde h_{\rm a} = \tfrac12(\tilde h_+ - i\tilde h_\times)$ and $\tilde h_{\rm c} = \tfrac12(\tilde h_+ + i\tilde h_\times)$ are the parts that turn anticlockwise (a) and clockwise (c), the two helicities: $h_+(t) + ih_\times(t) = \tilde h_{\rm c}e^{-i\omega t} + \tilde h^*_{\rm a}e^{i\omega t}$. For a rotor, $\tilde h_\times = i\,h_\times$: a quarter cycle behind.'
+    chapter: '5.4'
+    anchor: two-oscillations-a-quarter-cycle-apart-make-a-pattern-that-turns
+  - key: stokes
+    title: Stokes parameters
+    tex: 'I,\ Q,\ U,\ V'
+    role: none
+    kind: Four real numbers; squares of strains, pure numbers
+    meaning: 'Four numbers built from the two helicities: $I = 2(|\tilde h_{\rm a}|^2 + |\tilde h_{\rm c}|^2)$, $V = 2(|\tilde h_{\rm a}|^2 - |\tilde h_{\rm c}|^2)$ and $Q + iU = 4\tilde h^*_{\rm a}\tilde h_{\rm c}$; in the two polarizations, $I = |\tilde h_+|^2 + |\tilde h_\times|^2$ (twice the sum of the mean squares), $Q = |\tilde h_+|^2 - |\tilde h_\times|^2$, $U = 2\,\mathrm{Re}(\tilde h_+^*\tilde h_\times)$ and $V = 2\,\mathrm{Im}(\tilde h_+^*\tilde h_\times)$. A turn of the axes by $\theta$ leaves $I$ and $V$ as they were and multiplies $Q + iU$ by $e^{-4i\theta}$ (by $e^{-2i\theta}$ for light). The first, $I$, measures the energy flux; $V/I$ is positive when the pattern turns anticlockwise as the camera sees it. (Stokes $I$ is not a second moment, a moment of inertia or the invariant $\mathrm{tr}\,\mathcal W^2$; Stokes $Q$ is not a quality factor.)'
+    chapter: '5.4'
+    anchor: four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes

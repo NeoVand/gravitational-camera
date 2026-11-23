@@ -654,7 +654,7 @@ paper's $3 \times 10^{-14}$ s.
     applied to the transform of the opening, makes this exact for an opening of any shape.
 
 [^I]: This $I$ is the paper's image of [](/paper/#eq:beam). It is not the invariant $\mathrm{tr}\,\mathcal W^2$, the
-    Stokes $I$ of chapter 5.4, the moment of inertia of chapter 1.6, or the mutual information $I(x;y)$ of chapter 3.8.
+    Stokes $I$ of chapter [5.4](/tutorial/waves/polarization/#four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes), the moment of inertia of chapter 1.6, or the mutual information $I(x;y)$ of chapter 3.8.
 
 [^mirror]: A flat array of pixels that record one number each cannot tell a source in front of it from the source's
     mirror image in the array's plane, because the two give the same delay at every pixel. The paper's pixels also
