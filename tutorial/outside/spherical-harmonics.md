@@ -50,8 +50,9 @@ equation [](/paper/#eq:tidal-brightness), and the azimuth $\varphi$ is not the p
 
 Now increase $\vartheta$ by a small $\dd\vartheta$ and $\varphi$ by a small $\dd\varphi$. On the sphere of radius $r$
 the point moves along a line of longitude by $r\,\dd\vartheta$, and round a circle of latitude, whose radius is
-$r\sin\vartheta$, by $r\sin\vartheta\,\dd\varphi$. The two moves are at right angles, so the patch they sweep has the
-area $r^2\sin\vartheta\,\dd\vartheta\,\dd\varphi$. Its solid angle is its area divided by $r^2$
+$r\sin\vartheta$, by $r\sin\vartheta\,\dd\varphi$ (Figure [](#fig:spherical-box)). The two moves are at right
+angles, so the patch they sweep has the area $r^2\sin\vartheta\,\dd\vartheta\,\dd\varphi$. Its solid angle is its
+area divided by $r^2$
 ([chapter 1.3](/tutorial/newton/gauss-and-poisson/#solid-angle-measures-how-large-a-patch-looks)), and a shell of
 thickness $\dd r$ over the patch has the volume $r^2\,\dd r$ times that solid angle:
 
@@ -63,7 +64,10 @@ $$\int_0^{2\pi}\!\!\int_0^\pi \sin\vartheta\,\dd\vartheta\,\dd\varphi = 2\pi\tim
 
 the $4\pi$ steradians of chapter 1.3.
 
-<!-- diagram: The small spherical box between r and r + dr, ϑ and ϑ + dϑ, φ and φ + dφ, drawn on a sphere with the z axis and the x axis, with its three pairs of faces shaded and its three edges labelled dr, r dϑ (along the line of longitude) and r sinϑ dφ (round the circle of latitude, whose radius r sinϑ is drawn from the z axis). -->
+![The small box between $r$ and $r + \dd r$, $\vartheta$ and $\vartheta + \dd\vartheta$, $\varphi$ and
+$\varphi + \dd\varphi$, standing on the sphere of radius $r$. Its faces at $r$ and $r + \dd r$ are orange, those at
+$\vartheta$ and $\vartheta + \dd\vartheta$ blue and those at $\varphi$ and $\varphi + \dd\varphi$ grey; its edges are
+exact lines of the coordinates, but the box is drawn far larger than a small one.](tut-sph-box){#fig:spherical-box}
 
 ## The Laplacian splits into a part along the radius and a part on the sphere
 
@@ -246,7 +250,8 @@ $\tfrac12u$ and $\tfrac32t^2\mu^2$ from $\tfrac38u^2$. Collecting each power of 
 
 $$P_0 = 1, \qquad P_1 = \mu, \qquad P_2 = \tfrac12\bigl(3\mu^2 - 1\bigr), \qquad P_3 = \tfrac12\bigl(5\mu^3 - 3\mu\bigr).$$
 
-At $\mu = 1$ the left side is $1/(1 - t) = 1 + t + t^2 + \dots$, so $P_\ell(1) = 1$ for every $\ell$.
+At $\mu = 1$ the left side is $1/(1 - t) = 1 + t + t^2 + \dots$, so $P_\ell(1) = 1$ for every $\ell$
+(Figure [](#fig:legendre)).
 
 The same series shows which powers of $\mu$ each $P_\ell$ holds. The term $u^k = t^k(2\mu - t)^k$ reaches $t^\ell$
 only by taking $t^{\ell-k}$ from the bracket, which leaves the power $\mu^{2k-\ell}$, so $\ell/2 \le k \le \ell$. So
@@ -254,7 +259,9 @@ $P_\ell$ holds only $\mu^\ell$, $\mu^{\ell-2}$, and so on down, and $P_\ell(-\mu
 power $\mu^\ell$ comes from $k = \ell$ alone, with $2^\ell$ times a positive coefficient of the series, so $P_\ell$ has
 the degree $\ell$ exactly.
 
-<!-- diagram: P0 to P4 against μ from −1 to 1 on one pair of axes, each curve labelled at its right end, where all equal 1; the zero of P2 at μ = 1/√3 marked with a tick and the angle 54.7°. -->
+![The Legendre polynomials $P_0$ to $P_4$ for $\mu$ from $-1$ to 1, computed exactly. All of them equal 1 at
+$\mu = 1$ and $(-1)^\ell$ at $\mu = -1$; the zero of $P_2$ (orange) at $\mu = 1/\sqrt3$ is the angle
+$\vartheta = 54.7°$.](tut-sph-legendre){#fig:legendre}
 
 We want to show that $P_\ell(\cos\gamma)$ is a pattern of degree $\ell$. Fix $\vect x$ and treat
 $1/|\vect x - \vect y|$ as a function of $\vect y$, for $r' < r$. It is harmonic there (chapter 1.3). We use spherical
@@ -274,9 +281,9 @@ of degree $\ell$ that does not change when the sky is turned about $\hat{\vect x
 The next section states that it is the only one of its degree, up to a factor. Chapter 2.3 builds the multipole
 expansion on [](#eq:generating).
 
-The polynomial $P_2$ vanishes where $3\mu^2 = 1$, at $\mu = 1/\sqrt3$, an angle of 54.7°. This is the angle of
-chapter 1.5 at which the weight $1 - 3\cos^2\vartheta$ of $\curv{\tE}_{zz}$ changes sign, and the reason is that the
-weight is $-2P_2(\cos\vartheta)$. At $\vartheta = 0.9$ both give $-0.159$.
+The polynomial $P_2$ vanishes where $3\mu^2 = 1$, at $\mu = 1/\sqrt3$, an angle of 54.7° (Figure [](#fig:legendre)).
+This is the angle of chapter 1.5 at which the weight $1 - 3\cos^2\vartheta$ of $\curv{\tE}_{zz}$ changes sign, and
+the reason is that the weight is $-2P_2(\cos\vartheta)$. At $\vartheta = 0.9$ both give $-0.159$.
 
 ## Patterns of different degree are orthogonal, and every pattern is a sum of them
 
@@ -350,8 +357,13 @@ P_\ell^m(\mu) &= (-1)^m\bigl(1 - \mu^2\bigr)^{m/2}\,\frac{\dd^mP_\ell}{\dd\mu^m}
 
 for $m \ge 0$, with $Y_{\ell,-m} = (-1)^mY_{\ell m}^*$. The functions $P_\ell^m$ are the **associated Legendre
 functions**. For $m = 0$ the formula gives $Y_{\ell0} = \sqrt{(2\ell + 1)/4\pi}\,P_\ell(\cos\vartheta)$.
+Figure [](#fig:harmonics) draws the real parts of the $Y_{\ell m}$ up to degree 3.
 
-<!-- diagram: The real parts of Y_lm for l = 0, 1, 2, 3 drawn on spheres, orange where positive and blue where negative (the paper's sign colours, used here only for the sign of a pattern, as the caption says), arranged in a triangle with one row per degree and m running from −l to l across each row, so that rows hold 1, 3, 5 and 7 spheres. -->
+![The real parts of the spherical harmonics $Y_{\ell m}$ up to degree 3, one row for each degree $\ell$ and one
+column for each order $m$, every sphere seen from the same direction with the $z$ axis up. The paper's orange and
+blue mark here only the sign of the pattern, orange where it is positive and blue where it is negative; the zeros are
+exact, $\ell - |m|$ circles of latitude and $2|m|$ half meridians, and the real parts of $Y_{\ell m}$ and
+$Y_{\ell,-m}$ differ only by the sign $(-1)^m$.](tut-sph-harmonics){#fig:harmonics}
 
 Now we can split a pattern into degrees. Any pattern $f(\hat n)$ on the sky is a sum
 
@@ -427,13 +439,16 @@ $$\boxed{\;k \approx \frac{\ell}{R}, \qquad \text{features about } \frac{\pi R}{
 
 For GOCE, with the Earth's radius $R = 6371$ km, degree 280 has a wavelength of 143 km and features 71 km wide;
 degree 300 gives 133 km and 67 km. GOCE flew at the height $z = 254$ km, 1.8 times the distance between crests of
-degree 280. In chapter 3.7, where $z$ is the depth of the sources below the
+degree 280 (Figure [](#fig:goce)). In chapter 3.7, where $z$ is the depth of the sources below the
 sensors, a ripple of wavenumber $k$ fades over that distance as $e^{-kz}$. Here $kz = 280\times254/6371 = 11.2$, so
 the ripple of degree 280 reaches the satellite weakened by $e^{-11.2} = 1.4\times10^{-5}$. Chapter 3.7
 [turns $kz$ into GOCE's sensitivity](/tutorial/noise/blur-law/#what-the-law-means). On a camera's own sky the same
 rule gives the paper's finest detail $\Delta\theta \approx \pi/\ell_{\max}$ (equation [](/paper/#eq:handheld)).
 
-<!-- diagram: A great circle of the Earth with 280 crests of a pattern of degree 280 drawn as a ripple on it, and an enlarged inset of one arc showing one wavelength, 143 km, against GOCE's height of 254 km above the ground, both drawn to the same scale. -->
+![The Earth cut through a great circle, with a pattern of degree 280 drawn as a ripple of 280 crests round its rim
+and GOCE's orbit 254 km up (dashed). The inset enlarges the small window at the top: one wavelength, 143 km, and
+GOCE's height, 254 km, are drawn to one scale, as are the Earth and the orbit; the height of the ripple is chosen for
+the drawing.](tut-sph-goce){#fig:goce}
 
 ## The addition theorem turns a sum over $m$ into one Legendre polynomial
 
