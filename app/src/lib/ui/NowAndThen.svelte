@@ -169,7 +169,10 @@
 		ctx.beginPath();
 		ctx.arc(X(image), Y(image), 0.22 * s, 0, 2 * Math.PI);
 		ctx.stroke();
-		label(ctx, 'light shows it here', X(image), Y(image) + 0.48 * s, LIGHT);
+		// its words stay inside the drawing when the picture is at the edge, and are left out while it is beyond it
+		if (X(image) > -0.22 * s && X(image) < w + 0.22 * s) {
+			label(ctx, 'light shows it here', X(image), Y(image) + 0.48 * s, LIGHT, w);
+		}
 		// the body itself
 		ctx.fillStyle = ink;
 		ctx.beginPath();
@@ -203,12 +206,18 @@
 		text: string,
 		x: number,
 		y: number,
-		colour: string
+		colour: string,
+		/** the width of the drawing, if the words are to be kept inside it */
+		within?: number
 	) {
 		ctx.font = '500 12px Inter Variable, system-ui, sans-serif';
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 		ctx.fillStyle = colour;
+		if (within !== undefined) {
+			const half = ctx.measureText(text).width / 2 + 6;
+			x = Math.min(Math.max(x, half), within - half);
+		}
 		ctx.fillText(text, x, y);
 	}
 </script>

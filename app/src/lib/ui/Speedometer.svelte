@@ -29,10 +29,32 @@
 	const tip: Vec3 = $derived([pixel[0] + light.read[0], pixel[1] + light.read[1], 0]);
 	const decades = $derived(Math.log10(Math.max(alarm, 1e-17)));
 	const lit = $derived(alarm > 1e-12);
-	const meter = (d: number) => -150 + ((d + 17) / 17) * 300;
 	/** The size of the drawing's words in its units: the foot of the drawing makes room for the meter's numbers. */
 	let em = $state(12);
-	const foot = $derived(Math.max(250, 236 + 1.4 * em));
+	/**
+	 * The meter and its words, laid out across the drawing (660 wide, kept 6 inside either edge) by the size of the
+	 * words in its units, which is largest on a phone. Its name starts right of the scale, clear of the last number
+	 * (10⁰, about 0.8 em either side of its mark); its state ends left of it, the room kept for the longer one
+	 * (“something moves”, about 8.6 em; the name about 5.4 em). Where they all fit, as on a wide screen, the scale is
+	 * 300 long and centred; where they do not, it is shortened and moved over, until they do. Shortened so far that
+	 * its numbers would touch (each about 2.3 em wide, four decades apart), as on the narrowest phones, the scale
+	 * keeps its length and the two words go on a line under the numbers, at the drawing's two edges.
+	 */
+	const layout = $derived.by(() => {
+		const state = 8.6 * em;
+		const name = 5.4 * em;
+		const gap = Math.max(12, 2.3 * em - 22);
+		const half = Math.min(150, (648 - state - 12 - gap - name) / 2);
+		if (half < 5.9 * em) return { half: 150, shift: 0, name: 324, stacked: true };
+		const shift = Math.min(
+			Math.max(0, -324 + half + 12 + state),
+			Math.max(0, 324 - half - gap - name)
+		);
+		return { half, shift, name: half + gap, stacked: false };
+	});
+	const meter = (d: number) => -layout.half + ((d + 17) / 17) * 2 * layout.half;
+	/** The foot of the drawing: room for the meter's numbers, and for its words under them when they are stacked. */
+	const foot = $derived(Math.max(250, 236 + (layout.stacked ? 3 : 1.4) * em));
 
 	let dragging = false;
 	function down(e: PointerEvent) {
@@ -121,11 +143,15 @@
 			aria-label="the pixel: drag to move it"
 		/>
 		<!-- the test for motion -->
-		<g transform="translate(0 228)">
-			<text x="-162" y="0" dy="0.35em" class={['tag', 'end', { moving: lit }]}
+		<g transform="translate({layout.shift} 228)">
+			<text
+				x={layout.stacked ? -324 : -layout.half - 12}
+				y={layout.stacked ? 8 + 2.3 * em : 0}
+				dy="0.35em"
+				class={['tag', { end: !layout.stacked, moving: lit }]}
 				>{lit ? 'something moves' : 'all still'}</text
 			>
-			<line x1="-150" x2="150" class="scale" />
+			<line x1={-layout.half} x2={layout.half} class="scale" />
 			{#each [-16, -12, -8, -4, 0] as d (d)}
 				<line x1={meter(d)} x2={meter(d)} y1="-4" y2="4" class="scale" />
 				<text x={meter(d)} y="8" dy="1em" class="tick"
@@ -134,7 +160,12 @@
 			{/each}
 			<line x1={meter(-12)} x2={meter(-12)} y1="-10" y2="5" class="threshold" />
 			<circle cx={meter(decades)} cy="0" r="6" class={['reading', { moving: lit }]} />
-			<text x="162" y="0" dy="0.35em" class="tag">motion test</text>
+			<text
+				x={layout.name}
+				y={layout.stacked ? 8 + 2.3 * em : 0}
+				dy="0.35em"
+				class={['tag', { end: layout.stacked }]}>motion test</text
+			>
 		</g>
 	</svg>
 	<p class="legend">

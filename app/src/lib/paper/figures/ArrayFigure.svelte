@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { MediaQuery } from 'svelte/reactivity';
 	import { RulerIcon } from '@hugeicons/core-free-icons';
 	import Slider from '../../ui/controls/Slider.svelte';
 	import './figure.css';
@@ -42,11 +43,21 @@
 		return Math.abs(v) < 1e-6 ? 1 : ((2 * besselJ1(v)) / v) ** 2;
 	}
 
-	const X0 = 60;
-	const X1 = 700;
+	/**
+	 * On a phone the drawing is redrawn narrower, the array's words under it rather than beside it, so that it is shown
+	 * at about its own size and its words are read at the size they are set; at full width it would be halved.
+	 */
+	const phone = new MediaQuery('max-width: 560px', false);
+	const X0 = $derived(phone.current ? 44 : 60);
+	const X1 = $derived(phone.current ? 322 : 700);
 	const BASE = 250;
-	const TOP = 60;
-	const HALF = (BASE + TOP) / 2;
+	const TOP = $derived(phone.current ? 84 : 60);
+	const HALF = $derived((BASE + TOP) / 2);
+	/** The middle of the drawing, where the array is drawn. */
+	const MID = $derived(phone.current ? 172 : 360);
+	const viewBox = $derived(phone.current ? '0 4 344 317' : '0 4 720 317');
+	/** How far left of the right end the blur's words may start: they are a little narrower than that. */
+	const BLUR_ROOM = $derived(phone.current ? 88 : 96);
 	const px = (deg: number) => X0 + ((deg + 90) / 180) * (X1 - X0);
 	const angles = Array.from({ length: 1441 }, (_, i) => -90 + i / 8);
 
@@ -70,15 +81,20 @@
 
 <div class="gfig">
 	<svg
-		viewBox="0 4 720 303"
+		{viewBox}
 		role="img"
 		aria-label="Response of the computed image to a single point source, for a single pixel and for arrays of increasing width"
 	>
 		<!-- the array, drawn to suggest its width -->
-		<g transform="translate(360 22)">
+		<g transform="translate({MID} 22)">
 			{#if width === 0}
 				<rect x="-5" y="-5" width="10" height="10" fill="var(--text)" />
-				<text class="small" x="14" y="4">one pixel</text>
+				<text
+					class="small"
+					x={phone.current ? 0 : 14}
+					y={phone.current ? 26 : 4}
+					text-anchor={phone.current ? 'middle' : undefined}>one pixel</text
+				>
 			{:else}
 				{@const half = 20 + 34 * Math.log10(width + 1)}
 				{#each pixels as p (p)}
@@ -90,16 +106,21 @@
 						fill="var(--text)"
 					/>
 				{/each}
-				<text class="small" x={half + 12} y="4"
+				<text
+					class="small"
+					x={phone.current ? 0 : half + 12}
+					y={phone.current ? 26 : 4}
+					text-anchor={phone.current ? 'middle' : undefined}
 					>array {width} wavelength{width === 1 ? '' : 's'} wide</text
 				>
 			{/if}
 		</g>
 
 		<line class="hair" x1={X0} y1={BASE} x2={X1} y2={BASE} />
+		<!-- the numbers stand low enough that the curve's dips below the axis (to −0.12 of its height) pass above them -->
 		{#each [-90, -60, -30, 0, 30, 60, 90] as a (a)}
 			<line class="grid" x1={px(a)} y1={TOP - 6} x2={px(a)} y2={BASE} />
-			<text class="small" x={px(a)} y={BASE + 20} text-anchor="middle">{a < 0 ? `−${-a}` : a}°</text
+			<text class="small" x={px(a)} y={BASE + 36} text-anchor="middle">{a < 0 ? `−${-a}` : a}°</text
 			>
 		{/each}
 		<path d="{path} L {X1} {BASE} L {X0} {BASE} Z" fill="var(--accent)" opacity="0.14" />
@@ -112,13 +133,13 @@
 				fwhm / 2
 			)} {HALF - 5} v 10"
 		/>
-		<text class="small" x={Math.min(px(fwhm / 2) + 10, X1 - 96)} y={HALF + 4}>
+		<text class="small" x={Math.min(px(fwhm / 2) + 10, X1 - BLUR_ROOM)} y={HALF + 4}>
 			blur {fwhm >= 10 ? fwhm.toFixed(0) : fwhm.toFixed(1)}° wide
 		</text>
-		<text x={(X0 + X1) / 2} y={BASE + 44} text-anchor="middle">angle away from the source</text>
+		<text x={(X0 + X1) / 2} y={BASE + 58} text-anchor="middle">angle away from the source</text>
 		<text
 			class="small"
-			transform="translate(22 {(BASE + TOP) / 2}) rotate(-90)"
+			transform="translate({phone.current ? 16 : 22} {(BASE + TOP) / 2}) rotate(-90)"
 			text-anchor="middle"
 		>
 			brightness in the image
