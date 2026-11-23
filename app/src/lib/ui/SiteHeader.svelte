@@ -6,13 +6,14 @@
 		Chart01Icon,
 		GeologyCrustIcon,
 		GithubIcon,
+		Mortarboard02Icon,
 		Moon02Icon,
 		PlayCircleIcon,
 		Sun03Icon
 	} from '@hugeicons/core-free-icons';
 
 	interface Props {
-		current?: 'paper' | 'demo' | 'figures';
+		current?: 'paper' | 'tutorial' | 'demo' | 'figures';
 		/** Lay the header over a dark picture: no background, light text. */
 		overlay?: boolean;
 	}
@@ -43,6 +44,10 @@
 		<a href={resolve('/paper')} aria-current={current === 'paper' ? 'page' : undefined}>
 			<HugeiconsIcon icon={BookOpen01Icon} size={18} strokeWidth={1.6} />
 			<span>Paper</span>
+		</a>
+		<a href={resolve('/tutorial')} aria-current={current === 'tutorial' ? 'page' : undefined}>
+			<HugeiconsIcon icon={Mortarboard02Icon} size={18} strokeWidth={1.6} />
+			<span>Tutorial</span>
 		</a>
 		<a href={resolve('/demo')} aria-current={current === 'demo' ? 'page' : undefined}>
 			<HugeiconsIcon icon={PlayCircleIcon} size={18} strokeWidth={1.6} />
@@ -173,10 +178,19 @@
 		}
 	}
 
-	@media (max-width: 380px) {
+	/* six icons and the name on a phone: the icons close up so that the last stays on the screen */
+	@media (max-width: 440px) {
+		header {
+			gap: 0.5rem;
+		}
+
+		nav {
+			gap: 0;
+		}
+
 		nav a,
 		nav button {
-			padding: 0 0.45rem;
+			padding: 0 0.42rem;
 		}
 	}
 </style>

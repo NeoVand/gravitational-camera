@@ -9,12 +9,22 @@
 		math: string;
 		/** A displayed equation on its own line, rather than inline. */
 		display?: boolean;
+		/** Allow \htmlClass, for the tutorial's colour roles (and nothing else KaTeX would need trusted for). */
+		trust?: boolean;
 	}
 
-	let { math, display = false }: Props = $props();
+	let { math, display = false, trust = false }: Props = $props();
 
 	const html = $derived(
-		katex.renderToString(math, { displayMode: display, throwOnError: false, output: 'html' })
+		katex.renderToString(math, {
+			displayMode: display,
+			throwOnError: false,
+			output: 'html',
+			...(trust && {
+				trust: (context: { command: string }) => context.command === '\\htmlClass',
+				strict: 'ignore' as const
+			})
+		})
 	);
 
 	/**

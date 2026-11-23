@@ -22,6 +22,11 @@ export default defineConfig({
 				handleHttpError: ({ path, message }) => {
 					if (path.endsWith('/gravitational-camera.pdf')) return;
 					throw new Error(message);
+				},
+				// the tutorial's chapter pages are made only for published chapters, of which there may be none yet
+				handleUnseenRoutes: ({ routes, message }) => {
+					if (routes.some((route) => route !== '/tutorial/[part]/[chapter]'))
+						throw new Error(message);
 				}
 			}
 		})

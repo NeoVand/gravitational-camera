@@ -1,0 +1,330 @@
+/*
+ * What a tutorial chapter adds to the paper's typography (prose.css): margin notes, the boxes of STYLE.md §5, the
+ * paper's equations shown by label, and clickable symbols. Everything is inside <article class="prose chapter">.
+ */
+
+/* ---- margin notes ---------------------------------------------------------------------------------------------- */
+
+/* the number in the text: a button that opens the note below the line on narrow screens */
+article.chapter .mn-mark {
+	position: relative;
+	top: -0.45em;
+	margin: 0 0.05em 0 0.1em;
+	padding: 0 0.2em;
+	border: 0;
+	border-radius: 3px;
+	background: none;
+	font: 600 0.68em/1 var(--font-sans);
+	color: var(--accent);
+	cursor: pointer;
+}
+
+article.chapter .mn-mark[aria-expanded='true'] {
+	background: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+article.chapter .mn-body {
+	display: none;
+	font: 400 0.84rem/1.5 var(--font-sans);
+	color: var(--text-dim);
+	text-align: left;
+	white-space: normal;
+	hanging-punctuation: none;
+}
+
+article.chapter .mn-mark[aria-expanded='true'] + .mn-body {
+	display: block;
+	margin: 0.5rem 0 0.7rem;
+	padding: 0.1rem 0 0.15rem 0.85rem;
+	border-left: 1px solid var(--line-strong);
+}
+
+article.chapter .mn-number {
+	margin-right: 0.35em;
+	font-weight: 600;
+	color: var(--accent);
+}
+
+article.chapter .mn-body .p {
+	display: block;
+}
+
+/* the first paragraph runs on from the note's number */
+article.chapter .mn-body .mn-number + .p {
+	display: inline;
+}
+
+article.chapter .mn-body .p + .p {
+	margin-top: 0.4rem;
+}
+
+article.chapter .mn-body .katex {
+	font-size: 1em;
+}
+
+article.chapter .mn-body a {
+	color: var(--text);
+}
+
+/* at 1240px and wider the notes stand in the right margin, level with the line that calls them */
+@media (min-width: 1240px) {
+	article.chapter {
+		/* the right column of the layout: half the window less half the text, the gutter and the gap */
+		--mn-width: min(15rem, calc(50vw - 28.5rem));
+	}
+
+	article.chapter .mn-mark {
+		pointer-events: none;
+	}
+
+	article.chapter .mn-body,
+	article.chapter .mn-mark[aria-expanded='true'] + .mn-body {
+		display: block;
+		float: right;
+		clear: right;
+		width: var(--mn-width);
+		margin: 0.25rem calc(-1 * var(--mn-width) - 3rem) 0.6rem 0;
+		padding: 0 0 0 0.75rem;
+		border-left: 1px solid var(--line);
+		font-size: 0.8rem;
+		line-height: 1.45;
+	}
+
+	article.chapter .mn-mark[aria-expanded='true'] {
+		background: none;
+	}
+}
+
+/* ---- boxes ----------------------------------------------------------------------------------------------------- */
+
+article.chapter .box {
+	margin: 1.8rem 0;
+}
+
+article.chapter .box-title {
+	margin: 0 0 0.5rem;
+	font: italic 500 1.06rem/1.4 var(--font-serif);
+	color: var(--text);
+}
+
+article.chapter .box > :last-child,
+article.chapter .box-body > :last-child {
+	margin-bottom: 0;
+}
+
+/* worked examples, checks and problems: a card a shade off the page */
+article.chapter .box.example,
+article.chapter .box.check,
+article.chapter .box.problems {
+	padding: 1.1rem 1.3rem 1.2rem;
+	background: var(--bg-raised);
+	border: 1px solid var(--line);
+	border-radius: 12px;
+}
+
+article.chapter .box.example > p:first-of-type:not(.box-title),
+article.chapter .box.check .question p,
+article.chapter .box.problems .problem-text > p:first-child {
+	margin-top: 0;
+}
+
+/* what a sketch skips: a dashed rule, because it marks a hole on purpose */
+article.chapter .box.gap {
+	padding: 0.2rem 0 0.2rem 1.25rem;
+	border-left: 1px dashed var(--line-strong);
+	color: var(--text-dim);
+	font-size: 1.02rem;
+}
+
+/* where the paper uses this, and where to go deeper: a rule above, then a short list */
+article.chapter .box.paper-uses,
+article.chapter .box.deeper {
+	padding-top: 1rem;
+	border-top: 1px solid var(--line);
+	font-size: 1.02rem;
+}
+
+article.chapter .box.paper-uses ul,
+article.chapter .box.deeper ul {
+	margin: 0.4rem 0 0;
+}
+
+/* closed boxes: a derivation in full, a little history; their summary line as the paper's plain words */
+article.chapter details.box > summary,
+article.chapter details.answer > summary,
+article.chapter details.solution > summary {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5em;
+	width: fit-content;
+	list-style: none;
+	cursor: pointer;
+	font: italic 500 1.04rem/1.5 var(--font-serif);
+	color: var(--accent);
+	border-radius: 2px;
+}
+
+article.chapter details.box > summary::-webkit-details-marker,
+article.chapter details.answer > summary::-webkit-details-marker,
+article.chapter details.solution > summary::-webkit-details-marker {
+	display: none;
+}
+
+article.chapter details.box > summary::before,
+article.chapter details.answer > summary::before,
+article.chapter details.solution > summary::before {
+	content: '';
+	flex: none;
+	width: 0.36em;
+	height: 0.36em;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: translateY(-0.12em) rotate(-45deg);
+	transition: transform 0.15s ease;
+}
+
+article.chapter details[open] > summary::before {
+	transform: translateY(-0.22em) rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	article.chapter details > summary::before {
+		transition: none;
+	}
+}
+
+article.chapter details > summary:focus-visible {
+	outline: 1px solid var(--accent);
+	outline-offset: 3px;
+}
+
+article.chapter details.box .box-body {
+	margin-top: 0.4rem;
+	padding: 0.1rem 0 0.1rem 1.25rem;
+	border-left: 1px solid var(--line-strong);
+}
+
+article.chapter details.box .box-body > :first-child {
+	margin-top: 0.4rem;
+}
+
+/* checks and problems */
+article.chapter .box ol.questions,
+article.chapter .box.problems ol {
+	margin: 0;
+	padding-left: 1.4rem;
+}
+
+article.chapter .box ol.questions > li,
+article.chapter .box.problems li.problem {
+	margin: 0 0 1rem;
+}
+
+article.chapter .box ol.questions > li:last-child,
+article.chapter .box.problems li.problem:last-child {
+	margin-bottom: 0;
+}
+
+article.chapter .box ol.questions > li::marker,
+article.chapter .box.problems li.problem::marker {
+	font: 500 0.85em var(--font-sans);
+	color: var(--text-faint);
+}
+
+article.chapter details.answer > summary,
+article.chapter details.solution > summary {
+	font-size: 0.98rem;
+}
+
+article.chapter .answer-body,
+article.chapter .solution-body {
+	margin-top: 0.3rem;
+	padding-left: 1rem;
+	border-left: 1px solid var(--line-strong);
+	color: var(--text-dim);
+}
+
+article.chapter .answer-body > p:first-child,
+article.chapter .solution-body > p:first-child {
+	margin-top: 0;
+}
+
+article.chapter .answer-body > :last-child,
+article.chapter .solution-body > :last-child {
+	margin-bottom: 0;
+}
+
+article.chapter .box.problems .tier + .tier {
+	margin-top: 1.3rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--line);
+}
+
+article.chapter .tier-title {
+	margin: 0 0 0.5rem;
+	font: 500 0.75rem/1.4 var(--font-sans);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--text-faint);
+}
+
+/* definition lists in the text */
+article.chapter dl {
+	margin: 1.1rem 0;
+}
+
+article.chapter dt {
+	font-weight: 600;
+}
+
+article.chapter dd {
+	margin: 0.2rem 0 0.8rem 1.3rem;
+}
+
+/* ---- the paper's own equations, shown by label ------------------------------------------------------------------ */
+
+article.chapter .equation.from-paper {
+	padding: 0.1rem 0.9rem;
+	border-left: 1px solid var(--accent);
+}
+
+article.chapter .equation.from-paper .katex-tag a,
+article.chapter .equation.from-paper .tag a {
+	font: italic 400 0.92em var(--font-serif);
+	color: var(--accent);
+	text-decoration: none;
+}
+
+article.chapter .equation.from-paper .katex-tag a:hover,
+article.chapter .equation.from-paper .tag a:hover {
+	text-decoration: underline;
+}
+
+article.chapter a.paper-ref {
+	text-decoration: none;
+	color: var(--accent);
+}
+
+/* ---- symbols that open their card ------------------------------------------------------------------------------- */
+
+article.chapter [class*='symbol-'] {
+	cursor: pointer;
+	border-radius: 3px;
+	transition: background-color 0.15s;
+}
+
+article.chapter [class*='symbol-']:hover,
+article.chapter [class*='symbol-']:focus-visible {
+	background: color-mix(in srgb, currentColor 13%, transparent);
+	outline: none;
+}
+
+article.chapter [class*='symbol-'][aria-expanded='true'] {
+	background: color-mix(in srgb, currentColor 18%, transparent);
+}
+
+/* ---- bold run-in phrases: the idea to keep ---------------------------------------------------------------------- */
+
+article.chapter p > strong:only-child {
+	font-weight: 600;
+}

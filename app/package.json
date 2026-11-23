@@ -14,7 +14,8 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
+		"lint": "prettier --check . && eslint . && pnpm run lint:tutorial",
+		"lint:tutorial": "node ../tutorial/lint.mjs",
 		"format": "prettier --write .",
 		"test:unit": "vitest",
 		"test": "vitest --run && playwright test",
@@ -46,7 +47,8 @@
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.60.1",
 		"vite": "^8.3.0",
-		"vitest": "^4.1.8"
+		"vitest": "^4.1.8",
+		"yaml": "^2.9.1"
 	},
 	"packageManager": "pnpm@10.28.0"
 }

@@ -1,0 +1,55 @@
+# The symbols a reader can click for their card (keyed in TeX by \sym{key}{...}), and the symbol index.
+# Fields: key, title, tex (as it is set, with its role colour), role (matter, field, curv, obs, light, or none),
+# kind (one line: what sort of object), meaning (one paragraph, $...$ for mathematics), chapter (the defining
+# chapter's id) and, optionally, anchor (a section id within it).
+# TeX goes in single quotes, so that backslashes stay as they are.
+symbols:
+  - key: tidal-tensor
+    title: Tidal tensor
+    tex: '\curv{\mathcal{E}}_{ij}'
+    role: curv
+    kind: A symmetric trace-free table of nine numbers, five of them independent; unit s⁻²
+    meaning: 'How the pull of gravity changes from one point to the next. Two free balls a distance $\xi$ apart along a direction $j$ drift apart, or together, with relative acceleration $-\mathcal{E}_{ij}\xi_j$. It is what one pixel of the camera measures.'
+    chapter: '1.4'
+  - key: potential
+    title: Gravitational potential
+    tex: '\field{\Phi}'
+    role: field
+    kind: A number at each point; an energy per unit mass, in J/kg
+    meaning: 'The energy per kilogram that a small body has because of where it is. Near a body of mass $M$ it is $\Phi = -GM/r$. Its gradient gives the pull of gravity, and its second derivatives give the tide.'
+    chapter: '1.2'
+  - key: density
+    title: Mass density
+    tex: '\matter{\rho}'
+    role: matter
+    kind: A number at each point; mass per unit volume, in kg/m³
+    meaning: 'How much mass there is in each cubic metre. It is the source of the potential, through Poisson''s equation $\nabla^2\Phi = 4\pi G\rho$.'
+    chapter: '1.3'
+  - key: mass
+    title: Mass
+    tex: '\matter{M}'
+    role: matter
+    kind: A number; in kilograms
+    meaning: 'The mass of a whole body, the integral of its density over its volume.'
+    chapter: '1.2'
+  - key: separation
+    title: Separation of two free masses
+    tex: '\xi^i'
+    role: none
+    kind: A vector; in metres
+    meaning: 'The small displacement from one free test mass to a neighbour. The tide changes it; the ring of test masses that is the paper''s pixel is a circle of such separations.'
+    chapter: '1.4'
+  - key: velocity
+    title: Velocity of the observer
+    tex: '\obs{v}'
+    role: obs
+    kind: A vector; in m/s
+    meaning: 'How fast the one who measures is moving, and in which direction, relative to the frame in which the scene is described.'
+    chapter: '6.1'
+  - key: electric-field
+    title: Electric field
+    tex: '\light{E}'
+    role: light
+    kind: A vector at each point; in V/m
+    meaning: 'The force per unit charge on a charge at rest. In light it is one half of the wave; the magnetic field $B$ is the other.'
+    chapter: '6.6'

@@ -17,6 +17,7 @@
 		GalaxyIcon,
 		GeologyCrustIcon,
 		GithubIcon,
+		Mortarboard02Icon,
 		MirrorIcon,
 		Moon02Icon,
 		PlayCircleIcon,
@@ -184,6 +185,10 @@
 			<a href={resolve('/paper')}>
 				<HugeiconsIcon icon={BookOpen01Icon} size={18} strokeWidth={1.6} />
 				<span>Paper</span>
+			</a>
+			<a href={resolve('/tutorial')}>
+				<HugeiconsIcon icon={Mortarboard02Icon} size={18} strokeWidth={1.6} />
+				<span>Tutorial</span>
 			</a>
 			<a href={resolve('/demo')}>
 				<HugeiconsIcon icon={PlayCircleIcon} size={18} strokeWidth={1.6} />
@@ -498,10 +503,15 @@
 		}
 	}
 
-	@media (max-width: 380px) {
+	/* six icons and the name on a phone: the icons close up so that the last stays on the screen */
+	@media (max-width: 440px) {
+		.top nav {
+			gap: 0;
+		}
+
 		.top nav a,
 		.top nav button {
-			padding: 0 0.45rem;
+			padding: 0 0.42rem;
 		}
 	}
 

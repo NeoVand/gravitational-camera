@@ -1,53 +1,14 @@
-import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import { renderPaper } from '#lib/paper/render.js';
+import { paperMargin, paperRendered } from '#lib/server/sources.js';
+import { paperLinks } from '#lib/tutorial/paper-links.js';
 import type { PageServerLoad } from './$types';
-
-const PAPER_DIR = path.resolve('..', 'paper');
-/** pandoc's default citation style, except that every entry names its authors (see the file). */
-const STYLE = path.resolve('src', 'lib', 'paper', 'references.csl');
-
-/**
- * Read a LaTeX file with its \input files spliced in and comment lines removed.
- * Figures and tables that span both columns of the PDF (figure*, table*)
- * become ordinary ones: pandoc keeps the caption and label of `figure` and
- * `table` only, and on the web every figure and table spans the text anyway.
- */
-function readTex(file: string): string {
-	const text = readFileSync(path.join(PAPER_DIR, file), 'utf8')
-		.replace(/^%.*\n/gm, '')
-		.replace(/\\(begin|end)\{(figure|table)\*\}/g, '\\$1{$2}');
-	return text.replace(/\\input\{([^}]+)\}/g, (_, name: string) =>
-		readTex(name.endsWith('.tex') ? name : `${name}.tex`)
-	);
-}
 
 /**
  * The paper lives in /paper as LaTeX. pandoc parses it; the site renders the
- * parse tree. This runs when the page is prerendered, and on every request in
- * development, so edits to the .tex files show up on reload.
+ * parse tree (lib/server/sources.ts). This runs when the page is prerendered,
+ * and on every request in development, so edits to the .tex files show up on
+ * reload. The margin holds the tutorial's notes for its published chapters.
  */
-export const load: PageServerLoad = () => {
-	let json: string;
-	try {
-		json = execFileSync(
-			'pandoc',
-			[
-				'-f',
-				'latex+raw_tex',
-				'-t',
-				'json',
-				'--citeproc',
-				'--bibliography',
-				'refs.bib',
-				'--csl',
-				STYLE
-			],
-			{ cwd: PAPER_DIR, input: readTex('main.tex'), encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }
-		);
-	} catch (cause) {
-		throw new Error('Could not convert the paper: is pandoc installed?', { cause });
-	}
-	return { paper: renderPaper(JSON.parse(json)) };
-};
+export const load: PageServerLoad = () => ({
+	paper: paperRendered(),
+	margin: paperMargin(paperLinks)
+});

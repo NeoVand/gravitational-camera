@@ -1,0 +1,24 @@
+# The terms the tutorial defines, each with its defining chapter: the glossary page lists them.
+# Fields: term, definition (one or two plain sentences, $...$ for mathematics), role (optional: the colour role of
+# the object, if it has one), chapter (the defining chapter's id), anchor (optional: a section id within it).
+terms:
+  - term: tide
+    definition: 'The difference between the pull of gravity at two nearby points. A tide stretches a small free body along one direction and squeezes it along the others.'
+    role: curv
+    chapter: '1.4'
+  - term: potential
+    definition: 'The energy per unit mass that a small body has because of where it is in a gravitational field, measured in joules per kilogram.'
+    role: field
+    chapter: '1.2'
+  - term: gradient
+    definition: 'The vector of the three partial derivatives of a function of position. It points in the direction in which the function grows fastest.'
+    chapter: '1.2'
+  - term: Hessian
+    definition: 'The table of all the second partial derivatives of a function, $\partial_i\partial_j f$. For the potential it is the tidal tensor.'
+    chapter: '1.4'
+  - term: pixel
+    definition: 'In the paper, a small cloud or ring of free test masses whose relative motion is watched. It measures the tide at one place.'
+    chapter: '0.1'
+  - term: trace-free
+    definition: 'A square table of numbers whose diagonal entries add up to zero. Outside matter, the tidal tensor is trace-free.'
+    chapter: '1.5'

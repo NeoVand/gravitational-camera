@@ -1,0 +1,18 @@
+% The tutorial's notation, put before every chapter (after paper/macros.tex, whose \tE, \tB, \dd, \kB and \SNR
+% chapters use as the paper does). Plain \newcommand only, so that pandoc can expand them before KaTeX sees them.
+
+% The five colour roles of PLAN.md section 5: the kind of object a symbol stands for.
+\newcommand{\matter}[1]{\htmlClass{q-matter}{#1}}
+\newcommand{\field}[1]{\htmlClass{q-field}{#1}}
+\newcommand{\curv}[1]{\htmlClass{q-curv}{#1}}
+\newcommand{\obs}[1]{\htmlClass{q-obs}{#1}}
+\newcommand{\light}[1]{\htmlClass{q-light}{#1}}
+
+% A symbol the reader can click to open its card from symbols.yaml: \sym{tidal-tensor}{\curv{\tE}}_{ij}
+\newcommand{\sym}[2]{\htmlClass{symbol-#1}{#2}}
+
+% Tutorial-only notation
+% a vector, in bold italic
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+% a unit after a number, in roman after a thin space: 9\times10^{-9}\unit{s^{-2}}
+\newcommand{\unit}[1]{\,\mathrm{#1}}

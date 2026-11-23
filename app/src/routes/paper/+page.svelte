@@ -1,16 +1,26 @@
 <script lang="ts">
 	import 'katex/dist/katex.min.css';
+	import '#lib/paper/prose.css';
 	import { onDestroy } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import { Pdf01Icon, PlayCircleIcon } from '@hugeicons/core-free-icons';
 	import { figureDemos, figureDrawing, figureImage, liveFigures } from '#lib/paper/figures.js';
+	import { fitEquations, followHeadings } from '#lib/paper/reading.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
+	import PaperMargin from '#lib/tutorial/PaperMargin.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 	const paper = $derived(data.paper);
+
+	/** The article, for the tutorial's notes in the right margin to find their anchors in. */
+	let article: HTMLElement | undefined = $state();
+	const holdArticle = (el: HTMLElement) => {
+		article = el;
+		return () => (article = undefined);
+	};
 
 	/** The section being read: the last heading above a line a third of the way down. */
 	let active = $state('');
@@ -114,68 +124,7 @@
 
 	onDestroy(() => stopSettling());
 
-	function followReading(article: HTMLElement) {
-		const headings = Array.from(article.querySelectorAll<HTMLElement>('h2[id]'));
-		let frame = 0;
-		const update = () => {
-			frame = 0;
-			const line = innerHeight * 0.33;
-			let current = '';
-			for (const h of headings) {
-				if (h.getBoundingClientRect().top <= line) current = h.id;
-				else break;
-			}
-			active = current;
-		};
-		const onScroll = () => {
-			if (!frame) frame = requestAnimationFrame(update);
-		};
-		update();
-		addEventListener('scroll', onScroll, { passive: true });
-		addEventListener('resize', onScroll);
-		return () => {
-			removeEventListener('scroll', onScroll);
-			removeEventListener('resize', onScroll);
-			cancelAnimationFrame(frame);
-		};
-	}
-
-	/**
-	 * Shrinks each display equation that is wider than the column until it fits
-	 * (down to 60% of its size; beyond that it scrolls sideways), so that on a
-	 * phone no equation runs under its number or off the screen.
-	 */
-	function fitEquations(article: HTMLElement) {
-		const fit = () => {
-			for (const eq of article.querySelectorAll<HTMLElement>('.equation')) {
-				eq.style.removeProperty('--fit');
-				eq.classList.remove('wide');
-				const html = eq.querySelector<HTMLElement>('.katex-html');
-				if (!html) continue;
-				// the body is centred and the number sits at the right edge, so a
-				// body that clears the number on both sides needs the number's width twice
-				let body = 0;
-				let tag = 0;
-				for (const part of Array.from(html.children)) {
-					const width = part.getBoundingClientRect().width;
-					if (part.matches('.tag, .katex-tag')) tag = width;
-					else body += width;
-				}
-				const need = body + 2 * tag + 8;
-				const room = eq.clientWidth;
-				if (need <= room) continue;
-				const scale = room / need;
-				eq.style.setProperty('--fit', String(Math.max(0.6, scale)));
-				// too wide even at that size: the number follows the body, and both scroll
-				if (scale < 0.6) eq.classList.add('wide');
-			}
-		};
-		fit();
-		const watch = new ResizeObserver(fit);
-		watch.observe(article);
-		document.fonts?.ready.then(fit);
-		return () => watch.disconnect();
-	}
+	const followReading = followHeadings('h2[id]', (id) => (active = id));
 </script>
 
 <svelte:head>
@@ -211,7 +160,13 @@
 		</ol>
 	</nav>
 
-	<article class="paper" {@attach followReading} {@attach fitEquations} {@attach rememberPlace}>
+	<article
+		class="paper prose"
+		{@attach holdArticle}
+		{@attach followReading}
+		{@attach fitEquations}
+		{@attach rememberPlace}
+	>
 		<header>
 			<p class="kicker">Working draft</p>
 			<h1>{@html paper.title}</h1>
@@ -293,6 +248,10 @@
 			</section>
 		{/if}
 	</article>
+
+	{#if data.margin.length}
+		<PaperMargin notes={data.margin} {article} />
+	{/if}
 </div>
 
 <style>
@@ -457,64 +416,7 @@
 		margin: 0;
 	}
 
-	article :global(h2) {
-		margin: 3.6rem 0 1rem;
-		font: 500 1.7rem/1.2 var(--font-serif);
-		letter-spacing: -0.01em;
-		scroll-margin-top: 4.5rem;
-		text-wrap: balance;
-	}
-
-	article :global(h2 .number) {
-		color: var(--text-faint);
-		margin-right: 0.35em;
-	}
-
-	/* the paper's run-in paragraph heads, in italic as a journal sets them */
-	article :global(h4.run-in) {
-		margin: 2rem 0 -0.9rem;
-		font: italic 500 1.08rem/1.4 var(--font-serif);
-		color: var(--text);
-	}
-
-	article :global(p) {
-		margin: 1.15rem 0;
-		text-wrap: pretty;
-		hanging-punctuation: first;
-	}
-
-	article :global(.nowrap) {
-		white-space: nowrap;
-	}
-
-	article :global(p.continued) {
-		margin-top: 0.6rem;
-	}
-
-	article :global(ul) {
-		margin: 1.1rem 0;
-		padding-left: 1.3rem;
-	}
-
-	article :global(li) {
-		margin: 0.5rem 0;
-	}
-
-	article :global(li p) {
-		margin: 0;
-	}
-
-	/* the plain-language summaries: a hairline in the accent, no box; closed until asked for */
-	article :global(details.plain) {
-		margin: 1.4rem 0 1.8rem;
-		padding: 0.15rem 0 0.2rem 1.25rem;
-		border-left: 1px solid var(--accent);
-		font: 400 1.06rem/1.6 var(--font-serif);
-		color: var(--text-dim);
-	}
-
-	/* the summary line of a plain-words box, shared by the live version of a figure */
-	article :global(details.plain > summary),
+	/* the summary line of the live version of a figure, as that of a plain-words box (prose.css) */
 	.live > summary {
 		display: flex;
 		align-items: baseline;
@@ -527,13 +429,11 @@
 		border-radius: 2px;
 	}
 
-	article :global(details.plain > summary::-webkit-details-marker),
 	.live > summary::-webkit-details-marker {
 		display: none;
 	}
 
 	/* the disclosure mark: a small chevron in the accent, pointing right when closed, down when open */
-	article :global(details.plain > summary::before),
 	.live > summary::before {
 		content: '';
 		flex: none;
@@ -545,130 +445,19 @@
 		transition: transform 0.15s ease;
 	}
 
-	article :global(details.plain[open] > summary::before),
 	.live[open] > summary::before {
 		transform: translateY(-0.22em) rotate(45deg);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		article :global(details.plain > summary::before),
 		.live > summary::before {
 			transition: none;
 		}
 	}
 
-	article :global(details.plain > summary:focus-visible),
 	.live > summary:focus-visible {
 		outline: 1px solid var(--accent);
 		outline-offset: 3px;
-	}
-
-	article :global(details.plain[open] > summary) {
-		margin-bottom: 0.4rem;
-	}
-
-	article :global(details.plain p) {
-		margin: 0;
-	}
-
-	article :global(details.plain p + p) {
-		margin-top: 0.6rem;
-	}
-
-	article :global(details.plain ul) {
-		margin: 0.6rem 0;
-		padding-left: 1.2rem;
-	}
-
-	article :global(details.plain li) {
-		margin: 0;
-		font: inherit;
-		color: inherit;
-	}
-
-	article :global(details.plain li + li) {
-		margin-top: 0.25rem;
-	}
-
-	article :global(details.plain > :last-child) {
-		margin-bottom: 0;
-	}
-
-	/* inside the summaries bold marks defined terms and run-in lead phrases */
-	article :global(details.plain strong) {
-		font-weight: 600;
-		color: var(--text);
-	}
-
-	/* the summaries' outside links: the text's own colour, a hairline underline in the accent */
-	article :global(details.plain a[href^='http']) {
-		color: inherit;
-		text-decoration: underline;
-		text-decoration-color: var(--accent);
-		text-decoration-thickness: 1px;
-		text-underline-offset: 0.15em;
-	}
-
-	article :global(details.plain a[href^='http']:hover),
-	article :global(details.plain a[href^='http']:focus-visible) {
-		color: var(--accent);
-	}
-
-	article :global(.equation) {
-		margin: 1.2rem 0;
-		overflow-x: auto;
-		overflow-y: hidden;
-		font-size: calc(0.95em * var(--fit, 1));
-		scroll-margin-top: 5rem;
-	}
-
-	article :global(.katex) {
-		font-size: 1.04em;
-	}
-
-	article :global(.equation.wide .katex-display > .katex) {
-		text-align: left;
-	}
-
-	article :global(.equation.wide .katex-html) {
-		white-space: nowrap;
-	}
-
-	article :global(.equation.wide .katex-html > .tag),
-	article :global(.equation.wide .katex-html > .katex-tag) {
-		position: static;
-		margin-left: 1.2em;
-	}
-
-	/* short inline formulas should not break across lines */
-	article :global(p .katex),
-	article :global(li .katex) {
-		white-space: nowrap;
-	}
-
-	/* on a phone a long one may, at its operators, rather than run off the screen */
-	@media (max-width: 640px) {
-		article :global(p .katex),
-		article :global(li .katex),
-		article :global(.nowrap) {
-			white-space: normal;
-		}
-	}
-
-	article :global(a.xref),
-	article :global(.cite a) {
-		text-decoration: none;
-		color: var(--accent);
-	}
-
-	article :global(.cite) {
-		font: 400 0.82em var(--font-sans);
-		white-space: nowrap;
-	}
-
-	article :global(figure) {
-		margin: 2.6rem 0;
-		scroll-margin-top: 4.5rem;
 	}
 
 	.plate .art {
@@ -757,113 +546,5 @@
 
 	.demo-link:hover {
 		text-decoration: underline;
-	}
-
-	article :global(figcaption) {
-		margin-top: 0.8rem;
-		font: 400 0.86rem/1.52 var(--font-sans);
-		color: var(--text-dim);
-	}
-
-	article :global(figcaption .label) {
-		color: var(--text);
-		font-weight: 600;
-	}
-
-	article :global(figcaption .katex) {
-		font-size: 1em;
-	}
-
-	article :global(figure.table) {
-		overflow-x: auto;
-	}
-
-	article :global(table) {
-		width: 100%;
-		border-collapse: collapse;
-		font: 400 0.9rem/1.45 var(--font-sans);
-	}
-
-	article :global(th),
-	article :global(td) {
-		text-align: left;
-		vertical-align: top;
-		padding: 0.6rem 1rem 0.6rem 0;
-		border-bottom: 1px solid var(--line);
-	}
-
-	article :global(th) {
-		font-weight: 500;
-		font-style: italic;
-		color: var(--text-dim);
-		border-bottom-color: var(--line-strong);
-	}
-
-	/* small capitals for words only: maths keeps its letters (π is not Π) */
-	article :global(th .katex) {
-		text-transform: none;
-		letter-spacing: 0;
-		font-size: 1.25em;
-	}
-
-	article :global(th.right),
-	article :global(td.right) {
-		text-align: right;
-		padding: 0.6rem 0 0.6rem 1rem;
-		font-variant-numeric: tabular-nums;
-	}
-
-	article :global(th.center),
-	article :global(td.center) {
-		text-align: center;
-	}
-
-	/* the outer cells sit on the edges of the table, so its text is centred
-	   between them */
-	article :global(th:last-child),
-	article :global(td:last-child) {
-		padding-right: 0;
-	}
-
-	article :global(th.right:first-child),
-	article :global(td.right:first-child) {
-		padding-left: 0;
-	}
-
-	/* a table of numbers keeps its own width, centred in the column */
-	article :global(figure.table.numeric table) {
-		width: auto;
-		margin-inline: auto;
-	}
-
-	article :global(figure.table.numeric th.right),
-	article :global(figure.table.numeric td.right) {
-		padding-left: clamp(0.7rem, 3vw, 1.6rem);
-	}
-
-	article :global(figure.table.numeric th.right:first-child),
-	article :global(figure.table.numeric td.right:first-child) {
-		padding-left: 0;
-	}
-
-	article :global(ol.references) {
-		padding-left: 1.6rem;
-		font: 400 0.86rem/1.5 var(--font-sans);
-		color: var(--text-dim);
-	}
-
-	article :global(ol.references li) {
-		margin: 0.5rem 0;
-		scroll-margin-top: 5rem;
-	}
-
-	article :global(ol.references p) {
-		margin: 0;
-	}
-
-	/* where a link has just taken you: the number in the accent, no band */
-	article :global(:target .number),
-	article :global(.equation:target .katex-tag) {
-		color: var(--accent);
 	}
 </style>

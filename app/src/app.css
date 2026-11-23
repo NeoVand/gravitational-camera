@@ -77,6 +77,56 @@
 	}
 }
 
+/* The tutorial's colour roles for equations (PLAN.md section 5): the kind of object a symbol stands for. The
+   values are palette A of lib/tutorial/colour.ts, which checks their contrast on every ground and their distance
+   from the accent, the figures' orange and blue, and one another (a test keeps the two in step). */
+:root,
+.always-dark {
+	--q-matter: #f1dc86;
+	--q-field: #04becd;
+	--q-curv: #968ff7;
+	--q-obs: #e26c8c;
+	--q-light: #86bd54;
+}
+
+:root[data-theme='light'] {
+	--q-matter: #533f03;
+	--q-field: #0b5a59;
+	--q-curv: #4d1c7b;
+	--q-obs: #9b2d7f;
+	--q-light: #256b00;
+}
+
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme='dark']) {
+		--q-matter: #533f03;
+		--q-field: #0b5a59;
+		--q-curv: #4d1c7b;
+		--q-obs: #9b2d7f;
+		--q-light: #256b00;
+	}
+}
+
+.q-matter {
+	color: var(--q-matter);
+}
+
+.q-field {
+	color: var(--q-field);
+}
+
+.q-curv {
+	color: var(--q-curv);
+}
+
+.q-obs {
+	color: var(--q-obs);
+}
+
+.q-light {
+	color: var(--q-light);
+}
+
 .always-dark {
 	background: var(--bg);
 	color: var(--text);

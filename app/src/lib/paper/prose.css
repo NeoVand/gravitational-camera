@@ -1,0 +1,323 @@
+/*
+ * The typography of the paper's text, shared by every page set like it (the paper and the tutorial's chapters):
+ * an <article class="prose"> holding the HTML of lib/paper/render.ts or lib/tutorial/render.ts. Each page sets the
+ * article's own width and font; these rules set what is inside it. The selectors keep the specificity the paper
+ * page's scoped rules had (article plus one class), so that nothing on the paper changed when they moved here.
+ */
+
+article.prose h2 {
+	margin: 3.6rem 0 1rem;
+	font: 500 1.7rem/1.2 var(--font-serif);
+	letter-spacing: -0.01em;
+	scroll-margin-top: 4.5rem;
+	text-wrap: balance;
+}
+
+article.prose h2 .number {
+	color: var(--text-faint);
+	margin-right: 0.35em;
+}
+
+/* the paper's run-in paragraph heads, in italic as a journal sets them */
+article.prose h4.run-in {
+	margin: 2rem 0 -0.9rem;
+	font: italic 500 1.08rem/1.4 var(--font-serif);
+	color: var(--text);
+	scroll-margin-top: 4.5rem;
+}
+
+article.prose p {
+	margin: 1.15rem 0;
+	text-wrap: pretty;
+	hanging-punctuation: first;
+}
+
+article.prose .nowrap {
+	white-space: nowrap;
+}
+
+article.prose p.continued {
+	margin-top: 0.6rem;
+}
+
+article.prose ul {
+	margin: 1.1rem 0;
+	padding-left: 1.3rem;
+}
+
+article.prose li {
+	margin: 0.5rem 0;
+}
+
+article.prose li p {
+	margin: 0;
+}
+
+/* the plain-language summaries: a hairline in the accent, no box; closed until asked for */
+article.prose details.plain {
+	margin: 1.4rem 0 1.8rem;
+	padding: 0.15rem 0 0.2rem 1.25rem;
+	border-left: 1px solid var(--accent);
+	font: 400 1.06rem/1.6 var(--font-serif);
+	color: var(--text-dim);
+}
+
+/* the summary line of a plain-words box (the paper page gives the live version of a figure the same) */
+article.prose details.plain > summary {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5em;
+	list-style: none;
+	cursor: pointer;
+	font-style: italic;
+	font-weight: 500;
+	color: var(--accent);
+	border-radius: 2px;
+}
+
+article.prose details.plain > summary::-webkit-details-marker {
+	display: none;
+}
+
+/* the disclosure mark: a small chevron in the accent, pointing right when closed, down when open */
+article.prose details.plain > summary::before {
+	content: '';
+	flex: none;
+	width: 0.36em;
+	height: 0.36em;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: translateY(-0.12em) rotate(-45deg);
+	transition: transform 0.15s ease;
+}
+
+article.prose details.plain[open] > summary::before {
+	transform: translateY(-0.22em) rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	article.prose details.plain > summary::before {
+		transition: none;
+	}
+}
+
+article.prose details.plain > summary:focus-visible {
+	outline: 1px solid var(--accent);
+	outline-offset: 3px;
+}
+
+article.prose details.plain[open] > summary {
+	margin-bottom: 0.4rem;
+}
+
+article.prose details.plain p {
+	margin: 0;
+}
+
+article.prose details.plain p + p {
+	margin-top: 0.6rem;
+}
+
+article.prose details.plain ul {
+	margin: 0.6rem 0;
+	padding-left: 1.2rem;
+}
+
+article.prose details.plain li {
+	margin: 0;
+	font: inherit;
+	color: inherit;
+}
+
+article.prose details.plain li + li {
+	margin-top: 0.25rem;
+}
+
+article.prose details.plain > :last-child {
+	margin-bottom: 0;
+}
+
+/* inside the summaries bold marks defined terms and run-in lead phrases */
+article.prose details.plain strong {
+	font-weight: 600;
+	color: var(--text);
+}
+
+/* the summaries' outside links: the text's own colour, a hairline underline in the accent */
+article.prose details.plain a[href^='http'] {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: var(--accent);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.15em;
+}
+
+article.prose details.plain a[href^='http']:hover,
+article.prose details.plain a[href^='http']:focus-visible {
+	color: var(--accent);
+}
+
+article.prose .equation {
+	margin: 1.2rem 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	font-size: calc(0.95em * var(--fit, 1));
+	scroll-margin-top: 5rem;
+}
+
+article.prose .katex {
+	font-size: 1.04em;
+}
+
+article.prose .equation.wide .katex-display > .katex {
+	text-align: left;
+}
+
+article.prose .equation.wide .katex-html {
+	white-space: nowrap;
+}
+
+article.prose .equation.wide .katex-html > .tag,
+article.prose .equation.wide .katex-html > .katex-tag {
+	position: static;
+	margin-left: 1.2em;
+}
+
+/* short inline formulas should not break across lines */
+article.prose p .katex,
+article.prose li .katex {
+	white-space: nowrap;
+}
+
+/* on a phone a long one may, at its operators, rather than run off the screen */
+@media (max-width: 640px) {
+	article.prose p .katex,
+	article.prose li .katex,
+	article.prose .nowrap {
+		white-space: normal;
+	}
+}
+
+article.prose a.xref,
+article.prose .cite a {
+	text-decoration: none;
+	color: var(--accent);
+}
+
+article.prose .cite {
+	font: 400 0.82em var(--font-sans);
+	white-space: nowrap;
+}
+
+article.prose figure {
+	margin: 2.6rem 0;
+	scroll-margin-top: 4.5rem;
+}
+
+article.prose figcaption {
+	margin-top: 0.8rem;
+	font: 400 0.86rem/1.52 var(--font-sans);
+	color: var(--text-dim);
+}
+
+article.prose figcaption .label {
+	color: var(--text);
+	font-weight: 600;
+}
+
+article.prose figcaption .katex {
+	font-size: 1em;
+}
+
+article.prose figure.table {
+	overflow-x: auto;
+}
+
+article.prose table {
+	width: 100%;
+	border-collapse: collapse;
+	font: 400 0.9rem/1.45 var(--font-sans);
+}
+
+article.prose th,
+article.prose td {
+	text-align: left;
+	vertical-align: top;
+	padding: 0.6rem 1rem 0.6rem 0;
+	border-bottom: 1px solid var(--line);
+}
+
+article.prose th {
+	font-weight: 500;
+	font-style: italic;
+	color: var(--text-dim);
+	border-bottom-color: var(--line-strong);
+}
+
+/* small capitals for words only: maths keeps its letters (π is not Π) */
+article.prose th .katex {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 1.25em;
+}
+
+article.prose th.right,
+article.prose td.right {
+	text-align: right;
+	padding: 0.6rem 0 0.6rem 1rem;
+	font-variant-numeric: tabular-nums;
+}
+
+article.prose th.center,
+article.prose td.center {
+	text-align: center;
+}
+
+/* the outer cells sit on the edges of the table, so its text is centred
+   between them */
+article.prose th:last-child,
+article.prose td:last-child {
+	padding-right: 0;
+}
+
+article.prose th.right:first-child,
+article.prose td.right:first-child {
+	padding-left: 0;
+}
+
+/* a table of numbers keeps its own width, centred in the column */
+article.prose figure.table.numeric table {
+	width: auto;
+	margin-inline: auto;
+}
+
+article.prose figure.table.numeric th.right,
+article.prose figure.table.numeric td.right {
+	padding-left: clamp(0.7rem, 3vw, 1.6rem);
+}
+
+article.prose figure.table.numeric th.right:first-child,
+article.prose figure.table.numeric td.right:first-child {
+	padding-left: 0;
+}
+
+article.prose ol.references {
+	padding-left: 1.6rem;
+	font: 400 0.86rem/1.5 var(--font-sans);
+	color: var(--text-dim);
+}
+
+article.prose ol.references li {
+	margin: 0.5rem 0;
+	scroll-margin-top: 5rem;
+}
+
+article.prose ol.references p {
+	margin: 0;
+}
+
+/* where a link has just taken you: the number in the accent, no band */
+article.prose :target .number,
+article.prose .equation:target .katex-tag {
+	color: var(--accent);
+}
