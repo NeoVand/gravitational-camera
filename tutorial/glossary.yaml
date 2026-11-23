@@ -550,3 +550,211 @@ terms:
     definition: 'A complex vector that is not zero but whose dot product with itself, taken without a conjugate, is zero, such as $\mathbf m = (1, i, 0)/\sqrt2$.'
     chapter: '1.5b'
     anchor: complex-vectors-a-direction-whose-square-is-zero
+  - term: gravitational wave
+    definition: 'A ripple in space, sent out by moving masses, that travels at the speed of light and stretches and squeezes everything it passes through.'
+    chapter: '0.1'
+  - term: magnetic part
+    definition: 'The second kind of tide, made by moving masses. It does not stretch or squeeze; it turns gyroscopes at neighbouring points slightly relative to one another. In empty space it is five numbers.'
+    role: curv
+    chapter: '0.1'
+    anchor: the-tide-at-a-point-is-a-table-of-numbers-ten-in-all
+  - term: near field
+    definition: 'The region close to a source, within about a sixth of the wavelength it would radiate ($r \ll \lambda/2\pi$), where its tide follows it at once and falls at least as fast as one over the distance cubed. Also called the near zone.'
+    chapter: '0.1'
+    anchor: near-a-source-a-pixel-feels-its-pull-and-far-away-its-waves
+  - term: wave zone
+    definition: 'The region far from a source, beyond about a sixth of its wavelength, where its tide arrives as a gravitational wave and falls as one over the distance.'
+    chapter: '0.1'
+    anchor: near-a-source-a-pixel-feels-its-pull-and-far-away-its-waves
+  - term: thermal glow
+    definition: 'The gravitational waves sent out by the jiggling atoms of warm matter, at very high frequencies. For a body at 300 K the glow, counted per unit frequency, peaks at $1.76 \times 10^{13}$ Hz, a wavelength of 17 μm.'
+    chapter: '0.1'
+    anchor: near-a-source-a-pixel-feels-its-pull-and-far-away-its-waves
+  - term: graviton
+    definition: 'The smallest packet of gravitational-wave energy, as the photon is of light.'
+    chapter: '0.3'
+    anchor: only-a-changing-lopsidedness-sends-out-waves
+  - term: compactness
+    definition: 'Newton''s constant times a body''s mass, divided by its radius and by the square of the speed of light, $GM/Rc^2$: a pure number that says how strongly the body curves space. About $7 \times 10^{-10}$ for the Earth and one half at a black hole''s horizon.'
+    chapter: '0.3'
+  - term: line of sight
+    definition: 'The straight line from the camera in one direction. In the near field, the picture in each direction shows the mass along that line, each part weighted by one over its distance.'
+    chapter: '0.2'
+    anchor: the-camera-weighs-what-it-sees-through-anything
+  - term: blind spot
+    definition: 'Two scenes that the camera cannot tell apart at any sensitivity, such as a hollow shell and a solid ball of the same mass seen from outside.'
+    chapter: '0.2'
+    anchor: the-outside-of-a-body-does-not-settle-its-inside
+  - term: evanescent
+    definition: 'Fading with distance as $e^{-kz}$: in empty space, a ripple of the pull with crests $2\pi/k$ apart weakens this way with the height $z$, so fine detail fades fastest.'
+    chapter: '0.2'
+    anchor: fine-detail-fades-with-distance-much-faster-than-coarse-detail
+  - term: noise
+    definition: 'Small random changes in an instrument''s reading that are present even when there is nothing to measure.'
+    chapter: '0.2'
+    anchor: the-blur-shrinks-only-with-the-number-of-digits-of-the-sensitivity
+  - term: signal-to-noise ratio
+    definition: 'The size of a signal divided by the typical size of the noise, a pure number. Chapter 3.7 gives the exact form the paper uses for the near-field camera.'
+    chapter: '0.2'
+    anchor: the-blur-shrinks-only-with-the-number-of-digits-of-the-sensitivity
+  - term: blur
+    definition: 'The width of the camera''s best picture of a single point, as an angle seen from the camera. In the near field it is 24° at a signal-to-noise ratio of a thousand.'
+    chapter: '0.2'
+    anchor: the-blur-shrinks-only-with-the-number-of-digits-of-the-sensitivity
+  - term: bit
+    definition: 'The answer to one yes-or-no question, the unit of information.'
+    chapter: '0.2'
+    anchor: a-blurred-picture-can-still-give-a-precise-measurement
+  - term: quadrupole moment
+    definition: 'The measure of how far a body''s mass is drawn out along some axis, like a rugby ball or a dumbbell, rather than spread evenly as in a sphere. A body sends out gravitational waves when its quadrupole moment changes.'
+    chapter: '0.3'
+    anchor: only-a-changing-lopsidedness-sends-out-waves
+  - term: diffraction limit
+    definition: 'The rule that a wave cannot show details much smaller than its own wavelength. A camera of width $D$ resolves angles of about $\lambda/D$.'
+    chapter: '0.3'
+    anchor: a-slow-body-is-far-smaller-than-its-waves-so-it-is-a-point
+  - term: circular polarization
+    definition: 'A wave whose pattern of stretch and squeeze turns round as it passes, as the wave of a turning pair does when seen along its axis.'
+    chapter: '0.3'
+    anchor: a-point-still-shows-which-way-it-turns
+  - term: linear polarization
+    definition: 'A wave whose pattern of stretch and squeeze only pulses along fixed directions, as the wave of a turning pair does when seen edge-on.'
+    chapter: '0.3'
+    anchor: a-point-still-shows-which-way-it-turns
+  - term: circular fraction
+    definition: 'The share of a wave''s signal that is circularly polarized, $V/I$, a pure number between $-1$ and $+1$. Its sign gives the sense in which the source turns, and its size the tilt of the axis.'
+    chapter: '0.3'
+    anchor: a-point-still-shows-which-way-it-turns
+  - term: viscosity
+    definition: 'The internal friction with which matter resists the sliding of neighbouring layers past one another, measured in pascal seconds. Water''s everyday viscosity is about $10^{-3}$ Pa s.'
+    chapter: '0.3'
+    anchor: matter-is-transparent-so-warm-matter-glows-throughout
+  - term: "Kirchhoff's law"
+    definition: 'The rule that a body which absorbs a kind of radiation also gives it off when it is warm, and the better it absorbs, the more it gives off.'
+    chapter: '0.3'
+    anchor: matter-is-transparent-so-warm-matter-glows-throughout
+  - term: picture element
+    definition: 'One part of a picture that can be told apart from its neighbours. In a picture made by counting gravitons, each needs about 2500 counts for a ten per cent difference to stand five standard deviations above the counting noise.'
+    chapter: '0.3'
+    anchor: a-first-image-the-sun-at-midnight-and-how-few-gravitons-arrive
+  - term: orbit
+    definition: 'The path of a body that moves round another under gravity alone. A circle, an ellipse, or, for a body that is not caught, an open curve.'
+    chapter: '1.8'
+    anchor: a-circular-orbit-is-a-fall-that-keeps-missing
+  - term: period
+    definition: 'The time a repeating motion takes to come back to where it started: for an orbit, the time of one turn.'
+    chapter: '1.8'
+    anchor: a-circular-orbit-is-a-fall-that-keeps-missing
+  - term: "Kepler's third law"
+    definition: 'The square of the period of an orbit is proportional to the cube of its size: $T = 2\pi\sqrt{a^3/GM}$.'
+    chapter: '1.8'
+    anchor: a-circular-orbit-is-a-fall-that-keeps-missing
+  - term: "Kepler's second law"
+    definition: 'The line from the centre to an orbiting body sweeps equal areas in equal times, at the rate $L/2m$. It holds for every central force.'
+    chapter: '1.8'
+    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+  - term: "Kepler's first law"
+    definition: 'Under gravity alone a bound orbit is an ellipse with the central mass at one focus.'
+    chapter: '1.8'
+    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+  - term: bound
+    definition: 'A body or system is bound when its total energy is negative, so that no part can escape to a great distance.'
+    chapter: '1.8'
+    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+  - term: escape speed
+    definition: 'The speed at which a bodys total energy is zero, $\sqrt{2GM/r}$; at the Earths surface $11.2\,\mathrm{km\,s^{-1}}$.'
+    chapter: '1.8'
+    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+  - term: semi-major axis
+    definition: 'Half the longest diameter of an elliptical orbit. It alone fixes the orbits energy and period.'
+    chapter: '1.8'
+    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+  - term: eccentricity
+    definition: 'The pure number that fixes the shape of an orbit: 0 for a circle, between 0 and 1 for an ellipse, 1 or more for an open orbit.'
+    chapter: '1.8'
+    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+  - term: flyby
+    definition: 'An encounter in which a mass arrives from far away, passes a body and leaves again.'
+    chapter: '1.8'
+    anchor: a-fast-passing-mass-gives-every-part-of-a-body-a-sideways-kick
+  - term: impact parameter
+    definition: 'The distance between a point and the straight line along which a passing mass moves.'
+    chapter: '1.8'
+    anchor: a-fast-passing-mass-gives-every-part-of-a-body-a-sideways-kick
+  - term: impulse approximation
+    definition: 'Treating a fast pass as a set of sudden kicks: the passing mass moves on a straight line, and the parts of the body it passes do not move until it has gone.'
+    chapter: '1.8'
+    anchor: a-fast-passing-mass-gives-every-part-of-a-body-a-sideways-kick
+  - term: projected surface density
+    definition: 'The density of a body added up along a direction, in kilograms per square metre: the mass that lies over each point of a plane at right angles to it.'
+    role: matter
+    chapter: '1.8'
+    anchor: what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass
+  - term: recoil
+    definition: 'The kinetic energy of a body moving as a whole, $\tfrac12MV_{\rm cm}^2$, as distinct from the motion of its parts relative to its centre of mass.'
+    chapter: '1.8'
+    anchor: what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass
+  - term: internal energy
+    definition: 'The kinetic energy of the parts of a body relative to its centre of mass: the total kinetic energy minus the recoil.'
+    chapter: '1.8'
+    anchor: what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass
+  - term: virial theorem
+    definition: 'For a bound system held by gravity, twice the time average of the kinetic energy equals minus the time average of the potential energy, $2\langle K\rangle = -\langle U\rangle$. Chapter 1.8 states it; chapter 12.1 derives it.'
+    chapter: '1.8'
+    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+  - term: state
+    definition: 'Everything needed to predict the motion of a system, given the forces: the position and the momentum of each of its parts.'
+    chapter: '1.7'
+    anchor: a-state-is-a-position-and-a-momentum
+  - term: phase space
+    definition: 'The space of all states of a system, with one axis for each coordinate and one for each momentum: $6N$ axes for $N$ particles. The state at one moment is a point in it, and its motion a curve.'
+    chapter: '1.7'
+    anchor: a-state-is-a-position-and-a-momentum
+  - term: Hamiltonian
+    definition: 'The energy of a system written as a function of its positions and momenta, $H$, in joules. For a cart on a spring, $p^2/2m + \tfrac12kq^2$.'
+    chapter: '1.7'
+    anchor: a-state-is-a-position-and-a-momentum
+  - term: action
+    definition: 'A quantity measured in joule seconds, an energy times a time. The area that a periodic motion encloses in phase space is one: $2\pi E/\omega$ for an oscillator.'
+    chapter: '1.7'
+    anchor: a-state-is-a-position-and-a-momentum
+  - term: "Hamilton's equations"
+    definition: 'The laws of motion in phase space, $\dot q = \partial H/\partial p$ and $\dot p = -\partial H/\partial q$. For particles in a potential they are Newton''s second law, written as two equations of first order.'
+    chapter: '1.7'
+    anchor: hamiltons-equations-are-newtons-law-split-in-two
+  - term: Poisson bracket
+    definition: 'The combination $\{F, G\} = \sum_a(\partial F/\partial\mathbf x_a\cdot\partial G/\partial\mathbf p_a - \partial F/\partial\mathbf p_a\cdot\partial G/\partial\mathbf x_a)$ of two quantities. Any quantity changes in time at the rate $\{F, H\}$.'
+    chapter: '1.7'
+    anchor: the-poisson-bracket-gives-the-rate-of-change-of-anything
+  - term: generator
+    definition: 'A quantity $G$ read as the source of a motion of the state, along which every quantity changes at the rate $\mathrm dF/\mathrm ds = \{F, G\}$. The energy generates motion in time, the momentum a slide, the angular momentum a turn.'
+    chapter: '1.7'
+    anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
+  - term: constant of motion
+    definition: 'A quantity that stays the same along every motion of a system. A quantity is one exactly when its Poisson bracket with the energy is zero.'
+    chapter: '1.7'
+    anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
+  - term: symmetry
+    definition: 'A motion of the state that leaves the energy of a system unchanged, such as a slide of every part when the forces depend only on differences of positions.'
+    chapter: '1.7'
+    anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
+  - term: "Noether's theorem"
+    definition: 'Each symmetry of a system gives a constant of motion, its generator. In Hamilton''s form: $G$ is constant exactly when $\{G, H\} = 0$, which is exactly when the motion $G$ generates leaves $H$ unchanged.'
+    chapter: '1.7'
+    anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
+  - term: generators of rotation
+    definition: 'The three fixed tables $(L_k)_{ij} = -\epsilon_{kij}$. A small turn changes an arrow by $\delta a_i = \theta_k(L_k)_{ij}a_j = (\boldsymbol\theta\times\mathbf a)_i$, and a finite one is $\exp(\theta\,\hat u\cdot L)$.'
+    chapter: '1.7'
+    anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
+  - term: kick
+    definition: 'A force that acts for so short a time that the body does not move while it acts. A kick of impulse $\mathbf J$ changes the kinetic energy by $\mathbf v\cdot\mathbf J + J^2/2m$.'
+    chapter: '1.7'
+    anchor: a-sudden-kick-changes-the-kinetic-energy-in-two-parts
+  - term: impulsive tide
+    definition: 'A tide that acts for an instant, with the potential $-\epsilon\,g(\mathbf x)\,\delta(t)$. It gives each part of a body the impulse $\epsilon m\nabla g$ where it stands and leaves the energy $\epsilon\dot Q_g + \tfrac12\epsilon^2\int\rho|\nabla g|^2\,\mathrm dV$.'
+    chapter: '1.7'
+    anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass
+  - term: moment of the mass
+    definition: 'The integral $Q_h = \int\rho\,h\,\mathrm dV$ of a body''s density against a function $h$. For $h$ harmonic these are the numbers that the steady field outside the body holds.'
+    chapter: '1.7'
+    anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass

@@ -215,8 +215,9 @@ symbols:
     tex: '(L_k)_{ij}'
     role: none
     kind: Three antisymmetric tables of pure numbers
-    meaning: 'The tables $(L_k)_{ij} = -\epsilon_{kij}$. A small turn by the angle vector $\boldsymbol\theta$ changes a vector by $\delta a_i = \theta_k(L_k)_{ij}a_j$, which is $\boldsymbol\theta\times\mathbf a$. The paper uses them to turn, and to boost, the curvature one pixel reads.'
+    meaning: 'The tables $(L_k)_{ij} = -\epsilon_{kij}$. A small turn by the angle vector $\boldsymbol\theta$ changes a vector by $\delta a_i = \theta_k(L_k)_{ij}a_j$, which is $\boldsymbol\theta\times\mathbf a$. The paper uses them, with an imaginary angle, to boost the curvature that a moving pixel reads.'
     chapter: '1.7'
+    anchor: every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant
   - key: angular-velocity
     title: Angular velocity
     tex: '\boldsymbol\Omega'
@@ -400,3 +401,75 @@ symbols:
     meaning: 'The paper''s one complex table for the ten numbers a pixel reads, $\mathcal W = \mathcal E + i\mathcal B$, with the tide $\mathcal E$ as its real part and the magnetic part $\mathcal B$ as its imaginary part. For a plane wave it is a square, $\mathcal W = 2(\mathcal E_+ - i\mathcal E_\times)\,\mathbf m\mathbf m^{\mathsf T}$. Chapter 9.3 studies it.'
     chapter: '1.5b'
     anchor: complex-vectors-a-direction-whose-square-is-zero
+  - key: orbital-period
+    title: Period of an orbit
+    tex: 'T'
+    role: none
+    kind: A number; in seconds
+    meaning: 'The time of one turn of an orbit. For a circle of radius $r$ round a mass $M$, $T = 2\pi\sqrt{r^3/GM}$, Kepler''s third law; for an ellipse, $r$ becomes the semi-major axis $a$. In terms of the tide, $T = 2\pi\sqrt{2/|\mathcal E_{xx}|}$. (In chapters on heat, $T$ is a temperature.)'
+    chapter: '1.8'
+    anchor: a-circular-orbit-is-a-fall-that-keeps-missing
+  - key: semi-major-axis
+    title: Semi-major axis
+    tex: 'a'
+    role: none
+    kind: A length; in metres
+    meaning: 'Half the longest diameter of an elliptical orbit. It alone sets the orbit''s energy, $E = -GMm/2a$, and its period, $T = 2\pi\sqrt{a^3/GM}$. (The paper uses $a$ for several other things; see each chapter.)'
+    chapter: '1.8'
+    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+  - key: passing-mass
+    title: Passing mass
+    tex: '\matter{\mu}'
+    role: matter
+    kind: A number; in kilograms
+    meaning: 'A mass that flies past a body on a nearly straight line at the speed $V$, in the paper''s Section XIII. (In Sections IV and VI the paper writes $\mu$ for the rigidity of a solid.)'
+    chapter: '1.8'
+    anchor: a-fast-passing-mass-gives-every-part-of-a-body-a-sideways-kick
+  - key: flyby-constant
+    title: Strength of a pass
+    tex: 'C'
+    role: none
+    kind: A constant; in m² s⁻¹
+    meaning: 'The constant $C = 2G\mu/V$ of a mass $\mu$ passing at the speed $V$. A part of a body at the distance $B$ from the path receives the sideways velocity $C/B$, toward the path, wherever it lies along it.'
+    chapter: '1.8'
+    anchor: a-fast-passing-mass-gives-every-part-of-a-body-a-sideways-kick
+  - key: projected-density
+    title: Projected surface density
+    tex: '\matter{\Sigma}'
+    role: matter
+    kind: A number at each point of a plane; mass per unit area, in kg/m²
+    meaning: 'The density of a body added up along a direction, $\Sigma(\mathbf s) = \int\rho\,\mathrm dz$: the mass that lies over each square metre of a plane at right angles to that direction. The energy a passing mass leaves in a body is a weighted integral of it, the paper''s Eq. (pass).'
+    chapter: '1.8'
+    anchor: what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass
+  - key: hamiltonian
+    title: Hamiltonian
+    tex: 'H'
+    role: none
+    kind: A function of the positions and momenta; in joules
+    meaning: 'The energy of a system written in terms of the positions and momenta of its parts, for particles $H = \sum_a p_a^2/2m_a + V$. Hamilton''s equations $\dot q = \partial H/\partial p$, $\dot p = -\partial H/\partial q$ move the state, and every quantity changes at the rate $\dot F = \{F, H\}$. (The paper also uses $H$ for the Wiener filter, a count of bits and the profile of an impulsive wave.)'
+    chapter: '1.7'
+    anchor: a-state-is-a-position-and-a-momentum
+  - key: poisson-bracket
+    title: Poisson bracket
+    tex: '\{F, G\}'
+    role: none
+    kind: An operation on two quantities; unit that of $FG$ divided by a joule second
+    meaning: 'The sum $\sum_a(\partial F/\partial\mathbf x_a\cdot\partial G/\partial\mathbf p_a - \partial F/\partial\mathbf p_a\cdot\partial G/\partial\mathbf x_a)$, in the paper''s order. It gives the rate of change of any quantity, $\dot F = \{F, H\}$, and the motion a quantity generates, $\mathrm dF/\mathrm ds = \{F, G\}$. The basic brackets are $\{x_i, p_j\} = \delta_{ij}$.'
+    chapter: '1.7'
+    anchor: the-poisson-bracket-gives-the-rate-of-change-of-anything
+  - key: mass-moment
+    title: Moment of the mass
+    tex: 'Q_h'
+    role: none
+    kind: A number; in kilograms times the unit of $h$
+    meaning: 'The integral of the density against a function of position, $Q_h = \int\rho\,h\,\mathrm dV = \sum_a m_ah(\mathbf x_a)$. For $h$ harmonic these are the numbers the steady field outside a body holds. Its rate of change is $\dot Q_h = \sum_a\mathbf p_a\cdot\nabla h(\mathbf x_a)$, and an impulsive tide of profile $g$ is the motion generated by $Q_g$.'
+    chapter: '1.7'
+    anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass
+  - key: impulse-strength
+    title: Strength of an impulsive tide
+    tex: '\epsilon'
+    role: none
+    kind: A number; its product with the profile $g$ is in m² s⁻¹
+    meaning: 'The strength of the impulsive tide whose potential is $-\epsilon\,g(\mathbf x)\,\delta(t)$. Each part of mass $m$ receives the impulse $\epsilon m\nabla g$, so $\epsilon\nabla g$ is the velocity it gains. Not the Levi-Civita symbol $\epsilon_{ijk}$, which has three indices.'
+    chapter: '1.7'
+    anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass

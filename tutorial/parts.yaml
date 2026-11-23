@@ -15,9 +15,9 @@ parts:
     slug: evening
     title: The camera in one evening
     chapters:
-      - { id: '0.1', slug: evening/a-camera-for-gravity, title: 'A camera for gravity: the pixel, the tide, the three regimes', short: A camera for gravity, size: S, status: planned }
-      - { id: '0.2', slug: evening/through-walls, title: 'Seeing mass through walls, and why the picture blurs', short: Through walls, size: S, status: planned }
-      - { id: '0.3', slug: evening/waves-and-heat, title: 'Waves too long to see, and the glow of heat', short: Waves and heat, size: S, status: planned }
+      - { id: '0.1', slug: evening/a-camera-for-gravity, title: 'A camera for gravity: the pixel, the tide, the three regimes', short: A camera for gravity, size: S, status: published }
+      - { id: '0.2', slug: evening/through-walls, title: 'Seeing mass through walls, and why the picture blurs', short: Through walls, size: S, status: published }
+      - { id: '0.3', slug: evening/waves-and-heat, title: 'Waves too long to see, and the glow of heat', short: Waves and heat, size: S, status: published }
       - { id: '0.4', slug: evening/one-pixel, title: "One pixel does a camera's work", short: One pixel, size: S, status: planned }
       - { id: '0.5', slug: evening/what-the-outside-keeps, title: 'What the outside of a body keeps', short: What the outside keeps, size: S, status: planned }
       - { id: '0.6', slug: evening/how-to-read, title: 'How to read the rest: units, scales, notation, routes, how to read an equation', short: How to read, size: S, status: planned }
@@ -34,7 +34,7 @@ parts:
       - { id: '1.5b', slug: newton/complex-numbers, title: "Complex numbers: the shear as one number, rotations you can multiply, Euler's formula", short: Complex numbers, size: M, status: published }
       - { id: '1.6', slug: newton/motion, title: 'Motion: energy, momentum, rigid bodies, rotating frames', short: Motion, size: L, status: published }
       - { id: '1.7', slug: newton/hamilton, title: "Hamilton's mechanics: phase space, brackets, generators", short: "Hamilton's mechanics", size: M, status: planned }
-      - { id: '1.8', slug: newton/orbits-and-kicks, title: 'Orbits, flybys and kicks; the virial theorem', short: Orbits and kicks, size: M, status: planned }
+      - { id: '1.8', slug: newton/orbits-and-kicks, title: 'Orbits, flybys and kicks', short: Orbits and kicks, size: M, status: planned }
       - { id: R1, slug: newton/reading-section-ii, title: 'Reading Section II, the Newtonian half', short: Reading Section II, size: M, status: planned, reads: [sec:pixel] }
 
   - id: '2'
