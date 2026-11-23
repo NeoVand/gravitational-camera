@@ -360,7 +360,9 @@
 		color: var(--accent);
 	}
 
+	/* no number here, so ordinary flow: a title with inline maths wraps as one run of text */
 	.sections a {
+		display: block;
 		padding: 0.2rem 0 0.2rem 3.35rem;
 		font-size: 0.85rem;
 	}

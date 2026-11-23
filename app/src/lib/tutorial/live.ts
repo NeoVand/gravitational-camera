@@ -26,6 +26,8 @@ import GravitonCount from './live/GravitonCount.svelte';
 import FlybyKick from './live/FlybyKick.svelte';
 import PhaseSpace from './live/PhaseSpace.svelte';
 import ScaleLadder from './live/ScaleLadder.svelte';
+import AveragingNoise from './live/AveragingNoise.svelte';
+import SkyPatterns from './live/SkyPatterns.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -102,6 +104,15 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'graviton-count': {
 		label: 'Gravitons counted one at a time, and the picture they allow',
 		component: GravitonCount
+	},
+	'sky-patterns': {
+		label: 'A sphere of patterns, one degree at a time, and a cap rebuilt from its degrees',
+		component: SkyPatterns
+	},
+	'averaging-noise': {
+		label:
+			'Readings averaged N at a time, and their noise falling as one over the square root of N',
+		component: AveragingNoise
 	},
 	'scale-ladder': {
 		label: 'The paper’s tides and lengths on one ladder of powers of ten',
