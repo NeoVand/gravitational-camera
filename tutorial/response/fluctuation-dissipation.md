@@ -23,19 +23,9 @@ So we ask why a body that has friction must also tremble, and by exactly how muc
 fluctuation–dissipation theorem. With it the paper's two ways of reading a body's inside, watching its warm tremor and
 pushing it with a tide, become one measurement, and a pixel becomes a thermometer.[^letters]
 
-<!-- diagram: tut-fd-hero — Hero, in the stone pipeline (design/FIGURE_WORKFLOW.md), seen from the side, wide (16:9),
-ball and distance to one scale. Left: 4.1's steel ball of radius 10 cm (the body of tut-osc-hero, the steel ball's
-grey), drawn at one end of the swing of its lowest quadrupole mode, longer along the horizontal axis: 4.3's shape
-u = (q/R)(−x/2, −y/2, z) with z along the axis and q = 2.2 × 10⁻¹⁶ m (the warm ball's root-mean-square swing)
-exaggerated 10¹⁴ times to 2.2 cm, so the semi-axes are 12.2 cm along the axis and 8.9 cm across it; the ball at rest
-as a thin dashed circle. Round the ball, a faint haze of about 300 small grey dots within 20 cm of its surface, the
-warm air. Right, centred 1 m from the ball's centre on the same axis: chapter 1.4's ring of twelve small free balls,
-radius 10 cm, in the plane of the page, drawn three times faintly overlaid as it trembles: stretched along the axis
-(balls on an orange ellipse, 15% longer along the axis), at rest (on a thin dashed circle) and squeezed along the axis
-(on a blue ellipse, 15% shorter). No hand, hammer or push arrow anywhere; no text in the panel. Caption: "Look first
-at the ring: nothing pushes the ball, and still its tide a metre away trembles at the ball's note, because the ball is
-warm. The ball's change of shape and the ring's are exaggerated; the ball and the distance are to scale; the air is
-schematic." -->
+![Look first at the ring: nothing pushes the ball, and still its tide a metre away trembles at the ball's note,
+because the ball is warm. The ball's change of shape and the ring's are exaggerated; the ball and the distance are to
+scale; the air is schematic.](tut-fd-hero){#fig:warm-ball}
 
 ::: plain
 A grain of dust in water is pushed about at random by the water's molecules, and the same molecules slow it down when
@@ -116,19 +106,12 @@ $6\pi\matter\eta R_{\rm b}v$, which is **Stokes's law** of 1851, stated here wit
 **A number.** A plastic bead of radius $0.5\unit{\mu m}$ and density $1050\unit{kg\,m^{-3}}$ in water ($\matter\eta =
 1.0\times10^{-3}\unit{Pa\,s}$) at 293 K has $\matter m\Gamma = 9.4\times10^{-9}\unit{kg\,s^{-1}}$ and the diffusion
 constant $4.3\times10^{-13}\unit{m^2\, s^{-1}}$. In one second it wanders $\sqrt{2 \times 4.3\times10^{-13}}\unit{m} =
-0.93\unit{\mu m}$ along each axis, about its own diameter, and it does so although its speed along one axis is about
-$3\unit{mm\,s^{-1}}$. Its velocity is forgotten after $1/\Gamma = 6\times10^{-8}\unit{s}$, so in a second it changes
-direction about ten million times and gets almost nowhere.
+0.93\unit{\mu m}$ along each axis, about its own diameter (Figure [](#fig:grain)), and it does so although its speed
+along one axis is about $3\unit{mm\,s^{-1}}$. Its velocity is forgotten after $1/\Gamma = 6\times10^{-8}\unit{s}$, so in
+a second it changes direction about ten million times and gets almost nowhere.
 
-<!-- diagram: tut-fd-grain — Two panels side by side (stack at 390 px). Left: one simulated Langevin path of the bead
-(radius 0.5 µm, water at 293 K, diffusion constant 4.29 × 10⁻¹³ m² s⁻¹), projected on the x–y plane over 1 s and
-sampled at 400 steps of 2.5 ms, each step a Gaussian displacement with standard deviation √(2 × 4.29 × 10⁻¹³ ×
-2.5 × 10⁻³) m = 46 nm along each axis (fixed seed); the path as a thin dark polyline, an open dot at the start, a
-filled dot at the end, the bead drawn to scale as a 1 µm disc at the end, and a scale bar of 1 µm. Right: the bead
-enlarged (a disc 4 cm across on the page) in a crowd of about 60 small water molecules; five thin arrows into the
-bead from molecules striking it, labelled once "kicks, F_th", and one thicker arrow pointing opposite to a velocity
-arrow v, labelled "drag, −mΓv". Caption: "Look first at the scale bar: in one second the bead wanders about its own
-diameter. The path is one simulated record; the molecules and arrows on the right are schematic." -->
+![Look first at the scale bar: in one second the bead wanders about its own diameter. The path is one simulated
+record; the molecules and arrows on the right are schematic.](tut-fd-grain){#fig:grain}
 
 ::: history
 ### Einstein, Langevin and Perrin
@@ -179,16 +162,11 @@ $9.1\times10^{-12}\unit m$, about a sixth of the radius of a hydrogen atom.
 
 So a body trembles, at each frequency, in proportion to its friction there, and where it has no friction it does not
 tremble. More friction does not make the cart tremble more in all: the line becomes lower and wider by the same
-factor, and its area stays fixed by equipartition.
+factor, and its area stays fixed by equipartition (Figure [](#fig:lines)).
 
-<!-- diagram: tut-fd-lines — One panel, about 3:2. Horizontal axis ω/ω₀ from 0 to 2.5, linear, ticks every 0.5;
-vertical axis S_q in units of 2k_BT/kω₀, logarithmic from 10⁻³ to 40, ticks at each power of ten. For Q = 3 (thin
-line) and Q = 30 (thicker line), the exact curve S_q(ω) = 2k_BT·mΓ|χ|² with Γ = ω₀/Q, drawn solid; on each curve,
-dots at ω/ω₀ = 0.05, 0.10, …, 2.50 giving 2k_BT Im χ/ω, which lie exactly on it. Labels "Q = 3" and "Q = 30" beside
-the peaks, off the curves; a legend "S_q (line), 2k_BT Im χ/ω (dots)". Neutral ink; no colour roles. Caption: "Look
-first at the dots: the trembling and the friction over the frequency coincide at every frequency and for both quality
-factors. More friction lowers and widens the line; its area, k_BT/k, is the same. Curves exact." Place after the
-paragraph that ends "its area stays fixed by equipartition". -->
+![Look first at the dots: the trembling and the friction over the frequency coincide at every frequency and for
+both quality factors. More friction lowers and widens the line; its area, $\kB T/k$, is the same. Curves
+exact.](tut-fd-lines){#fig:lines}
 
 ## The theorem holds for every linear body, at every frequency
 
@@ -273,16 +251,12 @@ which is the paper's sum rule:
 
 {{paper eq:sum-rule}}
 
-Chapter 4.5 reached the same equation from causality and the response of dust. Here it comes from heat:
-equipartition fixes the trembling, and the theorem turns the trembling into the response. This is what the paper means
-by "Eq. (thermal-moment) becomes the energy-weighted sum rule".
+Chapter 4.5 reached the same equation from causality and the response of dust. Here it comes from heat (Figure
+[](#fig:meeting)): equipartition fixes the trembling, and the theorem turns the trembling into the response. This is
+what the paper means by "Eq. (thermal-moment) becomes the energy-weighted sum rule".
 
-<!-- diagram: tut-fd-meeting — Three boxes in a triangle, thin strokes, about 3:2. Top box: "the sum rule
-(2/π)∫₀^∞ ω Im χ_h dω = ∫ρ|∇h|² dV". Bottom-left box: "a warm body: ⟨Q̇_h²⟩ = k_BT ∫ρ|∇h|² dV (4.2,
-equipartition)", with an arrow up to the top box labelled "fluctuation–dissipation theorem (4.6)". Bottom-right box:
-"a pushed body: χ_h → −∫ρ|∇h|² dV/ω² far above its modes (4.5, dust)", with an arrow up to the top box labelled
-"causality (4.5)". The left arrow orange, the right arrow blue (the two accent colours); boxes neutral. Caption: "Look
-first at the two arrows: heat and causality reach the same total from opposite sides. Schematic." -->
+![Look first at the two arrows: heat and causality reach the same total from opposite sides.
+Schematic.](tut-fd-meeting){#fig:meeting}
 
 So the tremor watched at a known temperature and the response to a known tide measure the same number, the inertia
 $\int\matter\rho|\nabla h|^2\,\dd V$. The tremor needs the temperature to be known; the push works at any temperature,
@@ -518,7 +492,7 @@ and feels no net force from the uniform part of the outside field. Outside bodie
 push.
 
 So the push enters the energy as $-fy$ with $y = D\!:\!\curv{\tE}$, the pixel's own reading, and the theorem applies to
-the pair.
+the pair (Figure [](#fig:thermometer)).
 
 **The shell's own field.** The pixel reads the whole tide at its place, so its reading holds the shell's own tide as
 well as the body's. The pixel lies inside the shell, and 2.3's interior expansion, of which only degree two
@@ -534,17 +508,8 @@ $\chi_{yy}$: it adds to $\mathrm{Re}\,\chi_{yy}$ and nothing to $\mathrm{Im}\,\c
 uses. A body whose modes are at different temperatures reads as "an average of its temperatures, weighted by
 where it dissipates".[^unequal]
 
-<!-- diagram: tut-fd-thermometer — A section through the shell in the x–z plane, z up, about 4:3. At the centre, the
-pixel as a small ring of twelve free balls (chapter 1.4's ring, 1/10 of the shell's radius). The shell as a circle of
-radius a, its stroke coloured by δσ ∝ −n̂·D·n̂ for D = diag(−½, −½, 1), which in this section is −(cos²ϑ − ½sin²ϑ)
-with ϑ the angle from z: orange where mass is added (around the equator, ϑ = 90°, value +½), blue where it is removed
-(at the poles, value −1), neutral at the two zeros cos²ϑ = 1/3 (ϑ = 54.7° and its mirror images), strength as line
-weight from 0.5 to 3 px. A body (a disc in the steel ball's grey, radius 0.3a) outside the shell at the right, its
-centre at 2a on the x axis. Two labelled arrows, off the geometry: from the shell to the body "push: energy −f D:E";
-from the body to the pixel "reading: y = D:E". A small inset at the lower right: one resonance line drawn twice, S_yy
-(solid) and 2k_BT Im χ_yy/ω (dots on it), with the label "ratio → T". Caption: "Look first at the colours on the
-shell: mass is moved to make a pattern of degree two, which pushes on exactly what the pixel reads. Pattern exact;
-sizes and the inset schematic." -->
+![Look first at the colours on the shell: mass is moved to make a pattern of degree two, which pushes on exactly
+what the pixel reads. Pattern exact; sizes and the inset schematic.](tut-fd-thermometer){#fig:thermometer}
 
 **Read now.** A black hole answers a slow tide with pure friction, $\mathrm{Im}\,\chi = \nu\omega$ (the paper's
 [](/paper/#eq:horizon-friction), chapter 11.4), and its quadrupole trembles with the flat spectrum $S_Q$ of the paper's
