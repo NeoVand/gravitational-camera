@@ -1140,6 +1140,14 @@ symbols:
     meaning: 'The work a push does per second, averaged over a swing: $\bar P = \tfrac12\omega\,\mathrm{Im}\,\chi(\omega)\,|\tilde F|^2$ for a push of phasor $\tilde F$. Plotted against the frequency it is a line of width $\Gamma$. (Not a projector $P_{ij}$.)'
     chapter: '4.1'
     anchor: only-the-imaginary-part-of-the-response-takes-energy-from-the-push
+  - key: shear-speed
+    title: Speed of shear waves
+    tex: 'c_T'
+    role: none
+    kind: A speed; in m s⁻¹
+    meaning: 'The speed $c_T = \sqrt{\mu/\rho}$ at which a shear travels through a solid of shear modulus $\mu$ and density $\rho$. Steel has $c_T \approx 3000\ \mathrm{m\,s^{-1}}$, a hundred-thousandth of the speed of light.'
+    chapter: '4.3'
+    anchor: a-solid-carries-two-kinds-of-sound
   - key: temperature
     title: Temperature
     tex: 'T'
@@ -1156,3 +1164,75 @@ symbols:
     meaning: 'The number of states of a large body, its heat bath, that have the energy $E$: the volume of phase space at that energy, cut into cells. Its logarithm grows smoothly, and its slope is $1/k_BT$. (Not a rotation rate or a solid angle.)'
     chapter: '4.2'
     anchor: the-chance-of-a-state-falls-exponentially-with-its-energy
+  - key: displacement
+    title: Displacement
+    tex: '\boldsymbol{u}'
+    role: none
+    kind: A vector at each point of a solid; in metres
+    meaning: 'How far the bit of a solid that sat at $\boldsymbol x$ has moved, to $\boldsymbol x + \boldsymbol u(\boldsymbol x)$. Only the way it changes from point to point, the strain, stretches the material. (Not the paper''s retarded time $u = t - r/c$.)'
+    chapter: '4.3'
+    anchor: a-deformation-is-a-displacement-field-and-its-strain-is-the-part-that-changes-lengths
+  - key: strain-tensor
+    title: Strain
+    tex: 'u_{ij}'
+    role: none
+    kind: A symmetric table of pure numbers
+    meaning: 'The symmetric part of the derivatives of the displacement, $u_{ij} = \tfrac12(\partial_iu_j + \partial_ju_i)$. A short step along the unit vector $\hat n$ grows by the fraction $u_{ij}\hat n_i\hat n_j$; the trace $u_{kk}$ is the fractional change of volume, and the trace-free part $\tilde u_{ij}$ is a shear. Landau and Lifshitz''s letter, chosen so that $\epsilon_{ijk}$ keeps its meaning.'
+    chapter: '4.3'
+    anchor: a-deformation-is-a-displacement-field-and-its-strain-is-the-part-that-changes-lengths
+  - key: stress-tensor
+    title: Stress
+    tex: '\matter{T_{ij}}'
+    role: matter
+    kind: A symmetric table; force per area, in pascals
+    meaning: 'The force per area that material exerts across a small face: $T_{ij}\hat n_j\,\mathrm dA$ on a face of area $\mathrm dA$ and normal $\hat n$. A fluid at rest has $T_{ij} = -p\,\delta_{ij}$. The paper''s $T_{kl}$ in its wave-zone formula is the same table, with the flow of momentum included. (A temperature $T$ has no indices.)'
+    chapter: '4.3'
+    anchor: stress-is-force-per-area-and-it-too-is-a-symmetric-table
+  - key: bulk-modulus
+    title: Bulk modulus
+    tex: '\matter{K}'
+    role: matter
+    kind: A number; in pascals
+    meaning: 'The pressure needed for each unit of fractional loss of volume, $p = -K\,\delta V/V$: the stiffness of a material against a change of size. The tutorial''s steel has 145 GPa (handbook steels near 160 GPa), water 2.2 GPa. (Not chapter 1.6''s kinetic energy, nor the bold stiffness matrix $\mathbf K$.)'
+    chapter: '4.3'
+    anchor: in-a-uniform-solid-the-stress-answers-each-part-of-the-strain-with-its-own-modulus
+  - key: shear-modulus
+    title: Shear modulus
+    tex: '\matter{\mu}'
+    role: matter
+    kind: A number; in pascals
+    meaning: 'The rigidity of a material, its stiffness against a change of shape: the trace-free stress is $2\mu$ times the trace-free strain. The tutorial''s steel, with $c_T = 3000\ \mathrm{m\,s^{-1}}$ and $\rho = 7850\ \mathrm{kg\,m^{-3}}$, has $\mu = \rho c_T^2 = 71$ GPa; a liquid at rest has $\mu = 0$. (Not a passing mass, as in chapter 1.8.)'
+    chapter: '4.3'
+    anchor: in-a-uniform-solid-the-stress-answers-each-part-of-the-strain-with-its-own-modulus
+  - key: elastic-energy-density
+    title: Elastic energy density
+    tex: '\varepsilon_{\rm el}'
+    role: none
+    kind: A number at each point; in joules per cubic metre
+    meaning: 'The energy stored in each cubic metre of a strained solid, $\varepsilon_{\rm el} = \tfrac12K\,u_{kk}^2 + \mu\,\tilde u_{ij}\tilde u_{ij}$, half the stress times the strain. It is positive for every strain in a stable solid.'
+    chapter: '4.3'
+    anchor: a-strain-stores-energy-half-the-stress-times-the-strain
+  - key: compressional-speed
+    title: Speed of compressional sound
+    tex: 'c_L'
+    role: none
+    kind: A speed; in m s⁻¹
+    meaning: 'The speed $c_L = \sqrt{(K + \tfrac43\mu)/\rho}$ of a sound wave that moves a solid along its direction of travel. It is always faster than shear sound; for steel it is about 1.84 times $c_T$, and in a liquid it is ordinary sound, 1480 m/s in water.'
+    chapter: '4.3'
+    anchor: a-solid-carries-two-kinds-of-sound
+  - key: stiffness-matrix
+    title: Stiffness matrix
+    tex: '\mathbf K'
+    role: none
+    kind: A symmetric matrix, one row and column per coordinate; in N m⁻¹
+    meaning: 'The table that gives the energy stored in a set of springs, $\tfrac12\mathbf q^{\mathsf T}\mathbf K\mathbf q$, and the force $-\mathbf K\mathbf q$ on the coordinates $\mathbf q$. Its zero directions are the motions that stretch no spring. (Bold, so that it is not the bulk modulus $K$.)'
+    chapter: '4.3'
+    anchor: masses-on-springs-move-in-normal-modes
+  - key: mass-matrix
+    title: Mass matrix
+    tex: '\mathbf M'
+    role: none
+    kind: A diagonal matrix; in kilograms
+    meaning: 'The table that gives the kinetic energy of a set of masses, $\tfrac12\dot{\mathbf q}^{\mathsf T}\mathbf M\dot{\mathbf q}$, with each mass on the diagonal once for each of its coordinates. The normal modes are the eigenvectors of $\mathbf M^{-1/2}\mathbf K\mathbf M^{-1/2}$. (Bold, so that it is not a mass $M$.)'
+    chapter: '4.3'
+    anchor: masses-on-springs-move-in-normal-modes

@@ -1955,3 +1955,92 @@ terms:
     definition: 'The random wandering of a whole body in a warm bath: its centre of mass moves like one particle of the whole mass, with $\langle\dot x_{\rm cm}^2\rangle = k_BT/M$.'
     chapter: '4.2'
     anchor: the-first-case-is-brownian-motion-and-the-next-ones-see-inside
+  - term: displacement field
+    definition: 'The distance and direction $\boldsymbol u(\boldsymbol x)$, in metres, by which each bit of a deformed solid has moved from its place at rest.'
+    chapter: '4.3'
+    anchor: a-deformation-is-a-displacement-field-and-its-strain-is-the-part-that-changes-lengths
+  - term: strain tensor
+    definition: 'The symmetric table $u_{ij} = \tfrac12(\partial_iu_j + \partial_ju_i)$ of a displacement field, a pure number for each pair of directions. A short step along $\hat n$ grows by the fraction $u_{ij}\hat n_i\hat n_j$, and the trace $u_{kk}$ is the fractional change of volume.'
+    chapter: '4.3'
+    anchor: a-deformation-is-a-displacement-field-and-its-strain-is-the-part-that-changes-lengths
+  - term: shear of a solid
+    definition: 'A deformation whose strain has no trace: it changes the shape of each small piece of the solid and not its volume.'
+    chapter: '4.3'
+    anchor: a-deformation-is-a-displacement-field-and-its-strain-is-the-part-that-changes-lengths
+  - term: stress
+    definition: 'The force per area that the bits of a material exert on one another, a symmetric table $T_{ij}$ in pascals: a face of area $\mathrm dA$ with normal $\hat n$ feels the force $T_{ij}\hat n_j\,\mathrm dA$.'
+    role: matter
+    chapter: '4.3'
+    anchor: stress-is-force-per-area-and-it-too-is-a-symmetric-table
+  - term: pressure
+    definition: 'The average push of a stress, $p = -\tfrac13T_{kk}$, in pascals. A fluid at rest pushes with it equally on every face. The air presses with $10^5$ Pa.'
+    chapter: '4.3'
+    anchor: stress-is-force-per-area-and-it-too-is-a-symmetric-table
+  - term: "Hooke's law"
+    definition: 'The rule that a small strain makes a stress in proportion to it. For an isotropic solid it is $T_{ij} = K\,u_{kk}\delta_{ij} + 2\mu\,\tilde u_{ij}$, with only two moduli.'
+    chapter: '4.3'
+    anchor: in-a-uniform-solid-the-stress-answers-each-part-of-the-strain-with-its-own-modulus
+  - term: isotropic material
+    definition: 'A material with no preferred direction, so that turning a strain turns its stress in the same way. Steel, made of many small grains pointing every way, is one, and so is glass, which is amorphous; a single crystal is not.'
+    chapter: '4.3'
+    anchor: in-a-uniform-solid-the-stress-answers-each-part-of-the-strain-with-its-own-modulus
+  - term: bulk modulus
+    definition: 'The pressure $K$ needed for each unit of fractional loss of volume, in pascals: the stiffness of a material against a change of size.'
+    role: matter
+    chapter: '4.3'
+    anchor: in-a-uniform-solid-the-stress-answers-each-part-of-the-strain-with-its-own-modulus
+  - term: shear modulus
+    definition: 'The stiffness $\mu$ of a material against a change of shape, in pascals, also called its rigidity. The tutorial''s steel has 71 GPa; a liquid at rest has none.'
+    role: matter
+    chapter: '4.3'
+    anchor: in-a-uniform-solid-the-stress-answers-each-part-of-the-strain-with-its-own-modulus
+  - term: elastic energy
+    definition: 'The energy stored in a strained solid, $\tfrac12K\,u_{kk}^2 + \mu\,\tilde u_{ij}\tilde u_{ij}$ per cubic metre: half the stress times the strain.'
+    chapter: '4.3'
+    anchor: a-strain-stores-energy-half-the-stress-times-the-strain
+  - term: shear sound
+    definition: 'A wave in a solid that moves the material across its direction of travel, at the speed $c_T = \sqrt{\mu/\rho}$; 3000 m/s in the tutorial''s steel. A liquid carries none.'
+    chapter: '4.3'
+    anchor: a-solid-carries-two-kinds-of-sound
+  - term: compressional sound
+    definition: 'A wave in a solid or fluid that moves the material along its direction of travel, at the speed $c_L = \sqrt{(K + \tfrac43\mu)/\rho}$; 5520 m/s in the tutorial''s steel and 1480 m/s in water.'
+    chapter: '4.3'
+    anchor: a-solid-carries-two-kinds-of-sound
+  - term: stiffness matrix
+    definition: 'The symmetric matrix $\mathbf K$ that gives the energy $\tfrac12\mathbf q^{\mathsf T}\mathbf K\mathbf q$ stored in a set of springs when the masses move by the list of displacements $\mathbf q$.'
+    chapter: '4.3'
+    anchor: masses-on-springs-move-in-normal-modes
+  - term: mass matrix
+    definition: 'The diagonal matrix $\mathbf M$ that gives the kinetic energy $\tfrac12\dot{\mathbf q}^{\mathsf T}\mathbf M\dot{\mathbf q}$ of a set of masses.'
+    chapter: '4.3'
+    anchor: masses-on-springs-move-in-normal-modes
+  - term: zero mode
+    definition: 'A normal mode of frequency zero, a motion that stretches no spring and does not ring. A free body has six: three translations and three turns.'
+    chapter: '4.3'
+    anchor: masses-on-springs-move-in-normal-modes
+  - term: "Rayleigh's method"
+    definition: 'An estimate of a body''s lowest frequency from a guessed shape: the stiffness of the shape over its mass. It can only overestimate the lowest frequency among the modes the shape contains, and a good guess comes close.'
+    chapter: '4.3'
+    anchor: a-guessed-shape-overestimates-the-lowest-note-and-a-good-guess-comes-close
+  - term: effective mass
+    definition: 'The mass that a body carries in a given shape of motion, read off its kinetic energy $\tfrac12m_{\rm eff}\dot q^2$. For Appendix A''s quadrupole shape of a uniform ball it is $3M/10$.'
+    chapter: '4.3'
+    anchor: a-guessed-shape-overestimates-the-lowest-note-and-a-good-guess-comes-close
+  - term: effective stiffness
+    definition: 'The stiffness of a body against a given shape, read off its stored energy $\tfrac12k_{\rm eff}q^2$. For Appendix A''s quadrupole shape of a uniform ball it is $3\mu V/R^2$.'
+    chapter: '4.3'
+    anchor: a-guessed-shape-overestimates-the-lowest-note-and-a-good-guess-comes-close
+  - term: simple cubic lattice
+    definition: 'The corners of a stack of equal cubes. Each site has six nearest neighbours, one edge away along the axes, and twelve next-nearest, across the diagonal of a face. Appendix A builds its ball of 924 masses on one.'
+    chapter: '4.3'
+  - term: note of a body
+    definition: 'A frequency at which a body rings. A quadrupole note is one whose ringing changes the body''s mass quadrupole; for a steel ball 10 cm in radius the lowest is 12.6 kHz (15 kHz by Rayleigh''s method).'
+    chapter: '4.3'
+  - term: mass-weighted product
+    definition: 'The product $\mathbf v^{\mathsf T}\mathbf M\mathbf w$ of two motions of a set of masses, or $\int\rho\,\boldsymbol u\cdot\boldsymbol v\,\mathrm dV$ for a solid. Normal modes are perpendicular in it.'
+    chapter: '4.3'
+    anchor: masses-on-springs-move-in-normal-modes
+  - term: second moment of mass
+    definition: 'The table $\int\rho\,x_ix_j\,\mathrm dV$, in kg m², of how a body''s mass is spread along each pair of directions. For a uniform ball of mass $M$ and radius $R$ it is $\tfrac15MR^2\delta_{ij}$.'
+    chapter: '4.3'
+    anchor: a-guessed-shape-overestimates-the-lowest-note-and-a-good-guess-comes-close
