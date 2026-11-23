@@ -532,10 +532,10 @@ $2\pi/b$ apart, all equal. This is also why an array of pixels $b$ apart confuse
 
 ### The paper
 
-In [*The information in a near-field image*](/paper/#par:the-information-in-a-near-field-image) the paper says that
-the patterns that survive the noise "are the components with $q < q_c$, and there are $q_c^2/4\pi$ of them per area
-$z^2$". Here $q = kz$, and $q_c$ is the cut-off of equation [](/paper/#eq:cutoff), 10.4 at $\SNR = 10^3$ (chapter 3.7).
-Derive the count from [](#eq:count) and evaluate it.
+In [*The information in a near-field image*](/paper/#par:the-information-in-a-near-field-image) the paper says that the
+patterns that survive the noise "are the components with $q < q_c$, and there are $q_c^2/4\pi$ of them per area $z^2$".
+Here $q = kz$, and $q_c$ is the cut-off of the paper's equation [](/paper/#eq:cutoff), 10.4 at $\SNR = 10^3$ (chapter
+3.7). Derive the count from [](#eq:count) and evaluate it.
 
 ::: solution
 The surviving ripples are those with $k < q_c/z$, a disc of area $\pi q_c^2/z^2$ in the plane of wavevectors. By
@@ -555,18 +555,18 @@ At $q_c = 10.4$ this is $108/12.6 = 8.6$, the paper's "about nine patterns". The
   3.7).
 - [*The information in a near-field image*](/paper/#par:the-information-in-a-near-field-image) counts
   $A\,\dd^2k/(2\pi)^2$ ripples in each $\dd^2k$ to reach equation [](/paper/#eq:capacity-integral) (chapter 3.8).
-- Equation [](/paper/#eq:wave-zone) in [*A source larger than its wave*](/paper/#par:a-source-larger-than-its-wave)
-  transforms the source's stress $T_{kl}$ (the flow of momentum through it, in pascals) over space and time with this
-  chapter's signs, $e^{i\omega t - i\vect k\cdot\vect x}$; there $k$ and $l$ are indices for directions. Each direction
-  of the sky carries one ripple of the stress.
-- Equation [](/paper/#eq:calderon) (Section XIII) weighs the density $\matter\rho$, in kilograms per cubic metre,
+- The paper's equation [](/paper/#eq:wave-zone) in [*A source larger than its
+  wave*](/paper/#par:a-source-larger-than-its-wave) transforms the source's stress $T_{kl}$ (the flow of momentum
+  through it, in pascals) over space and time with this chapter's signs, $e^{i\omega t - i\vect k\cdot\vect x}$; there
+  $k$ and $l$ are indices for directions. Each direction of the sky carries one ripple of the stress.
+- Section XIII's equation [](/paper/#eq:calderon) weighs the density $\matter\rho$, in kilograms per cubic metre,
   against $e^{i\vect\xi\cdot\vect x}$, with $\vect\xi$ a wavevector in space. That function is not harmonic, since its
   Laplacian is $-|\vect\xi|^2$ times itself, but it is the product of two harmonic functions (chapter
   [2.1](/tutorial/outside/laplace/#the-product-of-two-harmonic-functions-is-not-harmonic) shows that such products are
   not harmonic in general). The sign is that of the function, so a real density gives the complex conjugate of this
   chapter's transform.
-- Equation [](/paper/#eq:scene-transform) weighs the density against $e^{i\vect K\cdot\vect a - \kappa z}$, with
-  $\vect K$ a wavevector across the plane and $\kappa$ a rate of decay with depth, both in $\mathrm{m^{-1}}$. For
+- The paper's equation [](/paper/#eq:scene-transform) weighs the density against $e^{i\vect K\cdot\vect a - \kappa z}$,
+  with $\vect K$ a wavevector across the plane and $\kappa$ a rate of decay with depth, both in $\mathrm{m^{-1}}$. For
   $\kappa = |\vect K|$ this is the flat camera's harmonic function, a ripple that fades with depth (chapter 2.4). Its
   part across the plane is the plane's transform with the opposite sign, so it gives the complex conjugate. Its real
   factor $e^{-\kappa z}$ is not a ripple and has no row in the table (chapter 13.2).

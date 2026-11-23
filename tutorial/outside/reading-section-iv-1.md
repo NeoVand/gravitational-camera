@@ -197,8 +197,9 @@ because $\hat n\times\vect J$ is zero for a vector along $\hat n$, so "the magne
 Doppler radar" (2.8, *checked here*). Its blur, at a signal-to-noise ratio "smaller by about $v/c$", is R3's.
 
 "For a single moving mass $|\tB|/|\tE| = \sqrt3\,v_\perp/c$ (Frobenius norms) to first order in $v/c$", where $v_\perp$
-is the speed across the line of sight. Given equation [](/paper/#eq:magnetic-point), 1.5's stretch problem derives it
-([1.5](/tutorial/newton/five-numbers/#across-a-wave-two-numbers-are-left-and-a-turn-of-45-swaps-them)). With $\vect w = \hat n\times\vect v$, of length $v_\perp$, the bracket is the sum of the table $\hat n_iw_j$ and its
+is the speed across the line of sight. Given the paper's equation [](/paper/#eq:magnetic-point), 1.5's stretch problem
+derives it ([1.5](/tutorial/newton/five-numbers/#across-a-wave-two-numbers-are-left-and-a-turn-of-45-swaps-them)). With
+$\vect w = \hat n\times\vect v$, of length $v_\perp$, the bracket is the sum of the table $\hat n_iw_j$ and its
 transpose, each of length $v_\perp$. The two stand at right angles, because the sum of the products of their matching
 entries is
 
@@ -214,7 +215,7 @@ $$\frac{\sqrt3 \times 1.4\unit{m\,s^{-1}}}{2.998 \times 10^8\unit{m\,s^{-1}}} = 
 $-2G\matter M/r^3$ (1.4, *checked here*), and the ratio gives the sideways speed. The **principal null directions** are
 four directions on the sky along which the field takes its simplest form
 ([0.4](/tutorial/evening/one-pixel/#four-special-directions-sort-every-reading)); that they give the sideways velocity
-exactly at any speed, equation [](/paper/#eq:star-velocity) of Section VIII, is *read now, derived in Part 9*.
+exactly at any speed, Section VIII's equation [](/paper/#eq:star-velocity), is *read now, derived in Part 9*.
 
 "Outside a spherical body spinning with angular momentum $\mathbf L$ the field is exactly that of a spin dipole." Here
 $\sym{angular-momentum}{\vect L}$ is the angular momentum, in $\mathrm{kg\,m^2\,s^{-1}}$. The paper's formula is *read
@@ -257,12 +258,12 @@ $\field\psi = A(1 - r^2/R^2)^2$ and $A = \pi GR^2\matter\rho_0/3$, $\epsilon = 1
 densities positive, and there the balls reach $13{,}100$ and $15{,}700\unit{kg\,m^{-3}}$ (*checked here*). The word
 "ordinary" holds for small $\epsilon$: at $\epsilon = 0.1$ both balls stay within 10 per cent of steel's density.
 
-"The tidal column is therefore a rendering of a known scene … and not a quantity the camera could reconstruct
-uniquely", because the two balls of a pair have different tidal columns but the same field outside (2.5, *checked
-here*). "The near-field images of this paper show $S$ computed from the scene and blurred by" the
-blur law, equation [](/paper/#eq:resolution). In Figure [](/paper/#fig:locked-safe), panel (b) shows $S$ exactly, with
-the room, and panel (c) exactly with the known room subtracted; only panel (d) is blurred. The blur is *read now,
-derived in Part 3* ([3.7](/tutorial/noise/blur-law/#what-the-law-means)), and R3 reads the panels.
+"The tidal column is therefore a rendering of a known scene … and not a quantity the camera could reconstruct uniquely",
+because the two balls of a pair have different tidal columns but the same field outside (2.5, *checked here*). "The
+near-field images of this paper show $S$ computed from the scene and blurred by" the blur law, the paper's equation
+[](/paper/#eq:resolution). In Figure [](/paper/#fig:locked-safe), panel (b) shows $S$ exactly, with the room, and panel
+(c) exactly with the known room subtracted; only panel (d) is blurred. The blur is *read now, derived in Part 3*
+([3.7](/tutorial/noise/blur-law/#what-the-law-means)), and R3 reads the panels.
 
 ::: try {#scene-locked-safe}
 Predict first: the concrete floor of the room is mass too. Will it glow in the gravity view? Drag the divider to the
@@ -305,8 +306,8 @@ itself harmonic: it is built from the data's own kernels, which are." Such an es
 any reading, every point inside is assumed to vary by the same amount, independently of the others. Each reading is a
 moment $\int\matter\rho\,h\,\dd V$ for some harmonic $h$, its **kernel**, and the estimate adds these kernels with
 weights, so it is harmonic too. The harmonic part also has the least $\int\matter\rho^2\,\dd V$ among all interiors with
-the same outside (2.5, *checked here*). That the Wiener filter of equation
-[](/paper/#eq:wiener) is of this kind is *read now, derived in Part 3*
+the same outside (2.5, *checked here*). That the Wiener filter of the paper's
+equation [](/paper/#eq:wiener) is of this kind is *read now, derived in Part 3*
 ([3.5](/tutorial/noise/wiener-filter/#a-linear-guess-cannot-keep-mass-positive-and-with-a-white-prior-it-is-harmonic)).
 
 "By the maximum principle, the least assuming picture … has its densest and its lightest points on the surface. It can

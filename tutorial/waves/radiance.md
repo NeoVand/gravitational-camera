@@ -315,7 +315,7 @@ sixteen times as bright through its middle. The
 
 We want the paper's [](/paper/#eq:jN-friction), the number emissivity of a material in terms of its friction and its
 temperature, because the heights of the paper's images measure it. We assume that **the friction $\matter\eta$ is the
-same at every frequency**, so that $\alpha = 16\pi G\matter\eta/c^3$ of [](/paper/#eq:alpha) is too.
+same at every frequency**, so that $\alpha = 16\pi G\matter\eta/c^3$ of the paper's [](/paper/#eq:alpha) is too.
 
 **Step 1: the power.** We add Kirchhoff's law over all frequencies. With $\alpha$ constant,
 
@@ -416,9 +416,9 @@ cross.[^f] It is a length, as it should be, since $R^2/h$ is in metres. **A chec
 $n = 1.5$, 2 cm in radius and 4 mm thick at its centre gives $f = 10$ cm, as it should. As $n \to 1$ the focus moves to
 infinity.
 
-**A steel lens.** For a gravitational wave of 1 kHz in steel, Peters's index [](/paper/#eq:index), stated in chapter
-5.1, gives $n - 1 = 8.3 \times 10^{-14}$. A lens 1 m in radius (2 m across) and 1 m thick focuses at
-$6.0 \times 10^{12}$ m, 40 AU, about Pluto's mean distance from the Sun.[^lens]
+**A steel lens.** For a gravitational wave of 1 kHz in steel, Peters's index, the paper's [](/paper/#eq:index), stated
+in chapter 5.1, gives $n - 1 = 8.3 \times 10^{-14}$. A lens 1 m in radius (2 m across) and 1 m thick focuses at $6.0
+\times 10^{12}$ m, 40 AU, about Pluto's mean distance from the Sun.[^lens]
 
 **A mirror.** Reflection needs stiffness. W. H. Press [@Press1979] found that a shear modulus $\matter\mu$ changes the
 square of the wavenumber by the fraction $16\pi G\matter\mu/c^2\omega^2$. The paper's [*The optical constants of
@@ -516,7 +516,7 @@ A steel wall 1 m thick has the placeholder friction, $10^{-3}\unit{Pa\,s}$. Find
 waves, and the fraction of a background that it removes.
 
 ::: solution
-From [](/paper/#eq:alpha), $\alpha = 16\pi G\matter\eta/c^3 = 16\pi \times 6.67 \times 10^{-11} \times
+From the paper's [](/paper/#eq:alpha), $\alpha = 16\pi G\matter\eta/c^3 = 16\pi \times 6.67 \times 10^{-11} \times
 10^{-3}/(3.00 \times 10^8)^3 = 1.2 \times 10^{-37}\unit{m^{-1}}$, so $\tau = \alpha L = 1.2 \times 10^{-37}$ for
 $L = 1$ m. A thin slab removes the fraction $1 - e^{-\tau} \approx \tau$ of its background, so the wall removes
 $1.2 \times 10^{-37}$ of it.
@@ -538,9 +538,9 @@ is larger (chapter 4.4), and its effective friction is $1.3 \times 10^{-4}\unit{
 
 ### The paper
 
-Derive [](/paper/#eq:jN-friction) from [](/paper/#eq:kirchhoff) with the two stated results,
-$\int_0^\infty B_\omega\,\dd\omega = \sigma_{\rm SB}T^4/\pi$ and the mean energy $2.70\,\kB T$. Then use
-[](/paper/#eq:lens-compactness) to check the paper's pocket lens, "eleven times the mass of the Moon".
+Derive the paper's [](/paper/#eq:jN-friction) from [](/paper/#eq:kirchhoff) with the two stated results, $\int_0^\infty
+B_\omega\,\dd\omega = \sigma_{\rm SB}T^4/\pi$ and the mean energy $2.70\,\kB T$. Then use the paper's
+[](/paper/#eq:lens-compactness) to check its pocket lens, "eleven times the mass of the Moon".
 
 ::: solution
 Kirchhoff's law with a constant $\alpha$ gives $j_E = \alpha\,\sigma_{\rm SB}T^4/\pi$, and $j_N = j_E/2.70\,\kB T =

@@ -676,16 +676,16 @@ multiplied by $v/c = 3.3\times10^{-9}$.
 :::
 
 ::: paper
-- Equation [](/paper/#eq:deviation) is the equation of motion of free balls read in this chapter: three equations,
-  one for each direction of the push, each a sum over the three directions of the separation.
+- The paper's equation [](/paper/#eq:deviation) is the equation of motion of free balls read in this chapter: three
+  equations, one for each direction of the push, each a sum over the three directions of the separation.
 - [Section II](/paper/#sec:pixel) describes the tide in plain words as a table of three rows and three columns, and
   uses the speed of the ground on the equator, 465 m s⁻¹, and the antisymmetric part $\curv{\tB}_{[ij]}$ of the
   third problem.
-- Equation [](/paper/#eq:magnetic) defines the magnetic part of the tide with $\epsilon_{ipq}$ and fixes
+- The paper's equation [](/paper/#eq:magnetic) defines the magnetic part of the tide with $\epsilon_{ipq}$ and fixes
   $\epsilon_{123} = +1$; chapter 7.5 reads it.
-- Equation [](/paper/#eq:magnetic-point) contains $\hat n\times\vect v$, which is zero for motion along the line of
-  sight by the limit of parallel vectors, so only sideways motion makes a magnetic tide.
-- Equation [](/paper/#eq:pixel-kernel) builds the sky as one pixel sees it from the projector $P_{ij}$.
+- The paper's equation [](/paper/#eq:magnetic-point) contains $\hat n\times\vect v$, which is zero for motion along the
+  line of sight by the limit of parallel vectors, so only sideways motion makes a magnetic tide.
+- The paper's equation [](/paper/#eq:pixel-kernel) builds the sky as one pixel sees it from the projector $P_{ij}$.
 - [Section VIII](/paper/#sec:one-pixel) turns the curvature that one pixel reads with the rule of equation
   [](#eq:turn).
 :::

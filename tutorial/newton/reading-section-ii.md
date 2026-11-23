@@ -475,10 +475,10 @@ Of Section II's five numbered equations, the reader can now derive two, and unde
 Every number of the section is now checked. Three of them, the quantum limit's $6.5 \times 10^{-14}\unit{s^{-2}}$,
 the Earth's magnetic part and the factor 73,100, are checked given a formula that a later part derives.
 
-Reading chapter R7 reads Section II again after Part 7. It adds equation (1) and geodesic deviation in relativity
-(7.2); the trace as $c^2R_{00}$ (7.3); equation (5), its antisymmetric part, equation [](/paper/#eq:magnetic-point) and
-the Earth's formula (7.5); and equation (4), with the factor 2 in the strain and the 45° between the two parts (7.6).
-The quantum limit waits for chapter 8.6, and $\curv{\mathcal W}$ for chapter 9.3.
+Reading chapter R7 reads Section II again after Part 7. It adds equation (1) and geodesic deviation in relativity (7.2);
+the trace as $c^2R_{00}$ (7.3); equation (5), its antisymmetric part, Section IV's equation
+[](/paper/#eq:magnetic-point) and the Earth's formula (7.5); and equation (4), with the factor 2 in the strain and the
+45° between the two parts (7.6). The quantum limit waits for chapter 8.6, and $\curv{\mathcal W}$ for chapter 9.3.
 
 ::: check
 ### Q
@@ -544,8 +544,8 @@ away.
 
 Reproduce the four numbers of the paragraph *The Earth's own tide*: $3.1 \times 10^{-6}\unit{s^{-2}}$,
 $465\unit{m\,s^{-1}}$, $4.8 \times 10^{-12}\unit{s^{-2}}$ (with $I/\matter MR^2 = 0.3307$ and the formula stated in the
-paper) and "seventy thousand", taking the person's magnetic part as $3G\matter Mv/cr^3$ from equation
-[](/paper/#eq:magnetic-point).
+paper) and "seventy thousand", taking the person's magnetic part as $3G\matter Mv/cr^3$ from the paper's
+equation [](/paper/#eq:magnetic-point).
 
 ::: solution
 The mean radius gives $2G\matter M/R^3 = 3.08 \times 10^{-6}\unit{s^{-2}}$. The equatorial radius, used for the
@@ -558,7 +558,7 @@ $6.54 \times 10^{-17}\unit{s^{-2}}$, and the ratio is 73,100. The last section s
 ::: paper
 - [Section II](/paper/#sec:pixel), its summary in plain words and its body: the falling observer, the ring, the five
   numbers, the person, LIGO and the lorry, all read above.
-- Equations [](/paper/#eq:tidal) to [](/paper/#eq:magnetic), and Figures [](/paper/#fig:tidal) and
+- The paper's equations [](/paper/#eq:tidal) to [](/paper/#eq:magnetic), and Figures [](/paper/#fig:tidal) and
   [](/paper/#fig:tidal-field): the tide, its two limits and its magnetic part.
 - [*What the premise asks*](/paper/#par:what-the-premise-asks): the instruments, the ratio of five hundred and the
   standard quantum limit.

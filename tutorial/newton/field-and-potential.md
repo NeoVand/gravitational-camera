@@ -506,7 +506,7 @@ $9.3 \times 10^{-11}\unit{m\,s^{-2}}$.
 ::: paper
 - [Section II](/paper/#sec:pixel) gives the person's tide, $2G\matter M/r^3$, the rate of change of the pull along
   the line to the person.
-- Equation [](/paper/#eq:newton) writes the tide as the second derivatives of the potential derived here.
+- The paper's equation [](/paper/#eq:newton) writes the tide as the second derivatives of the potential derived here.
 - In [Section IV](/paper/#sec:near-field), *What the image cannot show* adds to a body a density whose potential
   $\psi$ vanishes outside the body. Because potentials add, the potential outside is unchanged, and chapter 2.5 builds
   the paper's equation [](/paper/#eq:split) on this.

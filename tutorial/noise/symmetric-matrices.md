@@ -559,12 +559,12 @@ the twelve cells of the right-hand safe gives a standard deviation of 729 kg, th
 - [*A worked case*](/paper/#par:a-worked-case) (Section IV) gives the $\pm730$ kg and "a broad layer of mass has no
   tidal field at all"; [*The worked inversion*](/paper/#par:the-worked-inversion) (Appendix A) computes the image
   through the singular values of the design matrix.
-- Equation [](/paper/#eq:array-data) is the flat camera diagonalized by ripples, and [](/paper/#eq:wiener) the weight
-  each pattern receives.
+- The paper's equation [](/paper/#eq:array-data) is the flat camera diagonalized by ripples, and [](/paper/#eq:wiener)
+  the weight each pattern receives.
 - [Section II](/paper/#sec:pixel) reads one mass's tide by its eigenvalues, $-2 : 1 : 1$, and [*The magnetic
   picture*](/paper/#par:the-magnetic-picture) (Section IV) takes a body's line from an eigenvector of $\curv{\tE}$.
 - [*The trembling lattice*](/paper/#par:the-trembling-lattice) (Appendix A) uses normal modes and Rayleigh's method.
-- Equation [](/paper/#eq:ranging-instant) (Section VIII) uses the singular values of the complex matrix $\mathcal W$
+- Section VIII's equation [](/paper/#eq:ranging-instant) uses the singular values of the complex matrix $\mathcal W$
   (chapter 9.2).
 :::
 

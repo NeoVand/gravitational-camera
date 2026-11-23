@@ -429,8 +429,8 @@ dropped, because a sum of ripples that stops at one wavenumber overshoots on eit
 
 At the sensitivity $10^3$ the figure reports a blur of 0.36 depths, not the 0.45 of the estimate. It shows a row of
 pixels over line masses, the paper's two-dimensional case, and that case has its own exact blur, $3.79/q_c$ radians
-(beside equation [](/paper/#eq:resolution); chapter 2.4 quotes it). Here $q_c$ is chapter 3.7's exact counterpart of
-$k_{\max}z$, and the blur is 20.7° at $10^3$, against 24.0° for a flat array over point masses.
+(beside the paper's equation [](/paper/#eq:resolution); chapter 2.4 quotes it). Here $q_c$ is chapter 3.7's exact
+counterpart of $k_{\max}z$, and the blur is 20.7° at $10^3$, against 24.0° for a flat array over point masses.
 :::
 
 ::: check
@@ -549,7 +549,7 @@ $4.43/q_c$ wide rather than $\pi/q_c$, a difference that remains at every sensit
 - Figure [](/paper/#fig:nearfield) shows the fade merging two line masses into one bump.
 - [Section VII](/paper/#sec:no-lens) says that no lens could sharpen the gravitational near field, whose blur is this
   fade, while for light a slab of negative permittivity can.
-- Equations [](/paper/#eq:scene-transform) and [](/paper/#eq:cone) (Section XIII) weigh the scene against the
+- Section XIII's equations [](/paper/#eq:scene-transform) and [](/paper/#eq:cone) weigh the scene against the
   functions $e^{i\vect k\cdot\vect a - |\vect k|z}$, with $z$ there a depth below the camera. These functions fade
   into the scene, away from the camera, the mirror image of this chapter's fade; their rate of fading $\kappa$ equals
   $|\vect K|$ for one such function.

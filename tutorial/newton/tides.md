@@ -570,32 +570,32 @@ The size of the stretch is $2G\matter M/r^3 = 2 \times 6.674 \times 10^{-11} \ti
 10^{-9}\unit{s^{-2}}$. Because the tide goes as $r^{-3}$, its relative change is $3\,\delta r/r = 0.15$, so
 $\delta\curv{\tE}_{xx} = 1.40 \times 10^{-9}\unit{s^{-2}}$.
 
-Equation [](/paper/#eq:wave) says $\curv{\tE} = -\tfrac12\,\partial_t^2 h$. For a strain that oscillates as
+The paper's equation [](/paper/#eq:wave) says $\curv{\tE} = -\tfrac12\,\partial_t^2 h$. For a strain that oscillates as
 $\cos\omega t$, two time derivatives give a factor $-\omega^2$, so $\curv{\tE} = \tfrac12\omega^2 h$ and
 $h = 2\,\delta\curv{\tE}_{xx}/\omega^2 = 2 \times 1.40 \times 10^{-9}/39.5 = 7.1 \times 10^{-11}$. The wave changes
 one arm by $h/2 = 3.55 \times 10^{-11}$, which is equation [](#eq:arm). The difference of the two arms of the small
 detector is three quarters of $h$, the $5.3 \times 10^{-11}$ of the chapter.
 
-By equation [](/paper/#eq:tidal-brightness), at a fixed density the tide is proportional to $\theta^3$. A body that
-looks twice as wide has twice the angular size, so its tide is $2^3 = 8$ times as strong.
+By the paper's equation [](/paper/#eq:tidal-brightness), at a fixed density the tide is proportional to $\theta^3$. A
+body that looks twice as wide has twice the angular size, so its tide is $2^3 = 8$ times as strong.
 :::
 :::
 
 ::: paper
 - [Section II](/paper/#sec:pixel) begins with this falling observer, defines the tidal field, computes the person and
   the strain that a detector would read, names the lorry, and gives the Earth's tide, the turning frame and the eötvös.
-- Equation [](/paper/#eq:tidal) defines the tide in general relativity as $c^2R_{0i0j}$. Chapter 7.2 derives it,
-  and this chapter uses only its Newtonian limit.
-- Equations [](/paper/#eq:newton) and [](/paper/#eq:deviation) are this chapter's equation [](#eq:tide): the tide as
-  the Hessian of the potential, and the motion of free balls.
-- Equation [](/paper/#eq:wave) gives the tide of a gravitational wave, from which the paper takes its convention for
-  the strain.
+- The paper's equation [](/paper/#eq:tidal) defines the tide in general relativity as $c^2R_{0i0j}$. Chapter 7.2 derives
+  it, and this chapter uses only its Newtonian limit.
+- The paper's equations [](/paper/#eq:newton) and [](/paper/#eq:deviation) are this chapter's equation [](#eq:tide): the
+  tide as the Hessian of the potential, and the motion of free balls.
+- The paper's equation [](/paper/#eq:wave) gives the tide of a gravitational wave, from which it takes its convention
+  for the strain.
 - Figures [](/paper/#fig:tidal) and [](/paper/#fig:tidal-field) draw the ring beside a mass and the field around one
   and two masses.
-- Equation [](/paper/#eq:tidal-brightness), in Section IV, is the tidal brightness of a body, which sets how bright
-  the Moon, the Sun and the person look to the camera.
-- Equation [](/paper/#eq:array-data), also in Section IV, takes the camera's data to be $-\curv{\tE}_{zz}$, the
-  vertical entry with its sign reversed, so that the stretch along the vertical above a buried mass shows as a
+- The paper's equation [](/paper/#eq:tidal-brightness), in Section IV, is the tidal brightness of a body, which sets how
+  bright the Moon, the Sun and the person look to the camera.
+- The paper's equation [](/paper/#eq:array-data), also in Section IV, takes the camera's data to be $-\curv{\tE}_{zz}$,
+  the vertical entry with its sign reversed, so that the stretch along the vertical above a buried mass shows as a
   positive number.
 :::
 

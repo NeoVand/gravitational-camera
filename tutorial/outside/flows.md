@@ -435,12 +435,12 @@ It vanishes when $a^5 = R^5/2$:
 
 $$\boxed{\;a = 2^{-1/5}R = 0.871\,R .\;}$$
 
-The inner ball holds $2^{-3/5} = 66$ per cent of the mass, and the outer third, lying farther from the axis, carries
-as much angular momentum (Figure [](#fig:flow-hidden)). Outside, $\field{\vect A} = 0$ and there is no magnetic part at
+The inner ball holds $2^{-3/5} = 66$ per cent of the mass, and the outer third, lying farther from the axis, carries as
+much angular momentum (Figure [](#fig:flow-hidden)). Outside, $\field{\vect A} = 0$ and there is no magnetic part at
 all, "though all of it moves", in the paper's words. The paper's Section XIII reads this flow with two octupolar tides,
-the next finer pattern after the simple stretch and squeeze. Their bracket has the size $0.221\,\matter M\Omega R^4$,
-in $\mathrm{kg\,m^4\,s^{-1}}$ (equation [](/paper/#eq:hidden-spin), chapter 13.4), while two quadrupolar tides give
-zero, because their bracket is proportional to $\vect L$.
+the next finer pattern after the simple stretch and squeeze. Their bracket has the size $0.221\,\matter M\Omega R^4$, in
+$\mathrm{kg\,m^4\,s^{-1}}$ (the paper's equation [](/paper/#eq:hidden-spin), chapter 13.4), while two quadrupolar tides
+give zero, because their bracket is proportional to $\vect L$.
 
 
 ::: try {#hidden-flow}

@@ -483,7 +483,7 @@ noise adds almost nothing.
 
 ### The paper
 
-Reproduce the numbers of the paper's paragraph [*The number of bits*](/paper/#par:the-number-of-bits) from equation
+Reproduce the numbers of the paper's paragraph [*The number of bits*](/paper/#par:the-number-of-bits) from its equation
 [](/paper/#eq:hair-bits): 1200 bits from three radii at $10^6$, $1.7\times10^6$ at $10^{70}$, a black hole's 140 and
 1600, and the ratios "nearly nine" and "a thousand".
 

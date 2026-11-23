@@ -700,35 +700,35 @@ law.
 
 ### The paper
 
-Derive the paper's equations [](/paper/#eq:cutoff) and [](/paper/#eq:resolution) from
-[](/paper/#eq:array-data), check the first row of Table [](/paper/#tab:resolution), and read GOCE's cut-off,
-$kz$ between 11 and 12, as a signal-to-noise ratio.
+Derive the paper's equations [](/paper/#eq:cutoff) and [](/paper/#eq:resolution) from its equation
+[](/paper/#eq:array-data), check the first row of Table [](/paper/#tab:resolution), and read GOCE's cut-off, $kz$
+between 11 and 12, as a signal-to-noise ratio.
 
 ::: solution
-The gain of a ripple in [](/paper/#eq:array-data) is $T(\vect k) = 2\pi Gk\,e^{-kz}$. With the prior
-$S_\sigma = \matter{m}^2/z^2$ and the noise $N_0$, the ratio is $s = |T|\sqrt{S_\sigma/N_0} = \pi\SNR\,q\,e^{-q}$,
-and the Wiener weight $s^2/(1+s^2)$ falls through one half where $s = 1$: that is $q_ce^{-q_c} = 1/\pi\SNR$, the
-first line of [](/paper/#eq:cutoff). The first guess and one step of the iteration $q = \ln(\pi\SNR) + \ln q$ give
-its second line. Replacing $H$ by a step at $q_c$ makes the picture of a point $2J_1(u)/u$ with $u = q_ca/z$,
-which is half its peak at $u = 2.2151$, so the full width over the depth is $4.43/q_c$:
-[](/paper/#eq:resolution). At $\SNR = 10^3$, $q_c = 10.39$ and $4.43/q_c = 24.4°$ against the exact 24.0°; the
-row gives $3.79/10.39 = 20.9°$ against 20.7°, and the first estimate $\pi/\ln 10^3 = 26.1°$. For GOCE, degrees
-$\ell = 280$ to 300 give $q_c = 11.2$ to $12.0$, and $\SNR = e^{q_c}/\pi q_c$ is 2000 to 4200, the paper's "two to
-four thousand". (Rounding $q_c$ to 11 and 12 would give 1700 and 4300, so the rounding matters.)
+The gain of a ripple in the paper's [](/paper/#eq:array-data) is $T(\vect k) = 2\pi Gk\,e^{-kz}$. With the prior
+$S_\sigma = \matter{m}^2/z^2$ and the noise $N_0$, the ratio is $s = |T|\sqrt{S_\sigma/N_0} = \pi\SNR\,q\,e^{-q}$, and
+the Wiener weight $s^2/(1+s^2)$ falls through one half where $s = 1$: that is $q_ce^{-q_c} = 1/\pi\SNR$, the first line
+of the paper's [](/paper/#eq:cutoff). The first guess and one step of the iteration $q = \ln(\pi\SNR) + \ln q$ give its
+second line. Replacing $H$ by a step at $q_c$ makes the picture of a point $2J_1(u)/u$ with $u = q_ca/z$, which is half
+its peak at $u = 2.2151$, so the full width over the depth is $4.43/q_c$: the paper's [](/paper/#eq:resolution). At
+$\SNR = 10^3$, $q_c = 10.39$ and $4.43/q_c = 24.4°$ against the exact 24.0°; the row gives $3.79/10.39 = 20.9°$ against
+20.7°, and the first estimate $\pi/\ln 10^3 = 26.1°$. For GOCE, degrees $\ell = 280$ to 300 give $q_c = 11.2$ to $12.0$,
+and $\SNR = e^{q_c}/\pi q_c$ is 2000 to 4200, the paper's "two to four thousand". (Rounding $q_c$ to 11 and 12 would
+give 1700 and 4300, so the rounding matters.)
 :::
 :::
 
 ::: paper
-- Equations [](/paper/#eq:evanescent) and [](/paper/#eq:array-data) are the starting point: the fade
+- The paper's equations [](/paper/#eq:evanescent) and [](/paper/#eq:array-data) are the starting point: the fade
   $e^{-kz}$, ripple by ripple.
-- Equations [](/paper/#eq:wiener), [](/paper/#eq:cutoff) and [](/paper/#eq:resolution) are steps 3, 4 and 6 of
-  this chapter.
+- The paper's equations [](/paper/#eq:wiener), [](/paper/#eq:cutoff) and [](/paper/#eq:resolution) are steps 3, 4 and 6
+  of this chapter.
 - Table [](/paper/#tab:resolution) and Figure [](/paper/#fig:resolution-law) are what step 7 recomputes.
 - Figure [](/paper/#fig:nearfield) shows the blur, and its ringing, for two masses under a row of sensors.
 - Section [](/paper/#sec:near-field) reads the law on GOCE ("A flown gradiometer"), on clocks and accelerometers
   ("Other gravitational sensors"), and on a camera smaller than its scene ("A small camera", equation
   [](/paper/#eq:handheld)).
-- Equation [](/paper/#eq:capacity-integral) counts the $q_c^2/4\pi$ patterns per area $z^2$ that survive the
+- The paper's equation [](/paper/#eq:capacity-integral) counts the $q_c^2/4\pi$ patterns per area $z^2$ that survive the
   cut-off, and turns them into bits (chapter 3.8).
 :::
 

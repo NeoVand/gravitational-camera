@@ -649,14 +649,14 @@ $\tfrac{8\pi}{15}(4150R^5 + 8350r_c^5) = 8.01 \times 10^{37}\unit{kg\,m^2}$, and
 - [Section IV](/paper/#sec:near-field) opens with the shell theorem as the camera's first limit, and its paragraph
   "What the image cannot show" adds the densities that change nothing outside a body. Figure
   [](/paper/#fig:same-outside) shows three bodies with the same field outside.
-- Equation [](/paper/#eq:split) splits every density into the part the outside sees and the part it cannot, a split
-  that chapter 2.5 derives from Poisson's equation.
-- Equation [](/paper/#eq:tidal-column) groups matter by the solid angle $\dd\Omega$ in which the camera sees it. Its
-  integral starts a short distance from the camera, because matter at the camera itself would make the column $S$ grow
-  without bound, although not the tide; chapter 2.3 treats matter at the camera's own place.
-- Equation [](/paper/#eq:array-data) has a factor $k$, there the wavenumber of a ripple across the array (chapter 2.7)
-  rather than the constant of this chapter. That factor makes a uniform sheet invisible, because the sheet's pull,
-  $2\pi G\matter\sigma$, is the same at every height.
+- The paper's equation [](/paper/#eq:split) splits every density into the part the outside sees and the part it cannot,
+  a split that chapter 2.5 derives from Poisson's equation.
+- The paper's equation [](/paper/#eq:tidal-column) groups matter by the solid angle $\dd\Omega$ in which the camera sees
+  it. Its integral starts a short distance from the camera, because matter at the camera itself would make the column
+  $S$ grow without bound, although not the tide; chapter 2.3 treats matter at the camera's own place.
+- The paper's equation [](/paper/#eq:array-data) has a factor $k$, there the wavenumber of a ripple across the array
+  (chapter 2.7) rather than the constant of this chapter. That factor makes a uniform sheet invisible, because the
+  sheet's pull, $2\pi G\matter\sigma$, is the same at every height.
 :::
 
 ::: deeper

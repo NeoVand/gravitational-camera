@@ -157,7 +157,8 @@ parts of a holomorphic function are harmonic in the plane.
 The cube $w^3$ has the real part $x^3 - 3xy^2$ and the imaginary part $3x^2y - y^3$, with the Laplacians $6x - 6x = 0$
 and $6y - 6y = 0$, and $\tfrac13w^3$ is the pair $h + ig$ of the paper's equation [](/paper/#eq:hidden-spin). A
 non-example is $|w|^2 = x^2 + y^2$, which needs the complex conjugate of $w$: it is not holomorphic, and its Laplacian
-is 4. Chapter 3.9 uses holomorphic functions for the zeros of the shear ([](/paper/#eq:shear-zeros)).
+is 4. Chapter 3.9 uses holomorphic functions for the zeros of the shear (the paper's
+[](/paper/#eq:shear-zeros)).
 :::
 
 ## The value at the centre of a sphere is the average over the sphere

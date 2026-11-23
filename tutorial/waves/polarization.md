@@ -597,12 +597,12 @@ way its axes point.
 
 ### The paper
 
-Derive the angular factors of [](/paper/#eq:rotor-amplitudes), equation [](/paper/#eq:circular) and the factor of
-eight, by projection as in this chapter. Then, with the energy flux $c^3\langle\dot{\field h}_+^2 + \dot{\field
-h}_\times^2\rangle/16\pi G$ (stated; chapter 7.8), add up the power over a sphere of radius $r$ to recover the paper's
-[](/paper/#eq:dumbbell), and check Section V's $4.5 \times 10^{-41}$ W and "one graviton every fifteen years" for two
-1 kg masses a metre apart at sixteen turns a second, with a graviton of the wave's frequency carrying the energy
-$\hbar\omega = 2\hbar\Omega$ (stated; chapter 8.3).
+Derive the angular factors of the paper's [](/paper/#eq:rotor-amplitudes), its equation [](/paper/#eq:circular) and the
+factor of eight, by projection as in this chapter. Then, with the energy flux $c^3\langle\dot{\field h}_+^2 +
+\dot{\field h}_\times^2\rangle/16\pi G$ (stated; chapter 7.8), add up the power over a sphere of radius $r$ to recover
+the paper's [](/paper/#eq:dumbbell), and check Section V's $4.5 \times 10^{-41}$ W and "one graviton every fifteen
+years" for two 1 kg masses a metre apart at sixteen turns a second, with a graviton of the wave's frequency carrying the
+energy $\hbar\omega = 2\hbar\Omega$ (stated; chapter 8.3).
 
 ::: solution
 The first part is the section on projection and the two that follow it. For the power, the flux is $F = c^3\omega^2

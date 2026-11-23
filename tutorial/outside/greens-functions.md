@@ -180,9 +180,9 @@ metre, $4.7 \times 10^{-9}\unit{m\,s^{-2}}$.
 The logarithm grows without limit far from the line, so no constant makes this potential vanish far away. Only its
 differences, its pull and its tide are fixed, and a camera reads tides, so nothing is lost. The paper's single row of
 sensors over a two-dimensional scene sees a world of such lines. Its blur, the width of the picture of a point as an
-angle seen from the row, is $3.79/q_c$ (beside equation [](/paper/#eq:resolution)), where $q_c$ is the pure number of
-chapter 3.7 that measures how fine a detail still rises above the noise; that chapter computes the picture of a point
-in [its step 5](/tutorial/noise/blur-law/#step-5-the-picture-of-a-point-is-the-pattern-of-a-round-opening).
+angle seen from the row, is $3.79/q_c$ (beside the paper's equation [](/paper/#eq:resolution)), where $q_c$ is the pure
+number of chapter 3.7 that measures how fine a detail still rises above the noise; that chapter computes the picture of
+a point in [its step 5](/tutorial/noise/blur-law/#step-5-the-picture-of-a-point-is-the-pattern-of-a-round-opening).
 
 ![A rail seen end-on, with the circles on which its potential is constant at 0.25, 0.5, 1, 2 and 4 m from it. Each
 circle is labelled by its potential less that of the 1 m circle, in units of $2G\matter\lambda$: the radii double from
@@ -426,12 +426,13 @@ $\vect s$, which is what "analytic" asks; we take that step on trust.
 The field of one point, added up over all the sources, returns three times in the paper. The wave equation has a
 **retarded Green's function**, which delivers the field of each piece of a source late by the time light takes to cross
 the distance; chapter [5.2](/tutorial/waves/retarded-waves/#a-source-sends-its-news-outward-at-the-speed-of-the-wave)
-derives it for the paper's equation [](/paper/#eq:wave-zone). The transform of equation [](/paper/#eq:scene-transform)
-weighs the scene against the continued ripples of [the flat
+derives it for the paper's equation [](/paper/#eq:wave-zone). The transform of the paper's equation
+[](/paper/#eq:scene-transform) weighs the scene against the continued ripples of [the flat
 camera](#above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height), written $e^{i\vect k\cdot\vect a -
 |\vect k|z}$, where $\vect k$ is a vector in the camera's plane that points across the crests and has the length $k$
-(chapter 13.2). Equation [](/paper/#eq:abel), an Abel transform, adds up a round planet's glow along straight chords,
-with a weight fixed by geometry; chapter [5.6](/tutorial/waves/abel-transform/#the-transform-can-be-undone) inverts it.
+(chapter 13.2). The paper's equation [](/paper/#eq:abel), an Abel transform, adds up a round planet's glow along
+straight chords, with a weight fixed by geometry; chapter
+[5.6](/tutorial/waves/abel-transform/#the-transform-can-be-undone) inverts it.
 
 ::: check
 ### Q
@@ -517,10 +518,10 @@ $\matter mR^2 - \matter m(R^2 - s^2)/3 = \matter m(\tfrac23R^2 + \tfrac13s^2) = 
 - [Section IV](/paper/#sec:near-field), *What the image does show*: the skin of Figure [](/paper/#fig:same-outside)(c)
   is the ball's Poisson kernel times the nugget's mass.
 - *What the image cannot show*: adding $\nabla^2\field\psi/4\pi G$ "changes the potential by $\psi$", which is
-  [](#eq:superposition) with uniqueness; chapter 2.5 builds on it and on equation [](/paper/#eq:split).
-- *How sharp*: the fade of equation [](/paper/#eq:evanescent) is the half-space kernel acting on a ripple; the row of
-  equation [](/paper/#eq:resolution) and Figure [](/paper/#fig:nearfield) use line masses; downward continuation is
-  named.
+  [](#eq:superposition) with uniqueness; chapter 2.5 builds on it and on the paper's equation [](/paper/#eq:split).
+- *How sharp*: the fade of the paper's equation [](/paper/#eq:evanescent) is the half-space kernel acting on a ripple;
+  the row of the paper's equation [](/paper/#eq:resolution) and Figure [](/paper/#fig:nearfield) use line masses;
+  downward continuation is named.
 - [Section XIII](/paper/#sec:second-order), equation [](/paper/#eq:scene-transform): the harmonic functions that decay
   into the scene.
 - [Section V](/paper/#sec:waves), equation [](/paper/#eq:wave-zone): the retarded Green's function, in Part 5; and

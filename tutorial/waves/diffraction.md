@@ -238,8 +238,8 @@ which a wave from each direction fills in its own proportions, and those proport
 some fifty degrees (Part 9 derives the curve).
 
 **The paper's form, stated.** The paper's pixels record the tide $\sym{tidal-tensor}{\curv{\tE}}_{kl}$ of chapter
-[1.4](/tutorial/newton/tides/), a table, and [](/paper/#eq:beam) delays and adds it exactly as [](#eq:das) does, with
-the paper's $\hat n$ in the place of our steered $\hat n'$. Before the sum, the projector
+[1.4](/tutorial/newton/tides/), a table, and Section VII's [](/paper/#eq:beam) delays and adds it exactly as [](#eq:das)
+does, with the paper's $\hat n$ in the place of our steered $\hat n'$. Before the sum, the projector
 $\sym{tt-projector}{\Lambda_{ij,kl}}(\hat n)$ of chapter
 [5.2](/tutorial/waves/retarded-waves/#far-away-each-direction-carries-one-ripple-of-the-source) keeps only the part of
 the table that a wave from that direction can carry. The squares of all the components are then added and averaged in
@@ -608,7 +608,7 @@ from 38 to 201 (chapter 3.8), by a factor of 5.3, because the number of its patt
 
 ### The paper
 
-Reproduce the three widths of the paper's Figure [](/paper/#fig:array) from chapter 3.6's Airy pattern and
+Reproduce the three widths of the paper's Figure [](/paper/#fig:array) from chapter 3.6's Airy pattern and Section VII's
 [](/paper/#eq:diffraction), and check the paper's thermal coherence time, "about $3 \times 10^{-14}$ s at room
 temperature".
 

@@ -110,7 +110,7 @@ $h = g = xy$ it is $x^2 + y^2$, whose Laplacian is 4. So "the right-hand side ho
 
 Here $r$ is the distance from the body's centre, in metres, and $Y_{\ell m}$ are the orthonormal spherical harmonics
 of [chapter 2.2](/tutorial/outside/spherical-harmonics/), of degree $\ell$ and order $m$, an integer and not a mass.
-Chapter 4.6 derived the equation from [](/paper/#eq:thermal-moment) with 2.2's addition theorem, which gives
+Chapter 4.6 derived the equation from the paper's [](/paper/#eq:thermal-moment) with 2.2's addition theorem, which gives
 $\sum_m|\nabla(r^\ell Y_{\ell m})|^2 = \ell(2\ell + 1)^2r^{2\ell-2}/4\pi$ at every point (*checked here*). The factor
 $\ell(2\ell + 1)^2/4\pi$ is 0.716 at $\ell = 1$, 3.979 at $\ell = 2$ and 11.70 at $\ell = 3$.[^norm]
 
@@ -125,9 +125,9 @@ $1.1\times10^{-11}\unit{m\,s^{-1}}$ along each axis.
 the three steel balls of the paper's Figure [](/paper/#fig:same-outside) (R2). "And the shell from the ball, whose
 tremors differ by $5/3$ whatever their elastic constants and their friction": a uniform ball has $\int\matter\rho
 r^2\,\dd V = \tfrac35\matter MR^2$, with $R$ its radius, and a thin shell of the same mass $\matter MR^2$ (4.2, *checked
-here*). The right-hand side of [](/paper/#eq:thermal-moment) holds only the masses and their places. The springs and the
-friction "set only at which frequencies the tremor lies, not how much of it there is" (4.6, *checked here*). "The
-octupole gives $\int\rho\,r^4\,\dd V$, and so on."
+here*). The right-hand side of the paper's [](/paper/#eq:thermal-moment) holds only the masses and their places. The
+springs and the friction "set only at which frequencies the tremor lies, not how much of it there is" (4.6, *checked
+here*). "The octupole gives $\int\rho\,r^4\,\dd V$, and so on."
 
 "For a round body the whole sequence fixes the density at every radius, since a positive distribution on a finite
 interval is fixed by its moments." A round body's density depends only on $r$, and the tremors give its moments
@@ -243,7 +243,7 @@ $\sum_nc_n^2 = \sum_p\matter m_p|\nabla h(\vect x_p)|^2$, the lattice's form of 
 here*). The second sum does change with the springs, because each weight counts over the square of its frequency.
 "For $h = x$ all of it lies in the free translation": a uniform pull moves every mass alike, which is the drift of the
 whole body, so all of $\sum_nc_n^2$ lies in the three drifts. This is the Brownian motion of
-[](/paper/#eq:thermal-multipole) at $\ell = 1$ (4.6, *checked here*).
+the paper's [](/paper/#eq:thermal-multipole) at $\ell = 1$ (4.6, *checked here*).
 
 ::: try {#tremor}
 This is chapter 4.6's live figure. It draws only the quadrupole along one axis of the lattice, so it cannot show the
@@ -265,9 +265,9 @@ $\tfrac15MRq\,\mathrm{diag}(-1,-1,2)$ and so a tide $36GMRq/5r^5$ on its axis" (
 estimates, not the exact modes of a steel sphere": the bound lies 20% above Lamb's note.
 
 The last paragraph of the appendix is quantum. In it $\chi_0 = \sym{tide-response}{\chi_h}(0)$ is the **static
-compliance**, how far $\matter Q_h$ moves per unit of a steady tide, and $\sym{response-sum}{A}$ is the total of the sum
-rule [](/paper/#eq:sum-rule), read [below](#a-push-measures-the-same-total-at-any-temperature). The quantum form of
-the theorem gives
+compliance**, how far $\matter Q_h$ moves per unit of a steady tide, and $\sym{response-sum}{A}$ is the total of the
+paper's sum rule [](/paper/#eq:sum-rule), read [below](#a-push-measures-the-same-total-at-any-temperature). The quantum
+form of the theorem gives
 
 {{paper eq:jitter-bounds}}
 
@@ -389,8 +389,8 @@ Here $[\,\cdot\,,\,\cdot\,]$ is the commutator of two quantum quantities (*read 
 "The Poisson bracket of classical mechanics has the same form", which chapter
 [1.7](/tutorial/newton/hamilton/#the-bracket-of-two-moments-weighs-the-inside) derived (*checked here*). "The
 right-hand side appears elsewhere": in classical equilibrium it is $\kB T$ times the mean product of the rates,
-[](/paper/#eq:thermal-moment); it is "the whole weight of the response to an applied tide",
-[](/paper/#eq:sum-rule); and far above every frequency at which the body can respond,
+the paper's [](/paper/#eq:thermal-moment); it is "the whole weight of the response to an applied tide",
+the paper's [](/paper/#eq:sum-rule); and far above every frequency at which the body can respond,
 
 {{paper eq:dust}}
 
@@ -398,7 +398,7 @@ right-hand side appears elsewhere": in classical equilibrium it is $\kB T$ times
 ([4.5](/tutorial/response/causality/#driven-faster-than-its-bonds-every-body-answers-as-dust), *checked here*). So one
 integral, $\int\matter\rho\,\nabla h\cdot\nabla g\,\dd V$, is read in four ways.
 
-| Where it appears | What the integral is there | Taught in |
+| Where it appears in the paper | What the integral is there | Taught in |
 |---|---|---|
 | [](/paper/#eq:hair-commutator) | the bracket of $\matter Q_h$ and $\matter{\dot Q}_g$, over $i\hbar$ | 1.7 (classical); 8.2 |
 | [](/paper/#eq:thermal-moment) | the mean product of two rates of change, over $\kB T$ | 4.2 |
@@ -480,11 +480,11 @@ and an applied tide.
 | [](/paper/#eq:sum-rule) | the friction's total is $\int\matter\rho\,|\nabla h|^2\,\dd V$ | derived | 4.5, 4.6 |
 | [](/paper/#eq:thermometer) | the ratio of tremor to response is the temperature | derived | 4.6 |
 
-With R2's and R3's ledgers, eighteen of the twenty are now derived in full. [](/paper/#eq:current-column) is derived in
-its integral; its weight, and [](/paper/#eq:magnetic-point), the magnetic part of one moving mass, wait for chapter
-7.5. Part 4 has also derived Section VI's [](/paper/#eq:maxwell) (4.4) and [](/paper/#eq:friction-sum) (4.5), Section
-XIII's [](/paper/#eq:dust) (4.5), and the classical side of Appendix A's [](/paper/#eq:jitter-bounds) (4.6), whose
-quantum side waits for Part 8.
+With R2's and R3's ledgers, eighteen of the twenty are now derived in full. Section IV's [](/paper/#eq:current-column)
+is derived in its integral; its weight, and [](/paper/#eq:magnetic-point), the magnetic part of one moving mass, wait
+for chapter 7.5. Part 4 has also derived Section VI's [](/paper/#eq:maxwell) (4.4) and [](/paper/#eq:friction-sum)
+(4.5), Section XIII's [](/paper/#eq:dust) (4.5), and the classical side of Appendix A's [](/paper/#eq:jitter-bounds)
+(4.6), whose quantum side waits for Part 8.
 
 ::: check
 ### Q

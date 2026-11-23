@@ -571,7 +571,8 @@ a little below zero.
 - [Section IV](/paper/#sec:near-field), *What the image cannot show*: $\delta\rho = \nabla^2\psi/4\pi G$ and the
   positive pairs $\rho_0 \pm \epsilon\,\delta\rho$.
 - *What the image does show*: equations [](/paper/#eq:split) and [](/paper/#eq:harmonic-point), "It can never show a
-  core", the round body at $5513\unit{kg\,m^{-3}}$ and the balayage; equation [](/paper/#eq:wiener) is chapter 3.5's.
+  core", the round body at $5513\unit{kg\,m^{-3}}$ and the balayage; the paper's equation [](/paper/#eq:wiener) is
+  chapter 3.5's.
 - Figure [](/paper/#fig:same-outside) and *What breaks the tie*: the three bodies, with 0.25, 0.48 and $0.75\,mR^2$.
 - *A worked case*: "a broad layer of mass has no tidal field at all", and equation [](/paper/#eq:array-data).
 - [Section XII](/paper/#sec:hair) and [Section XIII](/paper/#sec:second-order): the null space is "a property of a

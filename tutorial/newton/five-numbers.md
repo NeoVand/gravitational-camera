@@ -578,13 +578,13 @@ those five numbers are all that one pixel learns of $S$.
   that a pixel records ten numbers, with $\curv{\tB}$ equal to $\curv{\tE}$ turned by 45° in a plane wave.
 - [Section III](/paper/#sec:regimes) says that a pattern turned by half a circle looks as it did before, and in
   *Spin, speed and compactness* that curvature at a point is a symmetric trace-free tensor.
-- Equation [](/paper/#eq:tidal-column) and Figure [](/paper/#fig:sky-integral) are the sky integral, whose weight
-  averages to zero and changes sign at 54.7°.
+- The paper's equation [](/paper/#eq:tidal-column) and Figure [](/paper/#fig:sky-integral) are the sky integral, whose
+  weight averages to zero and changes sign at 54.7°.
 - *The magnetic picture* in [Section IV](/paper/#sec:near-field) compares $|\curv{\tB}|$ with $|\curv{\tE}|$ in
   Frobenius norms, from equation [](/paper/#eq:magnetic-point).
-- Equation [](/paper/#eq:thermometer) reads one contraction $D\!:\!\curv{\tE}$, and the precision stated after
-  equation [](/paper/#eq:speedometer) puts noise on each coefficient of the orthonormal basis.
-- Equation [](/paper/#eq:hole-noise) writes the jitter of a black hole's quadrupole with the projector
+- The paper's equation [](/paper/#eq:thermometer) reads one contraction $D\!:\!\curv{\tE}$, and the precision the paper
+  states after its equation [](/paper/#eq:speedometer) puts noise on each coefficient of the orthonormal basis.
+- The paper's equation [](/paper/#eq:hole-noise) writes the jitter of a black hole's quadrupole with the projector
   $\Pi_{ijkl}$.
 - *What one pixel sees of the sky*, in [Section VIII](/paper/#sec:one-pixel), counts 25 numbers of the sky's
   brightness up to degree four, in equation [](/paper/#eq:sky-count), and Figure [](/paper/#fig:hair) counts 169

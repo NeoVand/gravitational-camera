@@ -456,18 +456,19 @@ motion.
 
 ### The paper
 
-Compare the right-hand side of [](/paper/#eq:thermal-moment) with chapter 1.7's bracket $\{\matter Q_h,
-\matter{\dot Q}_g\}$ and with the paper's [](/paper/#eq:hair-commutator). Say in one sentence each what the same
+Compare the right-hand side of the paper's [](/paper/#eq:thermal-moment) with chapter 1.7's bracket $\{\matter Q_h,
+\matter{\dot Q}_g\}$ and with its [](/paper/#eq:hair-commutator). Say in one sentence each what the same
 integral measures in the three.
 
 ::: solution
-All three equal $\int\matter\rho\,\nabla h\cdot\nabla g\,\dd V$ times a constant: $\kB T$, 1 and $i\hbar$. In
-[](/paper/#eq:thermal-moment) it is the mean product of two moments' rates of change in a warm body. In the bracket it
-is the change in $\matter{\dot Q}_h$ per unit strength of an impulsive tide of profile $g$. In the commutator, the
-quantum form of the bracket, $i\hbar$ times it is the difference between the products $\matter Q_h\matter{\dot Q}_g$
-taken in the two orders. For a motion at angular frequency $\omega$, the typical thermal size of that product is about
-$\kB T/\omega$ times the integral, so the difference is smaller by the ratio $\hbar\omega/\kB T$ (with $\hbar$ as
-stated in chapter 4.1's paper problem; chapter 8.3 shows why): $2.4\times10^{-9}$ for the steel ball's mode at 15 kHz.
+All three equal $\int\matter\rho\,\nabla h\cdot\nabla g\,\dd V$ times a constant: $\kB T$, 1 and $i\hbar$. In the
+paper's [](/paper/#eq:thermal-moment) it is the mean product of two moments' rates of change in a warm body. In the
+bracket it is the change in $\matter{\dot Q}_h$ per unit strength of an impulsive tide of profile $g$. In the
+commutator, the quantum form of the bracket, $i\hbar$ times it is the difference between the products $\matter
+Q_h\matter{\dot Q}_g$ taken in the two orders. For a motion at angular frequency $\omega$, the typical thermal size of
+that product is about $\kB T/\omega$ times the integral, so the difference is smaller by the ratio $\hbar\omega/\kB T$
+(with $\hbar$ as stated in chapter 4.1's paper problem; chapter 8.3 shows why): $2.4\times10^{-9}$ for the steel ball's
+mode at 15 kHz.
 :::
 :::
 
@@ -476,7 +477,7 @@ stated in chapter 4.1's paper problem; chapter 8.3 shows why): $2.4\times10^{-9}
   hold the body together", derives [](/paper/#eq:thermal-moment) from it, and names the condition
   "$\hbar\omega \ll k_BT$" (chapters 4.6 and R4 read the rest).
 - [*What an applied tide reveals*](/paper/#par:what-an-applied-tide-reveals) writes the static jitter
-  $\langle\delta Q_h^2\rangle = k_BT\,\chi_h(0)$; [](/paper/#eq:jitter-bounds) bounds its quantum form.
+  $\langle\delta Q_h^2\rangle = k_BT\,\chi_h(0)$; Appendix A's [](/paper/#eq:jitter-bounds) bounds its quantum form.
 - [*The trembling lattice*](/paper/#par:the-trembling-lattice) (Appendix A) finds $\langle\dot Q_h^2\rangle =
   k_BT\sum_nc_n^2$ equal to the integral "to rounding error for any stiffnesses", and the Brownian motion for $h = x$.
 - [*The field at two times*](/paper/#par:the-field-at-two-times) (Section XIII) meets the same integral in

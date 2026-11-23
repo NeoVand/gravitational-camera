@@ -563,12 +563,13 @@ scene is not seen. The condition $H = \tfrac12$ means $2s^2 = 1 + s^2$, so $s^2 
 \pi\SNR\,q\,e^{-q}$ this is $q\,e^{-q} = 1/\pi\SNR$. The left side rises from zero to its top, $1/e$ at $q = 1$, and
 then falls, so the equation has one root below $q = 1$ and one above. At $\SNR = 10^6$ they are $3.2\times10^{-7}$ and
 17.8. Above the larger root $H$ falls toward zero and stays there, so the larger root $q_c$ is the finest ripple kept,
-the cut-off of the first line of [](/paper/#eq:cutoff).
+the cut-off of the first line of the paper's [](/paper/#eq:cutoff).
 :::
 :::
 
 ::: paper
-- Equation [](/paper/#eq:wiener) is the filter derived here; Figure [](/paper/#fig:resolution-law)(a) draws it.
+- The paper's equation [](/paper/#eq:wiener) is the filter derived here; Figure [](/paper/#fig:resolution-law)(a) draws
+  it.
 - Figure [](/paper/#fig:nearfield) shows its point-spread function on two masses, ringing included. Its caption's
   "best reconstruction" is the best linear one.
 - [*What the image does show*](/paper/#par:what-the-image-does-show) (Section IV) states that a linear estimate with a

@@ -443,9 +443,9 @@ in it: that projection is a Gaussian centred at $z = d$.
 
 ### The paper
 
-Derive [](/paper/#eq:abel) from [](/paper/#eq:column) and [](/paper/#eq:abel-inverse) from [](/paper/#eq:abel). Then
-reproduce the grazing angles of Figure [](/paper/#fig:earth-glow), $11^\circ$, $33^\circ$ and $63^\circ$, from the radii
-1222, 3480 and 5701 km.
+Derive the paper's [](/paper/#eq:abel) from [](/paper/#eq:column) and [](/paper/#eq:abel-inverse) from
+[](/paper/#eq:abel). Then reproduce the grazing angles of Figure [](/paper/#fig:earth-glow), $11^\circ$, $33^\circ$ and
+$63^\circ$, from the radii 1222, 3480 and 5701 km.
 
 ::: solution
 The first two follow the first and third sections: $b = R\sin\theta$, $r^2 = b^2 + s^2$ and $\dd s = r\,\dd

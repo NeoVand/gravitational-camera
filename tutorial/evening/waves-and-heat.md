@@ -241,9 +241,10 @@ The near-field scenes. A static field is not radiation, so its picture is limite
 [^unresolved]: Chapter 7.7 derives it. In one period of the wave, half a turn, the wave travels one wavelength while
     each mass goes half way round its circle, a distance $\pi d/2$.
 
-[^polarization]: [1.5b](/tutorial/newton/complex-numbers/) defines polarization. Chapter [5.4](/tutorial/waves/polarization/#projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor) derives how the paper's
-    [](/paper/#eq:rotor-amplitudes) depends on the direction of view, [](/paper/#eq:circular) and the factor of eight;
-    chapter 7.7 derives the amplitude itself.
+[^polarization]: [1.5b](/tutorial/newton/complex-numbers/) defines polarization. Chapter
+    [5.4](/tutorial/waves/polarization/#projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor)
+    derives how the paper's [](/paper/#eq:rotor-amplitudes) depends on the direction of view, the paper's
+    [](/paper/#eq:circular) and the factor of eight; chapter 7.7 derives the amplitude itself.
 
 [^absorption]: Chapter 7.8 derives the paper's [](/paper/#eq:alpha): $1.2 \times 10^{-37}$ per metre for water's
     viscosity, $10^{-3}$ Pa s.

@@ -394,8 +394,9 @@ refractive index, and a damping term makes its energy fall by $e$ every $c/\Gamm
 ::: problems
 ### Practice
 
-Find the phase lag of a gravitational wave of 1 kHz that crosses a slab of steel 1 m thick, in radians, using
-[](/paper/#eq:index) with $\matter\rho = 7850\unit{kg\,m^{-3}}$. By what distance does the slab hold the wave back?
+Find the phase lag of a gravitational wave of 1 kHz that crosses a slab of steel 1 m thick, in radians, using the
+paper's [](/paper/#eq:index) with $\matter\rho = 7850\unit{kg\,m^{-3}}$. By what distance does the slab hold the wave
+back?
 
 ::: solution
 With $n - 1 = 8.3 \times 10^{-14}$, $\omega = 6283\unit{s^{-1}}$ and $L = 1$ m,
@@ -428,14 +429,14 @@ layer spreads over a width that grows as $\sqrt{\matter\eta_0t/\matter\rho}$ ins
 ### The paper
 
 The paper's [](/paper/#eq:optics-bound) gives the optical depth $\tau$, a pure number, of a uniform body of radius $R$
-as $24\,\mathcal C\,(c_T/c)^2\,\bar\lambda/QR$, where $\mathcal C = GM/Rc^2$ is its compactness, $Q$ the quality
-factor of its sound and $\bar\lambda = c/\omega$. Here $\tau$ is the paper's letter for the optical depth, not the
-relaxation time of the stretch problem. The optical depth is $\alpha$ times the length of the path, here the diameter
-$2R$. Derive the formula from [](/paper/#eq:alpha) with the friction $\matter\eta = \matter\rho c_T^2/\omega Q$ that
-the paper uses there.
+as $24\,\mathcal C\,(c_T/c)^2\,\bar\lambda/QR$, where $\mathcal C = GM/Rc^2$ is its compactness, $Q$ the quality factor
+of its sound and $\bar\lambda = c/\omega$. Here $\tau$ is the paper's letter for the optical depth, not the relaxation
+time of the stretch problem. The optical depth is $\alpha$ times the length of the path, here the diameter $2R$. Derive
+the formula from the paper's [](/paper/#eq:alpha) with the friction $\matter\eta = \matter\rho c_T^2/\omega Q$ that the
+paper uses there.
 
 ::: solution
-From [](/paper/#eq:alpha), $\tau = 2R\alpha = 32\pi G\matter\rho\,c_T^2R/\omega Qc^3$. A uniform ball has
+From the paper's [](/paper/#eq:alpha), $\tau = 2R\alpha = 32\pi G\matter\rho\,c_T^2R/\omega Qc^3$. A uniform ball has
 $M = \tfrac43\pi R^3\matter\rho$, so $G\matter\rho = 3\mathcal Cc^2/4\pi R^2$. Substituting,
 
 $$\tau = \frac{32\pi R\,c_T^2}{\omega Qc^3}\cdot\frac{3\mathcal Cc^2}{4\pi R^2} = \frac{24\,\mathcal C}{Q}

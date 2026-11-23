@@ -548,7 +548,7 @@ $10^3$. At $\SNR = 10$ each pixel's noise is larger than the gold's peak tide, $
 [^sinc]: The area follows from the standard integral $\int_{-\infty}^{\infty}(\sin x/x)\,\dd x = \pi$, with
     $x = \omega T/2$.
 
-[^letters]: The paper also writes $S(\hat n)$ for the tidal column of [](/paper/#eq:tidal-column), and $C$ for the
+[^letters]: The paper also writes $S(\hat n)$ for the tidal column of its [](/paper/#eq:tidal-column), and $C$ for the
     capacity of an image in Section IV. Here a spectrum $S$ always carries a frequency or a subscript, and $C(t)$ is
     always the autocorrelation.
 

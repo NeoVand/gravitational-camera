@@ -593,16 +593,18 @@ length $3/4\pi$, so the sum is $9/4\pi$, as the formula gives.
 :::
 
 ::: paper
-- Equation [](/paper/#eq:tidal-column) and Figure [](/paper/#fig:sky-integral): one pixel reads only the five numbers
-  of degree two of the tidal column, and 54.7° is the zero of $P_2$.
+- The paper's equation [](/paper/#eq:tidal-column) and Figure [](/paper/#fig:sky-integral): one pixel reads only the
+  five numbers of degree two of the tidal column, and 54.7° is the zero of $P_2$.
 - *A flown gradiometer* in [Section IV](/paper/#sec:near-field) reads GOCE's map in degrees, with $k = \ell/R$.
-- *A small camera* and equation [](/paper/#eq:handheld) count degrees on the camera's own sky.
-- Equation [](/paper/#eq:harmonic-point) writes the harmonic projection of a nugget as a sum over $P_\ell$
+- *A small camera* and its equation [](/paper/#eq:handheld) count degrees on the camera's own sky.
+- The paper's equation [](/paper/#eq:harmonic-point) writes the harmonic projection of a nugget as a sum over $P_\ell$
   (chapter 2.5).
-- Equation [](/paper/#eq:thermal-multipole) uses the solid harmonics $r^\ell Y_{\ell m}$ and the addition theorem.
-- Equation [](/paper/#eq:hair-bits), Figure [](/paper/#fig:hair) and equation [](/paper/#eq:sky-count) count
+- The paper's equation [](/paper/#eq:thermal-multipole) uses the solid harmonics $r^\ell Y_{\ell m}$ and the addition
+  theorem.
+- The paper's equation [](/paper/#eq:hair-bits), Figure [](/paper/#fig:hair) and equation [](/paper/#eq:sky-count) count
   $2\ell + 1$ numbers of each degree.
-- Equation [](/paper/#eq:ladder) sorts the radial moments $\int\matter\rho\,r^{\ell+2j}\,Y_\ell\,\dd V$ by degree.
+- The paper's equation [](/paper/#eq:ladder) sorts the radial moments $\int\matter\rho\,r^{\ell+2j}\,Y_\ell\,\dd V$ by
+  degree.
 :::
 
 ::: deeper

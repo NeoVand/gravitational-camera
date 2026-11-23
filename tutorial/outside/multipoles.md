@@ -428,8 +428,8 @@ squeeze that opposes the stretch $-2G\matter M/R^3$. The fraction is $6J_2 = 0.6
 ### The paper
 
 The paper's *A small camera* says that a camera ten centimetres across, looking at a lorry fifteen metres away with
-$\SNR = 10^6$, "sees detail of about $40^\circ$". Check it with equation [](/paper/#eq:handheld). Then show from
-[](#eq:exterior) that a uniform shell and a uniform ball about the origin have $\matter Q_{\ell m} = 0$ for every
+$\SNR = 10^6$, "sees detail of about $40^\circ$". Check it with the paper's equation [](/paper/#eq:handheld). Then show
+from [](#eq:exterior) that a uniform shell and a uniform ball about the origin have $\matter Q_{\ell m} = 0$ for every
 $\ell \ge 1$, which is the shell theorem in the language of moments.
 
 ::: solution
@@ -445,12 +445,12 @@ left, and the field outside is $-G\matter M/r$ for both bodies.
 ::: paper
 - [Section XII](/paper/#sec:hair), *The field at one time*, builds the field outside from the moments $\matter Q_h$.
   *The number of bits* reads the field on a sphere of radius $R_c$ about the body and uses the ceiling
-  $(R/R_c)^\ell$ of [](#eq:fade) in equation [](/paper/#eq:hair-bits) and Figure [](/paper/#fig:hair).
+  $(R/R_c)^\ell$ of [](#eq:fade) in the paper's equation [](/paper/#eq:hair-bits) and Figure [](/paper/#fig:hair).
 - [Section IV](/paper/#sec:near-field): *What the image is* writes equation [](/paper/#eq:tidal-column) with its
-  $r_{\min}$, which [](#eq:contact) completes; *A small camera* and equation [](/paper/#eq:handheld) rest on
+  $r_{\min}$, which [](#eq:contact) completes; *A small camera* and its equation [](/paper/#eq:handheld) rest on
   [](#eq:interior); *The precision of a simple scene* uses the pair's quadrupole.
-- Equation [](/paper/#eq:split) says which densities have none of these moments (chapter 2.5).
-- Equation [](/paper/#eq:multipole) in Section XI writes the static field to the quadrupole with
+- The paper's equation [](/paper/#eq:split) says which densities have none of these moments (chapter 2.5).
+- Section XI's equation [](/paper/#eq:multipole) writes the static field to the quadrupole with
   $I_{ij} = \int\matter\rho\,x_ix_j\,\dd V$, the paper's second moment and not chapter 1.6's inertia tensor. Its
   trace-free part is a third of $\matter Q_{ij}$, and its potential is [](#eq:cartesian).
 - [Section II](/paper/#sec:pixel) treats the person as a ball: the rod gives 0.60 of its tide.

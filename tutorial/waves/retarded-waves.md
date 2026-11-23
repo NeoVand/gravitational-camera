@@ -525,9 +525,9 @@ this is an angle of about $\lambda/L$ from the plane, so the waves leave in a th
 
 ### The paper
 
-Derive the form of [](/paper/#eq:wave-zone), its $e^{i\omega r/c}/r$, its $4G/c^4$ and its argument $\omega\hat n/c$,
-from the retarded solution with the source $16\pi G\matter T_{kl}/c^4$, which is given. Then check the 48,000 km and
-48 km of [](/paper/#eq:nearzone).
+Derive the form of the paper's [](/paper/#eq:wave-zone), its $e^{i\omega r/c}/r$, its $4G/c^4$ and its argument
+$\omega\hat n/c$, from the retarded solution with the source $16\pi G\matter T_{kl}/c^4$, which is given. Then check the
+48,000 km and 48 km of the paper's [](/paper/#eq:nearzone).
 
 ::: solution
 The retarded solution [](#eq:retarded) with $s = 16\pi G\matter T_{kl}/c^4$ gives $\field{\bar h}_{kl} =

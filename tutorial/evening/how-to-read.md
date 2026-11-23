@@ -167,10 +167,10 @@ of the noise ([0.2](/tutorial/evening/through-walls/)).
    number 4.43 is the width of the picture of a point at half its height, in units of depth over $q_c$.
 2. The cut-off is a length over a length, so it has no unit, and neither has the angle.
 3. A larger cut-off gives a smaller blur.
-4. Equation [](/paper/#eq:cutoff) of the paper sets $q_c$ by the ratio, and $q_c$ grows only about as $\ln\SNR$, so
+4. The paper's equation [](/paper/#eq:cutoff) sets $q_c$ by the ratio, and $q_c$ grows only about as $\ln\SNR$, so
    the blur shrinks without limit, but slowly: a thousand times the sensitivity adds only 6.9 to $\ln\SNR$.
-5. At $\SNR = 10^3$ Equation [](/paper/#eq:cutoff) gives $q_c = 10.4$, and $\Delta\theta = 4.43/10.4 = 0.426$
-   radians, or 24.4°, against the 24.0° of the exact Table [](/paper/#tab:resolution).[^blur]
+5. At $\SNR = 10^3$ the paper's equation [](/paper/#eq:cutoff) gives $q_c = 10.4$, and $\Delta\theta = 4.43/10.4 =
+   0.426$ radians, or 24.4°, against the 24.0° of the exact Table [](/paper/#tab:resolution).[^blur]
 
 The estimate $\pi/\ln\SNR$ of 0.2 is this law with $\pi$ in place of 4.43 and $\ln\SNR = 6.9$ in place of
 $q_c = 10.4$, and it gives 26°.
@@ -229,7 +229,7 @@ The marks are 13.3 powers of ten apart, and three times 4.4 is 13.2, so they agr
 
 ### Stretch
 
-The power that two turning masses radiate grows as the sixth power of their rate of turning (Equation
+The power that two turning masses radiate grows as the sixth power of their rate of turning (the paper's equation
 [](/paper/#eq:dumbbell)). By what factor, and by how many powers of ten, does it grow if the pair turns twice as fast?
 
 ::: solution
@@ -290,5 +290,5 @@ a patch as wide as the mass is deep.
 
 [^zones]: Derived in chapter [5.2](/tutorial/waves/retarded-waves/#beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1).
 
-[^blur]: Derived in [3.7](/tutorial/noise/blur-law/), which recomputes the table. The first line of Equation
-    [](/paper/#eq:cutoff) gives $q_c = 10.4$; its approximate second line gives 10.1.
+[^blur]: Derived in [3.7](/tutorial/noise/blur-law/), which recomputes the table. The first line of the paper's
+    equation [](/paper/#eq:cutoff) gives $q_c = 10.4$; its approximate second line gives 10.1.
