@@ -35,7 +35,10 @@ export function inlineDrawing(svg: string): string {
 		.replace(/<\?xml[^>]*\?>/, '')
 		.replace(/<!DOCTYPE[^>]*>/, '')
 		.replace(/<metadata>[\s\S]*?<\/metadata>/, '')
-		.replace(/<svg([^>]*?) width="[^"]*" height="[^"]*"/, `<svg$1 class="drawing" role="img"${width}`)
+		.replace(
+			/<svg([^>]*?) width="[^"]*" height="[^"]*"/,
+			`<svg$1 class="drawing" role="img"${width}`
+		)
 		.replace(/#[0-9a-f]{6}\b/g, (hex) => THEME[hex] ?? hex)
 		.trim();
 }

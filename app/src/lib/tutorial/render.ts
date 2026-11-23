@@ -202,7 +202,8 @@ export function renderChapter(
 			if (!/^fig:[a-z0-9-]+$/.test(id))
 				fail(`a figure needs an id "fig:<name>", as ![caption](drawing){#fig:name} (got "${id}")`);
 			if (figureNumbers.has(id)) fail(`the figure id "${id}" is used twice`);
-			if (ctx.paper.index.labels.has(id)) fail(`the figure id "${id}" is also a label of the paper`);
+			if (ctx.paper.index.labels.has(id))
+				fail(`the figure id "${id}" is also a label of the paper`);
 			figureNumbers.set(id, figureNumbers.size + 1);
 		}
 		if (n.t === 'Cite') {

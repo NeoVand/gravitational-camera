@@ -229,7 +229,9 @@ describe('the paper’s equations and figures by label', () => {
 
 describe('the tutorial’s own figures', () => {
 	it('show the drawing by name, numbered in the chapter, and an empty link gives the number', () => {
-		const c = chapter('See Figure [](#fig:ring-one).\n\n![A ring of beads, $r = 1$.](ring){#fig:ring-one}\n');
+		const c = chapter(
+			'See Figure [](#fig:ring-one).\n\n![A ring of beads, $r = 1$.](ring){#fig:ring-one}\n'
+		);
 		const fig = c.blocks.find((b) => b.kind === 'figure');
 		expect(fig).toMatchObject({ kind: 'figure', id: 'fig:ring-one', number: 1 });
 		expect(fig!.kind === 'figure' && fig!.html).toContain('<svg');

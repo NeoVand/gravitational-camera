@@ -179,7 +179,10 @@ export function tutorialFigures(): Map<string, string> {
 		const dir = path.join(TUTORIAL_DIR, 'figures');
 		const names = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.svg')) : [];
 		return new Map(
-			names.map((f) => [f.replace(/\.svg$/, ''), inlineDrawing(readFileSync(path.join(dir, f), 'utf8'))])
+			names.map((f) => [
+				f.replace(/\.svg$/, ''),
+				inlineDrawing(readFileSync(path.join(dir, f), 'utf8'))
+			])
 		);
 	});
 }
