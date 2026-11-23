@@ -46,6 +46,7 @@ import Equipartition from './live/Equipartition.svelte';
 import NormalModes from './live/NormalModes.svelte';
 import MaxwellLiquid from './live/MaxwellLiquid.svelte';
 import SumRule from './live/SumRule.svelte';
+import DampedWave from './live/DampedWave.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -198,6 +199,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A body’s line of power with up to three lines: move them, broaden them and shift weight between them; the area stays ∫ρ|∇h|², and the static compliance changes only when the lines move',
 		component: SumRule
+	},
+	'damped-wave': {
+		label:
+			'A damped line with a slower slab: a wave train, one pulse or two opposite pulses, its decay length and the slab’s lag',
+		component: DampedWave
 	},
 	'noise-spectrum': {
 		label:

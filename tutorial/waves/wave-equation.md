@@ -6,7 +6,7 @@ part: '5'
 requires: ['1.5b', '2.1', '2.6', '3.1', '3.6', '4.1', '4.3', '4.4']
 paper: [sec:near-field, sec:thermal, eq:damped, eq:alpha, sec:no-lens, eq:index, eq:optics-bound, sec:regimes, sec:waves]
 figures: []
-live: []
+live: [damped-wave]
 depth: A
 ---
 
@@ -344,17 +344,17 @@ each wavelength. The wave enters the shaded medium at $x = 0$ with $\Gamma/\omeg
 wavelengths: there the energy has fallen by $e$ and the amplitude by $\sqrt e$. The damping is drawn far stronger than
 in any real medium.](tut-wave-damped){#fig:wave-damped}
 
-<!-- try: damped-wave — DampedWave. A horizontal line of medium with a source at the left sending a wave train to the
-right. Sliders: frequency (0.5–4, arbitrary units), damping Γ (0 to 0.2 of the highest frequency), and the refractive
-index n (1 to 1.5) of a slab in the middle third of the line; a button "Send a pulse" replaces the train with a single
-hump, and "Send two opposite pulses" sends a hump from the left and an equal dip from the right. Readouts: the
-wavelength, the attenuation length c/Γ, and the slab's phase lag (n − 1)ωL/2πc in cycles. A faint reference wave
-without the slab is drawn behind the real one, so that the lag shows as a shift of the crests. Opens with weak
-damping (Γ/ω = 0.02 at the starting frequency) and no slab (n = 1). Predict first: "Double the frequency at fixed
-damping. Does the wave die out over a shorter distance, a longer one, or the same?" (The same: α = Γ/c does not depend
-on the frequency.) Then: "Send two opposite pulses. What is on the line at the moment they meet?" (A flat line whose
-half ahead of the hump moves up and whose half behind it moves down; the pulses re-emerge.) Keyboard and both themes.
-Optional if Part 5 runs long of figures; the GR course's lab chapter-18.html#scene-wave can stand in with a link. -->
+::: try {#damped-wave}
+A line of damped medium, computed from its wave equation, with a source at the left end and a slab of refractive
+index $n$ in the middle third. The sliders set the angular frequency $\omega$, the damping rate $\Gamma$ and the index
+$n$. A faint line behind the real one shows the same line without the slab, so that the slab's lag appears as a shift
+of the crests. The buttons send a steady train, a single hump, or a hump from the left and an equal dip from the
+right. The readouts give the wavelength, the attenuation length $c/\Gamma$, the slab's lag in cycles, and the part of
+the amplitude that each face of the slab reflects.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, send
+the two pulses again with some damping, and see what they leave behind.
+:::
 
 ::: check
 ### Q
