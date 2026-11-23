@@ -6,7 +6,7 @@ part: '4'
 requires: ['1.5', '2.2', '2.3', '3.2', '4.2', '4.3', '4.5']
 paper: [sec:near-field, eq:thermal-moment, eq:thermal-multipole, eq:sum-rule, eq:thermometer, fig:tremor, eq:jitter-bounds, app:benchmarks, sec:thermal, sec:hole, eq:hole-noise, eq:hole-thermometer, fig:hole-response]
 figures: [fig:tremor]
-live: []
+live: [tremor]
 depth: A
 ---
 
@@ -322,23 +322,18 @@ much there is.
 
 {{paper fig:tremor}}
 
-<!-- try: tremor — The live version of fig:tremor. Data: a precomputed table, built with Appendix A's lattice (sites of
-the simple cubic lattice with |r| ≤ 6 spacings, less the centre; the shell keeps |r| > 4; 924 and 668 equal masses of
-the same total; nearest-neighbour springs 1, next-nearest springs at the ratio r), of the frequencies ω_n and weights
-c_n² of h = x·U·x with the paper's U = diag(−½, −½, 1)/√1.5, for both bodies at r = 0.25, 0.5 and 1 (modes whose
-frequencies agree to 10⁻⁷ merged, their weights added). Opens at s = 1, r = 0.5, Q = 30. Controls: a stiffness slider
-multiplying every spring by s from ¼ to 4 (frequencies scale as √s); the spring ratio r (three buttons); a friction
-slider giving every mode the same Q, with Γ_n = ω_n/Q (from 3 to 300). Plot 1, the paper's figure: each body's
-cumulative Σ c_n² in order of frequency, frequency in units of the ball's strongest mode at s = 1, r = 0.5 (ball blue,
-shell orange), so stiffening moves the steps right. Plot 2: the spectrum of the quadrupole's rate,
-Σ_n c_n² · 2Γ_nω² / [(ω_n² − ω²)² + Γ_n²ω²] (in units of k_BT), each line drawn with its width. Readouts: the two
-totals and their ratio (1.220 at every setting), the ball's share in its strongest mode (0.806, 0.848, 0.873 at
-r = 0.25, 0.5, 1), the ratio of the strongest modes' frequencies (2.62, 2.34, 2.22). A switch "static jitter" replaces
-the totals by Σ c_n²/ω_n², which changes with the springs (shell/ball 7.1, 5.9, 5.4 at the three ratios; falls as
-1/s). Predictions first: "Make every spring four times stiffer. What happens to the totals, and to the frequencies?"
-(The totals stay; every frequency doubles.) Then "Lower Q to 3. Does the shell still tremble 1.22 times as much as the
-ball?" (Yes: the lines broaden, their areas stay.) Keyboard: Tab to each control, arrows move it; both themes; at
-390 px plot 2 sits below plot 1. -->
+::: try {#tremor}
+The live version of the paper's figure, computed from Appendix A's two lattices, the ball of 924 masses and the shell
+of 668, for the quadrupole along one axis of the lattice. On the left, each body's tremor added up in order of
+frequency, the ball in blue and the shell in orange; on the right, the spectrum of the quadrupole's rate, each line
+drawn at its width. The sliders make every spring stiffer or softer and set one quality factor for every mode; the
+buttons choose the ratio of the diagonal springs to the straight ones. The switch *Static jitter* adds up
+$c_n^2/\omega_n^2$ instead of $c_n^2$. The readouts give the two totals and their ratio, each body's share in its
+strongest mode, and the ratio of the strongest modes' frequencies.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, turn
+on *Static jitter* and stiffen the springs again.
+:::
 
 ## The static end of the response is the Love number
 
