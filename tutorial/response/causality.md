@@ -6,7 +6,7 @@ part: '4'
 requires: ['1.7', '2.3', '2.6', '4.1', '4.4']
 paper: [sec:near-field, eq:sum-rule, sec:second-order, eq:dust, sec:thermal, eq:friction-sum, eq:glow-bound, eq:push, sec:hole, eq:hole-sum-rule, eq:jitter-bounds]
 figures: [fig:hole-response]
-live: []
+live: [sum-rule]
 depth: B
 ---
 
@@ -287,19 +287,18 @@ is this chapter's: light far above an atom's lines shakes its electrons as if th
 H. A. Kramers (1927) derived the relation [](#eq:kk) for the refraction of light by matter.
 :::
 
-<!-- try: sum-rule — A plot of ω Im χ_h(ω) (vertical, in units of ∫ρ|∇h|² per ω₀) against ω/ω₀ from 0 to 4, for a body
-with up to three lines, each the damped oscillator c_n²·Γ_nω²/[(ω_n² − ω²)² + Γ_n²ω²] (whose area times 2/π is c_n²).
-Each line has a draggable peak handle: horizontal sets ω_n (0.3–3.5 ω₀), vertical sets the width Γ_n (Q_n from 1 to
-100, the height following as c_n²/Γ_n). A third control, a segmented bar above the plot, moves weight between the lines
-(the c_n² always add to the total A = ∫ρ|∇h|², by default the uniform ball's (2/5)MR² for h = xy). Readouts: the
-shaded area times 2/π (always A, shown to three figures); the static compliance χ(0) = Σc_n²/ω_n² from eq:static-sum
-(changes as lines move); and −ω²χ computed far above the highest line, at ω = 40ω₀ (beyond the plot, more than ten
-times the highest line's frequency), where it equals A to within 1%, labelled "−ω²χ far above every line". A switch "ball / shell of the same
-mass and radius" multiplies every weight by 5/3 and the area readout follows. Opens with one line at ω₀ (Q = 10) holding all
-the weight; buttons "add a line", "reset". Predictions before use: "Move every line to twice its frequency. Does the
-total change? Does the static compliance?" (The total does not; the static compliance falls to a quarter.) Then "Make
-one line very broad. Where does its weight go?" (It spreads over frequency; the area is unchanged.) Keyboard: Tab to a
-handle, arrows move it; both themes; at 390 px the bar sits below the plot. -->
+::: try {#sum-rule}
+A body's line of power, $\omega\,\mathrm{Im}\,\chi_h$, under the tide $h = xy$, against the frequency in units of
+$\omega_0$. The body has up to three lines, each a damped oscillator like 4.1's cart: drag a line's handle across to
+move its frequency, and up or down to make it narrower or broader (or choose a handle with Tab and use the arrow keys).
+The bar above the plot splits the total weight between the lines; on a phone it sits below. The switch compares the
+uniform steel ball with a thin shell of the same mass and radius. The readouts give the area under the curve from zero
+to infinity times $2/\pi$, the static compliance $\chi_h(0)$ of [](#eq:static-sum), and $-\omega^2\chi_h$ at
+$40\,\omega_0$, far above every line.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, flip
+the switch and compare the three readouts.
+:::
 
 ## A blow holds every frequency, and the energy it leaves is the same total
 

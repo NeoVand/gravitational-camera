@@ -45,6 +45,7 @@ import DrivenCart from './live/DrivenCart.svelte';
 import Equipartition from './live/Equipartition.svelte';
 import NormalModes from './live/NormalModes.svelte';
 import MaxwellLiquid from './live/MaxwellLiquid.svelte';
+import SumRule from './live/SumRule.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -192,6 +193,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'The friction of one Maxwell liquid against frequency, with its plateau, its tail and the band of the thermal glow: water’s placeholder, honey and copper’s electrons',
 		component: MaxwellLiquid
+	},
+	'sum-rule': {
+		label:
+			'A body’s line of power with up to three lines: move them, broaden them and shift weight between them; the area stays ∫ρ|∇h|², and the static compliance changes only when the lines move',
+		component: SumRule
 	},
 	'noise-spectrum': {
 		label:

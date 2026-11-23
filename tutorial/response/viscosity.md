@@ -6,7 +6,7 @@ part: '4'
 requires: ['1.5b', '4.1', '4.3']
 paper: [sec:thermal, eq:maxwell, eq:friction-sum, eq:damped, eq:alpha, fig:materials, tab:materials]
 figures: [fig:materials]
-live: []
+live: [maxwell-liquid]
 depth: A
 ---
 
