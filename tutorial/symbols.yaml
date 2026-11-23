@@ -222,7 +222,7 @@ symbols:
     tex: '\boldsymbol\Omega'
     role: none
     kind: A vector; in radians per second, s⁻¹
-    meaning: 'A vector along the axis of a turning body, pointing by the right-hand rule, whose length is the angle turned per second. A point at position $\mathbf x$, measured from a point on the axis, moves with velocity $\boldsymbol\Omega\times\mathbf x$. For the Earth $|\boldsymbol\Omega| = 7.29\times10^{-5}\,\mathrm{s^{-1}}$, so the ground at the equator moves at 465 m/s.'
+    meaning: 'A vector along the axis of a turning body, pointing by the right-hand rule, whose length is the angle turned per second. A point at position $\mathbf x$, measured from a point on the axis, moves with velocity $\boldsymbol\Omega\times\mathbf x$. For the Earth $|\boldsymbol\Omega| = 7.29\times10^{-5}\,\mathrm{s^{-1}}$, so the ground at the equator moves at 465 m/s. The spin of a body is set plain; the angular velocity of a turning frame, the observer''s own turning (chapter 1.6), takes the observer''s colour.'
     chapter: '1.1'
     anchor: the-ground-at-the-equator
   - key: solid-angle
@@ -278,9 +278,9 @@ symbols:
     tex: '\Pi_{ijkl}'
     role: none
     kind: An isotropic table of 81 pure numbers
-    meaning: 'The table $\Pi_{ijkl} = \tfrac12(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk}) - \tfrac13\delta_{ij}\delta_{kl}$. Applied to any table it keeps the trace-free part of its symmetric part, and it sends $\delta_{kl}$ to zero. Its trace $\Pi_{ijij} = 5$ counts the five numbers it keeps, and $\Pi_{ijkl} = b^A_{ij}b^A_{kl}$.'
+    meaning: 'The table $\Pi_{ijkl} = \tfrac12(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk}) - \tfrac13\delta_{ij}\delta_{kl}$. Applied to any table it keeps the trace-free part of its symmetric part, and it sends $\delta_{kl}$ to zero. Its trace $\Pi_{ijij} = 5$ counts the five numbers it keeps, and $\Pi_{ijkl} = b^A_{ij}b^A_{kl}$ (stated in chapter 1.5 without proof).'
     chapter: '1.5'
-    anchor: tables-that-look-the-same-in-every-set-of-axes
+    anchor: the-five-numbers-are-the-components-of-a-vector-with-its-own-length
   - key: degree
     title: Degree of a pattern
     tex: '\ell'
@@ -288,7 +288,7 @@ symbols:
     kind: A whole number, with no unit
     meaning: 'The number of indices of a symmetric table, and the degree of the pattern $T_{i_1\cdots i_\ell}\hat n_{i_1}\cdots\hat n_{i_\ell}$ it makes on the sky: 0 a constant, 1 a dipole, 2 a quadrupole. A trace-free table of degree $\ell$ holds $2\ell + 1$ numbers. (In the paper $\ell$ also names a mean free path and a path length.)'
     chapter: '1.5'
-    anchor: tables-with-more-indices-hold-1-3-5-7-and-more-numbers
+    anchor: patterns-of-higher-degree-hold-7-9-and-more-numbers
   - key: force
     title: Force
     tex: '\mathbf F'
@@ -320,7 +320,7 @@ symbols:
     kind: A number; in joules
     meaning: 'The energy of motion, $\tfrac12 mv^2$ for a body, $\tfrac12\Omega_iI_{ij}\Omega_j$ for a turning rigid body. A kick of impulse $\mathbf J$ changes it by $\mathbf v\cdot\mathbf J + J^2/2m$.'
     chapter: '1.6'
-    anchor: work-changes-kinetic-energy-and-a-sudden-kick-changes-it-in-two-parts
+    anchor: work-changes-kinetic-energy-and-a-steady-field-keeps-the-energy-fixed
   - key: impulse
     title: Impulse
     tex: '\mathbf J'
@@ -328,7 +328,7 @@ symbols:
     kind: A vector; in newton seconds, the unit of momentum
     meaning: 'The integral of a force over the time it acts, $\mathbf J = \int\mathbf F\,\mathrm dt$, equal to the change of momentum it causes. (In the paper $\mathbf J$ is also the current column and a momentum density.)'
     chapter: '1.6'
-    anchor: work-changes-kinetic-energy-and-a-sudden-kick-changes-it-in-two-parts
+    anchor: work-changes-kinetic-energy-and-a-steady-field-keeps-the-energy-fixed
   - key: angular-momentum
     title: Angular momentum
     tex: '\mathbf L'
@@ -368,13 +368,15 @@ symbols:
     kind: A complex number; in s⁻²
     meaning: 'The part of the tide in a plane that changes the shape of a ring, held as one complex number, $s = (\mathcal E_{xx} - \mathcal E_{yy}) + 2i\,\mathcal E_{xy}$. The squeeze axis lies at half its argument, and the two eigenvalues in the plane differ by $|s|$. Turning the axes by $\theta$ multiplies it by $e^{-2i\theta}$: it has spin two. (Chapter 3.7 uses $s$ for a different quantity, the ratio of a ripple to its noise.)'
     chapter: '1.5b'
+    anchor: a-tide-across-a-direction-is-one-complex-number-and-turning-the-axes-turns-it-back-by-twice-the-angle
   - key: complex-place
     title: Place on the camera's plane, as a complex number
     tex: 'w'
     role: none
     kind: A complex number; in metres
-    meaning: 'A place or a horizontal offset on the plane of a camera, written as $w = x + iy$. The shear of one point mass at horizontal offset $w$ and distance $r$ is $s = -3GMw^2/r^5$. (The paper also writes $w$ for an eigenvalue of $\mathcal W$.)'
+    meaning: 'A place on the plane of a camera, written as $w = x + iy$. The shear at the place $w$ of one point mass below the origin, at the distance $r$, is $s = -3GMw^2/r^5$. (The paper also writes $w$ for an eigenvalue of $\mathcal W$.)'
     chapter: '1.5b'
+    anchor: the-shear-of-one-mass-is-a-square
   - key: wave-polarizations
     title: Polarization amplitudes of a wave's tide
     tex: '\curv{\mathcal{E}}_+,\ \curv{\mathcal{E}}_\times'
@@ -388,5 +390,13 @@ symbols:
     role: none
     kind: A complex vector with no unit
     meaning: 'The vector $\mathbf m = (\mathbf e_1 + i\mathbf e_2)/\sqrt2$ across a wave travelling along $\hat k = \mathbf e_1\times\mathbf e_2$. It has $\mathbf m\cdot\mathbf m = 0$, $\mathbf m\cdot\mathbf m^* = 1$ and $\hat k\times\mathbf m = -i\mathbf m$. Light''s field in a wave is a multiple of $\mathbf m$, and gravity''s a multiple of the square $\mathbf m\mathbf m^{\mathsf T}$.'
+    chapter: '1.5b'
+    anchor: complex-vectors-a-direction-whose-square-is-zero
+  - key: weyl-complex
+    title: The complex tidal table
+    tex: '\curv{\mathcal{W}}'
+    role: curv
+    kind: A symmetric trace-free table of complex numbers (five complex numbers); in s⁻²
+    meaning: 'The paper''s one complex table for the ten numbers a pixel reads, $\mathcal W = \mathcal E + i\mathcal B$, with the tide $\mathcal E$ as its real part and the magnetic part $\mathcal B$ as its imaginary part. For a plane wave it is a square, $\mathcal W = 2(\mathcal E_+ - i\mathcal E_\times)\,\mathbf m\mathbf m^{\mathsf T}$. Chapter 9.3 studies it.'
     chapter: '1.5b'
     anchor: complex-vectors-a-direction-whose-square-is-zero

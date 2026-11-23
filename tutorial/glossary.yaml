@@ -375,22 +375,26 @@ terms:
     definition: 'The table $\delta_{ij} - 3\hat n_i\hat n_j$ with which matter in the direction $\hat n$ adds to the tide at the pixel. It averages to zero over the sky.'
     chapter: '1.5'
     anchor: averaged-over-the-sky-the-tidal-weight-vanishes
-  - term: isotropic
-    definition: 'Said of a table whose entries are the same in every set of turned axes, such as $\delta_{ij}$, $\epsilon_{ijk}$ and $\Pi_{ijkl}$.'
+  - term: tidal column
+    definition: 'The mass along one line of sight from the pixel, each part weighted by the inverse of its distance, $S(\hat n) = \int\rho\,\mathrm{d}r/r$, in kg m⁻³. A pixel reads only its quadrupole over the whole sky.'
     chapter: '1.5'
-    anchor: tables-that-look-the-same-in-every-set-of-axes
+    anchor: averaged-over-the-sky-the-tidal-weight-vanishes
+  - term: isotropic
+    definition: 'Said of a table whose entries are the same in every set of turned axes, such as $\delta_{ij}$, $\int\hat n_i\hat n_j\,\mathrm{d}\Omega$ and $\Pi_{ijkl}$.'
+    chapter: '1.5'
+    anchor: the-average-over-the-sky-by-symmetry-and-in-full
   - term: degree
     definition: 'The number of indices of a symmetric table, and of the pattern it makes on the sky. A trace-free table of degree $\ell$ holds $2\ell + 1$ numbers.'
     chapter: '1.5'
-    anchor: tables-with-more-indices-hold-1-3-5-7-and-more-numbers
+    anchor: patterns-of-higher-degree-hold-7-9-and-more-numbers
   - term: dipole
     definition: 'A pattern on the sky of degree 1, $\mathbf a\cdot\hat n$, larger on one side than on the opposite side. It holds three numbers.'
     chapter: '1.5'
-    anchor: tables-with-more-indices-hold-1-3-5-7-and-more-numbers
+    anchor: patterns-of-higher-degree-hold-7-9-and-more-numbers
   - term: quadrupole
     definition: 'A pattern on the sky of degree 2, $\hat n_iT_{ij}\hat n_j$ with $T$ symmetric and trace-free, the same in opposite directions. It holds five numbers; a pixel reads the quadrupole of the tidal column.'
     chapter: '1.5'
-    anchor: tables-with-more-indices-hold-1-3-5-7-and-more-numbers
+    anchor: patterns-of-higher-degree-hold-7-9-and-more-numbers
   - term: momentum
     definition: 'Mass times velocity, $\mathbf p = m\mathbf v$, in kg m s⁻¹. A force changes it at the rate $\mathbf F = \mathrm d\mathbf p/\mathrm dt$.'
     chapter: '1.6'
@@ -415,11 +419,11 @@ terms:
   - term: conservation of energy
     definition: 'For a body that only gravity acts on, the kinetic energy plus the potential energy, $\tfrac12mv^2 + m\Phi$, stays the same.'
     chapter: '1.6'
-    anchor: work-changes-kinetic-energy-and-a-sudden-kick-changes-it-in-two-parts
+    anchor: work-changes-kinetic-energy-and-a-steady-field-keeps-the-energy-fixed
   - term: impulse
-    definition: 'The integral of a force over the time it acts, $\mathbf J = \int\mathbf F\,\mathrm dt$, equal to the change of momentum. A sudden kick of impulse $\mathbf J$ changes the kinetic energy by $\mathbf v\cdot\mathbf J + J^2/2m$.'
+    definition: 'The integral of a force over the time it acts, $\mathbf J = \int\mathbf F\,\mathrm dt$, equal to the change of momentum.'
     chapter: '1.6'
-    anchor: work-changes-kinetic-energy-and-a-sudden-kick-changes-it-in-two-parts
+    anchor: work-changes-kinetic-energy-and-a-steady-field-keeps-the-energy-fixed
   - term: angular momentum
     definition: 'The moment of momentum about a point, $\mathbf L = \mathbf x\times\mathbf p$, in kg m² s⁻¹. Torque changes it.'
     chapter: '1.6'
@@ -477,15 +481,15 @@ terms:
     chapter: '1.6'
     anchor: in-a-turning-frame-two-extra-accelerations-appear
   - term: complex number
-    definition: 'A number $z = x + iy$, with $x$ and $y$ ordinary numbers and $i^2 = -1$. It is a point of a plane that can be multiplied by another such point.'
+    definition: 'A number $u = x + iy$, with $x$ and $y$ ordinary numbers and $i^2 = -1$. It is a point of a plane that can be multiplied by another such point.'
     chapter: '1.5b'
     anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
   - term: real part
-    definition: 'The ordinary number $x$ in the complex number $z = x + iy$, written $\mathrm{Re}\,z$.'
+    definition: 'The ordinary number $x$ in the complex number $u = x + iy$, written $\mathrm{Re}\,u$.'
     chapter: '1.5b'
     anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
   - term: imaginary part
-    definition: 'The ordinary number $y$ in the complex number $z = x + iy$, written $\mathrm{Im}\,z$.'
+    definition: 'The ordinary number $y$ in the complex number $u = x + iy$, written $\mathrm{Im}\,u$.'
     chapter: '1.5b'
     anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
   - term: complex plane
@@ -493,15 +497,15 @@ terms:
     chapter: '1.5b'
     anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
   - term: modulus
-    definition: 'The distance $|z| = \sqrt{x^2 + y^2}$ of the complex number $z = x + iy$ from the centre of the complex plane.'
+    definition: 'The distance $|u| = \sqrt{x^2 + y^2}$ of the complex number $u = x + iy$ from the centre of the complex plane.'
     chapter: '1.5b'
     anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
   - term: argument
-    definition: 'The angle $\arg z$ of a complex number, measured anticlockwise from the positive real axis. Multiplying two complex numbers adds their arguments.'
+    definition: 'The angle $\arg u$ of a complex number, measured anticlockwise from the positive real axis and fixed only up to whole turns. Multiplying two complex numbers adds their arguments.'
     chapter: '1.5b'
     anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
   - term: complex conjugate
-    definition: 'The mirror image $z^* = x - iy$ of $z = x + iy$ in the real axis, also written $\bar z$. A number times its conjugate is the square of its modulus.'
+    definition: 'The mirror image $u^* = x - iy$ of $u = x + iy$ in the real axis, also written $\bar u$. A number times its conjugate is the square of its modulus.'
     chapter: '1.5b'
     anchor: a-complex-number-is-a-point-of-the-plane-that-can-be-multiplied
   - term: "Euler's formula"
@@ -509,15 +513,15 @@ terms:
     chapter: '1.5b'
     anchor: eulers-formula-a-turn-is-an-exponential
   - term: polar form
-    definition: 'A complex number written by its modulus and argument, $z = re^{i\theta}$. For example $3 + 4i = 5e^{0.927i}$.'
+    definition: 'A complex number written by its modulus and argument, $u = re^{i\theta}$. For example $3 + 4i = 5e^{0.927i}$.'
     chapter: '1.5b'
     anchor: eulers-formula-a-turn-is-an-exponential
   - term: phasor
-    definition: 'The fixed complex number $\tilde q = Ae^{i\phi}$ that holds the amplitude and the phase of a steady oscillation, $q(t) = \mathrm{Re}[\tilde q\,e^{-i\omega t}]$, in the paper''s sign convention.'
+    definition: 'The fixed complex number $\tilde q = Ae^{i\alpha}$ that holds the amplitude and the phase of a steady oscillation, $q(t) = \mathrm{Re}[\tilde q\,e^{-i\omega t}]$, in the paper''s sign convention.'
     chapter: '1.5b'
     anchor: a-steady-oscillation-is-a-turning-complex-number
   - term: spin
-    definition: 'In this tutorial, the power $n$ of $e^{-i\theta}$ by which a quantity is multiplied when the axes turn by $\theta$ about the direction we look along. An arrow has spin one, a pattern of stretch and squeeze spin two.'
+    definition: 'In this tutorial, the power $n$ of $e^{-i\theta}$ by which a quantity is multiplied when the axes turn by $\theta$ about an axis that points toward the viewer, anticlockwise as the viewer sees them. An arrow has spin one, a pattern of stretch and squeeze spin two.'
     chapter: '1.5b'
   - term: shear
     definition: 'The part of a tide in a plane that changes the shape of a ring, held as one complex number, $s = (\mathcal E_{xx} - \mathcal E_{yy}) + 2i\,\mathcal E_{xy}$.'

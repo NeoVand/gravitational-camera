@@ -61,3 +61,20 @@ describe('the routes of parts.yaml', () => {
 			expect(routeGaps(route, requires), route.id).toEqual([]);
 	});
 });
+
+describe('the glossary and the symbol cards', () => {
+	it('point into published chapters only at sections those chapters have', async () => {
+		const { glossary, symbols } = await import('#lib/server/sources.js');
+		const ids = new Map<string, Set<string>>();
+		for (const c of published()) {
+			const chapter = loadChapter(c);
+			const html = chapter.blocks.map((b) => (b.kind === 'html' ? b.html : '')).join('\n');
+			ids.set(c.id, new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1])));
+		}
+		const broken = [
+			...glossary().map((g) => ({ name: g.term, chapter: g.chapter, anchor: g.anchor })),
+			...symbols().map((s) => ({ name: s.key, chapter: s.chapter, anchor: s.anchor }))
+		].filter((e) => e.anchor && ids.has(e.chapter) && !ids.get(e.chapter)!.has(e.anchor));
+		expect(broken).toEqual([]);
+	});
+});
