@@ -400,8 +400,8 @@
 		margin: 0;
 	}
 
-	/* the plain-language summaries: a hairline in the accent, no box */
-	article :global(aside.plain) {
+	/* the plain-language summaries: a hairline in the accent, no box; closed until asked for */
+	article :global(details.plain) {
 		margin: 1.4rem 0 1.8rem;
 		padding: 0.15rem 0 0.2rem 1.25rem;
 		border-left: 1px solid var(--accent);
@@ -409,16 +409,88 @@
 		color: var(--text-dim);
 	}
 
-	article :global(aside.plain p) {
+	article :global(details.plain > summary) {
+		display: flex;
+		align-items: baseline;
+		gap: 0.5em;
+		list-style: none;
+		cursor: pointer;
+		font-style: italic;
+		font-weight: 500;
+		color: var(--accent);
+		border-radius: 2px;
+	}
+
+	article :global(details.plain > summary::-webkit-details-marker) {
+		display: none;
+	}
+
+	/* the disclosure mark: a small chevron in the accent, pointing right when closed, down when open */
+	article :global(details.plain > summary::before) {
+		content: '';
+		flex: none;
+		width: 0.36em;
+		height: 0.36em;
+		border-right: 1.5px solid currentColor;
+		border-bottom: 1.5px solid currentColor;
+		transform: translateY(-0.12em) rotate(-45deg);
+		transition: transform 0.15s ease;
+	}
+
+	article :global(details.plain[open] > summary::before) {
+		transform: translateY(-0.22em) rotate(45deg);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		article :global(details.plain > summary::before) {
+			transition: none;
+		}
+	}
+
+	article :global(details.plain > summary:focus-visible) {
+		outline: 1px solid var(--accent);
+		outline-offset: 3px;
+	}
+
+	article :global(details.plain[open] > summary) {
+		margin-bottom: 0.4rem;
+	}
+
+	article :global(details.plain p) {
 		margin: 0;
 	}
 
-	article :global(aside.plain p + p) {
+	article :global(details.plain p + p) {
 		margin-top: 0.6rem;
 	}
 
+	article :global(details.plain ul) {
+		margin: 0.6rem 0;
+		padding-left: 1.2rem;
+	}
+
+	article :global(details.plain li) {
+		margin: 0;
+		font: inherit;
+		color: inherit;
+	}
+
+	article :global(details.plain li + li) {
+		margin-top: 0.25rem;
+	}
+
+	article :global(details.plain > :last-child) {
+		margin-bottom: 0;
+	}
+
+	/* inside the summaries bold marks defined terms and run-in lead phrases */
+	article :global(details.plain strong) {
+		font-weight: 600;
+		color: var(--text);
+	}
+
 	/* the summaries' outside links: the text's own colour, a hairline underline in the accent */
-	article :global(aside.plain a[href^='http']) {
+	article :global(details.plain a[href^='http']) {
 		color: inherit;
 		text-decoration: underline;
 		text-decoration-color: var(--accent);
@@ -426,16 +498,8 @@
 		text-underline-offset: 0.15em;
 	}
 
-	article :global(aside.plain a[href^='http']:hover),
-	article :global(aside.plain a[href^='http']:focus-visible) {
-		color: var(--accent);
-	}
-
-	article :global(aside.plain strong) {
-		display: block;
-		margin-bottom: 0.3rem;
-		font-style: italic;
-		font-weight: 500;
+	article :global(details.plain a[href^='http']:hover),
+	article :global(details.plain a[href^='http']:focus-visible) {
 		color: var(--accent);
 	}
 

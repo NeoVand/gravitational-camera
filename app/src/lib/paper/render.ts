@@ -54,6 +54,23 @@ const IGNORED_RAW = [
 	/^\\clearpage$/
 ];
 
+/** The text of a bare run of inlines, as pandoc writes "In plain words." */
+const plainText = (ns: Node[]): string =>
+	ns.map((n) => (n.t === 'Str' ? n.c : n.t === 'Space' ? ' ' : '')).join('');
+
+/**
+ * A plain-language summary without its label: the leading bold "In plain words." of its first paragraph, and the
+ * space after it, go to the summary line of its box.
+ */
+const plainBody = (blocks: Node[]): Node[] => {
+	const [first, ...rest] = blocks;
+	if (first?.t !== 'Para') return blocks;
+	const [label, ...after] = first.c as Node[];
+	if (label?.t !== 'Strong' || plainText(label.c).trim() !== 'In plain words.') return blocks;
+	while (after.length && (after[0].t === 'Space' || after[0].t === 'SoftBreak')) after.shift();
+	return after.length ? [{ ...first, c: after }, ...rest] : rest;
+};
+
 export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] }): RenderedPaper {
 	// ---- first pass: number everything that can be referred to ---------------
 	const labels = new Map<string, string>();
@@ -293,8 +310,9 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 			case 'OrderedList':
 				return `<ol>${n.c[1].map((item: Node[]) => `<li>${blocksHtml(item)}</li>`).join('')}</ol>`;
 			case 'BlockQuote':
-				// the LaTeX `quote` environment carries the plain-language summaries
-				return `<aside class="plain">${blocksHtml(n.c)}</aside>`;
+				// the LaTeX `quote` environment carries the plain-language summaries, closed until opened;
+				// their leading "In plain words." becomes the summary that opens them
+				return `<details class="plain"><summary>In plain words</summary>${blocksHtml(plainBody(n.c))}</details>`;
 			case 'RawBlock': {
 				const src = String(n.c[1]).trim();
 				if (IGNORED_RAW.some((re) => re.test(src))) return '';

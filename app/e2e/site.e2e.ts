@@ -51,7 +51,13 @@ test('paper renders its equations, figures, cross-references and bibliography', 
 	expect(await page.locator('.equation .katex').count()).toBeGreaterThanOrEqual(18);
 	// seventeen numbered sections and three appendices
 	expect(await page.locator('nav.contents li').count()).toBe(20);
-	expect(await page.locator('aside.plain').count()).toBeGreaterThanOrEqual(6);
+	// the plain-language summaries, one at the head of each main section, closed until opened
+	const plain = page.locator('details.plain');
+	expect(await plain.count()).toBe(15);
+	expect(await page.locator('details.plain[open]').count()).toBe(0);
+	await plain.first().locator('summary').click();
+	await expect(plain.first()).toHaveAttribute('open', '');
+	await expect(plain.first().locator('p').first()).toBeVisible();
 	await expect(page.locator('a.xref').first()).toBeVisible();
 	expect(await page.locator('ol.references li').count()).toBeGreaterThanOrEqual(10);
 	// every reference names its authors: in a list ordered by citation a dash for "the same author as

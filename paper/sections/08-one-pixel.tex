@@ -1,38 +1,99 @@
 \section{One pixel, sparse arrays and depth}\label{sec:one-pixel}
 
 \begin{quote}
-\textbf{In plain words.} A wave of light or gravity arriving at a point is
-described by four numbers: two for its direction and two for its
-\href{https://en.wikipedia.org/wiki/Polarization_(waves)}{polarizations}. A
-sensor of light there records six, the electric and magnetic fields; a
-gravitational pixel records ten, five for the stretch and squeeze of the tide
-and five for its twist. The extra numbers let one pixel do much of a camera's
-work.
+\textbf{In plain words.} A sensor of light at one point records six numbers:
+three for the electric field and three for the magnetic field. A pixel of the
+gravitational camera records ten: five for the stretch and squeeze of the
+tide, and five for its twist (Section II). This section shows that the extra
+numbers let a single pixel do much of the work of a whole camera.
 
-An observer in motion sees a different mix of
-\href{https://en.wikipedia.org/wiki/Classical_electromagnetism_and_special_relativity}{electric
-and magnetic field} from one at rest, and likewise a moving pixel measures a
-different mix of stretch and twist. Four combinations come out the same for
-every observer. Of the other six, three give the orientation of the field's axes
-and three the velocity of the pixel relative to the field's own
-\href{https://en.wikipedia.org/wiki/Rest_frame}{rest frame}, in which stretch
-and twist share their axes. So from one reading a pixel finds its own velocity
-through a room of unknown masses at rest, and whether anything in it moves.
+A single wave arriving at a point is described by only four numbers. Two give
+its direction of travel, as a latitude and a longitude give a place on a
+globe. The other two give the strengths of its two
+\href{https://en.wikipedia.org/wiki/Polarization_(waves)}{polarizations}: a
+gravitational wave can stretch and squeeze in two independent patterns, which
+differ by a turn of $45^\circ$. Ten numbers are more than one wave needs, so the
+extra numbers can be used to check, to separate and to locate.
 
-Every reading also has four special directions, those along which the field
-takes its simplest form. For a single wave all four point along its path; for a
-single round body they fall in two pairs on the line to it. Their pattern, which
-the \href{https://en.wikipedia.org/wiki/Petrov_classification}{Petrov
-classification} sorts into types, tells whether the field could come from one
-body or from one wave. Over time a pixel separates up to four waves crossing it,
-where a sensor of light separates two.
+\textbf{What every observer agrees on.} An observer who moves past an electric
+charge measures a magnetic field as well as an electric one. How the field is
+shared between the two depends on how the observer moves
+(\href{https://en.wikipedia.org/wiki/Classical_electromagnetism_and_special_relativity}{this
+is a result of special relativity}). In the same way, a moving pixel measures a
+different mixture of stretch and twist from a pixel at rest at the same place.
+The ten numbers can be regrouped into three kinds.
+\begin{itemize}
+\item Four combinations come out the same for every observer, however the
+observer is turned and however it moves. They are called \textbf{invariants}.
+\item Three angles give the orientation of the field's own axes.
+\item Three numbers give a velocity: the velocity of the one observer for whom
+the stretch and the twist line up along the same axes. This observer's frame is
+called the field's
+\href{https://en.wikipedia.org/wiki/Rest_frame}{rest frame}.
+\end{itemize}
+Two consequences follow. First, if all the masses in a room are at rest, the
+field's rest frame is the room's. A pixel moving through the room can then find
+its own velocity from a single reading, with no map of the room. For example, a
+pixel that reads the tide near a person to one part in a hundred million finds
+its own speed to within about two metres per second. Second, if something in the
+room moves or turns relative to the rest, the invariants show it, and no motion
+of the pixel itself can imitate this. A sensor of light can find at most two of
+the three parts of its own velocity in this way.
 
-Near slow matter the twist is small, while in a wave it is as large as the
-stretch, so the twist tells a wave from the pull of nearby things; and a few
-pixels side by side measure distance from how the field changes between them.
-All this assumes the kind of scene in view; otherwise no single reading decides:
-two masses and two waves crossing in opposite directions can give the same ten
-numbers.
+\textbf{Four special directions.} Every reading also picks out four directions
+on the sky around the pixel, the directions along which the field takes its
+simplest form. Their pattern sorts fields into types, a sorting called the
+\href{https://en.wikipedia.org/wiki/Petrov_classification}{Petrov
+classification}.
+\begin{itemize}
+\item For a single wave, all four directions point along its direction of
+travel.
+\item For a single round body at rest, they fall in two pairs, on the line
+through the body.
+\item For anything more complicated, such as two bodies, they are four
+separate directions.
+\end{itemize}
+One reading therefore tells whether the field could come from one body, could
+come from one wave, or needs more. For a single body moving at any speed, the
+four directions lean towards its motion. From them, and from how the reading
+changes in time, one pixel finds the body's position, velocity and mass
+exactly.
+
+\textbf{Separating waves.} When several waves cross a pixel at once, their
+fields add together. One pixel can still separate them: two waves from a single
+reading, three waves at one frequency, and up to four waves from a record over
+time. A sensor of light can separate at most two. One pixel also measures 68
+numbers that describe the brightness and polarization of the whole sky at each
+frequency, among them whether the sky as a whole has a handedness.
+
+\textbf{The twist tells waves from nearby things.} Near slowly moving matter the
+twist is small: it is smaller than the stretch by about the ratio of the
+matter's speed to the speed of light. In a wave the twist is as large as the
+stretch. The twist therefore separates a wave from the pull of nearby objects.
+The cost is fixed. The uncertainty in the wave's strength grows by a factor of
+about $1.4$ (the square root of two), however strong the nearby pull is.
+
+\textbf{More from one reading.} The field of a moving mass points to where the
+mass is now, not to where it was when its light left it. Seen in this way, the
+Sun lies $20.5$ arcseconds ahead of the Sun seen in light, along its yearly path
+across the sky (an arcsecond is a 3600th of a degree). One reading of a wave
+also gives its speed and every kind of polarization it carries, so it can test
+Einstein's theory, which allows only two polarizations and the speed of light.
+Inside matter, a pixel reads the density of the matter at the pixel itself.
+
+\textbf{A few pixels side by side.} The tide of a mass falls as one over the
+distance cubed, and the change of the tide from place to place falls as one
+over the fourth power of the distance. A pixel and its neighbours measure both,
+and the ratio of the two gives the distance to the mass, and then its mass. A
+single pixel can find the distance to a moving mass by using its twist. The full
+table of numbers also tells a mass in front of a flat array from a mass behind
+it.
+
+\textbf{What no single reading can tell.} All of this assumes that the kind of
+scene in view is known. Without that knowledge, no single reading decides. For
+example, two masses at rest and two equal waves crossing in opposite directions
+can give exactly the same ten numbers. A record over time, a wider array or
+knowledge of the sources settles the question.
 \end{quote}
 
 A wave of light or of gravity reaching a point is described by four numbers: two

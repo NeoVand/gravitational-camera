@@ -1,30 +1,102 @@
 \section{The near field}\label{sec:near-field}
 
 \begin{quote}
-\textbf{In plain words.} The camera feels the pull of every nearby mass, through
-anything, and since the signal is set by mass it weighs what it sees: a person a
-metre away raises a tide fifty thousand times the Moon's. The picture has two
-limits. First, the pull outside a body does not fix its inside. By Newton's
-\href{https://en.wikipedia.org/wiki/Shell_theorem}{shell theorem} a hollow shell
-and a solid ball of equal mass pull alike on everything outside them, and the
-least assuming picture drawn from outside never shows a core. Spin breaks some
-such ties; thermal trembling and a tide applied from outside break them all.
+\textbf{In plain words.} In the near field, the camera feels the pull of every
+nearby mass. Nothing blocks this pull, so no wall can hide a mass from the
+camera. The strength of the pull depends on how much mass there is, so the
+camera in effect weighs what it sees. The pull is there even when nothing
+moves, so a perfectly still scene is visible too.
 
-Second, the picture blurs. Between scene and camera the pull obeys
-\href{https://en.wikipedia.org/wiki/Laplace's_equation}{Laplace's equation},
-which makes fine detail fade exponentially with distance, as a hand under a
-thick blanket shows only as a broad bump. Restoring it amplifies the noise as
-much, so the blur improves only with the logarithm of the
+How bright an object looks to the camera depends on two things: its
+\textbf{density}, which is its mass per unit volume, and how large it looks from
+the camera. Of two objects with the same density, the one that looks twice as
+wide raises a tide eight times as strong. The Sun and the Moon look the same size in our sky, and the Moon raises
+the larger tide on the Earth because it is denser. A person one metre away
+looks far larger than either, and their tide is about fifty thousand times the
+Moon's. In each direction, the camera responds to the mass that lies along that
+line of sight, with nearer mass counting for more. The pictures in this section
+are maps of this quantity.
+
+\textbf{The first limit: the outside does not settle the inside.} By Newton's
+\href{https://en.wikipedia.org/wiki/Shell_theorem}{shell theorem}, a hollow
+shell and a solid ball of the same mass pull in exactly the same way on
+everything outside them. This is one example of a general fact: mass can be
+moved around inside a body in many different ways without changing its pull
+anywhere outside, however sensitive the camera is. As a result, the simplest
+picture of the inside that a camera outside can draw, assuming as little as
+possible, always has its densest point on the surface. It can never show a
+dense core. It shows every round body as a uniform ball. The Earth, which has a
+dense iron core, would appear as a uniform ball of $5513$ kilograms per cubic
+metre.
+
+Other measurements break this tie.
+\begin{itemize}
+\item \textbf{Spin.} A spinning body produces the twisting magnetic part of the
+tide, and this depends on how far the mass lies from the axis. A spinning shell
+and a spinning ball of the same mass therefore look different.
+\item \textbf{Heat.} Every warm body trembles: its atoms jiggle at random, and
+its shape quivers very slightly. If the temperature is known, the size of this
+trembling, seen through its pull, reveals how all the mass inside is
+arranged.
+\item \textbf{A tide applied from outside.} Pushing the body with a tide and
+watching how it responds reveals the same things at any temperature. Sections
+XII to XV develop this idea.
+\end{itemize}
+
+\textbf{The second limit: the picture is blurred.} In the empty space between
+the scene and the camera, the pull obeys a rule called
+\href{https://en.wikipedia.org/wiki/Laplace's_equation}{Laplace's equation}.
+One consequence of this rule is that fine detail fades with distance much
+faster than coarse detail. Suppose a body has ripples of mass with crests ten
+centimetres apart. Seen from ten centimetres away, the signal of these ripples
+is about 500 times weaker than at the surface of the body. Seen from twenty
+centimetres away, it is about 300,000 times weaker. The effect is like a hand
+under a thick blanket, which shows only as a broad bump.
+
+To recover the fine detail, the camera must enlarge these faint signals again.
+Every instrument also has \textbf{noise}: small random changes in its reading
+that are present even when there is nothing to measure. The
 \href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{signal-to-noise
-ratio}: $24^\circ$ at a thousand, $14^\circ$ at a million, $3.4^\circ$ at
-$10^{30}$. The gravity satellite \href{https://en.wikipedia.org/wiki/GOCE}{GOCE}
-worked near the first. The limit belongs to the equation, not the detector, and
-on a rough quantum estimate no such camera could draw a face.
+ratio} is the size of the signal divided by the typical size of the noise.
+When the camera enlarges a faint signal, it enlarges the noise by the same
+factor, so the finest detail disappears into the noise. The width of the blur
+then depends only on roughly how many digits the signal-to-noise ratio has. A
+signal-to-noise ratio of a thousand gives a blur $24^\circ$ wide. A million
+gives $14^\circ$, and $10^{30}$ still gives $3.4^\circ$. The blur is an angle,
+so it is the same fraction of the distance at every distance. To be as sharp as
+the human eye, which resolves about a sixtieth of a degree, the camera would
+need a signal-to-noise ratio of about $10^{6600}$.
 
-A blurred image can still be a precise measurement. If the scene is known to
-hold a single mass, data at a signal-to-noise ratio of a thousand place it to a
-millimetre at a metre; and because mass is never negative, a few compact objects
-are resolved far more finely than the blur.
+The gravity satellite \href{https://en.wikipedia.org/wiki/GOCE}{GOCE} mapped the
+Earth's tide for four years, and its map is about as sharp as the first of these
+numbers predicts. The limit belongs to Laplace's equation, not to the detector,
+so clocks and accelerometers that sense gravity meet the same limit. A rough
+estimate from quantum physics suggests that no camera could do better than a
+signal-to-noise ratio of about $10^{70}$ on a person, even watching for the age
+of the universe. That gives a blur of $1.5^\circ$, so no camera of this kind
+could draw a face.
+
+\textbf{A blurred picture can still give a precise measurement.} The blur limits
+how much detail can be drawn of an unknown scene. It does not limit how
+precisely a simple scene can be measured. If the camera knows that the scene
+holds a single mass, a signal-to-noise ratio of a thousand places that mass to
+within a millimetre at a distance of one metre, even though its picture is
+$24^\circ$ wide. It also helps that mass is never negative. When a scene holds
+only a few compact objects, this fact lets the camera separate them far more
+finely than the blur would suggest. In one example, a bar of gold of
+$324$ kilograms lies in one of two steel safes $3.5$ metres away, and a camera
+of 121 pixels a metre across must find it. At a signal-to-noise ratio of 34,
+the camera picks the wrong safe only once in a thousand tries. At a ratio of a
+thousand, and using only the fact that mass is positive, it finds $316 \pm 20$
+kilograms in the right safe.
+
+A near-field picture also holds very little information. A
+\href{https://en.wikipedia.org/wiki/Bit}{bit} is the answer to one yes-or-no
+question. At a signal-to-noise ratio of a thousand, the picture holds about 38
+bits for each square patch of the scene whose side equals its distance from the
+camera. At the quantum ceiling of $10^{70}$, it holds about 22 kilobytes, the
+size of a small thumbnail photograph. The near field is where everyday things
+can be seen, but its pictures can never be sharp. Sharp pictures need waves.
 \end{quote}
 
 In the near zone the camera measures the Newtonian tidal field of the scene as

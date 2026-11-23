@@ -1,31 +1,90 @@
 \section{What a pixel measures}\label{sec:pixel}
 
 \begin{quote}
-\textbf{In plain words.} An astronaut in orbit is weightless because she and her
-spacecraft fall together: gravity at a single point can always be cancelled by
-falling freely (the
-\href{https://en.wikipedia.org/wiki/Equivalence_principle}{equivalence
-principle}). What cannot be cancelled is the difference in gravity between
-neighbouring points. Beside a mass, a ring of free particles is stretched along
-the line to the mass and squeezed across it, the effect that raises the ocean
-tides, and this \href{https://en.wikipedia.org/wiki/Tidal_tensor}{tidal field}
-is all that a gravitational detector can measure. It is a
-\href{https://en.wikipedia.org/wiki/Tensor}{tensor}, a table of five independent
-numbers at each point, with a partner of five more, its
-\href{https://en.wikipedia.org/wiki/Gravitoelectromagnetism}{magnetic part},
-which twists neighbouring gyroscopes relative to one another. An ideal pixel
-records all ten.
+\textbf{In plain words.} An astronaut in orbit floats as if weightless. The
+astronaut and the spacecraft are both falling around the Earth, and gravity
+pulls on them in exactly the same way. At any single point, therefore, the
+effect of gravity can be cancelled by falling freely. This is called the
+\textbf{\href{https://en.wikipedia.org/wiki/Equivalence_principle}{equivalence
+principle}}.
 
-\href{https://en.wikipedia.org/wiki/LIGO}{LIGO} records one of them, and so it
-cannot tell a wave from a distant collision from the pull of a passing lorry. A
-person a metre away produces a tide of $9\times10^{-9}\,\mathrm{s^{-2}}$,
-meaning that free particles a metre apart beside them accelerate apart at
-$9\times10^{-9}$ metres per second squared, and by swaying five centimetres once
-a second would appear in LIGO as a strain of $7\times10^{-11}$, where the waves
-it detects have strains near $10^{-21}$. The signal that the observatory removes
-as contamination is the one that a camera of the near field records. The best
-\href{https://en.wikipedia.org/wiki/Gravity_gradiometry}{gravity gradiometers}
-would already see that person five hundred times above their noise.
+Falling cannot cancel the \emph{difference} in gravity between two nearby
+points. Picture a ring of small balls floating freely beside a large mass. The
+balls on the near side are pulled a little harder than the balls on the far
+side, so the ring is stretched along the line towards the mass. The balls on
+the left and right are each pulled towards the centre of the mass, and so
+slightly towards each other, so the ring is squeezed across that line. The
+Moon does the same to the Earth's oceans, and this raises the tides. For this
+reason, the difference in gravity between nearby points is called the
+\textbf{tidal field}, or simply the tide. The tide is the only effect of
+gravity that any detector can measure.
+
+The tide is measured in units of ``per second squared''. A tide of one per
+second squared means that two free balls one metre apart accelerate relative
+to each other by one metre per second squared.
+
+The tide at a point is not a single number. It is a table of numbers with
+three rows and three columns, called the
+\textbf{\href{https://en.wikipedia.org/wiki/Tidal_tensor}{tidal tensor}}. Each
+row and each column stands for one direction in space: for example north, east
+and up. The entry in the ``east'' row and the ``north'' column says how
+strongly two balls one metre apart in the north direction are pushed relative
+to each other towards the east. The table has nine entries, but only five of
+them are independent.
+\begin{itemize}
+\item The table is symmetric: the ``east, north'' entry always equals the
+``north, east'' entry. This leaves six independent numbers.
+\item In empty space, the three entries on the diagonal (north--north,
+east--east and up--up) always add up to zero, if a stretch is counted as one
+sign and a squeeze as the other. Beside a single mass, for example, the stretch
+along the line to the mass is exactly twice the squeeze in each of the two
+directions across it. This leaves five.
+\end{itemize}
+
+Moving masses produce a second kind of tide, much as moving electric charges
+produce a magnetic field as well as an electric one. This second kind does not
+stretch or squeeze. Instead, it makes gyroscopes at neighbouring points turn
+slightly relative to one another. It is called the
+\textbf{\href{https://en.wikipedia.org/wiki/Gravitoelectromagnetism}{magnetic
+part}} of the tidal field. It is also a symmetric 3 by 3 table with five
+independent numbers. Near slowly moving matter it is very small, but in a
+gravitational wave it is as strong as the first part. An ideal pixel of our
+camera records all ten numbers at every moment.
+
+\href{https://en.wikipedia.org/wiki/LIGO}{LIGO} records only one number. LIGO
+has two arms at right angles, and it measures how much longer one arm has
+become than the other. The result is given as a \textbf{strain}: the change in
+length divided by the length. The waves that LIGO detects have strains near
+$10^{-21}$. On an arm four kilometres long, this is a change of about
+$4\times10^{-18}$ metres, about a four-hundredth of the width of a proton.
+Because LIGO measures only one number, it cannot tell what caused a change. A
+wave from a distant collision of black holes and the pull of a lorry driving
+past can change that number in the same way.
+
+The pull of nearby things is not small. A person of 70 kilograms standing one
+metre away produces a tide of $9\times10^{-9}$ per second squared. Two free
+balls one metre apart beside that person therefore accelerate apart by
+$9\times10^{-9}$ metres per second squared. This is about a billionth of the
+acceleration of a falling apple. If the person sways by five centimetres once a
+second, LIGO would read a strain of $7\times10^{-11}$. This is about seventy
+billion times the strain of the waves that LIGO was built to detect, which is
+why people and vehicles must be kept away from its mirrors. The disturbance
+that LIGO must remove is exactly the signal that our camera wants to record.
+
+Instruments that measure tides already exist, and they are called
+\textbf{\href{https://en.wikipedia.org/wiki/Gravity_gradiometry}{gravity
+gradiometers}}. Every instrument has \textbf{noise}: small random changes in
+its reading that are present even when there is nothing to measure, caused for
+example by heat and vibration. A signal is seen clearly only when it is much
+larger than the noise. The
+\textbf{\href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{signal-to-noise
+ratio}} is the size of the signal divided by the typical size of the noise. The
+best laboratory gradiometer, reading for one second, would detect the person
+one metre away with a signal-to-noise ratio of about five hundred.
+
+On the ground, the Earth's own tide is about three hundred times larger than
+the person's. It is steady and well known, so it can be subtracted, and the
+camera records what remains.
 \end{quote}
 
 A freely falling observer feels no gravitational field at their own position.
