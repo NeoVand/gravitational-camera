@@ -110,6 +110,7 @@ export function createRenderer(options: RendererOptions): Renderer {
 				return options.math(n.c[1], n.c[0].t === 'DisplayMath');
 			case 'RawInline': {
 				const src = String(n.c[1]);
+				if (n.c[0] === 'html' && /^<!--[\s\S]*-->$/.test(src)) return '';
 				const m = src.match(/^\\(eqref|ref)\{([^}]+)\}$/);
 				if (m) {
 					const number = options.ref(m[2]);

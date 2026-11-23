@@ -227,6 +227,14 @@ describe('the paper’s equations and figures by label', () => {
 	});
 });
 
+describe('comments for the authors', () => {
+	it('are dropped, as blocks and within a paragraph', () => {
+		const out = html('<!-- diagram: a cone -->\n\nText <!-- lint-allow: just --> here.');
+		expect(out).not.toContain('<!--');
+		expect(out).toContain('Text  here.');
+	});
+});
+
 describe('symbol keys', () => {
 	it('are read from class names only, not from a heading that holds the word', () => {
 		const c = chapter('## The Levi-Civita symbol builds the cross product\n\nText.');

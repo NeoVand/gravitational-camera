@@ -472,6 +472,8 @@ export function renderChapter(
 					// the macro definitions put before every chapter; pandoc has already applied them
 					const src = String(n.c[1]).trim();
 					if (/^(\\(re)?newcommand\{[^\n]*\n?)+$/.test(src + '\n')) return '';
+					// a comment for the authors (where a diagram or a figure is still to come)
+					if (n.c[0] === 'html' && /^<!--[\s\S]*-->$/.test(src)) return '';
 					return fail(`unsupported LaTeX block: ${src.slice(0, 120)}`);
 				}
 				case 'Div': {
