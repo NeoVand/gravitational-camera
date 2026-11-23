@@ -431,7 +431,7 @@ weighs the scene against the continued ripples of [the flat
 camera](#above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height), written $e^{i\vect k\cdot\vect a -
 |\vect k|z}$, where $\vect k$ is a vector in the camera's plane that points across the crests and has the length $k$
 (chapter 13.2). Equation [](/paper/#eq:abel), an Abel transform, adds up a round planet's glow along straight chords,
-with a weight fixed by geometry; chapter 5.6 inverts it.
+with a weight fixed by geometry; chapter [5.6](/tutorial/waves/abel-transform/#the-transform-can-be-undone) inverts it.
 
 ::: check
 ### Q
@@ -524,7 +524,7 @@ $\matter mR^2 - \matter m(R^2 - s^2)/3 = \matter m(\tfrac23R^2 + \tfrac13s^2) = 
 - [Section XIII](/paper/#sec:second-order), equation [](/paper/#eq:scene-transform): the harmonic functions that decay
   into the scene.
 - [Section V](/paper/#sec:waves), equation [](/paper/#eq:wave-zone): the retarded Green's function, in Part 5; and
-  [Section IX](/paper/#sec:first-image), equation [](/paper/#eq:abel), in chapter 5.6.
+  [Section IX](/paper/#sec:first-image), equation [](/paper/#eq:abel), in chapter [5.6](/tutorial/waves/abel-transform/).
 :::
 
 ::: deeper

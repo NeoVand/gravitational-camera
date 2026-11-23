@@ -271,7 +271,7 @@ The near-field scenes. A static field is not radiation, so its picture is limite
 
 [^sqrt]: Chapter 3.1 derives this square-root law.
 
-[^abel]: The peeling inverts an Abel transform, the paper's [](/paper/#eq:abel), taught in chapter 5.6 and read in
+[^abel]: The peeling inverts an Abel transform, the paper's [](/paper/#eq:abel), taught in chapter [5.6](/tutorial/waves/abel-transform/#the-transform-can-be-undone) and read in
     R10. Its [simulation](/paper/#fig:earth-inverted) recovers the layers from a lifetime of counts.
 
 [^detector]: Matter absorbs only through the friction by which it glows. A cubic metre of detector crossed by one
