@@ -6,7 +6,7 @@ part: '2'
 requires: ['1.2', '1.3', '1.4', '1.5', '1.5b', '1.6']
 paper: [sec:near-field, eq:split, eq:evanescent, eq:thermal-moment, sec:hair, sec:second-order, eq:calderon, eq:hidden-spin, eq:ladder, eq:shear-zeros, app:proofs]
 figures: []
-live: []
+live: [mean-value]
 depth: A
 ---
 
@@ -77,12 +77,13 @@ for $b = 0.1\unit{m}$. Nor is $r^2 = x^2 + y^2 + z^2$, whose Laplacian is 6.
 average $5.8 \times 10^{-5}\unit{m^{-1}}$ more than the value at the centre, $1\unit{m^{-1}}$. With
 $b = 0.01\unit{m}$, the excess is $5.8 \times 10^{-9}\unit{m^{-1}}$. A distance ten times smaller makes the excess ten
 thousand times smaller, so only the $b^4$ term of [](#eq:neighbours) is left, as it must be for a harmonic function.
-For $x^2 - y^2$ the excess is zero for every $b$, because all its fourth derivatives vanish.
+For $x^2 - y^2$ the excess is zero for every $b$, because all its fourth derivatives vanish. Figure
+[](#fig:seven-points) shows its seven values about one point.
 
-<!-- diagram: seven points of a cube, a centre and its six neighbours at distance b, drawn in perspective, with the
-value of x^2 - y^2 written beside each (centre at (0.3, 0.2, 0) m and b = 0.1 m: centre 0.05; the six neighbours
-0.12 and 0.00 along x, 0.00 and 0.08 along y, 0.05 and 0.05 along z); a line of text under it says that the six
-average 0.05, the value at the centre. -->
+![A point and its six neighbours at the distance $b$ along the three axes, which are the centres of the faces of a
+cube of side $2b$, with the value of $x^2 - y^2$ beside each, in square metres. The centre is at
+$(0.3, 0.2, 0)\unit{m}$ and $b = 0.1\unit{m}$, and the six values average 0.05, the value at the centre. The values
+are exact; the view of the cube is chosen for the drawing.](tut-lap-cube){#fig:seven-points}
 
 In the steel of a safe, of density $7850\unit{kg\,m^{-3}}$, the potential is not harmonic:
 $\nabla^2\field\Phi = 4\pi G\matter\rho = 6.6 \times 10^{-6}\unit{s^{-2}}$, so each value lies slightly below the
@@ -248,21 +249,25 @@ so the midpoint is a maximum along the line, with $\partial_x^2\field\Phi = -4G\
 $-2G\matter M/\sqrt{a^2 + y^2}$, which rises toward zero as $|y|$ grows, so the midpoint is a minimum across, with
 $\partial_y^2\field\Phi = \partial_z^2\field\Phi = +9.3 \times 10^{-9}\unit{s^{-2}}$. The three add up to zero. They
 are the tide of the second check question of
-[chapter 1.4](/tutorial/newton/tides/#in-empty-space-the-stretch-and-the-squeezes-balance).
+[chapter 1.4](/tutorial/newton/tides/#in-empty-space-the-stretch-and-the-squeezes-balance). Figure
+[](#fig:two-people) draws the potential along the line and across it.
 
-<!-- diagram: the potential of the two people along the line through them (x from -0.8 m to 0.8 m) and across it
-(y from -0.8 m to 0.8 m), both curves on one pair of axes in units of GM/a, meeting at the midpoint value -2: the
-curve along the line has a maximum there and falls toward the two people, the curve across has a minimum there and
-rises toward zero; the two people are marked on the x axis at plus and minus 1 m, just off the plotted range. -->
+![The potential of the two people, who stand at $x = -1\unit{m}$ and $x = 1\unit{m}$, along the line through them,
+$\field\Phi(x, 0, 0)$, and across it through the midpoint, $\field\Phi(0, y, 0)$, in units of $G\matter M/a$. The
+two curves meet at the midpoint at $-2$, which is the highest point along the line and the lowest across it. The
+curves are exact; the people are not drawn to scale.](tut-lap-two){#fig:two-people}
 
 A free ball at the midpoint stays there, because the field is zero. Nudged across the line, it is pulled back. Nudged
 along it, it falls toward the nearer person. A rest point that pulled a nudge back in every direction would be a
 minimum of the potential, and in empty space there is none. So no arrangement of masses can hold a free body at rest
-stably, at a point of empty space, by gravity alone. This is **Earnshaw's theorem**.
+stably, at a point of empty space, by gravity alone. This is **Earnshaw's theorem**. Figure [](#fig:saddle) shows a
+saddle, which empty space allows, beside a peak, which it forbids.
 
-<!-- diagram: two surfaces over the unit disc, side by side, drawn as stretched membranes: on the left the saddle
-u = x^2 - y^2, its largest and smallest values on the rim; on the right the bump 1 - r^2, with its peak at the
-centre marked "not allowed in empty space". -->
+![Two functions drawn as membranes over a disc of radius 1. On the left, the harmonic saddle $u = x^2 - y^2$ takes
+its largest value, 1, and its smallest, $-1$, on the rim. On the right, the bump $u = 1 - r^2$, with
+$r^2 = x^2 + y^2$, has its largest value at the centre, inside the disc, which no harmonic function can do; its
+Laplacian is $-4$. The surfaces are exact, but their heights are drawn smaller than the radius and the view is chosen
+for the drawing.](tut-lap-membranes){#fig:saddle}
 
 The paper applies the principle to a density. Chapter 2.5 shows that the least assuming picture of an interior, the part
 $\matter\rho_h$ of the paper's equation [](/paper/#eq:split), is harmonic inside the body. By the maximum principle its
@@ -299,11 +304,13 @@ a square metre.
 **A check.** Take $u = 1$ and $v = r^2$ on a ball of radius $R$ about the origin. On the left, $\nabla^2 r^2 = 6$, so
 the integral is $6 \times \tfrac43\pi R^3 = 8\pi R^3$. On the right, $\nabla u = 0$, and $\nabla r^2 = 2\vect x$ points
 straight out with the size $2R$ on the surface, so the integral is $2R \times 4\pi R^2 = 8\pi R^3$. For
-$R = 0.1\unit{m}$ both sides are $0.0251\unit{m^3}$.
+$R = 0.1\unit{m}$ both sides are $0.0251\unit{m^3}$. Figure [](#fig:green) shows where each side of the identity
+is added up.
 
-<!-- diagram: a region V with a curved boundary dV, a few outward normals dA on it, the integrand u lap v - v lap u
-written inside the region and (u grad v - v grad u) . dA written beside the boundary; one neutral colour, normals
-as thin arrows. -->
+![Green's second identity on a region $V$, drawn in section. The integrand of the left side,
+$u\,\nabla^2v - v\,\nabla^2u$, is added up over the inside of $V$, and the integrand of the right side,
+$(u\,\nabla v - v\,\nabla u)\cdot\dd\vect A$, over its boundary $\partial V$, where each $\dd\vect A$ points straight
+out. The shape of the region and the lengths of the arrows are chosen for the drawing.](tut-lap-green){#fig:green}
 
 **What it means.** Let $h$ be harmonic inside a body, and let $\field\psi$, in joules per kilogram, be the potential
 of a part of the body's matter that makes no field outside. Then $\field\psi$ is zero everywhere outside, and on the
@@ -351,15 +358,13 @@ With no body at all, the same argument fixes a potential by its sources. Two pot
 differ by a $w$ with $\nabla^2w = 4\pi G\matter\rho - 4\pi G\matter\rho = 0$ everywhere, which falls to zero far away.
 The argument above, with no body, gives $w = 0$. Chapter 2.4 builds the potential from its sources.
 
-<!-- try: mean-value — A square of 40 × 40 cells. The reader sets the values along the four edges (four edge sliders,
-or paints on an edge with the pointer), and the inside relaxes, by repeated averaging of neighbours (Jacobi, about 200
-steps per frame), to the harmonic function with those edge values, drawn as a diverging map in the field colour with
-contours. A probe circle, with adjustable radius, anywhere inside reads out its average and the value at its centre.
-It opens with the edges at x^2 - y^2, already relaxed. Prediction: "Raise one edge as high as you like. Can any point
-inside rise above it?" (No: the maximum principle.) Then: "Move the probe circle. Do the average and the centre value
-ever differ?" (Only while the averaging has not settled, or when the circle crosses the edge.) Keyboard: arrows move
-the probe, + and − change its radius; both themes; reduced motion shows the settled state. Model in a .ts beside it,
-tested so that the settled state for edges at x^2 - y^2 is x^2 - y^2 to 10^-6. -->
+::: try {#mean-value}
+Predict first: raise one edge of the square as high as you like. Can any point inside rise above it? The square opens
+on $x^2 - y^2$, already settled; set the edges with the sliders and watch the inside relax to the harmonic function
+with those edges. Then move the probe circle and compare the average round it with the value at its centre. Last, open
+the gold: a sphere round the camera averages the gold's potential, $-5.52 \times 10^{-9}\unit{J\,kg^{-1}}$, until
+it reaches the gold at 3.92 m. Predict what the average does beyond that, then read it at 5 m.
+:::
 
 ## A harmonic function is fixed by its values in any small ball
 

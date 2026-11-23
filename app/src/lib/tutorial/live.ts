@@ -28,6 +28,7 @@ import PhaseSpace from './live/PhaseSpace.svelte';
 import ScaleLadder from './live/ScaleLadder.svelte';
 import AveragingNoise from './live/AveragingNoise.svelte';
 import SkyPatterns from './live/SkyPatterns.svelte';
+import MeanValue from './live/MeanValue.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -104,6 +105,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'graviton-count': {
 		label: 'Gravitons counted one at a time, and the picture they allow',
 		component: GravitonCount
+	},
+	'mean-value': {
+		label:
+			'A square of empty space that averages itself, and the gold averaged over a sphere round the camera',
+		component: MeanValue
 	},
 	'sky-patterns': {
 		label: 'A sphere of patterns, one degree at a time, and a cap rebuilt from its degrees',
