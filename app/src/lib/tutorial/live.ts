@@ -44,6 +44,7 @@ import PositiveImage from './live/PositiveImage.svelte';
 import DrivenCart from './live/DrivenCart.svelte';
 import Equipartition from './live/Equipartition.svelte';
 import NormalModes from './live/NormalModes.svelte';
+import MaxwellLiquid from './live/MaxwellLiquid.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -186,6 +187,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A disc of nineteen masses on springs, its normal modes and the quotient of a shape you drag',
 		component: NormalModes
+	},
+	'maxwell-liquid': {
+		label:
+			'The friction of one Maxwell liquid against frequency, with its plateau, its tail and the band of the thermal glow: water’s placeholder, honey and copper’s electrons',
+		component: MaxwellLiquid
 	},
 	'noise-spectrum': {
 		label:

@@ -72,8 +72,9 @@ law: $\matter\eta$ does for a rate of shear what the shear modulus $\matter\mu$ 
 
 **Why this quantity: it is what is measured between two plates.** A layer of liquid of thickness $d$ lies between two
 flat plates. The lower plate is held still and the upper one slides along $x$ at the speed $v$. The liquid sticks to
-each plate, so its velocity rises evenly across the gap, $v_x = v\,y/d$. The only entries of the rate of strain are
-$\dot u_{xy} = \dot u_{yx} = v/2d$, and their trace is zero, so [](#eq:viscous) gives the stress on the upper plate,
+each plate, so its velocity rises evenly across the gap, $v_x = v\,y/d$ (Figure [](#fig:plates)). The only entries of
+the rate of strain are $\dot u_{xy} = \dot u_{yx} = v/2d$, and their trace is zero, so [](#eq:viscous) gives the
+stress on the upper plate,
 
 $$\matter T_{xy} = \frac{\matter\eta\,v}{d} .$$
 
@@ -86,13 +87,9 @@ back by the weight of a gram. Honey, of about $10\unit{Pa\,s}$, needs $100\unit{
 $u_{xy} = v\,t/2d$, and its stress is $2\matter\mu u_{xy} = \matter\mu v\,t/d$. When the plate stops, the solid's
 stress stays, while the liquid's vanishes at once.
 
-<!-- diagram: tut-visc-plates — Side view of two horizontal plates a gap d apart, the lower one hatched as fixed, the
-upper one with an arrow "v" to the right. Between them, five or six horizontal velocity arrows whose lengths rise
-linearly from zero at the lower plate to v at the upper one, their tips joined by a thin straight line. On the upper
-plate, a short arrow pointing left, labelled "stress ηv/d", the force per area the liquid exerts on it. The gap
-labelled d at the side. Caption: "Look first at the arrows in the liquid: they grow evenly from the still plate to the
-moving one, so every layer slides over the next at the same rate, v/d. The liquid pulls back on the moving plate with
-the stress ηv/d. Lengths schematic." -->
+![Look first at the arrows in the liquid: they grow evenly from the still plate to the moving
+one, so every layer slides over the next at the same rate, $v/d$. The liquid holds the moving plate back with the
+stress $\matter\eta v/d$. The lengths are schematic.](tut-visc-plates){#fig:plates}
 
 ## Friction turns the work of a shear into heat, more at higher frequency
 
@@ -160,6 +157,7 @@ $$\matter T = 2\matter\mu_\infty\,\tilde u_0\,e^{-t/\tau} .$$
 
 The dashpot slowly gives way until the spring is slack. This dying away of a held stress is **relaxation**. Over times
 much longer than $\tau$ the material flows like a liquid, and over much shorter times it holds like a solid.
+Figure [](#fig:maxwell) draws the stress and the shear.
 
 **A steady swing.** We write $\tilde u = \mathrm{Re}[U\,e^{-i\omega t}]$ and $\matter T = \mathrm{Re}[\tilde{\matter
 T}\,e^{-i\omega t}]$, and each time derivative becomes a factor $-i\omega$ (chapter 1.5b). Then [](#eq:relax) reads
@@ -209,13 +207,10 @@ rigidity of $1\unit{GPa}$, a plausible size: about half of water's stiffness aga
 then $\tau = 10/10^9 = 10\unit{ns}$. Stirred once a second, $\omega\tau = 6 \times 10^{-8}$, and its friction is
 $\matter\eta_0$ to within a few parts in $10^{15}$.
 
-<!-- diagram: tut-visc-maxwell — Left: the Maxwell element drawn horizontally, a zigzag spring labelled "μ∞" joined
-end to end with a dashpot (an open cylinder with a piston and rod) labelled "η₀", the left end fixed to a hatched wall
-and the right end carrying a small arrow "shear". Right: a plot of the stress T/T(0) against t/τ from −0.5 to 4, with
-the shear (thin, grey) stepping from 0 to ũ₀ at t = 0 and staying there, and the stress (solid) jumping to 1 at t = 0
-and falling as e^{−t/τ}; a tick at t/τ = 1 where the stress is 1/e = 0.37, labelled "τ = η₀/μ∞". Caption: "Look first
-at the stress: it jumps when the shear is applied, because the spring takes all of it, and dies away as the dashpot
-gives way, while the shear stays. The curve is exact." -->
+![Look first at the stress: it jumps when the shear is applied, because the spring takes all
+of it, and then dies away as the dashpot gives way, while the shear stays. After one relaxation time,
+$\tau = \matter\eta_0/\matter\mu_\infty$, it has fallen to $1/e$ of its first value. The curve is exact, and the
+drawing of the spring and the dashpot is schematic.](tut-visc-maxwell){#fig:maxwell}
 
 ## At fixed stiffness, the more viscous liquid has less friction at the frequencies of heat
 
@@ -240,9 +235,9 @@ times less friction at the peak of the glow. The two curves cross where the two 
 $\matter\eta_{\rm h}(1 + \omega^2\tau_{\rm w}^2) = \matter\eta_{\rm w}(1 + \omega^2\tau_{\rm h}^2)$, with h for honey
 and w for water. With $\tau = \matter\eta_0/\matter\mu_\infty$ this gives
 $\omega = \matter\mu_\infty/\sqrt{\matter\eta_{\rm h}\matter\eta_{\rm w}} = 10^{10}\unit{s^{-1}}$, four powers of ten
-below the glow. Both frictions lie far below the paper's **placeholder**, the constant friction of
-$10^{-3}\unit{Pa\,s}$ that it uses as a reference for every glow: honey's by a factor of $10^8$, the Maxwell water's by
-$10^4$. The everyday viscosity says almost nothing about the friction at 17 THz.
+below the glow (Figure [](#fig:tails)). Both frictions lie far below the paper's **placeholder**, the constant
+friction of $10^{-3}\unit{Pa\,s}$ that it uses as a reference for every glow: honey's by a factor of $10^8$, the
+Maxwell water's by $10^4$. The everyday viscosity says almost nothing about the friction at 17 THz.
 
 This answers the chapter's question. Far above $1/\tau$ the spring takes nearly all of the shear, the stress is
 $2\matter\mu_\infty U$, and the dashpot moves with the rate $\matter T/2\matter\eta_0 \approx \matter\mu_\infty
@@ -250,18 +245,11 @@ U/\matter\eta_0$. Its heat goes as $\matter\eta_0$ times the square of that rate
 $\matter\mu_\infty^2|U|^2/\matter\eta_0$. A more viscous dashpot moves less under the same stress, and so it makes less
 heat. The condition matters: this holds at a fixed stiffness $\matter\mu_\infty$.
 
-<!-- diagram: tut-visc-tails — Log–log axes: ω from 10⁴ to 10¹⁵ s⁻¹ (horizontal), Re η from 10⁻¹⁶ to 10² Pa s
-(vertical). Two exact curves η₀/(1 + ω²τ²) with μ∞ = 1 GPa: honey (η₀ = 10 Pa s, τ = 10 ns), plateau at 10 bending
-near ω = 10⁸ s⁻¹ and falling as ω⁻²; Maxwell water (η₀ = 10⁻³ Pa s, τ = 1 ps), plateau at 10⁻³ bending near 10¹² s⁻¹
-and falling as ω⁻². Each tail continued by a thin dashed line μ∞²/η₀ω². A small dot where the curves cross, at
-ω = μ∞/√(η_h η_w) = 10¹⁰ s⁻¹ exactly, Re η = 1.0 × 10⁻³ Pa s, on the placeholder line. The band of the thermal
-glow at 293 K shaded, where the Planck radiance x³/(eˣ − 1), x = ħω/k_BT, exceeds a tenth of its peak: x from 0.420 to 8.30, ω from 1.61 × 10¹³ to
-3.18 × 10¹⁴ s⁻¹ (2.6 to 51 THz), as in the paper's fig:materials; a thin vertical tick at the peak, x = 2.821,
-ω = 1.08 × 10¹⁴ s⁻¹. A horizontal dotted line at 10⁻³ Pa s labelled "placeholder" at its right end (it coincides with
-the Maxwell water's plateau on the left). At the peak, honey's curve lies four powers of ten below water's
-(8.5 × 10⁻¹² against 8.5 × 10⁻⁸ Pa s). Labels at the curves' plateaus, never on the band. Caption: "Look first at
-where the two curves cross: below it honey has the more friction, above it the less, and the band of heat lies far
-above it. Curves exact; the stiffness of 1 GPa is an illustration." -->
+![Look first at where the two curves cross, at $10^{10}\unit{s^{-1}}$: below it honey has the
+more friction, above it the less, and the shaded band of the glow at 293 K lies four powers of ten higher. There
+honey's friction is $10^4$ times below the Maxwell water's and $10^8$ times below the dotted placeholder. The curves
+are exact, the dashed lines are their tails $\matter\mu_\infty^2/\matter\eta_0\omega^2$, and the stiffness of
+1 GPa is an illustration.](tut-visc-tails){#fig:tails}
 
 The paper's real water is different again. Its friction at terahertz frequencies comes from motions much faster than
 Maxwell's rearrangement: the stretching of the hydrogen bonds between neighbouring molecules, near 8 THz, and the
@@ -283,19 +271,18 @@ Maxwell's model explains the direction of the effect: the slow rearrangement tha
 the frequencies of heat. It does not give water's number, which belongs to motions the model leaves out. So it shows
 that honey can glow less than water, at the same stiffness, not that it does.
 
-<!-- try: maxwell-liquid — MaxwellLiquid. The curve Re η(ω) = η₀/(1 + ω²τ²) of one Maxwell liquid on log–log axes
-(ω from 10⁴ to 10¹⁶ s⁻¹, Re η from 10⁻¹⁸ to 10⁴ Pa s), with its plateau η₀ and its tail μ∞²/η₀ω² drawn as thin dashed
-lines, the dotted placeholder at 10⁻³ Pa s, and the band of the thermal glow shaded where the Planck radiance
-x³/(eˣ − 1), x = ħω/k_BT, exceeds a tenth of its peak (x from 0.420 to 8.30), with a tick at its peak x = 2.821. Three
-log sliders: η₀ from 10⁻⁴ to 10³ Pa s, μ∞ from 0.1 to 100 GPa, and the temperature from 200 to 2000 K (which moves the
-band). Readouts: τ = η₀/μ∞; Re η at the glow's peak; and the area (2/π)∫₀^∞ Re η dω = μ∞, labelled "the weight;
-chapter 4.5 explains why it is fixed". Presets: "water's placeholder" (η₀ = 10⁻³ Pa s, μ∞ = 1 GPa), "honey" (10 Pa s,
-1 GPa), "copper's electrons" (μ∞ = 38 GPa, τ = 2.5 × 10⁻¹⁴ s, so η₀ = 9.5 × 10⁻⁴ Pa s). Opens on honey at 293 K (Re η
-at the peak 8.5 × 10⁻¹² Pa s). Predictions above it, unanswered in the text just before: "Make the honey a thousand
-times more viscous, keeping its stiffness. Does its friction at the frequencies of heat rise or fall?" (It falls a
-thousandfold, to 8.5 × 10⁻¹⁵ Pa s.) Then: "Choose copper's electrons and change η₀ at fixed μ∞. Which τ gives the most
-friction at the glow's peak?" (τ = 1/ω = 9.2 × 10⁻¹⁵ s, giving μ∞/2ω = 1.8 × 10⁻⁴ Pa s, the ceiling of the next
-section.) Keyboard on every slider, both themes, phone width. -->
+::: try {#maxwell-liquid}
+The friction $\mathrm{Re}\,\matter\eta(\omega) = \matter\eta_0/(1 + \omega^2\tau^2)$ of one Maxwell liquid, on
+logarithmic axes. The thin dashed lines are its plateau $\matter\eta_0$ and its tail
+$\matter\mu_\infty^2/\matter\eta_0\omega^2$, which meet at $\omega = 1/\tau$; the dotted line is water's placeholder
+viscosity, $10^{-3}\unit{Pa\,s}$; and the shaded band is where the thermal glow is brightest at the temperature you
+choose. The sliders set $\matter\eta_0$, $\matter\mu_\infty$ and the temperature, and the presets choose water's
+placeholder, honey, or copper's electrons. The readouts give $\tau$, the friction at the peak of the glow, and the
+weight $(2/\pi)\int_0^\infty\mathrm{Re}\,\matter\eta\,\dd\omega$, computed from the curve.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, move
+$\matter\mu_\infty$ alone and watch the weight.
+:::
 
 ## A metal's electrons relax like a Maxwell liquid, and their friction has a ceiling
 
@@ -343,19 +330,16 @@ $\omega\tau = 1$, and
 $$\boxed{\;\mathrm{Re}\,\matter\eta \le \frac{\matter\mu_\infty}{2\omega} = \frac{\matter n m v_F^2}{10\,\omega}\;} ,
 \label{eq:ceiling}$$
 
-the paper's "the friction cannot exceed $\tfrac1{10}\,nmv_F^2/\omega$". Equality holds when $\omega\tau = 1$. Copper
-is near it: the ceiling is $1.8 \times 10^{-4}\unit{Pa\,s}$, and copper reaches 65% of it. Honey is far from it: its
-ceiling at the same frequency is $\matter\mu_\infty/2\omega = 4.6 \times 10^{-6}\unit{Pa\,s}$, and it reaches two
-millionths of that. A collision time longer than $1/\omega$ lowers the friction, because the electrons then answer as
-a solid.
+the paper's "the friction cannot exceed $\tfrac1{10}\,nmv_F^2/\omega$". Equality holds when $\omega\tau = 1$
+(Figure [](#fig:ceiling)). Copper is near it: the ceiling is $1.8 \times 10^{-4}\unit{Pa\,s}$, and copper reaches
+65% of it. Honey is far from it: its ceiling at the same frequency is
+$\matter\mu_\infty/2\omega = 4.6 \times 10^{-6}\unit{Pa\,s}$, and it reaches two millionths of that. A collision
+time longer than $1/\omega$ lowers the friction, because the electrons then answer as a solid.
 
-<!-- diagram: tut-visc-ceiling — One panel: Re η = μ∞τ/(1 + ω²τ²) against τ on a logarithmic axis from 10⁻¹⁶ to
-10⁻¹² s, at ω = 1.082 × 10¹⁴ s⁻¹ and μ∞ = 38.1 GPa (copper: n = 8.47 × 10²⁸ m⁻³, E_F = 7.03 eV, μ∞ = ⅖nE_F), on a
-linear vertical axis from 0 to 2 × 10⁻⁴ Pa s. The peak 1.76 × 10⁻⁴ Pa s at τ = 1/ω = 9.24 × 10⁻¹⁵ s marked by a thin
-horizontal dotted line labelled "μ∞/2ω" and a vertical tick "ωτ = 1". Copper's τ = 2.5 × 10⁻¹⁴ s marked by a dot on
-the curve at 1.15 × 10⁻⁴ Pa s (ωτ = 2.71), labelled "copper". The curve is symmetric about the peak on the log axis (it
-depends on ωτ + 1/ωτ). Caption: "Look first at the peak: no collision time gives more friction at this frequency than
-μ∞/2ω. Copper's electrons sit just past it, at 65% of the ceiling. Curve exact." -->
+![Look first at the peak: at the glow's peak frequency, no collision time gives electrons
+with copper's weight, 38 GPa, more friction than $\matter\mu_\infty/2\omega$, which they reach at $\omega\tau = 1$.
+Copper's own electrons, with $\tau = 2.5 \times 10^{-14}\unit{s}$, sit a little past the peak, at 65% of the ceiling.
+The curve is exact.](tut-visc-ceiling){#fig:ceiling}
 
 The paper's Figure [](/paper/#fig:materials) draws each material's friction against $\omega/2\pi$ in THz, so the
 glow's peak sits at 17 THz. Look first at copper's curve in panel (a): it is flat at low frequencies and bends down
