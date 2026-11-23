@@ -14,8 +14,10 @@ const sample: MarginChapter = {
 const anchors = new Set(['eq:tidal', 'eq:newton', 'sec:pixel']);
 
 describe('the margin', () => {
-	it('is empty in production until chapter 1.4 is published', () => {
-		expect(paperLinks).toEqual([]);
+	it('names each place in the paper once, and only chapters of the plan', () => {
+		const anchors = paperLinks.map((l) => l.anchor);
+		expect(new Set(anchors).size).toBe(anchors.length);
+		for (const l of paperLinks) expect(l.chapter).toMatch(/^\d+\.\d+b?$/);
 	});
 
 	it('shows a note for each link to a published chapter, labelled as the plan writes it', () => {

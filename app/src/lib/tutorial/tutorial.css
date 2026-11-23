@@ -300,6 +300,17 @@ article.chapter .equation.from-paper .tag a:hover {
 	text-decoration: underline;
 }
 
+/* on a phone the paper's number goes on its own line under the equation rather than over it */
+@media (max-width: 640px) {
+	article.chapter .equation.from-paper .katex-display .tag,
+	article.chapter .equation.from-paper .katex-display .katex-tag {
+		position: static;
+		display: block;
+		text-align: right;
+		margin-top: 0.25rem;
+	}
+}
+
 article.chapter a.paper-ref {
 	text-decoration: none;
 	color: var(--accent);

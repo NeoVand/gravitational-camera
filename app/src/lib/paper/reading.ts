@@ -57,7 +57,9 @@ export const fitEquations: Attachment<HTMLElement> = (article) => {
 			let tag = 0;
 			for (const part of Array.from(html.children)) {
 				const width = part.getBoundingClientRect().width;
-				if (part.matches('.tag, .katex-tag')) tag = width;
+				// a number set on its own line (the tutorial does this on phones) takes no room beside the body
+				if (part.matches('.tag, .katex-tag'))
+					tag = getComputedStyle(part).position === 'static' ? 0 : width;
 				else body += width;
 			}
 			const need = body + 2 * tag + 8;

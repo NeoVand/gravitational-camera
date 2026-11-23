@@ -8,7 +8,7 @@ symbols:
     title: Tidal tensor
     tex: '\curv{\mathcal{E}}_{ij}'
     role: curv
-    kind: A symmetric trace-free table of nine numbers, five of them independent; unit s⁻²
+    kind: A symmetric table of nine numbers, trace-free in empty space and then five of them independent; unit s⁻²
     meaning: 'How the pull of gravity changes from one point to the next. Two free balls a distance $\xi$ apart along a direction $j$ drift apart, or together, with relative acceleration $-\mathcal{E}_{ij}\xi_j$. It is what one pixel of the camera measures.'
     chapter: '1.4'
   - key: potential
@@ -53,3 +53,88 @@ symbols:
     kind: A vector at each point; in V/m
     meaning: 'The force per unit charge on a charge at rest. In light it is one half of the wave; the magnetic field $B$ is the other.'
     chapter: '6.6'
+  - key: mean-density
+    title: Mean density
+    tex: '\matter{\bar\rho}'
+    role: matter
+    kind: A number for a whole body; in kg/m³
+    meaning: 'The mass of a body divided by its volume. With the angular size $\theta$ it sets the tide the body raises, $2GM/r^3 = (8\pi G/3)\bar\rho\,\theta^3$.'
+    chapter: '1.4'
+    anchor: tidal-brightness-is-density-times-the-cube-of-angular-size
+  - key: angular-size
+    title: Angular size
+    tex: '\theta'
+    role: none
+    kind: A pure number, R/r; in radians for a distant body
+    meaning: 'The radius $R$ of a body divided by its distance $r$. For a distant body it is the angle between the line to its centre and the line to its edge. At the same density, a body that looks twice as wide raises a tide eight times as strong.'
+    chapter: '1.4'
+    anchor: tidal-brightness-is-density-times-the-cube-of-angular-size
+  - key: snr
+    title: Signal-to-noise ratio of the array
+    tex: '\mathrm{SNR}'
+    role: none
+    kind: A pure number
+    meaning: 'The peak tide $2Gm/z^3$ of a point mass $m$ at depth $z$, divided by the noise of the tide averaged over a square patch of side $z$, $\sqrt{N_0}/z$. So $\mathrm{SNR} = 2Gm/(z^2\sqrt{N_0})$. It is the one number on which the blur of a near-field picture depends.'
+    chapter: '3.7'
+    anchor: step-1-one-number-measures-the-camera
+  - key: kz
+    title: Fineness of a ripple
+    tex: 'q'
+    role: none
+    kind: A pure number, q = kz
+    meaning: 'The wavenumber $k$ of a ripple of the scene times its depth $z$ below the sensors. A ripple with $q = 1$ has crests $2\pi z$ apart. Laplace''s equation fades it by $e^{-q}$ on its way to the camera, so only $q$, and never $k$ or $z$ alone, decides whether it survives.'
+    chapter: '3.7'
+    anchor: step-2-each-ripple-stands-above-its-noise-by-a-factor-that-depends-on-two-numbers
+  - key: ripple-ratio
+    title: Ratio of a ripple to its noise
+    tex: 's'
+    role: none
+    kind: A pure number
+    meaning: 'How far one ripple of the scene stands above its own noise in the data, $s = \pi\,\mathrm{SNR}\,q\,e^{-q}$ for the near-field camera. The best reconstruction keeps the ripple with weight $s^2/(1+s^2)$.'
+    chapter: '3.7'
+    anchor: step-2-each-ripple-stands-above-its-noise-by-a-factor-that-depends-on-two-numbers
+  - key: wiener-filter
+    title: Wiener filter
+    tex: 'H'
+    role: none
+    kind: A pure number between 0 and 1 for each ripple
+    meaning: 'The weight with which the best linear reconstruction keeps each ripple, $H = s^2/(1+s^2)$. It is close to one for ripples well above their noise and close to zero for ripples buried in it. (In Section XII of the paper, $H$ is a number of bits.)'
+    chapter: '3.5'
+  - key: cutoff
+    title: Cut-off
+    tex: 'q_c'
+    role: none
+    kind: A pure number
+    meaning: 'The finest ripple the best reconstruction still keeps with weight one half, the larger root of $q_c\,e^{-q_c} = 1/\pi\,\mathrm{SNR}$. It is 10.4 at a signal-to-noise ratio of a thousand and 74.5 at $10^{30}$, close to $\ln(\pi\,\mathrm{SNR}) + \ln\ln(\pi\,\mathrm{SNR})$.'
+    chapter: '3.7'
+    anchor: step-3-the-filter-keeps-a-ripple-while-it-stands-above-its-noise
+  - key: lambert-w
+    title: Lambert W function, lower branch
+    tex: '\mathrm{W}_{-1}'
+    role: none
+    kind: A function of one real number between −1/e and 0
+    meaning: 'The inverse of $v\,e^v$: $\mathrm{W}(y)$ is the $v$ with $v\,e^v = y$. For $y$ between $-1/e$ and $0$ there are two solutions; the lower branch $\mathrm{W}_{-1}$ gives the one below $-1$, and the cut-off is $q_c = -\mathrm{W}_{-1}(-1/\pi\,\mathrm{SNR})$.'
+    chapter: '3.7'
+    anchor: step-4-solving-the-cut-off-needs-a-logarithm-of-a-logarithm
+  - key: angular-blur
+    title: Angular blur
+    tex: '\Delta\theta'
+    role: none
+    kind: An angle, in radians
+    meaning: 'The full width at half maximum of the picture of a point, divided by its depth. For a near-field array as wide as the scene is deep, $\Delta\theta = 4.43/q_c$: 24° at a signal-to-noise ratio of a thousand. (The paper also uses $\Delta\theta$ for the blur of a wave image, $\lambda/D$.)'
+    chapter: '3.7'
+    anchor: step-6-the-blur-is-the-width-of-the-picture-at-half-its-height
+  - key: surface-density
+    title: Surface density
+    tex: '\matter{\sigma}'
+    role: matter
+    kind: A number at each point of a sheet; mass per unit area, in kg/m²
+    meaning: 'How much mass a thin sheet holds in each square metre. The near-field camera''s scene is described as a surface density at a depth $z$. (In Part 3, $\sigma$ never stands for a standard deviation.)'
+    chapter: '2.7'
+  - key: noise-density
+    title: Spatial noise density
+    tex: 'N_0'
+    role: none
+    kind: A number; in s⁻⁴ m²
+    meaning: 'The strength of white noise spread over the plane of the sensors. Averaged over a patch of area $A$, the noise of the tide has variance $N_0/A$, so over a square of side $z$ its standard deviation is $\sqrt{N_0}/z$.'
+    chapter: '3.2'

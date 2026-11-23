@@ -22,3 +22,104 @@ terms:
   - term: trace-free
     definition: 'A square table of numbers whose diagonal entries add up to zero. Outside matter, the tidal tensor is trace-free.'
     chapter: '1.5'
+  - term: free fall
+    definition: 'The motion of a body on which gravity is the only force. A freely falling observer cannot feel the pull of gravity at their own place.'
+    chapter: '1.4'
+  - term: equivalence principle
+    definition: 'In its Newtonian form, the fact that every body at a given place falls with the same acceleration, whatever its mass and whatever it is made of.'
+    chapter: '1.4'
+  - term: tidal tensor
+    definition: 'The table of the nine second derivatives of the potential, $\mathcal{E}_{ij} = \partial_i\partial_j\Phi$. Two free balls a small vector $\xi$ apart accelerate relative to each other by $-\mathcal{E}_{ij}\xi_j$. It is measured in s⁻².'
+    role: curv
+    chapter: '1.4'
+  - term: tensor
+    definition: 'A table of numbers with a row and a column for each direction in space, whose entries change in a fixed way when the axes are turned, as the components of a vector do. The tidal tensor is one.'
+    chapter: '1.4'
+  - term: stretch
+    definition: 'A negative entry of the tidal tensor along a direction: free balls separated along that direction move apart. Drawn in orange.'
+    role: curv
+    chapter: '1.4'
+  - term: squeeze
+    definition: 'A positive entry of the tidal tensor along a direction: free balls separated along that direction move together. Drawn in blue.'
+    role: curv
+    chapter: '1.4'
+  - term: eötvös
+    definition: 'The unit of tide, 1 E = 10⁻⁹ s⁻². A person of 70 kg one metre away raises a tide of about 9 E.'
+    chapter: '1.4'
+  - term: trace
+    definition: 'The sum of the diagonal entries of a square table. The trace of the tidal tensor is $4\pi G\rho$, zero in empty space.'
+    chapter: '1.4'
+    anchor: in-empty-space-the-stretch-and-the-squeezes-balance
+  - term: angular size
+    definition: 'The radius of a body divided by its distance. For a distant body it is the angle, in radians, from its centre to its edge.'
+    chapter: '1.4'
+    anchor: tidal-brightness-is-density-times-the-cube-of-angular-size
+  - term: tidal brightness
+    definition: 'The size of the tide a body raises, $2GM/r^3 = (8\pi G/3)\bar\rho\,\theta^3$: its mean density times the cube of its angular size, times a constant.'
+    chapter: '1.4'
+    anchor: tidal-brightness-is-density-times-the-cube-of-angular-size
+  - term: strain
+    definition: 'A change in length divided by the length, a pure number. LIGO reads the strain of one arm minus that of the other; the waves it detects have strains near 10⁻²¹.'
+    chapter: '1.4'
+    anchor: a-swaying-person-makes-the-signal-that-ligo-must-keep-out
+  - term: pseudo-tide
+    definition: 'An apparent tide that comes from the motion of the frame, not from any mass. A frame turning at angular velocity $\Omega$ feels one of size $\Omega^2$.'
+    chapter: '1.4'
+  - term: signal-to-noise ratio of the array
+    definition: 'The peak tide of a point mass, divided by the noise of the tide averaged over a square patch whose side equals the depth of the mass: $\mathrm{SNR} = 2Gm/(z^2\sqrt{N_0})$.'
+    chapter: '3.7'
+    anchor: step-1-one-number-measures-the-camera
+  - term: cut-off
+    definition: 'The finest ripple that a reconstruction still keeps with weight one half. For the near-field camera it is the larger root $q_c$ of $q_c\,e^{-q_c} = 1/\pi\,\mathrm{SNR}$.'
+    chapter: '3.7'
+    anchor: step-3-the-filter-keeps-a-ripple-while-it-stands-above-its-noise
+  - term: fixed-point iteration
+    definition: 'A way to solve an equation written as $q = g(q)$: guess $q$, put the guess into $g$, and take the result as the next guess. It settles down when the slope of $g$ is smaller than one in size.'
+    chapter: '3.7'
+    anchor: step-4-solving-the-cut-off-needs-a-logarithm-of-a-logarithm
+  - term: iterated logarithm
+    definition: 'The logarithm of a logarithm, such as $\ln\ln(\pi\,\mathrm{SNR})$. It grows extremely slowly: 2.1 at a signal-to-noise ratio of a thousand and 4.3 at $10^{30}$.'
+    chapter: '3.7'
+    anchor: step-4-solving-the-cut-off-needs-a-logarithm-of-a-logarithm
+  - term: Lambert W function
+    definition: 'The inverse of the function $w\,e^w$. For values between $-1/e$ and $0$ it has two real branches, $\mathrm{W}_0$ above $-1$ and $\mathrm{W}_{-1}$ below it.'
+    chapter: '3.7'
+    anchor: step-4-solving-the-cut-off-needs-a-logarithm-of-a-logarithm
+  - term: pupil
+    definition: 'The opening of an imaging system. A filter that keeps every ripple whose wavevector lies inside a circle acts as a round pupil, and draws a point as $2J_1(u)/u$.'
+    chapter: '3.7'
+    anchor: step-5-the-picture-of-a-point-is-the-pattern-of-a-round-opening
+  - term: point-spread function
+    definition: 'The picture that an imaging system or a reconstruction draws of a single point.'
+    chapter: '3.5'
+  - term: full width at half maximum
+    definition: 'The distance between the two points, one on each side of a peak, where a curve has fallen to half its peak value.'
+    chapter: '3.5'
+  - term: amplitude image
+    definition: 'A picture that is linear in the data, so that the picture of two sources is the sum of their pictures. The near-field reconstruction, a surface density, is one.'
+    chapter: '3.7'
+    anchor: step-6-the-blur-is-the-width-of-the-picture-at-half-its-height
+  - term: intensity image
+    definition: 'A picture of the energy arriving at each point, the square of an amplitude, as a photograph of light records it. The Airy pattern $(2J_1(u)/u)^2$ is the intensity image of a round pupil.'
+    chapter: '3.7'
+    anchor: step-6-the-blur-is-the-width-of-the-picture-at-half-its-height
+  - term: "Sparrow's criterion"
+    definition: 'Two equal points are told apart once the picture of the pair dips between them, which happens when their midpoint lies beyond the inflection point of each point''s picture.'
+    chapter: '3.7'
+    anchor: step-7-an-exact-calculation-reproduces-the-papers-table
+  - term: angular blur
+    definition: 'The width of the picture of a point divided by its distance, as an angle. For the near-field camera it is $4.43/q_c$ radians, the same at every distance.'
+    chapter: '3.7'
+    anchor: step-6-the-blur-is-the-width-of-the-picture-at-half-its-height
+  - term: ripple
+    definition: 'A pattern across a sheet that varies as $\cos(\mathbf k\cdot\mathbf a)$ with position $\mathbf a$. Any pattern on the sheet is a sum of ripples, by Fourier analysis.'
+    chapter: '3.7'
+    anchor: step-2-each-ripple-stands-above-its-noise-by-a-factor-that-depends-on-two-numbers
+  - term: wavenumber
+    definition: 'The length $k$ of the wavevector of a ripple: $2\pi$ divided by the distance between crests, in m⁻¹.'
+    chapter: '3.7'
+    anchor: step-2-each-ripple-stands-above-its-noise-by-a-factor-that-depends-on-two-numbers
+  - term: inflection point
+    definition: 'A point where a curve stops curving downward and starts curving upward, or the reverse: its second derivative changes sign there.'
+    chapter: '3.7'
+    anchor: step-7-an-exact-calculation-reproduces-the-papers-table

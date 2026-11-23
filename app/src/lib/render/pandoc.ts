@@ -137,7 +137,8 @@ export function createRenderer(options: RendererOptions): Renderer {
 					? String(next.c).match(/^[,.;:!?)\]]+/)?.[0]
 					: undefined;
 			if (trailing) {
-				html += `<span class="nowrap">${inline(n)}${esc(trailing)}</span>`;
+				// the word joiner keeps the punctuation on the maths' line even where a phone lets the pair wrap
+				html += `<span class="nowrap">${inline(n)}\u2060${esc(trailing)}</span>`;
 				html += esc(String(next.c).slice(trailing.length));
 				i += 1;
 			} else html += inline(n);

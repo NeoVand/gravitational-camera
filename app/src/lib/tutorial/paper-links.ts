@@ -17,12 +17,15 @@ export interface PaperLink {
 	section?: string;
 }
 
-/**
- * The production map. Empty until chapter 1.4 is published; then it opens with
- *   { anchor: 'eq:tidal', chapter: '1.4', label: 'Background' },
- *   { anchor: 'eq:newton', chapter: '1.4', label: 'Background' },
- */
-export const paperLinks: PaperLink[] = [];
+/** The production map, in the order of the paper. */
+export const paperLinks: PaperLink[] = [
+	{ anchor: 'eq:tidal', chapter: '1.4', label: 'Background' },
+	{ anchor: 'eq:newton', chapter: '1.4', label: 'Derivation' },
+	{ anchor: 'eq:tidal-brightness', chapter: '1.4', label: 'Numbers' },
+	{ anchor: 'eq:evanescent', chapter: '3.7', label: 'Background' },
+	{ anchor: 'eq:cutoff', chapter: '3.7', label: 'Derivation' },
+	{ anchor: 'eq:resolution', chapter: '3.7', label: 'Derivation' }
+];
 
 /** The same seed against the sample chapter (tutorial/_fixtures/sample.md, id X.1), for tests only. */
 export const fixturePaperLinks: PaperLink[] = [

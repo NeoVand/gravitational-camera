@@ -29,7 +29,7 @@ parts:
       - { id: '1.1', slug: newton/vectors-and-indices, title: 'Vectors and index notation; the Levi-Civita symbol', short: Vectors and indices, size: M, status: planned }
       - { id: '1.2', slug: newton/field-and-potential, title: 'Force, field and potential; the gradient', short: Field and potential, size: M, status: planned }
       - { id: '1.3', slug: newton/gauss-and-poisson, title: "Flux, Gauss's law and Poisson's equation; solid angle, divergence, the divergence theorem, the delta function; the shell theorem", short: Gauss and Poisson, size: L, status: planned }
-      - { id: '1.4', slug: newton/tides, title: 'Tides: the difference in gravity; the Hessian', short: Tides, size: M, status: planned }
+      - { id: '1.4', slug: newton/tides, title: 'Tides: the difference in gravity; the Hessian', short: Tides, size: M, status: published }
       - { id: '1.5', slug: newton/five-numbers, title: 'Five numbers: symmetric trace-free tables', short: Five numbers, size: M, status: planned }
       - { id: '1.5b', slug: newton/complex-numbers, title: "Complex numbers: the shear as one number, rotations you can multiply, Euler's formula", short: Complex numbers, size: M, status: planned }
       - { id: '1.6', slug: newton/motion, title: 'Motion: energy, momentum, rigid bodies, rotating frames', short: Motion, size: L, status: planned }
@@ -61,7 +61,7 @@ parts:
       - { id: '3.4', slug: noise/symmetric-matrices, title: 'Symmetric matrices at work: eigen-decomposition, SVD, whitening, the Rayleigh quotient', short: Symmetric matrices, size: M, status: planned }
       - { id: '3.5', slug: noise/wiener-filter, title: 'The best guess: the Wiener filter', short: The Wiener filter, size: M, status: planned }
       - { id: '3.6', slug: noise/bessel-and-airy, title: 'Bessel functions and the Airy pattern', short: Bessel and Airy, size: M, status: planned }
-      - { id: '3.7', slug: noise/blur-law, title: 'The blur law: the cut-off, the logarithm, the Lambert W function, the width of a blur', short: The blur law, size: L, status: planned }
+      - { id: '3.7', slug: noise/blur-law, title: 'The blur law: the cut-off, the logarithm, the Lambert W function, the width of a blur', short: The blur law, size: L, status: published }
       - { id: '3.8', slug: noise/bits, title: 'Bits: entropy, capacity, and how much an image holds', short: Bits, size: M, status: planned }
       - { id: '3.9', slug: noise/positivity, title: 'Positivity, super-resolution, and the geometry of the near field', short: Positivity, size: L, status: planned }
       - { id: R3, slug: noise/reading-section-iv-2, title: 'Reading Section IV, part 2, with the capstone: imaging the locked safe', short: Reading Section IV (2), size: L, status: planned, reads: [sec:near-field] }
@@ -191,10 +191,10 @@ routes:
     chapters: ['0.1', '0.2', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', R2, '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '3.9', R3, '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', R4]
   - id: section-viii
     title: To Section VIII, one pixel
-    chapters: ['0.1', '0.4', '0.6', '1.1', '1.2', '1.4', '1.5', '1.5b', '1.7', R1, '6.1', '6.2', '6.3', '6.6', '7.1', '7.2', '7.4', '7.5', '7.6', '8.1', '8.4', '9.1', '9.2', '9.3', '9.4', '9.5', R9]
+    chapters: ['0.1', '0.4', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.7', R1, '6.1', '6.2', '6.3', '6.6', '7.1', '7.2', '7.4', '7.5', '7.6', '8.1', '8.4', '9.1', '9.2', '9.3', '9.4', '9.5', R9]
   - id: sections-vi-and-ix
     title: To Sections VI and IX, the thermal glow and a first image
-    chapters: ['0.1', '0.3', '0.6', '1.1', '1.2', '1.4', '1.5', '1.5b', R1, '3.1', '3.2', '3.3', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '5.1', '5.2', '5.5', '5.6', '7.4', '7.6', '7.7', '7.8', '8.1', '8.3', '8.5', '10.1', '10.2', '10.3', R10]
+    chapters: ['0.1', '0.3', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', R1, '3.1', '3.2', '3.3', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '5.1', '5.2', '5.5', '5.6', '7.4', '7.6', '7.7', '7.8', '8.1', '8.3', '8.5', '10.1', '10.2', '10.3', R10]
   - id: sections-xii-to-xv
     title: To Sections XII to XV, what a field keeps
     chapters: ['0.1', '0.5', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.7', '1.8', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', R2, '3.8', '4.5', '4.6', '6.4', '11.1', '11.2', '11.3', '11.4', '13.1', '13.2', '13.3', '13.4', '13.5', '13.6', '13.7', '13.8', R13]

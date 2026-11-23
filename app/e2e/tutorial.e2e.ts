@@ -163,16 +163,20 @@ test('tutorial: the palette page shows three palettes on both grounds', async ({
 	expect(await page.locator('table').count()).toBe(2);
 });
 
-test('the paper: with an empty map its margin is untouched', async ({ page }) => {
-	for (const width of [1440, 390]) {
-		await page.setViewportSize({ width, height: 900 });
-		await page.goto('/paper/');
-		await expect(page.locator('.equation').first()).toBeVisible();
-		await expect(page.locator('aside.margin')).toHaveCount(0);
-		await expect(page.locator('.tutorial-chip')).toHaveCount(0);
-		// the run-in headings carry ids that the margin can be keyed to
-		await expect(page.locator('h4.run-in[id="par:the-earths-own-tide"]')).toHaveCount(1);
-	}
+test('the paper: its margin points to the published chapters, as notes when wide and chips when narrow', async ({
+	page
+}) => {
+	await page.setViewportSize({ width: 1440, height: 900 });
+	await page.goto('/paper/');
+	await expect(page.locator('.equation').first()).toBeVisible();
+	const notes = page.locator('aside.margin .note');
+	await expect(notes.filter({ hasText: 'Tides, 1.4' }).first()).toBeAttached();
+	await expect(notes.filter({ hasText: '3.7' }).first()).toBeAttached();
+	// the run-in headings carry ids that the margin can be keyed to
+	await expect(page.locator('h4.run-in[id="par:the-earths-own-tide"]')).toHaveCount(1);
+	await page.setViewportSize({ width: 390, height: 900 });
+	await page.goto('/paper/');
+	await expect(page.locator('.tutorial-chip').first()).toBeAttached();
 });
 
 test('the paper: a margin note from the map stands level with its anchor and previews its chapter', async ({
