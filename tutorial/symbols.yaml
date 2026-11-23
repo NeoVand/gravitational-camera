@@ -1412,3 +1412,91 @@ symbols:
     meaning: 'The response of the moment $Q_h = \int\rho h\,\mathrm dV$ to a tide of potential $-Fh$, $\tilde Q_h = \chi_h\tilde F$; $\chi_{gh}$ is the response of a second moment $Q_g$. Far above every frequency of the body, $\chi_{gh} \to -\int\rho\,\nabla g\cdot\nabla h\,\mathrm dV/\omega^2$, the response of dust, and so $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi_h\,\mathrm d\omega = \int\rho\,|\nabla h|^2\,\mathrm dV$.'
     chapter: '4.5'
     anchor: driven-faster-than-its-bonds-every-body-answers-as-dust
+  - key: wave-source
+    title: Source of a wave field
+    tex: 's(\vect x, t)'
+    role: none
+    kind: A number at each point and time; in the unit of the field per square metre
+    meaning: 'The given function on the right of the wave equation with a source, $c^{-2}\partial_t^2u - \nabla^2u = s$, which drives the field $u$. For Newton''s potential at rest, $u = \Phi$ and $s = -4\pi G\rho$; for linearized gravity, $s = 16\pi GT_{ij}/c^4$. (Not the ripple ratio $s$ of chapter 3.7, nor the index $s$ that numbers sources.)'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - key: point-strength
+    title: Strength of a point source
+    tex: 'b(t)'
+    role: none
+    kind: A number that changes in time; in the unit of the field times a metre
+    meaning: 'The strength of a source at one point, $s = b(t)\,\delta^3(\vect x)$, whose field is $u = b(t - r/c)/4\pi r$. For gravity $b = -4\pi GM$, which cannot change, because mass is conserved. (Not the impact parameter $b$ of chapter 1.8 nor the pixel spacing $b$ of chapter 2.6.)'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - key: retarded-greens-function
+    title: Retarded Green's function
+    tex: '\mathcal G_{\rm ret}(r, t)'
+    role: none
+    kind: A function of distance and time; in s⁻¹ m⁻¹
+    meaning: 'The field of a single blow of unit strength at one point and the time zero: $\mathcal G_{\rm ret} = \delta(t - r/c)/4\pi r$. It is zero until the news of the blow arrives at the time $r/c$. Integrated over time it is $1/4\pi r$, minus chapter 2.4''s $\mathcal G$, because the wave equation with a source has $-\nabla^2$ on its left side.'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - key: retarded-time
+    title: Retarded time
+    tex: 't_{\rm ret}'
+    role: none
+    kind: A time; in seconds
+    meaning: 'The time $t - |\vect x - \vect y|/c$ at which a piece of a source at $\vect y$ must act to be felt at $\vect x$ at the time $t$. The paper writes $u = t - r/c$ for it in Sections V and XI; the tutorial keeps $u$ for the field.'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - key: wave-direction
+    title: Direction from a source to a field point
+    tex: '\hat n'
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'In the paper''s Sections V and XI, and in chapter 5.2, the unit vector from a source toward the point where its field is measured, along the travel of its waves. Elsewhere the paper''s $\hat n$ points the other way, from the pixel toward the source.'
+    chapter: '5.2'
+    anchor: far-away-each-direction-carries-one-ripple-of-the-source
+  - key: source-transform
+    title: Transform of a source in time and space
+    tex: '\tilde s(\omega, \vect k)'
+    role: none
+    kind: A complex number for each frequency and wavevector; the unit of the source times s m³
+    meaning: 'The source taken apart into ripples in time and space with the paper''s signs, $\tilde s = \int s\,e^{i\omega t - i\vect k\cdot\vect y}\,\mathrm dt\,\mathrm d^3y$. Far from a source its wave in the direction $\hat n$ is $e^{i\omega r/c}\tilde s(\omega, \omega\hat n/c)/4\pi r$: each direction reads one wavevector, on the sphere $|\vect k| = \omega/c$.'
+    chapter: '5.2'
+    anchor: far-away-each-direction-carries-one-ripple-of-the-source
+  - key: trace-reversed-perturbation
+    title: Trace-reversed perturbation
+    tex: '\field{\bar h}_{ij}'
+    role: field
+    kind: A symmetric table of pure numbers at each point and time
+    meaning: 'The weak gravitational field written so that, in harmonic gauge, each component obeys the wave equation with the source $16\pi GT_{ij}/c^4$: $\Box\bar h_{ij} = -16\pi GT_{ij}/c^4$ (stated in chapter 5.2; derived in chapter 7.4). The bar marks the trace reversal, not an average.'
+    chapter: '5.2'
+    anchor: far-away-each-direction-carries-one-ripple-of-the-source
+  - key: tt-projector
+    title: Transverse trace-free projector
+    tex: '\Lambda_{ij,kl}(\hat n)'
+    role: none
+    kind: A table of pure numbers with four indices
+    meaning: 'The projector that keeps, of a symmetric table, only the part across the direction $\hat n$ with no trace: the part a gravitational wave travelling along $\hat n$ can carry. It turns $\bar h_{kl}$ into the paper''s $h^{\rm TT}_{ij}$ (stated in chapter 5.2; chapter 7.6 builds it). (Not $\Lambda = \ln(R_c/R)$ of chapter 3.8, nor a boost.)'
+    chapter: '5.2'
+    anchor: far-away-each-direction-carries-one-ripple-of-the-source
+  - key: source-count
+    title: Number of sources
+    tex: 'N'
+    role: none
+    kind: A whole number
+    meaning: 'How many equal compact sources make up an array. Close together and in step they radiate $N^2$ times the power of one; far apart or with random phases, $N$ times. (Not the focal ratio or the number radiance.)'
+    chapter: '5.2'
+    anchor: many-sources-in-step-add-their-amplitudes
+  - key: source-phase
+    title: Phase of one source
+    tex: '\phi_s'
+    role: none
+    kind: An angle; in radians
+    meaning: 'How far the cycle of the source numbered $s$ is shifted: it oscillates as $e^{-i(\omega t + \phi_s)}$.'
+    chapter: '5.2'
+    anchor: many-sources-in-step-add-their-amplitudes
+  - key: array-factor
+    title: Array factor
+    tex: '\mathcal A(\hat n)'
+    role: none
+    kind: A complex number for each direction; no unit
+    meaning: 'The factor by which the far wave of $N$ equal compact sources exceeds the wave of one: $\mathcal A = \sum_s e^{-i\phi_s - i\omega\hat n\cdot\vect x_s/c}$, the paper''s sum. It is $N$ for sources close together and in step.'
+    chapter: '5.2'
+    anchor: many-sources-in-step-add-their-amplitudes

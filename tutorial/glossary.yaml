@@ -2235,3 +2235,47 @@ terms:
     definition: 'A sum rule in which each frequency is weighted by $\omega$, which in quantum mechanics is in proportion to the energy of one quantum: for a body under a tide of shape $h$, $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi_h\,\mathrm d\omega = \int\rho\,|\nabla h|^2\,\mathrm dV$, the paper''s sum rule for an applied tide.'
     chapter: '4.5'
     anchor: driven-faster-than-its-bonds-every-body-answers-as-dust
+  - term: source (of a wave field)
+    definition: 'The given function $s(\vect x, t)$ on the right of the wave equation $c^{-2}\partial_t^2u - \nabla^2u = s$, which drives the field. At rest the equation is Poisson''s, with $s = -4\pi G\rho$ for Newton''s potential.'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - term: point source
+    definition: 'A source gathered at one point, $s = q(t)\,\delta^3(\vect x)$. Its field is $q(t - r/c)/4\pi r$: the static field of a point, delivered late by the travel time $r/c$.'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - term: retarded solution
+    definition: 'The field of a source built from its pieces, each counted as it was one travel time ago: $u(\vect x, t) = \int s(\vect y, t - |\vect x - \vect y|/c)\,\mathrm d^3y/4\pi|\vect x - \vect y|$.'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - term: retarded time
+    definition: 'The time $t - |\vect x - \vect y|/c$ at which a piece of a source at $\vect y$ must act to be felt at $\vect x$ at the time $t$. The paper writes it $u = t - r/c$.'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - term: advanced solution
+    definition: 'The other solution of the wave equation with a source, built with $t + r/c$, whose field would arrive before the source acted. Causality, and the absence of waves coming in from far away, exclude it.'
+    chapter: '5.2'
+    anchor: a-source-sends-its-news-outward-at-the-speed-of-the-wave
+  - term: near part and wave part
+    definition: 'The two parts of the slope of an oscillating point source''s field: one falls as $1/r^2$ and follows the source, the other falls as $1/r$ and follows its rate of change. They are equal at $kr = 1$, the distance $\lambda/2\pi$ that bounds the near zone.'
+    chapter: '5.2'
+    anchor: beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1
+  - term: induction region
+    definition: 'The distances near $\lambda/2\pi$ from a source where the middle terms of the field''s derivatives, neither the near nor the wave terms, are as large as either. For the tide the middle term is the largest of the three for $kr$ between 1 and 2.'
+    chapter: '5.2'
+    anchor: beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1
+  - term: far-field condition
+    definition: 'For a source of radius $L$, the condition $r \gg L^2/\lambda$ under which the path from each piece of the source to the field point may be taken as $r - \hat n\cdot\vect y$ in the phase. It is chapter 3.6''s far field seen from the other side.'
+    chapter: '5.2'
+    anchor: far-away-each-direction-carries-one-ripple-of-the-source
+  - term: array factor
+    definition: 'The factor $\sum_s e^{-i\phi_s - i\omega\hat n\cdot\vect x_s/c}$ by which the far wave of many equal compact sources exceeds the wave of one, with $\vect x_s$ their positions and $\phi_s$ their phases.'
+    chapter: '5.2'
+    anchor: many-sources-in-step-add-their-amplitudes
+  - term: coherent addition
+    definition: 'The addition of waves that arrive in step, so that their amplitudes add: $N$ equal sources close together and in step radiate $N^2$ times the power of one.'
+    chapter: '5.2'
+    anchor: many-sources-in-step-add-their-amplitudes
+  - term: incoherent addition
+    definition: 'The addition of waves with random or varying phases, so that on average their powers add: $N$ equal sources radiate $N$ times the power of one.'
+    chapter: '5.2'
+    anchor: many-sources-in-step-add-their-amplitudes

@@ -83,7 +83,7 @@ parts:
     title: Waves and optics
     chapters:
       - { id: '5.1', slug: waves/wave-equation, title: 'The wave equation', short: The wave equation, size: M, status: published }
-      - { id: '5.2', slug: waves/retarded-waves, title: 'Sources and retarded waves: the near zone and the wave zone', short: Retarded waves, size: M, status: planned }
+      - { id: '5.2', slug: waves/retarded-waves, title: 'Sources and retarded waves: the near zone and the wave zone', short: Retarded waves, size: M, status: published }
       - { id: '5.3', slug: waves/diffraction, title: 'Diffraction, resolution and arrays of sensors', short: Diffraction, size: M, status: planned }
       - { id: '5.4', slug: waves/polarization, title: 'Polarization and the Stokes parameters', short: Polarization, size: M, status: planned }
       - { id: '5.5', slug: waves/radiance, title: 'Radiance, emission and absorption; lenses and mirrors in brief', short: Radiance, size: M, status: planned }
