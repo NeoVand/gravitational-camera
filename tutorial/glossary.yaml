@@ -1087,3 +1087,144 @@ terms:
     definition: 'A function of the complex variable $w = x + iy$ that has a derivative in $w$ at every point of a region, such as any polynomial in $w$.'
     chapter: '2.1'
     anchor: the-harmonic-quadratics-are-the-trace-free-tables
+  - term: "Green's function"
+    definition: 'The potential of a single point source of unit strength: a solution of $\nabla^2\mathcal G = \delta^3(\mathbf x - \mathbf y)$. In all space, falling to zero far away, it is $-1/4\pi|\mathbf x - \mathbf y|$, and every potential is a sum of such terms.'
+    chapter: '2.4'
+    anchor: the-potential-of-one-point-builds-every-potential
+  - term: reciprocity
+    definition: 'The symmetry $\mathcal G(\mathbf x, \mathbf y) = \mathcal G(\mathbf y, \mathbf x)$ of a Green''s function: the potential at one point of a unit mass at another is unchanged when the two points are swapped.'
+    chapter: '2.4'
+    anchor: the-potential-of-one-point-builds-every-potential
+  - term: linear
+    definition: 'Said of an equation, such as Poisson''s, in which a sum of solutions for two sources is the solution for the sum of the sources, and a multiple of a solution is a solution for the same multiple of its source.'
+    chapter: '2.4'
+    anchor: the-potential-of-one-point-builds-every-potential
+  - term: "Green's representation formula"
+    definition: 'The formula that writes a function harmonic in a region from its values and its normal slope on the boundary, $\Phi(\mathbf x) = \oint(\Phi\nabla\mathcal G - \mathcal G\nabla\Phi)\cdot\mathrm d\mathbf A$.'
+    chapter: '2.4'
+    anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
+  - term: Dirichlet problem
+    definition: 'The problem of finding a function harmonic in a region from its values on the boundary.'
+    chapter: '2.4'
+    anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
+  - term: "Dirichlet Green's function"
+    definition: 'A Green''s function of a region that vanishes on the region''s boundary.'
+    chapter: '2.4'
+    anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
+  - term: Poisson kernel
+    definition: 'The weight on the boundary that gives a harmonic function inside a region from its values on the boundary: the outward slope of the Dirichlet Green''s function. For a plane it is $z/2\pi(a^2 + z^2)^{3/2}$; for a ball, $(R^2 - s^2)/4\pi R|\mathbf x - \mathbf s|^3$.'
+    chapter: '2.4'
+    anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
+  - term: method of images
+    definition: 'Building a Green''s function that vanishes on a boundary by adding sources, called images, outside the region, placed so that their potential cancels the source''s on the boundary.'
+    chapter: '2.4'
+    anchor: above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height
+  - term: upward continuation
+    definition: 'Computing a potential, or a tide, farther from its sources from its values on a plane, with the half-space Poisson kernel. It smooths away detail finer than the added height.'
+    chapter: '2.4'
+    anchor: above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height
+  - term: downward continuation
+    definition: 'Computing a potential nearer its sources from its values on a plane, the reverse of upward continuation. It sharpens the picture and multiplies the noise of fine detail.'
+    chapter: '2.4'
+    anchor: above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height
+  - term: Kelvin image
+    definition: 'For a point at the distance $s$ from the centre of a sphere of radius $R$, the point on the same ray at the distance $R^2/s$, with the weight $R/s$. Its potential cancels the point''s on the sphere.'
+    chapter: '2.4'
+    anchor: on-a-sphere-kelvins-image-gives-the-potential-inside-and-the-skin-of-balayage
+  - term: balayage
+    definition: 'French for sweeping: replacing the mass inside a region by a skin on its boundary that has the same field everywhere outside. For a point mass $m$ inside a ball the skin has the surface density $m(R^2 - s^2)/4\pi R|\mathbf x - \mathbf s|^3$.'
+    chapter: '2.4'
+    anchor: on-a-sphere-kelvins-image-gives-the-potential-inside-and-the-skin-of-balayage
+  - term: retarded Green's function
+    definition: 'The Green''s function of the wave equation that delivers the field of each piece of a source late by the time light takes to cross the distance.'
+    chapter: '2.4'
+    anchor: where-greens-functions-go-next
+  - term: multipole expansion
+    definition: 'The potential outside a body written as a sum over degrees $\ell$, each term a multipole moment of the body times $Y_{\ell m}/r^{\ell+1}$. Degree $\ell$ is at least $(r/R)^\ell$ times weaker than the monopole, with $R$ the body''s size and $r$ the distance.'
+    role: field
+    chapter: '2.3'
+    anchor: outside-a-body-the-potential-is-a-list-of-moments
+  - term: monopole
+    definition: 'The multipole moment of degree 0, the total mass. Far from any body only its field, $-GM/r$, is left.'
+    role: matter
+    chapter: '2.3'
+    anchor: outside-a-body-the-potential-is-a-list-of-moments
+  - term: octupole
+    definition: 'The multipole moments of degree 3, seven numbers. Their potential falls as $1/r^4$ and their tide as $1/r^6$.'
+    role: matter
+    chapter: '2.3'
+    anchor: outside-a-body-the-potential-is-a-list-of-moments
+  - term: quadrupole tensor
+    definition: 'The symmetric trace-free table $Q_{ij} = \int\rho\,(3x_ix_j - r^2\delta_{ij})\,\mathrm dV$, in kg m², that gives the degree-two part of the potential outside a body. A round body has none.'
+    role: matter
+    chapter: '2.3'
+    anchor: the-first-three-degrees-are-the-mass-the-centre-of-mass-and-a-trace-free-quadrupole
+  - term: exterior expansion
+    definition: 'The multipole expansion of the potential outside a sphere that holds all the mass, a sum of the fading solid harmonics $Y_{\ell m}/r^{\ell+1}$.'
+    chapter: '2.3'
+    anchor: round-the-camera-distant-matter-makes-a-sum-of-growing-harmonics
+  - term: interior expansion
+    definition: 'The potential inside a sphere about the camera that holds no matter, a sum of the growing solid harmonics $r^\ell Y_{\ell m}$. Degree 2 is the uniform tide; degrees 3 and up are tides that change across the camera.'
+    chapter: '2.3'
+    anchor: round-the-camera-distant-matter-makes-a-sum-of-growing-harmonics
+  - term: contact term
+    definition: 'The part $\tfrac{4\pi}{3}G\rho\,\delta_{ij}$ of the tide made by the matter at the pixel''s own place. It holds the trace $4\pi G\rho$, keeps the tide finite where the tidal column grows without limit, and corresponds to $-\tfrac{4\pi}{3}\delta_{ij}\delta^3$ in the second derivatives of $1/r$.'
+    role: curv
+    chapter: '2.3'
+    anchor: at-the-cameras-own-place-the-tide-stays-finite-while-the-tidal-column-grows-without-limit
+  - term: random process
+    definition: 'A quantity whose whole course in time (or across a plane) is drawn at random, such as the noise in a record; each repetition of the experiment gives a different function.'
+    chapter: '3.2'
+    anchor: a-noisy-record-is-a-random-function-of-time
+  - term: stationary
+    definition: 'Said of a random process whose statistics do not change with time, so that the covariance of two values depends only on the time between them.'
+    chapter: '3.2'
+    anchor: a-noisy-record-is-a-random-function-of-time
+  - term: autocorrelation
+    definition: 'The mean product $\langle n(t)\,n(0)\rangle$ of a stationary noise at two times a lag $t$ apart. At zero lag it is the variance.'
+    chapter: '3.2'
+    anchor: a-noisy-record-is-a-random-function-of-time
+  - term: correlation time
+    definition: 'The lag beyond which the autocorrelation of a noise is negligible, so that readings further apart are uncorrelated.'
+    chapter: '3.2'
+    anchor: a-noisy-record-is-a-random-function-of-time
+  - term: power spectral density
+    definition: 'The spectrum of a noise: how its variance is shared among frequencies. It is the Fourier transform of the autocorrelation.'
+    chapter: '3.2'
+    anchor: the-spectrum-says-how-the-noise-is-shared-among-frequencies
+  - term: Wiener–Khinchin relation
+    definition: 'The statement that the autocorrelation of a stationary noise and its spectrum are a Fourier pair: $C(t) = \int S(\omega)\,e^{-i\omega t}\,\mathrm d\omega/2\pi$.'
+    chapter: '3.2'
+    anchor: the-spectrum-says-how-the-noise-is-shared-among-frequencies
+  - term: two-sided spectrum
+    definition: 'A spectrum defined on negative and positive frequencies, sharing the variance between $+\omega$ and $-\omega$. The paper''s spectra are two-sided.'
+    chapter: '3.2'
+    anchor: the-spectrum-says-how-the-noise-is-shared-among-frequencies
+  - term: one-sided spectrum
+    definition: 'A spectrum defined on positive frequencies only, in hertz, holding the whole variance there; it is twice the two-sided spectrum. Data sheets usually quote it.'
+    chapter: '3.2'
+    anchor: the-spectrum-says-how-the-noise-is-shared-among-frequencies
+  - term: white noise
+    definition: 'Noise whose spectrum is the same at every frequency, or in every ripple across a plane. Values at different times or places are uncorrelated, and its average over a time $\tau$ or an area $A$ has variance $S(0)/\tau$ or $N_0/A$.'
+    chapter: '3.2'
+    anchor: the-spectrum-says-how-the-noise-is-shared-among-frequencies
+  - term: red noise
+    definition: 'Noise whose spectrum grows without limit toward zero frequency, such as a slow drift or a random walk: its correlation time is longer than any observation, and its average does not shrink as the square-root law says. Noise that is only strongest at low frequencies, with a finite spectrum at zero frequency, is not red in this sense: it still averages down once the observing time is much longer than its correlation time.'
+    chapter: '3.2'
+    anchor: the-spectrum-says-how-the-noise-is-shared-among-frequencies
+  - term: spatial noise density
+    definition: 'The constant $N_0$, in s⁻⁴ m², that describes white noise spread over the plane of an array: the noise averaged over an area $A$ has variance $N_0/A$.'
+    chapter: '3.2'
+    anchor: the-variance-of-noise-spread-over-a-plane-falls-as-one-over-the-area
+  - term: shot noise
+    definition: 'The noise of arrivals at independent random times, such as photons or gravitons: its spectrum is flat and equal to the mean rate, which gives the Poisson spread of a count.'
+    chapter: '3.2'
+    anchor: randomly-placed-masses-are-a-noise-too
+  - term: jointly Gaussian
+    definition: 'Said of noise when every set of its readings has a joint Gaussian distribution, as when independent pixels each carry Gaussian noise. Sums of such readings, such as the ripples of a map, are jointly Gaussian too, and jointly Gaussian quantities that are uncorrelated are independent.'
+    chapter: '3.2'
+    anchor: the-variance-of-noise-spread-over-a-plane-falls-as-one-over-the-area
+  - term: prior
+    definition: 'A description of the expected statistics of a scene before any reading is taken. The paper''s prior for the near-field camera is a sheet of point masses dropped at random, one in each area $z^2$.'
+    chapter: '3.2'
+    anchor: randomly-placed-masses-are-a-noise-too

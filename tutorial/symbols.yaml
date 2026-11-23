@@ -138,6 +138,7 @@ symbols:
     kind: A number; in s⁻⁴ m²
     meaning: 'The strength of white noise spread over the plane of the sensors. Averaged over a patch of area $A$, the noise of the tide has variance $N_0/A$, so over a square of side $z$ its standard deviation is $\sqrt{N_0}/z$.'
     chapter: '3.2'
+    anchor: the-variance-of-noise-spread-over-a-plane-falls-as-one-over-the-area
   - key: test-mass
     title: Test mass
     tex: '\matter{m}'
@@ -617,3 +618,107 @@ symbols:
     meaning: 'The closed surface that encloses a region $V$ of space. A harmonic function takes its largest and smallest values on it, and its values there fix the function inside.'
     chapter: '2.1'
     anchor: in-empty-space-the-potential-has-no-peak-and-no-pit
+  - key: greens-function
+    title: "Green's function"
+    tex: '\mathcal G(\mathbf x, \mathbf y)'
+    role: none
+    kind: A function of two points; in m⁻¹
+    meaning: 'The potential of a unit point source at $\mathbf y$, seen at $\mathbf x$: $\nabla^2\mathcal G = \delta^3(\mathbf x - \mathbf y)$, and in all space $\mathcal G = -1/4\pi|\mathbf x - \mathbf y|$. The potential of any body is $\Phi = 4\pi G\int\mathcal G\rho\,\mathrm d^3y$. Written in script to keep it apart from Newton''s constant $G$.'
+    chapter: '2.4'
+    anchor: the-potential-of-one-point-builds-every-potential
+  - key: greens-function-2d
+    title: "Green's function in two dimensions"
+    tex: '\mathcal G_2'
+    role: none
+    kind: A function of the distance from an axis; a pure number
+    meaning: 'The solution $\mathcal G_2 = \ln r/2\pi$ of $\nabla^2\mathcal G_2 = \delta^2$ in a plane, for scenes that do not change along one direction. A line of $\lambda$ kilograms per metre has the potential $2G\lambda\ln r$ plus a constant.'
+    chapter: '2.4'
+    anchor: along-a-long-rod-the-greens-function-is-a-logarithm
+  - key: line-density
+    title: Mass per unit length
+    tex: '\matter{\lambda}'
+    role: matter
+    kind: A number; in kg/m
+    meaning: 'The mass of a long rod, rail or line per metre of its length. Elsewhere $\lambda$ is a wavelength.'
+    chapter: '2.4'
+    anchor: along-a-long-rod-the-greens-function-is-a-logarithm
+  - key: dirichlet-greens-function
+    title: "Dirichlet Green's function"
+    tex: '\mathcal G_D'
+    role: none
+    kind: A function of two points of a region; in m⁻¹
+    meaning: 'A Green''s function of a region that vanishes on its boundary. Its slope along the outward normal on the boundary is the Poisson kernel, which writes a harmonic function inside from its values on the boundary.'
+    chapter: '2.4'
+    anchor: inside-an-empty-region-the-values-on-its-boundary-write-the-potential
+  - key: half-space-kernel
+    title: Poisson kernel of the half-space
+    tex: 'P_z(\mathbf a)'
+    role: none
+    kind: A function of the position across a plane; in m⁻²
+    meaning: 'The weight $z/2\pi(a^2 + z^2)^{3/2}$ that continues a potential known on a plane to the height $z$ above it, when no matter lies above: upward continuation. A bell of area 1 and full width $1.53z$; a ripple $\cos kx$ continues to $\cos(kx)\,e^{-kz}$.'
+    chapter: '2.4'
+    anchor: above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height
+  - key: ball-kernel
+    title: Poisson kernel of the ball
+    tex: 'P(\mathbf x, \mathbf s)'
+    role: none
+    kind: A function of a point on a sphere and a point inside it; in m⁻²
+    meaning: 'The weight $(R^2 - s^2)/4\pi R|\mathbf x - \mathbf s|^3$ that gives a harmonic function at $\mathbf s$ inside a ball of radius $R$ from its values at the points $\mathbf x$ of the sphere. A mass $m$ at $\mathbf s$ and a skin of surface density $mP$ on the sphere pull alike outside: balayage. Not the Legendre polynomial $P_\ell$.'
+    chapter: '2.4'
+    anchor: on-a-sphere-kelvins-image-gives-the-potential-inside-and-the-skin-of-balayage
+  - key: multipole-moment
+    title: Multipole moment
+    tex: '\matter{Q}_{\ell m}'
+    role: matter
+    kind: A complex number for each degree $\ell$ and order $m$; in kg m^ℓ
+    meaning: 'The weighted total $Q_{\ell m} = \int\rho\,r^\ell\,Y_{\ell m}^*\,\mathrm dV$ of a body''s mass against a solid harmonic. Outside the smallest sphere about the origin that holds the body, the potential is $-G\sum\tfrac{4\pi}{2\ell+1}Q_{\ell m}Y_{\ell m}/r^{\ell+1}$, so these numbers are all that the field outside holds. The potential of degree $\ell$ is at most $(R/r)^\ell$ times the monopole''s. Not the quality factor $Q$ of Part 4.'
+    chapter: '2.3'
+    anchor: outside-a-body-the-potential-is-a-list-of-moments
+  - key: quadrupole-tensor
+    title: Quadrupole tensor
+    tex: '\matter{Q}_{ij}'
+    role: matter
+    kind: A symmetric trace-free table of five independent numbers; in kg m²
+    meaning: 'The table $Q_{ij} = \int\rho\,(3x_ix_j - r^2\delta_{ij})\,\mathrm dV$, which gives the term $-\tfrac12GQ_{ij}x_ix_j/r^5$ of the potential outside a body. It equals $I_{kk}\delta_{ij} - 3I_{ij}$ with $I_{ij}$ the inertia tensor, so a round body has none. The paper''s black-hole $Q_{ij}$ of Section XIV is a sixth of it.'
+    chapter: '2.3'
+    anchor: the-first-three-degrees-are-the-mass-the-centre-of-mass-and-a-trace-free-quadrupole
+  - key: noise-record
+    title: Noise of a record
+    tex: 'n(t)'
+    role: none
+    kind: A random function of time, in the unit of the reading (s⁻² for a tide)
+    meaning: 'The random part of an instrument''s reading at the time $t$, with mean zero. Across a plane, $n(\mathbf a)$ is the noise of the reading at the place $\mathbf a$; its Fourier transform is $\tilde n$.'
+    chapter: '3.2'
+    anchor: a-noisy-record-is-a-random-function-of-time
+  - key: autocorrelation
+    title: Autocorrelation
+    tex: 'C(t)'
+    role: none
+    kind: A function of the lag $t$; in the square of the unit of the noise
+    meaning: 'The mean product $\langle n(t)\,n(0)\rangle$ of two readings of stationary noise a time $t$ apart. $C(0)$ is the variance; for white noise $C(t) = S(0)\,\delta(t)$. (Not the capacity $C$ of Section IV.)'
+    chapter: '3.2'
+    anchor: a-noisy-record-is-a-random-function-of-time
+  - key: noise-spectrum
+    title: Spectrum (power spectral density)
+    tex: 'S(\omega)'
+    role: none
+    kind: A function of the angular frequency; in the square of the unit of the noise per hertz
+    meaning: 'How the variance of a noise is shared among frequencies, two-sided as in the paper: $C(t) = \int S(\omega)\,e^{-i\omega t}\,\mathrm d\omega/2\pi$. White noise averaged over a time $\tau$ has variance $S(0)/\tau$. Always written with its argument, because $S(\hat n)$ is the tidal column.'
+    chapter: '3.2'
+    anchor: the-spectrum-says-how-the-noise-is-shared-among-frequencies
+  - key: prior-spectrum
+    title: Spectrum of the prior
+    tex: 'S_\sigma'
+    role: none
+    kind: A number; in kg² m⁻²
+    meaning: 'The spectrum of the surface density of a sheet of independent point masses $m$, $\nu$ of them per unit area: $S_\sigma = \nu m^2$, the same for every ripple. With one mass per area $z^2$ it is the paper''s prior, $m^2/z^2$.'
+    chapter: '3.2'
+    anchor: randomly-placed-masses-are-a-noise-too
+  - key: number-per-area
+    title: Number of masses per unit area
+    tex: '\nu'
+    role: none
+    kind: A number per unit area; in m⁻²
+    meaning: 'The mean number of randomly placed point masses in each square metre of a sheet. The count in an area $A$ is a Poisson count with mean $\nu A$. (In Section XIV of the paper, $\nu$ is a black hole''s friction.)'
+    chapter: '3.2'
+    anchor: randomly-placed-masses-are-a-noise-too

@@ -29,6 +29,7 @@ import ScaleLadder from './live/ScaleLadder.svelte';
 import AveragingNoise from './live/AveragingNoise.svelte';
 import SkyPatterns from './live/SkyPatterns.svelte';
 import MeanValue from './live/MeanValue.svelte';
+import NoiseSpectrum from './live/NoiseSpectrum.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -105,6 +106,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'graviton-count': {
 		label: 'Gravitons counted one at a time, and the picture they allow',
 		component: GravitonCount
+	},
+	'noise-spectrum': {
+		label:
+			'White, red or narrow-band noise as a trace, its autocorrelation and its spectrum, averaged over a time you choose',
+		component: NoiseSpectrum
 	},
 	'mean-value': {
 		label:
