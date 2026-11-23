@@ -21,14 +21,13 @@ So we ask how a picture of a scene can be broken into ripples, so that we can as
 the trip to the camera. The tool is Fourier analysis, with which the paper reads the camera's data "in Fourier space
 across the array". It also gives a count that we reach at the end. The paper images its locked safe with an array of
 $11 \times 11$ pixels, a metre across, and the array records each component of the tide as exactly 121 ripples, one
-for each pixel.
+for each pixel. Figure [](#fig:fourier-hero) builds a patchy slab out of three ripples.
 
-<!-- diagram: tut-fourier-hero — Hero (stone pipeline). Left, a slab whose top carries a patchy relief of density.
-To its right, an equals sign and three thinner slabs, each corrugated by one ripple of a different wavevector (one
-coarse, crests along a diagonal; one medium, crests across; one fine, crests along), each with its k arrow drawn on
-the slab across the crests and its amplitude written as a height bar. Orange where the density is above the mean,
-blue where it is below. Caption: the patchy slab is the sum of the three ripples; the arrow of each points across
-its crests and its length is 2π over the spacing. -->
+![The patchy slab on the left is the sum of the three ripples on the right: at every point, its height above the mean
+is the sum of their heights. Orange marks density above the mean, and blue marks density below it. Each arrow points
+across its ripple's crests, with a length in proportion to $2\pi$ over their spacing, and each bar is in proportion to
+its ripple's size; the heights of the reliefs, the lengths of the arrows and bars, and the sizes of the slabs are
+chosen for the drawing.](tut-fourier-hero){#fig:fourier-hero}
 
 ::: plain
 A ripple is a pattern that rises and falls in parallel waves, like a ploughed field. Any pattern, however irregular,
@@ -131,12 +130,12 @@ At the jump, $x = 0$, every sine is zero, which is the middle of the jump from $
 Near a jump the partial sums overshoot. The peak beside the jump is 1.188 with three odd terms, 1.180 with ten and 1.179
 with a thousand. It grows narrower and falls slowly toward 1.179, but never below, so the overshoot stays at 9% of the
 jump.[^gibbs] This is the **Gibbs phenomenon**, and it is the ringing that appears whenever the finest ripples of a
-pattern with a sharp edge are cut away.
+pattern with a sharp edge are cut away. Figure [](#fig:fourier-bars) draws the bars with three of their partial sums.
 
-<!-- diagram: tut-fourier-bars — The bars f = ±1 over two periods (thin black), and the partial sums with 1, 3 and
-10 odd terms drawn over them in three tints of one colour, the 1-term sum reaching 1.27 at the middle of each bar and
-the 10-term sum overshooting to 1.18 beside each jump. Beside them, a stem plot of the sizes 4/πn of the sine terms
-for n = 1, 3, 5, …, 15. -->
+![The bars $f = \pm1$ over two periods, in black, and the sums of the first 1, 3 and 10 odd terms of their series, from
+the palest to the full colour. The one-term sum rises to $4/\pi = 1.27$ in the middle of each bar, and the ten-term
+sum overshoots to 1.18 beside each jump. At the right, the sizes $4/\pi n$ of the sine terms, on the same vertical
+scale.](tut-fourier-bars){#fig:fourier-bars}
 
 ## On an endless line the sum becomes an integral
 
@@ -195,15 +194,18 @@ $$\boxed{\;\tilde\delta_\varepsilon(k) = e^{-\varepsilon^2k^2/2} .\;} \label{eq:
 A Gaussian of width $\varepsilon$ along the line is made of ripples whose amounts follow a Gaussian of width
 $1/\varepsilon$ in wavenumber. A bump 1 cm wide holds the ripples up to $k = 100\unit{m^{-1}}$, crests 6.3 cm apart, at
 61% or more of their full amount, and at $k = 300\unit{m^{-1}}$, crests 2.1 cm apart, it holds only $e^{-4.5} = 1.1\%$.
-A bump ten times narrower needs ripples ten times finer.
+A bump ten times narrower needs ripples ten times finer. Figure [](#fig:fourier-gauss) draws a wide and a narrow bump
+with their transforms.
 
 For the Gaussian the product of the two widths is 1. For any pattern we state without proof the **uncertainty
 relation**: if $|f|^2$ and $|\tilde f|^2$ are treated as distributions, the product of their standard deviations is at
 least $\tfrac12$, and a Gaussian reaches that bound. No pattern is narrow both along the line and in wavenumber.
 
-<!-- diagram: tut-fourier-gauss — Two rows. Left column: a wide Gaussian (ε = 2) and a narrow one (ε = 0.5), each of
-area 1, on the same x axis. Right column: their transforms e^{−ε²k²/2} on the same k axis, the first narrow (width
-1/2) and the second wide (width 2). A dashed horizontal line at e^{−1/2} with the widths marked. -->
+![Left, Gaussians of width $\varepsilon = 2$ and $\varepsilon = 0.5$, each of area 1, so that the narrow one stands
+four times as tall. Right, their transforms $e^{-\varepsilon^2k^2/2}$, which both rise to 1 at $k = 0$: the wide bump
+has the narrow transform, of width $1/\varepsilon = 0.5$, and the narrow bump has the wide one, of width 2. Each width
+is marked where its curve has fallen to $e^{-1/2}$ of its top, and the two values of $\varepsilon$ are chosen for the
+drawing.](tut-fourier-gauss){#fig:fourier-gauss}
 
 ## Across a plane, a ripple's wavevector points across its crests
 
@@ -282,10 +284,13 @@ $$\tilde{\matter\sigma}(\vect k) = \matter\sigma_0\,(2\pi)^2\,\delta^2(\vect k) 
 
 all of it in the one ripple $\vect k = 0$, which has no crests at all. Chapter 2.5 showed that such a sheet, like the
 floor of the safe's room as far as it is uniform, has no tide at all, so a tidal camera cannot see this one ripple.
+Figure [](#fig:fourier-comb) draws a single point and a row of points with their transforms.
 
-<!-- diagram: tut-fourier-comb — Top: a row of equal points b apart (a comb), drawn as upward arrows of equal height.
-Bottom: its transform, a comb of equal arrows 2π/b apart in k. Beside them, a single point and its flat transform,
-a horizontal line at height m over all k. -->
+![Left, a row of equal point masses $\matter m$ a distance $b$ apart, and its transform, a row of equal spikes $2\pi/b$
+apart in wavenumber, each of weight $2\pi\matter m/b$, which the stretch problem at the end of the chapter derives.
+Right, a single point mass and its transform, $\matter m$ at every $k$. Each arrow stands for a delta function and is
+labelled by its weight; the lengths of the arrows, the height of the level line and the scales of the axes are chosen
+for the drawing.](tut-fourier-comb){#fig:fourier-comb}
 
 ## A blur multiplies each ripple by a number
 
@@ -307,7 +312,8 @@ ripples, and a blur of a sum is the sum of the blurs, so each ripple of $f$ is m
 $$\boxed{\;\widetilde{(g * f)}(k) = \tilde g(k)\,\tilde f(k) .\;} \label{eq:convolution}$$
 
 This is the **convolution theorem**. On the plane it reads the same, with $\vect k$ for $k$ and the plane's
-transform. Nothing in the derivation used the area of $g$, so it holds for any kernel, average or not.
+transform. Nothing in the derivation used the area of $g$, so it holds for any kernel, average or not. Figure
+[](#fig:fourier-blur) shows a blur acting on two ripples.
 
 **A check.** Blurring a Gaussian bump of width $\varepsilon_1$ with a Gaussian kernel of width $\varepsilon_2$
 multiplies $e^{-\varepsilon_1^2k^2/2}$ by $e^{-\varepsilon_2^2k^2/2}$. The product is the transform of a Gaussian of
@@ -353,10 +359,12 @@ the noise (Part 3), and $k = |\vect k|$. The factor $2\pi G\,k\,e^{-kz}$ is $\ti
 it vanishes at $k = 0$, as the area of $g_z$ requires. Its unit, $\mathrm{m^2\,kg^{-1}\,s^{-2}}$, times the kilograms
 of $\tilde{\matter\sigma}$ gives the $\mathrm{m^2\,s^{-2}}$ of $\tilde{\curv d}$.
 
-<!-- diagram: tut-fourier-blur — Top: a pattern made of a coarse and a fine ripple, a kernel (a Gaussian bump) drawn
-sliding along it at three positions, and the blurred result below, in which the coarse ripple keeps most of its size
-and the fine one almost none. Bottom: the same story in wavenumber, the two spikes of the pattern, the kernel's
-transform e^{−ε²k²/2} as a curve, and their products. -->
+![Top, a pattern $f$ made of a coarse ripple and a fine one of equal size, a Gaussian kernel $g$ drawn at three of the
+places where it averages, and the blurred pattern $g * f$, in which the coarse ripple keeps 0.88 of its size and the
+fine one 0.14. Bottom, the same in wavenumber: the pattern's two spikes (pale), the kernel's transform $\tilde g =
+e^{-\varepsilon^2k^2/2}$, and their products, whose tips lie on the curve. The two ripples have the wavenumbers $k_1$
+and $k_2 = 4k_1$, and $\varepsilon k_1 = 0.5$; the kernel's height and the scales of the axes are chosen for the
+drawing.](tut-fourier-blur){#fig:fourier-blur}
 
 ## The power of a pattern is the same counted point by point or ripple by ripple
 
