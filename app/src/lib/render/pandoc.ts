@@ -52,6 +52,103 @@ export function uniqueIds() {
 	};
 }
 
+/** What must not begin a line after inline mathematics: closing punctuation, brackets and quotation marks, dashes. */
+const CLOSING = /^[,.;:!?)\]}'"’”»…\-–—]+/;
+/** What must not end a line before it: opening brackets and quotation marks. */
+const OPENING = /[([{'"‘“«]+$/;
+
+const isInlineMath = (n: Node | undefined) => n?.t === 'Math' && n.c[0].t === 'InlineMath';
+
+/** Inline mathematics, or a link or emphasis whose text ends in it. */
+const endsInMath = (n: Node | undefined): boolean => {
+	if (!n) return false;
+	if (isInlineMath(n)) return true;
+	if (n.t === 'Emph' || n.t === 'Strong') return endsInMath(n.c[n.c.length - 1]);
+	if (n.t === 'Link' || n.t === 'Span') return endsInMath(n.c[1][n.c[1].length - 1]);
+	return false;
+};
+
+/** Quotations as their marks and their words, so that a mark beside mathematics can be glued to it like any
+ * punctuation; neighbouring words are joined again. */
+const flattenQuotes = (list: Node[]): Node[] => {
+	const out: Node[] = [];
+	const push = (n: Node) => {
+		const last = out[out.length - 1];
+		if (n.t === 'Str' && last?.t === 'Str') out[out.length - 1] = { t: 'Str', c: last.c + n.c };
+		else out.push(n);
+	};
+	for (const n of list) {
+		if (n.t !== 'Quoted') push(n);
+		else {
+			const double = n.c[0].t === 'DoubleQuote';
+			push({ t: 'Str', c: double ? '“' : '‘' });
+			flattenQuotes(n.c[1]).forEach(push);
+			push({ t: 'Str', c: double ? '”' : '’' });
+		}
+	}
+	return out;
+};
+
+/**
+ * The line-break groups (KaTeX's .katex-base) of the KaTeX formula whose opening tag is at `at`, as [start, end]
+ * offsets, and where the formula ends.
+ */
+const katexGroups = (html: string, at: number) => {
+	const tag = /<span\b[^>]*>|<\/span>/g;
+	tag.lastIndex = at;
+	const groups: [number, number][] = [];
+	let depth = 0;
+	let open = -1;
+	for (let m = tag.exec(html); m; m = tag.exec(html)) {
+		if (m[0][1] === '/') {
+			depth -= 1;
+			if (depth === 2 && open >= 0) {
+				groups.push([open, tag.lastIndex]);
+				open = -1;
+			}
+			if (depth === 0) return { groups, end: tag.lastIndex };
+		} else {
+			// .katex > .katex-html > .katex-base
+			if (depth === 2 && /class="katex-base"/.test(m[0])) open = m.index;
+			depth += 1;
+		}
+	}
+	return undefined;
+};
+
+/**
+ * Holds the first or the last line-break group of a formula: a span that does not wrap, around it. Chromium takes
+ * the break between a formula and the punctuation after it from the white-space of the last group's parent, not
+ * from the span that glues the two, so without this a phone, where a long formula may break, could still part them.
+ */
+export function holdEdges(html: string, first: boolean, last: boolean): string {
+	const wraps: [number, number][] = [];
+	if (last) {
+		const at = html.lastIndexOf('<span class="katex">');
+		const f = at >= 0 ? katexGroups(html, at) : undefined;
+		// only a formula that ends the HTML, but for the closing tags of a link or emphasis around it
+		if (f?.groups.length && /^(<\/(a|em|strong)>)*$/.test(html.slice(f.end)))
+			wraps.push(f.groups[f.groups.length - 1]);
+	}
+	if (first && html.startsWith('<span class="katex">')) {
+		const f = katexGroups(html, 0);
+		const g = f?.groups[0];
+		if (g && !wraps.some(([s]) => s === g[0])) wraps.push(g);
+	}
+	// from the end, so that the earlier offsets stay right
+	return wraps
+		.sort((a, b) => b[0] - a[0])
+		.reduce(
+			(h, [s, e]) =>
+				`${h.slice(0, s)}<span class="katex-edge">${h.slice(s, e)}</span>${h.slice(e)}`,
+			html
+		);
+}
+
+/** Opening punctuation, inline mathematics and closing punctuation, kept on one line. */
+const glue = (opening: string, math: string, closing: string): string =>
+	`<span class="nowrap">${esc(opening)}${holdEdges(math, !!opening, !!closing)}${esc(closing)}</span>`;
+
 export interface Renderer {
 	inline(n: Node): string;
 	inlines(list: Node[]): string;
@@ -125,22 +222,33 @@ export function createRenderer(options: RendererOptions): Renderer {
 	};
 
 	/**
-	 * Punctuation that follows inline mathematics must not wrap onto the next
-	 * line by itself, so the two are kept together.
+	 * Punctuation that follows inline mathematics ("$x$," or "$x$)"), and an opening bracket or quotation mark just
+	 * before it, must not wrap onto a line of its own, so the maths and its punctuation are glued together by
+	 * gluePunctuation; only they are glued, never the words around them.
 	 */
 	const inlines = (list: Node[]): string => {
+		const items = flattenQuotes(list);
 		let html = '';
-		for (let i = 0; i < list.length; i++) {
-			const n = list[i];
-			const next = list[i + 1];
-			const trailing =
-				n.t === 'Math' && n.c[0].t === 'InlineMath' && next?.t === 'Str'
-					? String(next.c).match(/^[,.;:!?)\]]+/)?.[0]
-					: undefined;
-			if (trailing) {
-				// the word joiner keeps the punctuation on the maths' line even where a phone lets the pair wrap
-				html += `<span class="nowrap">${inline(n)}\u2060${esc(trailing)}</span>`;
-				html += esc(String(next.c).slice(trailing.length));
+		for (let i = 0; i < items.length; i++) {
+			const n = items[i];
+			const next = items[i + 1];
+			// "($x$": the bracket goes into the glue with the maths
+			const opening =
+				n.t === 'Str' && isInlineMath(next) ? String(n.c).match(OPENING)?.[0] : undefined;
+			if (opening) {
+				html += esc(String(n.c).slice(0, -opening.length));
+				const after = items[i + 2];
+				const closing = after?.t === 'Str' ? String(after.c).match(CLOSING)?.[0] : undefined;
+				html += glue(opening, inline(next), closing ?? '');
+				if (closing) html += esc(String(after.c).slice(closing.length));
+				i += closing ? 2 : 1;
+				continue;
+			}
+			const closing =
+				endsInMath(n) && next?.t === 'Str' ? String(next.c).match(CLOSING)?.[0] : undefined;
+			if (closing) {
+				html += glue('', inline(n), closing);
+				html += esc(String(next.c).slice(closing.length));
 				i += 1;
 			} else html += inline(n);
 		}

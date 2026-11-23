@@ -275,6 +275,85 @@ describe('sections', () => {
 	});
 });
 
+/** A paragraph's HTML with each inline formula as "M", or "M*" where an edge of it is held (holdEdges). */
+const skeleton = (body: string) => {
+	let out = html(body);
+	for (
+		let at = out.indexOf('<span class="katex">');
+		at >= 0;
+		at = out.indexOf('<span class="katex">')
+	) {
+		const tag = /<span\b[^>]*>|<\/span>/g;
+		tag.lastIndex = at;
+		let depth = 0;
+		let end = at;
+		for (let m = tag.exec(out); m; m = tag.exec(out)) {
+			depth += m[0][1] === '/' ? -1 : 1;
+			if (depth === 0) {
+				end = tag.lastIndex;
+				break;
+			}
+		}
+		const held = out.slice(at, end).includes('katex-edge');
+		out = out.slice(0, at) + (held ? 'M*' : 'M') + out.slice(end);
+	}
+	return out;
+};
+
+describe('punctuation after inline mathematics', () => {
+	it('is glued to the formula, and only it, never the words after it', () => {
+		expect(skeleton('$x$, then')).toBe('<p><span class="nowrap">M*,</span> then</p>');
+		expect(skeleton('$x$.')).toBe('<p><span class="nowrap">M*.</span></p>');
+		expect(skeleton('$x$:')).toBe('<p><span class="nowrap">M*:</span></p>');
+		expect(skeleton('$x$; so')).toBe('<p><span class="nowrap">M*;</span> so</p>');
+	});
+
+	it('takes the brackets and quotation marks on both sides', () => {
+		expect(skeleton('see ($x$) here')).toBe('<p>see <span class="nowrap">(M*)</span> here</p>');
+		expect(skeleton('call it "$x$".')).toBe('<p>call it <span class="nowrap">“M*”.</span></p>');
+		expect(skeleton('f($x$, $y$)')).toBe(
+			'<p>f<span class="nowrap">(M*,</span> <span class="nowrap">M*)</span></p>'
+		);
+	});
+
+	it('leaves a formula with nothing to glue as it was', () => {
+		expect(skeleton('$x$ and $y$')).toBe('<p>M and M</p>');
+	});
+
+	it('leaves a margin note after the formula outside the glue', () => {
+		const out = skeleton('$x$[^1] then\n\n[^1]: A note.');
+		expect(out).toMatch(/^<p>M<span class="margin-note">/);
+		expect(out).not.toContain('nowrap');
+		// punctuation after the note's mark stays with the mark, as before
+		expect(skeleton('$x$[^1].\n\n[^1]: A note.')).toMatch(
+			/^<p>M<span class="margin-note">.*<\/span>\.<\/p>$/
+		);
+	});
+
+	it('glues a link whose text ends in mathematics to the punctuation after the link', () => {
+		expect(skeleton('[$x$](/a).')).toBe('<p><span class="nowrap"><a href="/a">M*</a>.</span></p>');
+		expect(skeleton('[the value $x$](/a), so')).toBe(
+			'<p><span class="nowrap"><a href="/a">the value M*</a>,</span> so</p>'
+		);
+		// a link that ends in words is a link as before
+		expect(skeleton('[$x$ here](/a).')).toBe('<p><a href="/a">M here</a>.</p>');
+	});
+
+	it('leaves display mathematics alone', () => {
+		const out = html('so\n$$x = 1$$\n.');
+		expect(out).toContain('<div class="equation">');
+		expect(out).not.toContain('nowrap');
+		expect(out).not.toContain('katex-edge');
+	});
+
+	it('adds no characters, so that copied text is the text', () => {
+		const out = html('see ($x$), then "$y$".');
+		expect(out).not.toMatch(/[\u2060\u200b\u00a0]/);
+		const text = skeleton('see ($x$), then "$y$".').replace(/<[^>]+>/g, '');
+		expect(text).toBe('see (M*), then “M*”.');
+	});
+});
+
 describe('the sample chapter', () => {
 	it('renders every block, with no TeX left in the text', () => {
 		const c = renderChapterFile(SAMPLE_FILE);

@@ -32,8 +32,15 @@ article.prose p {
 	hanging-punctuation: first;
 }
 
-article.prose .nowrap {
+/* inline mathematics glued to its punctuation (lib/render/pandoc.ts): the two never part, but the words of a link
+   or emphasis around the formula still wrap */
+article.prose .nowrap,
+article.prose .katex-edge {
 	white-space: nowrap;
+}
+
+article.prose .nowrap > :is(a, em, strong) {
+	white-space: normal;
 }
 
 article.prose p.continued {
@@ -193,7 +200,7 @@ article.prose li .katex {
 @media (max-width: 640px) {
 	article.prose p .katex,
 	article.prose li .katex,
-	article.prose .nowrap {
+	article.prose .nowrap .katex {
 		white-space: normal;
 	}
 }
