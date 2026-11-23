@@ -6,7 +6,7 @@ part: '6'
 requires: ['1.1', '1.4', '1.5', '6.1']
 paper: [sec:pixel, eq:tidal, eq:deviation, eq:magnetic, sec:one-pixel, sec:second-order, app:proofs]
 figures: []
-live: []
+live: [lorentz-diagram]
 depth: A
 ---
 
@@ -158,7 +158,8 @@ kinds that every observer agrees on. A four-vector is **time-like** when $a\cdot
 larger than its length in space, as for a step along the path of a clock, which moves slower than light. It is
 **null** when $a\cdot a = 0$ and $a$ is not zero, as for a step along the path of a flash. It is **space-like** when
 $a\cdot a > 0$, as for the step between two events too far apart for light to cross between them in the time between
-them, so that no clock can be present at both. The null steps from one event form its **light cone**.
+them, so that no clock can be present at both. The null steps from one event form its **light cone** (Figure
+[](#fig:vector-kinds)).
 
 **Two flashes.** Chapter 6.1's two lamps flash at the same time in the room, one light-second apart, so $\Delta x^\mu =
 (0, c \times 1\unit{s}, 0, 0)$ and
@@ -170,17 +171,10 @@ in light-seconds, with 6.1's $-0.75\unit{s}$ in its time component, and $-0.5625
 again. A clock at rest that ticks once a second has the step $(c \times 1\unit{s}, 0, 0, 0)$ and the interval
 $-8.99\times10^{16}\unit{m^2}$, the same size with the opposite sign.
 
-<!-- diagram: tut-vectors-kinds — One square panel, about 520 × 520 px at 1440 (full width on a phone). The room's axes
-in thin ink, x across and ct upward, each from −1.6 to 1.6 light-seconds at equal scales, labelled "x" and "ct" at their
-ends. The light cone of the origin as the two lines x = ±ct, thin dashed in the light role's colour, labelled "light"
-once beside the upper right line; the region inside the cone (|x| < |ct|) filled very faintly. One small filled dot at the
-origin, labelled "A". Three arrows from the origin: (1) in the observer colour to (x, ct) = (0.75, 1.25), along the
-worldline of a clock at 0.6c, labelled "time-like, a·a = −1"; (2) in the light role's colour to (1.25, 1.25), on the
-cone, labelled "null, a·a = 0"; (3) in ink to (1, 0), ending at a small filled dot labelled "B", labelled
-"space-like, a·a = +1". Values of a·a in light-seconds squared. Labels never on a line. Caption: "Look first at the three
-arrows from A: one inside the light cone, one on it and one outside. The sign of a·a, which every observer agrees on,
-says which: negative for the path of a clock, zero for light, positive for two events that no clock can attend, such as
-chapter 6.1's two flashes A and B. Units are light-seconds." -->
+![Look first at the three arrows from $A$: one inside the light cone, one on it and one outside. The sign of
+$a\cdot a$, which every observer agrees on, says which: negative for the path of a clock, zero for light, positive for
+two events that no clock can attend, such as chapter 6.1's two flashes $A$ and $B$. Units are
+light-seconds.](tut-vectors-kinds){#fig:vector-kinds}
 
 ## The four-velocity has the same length for every body
 
@@ -215,19 +209,11 @@ a$, so the condition picks out the same steps in every frame. In the room, for t
 c\,(-1.25a^0 + 0.75a^1)$ is zero when $a^0 = 0.6\,a^1$, which is the line $ct = 0.6\,x$: chapter
 [6.1](/tutorial/relativity/lorentz/#moving-observers-disagree-about-what-happens-at-the-same-time)'s tilted slice of
 simultaneity, now in one line. Two four-vectors whose dot product is zero are called orthogonal, as two arrows at right
-angles are, so the pixel's "now" is orthogonal to its four-velocity.
+angles are, so the pixel's "now" is orthogonal to its four-velocity (Figure [](#fig:velocity-hyperbola)).
 
-<!-- diagram: tut-vectors-hyperbola — One panel, about 520 × 440 px at 1440 (full width on a phone). Axes u¹ across from
-−0.4 to 2.0 and u⁰ upward from 0 to 2.0, in units of c, equal scales, labelled "u¹/c" and "u⁰/c". The light line
-u⁰ = u¹, thin dashed in the light role's colour, labelled "light". The upper branch of the hyperbola
-−(u⁰)² + (u¹)² = −1 for u¹ from 0 to 1.7, thin ink, labelled "u·u = −c²" near its upper end, off the curve. Two arrows
-from the origin in the observer colour: to (0, 1), labelled "at rest", and to (0.75, 1.25), labelled "0.6c", each
-ending on the hyperbola. For each, its "now" as a thin dashed line through the origin in the observer colour: along the
-u¹ axis for the observer at rest, and along the direction (u¹, u⁰) = (1.25, 0.75) for the observer at 0.6c, labelled
-"now at 0.6c". The arrow (0.75, 1.25) and its now-line (1.25, 0.75) are mirror images across the light line; a faint
-dotted segment from (0.75, 1.25) to (1.25, 0.75), at right angles to the light line, shows the mirror. Caption: "Look
-first at the arrow at 0.6c and the dashed line below it: they are mirror images across the light line, which is how two
-directions orthogonal in the sense of η look on paper. Every four-velocity ends on the same hyperbola, u·u = −c²." -->
+![Look first at the arrow at $0.6c$ and the dashed line below it: they are mirror images across the light line,
+which is how two directions orthogonal in the sense of $\field\eta_{\mu\nu}$ look on paper. Every four-velocity ends
+on the same hyperbola, $\obs u\cdot\obs u = -c^2$.](tut-vectors-hyperbola){#fig:velocity-hyperbola}
 
 ## Lowering an index changes only the sign of time
 
@@ -294,20 +280,12 @@ step $a^\mu$ from the origin to $x = 1.5$ light-seconds at $ct = 0$. In the room
 $a^\mu = (0, 1.5, 0, 0)$, so $\partial_\mu f\,a^\mu = 3$: the step runs from the level line $f = 0$ to the level line $f
 = 3$, across three gaps. For the pixel at $0.6c$ the inverse table has the entries 1.25 and 0.75, so $\partial'_0 f =
 1.25(-1) + 0.75(2) = 0.25$ and $\partial'_1 f = 0.75(-1) + 1.25(2) = 1.75$, while the step becomes $a'^\mu = (-1.125,
-1.875, 0, 0)$. The pairing is $0.25(-1.125) + 1.75(1.875) = 3$ again.
+1.875, 0, 0)$. The pairing is $0.25(-1.125) + 1.75(1.875) = 3$ again (Figure [](#fig:gaps-crossed)).
 
-<!-- diagram: tut-vectors-gradient — Two panels side by side, each about 320 × 300 px at 1440 (stacked on a phone), the
-same scale (100 px per light-second). Left, "room": axes x across and ct upward, thin ink. The level lines of the
-function f = 2x − ct (x and ct in light-seconds) for f = −1, 0, 1, 2, 3, 4, as thin parallel straight lines in ink,
-each labelled with its value at its upper end; the lines f = 0, 1, 2, 3 slightly darker. A step a from the origin to
-(x, ct) = (1.5, 0), as an arrow in the observer colour, labelled "a". It crosses three gaps between lines, from f = 0
-to f = 3. Right, "pixel at 0.6c": axes x′ and ct′, the same function in the pixel's coordinates, f = 1.75x′ + 0.25ct′,
-its level lines for the same values, and the same step, now from the origin to (x′, ct′) = (1.875, −1.125), again
-crossing from f = 0 to f = 3. Below each panel a one-line readout: "∂f = (−1, 2), a = (0, 1.5), ∂_μf a^μ = 3" and
-"∂′f = (0.25, 1.75), a′ = (−1.125, 1.875), ∂′_μf a′^μ = 3", components listed as (time, x). Labels never on a line.
-Caption: "Look first at the count of gaps that the arrow crosses: three in both panels. The step and the level lines
-both change when the observer changes, the step by the boost and the spacing of the lines by its inverse, and the count
-of lines crossed, ∂_μf a^μ, stays the same. After the gradient figure of the GR course, section 2.3." -->
+![Look first at the count of gaps that the arrow crosses: three in both panels. The step and the level lines both
+change when the observer changes, the step by the boost and the spacing of the lines by its inverse, and the count of
+lines crossed, $\partial_\mu f\,a^\mu$, stays the same. After the gradient figure of the GR course, section
+2.3.](tut-vectors-gradient){#fig:gaps-crossed}
 
 The lowered list $a_\mu$ changes in the same way as the rates. The [section on the
 metric](#the-minkowski-metric-measures-the-interval-with-one-minus-sign-for-time) found that a boost keeps every dot
@@ -455,22 +433,17 @@ rest at the same place". Chapter 6.6 works this out for light, and chapters 7.5 
 numbers are five for $\curv{\tE}$ and five for $\curv{\tB}$, each, in empty space, a symmetric trace-free table of
 chapter [1.5](/tutorial/newton/five-numbers/), and not the ten of a symmetric table of four rows.
 
-<!-- try: lorentz-diagram (a second mode, "Vectors", of chapter 6.1's LorentzDiagram, which is being built for 6.1 and
-has no such mode yet) — The same square panel as 6.1's: room axes x and ct from −2 to 2 light-seconds, the light lines x = ±ct dashed
-in the light role's colour, the pixel's tilted axes in the observer colour, and the rapidity slider from −2 to 2 (step
-0.01; arrow keys move it by 0.05) with readouts β = tanh η, γ = cosh η and η to three figures. In the Vectors mode one
-draggable arrow a from the origin, its tip a handle, drawn in the observer colour if time-like, the light colour if
-null (snapped when within 0.02 of the cone) and ink if space-like, with the hyperbola a·a = constant through its tip
-drawn faintly. A readout table of two columns, "room" and "pixel", each listing a^μ (upper) and a_μ (lower), as
-(time, x) to three figures, and below them a·a, the same in both columns, with its kind ("time-like", "null",
-"space-like"). A toggle "show observer" draws the pixel's four-velocity u^μ to the point (sinh η, cosh η) and its "now",
-the line through the origin along (cosh η, sinh η), with a readout u·a. Opens at η = ln 2 (β = 0.6) with a at (x, ct) =
-(1, 0), chapter 6.1's two flashes. Predict first: "Boost a null vector. Can its time component become zero?" (Answer:
-no; a null vector stays on the light cone, and a boost along its direction only stretches or shrinks it, by e^{∓η}.)
-Then: "Boost a space-like vector until its time component vanishes. In which frame are its two ends simultaneous?"
-(Answer: in the frame with β = c Δt/Δx, for which the vector lies on the pixel's 'now'; for (1, 0.5) in (x, ct) that is
-β = 0.5.) Keyboard: Tab reaches the slider, the arrow's tip and the toggle, arrows move them; both themes; static on
-reduced motion. -->
+::: try {#lorentz-diagram}
+Chapter 6.1's Lorentz diagram, in its third view, *Vectors*. The room's axes and the light lines are drawn as before,
+with the pixel's tilted axes in the observer's colour and the rapidity slider beneath. One arrow $a$ runs from the
+origin, and its tip can be dragged anywhere; its colour says its kind, and a faint hyperbola through its tip marks
+every point with the same $a\cdot a$. The table lists $a^\mu$ and $a_\mu$, as (time, $x$), for the room and for the
+pixel, and $a\cdot a$ for each. The button *show observer* draws the pixel's four-velocity and its "now", with the dot
+product $\obs u\cdot a$. It opens on chapter 6.1's two flashes, $a$ from A to B, with the pixel at $0.6c$.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, turn on
+*show observer*, lay $a$ along the pixel's "now", and read $\obs u\cdot a$.
+:::
 
 ::: check
 ### Q

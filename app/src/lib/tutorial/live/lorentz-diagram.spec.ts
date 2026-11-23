@@ -51,8 +51,34 @@ import {
 	three,
 	twice,
 	unitHyperbola,
+	CONE_SNAP,
+	KIND_NAMES,
+	NULL_START,
+	SIMULTANEOUS,
+	TIP,
+	TIP_REACH,
+	VECTOR_OPENING,
+	coned,
+	fourVelocity,
+	hyperbolaThrough,
+	lowered,
+	noteNull,
+	noteSimultaneous,
+	nullAnswer,
+	nullFactor,
+	pixelSquare,
+	simultaneousAnswer,
+	simultaneousBeta,
+	square,
+	tipAt,
+	tipMoved,
+	uDot,
+	vec,
+	vectorKind,
 	type Event,
-	type FirstSeen
+	type FirstSeen,
+	type NullSeen,
+	type Tip
 } from './lorentz-diagram';
 
 const close = (a: number, b: number, digits = 12) =>
@@ -460,5 +486,234 @@ describe('the drawing', () => {
 		expect(out[2]).toBeLessThanOrEqual(185 + 1e-9);
 		expect(out[2] - out[1]).toBeGreaterThanOrEqual(29 - 1e-9);
 		expect(spread([{ at: 50, size: 10 }], 0, 200, 4)).toEqual([50]);
+	});
+});
+
+describe('four-vectors', () => {
+	/** Tips across the grid, with nulls both ways, the two flashes' step and the chapter's (1, 0.5). */
+	function tips(): Tip[] {
+		const out: Tip[] = [];
+		for (let n = -TIP_REACH; n <= TIP_REACH; n += 37)
+			for (let m = -TIP_REACH; m <= TIP_REACH; m += 41) out.push({ n, m });
+		out.push(
+			{ n: 0, m: 100 },
+			{ n: 50, m: 100 },
+			{ n: 125, m: 75 },
+			{ n: 80, m: 80 },
+			{ n: 60, m: -60 }
+		);
+		return out;
+	}
+
+	it('opens at η = ln 2 with a at (x, ct) = (1, 0), a space-like step of one light-second squared', () => {
+		expect(VECTOR_OPENING.eta).toBe(LN2);
+		expect(vec(VECTOR_OPENING.a)).toEqual({ ct: 0, x: 1 });
+		expect(square(VECTOR_OPENING.a)).toBe(1);
+		expect(vectorKind(VECTOR_OPENING.a)).toBe('space');
+		// the chapter's numbers: for the pixel at 0.6c the step is (−0.75, 1.25), and −0.5625 + 1.5625 = 1
+		expect(boost(LN2, vec(VECTOR_OPENING.a))).toEqual({ ct: -0.75, x: 1.25 });
+		expect(pixelSquare(LN2, VECTOR_OPENING.a)).toBe(1);
+	});
+
+	it('lowers an index by changing only the sign of time, so that a_μ a^μ = a·a', () => {
+		expect(lowered({ ct: 1.25, x: 0.75 })).toEqual({ ct: -1.25, x: 0.75 });
+		expect(lowered({ ct: -0.75, x: 1.25 })).toEqual({ ct: 0.75, x: 1.25 });
+		for (const t of tips()) {
+			const v = vec(t);
+			const l = lowered(v);
+			close(l.ct * v.ct + l.x * v.x, square(t), 12);
+		}
+		// the chapter's u at 0.6c: u_μ = (−1.25, 0.75) c and u_μ u^μ = −c²
+		const u = fourVelocity(LN2);
+		expect(u).toEqual({ ct: 1.25, x: 0.75 });
+		const ul = lowered(u);
+		expect(ul.ct * u.ct + ul.x * u.x).toBe(-1);
+	});
+
+	it('keeps a·a under every boost on the slider, to 1e-12', () => {
+		for (const eta of RAPIDITIES)
+			for (const t of tips()) {
+				expect(Math.abs(pixelSquare(eta, t) - square(t))).toBeLessThan(1e-12);
+				// and a boost's own components, formed the plain way, agree
+				const p = boost(eta, vec(t));
+				expect(Math.abs(-p.ct * p.ct + p.x * p.x - square(t))).toBeLessThan(1e-12 * 64);
+			}
+	});
+
+	it('sorts vectors by the sign of a·a, decided on whole steps', () => {
+		expect(vectorKind({ n: 125, m: 75 })).toBe('time');
+		expect(vectorKind({ n: -125, m: 75 })).toBe('time');
+		expect(vectorKind({ n: 125, m: 125 })).toBe('null');
+		expect(vectorKind({ n: -40, m: 40 })).toBe('null');
+		expect(vectorKind({ n: 0, m: 100 })).toBe('space');
+		expect(vectorKind({ n: 50, m: -100 })).toBe('space');
+		expect(vectorKind({ n: 0, m: 0 })).toBe('zero');
+		for (const t of tips()) {
+			const s = square(t);
+			const k = vectorKind(t);
+			if (k === 'zero') continue;
+			expect(k).toBe(s < 0 ? 'time' : s === 0 ? 'null' : 'space');
+		}
+		expect(KIND_NAMES.time).toBe('time-like');
+		expect(KIND_NAMES.null).toBe('null');
+		expect(KIND_NAMES.space).toBe('space-like');
+	});
+
+	it('lands the tip on the light cone within 0.02 light-seconds of it, and not beyond', () => {
+		expect(CONE_SNAP).toBe(0.02);
+		expect(coned({ n: 100, m: 102 })).toEqual({ n: 101, m: 101 });
+		expect(coned({ n: 100, m: 101 })).toEqual({ n: 101, m: 101 });
+		expect(coned({ n: -100, m: 98 })).toEqual({ n: -99, m: 99 });
+		expect(coned({ n: 100, m: 103 })).toEqual({ n: 100, m: 103 });
+		expect(coned({ n: 0, m: 2 })).toEqual({ n: 1, m: 1 });
+		expect(coned({ n: 0, m: 0 })).toEqual({ n: 0, m: 0 });
+		// a drag a hundredth off the cone lands on it; a key press from the cone leaves it
+		expect(vectorKind(tipAt({ ct: 1.0, x: 1.013 }))).toBe('null');
+		expect(vectorKind(tipAt({ ct: 1.0, x: 1.03 }))).toBe('space');
+		expect(vectorKind(tipAt({ ct: 1.03, x: -1.0 }))).toBe('time');
+		expect(tipMoved({ n: 100, m: 100 }, 0, 5)).toEqual({ n: 100, m: 105 });
+		expect(tipMoved({ n: 95, m: 100 }, 5, 0)).toEqual({ n: 100, m: 100 });
+		// the tip stays within ±2 light-seconds, on its grid of hundredths
+		expect(tipMoved({ n: 198, m: -198 }, 25, -25)).toEqual({ n: 200, m: -200 });
+		expect(tipAt({ ct: 9, x: -9 })).toEqual({ n: 200, m: -200 });
+		expect(vec(tipAt({ ct: 0.504, x: 1.0049 }))).toEqual({ ct: 0.5, x: 1 });
+		expect(TIP).toBe(0.01);
+	});
+
+	it('boosts a null vector by e^{∓η}: along it a stretch or a shrink, never a time component of zero', () => {
+		for (const eta of RAPIDITIES)
+			for (const t of [
+				{ n: 80, m: 80 },
+				{ n: -80, m: -80 },
+				{ n: 60, m: -60 },
+				{ n: -150, m: 150 }
+			]) {
+				const v = vec(t);
+				const p = boost(eta, v);
+				const f = nullFactor(eta, t)!;
+				close(f, Math.exp(Math.sign(t.n) === Math.sign(t.m) ? -eta : eta), 14);
+				close(p.ct, f * v.ct, 12);
+				close(p.x, f * v.x, 12);
+				expect(p.ct).not.toBe(0);
+				expect(Math.abs(pixelSquare(eta, t))).toBe(0);
+			}
+		// at 0.6c, along +x: e^{−ln 2} = 1/2
+		expect(boost(LN2, vec({ n: 100, m: 100 }))).toEqual({ ct: 0.5, x: 0.5 });
+		expect(nullFactor(LN2, { n: 0, m: 100 })).toBeUndefined();
+	});
+
+	it('finds the frame in which a space-like vector takes no time: β = cΔt/Δx, 0.5 for (1, 0.5)', () => {
+		const t: Tip = { n: 50, m: 100 };
+		expect(simultaneousBeta(t)).toBe(0.5);
+		const p = boost(rapidity(0.5), vec(t));
+		expect(Math.abs(p.ct)).toBeLessThan(1e-15);
+		// there a lies on the pixel's "now", u·a = 0, and its length is √(a·a)
+		expect(Math.abs(uDot(rapidity(0.5), t))).toBeLessThan(1e-15);
+		close(p.x, Math.sqrt(square(t)), 14);
+		expect(simultaneousBeta({ n: 100, m: 50 })).toBeUndefined();
+		expect(simultaneousBeta({ n: 50, m: 50 })).toBeUndefined();
+		expect(simultaneousBeta({ n: -30, m: 120 })).toBe(-0.25);
+	});
+
+	it('computes u·a = −c a′⁰, the chapter’s c(−1.25 a⁰ + 0.75 a¹) at 0.6c', () => {
+		for (const eta of RAPIDITIES)
+			for (const t of tips()) close(uDot(eta, t), -boost(eta, vec(t)).ct, 12);
+		const t: Tip = { n: 40, m: 100 };
+		close(uDot(LN2, t), -1.25 * 0.4 + 0.75 * 1, 14);
+		// u lies on the unit hyperbola u·u = −c², its tip at (x, ct) = (sinh η, cosh η)
+		for (const eta of RAPIDITIES) {
+			const u = fourVelocity(eta);
+			close(u.x, Math.sinh(eta), 12);
+			close(-u.ct * u.ct + u.x * u.x, -1, 11);
+		}
+	});
+
+	it('draws the hyperbola a·a = constant through the tip, and none for a null vector', () => {
+		for (const t of [
+			{ n: 125, m: 75 },
+			{ n: -125, m: 75 },
+			{ n: 50, m: 100 },
+			{ n: 30, m: -150 }
+		]) {
+			const v = vec(t);
+			const pts = hyperbolaThrough(v, square(t));
+			expect(pts.length).toBeGreaterThan(10);
+			for (const q of pts) {
+				close(-q.ct * q.ct + q.x * q.x, square(t), 11);
+				if (square(t) < 0) expect(Math.sign(q.ct)).toBe(Math.sign(v.ct));
+				else expect(Math.sign(q.x)).toBe(Math.sign(v.x));
+			}
+		}
+		expect(hyperbolaThrough(vec({ n: 80, m: 80 }), 0)).toEqual([]);
+	});
+});
+
+describe('the predictions of the vectors', () => {
+	const NULL: Tip = { n: 100, m: 100 };
+
+	it('answers the first once a null vector has been held across a range of 1 in η', () => {
+		let s: NullSeen = NULL_START;
+		// the opening's space-like a does not count, however far the slider moves
+		for (const eta of [LN2, -2, 2]) s = noteNull(s, eta, VECTOR_OPENING.a);
+		expect(s.done).toBeUndefined();
+		s = noteNull(s, LN2, NULL);
+		s = noteNull(s, 1.2, NULL);
+		expect(s.done).toBeUndefined();
+		s = noteNull(s, 0.2, NULL);
+		expect(s.done).toEqual({ a: NULL, lo: 0.2, hi: 1.2 });
+		// and it stays answered
+		expect(noteNull(s, 0, VECTOR_OPENING.a)).toBe(s);
+	});
+
+	it('forgets the range when the vector moves or stops being null', () => {
+		let s: NullSeen = NULL_START;
+		s = noteNull(s, -0.5, NULL);
+		s = noteNull(s, 0.3, NULL);
+		s = noteNull(s, 0.3, { n: 120, m: 120 });
+		s = noteNull(s, 0.6, { n: 120, m: 120 });
+		expect(s.done).toBeUndefined();
+		s = noteNull(s, 0.6, { n: 120, m: 125 });
+		expect(s).toEqual(NULL_START);
+	});
+
+	it('reports the null vector’s a′⁰ at the ends of the range: e^{∓η} a⁰, never zero', () => {
+		const ans = nullAnswer({ a: NULL, lo: 0, hi: LN2 });
+		expect(ans.along).toBe(true);
+		expect(ans.lo.ct).toBe(1);
+		expect(ans.hi.ct).toBe(0.5);
+		const back = nullAnswer({ a: { n: 100, m: -100 }, lo: 0, hi: LN2 });
+		expect(back.along).toBe(false);
+		expect(back.hi.ct).toBe(2);
+	});
+
+	it('answers the second once a space-like a with a time component is boosted to |a′⁰| < 0.01', () => {
+		const a: Tip = { n: 50, m: 100 };
+		expect(SIMULTANEOUS).toBe(0.01);
+		expect(noteSimultaneous(undefined, LN2, a, true)).toBeUndefined();
+		// the slider's own step nearest β = 0.5, η = 0.549
+		const found = noteSimultaneous(undefined, 0.55, a, true);
+		expect(found).toEqual({ a, eta: 0.55 });
+		const ans = simultaneousAnswer(found!);
+		expect(ans.want).toBe(0.5);
+		expect(Math.abs(ans.found - 0.5)).toBeLessThan(0.01);
+		expect(Math.abs(ans.prime)).toBeLessThan(0.01);
+		// and stays answered
+		expect(noteSimultaneous(found, 0, VECTOR_OPENING.a, true)).toBe(found);
+	});
+
+	it('is not answered by dragging a onto the pixel’s “now” at a fixed rapidity', () => {
+		// at η = ln 2 the "now" is ct = 0.6 x: the walk from (1, 0) to (1, 1) passes (1, 0.6)
+		const on: Tip = { n: 60, m: 100 };
+		expect(boost(LN2, vec(on)).ct).toBe(0);
+		expect(noteSimultaneous(undefined, LN2, on, false)).toBeUndefined();
+		expect(noteSimultaneous(undefined, LN2, on, true)).toEqual({ a: on, eta: LN2 });
+	});
+
+	it('is not answered by a vector simultaneous in the room, nor by a time-like or null one', () => {
+		expect(noteSimultaneous(undefined, 0, VECTOR_OPENING.a, true)).toBeUndefined();
+		for (const eta of RAPIDITIES) {
+			expect(noteSimultaneous(undefined, eta, { n: 125, m: 75 }, true)).toBeUndefined();
+			expect(noteSimultaneous(undefined, eta, NULL, true)).toBeUndefined();
+		}
 	});
 });

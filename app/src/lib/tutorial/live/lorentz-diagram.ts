@@ -404,3 +404,215 @@ export function unitHyperbola(which: 'time' | 'space', count = 96, span = SPAN) 
 	}
 	return out.filter((p) => p.ct <= span * 1.6 && p.x <= span * 1.6);
 }
+
+// --- the third view: four-vectors -------------------------------------------------------------------------------------
+
+/*
+ * Chapter 6.2's four-vectors in the (ct, x) plane. One vector a, an arrow from the origin, has the components
+ * a^μ = (a⁰, a¹) = (ct, x) of its tip in light-seconds. Its dot product with itself, a·a = −(a⁰)² + (a¹)², is the
+ * same for every observer, and its sign sorts it: time-like when negative, null when zero, space-like when positive.
+ * Lowering the index changes only the sign of time: a_μ = (−a⁰, a¹). The tip stands on a grid of hundredths of a
+ * light-second, kept as whole numbers of its steps so that the kind is decided without rounding, and within two
+ * hundredths of the light cone it lands on the cone.
+ */
+
+/** The step of the arrow's tip, light-seconds: a hundredth. */
+export const TIP = 0.01;
+/** The tip stays within this many steps of the origin: ±2 light-seconds. */
+export const TIP_REACH = 200;
+/** How near the light cone, in light-seconds, the tip lands on it. */
+export const CONE_SNAP = 0.02;
+/** The arrow keys' steps for the tip: a twentieth of a light-second, and with Shift a quarter. */
+export const TIP_KEY = { step: 5, shift: 25 };
+
+/** A four-vector in the (ct, x) plane, in steps of the tip's grid: n for a⁰ = ct, m for a¹ = x. */
+export type Tip = { n: number; m: number };
+
+/** The view opens at η = ln 2 with a at (x, ct) = (1, 0): the step between chapter 6.1's two flashes. */
+export const VECTOR_OPENING: { eta: number; a: Tip } = { eta: LN2, a: { n: 0, m: 100 } };
+
+/** The light-seconds of a vector: its a⁰ = ct and a¹ = x. */
+export const vec = (t: Tip) => ({ ct: t.n * TIP, x: t.m * TIP });
+
+/** The vector with its index lowered by the metric diag(−1, 1): a_μ = (−a⁰, a¹). */
+export const lowered = (v: { ct: number; x: number }) => ({ ct: -v.ct, x: v.x });
+
+/** A vector onto the light cone, when its tip is within CONE_SNAP of it: |a⁰| and |a¹| both their mean. */
+export function coned(t: Tip): Tip {
+	const an = Math.abs(t.n);
+	const am = Math.abs(t.m);
+	if (an === am || Math.abs(an - am) > Math.round(CONE_SNAP / TIP)) return t;
+	const k = Math.round((an + am) / 2);
+	return { n: (t.n < 0 ? -1 : 1) * k, m: (t.m < 0 ? -1 : 1) * k };
+}
+
+/** The tip nearest a point of the room, in light-seconds: on the grid, within reach, and onto the cone if near it. */
+export const tipAt = (p: { ct: number; x: number }): Tip =>
+	coned({
+		n: clamp(Math.round(p.ct / TIP), -TIP_REACH, TIP_REACH),
+		m: clamp(Math.round(p.x / TIP), -TIP_REACH, TIP_REACH)
+	});
+
+/** The tip moved by whole steps, kept within reach, and onto the cone if near it. */
+export const tipMoved = (t: Tip, dn: number, dm: number): Tip =>
+	coned({
+		n: clamp(t.n + dn, -TIP_REACH, TIP_REACH),
+		m: clamp(t.m + dm, -TIP_REACH, TIP_REACH)
+	});
+
+export const sameTip = (a: Tip, b: Tip) => a.n === b.n && a.m === b.m;
+
+/** The room's a·a = −(a⁰)² + (a¹)², light-seconds squared: exact, from whole steps. */
+export const square = (t: Tip) => (t.m * t.m - t.n * t.n) * TIP * TIP;
+
+/**
+ * The pixel's a′·a′, from its own components a′^μ = Λ^μ_ν a^ν, written as (a′¹ − a′⁰)(a′¹ + a′⁰) so that it is
+ * not lost to cancellation: each factor is e^{±η} times the room's.
+ */
+export function pixelSquare(eta: number, t: Tip): number {
+	const p = boost(eta, vec(t));
+	return (p.x - p.ct) * (p.x + p.ct);
+}
+
+export type VectorKind = 'time' | 'null' | 'space' | 'zero';
+
+/** Which kind a vector is, from the sign of a·a, decided on whole steps; the zero vector is none of the three. */
+export function vectorKind(t: Tip): VectorKind {
+	const an = Math.abs(t.n);
+	const am = Math.abs(t.m);
+	if (an === 0 && am === 0) return 'zero';
+	if (am > an) return 'space';
+	return am === an ? 'null' : 'time';
+}
+
+/** The chapter's names of the kinds. */
+export const KIND_NAMES: Record<VectorKind, string> = {
+	time: 'time-like',
+	null: 'null',
+	space: 'space-like',
+	zero: 'the zero vector'
+};
+
+/** The pixel's four-velocity in units of c, u^μ = (cosh η, sinh η): its tip at (x, ct) = (sinh η, cosh η). */
+export function fourVelocity(eta: number) {
+	const { cosh, sinh } = hyper(eta);
+	return { ct: cosh, x: sinh };
+}
+
+/** u·a = c(−u⁰a⁰ + u¹a¹), in units of c times light-seconds: −c a′⁰, zero exactly on the pixel's "now". */
+export function uDot(eta: number, t: Tip): number {
+	const u = fourVelocity(eta);
+	const v = vec(t);
+	return -u.ct * v.ct + u.x * v.x;
+}
+
+/** The factor by which a boost of η scales a null vector: e^{−η} along +x (a¹ = a⁰), e^{+η} against it. */
+export function nullFactor(eta: number, t: Tip): number | undefined {
+	if (vectorKind(t) !== 'null') return undefined;
+	return Math.exp(Math.sign(t.n) === Math.sign(t.m) ? -eta : eta);
+}
+
+/**
+ * The speed of the frame in which a space-like vector takes no time, β = cΔt/Δx = a⁰/a¹, for which a lies on the
+ * pixel's "now"; undefined for a vector that is not space-like, which no frame below light's speed makes take none.
+ */
+export function simultaneousBeta(t: Tip): number | undefined {
+	if (vectorKind(t) !== 'space') return undefined;
+	return t.n / t.m;
+}
+
+// the predictions of the third view
+
+/**
+ * The first is answered once the reader has made a null vector and, holding it, moved the slider across a range of
+ * NULL_RANGE in η. The record is kept for one vector and forgotten when it moves or stops being null.
+ */
+export const NULL_RANGE = 1;
+
+export type NullSeen = {
+	a: Tip | undefined;
+	lo: number;
+	hi: number;
+	done: { a: Tip; lo: number; hi: number } | undefined;
+};
+
+export const NULL_START: NullSeen = { a: undefined, lo: 0, hi: 0, done: undefined };
+
+export function noteNull(seen: NullSeen, eta: number, a: Tip): NullSeen {
+	if (seen.done) return seen;
+	if (vectorKind(a) !== 'null') return NULL_START;
+	if (!seen.a || !sameTip(seen.a, a)) return { a, lo: eta, hi: eta, done: undefined };
+	const lo = Math.min(seen.lo, eta);
+	const hi = Math.max(seen.hi, eta);
+	const done = hi - lo >= NULL_RANGE - 1e-9 ? { a, lo, hi } : undefined;
+	return { a, lo, hi, done };
+}
+
+/** The numbers of the first answer: the null vector's time component for the pixel at the two ends of its range. */
+export function nullAnswer(done: { a: Tip; lo: number; hi: number }) {
+	const v = vec(done.a);
+	return {
+		ct: v.ct,
+		x: v.x,
+		/** e^{−η} along +x, the upper sign; e^{+η} against it. */
+		along: Math.sign(done.a.n) === Math.sign(done.a.m),
+		lo: { eta: done.lo, ct: boost(done.lo, v).ct },
+		hi: { eta: done.hi, ct: boost(done.hi, v).ct }
+	};
+}
+
+/** How near zero the pixel's a′⁰, light-seconds, counts as no time at all. */
+export const SIMULTANEOUS = 0.01;
+
+export type SimultaneousSeen = { a: Tip; eta: number } | undefined;
+
+/**
+ * The second is answered once the reader has boosted a space-like a, one with a time component in the room, until
+ * |a′⁰| is below SIMULTANEOUS for the pixel: its two ends are then simultaneous in the pixel's frame. Only a change
+ * of the rapidity counts, so that a vector dragged across the pixel's "now" at a fixed η does not answer it.
+ */
+export function noteSimultaneous(
+	seen: SimultaneousSeen,
+	eta: number,
+	a: Tip,
+	boosted: boolean
+): SimultaneousSeen {
+	if (seen || !boosted) return seen;
+	if (vectorKind(a) !== 'space' || a.n === 0) return undefined;
+	return Math.abs(boost(eta, vec(a)).ct) < SIMULTANEOUS ? { a, eta } : undefined;
+}
+
+/** The numbers of the second answer: the β the reader found against cΔt/Δx. */
+export function simultaneousAnswer(found: { a: Tip; eta: number }) {
+	const v = vec(found.a);
+	const want = found.a.n / found.a.m;
+	return {
+		ct: v.ct,
+		x: v.x,
+		found: hyper(found.eta).tanh,
+		eta: found.eta,
+		want,
+		/** The pixel's a′⁰ where the reader stopped. */
+		prime: boost(found.eta, v).ct
+	};
+}
+
+/**
+ * The branch of the hyperbola a·a = s through a point (ct, x), as points across the drawing; none when s = 0, where
+ * it is the light lines themselves.
+ */
+export function hyperbolaThrough(
+	p: { ct: number; x: number },
+	s: number,
+	count = 96,
+	span = SPAN
+): { ct: number; x: number }[] {
+	if (s === 0) return [];
+	const out: { ct: number; x: number }[] = [];
+	for (let j = 0; j <= count; j++) {
+		const w = -span + (2 * span * j) / count;
+		if (s < 0) out.push({ ct: Math.sign(p.ct) * Math.sqrt(w * w - s), x: w });
+		else out.push({ ct: w, x: Math.sign(p.x) * Math.sqrt(w * w + s) });
+	}
+	return out.filter((q) => Math.abs(q.ct) <= span * 1.6 && Math.abs(q.x) <= span * 1.6);
+}

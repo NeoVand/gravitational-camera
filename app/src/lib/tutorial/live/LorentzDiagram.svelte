@@ -7,7 +7,10 @@
 	 * with the arrow keys; through each are drawn faintly its hyperbola of constant interval from the origin and the
 	 * pixel's "now", and a table gives each event's t, x, t′ and x′, the interval between them and which comes first
 	 * for the pixel. A second view stacks two boosts, the second by η₂ in the pixel's frame, and shows the axes of
-	 * the result at η = ln 2 + η₂, with the speeds added both ways. Everything is exact, from ./lorentz-diagram.ts.
+	 * the result at η = ln 2 + η₂, with the speeds added both ways. A third, for chapter 6.2, draws one four-vector a
+	 * from the origin, its tip dragged on a grid of hundredths and landing on the light cone within 0.02 of it,
+	 * coloured by its kind, with its hyperbola a·a = constant, a table of a^μ and a_μ for the room and for the pixel,
+	 * and on request the pixel's four-velocity u and its "now". Everything is exact, from ./lorentz-diagram.ts.
 	 * Two predictions at the top are answered once the reader has done what they ask. Nothing moves by itself, so
 	 * reduced motion changes nothing but the buttons' fades.
 	 */
@@ -17,7 +20,9 @@
 		DashboardSpeed02Icon,
 		FlashIcon,
 		Layers01Icon,
-		DashboardSpeed01Icon
+		DashboardSpeed01Icon,
+		ArrowUpRight01Icon,
+		EyeIcon
 	} from '@hugeicons/core-free-icons';
 	import Slider from '../../ui/controls/Slider.svelte';
 	import Segmented from '../../ui/controls/Segmented.svelte';
@@ -61,15 +66,38 @@
 		three,
 		threeTex,
 		unitHyperbola,
+		KIND_NAMES,
+		NULL_START,
+		TIP_KEY,
+		VECTOR_OPENING,
+		boost,
+		fourVelocity,
+		hyperbolaThrough,
+		lowered,
+		noteNull,
+		noteSimultaneous,
+		nullAnswer,
+		pixelSquare,
+		sameTip,
+		simultaneousAnswer,
+		square,
+		tipAt,
+		tipMoved,
+		uDot,
+		vec,
+		vectorKind,
 		type Event,
 		type FirstSeen,
-		type SecondSeen
+		type NullSeen,
+		type SecondSeen,
+		type SimultaneousSeen,
+		type Tip
 	} from './lorentz-diagram';
 
 	const uid = $props.id();
 
 	// --- the settings ---------------------------------------------------------------------------------------------
-	type View = 'one' | 'two';
+	type View = 'one' | 'two' | 'vectors';
 	let view = $state<View>('one');
 	/** The pixel's rapidity, and in the second view the second boost's, in the pixel's frame. */
 	let eta = $state(OPENING.eta);
@@ -86,6 +114,24 @@
 
 	function setSecond(v: number) {
 		second = landed(v);
+	}
+
+	/** The third view keeps its own rapidity, its vector and whether the pixel's four-velocity is drawn. */
+	let veta = $state(VECTOR_OPENING.eta);
+	let tip = $state<Tip>(VECTOR_OPENING.a);
+	let observer = $state(false);
+
+	function setVeta(v: number) {
+		const next = landed(v);
+		if (next === veta) return;
+		veta = next;
+		noteVectors(true);
+	}
+
+	function setTip(t: Tip) {
+		if (sameTip(tip, t)) return;
+		tip = t;
+		noteVectors(false);
 	}
 
 	function setEvent(which: 'A' | 'B', e: Event) {
@@ -137,6 +183,20 @@
 
 	const answer2 = $derived(found.done ? secondAnswer(found.done.a, found.done.b) : undefined);
 
+	// the third view's two
+	let vstep = $state<1 | 2>(1);
+	let nullSeen = $state<NullSeen>(noteNull(NULL_START, VECTOR_OPENING.eta, VECTOR_OPENING.a));
+	let simSeen = $state<SimultaneousSeen>(undefined);
+	const vrevealed = $derived(vstep === 1 ? nullSeen.done !== undefined : simSeen !== undefined);
+
+	function noteVectors(boosted: boolean) {
+		nullSeen = noteNull(nullSeen, veta, tip);
+		simSeen = noteSimultaneous(simSeen, veta, tip, boosted);
+	}
+
+	const vanswer1 = $derived(nullSeen.done ? nullAnswer(nullSeen.done) : undefined);
+	const vanswer2 = $derived(simSeen ? simultaneousAnswer(simSeen) : undefined);
+
 	// --- the numbers ------------------------------------------------------------------------------------------------
 	const ETA = '\\htmlClass{q-obs}{\\eta}';
 	const BETA = '\\htmlClass{q-obs}{\\beta}';
@@ -176,6 +236,22 @@
 	const sum = $derived(addSpeeds(p1.beta, p2.beta));
 	const newton = $derived(p1.beta + p2.beta);
 
+	// the third view
+	const vp = $derived(pixel(veta));
+	const vh = $derived(hyper(veta));
+	const av = $derived(vec(tip));
+	const al = $derived(lowered(av));
+	const ap = $derived(boost(veta, av));
+	const apl = $derived(lowered(ap));
+	const aa = $derived(square(tip));
+	const aaPrime = $derived(pixelSquare(veta, tip));
+	const vk = $derived(vectorKind(tip));
+	const ua = $derived(uDot(veta, tip));
+	const uv = $derived(fourVelocity(veta));
+	/** A pair of components, (time, x), to three figures. */
+	const pair = (q: { ct: number; x: number }) => `(${three(q.ct)}, ${three(q.x)})`;
+	const VEC_U = '\\htmlClass{q-obs}{u}';
+
 	// --- the drawing ------------------------------------------------------------------------------------------------
 	const phone = new MediaQuery('max-width: 560px', false);
 	const box = $derived(
@@ -212,7 +288,9 @@
 		};
 	}
 
-	const mine = $derived(axes(view === 'one' ? eta : LN2));
+	/** The rapidity of the pixel's axes in each view: its own slider's, and ln 2 under the second boost. */
+	const frameEta = $derived(view === 'one' ? eta : view === 'vectors' ? veta : LN2);
+	const mine = $derived(axes(frameEta));
 	const theirs = $derived(axes(total));
 
 	/** A tick 1 on a frame's axes: on the time axis at (sinh, cosh), along the space axis, and the other way round. */
@@ -248,7 +326,7 @@
 		};
 	}
 
-	const myTicks = $derived(ticks(view === 'one' ? eta : LN2));
+	const myTicks = $derived(ticks(frameEta));
 	const theirTicks = $derived(ticks(total));
 
 	/** The room's grid and its ticks, at whole light-seconds. */
@@ -276,6 +354,65 @@
 			{ ct: ct + t * (reach - x), x: reach }
 		]);
 	};
+
+	/** An arrow from the origin to a point of the room: its shaft, and its head as a triangle at the point. */
+	function arrow(q: { ct: number; x: number }, head = 10) {
+		const o = { x: X(0), y: Y(0) };
+		const t = { x: X(q.x), y: Y(q.ct) };
+		const len = Math.hypot(t.x - o.x, t.y - o.y);
+		if (len < 1e-9) return { shaft: '', head: '', at: t, normal: { x: 0, y: -1 } };
+		const d = { x: (t.x - o.x) / len, y: (t.y - o.y) / len };
+		const n = { x: -d.y, y: d.x };
+		const l = Math.min(head * u, len);
+		const w = 0.42 * l;
+		const base = { x: t.x - d.x * l, y: t.y - d.y * l };
+		const end = { x: t.x - d.x * l * 0.7, y: t.y - d.y * l * 0.7 };
+		return {
+			shaft: `M${f2(o.x)},${f2(o.y)}L${f2(end.x)},${f2(end.y)}`,
+			head: `M${f2(t.x)},${f2(t.y)}L${f2(base.x + n.x * w)},${f2(base.y + n.y * w)}L${f2(base.x - n.x * w)},${f2(base.y - n.y * w)}Z`,
+			at: t,
+			normal: n
+		};
+	}
+
+	const aArrow = $derived(arrow(av));
+	/**
+	 * A name beside an arrow, a little back from its point q, on the side `side` picks of the two: so that it sits on
+	 * neither the arrow, nor the axis it starts along, nor a tick at its point.
+	 */
+	function beside(
+		a: { normal: { x: number; y: number } },
+		q: { x: number; y: number },
+		side: (n: { x: number; y: number }) => boolean
+	) {
+		const n = side(a.normal) ? a.normal : { x: -a.normal.x, y: -a.normal.y };
+		// the arrow's own direction on the screen, from its normal
+		const d = { x: a.normal.y, y: -a.normal.x };
+		return {
+			x: q.x - d.x * 16 * u + n.x * 10 * u,
+			y: q.y - d.y * 16 * u + n.y * 10 * u + 4 * u
+		};
+	}
+
+	/** The name a beside the tip, above the arrow (left of it when it is upright). */
+	const aLabel = $derived(
+		beside(aArrow, aArrow.at, (n) => n.y < -1e-9 || (Math.abs(n.y) <= 1e-9 && n.x < 0))
+	);
+	const uArrow = $derived(arrow(uv));
+	/**
+	 * The name u along the four-velocity, inside the drawing however long it is, on its left: the tick 1 of the axis
+	 * ct′ at its point has its label on the right.
+	 */
+	const uLabel = $derived.by(() => {
+		const k = Math.min(1, (SPAN - 0.3) / Math.max(Math.abs(uv.x), Math.abs(uv.ct)));
+		return beside(uArrow, { x: X(uv.x * k), y: Y(uv.ct * k) }, (n) => n.x < 0);
+	});
+	/** The name of the pixel's "now", below its line near the right edge. */
+	const nowLabel = $derived.by(() => {
+		const k = (SPAN - 0.55) / Math.max(Math.abs(vh.cosh), Math.abs(vh.sinh));
+		return { x: X(vh.cosh * k), y: Y(vh.sinh * k) + 15 * u };
+	});
+	const vecHyperbola = $derived(path(hyperbolaThrough(av, aa)));
 
 	const curves = $derived({
 		a: path(hyperbola(a)),
@@ -328,7 +465,7 @@
 		svg = node;
 		return () => (svg = undefined);
 	};
-	let dragging = $state<'A' | 'B' | undefined>();
+	let dragging = $state<'A' | 'B' | 'a' | undefined>();
 
 	function roomAt(e: PointerEvent) {
 		const m = svg?.getScreenCTM();
@@ -347,13 +484,16 @@
 			frame = 0;
 			if (dragging && pending) {
 				const q = roomAt(pending);
-				if (q) setEvent(dragging, snapped(q));
+				if (q) {
+					if (dragging === 'a') setTip(tipAt(q));
+					else setEvent(dragging, snapped(q));
+				}
 			}
 			pending = undefined;
 		});
 	}
 
-	function grab(e: PointerEvent, which: 'A' | 'B') {
+	function grab(e: PointerEvent, which: 'A' | 'B' | 'a') {
 		if (e.button !== 0) return;
 		// a drag is not a click: the event does not take the focus, so no ring is drawn round it
 		e.preventDefault();
@@ -383,6 +523,19 @@
 		setEvent(which, moved(which === 'A' ? a : b, d[0], d[1]));
 	}
 
+	function tipKey(e: KeyboardEvent) {
+		const n = e.shiftKey ? TIP_KEY.shift : TIP_KEY.step;
+		const d = {
+			ArrowLeft: [0, -n],
+			ArrowRight: [0, n],
+			ArrowUp: [n, 0],
+			ArrowDown: [-n, 0]
+		}[e.key];
+		if (!d) return;
+		e.preventDefault();
+		setTip(tipMoved(tip, d[0], d[1]));
+	}
+
 	// --- the words --------------------------------------------------------------------------------------------------
 	const etaWords = (v: number) => {
 		const t = etaTex(v);
@@ -396,16 +549,30 @@
 		return `Event ${which}, at t = ${grid(r.ct)} seconds and x = ${grid(r.x)} light-seconds in the room; for the pixel, t′ = ${three(q.ct)} seconds and x′ = ${three(q.x)} light-seconds. Drag it, or move it a twentieth of a light-second with the arrow keys (with Shift, a quarter).`;
 	};
 
+	const kindName = $derived(KIND_NAMES[vk]);
+
+	const tipLabel = $derived(
+		`The tip of the arrow a, at x = ${three(av.x)} and ct = ${three(av.ct)} light-seconds in the room: ${kindName}, a·a = ${three(aa)} light-seconds squared. For the pixel, a′⁰ = ${three(ap.ct)} and a′¹ = ${three(ap.x)}. Drag it, or move it a twentieth of a light-second with the arrow keys (with Shift, a quarter); within 0.02 light-seconds of a light line it lands on it.`
+	);
+
 	const description = $derived(
-		view === 'one'
-			? `A diagram of space and time: the room's x across and ct upward, in light-seconds, with the light lines at 45 degrees. The pixel moves at the rapidity ${etaWords(eta)}, beta ${three(p.beta)}; its axes ct′ and x′ are tilted toward the light lines. ` +
+		view === 'vectors'
+			? `A diagram of space and time: the room's x across and ct upward, in light-seconds, with the light lines at 45 degrees, and the pixel's axes ct′ and x′ at the rapidity ${etaWords(veta)}, beta ${three(vp.beta)}. ` +
+					`An arrow a from the origin to x = ${three(av.x)}, ct = ${three(av.ct)}: ${kindName}, with a·a = ${three(aa)} light-seconds squared for the room and for the pixel alike. ` +
+					`For the pixel its components are a′⁰ = ${three(ap.ct)} and a′¹ = ${three(ap.x)}.` +
+					(observer
+						? ` The pixel's four-velocity u points to x = ${three(uv.x)}, ct = ${three(uv.ct)} in units of c, and its "now" is the line of the x′ axis; u·a = ${three(ua)} c light-seconds.`
+						: '')
+			: view === 'one'
+				? `A diagram of space and time: the room's x across and ct upward, in light-seconds, with the light lines at 45 degrees. The pixel moves at the rapidity ${etaWords(eta)}, beta ${three(p.beta)}; its axes ct′ and x′ are tilted toward the light lines. ` +
 					`A is at t = ${grid(ra.ct)} s, x = ${grid(ra.x)}; B at t = ${grid(rb.ct)} s, x = ${grid(rb.x)}. For the pixel, t′ is ${three(pa.ct)} s for A and ${three(pb.ct)} s for B: ${ord}. The interval between them is ${three(s)} light-seconds squared.`
-			: `A diagram of space and time with two boosts: the pixel's axes at the rapidity ln 2, 0.6 of the speed of light, and a second frame's axes after a further boost of ${etaWords(second)} in the pixel's frame, at the rapidity ${etaWords(total)} in the room, beta ${three(pt.beta)}. Each frame's tick 1 lies on the hyperbolas minus c squared t squared plus x squared equal to plus or minus one light-second squared.`
+				: `A diagram of space and time with two boosts: the pixel's axes at the rapidity ln 2, 0.6 of the speed of light, and a second frame's axes after a further boost of ${etaWords(second)} in the pixel's frame, at the rapidity ${etaWords(total)} in the room, beta ${three(pt.beta)}. Each frame's tick 1 lies on the hyperbolas minus c squared t squared plus x squared equal to plus or minus one light-second squared.`
 	);
 
 	const VIEWS: { value: View; label: string; icon: typeof Layers01Icon }[] = [
 		{ value: 'one', label: 'One boost', icon: DashboardSpeed01Icon },
-		{ value: 'two', label: 'Two boosts', icon: Layers01Icon }
+		{ value: 'two', label: 'Two boosts', icon: Layers01Icon },
+		{ value: 'vectors', label: 'Vectors', icon: ArrowUpRight01Icon }
 	];
 </script>
 
@@ -418,75 +585,139 @@
 
 <div class="lorentz-diagram">
 	<section class="predict" aria-labelledby="{uid}-predict">
-		<div class="steps">
-			<span class="tag" id="{uid}-predict">Predict</span>
-			<div class="pick" role="group" aria-label="Prediction">
-				{#each [1, 2] as const as n (n)}
-					<button type="button" aria-pressed={step === n} onclick={() => (step = n)}>{n}</button>
-				{/each}
+		{#if view === 'vectors'}
+			<div class="steps">
+				<span class="tag" id="{uid}-predict">Predict</span>
+				<div class="pick" role="group" aria-label="Prediction">
+					{#each [1, 2] as const as n (n)}
+						<button type="button" aria-pressed={vstep === n} onclick={() => (vstep = n)}>{n}</button
+						>
+					{/each}
+				</div>
 			</div>
-		</div>
-		<p class="question">
-			{#if step === 1}
-				The pixel moves toward the far flash B. Which flash does it call earlier?
-			{:else}
-				Find a speed at which the order of A and B is reversed. Can you do it for two events that
-				light can connect?
-			{/if}
-		</p>
-		<p class={['answer', { shown: revealed }]} aria-live="polite">
-			{#if revealed && step === 1}
-				<strong>B, by 0.75 s.</strong> The pixel’s clocks beside the two flashes read
-				<Tex math="t'_A = 0" /> and <Tex
-					math={`t'_B = -${GAMMA}${BETA}\\,\\Delta x/c = -0.75${UNIT_S}`}
-					trust
-				/>, because at <Tex math={`${ETA} = \\ln 2`} trust /> the product <Tex
-					math={`${GAMMA}${BETA} = \\sinh(\\ln 2)`}
-					trust
-				/> is exactly <Tex math="3/4" /> and <Tex math="\Delta x" /> is one light-second. B lies below
-				the pixel’s “now” through A, the tilted dashed line, on the parallel one of
-				<Tex math={`t' = -0.75${UNIT_S}`} />. At <Tex math={`${ETA} = 0`} trust /> the two were together,
-				as Newton assumed, and for a pixel moving the other way A comes first. These are the readings
-				of the pixel’s own clocks beside each flash, so the time light takes to reach the pixel plays
-				no part.
-				<button type="button" class="next" onclick={() => (step = 2)}>Next prediction</button>
-			{:else if revealed && answer2}
-				<strong
-					>Only when <Tex math="|\Delta x| > c|\Delta t|" />, so never for events light can connect.</strong
-				>
-				<Tex math={`\\Delta t' = ${GAMMA}(\\Delta t - ${BETA}\\Delta x/c)`} trust /> is zero at
-				<Tex math={`${BETA} = c\\Delta t/\\Delta x`} trust />, a speed below light’s only when
-				<Tex math="|\Delta x| > c|\Delta t|" />: for events on the line of motion, a positive
-				interval. For your pair, <Tex math={`\\Delta t = ${threeTex(answer2.dt)}${UNIT_S}`} /> and <Tex
-					math={`\\Delta x = ${threeTex(answer2.dx)}${UNIT_LS}`}
-				/>, so <Tex
-					math={`-c^2\\Delta t^2 + \\Delta x^2 = ${threeTex(answer2.interval)}${UNIT_LS2}`}
-				/>, and {answer2.order === 'A first' ? 'A' : 'B'} came first at every
-				<Tex math={ETA} trust /> from <Tex math="-2" /> to <Tex math="2" />.
-				{#if answer2.kind === 'light'}
-					On light’s path <Tex math={`\\Delta t' = \\Delta t\\,e^{\\mp${ETA}}`} trust /> shrinks for a
-					faster pixel but is never zero: its least size, at an end of the range, was <Tex
-						math={`${threeTex(answer2.least)}${UNIT_S}`}
-					/>.
-				{:else if answer2.proper}
-					<Tex math="|\Delta t'|" /> was never less than <Tex
-						math={`${threeTex(answer2.least)}${UNIT_S}`}
-					/>, the proper time <Tex math={'\\sqrt{c^2\\Delta t^2 - \\Delta x^2}/c'} /> of a clock that
-					goes from one event to the other, which every observer computes alike.
+			<p class="question">
+				{#if vstep === 1}
+					Boost a null vector. Can its time component become zero?
 				{:else}
-					<Tex math="|\Delta t'|" /> was never less than <Tex
-						math={`${threeTex(answer2.least)}${UNIT_S}`}
-					/>.
+					Boost a space-like vector until its time component vanishes. In which frame are its two
+					ends simultaneous?
 				{/if}
-			{:else if step === 1}
-				The answer appears once you have set the rapidity to 0, where the pixel is at rest in the
-				room, and back to ln 2, with A and B at the two flashes.
-			{:else}
-				The answer appears once you have reversed the order of two events with the rapidity alone,
-				and then, with two events that light can connect, slid the rapidity to both ends of its
-				range.
-			{/if}
-		</p>
+			</p>
+			<p class={['answer', { shown: vrevealed }]} aria-live="polite">
+				{#if vrevealed && vstep === 1 && vanswer1}
+					<strong>No.</strong> A null vector stays on the light cone, and a boost along its
+					direction only stretches or shrinks it, by <Tex math={`e^{\\mp${ETA}}`} trust />. With <Tex
+						math="a^1 = \pm a^0"
+					/>, the pixel’s <Tex
+						math={`a'^0 = ${GAMMA}(a^0 - ${BETA}a^1) = ${GAMMA}(1 \\mp ${BETA})\\,a^0 = e^{\\mp${ETA}}a^0`}
+						trust
+					/>, and the same factor multiplies <Tex math="a^1" />: it is never zero, so the time
+					component vanishes only for the zero vector. Yours, <Tex
+						math={`(a^0, a^1) = (${threeTex(vanswer1.ct)}, ${threeTex(vanswer1.x)})${UNIT_LS}`}
+					/>, {vanswer1.along ? 'along' : 'against'} the pixel’s motion, had <Tex
+						math={`a'^0 = ${threeTex(vanswer1.lo.ct)}${UNIT_LS}`}
+					/> at <Tex math={`${ETA} = ${threeTex(vanswer1.lo.eta)}`} trust /> and <Tex
+						math={`${threeTex(vanswer1.hi.ct)}${UNIT_LS}`}
+					/> at <Tex math={`${ETA} = ${threeTex(vanswer1.hi.eta)}`} trust />, with <Tex
+						math="a\cdot a = 0"
+					/> throughout.
+					<button type="button" class="next" onclick={() => (vstep = 2)}>Next prediction</button>
+				{:else if vrevealed && vanswer2}
+					<strong>In the frame with <Tex math={`${BETA} = c\\Delta t/\\Delta x`} trust />,</strong>
+					for which the vector lies on the pixel’s “now”. The pixel’s <Tex
+						math={`a'^0 = ${GAMMA}(c\\Delta t - ${BETA}\\Delta x)`}
+						trust
+					/> is zero there, a speed below light’s because <Tex math="c|\Delta t| \lt |\Delta x|" /> for
+					a space-like vector; for <Tex math="(x, ct) = (1, 0.5)" /> that is <Tex
+						math={`${BETA} = 0.5`}
+						trust
+					/>. Yours, <Tex
+						math={`(x, ct) = (${threeTex(vanswer2.x)}, ${threeTex(vanswer2.ct)})${UNIT_LS}`}
+					/>, has <Tex math={`c\\Delta t/\\Delta x = ${threeTex(vanswer2.want)}`} />, and you found <Tex
+						math={`${BETA} = \\tanh${ETA} = ${threeTex(vanswer2.found)}`}
+						trust
+					/>, where <Tex math={`a'^0 = ${threeTex(vanswer2.prime)}${UNIT_LS}`} />.
+				{:else if vstep === 1}
+					The answer appears once you have made a null vector, its tip on a light line, and moved
+					the slider across a range of at least 1 in <Tex math={ETA} trust /> while holding it.
+				{:else}
+					The answer appears once you have moved the slider until a space-like <Tex math="a" />,
+					with a time component in the room, has a time component for the pixel within 0.01
+					light-seconds of zero.
+				{/if}
+			</p>
+		{:else}
+			<div class="steps">
+				<span class="tag" id="{uid}-predict">Predict</span>
+				<div class="pick" role="group" aria-label="Prediction">
+					{#each [1, 2] as const as n (n)}
+						<button type="button" aria-pressed={step === n} onclick={() => (step = n)}>{n}</button>
+					{/each}
+				</div>
+			</div>
+			<p class="question">
+				{#if step === 1}
+					The pixel moves toward the far flash B. Which flash does it call earlier?
+				{:else}
+					Find a speed at which the order of A and B is reversed. Can you do it for two events that
+					light can connect?
+				{/if}
+			</p>
+			<p class={['answer', { shown: revealed }]} aria-live="polite">
+				{#if revealed && step === 1}
+					<strong>B, by 0.75 s.</strong> The pixel’s clocks beside the two flashes read
+					<Tex math="t'_A = 0" /> and <Tex
+						math={`t'_B = -${GAMMA}${BETA}\\,\\Delta x/c = -0.75${UNIT_S}`}
+						trust
+					/>, because at <Tex math={`${ETA} = \\ln 2`} trust /> the product <Tex
+						math={`${GAMMA}${BETA} = \\sinh(\\ln 2)`}
+						trust
+					/> is exactly <Tex math="3/4" /> and <Tex math="\Delta x" /> is one light-second. B lies below
+					the pixel’s “now” through A, the tilted dashed line, on the parallel one of
+					<Tex math={`t' = -0.75${UNIT_S}`} />. At <Tex math={`${ETA} = 0`} trust /> the two were together,
+					as Newton assumed, and for a pixel moving the other way A comes first. These are the readings
+					of the pixel’s own clocks beside each flash, so the time light takes to reach the pixel plays
+					no part.
+					<button type="button" class="next" onclick={() => (step = 2)}>Next prediction</button>
+				{:else if revealed && answer2}
+					<strong
+						>Only when <Tex math="|\Delta x| > c|\Delta t|" />, so never for events light can
+						connect.</strong
+					>
+					<Tex math={`\\Delta t' = ${GAMMA}(\\Delta t - ${BETA}\\Delta x/c)`} trust /> is zero at
+					<Tex math={`${BETA} = c\\Delta t/\\Delta x`} trust />, a speed below light’s only when
+					<Tex math="|\Delta x| > c|\Delta t|" />: for events on the line of motion, a positive
+					interval. For your pair, <Tex math={`\\Delta t = ${threeTex(answer2.dt)}${UNIT_S}`} /> and <Tex
+						math={`\\Delta x = ${threeTex(answer2.dx)}${UNIT_LS}`}
+					/>, so <Tex
+						math={`-c^2\\Delta t^2 + \\Delta x^2 = ${threeTex(answer2.interval)}${UNIT_LS2}`}
+					/>, and {answer2.order === 'A first' ? 'A' : 'B'} came first at every
+					<Tex math={ETA} trust /> from <Tex math="-2" /> to <Tex math="2" />.
+					{#if answer2.kind === 'light'}
+						On light’s path <Tex math={`\\Delta t' = \\Delta t\\,e^{\\mp${ETA}}`} trust /> shrinks for
+						a faster pixel but is never zero: its least size, at an end of the range, was <Tex
+							math={`${threeTex(answer2.least)}${UNIT_S}`}
+						/>.
+					{:else if answer2.proper}
+						<Tex math="|\Delta t'|" /> was never less than <Tex
+							math={`${threeTex(answer2.least)}${UNIT_S}`}
+						/>, the proper time <Tex math={'\\sqrt{c^2\\Delta t^2 - \\Delta x^2}/c'} /> of a clock that
+						goes from one event to the other, which every observer computes alike.
+					{:else}
+						<Tex math="|\Delta t'|" /> was never less than <Tex
+							math={`${threeTex(answer2.least)}${UNIT_S}`}
+						/>.
+					{/if}
+				{:else if step === 1}
+					The answer appears once you have set the rapidity to 0, where the pixel is at rest in the
+					room, and back to ln 2, with A and B at the two flashes.
+				{:else}
+					The answer appears once you have reversed the order of two events with the rapidity alone,
+					and then, with two events that light can connect, slid the rapidity to both ends of its
+					range.
+				{/if}
+			</p>
+		{/if}
 	</section>
 
 	<div class="stage">
@@ -520,6 +751,9 @@
 					<!-- each event's hyperbola of constant interval from the origin -->
 					<path class="hyperbola" d={curves.a} />
 					<path class="hyperbola" d={curves.b} />
+				{:else if view === 'vectors'}
+					<!-- the hyperbola a·a = constant through the tip; for a null vector, the light lines -->
+					<path class="hyperbola" d={vecHyperbola} />
 				{:else}
 					<!-- the events one light-second from the origin, for every observer -->
 					<path class="hyperbola" d={curves.time} />
@@ -556,6 +790,15 @@
 						{#if theirTicks.space}<path class="obs-tick" d={theirTicks.space.d} />{/if}
 					</g>
 				{/if}
+
+				{#if view === 'vectors' && observer}
+					<!-- the pixel's "now" through the origin, and its four-velocity -->
+					<path class="now strong" d={mine.space} />
+					<g class="vector observer">
+						<path class="shaft" d={uArrow.shaft} />
+						<path class="head" d={uArrow.head} />
+					</g>
+				{/if}
 			</g>
 
 			<!-- the room's ticks -->
@@ -569,7 +812,7 @@
 			{/each}
 
 			<!-- the ticks 1 of the pixel's axes -->
-			{#if view === 'one'}
+			{#if view !== 'two'}
 				{#if myTicks.time}
 					<text class="small obs-words halo mid" x={myTicks.time.label.x} y={myTicks.time.label.y}
 						>1</text
@@ -635,6 +878,39 @@
 					</g>
 				{/each}
 			{/if}
+
+			<!-- the four-vector a, its tip a handle -->
+			{#if view === 'vectors'}
+				{#if observer}
+					<text class="label obs-words halo mid" x={nowLabel.x} y={nowLabel.y}>now</text>
+					<text class="label obs-words halo mid" x={uLabel.x} y={uLabel.y}
+						><tspan class="it">u</tspan></text
+					>
+				{/if}
+				<g class={['vector', `kind-${vk}`]}>
+					<path class="shaft" d={aArrow.shaft} />
+				</g>
+				<g
+					class={['event', 'tip', `kind-${vk}`]}
+					role="button"
+					tabindex="0"
+					aria-roledescription="movable arrow tip"
+					aria-label={tipLabel}
+					onpointerdown={(e) => grab(e, 'a')}
+					onkeydown={tipKey}
+				>
+					<circle class="hit" cx={aArrow.at.x} cy={aArrow.at.y} r={16 * u} />
+					<circle class="focus" cx={aArrow.at.x} cy={aArrow.at.y} r={12 * u} />
+					{#if aArrow.head}
+						<path class="head" d={aArrow.head} />
+					{:else}
+						<circle class="head" cx={aArrow.at.x} cy={aArrow.at.y} r={3.5 * u} />
+					{/if}
+				</g>
+				<text class="label halo mid vector-name" x={aLabel.x} y={aLabel.y}
+					><tspan class="it">a</tspan></text
+				>
+			{/if}
 		</svg>
 
 		<ul class="legend" aria-hidden="true">
@@ -658,6 +934,31 @@
 						>each event’s <Tex math="-c^2t^2 + x^2" />, held fixed</span
 					>
 				</li>
+			{:else if view === 'vectors'}
+				<li>
+					<span class="swatch obs-key"></span><span
+						>the pixel’s axes, <Tex math="x' = 0" /> and <Tex math="t' = 0" /></span
+					>
+				</li>
+				<li>
+					<span class="swatch arrow-key"></span><span
+						><Tex math="a" />: <span class="kind-time-words">time-like</span>,
+						<span class="kind-null-words">null</span> or space-like</span
+					>
+				</li>
+				<li>
+					<span class="swatch hyperbola-key"></span><span
+						><Tex math="a\cdot a" /> held fixed (on the light lines when it is zero)</span
+					>
+				</li>
+				{#if observer}
+					<li>
+						<span class="swatch obs-key"></span><span
+							>its four-velocity <Tex math={VEC_U} trust />, along <Tex math="ct'" />, and its
+							“now”, along <Tex math="x'" /></span
+						>
+					</li>
+				{/if}
 			{:else}
 				<li>
 					<span class="swatch obs-faint-key"></span><span
@@ -707,6 +1008,36 @@
 					<HugeiconsIcon icon={FlashIcon} size={16} strokeWidth={1.7} />
 					Back to the two flashes
 				</button>
+			{:else if view === 'vectors'}
+				<div onkeydowncapture={sliderKeys(() => veta, setVeta)} role="presentation">
+					<Slider
+						id="{uid}-veta"
+						label="Rapidity"
+						icon={DashboardSpeed02Icon}
+						min={RAPIDITY.min}
+						max={RAPIDITY.max}
+						step={RAPIDITY.step}
+						bind:value={() => veta, setVeta}
+						readout="η = {etaWords(veta)}"
+						ends={['−2', '2']}
+						marks={[
+							{ at: -LN2, label: 'η = −ln 2, 0.6c the other way' },
+							{ at: 0, label: 'η = 0, at rest in the room' },
+							{ at: LN2, label: 'η = ln 2, the paper’s pixel at 0.6c' },
+							{ at: 2 * LN2, label: 'η = ln 4, two boosts of 0.6c' }
+						]}
+						marksHint="the ticks mark rest, 0.6c either way, and two boosts of 0.6c"
+					/>
+				</div>
+				<button
+					type="button"
+					class="action"
+					aria-pressed={observer}
+					onclick={() => (observer = !observer)}
+				>
+					<HugeiconsIcon icon={EyeIcon} size={16} strokeWidth={1.7} />
+					Show observer
+				</button>
 			{:else}
 				<div onkeydowncapture={sliderKeys(() => second, setSecond)} role="presentation">
 					<Slider
@@ -734,6 +1065,13 @@
 				arrow keys (with Shift, a quarter). The slider takes the arrow keys after Tab, a step of
 				0.05 in
 				<Tex math={ETA} trust />, and Page Up and Page Down a step of 0.5.
+			{:else if view === 'vectors'}
+				Drag the tip of <Tex math="a" />, or reach it with Tab and move it a twentieth of a
+				light-second with the arrow keys (with Shift, a quarter); within 0.02 light-seconds of a
+				light line it lands on it. The slider takes the arrow keys after Tab, a step of 0.05 in <Tex
+					math={ETA}
+					trust
+				/>.
 			{:else}
 				The first boost is the pixel’s, at <Tex math={`${ETA}_1 = \\ln 2`} trust />. The slider sets
 				the second, by <Tex math={`${ETA}_2`} trust /> in the pixel’s frame; the arrow keys step it by
@@ -829,6 +1167,100 @@
 					math={`|${ETA}| = 1.45`}
 					trust
 				/> the pixel’s ticks 1 lie off the drawing. Everything is exact.
+			</p>
+		{:else if view === 'vectors'}
+			<dl>
+				<div class="row">
+					<dt>The pixel</dt>
+					<dd>
+						{@render eq([`${ETA} = ${etaTex(veta)}`])}
+						{@render eq([
+							`${BETA} = \\tanh${ETA}`,
+							`= ${fractionTex(vp.beta, betaFraction(veta))}`
+						])}
+						{@render eq([
+							`${GAMMA} = \\cosh${ETA}`,
+							`= ${fractionTex(vh.cosh, gammaFraction(veta))}`
+						])}
+					</dd>
+				</div>
+				<div class="row">
+					<dt>The vector</dt>
+					<dd>
+						<table class="events vectors">
+							<thead>
+								<tr>
+									<th scope="col"><span class="sr">components</span></th>
+									<th scope="col">room</th>
+									<th scope="col">pixel</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row"><Tex math={`a^\\mu\\ (\\mathrm{ls})`} /></th>
+									<td>{pair(av)}</td>
+									<td>{pair(ap)}</td>
+								</tr>
+								<tr>
+									<th scope="row"><Tex math={`a_\\mu\\ (\\mathrm{ls})`} /></th>
+									<td>{pair(al)}</td>
+									<td>{pair(apl)}</td>
+								</tr>
+								<tr class="square">
+									<th scope="row"><Tex math={`a\\cdot a\\ (\\mathrm{ls^2})`} /></th>
+									<td>{three(aa)}</td>
+									<td>{three(aaPrime)}</td>
+								</tr>
+							</tbody>
+						</table>
+						<span class="also" aria-live="polite"
+							><strong class={['kind', `kind-${vk}`]}>{kindName}</strong>{#if vk === 'time'}, <Tex
+									math="a\cdot a \lt 0"
+								/>: a clock moving slower than light can go along it.{:else if vk === 'null'}, <Tex
+									math="a\cdot a = 0"
+								/>: a flash of light can go along it.{:else if vk === 'space'}, <Tex
+									math="a\cdot a \gt 0"
+								/>: no clock can be present at both its ends.{:else}, of no kind.{/if} Every observer
+							computes the same <Tex math="a\cdot a" />.</span
+						>
+					</dd>
+				</div>
+				{#if observer}
+					<div class="row">
+						<dt>The observer</dt>
+						<dd>
+							{@render eq([
+								`${VEC_U}^\\mu = (\\cosh${ETA}, \\sinh${ETA})\\,c`,
+								`= (${threeTex(uv.ct)}, ${threeTex(uv.x)})\\,c`
+							])}
+							{@render eq([
+								`${VEC_U}\\cdot a = c\\,(-${threeTex(uv.ct)}\\,a^0 + ${threeTex(uv.x)}\\,a^1)`,
+								`= ${threeTex(ua)}\\,c\\,\\mathrm{ls}`
+							])}<span class="also"
+								>which is <Tex math="-c\,a'^0" />, zero exactly when <Tex math="a" /> lies on the pixel’s
+								“now”.</span
+							>
+						</dd>
+					</div>
+				{/if}
+			</dl>
+			<p class="note">
+				The arrow <Tex math="a" /> is the step from the origin to its tip, with <Tex
+					math="a^\mu = (a^0, a^1) = (ct, x)"
+				/> in light-seconds, listed as (time, <Tex math="x" />). The pixel’s column holds its <Tex
+					math="a'^\mu"
+				/>, by the chapter’s boost, and lowering an index changes only the sign of time, <Tex
+					math="a_\mu = (-a^0, a^1)"
+				/>. The pixel’s <Tex math="a'\cdot a'" /> is formed from its own components and agrees with the
+				room’s. The tip stands on a grid of hundredths of a light-second, within two light-seconds of
+				the origin, and its kind is decided on that grid. The four-velocity <Tex
+					math={VEC_U}
+					trust
+				/>, in units of
+				<Tex math="c" />, ends on the hyperbola <Tex
+					math={`${VEC_U}\\cdot ${VEC_U} = -c^2`}
+					trust
+				/>; its “now” is the pixel’s axis <Tex math="x'" />.
 			</p>
 		{:else}
 			<dl>
@@ -1199,6 +1631,47 @@
 		stroke-width: calc(1.2px * var(--u, 1));
 	}
 
+	/* the four-vector a, coloured by its kind: the observer's colour if time-like, light's if null, ink if space-like */
+	.kind-time {
+		--kind: var(--obs);
+	}
+
+	.kind-null {
+		--kind: var(--light);
+	}
+
+	.kind-space,
+	.kind-zero {
+		--kind: var(--text);
+	}
+
+	.vector.observer {
+		--kind: var(--obs);
+	}
+
+	.shaft {
+		fill: none;
+		stroke: var(--kind);
+		stroke-width: calc(2.2px * var(--u, 1));
+		stroke-linecap: round;
+	}
+
+	.head {
+		fill: var(--kind);
+		stroke: var(--bg-sunken);
+		stroke-width: calc(0.8px * var(--u, 1));
+		stroke-linejoin: round;
+	}
+
+	.now.strong {
+		stroke: var(--obs);
+		stroke-width: calc(1.4px * var(--u, 1));
+	}
+
+	text.vector-name {
+		fill: var(--text);
+	}
+
 	.name {
 		fill: var(--text);
 		font: 600 calc(12px * var(--u, 1)) / 1 var(--font-sans);
@@ -1257,6 +1730,19 @@
 		border-color: var(--obs);
 	}
 
+	.arrow-key {
+		border-top-width: 2px;
+		border-color: var(--text);
+	}
+
+	.kind-time-words {
+		color: var(--obs);
+	}
+
+	.kind-null-words {
+		color: var(--light);
+	}
+
 	.hyperbola-key {
 		border-top-style: dotted;
 		border-color: var(--text-dim);
@@ -1303,6 +1789,11 @@
 
 	.action :global(svg) {
 		color: var(--accent);
+	}
+
+	.action[aria-pressed='true'] {
+		border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+		background: color-mix(in srgb, var(--accent) 10%, var(--bg));
 	}
 
 	@media (hover: hover) {
@@ -1401,6 +1892,37 @@
 		text-align: left;
 		font-weight: 600;
 		color: var(--text);
+	}
+
+	.vectors td {
+		white-space: nowrap;
+	}
+
+	.vectors .square th,
+	.vectors .square td {
+		border-top: 1px solid var(--line);
+	}
+
+	strong.kind {
+		font-weight: 600;
+		color: var(--text);
+	}
+
+	strong.kind-time {
+		color: var(--obs);
+	}
+
+	strong.kind-null {
+		color: var(--light);
+	}
+
+	.sr {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
 	}
 
 	.note {
