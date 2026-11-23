@@ -6,7 +6,7 @@ part: '5'
 requires: ['2.2', '2.4', '2.6', '3.6', '4.3', '4.5', '5.1']
 paper: [sec:regimes, eq:nearzone, fig:regimes, sec:near-field, sec:waves, eq:quadrupole, eq:wave-zone, sec:one-pixel, sec:vistas, eq:multipole, sec:hole]
 figures: [fig:regimes]
-live: [regime-map]
+live: [near-to-wave, regime-map]
 depth: A
 ---
 
@@ -132,19 +132,13 @@ delta function picks out the one time $t' = t - |\vect x - \vect y|/c$, so
 $$\boxed{\;u(\vect x, t) = \int\frac{s\bigl(\vect y,\,t - |\vect x - \vect y|/c\bigr)}{4\pi\,|\vect x - \vect y|}
 \,\dd^3y .\;} \label{eq:retarded}$$
 
-This is the **retarded solution**: each piece of the source counts as it was one travel time ago. The time
-$\sym{retarded-time}{t_{\rm ret}} = t - |\vect x - \vect y|/c$ at which a piece must act to be felt at $\vect x$ at the
-time $t$ is its **retarded time**.[^u]
+This is the **retarded solution**: each piece of the source counts as it was one travel time
+ago (Figure [](#fig:ret-cone)). The time $\sym{retarded-time}{t_{\rm ret}} = t - |\vect x - \vect y|/c$ at which a
+piece must act to be felt at $\vect x$ at the time $t$ is its **retarded time**.[^u]
 
-<!-- diagram: tut-ret-cone — A spacetime sketch, time upward, one space direction across (a second suggested in
-perspective, so that circles of constant time look like ellipses). A source region is a vertical band (its world
-tube) in the colour of nothing special (neutral grey), and a field point is a vertical line to its right. At the
-field point's present time t a dot is marked, and from it a cone opens downward at the slope of light, its edges
-labelled "light: speed c". Where the cone cuts the band, the band is drawn darker: the pieces of the source that count
-now. A dashed horizontal line at the earlier time t − |x − y|/c marks one such piece y, and a small double arrow
-between the two times is labelled "|x − y|/c". Caption: "Look first at the dark stretch of the source where the
-backward cone cuts it: those pieces, each at its own retarded time, make the field at the dot now. The sketch is
-schematic." -->
+![Look first at the dark patch of the source where the backward cone cuts it: those pieces, each at its own retarded
+time, make the field at the dot now. Time and the one space direction across are on one scale, so that light runs at
+45°; the depth is suggested in perspective, and the sketch is schematic.](tut-ret-cone){#fig:ret-cone}
 
 **A limit.** If the source does not change in time, the delay does not matter, and [](#eq:retarded) is chapter 2.4's
 [superposition of point fields](/tutorial/outside/greens-functions/#the-potential-of-one-point-builds-every-potential).
@@ -203,9 +197,9 @@ $$\boxed{\;r = \frac{1}{k} = \frac{c}{\omega} = \frac{c}{2\pi f} = \frac{\lambda
 
 This is the edge of the paper's near zone, [](/paper/#eq:nearzone). The $2\pi$ is there because the wavelength
 $\lambda = 2\pi/k$ is one whole turn of the wave's phase, while the edge is where the phase has turned by one radian.
-Inside it, $kr < 1$, the near part is the larger; outside it the wave part is. The wave part follows the rate of change
-of the source, and a rate of change runs a quarter cycle ahead of what changes. So the wave part reaches each of its
-peaks a quarter cycle before the near part does, while both share the delay $r/c$.
+Inside it, $kr < 1$, the near part is the larger; outside it the wave part is (Figure [](#fig:ret-crossing)). The wave
+part follows the rate of change of the source, and a rate of change runs a quarter cycle ahead of what changes. So the
+wave part reaches each of its peaks a quarter cycle before the near part does, while both share the delay $r/c$.
 
 **Every derivative behaves alike.** Each derivative of $e^{ikr}/r$ that falls on $1/r$ adds a power of $1/r$, and each
 that falls on $e^{ikr}$ adds a factor $ik$. So the $n$-th derivative is $e^{ikr}/r$ times a sum of terms
@@ -217,15 +211,10 @@ $kr = \sqrt2$.[^tide]
 **Numbers.** At 1 Hz, $c/2\pi f = 2.998 \times 10^8/2\pi = 4.77 \times 10^7$ m, or 47,700 km, and at 1 kHz it is
 47.7 km, which the paper rounds to 48,000 km and 48 km. Halve the frequency, and the edge moves twice as far out.
 
-<!-- diagram: tut-ret-crossing — Log–log axes: kr from 0.01 to 100 (horizontal, with a second scale above in units of
-λ: r/λ = kr/2π), and the size of each part of the slope relative to k² (vertical, from 10⁻² to 10⁴). Two solid lines:
-the near part 1/(kr)² (falling steeply, labelled "near part, 1/r²") and the wave part 1/kr (falling gently, labelled
-"wave part, 1/r"), crossing at kr = 1, where a thin vertical line is labelled "r = λ/2π". A dotted pair for the tide,
-relative to k³: the near term 2/(kr)³ and the wave term 1/kr, crossing at kr = √2, with a short tick labelled "√2".
-The region kr < 1 lightly shaded and labelled "near zone", the region kr > 1 labelled "wave zone", the shading fading
-across the crossing (no sharp edge). Caption: "Look first at the crossing of the two solid lines: the near part falls
-faster and wins inside λ/2π, the wave part wins outside. The tide's pair, dotted, crosses a little farther out.
-Lines exact." -->
+![Look first at the crossing of the two solid lines: the near part (blue) falls faster and wins inside $\lambda/2\pi$,
+the wave part (orange) wins outside. The tide's two terms that fall faster than $1/r$, taken together and dotted, cross
+their wave term, which is the same line as the slope's, a little farther out, at $kr = 2.2$. Lines
+exact.](tut-ret-crossing){#fig:ret-crossing}
 
 {{paper fig:regimes}}
 
@@ -244,19 +233,18 @@ black holes in orbit the paper's [*A pair of black holes, from the near zone to 
 zone*](/paper/#par:a-pair-of-black-holes-from-the-near-zone-to-the-wave-zone) finds that the two laws cross at
 $0.3\lambda$, where $kr = 1.9$. Near the edge both parts are present, so the edge is a crossover, not a cliff.
 
-<!-- try: near-to-wave — NearToWave. The field of one oscillating point source along a line away from it. Top panel: a
-snapshot of u = Re[e^{i(kr − ωt)}]/r (in ink). Bottom panel: its slope ∂u/∂r split into the near part
-−Re[e^{i(kr − ωt)}]/r² and the wave part Re[ik e^{i(kr − ωt)}]/r, each in its own colour (two colours distinct from
-the site's accent and from the orange and blue of stretch and squeeze), their sum in ink. Each part is drawn multiplied
-by r², so that the near part keeps a constant envelope and the wave part's envelope grows as kr; their envelopes cross
-at kr = 1, marked by a thin vertical line "r = λ/2π". A slider sets the range of distance shown, in units of λ, from
-0.01 to 10 on a logarithmic scale. A play button animates the phase ωt, so that the near part is seen in step with the
-source while the wave part's crests travel outward. A draggable probe on the axis has readouts: r/λ, kr, the sizes of
-the two parts (1/r² and k/r, in units of k²) and their ratio kr. A second slider halves or doubles the frequency at a
-fixed distance scale in metres, so that the line r = λ/2π moves. Opens at the range 0.03λ to 3λ, paused, with the
-probe at kr = 0.3. Predict first: "At what distance are the near and wave parts of the slope equal?" (At λ/2π, about
-a sixth of a wavelength.) Then: "Halve the frequency. Where does the boundary go?" (Twice as far out.) Keyboard and
-both themes. -->
+::: try {#near-to-wave}
+The field of one oscillating point along a line away from it, at one instant. The upper panel shows the field times
+$r$. The lower panel splits the slope [](#eq:slope) into its near part (blue) and its wave part (orange), each
+multiplied by $r^2$, with their sum in ink; the dashed envelopes are the two parts' sizes, and the thin line marks
+$r = \lambda/2\pi$. The distance runs on a logarithmic scale in wavelengths, with kilometres below. Drag the probe, or
+choose it with Tab and use the arrow keys; the slider changes the frequency over the same kilometres. *Play* lets the
+phase turn, and *A quarter cycle on* steps it. The readouts give $r/\lambda$, $kr$, the sizes of the two parts and
+their ratio, and the shared delay.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, play
+it with the probe near $kr = 1$ and watch which part reaches its peak first.
+:::
 
 ## Inside the near zone the field is the static field of the source as it is now
 
@@ -369,19 +357,13 @@ outward, falling as $1/r$.
 **What it reads.** Each direction $\hat n$ reads the source's transform at one wavevector, $\omega\hat n/c$: the ripple
 whose crests lie across $\hat n$, a wavelength apart. Along that direction the pieces of the source on one crest of the
 ripple send news that arrives in step. All the directions together read the source on the sphere
-$|\vect k| = \omega/c$ in the space of wavevectors. Ripples of the source finer than a wavelength, with
-$|\vect k| > \omega/c$, are read in no direction: they are the ripples of chapter 5.1 that
+$|\vect k| = \omega/c$ in the space of wavevectors (Figure [](#fig:ret-far)). Ripples of the source finer than a
+wavelength, with $|\vect k| > \omega/c$, are read in no direction: they are the ripples of chapter 5.1 that
 [fade instead of travelling](/tutorial/waves/wave-equation/#a-ripple-finer-than-a-wavelength-across-a-plane-fades-instead-of-travelling).
 
-<!-- diagram: tut-ret-far — Two panels. Left: a small source (an irregular blob, neutral grey) round an origin O, and
-far to the upper right (drawn with a break in the line) a field point; the unit vector n̂ from O toward it. Two points
-of the source, O and y, each with a long nearly parallel line toward the field point; from y a perpendicular dropped
-onto the line from O shows the path difference n̂·y, labelled. Right: the space of wavevectors (k_x, k_y), a circle of
-radius ω/c centred on the origin, labelled "|k| = ω/c", with the point ωn̂/c on it (a dot, with an arrow from the
-origin parallel to the left panel's n̂), and a small arc round it labelled "a camera of width D reads a cap D/r".
-Caption: "Look first at the dot on the circle: each direction of view reads the source's ripple at that one
-wavevector, and the circle holds every ripple a far camera can read. Schematic; the path difference is exact for
-parallel lines." -->
+![Look first at the dot on the circle: each direction of view reads the source's ripple at that one wavevector, and
+the circle holds every ripple a far camera can read. Schematic; the path difference is exact for parallel
+lines.](tut-ret-far){#fig:ret-far}
 
 **Gravity, with its factors stated.** For gravity the field is the **metric perturbation**, a table of small pure
 numbers that says how much a weak gravitational field changes the distances and times measured by rulers and clocks

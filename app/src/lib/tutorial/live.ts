@@ -47,6 +47,7 @@ import NormalModes from './live/NormalModes.svelte';
 import MaxwellLiquid from './live/MaxwellLiquid.svelte';
 import SumRule from './live/SumRule.svelte';
 import DampedWave from './live/DampedWave.svelte';
+import NearToWave from './live/NearToWave.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -204,6 +205,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A damped line with a slower slab: a wave train, one pulse or two opposite pulses, its decay length and the slab’s lag',
 		component: DampedWave
+	},
+	'near-to-wave': {
+		label:
+			'One oscillating source along a line: the field, and its slope’s near part and wave part, each times r², crossing at r = λ/2π; move the probe, the distances and the frequency',
+		component: NearToWave
 	},
 	'noise-spectrum': {
 		label:
