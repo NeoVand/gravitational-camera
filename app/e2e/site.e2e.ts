@@ -1652,26 +1652,23 @@ test(
 	}
 );
 
-test(
-	'every figure and demo page opens on the In plain words tab, with something to read',
-	{
-		tag: '@fresh'
-	},
-	async ({ page }) => {
-		test.setTimeout(240_000);
-		const pages = ['figures', 'demo'].flatMap((section) =>
-			readdirSync(new URL(`../src/routes/${section}`, import.meta.url), { withFileTypes: true })
-				.filter((entry) => entry.isDirectory())
-				.map((entry) => `/${section}/${entry.name}/`)
-		);
-		expect(pages.length).toBeGreaterThan(20);
-		for (const path of pages) {
+// every figure and demo page opens on the In plain words tab, with something to read: one test per
+// page, so that they run side by side
+for (const path of ['figures', 'demo'].flatMap((section) =>
+	readdirSync(new URL(`../src/routes/${section}`, import.meta.url), { withFileTypes: true })
+		.filter((entry) => entry.isDirectory())
+		.map((entry) => `/${section}/${entry.name}/`)
+)) {
+	test(
+		`${path} opens on the In plain words tab, with something to read`,
+		{ tag: '@fresh' },
+		async ({ page }) => {
 			await page.goto(path);
 			const tab = page.locator('#shell-tab-plain');
-			await expect(tab, path).toHaveAttribute('aria-selected', 'true');
-			await expect(tab, path).toHaveAttribute('title', /^In plain words/);
+			await expect(tab).toHaveAttribute('aria-selected', 'true');
+			await expect(tab).toHaveAttribute('title', /^In plain words/);
 			const words = (await page.locator('#shell-panel').innerText()).trim();
-			expect(words.split(/\s+/).length, path).toBeGreaterThan(40);
+			expect(words.split(/\s+/).length).toBeGreaterThan(40);
 		}
-	}
-);
+	);
+}

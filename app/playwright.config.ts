@@ -5,6 +5,11 @@ export default defineConfig({
 	testDir: 'e2e',
 	testMatch: '**/*.e2e.ts',
 	timeout: 90_000,
+	// every test opens its own pages, so they run side by side; on CI, three workers on the
+	// runner's four cores, which also draw the WebGPU scenes in software
+	fullyParallel: true,
+	workers: process.env.CI ? 3 : undefined,
+	retries: process.env.CI ? 1 : 0,
 	webServer: {
 		command: 'pnpm run build && pnpm run preview',
 		port: 4173,
