@@ -22,7 +22,7 @@ R2](/tutorial/outside/reading-section-iv-1/#fine-detail-fades-as-the-exponential
 stopped, in the paragraph [*How sharp*](/paper/#par:how-sharp), and ends by imaging the locked safe from start to
 finish. As in [R1](/tutorial/newton/reading-section-ii/) and R2, each claim gets the chapter that teaches it and a mark:
 *checked here*, *read now, derived in Part N*, or *stated in the paper* (taken from outside the paper's own argument).
-The map below draws the eleven stretches in order.
+Figure [](#fig:read-iv2-map) draws the eleven stretches in order.
 
 {{paper fig:locked-safe}}
 
@@ -40,26 +40,10 @@ The limits set by black holes and by quantum mechanics need later parts, and so 
 and with a single pixel.
 :::
 
-<!-- diagram: tut-read-iv2-map — The eleven stretches read here as a horizontal strip of boxes in the paper's order,
-drawn exactly as R2's tut-read-iv-map draws its ten (same box size, type and colours, wrapping to two rows on a phone).
-Each box holds the stretch's short name and, where it has any, its equations in the paper's numbering; beneath each
-box, small, the chapters that teach it. The boxes, in order:
-(1) "plain words": 3.1, 3.3, 3.7, 3.8, 3.9; 8.6. Half-filled (the ceiling is Part 8's).
-(2) "How sharp", eq:wiener, eq:cutoff, eq:resolution: 3.5, 3.6, 3.7. Filled.
-(3) "GOCE": 2.2, 3.5, 3.7. Half-filled (GOCE's data stated).
-(4) "other sensors · small camera", eq:handheld: 2.3, 2.7, 3.7. Filled.
-(5) "precision": 3.3, 3.9. Filled.
-(6) "worked case": 1.3, 2.3, 3.3, 3.4, 3.5. Filled.
-(7) "positivity": 3.9. Half-filled (the theorems stated).
-(8) "zeros of the shear", eq:shear-zeros: 1.5b, 3.9. Half-filled (the lensing literature stated).
-(9) "limits": 3.7; 8.1, 8.6, 11.1, 13.8. Dotted outline (read now, derived in Parts 8, 11 and 13).
-(10) "information", eq:capacity-integral, eq:capacity: 3.8; 5.3, Part 9, Part 10. Half-filled (other channels later).
-(11) "geometry", eq:hyperbolic: 3.9. Half-filled (the sphere's metrics stated).
-At the strip's left end a faint stub box labelled "R2" (the first half), and at its right end, after the strip, one
-larger box "capstone: the locked safe", filled, with an arrow from every box of the strip into it. Caption: "The eleven
-stretches of the second half of Section IV, in order, each with its equation numbers and the chapters that teach it. A
-filled box is checked here, a half-filled box holds claims of more than one kind, and the dotted box is read now and
-derived in Parts 8, 11 and 13. All of them meet in the capstone." -->
+![The eleven stretches of the second half of Section IV, in order, each with its equation numbers if it has any and
+the chapters that teach it beneath. A filled box is checked here, a half-filled box holds claims of more than one kind,
+and the dotted box is read now and derived in Parts 8, 11 and 13. The first half was read in R2, and all eleven meet in
+the capstone.](tut-read-iv2-map){#fig:read-iv2-map}
 
 ## The plain words hold, number by number, from the blanket to the end
 
@@ -468,28 +452,25 @@ waves." The first sentence is the blur law of 3.7 (*checked here*); the second i
 ## The capstone: imaging the locked safe from start to finish
 
 We now follow the safe once more, from the first readings to the limit of what any camera could see, with the whole of
-Part 3. Each step names the chapters that supply it.
+Part 3. Each step names the chapters that supply it, and Figure [](#fig:read-iv2-capstone) draws the six steps.
 
-<!-- diagram: tut-read-iv2-capstone — One figure in six small panels, one for each step (a) to (f), two rows of three
-on a wide screen and one column on a phone. (a) Find the safe, two plots stacked. Top: the gold's own E_xx (one of the
-five components a pixel records) along the row of panel (f) of fig:locked-safe, from −1.75 to 1.75 m, in units of
-10⁻¹⁰ s⁻², peaking at 4.1 at x = 1.1 m in front of the right safe; around zero, a pale band of ±0.35 (the noise σ_n
-of one reading of that component at SNR 10³) and a wider band of ±35 (the same at SNR 10). Vertical axis −40 to 40, so
-that the wide band fits and the curve is small against it. Bottom: two unit Gaussians whose centres are 1.81 apart,
-the midline dashed, the tail of each beyond it shaded (18.3%). (b) See the blur: a plan view from above, the camera at
-the left as a short bar 1 m wide, the two safes 3.5 m away as squares 0.8 m wide centred 2.2 m apart, and two wedges
-from the camera, a narrow one 24.0° wide (an array as wide as the scene is deep) and a wide one 32.4° wide (this
-array), whose 1.98 m chord at the safes is marked and spans both gaps. (c) Fail to weigh it: the 231 whitened gains of
-3.4 on a log scale, largest first, the 17 above the line at one in orange, the rest pale. (d) Weigh it by positivity:
-a histogram of the right safe's mass over 3000 draws of the noise, from 40 kg to the highest draw so that every draw is
-held (the lowest is 44 kg; 0.17% lie below 200 kg), mean 315 marked, the true 324 marked dashed, the long tail to the
-left visible; beside it, small, the ellipse of the Cramér–Rao bounds in depth and mass for a point of gold, 9.1 cm by
-25 kg, leaning along "farther and heavier" (correlation 0.996). (e) Count the bits: a horizontal bar of 38 cells (one
-per bit), one cell labelled "which safe" and four labelled "how much", the rest pale. (f) The ceiling: the bar's face,
-30 cm wide, drawn twice, blurred by 9 cm and by 13 cm. Panel letters only; no other text inside panels. Caption: "The
-capstone in six panels: (a) the gold's reading against the noise at 10 and 10³, and the choice of safe at SNR = 10;
-(b) the blur of a wide array and of this metre-wide one; (c) the 17 patterns above the noise; (d) the positive image's
-weighings, beside the bounds for a point of gold; (e) the bits the answer uses; (f) the bar at the quantum ceiling." -->
+![The capstone in six panels. (a) Above, the gold's own reading $\curv{\tE}_{xx}$ along a row of pixels 3.5 m long
+at the camera (orange, in $10^{-10}\unit{s^{-2}}$, against the place along the row in metres), small against the noise
+of one reading at $\SNR = 10^3$ (the thin blue band) and at $\SNR = 10$ (the wide band); below, the two safes' scores
+at $\SNR = 10$, in noise standard deviations, 1.81 apart, with the 18.3% of each beyond the midline shaded. (b) The
+scene from above, to scale: the metre-wide array at the left and the two safes 3.5 m away. The orange wedge is this
+array's blur, 32.4° wide and 1.98 m along its arc at 3.5 m; the grey lines bound the 24.0° blur of an array as wide as
+the scene is deep. Both are wider than the gap between the safes. (c) The whitened gains on a logarithmic scale,
+largest first: only 17 of the 231 stand above the noise (the blue line at one), and the 113 not drawn are below
+$10^{-10}$. (d) Above, the Cramér–Rao ellipse of a point of gold: its error in mass across, in kg, and in depth
+upward, in cm (farther is up), 25 kg by 9.1 cm and almost a line, because a farther bar that is heavier reads nearly the
+same. Below, the mass the positive image finds in the right safe over 3000 draws of the noise, in kg, counted on a
+logarithmic scale so that the single draws of the long tail show, with their mean of 315 kg (orange) and the true
+324 kg (dashed). (e) The 38 bits of a patch at $\SNR = 10^3$, one cell each: the
+answer uses one for the safe (dark) and four for the mass (orange). (f) The bar's face, 30 cm by 14 cm, as an array as
+wide as the scene is deep (left, a blur of 9 cm) and this array (right, 13 cm) would draw it at the quantum ceiling;
+its true outline in a hairline. The right image uses the left one's pattern widened to 13 cm, and the faint rings of
+both patterns, below 15% of the brightest value, are left out.](tut-read-iv2-capstone){#fig:read-iv2-capstone}
 
 **(a) Find the safe.** With the room and the safes subtracted, the gold's largest recorded reading on the metre-wide
 array is $4.1\times10^{-10}\unit{s^{-2}}$, in the component $\curv{\tE}_{yz}$. The stretch along the camera's axis,
