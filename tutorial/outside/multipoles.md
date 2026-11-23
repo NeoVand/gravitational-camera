@@ -186,17 +186,20 @@ degree 12, 91 times the potential's share.
 **A number.** From three radii away the ceiling of degree $\ell$ is $3^{-\ell}$ of the monopole. Suppose that the camera
 reads the monopole with a signal-to-noise ratio $\SNR$, the signal divided by the typical size of the noise (chapter
 0.2), as Section XII does.[^snr] Degree $\ell$ can stand above the noise only while $3^\ell < \SNR$, that is, while
-$\ell < \ln\SNR/\ln 3$. For $\SNR = 10^6$ this is $13.8/1.10 = 12.6$, so at most degrees 0 to 12 stand above the noise,
-and they hold $1 + 3 + \dots + 25 = 13^2 = 169$ numbers. These are the beads of the paper's figure, a ceiling on what
-the camera reads, which chapter 3.8 turns into about 1200 bits. At $\SNR = 10^{70}$, the
-rough quantum limit of [chapter
+$\ell < \ln\SNR/\ln 3$. For $\SNR = 10^6$ this is $13.8/1.10 = 12.6$, so at most degrees 0 to 12 stand above the noise
+(Figure [](#fig:ceilings)), and they hold $1 + 3 + \dots + 25 = 13^2 = 169$ numbers. These are the beads of the paper's
+figure, a ceiling on what the camera reads, which chapter 3.8 turns into about 1200 bits. At $\SNR = 10^{70}$, the rough
+quantum limit of [chapter
 0.2](/tutorial/evening/through-walls/#the-blur-shrinks-only-with-the-number-of-digits-of-the-sensitivity) for a camera
 watching a person for the age of the universe, the same rule reaches degree 146. A count made on the tide, with its
 factor $\tfrac12(\ell + 1)(\ell + 2)$, runs a few degrees further: for the point mass at $\SNR = 10^6$, to degree 17.
 
 {{paper fig:hair}}
 
-<!-- diagram: Beside the paper's fig:hair(b), a bar chart of (1/3)^ℓ for ℓ = 0 to 16 on a logarithmic axis from 1 down to 10^-8, the bars in the matter colour, with a horizontal dashed line at 10^-6 labelled "noise at SNR = 10^6" that cuts the bars between ℓ = 12 and ℓ = 13; under each bar the count 2ℓ + 1. -->
+![Each bar is the ceiling of one degree $\ell$ for a camera three of a stone's radii away, $(1/3)^\ell$ of the
+monopole on a logarithmic scale, and the number under it is the count $2\ell + 1$ of the moments of that degree. The
+noise of a reading with $\SNR = 10^6$ passes between degrees 12 and 13, so only the 169 moments of degrees 0 to 12 can
+stand above it; the faded bars lie below it.](tut-mul-ceiling){#fig:ceilings}
 
 ## A body that is not round has a tide that the ball model misses
 
@@ -221,7 +224,7 @@ quadrupole adds $+G\matter ML^2/2r^5$ to the monopole's $-2G\matter M/r^3$:
 $$\boxed{\;\curv{\tE}_{xx} \approx -\frac{2G\matter M}{r^3}\Bigl(1 - \frac{L^2}{4r^2}\Bigr).\;} \label{eq:rod}$$
 
 The rod stretches the ring less than a ball of the same mass, because much of its mass lies farther away and off the
-line.
+line (Figure [](#fig:rod)).
 
 **A number.** We add up the point-mass tide of chapter 1.4 over the rod's pieces, by numerical integration to a relative
 accuracy of $10^{-13}$. At 1 m the three diagonal entries are $-5.63$, $+3.56$ and $+2.07 \times 10^{-9}\unit{s^{-2}}$,
@@ -236,7 +239,11 @@ degree cancel between the two halves. The sums after degrees 0, 2, 4, 6 and 8 sw
 with the sign $\approx$, is an order of magnitude for a real person: a rod gives 5.6, and a real body, wider at the
 shoulders and hips, lies between the two.
 
-<!-- diagram: The person at 1 m drawn twice, as a ball of water of radius 0.256 m and as an upright rod 1.7 m long, each beside a small ring of free balls; under each, a horizontal bar in orange for the size of the stretch along the line to the ring, 9.3 and 5.6 (unit 10^-9 s^-2), to one scale. A dashed circle of radius 0.85 m about the rod's centre marks the smallest sphere that holds the rod, and the ring sits just outside it. -->
+![The person of 70 kg one metre from a ring of free balls is drawn twice to one scale: above as a ball of water of
+radius 0.256 m, below as an upright rod 1.7 m long. Each ring is drawn out along the line to its body, and the orange
+bar under each body is the size of that stretch, 9.3 and $5.6\times10^{-9}\unit{s^{-2}}$. The dashed circle is the
+smallest sphere about the rod's centre that holds the rod, and the ring's centre lies 0.15 m outside it; the rings'
+size, how far they are drawn out and the rod's thickness are chosen for the drawing.](tut-mul-rod){#fig:rod}
 
 ## Round the camera, distant matter makes a sum of growing harmonics
 
@@ -250,7 +257,8 @@ $$\boxed{\;\begin{aligned}
 &\qquad\times\int\matter\rho\,\frac{Y_{\ell m}^*(\hat y)}{r'^{\,\ell+1}}\,\dd V .
 \end{aligned}\;} \label{eq:interior}$$
 
-This is the **interior expansion**, and [](#eq:exterior) is the **exterior expansion**. Near the camera the potential is
+This is the **interior expansion**, and [](#eq:exterior) is the **exterior expansion**. Figure
+[](#fig:two-expansions) shows where each one holds. Near the camera the potential is
 a sum of the growing solid harmonics $r^\ell Y_{\ell m}$, as chapter 2.2 found [for an empty
 ball](/tutorial/outside/spherical-harmonics/#patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them),
 and their coefficients are moments of the scene against the fading ones, $Y_{\ell m}^*/r^{\ell+1}$.
@@ -286,7 +294,11 @@ the blur $\Delta\theta$, the width of the finest detail, is about $\pi/\ell_{\ma
 5.55$, and its blur is $\pi/5.55 = 0.566$ radians, or 32.4°, about 2.0 m at the distance of the safes.[^33] A pixel
 alone, with $D \to 0$, reads degree two and nothing else.
 
-<!-- diagram: Two panels side by side. Left, exterior: an irregular body inside a dashed sphere of radius R about the origin, and the region outside the sphere shaded lightly, labelled "expand here: Y/r^(l+1)". Right, interior: a small camera at the origin inside a dashed sphere, with three sources outside it, and the region inside the sphere shaded, labelled "expand here: r^l Y". The two dashed spheres are the boundaries of convergence. -->
+![On the left, a body lies inside the dashed sphere of radius $R$ about the origin $O$, the smallest that holds it,
+and the exterior expansion in the fading harmonics $Y_{\ell m}/r^{\ell+1}$ holds in the shaded region outside that
+sphere, out to any distance. On the right, the dashed sphere about the camera reaches the nearest body, and the
+interior expansion in the growing harmonics $r^\ell Y_{\ell m}$ holds in the shaded region inside it; the shapes and
+places of the bodies are chosen for the drawing.](tut-mul-regions){#fig:two-expansions}
 
 ## At the camera's own place, the tide stays finite while the tidal column grows without limit
 
@@ -314,8 +326,8 @@ $$\boxed{\;\begin{aligned}
 n_j\bigr)\,\frac{\matter\rho}{r^3}\,\dd V\\ &\qquad + \frac{4\pi}{3}\,G\matter\rho_0\,\delta_{ij} . \end{aligned}\;}
 \label{eq:contact}$$
 
-Both terms are in $\mathrm{s^{-2}}$. The last is the **contact term**. Chapter 1.3's delta function writes the same
-result compactly: at every point, the origin included,
+Both terms are in $\mathrm{s^{-2}}$. The last is the **contact term** (Figure [](#fig:contact)). Chapter 1.3's delta
+function writes the same result compactly: at every point, the origin included,
 
 $$\partial_i\partial_j\frac1r = \frac{3\hat x_i\hat x_j - \delta_{ij}}{r^3} - \frac{4\pi}{3}\,\delta_{ij}\,\delta^3(\vect x),$$
 
@@ -342,7 +354,11 @@ tidal column is "a rendering of a known scene … and not a quantity the camera 
 paper's words. One pixel reads the column's degree-two part. An array reads the other columns of the last section.
 Chapter 2.5 shows that many interiors share every one of these readings.
 
-<!-- diagram: A small ball round the pixel, with the sky weight 1 − 3cos²ϑ drawn on a larger sphere round it in orange (negative, near the poles of z) and blue (positive, in the band), the zero circles at 54.7° marked; the small ball drawn as a separate grey dot labelled "(4π/3)Gρ δij", and an arrow from the dot to the trace "4πGρ". -->
+![The sphere round the pixel is coloured by the sky weight $1 - 3\cos^2\vartheta$ of the entry $\curv{\tE}_{zz}$,
+orange where it is negative, within 54.7° of the $z$ axis, and blue where it is positive; the cut faces carry the same
+colours inside, because the weight depends only on the direction from the pixel. The grey ball at the centre, of
+radius $r_{\min}$, is drawn again at the right with the contact term it gives and that term's trace; its size against
+the sphere is chosen for the drawing.](tut-mul-contact){#fig:contact}
 
 ::: try {#multipoles}
 Predict first: bring the ring of readout from $3R$ to $1.5R$. How many more degrees can rise above the noise? The
