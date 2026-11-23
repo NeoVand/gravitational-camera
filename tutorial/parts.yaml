@@ -18,9 +18,9 @@ parts:
       - { id: '0.1', slug: evening/a-camera-for-gravity, title: 'A camera for gravity: the pixel, the tide, the three regimes', short: A camera for gravity, size: S, status: published }
       - { id: '0.2', slug: evening/through-walls, title: 'Seeing mass through walls, and why the picture blurs', short: Through walls, size: S, status: published }
       - { id: '0.3', slug: evening/waves-and-heat, title: 'Waves too long to see, and the glow of heat', short: Waves and heat, size: S, status: published }
-      - { id: '0.4', slug: evening/one-pixel, title: "One pixel does a camera's work", short: One pixel, size: S, status: planned }
-      - { id: '0.5', slug: evening/what-the-outside-keeps, title: 'What the outside of a body keeps', short: What the outside keeps, size: S, status: planned }
-      - { id: '0.6', slug: evening/how-to-read, title: 'How to read the rest: units, scales, notation, routes, how to read an equation', short: How to read, size: S, status: planned }
+      - { id: '0.4', slug: evening/one-pixel, title: "One pixel does a camera's work", short: One pixel, size: S, status: published }
+      - { id: '0.5', slug: evening/what-the-outside-keeps, title: 'What the outside of a body keeps', short: What the outside keeps, size: S, status: published }
+      - { id: '0.6', slug: evening/how-to-read, title: 'How to read the rest: units, scales, notation, routes, how to read an equation', short: How to read, size: S, status: published }
 
   - id: '1'
     slug: newton

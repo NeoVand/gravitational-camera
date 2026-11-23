@@ -473,3 +473,35 @@ symbols:
     meaning: 'The strength of the impulsive tide whose potential is $-\epsilon\,g(\mathbf x)\,\delta(t)$. Each part of mass $m$ receives the impulse $\epsilon m\nabla g$, so $\epsilon\nabla g$ is the velocity it gains. Not the Levi-Civita symbol $\epsilon_{ijk}$, which has three indices.'
     chapter: '1.7'
     anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass
+  - key: speed-of-light
+    title: Speed of light
+    tex: 'c'
+    role: none
+    kind: A constant of nature; in m s⁻¹
+    meaning: 'The speed of light in empty space, $c = 2.998 \times 10^{8}\,\mathrm{m\,s^{-1}}$, which is also the speed of gravitational waves. The paper writes it out in every formula, so that $GM/c^2$ is a length and $c/2\pi f$ the edge of the near zone at frequency $f$.'
+    chapter: '0.6'
+    anchor: every-number-says-what-it-measures-in-what-unit-and-against-what
+  - key: hbar
+    title: Reduced Planck constant
+    tex: '\hbar'
+    role: none
+    kind: A constant of nature; in J s
+    meaning: 'Planck''s constant divided by $2\pi$, $\hbar = 1.055 \times 10^{-34}\,\mathrm{J\,s}$, read "h-bar". It sets the size of quantum effects: a quantum of a wave of angular frequency $\omega$ carries the energy $\hbar\omega$.'
+    chapter: '0.6'
+    anchor: every-number-says-what-it-measures-in-what-unit-and-against-what
+  - key: boltzmann
+    title: Boltzmann's constant
+    tex: 'k_B'
+    role: none
+    kind: A constant of nature; in J K⁻¹
+    meaning: 'The constant $k_B = 1.381 \times 10^{-23}\,\mathrm{J\,K^{-1}}$ that turns a temperature into an energy. The product $k_BT$ is the typical energy of one jiggle of heat at the temperature $T$: 25.9 meV at 300 K.'
+    chapter: '0.6'
+    anchor: every-number-says-what-it-measures-in-what-unit-and-against-what
+  - key: solar-mass
+    title: Solar mass
+    tex: 'M_\odot'
+    role: none
+    kind: A unit of mass; in kilograms
+    meaning: 'The mass of the Sun, $M_\odot = 1.989 \times 10^{30}\,\mathrm{kg}$, the astronomer''s unit for stars and black holes. Formulas often need the product $GM_\odot = 1.327 \times 10^{20}\,\mathrm{m^3\,s^{-2}}$.'
+    chapter: '0.6'
+    anchor: the-sky-has-its-own-units

@@ -65,7 +65,7 @@ density.[^least]
 Other measurements tell such bodies apart, because they depend on how far the mass lies from the centre. That spread
 sets the **moment of inertia**, which says how hard a body is to set spinning.[^inertia] A spinning body adds to its
 tide a magnetic part whose size depends on the moment of inertia.[^spin] A warm body trembles, because its atoms jiggle
-at random, and the trembling of its pull depends on the same spread.[^heat] Chapter 0.5 tours these measurements.
+at random, and the trembling of its pull depends on the same spread.[^heat] Chapter [0.5](/tutorial/evening/what-the-outside-keeps/) tours these measurements.
 
 ::: try {#same-outside}
 Predict first: of the five round bodies, which keeps the most energy from a brief tide applied from outside, a kick,

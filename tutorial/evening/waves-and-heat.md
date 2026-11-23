@@ -219,7 +219,7 @@ The near-field scenes. A static field is not radiation, so its picture is limite
 - [Section VI](/paper/#sec:thermal) and its plain words: absorption, the glow and the closed furnace.
 - [Section IX](/paper/#sec:first-image) and its plain words: the Sun at midnight and the graviton budget.
 - [Section VII](/paper/#sec:no-lens) shows that no useful lens can be made for these waves, so the camera computes its
-  pictures; chapter 0.4 tours it. [Section XI](/paper/#sec:vistas), the sky, is read in R12.
+  pictures; chapter [0.4](/tutorial/evening/one-pixel/) tours it. [Section XI](/paper/#sec:vistas), the sky, is read in R12.
 :::
 
 ::: deeper

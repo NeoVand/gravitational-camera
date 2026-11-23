@@ -7,10 +7,10 @@
 
 <script lang="ts">
 	/**
-	 * A body crossing a scene with light slowed down (labelled so): the stretch axis of the tidal field at points
-	 * of the plane, all pointing at where the body is now; a camera below, whose light shows the body where it was
-	 * and whose gravitational pixel points at where it is. After a stop, the ring of news spreads at the speed of
-	 * light (lib/pixel/present.ts).
+	 * A body crossing a scene in slow motion, at a fraction β of light’s speed (labelled so): the stretch axis of
+	 * the tidal field at points of the plane, all pointing at where the body is now; a camera below, whose light
+	 * shows the body where it was and whose gravitational pixel points at where it is. After a stop, the ring of
+	 * news spreads at the speed of light (lib/pixel/present.ts).
 	 */
 	import {
 		extrapolated,
@@ -227,7 +227,7 @@
 		{@attach draw}
 		aria-label="A body crossing a scene: the tidal field points at where it is, light shows where it was"
 	></canvas>
-	<p class="tag">light slowed to {(1 / crossing.beta).toFixed(2)} times the body’s speed</p>
+	<p class="tag">slow motion: the body at {crossing.beta.toFixed(2)} of light’s speed</p>
 </div>
 
 <style>

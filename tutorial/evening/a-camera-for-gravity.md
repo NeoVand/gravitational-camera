@@ -150,7 +150,7 @@ press the warm object at 300 K, whose near zone ends 2.7 μm from it.
 
 The camera therefore sees in three ways, set out in Table [](/paper/#tab:regimes) of the paper: by the pull of nearby
 masses (chapter 0.2), and by the waves of bodies moving as a whole and the **thermal glow** of jiggling atoms (chapter
-0.3). Chapter 0.4 shows how much one pixel's ten numbers can tell, and chapter 0.5 what the outside of a body keeps of
+0.3). Chapter [0.4](/tutorial/evening/one-pixel/) shows how much one pixel's ten numbers can tell, and chapter [0.5](/tutorial/evening/what-the-outside-keeps/) what the outside of a body keeps of
 its inside.
 
 ::: check
@@ -243,7 +243,7 @@ thumb to little finger, held at arm's length. Chapter 0.2 shows why a better det
 
 [^five]: Counted in [1.5](/tutorial/newton/five-numbers/).
 
-[^magnetic]: Derived in chapters 7.5 and 7.6. Chapter 0.4 shows what the ten numbers can tell.
+[^magnetic]: Derived in chapters 7.5 and 7.6. Chapter [0.4](/tutorial/evening/one-pixel/) shows what the ten numbers can tell.
 
 [^deviation]: Derived in [1.4](/tutorial/newton/tides/). [1.1](/tutorial/newton/vectors-and-indices/) teaches the
     labels and the rule for summing.

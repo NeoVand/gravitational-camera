@@ -576,7 +576,8 @@ terms:
     anchor: only-a-changing-lopsidedness-sends-out-waves
   - term: compactness
     definition: 'Newton''s constant times a body''s mass, divided by its radius and by the square of the speed of light, $GM/Rc^2$: a pure number that says how strongly the body curves space. About $7 \times 10^{-10}$ for the Earth and one half at a black hole''s horizon.'
-    chapter: '0.3'
+    chapter: '0.4'
+    anchor: no-lens-can-be-made-so-the-camera-computes-its-pictures
   - term: line of sight
     definition: 'The straight line from the camera in one direction. In the near field, the picture in each direction shows the mass along that line, each part weighted by one over its distance.'
     chapter: '0.2'
@@ -758,3 +759,127 @@ terms:
     definition: 'The integral $Q_h = \int\rho\,h\,\mathrm dV$ of a body''s density against a function $h$. For $h$ harmonic these are the numbers that the steady field outside the body holds.'
     chapter: '1.7'
     anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass
+  - term: SI units
+    definition: 'The international system of units, built on the metre, the kilogram and the second. The paper uses it throughout and writes the constants $G$, $c$, $\hbar$ and $k_B$ out in every formula.'
+    chapter: '0.6'
+    anchor: every-number-says-what-it-measures-in-what-unit-and-against-what
+  - term: electronvolt
+    definition: 'The energy an electron gains in crossing one volt, $1\,\mathrm{eV} = 1.602 \times 10^{-19}\,\mathrm{J}$. It is the typical energy of heat, $k_BT$, at 11,600 K.'
+    chapter: '0.6'
+    anchor: every-number-says-what-it-measures-in-what-unit-and-against-what
+  - term: angular frequency
+    definition: 'A rate counted in radians per second, $2\pi$ times the number of cycles per second. The $k_BT$ of 300 K divided by $\hbar$ is the angular frequency $3.9 \times 10^{13}\,\mathrm{s^{-1}}$, or $6 \times 10^{12}$ cycles a second.'
+    chapter: '0.6'
+    anchor: every-number-says-what-it-measures-in-what-unit-and-against-what
+  - term: scientific notation
+    definition: 'A way of writing a number as a number between 1 and 10 times a power of ten, as $9.3 \times 10^{-9}$ for 0.0000000093.'
+    chapter: '0.6'
+    anchor: powers-of-ten-turn-the-widest-ranges-into-steps
+  - term: order of magnitude
+    definition: 'A factor of ten, one step on a scale of powers of ten. The person''s tide is between four and five orders of magnitude larger than the Moon''s.'
+    chapter: '0.6'
+    anchor: powers-of-ten-turn-the-widest-ranges-into-steps
+  - term: astronomical unit
+    definition: 'The mean distance from the Earth to the Sun, $1\,\mathrm{AU} = 1.496 \times 10^{11}\,\mathrm{m}$, which light crosses in 499 seconds.'
+    chapter: '0.6'
+    anchor: the-sky-has-its-own-units
+  - term: light-year
+    definition: 'The distance light travels in a year, $9.46 \times 10^{15}\,\mathrm{m}$.'
+    chapter: '0.6'
+    anchor: the-sky-has-its-own-units
+  - term: parsec
+    definition: 'An astronomer''s unit of distance, $1\,\mathrm{pc} = 3.26$ light-years $= 3.09 \times 10^{16}\,\mathrm{m}$. A kiloparsec, kpc, is a thousand parsecs.'
+    chapter: '0.6'
+    anchor: the-sky-has-its-own-units
+  - term: solar mass
+    definition: 'The mass of the Sun, $M_\odot = 1.989 \times 10^{30}\,\mathrm{kg}$, used as a unit for stars and black holes.'
+    chapter: '0.6'
+    anchor: the-sky-has-its-own-units
+  - term: magnitude
+    definition: 'In astronomy, a measure of brightness on a scale where five magnitudes are a factor of 100 and a larger magnitude is fainter. Thirty magnitudes are a factor of $10^{12}$.'
+    chapter: '0.6'
+    anchor: the-sky-has-its-own-units
+  - term: symbol collision
+    definition: 'One letter used for two different quantities, such as $\rho$ for a density and, in Section VIII of the paper, for a signal-to-noise ratio. The unit and the section tell them apart.'
+    chapter: '0.6'
+    anchor: each-symbol-has-one-meaning-with-a-few-known-collisions
+  - term: limit
+    definition: 'In reading an equation, the value it gives when one input grows very large or very small. Taking a limit, or a special case whose answer is known, is the fourth step of reading an equation.'
+    chapter: '0.6'
+    anchor: an-equation-can-be-read-before-it-is-derived
+  - term: route
+    definition: 'One of the tutorial''s named paths: the chapters to read, in order, to reach one part of the paper. The routes are listed on the tutorial''s home page.'
+    chapter: '0.6'
+    anchor: routes-lead-through-the-tutorial-to-each-part-of-the-paper
+  - term: depth
+    definition: 'How fully a chapter treats a result. Depth A: derived in full. Depth B: sketched, with what the sketch skips named. Depth C: stated and explained, without proof.'
+    chapter: '0.6'
+    anchor: routes-lead-through-the-tutorial-to-each-part-of-the-paper
+  - term: gravitational lens
+    definition: 'A mass that bends passing light, or passing gravitational waves, by its gravity, used to bring them to a focus. Only a body as compact as a black hole bends strongly enough to make a useful one.'
+    chapter: '0.4'
+    anchor: no-lens-can-be-made-so-the-camera-computes-its-pictures
+  - term: beamforming
+    definition: 'Forming the picture in one direction by shifting the record of each sensor in an array by the delay with which a wave from that direction reaches it, and adding the records, so that waves from that direction add in step and others cancel. Its sharpness is about the wavelength over the width of the array.'
+    chapter: '0.4'
+    anchor: no-lens-can-be-made-so-the-camera-computes-its-pictures
+  - term: spin two
+    definition: 'The behaviour of a pattern of stretch and squeeze under turning: a half turn gives it back, a quarter turn swaps stretch and squeeze, and an eighth of a turn changes plus into cross. An arrow, which a half turn reverses, has spin one.'
+    chapter: '0.4'
+    anchor: ten-numbers-are-more-than-one-wave-needs
+  - term: invariant
+    definition: 'A combination of a field''s components that every observer at the same point finds the same, however the observer is turned and however it moves. The ten numbers of a pixel give four.'
+    chapter: '0.4'
+    anchor: the-ten-numbers-regroup-into-four-invariants-three-angles-and-a-velocity
+  - term: rest frame of a field
+    definition: 'The frame of the one observer for whom the stretch and the twist of the field at a point line up along the same axes. Three of a pixel''s ten numbers give its velocity; for masses at rest it is their frame.'
+    chapter: '0.4'
+    anchor: the-ten-numbers-regroup-into-four-invariants-three-angles-and-a-velocity
+  - term: principal null directions
+    definition: 'Four directions on the sky around a point along which the gravitational field there takes its simplest form. They all coincide for a single wave and fall in two pairs for a single round body at rest; light has two.'
+    chapter: '0.4'
+    anchor: four-special-directions-sort-every-reading
+  - term: Petrov classification
+    definition: 'The sorting of gravitational fields at a point by the pattern of their four principal null directions: type N for one wave, type D for one round body, type I when all four are separate.'
+    chapter: '0.4'
+    anchor: four-special-directions-sort-every-reading
+  - term: aberration
+    definition: 'The shift between where a moving body is now and where its light shows it, about its speed across the line of sight divided by the speed of light, in radians. The tide of a steadily moving body shows no such shift.'
+    chapter: '0.4'
+    anchor: the-field-shows-a-moving-body-where-it-is-now
+  - term: multipole moments
+    definition: 'The list of weighted totals of a body''s mass that its field outside depends on at any one time: the total mass, the place of its centre, its quadrupole moment and finer details, each step reaching a camera weaker by the body''s size over its distance.'
+    chapter: '0.5'
+    anchor: one-reading-shows-only-a-list-of-weighted-totals
+  - term: hair
+    definition: 'Any detail of a body that its gravitational field outside could show, beyond its mass, its spin and its electric charge. By the no-hair theorem a black hole has none.'
+    chapter: '0.5'
+    anchor: the-list-is-short-and-a-black-holes-is-the-shortest
+  - term: first order
+    definition: 'Said of an effect that grows in proportion to a small quantity: the pull of a body on a small mass doubles when the small mass doubles.'
+    chapter: '0.5'
+    anchor: the-bodys-reply-to-a-pull-reveals-its-inside
+  - term: second order
+    definition: 'Said of an effect that grows as the square of a small quantity: the energy a small mass leaves in a body quadruples when the small mass doubles. The shell theorem holds at first order only.'
+    chapter: '0.5'
+    anchor: the-bodys-reply-to-a-pull-reveals-its-inside
+  - term: quadrupolar tide
+    definition: 'The tide of a distant mass, which stretches a body along one line and squeezes it across that line. It is a tide of degree two: along every line out from the centre, the kick it gives grows in proportion to the distance.'
+    chapter: '0.5'
+    anchor: the-bodys-reply-to-a-pull-reveals-its-inside
+  - term: octupolar tide
+    definition: 'The finer part of a tide that a nearer mass adds, because it stretches the side of a body that faces it more than the far side. It is a tide of degree three, and in a round body it weighs each piece by the fourth power of its distance from the centre.'
+    chapter: '0.5'
+    anchor: the-reply-can-be-read-by-weighing-the-body-or-by-watching-the-passer
+  - term: horizon
+    definition: 'The surface of a black hole from which nothing, not even light, can escape. A changing tide loses energy through it, as if it had friction.'
+    chapter: '0.5'
+    anchor: a-black-hole-replies-with-friction-and-a-temperature
+  - term: fluctuation–dissipation theorem
+    definition: 'The exact link between the random trembling of a warm body and the friction it shows when pushed: the trembling divided by the friction gives its temperature.'
+    chapter: '0.5'
+    anchor: a-black-hole-replies-with-friction-and-a-temperature
+  - term: holographic principle
+    definition: 'The idea, from attempts at a quantum theory of gravity, that everything inside a region of space can in principle be learnt at its boundary.'
+    chapter: '0.5'
+    anchor: a-black-hole-replies-with-friction-and-a-temperature
