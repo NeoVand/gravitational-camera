@@ -132,20 +132,20 @@ We want to know how far the signal of each ripple stands above its noise, becaus
 camera can recover.
 
 The camera's data are best read ripple by ripple. A **ripple** here is a pattern across the sheet that varies as
-$\cos(\mathbf k\cdot\mathbf a)$ along the sheet, where $\mathbf a$ is position on the sheet, in metres, and
-$\mathbf k$ is the ripple's **wavevector**, which points across the crests. Its length $k = |\mathbf k|$ is the
+$\cos(\vect k\cdot\vect a)$ along the sheet, where $\vect a$ is position on the sheet, in metres, and
+$\vect k$ is the ripple's **wavevector**, which points across the crests. Its length $k = |\vect k|$ is the
 **wavenumber**, $2\pi$ divided by the distance between crests, in $\mathrm{m^{-1}}$.
 
 **The fade.** Above the sheet the space is empty, so the potential obeys Laplace's equation,
 $\nabla^2\field{\Phi} = 0$: the sum of the second derivatives of $\field{\Phi}$ along the three directions is
 zero (chapter 2.1). We look for the potential of one ripple in the form
-$\field{\Phi} = \cos(\mathbf k\cdot\mathbf a)\,f(h)$, where $h$ is again the height above the sheet and $f$ is a
+$\field{\Phi} = \cos(\vect k\cdot\vect a)\,f(h)$, where $h$ is again the height above the sheet and $f$ is a
 function to be found. The two second derivatives along the sheet bring down the factor
-$-k_1^2 - k_2^2 = -k^2$, where $k_1$ and $k_2$ are the components of $\mathbf k$. Laplace's equation becomes
+$-k_1^2 - k_2^2 = -k^2$, where $k_1$ and $k_2$ are the components of $\vect k$. Laplace's equation becomes
 
-$$-k^2\cos(\mathbf k\cdot\mathbf a)\,f(h) + \cos(\mathbf k\cdot\mathbf a)\,f''(h) = 0.$$
+$$-k^2\cos(\vect k\cdot\vect a)\,f(h) + \cos(\vect k\cdot\vect a)\,f''(h) = 0.$$
 
-We divide by $\cos(\mathbf k\cdot\mathbf a)$, which leaves an equation for $f$ alone:
+We divide by $\cos(\vect k\cdot\vect a)$, which leaves an equation for $f$ alone:
 
 $$f''(h) = k^2 f(h).$$
 
@@ -171,19 +171,19 @@ for what the array records:
 
 {{paper eq:array-data}}
 
-Here $\tilde{\curv{d}}(\mathbf k)$ and $\tilde{\matter{\sigma}}(\mathbf k)$ are the Fourier transforms of the data
-and of the surface density across the plane: they give the amount of each ripple $\mathbf k$ in each pattern
-(chapter 2.6). The term $\tilde n(\mathbf k)$ is the transform of the noise.
+Here $\tilde{\curv{d}}(\vect k)$ and $\tilde{\matter{\sigma}}(\vect k)$ are the Fourier transforms of the data
+and of the surface density across the plane: they give the amount of each ripple $\vect k$ in each pattern
+(chapter 2.6). The term $\tilde n(\vect k)$ is the transform of the noise.
 
 **The ratio of signal to noise in one ripple.** White noise gives every ripple the same noise strength, $N_0$
 (chapter 3.2). Chapter 3.5 shows that a ripple recorded as $\tilde d = T\tilde\sigma + \tilde n$ then stands above
 its noise by a factor $s$, whose square is the expected squared size of the signal in that ripple over that of
 the noise:
 
-$$s^2 = \frac{|T(\mathbf k)|^2\,S_\sigma}{N_0}. \label{eq:s-squared}$$
+$$s^2 = \frac{|T(\vect k)|^2\,S_\sigma}{N_0}. \label{eq:s-squared}$$
 
-Here $T(\mathbf k)$ is the **gain** of the ripple, the factor that multiplies $\tilde{\matter{\sigma}}$. From the
-paper's equation [](/paper/#eq:array-data) it is $T(\mathbf k) = 2\pi G\,k\,e^{-kz}$. The quantity $S_\sigma$ is
+Here $T(\vect k)$ is the **gain** of the ripple, the factor that multiplies $\tilde{\matter{\sigma}}$. From the
+paper's equation [](/paper/#eq:array-data) it is $T(\vect k) = 2\pi G\,k\,e^{-kz}$. The quantity $S_\sigma$ is
 the **spectrum** of the prior: the expected value of $|\tilde{\matter{\sigma}}|^2$ per unit area of the sheet, in
 $\mathrm{kg^2\,m^{-2}}$, which says how strong each ripple of the scene is expected to be before any data arrive.
 For a sheet of independent point masses $\matter{m}$, one per area $z^2$, the masses add their squared sizes
@@ -225,7 +225,7 @@ We want the weight that the best reconstruction gives each ripple, and from it t
 
 The reconstruction treats each ripple on its own. It divides the data by the gain $T$, to undo the fade, and
 multiplies the result by a weight $\sym{wiener-filter}{H}$, a pure number between zero and one. The
-reconstruction of the ripple $\mathbf k$ is therefore
+reconstruction of the ripple $\vect k$ is therefore
 
 $$\frac{H}{T}\,\tilde{\curv{d}} = H\,\tilde{\matter{\sigma}} + \frac{H}{T}\,\tilde n. \label{eq:estimate}$$
 
@@ -351,12 +351,12 @@ step is a sketch: it makes one approximation, and the box at its end names what 
 **The picture of a point.** By \eqref{eq:estimate}, the reconstruction of each ripple is $H\tilde{\matter{\sigma}}$
 plus filtered noise. The noise has zero mean, so the average over many repetitions of the measurement, each with
 fresh noise, keeps only $H\tilde{\matter{\sigma}}$. A point mass $\matter{m}$ at the origin of the sheet is the
-surface density $\matter{\sigma} = \matter{m}\,\delta^2(\mathbf a)$, where the delta function $\delta^2$ is zero
+surface density $\matter{\sigma} = \matter{m}\,\delta^2(\vect a)$, where the delta function $\delta^2$ is zero
 everywhere except at the origin and has integral one over the plane (chapter 1.3). Its Fourier transform is
-therefore $\tilde{\matter{\sigma}} = \matter{m}$ for every $\mathbf k$ (chapter 2.6). We put the ripples back
+therefore $\tilde{\matter{\sigma}} = \matter{m}$ for every $\vect k$ (chapter 2.6). We put the ripples back
 together with the inverse transform of chapter 2.6, which carries the factor $1/(2\pi)^2$:
 
-$$\hat{\matter{\sigma}}(\mathbf a) = \matter{m}\int H(k)\,e^{i\mathbf k\cdot\mathbf a}\,\frac{\dd^2k}{(2\pi)^2}.$$
+$$\hat{\matter{\sigma}}(\vect a) = \matter{m}\int H(k)\,e^{i\vect k\cdot\vect a}\,\frac{\dd^2k}{(2\pi)^2}.$$
 
 This average is the **point-spread function** of the reconstruction: the picture it draws of one point.
 
@@ -367,8 +367,8 @@ grows. A filter that keeps every wavevector inside a circle and none outside act
 lens, a **pupil**, so the picture we are about to find is called the pattern of a round pupil.
 
 **The integral.** With the step, the integral runs over a disc of radius $k_c$. We use polar coordinates in the
-plane of $\mathbf k$, with $\varphi$ the angle between $\mathbf k$ and $\mathbf a$, and $a = |\mathbf a|$ the
-distance from the point mass in metres, so that $\mathbf k\cdot\mathbf a = ka\cos\varphi$ and
+plane of $\vect k$, with $\varphi$ the angle between $\vect k$ and $\vect a$, and $a = |\vect a|$ the
+distance from the point mass in metres, so that $\vect k\cdot\vect a = ka\cos\varphi$ and
 $\dd^2k = k\,\dd k\,\dd\varphi$:
 
 $$\hat{\matter{\sigma}} = \frac{\matter{m}}{(2\pi)^2}\int_0^{k_c}\!k\,\dd k\int_0^{2\pi}\!e^{ika\cos\varphi}\,\dd\varphi.$$
@@ -410,7 +410,7 @@ This sketch skips three things.
   $4.43/q_c$ by close to $2/q_c^2$ of itself: 1.8% at $\SNR = 10^3$ and 3.3% at $\SNR = 100$.
 - **The low edge of $H$.** The filter also drops the coarsest ripples, below $q \approx 1/\pi\SNR$. Removing them
   takes a very broad and very shallow sheet out of the picture. Its height is about the ratio of the areas of the
-  two discs in the plane of $\mathbf k$, $\bigl(1/(\pi\SNR\,q_c)\bigr)^2$, times a logarithm: about
+  two discs in the plane of $\vect k$, $\bigl(1/(\pi\SNR\,q_c)\bigr)^2$, times a logarithm: about
   $2\times10^{-8}$ of the peak at $\SNR = 10^3$. It does not change the width.
 - **The Bessel functions themselves.** Their definitions and the two properties used here are derived in chapter
   3.6 and only quoted in this one.
@@ -705,7 +705,7 @@ Derive the paper's equations [](/paper/#eq:cutoff) and [](/paper/#eq:resolution)
 $kz$ between 11 and 12, as a signal-to-noise ratio.
 
 ::: solution
-The gain of a ripple in [](/paper/#eq:array-data) is $T(\mathbf k) = 2\pi Gk\,e^{-kz}$. With the prior
+The gain of a ripple in [](/paper/#eq:array-data) is $T(\vect k) = 2\pi Gk\,e^{-kz}$. With the prior
 $S_\sigma = \matter{m}^2/z^2$ and the noise $N_0$, the ratio is $s = |T|\sqrt{S_\sigma/N_0} = \pi\SNR\,q\,e^{-q}$,
 and the Wiener weight $s^2/(1+s^2)$ falls through one half where $s = 1$: that is $q_ce^{-q_c} = 1/\pi\SNR$, the
 first line of [](/paper/#eq:cutoff). The first guess and one step of the iteration $q = \ln(\pi\SNR) + \ln q$ give
@@ -759,10 +759,10 @@ four thousand". (Rounding $q_c$ to 11 and 12 would give 1700 and 4300, so the ro
     second of time; ours is the noise of a square metre of sensors, averaged over that area.
 
 [^paper-x]: The paper writes $x$ for a direction along the sheet and uses $z$ for the height. This chapter keeps
-    $\mathbf a$ for position on the sheet and $h$ for a height that varies, so that $z$ is always the depth of the
+    $\vect a$ for position on the sheet and $h$ for a height that varies, so that $z$ is always the depth of the
     sheet below the sensors.
 
-[^units-s]: Units: $T(\mathbf k)$ is in $\mathrm{m^2\,kg^{-1}\,s^{-2}}$ (that of $G$ times a wavenumber) and
+[^units-s]: Units: $T(\vect k)$ is in $\mathrm{m^2\,kg^{-1}\,s^{-2}}$ (that of $G$ times a wavenumber) and
     $S_\sigma$ in $\mathrm{kg^2\,m^{-2}}$, so $|T|^2S_\sigma$ is in $\mathrm{s^{-4}\,m^2}$, the unit of $N_0$, and
     $s$ is a pure number.
 

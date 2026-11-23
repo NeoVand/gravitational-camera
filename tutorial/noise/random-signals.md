@@ -25,7 +25,7 @@ every frequency.
 ![Top, white noise in time, in arbitrary units: a record $n(t)$ over two seconds; its spectrum $S(\omega)$, the same at
 every frequency, negative and positive, with the band from $-\omega$ to $\omega$ shaded; and its autocorrelation $C(t)$,
 a single spike at zero lag of area $S(0)$. Bottom, the noise of an array of $11\times11$ pixels, each pixel's reading
-drawn from one Gaussian (orange above zero, blue below), and beside it the mean of $|\tilde n(\mathbf k)|^2$, a column
+drawn from one Gaussian (orange above zero, blue below), and beside it the mean of $|\tilde n(\vect k)|^2$, a column
 on each wavevector of the array, the same on every one (16,000 simulated maps agree with it within 3%). The trace never
 repeats, but its spectrum is flat, and the map's spectrum is flat across the plane in the same
 way.](tut-noise-hero){#fig:white-noise}
@@ -281,24 +281,24 @@ of the three kinds follows $\sqrt{S(0)/\tau}$ at every $\tau$ the slider allows,
 
 ## The variance of noise spread over a plane falls as one over the area
 
-An array of sensors records a reading at every place on its plane. We name a place by the vector $\mathbf a$, in
-metres, and write the noise there, after the sensors have read for a fixed time, as $n(\mathbf a)$, in
+An array of sensors records a reading at every place on its plane. We name a place by the vector $\vect a$, in
+metres, and write the noise there, after the sensors have read for a fixed time, as $n(\vect a)$, in
 $\mathrm{s^{-2}}$. Everything in the last two sections carries over, with a place instead of an instant.
 
 The noise is **spatially white** when readings at different places are uncorrelated, however close the places are:
 
-$$\langle n(\mathbf a)\,n(\mathbf a')\rangle = N_0\,\delta^2(\mathbf a - \mathbf a'),$$
+$$\langle n(\vect a)\,n(\vect a')\rangle = N_0\,\delta^2(\vect a - \vect a'),$$
 
-where $\delta^2(\mathbf a) = \delta(a_1)\,\delta(a_2)$ is the delta function of the plane, in $\mathrm{m^{-2}}$, built
-from the components of $\mathbf a$ as chapter
+where $\delta^2(\vect a) = \delta(a_1)\,\delta(a_2)$ is the delta function of the plane, in $\mathrm{m^{-2}}$, built
+from the components of $\vect a$ as chapter
 [1.3](/tutorial/newton/gauss-and-poisson/#a-point-mass-is-density-gathered-at-one-point) built $\delta^3$. The constant
 $\sym{noise-density}{N_0}$ is the **spatial noise density**. Its unit is the square of a tide times an area,
 $\mathrm{s^{-4}\,m^2}$, so that $N_0\,\delta^2$ is in $\mathrm{s^{-4}}$.
 
-The average over a patch of area $A$ is $\bar n = \frac1A\int_A n(\mathbf a)\,\dd^2a$, and its variance is the same
+The average over a patch of area $A$ is $\bar n = \frac1A\int_A n(\vect a)\,\dd^2a$, and its variance is the same
 double integral as before, with $\tau$ replaced by $A$:
 
-$$\mathrm{Var}\,\bar n = \frac{N_0}{A^2}\int_A\!\int_A \delta^2(\mathbf a - \mathbf a')\,\dd^2a\,\dd^2a' ,$$
+$$\mathrm{Var}\,\bar n = \frac{N_0}{A^2}\int_A\!\int_A \delta^2(\vect a - \vect a')\,\dd^2a\,\dd^2a' ,$$
 
 and the integrals give $A$, as they gave $\tau$, so
 
@@ -326,31 +326,31 @@ each pixel needs
 $\sigma_n(\tau) = \sqrt{N_0}/b = 9.3\times10^{-11}\unit{s^{-2}}$, or 0.093 E, which the laboratory gradiometer of
 0.02 E in a second reaches in $(0.02/0.093)^2 = 0.046\unit{s}$.
 
-**Ripples.** Across a plane, this tutorial writes a pattern as a sum of ripples $e^{i\mathbf k\cdot\mathbf a}$, with the
-transform $\tilde n(\mathbf k) = \int n(\mathbf a)\,e^{-i\mathbf k\cdot\mathbf a}\,\dd^2a$. The wavevector $\mathbf k$,
+**Ripples.** Across a plane, this tutorial writes a pattern as a sum of ripples $e^{i\vect k\cdot\vect a}$, with the
+transform $\tilde n(\vect k) = \int n(\vect a)\,e^{-i\vect k\cdot\vect a}\,\dd^2a$. The wavevector $\vect k$,
 in $\mathrm{m^{-1}}$, points across the crests. The sign in the exponent is this tutorial's choice; the paper's one
 transform across a plane, its equation [](/paper/#eq:scene-transform), uses the other, and nothing here depends on it.
 We repeat the calculation of the spectrum. The delta function in the autocorrelation removes one of the two integrals
 over the plane:
 
 $$\begin{aligned}
-\langle\tilde n(\mathbf k)\,\tilde n^*(\mathbf k')\rangle &= N_0\iint \delta^2(\mathbf a - \mathbf a')\\
-&\qquad\times e^{-i\mathbf k\cdot\mathbf a + i\mathbf k'\cdot\mathbf a'}\,\dd^2a\,\dd^2a'\\
-&= N_0\int e^{-i(\mathbf k - \mathbf k')\cdot\mathbf a}\,\dd^2a .
+\langle\tilde n(\vect k)\,\tilde n^*(\vect k')\rangle &= N_0\iint \delta^2(\vect a - \vect a')\\
+&\qquad\times e^{-i\vect k\cdot\vect a + i\vect k'\cdot\vect a'}\,\dd^2a\,\dd^2a'\\
+&= N_0\int e^{-i(\vect k - \vect k')\cdot\vect a}\,\dd^2a .
 \end{aligned}$$
 
 The last integral is a product of two integrals of the form [](#eq:delta-sum), one along each direction of the
 plane, so
 
-$$\boxed{\langle\tilde n(\mathbf k)\,\tilde n^*(\mathbf k')\rangle = (2\pi)^2\,N_0\,\delta^2(\mathbf k - \mathbf k')} .$$
+$$\boxed{\langle\tilde n(\vect k)\,\tilde n^*(\vect k')\rangle = (2\pi)^2\,N_0\,\delta^2(\vect k - \vect k')} .$$
 
 On an array of area $A$, where $(2\pi)^2\delta^2(0)$ stands for $A$, each ripple has
-$\langle|\tilde n(\mathbf k)|^2\rangle = A\,N_0$. So $N_0$ is the spatial spectrum of the noise, and it is flat:
+$\langle|\tilde n(\vect k)|^2\rangle = A\,N_0$. So $N_0$ is the spatial spectrum of the noise, and it is flat:
 white noise gives every ripple the same strength.
 
 The box also says that two different ripples are uncorrelated. A real map has
-$\tilde n(-\mathbf k) = \tilde n^*(\mathbf k)$, so $\mathbf k$ and $-\mathbf k$ describe one ripple, and "different
-ripples" means $\mathbf k' \neq \pm\mathbf k$.[^mirror] Uncorrelated is weaker than independent, but not for
+$\tilde n(-\vect k) = \tilde n^*(\vect k)$, so $\vect k$ and $-\vect k$ describe one ripple, and "different
+ripples" means $\vect k' \neq \pm\vect k$.[^mirror] Uncorrelated is weaker than independent, but not for
 Gaussian noise. Noise is **jointly Gaussian** when every set of its readings has a joint Gaussian distribution, as
 when independent pixels each carry Gaussian noise. Each ripple is a sum of readings, so the ripples are jointly
 Gaussian too, and jointly Gaussian variables that are uncorrelated are independent, which we state without proof. So
@@ -375,11 +375,11 @@ $\sym{surface-density}{\matter{\sigma}}$ is the mass per unit area, in kilograms
 $\matter\sigma$ in the colour of matter is always this density, never a standard deviation). With the delta function
 of the plane, the sheet is
 
-$$\matter{\sigma}(\mathbf a) = \sum_j \matter{m}\,\delta^2(\mathbf a - \mathbf a_j),$$
+$$\matter{\sigma}(\vect a) = \sum_j \matter{m}\,\delta^2(\vect a - \vect a_j),$$
 
-where $\mathbf a_j$ is the place of the $j$-th mass. We want its spectrum, defined as for the noise by
-$\langle\tilde{\matter\sigma}(\mathbf k)\,\tilde{\matter\sigma}^*(\mathbf k')\rangle =
-(2\pi)^2\,S_\sigma\,\delta^2(\mathbf k - \mathbf k')$ for every ripple except the uniform one, $\mathbf k = 0$.
+where $\vect a_j$ is the place of the $j$-th mass. We want its spectrum, defined as for the noise by
+$\langle\tilde{\matter\sigma}(\vect k)\,\tilde{\matter\sigma}^*(\vect k')\rangle =
+(2\pi)^2\,S_\sigma\,\delta^2(\vect k - \vect k')$ for every ripple except the uniform one, $\vect k = 0$.
 
 We assume that **the places are independent of one another** and that **each is spread evenly over the plane**, with
 $\sym{number-per-area}{\nu}$ masses per unit area on average, in $\mathrm{m^{-2}}$.[^nu] The number of masses in an
@@ -389,18 +389,18 @@ area $A$ is then a Poisson count with mean $\nu A$, as in chapter
 Take a large region of area $A$. The transform of the sheet is a sum of
 phases, one per mass:
 
-$$\tilde{\matter\sigma}(\mathbf k) = \matter{m}\sum_j e^{-i\mathbf k\cdot\mathbf a_j}.$$
+$$\tilde{\matter\sigma}(\vect k) = \matter{m}\sum_j e^{-i\vect k\cdot\vect a_j}.$$
 
-The product $\tilde{\matter\sigma}(\mathbf k)\,\tilde{\matter\sigma}^*(\mathbf k')$ is a double sum over the masses
+The product $\tilde{\matter\sigma}(\vect k)\,\tilde{\matter\sigma}^*(\vect k')$ is a double sum over the masses
 $j$ and $l$, and we split it into the terms with $j = l$ and those with $j \neq l$.
 
-- **The terms with $j = l$.** Each has the mean $\matter{m}^2\,\langle e^{-i(\mathbf k - \mathbf k')\cdot\mathbf a_j}\rangle
-  = \frac{\matter{m}^2}{A}\int_A e^{-i(\mathbf k - \mathbf k')\cdot\mathbf a}\,\dd^2a$. Their number has the mean
-  $\nu A$, so together they give on average $\nu\matter{m}^2\int e^{-i(\mathbf k - \mathbf k')\cdot\mathbf a}\,\dd^2a
-  = (2\pi)^2\,\nu\matter{m}^2\,\delta^2(\mathbf k - \mathbf k')$.
+- **The terms with $j = l$.** Each has the mean $\matter{m}^2\,\langle e^{-i(\vect k - \vect k')\cdot\vect a_j}\rangle
+  = \frac{\matter{m}^2}{A}\int_A e^{-i(\vect k - \vect k')\cdot\vect a}\,\dd^2a$. Their number has the mean
+  $\nu A$, so together they give on average $\nu\matter{m}^2\int e^{-i(\vect k - \vect k')\cdot\vect a}\,\dd^2a
+  = (2\pi)^2\,\nu\matter{m}^2\,\delta^2(\vect k - \vect k')$.
 - **The terms with $j \neq l$.** Two different masses are independent, so the mean of the product is the product of
-  the means, and each mean is $\frac1A\int_A e^{-i\mathbf k\cdot\mathbf a}\,\dd^2a$. For a large region this vanishes
-  for every ripple except $\mathbf k = 0$, because the crests and troughs of the ripple cancel. These terms describe
+  the means, and each mean is $\frac1A\int_A e^{-i\vect k\cdot\vect a}\,\dd^2a$. For a large region this vanishes
+  for every ripple except $\vect k = 0$, because the crests and troughs of the ripple cancel. These terms describe
   only the mean of the sheet, which is uniform.
 
 So the departures of the sheet from its mean have a flat spectrum:
@@ -433,10 +433,10 @@ $r\tau = \lambda$. That is the Poisson variance of chapter 3.1, now derived from
 the Earth sends to a square metre in a year vary by $\sqrt{438} = 21$.
 
 ![Top left, 402 masses $\matter{m}$ dropped at random on a square region, each a dot whose area is in proportion to its
-mass; top right, the mean of $|\tilde{\matter\sigma}(\mathbf k)|^2/A$, a column on each wavevector, flat at
-$\nu\matter{m}^2$ except at $\mathbf k = 0$, where the mean sheet gives 401 times as much (off the scale, drawn as an
+mass; top right, the mean of $|\tilde{\matter\sigma}(\vect k)|^2/A$, a column on each wavevector, flat at
+$\nu\matter{m}^2$ except at $\vect k = 0$, where the mean sheet gives 401 times as much (off the scale, drawn as an
 arrow), as 8000 simulated drawings confirm. Below, the same region holds 40 times as many masses of a fortieth of the
-mass: the page carries the same ink, the spectrum is 40 times lower, and the spike at $\mathbf k = 0$ is the
+mass: the page carries the same ink, the spectrum is 40 times lower, and the spike at $\vect k = 0$ is the
 same.](tut-noise-points){#fig:points}
 
 ::: check
@@ -491,15 +491,15 @@ roughly as $1/f$ below its band, whose longest period is 200 s, so this red part
 ### Stretch
 
 A square array of $L\times L$ pixels, a distance $b$ apart, has independent noise $\sigma_n(\tau)$ on each pixel.
-Its discrete transform is $\tilde n_{\mathbf k} = b^2\sum_{\mathbf a} n_{\mathbf a}\,e^{-i\mathbf k\cdot\mathbf a}$,
-for $\mathbf k = (2\pi/Lb)(p, q)$ with whole numbers $p$ and $q$ from 0 to $L - 1$. Using the sum of a geometric
+Its discrete transform is $\tilde n_{\vect k} = b^2\sum_{\vect a} n_{\vect a}\,e^{-i\vect k\cdot\vect a}$,
+for $\vect k = (2\pi/Lb)(p, q)$ with whole numbers $p$ and $q$ from 0 to $L - 1$. Using the sum of a geometric
 series, show that different ripples are uncorrelated and that each has the variance $N_0A$, with
 $N_0 = \sigma_n(\tau)^2b^2$ and $A = L^2b^2$.
 
 ::: solution
-The pixels are independent, so $\langle n_{\mathbf a}n_{\mathbf a'}\rangle = \sigma_n(\tau)^2$ when
-$\mathbf a = \mathbf a'$ and 0 otherwise. The double sum in $\langle\tilde n_{\mathbf k}\tilde n^*_{\mathbf k'}\rangle$
-keeps one sum: $b^4\sigma_n(\tau)^2\sum_{\mathbf a}e^{-i(\mathbf k - \mathbf k')\cdot\mathbf a}$. Along one direction
+The pixels are independent, so $\langle n_{\vect a}n_{\vect a'}\rangle = \sigma_n(\tau)^2$ when
+$\vect a = \vect a'$ and 0 otherwise. The double sum in $\langle\tilde n_{\vect k}\tilde n^*_{\vect k'}\rangle$
+keeps one sum: $b^4\sigma_n(\tau)^2\sum_{\vect a}e^{-i(\vect k - \vect k')\cdot\vect a}$. Along one direction
 the pixels are at $a_1 = bj$, $j = 0, \dots, L - 1$, and the sum is $\sum_j x^j$ with $x = e^{-2\pi i(p - p')/L}$. For
 $p \neq p'$, $x \neq 1$ and $x^L = 1$, so the sum $(1 - x^L)/(1 - x)$ is zero; for $p = p'$ it is $L$. The same holds
 along the other direction. So the ripples are uncorrelated, and each has the variance
@@ -555,7 +555,7 @@ $10^3$. At $\SNR = 10$ each pixel's noise is larger than the gold's peak tide, $
 [^mirror]: The frequency $-\omega$ is the mirror image of $\omega$, not a different oscillation. For $\omega' =
     -\omega \neq 0$ the box gives $\langle\tilde n(\omega)^2\rangle = 0$; with $\tilde n = x + iy$, this says
     $\langle x^2\rangle = \langle y^2\rangle$ and $\langle xy\rangle = 0$, so every phase is equally likely. The same
-    holds for $\pm\mathbf k$ on a plane.
+    holds for $\pm\vect k$ on a plane.
 
 [^even]: Replacing $t$ by $-t$ in $S(\omega) = \int C(t)\,e^{i\omega t}\,\dd t$ and using $C(-t) = C(t)$ gives
     $S(-\omega) = S(\omega)$. The imaginary part, $\int C(t)\sin\omega t\,\dd t$, has an odd integrand and vanishes.
