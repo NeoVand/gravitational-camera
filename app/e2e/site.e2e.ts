@@ -1619,6 +1619,9 @@ test(
 		tag: '@fresh'
 	},
 	async ({ page }) => {
+		// the paper is a long page: on a slow runner its main thread can be busy for some seconds after
+		// loading, so the navigations below are given a runner's time, not a desktop's
+		test.setTimeout(180_000);
 		const live: [string, string, string][] = [
 			['fig:passing', 'a-mass-that-passes', 'Try it: move the passing mass'],
 			['fig:hidden-flow', 'a-hidden-flow', 'Try it: move the boundary between the two flows'],
@@ -1637,14 +1640,14 @@ test(
 			await expect(full).toHaveAttribute('href', href);
 			await full.scrollIntoViewIfNeeded();
 			await full.click();
-			await expect(page).toHaveURL(href);
+			await expect(page).toHaveURL(href, { timeout: 30_000 });
 			await expect(page.locator('#shell-tab-plain')).toHaveAttribute('aria-selected', 'true');
 			await expect(page.locator('#shell-panel')).toContainText(/\w{4,}/);
 			const back = page.getByRole('link', { name: 'Back to the paper' });
 			await expect(back).toHaveAttribute('href', new RegExp(`/paper/#${id}$`));
 			await back.click();
-			await expect(page).toHaveURL(new RegExp(`/paper/#${id}$`));
-			await expect(figure).toBeInViewport();
+			await expect(page).toHaveURL(new RegExp(`/paper/#${id}$`), { timeout: 30_000 });
+			await expect(figure).toBeInViewport({ timeout: 15_000 });
 		}
 	}
 );

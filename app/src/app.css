@@ -16,13 +16,13 @@
 
 /* The two themes are the two sides of the landing page's seam. Dark, the default, is the
    gravity side: an umber ground and pale ink. `.always-dark` pins it for pages built around a
-   picture. Light is the light side: a pale blue-grey ground and umber ink. Each side's ink is
-   the other side's ground. */
+   picture. Light is the light side: a cream ground, like paper, and umber ink. The dark ground
+   is the deep umber the paper was first read on at night. */
 :root,
 .always-dark {
-	--bg: #211910;
-	--bg-raised: #2b2117;
-	--bg-sunken: #18120b;
+	--bg: #18120c;
+	--bg-raised: #21190f;
+	--bg-sunken: #110d08;
 	--line: rgb(210 221 231 / 0.11);
 	--line-strong: rgb(210 221 231 / 0.3);
 	--text: #d2dde7;
@@ -40,9 +40,9 @@
 }
 
 :root[data-theme='light'] {
-	--bg: #e3e9ef;
-	--bg-raised: #d8e1e9;
-	--bg-sunken: #ccd7e1;
+	--bg: #f4eee2;
+	--bg-raised: #ece4d4;
+	--bg-sunken: #e3d9c6;
 	--line: rgb(45 34 24 / 0.13);
 	--line-strong: rgb(45 34 24 / 0.32);
 	--text: #2d2218;
@@ -59,9 +59,9 @@
 
 @media (prefers-color-scheme: light) {
 	:root:not([data-theme='dark']) {
-		--bg: #e3e9ef;
-		--bg-raised: #d8e1e9;
-		--bg-sunken: #ccd7e1;
+		--bg: #f4eee2;
+		--bg-raised: #ece4d4;
+		--bg-sunken: #e3d9c6;
 		--line: rgb(45 34 24 / 0.13);
 		--line-strong: rgb(45 34 24 / 0.32);
 		--text: #2d2218;
