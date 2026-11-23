@@ -49,7 +49,7 @@ parts:
       - { id: '2.6', slug: outside/fourier, title: 'Fourier analysis, with the delta function as a sum of waves', short: Fourier analysis, size: L, status: published }
       - { id: '2.7', slug: outside/evanescent, title: 'Fading detail: evanescent fields', short: Evanescent fields, size: M, status: published }
       - { id: '2.8', slug: outside/flows, title: 'Flows of mass: continuity, currents, toroidal and poloidal flows', short: Flows of mass, size: M, status: published }
-      - { id: R2, slug: outside/reading-section-iv-1, title: 'Reading Section IV, part 1: what the image is and what it cannot show', short: Reading Section IV (1), size: M, status: planned, reads: [sec:near-field] }
+      - { id: R2, slug: outside/reading-section-iv-1, title: 'Reading Section IV, part 1: what the image is and what it cannot show', short: Reading Section IV (1), size: M, status: published, reads: [sec:near-field] }
 
   - id: '3'
     slug: noise
@@ -188,13 +188,13 @@ routes:
     chapters: ['0.1', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.6', R1, '6.1', '6.2', '7.1', '7.2', '7.3', '7.4', '7.5', '7.6', R7]
   - id: section-iv
     title: To Section IV, the near field
-    chapters: ['0.1', '0.2', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', R2, '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '3.9', R3, '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', R4]
+    chapters: ['0.1', '0.2', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', R2, '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '3.9', R3, '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', R4]
   - id: section-viii
     title: To Section VIII, one pixel
     chapters: ['0.1', '0.4', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '6.1', '6.2', '6.3', '6.6', '7.1', '7.2', '7.4', '7.5', '7.6', '8.1', '8.4', '9.1', '9.2', '9.3', '9.4', '9.5', R9]
   - id: sections-vi-and-ix
     title: To Sections VI and IX, the thermal glow and a first image
-    chapters: ['0.1', '0.3', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', R1, '3.1', '3.2', '3.3', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '5.1', '5.2', '5.5', '5.6', '7.4', '7.6', '7.7', '7.8', '8.1', '8.3', '8.5', '10.1', '10.2', '10.3', R10]
+    chapters: ['0.1', '0.3', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '2.4', '2.6', '3.1', '3.2', '3.3', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '5.1', '5.2', '5.5', '5.6', '7.4', '7.6', '7.7', '7.8', '8.1', '8.3', '8.5', '10.1', '10.2', '10.3', R10]
   - id: sections-xii-to-xv
     title: To Sections XII to XV, what a field keeps
     chapters: ['0.1', '0.5', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', '1.8', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', R2, '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '4.5', '4.6', '6.4', '11.1', '11.2', '11.3', '11.4', '13.1', '13.2', '13.3', '13.4', '13.5', '13.6', '13.7', '13.8', R13]
