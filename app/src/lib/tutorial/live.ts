@@ -34,6 +34,7 @@ import ImageCharge from './live/ImageCharge.svelte';
 import Multipoles from './live/Multipoles.svelte';
 import FourierBuild from './live/FourierBuild.svelte';
 import WhichSafe from './live/WhichSafe.svelte';
+import FadingRipple from './live/FadingRipple.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -129,6 +130,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'The locked safe as a test: trials of choosing the safe whose predicted readings lie closer, against P(Z > D/2)',
 		component: WhichSafe
+	},
+	'fading-ripple': {
+		label: 'A ripple of density on a slab, and how fast its field fades with height',
+		component: FadingRipple
 	},
 	'noise-spectrum': {
 		label:

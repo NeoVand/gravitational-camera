@@ -92,9 +92,11 @@ terms:
   - term: point-spread function
     definition: 'The picture that an imaging system or a reconstruction draws of a single point.'
     chapter: '3.5'
+    anchor: seen-in-space-a-filter-is-a-blur
   - term: full width at half maximum
     definition: 'The distance between the two points, one on each side of a peak, where a curve has fallen to half its peak value.'
     chapter: '3.5'
+    anchor: seen-in-space-a-filter-is-a-blur
   - term: amplitude image
     definition: 'A picture that is linear in the data, so that the picture of two sources is the sum of their pictures. The near-field reconstruction, a surface density, is one.'
     chapter: '3.7'
@@ -1423,3 +1425,227 @@ terms:
     definition: 'The growth of the noise when a fade is undone: dividing a ripple of the data by its fade $e^{-kz}$ multiplies its noise by $e^{kz}$, so the finest ripples are lost first.'
     chapter: '2.7'
     anchor: undoing-the-fade-multiplies-the-noise
+  - term: accelerometer
+    definition: 'An instrument that measures the pull of gravity on a small test mass held inside it, in m s⁻². Over a sheet it records each ripple with the factor $e^{-kz}$, with no factor $k$, so it sees the uniform part of a layer that a tidal camera misses.'
+    chapter: '2.7'
+    anchor: the-camera-records-a-tide-which-weights-each-ripple-by-k
+  - term: gravimeter
+    definition: 'A very precise accelerometer that reads the vertical pull of gravity, the instrument of gravity surveys.'
+    chapter: '2.7'
+    anchor: the-camera-records-a-tide-which-weights-each-ripple-by-k
+  - term: matrix
+    definition: 'A rectangular table of numbers. Applied to a column of numbers, a vector, it gives another vector, $A\vect x$ with the components $A_{ab}x_b$.'
+    chapter: '3.4'
+    anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
+  - term: transpose
+    definition: 'The matrix $A^{\mathsf T}$ made by swapping the rows and columns of $A$. A matrix is symmetric when it equals its transpose.'
+    chapter: '3.4'
+    anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
+  - term: spectral theorem
+    definition: 'A real symmetric matrix has real eigenvalues and a full set of perpendicular unit eigenvectors, so it can be written $A = U\Lambda U^{\mathsf T}$: turn into its eigen-axes, stretch along each, turn back.'
+    chapter: '3.4'
+    anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
+  - term: positive definite
+    definition: 'A symmetric matrix with $\vect x^{\mathsf T}A\vect x > 0$ for every nonzero $\vect x$, which means that all its eigenvalues are positive.'
+    chapter: '3.4'
+    anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
+  - term: positive semidefinite
+    definition: 'A symmetric matrix with $\vect x^{\mathsf T}A\vect x \ge 0$ for every $\vect x$, which means that none of its eigenvalues is negative. Every covariance matrix is positive semidefinite.'
+    chapter: '3.4'
+    anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
+  - term: at least (for matrices)
+    definition: 'One symmetric matrix is at least another, $A \ge B$, when $A - B$ is positive semidefinite. The Cramér–Rao bound says that the covariance matrix of unbiased estimates is at least the inverse Fisher matrix.'
+    chapter: '3.4'
+    anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
+  - term: Rayleigh quotient
+    definition: 'For a symmetric matrix $A$ and a direction $\vect x$, the ratio $\vect x^{\mathsf T}A\vect x/\vect x^{\mathsf T}\vect x$. It always lies between the smallest and largest eigenvalues, which it reaches along their eigenvectors.'
+    chapter: '3.4'
+    anchor: the-rayleigh-quotient-finds-the-strongest-and-weakest-directions
+  - term: whitening
+    definition: 'Turning readings with shared noise into combinations whose noises are independent and of standard deviation one, by the matrix $W = \Lambda^{-1/2}U^{\mathsf T}$ built from the noise covariance $C = U\Lambda U^{\mathsf T}$.'
+    chapter: '3.4'
+    anchor: whitening-turns-shared-noise-into-independent-noise-of-unit-size
+  - term: generalized eigenproblem
+    definition: 'The problem $C_{\rm sig}\vect w = \lambda C\vect w$ for two symmetric matrices, which finds the combinations with the largest or smallest ratio of one quadratic form to the other. Whitening by $C$ turns it into an ordinary eigenproblem.'
+    chapter: '3.4'
+    anchor: whitening-turns-shared-noise-into-independent-noise-of-unit-size
+  - term: design matrix
+    definition: 'The matrix $A$ of a linear camera, $\vect y = A\vect m + \vect n$, whose column $k$ is what a kilogram in cell $k$ gives every reading.'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - term: singular value decomposition
+    definition: 'The writing of any matrix as $A = \sum_i s_i\vect u_i\vect v_i^{\mathsf T}$, with perpendicular unit vectors $\vect v_i$ and $\vect u_i$ and gains $s_i \ge 0$. For a camera, each scene pattern $\vect v_i$ reaches the readings as the pattern $\vect u_i$ multiplied by $s_i$.'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - term: singular value
+    definition: 'One of the gains $s_i$ of the singular value decomposition, the square root of an eigenvalue of $A^{\mathsf T}A$. It is never negative.'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - term: singular vector
+    definition: 'One of the unit vectors $\vect v_i$ (a scene pattern) or $\vect u_i$ (the reading pattern it produces) of the singular value decomposition, with $A\vect v_i = s_i\vect u_i$.'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - term: rank
+    definition: 'The number of nonzero singular values of a matrix: how many independent patterns it passes on.'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - term: null space of a matrix
+    definition: 'The vectors that a matrix sends to zero, the patterns with gain zero. For a camera, the scenes that give no reading at all.'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - term: whitened gain
+    definition: 'The singular value of a camera whose readings are whitened and whose scene is counted in units of the size the prior expects: how many noise standard deviations a pattern of the expected size moves the readings. The $s$ of the paper''s Eq. (19).'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - term: circulant matrix
+    definition: 'A square matrix in which each row is the row above shifted by one place, wrapping round. Its eigenvectors are the ripples of a discrete Fourier series.'
+    chapter: '3.4'
+    anchor: for-a-flat-array-the-patterns-are-ripples
+  - term: pseudo-inverse
+    definition: 'The matrix $A^+ = \sum_{s_i > 0}\vect v_i\vect u_i^{\mathsf T}/s_i$, which undoes each pattern of $A$ by dividing by its gain and leaves the null space out.'
+    chapter: '3.4'
+    anchor: dividing-by-a-small-gain-multiplies-the-noise
+  - term: condition number
+    definition: 'The ratio of the largest gain of a matrix to the smallest one used. It says how much more the noise is enlarged in the weakest pattern than in the strongest.'
+    chapter: '3.4'
+    anchor: dividing-by-a-small-gain-multiplies-the-noise
+  - term: truncated singular value decomposition
+    definition: 'An estimate that keeps only the patterns whose whitened gain is above a cut, usually one, and drops the rest, whose noise would swamp them.'
+    chapter: '3.4'
+    anchor: dividing-by-a-small-gain-multiplies-the-noise
+  - term: regularization
+    definition: 'Any rule that drops or shrinks the patterns that the data cannot carry, so that their enlarged noise does not swamp an image.'
+    chapter: '3.4'
+    anchor: dividing-by-a-small-gain-multiplies-the-noise
+  - term: gain
+    definition: 'The reading that one unit of an unknown produces in a linear camera, so that the reading is the gain times the unknown, plus noise.'
+    chapter: '3.5'
+    anchor: the-best-guess-of-one-number-weighs-the-reading-against-what-was-expected
+  - term: linear estimate
+    definition: 'A guess of an unknown that is a fixed multiple of the reading, or a fixed weighted sum of several readings.'
+    chapter: '3.5'
+    anchor: the-best-guess-of-one-number-weighs-the-reading-against-what-was-expected
+  - term: mean squared error
+    definition: 'The mean of the square of the difference between a guess and the truth, taken over both the possible scenes and the noise.'
+    chapter: '3.5'
+    anchor: the-best-guess-of-one-number-weighs-the-reading-against-what-was-expected
+  - term: best linear estimate
+    definition: 'The linear estimate with the smallest mean squared error. For one number read as $y = Tx + n$ it keeps the share $s^2/(1+s^2)$ of the naive guess $y/T$.'
+    chapter: '3.5'
+    anchor: the-best-guess-of-one-number-weighs-the-reading-against-what-was-expected
+  - term: conditional density
+    definition: 'The probability density of one quantity among the cases in which another came out with a given value, $p(x|y) = p(x,y)/p(y)$.'
+    chapter: '3.5'
+    anchor: with-gaussian-scene-and-noise-the-best-linear-guess-is-also-the-most-probable
+  - term: "Bayes' rule"
+    definition: 'The statement $p(x|y) = p(y|x)\,p(x)/p(y)$: the density of an unknown after a reading is the likelihood times the prior, divided by a constant.'
+    chapter: '3.5'
+    anchor: with-gaussian-scene-and-noise-the-best-linear-guess-is-also-the-most-probable
+  - term: posterior
+    definition: 'The probability density of an unknown after the data are taken into account: the likelihood times the prior, made to integrate to one.'
+    chapter: '3.5'
+    anchor: with-gaussian-scene-and-noise-the-best-linear-guess-is-also-the-most-probable
+  - term: most probable value
+    definition: 'The value at which the posterior density is largest. For Gaussian scene and noise it equals the posterior mean and the best linear estimate.'
+    chapter: '3.5'
+    anchor: with-gaussian-scene-and-noise-the-best-linear-guess-is-also-the-most-probable
+  - term: white prior
+    definition: 'A prior in which every cell or point of the scene has the same variance and no two are correlated. Its spectrum is the same for every ripple, like that of white noise.'
+    chapter: '3.5'
+    anchor: many-unknowns-are-guessed-together-with-the-same-formula
+  - term: Wiener filter
+    definition: 'The best linear estimate of a stationary scene, made ripple by ripple: each ripple of the data is divided by its gain and kept with the weight $H = s^2/(1+s^2)$.'
+    chapter: '3.5'
+    anchor: independent-ripples-can-be-filtered-one-at-a-time
+  - term: transfer function
+    definition: 'The factor by which a linear, shift-invariant reconstruction multiplies each ripple of the true scene in its mean image.'
+    chapter: '3.5'
+    anchor: seen-in-space-a-filter-is-a-blur
+  - term: shift-invariant
+    definition: 'Said of a filter or reconstruction that treats every place alike, so that moving the scene moves its image and changes nothing else. It acts as a convolution.'
+    chapter: '3.5'
+    anchor: seen-in-space-a-filter-is-a-blur
+  - term: low-pass filter
+    definition: 'A filter that keeps the coarse ripples of a pattern and removes the fine ones. The ideal one keeps every ripple below a cut-off wavenumber whole and none above it.'
+    chapter: '3.5'
+    anchor: seen-in-space-a-filter-is-a-blur
+  - term: ringing
+    definition: 'The faint dips and bumps that surround each point of an image when the fine ripples are cut off sharply; for the ideal low-pass filter the first dip is $-0.217$ of the peak.'
+    chapter: '3.5'
+    anchor: seen-in-space-a-filter-is-a-blur
+  - term: representer property
+    definition: 'The fact that a linear guess with a white prior is a weighted sum of the kernels of the readings, one kernel per reading.'
+    chapter: '3.5'
+    anchor: a-linear-guess-cannot-keep-mass-positive-and-with-a-white-prior-it-is-harmonic
+  - term: convection roll
+    definition: 'A loop of moving matter in which hot matter rises, spreads, cools and sinks again, as in a star or a planet''s liquid core. The simplest rolls turn in the meridian planes of a body and are silent outside it.'
+    role: matter
+    chapter: '2.8'
+  - term: velocity field
+    definition: 'The velocity of the matter at each point of a body, in metres per second.'
+    chapter: '2.8'
+    anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
+  - term: flow
+    definition: 'The density and the velocity of a body''s matter at every point, which together say how its mass moves.'
+    role: matter
+    chapter: '2.8'
+    anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
+  - term: mass flux
+    definition: 'The density times the velocity, $\rho\mathbf v$: the mass that crosses a unit area per second, in kg m⁻² s⁻¹. It is also the momentum per unit volume, which the paper calls the density of momentum.'
+    role: matter
+    chapter: '2.8'
+    anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
+  - term: continuity equation
+    definition: 'The law that mass is neither made nor destroyed, at each point: $\partial\rho/\partial t + \nabla\cdot\mathbf J = 0$. The density in a small box falls by what flows out of it.'
+    chapter: '2.8'
+    anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
+  - term: steady flow
+    definition: 'A flow in which the density at every point stays the same, so that $\nabla\cdot\mathbf J = 0$: as much mass leaves each small box as enters it.'
+    chapter: '2.8'
+    anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
+  - term: confined flow
+    definition: 'A flow that stays inside a body: its mass flux is zero outside, and no mass crosses the surface.'
+    chapter: '2.8'
+    anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
+  - term: potential of a flow
+    definition: 'The vector $\mathbf A(\mathbf x) = \int\mathbf J(\mathbf y)/|\mathbf x - \mathbf y|\,\mathrm d^3y$, built from the mass flux as the gravitational potential is built from the density. The magnetic part of the tide outside a body is made from its curl.'
+    role: field
+    chapter: '2.8'
+    anchor: a-flow-has-a-potential-of-its-own-built-like-the-gravitational-one
+  - term: curl
+    definition: 'The vector $(\nabla\times\mathbf F)_i = \epsilon_{ijk}\partial_jF_k$, which measures how a field turns round each point. A gradient has no curl, and the curl of a rigid turning is twice its angular velocity.'
+    chapter: '2.8'
+    anchor: a-flow-has-a-potential-of-its-own-built-like-the-gravitational-one
+  - term: current column
+    definition: 'The mass flux along one line of sight, each part weighted by the inverse of its distance, $\mathbf J(\hat n) = \int\rho\mathbf v\,\mathrm dr/r$. The magnetic part of the camera images it, and only its part across the line of sight counts.'
+    role: matter
+    chapter: '2.8'
+    anchor: the-current-column-is-the-flow-along-a-line-of-sight-weighted-by-inverse-distance
+  - term: axially symmetric flow
+    definition: 'A flow that does not change when the body and the flow are turned about an axis by any angle.'
+    chapter: '2.8'
+    anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
+  - term: meridian plane
+    definition: 'A plane that contains the axis of a body, as the meridians of a globe do.'
+    chapter: '2.8'
+    anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
+  - term: toroidal flow
+    definition: 'The part of a flow that goes round the axis, a swirl. It is written $\nabla\times(T\mathbf x)$; a rigid turning is one.'
+    chapter: '2.8'
+    anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
+  - term: poloidal flow
+    definition: 'The part of an axially symmetric flow that lies in the meridian planes; when it is steady and confined it runs in closed rolls. It is written $\nabla\times\nabla\times(P\mathbf x)$.'
+    chapter: '2.8'
+    anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
+  - term: stream function
+    definition: 'For a steady axially symmetric flow, the function $\chi$ for which $2\pi\chi$ is the mass per second crossing the circle about the axis through a point. The flow in the meridian planes runs along its contours.'
+    chapter: '2.8'
+    anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
+  - term: silent flow
+    definition: 'A flow that makes no magnetic part of the tide outside its body, however fast it runs, such as $\nabla\times\nabla\times\mathbf V$ with $\mathbf V$ confined, or a swirl with no angular momentum.'
+    chapter: '2.8'
+    anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
+  - term: spin dipole
+    definition: 'The pattern of the field outside a round body whose layers turn rigidly: its flow potential is $\mathbf L\times\mathbf x/2r^3$, fixed by the angular momentum $\mathbf L$ alone.'
+    chapter: '2.8'
+    anchor: a-swirl-shows-through-its-angular-momentum-and-two-swirls-can-cancel

@@ -100,6 +100,7 @@ symbols:
     kind: A pure number between 0 and 1 for each ripple
     meaning: 'The weight with which the best linear reconstruction keeps each ripple, $H = s^2/(1+s^2)$. It is close to one for ripples well above their noise and close to zero for ripples buried in it. (In Section XII of the paper, $H$ is a number of bits.)'
     chapter: '3.5'
+    anchor: independent-ripples-can-be-filtered-one-at-a-time
   - key: cutoff
     title: Cut-off
     tex: 'q_c'
@@ -867,3 +868,115 @@ symbols:
     meaning: 'What each pixel of a flat array records: the vertical entry of the tidal tensor with its sign changed, $d = -\mathcal E_{zz}$, so that a mass below gives a positive bump. Across the array its transform is $\tilde d = 2\pi G\,k\,e^{-kz}\,\tilde\sigma + \tilde n$ for a sheet at depth $z$.'
     chapter: '2.7'
     anchor: the-camera-records-a-tide-which-weights-each-ripple-by-k
+  - key: rayleigh-quotient
+    title: Rayleigh quotient
+    tex: 'R_A(\vect x)'
+    role: none
+    kind: A number for each direction; in the unit of the entries of the matrix A
+    meaning: 'The ratio $\vect x^{\mathsf T}A\vect x/\vect x^{\mathsf T}\vect x$ for a symmetric matrix $A$. It is an average of the eigenvalues of $A$, so it lies between the smallest and the largest, and reaches them along their eigenvectors.'
+    chapter: '3.4'
+    anchor: the-rayleigh-quotient-finds-the-strongest-and-weakest-directions
+  - key: whitening-matrix
+    title: Whitening matrix
+    tex: 'W'
+    role: none
+    kind: A matrix; in the inverse of the unit of the readings
+    meaning: 'The matrix $W = \Lambda^{-1/2}U^{\mathsf T}$ built from the eigen-decomposition $C = U\Lambda U^{\mathsf T}$ of a noise covariance matrix. The whitened readings $W\vect y$ have independent noises of standard deviation one, so they are counted in noise standard deviations.'
+    chapter: '3.4'
+    anchor: whitening-turns-shared-noise-into-independent-noise-of-unit-size
+  - key: design-matrix
+    title: Design matrix
+    tex: 'A'
+    role: none
+    kind: A matrix with one row per reading and one column per cell of the scene
+    meaning: 'The matrix of a linear camera, $\vect y = A\vect m + \vect n$: column $k$ holds what one kilogram in cell $k$ gives every reading. Its singular value decomposition lists the scene patterns the camera sees and their gains. (Not the patch area $A$ of chapter 2.6.)'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - key: singular-value
+    title: Singular value
+    tex: 's_i'
+    role: none
+    kind: A number, never negative; in the unit of the entries of the matrix
+    meaning: 'The gain of the $i$th pattern of a matrix: $A\vect v_i = s_i\vect u_i$, with $\vect v_i$ and $\vect u_i$ unit vectors. For a whitened camera counted against the prior it is the whitened gain, the $s$ of chapter 3.7 and the paper''s Eq. (19).'
+    chapter: '3.4'
+    anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
+  - key: gain
+    title: Gain of a reading
+    tex: 'T'
+    role: none
+    kind: A number; in the unit of the reading per unit of the unknown
+    meaning: 'The reading that one unit of the unknown produces, in the model $y = Tx + n$. For the flat tidal camera it depends on the ripple, $T(\mathbf k) = 2\pi G\,k\,e^{-kz}$, in m² kg⁻¹ s⁻². (Elsewhere $T$ is a temperature.)'
+    chapter: '3.5'
+    anchor: the-best-guess-of-one-number-weighs-the-reading-against-what-was-expected
+  - key: point-spread-function
+    title: Point-spread function
+    tex: 'h(x)'
+    role: none
+    kind: A function of position; in m⁻¹ on a line
+    meaning: 'The mean picture that a linear, shift-invariant reconstruction draws of a single point of unit mass, the inverse transform of its weights: $h(x) = \int H(k)\,e^{ikx}\,\mathrm dk/2\pi$. For the ideal low-pass filter it is $\sin(k_cx)/\pi x$.'
+    chapter: '3.5'
+    anchor: seen-in-space-a-filter-is-a-blur
+  - key: cutoff-wavenumber
+    title: Cut-off wavenumber
+    tex: 'k_c'
+    role: none
+    kind: A wavenumber; in m⁻¹
+    meaning: 'The finest ripple that a low-pass filter keeps. The ideal low-pass filter keeps every ripple with $|k| < k_c$ and none beyond, and blurs a point to a full width of $3.79/k_c$ on a line. For the Wiener filter of the flat camera, $k_c = q_c/z$.'
+    chapter: '3.5'
+    anchor: seen-in-space-a-filter-is-a-blur
+  - key: flow-velocity
+    title: Velocity of the matter
+    tex: '\mathbf v(\mathbf x)'
+    role: none
+    kind: A vector at each point; in m/s
+    meaning: 'The velocity of the matter at each point of a body: its velocity field. A rigidly turning body has $\mathbf v = \boldsymbol\Omega\times\mathbf x$. It is set plain, because it describes the scene, not the observer.'
+    chapter: '2.8'
+    anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
+  - key: mass-flux
+    title: Mass flux
+    tex: '\matter{\mathbf J}'
+    role: matter
+    kind: A vector at each point; in kg m⁻² s⁻¹
+    meaning: 'The density times the velocity, $\mathbf J = \rho\mathbf v$: the mass that crosses a unit area per second, and also the momentum per unit volume (the paper''s density of momentum in Section XIII). Mass is conserved, so $\partial\rho/\partial t + \nabla\cdot\mathbf J = 0$. Not the impulse of chapter 1.6, nor the current column $\mathbf J(\hat n)$.'
+    chapter: '2.8'
+    anchor: a-flow-of-mass-is-a-mass-flux-and-mass-is-conserved
+  - key: flow-potential
+    title: Potential of a flow
+    tex: '\field{\mathbf A}'
+    role: field
+    kind: A vector at each point; in kg/s
+    meaning: 'The mass flux added up as chapter 2.4 adds up the density for the potential: $\mathbf A(\mathbf x) = \int\mathbf J(\mathbf y)/|\mathbf x - \mathbf y|\,\mathrm d^3y$, so that $\nabla^2\mathbf A = -4\pi\mathbf J$. Outside a body the magnetic part of the tide is made from its curl (chapter 7.5), so a flow whose $\mathbf A$ is a gradient outside is silent there.'
+    chapter: '2.8'
+    anchor: a-flow-has-a-potential-of-its-own-built-like-the-gravitational-one
+  - key: current-column
+    title: Current column
+    tex: '\matter{\mathbf J(\hat n)}'
+    role: matter
+    kind: A vector for each direction; in kg m⁻² s⁻¹
+    meaning: 'The mass flux along the line of sight in the direction $\hat n$, each part weighted by the inverse of its distance: $\mathbf J(\hat n) = \int\rho\mathbf v(r\hat n)\,\mathrm dr/r$. Only its part across the line of sight enters the magnetic part of the tide. The twin of the tidal column $S(\hat n)$.'
+    chapter: '2.8'
+    anchor: the-current-column-is-the-flow-along-a-line-of-sight-weighted-by-inverse-distance
+  - key: stream-function
+    title: Stream function
+    tex: '\chi'
+    role: none
+    kind: A number at each point of a meridian plane; in kg/s
+    meaning: 'For a steady flow that is the same all round an axis, $2\pi\chi(P)$ is the mass per second crossing a surface bounded by the circle about the axis through $P$. The flow in the meridian planes runs along the contours of $\chi$, which is zero on the axis and on the surface of a confined flow. Not the paper''s response functions $\chi_h$.'
+    chapter: '2.8'
+    anchor: every-steady-flow-round-an-axis-is-a-swirl-plus-rolls
+  - key: roll-vector
+    title: Vector of a silent flow
+    tex: '\mathbf V'
+    role: none
+    kind: A vector at each point; in kg/s
+    meaning: 'A vector confined to a body, zero outside it with its first derivatives, whose curl of a curl is the flow: $\mathbf J = \nabla\times\nabla\times\mathbf V$. The meridional rolls of an axially symmetric flow are of this form, with $\mathbf V = P\mathbf x$, and every such flow is silent outside.'
+    chapter: '2.8'
+    anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
+  - key: roll-potential
+    title: Potential of the vector of a silent flow
+    tex: '\mathbf W'
+    role: none
+    kind: A vector at each point; in kg m² s⁻¹
+    meaning: 'The vector $\mathbf V$ added up as a potential, $\mathbf W(\mathbf x) = \int\mathbf V(\mathbf y)/|\mathbf x - \mathbf y|\,\mathrm d^3y$. The flow''s potential is $\mathbf A = \nabla\times\nabla\times\mathbf W$, which outside the body is the gradient $\nabla(\nabla\cdot\mathbf W)$. Not the paper''s complex curvature $\mathcal W$.'
+    chapter: '2.8'
+    anchor: rolls-are-silent-outside-because-their-potential-there-is-a-gradient
