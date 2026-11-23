@@ -6,7 +6,7 @@ part: '3'
 requires: ['1.1', '1.4', '1.5', '1.5b', '2.5', '2.6', '2.7', '3.1', '3.2', '3.3']
 paper: [sec:near-field, app:benchmarks, eq:array-data, eq:wiener, sec:pixel, eq:ranging-instant]
 figures: []
-live: [ring-matrix]
+live: [toy-camera, ring-matrix]
 depth: A
 ---
 
@@ -18,14 +18,15 @@ this chapter asks which patterns of mass an array of pixels can measure well, wh
 
 The answer is a list. A camera whose readings are proportional to the masses splits every scene into patterns, each
 with its own gain, and for the safe's camera only 17 of 231 patterns stand above the noise. The tool that makes the
-list is the eigen-decomposition of a symmetric matrix.
+list is the eigen-decomposition of a symmetric matrix. Figure [](#fig:svd-hero) shows the list of an endless flat
+camera, whose patterns are ripples.
 
-<!-- diagram: tut-svd-hero — Hero (stone pipeline). A row of seven stone slabs, each corrugated by one ripple, from a
-broad swell on the left to fine crests on the right (q = 1, 2, 4, 6, 8, 10, 12). Above each slab a bar whose height is
-its gain q e^{1−q} on a log scale, from 1 down to 2 × 10⁻⁴. A horizontal line across the bars marks the noise
-(whitened gain s = 1 at SNR = 10³, the cut-off q = 10.4); the slabs whose bars end below it are drawn faded. Caption:
-each ripple reaches an endless flat camera with its own gain; the ones whose gain falls below the noise are lost, and
-the uniform layer (q = 0, gain zero) is not drawn at all because no sensitivity would see it. -->
+![Seven ripples of mass, orange where the mass is above its mean and blue where it is below, from a broad swell on
+the left to fine crests on the right ($q = kz$ from 1 to 12, as defined below); the bar over each is its gain against
+the best ripple's, $q\,e^{1-q}$, with which it reaches an endless flat camera at the height $z$, on a log scale. The
+blue line is the noise at $\SNR = 10^3$, which the gains cross at $q = 10.4$, so the faded ripple is lost; the height
+of the relief is chosen for the drawing. The uniform layer, $q = 0$, is not drawn, because its gain is zero and no
+sensitivity would see it.](tut-svd-hero){#fig:svd-hero}
 
 ::: plain
 A camera that reads tides adds up the pulls of many small masses. This sum can be taken apart into a list of
@@ -117,15 +118,16 @@ twice, but subtracting $I$ leaves $\bigl(\begin{smallmatrix}0&1\\0&0\end{smallma
 x_2)$ to $(x_2, 0)$ and is zero only along $(1, 0)$: the shear has one eigen-direction. It is not symmetric. Its
 antisymmetric part, half of it minus half its transpose, turns every arrow a quarter turn, as chapter
 [1.1](/tutorial/newton/vectors-and-indices/#an-antisymmetric-table-is-a-vector-in-disguise) showed. A symmetric matrix
-has no such part, so it stretches and squeezes along its axes and never turns.
+has no such part, so it stretches and squeezes along its axes and never turns. Figure [](#fig:sym-ellipse) compares
+the two.
 
-<!-- diagram: tut-sym-ellipse — Left: the unit circle and its image under the symmetric matrix [[2,1],[1,2]], an
-ellipse with semi-axes 3 along (1,1) and 1 along (1,−1); the two eigenvectors drawn on both, each mapped onto its own
-line. Right: the same circle under the shear [[1,1],[0,1]], a tilted ellipse with semi-axes 1.62 and 0.62. Every
-matrix maps some pair of perpendicular directions onto the axes of its ellipse, and the shear is no exception: mark the
-pair at 58° and 148° on the circle and their images at 32° and 122° on the ellipse. What is special is that for the
-shear these directions turn on the way, while the symmetric matrix keeps them; the shear's one eigen-direction (1,0)
-is marked, mapped to itself, and is not an axis of the ellipse. -->
+![The unit circle (dashed) and its image, an ellipse, under the symmetric matrix on the left and the shear on the
+right; thin arrows are unit vectors on the circle and heavy arrows of the same colour are their images, orange for the
+longer axis of each ellipse and blue for the shorter. The symmetric matrix sends its eigenvectors along their own
+lines, three times as long and once as long (the blue arrow is its own image, where the ellipse touches the circle),
+while the shear sends the perpendicular pair at 58° and 148° onto its axes, 1.62 and 0.62 long, at 32° and 122°, so
+that the pair turns on the way. The shear's one eigen-direction, the arrow along $(1, 0)$, is its own image and is not
+an axis of its ellipse.](tut-sym-ellipse){#fig:sym-ellipse}
 
 **Positive matrices.** A symmetric matrix is **positive definite** when $\mathbf x^{\mathsf T}T\mathbf x > 0$ for
 every nonzero $\mathbf x$, and **positive semidefinite** when $\mathbf x^{\mathsf T}T\mathbf x \ge 0$; by
@@ -177,9 +179,9 @@ with the bounds reached along the bottom and the top eigenvectors. By the gradie
 quotient, the gradient of $R_T$ is $2(T\mathbf x - R_T\mathbf x)/\mathbf x^{\mathsf T}\mathbf x$, which vanishes
 exactly at eigenvectors. So near an eigen-axis the quotient changes only in second order: in two dimensions, at the
 angle $\vartheta$ from $\mathbf u_1$, $R_T = \lambda_1 - (\lambda_1 - \lambda_2)\sin^2\vartheta$. Halfway between the
-axes it is the mean of the two. The lower bound is the paper's "Rayleigh's method" ([Appendix
-A](/paper/#par:the-trembling-lattice), chapter 4.3): stiffness over mass, for any trial shape of vibration,
-overestimates the square of a body's lowest frequency.
+axes it is the mean of the two, and Figure [](#fig:sym-rayleigh) follows it as a probe turns. The lower bound is
+the paper's "Rayleigh's method" ([Appendix A](/paper/#par:the-trembling-lattice), chapter 4.3): stiffness over mass,
+for any trial shape of vibration, overestimates the square of a body's lowest frequency.
 
 **The ring's greatest stretch.** A ball of the ring at unit distance in the direction $\vect\xi$ is pushed by
 $-\curv{\tE}\vect\xi$ (chapter
@@ -198,9 +200,11 @@ heavier at once. Because $F^{-1}$ has the same axes with the eigenvalues $1/\lam
 eigenvector is $1/\sqrt{\lambda_i}$: $2.41/\mathcal R$ along this combination, and $0.41/\mathcal R$ across it, six
 times smaller.
 
-<!-- diagram: tut-sym-rayleigh — A unit probe turning round a circle under the matrix diag(−2, 1) turned by 30°; below,
-R_T(ϑ) against the probe angle ϑ from 0° to 180°, a cosine wave between −2 and 1, with its maximum and minimum marked at
-the two eigen-axes and dashed lines at the two eigenvalues. -->
+![Above, a unit probe $\mathbf x$ at the angle $\vartheta$ from the horizontal, under the symmetric matrix with the
+eigenvalue $-2$ along the line at 30° (orange) and $1$ along the line at 120° (blue); the dotted drop from $T\mathbf x$
+meets the probe's line at $R_T(\mathbf x) = \mathbf x^{\mathsf T}T\mathbf x = 0.65$. Below, $R_T$ as the probe turns
+through half a turn, a cosine wave that stays between the two eigenvalues (dashed) and reaches them only on the
+eigen-axes; the dot at 100° is the probe drawn above.](tut-sym-rayleigh){#fig:sym-rayleigh}
 
 ## Whitening turns shared noise into independent noise of unit size
 
@@ -290,10 +294,11 @@ The first pattern has mass of one sign in all three places, close to a uniform r
 together the second gain falls in proportion to $\delta$ and the third to $\delta^2$: chapter 3.3's two masses, which
 differ from one by a signal that grows as the square of their separation.
 
-<!-- try: toy-camera — Three pixels above three masses at depth 1 m, with a slider for the masses' spacing δ from
-1 m to 0.05 m and one for the noise. Shows the three scene patterns as signed bars under the masses, their three
-gains as bars on a log scale with the noise as a line, and the readings each pattern produces above the pixels.
-Prediction first: "Which gain falls fastest as the masses crowd together?" Notice the third gain collapse as δ². -->
+::: try {#toy-camera}
+The figure is the camera of three pixels: the masses' three patterns as signed bars, the readings each pattern gives
+the pixels, and the three gains on a logarithmic scale beside a line for the noise. Answer the prediction at its top
+first, then move the masses together and watch which patterns sink below the noise.
+:::
 
 **The decomposition.** We assume that **the camera is linear**: $\mathbf y = A\matter{\mathbf m} + \mathbf n$, with $N$
 readings in $\mathbf y$ and $K$ masses in $\matter{\mathbf m}$. The **design matrix** $\sym{design-matrix}{A}$ has $N$
@@ -321,12 +326,14 @@ the result along its own reading pattern $\mathbf u_i$; different patterns never
 the **rank** of $A$. The patterns with zero gain form the **null space** of $A$, the scenes that give no reading at
 all, as chapter
 [2.5](/tutorial/outside/null-space/#every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see) found
-for the field outside a body.
+for the field outside a body. Figure [](#fig:svd-spaces) draws how the decomposition splits the scenes and the
+readings.
 
-<!-- diagram: tut-svd-spaces — The four spaces of the SVD. Left, the space of scenes (K dimensions) split into the span
-of the v_i with s_i > 0 and the null space; right, the space of readings (N dimensions) split into the span of the
-u_i, where signals land, and the rest, which only noise reaches. Arrows v_i → s_i u_i across the middle, labelled with
-the gains; the null space mapped to a dot at zero. -->
+![Left, the scenes, split into the plane of the patterns $\mathbf v_1$ and $\mathbf v_2$, which have gains, and the
+null space at right angles to it; right, the readings, split into the plane of $\mathbf u_1$ and $\mathbf u_2$, where
+every signal lands, and the rest, which only noise reaches. The camera carries each $\mathbf v_i$ to $s_i\mathbf u_i$
+and every scene of the null space to zero. The camera drawn has three cells and three readings, with $s_1 = 1.5$ and
+$s_2 = 0.6$; the safe's scenes have 231 numbers and its readings 605.](tut-svd-spaces){#fig:svd-spaces}
 
 The two decompositions are easy to confuse:
 
@@ -433,7 +440,8 @@ the right-hand safe is 243 kg. Keeping 25, down to the gain 0.08, it is 2900 kg;
 $9\times10^{-4}$, it is 140,000 kg. Dropping every pattern whose whitened gain is below one is the **truncated singular
 value decomposition**, the simplest **regularization**, a rule that drops or shrinks the patterns whose noise would
 swamp the image. Its price is a bias: on average the 17 kept patterns put 241 kg in the right-hand safe, not 324,
-because part of the gold lies in dropped patterns.
+because part of the gold lies in dropped patterns. Figure [](#fig:svd-tsvd) shows the gains and the noise for every
+number of patterns kept.
 
 The 243 kg is not the whole error, because the data say almost nothing about the mass in the dropped patterns. Counted
 against the prior, those patterns leave 705 kg of doubt in the safe's mass, and with the noise the error is
@@ -442,10 +450,11 @@ $s^2/(1 + s^2)$, which the last problem derives. Counted the same way, it leaves
 prior's doubt, or $\sqrt{177^2 + 707^2} = 729\unit{kg}$: the paper's $\pm730$ kg, a little better than the sharp cut.
 The prior alone, with no data, would give $\sqrt{12}\times324 = 1120$ kg.
 
-<!-- diagram: tut-svd-tsvd — The safe's 231 whitened gains on a log scale against their rank (2100 down to
-3.9 × 10⁻¹⁴ at the computer's rounding), a horizontal line at one crossing after the 17th; beneath, on the same
-horizontal axis, the noise in the right-hand safe's mass when the first k patterns are kept, rising from about 1 kg at
-k = 5 through 240 kg at k = 17 to 10¹¹ kg at k = 111. -->
+![Above, the safe's 231 whitened gains on a log scale, largest first: the 17 above the noise's line at one (orange)
+are the patterns the cut keeps, and those below about $3\times10^{-10}$ (pale) are lost in the computer's rounding.
+Below, the noise in the mass found in the right-hand safe when the first $k$ patterns are kept, from 1.1 kg at $k = 5$
+through 243 kg at $k = 17$ (the dotted line) to $10^{11}$ kg at $k = 111$, the last gain above the
+rounding.](tut-svd-tsvd){#fig:svd-tsvd}
 
 ::: try {#ring-matrix}
 The figure shows chapter 1.4's ring of twelve balls, one every 30°, under the symmetric matrix $T =
