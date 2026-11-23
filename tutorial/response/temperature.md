@@ -6,7 +6,7 @@ part: '4'
 requires: ['1.6', '1.7', '2.1', '3.1', '4.1']
 paper: [sec:near-field, eq:thermal-moment, eq:thermal-multipole, eq:sum-rule, eq:jitter-bounds, app:benchmarks, sec:second-order, eq:hair-commutator, eq:dust, sec:thermal]
 figures: []
-live: []
+live: [equipartition]
 depth: A
 ---
 
@@ -81,7 +81,7 @@ the probability $p$ of the small system's state is proportional to the number of
 $$p \propto \Omega(E_{\rm tot} - E) .$$
 
 The count $\Omega$ grows enormously fast with the energy, so we work with its logarithm, which changes smoothly. The
-small system holds a tiny fraction of the energy, so we expand to first order in $E$:
+small system holds a tiny fraction of the energy, so we expand to first order in $E$ (Figure [](#fig:bath)):
 
 $$\ln\Omega(E_{\rm tot} - E) = \ln\Omega(E_{\rm tot}) - E\,\frac{\dd\ln\Omega}{\dd E} + \dots$$
 
@@ -101,14 +101,10 @@ This is the **Boltzmann distribution**, also called the **canonical distribution
 $10\,\kB T$ more is $e^{10} = 22{,}000$ times less likely. Two limits check it. As $T \to 0$ only the states of the
 lowest energy remain, and as $T \to \infty$ every state becomes equally likely.
 
-<!-- diagram: tut-temp-bath — Left: a small box inside a large box, with two thin arrows between them labelled
-"energy", one each way. Right: the logarithm of the bath's count of states, ln Ω, against the bath's energy, drawn as
-a smooth rising concave curve (for a gas, (3N/2) ln E, shown schematically); a short stretch near E_tot magnified in
-an inset, where the curve is indistinguishable from its tangent, the tangent's slope labelled 1/k_BT, and the small
-system's energy E marked as a step to the left of E_tot. Below the inset, the resulting e^{−E/k_BT} against E, as one
-thin curve falling by e per k_BT, with ticks at k_BT, 2k_BT, 3k_BT. Caption: what to look at first (the inset, where
-the curve is a straight line over the small system's range), then that the curve's shape is schematic and the
-exponential exact. -->
+![Look first at the inset, where the logarithm of the bath's count of states is a straight line of slope $1/\kB T$
+over the small system's range, so giving the small system (left) the energy $E$ lowers $\ln\Omega$ by $E/\kB T$.
+Below the inset, on the same scale of energy, the resulting $e^{-E/\kB T}$ falls by a factor $e$ for each $\kB T$. The
+shape of the large curve is schematic; the inset and the exponential are exact.](tut-temp-bath){#fig:bath}
 
 ::: gap
 This sketch skips the following.
@@ -201,7 +197,7 @@ This law of the velocities is the **Maxwell distribution**. Adding the three axe
 The potential energy $V$, which holds every force in the body, has dropped out. It still governs the positions, which
 follow $e^{-V/\kB T}$: that is how a solid keeps its shape while a gas fills its box. So "independent of the
 positions" does not mean that the positions are random. It means that knowing where the atoms are tells nothing about
-how fast they move. Only the velocities are free of the forces.
+how fast they move. Only the velocities are free of the forces. Figure [](#fig:phase) shows this for 1.7's cart.
 
 **Numbers.** An iron atom has the mass $9.27\times10^{-26}\unit{kg}$. At 300 K its velocity along each axis has the
 standard deviation $\sigma_v = \sqrt{\kB T/\matter m} = 211\unit{m\,s^{-1}}$, and its **root mean square speed**,
@@ -213,12 +209,12 @@ rests on the table, because their independent velocities point every way.
 **A limit.** As $T \to 0$ every variance shrinks to zero, and the particles come to rest at the bottom of $V$. Quantum
 mechanics leaves a small motion even then (chapter 8.3).
 
-<!-- diagram: tut-temp-phase — The phase-space weight of 1.7's cart (m = 2 kg, k = 50 N/m) at 300 K: the surface
-exp(−p²/2mk_BT − kq²/2k_BT) over the plane (q, p), drawn as a smooth hill in light perspective, with q in units of
-σ_q = 9.1 × 10⁻¹² m and p in units of σ_p = √(mk_BT) = 9.1 × 10⁻¹¹ kg m s⁻¹, each from −3 to 3. Three slices along p
-at q = 0, σ_q and 2σ_q drawn as thin curves on the surface, and beside the hill the same three slices rescaled to one
-height and overlaid: they coincide exactly, a Gaussian of width σ_p. Caption: look first at the three slices, whose
-shape does not depend on q; the hill and the slices are exact, the perspective chosen for the drawing. -->
+![Look first at the three slices along $p$, at $q = 0$, $\sigma_q$ and $2\sigma_q$: each divided by its own height
+(right), they coincide in one Gaussian of width $\sigma_p$, so the spread of the momentum does not depend on the
+position. The hill is the weight $e^{-H/\kB T}$ of 1.7's cart, $\matter m = 2\unit{kg}$ on $k = 50\unit{N\,m^{-1}}$ at
+300 K, with $q$ in units of $\sigma_q = 9.1\times10^{-12}\unit{m}$ and $p$ in units of
+$\sigma_p = \sqrt{\matter m\kB T} = 9.1\times10^{-11}\unit{kg\,m\,s^{-1}}$. The hill and the slices are exact; the
+angle of view and the height of the hill on the page are chosen for the drawing.](tut-temp-phase){#fig:phase}
 
 ## Heat gives every quadratic term in the energy the same share
 
@@ -320,15 +316,14 @@ density of the body at rest. The result is the paper's equation:[^units]
 
 The springs and the arrangement of the bonds have dropped out with $V$, and friction never entered. Only the masses
 and their places remain. Stiffer springs make the moments swing faster, but they do not change the mean square of
-their rates of change.[^mc]
+their rates of change.[^mc] Figure [](#fig:moment) shows how the places weight the velocities for $h = xy$.
 
-<!-- diagram: tut-temp-moment — A lump of about twelve dots (masses, two sizes, in matter's colour) scattered round
-the origin in the plane (x, y). Behind them, a faint field of short grey arrows for the weight ∇(xy) = (y, x): pointing
-outward along the diagonal y = x and inward along y = −x, longer far from the centre. On each dot, a thin dark arrow for
-its random velocity, and a short orange or blue tick for its projection on the grey arrow at that place (orange where
-the projection is positive, blue where negative). Caption: look first at a dot far out on a diagonal, whose velocity
-counts strongly, then at one near the centre, which barely counts; Q̇_xy is the sum of m times these projections. The
-weights ∇(xy) are exact; the places and velocities are a sample. -->
+![Look first at the mass far out on the diagonal $y = x$, whose velocity counts strongly, and then at the one near
+the centre, which moves fast but barely counts. The grey arrows are the weight $\nabla(xy) = (y, x)$ and the dark
+arrows the velocities; each coloured tick is $\vect v\cdot\nabla(xy)$ at its mass, orange where it is positive and blue
+where it is negative, and $\matter{\dot Q}_{xy}$ is the sum of the masses times these ticks. The weights are exact; the
+places are chosen, with the larger dots twice as heavy, and the velocities are a random sample with the variance
+$\kB T/\matter m$ of equation [](#eq:maxwell).](tut-temp-moment){#fig:moment}
 
 ## The first case is Brownian motion, and the next ones see inside
 
@@ -371,24 +366,17 @@ reads $\int\matter\rho\,r^4\,\dd V$. Chapter 4.6 adds up every degree in the pap
 and finds at which frequencies the tremor lies (Figure [](/paper/#fig:tremor)); reading chapter R4 reads the paragraph
 whole.
 
-<!-- try: equipartition — Equipartition. A small two-dimensional molecule of six masses at the corners of a regular
-hexagon of side 1 (arbitrary units), each joined to its two neighbours and its two next neighbours by springs whose rest
-lengths are the hexagon's (1 and √3; twelve springs in all), in a heat bath: each mass feels a friction −mΓv, with Γ
-the damping rate of 4.1, and a random force of matching strength (the Langevin bath of 4.6, unseen here), integrated
-with a splitting scheme (BAOAB) and Γ between a tenth and a fifth of the highest mode's angular frequency. Animated,
-with each mass's velocity drawn as a short arrow. Controls: the mass of two opposite masses (×1 to ×16), the stiffness
-of all springs (×0.1 to ×10, with ×1 giving a thermal stretch of about a tenth of a side), the temperature. Readouts,
-as running averages with their standard errors: ½m⟨v²⟩ for a light and a heavy mass, in units of k_BT (each tends to
-1, two axes); ⟨Q̇_x²⟩ against k_BT M; and ⟨Q̇_xy²⟩ against the running average of k_BT Σ m (x² + y²), with x and y
-measured from the molecule's centre of mass (which wanders, so moments are taken about it; the terms in the centre's
-own velocity cancel exactly, since Σ m x = 0 about it). Opens with equal masses, stiffness ×1. Text above: "Predict
-first: make two masses sixteen times heavier. How much slower do they move?" (Four times: v_rms ∝ m^{−1/2}, and each
-still holds k_BT of energy of motion.) Then: "Make every spring ten times stiffer. Does ⟨Q̇_xy²⟩ grow, shrink or
-stay?" (It stays, to within 0.3%, the change of the molecule's size as heat stretches its springs less; only how
-fast the shape swings changes.) A Python check of this model with kT = 1, m = 1, k = 100 at ×1, by Metropolis
-sampling: Σ m r² = 6.13, 6.02 and 6.00 at stiffness ×0.1, ×1 and ×10 (6 exactly for the rigid hexagon), and the
-ratio of the two sides of the paper's equation within 2–5% of 1 after 3.6 × 10⁵ steps, consistent with the sampling
-error. Keyboard and both themes. -->
+::: try {#equipartition}
+Six masses at the corners of a hexagon, each joined to its neighbours by springs, sit in a heat bath that slows them
+with a friction and kicks them at random. The molecule is drawn about its wandering centre of mass, with each velocity
+as a thin arrow. Four gauges on the right show running averages divided by what this chapter predicts: the energy of
+motion of a light and of a heavy mass in units of $\tfrac12\kB T$ per axis, $\langle\matter{\dot Q}_x^2\rangle$ against
+$\kB T\matter M$, and $\langle\matter{\dot Q}_{xy}^2\rangle$ against the paper's equation, each with its standard
+error. The sliders set the mass of two opposite masses, the stiffness of every spring and the temperature.
+
+Before you touch anything, answer the two predictions at the top of the figure, then do what each asks. Afterwards,
+raise the temperature and watch which gauges move.
+:::
 
 ::: check
 ### Q
