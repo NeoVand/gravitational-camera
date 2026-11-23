@@ -41,11 +41,13 @@ each, 38 bits. At $10^{70}$ it holds 2200 ripples of 80 bits each, about 22 kilo
 
 The gold of the paper's locked safe lies in one of two safes. One question, "is it in the left one?", settles where it
 is, and its answer is one bit. With 16 equally likely places, four questions are enough, each halving the list of the
-places that remain. With $N$ equally likely cases the number of questions is $\log_2N$, the power to which 2 must be
-raised to give $N$. Here $\log_2$ is the logarithm to base 2, $\log_2N = \ln N/\ln2$, and $\ln$ is the natural
-logarithm.
+places that remain (Figure [](#fig:questions)). With $N$ equally likely cases the number of questions is $\log_2N$,
+the power to which 2 must be raised to give $N$. Here $\log_2$ is the logarithm to base 2, $\log_2N = \ln N/\ln2$,
+and $\ln$ is the natural logarithm.
 
-<!-- diagram: four boxes in a row, each a yes-or-no question ("in the left half?"), each halving a list of 16 numbered places drawn as small squares, 16 → 8 → 4 → 2 → 1, the kept half in the accent colour and the discarded half faint; under the row, "four questions, $\log_2 16 = 4$ bits". -->
+![Four questions find one place among sixteen. Each asks whether the place lies in the left half of the list that
+remains; the answer keeps one half, in orange, and discards the other, drawn faint, so the list shrinks from 16 to 8,
+4, 2 and 1. Every one of the sixteen places is found by the same four questions.](tut-bits-questions){#fig:questions}
 
 When the cases are not equally likely, fewer questions are needed on average, because a good questioner asks first
 about the likely cases. Let an unknown $x$ take the value $x_i$ with the probability $p_i$. Claude Shannon measured
@@ -232,9 +234,12 @@ somewhat less, as the two safes carried less than their bound.
 
 **Numbers.** The integral gives 37.9 bits at $\SNR = 10^3$ (the paper's 38), 201 bits at $10^6$, $1.55\times10^4$ at
 $10^{30}$ and $1.78\times10^5$ at $10^{70}$.[^code] A **kilobyte** is 1000 bytes of eight bits, 8000 bits, so the last
-is 22 kilobytes, a small thumbnail photograph.
+is 22 kilobytes, a small thumbnail photograph. Figure [](#fig:integrand) draws the integrand at the first two.
 
-<!-- diagram: the integrand q·log₂(1 + s²) against q, from 0 to 25, at SNR = 10³ (shaded, peak near q ≈ 5.4) and at 10⁶ (shaded lighter, peak near q ≈ 9.1), each with its cut-off q_c = 10.4 and 17.8 marked by a vertical tick; over each, dashed, the approximation 2q·log₂ s cut off at q_c. The shaded areas are 4π times 37.9 and 201 bits. -->
+![The integrand $q\log_2(1 + s^2)$ of the paper's equation at $\SNR = 10^3$ and $10^6$, with the approximation
+$2q\log_2s$ dashed beneath it. The two agree except near the cut-off, where the approximation falls to zero and the
+integrand, which equals $q_c$ there, fades over a few units of $q$. The shaded areas are $4\pi$ times the bits, 37.9
+and 201.](tut-bits-integrand){#fig:integrand}
 
 ## Where a ripple stands well above its noise, it carries $\log_2 s$ bits
 
@@ -302,7 +307,7 @@ and never with the sensitivity itself.
 about $(D/\lambda)^2$ directions in each steradian, whatever its sensitivity.[^diffraction] Each direction is a number
 worth about $\log_2\SNR$ bits, so the information grows as the first power of the logarithm. In the near field no
 aperture fixes the number of patterns: the fade $e^{-kz}$ lets the sensitivity set it, and that is why the power is
-three.
+three. Figure [](#fig:growth) compares the two.
 
 **A law of analysis (stated).** Kolmogorov and Tikhomirov counted the bits needed to fix any function of a class to
 an accuracy $\varepsilon$ everywhere on a region, the **$\varepsilon$-entropy** of the class
@@ -325,7 +330,10 @@ harmonics of the sky's brightness of degree four and below (chapter [2.2](/tutor
 With polarization it learns 68 numbers, however sensitive it is ([Section VIII](/paper/#sec:one-pixel); Part 9
 derives the counts). There the geometry, not the noise, fixes how many numbers can be read.
 
-<!-- diagram: bits per area z² against log₁₀ SNR from 1 to 70, both axes logarithmic: the near-field capacity (orange, from eq:capacity-integral) rising with slope near three on the log–log plot, and a wave camera with a fixed number of patterns (grey, proportional to log₂ SNR, scaled to meet the near-field curve at 10³) rising with slope one; a short guide triangle of slope 3 and one of slope 1 beside them. -->
+![The bits per area $z^2$ against the number of digits of $\SNR$, both on logarithmic scales, on which a power of
+the number of digits is a straight line. The near field's bits, in orange, climb with a slope that rises from 1.7 at
+$\SNR = 10$ to 2.9 at $10^{70}$, toward the 3 of the upper triangle. A wave camera's bits, in grey, scaled to meet
+them at $10^3$, keep the slope 1 of the lower triangle.](tut-bits-growth){#fig:growth}
 
 ::: try {#bits-per-patch}
 Panel (a) is one patch of the scene, $z$ on a side, drawn as its patterns: a grid of cells, the coarsest pattern at
