@@ -1434,47 +1434,47 @@ terms:
     chapter: '2.7'
     anchor: the-camera-records-a-tide-which-weights-each-ripple-by-k
   - term: matrix
-    definition: 'A rectangular table of numbers. Applied to a column of numbers, a vector, it gives another vector, $A\vect x$ with the components $A_{ab}x_b$.'
+    definition: 'A rectangular table of numbers. Applied to a list of numbers, a vector, it gives another vector, $T\mathbf x$ with the components $T_{ab}x_b$.'
     chapter: '3.4'
     anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
   - term: transpose
-    definition: 'The matrix $A^{\mathsf T}$ made by swapping the rows and columns of $A$. A matrix is symmetric when it equals its transpose.'
+    definition: 'The matrix $T^{\mathsf T}$ made by swapping the rows and columns of $T$. A matrix is symmetric when it equals its transpose.'
     chapter: '3.4'
     anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
   - term: spectral theorem
-    definition: 'A real symmetric matrix has real eigenvalues and a full set of perpendicular unit eigenvectors, so it can be written $A = U\Lambda U^{\mathsf T}$: turn into its eigen-axes, stretch along each, turn back.'
+    definition: 'A real symmetric matrix has real eigenvalues and a full set of perpendicular unit eigenvectors, so it can be written $T = Q\Lambda Q^{\mathsf T}$: turn into its eigen-axes, stretch along each, turn back.'
     chapter: '3.4'
     anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
   - term: positive definite
-    definition: 'A symmetric matrix with $\vect x^{\mathsf T}A\vect x > 0$ for every nonzero $\vect x$, which means that all its eigenvalues are positive.'
+    definition: 'A symmetric matrix with $\mathbf x^{\mathsf T}T\mathbf x > 0$ for every nonzero $\mathbf x$, which means that all its eigenvalues are positive.'
     chapter: '3.4'
     anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
   - term: positive semidefinite
-    definition: 'A symmetric matrix with $\vect x^{\mathsf T}A\vect x \ge 0$ for every $\vect x$, which means that none of its eigenvalues is negative. Every covariance matrix is positive semidefinite.'
+    definition: 'A symmetric matrix with $\mathbf x^{\mathsf T}T\mathbf x \ge 0$ for every $\mathbf x$, which means that none of its eigenvalues is negative. Every covariance matrix is positive semidefinite.'
     chapter: '3.4'
     anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
   - term: at least (for matrices)
-    definition: 'One symmetric matrix is at least another, $A \ge B$, when $A - B$ is positive semidefinite. The Cramér–Rao bound says that the covariance matrix of unbiased estimates is at least the inverse Fisher matrix.'
+    definition: 'One symmetric matrix is at least another when their difference is positive semidefinite. The Cramér–Rao bound says that the covariance matrix of unbiased estimates is at least the inverse Fisher matrix.'
     chapter: '3.4'
     anchor: a-symmetric-matrix-stretches-space-along-perpendicular-axes
   - term: Rayleigh quotient
-    definition: 'For a symmetric matrix $A$ and a direction $\vect x$, the ratio $\vect x^{\mathsf T}A\vect x/\vect x^{\mathsf T}\vect x$. It always lies between the smallest and largest eigenvalues, which it reaches along their eigenvectors.'
+    definition: 'For a symmetric matrix $T$ and a direction $\mathbf x$, the ratio $\mathbf x^{\mathsf T}T\mathbf x/\mathbf x^{\mathsf T}\mathbf x$. It always lies between the smallest and largest eigenvalues, which it reaches along their eigenvectors.'
     chapter: '3.4'
     anchor: the-rayleigh-quotient-finds-the-strongest-and-weakest-directions
   - term: whitening
-    definition: 'Turning readings with shared noise into combinations whose noises are independent and of standard deviation one, by the matrix $W = \Lambda^{-1/2}U^{\mathsf T}$ built from the noise covariance $C = U\Lambda U^{\mathsf T}$.'
+    definition: 'Turning readings with shared noise into combinations whose noises are independent and of standard deviation one, by the matrix $W = \Lambda^{-1/2}Q^{\mathsf T}$ built from the noise covariance $C = Q\Lambda Q^{\mathsf T}$.'
     chapter: '3.4'
     anchor: whitening-turns-shared-noise-into-independent-noise-of-unit-size
   - term: generalized eigenproblem
-    definition: 'The problem $C_{\rm sig}\vect w = \lambda C\vect w$ for two symmetric matrices, which finds the combinations with the largest or smallest ratio of one quadratic form to the other. Whitening by $C$ turns it into an ordinary eigenproblem.'
+    definition: 'The problem $C_{\rm sig}\mathbf w = \lambda C\mathbf w$ for two symmetric matrices, which finds the combinations with the largest or smallest ratio of one quadratic form to the other. Whitening by $C$ turns it into an ordinary eigenproblem.'
     chapter: '3.4'
     anchor: whitening-turns-shared-noise-into-independent-noise-of-unit-size
   - term: design matrix
-    definition: 'The matrix $A$ of a linear camera, $\vect y = A\vect m + \vect n$, whose column $k$ is what a kilogram in cell $k$ gives every reading.'
+    definition: 'The matrix $A$ of a linear camera, $\mathbf y = A\mathbf m + \mathbf n$, whose column $k$ is what a kilogram in cell $k$ gives every reading.'
     chapter: '3.4'
     anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
   - term: singular value decomposition
-    definition: 'The writing of any matrix as $A = \sum_i s_i\vect u_i\vect v_i^{\mathsf T}$, with perpendicular unit vectors $\vect v_i$ and $\vect u_i$ and gains $s_i \ge 0$. For a camera, each scene pattern $\vect v_i$ reaches the readings as the pattern $\vect u_i$ multiplied by $s_i$.'
+    definition: 'The writing of any matrix as $A = \sum_i s_i\mathbf u_i\mathbf v_i^{\mathsf T}$, with perpendicular unit vectors $\mathbf v_i$ and $\mathbf u_i$ and gains $s_i \ge 0$. For a camera, each scene pattern $\mathbf v_i$ reaches the readings as the pattern $\mathbf u_i$ multiplied by $s_i$.'
     chapter: '3.4'
     anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
   - term: singular value
@@ -1482,7 +1482,7 @@ terms:
     chapter: '3.4'
     anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
   - term: singular vector
-    definition: 'One of the unit vectors $\vect v_i$ (a scene pattern) or $\vect u_i$ (the reading pattern it produces) of the singular value decomposition, with $A\vect v_i = s_i\vect u_i$.'
+    definition: 'One of the unit vectors $\mathbf v_i$ (a scene pattern) or $\mathbf u_i$ (the reading pattern it produces) of the singular value decomposition, with $A\mathbf v_i = s_i\mathbf u_i$.'
     chapter: '3.4'
     anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
   - term: rank
@@ -1502,7 +1502,7 @@ terms:
     chapter: '3.4'
     anchor: for-a-flat-array-the-patterns-are-ripples
   - term: pseudo-inverse
-    definition: 'The matrix $A^+ = \sum_{s_i > 0}\vect v_i\vect u_i^{\mathsf T}/s_i$, which undoes each pattern of $A$ by dividing by its gain and leaves the null space out.'
+    definition: 'The matrix $A^+ = \sum_{s_i > 0}\mathbf v_i\mathbf u_i^{\mathsf T}/s_i$, which undoes each pattern of $A$ by dividing by its gain and leaves the null space out.'
     chapter: '3.4'
     anchor: dividing-by-a-small-gain-multiplies-the-noise
   - term: condition number

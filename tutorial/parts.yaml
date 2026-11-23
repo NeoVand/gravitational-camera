@@ -58,7 +58,7 @@ parts:
       - { id: '3.1', slug: noise/probability, title: 'The probability we use: Gaussian, Poisson, covariance, the square-root law', short: Probability, size: M, status: published }
       - { id: '3.2', slug: noise/random-signals, title: 'Random signals: noise and its spectrum', short: Noise and its spectrum, size: M, status: published }
       - { id: '3.3', slug: noise/measuring-a-number, title: 'Measuring a number: likelihood, detection, Fisher information, Cramér–Rao', short: Measuring a number, size: L, status: published }
-      - { id: '3.4', slug: noise/symmetric-matrices, title: 'Symmetric matrices at work: eigen-decomposition, SVD, whitening, the Rayleigh quotient', short: Symmetric matrices, size: M, status: planned }
+      - { id: '3.4', slug: noise/symmetric-matrices, title: 'Symmetric matrices at work: eigen-decomposition, SVD, whitening, the Rayleigh quotient', short: Symmetric matrices, size: M, status: published }
       - { id: '3.5', slug: noise/wiener-filter, title: 'The best guess: the Wiener filter', short: The Wiener filter, size: M, status: planned }
       - { id: '3.6', slug: noise/bessel-and-airy, title: 'Bessel functions and the Airy pattern', short: Bessel and Airy, size: M, status: planned }
       - { id: '3.7', slug: noise/blur-law, title: 'The blur law: the cut-off, the logarithm, the Lambert W function, the width of a blur', short: The blur law, size: L, status: published }

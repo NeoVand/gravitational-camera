@@ -870,10 +870,10 @@ symbols:
     anchor: the-camera-records-a-tide-which-weights-each-ripple-by-k
   - key: rayleigh-quotient
     title: Rayleigh quotient
-    tex: 'R_A(\vect x)'
+    tex: 'R_T(\mathbf x)'
     role: none
-    kind: A number for each direction; in the unit of the entries of the matrix A
-    meaning: 'The ratio $\vect x^{\mathsf T}A\vect x/\vect x^{\mathsf T}\vect x$ for a symmetric matrix $A$. It is an average of the eigenvalues of $A$, so it lies between the smallest and the largest, and reaches them along their eigenvectors.'
+    kind: A number for each direction; in the unit of the entries of the matrix T
+    meaning: 'The ratio $\mathbf x^{\mathsf T}T\mathbf x/\mathbf x^{\mathsf T}\mathbf x$ for a symmetric matrix $T$. It is an average of the eigenvalues of $T$, so it lies between the smallest and the largest, and reaches them along their eigenvectors.'
     chapter: '3.4'
     anchor: the-rayleigh-quotient-finds-the-strongest-and-weakest-directions
   - key: whitening-matrix
@@ -881,7 +881,7 @@ symbols:
     tex: 'W'
     role: none
     kind: A matrix; in the inverse of the unit of the readings
-    meaning: 'The matrix $W = \Lambda^{-1/2}U^{\mathsf T}$ built from the eigen-decomposition $C = U\Lambda U^{\mathsf T}$ of a noise covariance matrix. The whitened readings $W\vect y$ have independent noises of standard deviation one, so they are counted in noise standard deviations.'
+    meaning: 'The matrix $W = \Lambda^{-1/2}Q^{\mathsf T}$ built from the eigen-decomposition $C = Q\Lambda Q^{\mathsf T}$ of a noise covariance matrix. The whitened readings $W\mathbf y$ have independent noises of standard deviation one, so they are counted in noise standard deviations.'
     chapter: '3.4'
     anchor: whitening-turns-shared-noise-into-independent-noise-of-unit-size
   - key: design-matrix
@@ -889,7 +889,7 @@ symbols:
     tex: 'A'
     role: none
     kind: A matrix with one row per reading and one column per cell of the scene
-    meaning: 'The matrix of a linear camera, $\vect y = A\vect m + \vect n$: column $k$ holds what one kilogram in cell $k$ gives every reading. Its singular value decomposition lists the scene patterns the camera sees and their gains. (Not the patch area $A$ of chapter 2.6.)'
+    meaning: 'The matrix of a linear camera, $\mathbf y = A\mathbf m + \mathbf n$: column $k$ holds what one kilogram in cell $k$ gives every reading. Its singular value decomposition lists the scene patterns the camera sees and their gains. (Not the patch area $A$ of chapter 2.6.)'
     chapter: '3.4'
     anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
   - key: singular-value
@@ -897,7 +897,7 @@ symbols:
     tex: 's_i'
     role: none
     kind: A number, never negative; in the unit of the entries of the matrix
-    meaning: 'The gain of the $i$th pattern of a matrix: $A\vect v_i = s_i\vect u_i$, with $\vect v_i$ and $\vect u_i$ unit vectors. For a whitened camera counted against the prior it is the whitened gain, the $s$ of chapter 3.7 and the paper''s Eq. (19).'
+    meaning: 'The gain of the $i$th pattern of a matrix: $A\mathbf v_i = s_i\mathbf u_i$, with $\mathbf v_i$ and $\mathbf u_i$ unit vectors. For a whitened camera counted against the prior it is the whitened gain, the $s$ of chapter 3.7 and the paper''s Eq. (19).'
     chapter: '3.4'
     anchor: every-linear-camera-is-a-set-of-patterns-gains-and-blind-spots
   - key: gain
