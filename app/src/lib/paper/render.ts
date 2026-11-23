@@ -158,8 +158,12 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 				return n.c[0].t === 'DoubleQuote' ? `“${inlines(n.c[1])}”` : `‘${inlines(n.c[1])}’`;
 			case 'Span':
 				return inlines(n.c[1]);
-			case 'Link':
-				return `<a href="${esc(n.c[2][0])}">${inlines(n.c[1])}</a>`;
+			case 'Link': {
+				// a link out of the paper opens beside it, so that the reader keeps their place
+				const href = String(n.c[2][0]);
+				const external = /^https?:/i.test(href) ? ' target="_blank" rel="noopener noreferrer"' : '';
+				return `<a href="${esc(href)}"${external}>${inlines(n.c[1])}</a>`;
+			}
 			case 'Math':
 				return math(n.c[1], n.c[0].t === 'DisplayMath');
 			case 'Cite': {

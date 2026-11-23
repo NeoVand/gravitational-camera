@@ -1,18 +1,38 @@
 \section{The exterior field and the interior}\label{sec:hair}
 
 \begin{quote}
-\textbf{In plain words.} Physicists say that a black hole has no hair: from
-outside, nothing can be learnt of what fell into it but its mass, its spin and its charge.
-The camera shows that everything is nearly bald. One look at the pull of a
-stone tells very little of what is inside it. But a stone, unlike a black hole,
-gives itself away to a second look. It trembles with its own heat and it yields
-to a push, and in the trembling and the yielding all of its inside can be read,
-slowly. It is enough to push it and then weigh it. How much a push tells
-depends on its shape. There are pairs of bodies that the simplest squeeze
-cannot tell apart and the next one can, and each new shape of squeeze adds one
-more number about how the mass is spread between the centre and the surface.
-Two pushes, given in either order, tell how the inside is moving. A black hole
-trembles and yields too, and tells nothing by it but its temperature.
+\textbf{In plain words.} Physicists say that a black hole has no hair: by the
+\href{https://en.wikipedia.org/wiki/No-hair_theorem}{no-hair theorem}, its field
+outside shows only its mass, its spin and its electric charge, and nothing else
+of what fell into it. This section and the three after it ask the same question
+of ordinary bodies: how much of a body's inside does the field outside it
+settle?
+
+Looked at once, the answer is the one Newton's
+\href{https://en.wikipedia.org/wiki/Shell_theorem}{shell theorem} suggests. The
+pull outside a body depends only on a list of overall properties of its mass:
+first the total mass, then how lopsided the body is, then how elongated, and so
+on, each a finer description of its shape. These are its
+\href{https://en.wikipedia.org/wiki/Multipole_expansion}{multipole moments}. Any
+rearrangement of the mass inside that leaves the whole list unchanged cannot be
+seen from outside, which is why a hollow shell and a solid ball of equal mass
+pull alike.
+
+Each finer moment reaches the camera weaker than the last, by a further factor
+of the body's size over the distance, so noise limits how many can be read. The
+section counts what they hold in \href{https://en.wikipedia.org/wiki/Bit}{bits}:
+the number of yes-or-no facts about the body that the field can settle at a
+given noise. A camera three body radii away, reading the overall pull a million
+times above its noise, settles about 1200 bits. Even at $10^{70}$, a rough
+ceiling on sensitivity, it settles about two hundred kilobytes. These counts
+assume that no waves arrive from elsewhere.
+
+A black hole at rest gives seven numbers, its mass, its spin and its position,
+worth 140 bits at a million, and a
+\href{https://en.wikipedia.org/wiki/Neutron_star}{neutron star} is nearly as
+bald. Having no hair is one end of a scale on which every body lies, and the
+scale is short: at a million, an ordinary body tells only about nine times as
+much as a black hole.
 \end{quote}
 
 The limits of the near field were met one at a time in
@@ -91,14 +111,36 @@ the stone's layers are pictures.}\label{fig:hair}
 \section{Newton's theorem at second order}\label{sec:second-order}
 
 \begin{quote}
-\textbf{In plain words.} Newton showed that a hollow shell and a solid ball of
-the same weight pull alike on everything outside them. That is true of the
-pull. It is not true of what the pull does next. A mass that flies past a body
-pulls harder on its near parts than on its far ones and leaves it ringing, and
-the energy of the ringing is taken from the mass's own motion, which ends a
-little slower. How much slower depends on where the mass inside the body lies.
-From the amounts lost on all the ways of missing the body, its inside can be
-drawn.
+\textbf{In plain words.} By Newton's
+\href{https://en.wikipedia.org/wiki/Shell_theorem}{shell theorem} a hollow shell
+and a solid ball of equal mass pull alike on everything outside them. The
+theorem holds for the pull, not for the body's reply. Doubling a passing mass
+doubles its pull on the body but quadruples the energy it leaves behind, and the
+inside shows in that second effect.
+
+A mass flying quickly past a body pulls harder on its near side than its far
+side, setting its parts moving and leaving energy in them. That energy comes out
+of the passing mass's motion, which ends a little slower, by an amount set by
+where the body's mass lies. A passing star heats a
+\href{https://en.wikipedia.org/wiki/Star_cluster}{star cluster} in the same way.
+
+The steady pull tells only certain weighted averages of where the mass is. The
+energy left behind is a different kind of average: it weighs each piece of mass
+by how hard that piece was pushed. By choosing the pushes, through the path of
+the passing mass or the shape of a tide, these averages can pick out any ripple
+pattern in the density, and knowing every ripple's strength (the
+\href{https://en.wikipedia.org/wiki/Fourier_transform}{Fourier transform}) is
+knowing the density. The losses on the paths that miss the body determine all of
+it.
+
+The tide of a far-off mass stretches a body along one line and squeezes it
+across, a quadrupolar tide; a nearer mass also bends the stretch, the octupolar
+part. To leading order, each higher degree of tide reaches one more average of
+how the mass is spread between centre and surface. A thin shell, and a point at
+the centre of a larger shell that holds half the mass, look alike to every
+quadrupolar tide, yet one pass at one and a half radii leaves in them energies
+$30\%$ apart. Every such signal is far beyond reach: a tonne passing a metre
+from a steel ball loses five parts in $10^{33}$ of its speed.
 \end{quote}
 
 The ambiguity of Section~\ref{sec:hair} is that of Newton's shell theorem, and
@@ -545,10 +587,38 @@ a quantum state contain its commutators, and a cold classical body's do not.
 \section{A black hole under a tide}\label{sec:hole}
 
 \begin{quote}
-\textbf{In plain words.} A black hole yields to a tide, as a body does, and
-the yielding can be weighed in the same way. Weighed with one shape of tide,
-it looks like a shell of its own mass just outside its edge. Weighed with
-three, it looks like nothing that could be made of matter.
+\textbf{In plain words.} A body in a steady tide is stretched, as the Earth is
+by the Moon, and its \href{https://en.wikipedia.org/wiki/Love_number}{Love
+numbers} measure how much. A black hole that does not spin has Love numbers of
+zero: a steady tide raises no bulge on it. A changing tide is different. The
+hole absorbs some of the tide's energy, as if its horizon had friction.
+
+In any warm body friction and random trembling go together. The
+\href{https://en.wikipedia.org/wiki/Fluctuation-dissipation_theorem}{fluctuation--dissipation
+theorem} ties the size of a body's jitter to the friction it shows when pushed,
+and the ratio of the two is the temperature. A black hole's shape also jitters,
+and the ratio comes out as the temperature that Hawking found. This is a check
+rather than a new derivation, since the jitter was itself worked out from
+\href{https://en.wikipedia.org/wiki/Hawking_radiation}{Hawking radiation}; what
+it shows is that the friction of the horizon and its absorption of waves are one
+number.
+
+A camera beside the hole could therefore read the temperature from the hole's
+pull, without catching a single graviton. The signal is far beyond reach: a
+metre from a hole at $0.905\,\mathrm{K}$, read for a second, it is a tide of
+$4\times10^{-32}\,\mathrm{s^{-2}}$, a difference in acceleration of that many
+metres per second squared for each metre of separation. A stone's trembling
+holds its whole interior; a hole's holds only its temperature, which is its mass
+again.
+
+The response can also be weighed. Adding up the absorption over all frequencies
+gives a number that, for an ordinary round body, measures how far from its
+centre the mass lies. To the simplest tide the hole responds like a thin shell
+of its own mass just outside its horizon, at $1.02$ times its
+\href{https://en.wikipedia.org/wiki/Schwarzschild_radius}{Schwarzschild radius}.
+Tides of higher degree give shells at $1.46$, $1.61$ and more times that radius,
+and the first three together fit no arrangement of positive mass: the hole
+responds like nothing that could be made of matter.
 \end{quote}
 
 \paragraph{The response of a black hole to a tide.} A black hole responds to a tide as no ordinary body does.
@@ -695,12 +765,39 @@ changes little in the time $r_s/c$.}\label{tab:hair}
 \section{What remains of holography}\label{sec:holography}
 
 \begin{quote}
-\textbf{In plain words.} It has been argued that in quantum gravity everything
-inside a region can be learnt at its edge. In ordinary physics a weaker thing
-is true, and it can be said exactly. The pull of a body, read on a surface
-around it, holds a surface's worth of what is inside, and no more. The rest
-can still be had from outside, but not by looking: something must be done to
-the body, and the energy counted afterwards.
+\textbf{In plain words.} In quantum gravity, it has been argued, everything
+inside a region can be learnt at its boundary, a form of
+\href{https://en.wikipedia.org/wiki/Holographic_principle}{holography}. This
+section asks what remains of that in classical physics, and finds a weaker
+statement that holds exactly.
+
+Looking alone gives only a surface's worth. By Newton's
+\href{https://en.wikipedia.org/wiki/Shell_theorem}{shell theorem} the field at
+one moment fixes only the overall moments of the mass, and at a resolution $d$
+the field on a sphere of radius $R$ carries about $(R/d)^2$ such numbers, while
+the volume inside holds $(R/d)^3$ cells.
+
+The rest can be had from outside, but only by doing something to the body: bring
+a mass close for an instant, so that its tide gives each part of the body a
+push, and then weigh the body, since the energy it gained adds to its mass. The
+gains, for enough different pushes, give the body's density and the motion
+inside it. This takes time, and it gives a density, not a quantum state. Any
+force allows the same in principle, but only gravity's tide reaches every part
+of a body unshielded, and only gravity reads the mass itself. On a black hole
+the method fails: without quantum mechanics a hole does not tremble and gains
+energy only according to its mass, so whatever more its field holds is quantum.
+
+The blind spot has a quantum consequence. Put a body in a
+\href{https://en.wikipedia.org/wiki/Quantum_superposition}{superposition} of a
+ball and a shell of equal mass and energy. The field outside is the same in both
+branches and keeps no record of which, so, short of a tide from outside, gravity
+cannot end the superposition by carrying such a record away
+(\href{https://en.wikipedia.org/wiki/Quantum_decoherence}{decoherence}). The
+pair would therefore test the
+\href{https://en.wikipedia.org/wiki/Penrose_interpretation}{proposal of Di\'osi
+and Penrose} that gravity ends superpositions by itself; for a glass bead a
+micrometre in radius, if its mass could be moved to its surface, their time is a
+fifth of a second.
 \end{quote}
 
 \paragraph{Black holes and the classical limit.} For ordinary matter, then,

@@ -413,6 +413,24 @@
 		margin: 0;
 	}
 
+	article :global(aside.plain p + p) {
+		margin-top: 0.6rem;
+	}
+
+	/* the summaries' outside links: the text's own colour, a hairline underline in the accent */
+	article :global(aside.plain a[href^='http']) {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: var(--accent);
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.15em;
+	}
+
+	article :global(aside.plain a[href^='http']:hover),
+	article :global(aside.plain a[href^='http']:focus-visible) {
+		color: var(--accent);
+	}
+
 	article :global(aside.plain strong) {
 		display: block;
 		margin-bottom: 0.3rem;
