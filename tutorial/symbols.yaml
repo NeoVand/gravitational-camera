@@ -1241,7 +1241,7 @@ symbols:
     tex: '\matter{T_{ij}}'
     role: matter
     kind: A symmetric table; force per area, in pascals
-    meaning: 'The force per area that material exerts across a small face: $T_{ij}\hat n_j\,\mathrm dA$ on a face of area $\mathrm dA$ and normal $\hat n$. A fluid at rest has $T_{ij} = -p\,\delta_{ij}$. The paper''s $T_{kl}$ in its wave-zone formula is the same table, with the flow of momentum included. (A temperature $T$ has no indices.)'
+    meaning: 'The force per area that material exerts across a small face: $T_{ij}\hat n_j\,\mathrm dA$ on a face of area $\mathrm dA$ and normal $\hat n$. A fluid at rest has $T_{ij} = -p\,\delta_{ij}$. The paper''s $T_{kl}$ in its wave-zone formula is the flow of momentum, which for matter at rest is this table with its sign reversed ($+p\,\delta_{kl}$ for a fluid), plus $\rho v_kv_l$ for moving matter (chapter 5.2). (A temperature $T$ has no indices.)'
     chapter: '4.3'
     anchor: stress-is-force-per-area-and-it-too-is-a-symmetric-table
   - key: bulk-modulus
