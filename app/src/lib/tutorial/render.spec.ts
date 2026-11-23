@@ -227,6 +227,13 @@ describe('the paper’s equations and figures by label', () => {
 	});
 });
 
+describe('symbol keys', () => {
+	it('are read from class names only, not from a heading that holds the word', () => {
+		const c = chapter('## The Levi-Civita symbol builds the cross product\n\nText.');
+		expect(c.symbols).toEqual([]);
+	});
+});
+
 describe('the tutorial’s own figures', () => {
 	it('show the drawing by name, numbered in the chapter, and an empty link gives the number', () => {
 		const c = chapter(

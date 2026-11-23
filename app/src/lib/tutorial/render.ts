@@ -581,7 +581,17 @@ export function renderChapter(
 						: ''
 		)
 		.join('\n');
-	const symbols = [...new Set([...all.matchAll(/\bsymbol-([a-z0-9-]+)/g)].map((m) => m[1]))];
+	// only class names count: a section id such as "the-levi-civita-symbol-builds-…" is not a symbol key
+	const symbols = [
+		...new Set(
+			[...all.matchAll(/class="([^"]*)"/g)].flatMap((m) =>
+				m[1]
+					.split(/\s+/)
+					.filter((c) => c.startsWith('symbol-'))
+					.map((c) => c.slice('symbol-'.length))
+			)
+		)
+	];
 	for (const key of symbols)
 		if (!ctx.symbols.has(key)) fail(`the symbol "${key}" is not in tutorial/symbols.yaml`);
 	const roles = ROLES.filter((role) => all.includes(`q-${role}`));
