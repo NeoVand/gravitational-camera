@@ -16,9 +16,13 @@ import BlurLaw from './live/BlurLaw.svelte';
 import RingMatrix from './live/RingMatrix.svelte';
 import PotentialMap from './live/PotentialMap.svelte';
 import ShellTheorem from './live/ShellTheorem.svelte';
+import SameOutside from './live/SameOutside.svelte';
 import SpinTwoDial from './live/SpinTwoDial.svelte';
 import FiveNumbers from './live/FiveNumbers.svelte';
 import TurningPixel from './live/TurningPixel.svelte';
+import RegimeMap from './live/RegimeMap.svelte';
+import GravitonCount from './live/GravitonCount.svelte';
+import FlybyKick from './live/FlybyKick.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -59,6 +63,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label: 'A round body of fixed mass, its pull inside and out',
 		component: ShellTheorem
 	},
+	'same-outside': {
+		label: 'Bodies of one mass that pull alike outside, cut open, and what tells them apart',
+		component: SameOutside
+	},
 	'ring-matrix': {
 		label: 'A ring of free particles under a table you set',
 		component: RingMatrix
@@ -82,5 +90,17 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'near-field-blur': {
 		label: 'Two buried masses and the blur of the near field',
 		component: NearFieldFigure
+	},
+	'regime-map': {
+		label: 'Frequency against distance: the near field, the wave zone and the paper’s sources',
+		component: RegimeMap
+	},
+	'graviton-count': {
+		label: 'Gravitons counted one at a time, and the picture they allow',
+		component: GravitonCount
+	},
+	'flyby-kick': {
+		label: 'A tonne passing a steel ball: the pull on one part, its area and the kick to every part',
+		component: FlybyKick
 	}
 };

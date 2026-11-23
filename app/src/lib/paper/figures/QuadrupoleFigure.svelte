@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { MediaQuery } from 'svelte/reactivity';
 	import { DashboardSpeed01Icon } from '@hugeicons/core-free-icons';
 	import Slider from '../../ui/controls/Slider.svelte';
 	import './figure.css';
@@ -77,6 +78,14 @@
 				? `${(speed / 1000).toFixed(speed < 1e4 ? 1 : 0)} km/s`
 				: `${((speed / C) * 100).toFixed(0)}% of light speed`
 	);
+	/**
+	 * On a phone the two panels are stacked, the wavelength's under the pattern's, so that the drawing is shown at
+	 * about its own size and its words are read at the size they are set; side by side it would be halved.
+	 */
+	const phone = new MediaQuery('max-width: 560px', false);
+	const PHONE_SHIFT = { x: -360, y: 236 };
+	const viewBox = $derived(phone.current ? '28 -2 310 608' : '30 -2 720 351');
+
 	const wave = Array.from({ length: 121 }, (_, i) => {
 		const u = i / 120;
 		return `${i ? 'L' : 'M'} ${(390 + u * WAVE).toFixed(1)} ${(150 - 30 * Math.sin(u * 2 * Math.PI)).toFixed(1)}`;
@@ -85,7 +94,7 @@
 
 <div class="gfig">
 	<svg
-		viewBox="30 -2 720 351"
+		{viewBox}
 		role="img"
 		aria-label="Radiation pattern of a rotating pair of masses, and the wavelength compared with the size of the source"
 		{@attach animate}
@@ -133,23 +142,37 @@
 		<text class="strong" x={CX} y="336" text-anchor="middle">Power sent in each direction</text>
 
 		<!-- wavelength against size -->
-		<path d={wave} stroke="var(--accent-2)" stroke-width="2.2" fill="none" />
-		<line class="hair" x1="390" y1="196" x2="690" y2="196" />
-		<path class="ink" d="M 390 190 v 12 M 690 190 v 12" stroke-width="1.4" />
-		<text class="small" x="540" y="216" text-anchor="middle">one wavelength</text>
-		<rect x={390} y="232" width={sizePx} height="12" fill="var(--text)" />
-		<text class="small" x={Math.min(390 + sizePx + 10, 500)} y="243"
-			>the source, to the same scale</text
-		>
-		<text class="strong" x="540" y="282" text-anchor="middle">
-			wavelength = {size.mantissa}<tspan dy="-6" font-size="11">{size.power ?? ''}</tspan><tspan
-				dy="6">&nbsp;× the size of the source</tspan
+		<g transform={phone.current ? `translate(${PHONE_SHIFT.x} ${PHONE_SHIFT.y})` : undefined}>
+			<path d={wave} stroke="var(--accent-2)" stroke-width="2.2" fill="none" />
+			<line class="hair" x1="390" y1="196" x2="690" y2="196" />
+			<path class="ink" d="M 390 190 v 12 M 690 190 v 12" stroke-width="1.4" />
+			<text class="small" x="540" y="216" text-anchor="middle">one wavelength</text>
+			<rect x={390} y="232" width={sizePx} height="12" fill="var(--text)" />
+			<!-- beside the source, however wide it grows (at most 127, leaving the words inside the wavelength's
+			     span); on a phone under it, where the column is narrower -->
+			<text class="small" x={phone.current ? 390 : 390 + sizePx + 10} y={phone.current ? 262 : 243}
+				>the source, to the same scale</text
 			>
-		</text>
-		<text class="small" x="540" y="302" text-anchor="middle">
-			for moving parts at {speedLabel}
-		</text>
-		<text class="strong" x="540" y="336" text-anchor="middle">Wavelength against size</text>
+			{#if phone.current}
+				<!-- two lines: in one the words would be wider than the column -->
+				<text class="strong" x="540" y="296" text-anchor="middle">
+					wavelength = {size.mantissa}<tspan dy="-6" font-size="11">{size.power ?? ''}</tspan>
+				</text>
+				<text class="strong" x="540" y="315" text-anchor="middle">× the size of the source</text>
+			{:else}
+				<text class="strong" x="540" y="282" text-anchor="middle">
+					wavelength = {size.mantissa}<tspan dy="-6" font-size="11">{size.power ?? ''}</tspan><tspan
+						dy="6">&nbsp;× the size of the source</tspan
+					>
+				</text>
+			{/if}
+			<text class="small" x="540" y={phone.current ? 335 : 302} text-anchor="middle">
+				for moving parts at {speedLabel}
+			</text>
+			<text class="strong" x="540" y={phone.current ? 362 : 336} text-anchor="middle"
+				>Wavelength against size</text
+			>
+		</g>
 	</svg>
 
 	<div class="controls single">
