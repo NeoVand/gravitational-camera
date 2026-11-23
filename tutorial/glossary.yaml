@@ -883,3 +883,15 @@ terms:
     definition: 'The idea, from attempts at a quantum theory of gravity, that everything inside a region of space can in principle be learnt at its boundary.'
     chapter: '0.5'
     anchor: a-black-hole-replies-with-friction-and-a-temperature
+  - term: gravity gradiometer
+    definition: 'An instrument that measures the tide, the change of gravity from one point to the next. The best laboratory one resolves 0.02 eötvös in a second.'
+    chapter: R1
+    anchor: what-the-premise-asks-existing-instruments-nearly-supply
+  - term: gravitational compass
+    definition: 'A cluster of free masses whose positions are read against one another, proposed in the 1950s and 1960s to measure the curvature of spacetime, the tide, piece by piece.'
+    chapter: R1
+    anchor: what-the-premise-asks-existing-instruments-nearly-supply
+  - term: standard quantum limit
+    definition: 'The smallest uncertainty in the position of a mass watched for a time that quantum mechanics allows when the watching is the only disturbance, $\sqrt{\hbar\tau/m}$: $3 \times 10^{-16}$ m for a gram watched for a second.'
+    chapter: R1
+    anchor: what-the-premise-asks-existing-instruments-nearly-supply

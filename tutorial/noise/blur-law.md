@@ -73,8 +73,9 @@ step 1 uses to measure the noise. Choosing them alike keeps the formulas simple,
 choice would move the answer only by a logarithm.
 
 Here $z$ is the depth of the sheet below the plane of the sensors, in metres. The sheet has a **surface
-density** $\sym{surface-density}{\matter{\sigma}}$, its mass per unit area, in kilograms per square metre; in this
-part of the tutorial $\matter{\sigma}$ never stands for a standard deviation.
+density** $\sym{surface-density}{\matter{\sigma}}$, its mass per unit area, in kilograms per square metre; in the
+colour of matter $\matter{\sigma}$ is always this density, and a standard deviation is written $\sigma$ with a
+subscript naming its quantity, as $\sigma_n$ for the noise.
 
 ## Step 1: one number measures the camera
 

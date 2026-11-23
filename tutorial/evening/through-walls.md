@@ -243,7 +243,8 @@ camera could not compute from its readings, because many insides give the same p
 
 [^bright]: Derived in chapter [1.4](/tutorial/newton/tides/#tidal-brightness-is-density-times-the-cube-of-angular-size).
 
-[^column]: The paper's tidal column, equation [](/paper/#eq:tidal-column), derived in chapter 2.3.
+[^column]: The paper's tidal column, equation [](/paper/#eq:tidal-column), derived in chapter
+    [1.5](/tutorial/newton/five-numbers/#averaged-over-the-sky-the-tidal-weight-vanishes).
 
 [^shell]: Proved in chapter [1.3](/tutorial/newton/gauss-and-poisson/#outside-a-round-body-only-its-mass-counts).
 

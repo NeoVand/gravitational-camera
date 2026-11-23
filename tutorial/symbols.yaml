@@ -505,3 +505,11 @@ symbols:
     meaning: 'The mass of the Sun, $M_\odot = 1.989 \times 10^{30}\,\mathrm{kg}$, the astronomer''s unit for stars and black holes. Formulas often need the product $GM_\odot = 1.327 \times 10^{20}\,\mathrm{m^3\,s^{-2}}$.'
     chapter: '0.6'
     anchor: the-sky-has-its-own-units
+  - key: magnetic-tide
+    title: Magnetic part of the tide
+    tex: '\curv{\mathcal{B}}_{ij}'
+    role: curv
+    kind: A table of nine numbers, symmetric and trace-free in empty space and then five of them independent; unit s⁻²
+    meaning: 'The second kind of tide, made by moving masses. It does not stretch or squeeze a ring of free balls; it makes gyroscopes at nearby points turn slightly relative to one another. Near slow matter it is smaller than $\mathcal{E}_{ij}$ by about $v/c$, and in a gravitational wave the two are equal in size. The paper defines it as $\tfrac12 c^2\epsilon_{ipq}R_{pqj0}$; chapter 7.5 derives it.'
+    chapter: R1
+    anchor: an-ideal-pixel-reads-ten-numbers-and-must-not-turn

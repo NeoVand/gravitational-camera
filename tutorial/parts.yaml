@@ -35,7 +35,7 @@ parts:
       - { id: '1.6', slug: newton/motion, title: 'Motion: energy, momentum, rigid bodies, rotating frames', short: Motion, size: L, status: published }
       - { id: '1.7', slug: newton/hamilton, title: "Hamilton's mechanics: phase space, brackets, generators", short: "Hamilton's mechanics", size: M, status: published }
       - { id: '1.8', slug: newton/orbits-and-kicks, title: 'Orbits, flybys and kicks', short: Orbits and kicks, size: M, status: published }
-      - { id: R1, slug: newton/reading-section-ii, title: 'Reading Section II, the Newtonian half', short: Reading Section II, size: M, status: planned, reads: [sec:pixel] }
+      - { id: R1, slug: newton/reading-section-ii, title: 'Reading Section II, the Newtonian half', short: Reading Section II, size: M, status: published, reads: [sec:pixel] }
 
   - id: '2'
     slug: outside

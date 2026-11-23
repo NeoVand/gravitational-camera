@@ -385,7 +385,7 @@ This sketch does not show why the phase must change by a whole number of turns r
 number can be $-1$ as well as $+1$. Round a large circle it is 2, because far away the pair looks like one mass and
 the shear goes as $w^2$. Nor does it show why the four extra zeros appear at exactly $\tfrac{\sqrt3}{2}d$: there each
 zero on the bisector reverses its winding and sheds two new zeros, which keeps the total at 2. The paper's rule for
-any thin layer, equation [](/paper/#eq:shear-zeros), is left to chapter R3.
+any thin layer, equation [](/paper/#eq:shear-zeros), is left to chapter 3.9.
 :::
 
 ## A steady oscillation is a turning complex number
