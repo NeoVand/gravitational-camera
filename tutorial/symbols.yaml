@@ -910,10 +910,10 @@ symbols:
     anchor: the-best-guess-of-one-number-weighs-the-reading-against-what-was-expected
   - key: point-spread-function
     title: Point-spread function
-    tex: 'h(x)'
+    tex: 'h(a)'
     role: none
     kind: A function of position; in m⁻¹ on a line
-    meaning: 'The mean picture that a linear, shift-invariant reconstruction draws of a single point of unit mass, the inverse transform of its weights: $h(x) = \int H(k)\,e^{ikx}\,\mathrm dk/2\pi$. For the ideal low-pass filter it is $\sin(k_cx)/\pi x$.'
+    meaning: 'The mean picture that a linear, shift-invariant reconstruction draws of a single point of unit mass, the inverse transform of its weights: on a row, with $a$ the distance along it, $h(a) = \int H(k)\,e^{ika}\,\mathrm dk/2\pi$. For the ideal low-pass filter it is $\sin(k_ca)/\pi a$.'
     chapter: '3.5'
     anchor: seen-in-space-a-filter-is-a-blur
   - key: cutoff-wavenumber

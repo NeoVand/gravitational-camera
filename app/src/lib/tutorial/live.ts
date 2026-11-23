@@ -35,6 +35,8 @@ import Multipoles from './live/Multipoles.svelte';
 import FourierBuild from './live/FourierBuild.svelte';
 import WhichSafe from './live/WhichSafe.svelte';
 import FadingRipple from './live/FadingRipple.svelte';
+import HiddenFlow from '../paper/figures/hair/HiddenFlow.svelte';
+import OneModeWiener from './live/OneModeWiener.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -134,6 +136,16 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'fading-ripple': {
 		label: 'A ripple of density on a slab, and how fast its field fades with height',
 		component: FadingRipple
+	},
+	'hidden-flow': {
+		label:
+			'An inner ball and an outer shell turning opposite ways, with no angular momentum in all',
+		component: HiddenFlow
+	},
+	'one-mode-wiener': {
+		label:
+			"One pattern seen through noise: the naive guess y/T against the Wiener guess H y/T, and their errors beside the prior's variance",
+		component: OneModeWiener
 	},
 	'noise-spectrum': {
 		label:

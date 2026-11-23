@@ -1545,6 +1545,10 @@ terms:
     definition: 'The probability density of an unknown after the data are taken into account: the likelihood times the prior, made to integrate to one.'
     chapter: '3.5'
     anchor: with-gaussian-scene-and-noise-the-best-linear-guess-is-also-the-most-probable
+  - term: posterior covariance
+    definition: 'The covariance matrix of several unknowns after the data are taken into account: its diagonal holds their posterior variances and the rest their posterior covariances. For whitened readings of a linear camera, with Gaussian noise and a white prior, it is $(A^{\mathsf T}A + \sigma_m^{-2}I)^{-1}$.'
+    chapter: '3.5'
+    anchor: many-unknowns-are-guessed-together-with-the-same-formula
   - term: most probable value
     definition: 'The value at which the posterior density is largest. For Gaussian scene and noise it equals the posterior mean and the best linear estimate.'
     chapter: '3.5'
