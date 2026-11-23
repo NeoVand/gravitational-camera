@@ -559,7 +559,7 @@ $1.685\times10^6/1628 = 1035$.
     $\ln(1 + e^{-|u|})$, whose integral over all $u$ is $\pi^2/6$. Over $q$ that is $\pi^2/12$ nats. Weighted by
     $q \approx q_c$, divided by $4\pi$ and by $\ln2$, it gives $\pi q_c/(48\ln2) = q_c/10.6$ bits.
 
-[^diffraction]: Chapter 5.3 derives the resolution of a wave camera; here only the count of directions is used.
+[^diffraction]: Chapter [5.3](/tutorial/waves/diffraction/#an-array-resolves-as-many-directions-as-its-area-holds-square-wavelengths) derives the resolution of a wave camera; here only the count of directions is used.
 
 [^L]: These are the paper's letters for two logarithms. This $L$ is not the side of a patch in chapters 3.2 and 3.5,
     and this $\Lambda$ is not the projector of the wave chapters.

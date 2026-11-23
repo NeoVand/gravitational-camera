@@ -203,11 +203,12 @@ so at zero frequency this is the paper's cone $\kappa = K$ ([](/paper/#eq:cone))
 62.8\unit{m^{-1}}$, while a gravitational wave of 1 kHz has $\omega/c = 2.1 \times 10^{-5}\unit{m^{-1}}$; then $\kappa$
 differs from $k$ by the fraction $\omega^2/2c^2k^2 = 5.6 \times 10^{-14}$.
 
-**What it means.** Since $\sin\theta$ cannot exceed one, detail across a plane can travel away only if it is at least
-a wavelength wide. Finer detail stays behind and fades. The near field of Part 2 is the wave equation for scenes far
+**What it means.** Since $\sin\theta$ cannot exceed one, detail across a plane can travel away only if it is at least a
+wavelength wide. Finer detail stays behind and fades. The near field of Part 2 is the wave equation for scenes far
 smaller than the wavelength, where every ripple fades and $\kappa$ equals $k$. This is why sharp pictures need waves
 shorter than the detail. A **wave camera**, one that forms its picture from the waves that reach it, resolves angles
-down to about the wavelength divided by the camera's width, the distance across its detectors (chapter 5.3).
+down to about the wavelength divided by the camera's width, the distance across its detectors (chapter
+[5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array)).
 
 ![Look first at the scale bars: detail coarser than a wavelength leaves as a wave, finer detail fades. Both slabs carry
 the same ripple, and the upright pane shows the field above it at one instant: on the left, crests $5/3$ of a

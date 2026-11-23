@@ -245,7 +245,7 @@ instead of recording mostly noise.
 
 [^hole]: Derived in chapter 11.1.
 
-[^beam]: Chapter 5.3 derives beamforming and its sharpness.
+[^beam]: Chapter [5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array) derives beamforming and its sharpness.
 
 [^onepixel]: The paper's [](/paper/#fig:array) explains it in its caption; chapter 9.5 derives it.
 

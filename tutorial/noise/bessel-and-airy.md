@@ -643,7 +643,7 @@ round lens, the same rule gives the angle $1.22\lambda/D$.
     2\sqrt{R^2 - a_1^2}\,\dd a_1$ is $2R^4\int_{-\pi/2}^{\pi/2}\sin^2t\cos^2t\,\dd t = \pi R^4/4$. Their ratio is
     $\sigma_a^2 = R^2/4$.
 
-[^fraunhofer]: Chapter 5.3 justifies this assumption from the wave equation and adds the factor that sets the
+[^fraunhofer]: Chapter [5.3](/tutorial/waves/diffraction/#beyond-an-opening-a-wave-is-a-sum-of-wavelets-from-every-point-of-it) justifies this assumption from the wave equation and adds the factor that sets the
     brightness. Here we use it only to find the shape of the pattern.
 
 [^lambda]: Elsewhere $\lambda$ is a mass per unit length (chapter 2.4) and an eigenvalue (chapter 3.4). The letter $D$

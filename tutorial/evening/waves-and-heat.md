@@ -236,7 +236,7 @@ The near-field scenes. A static field is not radiation, so its picture is limite
 [^graviton]: Chapter 8.3 introduces the graviton and its energy. Here
     $2.1 \times 10^{-32}\unit{J} / 4.5 \times 10^{-41}\unit{W} = 4.7 \times 10^{8}\unit{s}$.
 
-[^diffraction]: Chapter 5.3 derives it.
+[^diffraction]: Chapter [5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array) derives it.
 
 [^unresolved]: Chapter 7.7 derives it. In one period of the wave, half a turn, the wave travels one wavelength while
     each mass goes half way round its circle, a distance $\pi d/2$.

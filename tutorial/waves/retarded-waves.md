@@ -386,15 +386,15 @@ paper's equation:
 The paper's [*What does not radiate*](/paper/#par:what-does-not-radiate) adds that a pressure equal in all directions,
 which is pure trace, is removed by the projector.
 
-**Two limits.** A source much smaller than a wavelength, $kL \ll 1$, has $e^{-i\vect k\cdot\vect y} \approx 1$ across
-it for every $\vect k$ on the sphere, so every direction reads the same number, $\tilde s(\omega, 0)$, the source
-added up over its volume. For gravity it is $\int\matter T_{kl}\,\dd^3y$, and chapter 7.7 turns it into the second time
+**Two limits.** A source much smaller than a wavelength, $kL \ll 1$, has $e^{-i\vect k\cdot\vect y} \approx 1$ across it
+for every $\vect k$ on the sphere, so every direction reads the same number, $\tilde s(\omega, 0)$, the source added up
+over its volume. For gravity it is $\int\matter T_{kl}\,\dd^3y$, and chapter 7.7 turns it into the second time
 derivative of the quadrupole, the paper's [](/paper/#eq:quadrupole). This is why a compact source is a point in its own
 waves. At the other end, a camera of width $D$ at the distance $r$ spans the directions within about $D/r$ of $\hat n$,
-so it reads a cap of the sphere of width $kD/r$. By chapter 2.6's
-[uncertainty relation](/tutorial/outside/fourier/#on-an-endless-line-the-sum-becomes-an-integral), ripples known over
-a range $kD/r$ of wavevectors resolve no detail finer than about $2\pi r/kD = \lambda r/D$, as any aperture does
-(chapter 5.3).
+so it reads a cap of the sphere of width $kD/r$. By chapter 2.6's [uncertainty
+relation](/tutorial/outside/fourier/#on-an-endless-line-the-sum-becomes-an-integral), ripples known over a range $kD/r$
+of wavevectors resolve no detail finer than about $2\pi r/kD = \lambda r/D$, as any aperture does (chapter
+[5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array)).
 
 ## Many sources in step add their amplitudes
 
