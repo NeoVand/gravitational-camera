@@ -1752,3 +1752,82 @@ terms:
     definition: 'For functions of $n$ variables, wanted on one region, that extend as bounded analytic functions to a larger region of complex values of their variables, the $\varepsilon$-entropy grows as $(\log_2 1/\varepsilon)^{n+1}$. For a near-field image, $n = 2$ and $\varepsilon = 1/\mathrm{SNR}$, which gives the cube of the logarithm.'
     chapter: '3.8'
     anchor: sensitivity-buys-more-patterns-and-more-bits-in-each-so-the-bits-grow-as-the-cube-of-its-logarithm
+  - term: misfit
+    definition: 'The sum of the squared differences between the readings and a scene''s predictions, each in units of the noise. For Gaussian noise the scene with the smallest misfit is the most likely one.'
+    chapter: '3.9'
+    anchor: non-negative-least-squares-keeps-only-the-masses-the-data-need
+  - term: Gaussian image
+    definition: 'The best linear guess of a scene under a Gaussian prior (the Wiener filter of chapter 3.5). For the locked safe at a signal-to-noise ratio of a thousand it weighs the right-hand safe only to within $\pm730$ kg.'
+    chapter: '3.9'
+    anchor: a-linear-image-cannot-use-the-sign-of-mass
+  - term: positivity constraint
+    definition: 'The condition that every cell of an image holds no negative mass, $m_j \ge 0$. No linear image can impose it.'
+    role: matter
+    chapter: '3.9'
+    anchor: non-negative-least-squares-keeps-only-the-masses-the-data-need
+  - term: non-negative least squares
+    definition: 'The scene of smallest misfit among those with no negative mass in any cell. For the locked safe at a signal-to-noise ratio of a thousand it finds $315 \pm 20$ kg in the right-hand safe, with no prior.'
+    chapter: '3.9'
+    anchor: non-negative-least-squares-keeps-only-the-masses-the-data-need
+  - term: Karush–Kuhn–Tucker conditions
+    definition: 'The conditions that mark the best positive scene: each cell either holds mass and the misfit''s slope in its direction is zero, or holds none and the slope would rise if mass were added.'
+    chapter: '3.9'
+    anchor: non-negative-least-squares-keeps-only-the-masses-the-data-need
+  - term: sparse
+    definition: 'Said of a scene with mass in only a few of its places, such as the positive image of the locked safe, which fills about 6 of 231 cells.'
+    chapter: '3.9'
+    anchor: non-negative-least-squares-keeps-only-the-masses-the-data-need
+  - term: moment problem
+    definition: 'The question of which distributions of mass have a given list of moments. For positive masses, $k$ points are fixed by the moments of degree $0$ to $2k$.'
+    chapter: '3.9'
+    anchor: a-positive-distribution-of-mass-is-fixed-by-a-few-of-its-moments
+  - term: Hankel matrix
+    definition: 'A matrix whose entries depend only on the sum of the row and column numbers, such as the moments $\mu_{i+j}$ of masses on a line. For positive masses it is positive semidefinite.'
+    chapter: '3.9'
+    anchor: a-positive-distribution-of-mass-is-fixed-by-a-few-of-its-moments
+  - term: Chebyshev's inequality
+    definition: 'For positive masses with total $M$, the share of the mass farther than $t$ from the centre is at most the spread $\sum_i m_i(x_i - \bar x)^2$ divided by $Mt^2$. With signed masses it fails.'
+    role: matter
+    chapter: '3.9'
+    anchor: positivity-resolves-as-a-power-of-the-sensitivity-not-its-logarithm
+  - term: super-resolution
+    definition: 'Recovering detail finer than the blur from blurred, noisy data by using what is known about the scene, such as that it holds a few positive point sources.'
+    chapter: '3.9'
+    anchor: positivity-resolves-as-a-power-of-the-sensitivity-not-its-logarithm
+  - term: complex quadrupole
+    definition: 'For a thin layer of mass, $Q_c = \int\sigma\,(w'' - w_{\rm cm})^2\,\mathrm d^2w''$ with places written as complex numbers: its two quadrupole numbers within the plane. The zeros of the shear far above the layer stand at $w_{\rm cm} \pm i\sqrt{Q_c/M}$.'
+    role: matter
+    chapter: '3.9'
+    anchor: the-zeros-of-the-shear-survive-the-blur
+  - term: line element
+    definition: 'A rule that turns a small step of the coordinates into a squared length, such as $\mathrm dx^2 + \mathrm dy^2 + \mathrm dz^2$ in flat space.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - term: metric
+    definition: 'The table $g_{ij}$ of a line element, $\mathrm ds^2 = g_{ij}\,\mathrm dx_i\,\mathrm dx_j$.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - term: hyperbolic space
+    definition: 'The space whose line element, in the upper half-space, is $(\mathrm dx^2 + \mathrm dy^2 + \mathrm dz^2)/z^2$: lengths measured in units of the depth. The space below a flat camera has this geometry.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - term: upper half-space
+    definition: 'The model of hyperbolic space on the half of space $z > 0$, with the line element $(\mathrm dx^2 + \mathrm dy^2 + \mathrm dz^2)/z^2$. Below a camera, $z$ is the depth.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - term: boundary at infinity
+    definition: 'The plane $z = 0$ of the upper half-space, infinitely far from every point of it in the hyperbolic metric. The flat camera lies there.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - term: isometry
+    definition: 'A map that keeps every length. In hyperbolic space a change of scale about a point of the boundary is one.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - term: Laplace–Beltrami operator
+    definition: 'The Laplacian measured with a metric: $\frac{1}{\sqrt g}\partial_i(\sqrt g\,g^{ij}\partial_ju)$, with $g$ the determinant of $g_{ij}$ and $g^{ij}$ its inverse.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - term: Fisher metric
+    definition: 'The squared distance between two neighbouring scenes in units of the noise, $D^2 = F_{kl}\,\mathrm d\theta_k\,\mathrm d\theta_l$. For one mass under a flat array, with its signal-to-noise ratio held fixed, it is hyperbolic once the coordinates across are stretched by $\sqrt{5/2}$.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic

@@ -40,6 +40,7 @@ import OneModeWiener from './live/OneModeWiener.svelte';
 import ToyCamera from './live/ToyCamera.svelte';
 import RoundPupil from './live/RoundPupil.svelte';
 import BitsPerPatch from './live/BitsPerPatch.svelte';
+import PositiveImage from './live/PositiveImage.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -162,6 +163,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'The bits of a near-field picture: the patterns of one patch, their bits, and the total against the sensitivity',
 		component: BitsPerPatch
+	},
+	'positive-image': {
+		label:
+			'Masses in a row of cells under a row of sensors: the truth, the Gaussian image and the positive image',
+		component: PositiveImage
 	},
 	'noise-spectrum': {
 		label:

@@ -1036,3 +1036,51 @@ symbols:
     meaning: 'The bits that the field outside a body holds at one time, read on a sphere of radius $R_c$ about a body of radius $R$ with the monopole at the signal-to-noise ratio $\mathrm{SNR}$: $C_{\rm body} \approx [L^3/3\Lambda^2 + L^2/2\Lambda]/\ln 2$, with the paper''s $L = \ln\mathrm{SNR}$ and $\Lambda = \ln(R_c/R)$. The paper writes it $H$. From three radii at $10^6$ it is about 1200 bits; a black hole at rest gives at most $7\log_2\mathrm{SNR}$.'
     chapter: '3.8'
     anchor: a-bodys-field-at-one-time-holds-about-1200-bits-from-three-radii-away
+  - key: line-moment
+    title: Moment of masses on a line
+    tex: '\matter{\mu}_n'
+    role: matter
+    kind: A number for each whole number $n$; in kg mⁿ
+    meaning: 'For masses $m_i$ at the places $x_i$ of a line, $\mu_n = \sum_i m_ix_i^n$: the total mass for $n = 0$, the mass times the centre of mass for $n = 1$, and the spread for $n = 2$. For positive masses every Hankel matrix of moments, $\mu_{i+j}$ in row $i$ and column $j$, is positive semidefinite. (Not the rigidity $\mu$ or a passing mass.)'
+    chapter: '3.9'
+    anchor: a-positive-distribution-of-mass-is-fixed-by-a-few-of-its-moments
+  - key: complex-quadrupole
+    title: Complex quadrupole of a thin layer
+    tex: '\matter{Q}_c'
+    role: matter
+    kind: A complex number; in kg m²
+    meaning: 'For a thin layer of surface density $\sigma$ with mass $M$ and centre of mass $w_{\rm cm}$, $Q_c = \int\sigma\,(w'' - w_{\rm cm})^2\,\mathrm d^2w''$, with places written as complex numbers. It holds the two quadrupole numbers within the plane, $(Q_{xx} - Q_{yy} + 2iQ_{xy})/3$, and places the zeros of the shear far above the layer at $w_{\rm cm} \pm i\sqrt{Q_c/M}$.'
+    chapter: '3.9'
+    anchor: the-zeros-of-the-shear-survive-the-blur
+  - key: line-element
+    title: Line element
+    tex: '\mathrm{d}s^2'
+    role: none
+    kind: A rule giving a squared length for each small step; here a pure number
+    meaning: 'The squared length of a small step of the coordinates. Below a flat camera, measured in units of the depth $z$, it is $\mathrm ds^2 = (\mathrm dx^2 + \mathrm dy^2 + \mathrm dz^2)/z^2$, the line element of hyperbolic space.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - key: metric
+    title: Metric
+    tex: 'g_{ij}'
+    role: none
+    kind: A symmetric table of numbers at each point
+    meaning: 'The table that turns a small step into a squared length, $\mathrm ds^2 = g_{ij}\,\mathrm dx_i\,\mathrm dx_j$. Below a flat camera it is $\delta_{ij}/z^2$. (Not the gravitational field $g$ or a tidal profile $g$.)'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - key: hyperbolic-laplacian
+    title: Laplacian of hyperbolic space
+    tex: '\nabla^2_H'
+    role: none
+    kind: An operator on functions of place
+    meaning: 'The Laplace–Beltrami operator of the metric $\delta_{ij}/z^2$: $\nabla^2_Hu = z^2\nabla^2u - z\,\partial_zu$. With $u = z^{1/2}\Phi$, Laplace''s equation becomes $(\nabla^2_H + \tfrac34)u = 0$.'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
+  - key: lifted-potential
+    title: Potential on hyperbolic space
+    tex: '\field{u}'
+    role: field
+    kind: A number at each point below the camera; in J kg⁻¹ m^½
+    meaning: 'The potential times the square root of the depth, $u = z^{1/2}\Phi$. It obeys $(\nabla^2_H + \tfrac34)u = 0$ wherever $\nabla^2\Phi = 0$. (Not the scaled radius $u$ of chapters 3.6 and 3.7.)'
+    chapter: '3.9'
+    anchor: the-space-below-a-flat-camera-is-hyperbolic
