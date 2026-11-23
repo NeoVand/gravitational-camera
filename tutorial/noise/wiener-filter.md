@@ -107,10 +107,13 @@ pattern, with $s = 0.083$, is kept with $H = 0.0068$.
 \to 0$ and $\hat x \to 0$, the prior's mean. At $s = 1$ the guess keeps half the reading and leaves half the prior's
 variance; at $s = 3$ it keeps 0.9. The naive guess has the error $\sigma_x^2/s^2$, larger than the prior's variance
 when $s < 1$. A buried pattern divided by its small gain is worse than no guess at all, and $H$ removes it instead.
+Figure [](#fig:weight) draws the weight and the two errors.
 
-<!-- diagram: tut-wiener-weight — H = s²/(1+s²) against s on a logarithmic axis from 0.01 to 100, with the remaining
-error 1/(1+s²) (in units of the prior's variance) and the naive guess's error 1/s² on the same axis, clipped at 3. Marks
-at s = 1/3 (H = 0.1), s = 1 (H = ½, both errors meet the prior's variance and half of it) and s = 3 (H = 0.9). -->
+![The weight $H$ with which the best guess keeps the reading, the error $1/(1 + s^2)$ that it leaves, and the
+error $1/s^2$ of the naive guess $y/T$, against the ratio $s$; the errors are in units of the prior's variance. The
+weight and the best guess's error add to one, so they cross at $s = 1$, where the naive guess's error reaches the
+prior's variance. Below $s = 1$ dividing by the gain is worse than guessing zero, and above $s = 3$ the two guesses
+hardly differ.](tut-wiener-weight){#fig:weight}
 
 ## With Gaussian scene and noise the best linear guess is also the most probable
 
@@ -363,7 +366,8 @@ dips beyond. This **ringing** is chapter 2.6's [Gibbs
 phenomenon](/tutorial/outside/fourier/#a-repeating-pattern-is-a-sum-of-ripples) in another form: a sharp edge in $k$
 gives an oscillation in $a$ that dies away only as $1/a$. It is the price that the paper's caption names, not a fault of
 the computation. The Wiener filter's edge is soft, so it rings a little less: at the figure's sensitivity its first dip
-is $-0.211$ of the peak, 0.251 depths from the mass.
+is $-0.211$ of the peak, 0.251 depths from the mass. Figure [](#fig:sinc) draws the two filters and their
+point-spread functions.
 
 That distance explains the figure. The masses lie 0.5 depths apart, so the inner dip of each falls at the midpoint,
 where the two dips add to $-0.40$ of the peak. The outer dips, at 0.49 depths from the centre, reach $-0.16$, and each
@@ -373,11 +377,10 @@ A soft edge alone does not stop the ringing, since the Wiener filter falls smoot
 a point-spread function that is positive everywhere, as the transform of a Gaussian is (chapter 2.6's Gaussian pair).
 Such a filter has a larger mean squared error: the Wiener filter is best on average, not best to the eye.
 
-<!-- diagram: tut-wiener-sinc — Left, the ideal low-pass H(k) = 1 for |k| < k_c, a box, with the Wiener filter of
-SNR = 10⁶ drawn over it (q from 0 to 25, its soft edge at q_c = 17.8, falling through ½ there). Right, their
-point-spread functions on a row against u = k_c a from −12 to 12: (sin u)/u, with the half maximum at u = ±1.8955
-(full width 3.79) and the first negative lobe at u = 4.49, −0.217, marked; the Wiener filter's curve beside it, with its
-lobe at −0.211. -->
+![Left, the ideal low-pass filter (the dashed box) and the Wiener filter at $\SNR = 10^6$, which falls through one half
+at the cut-off $q_c = 17.8$; its drop to zero at $q = 0$ is far too narrow to see. Right, their point-spread functions
+on a row, each divided by its peak, against $u = k_ca$. The ideal filter's is 3.79 wide at half maximum and dips to
+$-0.217$ at $u = 4.49$, and the Wiener filter's, almost the same, dips to $-0.211$.](tut-wiener-sinc){#fig:sinc}
 
 ## A linear guess cannot keep mass positive, and with a white prior it is harmonic
 
