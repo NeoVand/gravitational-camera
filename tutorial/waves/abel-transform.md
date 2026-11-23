@@ -6,7 +6,7 @@ part: '5'
 requires: ['1.3', '2.5', '2.6', '5.5']
 paper: [sec:first-image, eq:column, eq:abel, eq:abel-inverse, fig:sun-at-midnight, fig:earth-glow, fig:earth-inverted, sec:near-field, fig:same-outside, sec:one-pixel, sec:second-order, eq:pass, app:proofs]
 figures: [fig:sun-at-midnight, fig:earth-glow, fig:earth-inverted]
-live: []
+live: [onion-peel]
 depth: A
 ---
 
@@ -312,23 +312,17 @@ inward, because each step subtracts the shells already found. Five equal shells 
 exactly through the peeling and drawn ten times their size. The paper's own errors come from a joint fit, not from a
 peeling.](tut-abel-peel){#fig:abel-peel}
 
-<!-- try: onion-peel — OnionPeel (new). Left panel: a round planet in section with up to five shells, whose radii (drag
-the boundaries, or type) and glows (a slider per shell, 0 to 10 in arbitrary units) the reader sets; a camera glyph at
-the top of the circle and a line of sight from it that the reader drags, or turns with the arrow keys, from 0° to 90°
-from straight down, with its chord drawn and, beside the planet, a stacked bar giving the chord's length in each shell
-(L_i(b) of the peeling section). Right panel: the brightness N against the angle from straight down, 0° to 90°,
-computed exactly as Σ j_i L_i(R sin θ), with a moving dot at the current line and a thin dotted vertical at each
-arcsin(R_k/R), labelled with its angle. A "Peel" button runs the onion peeling on the curve's values at the grazing
-angles and draws the recovered glows as bars over the true ones (as in tut-abel-peel); a "Noise" control adds Poisson
-noise for a chosen total number of counts (100 to 10⁶, logarithmic; default off), with a "New draw" button, and the
-recovered bars then carry error bars. Presets: "The paper's Earth" (radii 1222, 3480, 5701, 6346, 6371 km; glows in the
-ratios of the paper's fig:earth-glow, from the figure's data), "Gold in a steel ball" (a skin 0.01 R thick glowing, the
-rest dark; a uniform ball; a central nugget of radius 0.2 R), and "Two shells" (3 inside 0.6 R, 1 outside). Opens on the
-paper's Earth with the line at 40°. Predict first: "Where on the brightness curve does the edge of the core show?"
-(Answer: as a kink at 33.1°, whatever its glow.) Then: "Double the core's glow. Does the kink move?" (Answer: no; only
-how high the curve climbs at the kink changes.) Then, with noise on: "Which shell comes back least certain?" (Answer:
-the innermost, except for a very thin outer shell, which sends few counts.) Keyboard: arrows turn the line or move the
-focused slider; Tab reaches each boundary; both themes; on a phone the two panels stack. -->
+::: try {#onion-peel}
+On the left, a round planet in section with up to five shells, the camera at the top and one line of sight, which you
+drag or turn with the arrow keys; beside it, a bar shows how long the line runs in each shell. On the right, the
+brightness against the angle from straight down, with a dotted line at every boundary's grazing angle. The sliders set
+each shell's glow, and the boundaries can be dragged. *Peel* runs the onion peeling of the last section and draws the
+recovered glows over the true ones; the noise control adds Poisson noise for a chosen number of counted gravitons. The
+presets are the paper's Earth, the gold in a steel ball, and the two shells of the inversion's example.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, turn
+the noise on for the paper's Earth and see which shell comes back least certain, and why.
+:::
 
 ## A body that is not round needs views from many directions
 

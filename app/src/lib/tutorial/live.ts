@@ -52,6 +52,7 @@ import Tremor from './live/Tremor.svelte';
 import DelayAndSum from './live/DelayAndSum.svelte';
 import RotorPolarization from './live/RotorPolarization.svelte';
 import RadiativeTransfer from './live/RadiativeTransfer.svelte';
+import OnionPeel from './live/OnionPeel.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -233,6 +234,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'radiative-transfer': {
 		label: 'A slab in front of a background, and what one pixel receives',
 		component: RadiativeTransfer
+	},
+	'onion-peel': {
+		label:
+			'Onion peeling a round planet: the chord through each shell, the brightness against the angle with a kink at every boundary, and the layers peeled back, with Poisson noise',
+		component: OnionPeel
 	},
 	'noise-spectrum': {
 		label:
