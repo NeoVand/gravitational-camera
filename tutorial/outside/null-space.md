@@ -103,9 +103,10 @@ $$\begin{aligned}\matter\rho_0 + \matter{\delta\rho} &= \frac{5\matter\rho_0}{3}
 
 The first ball is empty at its centre and reaches $1.67\matter\rho_0 = 13{,}100\unit{kg\,m^{-3}}$ at its surface. The
 second has a core twice as dense as steel, $15{,}700\unit{kg\,m^{-3}}$, and thins to $2600\unit{kg\,m^{-3}}$ at the
-surface. Both are real, positive bodies of 32.9 kg, and both pull exactly like the uniform ball at every point outside.
-Inside, they differ. The integral $\int\matter\rho\,r^2\,\dd V$ of chapter 1.6, which measures how far the mass lies
-from the centre, is 1.19 times the uniform ball's for the first and 0.81 times for the second (the practice problem).
+surface. Both are real, positive bodies of 32.9 kg, and both pull exactly like the uniform ball at every point outside
+(Figure [](#fig:null-balls)). Inside, they differ. The integral $\int\matter\rho\,r^2\,\dd V$ of chapter 1.6, which
+measures how far the mass lies from the centre, is 1.19 times the uniform ball's for the first and 0.81 times for the
+second (the practice problem).
 
 Their moments of inertia, $0.157\unit{kg\,m^2}$ for the first ball, 0.132 for the uniform one and 0.106 for the second,
 contain this integral ([chapter 1.6](/tutorial/newton/motion/#the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one)),
@@ -116,10 +117,12 @@ uniform Earth. It is zero outside by the shell theorem, and its slope is zero at
 with $G\matter M/R^2$ there, where $\matter M$ is the Earth's mass. A thick uniform shell and a uniform ball of the same
 mass work too, but a thin shell does not, because it is a layer of mass on a surface and the pull jumps across it.
 
-<!-- diagram: the hero of the chapter, in the stone pipeline. Three steel balls of radius 0.1 m cut open side by side:
-the first shaded from empty at the centre to 1.67 ρ0 at the skin (density 5ρ0r²/3R²), the uniform ball at ρ0, the third
-from 2ρ0 at the centre to ρ0/3 at the skin; one shading scale for all three. Outside each, the same thin grey pull
-arrows at 1.5R and 2R, of equal length in all three. Under each, its moment of inertia: 0.157, 0.132, 0.106 kg m². -->
+![Three steel balls of radius $R = 0.1\unit{m}$ cut through their centres, shaded by density on one scale. The
+first, $\matter\rho_0 + \matter{\delta\rho}$, is empty at its centre and $1.67\matter\rho_0$ at its surface; the
+second is uniform; the third, $\matter\rho_0 - \matter{\delta\rho}$, has $2\matter\rho_0$ at its centre and
+$\matter\rho_0/3$ at its surface. The grey arrows give the pull at $1.5R$ and $2R$ from each centre, the same for all
+three, while the moments of inertia differ; the arrows' common scale is chosen for the
+drawing.](tut-null-hero){#fig:null-balls}
 
 ## Two bodies with the same outside differ by a confined Laplacian
 
@@ -229,13 +232,13 @@ family $\mathcal N$ is the **null space** of the field outside: the densities th
 
 By the last section, two bodies with the same outside differ by a member of $\mathcal N$, so they have the same
 harmonic part; and two bodies with the same harmonic part differ by a member of $\mathcal N$, so they have the same
-outside. The field outside fixes $\matter\rho_h$ completely, and is blind to the rest.
+outside. The field outside fixes $\matter\rho_h$ completely, and is blind to the rest (Figure [](#fig:null-split)).
 
-<!-- diagram: the split drawn as geometry in perspective. A horizontal plane labelled N (the null space) and a vertical
-line through its origin labelled H, at right angles to it. An arrow ρ from the origin into the space, its shadow ρ_h on
-the line H, and the dashed segment from ρ_h to ρ parallel to the plane. Through ρ_h, a second, lighter plane parallel to
-N labelled "ρ_h + N: same outside"; several arrows from the origin to points of that plane, of which ρ_h is the
-shortest, with a small right-angle mark at ρ_h. -->
+![The split drawn as geometry: the family $\mathcal N$ as a plane, and the family $\mathcal H$ as a line at right
+angles to it. A density $\matter\rho$ is its shadow $\matter\rho_h$ on the line plus a member of $\mathcal N$ (dashed).
+Every density in the lighter plane $\matter\rho_h + \mathcal N$ has the same outside, and $\matter\rho_h$ is the
+shortest arrow to that plane; the families have infinitely many dimensions, and the arrows are chosen for the
+drawing.](tut-null-split){#fig:null-split}
 
 ## The least assuming interior is the harmonic part, and it never shows a core
 
@@ -375,13 +378,13 @@ gives $-0.485071\,G\matter m/R$, the nugget's own value and the skin's of chapte
 **Limits.** As $s \to 0$, every term with $\ell \ge 1$ vanishes, and a nugget at the centre appears as gold spread
 evenly, $3\matter m/4\pi R^3$: the shell theorem again. As the nugget nears the wall, $t$ at the near wall tends to 1
 and the peak $(3 + 6t - t^2)/(1 - t)^3$ grows without limit; its leading term is $8/(1 - s/R)^3$. The peak is $10.5$
-for $s = 0.25R$, 46 for $0.5R$ and 444 for $0.75R$, in units of $\matter m/4\pi R^3$.
+for $s = 0.25R$, 46 for $0.5R$ and 444 for $0.75R$, in units of $\matter m/4\pi R^3$ (Figure [](#fig:null-flush)).
 
-<!-- diagram: ρ_h along the diameter through the nugget, from the far wall (−R) to the near wall (+R), for s = 0.25R,
-0.5R and 0.75R, in units of m/4πR³ on a logarithmic axis from 0.1 to 1000 (the negative values drawn on a short linear
-stretch below the axis break, or marked as a small dip). Peaks at the near wall 10.5, 46 and 444; all three curves
-pass through 3 at the centre; the far-wall values 0.736, −0.074 and −0.385 marked, the dip below zero for 0.5R and
-0.75R shaded. A dashed horizontal line at 3, "gold spread evenly". Matter colour for the curves. -->
+![The flush along the diameter through the nugget, from the far wall to the near wall, for $s = 0.25R$, $0.5R$ and
+$0.75R$, in units of $\matter m/4\pi R^3$. All three pass through 3, the gold spread evenly, at the centre, and peak
+at the near wall; at the far wall they reach 0.736, $-0.074$ and $-0.385$, and the dips below zero are shaded. The
+vertical axis is logarithmic above 1 and nearly linear about zero, so that the values below zero can be
+drawn.](tut-null-flush){#fig:null-flush}
 
 ## The nugget, the flush and the skin differ only in what the outside cannot read
 
@@ -422,15 +425,16 @@ $\matter mR^2$,
 
 $$\begin{aligned}\text{nugget:}&\quad \tfrac23 \times 0.25 + 0.083 = 0.25,\\ \text{flush:}&\quad \tfrac23 \times 0.6 + 0.083 = 0.483,\\ \text{skin:}&\quad \tfrac23 \times 1 + 0.083 = 0.75,\end{aligned}$$
 
-which the paper rounds to 0.25, 0.48 and 0.75. The paper problems of
+which the paper rounds to 0.25, 0.48 and 0.75 (Figure [](#fig:null-moments)). The paper problems of
 [chapter 1.6](/tutorial/newton/motion/#the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one) and of
 [chapter 2.4](/tutorial/outside/greens-functions/#on-a-sphere-kelvins-image-gives-the-potential-inside-and-the-skin-of-balayage)
 derive them.
 
-<!-- diagram: three bars in the matter colour, one per body (nugget, flush, skin, with small icons of the three balls
-under them), for ∫ρr² dV = 0.25, 0.6 and 1 mR²; on each bar a darker lower segment of equal height, 0.083 mR², marking
-the harmonic part of the moment of inertia that the three share, and a tick at the moments of inertia 0.25, 0.483,
-0.75 mR². -->
+![The gold's share of the moment of inertia $I_x$ for the nugget at $s = R/2$, its flush and its skin, in units of
+$\matter mR^2$. The full-coloured lower part of each bar, $0.083\,\matter mR^2$, comes from a harmonic integrand and
+is the same for all three; the fainter upper part is two thirds of $\int\matter\rho\,r^2\,\dd V$, which the outside
+cannot read. Under the bars the flush and the skin are shaded in steps that double in density, and the nugget's size
+and the skin's band are chosen for the drawing.](tut-null-moments){#fig:null-moments}
 
 These numbers say what breaks the tie. The paper's *What breaks the tie* names readings that do, and each needs more
 than the steady pull outside:
