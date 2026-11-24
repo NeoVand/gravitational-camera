@@ -74,6 +74,7 @@ import ClickTrains from './live/ClickTrains.svelte';
 import QuantumLimit from './live/QuantumLimit.svelte';
 import QuantumTremor from './live/QuantumTremor.svelte';
 import SquareOfVector from './live/SquareOfVector.svelte';
+import JordanExplorer from './live/JordanExplorer.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -364,6 +365,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			"A wave seen about any axis: its five spin weights against light's three, and the square that is left",
 		component: SquareOfVector
+	},
+	'jordan-explorer': {
+		label:
+			'A complex symmetric table: its eigenvalues, I and J, and the six shapes that only its powers tell apart',
+		component: JordanExplorer
 	},
 	'noise-spectrum': {
 		label:

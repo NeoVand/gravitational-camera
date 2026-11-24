@@ -6,7 +6,7 @@ part: '9'
 requires: ['1.1', '1.4', '1.5', '1.5b', '6.6', '9.1']
 paper: [sec:one-pixel, eq:W, eq:invariants, eq:polar, eq:pencil, eq:ranging-instant, fig:stars]
 figures: []
-live: []
+live: [jordan-explorer]
 depth: A
 ---
 
@@ -155,20 +155,12 @@ across the line: the paper's "positive for a single body". A single wave has $\c
 so $I = J = 0$, the test cannot be applied, and all its eigenvalues are zero. **A number.** The paper's Figure
 [](/paper/#fig:stars) has two masses in the ratio $1 : 0.45$, at $(-1.5, 0.3, 0)$ and $(0.9, 1.1, 0.6)$ in the
 figure's units, from the pixel. They give the eigenvalues $-0.537$, $0.135$ and $0.402$ in the figure's
-units, $I = 0.468$ and $J = -0.0874$, so $1 - 6J^2/I^3 = 0.553$: the paper's 0.55.
+units, $I = 0.468$ and $J = -0.0874$, so $1 - 6J^2/I^3 = 0.553$: the paper's 0.55 (Figure
+[](#fig:cx-eigen-plane)).
 
-<!-- diagram: tut-cx-eigen-plane — One panel, about 560 × 320 px at 1440 (full width on a phone): the complex plane of
-eigenvalues, Re w across and Im w up, in units of GM/r³ for the body or bodies drawn, thin grey axes with ticks at −2,
-−1, 0, 1, 2 across and −0.5, 0, 0.5 up, labelled "Re w" and "Im w" beside the axes. Four thin horizontal strips, one
-per reading, each with a short label at its left, never on a point: (a) "one mass": two touching dots at 1 and a dot at
-−2; (b) "two masses (Fig. stars)": dots at −0.537, 0.135, 0.402 (the figure's units, scaled ×2 so that they spread);
-(c) "a pixel moving through a room at rest": the same three points as (b), hollow, with the note "unchanged by the
-motion" (chapter 9.3); (d) "a spinning body (exaggerated)": two touching dots at 0.941 + 0.290i and a dot at
-−1.88 − 0.58i, the eigenvalues (1, 1, −2)·(1 − 0.1i)⁻³, on one dashed line through the origin at 0.299 rad (the
-paper's phase 3a cos ϑ/r with a cos ϑ/r = 0.1, far larger than any real body's); strips (a)–(c) on the real axis, (d)
-with the imaginary axis shown. A tiny "Σ = 0" at the right of each strip. No orange or blue. Caption: "Look first at
-the bottom strip: only a scene in which something moves or turns puts the eigenvalues off the real axis. Two equal
-eigenvalues, as for one mass, make 1 − 6J²/I³ vanish. Points computed; the spin is exaggerated." -->
+![Look first at the bottom strip: only a scene in which something moves or turns puts the eigenvalues off the real
+axis. Two equal eigenvalues, as for one mass, make $1 - 6J^2/I^3$ vanish. Points computed; the spin is
+exaggerated.](tut-cx-eigen-plane){#fig:cx-eigen-plane}
 
 ## Six shapes, told apart by what the table's powers do
 
@@ -244,37 +236,27 @@ T} + \hat z\vect m^{\mathsf T}$.
 first, a plane wave along $\hat z$, $\curv{\mathcal W} = N$, stands beside empty space: both have $I = J = 0$ and three
 zero eigenvalues. In the second, one mass alone (type D) stands beside the same mass with the weak wave along its line
 (type II): both have $I = 6\curv w^2$, $J = -6\curv w^3$ and the eigenvalues $\curv w$, $\curv w$, $-2\curv w$. Only
-the table's powers tell each pair apart. The wave has $N \neq 0$, and $\curv{\mathcal W}^2 = 0$ marks it as one wave,
+the table's powers tell each pair apart (Figure [](#fig:cx-shape-tree)). The wave has $N \neq 0$, and
+$\curv{\mathcal W}^2 = 0$ marks it as one wave,
 since the type III table also has both invariants zero. The product $(\curv{\mathcal W} - \curv w)(\curv{\mathcal W} +
 2\curv w)$ is zero for the mass alone and $3\curv w\curv c_2\,\vect m\vect m^{\mathsf T}$ with the wave.
 
 **The Jordan form**, stated without proof, is the general picture: in suitable axes every square table is a row of
-**Jordan blocks** down the diagonal, each with one eigenvalue on its diagonal and 1 on the line above it. The six shapes
-have blocks of sizes $1, 1, 1$ (I, D, O), $2, 1$ (II, N) and $3$ (III), and a change of observer, $P\curv{\mathcal
+**Jordan blocks** down the diagonal, each with one eigenvalue on its diagonal and 1 on the line above it (Figure
+[](#fig:cx-jordan-block)). The six shapes have blocks of sizes $1, 1, 1$ (I, D, O), $2, 1$ (II, N) and $3$ (III),
+and a change of observer, $P\curv{\mathcal
 W}P^{-1}$, keeps the blocks, so no observer can change the shape of a reading. Gantmacher proved, and we state, that
 every Jordan form belongs to some complex symmetric table, and that two with the same Jordan form are carried into each
 other by a complex orthogonal table. So the eigenvalues and the shape are all that a change of axes or of velocity
 leaves fixed.
 
-<!-- diagram: tut-cx-shape-tree — A tree of questions, read from the top, about 560 × 420 px at 1440 (narrower on a
-phone, same tree). Root box: "a reading W, trace-free". First question (ink text in a thin rounded box): "I³ = 6J²?".
-"no" → leaf "three different eigenvalues · type I · two masses". "yes" → question "I = J = 0?". Its "no" → question
-"(W − w)(W + 2w) = 0, with w = −J/I?"; "yes" → leaf "type D · one mass", "no" → leaf "type II · a mass with a wave
-along its line". Its "yes" → question "W² = 0?"; "no" → leaf "type III · W³ = 0, rank 2 · the paper's rows (0,0,1),
-(0,0,i), (1,i,0)"; "yes" → question "W = 0?"; "no" → leaf "type N · one wave, rank 1", "yes" → leaf "type O · no field".
-Leaves in thin ink boxes, the Petrov letter in bold at the left, the example in small text, and under each its minimal
-polynomial: (λ−w₁)(λ−w₂)(λ−w₃), (λ−w)(λ+2w), (λ−w)²(λ+2w), λ³, λ², λ. Thin ink arrows with "yes"/"no" beside them.
-The leaves a real symmetric table can reach (I, D, O) carry a small tick and "possible at rest". No orange or blue.
-Caption: "Look first at the second level: the invariants alone send a reading to three places, and only the powers of
-the table finish the sorting. The Petrov letters are explained in chapter 9.4." -->
+![Look first at the first two questions: the invariants alone send a reading to three places, and only the powers
+of the table finish the sorting. Each shape has an example and, under it, its minimal polynomial. The Petrov letters
+are explained in chapter 9.4.](tut-cx-shape-tree){#fig:cx-shape-tree}
 
-<!-- diagram: tut-cx-jordan-block — Two 3×3 tables side by side, about 520 × 220 px at 1440 (one above the other on a
-phone), each a grid of nine thin ink cells with KaTeX entries. Left, "diagonalizable (type D)": w, w, −2w on the
-diagonal, zeros in light grey; under it three small ink arrows, "three eigenvectors". Right, "a Jordan block (type
-II)": the same diagonal with a 1 just above it in the first row, second column, the upper-left 2×2 block outlined in
-slightly heavier ink; under it two arrows, "two eigenvectors", and a dashed third, "missing". No orange or blue.
-Caption: "Look first at the 1 above the diagonal: it joins two equal eigenvalues into one block with a single
-eigenvector, so the table cannot be diagonalized. Both tables have the same eigenvalues and the same I and J." -->
+![Look first at the 1 above the diagonal: it joins two equal eigenvalues into one block with a single eigenvector, so
+the table cannot be diagonalized. Both tables have the same eigenvalues and the same $I$ and
+$J$.](tut-cx-jordan-block){#fig:cx-jordan-block}
 
 ## Every complex rotation is a boost followed by a turn
 
@@ -411,26 +393,16 @@ $\curv{\mathcal W}_\pm$, with its helicity amplitudes $\curv\alpha^\pm$ (chapter
 W}_+$, $B = \curv{\mathcal W}_-$, $\alpha_a = \curv\alpha^+_a$ and $\beta_a = \curv\alpha^-_a$ this is the paper's
 [](/paper/#eq:pencil).
 
-<!-- try: jordan-explorer (a new interactive figure, JordanExplorer) — A trace-free complex symmetric 3×3 table W, shown
-as a grid of nine complex entries (real and imaginary parts to three figures). Presets (buttons): "one mass" (on +z at
-unit distance, W = diag(1, 1, −2)); "two masses" (the paper's fig:stars pair, masses 1 : 0.45 at (−1.5, 0.3, 0) and
-(0.9, 1.1, 0.6)); "one wave" (2mmᵀ, m = (1, i, 0)/√2); "mass + wave along its line" (0.125·diag(1, 1, −2) + c₂mmᵀ with
-c₂ = 0.05); "the paper's type III" (rows (0,0,1), (0,0,i), (1,i,0)). Sliders, each from 0 to 0.2 in units of the
-preset's largest eigenvalue size (absolute units for the wave and type III presets): "add a wave along z" (c₂ mmᵀ),
-"add a wave along x" (c₂′ m′m′ᵀ, m′ = (0, 1, i)/√2), and "add a second mass" (0 to 0.5, a mass on +x at unit
-distance). Left panel: the complex plane of eigenvalues (as tut-cx-eigen-plane), three dots, touching when they
-coincide (to 10⁻⁹ of the largest). Right panel, readouts: I and J (complex, three figures), 1 − 6J²/I³ (or
-"undefined" when |I| < 10⁻⁹|W|², with |W| the length √⟨W|W⟩), the rank (singular values above 10⁻⁹ of the largest),
-s₁ ≥ s₂ ≥ s₃, whether (W − w)(W + 2w) with w = −J/I, W² and W³ vanish (their sizes against |W|², |W|³), and the shape
-as a leaf of tut-cx-shape-tree with its Petrov letter. Checks: "one mass" I = 6, J = −6, 1 − 6J²/I³ = 0, type D,
-singular values 2, 1, 1; "two masses" 0.553, type I; "mass + wave along its line" eigenvalues 0.125, 0.125, −0.25,
-1 − 6J²/I³ = 0, (W − w)(W + 2w) with entries 0.0094, type II; "type III" I = J = 0, rank 2, W² ≠ 0, W³ = 0, singular
-values √2, √2, 0; "one wave" rank 1, singular values 2, 0, 0, type N; the type II preset with its z wave replaced by
-the same wave along x gives eigenvalues −0.274, 0.149, 0.125 and 1 − 6J²/I³ = 0.022, type I. Predict first: "Add a
-weak wave along the line to a single mass. Do the eigenvalues move?" (No: I and J stay those of the mass, but the table
-stops being diagonalizable, type II.) Then: "Add the wave across the line instead." (The eigenvalues split into three
-different ones, type I.) Keyboard: Tab moves between presets and sliders, arrow keys step a slider by 0.01. Both
-themes; on a phone the readouts sit under the plane. -->
+::: try {#jordan-explorer}
+A trace-free complex symmetric table, shown entry by entry, chosen from five readings: one mass, the two masses of the
+paper's Figure [](/paper/#fig:stars), one wave, a mass with a wave along its line, and the paper's type III table.
+Sliders add a wave along the line, a wave across it and a second mass. On the left, the eigenvalues in the complex
+plane, as in Figure [](#fig:cx-eigen-plane); on the right, $I$, $J$, $1 - 6J^2/I^3$, the rank, the singular values,
+which of the table's powers vanish, and the shape it reaches in Figure [](#fig:cx-shape-tree).
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, choose
+one mass and raise the second mass until it is as heavy as the first, and say why the shape comes back to D.
+:::
 
 ::: check
 ### Q
