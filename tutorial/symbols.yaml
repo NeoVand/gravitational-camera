@@ -2062,6 +2062,38 @@ symbols:
     meaning: 'The sum $Q = \sum_aq_a$ over the particles of a body. With the weights $q_a/Q$, the rest mass is $\mathcal M^2c^2 = Q\sum_am_a^2c^2/q_a + Q^2\,\mathrm{Var}(\mathbf p_\perp/q)$. (Not a moment $Q_h$ nor a quality factor.)'
     chapter: '6.4'
     anchor: a-bodys-rest-mass-in-light-cone-form-is-a-sum-and-a-weighted-variance
+  - key: spacetime-metric
+    title: Metric of spacetime
+    tex: '\field{g}_{\mu\nu}'
+    role: field
+    kind: A symmetric table of four rows at each event, ten independent entries; pure numbers when every coordinate is a length, as with x⁰ = ct
+    meaning: 'The table that turns differences of coordinate labels into what clocks and rulers read: along a clock''s path $c^2\,\mathrm d\tau^2 = -g_{\mu\nu}\,\mathrm dx^\mu\mathrm dx^\nu$. In flat spacetime with inertial coordinates it is $\eta_{\mu\nu}$; near slow matter its time part is $g_{00} = -(1 + 2\Phi/c^2)$, which gives Newton''s law and the rates of clocks. Always written with its two indices. (Not the size $g$ of the field at the ground, nor the metric $g_{ij}$ of the space below a flat camera in chapter 3.9.)'
+    chapter: '7.1'
+    anchor: a-clocks-own-time-is-set-by-the-metric
+  - key: inverse-spacetime-metric
+    title: Inverse metric
+    tex: '\field{g}^{\mu\nu}'
+    role: field
+    kind: A symmetric table of four rows at each event; pure numbers when every coordinate is a length
+    meaning: 'The inverse of the metric as a matrix, $g^{\mu\alpha}g_{\alpha\nu} = \delta^\mu{}_\nu$. It raises an index, $a^\mu = g^{\mu\nu}a_\nu$, as $g_{\mu\nu}$ lowers one. For a diagonal metric each entry is one over the matching entry of $g_{\mu\nu}$.'
+    chapter: '7.1'
+    anchor: a-clocks-own-time-is-set-by-the-metric
+  - key: metric-perturbation
+    title: Metric perturbation
+    tex: '\field{h}_{\mu\nu}'
+    role: field
+    kind: A symmetric table of four rows of small pure numbers at each event
+    meaning: 'The difference $h_{\mu\nu} = g_{\mu\nu} - \eta_{\mu\nu}$ between the metric and the flat one: how much a weak field changes what clocks and rulers read. Near slow matter $h_{00} = -2\Phi/c^2$, which is $1.4 \times 10^{-9}$ at the Earth''s surface. Chapter 7.4 builds the rest of the table. (Its trace is written $h^\alpha{}_\alpha$, never a bare $h$, which is a strain.)'
+    chapter: '7.1'
+    anchor: free-fall-is-the-path-along-which-a-clock-ages-most
+  - key: christoffel
+    title: Christoffel symbols
+    tex: '\Gamma^\mu{}_{\alpha\beta}'
+    role: none
+    kind: Forty numbers at each event, symmetric in the two lower indices; in m⁻¹ when every coordinate is a length
+    meaning: 'The first derivatives of the metric that enter the law of free fall, $\mathrm d^2x^\mu/\mathrm d\tau^2 + \Gamma^\mu{}_{\alpha\beta}u^\alpha u^\beta = 0$, with $\Gamma^\mu{}_{\alpha\beta} = \tfrac12g^{\mu\nu}(\partial_\alpha g_{\nu\beta} + \partial_\beta g_{\nu\alpha} - \partial_\nu g_{\alpha\beta})$. In a weak static field $\Gamma^i{}_{00} = \partial_i\Phi/c^2$ holds Newton''s pull. They depend on the coordinates and vanish at any one event in a freely falling frame, so they are not a tensor and carry no colour. Always written with three indices. (Not the damping rate $\Gamma$ of chapter 4.1.)'
+    chapter: '7.1'
+    anchor: free-bodies-follow-geodesics-and-the-christoffel-symbols-hold-newtons-pull
   - key: magnetic-field
     title: Magnetic field
     tex: '\light{B}'

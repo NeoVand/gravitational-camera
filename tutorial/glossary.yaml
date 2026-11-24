@@ -2772,6 +2772,56 @@ terms:
     definition: 'Radiation in thermal equilibrium at one temperature, the glow inside a closed box whose walls are at that temperature (chapter 10.1 derives its spectrum). Seen by a moving observer it is a black body in every direction, at the temperature $T/\gamma(1 - \beta\cos\alpha'')$.'
     chapter: '6.3'
     anchor: a-moving-black-body-is-still-a-black-body-hotter-ahead
+  - term: local inertial frame
+    definition: 'The frame of a box that falls freely and does not turn, small enough and used for a short enough time that the change of gravity across it can be neglected. In it free bodies move in straight lines at steady speeds, and the metric is $\eta_{\mu\nu}$ at its centre.'
+    chapter: '7.1'
+    anchor: falling-cancels-gravity-at-a-point-and-only-there
+  - term: equivalence principle (Einstein's form)
+    definition: 'The statement that in a local inertial frame every law of physics takes the form it has in special relativity, with no trace of gravity. It extends the equal fall of all bodies to clocks and light.'
+    chapter: '7.1'
+    anchor: falling-cancels-gravity-at-a-point-and-only-there
+  - term: coordinates (in relativity)
+    definition: 'Four numbers that label each event, $x^0 = ct$ and three of place, chosen for convenience. Their differences do not by themselves say what clocks and rulers read; the metric does.'
+    chapter: '7.1'
+    anchor: a-clocks-own-time-is-set-by-the-metric
+  - term: metric of spacetime
+    definition: 'The symmetric table $g_{\mu\nu}$ of ten numbers at each event that turns differences of coordinates into what clocks and rulers read: $c^2\,\mathrm d\tau^2 = -g_{\mu\nu}\,\mathrm dx^\mu\mathrm dx^\nu$ along a clock''s path.'
+    role: field
+    chapter: '7.1'
+    anchor: a-clocks-own-time-is-set-by-the-metric
+  - term: weak field
+    definition: 'A gravitational field in which $|\Phi|/c^2 \ll 1$, so that the metric differs from the flat one by small numbers. It is $7 \times 10^{-10}$ at the Earth''s surface and $0.17$ at a neutron star''s, where the weak field fails.'
+    chapter: '7.1'
+    anchor: free-fall-is-the-path-along-which-a-clock-ages-most
+  - term: static field
+    definition: 'A gravitational field whose metric does not change in time. Every light signal between two fixed places then takes the same coordinate time.'
+    chapter: '7.1'
+    anchor: clocks-higher-up-run-faster-clocks-read-the-potential
+  - term: metric perturbation
+    definition: 'The difference $h_{\mu\nu} = g_{\mu\nu} - \eta_{\mu\nu}$ between the metric and the flat one, a table of small pure numbers in a weak field. Near slow matter $h_{00} = -2\Phi/c^2$.'
+    role: field
+    chapter: '7.1'
+    anchor: free-fall-is-the-path-along-which-a-clock-ages-most
+  - term: Euler–Lagrange equation
+    definition: 'The equation $\mathrm d(\partial L/\partial\dot x_i)/\mathrm dt = \partial L/\partial x_i$ that a path must obey to make the integral of $L(\mathbf x, \dot{\mathbf x})$ stationary with its ends fixed. With $L = \tfrac12v^2 - \Phi$ it is Newton''s law.'
+    chapter: '7.1'
+    anchor: free-fall-is-the-path-along-which-a-clock-ages-most
+  - term: gravitational redshift
+    definition: 'The lowering of the frequency of light that climbs out of a potential, by the fraction $\Delta\Phi/c^2$: the same fraction by which a clock higher up runs faster. Near the ground it is $1.09 \times 10^{-16}$ per metre.'
+    chapter: '7.1'
+    anchor: clocks-higher-up-run-faster-clocks-read-the-potential
+  - term: geodesic
+    definition: 'A path along which the proper time does not change, to first order, when the path is changed slightly with its ends fixed: the straightest path that spacetime allows. Free bodies follow geodesics, and light follows null ones.'
+    chapter: '7.1'
+    anchor: free-bodies-follow-geodesics-and-the-christoffel-symbols-hold-newtons-pull
+  - term: geodesic equation
+    definition: 'The law of free fall in any metric and any coordinates, $\mathrm d^2x^\mu/\mathrm d\tau^2 + \Gamma^\mu{}_{\alpha\beta}u^\alpha u^\beta = 0$. In a weak static field it is Newton''s $\ddot{\mathbf x} = -\nabla\Phi$.'
+    chapter: '7.1'
+    anchor: free-bodies-follow-geodesics-and-the-christoffel-symbols-hold-newtons-pull
+  - term: Christoffel symbol
+    definition: 'One of the forty numbers $\Gamma^\mu{}_{\alpha\beta} = \tfrac12g^{\mu\nu}(\partial_\alpha g_{\nu\beta} + \partial_\beta g_{\nu\alpha} - \partial_\nu g_{\alpha\beta})$ at an event, built from the first derivatives of the metric. They hold the pull of gravity, and also the effect of curved labels, and vanish at any one event in a freely falling frame.'
+    chapter: '7.1'
+    anchor: free-bodies-follow-geodesics-and-the-christoffel-symbols-hold-newtons-pull
   - term: charge
     definition: 'The property of a body by which it feels and makes electric and magnetic forces, measured in coulombs. It may be positive or negative, and like charges repel.'
     chapter: '6.6'
