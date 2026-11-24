@@ -4704,3 +4704,16 @@ terms:
     definition: 'The lasting step in the strain that a burst leaves, as distinct from the spin memory in its time integral. It is the same seen from either side of a merging pair''s orbit, so it cannot tell which way the pair turned.'
     chapter: R12
     anchor: a-burst-leaves-a-memory-largest-where-the-oscillating-wave-is-weakest
+
+  - term: central focus
+    definition: 'Where the rays through the middle of a transparent lens cross the axis, $f_0 = c^2/4\pi G\Sigma(0)$ for a column density $\Sigma(0)$ through the centre: 33.7 AU behind Eddington''s Sun.'
+    chapter: R12b
+    anchor: the-transparent-sun-focuses-only-waves-above-8-khz
+  - term: Fresnel integral
+    definition: 'The sum of wavelets over the plane of a lens that gives the amplitude of a wave on its axis behind it, each wavelet delayed by its extra path. It joins geometric optics, for short waves, to diffraction, for long ones.'
+    chapter: R12b
+    anchor: the-transparent-sun-focuses-only-waves-above-8-khz
+  - term: tail (of a wave)
+    definition: 'The part of a burst that arrives after it, inside the light cone, because waves scatter off the curvature they cross. In curved space Huygens''s principle fails, and the tail records the mass between the source and the camera.'
+    chapter: R12b
+    anchor: matter-scatters-almost-nothing-so-every-picture-is-emitted-pulled-or-yielded

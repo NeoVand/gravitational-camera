@@ -326,8 +326,9 @@ A lens needs $r_s/R = 1/4N$, a fortieth even at $f/10$; the Earth has $r_s/R = 2
 | [](/paper/#eq:beam), the computed image | the scalar sum in 5.3, $\Lambda$ in 7.6; *assembled here* |
 | [](/paper/#eq:diffraction), the blur | 5.3; *read now* |
 
-The other results of the section are stated in the paper and marked so above. Reading chapter R12b models the
-transparent Sun's focus.
+The other results of the section are stated in the paper and marked so above. Reading chapter
+[R12b](/tutorial/sky/reading-section-xi-2/#the-transparent-sun-focuses-only-waves-above-8-khz) models the transparent
+Sun's focus.
 
 **The idea to keep: a body's optical constants are its compactness times factors below one, so only a black hole
 makes a useful lens; orbiting one 26 km away gains a metre-wide dish and loses the near field, so the camera computes

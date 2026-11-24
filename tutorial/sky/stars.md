@@ -283,12 +283,13 @@ G/c^2)\matter M_{\rm cyl}(b)$:
 
 $$\boxed{\;\alpha(b) = \frac{4G\sym{cylinder-mass}{\matter M_{\rm cyl}}(b)}{c^2b}\;} \label{eq:extended-lens}$$
 
-with $\matter M_{\rm cyl}(b)$ the mass inside the cylinder of radius $b$ along the ray. Outside the body this is
-chapter 11.1's $4G\matter M/c^2b$. Near the centre $\matter M_{\rm cyl} \approx \pi b^2\matter\Sigma(0)$, so every
-central ray crosses the axis at the same distance $b/\alpha = c^2/4\pi G\matter\Sigma(0)$: a focus. Eddington's Sun has
+with $\matter M_{\rm cyl}(b)$ the mass inside the cylinder of radius $b$ along the ray. Outside the body this is chapter
+11.1's $4G\matter M/c^2b$. Near the centre $\matter M_{\rm cyl} \approx \pi b^2\matter\Sigma(0)$, so every central ray
+crosses the axis at the same distance $b/\alpha = c^2/4\pi G\matter\Sigma(0)$: a focus. Eddington's Sun has
 $\matter\Sigma(0) = 2.1\times10^{13}\unit{kg\,m^{-2}}$, eleven times the uniform ball's, which puts the focus at the
 paper's 33.7 AU, and its bending peaks at $4.19''$ for rays $0.27R$ from the centre (Figure [](/paper/#fig:sun-lens)).
-Reading chapter R12b reads the rest of the lens, and why the denser standard model gives Patla and Nemiroff's 23.5 AU.
+Reading chapter [R12b](/tutorial/sky/reading-section-xi-2/#the-transparent-sun-focuses-only-waves-above-8-khz) reads the
+rest of the lens, and why the denser standard model gives Patla and Nemiroff's 23.5 AU.
 
 ## When the fuel is gone, crowded particles hold the star up
 

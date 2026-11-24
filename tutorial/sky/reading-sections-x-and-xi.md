@@ -24,20 +24,14 @@ never tell apart; its [Section XI](/paper/#sec:vistas) carries the same equation
 chapter 12.1 behind us, which of their claims can we derive or check, and what would the camera see of a star that
 collapses ten kiloparsecs away?
 
-We read Section X, and Section XI as far as *The Milky Way*. As in
+We read Section X, and Section XI as far as *The Milky Way* (Figure [](#fig:read-x-xi-map)). As in
 [R11](/tutorial/black-holes/reading-section-vii/), each claim is *checked here* (recomputed from an earlier result),
 *read now, derived in chapter N*, or *stated in the paper*.
 
-<!-- diagram: tut-read-x-xi-map — spec: as R11's tut-read-vii-map. Columns, left to right: Section X's plain words,
-the beam, Table tab:affordances (ten small rows), Table tab:null (six rows), then Section XI's four paragraphs read
-here (the pair, memory, the exploding star, the Milky Way), then the capstone. Under each column, solid boxes for the
-chapters it rests on (6.4, 6.5, 7.3, 7.5, 7.7, 7.8, 9.4, 11.1, 12.1 and, for the tables, 1.3, 2.5, 2.8, 4.4, 4.6, 5.4,
-5.5, 5.6, 7.6, 9.6, 10.3), each box tinted by its mark here: derived earlier (solid), checked here (solid with a tick),
-stated in the paper (dotted inset with the cited author: Thorne, Christodoulou, Wiseman and Will, Vaidya, Nelemans,
-Bland-Hawthorn and Gerhard, Fritz). Rows for 13.1, 13.4 and 12.2 drawn hollow, marked with their chapters. The last
-column follows one star through four of them (11.1, 7.3, 7.5, 7.8) with arrows. Caption: "Look first at the solid
-boxes: every row of Section X and every paragraph of Section XI read here rests on chapters of Parts 1 to 12, with its
-stated results in dotted insets. The last column follows one collapsing star through four of them." -->
+![Look first at the solid boxes: Section X and every paragraph of Section XI read here rest on chapters of Parts 1 to
+12, with their stated results in dotted insets, hollow where chapters 13.1 and 13.4 will derive them. The hatched box
+rests on a sketch at depth B. The last box follows one collapsing star through three of
+them.](tut-read-x-xi-map){#fig:read-x-xi-map}
 
 ::: plain
 Section X lists what a gravitational camera can do that light cannot. It sees through walls, weighs what it looks
@@ -317,19 +311,12 @@ frequency bin" (the count *stated in the paper*), and one pixel places each by t
 
 ## The capstone: a star collapses ten kiloparsecs away
 
-<!-- diagram: tut-read-xi-collapse — spec: a horizontal time line at the camera, 10 kpc from the star, with time
-running right; the shell's arrival marked at t = 0 (32,600 years after the collapse). Four panels above the line, each
-a ring of free test masses: (1) before, the star's tide alone (a ring stretched along the line to the star, labelled
-"tide of the original mass"); (2) during the 10 s while the shell passes, the ring squeezed evenly across the line,
-none along it, 7.8 × 10⁻³² s⁻², with a small arrow for the antisymmetric part of B pointing back to the star; (3) after,
-the tide 1.5 × 10⁻⁴² s⁻² weaker along the line (the star lighter by 0.17 solar masses), a dotted ring inside the
-first; (4) an uneven burst only: two balls 4 km apart left 8 × 10⁻¹⁸ m farther apart, the step 4.0 × 10⁻²¹. Below the
-line, a log scale of tides with the person's 9.3 × 10⁻⁹ for comparison. Panels (2) and (3) exaggerated, the scale
-bar exact. Caption: "Look first at the middle panel: while the shell of neutrinos passes, its squeeze is a hundred
-billion times the change of tide it leaves. Tides on the scale bar exact; the rings' deformations exaggerated." -->
+![Look first at the tinted panel: while the shell of neutrinos passes, its squeeze is a hundred billion times the
+change of tide it leaves. The tides on the scale are exact; the rings' deformations and the balls' step are
+exaggerated.](tut-read-xi-collapse){#fig:read-xi-collapse}
 
-The capstone follows one core collapse 10 kpc away, $3.09\times10^{20}$ m, through Parts 6 to 12. Each row can be
-recomputed from the table alone, with $G$ and $c$.
+The capstone follows one core collapse 10 kpc away, $3.09\times10^{20}$ m, through Parts 6 to 12 (Figure
+[](#fig:read-xi-collapse)). Each row can be recomputed from the table alone, with $G$ and $c$.
 
 | Step | Formula | Number | Chapter |
 |---|---|---|---|
@@ -395,7 +382,8 @@ inside the shell is it the remnant's.
 | [](/paper/#eq:merger-memory), a merger's memory | *read now, derived in chapter 7.8* |
 | [](/paper/#eq:burst-memory), a burst's memory | *read now, derived in chapter 7.8*, and its number *checked here* |
 
-Reading chapter R12b reads the rest of Section XI and its fifth equation, the graviton background's temperature.
+Reading chapter [R12b](/tutorial/sky/reading-section-xi-2/) reads the rest of Section XI and its fifth equation, the
+graviton background's temperature.
 
 **The idea to keep: most of what the camera can do follows from two facts, that gravity passes through everything and
 that all energy gravitates; a star that collapses evenly sends it no wave, but the camera weighs the star lighter as the

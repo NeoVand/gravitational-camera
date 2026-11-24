@@ -3887,3 +3887,20 @@ symbols:
     meaning: 'The paper''s amplitude of the wave in $\mathcal W = (GM/r^3)\,\mathrm{diag}(1,1,-2) + h\,\mathbf m_0\mathbf m_0^{\mathsf T}$ for one pixel on a pair''s axis, with $\mathbf m_0 = (1, i, 0)$: a tide, not a strain. Two principal null directions sit at $z = \pm(3GM/r^3h)^{1/2}$ and cross the equator where $|h| = 3GM/r^3$.'
     chapter: R12
     anchor: on-the-orbits-axis-one-pixel-sees-the-type-pass-from-d-through-ii-toward-n
+
+  - key: central-focus
+    title: Central focus of a transparent lens
+    tex: 'f_0'
+    role: none
+    kind: A length; in metres (or AU)
+    meaning: 'The distance behind a transparent lens at which its central rays cross the axis, $f_0 = c^2/4\pi G\Sigma(0)$, with $\Sigma(0)$ the column density through its centre: 33.7 AU for Eddington''s Sun. Rays farther out focus farther away, out to 548 AU at the Sun''s limb.'
+    chapter: R12b
+    anchor: the-transparent-sun-focuses-only-waves-above-8-khz
+  - key: lens-potential
+    title: Lens potential
+    tex: '\Phi(b)'
+    role: none
+    kind: A length at each impact parameter; in metres
+    meaning: 'The paper''s $\Phi(b) = \int_0^b\alpha\,\mathrm db$ for a wave crossing a lens at the impact parameter $b$, with slope $\Phi''(b) = \alpha(b)$, the bending: minus the extra path through the lens''s field, up to a constant. Outside the Sun it is $2r_s\ln b$ plus a constant. On the axis behind the lens the amplitude is the Fresnel integral of $e^{ik[b^2/2d - \Phi(b)]}$. (Not the Newtonian potential, nor 12.2''s stretch of space.)'
+    chapter: R12b
+    anchor: the-transparent-sun-focuses-only-waves-above-8-khz
