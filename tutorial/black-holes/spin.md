@@ -184,7 +184,7 @@ $$\matter M_\ell + \frac{i}{c}S_\ell = \matter M\,(ia)^\ell .$$
 Degree 0 is the mass. Degree 1 gives $S_1 = \matter Mca = \matter J$, the spin dipole. Degree 2 gives $\matter M_2 =
 -\matter Ma^2$, a flattened quadrupole, like the Earth's $-J_2\matter MR^2$ in chapter 2.3. So the hole's whole tower
 is fixed by $\matter M$ and $a$. A neutron star of the same mass and spin has a larger quadrupole, set by its matter
-(chapter 12.1).
+(chapter [12.1](/tutorial/sky/stars/#when-the-fuel-is-gone-crowded-particles-hold-the-star-up)).
 
 ## A hole at rest shows seven numbers, and nothing of what fell in
 

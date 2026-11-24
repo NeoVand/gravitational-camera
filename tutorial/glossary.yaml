@@ -702,9 +702,9 @@ terms:
     chapter: '1.8'
     anchor: what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass
   - term: virial theorem
-    definition: 'For a bound system held by gravity, twice the time average of the kinetic energy equals minus the time average of the potential energy, $2\langle K\rangle = -\langle U\rangle$. Chapter 1.8 states it; chapter 12.1 derives it.'
-    chapter: '1.8'
-    anchor: energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit
+    definition: 'For a bound system held by gravity, twice the time average of the kinetic energy equals minus the time average of the potential energy, $2\langle K\rangle = -\langle U\rangle$. For a star at rest it reads $\int3p\,\mathrm dV = -U$. Chapter 1.8 states it; chapter 12.1 derives it.'
+    chapter: '12.1'
+    anchor: in-a-bound-system-the-motion-is-half-the-binding
   - term: state
     definition: 'Everything needed to predict the motion of a system, given the forces: the position and the momentum of each of its parts.'
     chapter: '1.7'
@@ -4373,3 +4373,160 @@ terms:
     definition: 'The factor $\pi w/(1 - e^{-\pi w})$, with $w = 4\pi r_s/\lambda$, by which a point mass raises the intensity of a wave on its axis (stated in the paper''s Section XI). It is $4\pi^2r_s/\lambda$ for short waves, 795 for the hole of the equilibrium mass at 10 µm, still 3.3 at the cut-off $\lambda = 4\pi r_s$, and near 1 only for much longer waves.'
     chapter: 'R11'
     anchor: the-camera-must-orbit-26-km-away-where-the-hole-gathers-130-times-its-area
+
+  - term: hydrostatic balance
+    definition: 'The balance inside a star at rest between the pull of the mass inside each radius and the fall of pressure across a layer, $\mathrm dp/\mathrm dr = -Gm(r)\rho/r^2$.'
+    role: matter
+    chapter: '12.1'
+    anchor: a-star-holds-itself-up-by-the-pressure-of-its-gas
+  - term: central pressure
+    definition: 'The pressure $p_c$ at the centre of a star or planet. For a uniform ball it is $3GM^2/8\pi R^4$: $1.3\times10^{14}$ Pa for a uniform Sun, $1.7\times10^{11}$ Pa for a uniform Earth.'
+    role: matter
+    chapter: '12.1'
+    anchor: a-star-holds-itself-up-by-the-pressure-of-its-gas
+  - term: mean particle mass
+    definition: 'The mass per free particle of a gas, in proton masses, written $\bar m$: $\tfrac12$ for ionized hydrogen and about 0.6 for the Sun. Its pressure is then $p = \rho k_BT/\bar mm_p$. (Astronomers write $\mu$, which the tutorial keeps for the shear modulus.)'
+    chapter: '12.1'
+    anchor: a-star-holds-itself-up-by-the-pressure-of-its-gas
+  - term: self-gravitating
+    definition: 'Held together by its own gravity, as a star, a star cluster or a pair in orbit is.'
+    chapter: '12.1'
+    anchor: in-a-bound-system-the-motion-is-half-the-binding
+  - term: time average
+    definition: 'The mean of a quantity over a time $t_0$, $\langle f\rangle = (1/t_0)\int_0^{t_0}f\,\mathrm dt$, taken as $t_0$ grows long.'
+    chapter: '12.1'
+    anchor: in-a-bound-system-the-motion-is-half-the-binding
+  - term: polytrope
+    definition: 'A model star whose pressure is a fixed power of its density, $p = p_c(\rho/\rho_c)^{1 + 1/n}$; its structure follows from the Lane–Emden equation.'
+    role: matter
+    chapter: '12.1'
+    anchor: eddingtons-model-ties-the-pressure-to-the-density
+  - term: polytropic index
+    definition: 'The number $n$ of a polytrope, $p \propto \rho^{1 + 1/n}$: 0 for a uniform ball, $\tfrac32$ for a white dwarf of slow electrons, 3 for Eddington''s Sun and for electrons near the speed of light.'
+    chapter: '12.1'
+    anchor: eddingtons-model-ties-the-pressure-to-the-density
+  - term: Lane–Emden equation
+    definition: 'The equation $\xi^{-2}\,\mathrm d(\xi^2\,\mathrm d\theta/\mathrm d\xi)/\mathrm d\xi = -\theta^n$ for a polytrope''s density $\rho_c\theta^n$ at the scaled radius $\xi$, from hydrostatic balance and the growth of the mass inside. For $n = 3$ the surface is at $\xi_1 = 6.897$, and the centre is 54.2 times denser than the mean.'
+    chapter: '12.1'
+    anchor: eddingtons-model-ties-the-pressure-to-the-density
+  - term: 'Eddington''s standard model'
+    definition: 'Eddington''s model of the Sun (1916–18; set out in full in 1926): a polytrope of index 3, which follows if the pressure of light is a fixed fraction of the gas''s. It puts $7.6\times10^4\,\mathrm{kg\,m^{-3}}$ and $1.2\times10^7$ K at the centre, and the Sun''s central focus for gravitational waves 33.7 AU behind it.'
+    chapter: '12.1'
+    anchor: eddingtons-model-ties-the-pressure-to-the-density
+  - term: column density
+    definition: 'The density added up along a straight line through a body, in kg m⁻². A weak-field ray at the distance $b$ from the centre of a round transparent body bends by $4GM_{\rm cyl}(b)/c^2b$, and the central rays focus at $c^2/4\pi G\Sigma(0)$.'
+    role: matter
+    chapter: '12.1'
+    anchor: eddingtons-model-ties-the-pressure-to-the-density
+  - term: Fermi momentum
+    definition: 'The greatest momentum $\hbar k_F$ of cold electrons that fill every state up to the Fermi wavenumber $k_F$, with $n_e = k_F^3/3\pi^2$: $0.80\,m_ec$ at $10^9\,\mathrm{kg\,m^{-3}}$ in a white dwarf.'
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+  - term: degeneracy pressure
+    definition: 'The pressure of particles crowded so closely that their momenta are set by the uncertainty relation and the exclusion principle, not by heat: $n_e\hbar^2k_F^2/5m_e$ for slow electrons and $n_e\hbar k_Fc/4$ for electrons near the speed of light.'
+    role: matter
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+  - term: white dwarf
+    definition: 'The remnant of a star like the Sun, held up by the degeneracy pressure of its electrons: about the size of the Earth for 0.6 solar masses, and smaller the heavier it is.'
+    role: matter
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+  - term: Chandrasekhar mass
+    definition: 'The largest mass that electrons can hold up, $M_{\rm Ch} = (\sqrt{3\pi}/2)\,2.018\,(\hbar c/G)^{3/2}/(2m_p)^2 = 1.43$ solar masses, from the polytrope of index 3. The often-quoted 1.44 differs through the mass used per nucleon and small corrections.'
+    role: matter
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+  - term: neutron star
+    definition: 'The remnant of a collapsed stellar core, held up by its neutrons: about 1.4 solar masses within a radius of about 12 km, denser than an atomic nucleus, with compactness 0.17. None is heavier than about 2 to 2.3 solar masses.'
+    role: matter
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+  - term: equation of state
+    definition: 'How the pressure of a kind of matter depends on its density (and temperature). For neutron stars it is known only within a range.'
+    role: matter
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+  - term: I-Love-Q relations
+    definition: 'The ties, to about one per cent and whatever the equation of state, between a neutron star''s moment of inertia, its Love number and its quadrupole (Yagi and Yunes, 2013; stated).'
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+  - term: core collapse
+    definition: 'The end of a star of more than about eight solar masses: its iron core, near the Chandrasekhar mass, falls in within a second to a neutron star and frees about a sixth of a solar mass of energy, nearly all in neutrinos.'
+    chapter: '12.1'
+    anchor: a-core-collapse-frees-a-sixth-of-a-solar-mass-and-neutrinos-carry-it
+  - term: supernova
+    definition: 'An exploding star. In a core-collapse supernova the outer star is blown off as its core becomes a neutron star.'
+    chapter: '12.1'
+    anchor: a-core-collapse-frees-a-sixth-of-a-solar-mass-and-neutrinos-carry-it
+  - term: neutrino
+    definition: 'A particle with almost no mass and no charge, which crosses matter almost freely. Neutrinos carry about 99% of the energy of a core collapse.'
+    role: matter
+    chapter: '12.1'
+    anchor: a-core-collapse-frees-a-sixth-of-a-solar-mass-and-neutrinos-carry-it
+  - term: inspiral
+    definition: 'The slow spiral of a pair of compact bodies toward each other as they lose energy to gravitational waves. The time left before merger is $\tfrac5{256}c^5d^4/G^3m_1m_2M$: 8.8 s for the paper''s two black holes at 2200 km.'
+    chapter: '12.1'
+    anchor: two-compact-bodies-spiral-together-and-the-papers-pair-has-nine-seconds-left
+  - term: merger
+    definition: 'The end of an inspiral, when the two bodies meet and become one.'
+    chapter: '12.1'
+    anchor: two-compact-bodies-spiral-together-and-the-papers-pair-has-nine-seconds-left
+  - term: thin disc
+    definition: 'The Galaxy''s main disc of stars, in the paper''s model $3.5\times10^{10}$ solar masses with a scale length of 2.6 kpc and a scale height of 0.3 kpc.'
+    role: matter
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: thick disc
+    definition: 'A fainter, thicker disc of older stars in the Galaxy, in the paper''s model $0.6\times10^{10}$ solar masses with a scale length of 2.0 kpc and a scale height of 0.9 kpc.'
+    role: matter
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: bulge
+    definition: 'The flattened central ball of stars of the Galaxy, in the paper''s model $1.5\times10^{10}$ solar masses falling by $e$ every 0.5 kpc.'
+    role: matter
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: scale length
+    definition: 'The distance along a disc over which its density falls by a factor $e$.'
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: scale height
+    definition: 'The height above a disc''s mid-plane over which its density falls by a factor $e$.'
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: anticentre
+    definition: 'The direction on the sky opposite the Galactic centre, as seen from the Sun.'
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: interstellar dust
+    definition: 'Grains of rock and carbon between the stars, which dim and redden light but leave gravitational waves untouched. In the paper''s model it dims the Galactic centre by 31 magnitudes.'
+    role: matter
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: extinction
+    definition: 'The dimming of light by dust along a line of sight, counted in magnitudes: 30 magnitudes are a factor of $10^{12}$.'
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: frequency bin
+    definition: 'The interval of frequency, one over the length of the record, within which two steady waves cannot be told apart: $3.2\times10^{-8}$ Hz for a year, since two waves that differ by $\Delta f$ drift apart by a cycle in the time $1/\Delta f$.'
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: confusion foreground
+    definition: 'The glow of the Galaxy''s white-dwarf pairs below a few millihertz, where so many share each frequency bin that they cannot be taken apart.'
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: dark matter
+    definition: 'Matter that neither shines nor absorbs light and is known only by its pull: about $0.4\,\mathrm{GeV\,cm^{-3}} = 7.1\times10^{-22}\,\mathrm{kg\,m^{-3}}$ near the Sun. Its particles do not collide, so it does not glow in gravitational waves either.'
+    role: matter
+    chapter: '12.1'
+    anchor: in-waves-the-galaxy-shows-where-its-stars-are
+  - term: pulsar
+    definition: 'A turning neutron star whose radio beam sweeps the Earth at each turn, as regularly as a clock.'
+    role: matter
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+  - term: pulsar timing array
+    definition: 'A set of pulsars whose arrival times are followed for years, so that nanohertz gravitational waves passing the Earth show as a pattern of shifts across the sky.'
+    chapter: '12.1'
+    anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up

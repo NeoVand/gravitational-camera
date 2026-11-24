@@ -135,7 +135,8 @@ $K = \tfrac12\matter mv^2 = G\matter M\matter m/2r$, and the potential energy is
 $$K = -\tfrac12\,U, \qquad E = K + U = -\frac{G\matter M\matter m}{2r}.$$
 
 For any system held together by gravity the first relation holds on average over a long time: twice the average
-kinetic energy is minus the average potential energy. This is the **virial theorem**, which chapter 12.1 derives.
+kinetic energy is minus the average potential energy. This is the **virial theorem**, which chapter
+[12.1](/tutorial/sky/stars/#in-a-bound-system-the-motion-is-half-the-binding) derives.
 
 The total energy $E$ is negative. An orbit whose energy is negative is **bound**: the body can never reach a great
 distance, where $U$ is zero and $E$ would be at least the kinetic energy, which is never negative. A body with $E \ge 0$

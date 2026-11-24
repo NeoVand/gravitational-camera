@@ -557,7 +557,7 @@ numbers, $c/2\pi f$ is $4.77 \times 10^7$ m at 1 Hz and $4.77 \times 10^4$ m at 
 - [Section VIII](/paper/#sec:one-pixel), [*The absence of gravitational aberration*](/paper/#par:the-absence-of-gravitational-aberration):
   the field in the near zone matches the present positions to order $(kr)^2$.
 - [Section XI](/paper/#sec:vistas): [](/paper/#eq:multipole) is the field of a quadrupole in every zone at once, with
-  $u = t - r/c$ and $\hat n$ from the source (chapter 12.1 and reading chapter R12).
+  $u = t - r/c$ and $\hat n$ from the source (chapter 7.7 and reading chapter R12).
 - [Section XIV](/paper/#sec:hole): a camera beside a black hole reads its temperature "from the field that does not
   radiate", the near part.
 :::

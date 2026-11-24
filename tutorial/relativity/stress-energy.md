@@ -212,8 +212,8 @@ $$\boxed{\;\int\matter T^{ij}\,\dd V = \oint_S x^j\matter T^{ik}\,\hat n_k\,\dd 
 This is **von Laue's theorem** (Max von Laue, 1911). It does not say that the stresses are zero, only that the
 pressures, counted positive, and the tensions, counted negative, add up to zero over the whole body. It holds for bodies
 held together by stresses other than gravity, such as a steel shell. It does not cover a star, which its own gravity
-holds together, because gravity is not a stress in $\matter T^{\mu\nu}$; chapter 12.1, on stars, takes up that
-case.[^star]
+holds together, because gravity is not a stress in $\matter T^{\mu\nu}$; chapter
+[12.1](/tutorial/sky/stars/#in-a-bound-system-the-motion-is-half-the-binding), on stars, takes up that case.[^star]
 
 ::: example
 ### A ball of gas in a steel shell

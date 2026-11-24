@@ -163,7 +163,8 @@ gravity signal, and the rotor is the one that calibrates LIGO's detectors. The M
 so its near zone reaches $2.1\times10^{12}$ m, 14 astronomical units, beyond Saturn.[^moon] The arrow to "neutron stars
 merging, $10^{12}$ times farther" points past the top of the chart, $10^{12}$ m, which we read as about $10^{24}$ m, a
 hundred million light years. Their last waves are near 2 kHz, twice the frequency of their last orbits, so their near
-zone ends 24 km from them and every camera receives them as waves (Part 12).
+zone ends 24 km from them and every camera receives them as waves (chapter
+[12.1](/tutorial/sky/stars/#two-compact-bodies-spiral-together-and-the-papers-pair-has-nine-seconds-left)).
 
 ::: try {#regime-map}
 Predict first, with the map's own question: a person sways once a second, 10 km from the camera. Is the camera in

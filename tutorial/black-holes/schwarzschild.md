@@ -441,8 +441,9 @@ as an arc above it.
 at that distance, so the source appears as a ring. Near a hole (right) the exact ring is larger than the weak-field one.
 The left panel is not to scale.](tut-schw-ring){#fig:schw-ring}
 
-A transparent body, an **extended lens**, bends a ray that crosses it only by the mass inside the cylinder of radius
-$b$ along the ray, as chapter 12.1 shows for Section XI's transparent Sun (Figure [](/paper/#fig:sun-lens)).
+A transparent body, an **extended lens**, bends a ray that crosses it only by the mass inside the cylinder of radius $b$
+along the ray, as chapter [12.1](/tutorial/sky/stars/#eddingtons-model-ties-the-pressure-to-the-density) shows for
+Section XI's transparent Sun (Figure [](/paper/#fig:sun-lens)).
 
 **When geometric optics holds.** A mass delays the waves that pass near it by about $4G\matter M/c^3$ more than those
 far away, $19.7\,\mu$s for the Sun: this is the **Shapiro delay** (stated; the GR course's section 16.5). A lens
