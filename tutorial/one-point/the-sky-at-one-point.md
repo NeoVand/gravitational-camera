@@ -110,16 +110,13 @@ C_\pm &= \oint\tfrac12(I \pm V)\,\mathbf q\mathbf q^\dagger\,\dd\Omega ,\\
 C_{+-} &= \oint\tfrac12(Q - iU)\,\mathbf q\mathbf q^{\mathsf T}\,\dd\Omega .
 \end{aligned}\;} \label{eq:blocks}$$
 
-The block $C_{+-}$ is **complex symmetric**, because $\mathbf q\mathbf q^{\mathsf T}$ is, and chapter 9.5's two
-tables are $C_I = C_+ + C_-$ and $C_V = C_+ - C_-$.
+The block $C_{+-}$ is **complex symmetric**, because $\mathbf q\mathbf q^{\mathsf T}$ is (Figure
+[](#fig:sky-spectral-blocks)), and chapter 9.5's two tables are $C_I = C_+ + C_-$ and $C_V = C_+ - C_-$.
 
-<!-- diagram: sky-spectral-blocks — The pixel's 10×10 spectral matrix in the helicity coordinates (w₊, w₋*), drawn as
-a square of four 5×5 blocks. Upper left C₊, filled, labelled "½(I + V): 25"; lower right C₋* (the conjugate of
-C₋), filled, "½(I − V): 25"; upper right C₊₋, split by a diagonal hatch into its symmetric part (15 complex entries,
-of which 9 complex combinations are reached by the sky: "Q − iU at degree 4: 18", and 6 that stay zero: "checks: 12")
-and its antisymmetric part (10 complex entries: "checks: 20"); lower left drawn faint, "conjugate transpose of
-C₊₋: no new numbers". A bar under the square adds 25 + 25 + 18 = 68 in the sky's colour and 12 + 20 = 32 in grey.
-Text in the panels kept to the labels; numbers exact. -->
+![Look first at the bar under the square: a sky of independent waves fills $25 + 25 + 18 = 68$ of the hundred real
+numbers of one pixel's spectral matrix and leaves $12 + 20 = 32$ at zero. In $C_{+-}$ the 15 entries on and above the
+diagonal stand for its symmetric part, which the sky reaches in only nine complex combinations, and the 10 below it for
+its antisymmetric part, which no sky reaches. Counts exact.](tut-sky-spectral-blocks){#fig:sky-spectral-blocks}
 
 ## The pixel sees the sky only up to degree four: 68 numbers
 
@@ -371,15 +368,15 @@ degree zero survives the integral. **For comparison**, a point sensor of light s
 $\sum_{\ell\le2}(2\ell + 1)P_\ell/9$, is $88.5°$ wide; arrays 2, 5 and 30 wavelengths wide give $29.8°$, $11.8°$ and
 $1.97°$ (chapter [5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array)).
 
-The dip and the bump behind are not in the sky. They are what any sum cut off at degree four does to a point, and
-they can be negative because the picture is an estimate, not a power.
+The dip and the bump behind are not in the sky (Figure [](#fig:single-pixel-picture)). They are what any sum cut off
+at degree four does to a point, and they can be negative because the picture is an estimate, not a power.
 
 {{paper fig:array}}
 
-<!-- diagram: single-pixel-picture — K(ϑ) of eq:picture against ϑ from 0° to 180°, one solid curve, with a thin
-horizontal line at zero. Marked: the half height at ϑ = 25.8° (a short bracket labelled "51.6° full width"), the first
-zero at 43.9°, the dip −0.152 at 59.5° (labelled "−0.15 at 60°"), the later zeros at 80.4°, 116.5° and 152.3°, and the
-value 0.2 at 180°. A dashed curve for light's Σ_{ℓ≤2}(2ℓ+1)P_ℓ/9 (full width 88.5°) for comparison. All marks exact. -->
+![Look first at the dip below zero: one pixel's picture $K(\vartheta)$ of a point source, the source cut off at degree
+four, is $51.6°$ wide at half height (the bar runs from the source to the half height, half that width) and falls to
+$-0.152$ at $59.5°$. Light's point sensor, cut off at degree two, gives the dashed picture, $88.5°$ wide. Curves exact,
+with zeros at $43.9°$, $80.4°$, $116.5°$ and $152.3°$.](tut-single-pixel-picture){#fig:single-pixel-picture}
 
 ::: try {#array}
 Predict first: will the single pixel's curve be wider or narrower than that of an array two wavelengths wide, and by
