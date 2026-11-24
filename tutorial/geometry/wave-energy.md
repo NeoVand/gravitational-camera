@@ -6,7 +6,7 @@ part: '7'
 requires: ['2.2', '4.4', '5.1', '5.4', '6.4', '6.5', '7.4', '7.6', '7.7']
 paper: [sec:thermal, eq:damped, eq:alpha, sec:waves, sec:vistas, eq:memory, eq:burst-memory, eq:merger-memory, fig:memory, fig:closed-furnace]
 figures: [fig:memory]
-live: []
+live: [memory-pattern]
 depth: A
 ---
 
@@ -102,18 +102,12 @@ across, so the wave would cross it eight or nine billion times.
 
 **A limit.** With $\matter\eta = 0$, [](#eq:hawking) is chapter 7.6's free wave equation for each entry of the strain.
 
-**What it means.** Matter is transparent to gravitational waves, and the third section shows how nearly.
+**What it means.** Matter is transparent to gravitational waves (Figure [](#fig:viscous-slab)), and the third section
+shows how nearly.
 
-<!-- diagram: tut-viscous-slab — One panel, about 560 × 300 px at 1440 (full width on a phone). A plane wave travels
-left to right through a grey slab of viscous medium that fills the middle half of the panel. The wave is drawn as its
-strain h(x), a thin field-colour sine curve, with a dashed envelope that is flat before the slab, falls inside it and is
-flat again after it (exaggerated: the amplitude falls to about 60 per cent across the slab). Inside the slab, four thin
-horizontal layers drawn as short ink strips, each displaced sideways from the one below by a small amount, with a small
-double arrow between two of them labelled "sheared at ½ḣ"; above the slab a small wavy heat arrow rising, labelled
-"heat ½η ḣᵢⱼḣᵢⱼ per m³". Below the slab one line of type: "energy falls by e in 1/α = 8.5 × 10²⁰ light-years of water".
-No orange or blue (they mean stretch and squeeze). Labels beside the geometry, never on a line. Caption: "Look first at
-the envelope: inside the slab the wave shears the medium at half the rate of its strain, the friction turns some of
-its energy into heat, and the amplitude falls. The fall is exaggerated about 10³⁶ times for a slab a metre thick." -->
+![Look first at the envelope: inside the slab the wave shears the medium at half the rate of its strain, the friction
+turns some of its energy into heat, and the amplitude falls. The fall is exaggerated about $10^{37}$ times for a slab a
+metre thick.](tut-viscous-slab){#fig:viscous-slab}
 
 ## The heat comes from the wave, so the wave carries energy
 
@@ -225,7 +219,7 @@ release of energy carried by particles that move at nearly the speed of light, s
 star. By chapter [6.4](/tutorial/relativity/energy-and-momentum/#light-has-no-rest-mass-but-two-beams-of-light-have-one),
 each carries the momentum $\matter E/c$ along its direction of travel.
 
-**The directions and angles** are these.
+**The directions and angles** are these (Figure [](#fig:memory-angles)).
 
 - $\sym{camera-direction}{\hat N}$ is the unit vector from the source to the camera, a distance $r$ away. Chapter 5.4's
   axes $\vect e_1$ and $\vect e_2$ lie across it, and in them $\field h_+ = \tfrac12e^+_{ij}\field h_{ij}$ and $\field
@@ -244,19 +238,10 @@ $\Omega$ for a rate of turning. Its Section XI then says
 
 {{paper eq:memory}}
 
-<!-- diagram: tut-memory-angles — One panel, about 480 × 360 px at 1440 (full width on a phone). A small filled dot left
-of centre is the source (matter colour). From it a thin ink arrow runs to the right, labelled "N̂, to the camera", and
-ends at a small camera glyph (observer colour) near the right edge. A second thin ink arrow leaves the source up and to
-the right, about 40° from N̂, labelled "n̂′, emission"; a small arc between the two arrows is labelled "β". At about
-two-thirds of N̂'s length a thin circle seen obliquely (an ellipse) stands across N̂, centred on it; from its centre two
-short thin axes, "e₁" pointing up and "e₂" pointing toward the viewer (drawn down and to the left). A dashed line from
-the centre to the foot of n̂′'s shadow on the circle's plane, with a small arc from e₁ to the dashed line labelled "ψ".
-Above and to the left, a fainter dashed axis through the source, labelled "ẑ, the burst's axis", on the e₁ side of N̂,
-with an arc from ẑ to N̂ labelled "θ" and an arc from ẑ to n̂′ labelled "θ′". No orange or blue (they mean stretch and
-squeeze). Labels beside the geometry, never on a line. Caption: "Look first at the two arrows from the source: N̂
-points to the camera and n̂′ along one piece of the burst. The angle β from N̂ and the turn ψ round N̂, measured from
-e₁, place n̂′. A burst that is the same all round the axis ẑ needs only the camera's angle θ and the emission's angle θ′
-from that axis. Schematic." -->
+![Look first at the two arrows from the source: $\hat N$ points to the camera and $\hat n'$ along one piece of the
+burst. The angle $\beta$ from $\hat N$ and the turn $\psi$ round $\hat N$, measured from $\vect e_1$, place $\hat n'$.
+A burst that is the same all round the axis $\hat z$ needs only the camera's angle $\theta$ and the emission's angle
+$\theta'$ from that axis. Schematic.](tut-memory-angles){#fig:memory-angles}
 
 **A sketch (depth B).** One particle of energy $\matter E$ that leaves the origin at $t = 0$ along $\hat n'$ is, by
 chapter [6.5](/tutorial/relativity/stress-energy/#dust-a-fluid-and-a-beam-of-light-each-fill-the-table), a moving
@@ -461,35 +446,25 @@ $$\begin{gathered}\int_{t_1}^{t_2}\curv\tE_{ij}\,\dd t = -\tfrac12\bigl[\dot{\fi
 So the memory is a burst of tide whose integral vanishes and whose double integral does not, the paper's "burst of
 $\tE$ whose second time integral does not return to zero". Between two free balls at rest before the burst,
 chapter 7.6's $\delta\xi_i = \tfrac12\field h_{ij}\xi_j$ leaves a change of separation $\tfrac12\Delta\field
-h_{ij}\xi_j$ that stays. **A number.** The supernova's $4.0\times10^{-21}$ moves balls 4 km apart, along $\vect e_1$, by
-$8\times10^{-18}$ m for good, about a two-hundredth of a proton's width.
+h_{ij}\xi_j$ that stays (Figure [](#fig:memory-step)). **A number.** The supernova's $4.0\times10^{-21}$ moves balls
+4 km apart, along $\vect e_1$, by $8\times10^{-18}$ m for good, about a two-hundredth of a proton's width.
 
-<!-- diagram: tut-memory-step — Two stacked panels sharing a time axis, about 560 × 360 px at 1440 (full width on a phone).
-Upper panel: the strain h₊ at the camera against time, a thin field-colour line: flat at zero, then an oscillating
-burst of a few cycles whose mean rises, ending flat at a new level; a bracket at the right marked "Δh, the memory";
-a faint dashed line at zero continued to the right. Lower panel: the tide 𝓔₊ = −½ḧ₊ in the curvature colour, a burst
-that starts and ends at zero, with the times t₁ before it and t₂ after it marked on the axis; beneath it two small
-sketches of two free balls, before and after, the after pair farther apart by a marked "½Δh ξ". Labels beside the
-lines. No orange or blue. Caption: "Look first at the right end of the upper line: after the burst the strain stays at
-a new level. The tide below starts and ends at zero, and its integral from t₁ to t₂ is zero too, but integrated twice
-it leaves −½Δh, so two free balls end farther apart. Schematic." -->
+![Look first at the right end of the upper line: after the burst the strain stays at a new level. The tide below
+starts and ends at zero, and its integral from $t_1$ to $t_2$ is zero too, but integrated twice it leaves
+$-\tfrac12\Delta\field h_+$, so two free balls end farther apart. Schematic.](tut-memory-step){#fig:memory-step}
 
-<!-- try: memory-pattern (a new interactive figure, MemoryPattern, on an engine that evaluates eq:memory-axes by
-quadrature on a grid centred on the camera's direction and is checked against the closed forms: one jet 2(1+cosθ), two
-jets sharing the energy 2, sphere 0, dipole 0, 1+qP₂ (q/2)sin²θ, octupole 1+q₃P₃ (q₃/2)sin²θcosθ, merger
-sin²ι(17+cos²ι)/24, all in units of GE/c⁴r) — Left, about 360 × 360 px: the emission pattern dE/d²n̂′ drawn as a polar
-curve about its axis ẑ, in the matter colour, with the camera's direction N̂ as a draggable arrow on a circle round it.
-Right, about 360 × 360 px: the polar plot of |Δh| over all camera directions in the same plane, in units of 4GE/c⁴r as
-in fig:memory(b), with the dragged direction marked. Buttons choose the pattern: one narrow jet, two opposite jets
-(sharing E), a uniform sphere, a dipole (slider a from −1 to 1), 1 + qP₂ (slider q from −1 to 2), and the merger's
-(1 + 6cos²θ′ + cos⁴θ′)/8. Readouts: Δh₊ and Δh× in units of 4GE/c⁴r (Δh× is always zero for these axisymmetric
-patterns; say so in a line under the readout), the camera's angle θ, and the energy-weighted fraction of the pattern in
-degree ≥ 2. Opens on the merger's pattern, camera edge-on. Predict first: "A sphere of energy leaves how much memory, and
-from which direction?" (Answer: none, from every direction.) Then: "Where does a single narrow jet leave the most?"
-(Answer: close to its own line, where 1 + cosθ is largest; exactly on it, none by symmetry, and the camera is then
-inside the jet.) Then: "Make the pattern brighter on one side only. What memory is left?" (Answer: none; a dipole leaves
-no memory.) Keyboard: Tab reaches the buttons, the sliders and the arrow; arrows step them, shift for larger steps; both
-themes; phone. -->
+::: try {#memory-pattern}
+On the left, the pattern in which a burst sends out its energy, drawn about its axis $\hat z$, with the camera's
+direction $\hat N$ as an arrow you can turn. On the right, the memory that the same burst leaves at every camera
+direction in that plane, in units of $4G\matter E/c^4r$ as in panel (b) of the paper's Figure [](/paper/#fig:memory).
+Buttons choose one narrow jet, two opposite jets sharing the energy, a uniform sphere, a dipole, the pattern $1 +
+qP_2$ and a merger's waves; sliders set the dipole's lopsidedness and $q$. The readouts give $\Delta\field h_+$ and
+$\Delta\field h_\times$ from [](#eq:memory-axes), summed over the sky, beside the closed form where there is one.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, choose
+the merger's pattern and turn the camera from face-on to edge-on: say why the memory grows as the oscillating wave
+weakens.
+:::
 
 ::: check
 ### Q

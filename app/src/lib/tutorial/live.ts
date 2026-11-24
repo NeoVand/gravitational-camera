@@ -65,6 +65,7 @@ import GaugeOrWave from './live/GaugeOrWave.svelte';
 import MagneticTide from './live/MagneticTide.svelte';
 import WaveRings from './live/WaveRings.svelte';
 import NearToFar from './live/NearToFar.svelte';
+import MemoryPattern from './live/MemoryPattern.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -311,6 +312,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			"The changing tide of a turning pair in the plane of its orbit, from Newton's pull of the masses close by to the wave far away, with a probe and a log–log plot of the two laws",
 		component: NearToFar
+	},
+	'memory-pattern': {
+		label:
+			'A burst of energy drawn as its pattern of emission, and the lasting strain it leaves at every camera direction: jets, a sphere, a dipole, a quadrupole and the waves of a merger',
+		component: MemoryPattern
 	},
 	'noise-spectrum': {
 		label:
