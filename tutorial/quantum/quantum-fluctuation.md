@@ -6,7 +6,7 @@ part: '8'
 requires: ['3.1', '3.2', '4.1', '4.5', '4.6', '8.2', '8.3']
 paper: [app:benchmarks, eq:jitter-bounds, sec:near-field, sec:second-order, eq:hair-commutator, sec:hole, eq:hole-noise, eq:hole-thermometer, sec:thermal]
 figures: []
-live: []
+live: [quantum-tremor]
 depth: A
 ---
 
@@ -173,21 +173,13 @@ their spectra add as in
 [](#eq:qfdt) is 4.6's theorem. The quantum factor is the classical one times $u\coth u \approx 1 + u^2/3$, with $u =
 \hbar\omega/2\kB T$. For the steel ball's trial mode at 15.1 kHz and 300 K, $u = 1.2\times10^{-9}$ and the correction is
 $4.9\times10^{-19}$ ($3.4\times10^{-19}$ at Lamb's exact note of 12.6 kHz, which 4.6 uses). For silicon's 15.6 THz
-Raman line (8.3) at 300 K, $u = 1.25$ and the quantum tremor is 1.47 times the classical one. As $T \to 0$,
-$\coth \to 1$ at positive frequencies, and there a body keeps the tremor $\hbar\,\mathrm{Im}\,\chi_{yy}$ wherever it
-has friction.
+Raman line (8.3) at 300 K, $u = 1.25$ and the quantum tremor is 1.47 times the classical one (Figure
+[](#fig:qfd-factor)). As $T \to 0$, $\coth \to 1$ at positive frequencies, and there a body keeps the tremor
+$\hbar\,\mathrm{Im}\,\chi_{yy}$ wherever it has friction.
 
-<!-- diagram: tut-qfd-factor — One panel, about 560 × 340 px at 1440 (full width on a phone). Across, ħω/k_BT on a
-logarithmic axis from 10⁻² to 10², ticks at 10⁻², 10⁻¹, 1, 10, 10², labelled "ħω / k_BT"; up, the ratio of the quantum
-tremor to the classical, u coth u with u = ħω/2k_BT, on a logarithmic axis from 0.8 to 60, labelled "quantum ÷
-classical". One curve, thick ink: u coth u, flat at 1 on the left (1.000008 at 10⁻², 1.0008 at 0.1, 1.082 at 1, 5.0 at
-10, 50 at 100), turning near ħω/k_BT ≈ 2 and approaching the thin dashed grey line ħω/2k_BT, labelled "zero point",
-beyond. A thin grey horizontal line at 1 labelled "classical, 2k_BT/ω". Two marks, small ink dots with labels beside
-them, never on the curve: "steel ball, 15.1 kHz at 300 K" at the left edge with an arrow pointing left (its ħω/k_BT,
-2.4 × 10⁻⁹, is off the axis and written in the label), and "silicon's Raman line at 300 K" at ħω/k_BT = 2.50, ratio 1.47.
-No orange or blue. Caption: "Look first at the knee: below ħω ≈ 2k_BT a body trembles as classical physics says, and
-above it the tremor stops falling with the temperature and keeps the zero point. The steel ball's ringing lies far to
-the left, silicon's Raman line near the knee. Curve exact." -->
+![Look first at the knee: below $\hbar\omega \approx 2\kB T$ a body trembles as classical physics says, and above it
+the tremor stops falling with the temperature and keeps the zero point. The steel ball's ringing lies far to the left,
+silicon's Raman line near the knee. Curve exact.](tut-qfd-factor){#fig:qfd-factor}
 
 ## A cold body can take energy from a push but has none to give
 
@@ -240,19 +232,11 @@ push at that frequency lifts the body by a quantum $\hbar\omega$: positive frequ
 ones **emission**. The friction, their difference $2\hbar\,\mathrm{Im}\,\chi_{yy}$, is the **net absorption**, the net
 energy taken from the push. At absolute zero only the ground state has weight, so
 $S_{yy}(-\omega) = 0$: a cold body can take energy from a push but has none to give. Yet $\bar S_{yy} =
-\hbar\,\mathrm{Im}\,\chi_{yy}$ is not zero, because the zero point still trembles.
+\hbar\,\mathrm{Im}\,\chi_{yy}$ is not zero, because the zero point still trembles (Figure [](#fig:qfd-two-orders)).
 
-<!-- diagram: tut-qfd-two-orders — One panel, about 560 × 320 px at 1440 (full width on a phone). Across, ω/ω₀ from −2
-to 2 (ticks at −2, −1, 0, 1, 2), labelled "ω / ω₀"; up, spectral density in units of ħ Im χ at the line's peak, from 0
-to 3.4. One cart with a narrow line, Γ = 0.08 ω₀ (Q = 12.5), at k_BT = ħω₀. Three curves, thin single strokes: S(ω),
-solid ink, a peak of height 3.16 at +ω₀ (2(n̄ + 1) = 3.164) and a smaller one of height 1.16 at −ω₀ (2n̄ = 1.164);
-S̄(ω), dashed ink, two equal peaks of height 2.16 (2n̄ + 1 = coth ½ = 2.164); the classical 2k_BT Im χ/ω, dotted grey,
-two peaks of height 2.0. Labels beside the peaks, never on them: "absorption" over +ω₀, "emission" over −ω₀, and the
-ratio "e^{ħω₀/k_BT} = 2.72" with a thin bracket between the two solid peaks. A small inset at the upper right, the same
-axes at k_BT = 0.1 ħω₀, where the solid peak at −ω₀ has vanished (height 9 × 10⁻⁵) and the dashed ones stand at 1,
-labelled "nearly at absolute zero". No orange or blue. Caption: "Look first at the two solid peaks: a warm cart absorbs
-more than it emits, in the ratio e^{ħω₀/k_BT}, and their average is the symmetrized tremor. Near absolute zero the
-emission vanishes and the tremor keeps half the absorption. Curves exact for a cart with Q = 12.5." -->
+![Look first at the two solid peaks: a warm cart absorbs more than it emits, in the ratio $e^{\hbar\omega_0/\kB T}$,
+and their average is the symmetrized tremor. Near absolute zero the emission vanishes and the tremor keeps half the
+absorption. Curves exact for a cart with $Q = 12.5$.](tut-qfd-two-orders){#fig:qfd-two-orders}
 
 ## The static jitter lies between two bounds
 
@@ -299,24 +283,16 @@ $\chi = c^2/(\omega_0^2 - \omega^2 - i\Gamma\omega)$, has $\chi_0 = c^2/\omega_0
 $\sqrt{A/\chi_0} = \omega_0$, and the upper bound is $(\hbar c^2/2\omega_0)\coth(\hbar\omega_0/2\kB T)$: [](#eq:x2) for
 a unit mass, times the mode's weight. This is the paper's "upper bound reached by a single mode", and a damped mode,
 whose weight is spread across its line, falls a little short of it.[^damped] Far from equality, five modes an octave
-apart, each holding a fifth of $\chi_0$, reach at absolute zero 0.75 of the upper bound. When $\hbar\omega \ll \kB T$
-wherever the friction lies, both bounds meet at $\kB T\chi_0$, R4's check.
+apart, each holding a fifth of $\chi_0$, reach at absolute zero 0.75 of the upper bound (Figure [](#fig:qfd-bounds)).
+When $\hbar\omega \ll \kB T$ wherever the friction lies, both bounds meet at $\kB T\chi_0$, R4's check.
 
 **What it means.** At absolute zero the lower bound vanishes but the jitter does not: it is the zero point of every mode,
 at most $\tfrac12\hbar\sqrt{A\chi_0}$, set by the same compliance and sum that fix the classical jitter and the
 response. For the steel ball as one trial mode, its root mean square, in the swing $q$ at the poles, is the
 $7.5\times10^{-21}\unit m$ of [the first section](#a-cold-oscillator-still-trembles).
 
-<!-- diagram: tut-qfd-bounds — One panel, about 560 × 360 px at 1440 (full width on a phone). A body of five undamped
-modes at ω₁, 2ω₁, 4ω₁, 8ω₁, 16ω₁, each holding a fifth of χ₀ (c_n² = 0.2 χ₀ω_n²), so √(A/χ₀) = 8.26 ω₁. Across,
-k_BT/ħω₁ on a logarithmic axis from 0.1 to 100; up, the jitter in units of ħω₁χ₀ on a logarithmic axis from 0.1 to 200.
-Three curves: the lower bound k_BTχ₀, a thin grey straight line of slope 1 (0.1 at the left, 100 at the right), labelled
-"classical, k_BTχ₀"; the upper bound ½ħ√(Aχ₀) coth(ħ√(A/χ₀)/2k_BT), thin dashed ink, flat at 4.13 on the left and joining
-the grey line on the right, labelled "one mode at √(A/χ₀)"; the true jitter ½ħΣ c_n²/ω_n coth(ħω_n/2k_BT), thick ink,
-flat at 3.10 on the left (0.75 of the upper bound), 3.29 at k_BT = ħω₁, 4.45 at 3ħω₁, 10.55 at 10ħω₁ and 100.06 at
-100ħω₁, always between the two. A label "zero point" beside the flat part of the thick curve. No orange or blue.
-Caption: "Look first at the left end: cooled to absolute zero, the body keeps a jitter below the one-mode bound, while
-the classical value falls to nothing. At high temperature all three meet. Curves exact." -->
+![Look first at the left end: cooled to absolute zero, the body keeps a jitter below the one-mode bound, while the
+classical value falls to nothing. At high temperature all three meet. Curves exact.](tut-qfd-bounds){#fig:qfd-bounds}
 
 ## The thermometer still needs no model
 
@@ -331,7 +307,7 @@ of
 is conjugate to the reading for operators too, so this **quantum thermometer** needs no model of the body either. **A
 limit:** $\mathrm{artanh}\,z \approx z$ for small $z$, which gives $\omega\bar S_{yy}/2\kB\,\mathrm{Im}\,\chi_{yy}$, the
 paper's [](/paper/#eq:thermometer). **A number:** at silicon's Raman line at 300 K, $\hbar\,\mathrm{Im}\,\chi/\bar S =
-\tanh u = 0.848$, and the formula returns 300 K, where the classical one would read 441 K.
+\tanh u = 0.848$, and the formula returns 300 K, where the classical one would read 442 K.
 
 ## A cold body's correlations still contain its commutators
 
@@ -352,22 +328,17 @@ change of $\langle\matter Q_h^2\rangle$, which is zero, so what is left of it is
 A$ at every temperature. In a cold classical body both vanish. The paragraph ends: "the
 correlations of a quantum state contain its commutators, and a cold classical body's do not".
 
-<!-- try: quantum-tremor (a new interactive figure, QuantumTremor) — A body of up to five modes, each a damped oscillator
-c_n²/(ω_n² − ω² − iΓ_nω) with Γ_n = 0.05 ω_n, chosen from presets: "steel ball" (one mode at 15.1 kHz, c² from 4.3's
-trial shape), "one mode", "two carts" (4.1's coupled carts, lines at 5 and 8.66 s⁻¹ of weight 1/2m each, m = 2 kg),
-"five modes an octave apart" (each holding a fifth of χ₀) and "five random modes" (a button draws new ones). A slider
-sets the temperature as k_BT/ħω₁ from 0 to 100, on a logarithmic scale with a stop at exactly zero; the steel-ball preset
-shows its temperature in kelvin. Left panel: the symmetrized spectrum ħ coth(ħω/2k_BT) Im χ against ω on a linear axis,
-thick ink, with the classical 2k_BT Im χ/ω dashed grey; a switch adds S(ω) and S(−ω) as thin lines on a two-sided axis.
-Right panel: a small log plot of the jitter and the two bounds against temperature, with a dot at the slider's value.
-Readouts: ⟨δy²⟩/k_BTχ₀, the jitter over the upper bound, the rms frequency √(A/χ₀), and the temperature that the quantum
-thermometer returns from the strongest line, with the classical reading beside it. Checks: one mode sits just below the
-upper bound at every temperature (0.98 of it at absolute zero for Γ = 0.05 ω₀, closer when warm); five modes an octave
-apart give 0.75 of the upper bound at zero (0.751 undamped, 0.739 at Γ_n = 0.05 ω_n); the two carts at k_BT = ħ × 5 s⁻¹
-give 1.121 against 1.122 (in units of k_BTχ₀). Predict first: "Cool the body to absolute zero. Does its jitter
-vanish?" (No: it falls to the zero point of its modes, ½ħΣc_n²/ω_n, below the upper bound.) Then: "Make the body a
-single mode. Where does the jitter lie?" (Just below the upper bound, at every temperature.) Keyboard: arrow keys move
-the slider, number keys 1–5 choose presets. Both themes; on a phone the panels stack. -->
+::: try {#quantum-tremor}
+A body of up to five modes, each with a narrow line of friction, chosen from five presets: the steel ball, one mode,
+4.1's two coupled carts, five modes an octave apart and five random ones. You set the temperature, down to absolute
+zero. The left panel draws the symmetrized tremor against the classical one, and a switch shows the two orders apart,
+absorption and emission. The right panel draws the static jitter between the paper's two bounds, against temperature;
+the readouts give the jitter over each bound and what the quantum and the classical thermometers read from the
+strongest line.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, choose
+the two carts, set $\kB T = \hbar\times5\unit{s^{-1}}$, and say why the jitter lies so close to the upper bound.
+:::
 
 ::: check
 ### Q

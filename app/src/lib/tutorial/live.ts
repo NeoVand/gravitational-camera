@@ -72,6 +72,7 @@ import LadderOscillator from './live/LadderOscillator.svelte';
 import MajoranaStars from './live/MajoranaStars.svelte';
 import ClickTrains from './live/ClickTrains.svelte';
 import QuantumLimit from './live/QuantumLimit.svelte';
+import QuantumTremor from './live/QuantumTremor.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -352,6 +353,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'quantum-limit': {
 		label: 'The standard quantum limit: a free mass watched twice, and an interferometer',
 		component: QuantumLimit
+	},
+	'quantum-tremor': {
+		label:
+			'A body trembling at any temperature: its symmetrized tremor, the two orders and the static jitter between its bounds',
+		component: QuantumTremor
 	},
 	'noise-spectrum': {
 		label:
