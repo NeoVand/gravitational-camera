@@ -198,6 +198,8 @@
 	let checked = false;
 	let owed = 0;
 	const clock: Attachment = () => {
+		// read first, so that pressing play or pause always runs this again
+		const on = playing;
 		if (!checked) {
 			checked = true;
 			if (prefersReducedMotion.current) {
@@ -206,7 +208,7 @@
 				return;
 			}
 		}
-		if (!playing) return;
+		if (!on) return;
 		let raf = 0;
 		let last: number | undefined;
 		const tick = (t: number) => {

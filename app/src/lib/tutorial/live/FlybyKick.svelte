@@ -190,6 +190,8 @@
 
 	let checked = false;
 	const clock: Attachment = () => {
+		// read first, so that pressing play or pause always runs this again
+		const on = playing;
 		if (!checked) {
 			checked = true;
 			if (prefersReducedMotion.current) {
@@ -198,7 +200,7 @@
 				return;
 			}
 		}
-		if (!playing) return;
+		if (!on) return;
 		let frame = 0;
 		let last: number | undefined;
 		let hold = 0;
