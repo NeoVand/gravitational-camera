@@ -16,9 +16,10 @@ and found which way they turn with Part 5's tools, leaving the strength of their
 us, can we now derive every claim of Section V, and what does one sealed rotor look like to a pixel beside it and to a
 camera far away?
 
-This chapter reads Section V in order and derives nothing new. As in [R7](/tutorial/geometry/reading-section-ii-again/),
-each claim gets the chapter that derived it and one mark: *checked here* (derived earlier, its numbers recomputed here),
-*read now, derived in Part N*, or *stated in the paper*. The capstone then follows one rotor outward.
+This chapter reads Section V in order (Figure [](#fig:read-v-map)) and derives nothing new. As in
+[R7](/tutorial/geometry/reading-section-ii-again/), each claim gets the chapter that derived it and one mark: *checked
+here* (derived earlier, its numbers recomputed here), *read now, derived in Part N*, or *stated in the paper*. The
+capstone then follows one rotor outward.
 
 ::: plain
 Section V is about the gravitational waves that bodies send out when they move as a whole, and Part 7 has derived all
@@ -32,21 +33,9 @@ rotor, the pattern of stretch in its wave turns in the same sense as the rotor. 
 from ten metres to ten thousand kilometres.
 :::
 
-<!-- diagram: tut-read-v-map — The sibling of R5's map (figs/tut-read-iii-map.js) and R7's (tut-read-ii-again-map): the
-same box, type, tint, outline, dotted outline and grey arrows, laid out to be read at 390 px, about 560 × 330 px at
-1440. Seven boxes, one for each stretch this chapter reads, in its order, four in the first row and three in the
-second, joined in reading order by thin grey arrows. Above the first box a greyed box, "Parts 5 and 7", with an arrow
-down into it. Each box carries the stretch's name and, as the site prints them, its equation and figure numbers; under
-it the chapters that teach it; on a line of its own, in a small dotted box, a later chapter from which the box holds a
-claim read now. (1) "Plain words" — 5.2, 5.4, 7.6, 7.7; dotted 8.3; lower half filled. (2) "Strain, power, dumbbell",
-(27), (28) — 7.7, 7.8; dotted 8.3; lower half filled. (3) "A compact body is a point", (29) — 5.3, 7.7, filled. (4) "A
-source larger than its wave", (30) — 5.2, 5.3, 7.7, filled. (5) "Polarization and the sense of turning", (31), (32),
-"Fig. 15, Fig. 16" — 5.4, 7.7, 7.8, filled. (6) "What does not radiate" — 7.6, 7.7, filled.
-(7) "The slowed light", "Fig. 17" — 5.2, 5.4, R5, filled. Below the second row, joined to all seven by one grey
-bracket, a box with the orange outline and no fill: "Capstone: the sealed rotor, 10 m to 10⁴ km, on the axis and
-edge-on". Labels inside the boxes, never on the arrows. Caption: "Look first at the filled boxes: every stretch of
-Section V is now derived, in Part 5 or Part 7. A half-filled box also holds a claim read now, the graviton (8.3). All
-seven stretches meet in the capstone." -->
+![Look first at the filled boxes: every stretch of Section V is now derived, in Part 5 or Part 7. A half-filled box
+also holds a claim read now, the graviton (8.3). All seven stretches meet in the
+capstone.](tut-read-v-map){#fig:read-v-map}
 
 ## The plain words hold, from the four silent motions to the slowed light
 
@@ -310,33 +299,18 @@ every $7.4\times10^{15}$ years, half a million times the age of the universe (*r
 
 **(h) A camera $10^4$ km away, edge-on.** Back in the rotor's plane at the same distance, beyond the crossover of step
 (d), the camera reads a pattern of stretch that only pulses along a fixed line: $\field h_+ = \field A/2 =
-8.3\times10^{-48}$ and $\field h_\times = 0$, so $V/I = 0$ and the wave is linearly polarized. Its power is $\tfrac18$
+8.4\times10^{-48}$ and $\field h_\times = 0$, so $V/I = 0$ and the wave is linearly polarized. Its power is $\tfrac18$
 of that on the axis (5.4). This camera finds the plane in which the rotor turns, but not which way it turns.
 
 So a camera far away reads the rotor's sense of turning and the tilt of its axis from the polarization, without ever
-resolving it. The pixel beside it reads the shape of its mass in the near field. The rotor's whole power crosses a
-sphere of radius 10 m too, but there the wave's share of the tide in the plane is $(kr)^4/15 = 1.3\times10^{-22}$ of it,
+resolving it (Figure [](#fig:read-v-capstone)). The pixel beside it reads the shape of its mass in the near field. The
+rotor's whole power crosses a sphere of radius 10 m too, but there the wave's share of the tide in the plane is $(kr)^4/15 = 1.3\times10^{-22}$ of it,
 about $1.7\times10^{-37}\unit{s^{-2}}$, far too small to pick out.
 
-<!-- diagram: tut-read-v-capstone — One figure in eight small panels, (a) to (h), two rows of four at 1440 (about 680 ×
-380 px) and four rows of two on a phone, in the paper's palette, each panel with its one number beneath it in the
-caption's type. (a) The rotor seen from above (two filled balls, matter colour, on a thin rod, curved arrow
-anticlockwise) beside one cycle of a 32 Hz sine, "λ = 9370 km". (b) The pixel as a ring of twelve free balls 10 m from
-the rotor in its plane, the ring standing upright and facing the rotor so that the spin's direction (vertical) lies in
-it, stretched (orange) along the spin and squeezed (blue) across it, its oval drawn twice, at two moments half a cycle
-apart (stretched upright in one, squeezed upright in the other), "𝓔_zz = 1.25 × 10⁻¹⁵ s⁻²". (c) Two gyroscopes a
-metre apart beside the ring, each a small disc with an axis, one turned by a barely visible tick, "|𝓑| = 9.8 × 10⁻²¹
-s⁻²". (d) 7.7's log–log crossover plot in miniature (tut-crossover): the near law r⁻⁵, the wave law r⁻¹ and the exact
-curve in the curvature colour, an open circle at "2930 km, in the plane". (e) The camera on the axis: its ring face on,
-its stretch axis drawn at three moments, turning anticlockwise with a curved arrow, filled magenta, "A = 1.7 × 10⁻⁴⁷,
-V/I = +1". (f) A small square of wave front with arrows through it beside 5.4's power curve (the dumbbell-shaped polar
-plot), "9.1 × 10⁻⁵⁶ W m⁻²". (g) A counter reading "1" with a clock face labelled "14.8 years". (h) The edge-on camera at
-the same distance in the plane: its ring pulsing along one fixed line, drawn at two moments half a cycle apart, no
-fill, "h₊ = A/2 = 8.3 × 10⁻⁴⁸, V/I = 0". No orange or blue except for stretch and squeeze in (b), (e) and (h). Labels
-beside the geometry, never on a line. Caption: "Look first at panels (b) and (e): the same rotor gives a pixel 10 m
-away the changing Newtonian tide of its masses, and a camera 10⁴ km away on its axis a wave whose turning pattern shows
-which way the rotor turns; edge-on, in (h), the pattern only pulses. Rings, gyroscopes and counter schematic; the
-curves of (d) and (f) exact." -->
+![Look first at panels (b) and (e): the same rotor gives a pixel 10 m away the changing Newtonian tide of its masses,
+and a camera $10^4$ km away on its axis a wave whose turning pattern shows which way the rotor turns; edge-on, in (h),
+the pattern only pulses. Rings, gyroscopes and counter schematic; the curves of (d) and (f)
+exact.](tut-read-v-capstone){#fig:read-v-capstone}
 
 ## The ledger: all six of Section V's equations are derived
 
