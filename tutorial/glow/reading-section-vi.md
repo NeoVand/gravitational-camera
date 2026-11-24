@@ -15,22 +15,14 @@ than a fixed limit. With chapters [10.1](/tutorial/glow/black-body/), [10.2](/tu
 [10.3](/tutorial/glow/why-matter-barely-glows/) behind us, can we derive or check every claim of Section VI, and does
 every number come out as the paper says?
 
-This chapter reads the section in order. As in [R9](/tutorial/one-point/reading-section-viii/), each claim gets one
-mark: *checked here* (a number recomputed from a result derived earlier), *read now, derived in chapter N*, or *stated
-in the paper*; one short step, copper's collision time, is *derived here*.
+This chapter reads the section in order (Figure [](#fig:read-vi-map)). As in
+[R9](/tutorial/one-point/reading-section-viii/), each claim gets one mark: *checked here* (a number recomputed from a
+result derived earlier), *read now, derived in chapter N*, or *stated in the paper*; one short step, copper's
+collision time, is *derived here*.
 
-<!-- diagram: tut-read-vi-map — One strip, about 640 × 360 px at 1440 (two columns of boxes on a phone), drawn as
-R9's tut-read-viii-map: a box for each section of this chapter in reading order, from "Plain words" to "Volume and
-surface", then a last box, "The closed furnace, end to end", set apart by a gap. Each box carries the paper's
-paragraph name, its equation labels in small type (damped and alpha; kirchhoff; maxwell and friction-sum; glow-bound;
-surface-glow and volume-surface) and the chapters that derive them (7.8; 10.2; 4.4 and 4.5; 10.3; 10.3). Solid
-outline for results derived in Part 10 or earlier; hatched for those derived at depth B (the stress-noise route of
-10.2, the electrons' friction and the pairs of 10.3); dotted insets for results stated in the paper (Kleinman's
-weight, the glass and water spectra, an eighth of diamond's glow, Akhiezer's tail, the surface glow). Thin arrows from
-the furnace box back to the boxes it uses (Absorption, Emission, Free electrons, the table). Neutral greys; no colour
-roles. Caption: "Look first at the solid boxes: every paragraph of Section VI is derived in Part 10 or earlier, with
-its stated results in dotted insets. The hatched boxes rest on sketches at depth B. The last box follows one scene
-through five of them." -->
+![Look first at the solid boxes: every paragraph of Section VI is derived in Part 10 or earlier, with its stated
+results in dotted insets. The hatched boxes rest on sketches at depth B. The last box follows one scene through six of
+them.](tut-read-vi-map){#fig:read-vi-map}
 
 ::: plain
 Section VI says that the only motion in ordinary matter fast enough to send out short gravitational waves is heat. A
