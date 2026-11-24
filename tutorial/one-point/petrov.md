@@ -87,7 +87,8 @@ $$|z| = \tan\frac\vartheta2, \qquad \arg z = \varphi .$$
 
 **The opposite direction.** Multiplying out each component gives $\vect m(-1/\bar z) = -\vect m(z)^*/\bar z^2$,
 and conjugating $\vect e_1 + i\vect e_2$ reverses its direction of travel, $\vect e_1\times(-\vect e_2) = -\hat k$. So
-the direction opposite to $z$ is $-1/\bar z$. For $z = 1$ it is $-1$, the direction $-\hat x$.
+the direction opposite to $z$ is $-1/\bar z$ (Figure [](#fig:stereographic)). For $z = 1$ it is $-1$, the direction
+$-\hat x$.
 
 **Two directions.** We multiply out the product of two of these vectors,
 
@@ -100,17 +101,9 @@ $$\boxed{\;\vect m(z_1)\cdot\vect m(z_2) = -2(z_1 - z_2)^2 .\;} \label{eq:produc
 
 It is zero at $z_1 = z_2$, as a null vector must give, and for no two different directions.
 
-<!-- diagram: tut-stereographic — About 560 × 340 px at 1440 (full width on a phone). A thin ink sphere of radius 1,
-centred on a small grey pixel, seen slightly from above, with the axes x̂, ŷ, ẑ as faint ink arrows; below it, a
-horizontal complex plane (a faint grid, "Re z" and "Im z" on its axes) through the sphere's equator. One direction
-k̂(z) drawn as an ink arrow from the centre to a dot on the sphere in the northern hemisphere, at about 55° from +ẑ and
-azimuth 30°; a thin dashed line from the south pole −ẑ through that dot to the plane, ending at a dot labelled "z",
-at distance tan(27.5°) = 0.52 from the origin. The opposite direction −k̂ drawn as a dashed arrow to the far side, with
-its own dashed line from the south pole to the point "−1/z̄" in the plane (distance 1.92, azimuth 210°). Small labels:
-"z = 0" at the north pole, "|z| = 1" on the equator, "z → ∞" at the south pole. No orange or blue. Caption: "Look first
-at the two dashed lines from the south pole: each carries a direction on the sky to one complex number, the
-stereographic coordinate z. The north pole is z = 0, the equator |z| = 1 and the south pole z → ∞, and the opposite
-direction is −1/z̄. Geometry exact." -->
+![Look first at the two dashed lines from the south pole: each carries a direction on the sky to one complex number,
+the stereographic coordinate $z$. The north pole is $z = 0$, the equator $|z| = 1$ and the south pole $z \to \infty$,
+and the opposite direction is $-1/\bar z$. Geometry exact.](tut-stereographic){#fig:stereographic}
 
 ## Four directions solve one quartic
 
@@ -209,7 +202,7 @@ We want names for the patterns the four roots can make. The **Petrov type** of a
 multiplicities of its four principal null directions: **type I**, four separate directions; **type II**, two together
 and two apart; **type D**, two pairs; **type III**, three together and one apart; **type N**, all four together; and
 **type O**, no field, where the quartic vanishes for every $z$ and singles out nothing. Every type but I is called
-**algebraically special**.
+**algebraically special** (Figure [](#fig:petrov-skies)).
 
 The link from chapter 9.2's shapes to the patterns of the roots is stated here without proof, after Penrose
 [@Penrose1960]: each pattern goes with one shape, as the table below shows. We check it on types II and III. Chapter
@@ -252,18 +245,8 @@ exactly the reading of one body with $\curv w = 0.914$: type D, as the paper's [
 tell*](/paper/#par:what-no-reading-can-tell) says. The type III table is complex, so no scene at rest
 makes it (chapter 9.2). A reading says whether its field could come from one body or one wave, not that it does.
 
-<!-- diagram: tut-petrov-skies — Six small skies in a row of six at 1440 (two rows of three on a phone), each about
-150 × 170 px: a thin ink circle (the sky seen from outside, as in fig:stars), a small grey pixel at its centre, the
-principal null directions as dots in the accent colour (coincident directions drawn as touching dots, so each sky
-holds four; directions on the far side faint, with dashed lines), and the type letter above in ink. I: the fig:stars
-pair, four separate dots on two dashed lines through the pixel, ±(−0.797, 0.224, −0.561) and ±(0.887, 0.227, −0.401).
-II: a mass along ẑ with a wave along +ẑ (w = 0.125, c₂ = 0.05), two touching dots at +ẑ and two single dots at
-(±0.484, 0, −0.875). D: one mass along ẑ, two touching dots at +ẑ and two at −ẑ. III: the paper's table, three touching dots at
-+ẑ and one at −ẑ. N: one wave along +ẑ, four touching dots at +ẑ, with a small arrow k̂. O: an empty sky. Under each, in
-small ink, one line: "two masses", "a mass and a wave along its line", "one mass", "the paper's table", "one wave", "no
-field". No orange or blue. Caption: "Look first at the touching dots: the type is the pattern in which the four
-directions coincide, from four separate (I) to all four together (N). Directions computed from each reading's
-quartic." -->
+![Look first at the touching dots: the type is the pattern in which the four directions coincide, from four separate
+(I) to all four together (N). Directions computed from each reading's quartic.](tut-petrov-skies){#fig:petrov-skies}
 
 ## Moving the pixel moves the four directions as rays of light
 
@@ -368,7 +351,7 @@ and the companion that Section VIII states beside it, both in pure numbers. **Li
 vanishes and the half difference is $\pm\hat n$, the pairs at rest. **A check.** A body as in the paper's Figure
 [](/paper/#fig:stars), at $1.5$ along $-\hat x$ and moving along $+\hat y$ at $0.9c$, has the directions $(\pm0.436,
 0.9, 0)$, each twice: the half sum is $(0, 0.9, 0)$, the figure's $0.9$, and the half difference has the length $0.436 =
-(1 - 0.81)^{1/2}$.
+(1 - 0.81)^{1/2}$ (Figure [](#fig:moving-pairs)).
 
 **Distance, approach and mass.** We want the rest of the state from how the reading changes. The present position moves
 with $\obs{\vect v}$, and only the part across the line turns it, so the line turns at $\dot{\hat n} = \obs{\vect
@@ -411,16 +394,10 @@ Walking toward the pixel at $0.3\unit{m\,s^{-1}}$, the person arrives in $16.7\u
 the person coasts, $2.26$ if they speed up toward the pixel at $0.05\unit{m\,s^{-2}}$ ($\ddot r =
 -0.05\unit{m\,s^{-2}}$), and $0.41$ if they brake at the same rate: above $\tfrac43$ when driven, below when braking.
 
-<!-- diagram: tut-moving-pairs — About 560 × 360 px at 1440 (full width on a phone). The sky around a small grey pixel,
-drawn as a thin ink circle seen from outside (as in fig:stars), with a stone-grey body outside it along −x̂, moving
-along +ŷ (an arrow in the observer colour, "v = 0.9c"). The two pairs at rest, ±x̂ (open circles, two touching each),
-and the aberrated pairs at (±0.436, 0.9, 0) (filled accent dots, two touching each), with thin ink paths from each open
-circle to its filled pair along the great circle. From the pixel, an arrow in the observer colour to the midpoint (0,
-0.9, 0), labelled "½(p̂₊ + p̂₋) = v⊥/c"; a thin ink arrow from the midpoint to one filled pair, labelled "½(p̂₊ − p̂₋)",
-parallel to the dashed ink line from the pixel to the body's present position, labelled "n̂, now". No orange or blue.
-Caption: "Look first at the arrow from the pixel to the midpoint: a body moving across the line at 0.9c folds both
-pairs of directions toward its motion, and their half sum is its sideways velocity over c, while their half difference
-lies along the line to where it is now. Directions computed from the boosted reading." -->
+![Look first at the arrow from the pixel to the midpoint: a body moving across the line at $0.9c$ folds both pairs of
+directions toward its motion, and their half sum is its sideways velocity over $c$, while their half difference lies
+along the line to where it is now. Directions computed from the boosted
+reading.](tut-moving-pairs){#fig:moving-pairs}
 
 ## The four directions are the reading's Majorana stars
 
