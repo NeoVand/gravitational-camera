@@ -2558,3 +2558,75 @@ symbols:
     meaning: 'The eigenvalue of the lowering operator in a coherent state, $a|\alpha\rangle = \alpha|\alpha\rangle$, with $\alpha = (m\omega x_0 + ip_0)/\sqrt{2m\hbar\omega}$ for the ground state moved to $(x_0, p_0)$. Its squared size $|\alpha|^2$ is the mean number of quanta, and it turns as $\alpha e^{-i\omega t}$. (Not Section VI''s absorption coefficient.)'
     chapter: '8.3'
     anchor: a-classical-oscillation-is-a-state-of-many-quanta-in-step
+  - key: spin-up-down
+    title: Spin up and spin down
+    tex: '|{\uparrow}\rangle,\ |{\downarrow}\rangle'
+    role: none
+    kind: Two states of a spin one half; columns of two complex numbers
+    meaning: 'The states $(1, 0)$ and $(0, 1)$ of a spin one half, in which the spin along $z$ is $+\tfrac12$ and $-\tfrac12$ (in units of $\hbar$) for certain. They are the eigenvectors of $\sigma_3$, and every state of a spin one half is a sum of them.'
+    chapter: '8.4'
+    anchor: a-spin-one-half-is-a-state-of-two-components
+  - key: spin-vector
+    title: Spin operator
+    tex: '\mathbf S,\ S_k'
+    role: none
+    kind: Three Hermitian operators; in units of $\hbar$ from chapter 8.4 on
+    meaning: 'The spin along the three axes. For a spin one half $\mathbf S = \tfrac12\boldsymbol\sigma$ (in units of $\hbar$), with the outcomes $\pm\tfrac12$ along every axis, and $[S_x, S_y] = iS_z$, the rule of every angular momentum. For $N$ spins one half the total is $\tfrac12\sum_a\boldsymbol\sigma^{(a)}$; on a reading it acts as $S_k\mathcal W = [iL_k, \mathcal W]$. (Not the tidal column $S(\hat n)$, the spectra $S_{yy}$ or chapter 6.6''s Poynting vector.)'
+    chapter: '8.4'
+    anchor: a-spin-one-half-is-a-state-of-two-components
+  - key: spin-direction-state
+    title: Spin up along a direction
+    tex: '|\hat n\rangle'
+    role: none
+    kind: A state of a spin one half, for each unit vector $\hat n$
+    meaning: 'The state $(\cos\tfrac\vartheta2,\ e^{i\varphi}\sin\tfrac\vartheta2)$, spin up along $\hat n = (\sin\vartheta\cos\varphi, \sin\vartheta\sin\varphi, \cos\vartheta)$. Every state of a spin one half is one of these up to a phase, and two of them overlap as $|\langle\hat n_1|\hat n_2\rangle|^2 = \cos^2(\vartheta_{12}/2)$: 0.75 at 60°, zero for opposite directions. With all $2s$ spins of a spin $s$ along $\hat n$ it is the spin coherent state $|\hat n\rangle_s$.'
+    chapter: '8.4'
+    anchor: every-state-of-a-spin-one-half-points-somewhere
+  - key: density-matrix
+    title: Density matrix
+    tex: '\varrho'
+    role: none
+    kind: A Hermitian table of pure numbers with trace one
+    meaning: 'The table $\varrho = \sum_ap_a|\psi_a\rangle\langle\psi_a|$ of a mixture of states $|\psi_a\rangle$ with probabilities $p_a$; every mean is $\langle A\rangle = \mathrm{tr}(\varrho A)$. For a spin one half $\varrho = \tfrac12(1 + \mathbf b\cdot\boldsymbol\sigma)$. The paper''s $\varrho$, a curly rho; never $\rho$, which is a density of mass or Section VIII''s signal-to-noise ratio.'
+    chapter: '8.4'
+    anchor: a-mixture-is-described-by-a-density-matrix-and-its-arrow-is-shorter
+  - key: bloch-vector
+    title: Bloch vector
+    tex: '\mathbf b'
+    role: none
+    kind: A real vector of length at most one; no unit
+    meaning: 'The mean of $\boldsymbol\sigma$ for a spin one half, $\mathbf b = \langle\boldsymbol\sigma\rangle = \mathrm{tr}(\varrho\boldsymbol\sigma)$, twice its mean spin. Its length is one for a pure state, less for a mixture, and zero for an unpolarized spin: 0.71 for half spin up along $z$ and half along $x$. For one of the four spins of a reading it is $\mathbf P/u$, the super-Poynting vector over the super-energy. (Bold b for Bloch; not the second amplitude $b$ of a state $(a, b)$ or chapter 8.2''s kick $b$.)'
+    chapter: '8.4'
+    anchor: a-mixture-is-described-by-a-density-matrix-and-its-arrow-is-shorter
+  - key: spin-number
+    title: Spin of a quantum state
+    tex: 's'
+    role: none
+    kind: A whole or half-whole number, 0, ½, 1, 3/2, 2, …
+    meaning: 'The largest spin component of a state: a symmetric state of $N$ spins one half has $s = N/2$ and $2s + 1$ components. Light''s complex field at a point is a spin one; a gravitational reading $\mathcal W$ is a spin two. It is the same number as chapter 1.5b''s spin of the pattern''s extreme component. (Not a singular value, which is always subscripted, nor chapter 3.7''s ratio $s$.)'
+    chapter: '8.4'
+    anchor: a-spin-s-is-a-symmetric-state-of-2s-spins-one-half
+  - key: spin-component
+    title: Spin component
+    tex: 'm'
+    role: none
+    kind: A number from $-s$ to $s$ in steps of one
+    meaning: 'The outcome of $S_z$ on the basis state $|s, m\rangle$ of a spin $s$, with $k = s + m$ of its $2s$ spins one half up. A turn by $\theta$ about $z$ multiplies that component by $e^{-im\theta}$, chapter 1.5b''s factor; turning the axes instead multiplies it by $e^{+im\theta}$, so 1.5b''s arrow and shear are the components $m = -1$ and $-2$. (Not a mass, nor the null vector $\vect m$; the same kind of number as chapter 2.2''s order $m$.)'
+    chapter: '8.4'
+    anchor: a-spin-s-is-a-symmetric-state-of-2s-spins-one-half
+  - key: super-poynting
+    title: Super-Poynting vector
+    tex: '\mathbf P,\ P_k'
+    role: none
+    kind: A real vector; in s⁻⁴
+    meaning: 'The paper''s super-Poynting vector $\mathbf P$, with the components $P_k = \epsilon_{kij}(\mathcal E\mathcal B)_{ij}$, built from a reading''s tide and magnetic part as light''s Poynting vector is built from its fields. It is zero when $\mathcal E$ and $\mathcal B$ share their axes, as for masses at rest, and equals $u\hat k$ for one wave travelling along $\hat k$. Over the super-energy it is the Bloch vector of one of the reading''s four spins one half.'
+    chapter: '8.4'
+    anchor: one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector
+  - key: super-energy
+    title: Super-energy
+    tex: 'u'
+    role: none
+    kind: A positive number; in s⁻⁴
+    meaning: 'The paper''s $u = \tfrac12(|\mathcal E|^2 + |\mathcal B|^2)$, half the squared length of the reading $\mathcal W$, built as light''s energy density is built from its fields. Every reading has $|\mathbf P| \le u$, with equality for one wave. (Not chapter 6.6''s energy density $u$ of light, or the four-velocity $u^\mu$.)'
+    chapter: '8.4'
+    anchor: one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector

@@ -3413,3 +3413,83 @@ terms:
     definition: 'The quantum of a mode of gravitational waves, with the energy $\hbar\omega$, the momentum $\hbar\mathbf k$ and the helicity $\pm2$: the smallest packet of energy that a gravitational wave of frequency $\omega$ can carry. That gravity is quantized is stated, not observed: no experiment has detected a graviton.'
     chapter: '8.3'
     anchor: each-mode-of-a-wave-is-an-oscillator-and-its-quanta-are-photons-or-gravitons
+  - term: Stern–Gerlach measurement
+    definition: 'A measurement of the spin of atoms along an axis by a magnet whose field grows strongly across the beam: Stern and Gerlach''s silver atoms of 1922 split into two spots, whichever way the magnet was turned.'
+    chapter: '8.4'
+    anchor: a-spin-one-half-is-a-state-of-two-components
+  - term: spin (quantum)
+    definition: 'An angular momentum that belongs to a particle itself rather than to any orbit. Its value $s$ is the largest outcome of the spin along an axis, in units of $\hbar$; it is chapter 1.5b''s spin, the power of $e^{-i\theta}$, of the state''s extreme component.'
+    chapter: '8.4'
+    anchor: a-spin-one-half-is-a-state-of-two-components
+  - term: spin one half
+    definition: 'A spin whose measurement along any axis gives one of two outcomes, $\pm\tfrac12\hbar$. Its state is two complex amplitudes, and its spin is $\tfrac12\hbar\boldsymbol\sigma$ with the Pauli matrices; a full turn multiplies its state by $-1$.'
+    chapter: '8.4'
+    anchor: a-spin-one-half-is-a-state-of-two-components
+  - term: spin up along a direction
+    definition: 'The state of a spin one half whose spin along the unit vector $\hat n$ is $+\tfrac12$ for certain, $(\cos\tfrac\vartheta2,\ e^{i\varphi}\sin\tfrac\vartheta2)$. Every state of a spin one half is spin up along exactly one direction.'
+    chapter: '8.4'
+    anchor: every-state-of-a-spin-one-half-points-somewhere
+  - term: Bloch sphere
+    definition: 'The sphere of directions on which every pure state of a spin one half is a point, the direction along which it is spin up. Opposite points are orthogonal states; mixtures lie inside.'
+    chapter: '8.4'
+    anchor: every-state-of-a-spin-one-half-points-somewhere
+  - term: density matrix
+    definition: 'The table $\varrho = \sum_ap_a|\psi_a\rangle\langle\psi_a|$ that describes a mixture of states with probabilities $p_a$: every mean is $\mathrm{tr}(\varrho A)$, so mixtures with the same $\varrho$ cannot be told apart.'
+    chapter: '8.4'
+    anchor: a-mixture-is-described-by-a-density-matrix-and-its-arrow-is-shorter
+  - term: Bloch vector
+    definition: 'For a spin one half, the vector $\mathbf b = \langle\boldsymbol\sigma\rangle$ in $\varrho = \tfrac12(1 + \mathbf b\cdot\boldsymbol\sigma)$: of length one for a pure state, shorter for a mixture, zero when unpolarized.'
+    chapter: '8.4'
+    anchor: a-mixture-is-described-by-a-density-matrix-and-its-arrow-is-shorter
+  - term: pure state and mixed state
+    definition: 'A pure state is described by one state, $\varrho = |\psi\rangle\langle\psi|$; a mixed state is a mixture of different states. For a spin one half the Bloch vector has length one in a pure state and less in a mixed one.'
+    chapter: '8.4'
+    anchor: a-mixture-is-described-by-a-density-matrix-and-its-arrow-is-shorter
+  - term: unpolarized (spin)
+    definition: 'Said of a spin one half with Bloch vector zero, $\varrho = \tfrac12$: every axis gives $\pm\tfrac12$ equally often. (Chapter 5.4''s unpolarized wave is the same idea for a wave''s pattern.)'
+    chapter: '8.4'
+    anchor: a-mixture-is-described-by-a-density-matrix-and-its-arrow-is-shorter
+  - term: partial trace (reduced state)
+    definition: 'The state of one part of a whole when the rest is ignored, found by summing over the outcomes of the rest. For two spins with amplitudes $c_{ij}$ the first spin''s reduced state is $CC^\dagger$, with $C$ the table of the $c_{ij}$.'
+    chapter: '8.4'
+    anchor: part-of-a-pure-whole-can-be-a-mixture
+  - term: product state
+    definition: 'A state of two or more things in which each is in a state of its own, such as $|\hat n\rangle|\hat n''\rangle$. Each part of a pure product state is pure.'
+    chapter: '8.4'
+    anchor: part-of-a-pure-whole-can-be-a-mixture
+  - term: entangled
+    definition: 'Said of things whose pure joint state is not a product state. Then each part alone is a mixture, as in the singlet, whose halves are each unpolarized.'
+    chapter: '8.4'
+    anchor: part-of-a-pure-whole-can-be-a-mixture
+  - term: singlet
+    definition: 'The state $(|{\uparrow}\rangle|{\downarrow}\rangle - |{\downarrow}\rangle|{\uparrow}\rangle)/\sqrt2$ of two spins one half: pure as a whole, with each half unpolarized.'
+    chapter: '8.4'
+    anchor: part-of-a-pure-whole-can-be-a-mixture
+  - term: symmetric state
+    definition: 'A state of several spins one half that is unchanged when any two are exchanged. The symmetric states of $N$ spins form a space of $N + 1$ dimensions, a spin $s = N/2$.'
+    chapter: '8.4'
+    anchor: a-spin-s-is-a-symmetric-state-of-2s-spins-one-half
+  - term: spin component
+    definition: 'The outcome $m$, from $-s$ to $s$, of the spin along an axis; a turn by $\theta$ about that axis multiplies the component $m$ of a state by $e^{-im\theta}$. (Not a mass, and not chapter 2.2''s order, though it is the same kind of number.)'
+    chapter: '8.4'
+    anchor: a-spin-s-is-a-symmetric-state-of-2s-spins-one-half
+  - term: Majorana stars
+    definition: 'The $2s$ directions of the spins one half whose symmetric product is a given state of spin $s$, found as the roots of Majorana''s polynomial of degree $2s$. A reading''s four stars are its principal null directions.'
+    chapter: '8.4'
+    anchor: a-spin-s-is-2s-stars-on-the-sky
+  - term: spin coherent state
+    definition: 'The state of a spin $s$ with all its $2s$ spins one half up along one direction $\hat n$, so that all its stars sit at $\hat n$. Two of them overlap as $\cos^{4s}(\vartheta/2)$, and those of all directions are complete. (Not chapter 8.3''s coherent state of an oscillator, though both are the states closest to classical.)'
+    chapter: '8.4'
+    anchor: a-spin-s-is-2s-stars-on-the-sky
+  - term: completeness (of coherent states)
+    definition: 'The rule $\tfrac{2s + 1}{4\pi}\int|\hat n\rangle_s\langle\hat n|_s\,\mathrm d\Omega = 1$, also called a resolution of the identity, by which the overlaps of any state with the coherent states of all directions form a probability density over the sky.'
+    chapter: '8.4'
+    anchor: a-spin-s-is-2s-stars-on-the-sky
+  - term: super-energy
+    definition: 'The paper''s $u = \tfrac12(|\mathcal E|^2 + |\mathcal B|^2)$ of a reading, in $\mathrm{s^{-4}}$, named for the energy density of light, which is built in the same way from its fields.'
+    chapter: '8.4'
+    anchor: one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector
+  - term: super-Poynting vector
+    definition: 'The paper''s vector $\mathbf P$ with the components $P_k = \epsilon_{kij}(\mathcal E\mathcal B)_{ij}$ of a reading, in $\mathrm{s^{-4}}$, the counterpart of light''s Poynting vector. Over the super-energy it is the Bloch vector of one of the reading''s four spins one half: the direction of travel for one wave, zero for masses at rest.'
+    chapter: '8.4'
+    anchor: one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector
