@@ -3286,3 +3286,91 @@ symbols:
     meaning: 'The temperature $\hbar\omega_D/k_B$ of a solid''s highest modes. Well below it most modes are frozen and the heat capacity falls below $3Nk_B$: at 293 K diamond, whose Debye temperature is 2200 K, holds only 0.16 of it, and copper, whose Debye temperature is 343 K, holds 0.93.'
     chapter: '10.2'
     anchor: heat-capacity-says-how-a-bodys-energy-follows-its-temperature
+  - key: relaxing-stiffness
+    title: Stiffness that relaxes (weight of a channel)
+    tex: '\Delta\matter{\mu}'
+    role: matter
+    kind: A stiffness; in Pa
+    meaning: 'The part of a material''s stiffness against shear that a channel of friction lets go when it has time, $\Delta\mu = \mu_\infty - \mu_0$; the paper calls it the weight of the channel. By the sum rule it fixes the friction added up over all frequencies, $(2/\pi)\int_0^\infty\mathrm{Re}\,\eta\,\mathrm d\omega = \Delta\mu$: 38 GPa for copper''s electrons, 18 GPa for silicon''s Raman line averaged over directions, $2nk_BT$ for pairs of phonons in the classical limit.'
+    chapter: '10.3'
+    anchor: every-channel-is-a-stiffness-that-relaxes-spread-over-a-band
+  - key: fermi-wavenumber
+    title: Fermi wavenumber
+    tex: 'k_F'
+    role: none
+    kind: A wavenumber; in m⁻¹
+    meaning: 'The radius of the sphere of wavevectors that a metal''s free electrons fill, two to each point of the grid of states: $n = k_F^3/3\pi^2$, so $E_F = \hbar^2k_F^2/2m$ and $v_F = \hbar k_F/m$. Copper''s is $1.36\times10^{10}$ m⁻¹.'
+    chapter: '10.3'
+    anchor: free-electrons-fill-a-sphere-of-states-and-collisions-relax-a-sheared-one
+  - key: kleinman-parameter
+    title: Kleinman's parameter
+    tex: '\zeta_K'
+    role: none
+    kind: A pure number
+    meaning: 'How far a shear pushes one of the two interleaved copies of atoms in a crystal such as silicon against the other (internal strain): 0.54 for silicon. It sets the weight of the Raman line, $M\omega_0^2\zeta_K^2/8a$. Always written with its subscript; it is not the Riemann zeta function $\zeta(3)$.'
+    chapter: '10.3'
+    anchor: a-crystal-with-two-atoms-in-its-cell-rings-at-its-raman-line-when-sheared
+  - key: spectroscopic-wavenumber
+    title: Spectroscopic wavenumber
+    tex: '\tilde\nu'
+    role: none
+    kind: A number of wavelengths per length; in cm⁻¹
+    meaning: 'The number of wavelengths per centimetre of light of a given frequency, the unit in which Raman lines are quoted: $\omega = 2\pi c\tilde\nu$. Silicon''s line at 520 cm⁻¹ is 15.59 THz.'
+    chapter: '10.3'
+    anchor: a-crystal-with-two-atoms-in-its-cell-rings-at-its-raman-line-when-sheared
+  - key: atom-mass
+    title: Mass of one atom
+    tex: 'M'
+    role: none
+    kind: A mass; in kg
+    meaning: 'The mass of one atom of a crystal, the paper''s letter in the Raman line''s weight $M\omega_0^2\zeta_K^2/8a$: $4.66\times10^{-26}$ kg for silicon. (Not the mass $M$ of a body.)'
+    chapter: '10.3'
+    anchor: a-crystal-with-two-atoms-in-its-cell-rings-at-its-raman-line-when-sheared
+  - key: lattice-constant
+    title: Lattice constant
+    tex: 'a'
+    role: none
+    kind: A length; in m
+    meaning: 'The side of the cube that repeats in a cubic crystal: 0.5431 nm for silicon, 0.3567 nm for diamond, 0.3615 nm for copper. (Not chapter 8.3''s lowering operator $a$.)'
+    chapter: '10.3'
+    anchor: a-crystal-with-two-atoms-in-its-cell-rings-at-its-raman-line-when-sheared
+  - key: atom-density
+    title: Number of atoms per volume
+    tex: '\matter{n}'
+    role: matter
+    kind: A number per volume; in m⁻³
+    meaning: 'The number of atoms in each cubic metre of a solid: $5.0\times10^{28}$ for silicon, $1.76\times10^{29}$ for diamond. It sets the classical weight of pairs of phonons, $2nk_BT$. (In chapter 10.3 a bare $n$ is always a number per volume, never an occupation, which is $\bar n$.)'
+    chapter: '10.3'
+    anchor: even-a-perfect-crystal-glows-through-pairs-of-phonons
+  - key: graviton-rate
+    title: Gravitons sent per second
+    tex: '\dot N'
+    role: none
+    kind: A rate; in s⁻¹
+    meaning: 'The number of gravitons a body sends each second in all directions. Per volume it is at most $5.18\,G\Delta\mu(k_BT)^2/\hbar^2c^5$, the second line of the paper''s bound on every glow.'
+    chapter: '10.3'
+    anchor: no-material-can-glow-brighter-than-its-weight-allows
+  - key: phonon-path
+    title: Path of a thermal phonon
+    tex: '\ell_s'
+    role: none
+    kind: A length; in m
+    meaning: 'The distance a phonon of angular frequency about $k_BT/\hbar$ travels at the shear speed before it is damped, $\ell_s = Q\hbar c_T/k_BT$: 0.83 nm in steel at 293 K with $Q = 10$. A body glows more through its volume than its surface once its radius exceeds about $\ell_s/5.5$.'
+    chapter: '10.3'
+    anchor: ordinary-bodies-glow-through-their-volume-not-their-surface
+  - key: volume-power
+    title: Glow of a volume
+    tex: 'P_V'
+    role: none
+    kind: A power; in W
+    meaning: 'The gravitational power a body sends from its volume through the friction inside it. With $\mathrm{Re}\,\eta = \rho c_T^2/\omega Q$ it is $V\,32\zeta(3)G\rho c_T^2(k_BT)^3/\pi c^5Q\hbar^2$, growing as $T^3$.'
+    chapter: '10.3'
+    anchor: ordinary-bodies-glow-through-their-volume-not-their-surface
+  - key: surface-power
+    title: Glow of a surface
+    tex: 'P_S'
+    role: none
+    kind: A power; in W
+    meaning: 'The gravitational power a sphere without internal friction sends from its surface, where a wave launches sound: the paper''s $4\pi R^2(\pi^2/24)(1 + 3c_T/2c_L)G\rho c_T^3(k_BT)^2/\hbar c^5$, after Dehnen, Romero and Schäfer, growing as $T^2$. A steel ball of 10 cm sends $10^{-46}$ W.'
+    chapter: '10.3'
+    anchor: ordinary-bodies-glow-through-their-volume-not-their-surface

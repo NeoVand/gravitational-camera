@@ -4031,3 +4031,71 @@ terms:
     definition: 'A body that grows hotter as it loses energy, such as a black hole, whose heat capacity is $-Mc^2/T$. Its balance with surroundings at its own temperature is unstable.'
     chapter: '10.2'
     anchor: a-balance-is-stable-only-if-the-heat-capacity-is-positive
+  - term: phonon
+    definition: 'The quantum of a normal mode of a solid, with the energy $\hbar\omega$ and the momentum $\hbar\boldsymbol k$, as a graviton is the quantum of a mode of a gravitational wave.'
+    chapter: '10.3'
+    anchor: a-wave-shears-a-body-all-at-once-so-it-cannot-make-one-phonon
+  - term: acoustic and optical modes
+    definition: 'In an acoustic mode of a crystal neighbouring atoms move almost together, as in sound, with $\omega = c_Tk$ or $c_Lk$. In an optical mode, which needs two atoms in the repeating cell, the two sets of atoms swing against each other at a frequency near $\omega_0$ even at zero wavenumber.'
+    chapter: '10.3'
+    anchor: a-wave-shears-a-body-all-at-once-so-it-cannot-make-one-phonon
+  - term: Debye model
+    definition: 'A model of a solid that treats every acoustic mode as sound, counted as the modes of a box are, up to the Debye frequency $\omega_D$ that leaves $3N$ modes for $N$ atoms.'
+    chapter: '10.3'
+    anchor: a-wave-shears-a-body-all-at-once-so-it-cannot-make-one-phonon
+  - term: uniform shear
+    definition: 'A shear that is the same at every atom. A gravitational wave at the frequencies of heat is about $10^5$ times longer than a sound of the same frequency, so it shears matter uniformly and cannot make a single acoustic phonon.'
+    chapter: '10.3'
+    anchor: a-wave-shears-a-body-all-at-once-so-it-cannot-make-one-phonon
+  - term: channel (of friction)
+    definition: 'A motion inside matter that a uniform shear can drive: free electrons, an optical vibration, the vibrations of a glass, pairs of phonons. Each is a weight, the stiffness it lets relax, spread over a band of frequencies.'
+    chapter: '10.3'
+    anchor: every-channel-is-a-stiffness-that-relaxes-spread-over-a-band
+  - term: exclusion principle
+    definition: 'The rule of quantum mechanics that at most one electron can be in each state of motion and spin, so that a metal''s free electrons fill the states from the lowest upward.'
+    chapter: '10.3'
+    anchor: free-electrons-fill-a-sphere-of-states-and-collisions-relax-a-sheared-one
+  - term: Fermi wavenumber
+    definition: 'The radius $k_F$ of the sphere of wavevectors that a metal''s free electrons fill, with $n = k_F^3/3\pi^2$ electrons per cubic metre.'
+    chapter: '10.3'
+    anchor: free-electrons-fill-a-sphere-of-states-and-collisions-relax-a-sheared-one
+  - term: density of states
+    definition: 'The number of states of the electrons per cubic metre and per unit of energy. At the Fermi energy of free electrons it is $g(E_F) = 3n/2E_F$.'
+    chapter: '10.3'
+    anchor: free-electrons-fill-a-sphere-of-states-and-collisions-relax-a-sheared-one
+  - term: internal strain
+    definition: 'In a crystal made of two interleaved copies of one lattice, such as silicon or diamond, the shift of one copy against the other that a shear causes, because the bonds pull them unequally. Kleinman''s parameter $\zeta_K$ measures it.'
+    chapter: '10.3'
+    anchor: a-crystal-with-two-atoms-in-its-cell-rings-at-its-raman-line-when-sheared
+  - term: Raman scattering and Raman line
+    definition: 'Light scattered by a crystal comes out with some of its frequency shifted by that of an optical vibration; the vibration, and the friction it gives against a shear, is called a Raman line. Silicon''s is at 520 cm⁻¹, 15.6 THz.'
+    chapter: '10.3'
+    anchor: a-crystal-with-two-atoms-in-its-cell-rings-at-its-raman-line-when-sheared
+  - term: spectroscopic wavenumber
+    definition: 'The number of wavelengths per centimetre of light of a given frequency, $\tilde\nu = \omega/2\pi c$, in cm⁻¹, the unit in which Raman lines are quoted.'
+    chapter: '10.3'
+    anchor: a-crystal-with-two-atoms-in-its-cell-rings-at-its-raman-line-when-sheared
+  - term: pair of phonons
+    definition: 'Two phonons of opposite wavevectors, whose momenta cancel, so that a uniform shear can make or unmake them together, at the sum of their frequencies, up to twice the Debye frequency.'
+    chapter: '10.3'
+    anchor: even-a-perfect-crystal-glows-through-pairs-of-phonons
+  - term: Einstein solid
+    definition: 'A model of a solid in which every atom sits on its own spring of one frequency. Its pairs of phonons have the classical weight $2nk_BT$, all at twice that frequency.'
+    chapter: '10.3'
+    anchor: even-a-perfect-crystal-glows-through-pairs-of-phonons
+  - term: anharmonicity
+    definition: 'The departure of real bonds between atoms from ideal springs. It changes the weight of the pairs of phonons by a factor of order one.'
+    chapter: '10.3'
+    anchor: even-a-perfect-crystal-glows-through-pairs-of-phonons
+  - term: glow bound
+    definition: 'The most a weight $\Delta\mu$ can glow at a temperature $T$: $P/V \le 11.37\,G\Delta\mu(k_BT)^3/\hbar^2c^5$ and $\dot N/V \le 5.18\,G\Delta\mu(k_BT)^2/\hbar^2c^5$, reached when the whole weight sits at the peak of Planck''s spectrum. 30 GPa at 293 K glows at most $5.6\times10^{-35}$ W m⁻³.'
+    chapter: '10.3'
+    anchor: no-material-can-glow-brighter-than-its-weight-allows
+  - term: surface glow and volume glow
+    definition: 'A body without internal friction absorbs, and so glows, only at its surface, where a wave launches sound, in proportion to $R^2T^2$. Friction inside makes its volume glow, in proportion to $R^3T^3$; ordinary bodies larger than about 30 nm (28 nm for diamond, the faintest) glow mostly through their volume.'
+    chapter: '10.3'
+    anchor: ordinary-bodies-glow-through-their-volume-not-their-surface
+  - term: phonon path
+    definition: 'The distance $\ell_s = Q\hbar c_T/k_BT$ that a thermal phonon travels before it is damped, about a nanometre in ordinary solids at room temperature.'
+    chapter: '10.3'
+    anchor: ordinary-bodies-glow-through-their-volume-not-their-surface
