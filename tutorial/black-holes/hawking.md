@@ -75,18 +75,12 @@ mm, and a metre away its steady tide is chapter
 $2G\matter M/r^3 = 1.8\times10^{13}\unit{s^{-2}}$, Section
 VII's "$2\times10^{13}$". These are the mass and the tide that chapter
 [0.5](/tutorial/evening/what-the-outside-keeps/#a-black-hole-replies-with-friction-and-a-temperature)'s tour promised.
-**What it means:** a heavier hole is colder, so it is the heavy holes that cast shadows.
+**What it means:** a heavier hole is colder, so it is the heavy holes that cast shadows (Figure
+[](#fig:hawking-ladder)).
 
-<!-- diagram: tut-hawking-ladder — One panel, about 640 × 260 px at 1440 (full width on a phone). A horizontal
-logarithmic axis of the hole's mass from 10¹¹ kg to 10¹⁰ M_⊙ (2 × 10⁴⁰ kg), labelled "hole mass M (kg)", with a second
-axis above it of T_H = ħc³/8πGMk_B from 1.2 × 10¹² K down to 6.2 × 10⁻¹⁸ K, labelled "Hawking temperature T_H (K)"
-(the two axes are one line read two ways, since T_H ∝ 1/M). Three bands of the mass axis, shaded lightly: left of 4.50
-× 10²² kg "hotter than the microwave sky (2.7255 K): glows in light and gravitons"; between 4.50 × 10²² and 1.356 ×
-10²³ kg "between the two skies: glows in gravitons, dark in light"; right of 1.356 × 10²³ kg "colder than both: a
-shadow". Ticks for the Moon (7.3 × 10²² kg), the Earth, the Sun and Sgr A* (4 × 10⁶ M_⊙). A short vertical mark at
-1.356 × 10²³ kg labelled "M_eq, 0.905 K". Neutral greys; the hole's mass marks in the matter colour. Caption: "Look
-first at the mark M_eq: a hole of that mass is as warm as the graviton sky. Lighter holes glow against it, heavier
-ones are dark. The axes are exact; the bands are bounded by the two skies' temperatures." -->
+![Look first at the mark $\matter M_{\rm eq}$: a hole of that mass is as warm as the graviton sky. Lighter holes glow
+against it, heavier ones are dark. The axes are exact; the bands are bounded by the two skies'
+temperatures.](tut-hawking-ladder){#fig:hawking-ladder}
 
 ## A hovering observer near the horizon finds empty space warm
 
@@ -249,7 +243,8 @@ and the share $(1 - \Gamma_\ell)n_H$ is scattered out. Balance requires $n_H$ to
 emission is $\Gamma_\ell n_H$. That emission does not depend on what comes in, so it is $\Gamma_\ell n_H$ in any sky.
 
 **The bookkeeping.** Now let the sky send in $\sym{background-occupation}{n_{\rm bg}}$ quanta per mode. What a camera
-receives from the hole in that mode is the scattered share plus the hole's own emission:
+receives from the hole in that mode is the scattered share plus the hole's own emission (Figure
+[](#fig:hawking-mode)):
 
 $$\boxed{\begin{aligned}
 n_{\rm out} &= (1 - \Gamma_\ell)\,n_{\rm bg} + \Gamma_\ell n_H\\
@@ -266,16 +261,12 @@ before stimulated emission is taken away, $\Gamma_\ell(n_H + 1)$, are both the n
 $\kB T_H/\hbar\omega$, as Section XIV says. Here $\hbar\omega/\kB T_H = 8\pi G\matter M\omega/c^3$, the answer to
 chapter [8.7](/tutorial/quantum/quantum-fluctuation/#a-cold-body-can-take-energy-from-a-push-but-has-none-to-give)'s
 paper problem. Section XIV uses this to make the hole's near field a thermometer: a camera beside the hole reads
-$T_H$ from it without catching a single graviton, as chapters 11.4 and 13.7 show.
+$T_H$ from it without catching a single graviton, as chapters
+[11.4](/tutorial/black-holes/under-tides/#the-friction-trembles-at-the-holes-temperature) and 13.7 show.
 
-<!-- diagram: tut-hawking-mode — One panel, about 560 × 280 px at 1440. The hole as a dark disc at the right with its
-horizon; one thick arrow coming in from the left labelled "sky: n_bg" (neutral); at the hole it splits into a thin
-arrow entering the horizon labelled "Γ n_bg absorbed, net" and a returning arrow labelled "(1 − Γ) n_bg scattered"; a
-second short arrow leaving the horizon in the light colour labelled "Γ n_H spontaneous"; the two leaving arrows join
-into one outgoing arrow labelled "n_out = n_bg + Γ(n_H − n_bg)". Arrow widths in proportion to the numbers for Γ = 0.4,
-n_bg = 1, n_H = 0.3. Caption: "Look first at the two arrows that leave: what the hole scatters and what it emits of
-its own add up to what the camera receives. The arrow into the horizon is the net absorption, stimulated emission
-taken away. The arrows are schematic; their widths follow the bookkeeping for one example." -->
+![Look first at the two arrows that leave: what the hole scatters and what it emits of its own add up to what the
+camera receives. The arrow into the horizon is the net absorption, stimulated emission taken away. The arrows are
+schematic; their widths follow the bookkeeping for one example.](tut-hawking-mode){#fig:hawking-mode}
 
 **Where $\Gamma_\ell$ comes from** (stated, and solved by numbers). The shadow's depth in the next section needs
 $\Gamma_\ell$ at every frequency, and this is where those numbers come from. We write $x = G\matter M\omega/c^3$,
@@ -304,7 +295,8 @@ $A_{\rm in}e^{-i\omega r_*/c} + A_{\rm out}e^{i\omega r_*/c}$. The flux is conse
 same $\Gamma_\ell$ (stated).
 :::
 
-**Its two ends.** For long waves the absorption tends to **Page's limit** (Don Page, 1976, stated; chapter 11.4
+**Its two ends.** For long waves the absorption tends to **Page's limit** (Don Page, 1976, stated; chapter
+[11.4](/tutorial/black-holes/under-tides/#the-same-friction-absorbs-long-gravitational-waves)
 derives it from the horizon's friction):
 
 $$\boxed{\;\Gamma_2 \to \frac{256}{225}\,x^6\;} \qquad (x \to 0) .$$
@@ -322,15 +314,11 @@ $$\begin{aligned}
 
 in square metres. When $\Gamma_\ell = 1$ up to $\ell + \tfrac12 = \omega b_c/c$ and 0 beyond, the sum is $\pi b_c^2$.
 Solved by numbers, $\sigma_{\rm abs}$ reaches the capture cross-section near $x = 1$ and then swings about it by a few
-per cent.
+per cent (Figure [](#fig:hawking-greybody)).
 
-<!-- diagram: tut-hawking-greybody — Two panels side by side (stacked on a phone), about 680 × 300 px at 1440. Left:
-Γ_ℓ(x) for ℓ = 2, 3, 4, 6, 10 against x = GMω/c³ from 0 to 2.5, from the greybody table of 11.3-write (exact data),
-each curve labelled at its rise; Page's (256/225)x⁶ dashed beside the ℓ = 2 curve from 0 to 0.25. Right: σ_abs/27π
-(GM/c²)² against x from 0 to 3, rising from 0 and oscillating about a thin horizontal line at 1, labelled "capture
-cross-section". Neutral greys; one accent colour for ℓ = 2. Caption: "Look first at the left panel's ℓ = 2 curve and
-its dashed partner: long waves are absorbed as Page's x⁶. On the right, the partial-wave sum climbs to the capture
-cross-section once the waves are shorter than the hole. Curves from the Regge–Wheeler equation." -->
+![Look first at the left panel's $\ell = 2$ curve and its dashed partner, on logarithmic axes: long waves are absorbed
+as Page's $x^6$. On the right, the partial-wave sum climbs to the capture cross-section once the waves are shorter than
+the hole. Curves from the Regge–Wheeler equation.](tut-hawking-greybody){#fig:hawking-greybody}
 
 ## A shadow stays pale while the sky's gravitons are long
 

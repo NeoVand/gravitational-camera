@@ -20,7 +20,9 @@ $\chi(\omega)$), chapter
 [7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain) (the
 tide of a wave), chapter
 [11.1](/tutorial/black-holes/schwarzschild/#outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone) (the
-metric and $r_s$) and chapter 11.3 (the Hawking temperature and the greybody factor). Chapters 7.8, 8.7,
+metric and $r_s$) and chapter
+[11.3](/tutorial/black-holes/hawking/#a-black-hole-has-a-temperature-lower-the-heavier-it-is) (the Hawking
+temperature and the greybody factor). Chapters 7.8, 8.7,
 [11.2](/tutorial/black-holes/spin/#the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out) and
 2.2 help, and what we use from them is recalled.
 
@@ -325,12 +327,13 @@ starting at $\ell = 2$, and the law $\Gamma_\ell \propto (G\matter M\omega/c^3)^
 of two helicities, and a hole that does not spin takes the same share of each.
 :::
 
-**The same number.** Chapter 11.3 found $\Gamma_2$ another way, by solving the Regge–Wheeler equation for a wave
-scattered off the hole. With $x = G\matter M\omega/c^3$ (local, as in 11.3)[^x], its $\Gamma_2$ is 1.013 times Page's
-form at $x = 0.002$ and 1.070 times at $x = 0.01$, and the excess shrinks in proportion to $x$, as about $2\pi x$. So
-the friction found from the growth of the horizon and the absorption found from scattering are one number (Figure
-[](#fig:friction-to-gamma)), Section XIV's point. **Number:** at $x = 0.01$ the hole absorbs about $1.2\times10^{-12}$
-of the quadrupole part of a wave. Long waves pass a hole almost untouched.
+**The same number.** Chapter [11.3](/tutorial/black-holes/hawking/#mode-by-mode-a-hole-is-a-grey-body) found $\Gamma_2$
+another way, by solving the Regge–Wheeler equation for a wave scattered off the hole. With $x = G\matter M\omega/c^3$
+(local, as in 11.3)[^x], its $\Gamma_2$ is 1.013 times Page's form at $x = 0.002$ and 1.070 times at $x = 0.01$, and the
+excess shrinks in proportion to $x$, as about $2\pi x$. So the friction found from the growth of the horizon and the
+absorption found from scattering are one number (Figure [](#fig:friction-to-gamma)), Section XIV's point. **Number:** at
+$x = 0.01$ the hole absorbs about $1.2\times10^{-12}$ of the quadrupole part of a wave. Long waves pass a hole almost
+untouched.
 
 ![Look first at the bottom panel's two lines: the friction's Page line and the scattered wave's $\Gamma_2$ meet as the
 waves grow long. The chain above is the derivation; the curves are
