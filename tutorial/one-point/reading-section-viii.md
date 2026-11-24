@@ -17,23 +17,12 @@ directions on the sky in every reading, and reads a pixel's own velocity and a m
 This chapter reads the section in order, up to the paragraph [*The state of a moving
 body*](/paper/#par:the-state-of-a-moving-body), and derives nothing new. As in
 [R7](/tutorial/geometry/reading-section-ii-again/), each claim gets the chapter that derived it and one mark: *checked
-here* (derived earlier, its numbers recomputed here), *read now, derived in chapter N*, or *stated in the paper*.
+here* (derived earlier, its numbers recomputed here), *read now, derived in chapter N*, or *stated in the paper*. The
+map below draws the stretches in order (Figure [](#fig:read-viii-map)).
 
-<!-- diagram: tut-read-viii-map — After R7's tut-read-ii-again-map, about 640 × 300 px at 1440 (full width on a phone,
-the strip wrapping into two rows of five). One strip of ten boxes in the paper's order, joined by thin ink arrows,
-each box with the stretch's name in small ink, its equations in the curvature colour and, at its foot, the chapters
-that derive it: "Plain words (first half)" 9.1, 9.3, 9.4; "Opening" R1, 1.4; "One complex matrix" eq:W,
-eq:invariants, eq:square, eq:one-wave, 9.1, 9.2, 9.3; "Principal null directions" eq:stars, 9.4, 8.4, 6.6; "Four spins one
-half" eq:one-spin, 8.4; "Shape" 9.4; "The magnetic part" eq:magnetic-ratio, 7.5, 7.6, 9.3; "Ten numbers" eq:polar,
-eq:speedometer, 9.2, 9.3; "Light cannot do this" 6.6, 9.3; "The state of a moving body" eq:star-velocity,
-eq:moving-state, eq:contact, 6.1, 6.3, 9.4. Every box filled (derived). Small dotted insets hold the results stated
-rather than derived: in "One complex matrix", SO(3,ℂ), the boost rule's gap and "matter neither reflects nor absorbs";
-in "Principal null directions", Penrose's shapes and roots, Möbius maps and Majorana's factors; in "Four spins one
-half", the classes of entanglement; in "Ten numbers", Schur's theorem and Kerr's eigenvalues. Below the strip, faint
-and dashed, a second strip of the section's other sixteen paragraphs, from "Separating waves at one point" to
-"Precision of depth", labelled "R9b, after 9.5–9.7". No orange or blue. Caption: "Look first at the filled boxes: every
-stretch of the first half of Section VIII is derived in Part 9 or earlier, with the results stated rather than derived
-in their dotted insets. The dashed strip is read in R9b." -->
+![Look first at the filled boxes: every stretch of the first half of Section VIII is derived in Part 9 or earlier,
+with the results stated rather than derived in their dotted insets. The dashed strip is read in
+R9b.](tut-read-viii-map){#fig:read-viii-map}
 
 ::: plain
 The first half of Section VIII is about what one pixel can learn from a single reading. A pixel's ten numbers fit into
