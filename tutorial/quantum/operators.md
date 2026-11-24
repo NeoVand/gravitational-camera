@@ -6,7 +6,7 @@ part: '8'
 requires: ['1.7', '3.1', '3.3', '8.1']
 paper: [sec:second-order, eq:hair-commutator, eq:push, app:proofs, sec:one-pixel]
 figures: []
-live: []
+live: [uncertainty-packet]
 depth: A
 ---
 
@@ -205,9 +205,10 @@ ripples), so $\sigma_x\sigma_k \ge \tfrac12$, and $p = \hbar k$ gives the boxed 
 
 **Equality and far from it.** Chapter 8.1's Gaussian packet $\psi \propto e^{-x^2/4\sigma_x^2}$, whose $|\psi|^2$ has
 the standard deviation $\sigma_x$, reaches the bound: its transform is chapter 2.6's bell $e^{-\sigma_x^2k^2}$, whose
-square has the standard deviation $1/2\sigma_x$, so $\sigma_p = \hbar/2\sigma_x$. A **chirp**, a phase $e^{iax^2}$
-with $a$ in $\mathrm{m^{-2}}$, leaves $|\psi|^2$ alone but spreads the momenta. Differentiating gives $p\,\psi =
-\hbar(2a + i/2\sigma_x^2)\,x\psi$, with both means zero, so $\sigma_p^2 = \hbar^2|2a + i/2\sigma_x^2|^2\sigma_x^2$:
+square has the standard deviation $1/2\sigma_x$, so $\sigma_p = \hbar/2\sigma_x$ (Figure [](#fig:widths)). A
+**chirp**, a phase $e^{iax^2}$ with $a$ in $\mathrm{m^{-2}}$, leaves $|\psi|^2$ alone but spreads the momenta.
+Differentiating gives $p\,\psi = \hbar(2a + i/2\sigma_x^2)\,x\psi$, with both means zero, so $\sigma_p^2 =
+\hbar^2|2a + i/2\sigma_x^2|^2\sigma_x^2$:
 
 $$\sigma_p = \frac{\hbar}{2\sigma_x}\sqrt{1 + 16a^2\sigma_x^4} ,$$
 
@@ -227,30 +228,19 @@ against the $2.0\times10^{-9}\unit{m\,s^{-1}}$ its warmth gives it at room tempe
 [4.2](/tutorial/response/temperature/#the-first-case-is-brownian-motion-and-the-next-ones-see-inside)). What a
 measurement does to a state is chapter 8.6's subject.
 
-<!-- diagram: tut-uncertainty-widths — Three small panels side by side, about 640 × 280 px at 1440 (stacked on a phone).
-Each panel has two thin plots, one above the other: above, |ψ(x)|² of a Gaussian wave packet against x; below, its
-momentum distribution against p = ħk (the density |ψ̃(k)|²/2πħ), on the same scales in all three panels. Widths
-σ_x = 2ℓ, ℓ and ℓ/2 for an arbitrary length ℓ, so that the momentum spreads are ħ/4ℓ, ħ/2ℓ and ħ/ℓ: the narrow packet
-has the wide distribution. Each curve has its standard deviation marked by a short horizontal bracket at e^{−1/2} of
-its height, labelled "σ_x" and "σ_p". Under each panel one line of type: "σ_x σ_p = ħ/2". Ink lines, every curve
-exact; no orange or blue. Caption: "Look first at the bottom row: halving the packet's width doubles the spread of its
-momenta, and the product stays at ħ/2, the least value, which a Gaussian reaches. The unit of length is arbitrary." -->
+![Look first at the bottom row: halving the packet's width doubles the spread of its momenta, and the product stays at
+$\hbar/2$, the least value, which a Gaussian reaches. The unit of length, $\ell$, is
+arbitrary.](tut-uncertainty-widths){#fig:widths}
 
-<!-- try: uncertainty-packet (a new interactive figure, UncertaintyPacket) — A wave packet on a line, in units with
-ħ = 1. Above, about 640 × 180 px: |ψ(x)|² as a filled ink curve, with Re ψ as a thin grey line under it so that the
-chirp shows. Below, about 640 × 180 px: the momentum distribution |ψ̃(p)|² (normalized to unit area), from a fast
-Fourier transform of ψ on a grid of 2048 points. Controls: a slider "width σ_x" from 0.25 to 4 (opens at 1); a slider
-"chirp a" from 0 to 1 (opens at 0); a toggle "split into two packets" that replaces ψ by two in-phase copies a distance
-d apart, with a slider for d from 0 to 10 (chapter 8.1's two places). Readouts: σ_x, σ_p and the ratio σ_xσ_p/(ħ/2) to
-three figures. Engine checks: for one packet the ratio is √(1 + 16a²σ_x⁴) (1.000 at a = 0 for every width; 1.562 at
-σ_x = 1, a = 0.3); for two unchirped packets of width σ_x0, σ_x² = σ_x0² + (d²/4)/(1 + e^{−d²/8σ_x0²}), which is
-σ_x0² + d²/4 only when d ≫ σ_x0 (at d = 2σ_x0 the increase is 62% of d²/4; at d = 0 it is zero), while σ_p stays near
-that of one packet when d ≫ σ_x0. Predict first: "Narrow the packet by half. What happens to the spread of momenta?"
-(Answer: it doubles, and the ratio stays at 1.) Then: "Add a chirp. Can the ratio fall below 1?" (Answer: no; it only
-grows, because the chirp spreads the momenta and leaves |ψ|² alone.) Then: "Split the packet, with d several times
-σ_x. Which spread grows?" (Answer: σ_x, to nearly d/2 once d is a few times the packet's width, while σ_p hardly
-changes, so the ratio grows; the fine fringes in the momentum distribution are the two places interfering.) Keyboard:
-Tab reaches the sliders and the toggle, arrows step them; both themes; on a phone the plots stack. -->
+::: try {#uncertainty-packet}
+A wave packet on a line, in units with $\hbar = 1$: above, $|\psi(x)|^2$ with the real part of $\psi$ beneath it;
+below, its distribution of momenta, computed from $\psi$ by a fast Fourier transform. Sliders set the packet's width
+and a chirp, and a switch splits it into two copies a distance $d$ apart, chapter 8.1's mass in two places. The
+readouts give $\sigma_x$, $\sigma_p$ and their product over $\hbar/2$.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, split
+the packet with $d$ several times its width and say what the fine fringes in the distribution of momenta come from.
+:::
 
 ## The quantum equation of motion is the classical one with $i\hbar$ times the bracket
 
@@ -350,7 +340,7 @@ $\matter m$ with $g = x$. Then $\matter Q_g = \matter
 mx$, the momentum rises by $b = \epsilon\matter m$, and the impulse is $e^{ibx/\hbar}$. A shift by $s$ and then a kick
 by $b$ give $e^{ibx/\hbar}\psi(x - s)$; the kick first gives $e^{ib(x - s)/\hbar}\psi(x - s)$, because the shift
 carries the kick's phase with the packet. The two orders differ by the factor $e^{isb/\hbar}$, with $sb$ the area of
-the rectangle that they trace in the phase plane.
+the rectangle that they trace in the phase plane (Figure [](#fig:orders)).
 
 On its own the factor is an overall phase, which has
 [no effect](/tutorial/quantum/states/#probabilities-are-the-squared-sizes-of-amplitudes). It is seen when the two paths
@@ -359,16 +349,9 @@ in opposite orders, shift then kick on one and kick then shift on the other. It 
 sb/\hbar$, and it moves the fringes. Classical moves reach the same point in either order, so this phase is what $[x,
 p] = i\hbar$ adds.
 
-<!-- diagram: tut-shift-kick-orders — One panel, about 520 × 320 px at 1440 (full width on a phone): chapter 1.7's
-phase plane, x to the right and p upward, thin grey axes. A start point (open circle) at (x₀, p₀). Route 1, solid ink:
-a horizontal arrow of length s (labelled "shift s, e^{−isp/ħ}") then a vertical arrow of length b (labelled "kick b,
-e^{ibx/ħ}"). Route 2, dashed ink: the vertical arrow first, then the horizontal. Both routes end at the same dot
-(x₀ + s, p₀ + b), labelled "same end point". The rectangle between the routes is lightly shaded grey and labelled
-"area sb". Beside the panel, two lines of type: "classical: the two orders agree" and "quantum: they differ by the
-phase e^{isb/ħ}, seen only when two paths take opposite orders". No orange or blue; labels beside the arrows, never on
-them. Caption: "Look first at the shaded rectangle. A shift and a kick reach the same point in either order, but in
-quantum mechanics the two orders differ by a phase, the rectangle's area divided by ħ, which is what [x, p] = iħ
-means. The sizes of s and b are schematic." -->
+![Look first at the shaded rectangle. A shift and a kick reach the same point in either order, but in quantum mechanics
+the two orders differ by a phase, the rectangle's area divided by $\hbar$, which is what $[x, p] = i\hbar$ means. The
+sizes of $s$ and $b$ are schematic.](tut-shift-kick-orders){#fig:orders}
 
 ## Two moments of a body do not commute
 
@@ -420,19 +403,15 @@ $$U^\dagger HU = H + \epsilon\,\matter{\dot Q}_g + \frac{\epsilon^2}{2}\sum_a\ma
 
 chapter 1.7's algebra, line for line.
 
-<!-- diagram: tut-one-integral-ledger — One box in the centre, about 600 × 360 px at 1440 (full width on a phone),
-holding ∫ρ ∇h·∇g dV (ρ in the matter colour). Four thin ink arrows leave it for four labelled boxes at the corners:
-"the bracket {Q_h, Q̇_g} (chapter 1.7)", "the commutator [Q_h, Q̇_g] (chapter 8.2)", "the tremor ⟨Q̇_h Q̇_g⟩
-(chapter 4.2)" and "the weight of the response to a tide (chapter 4.5)". Beside each arrow its factor: "× 1",
-"× iħ", "× k_BT", "the sum rule". No orange or blue. Caption: "Look first at the box in the centre: one integral of
-the density, the moment of inertia when h = g = ½(x² − y²), is a classical bracket, a quantum commutator, a thermal
-average and the total of a response. The layout is schematic." -->
+![Look first at the box in the centre: one integral of the density, the moment of inertia when $h = g = \tfrac12(x^2 -
+y^2)$, is a classical bracket, a quantum commutator, a thermal average and the total of a response. The layout is
+schematic.](tut-one-integral-ledger){#fig:ledger}
 
 The same integral, times $\kB T$, is the mean of $\matter{\dot Q}_h\matter{\dot Q}_g$ in a warm body (chapter
 [4.2](/tutorial/response/temperature/#the-mean-square-rate-of-change-of-a-warm-bodys-moments-is-fixed-by-its-temperature-and-density)),
 and the whole weight of the response to an applied tide (chapter
 [4.5](/tutorial/response/causality/#a-blow-holds-every-frequency-and-the-energy-it-leaves-is-the-same-total)). Here it
-is the price of reading two moments at once.
+is the price of reading two moments at once (Figure [](#fig:ledger)).
 
 ::: check
 ### Q

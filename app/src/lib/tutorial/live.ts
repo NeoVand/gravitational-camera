@@ -67,6 +67,7 @@ import WaveRings from './live/WaveRings.svelte';
 import NearToFar from './live/NearToFar.svelte';
 import MemoryPattern from './live/MemoryPattern.svelte';
 import TwoPaths from './live/TwoPaths.svelte';
+import UncertaintyPacket from './live/UncertaintyPacket.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -323,6 +324,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A Mach–Zehnder interferometer with a delay on one path and a record of the path: the two amplitudes at an exit, their sum, and the fringes',
 		component: TwoPaths
+	},
+	'uncertainty-packet': {
+		label:
+			'A wave packet on a line and its distribution of momenta: its width, a chirp and a split into two places, with the product of the two spreads',
+		component: UncertaintyPacket
 	},
 	'noise-spectrum': {
 		label:
