@@ -187,18 +187,11 @@ This is the paper's equation:
 four real numbers that no observer can change. **A number.** For the person of 70 kg a metre away, $I = 1.31 \times
 10^{-16}\unit{s^{-4}}$ and $J = -6.12 \times 10^{-25}\unit{s^{-6}}$ (chapter 9.2), for a pixel at rest there and for one
 passing at $0.6c$ alike. What does change is the size of the reading, $|\curv\tE|^2 +
-|\curv\tB|^2$, as the next section's numbers show. **A limit.** At $\obs\eta = 0$, $\Lambda = 1$ and nothing changes.
+|\curv\tB|^2$, as the next section's numbers show (Figure [](#fig:same-eigenvalues)). **A limit.** At $\obs\eta = 0$, $\Lambda = 1$ and nothing changes.
 
-<!-- diagram: tut-same-eigenvalues — Two panels side by side at 1440 (stacked on a phone), about 560 × 300 px, the same
-room of the two stone-grey masses of fig:stars seen from above, faint. Left, "pixel at rest": a ring of twelve free balls
-deformed by the real tide Re 𝓦 (orange arrows for stretch, blue for squeeze, movement exaggerated) and, at its centre,
-no gyroscope turning (a small grey gyroscope, still). Right, "pixel moving at 0.6c" (an arrow in the observer colour):
-the ring deformed by Re(Λ𝓦Λᵀ), more strongly (|𝓔|² + |𝓑|² from 0.468 to 2.27), and two small gyroscopes, one above the
-other, turning relative to each other by Im(Λ𝓦Λᵀ), drawn as thin curved ink arrows. Under both panels the same three
-numbers in the curvature colour, "w = −0.537, 0.135, 0.402", with "I = 0.468, J = −0.0874" in small ink. Orange and blue
-only for stretch and squeeze. Caption: "Look first at the numbers under the two panels: the moving pixel feels a
-stronger stretch and a twist that the pixel at rest does not, yet both find the same three eigenvalues. Readings computed
-from the rule; movements exaggerated." -->
+![Look first at the numbers under the two panels: the moving pixel feels a stronger stretch and a twist that the
+pixel at rest does not, yet both find the same three eigenvalues. Readings computed from the rule; movements
+exaggerated.](tut-same-eigenvalues){#fig:same-eigenvalues}
 
 ## Ten numbers are four invariants, three angles and a velocity
 
@@ -231,7 +224,7 @@ the principal observer with the velocity
 $$\boxed{\;\obs{\vect v} = c\tanh\obs\eta\;R_0\hat u ,\;} \label{eq:velocity}$$
 
 three numbers. So the ten numbers are four in the eigenvalues, three in $R_0$ and three in $\obs\eta\hat u$: $10 = 4 +
-3 + 3$. The columns of $R_0$ must be taken right-handed, $\det R_0 = +1$, as for any turn. Eigenvectors from a
+3 + 3$ (Figure [](#fig:ten-regroup)). The columns of $R_0$ must be taken right-handed, $\det R_0 = +1$, as for any turn. Eigenvectors from a
 computer may come left-handed, and then the velocity comes out reversed.
 
 **Only one such observer.** Suppose a boost $\Lambda$ left the principal reading unchanged, $\Lambda D\Lambda^{\mathsf
@@ -261,16 +254,9 @@ complex entries and the same three real eigenvalues. Its polar decomposition, wi
 -0.312)\,c$. Its $|\curv\tE|^2 + |\curv\tB|^2$ is $2.27$, and the principal observer's is $0.468 = \sum_a\curv w_a^2$,
 the least value.
 
-<!-- diagram: tut-ten-regroup — After 0.4's tut-one-pixel-regroup, about 560 × 340 px at 1440 (full width on a phone,
-the two rows stacked). Top: ten small cells in two rows of five, the first row labelled "stretch, 𝓔 (5)" with tiny
-ring icons, the second "twist, 𝓑 (5)" with tiny gyroscope icons; the curvature colour for the cells. A thin bracket
-joins them: "𝓦 = 𝓔 + i𝓑, five complex numbers". Thin ink arrows lead down to three groups of cells: four cells
-"eigenvalues w₁, w₂, w₃ (Σ = 0): the same for every observer" with "tr 𝓦², tr 𝓦³" beside them; three cells "R₀: the
-field's own axes, three angles"; three cells in the observer colour "η û: the velocity of the principal observer,
-v = c tanh η R₀û". Under the groups, "10 = 4 + 3 + 3", and to the right, faint, light's "6 = 2 + 2 + 2" (chapter 6.6).
-No orange or blue. Caption: "Look first at the three groups at the bottom: the same ten numbers, regrouped by what an
-observer can change. The eigenvalues no observer changes; the axes change with a turn; the velocity changes with a
-boost." -->
+![Look first at the three groups at the bottom: the same ten numbers, regrouped by what an observer can change. The
+eigenvalues no observer changes; the axes change with a turn; the velocity changes with a
+boost.](tut-ten-regroup){#fig:ten-regroup}
 
 ## In a room at rest a pixel reads its own velocity
 
@@ -322,20 +308,13 @@ n\hat n^{\mathsf T}] = (\hat n\times\hat n)\hat n^{\mathsf T} + \hat n(\hat n\ti
 exponential $\Lambda$ commutes with $\curv{\mathcal W} = \curv w(1 - 3\hat n\hat n^{\mathsf T})$, and $\Lambda\curv{\mathcal
 W}\Lambda^{\mathsf T} = \Lambda\curv{\mathcal W}\Lambda^{-1} = \curv{\mathcal W}$. A pixel flying straight at the body
 at $0.3c$ reads exactly the same table as a pixel at rest, with no magnetic part. This is the paper's "its radial speed
-is unreadable", the **radial blind spot**. A second body gives three different eigenvalues and removes it everywhere
+is unreadable", the **radial blind spot** (Figure [](#fig:speedometer-gap)). A second body gives three different eigenvalues and removes it everywhere
 off the line through the two bodies, as chapter 0.4's margin promised;[^line] so does a body that is not round, off any
 axis of symmetry.
 
-<!-- diagram: tut-speedometer-gap — Two panels side by side at 1440, stacked on a phone, about 560 × 280 px. Left: the
-error σ_v of one velocity component against the gap |λ_b − λ_c|, both axes logarithmic, the gap from 10⁻¹⁰ to
-10⁻⁶ s⁻² (ticks at each decade), σ_v from 10⁻² to 10³ m s⁻¹; one thin ink line, σ_v = cσ_n/(√2 gap) for
-σ_n = 10⁻¹⁶ s⁻², labelled beside it; two ink dots with labels off the line: "gap 10⁻⁸: 2.1 m/s" and "the person's
-3GM/r³ = 1.40 × 10⁻⁸: 1.5 m/s". Right: the person's three eigenvalues on a vertical axis of tide (10⁻⁹ s⁻²): an orange
-tick at −9.34 ("stretch, along the line") and two touching blue ticks at +4.67 ("two squeezes"), the gap 14.0 between
-the stretch and each squeeze marked by a thin bracket "across: read", the zero gap between the two squeezes marked by a
-dashed bracket "along the line: blind". Orange and blue only for the stretch and the squeezes. Caption: "Look first at
-the dashed bracket: equal squeezes leave the speed along the line to a round body unreadable, while every gap between
-different eigenvalues reads a component of the velocity, more sharply the wider it is. Line exact." -->
+![Look first at the dashed bracket: equal squeezes leave the speed along the line to a round body unreadable, while
+every gap between different eigenvalues reads a component of the velocity, more sharply the wider it is. Line
+exact.](tut-speedometer-gap){#fig:speedometer-gap}
 
 ::: try {#speedometer}
 The paper's speedometer: a pixel crossing a room of four masses, with the velocity it reads from gravity, the velocity
