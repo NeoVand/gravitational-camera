@@ -6,7 +6,7 @@ part: '6'
 requires: ['1.6', '1.7', '6.1', '6.2']
 paper: [sec:thermal, fig:closed-furnace, sec:second-order, eq:push, eq:shock, eq:shock-even, app:proofs, eq:proof-shock, eq:proof-mass, sec:vistas, sec:status]
 figures: [fig:closed-furnace]
-live: []
+live: [mass-shell]
 depth: A
 ---
 
@@ -73,20 +73,12 @@ $$\boxed{\;E^2 = |\vect p|^2c^2 + \matter m^2c^4\;} \label{eq:shell}$$
 
 Each term is the square of an energy, in $\mathrm{J^2}$. Every body of rest mass $\matter m$ satisfies [](#eq:shell)
 at every speed and for every observer, so all observers compute the same rest mass. Plotted as $E$ against $|\vect
-p|c$, the allowed points lie on one branch of a hyperbola, and in the four dimensions of $(E/c, \vect p)$ they form a
-surface called the **mass shell**.
+p|c$, the allowed points lie on one branch of a hyperbola (Figure [](#fig:mass-shell)), and in the four dimensions of
+$(E/c, \vect p)$ they form a surface called the **mass shell**.
 
-<!-- diagram: tut-momentum-shell — One panel, about 520 × 440 px at 1440 (full width on a phone). Axes |p|c across from
-−2.0 to 2.0 and E upward from 0 to 2.4, both in units of mc², equal scales, labelled "pc / mc²" (with p in bold, the
-momentum along one line, so that negative values mean the other direction) and "E / mc²". The two light lines E = ±pc
-as thin dashed lines in the light role's colour, labelled "light, E = |p|c" once, beside the upper right line. The upper
-branch of the hyperbola E² − p²c² = m²c⁴ from pc = −1.9 to 1.9, a thin single stroke in the matter colour, labelled
-"m > 0" near its upper right end, off the curve; it approaches the two light lines as asymptotes. Two filled dots on
-it: at (0, 1), labelled "at rest, E = mc²", and at (0.75, 1.25), labelled "0.6c". From the second dot, a thin dotted
-horizontal segment to the E axis and a thin dotted vertical segment to the pc axis, with the values "1.25" and "0.75"
-at their ends. Labels never on a line. Caption: "Look first at the two dots: a body at rest and the same body at 0.6c
-lie on one hyperbola, E² − |p|²c² = m²c⁴, and 1.25² − 0.75² = 1. Light, with no rest mass, lies on the dashed lines,
-which the hyperbola approaches but never reaches." -->
+![Look first at the two dots: a body at rest and the same body at $0.6c$ lie on one hyperbola, $E^2 - |\vect
+p|^2c^2 = \matter m^2c^4$, and $1.25^2 - 0.75^2 = 1$. Light, with no rest mass, lies on the dashed lines, which the
+hyperbola approaches but never reaches.](tut-momentum-shell){#fig:mass-shell}
 
 **A number.** The particle of chapter 6.2 moves at $0.6c$, so $\obs\gamma = 1.25$ and $\obs\gamma\obs\beta = 0.75$.
 Then $E = 1.25\,\matter mc^2$ and $|\vect p|c = 0.75\,\matter mc^2$, and $1.25^2 - 0.75^2 = 1.5625 - 0.5625 = 1$, as
@@ -146,21 +138,13 @@ The new lump has more mass than the two lumps had, by $0.5\,\matter m$, the lost
 cent is impossible. Counting the lost energy with Newton's $\tfrac12\matter m\obs v^2$ would give a gain of only
 $0.36\,\matter m$, because that formula is the first term of the series above.
 
-The energy of motion is now heat, the random motion of the lump's molecules, and the lump weighs more because it is hot.
+The energy of motion is now heat, the random motion of the lump's molecules, and the lump weighs more because it is hot
+(Figure [](#fig:lumps-stick)).
 :::
 
-<!-- diagram: tut-momentum-lumps — Two panels side by side, each about 320 × 260 px at 1440 (stacked on a phone), titled
-"before" and "after". Before: two small round lumps in the matter colour on a thin horizontal line, one on each side of
-the centre, each with an arrow in the observer colour pointing toward the centre, labelled "0.6c" (left) and "0.6c"
-(right). Below them one stacked bar for the pair, the same scale in both panels (one unit of mc² = 60 px): two solid
-segments of height 1 each in the matter colour, labelled "rest energy mc²" once, and on top two hatched segments of
-height 0.25 each, labelled "energy of motion 0.25mc²" once, 2.5 in all. Total readout under the panel: "E = 2.5mc², P = 0". After: one larger
-lump at the centre, no arrow, with a faint warm halo meaning heat, and below it a single solid bar of height 2.5 in the
-matter colour labelled "rest energy Mc², M = 2.5m"; a thin dotted line across both panels at height 2.5 shows that the
-totals agree, and a thin dotted line at height 2 is labelled "2m, Newton's mass". Readout: "E = 2.5mc², P = 0". Labels
-never on geometry. Caption: "Look first at the dotted line at 2.5: the total energy is the same before and after. The
-energy of motion of the two lumps becomes part of the rest energy of the one, so the lump at rest has the mass 2.5m,
-not 2m. The bars are to scale; the lumps are not." -->
+![Look first at the dotted line at 2.5: the total energy is the same before and after. The energy of motion of the
+two lumps becomes part of the rest energy of the one, so the lump at rest has the mass $2.5\,\matter m$, not
+$2\,\matter m$. The bars are to scale; the lumps are not.](tut-momentum-lumps){#fig:lumps-stick}
 
 ## A body's mass is its total energy, so heat has weight
 
@@ -328,24 +312,15 @@ at $+\obs\eta$, here from the body's own frame, where $q = \matter mc$, to the r
 to the body. At $0.6c$, $\obs\eta = \ln 2$, so $E/c + p_z = (1.25 + 0.75)\,\matter mc = 2\,\matter mc$ and $q =
 0.5\,\matter mc$, the factors 2 and $\tfrac12$, with the product $\matter m^2c^2$.
 
-**The cases.** For slow matter $q \approx \matter mc$. For light moving along $+z$, $q = 0$; along $-z$, $q = 2E/c$.
+**The cases.** For slow matter $q \approx \matter mc$. For light moving along $+z$, $q = 0$; along $-z$, $q = 2E/c$
+(Figure [](#fig:light-cone-components)).
 Every other body has $q > 0$, because $E/c \ge |\vect p| \ge p_z$, with both equalities only for light along $+z$. So
 $q$ measures how far a body lags behind a front moving along $+z$: for a given energy it is zero for light riding with
 the front and largest for light running against it.
 
-<!-- diagram: tut-momentum-lightcone — One square panel, about 480 × 480 px at 1440 (full width on a phone). The
-ordinary axes p_z across and E/c upward, thin and faint, from −2.4 to 2.4 and 0 to 2.6 in units of mc, labelled "p_z" and
-"E/c". Over them, the light-cone axes as two thick ink lines at 45°: one along the direction (p_z, E/c) ∝ (−1, 1), labelled
-"q = E/c − p_z", and one along (1, 1), labelled "E/c + p_z"; these are also the light lines, so they are drawn dashed in
-the light role's colour where they leave the first quadrant of the new axes. The mass shell with p_⊥ = 0, the upper
-branch of (E/c)² − p_z² = m²c², a thin single stroke in the matter colour, which in the new axes is the rectangular
-hyperbola q(E/c + p_z) = m²c². Three filled dots on it: at rest (0, 1), labelled "rest, q = mc"; at 0.6c along +z
-(0.75, 1.25), labelled "0.6c, q = mc/2"; and at 0.6c along −z (−0.75, 1.25), labelled "q = 2mc". For the dot at 0.6c
-along +z, two thin dotted lines parallel to the light-cone axes down to each axis, with the values "×2" on the E/c + p_z
-axis and "×½" on the q axis, measured from the rest dot's values. A curved arrow in the observer colour along the
-hyperbola from the rest dot to the 0.6c dot, labelled "boost, η = ln 2". Labels never on a line. Caption: "Look first at
-the two dotted lines from the dot at 0.6c: a boost along z doubles one light-cone component and halves the other, so
-the dot slides along the hyperbola q(E/c + p_z) = m²c². Light along +z lies on the axis q = 0." -->
+![Look first at the two dotted lines from the dot at $0.6c$: a boost along $z$ doubles one light-cone component and
+halves the other, so the dot slides along the hyperbola $q(E/c + p_z) = \matter m^2c^2$. Light along $+z$ lies on the
+axis $q = 0$.](tut-momentum-lightcone){#fig:light-cone-components}
 
 ## A sideways kick that keeps q fixes the energy gained
 
@@ -484,28 +459,17 @@ units of $\matter m^2$, and the right side, with the variance $1.44$ of $\nabla 
 4.5$.
 :::
 
-<!-- try: mass-shell (a new interactive figure, MassShell, not yet built) — Two tabs. Tab "One particle": a square panel,
-about 480 × 480 px at 1440 (full width on a phone), with light-cone axes q (along the direction up and to the left) and
-E/c + p_z (up and to the right) at 45°, in units of mc, from 0 to 3, the ordinary axes p_z and E/c faint beneath, and the
-mass shell q(E/c + p_z) = m²c² + p_⊥² as a thin hyperbola in the matter colour (it moves outward as p_⊥ grows). A point in
-the matter colour marks the particle. A rapidity slider η from −2 to 2 (step 0.01; arrow keys by 0.05) boosts along z and
-slides the point along the hyperbola. Readouts to three figures: η, β_z = tanh η, E/mc², p_z/mc, p_⊥/mc, q/mc,
-(E/c + p_z)/mc, and the product q(E/c + p_z) beside m²c² + p_⊥². A "Kick" control with a slider for |∇H| from 0 to 2 and
-a direction (±) applies the wave's kick Δp_⊥ = ½q∇H while keeping q; a toggle "fixed kick" applies instead a fixed
-Δp_⊥ = ½mc∇H, and the figure says in one line which it applies. After a kick, the readouts show ΔE = (c/2q)Δ(p_⊥²) and,
-beside it, Newton's v·Δp + |Δp|²/2m for comparison. A slider for the starting p_⊥ from −1.5 to 1.5 mc. Opens at η = 0,
-p_⊥ = 0, |∇H| = 1, wave's kick. Tab "Two particles": App. C's pair, two points (one per lump) on their own hyperbolas,
-with readouts of Q, the first term Q Σ m²c²/q_a, the weighted variance of p_⊥/q, Q² Var, and the rest mass 𝓜 from both
-the sum and the direct formula (M²c² = (ΣE/c)² − |Σp|²), which agree; sliders for each lump's p_⊥ and p_z; a button
-"Stop them" applies the wave ∇H = −2p_⊥/q at each lump, and a button "Reverse" applies its reverse; a readout of
-𝓜₊² + 𝓜₋² − 2𝓜₀² beside Q²Var(∇H)/2c², with 𝓜₊ after the wave and 𝓜₋ after its reverse. Opens at App. C's pair,
-|p_⊥| = 0.75 mc each, p_z = 0, 𝓜 = 2.5m. Predict first:
-"A wave of one profile crosses a slow particle and one moving fast along the wave's direction, neither moving sideways.
-Which gains more energy?" (Answer: the slow one. With p_⊥ = 0 the gain is ⅛(E − cp_z)|∇H|², and E − cp_z = cq is
-smaller for a body that moves with the wave: at 0.6c along +z it is half the slow body's.) Then, in the second tab: "Can
-one wave lower the pair's rest mass? Can a wave and its reverse, averaged, lower it?" (Answer: yes, "Stop them" takes it
-from 2.5m to 2m; no, the readout 𝓜₊² + 𝓜₋² − 2𝓜₀² = Q²Var(∇H)/2c² is never negative, 4.5m² for this pair.) Keyboard:
-Tab reaches the tabs, the sliders and the buttons, arrows move the sliders; both themes; static on reduced motion. -->
+::: try {#mass-shell}
+Two tabs. *One particle* draws the light-cone components $q$ and $E/c + p_z$ as two axes at right angles, with the mass
+shell as a hyperbola between them. The rapidity slider boosts the body along $z$ and slides it along the shell; the
+sliders across set its sideways momentum and the strength of a wave's kick, which keeps $q$, and the table compares
+the energy gained with Newton's rule. *Two particles* holds Appendix C's pair of lumps, whose sideways momenta can be
+set, with the rest mass from the sum and weighted variance beside the direct formula. *Stop them* applies the wave that
+stops the lumps' motion apart, and *Reverse* its reverse.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, give
+the two lumps different momenta along $z$ and check that the sum and the direct formula still agree.
+:::
 
 ::: check
 ### Q

@@ -6,7 +6,7 @@ part: '6'
 requires: ['1.1', '1.4', '6.1', '6.2']
 paper: [sec:one-pixel, fig:present, eq:star-velocity, fig:stars, app:proofs, eq:proof-stars, eq:proof-midpoint, sec:vistas]
 figures: [fig:present, fig:stars]
-live: [present]
+live: [present, moving-sky]
 depth: A
 ---
 
@@ -118,21 +118,13 @@ $$\cos\alpha' = \frac{\cos\alpha + \obs\beta}{1 + \obs\beta\cos\alpha} . \label{
 The difference $\cos\alpha' - \cos\alpha = \obs\beta\sin^2\alpha/(1 + \obs\beta\cos\alpha)$ is never negative, so
 $\alpha' \le \alpha$: **every source moves toward the direction of motion**, except those straight ahead and straight
 behind. At $0.6c$ a source at $\alpha = 90°$ is seen at $\cos\alpha' = 0.6$, or $53.1°$, which is $36.9°$ further
-forward. Its light has $\obs{\vect\beta}\cdot\hat k = 0$, so its Doppler factor is $\obs\gamma = 1.25$.
+forward. Its light has $\obs{\vect\beta}\cdot\hat k = 0$, so its Doppler factor is $\obs\gamma = 1.25$ (Figure
+[](#fig:aberrated-ray)).
 
-<!-- diagram: tut-aberration-ray — One panel, about 560 × 360 px at 1440 (full width on a phone). The observer's
-velocity as a thick arrow in the observer colour from the centre O pointing right, labelled "β = 0.6" below it. Two
-arrows from O for the same ray of light, each of length proportional to its frequency. (1) In ink, the wave's
-direction of travel in the source's frame, k̂ = (0, −1), for light coming straight down from a source straight above
-(α = 90°), of length 1, labelled "ω, source's frame". (2) In the observer colour, the same ray for the observer,
-(ω′/ω) k̂′ = (−0.75, −1), of length 1.25, labelled "ω′ = 1.25 ω, observer". From O, a thin dashed ink line along the
-direction of view in the source's frame, (0, 1), labelled "seen at rest", and a thin dashed line in the observer colour
-along the observer's direction of view, (0.6, 0.8), labelled "seen moving". Arcs from the β arrow mark α = 90° and
-α′ = 53.1°. Labels never on a line. Caption: "Look first at the two arrows: they are the same ray of light, in the
-source's frame (ink) and for an observer moving to the right through that frame at 0.6c (observer colour). For the
-observer the ray is longer, because its frequency is 1.25 times higher, and it comes from further forward, so the
-source is seen at 53.1° from the direction of motion instead of 90°. Arrow lengths are proportional to the
-frequency." -->
+![Look first at the two arrows: they are the same ray of light, in the source's frame (ink) and for an observer
+moving to the right through that frame at $0.6c$ (observer colour). For the observer the ray is longer, because its
+frequency is 1.25 times higher, and it comes from further forward, so the source is seen at $53.1°$ from the direction
+of motion instead of $90°$. Arrow lengths are proportional to the frequency.](tut-aberration-ray){#fig:aberrated-ray}
 
 ## At small speeds the shift is the speed across the line of sight over c
 
@@ -202,20 +194,13 @@ $$\boxed{\;\tan\delta = \obs\gamma\obs\beta = \sinh\obs\eta\;} \label{eq:retarde
 
 at closest approach. **Number:** for the mass of the paper's Figure [](/paper/#fig:present), at $0.6c$,
 $\obs\gamma\obs\beta = 0.75$ and $\delta = 36.9°$. Its light set out $1.25\,b/c$ ago, when the mass was $0.75\,b$ back
-along its path. **Limit:** for a slow body $\delta \approx \obs\beta$, which is [](#eq:small-aberration) with the body's
-speed across the line of sight.[^same-ray]
+along its path (Figure [](#fig:retarded-position)). **Limit:** for a slow body $\delta \approx \obs\beta$, which is
+[](#eq:small-aberration) with the body's speed across the line of sight.[^same-ray]
 
-<!-- diagram: tut-aberration-retarded — One panel, about 560 × 340 px at 1440 (full width on a phone). The pixel P as a
-small ring at the bottom centre. The body's straight path as a thin horizontal ink line at height b above P, with an
-arrow at its right end labelled "v = 0.6c". The present position as a filled dot in the matter colour directly above P,
-labelled "now", and the retarded position as an open circle in the matter colour 0.75 b to its left, labelled "where
-the light left". A thin solid line in the light role's colour from the open circle down to P, labelled "light, travel
-time 1.25 b/c", and a thin dashed line in ink from P up to the filled dot. Along the path, between the two dots, a
-dimension bracket labelled "γβ b = 0.75 b"; beside the vertical dashed line a bracket labelled "b". The angle δ at P
-between the two lines, marked with an arc and labelled "δ = 36.9°". Labels never on a line. Caption: "Look first at the
-two dots on the body's path: the filled one is where the body is now, at the pixel's own time, and the open one is
-where it was when the light now arriving set out. The body moves through the pixel's frame at 0.6c, so the light set
-out 1.25 b/c ago, the body has since moved 0.75 b, and the two directions differ by 36.9°." -->
+![Look first at the two dots on the body's path: the filled one is where the body is now, at the pixel's own time,
+and the open one is where it was when the light now arriving set out. The body moves through the pixel's frame at
+$0.6c$, so the light set out $1.25\,b/c$ ago, the body has since moved $0.75\,b$, and the two directions differ by
+$36.9°$.](tut-aberration-retarded){#fig:retarded-position}
 
 **The Sun.** In the Earth's frame the Sun moves, and in the $499\unit{s}$ its light takes to arrive it moves
 $14{,}900\unit{km}$, which at $1.496\times10^8\unit{km}$ is the Earth's aberration angle, $9.93\times10^{-5}\unit{rad}$,
@@ -361,12 +346,13 @@ the direction of motion with the half-angle
 $$\boxed{\;\alpha'_{\rm cone} = \arccos\obs\beta, \qquad \sin\alpha'_{\rm cone} = \frac{1}{\obs\gamma}\;}
 \label{eq:cone}$$
 
-since $\sin^2 = 1 - \obs\beta^2 = 1/\obs\gamma^2$. **Numbers:** $53.1°$ at $0.6c$, $25.8°$ at $0.9c$ and $8.1°$ at
-$0.99c$. A cone of half-angle $\alpha'$ covers the fraction $(1 - \cos\alpha')/2$ of the sky, so at $0.6c$ the forward
-half is squeezed into $0.2$ of the sky, a fifth, and at $0.99c$ into half a per cent. **Limit:** as $\obs\beta \to 0$
-the cone opens to $90°$. For a fast observer, [](#eq:source-angle) gives $1 - \cos\alpha' = (1 - \obs\beta)(1 -
-\cos\alpha)/(1 + \obs\beta\cos\alpha)$, and with $1 - \obs\beta \approx 1/(2\obs\gamma^2)$ a source at any $\alpha$
-short of $180°$ lands at $\alpha' \approx \tan(\alpha/2)/\obs\gamma$, an angle that shrinks as $1/\obs\gamma$.
+since $\sin^2 = 1 - \obs\beta^2 = 1/\obs\gamma^2$. **Numbers:** $53.1°$ at $0.6c$, $25.8°$ at $0.9c$ (Figure
+[](#fig:moving-sky)) and $8.1°$ at $0.99c$. A cone of half-angle $\alpha'$ covers the fraction $(1 - \cos\alpha')/2$
+of the sky, so at $0.6c$ the forward half is squeezed into $0.2$ of the sky, a fifth, and at $0.99c$ into half a per
+cent. **Limit:** as $\obs\beta \to 0$ the cone opens to $90°$. For a fast observer, [](#eq:source-angle) gives $1 -
+\cos\alpha' = (1 - \obs\beta)(1 - \cos\alpha)/(1 + \obs\beta\cos\alpha)$, and with $1 - \obs\beta \approx
+1/(2\obs\gamma^2)$ a source at any $\alpha$ short of $180°$ lands at $\alpha' \approx \tan(\alpha/2)/\obs\gamma$, an
+angle that shrinks as $1/\obs\gamma$.
 
 **Directions of travel crowd the other way.** Light from a source ahead travels backward, $\hat k' = -\hat n'$, so its
 direction of travel makes the angle $\alpha'$ with the direction behind. The paper's [*Through a room at nearly the
@@ -379,34 +365,23 @@ three eigenvalues ([1.4](/tutorial/newton/tides/)) that lies between the other t
 angles to the motion (9.4, stated), so $\cos\theta = 0$ becomes $\cos\theta' = -\obs\beta$, "one cone of half-angle
 $\arccos\beta$" about the direction behind.
 
-<!-- diagram: tut-aberration-sky — Two round panels side by side, each about 320 × 320 px at 1440 (stacked on a phone),
-each a disc showing the whole sky in an equal-area projection centred on the direction of motion (the centre of the
-disc is straight ahead, the rim straight behind, and the radius of a point is proportional to sin(α/2), so that equal
-areas of sky get equal areas of disc). Left, "at rest": a uniform grid of about 400 small dots (stars), equally spaced
-in area, all in ink; the circle α = 90° (the boundary of the forward half) drawn thin dashed and labelled "90°". Right,
-"at 0.9c": the same stars moved by cos α′ = (cos α + β)/(1 + β cos α), with β = 0.9, so that they crowd toward the
-centre; each dot coloured by its Doppler factor 1/[γ(1 − β cos α′)], on the paper's diverging scale, blue above 1 and
-red below 1, with a small colour bar beside the panel from 0.23 to 4.36 (the factors behind and ahead, e^(∓η)). The
-image of the α = 90° circle, now at α′ = 25.8°, drawn thin dashed and labelled "25.8°". Labels never on a dot.
-Caption: "Look first at the dashed circle: it holds the forward half of the sky in both panels. At rest it is at 90°
-from the direction of motion; for an observer moving through the stars' frame at 0.9c every star that lay inside it is
-seen within 25.8° of straight ahead, and blueshifted, while the stars behind spread out over the rest of the sky and
-are redshifted. The projection keeps areas, so the crowding is the true crowding of the sky." -->
+![Look first at the dashed circle: it holds the forward half of the sky in both panels. At rest it is at $90°$ from
+the direction of motion; for an observer moving through the stars' frame at $0.9c$ every star that lay inside it is
+seen within $25.8°$ of straight ahead, and blueshifted, while the stars behind spread out over the rest of the sky,
+and those seen more than $51.2°$ from straight ahead are redshifted. The projection keeps areas, so the crowding is the
+true crowding of the sky.](tut-aberration-sky){#fig:moving-sky}
 
-<!-- try: MovingSky (new) — The sky seen from a camera moving at a chosen speed. One round panel as in the diagram
-tut-aberration-sky (equal-area projection centred on the direction of motion), with a speed slider from 0 to 0.99c
-(step 0.01; arrow keys move it by 0.01, Page Up/Down by 0.1) and readouts β, γ = 1/√(1 − β²), η = artanh β and the cone
-arccos β, each to three figures. Three skies in a selector: "Stars" (a uniform field of about 400 stars, moved by
-cos α′ = (cos α + β)/(1 + β cos α) and coloured by the Doppler factor 1/[γ(1 − β cos α′)], blue above 1, red below,
-with the circle of the forward half drawn dashed); "Thermal glow" (a uniform black body coloured by
-T(α′)/T = 1/[γ(1 − β cos α′)] on the paper's diverging scale, with a readout of the ratio of the hottest to the coldest
-temperature, e^(2η), and of the dipole's first-order size β); "The Sun at the Earth's speed" (a disc for the Sun at
-rest, seen across the motion, and its aberrated image, with the speed fixed at 29.78 km/s and the shift shown magnified
-a thousandfold so that 20.5″ appears as 5.7°, with a readout of the true angle in arcseconds). Opens on "Stars" at
-0.9c. Predict first: "At 0.9c, where do the stars that were beside you, at right angles to your motion, appear?"
-(Answer: at 25.8° from straight ahead, on the dashed circle.) Then: "Which speed makes the Doppler factor ahead four
-times the factor behind?" (Answer: 0.6c, where the factors are 2 and 1/2, since their ratio is e^(2η) = 4 at
-η = ln 2.) Keyboard: Tab reaches the selector and the slider; both themes; static on reduced motion. -->
+::: try {#moving-sky}
+The whole sky around a camera, drawn so that equal areas of sky get equal areas of the disc, with straight ahead at
+the centre and straight behind at the rim. The slider sets the camera's speed through the frame of the sources, from
+rest to $0.99c$, with $\obs\beta$, $\obs\gamma$, $\obs\eta$ and the half-angle of the cone that holds the forward
+half of the sky beside it. Three skies can be chosen: a field of stars, each coloured by its Doppler factor; a uniform
+thermal glow, coloured by the temperature seen in each direction; and the Sun seen from the Earth across its motion,
+with the shift magnified a thousandfold.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, choose
+the thermal glow and find the direction in which the moving camera sees the temperature it would see at rest.
+:::
 
 **A freely falling camera.** The paper's [*A freely falling camera*](/paper/#par:a-freely-falling-camera) compares, at
 the distance $r$ from a black hole of mass $\matter M$, a camera that hovers on a rocket with one that falls straight in
@@ -480,24 +455,15 @@ on the line through the body (chapter 9.4, stated without proof), and the aberra
 
 **Who moves.** The paper's Appendix C works in the body's rest frame, and the pixel moves through it with
 $c\,\obs{\vect\beta}$, so the primes belong to the pixel. In the pixel's frame the sign flips: the body moves with
-$\obs{\vect v} = -c\,\obs{\vect\beta}$. In the body's frame $\sym{rest-direction}{\hat n_0}$ is the unit vector from the
-pixel toward the body, at the distance $R_*$, and the principal null directions are $\pm\hat n_0$, each counted twice.
-Appendix C writes $a = \obs{\vect\beta}\cdot\hat n_0$ and splits $\hat n_0 = (a/\obs\beta)\,\hat\beta + \vect n_\perp$
-along and across $\obs{\vect\beta}$.
+$\obs{\vect v} = -c\,\obs{\vect\beta}$ (Figure [](#fig:two-frames)). In the body's frame
+$\sym{rest-direction}{\hat n_0}$ is the unit vector from the pixel toward the body, at the distance $R_*$, and the
+principal null directions are $\pm\hat n_0$, each counted twice. Appendix C writes $a = \obs{\vect\beta}\cdot\hat
+n_0$ and splits $\hat n_0 = (a/\obs\beta)\,\hat\beta + \vect n_\perp$ along and across $\obs{\vect\beta}$.
 
-<!-- diagram: tut-aberration-frames — Two panels side by side, each about 320 × 260 px at 1440 (stacked on a phone).
-Left, "body's frame": the body as a filled dot in the matter colour at the upper right; the pixel as a small ring at the
-lower left, with an arrow in the observer colour from it labelled "cβ" pointing right and slightly up; a thin dashed
-ink line from the pixel to the body labelled "R* n̂₀"; at the pixel two short ink arrows along ±n̂₀, labelled "+n̂₀"
-and "−n̂₀". Right, "pixel's frame": the pixel as a ring at rest at the lower left; the body as a filled dot in the
-matter colour at its present position, closer along the motion by the factor γ, with an arrow from it in the observer
-colour labelled "v = −cβ" pointing left and slightly down; a thin dashed ink line from the pixel to the body labelled
-"r, present position"; at the pixel two short arrows in the observer colour, the aberrated directions labelled "p̂₊"
-and "p̂₋", both leaning toward −β, and their half sum drawn as a short thick arrow labelled "v⊥/c". Use β = 0.6 along
-x, n̂₀ at 60° from x in the left panel. Labels never on a line. Caption: "Look first at the two velocity arrows: in the
-paper's Appendix C the pixel moves through the body's frame with cβ (left), so in the pixel's frame the body moves
-with −cβ, the same speed the other way (right). The two pairs of directions, ±n̂₀ at rest, lean toward the body's
-velocity, and their half sum is the body's velocity across the line to where it is now." -->
+![Look first at the two velocity arrows: in the paper's Appendix C the pixel moves through the body's frame with
+$c\,\obs{\vect\beta}$ (above), so in the pixel's frame the body moves with $-c\,\obs{\vect\beta}$, the same speed the
+other way (below). The two pairs of directions, $\pm\hat n_0$ at rest, lean toward the body's velocity, and their half
+sum is the body's velocity across the line to where it is now.](tut-aberration-frames){#fig:two-frames}
 
 **The directions.** A principal null direction is a direction of travel, so it enters [](#eq:ray-boost) as $\hat k$. The
 pair $\pm\hat n_0$ holds both senses of the line: light from the body travels to the pixel along $-\hat n_0$, and light

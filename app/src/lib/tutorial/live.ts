@@ -54,6 +54,8 @@ import RotorPolarization from './live/RotorPolarization.svelte';
 import RadiativeTransfer from './live/RadiativeTransfer.svelte';
 import OnionPeel from './live/OnionPeel.svelte';
 import LorentzDiagram from './live/LorentzDiagram.svelte';
+import MovingSky from './live/MovingSky.svelte';
+import MassShell from './live/MassShell.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -245,6 +247,16 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'Two flashes, two observers: the Lorentz transformation on a spacetime diagram, with rapidities that add',
 		component: LorentzDiagram
+	},
+	'moving-sky': {
+		label:
+			'The sky seen from a camera moving at a chosen speed: stars crowding forward and changing colour, a thermal glow hotter ahead, and the Sun shifted by aberration',
+		component: MovingSky
+	},
+	'mass-shell': {
+		label:
+			"The mass shell in light-cone coordinates: a boost slides a body along it, a wave kicks it while keeping q, and a wave and its reverse change a pair's rest mass",
+		component: MassShell
 	},
 	'noise-spectrum': {
 		label:
