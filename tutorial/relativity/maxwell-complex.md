@@ -247,7 +247,8 @@ m^* = \tfrac12(1, i, 0)\times(1, -i, 0) = \tfrac12(0, 0, -2i)$, so $i\,\vect m\t
 $$\vect S = c\,u\,\hat k :$$
 
 the energy of a light wave moves along the wave at the speed of light. The paper builds the direction of travel of a
-gravitational wave from the same product of $\vect m$, in the paper's equation [](/paper/#eq:one-wave) (chapter 9.3).
+gravitational wave from the same product of $\vect m$, in the paper's equation [](/paper/#eq:one-wave) (chapter
+[9.1](/tutorial/one-point/spin-two/#the-square-holds-four-numbers-a-direction-and-one-complex-amplitude)).
 
 **Sunlight.** At the Earth sunlight carries $|\vect S| = 1361\unit{W\,m^{-2}}$, so $u = |\vect S|/c =
 1361/(2.998\times10^8)\unit{J\,m^{-3}} = 4.54\times10^{-6}\unit{J\,m^{-3}}$. In light $|\light{\vect E}| =

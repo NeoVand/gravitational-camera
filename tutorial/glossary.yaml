@@ -3677,3 +3677,37 @@ terms:
     definition: 'The model-independent thermometer with the quantum factor, $T = \hbar\omega/2k_B\,\mathrm{artanh}(\hbar\,\mathrm{Im}\,\chi_{yy}/\bar S_{yy})$, which becomes the classical one when $\hbar\omega \ll k_BT$.'
     chapter: '8.7'
     anchor: the-thermometer-still-needs-no-model
+  - term: spin weight
+    definition: 'The power $m$ of $e^{-i\psi}$ by which a turn by $\psi$ about an axis multiplies a table: from $-2$ to 2 for the five tables of a reading, $\vect m\vect m^{\mathsf T}$ having 2. It is chapter 8.4''s spin component, and chapter 1.5b''s spin counted for each component. On the sky, a quantity has a spin weight when a turn of the axes across each line of sight multiplies it by such a phase.'
+    chapter: '9.1'
+    anchor: a-readings-five-numbers-carry-spin-weights-from--2-to-2-about-any-axis
+  - term: extreme weight
+    definition: 'The largest or smallest spin weight a spin can hold, $\pm2$ for a gravitational reading and $\pm1$ for light. A plane wave fills only the extreme weight about its direction of travel.'
+    chapter: '9.1'
+    anchor: a-plane-wave-fills-only-the-extreme-weight-so-its-reading-is-a-square
+  - term: square of a vector
+    definition: 'The table $\vect m\vect m^{\mathsf T}$, with the entries $m_im_j$, of one vector with itself, times a number. It has rank one, and for a null vector its own square is zero. A plane gravitational wave''s reading is one.'
+    chapter: '9.1'
+    anchor: a-plane-wave-fills-only-the-extreme-weight-so-its-reading-is-a-square
+  - term: positive-frequency part
+    definition: 'Of a real field that changes at one angular frequency, the part at $e^{-i\omega t}$: the tide $\mathcal E(t) = \tfrac12\tilde{\mathcal E}e^{-i\omega t} + \tfrac12\tilde{\mathcal E}^*e^{i\omega t}$ has the positive-frequency part $\tfrac12\tilde{\mathcal E}e^{-i\omega t}$ and, as its conjugate, the negative-frequency part. A wave''s helicity is the spin weight of its positive-frequency part about its direction of travel.'
+    role: curv
+    chapter: '9.1'
+    anchor: the-sign-of-the-frequency-gives-the-helicity
+  - term: helicity amplitudes
+    definition: 'The two complex numbers $\alpha^\pm$ of one wave in the paper''s $\mathcal W_\pm = \alpha^\pm\,\vect m\vect m^{\mathsf T}$, the parts of its reading at $e^{\mp i\omega t}$: $\alpha^+$ is the amplitude of the helicity $+2$, $\alpha^-$ of the helicity $-2$.'
+    role: curv
+    chapter: '9.1'
+    anchor: on-the-sky-a-quantity-of-spin-weight-s-begins-at-degree-s
+  - term: overlap of two readings
+    definition: 'The squared size $|\langle U|V\rangle|^2$ of the bracket of two tables $U$ and $V$ of length one: 1 when they agree up to a phase, 0 when they are orthogonal. Two waves of the same helicity $\vartheta$ apart overlap by $\cos^8(\vartheta/2)$, two waves of light by $\cos^4(\vartheta/2)$.'
+    chapter: '9.1'
+    anchor: two-squares-overlap-less-than-two-vectors
+  - term: spin-weighted spherical harmonic
+    definition: 'One of the basic patterns on the sky for a quantity of spin weight $s$. They exist only from the degree $\ell = |s|$ up, with $2\ell + 1$ for each degree; for $s = 0$ they are chapter 2.2''s spherical harmonics.'
+    chapter: '9.1'
+    anchor: on-the-sky-a-quantity-of-spin-weight-s-begins-at-degree-s
+  - term: peeling
+    definition: 'Sachs''s result that the field of a source at the distance $r$ splits by spin weight about the line of sight, the extreme weight falling as $1/r$, the next as $1/r^2$, the middle one as $1/r^3$, and so on. (Not chapter 5.6''s onion peeling.)'
+    chapter: '9.1'
+    anchor: on-the-sky-a-quantity-of-spin-weight-s-begins-at-degree-s

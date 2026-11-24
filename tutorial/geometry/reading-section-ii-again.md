@@ -240,7 +240,7 @@ turning ground pick up further terms of about $8\times10^{-21}\unit{rad\,s^{-1}}
 
 The last paragraph writes the two tables as one complex table, $\curv{\mathcal W} = \curv\tE + i\curv\tB$. Chapter
 [7.6](/tutorial/geometry/gravitational-waves/#the-magnetic-part-of-a-wave-is-its-tide-turned-by-45) derived
-$\curv{\mathcal W}$ for one plane wave, as the square of one complex vector, and chapter 9.3 takes it at a general point
+$\curv{\mathcal W}$ for one plane wave, as the square of one complex vector, and chapters 9.2 to 9.4 take it at a general point
 of the field, with the special directions it singles out, its null directions (*read now, derived in Part 9*). It and
 the premise paragraph's standard quantum limit, which stays R1's estimate until chapter 8.6 (*read now, derived in Part
 8*), are all of Section II that still waits.

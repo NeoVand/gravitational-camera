@@ -2838,3 +2838,35 @@ symbols:
     meaning: 'How far mode $n$ moves a reading $y$, or a moment $Q_h$, per unit of its mass-weighted amplitude (chapters 4.3 and 4.6; Appendix A''s $c_n$). The same $c_n^2$ weigh the mode in the reading''s tremor and in its response, $\chi_{yy} = \sum_nc_n^2/(\omega_n^2 - \omega^2 - i\Gamma_n\omega)$. (Not the amplitudes $c_n$ of chapter 8.5 or the Fourier coefficients of chapter 2.6.)'
     chapter: '8.7'
     anchor: the-tremor-at-each-frequency-is-hbarcothhbaromega2k_bt-times-the-friction-there
+  - key: turn-angle
+    title: Angle of a turn about an axis
+    tex: '\psi'
+    role: none
+    kind: An angle; in radians
+    meaning: 'The angle by which a field is turned about an axis $\hat k$, anticlockwise as seen from the side toward which $\hat k$ points, by chapter 1.7''s $R = \exp(\psi\,\hat k\cdot L)$. It turns $\vect m$ to $e^{-i\psi}\vect m$ and a table of spin weight $m$ to $e^{-im\psi}$ times itself. (Not chapter 8.1''s quantum state $\psi$, nor chapter 2.5''s null-space potential.)'
+    chapter: '9.1'
+    anchor: a-readings-five-numbers-carry-spin-weights-from--2-to-2-about-any-axis
+  - key: spin-weight
+    title: Spin weight
+    tex: 'm'
+    role: none
+    kind: A whole number from $-2$ to 2 for a reading; from $-s$ to $s$ for a spin $s$
+    meaning: 'The power of $e^{-i\psi}$ by which a turn by $\psi$ about an axis $\hat k$ multiplies a table: 2 for $\vect m\vect m^{\mathsf T}$, 1 for $\vect m\hat k^{\mathsf T} + \hat k\vect m^{\mathsf T}$, 0 for $3\hat k\hat k^{\mathsf T} - 1$, and $-1$, $-2$ for their conjugates. It is chapter 8.4''s spin component. A plane wave fills only the weight 2 about its direction of travel. Components read in turned axes take the opposite factor. (Not a mass, nor the null vector $\vect m$, which is always bold.)'
+    chapter: '9.1'
+    anchor: a-readings-five-numbers-carry-spin-weights-from--2-to-2-about-any-axis
+  - key: frequency-parts
+    title: Complex amplitude of a wave's tide
+    tex: '\tilde{\curv\tE}'
+    role: curv
+    kind: A constant complex symmetric trace-free table; in s⁻²
+    meaning: 'For a tide that changes at one angular frequency, $\mathcal E(t) = \tfrac12\tilde{\mathcal E}e^{-i\omega t} + \tfrac12\tilde{\mathcal E}^*e^{i\omega t}$, as chapter 5.4 wrote the strain: the first term is the positive-frequency part, its conjugate the negative-frequency part. The magnetic part has its own $\tilde{\mathcal B}$. If $\tilde{\mathcal E}$ is a multiple of $\vect m\vect m^{\mathsf T}$, the wave has helicity $+2$ and $\tilde{\mathcal B} = -i\tilde{\mathcal E}$; if it is a multiple of $\vect m^*\vect m^{*\mathsf T}$, helicity $-2$ and $\tilde{\mathcal B} = i\tilde{\mathcal E}$.'
+    chapter: '9.1'
+    anchor: the-sign-of-the-frequency-gives-the-helicity
+  - key: helicity-amplitudes
+    title: Helicity amplitudes of one wave
+    tex: '\curv\alpha^\pm'
+    role: curv
+    kind: Two complex numbers; in s⁻²
+    meaning: 'The paper''s amplitudes in $\mathcal W_\pm = \alpha^\pm\,\vect m\vect m^{\mathsf T}$, the parts of one wave''s reading at $e^{\mp i\omega t}$ in $\mathcal W(t) = \mathcal W_+e^{-i\omega t} + \mathcal W_-e^{i\omega t}$ (since $\mathcal W$ is complex, $\mathcal W_-$ is not the conjugate of $\mathcal W_+$). $\alpha^+$ belongs to the helicity $+2$ and $\alpha^-$ to $-2$; a wave of helicity $+2$ has $\mathcal W_+ = \tilde{\mathcal E}$. For the rotor seen at the inclination $\iota$, $|\alpha^+/\alpha^-| = \cot^4(\iota/2)$. (The paper''s $\alpha^\pm_a$ of its pencil; not chapter 8.3''s coherent state $\alpha$.)'
+    chapter: '9.1'
+    anchor: on-the-sky-a-quantity-of-spin-weight-s-begins-at-degree-s
