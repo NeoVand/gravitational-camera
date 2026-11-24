@@ -47,6 +47,11 @@ describe('the tutorial lint', () => {
 		expect(flags('$\\curv{\\tE} + \\matter{\\rho}$')).toEqual([]);
 	});
 
+	it('flags a block fence that shares its line with text', () => {
+		expect(flags('::: gap This box.\nMore. :::')).toHaveLength(2);
+		expect(flags('::: try {#planck}\nPredict first.\n:::')).toEqual([]);
+	});
+
 	it('lets a line allow a word', () => {
 		expect(flags('It is just below the line. <!-- lint-allow: just -->')).toEqual([]);
 	});

@@ -3150,3 +3150,75 @@ symbols:
     meaning: 'The single distance at which the tide and its gradient place several bodies on one line through the pixel: $\sum_iM_ir_i^{-3}/\sum_iM_ir_i^{-4}$, weighted toward the nearer. Two equal masses $\Delta$ apart, centred at $r$, read as one at $r - \Delta^2/r$.'
     chapter: R9b
     anchor: the-neighbours-range-a-mass-to-a-part-in-a-million-and-masses-on-one-line-read-as-one
+  - key: planck-ratio
+    title: Size of a quantum over the thermal energy
+    tex: 'x'
+    role: none
+    kind: A pure number
+    meaning: '$x = \hbar\omega/k_BT$, the energy of one quantum of angular frequency $\omega$ in units of the thermal energy $k_BT$; the paper''s letter in *A bound on the glow*, and chapter 8.3''s $z$. A black body''s energy peaks at $x = 2.821$ and its count of quanta at $x = 1.594$.'
+    chapter: '10.1'
+    anchor: each-mode-holds-the-thermal-quanta-of-an-oscillator-and-the-product-is-plancks-law
+  - key: mode-number
+    title: Number of modes in a shell
+    tex: '\mathrm dN_{\rm modes}'
+    role: none
+    kind: A number of modes
+    meaning: 'The number of modes of one polarization whose wavevectors have lengths between $k$ and $k + \mathrm dk$ in a box of side $D$: $D^3k^2\,\mathrm dk/2\pi^2$. Per cubic metre and per unit of angular frequency it is $\omega^2/2\pi^2c^3$, the mode density.'
+    chapter: '10.1'
+    anchor: the-number-of-waves-that-fit-in-a-box-grows-as-the-square-of-their-frequency
+  - key: spectral-energy-density
+    title: Energy density of radiation per unit of frequency
+    tex: '\mathcal U_\omega'
+    role: none
+    kind: An energy per volume per unit of angular frequency; in J m⁻³ per s⁻¹
+    meaning: 'The energy of radiation in each cubic metre and each unit of angular frequency. For a black body of two polarizations, $\mathcal U_\omega = \hbar\omega^3\bar n/\pi^2c^3$, and its radiance is $B_\omega = c\,\mathcal U_\omega/4\pi$. (Not 4.3''s strain or 8.4''s super-energy, both $u$.)'
+    chapter: '10.1'
+    anchor: each-mode-holds-the-thermal-quanta-of-an-oscillator-and-the-product-is-plancks-law
+  - key: radiation-energy-density
+    title: Energy density of radiation
+    tex: '\mathcal U'
+    role: none
+    kind: An energy per volume; in J m⁻³
+    meaning: 'The energy of a black body in each cubic metre, $\mathcal U = 4\sigma_{\rm SB}T^4/c$: $5.6\times10^{-6}$ J m⁻³ at 293 K. Chapter 7.8 uses the same letter, in the colour of matter, for the energy density of a gravitational wave.'
+    chapter: '10.1'
+    anchor: a-black-body-holds-an-energy-and-a-number-of-quanta-in-each-cubic-metre
+  - key: riemann-zeta
+    title: Riemann zeta function
+    tex: '\zeta(s)'
+    role: none
+    kind: A function; pure numbers
+    meaning: 'The sum $\zeta(s) = \sum_{j\ge1}j^{-s}$ for $s > 1$, which gives the Bose integrals $\int_0^\infty x^n\,\mathrm dx/(e^x - 1) = n!\,\zeta(n + 1)$. $\zeta(2) = \pi^2/6$, $\zeta(3) = 1.2021$, $\zeta(4) = \pi^4/90$. Always written with its argument. (Not Kleinman''s $\zeta_K$ of chapter 10.3, nor chapter 9.7''s local ratio $\zeta$.)'
+    chapter: '10.1'
+    anchor: three-integrals-of-one-kind-give-the-power-the-count-and-the-mean-energy
+  - key: black-body-number-radiance
+    title: Number radiance of a black body
+    tex: 'N_{\rm bb}'
+    role: none
+    kind: A rate of quanta; in s⁻¹ m⁻² sr⁻¹
+    meaning: 'The quanta a black body sends per second, per square metre and per steradian, $N_{\rm bb} = \zeta(3)(k_BT/\hbar)^3/2\pi^3c^2$ for two polarizations: $3.6\times10^{14}$ for the 0.905 K graviton sky. The paper writes it $N$ in Section XI; chapter 5.5''s $N(\hat n)$ is the number radiance a pixel receives.'
+    chapter: '10.1'
+    anchor: three-integrals-of-one-kind-give-the-power-the-count-and-the-mean-energy
+  - key: mean-quantum-energy
+    title: Mean energy of a quantum
+    tex: '\bar E'
+    role: none
+    kind: An energy; in joules
+    meaning: 'The power of a glow divided by its count of quanta. For a black body $\bar E = (\pi^4/15)/2\zeta(3)\,k_BT = 2.701\,k_BT$, the paper''s $2.70\,k_BT$: $1.09\times10^{-20}$ J (0.068 eV) at 293 K. The paper''s table of materials gives $\bar E/k_BT$ for real friction, from 1.4 for copper to 6.4 for diamond.'
+    chapter: '10.1'
+    anchor: three-integrals-of-one-kind-give-the-power-the-count-and-the-mean-energy
+  - key: black-body-number-density
+    title: Number density of a black body
+    tex: 'n_{\rm bb}'
+    role: none
+    kind: A number per volume; in m⁻³
+    meaning: 'The number of quanta of a black body in each cubic metre, $n_{\rm bb} = 2\zeta(3)(k_BT/\hbar c)^3/\pi^2$: $5.1\times10^{14}$ at 293 K, and $1.5\times10^7$ for the 0.905 K graviton sky.'
+    chapter: '10.1'
+    anchor: a-black-body-holds-an-energy-and-a-number-of-quanta-in-each-cubic-metre
+  - key: mode-occupation
+    title: Occupation of a mode
+    tex: 'n_\omega'
+    role: none
+    kind: A mean number of quanta; no unit
+    meaning: 'The mean number of quanta in a mode of radiation of angular frequency $\omega$ travelling in a given direction, in any state; the radiance is $I_\omega = \hbar\omega^3n_\omega/4\pi^3c^2$. Its thermal value is $\bar n$. It is the same for every observer, which is why a moving observer still sees a black body.'
+    chapter: '10.1'
+    anchor: a-moving-observer-still-sees-a-black-body-hotter-ahead

@@ -132,6 +132,15 @@ export function lintText(text, file, macros = macroNames()) {
 		if (!/\]/.test(sentence)) flag(m.index, 'banned: "we will see later" without a link');
 	}
 
+	if (!yaml) {
+		// A block fence must stand on its own line: "::: gap text … :::" renders as a paragraph, not a box.
+		for (const m of text.matchAll(/^:::+[ \t]*[A-Za-z]+[ \t]+[^{\s].*$/gm))
+			flag(m.index, 'block fence with text on the same line: put "::: name" and ":::" on lines of their own');
+		for (const m of text.matchAll(/^.*\S[ \t]+:::+[ \t]*$/gm))
+			if (!/^\s*:::/.test(m[0]))
+				flag(m.index, 'block fence with text on the same line: put "::: name" and ":::" on lines of their own');
+	}
+
 	const enotation = /\b\d+(\.\d+)?[eE][+-]?\d+\b/g;
 	for (const m of prose.matchAll(enotation)) flag(m.index, `e-notation "${m[0]}": write it as a × 10ⁿ`);
 	for (const { tex, offset } of maths) {

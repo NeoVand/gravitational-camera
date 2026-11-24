@@ -78,6 +78,7 @@ import QuantumLimit from './live/QuantumLimit.svelte';
 import QuantumTremor from './live/QuantumTremor.svelte';
 import SquareOfVector from './live/SquareOfVector.svelte';
 import JordanExplorer from './live/JordanExplorer.svelte';
+import PlanckSpectrum from './live/PlanckSpectrum.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -408,5 +409,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A tonne passing a steel ball: the pull on one part, its area and the kick to every part',
 		component: FlybyKick
+	},
+	'planck-spectrum': {
+		label:
+			'A black body at a temperature you choose: Planck’s spectrum, its peak, and the three factors whose product it is',
+		component: PlanckSpectrum
 	}
 };
