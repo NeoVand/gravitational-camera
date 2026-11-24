@@ -4874,3 +4874,48 @@ terms:
     definition: 'A list of equations of which the first holds one unknown, the second that one and one more, and so on, so that they can be solved in turn. Calderón''s problem, made linear about a uniform ball, is one, rung by rung.'
     chapter: '13.3'
     anchor: the-same-ladder-appears-in-impedance-tomography
+
+  - term: symmetric part of a response
+    definition: 'Half the sum of two responses, each per unit of strength: the change in the reading of $h$ after a brief tide of profile $g$, and the change in the reading of $g$ after one of profile $h$. To first order in the time it is $\tau\int\rho\,\nabla h\cdot\nabla g\,\mathrm dV$, and it weighs the density.'
+    chapter: '13.4'
+    anchor: the-order-of-two-short-tides-matters-first-at-the-second-power-of-the-time
+  - term: antisymmetric part of a response
+    definition: 'Half the difference of the same two responses, the part that changes sign when the profile applied and the moment read are exchanged. It appears first at the second power of the time, as $\tfrac12\tau^2\{\dot Q_h, \dot Q_g\}$, and it weighs the flow.'
+    chapter: '13.4'
+    anchor: the-order-of-two-short-tides-matters-first-at-the-second-power-of-the-time
+  - term: bracket of two rates
+    definition: 'The Poisson bracket $\{\dot Q_h, \dot Q_g\}$ of the rates of change of two moments, $\int\vect J\cdot[(\nabla\nabla h)\nabla g - (\nabla\nabla g)\nabla h]\,\mathrm dV$: an integral of the mass flux, read by two brief tides applied in either order.'
+    chapter: '13.4'
+    anchor: the-order-of-two-short-tides-matters-first-at-the-second-power-of-the-time
+  - term: Fourier transform of a flow
+    definition: 'The transform $\tilde{\vect J}(\vect\xi) = \int\vect J\,e^{i\vect\xi\cdot\vect x}\,\mathrm dV$ of the mass flux, each component on its own, with the paper''s plus sign. Calderón''s pair of tides reads its part across $\vect\xi$, and the rate of change of the density its part along $\vect\xi$.'
+    chapter: '13.4'
+    anchor: calderóns-pair-reads-the-flows-fourier-transform
+  - term: transverse part
+    definition: 'The part of a vector''s transform at right angles to the wavevector $\vect\xi$, such as the part of $\tilde{\vect J}(\vect\xi)$ that the bracket of Calderón''s pair reads, one component for each position of $\vect\eta$. A steady flow has only this part.'
+    chapter: '13.4'
+    anchor: calderóns-pair-reads-the-flows-fourier-transform
+  - term: longitudinal part
+    definition: 'The part of a vector''s transform along the wavevector, $\hat\xi(\hat\xi\cdot\tilde{\vect J})$. For a flow of mass it is fixed by the rate of change of the density, $\mathrm d\tilde\rho/\mathrm dt = i\vect\xi\cdot\tilde{\vect J}$.'
+    chapter: '13.4'
+    anchor: calderóns-pair-reads-the-flows-fourier-transform
+  - term: commutator of two tables
+    definition: 'The difference $[A, B] = AB - BA$ of two square tables multiplied in the two orders. The commutator of two symmetric tables is antisymmetric, a vector in disguise, which is why two quadrupolar tides read only the angular momentum.'
+    chapter: '13.4'
+    anchor: two-quadrupolar-tides-read-only-the-angular-momentum
+  - term: share of a radius
+    definition: 'How much the layer between $r$ and $r + \mathrm dr$ of a round body adds to the bracket of two tides of degree $n$. For layers turning about one axis it goes as $\rho\,\Omega(r)\,r^{2n}\,\mathrm dr$, so finer tides weigh the outer layers more.'
+    chapter: '13.4'
+    anchor: octupolar-tides-read-the-hidden-swirl
+  - term: hidden swirl
+    definition: 'A uniform sphere whose inner ball, out to $2^{-1/5}R = 0.871R$, turns one way and the rest the other way at the same rate, with no angular momentum and no magnetic part outside. Two octupolar tides read it: their bracket is $0.221\,M\Omega R^4$, with $\Omega$ the rate of the inner ball (chapter 13.4).'
+    chapter: '2.8'
+    anchor: a-swirl-shows-through-its-angular-momentum-and-two-swirls-can-cancel
+  - term: vortex
+    definition: 'A line about which a fluid turns. In a trapped cold gas that flows without friction, each atom carries the same angular momentum $\hbar$ about it.'
+    chapter: '13.4'
+    anchor: a-vortex-splits-the-quadrupole-modes-of-a-trapped-gas
+  - term: quadrupole mode
+    definition: 'A normal mode of a body or a trapped gas in which its cross-section oscillates as an ellipse. A vortex splits the two whose ellipses turn in opposite senses, by the bracket of two rates divided by the sum rule of chapter 4.5.'
+    chapter: '13.4'
+    anchor: a-vortex-splits-the-quadrupole-modes-of-a-trapped-gas

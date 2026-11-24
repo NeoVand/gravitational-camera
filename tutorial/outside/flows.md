@@ -370,14 +370,15 @@ magnetic part outside is zero in both. To first order in $v/c$, no reading of th
 apart: it is the paper's "silent outside, however fast it runs".
 
 A reading at two times breaks the tie. Apply a short tide shaped by a harmonic function $g$, read how fast the moment
-$\int\matter\rho\,h\,\dd V$ of a second harmonic function $h$ changes, and repeat with $h$ and $g$ exchanged. The
-part of the response that changes sign is the bracket of the paper's equation [](/paper/#eq:flow-bracket), an integral
-of $\matter{\vect J}$ itself, so it sees flows that the field outside misses. Chapter 1.7's
-[bracket of two moments](/tutorial/newton/hamilton/#the-bracket-of-two-moments-weighs-the-inside) and its stretch problem
-lead to it, and chapter 13.4 shows that it reads every silent flow. A pixel inside the matter breaks the tie too. Inside
-matter $\curv{\tB}$ also has an antisymmetric part, a
-[vector in disguise](/tutorial/newton/vectors-and-indices/#an-antisymmetric-table-is-a-vector-in-disguise) (chapter
-1.1), and that vector is $-(4\pi G/c)\,\matter\rho\vect v$, which lies along the flow (chapter 1.1's paper problem).
+$\int\matter\rho\,h\,\dd V$ of a second harmonic function $h$ changes, and repeat with $h$ and $g$ exchanged. The part
+of the response that changes sign is the bracket of the paper's equation [](/paper/#eq:flow-bracket), an integral of
+$\matter{\vect J}$ itself, so it sees flows that the field outside misses. Chapter 1.7's [bracket of two
+moments](/tutorial/newton/hamilton/#the-bracket-of-two-moments-weighs-the-inside) and its stretch problem lead to it,
+and chapter [13.4](/tutorial/what-a-field-keeps/flows-inside/#every-silent-flow-is-read-by-calderóns-pair) shows that it
+reads every silent flow. A pixel inside the matter breaks the tie too. Inside matter $\curv{\tB}$ also has an
+antisymmetric part, a [vector in
+disguise](/tutorial/newton/vectors-and-indices/#an-antisymmetric-table-is-a-vector-in-disguise) (chapter 1.1), and that
+vector is $-(4\pi G/c)\,\matter\rho\vect v$, which lies along the flow (chapter 1.1's paper problem).
 
 ## A swirl shows through its angular momentum, and two swirls can cancel
 
@@ -441,7 +442,8 @@ The inner ball holds $2^{-3/5} = 66$ per cent of the mass, and the outer third, 
 much angular momentum (Figure [](#fig:flow-hidden)). Outside, $\field{\vect A} = 0$ and there is no magnetic part at
 all, "though all of it moves", in the paper's words. The paper's Section XIII reads this flow with two octupolar tides,
 the next finer pattern after the simple stretch and squeeze. Their bracket has the size $0.221\,\matter M\Omega R^4$, in
-$\mathrm{kg\,m^4\,s^{-1}}$ (the paper's equation [](/paper/#eq:hidden-spin), chapter 13.4), while two quadrupolar tides
+$\mathrm{kg\,m^4\,s^{-1}}$ (the paper's equation [](/paper/#eq:hidden-spin), chapter
+[13.4](/tutorial/what-a-field-keeps/flows-inside/#octupolar-tides-read-the-hidden-swirl)), while two quadrupolar tides
 give zero, because their bracket is proportional to $\vect L$.
 
 
@@ -473,7 +475,9 @@ swirls whose moments vanish. In both, a confined quantity is differentiated twic
 | Magnetic part, $\curv{\tB}$ | the swirl, through $\vect L$ and moments like it | rolls $\nabla\times\nabla\times\vect V$; swirls whose moments all vanish, such as the hidden swirl | two tides in either order, a pixel inside |
 
 Both blind spots belong to a reading at one time. Readings at two times, the responses to tides applied in turn,
-break both (the paper's Section XIII, chapters 13.2 and 13.4).
+break both (the paper's Section XIII, chapters
+[13.2](/tutorial/what-a-field-keeps/calderon/#two-harmonic-exponentials-multiply-into-any-ripple) and
+[13.4](/tutorial/what-a-field-keeps/flows-inside/#the-order-of-two-short-tides-matters-first-at-the-second-power-of-the-time)).
 
 ::: check
 ### Q
@@ -587,7 +591,8 @@ tides the integrand goes as $\varpi^2$, the same as in the angular momentum, and
 - *What breaks the tie*: the potential $\int\rho\mathbf v\,\dd V'/|\mathbf x - \mathbf x'|$, the silent flows
   $\nabla\times\nabla\times\mathbf V$, convection rolls in a star or a core, and Figure [](/paper/#fig:silent-flows).
 - [Section XIII](/paper/#sec:second-order), *The flow*: equation [](/paper/#eq:flow-bracket), with $\mathbf J$ the
-  density of momentum, and equation [](/paper/#eq:hidden-spin) with Figure [](/paper/#fig:hidden-flow) (chapter 13.4).
+  density of momentum, and equation [](/paper/#eq:hidden-spin) with Figure [](/paper/#fig:hidden-flow) (chapter
+  [13.4](/tutorial/what-a-field-keeps/flows-inside/#octupolar-tides-read-the-hidden-swirl)).
 - Table [](/paper/#tab:null): the magnetic part's row of what the camera cannot tell apart.
 :::
 

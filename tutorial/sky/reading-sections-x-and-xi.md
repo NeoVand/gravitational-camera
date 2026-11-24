@@ -103,7 +103,8 @@ marked).
 - *In the near field's magnetic part*, a ball and a shell turning oppositely with no total spin look like rest, and
   rolls are silent
   ([2.8](/tutorial/outside/flows/#rolls-are-silent-outside-because-their-potential-there-is-a-gradient)). A pixel
-  inside (7.5) and two tides applied in either order (13.4) break the tie.
+  inside (7.5) and two tides applied in either order
+  ([13.4](/tutorial/what-a-field-keeps/flows-inside/#every-silent-flow-is-read-by-calderóns-pair)) break the tie.
 - *In the waves*, a body moving steadily in a straight line looks like a body at rest
   ([7.6](/tutorial/geometry/gravitational-waves/#a-body-in-steady-motion-sends-no-wave-and-neither-does-an-even-pressure)),
   and a round pulsation, pressure and a smooth wheel send nothing
@@ -121,9 +122,11 @@ marked).
   breaks the tie.
 
 The passing mass is *read now, derived in chapter [13.1](/tutorial/what-a-field-keeps/push-and-pass/)*, and the two
-tides are *stated in the paper* until chapter 13.4. So "the channels cover for one another": the glow places what the
-near field cannot (chapter [5.6](/tutorial/waves/abel-transform/#uniform-shells-are-peeled-from-the-outside-in)), and
-the near field weighs what the glow cannot.
+tides are *read now, derived in chapter
+[13.4](/tutorial/what-a-field-keeps/flows-inside/#the-order-of-two-short-tides-matters-first-at-the-second-power-of-the-time)*.
+So "the channels cover for one another": the glow places what the near field cannot (chapter
+[5.6](/tutorial/waves/abel-transform/#uniform-shells-are-peeled-from-the-outside-in)), and the near field weighs what
+the glow cannot.
 
 ## Near the pair the tide turns with it, and beyond three-tenths of a wavelength it is a wave
 
@@ -376,7 +379,7 @@ inside the shell is it the remnant's.
 | The paper's table or equation | Its mark here |
 |---|---|
 | Table [](/paper/#tab:affordances), the affordances | *read now*, the rows derived in 7.8 and 5.5; 2.5 and 3.9; 1.3 and 2.3; 6.4; R10 and 10.2; 4.4 and 10.3; 5.4 and R5; 2.8 and 7.5; 6.5; 4.6 and R4 |
-| Table [](/paper/#tab:null), the blind spots | *read now*, the rows derived in the chapters of the third section; the row of 13.1 *read now, derived in chapter 13.1*; that of 13.4 *stated in the paper* until that chapter |
+| Table [](/paper/#tab:null), the blind spots | *read now*, the rows derived in the chapters of the third section; the row of 13.1 *read now, derived in chapter 13.1*; that of 13.4 *read now, derived in chapter 13.4* |
 | [](/paper/#eq:multipole), the field in every zone | *stated in the paper* (Thorne's); checked, and its tide derived, in 7.7 |
 | [](/paper/#eq:memory), the memory | *stated in the paper*, and sketched in 7.8 at depth B |
 | [](/paper/#eq:merger-memory), a merger's memory | *read now, derived in chapter 7.8* |

@@ -352,7 +352,9 @@ x\times\matter\rho\vect v)\cdot\nabla g\,\dd V$, one for each solid harmonic $g$
 [2.2](/tutorial/outside/spherical-harmonics/#each-pattern-of-one-degree-gives-two-harmonic-functions-the-solid-harmonics).
 For a body turning rigidly at a known rate, each moment of degree $\ell$ is $(\ell + 1)/(2\ell + 1)$ times a new
 integral $\int\matter\rho\,r^2g'\,\dd V$, with $g'$ harmonic of degree $\ell - 1$, plus mass moments that the electric
-part already shows. We state this without proof; chapter 13.4 derives it.
+part already shows. We state this without proof here; chapter
+[13.4](/tutorial/what-a-field-keeps/flows-inside/#at-a-known-rate-of-turning-the-field-outside-holds-the-first-rung-of-the-ladder)
+derives it.
 
 **The check $\ell = 1$.** We assume that **the body turns rigidly**, $\matter\rho\vect v =
 \matter\rho\,\vect\Omega\times\vect x$, at a known $\vect\Omega$. For $g = x_k$ the moment is $\int(\vect

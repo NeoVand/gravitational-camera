@@ -376,11 +376,11 @@ symbols:
     chapter: '1.5b'
     anchor: a-tide-across-a-direction-is-one-complex-number-and-turning-the-axes-turns-it-back-by-twice-the-angle
   - key: complex-place
-    title: Place on the camera's plane, as a complex number
+    title: Place on a plane, as a complex number
     tex: 'w'
     role: none
     kind: A complex number; in metres
-    meaning: 'A place on the plane of a camera, written as $w = x + iy$. The shear at the place $w$ of one point mass below the origin, at the distance $r$, is $s = -3GMw^2/r^5$. (The paper also writes $w$ for an eigenvalue of $\mathcal W$.)'
+    meaning: 'A place on the plane of a camera, or on a plane through a body (its equatorial plane in chapter 13.4), written as $w = x + iy$. The shear at the place $w$ of one point mass below the origin, at the distance $r$, is $s = -3GMw^2/r^5$. (The paper also writes $w$ for an eigenvalue of $\mathcal W$.)'
     chapter: '1.5b'
     anchor: the-shear-of-one-mass-is-a-square
   - key: wave-polarizations
@@ -3972,3 +3972,28 @@ symbols:
     meaning: 'Defined by $(1 - 2u\cos\gamma + u^2)^{-2} = \sum_nC^{(2)}_n(\cos\gamma)\,u^n$, so that $|\mathbf x - \mathbf y|^{-4} = \sum_nC^{(2)}_n(\cos\gamma)\,r^n/s^{n+4}$ for $r < s$. Each is a sum of Legendre polynomials of its parity with positive coefficients, such as $C^{(2)}_2 = 2P_0 + 8P_2$. It always carries its superscript, so that it is not the flyby constant $C$.'
     chapter: '13.3'
     anchor: a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder
+
+  - key: bracket-of-rates
+    title: Bracket of two rates
+    tex: '\{\matter{\dot Q_h}, \matter{\dot Q_g}\}'
+    role: matter
+    kind: A number; in kilograms times the units of h and g, per square metre per second (kg m² s⁻¹ for quadratic profiles)
+    meaning: 'The Poisson bracket of the rates of change of two moments, the paper''s $\{\dot Q_h, \dot Q_g\} = \int\vect J\cdot[(\nabla\nabla h)\nabla g - (\nabla\nabla g)\nabla h]\,\mathrm dV$. After a short time $\tau$, two brief tides applied in either order differ by $\tau^2$ times it, per unit of their strength. For $h + ig = (x + iy)^2/2$ it is $-2L_z$.'
+    chapter: '13.4'
+    anchor: the-order-of-two-short-tides-matters-first-at-the-second-power-of-the-time
+  - key: flow-transform
+    title: Fourier transform of the flow
+    tex: '\matter{\tilde{\vect J}}(\vect\xi)'
+    role: matter
+    kind: A complex vector for each wavevector ξ; in kg m s⁻¹
+    meaning: 'The paper''s $\tilde{\mathbf J}(\boldsymbol\xi) = \int\vect J\,e^{i\boldsymbol\xi\cdot\vect x}\,\mathrm dV$, each component transformed with the paper''s plus sign. Calderón''s pair gives $\{\dot Q_{h_+}, \dot Q_{h_-}\} = -\tfrac12|\boldsymbol\xi|^2\,\boldsymbol\eta\cdot\tilde{\vect J}(\boldsymbol\xi)$, its part across $\boldsymbol\xi$; continuity gives its part along $\boldsymbol\xi$, $\mathrm d\tilde\rho/\mathrm dt = i\boldsymbol\xi\cdot\tilde{\vect J}$.'
+    chapter: '13.4'
+    anchor: calderóns-pair-reads-the-flows-fourier-transform
+  - key: layer-rate
+    title: Rate of turning of a layer
+    tex: '\Omega(r)'
+    role: none
+    kind: A number for each radius; in s⁻¹
+    meaning: 'The rate at which the spherical layer of radius $r$ of a round body turns about the $z$ axis, so that $\vect J = \rho\,\Omega(r)\,(-y, x, 0)$. The hidden swirl has $\Omega(r) = +\Omega$ inside $2^{-1/5}R$ and $-\Omega$ outside. Averages over directions are written $\langle\cdot\rangle$, so that this $\Omega$ is never a solid angle.'
+    chapter: '13.4'
+    anchor: octupolar-tides-read-the-hidden-swirl
