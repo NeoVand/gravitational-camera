@@ -2910,3 +2910,44 @@ terms:
     definition: 'A set of operations, such as turns and boosts, in which the product of any two is again in the set, every operation can be undone, and doing nothing is included.'
     chapter: '6.6'
     anchor: two-boosts-make-a-boost-and-a-turn
+  - term: stress–energy tensor
+    definition: 'The symmetric table $T^{\mu\nu}$ of ten numbers that says how much energy and momentum a cubic metre holds and how much of each crosses a square metre each second, all in joules per cubic metre. It is also called the energy–momentum tensor.'
+    role: matter
+    chapter: '6.5'
+    anchor: ten-numbers-say-where-energy-and-momentum-are-and-where-they-flow
+  - term: momentum density
+    definition: 'The momentum in a cubic metre, in $\mathrm{kg\,m^{-2}\,s^{-1}}$. In relativity it equals the energy flux divided by $c^2$.'
+    chapter: '6.5'
+    anchor: ten-numbers-say-where-energy-and-momentum-are-and-where-they-flow
+  - term: momentum flux
+    definition: 'The momentum along one direction that crosses a square metre facing another direction each second, in pascals. A pressure is a positive momentum flux and a tension a negative one, the opposite sign to the stress of chapter 4.3.'
+    chapter: '6.5'
+    anchor: in-the-stresses-the-sign-is-that-of-a-flow-of-momentum
+  - term: principal stresses
+    definition: 'The three eigenvalues of the momentum flux in the matter''s own frame, the paper''s $p_1$, $p_2$, $p_3$: each a pressure if positive and a tension if negative.'
+    chapter: '6.5'
+    anchor: in-the-stresses-the-sign-is-that-of-a-flow-of-momentum
+  - term: perfect fluid
+    definition: 'A fluid whose pressure in its own frame is the same in every direction, with no viscosity and no flow of heat. Its stress–energy tensor is $(\rho + p/c^2)u^\mu u^\nu + p\,\eta^{\mu\nu}$.'
+    chapter: '6.5'
+    anchor: dust-a-fluid-and-a-beam-of-light-each-fill-the-table
+  - term: null dust
+    definition: 'A beam of light, or of anything that moves at $c$, described as a stream of energy along one null direction: $T^{\mu\nu} = (F/c)k^\mu k^\nu$, with energy density, energy flux over $c$ and pressure along the beam all equal.'
+    chapter: '6.5'
+    anchor: dust-a-fluid-and-a-beam-of-light-each-fill-the-table
+  - term: "von Laue's theorem"
+    definition: 'For a static, isolated body held together by stresses other than gravity, every integral $\int T^{ij}\,\mathrm dV$ of its momentum fluxes is zero: its pressures and tensions cancel over the whole body.'
+    chapter: '6.5'
+    anchor: the-stresses-of-a-body-at-rest-add-up-to-zero
+  - term: photon box
+    definition: 'A box with mirrored walls that holds light. The light''s pressure is cancelled by the walls'' tension, so the box weighs only the light''s energy over $c^2$, unlike a free beam.'
+    chapter: '6.5'
+    anchor: what-gravitates-is-the-energy-plus-the-sum-of-the-stresses
+  - term: active mass
+    definition: 'The mass that a body''s gravitational field reports far away, $(1/c^2)\int(T^{00} + T^{11} + T^{22} + T^{33})\,\mathrm dV$ for a weak static field. For a static isolated body it is its energy over $c^2$.'
+    chapter: '6.5'
+    anchor: what-gravitates-is-the-energy-plus-the-sum-of-the-stresses
+  - term: null energy condition
+    definition: 'The condition $T_{\mu\nu}k^\mu k^\nu \ge 0$ for every null $k^\mu$, which dust, light and fluids with $\rho c^2 + p \ge 0$ satisfy; the Casimir gap is an exception.'
+    chapter: '6.5'
+    anchor: along-a-ray-of-light-the-table-gives-the-energy-less-c-times-the-momentum

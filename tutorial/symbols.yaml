@@ -2182,3 +2182,35 @@ symbols:
     meaning: 'The paper''s $\mathbf m(z) = (1 - z^2, i(1 + z^2), -2z)$, a null vector for the direction $\hat n(z) = (2\,\mathrm{Re}\,z, 2\,\mathrm{Im}\,z, 1 - |z|^2)/(1 + |z|^2)$, labelled by its stereographic coordinate $z$. Light''s principal null directions solve $\mathbf m(z)\cdot\mathbf F = 0$, two roots; gravity''s solve $\mathbf m(z)^{\mathsf T}\mathcal W\mathbf m(z) = 0$, four.'
     chapter: '6.6'
     anchor: light-has-two-special-directions-where-gravity-has-four
+  - key: stress-energy-tensor
+    title: Stress–energy tensor
+    tex: '\matter{T}^{\mu\nu}'
+    role: matter
+    kind: A symmetric 4 × 4 table, ten numbers; every entry in J/m³ (pascals)
+    meaning: 'Where energy and momentum are and how they flow. $T^{00}$ is the energy density; $T^{0j} = T^{j0}$ is the energy flux across a face facing $j$ divided by $c$, and also $c$ times the momentum density; $T^{ij}$ is the momentum along $i$ that crosses a unit area facing $j$ each second. Its spatial block is the flow of momentum, $+p\,\delta_{ij}$ for a fluid at rest: the negative of chapter 4.3''s stress for matter at rest. It obeys $\partial_\nu T^{\mu\nu} = 0$, and the source of a weak static field is $T^{00} + T^{11} + T^{22} + T^{33}$.'
+    chapter: '6.5'
+    anchor: ten-numbers-say-where-energy-and-momentum-are-and-where-they-flow
+  - key: principal-stresses
+    title: Principal stresses
+    tex: '\matter{p}_a'
+    role: matter
+    kind: Three numbers at each point; in pascals
+    meaning: 'The paper''s $p_1, p_2, p_3$: the eigenvalues of the momentum flux $T^{ij}$ in the matter''s own frame, positive for a pressure and negative for a tension. A fluid has $p_a = p$ for each, so their sum is $3p$. Inside matter the trace of the tide is $4\pi G[\rho + (p_1 + p_2 + p_3)/c^2]$.'
+    chapter: '6.5'
+    anchor: in-the-stresses-the-sign-is-that-of-a-flow-of-momentum
+  - key: casimir-energy-density
+    title: Casimir energy density
+    tex: 'u'
+    role: none
+    kind: A number; in J/m³
+    meaning: 'The paper''s energy density of the field between two flat metal plates a distance $a$ apart, $u = -\pi^2\hbar c/720a^4$, below that of empty space: $-4.3\times10^{-4}\,\mathrm{J\,m^{-3}}$ at $a = 1\,\mu\mathrm m$. The stress across the plates is $3u$ and the two along them $-u$ each. (Not a four-velocity $u^\mu$ or a light-cone coordinate.)'
+    chapter: '6.5'
+    anchor: along-a-ray-of-light-the-table-gives-the-energy-less-c-times-the-momentum
+  - key: crossing-energy
+    title: Energy less c times momentum across a front
+    tex: '\matter{\mathcal N}'
+    role: matter
+    kind: A number at each point of a wave's front; in J/m²
+    meaning: 'The paper''s $\mathcal N(\mathbf x_\perp) = \int T_{\mu\nu}k^\mu k^\nu\,\mathrm d\ell$ along the null ray through $\mathbf x_\perp$, with $k^\mu = (1, 0, 0, 1)$ and $\ell = ct$ along the ray: the energy, less $c$ times the momentum along the wave, that crosses the front there. For particles it is $c\sum_aq_a\delta^2(\mathbf x_\perp - \mathbf x_a)$ with $q = E/c - p_z$; for slow matter $\Sigma c^2$. Ordinary matter has $\mathcal N \ge 0$.'
+    chapter: '6.5'
+    anchor: along-a-ray-of-light-the-table-gives-the-energy-less-c-times-the-momentum
