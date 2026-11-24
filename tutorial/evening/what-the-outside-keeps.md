@@ -279,10 +279,12 @@ About a million numbers against a billion cells, the square and the cube of a th
 [^friction]: The paper's equation [](/paper/#eq:horizon-friction), explained in chapter 11.4.
 
 [^hawking]: The theorem is in chapter 4.6, the temperature in 11.3, and the paper's equation
-    [](/paper/#eq:hole-thermometer) in 13.7.
+    [](/paper/#eq:hole-thermometer) in 11.4 and
+    [13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton).
 
 [^numbers]: Chapter 11.3 gives the mass and its steady tide,
-    [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat) the temperature and 13.7
+    [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat) the temperature and
+    [11.4](/tutorial/black-holes/under-tides/#the-friction-trembles-at-the-holes-temperature)
     the trembling tide.
 
 [^holography]: Chapter 13.8.

@@ -4336,7 +4336,7 @@ terms:
     anchor: a-shadow-stays-pale-while-the-skys-gravitons-are-long
 
   - term: horizon friction
-    definition: 'The friction $\nu$ with which a black hole''s horizon takes energy from a slowly changing tide, at the rate $\nu(\dot{\mathcal E}_{ij}\dot{\mathcal E}_{ij} + \dot{\mathcal B}_{ij}\dot{\mathcal B}_{ij})$, with $\nu = Mr_s^5/90c^3$ for a hole that does not turn. The same number fixes the hole''s absorption of long gravitational waves.'
+    definition: 'The friction $\nu$ with which a black hole''s horizon takes energy from a slowly changing tide, at the rate $\nu(\dot{\mathcal E}_{ij}\dot{\mathcal E}_{ij} + \dot{\mathcal B}_{ij}\dot{\mathcal B}_{ij})$, with $\nu = Mr_s^5/90c^3$ for a hole that does not turn. The same number fixes the hole''s absorption of long gravitational waves, and with the hole''s noise it gives back the Hawking temperature (chapter 13.7).'
     chapter: '11.4'
     anchor: a-changing-tide-loses-energy-through-the-horizon
   - term: tidal heating
@@ -4968,3 +4968,28 @@ terms:
     definition: 'A set of quantities whose values together fix the state of a system.'
     chapter: '13.6'
     anchor: marolfs-boundary-algebra-holds-the-interior-but-watching-cannot-read-it
+
+  - term: tidal inertia
+    definition: 'The sum $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi\,\mathrm d\omega$ of a body''s response to a tide, read as the mass the tide must move: $\int\rho\,|\nabla h|^2\,\mathrm dV$, or $\tfrac13\int\rho\,r^2\,\mathrm dV$ for a round body and Section XIV''s quadrupole. A black hole''s is $0.345\,Mr_s^2$, a thin shell''s of its own mass at $1.02\,r_s$.'
+    chapter: '13.7'
+    anchor: a-holes-response-has-the-weight-of-a-shell-a-little-outside-its-horizon
+  - term: shell radius of a sum
+    definition: 'The radius $R_\ell$ of the thin shell of a body''s mass whose sum under a tide of degree $\ell$ is the body''s own: $\int\rho\,r^{2\ell-2}\,\mathrm dV = MR_\ell^{2\ell-2}$. For a black hole it climbs from $1.02\,r_s$ at $\ell = 2$ toward $(3\sqrt3/e)\,r_s = 1.91\,r_s$.'
+    chapter: '13.7'
+    anchor: every-degree-of-tide-gives-its-own-shell-and-finer-tides-give-shells-farther-out
+  - term: step absorber
+    definition: 'An imagined body that takes every wave aimed inside a fixed impact parameter and nothing else, so that its greybody factor at each degree is a step. Large degrees of a black hole behave so; whatever its impact parameter, a step absorber''s sums fail the positivity test, with $m_2^2/m_1m_3 = 1.185$.'
+    chapter: '13.7'
+    anchor: every-degree-of-tide-gives-its-own-shell-and-finer-tides-give-shells-farther-out
+  - term: positivity test
+    definition: 'The inequality $m_2^2 \le m_1m_3$ for the means $m_k$ of $r^{2k}$ over any mass that is nowhere negative, from $\int\rho\,r^2(r^2 - a)^2\,\mathrm dV \ge 0$ for every $a$: a Hankel test of order two (chapter 3.9). Equality needs a thin shell. A black hole''s sums for the tides of degree two, three and four give 1.117 and fail it.'
+    chapter: '13.7'
+    anchor: no-distribution-of-positive-mass-has-the-holes-first-three-sums
+  - term: positive measure
+    definition: 'A weighting that is nowhere negative, such as $\omega\,\mathrm{Im}\,\chi$ over the frequencies for a body, or a black hole, that only absorbs. Its moments in frequency pass every positivity test; a black hole fails the test only for its moments in radius, which join different degrees of tide.'
+    chapter: '13.7'
+    anchor: no-distribution-of-positive-mass-has-the-holes-first-three-sums
+  - term: subtraction
+    definition: 'A term added to a dispersion relation when a response does not fall to zero at high frequency, such as an answer local in time. A black hole''s static response needs one: without it, its friction would give it the Love number 1.35, where its own is zero.'
+    chapter: '13.7'
+    anchor: the-friction-would-make-the-hole-yield-like-a-liquid-yet-its-love-number-is-zero

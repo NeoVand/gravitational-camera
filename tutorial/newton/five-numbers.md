@@ -296,7 +296,7 @@ keeps, as the trace 2 of the projector across a direction did in chapter 1.1.
 
 The paper's equation [](/paper/#eq:hole-noise) uses $\Pi$ for a black hole. Its quadrupole $Q_{ij}$ is a symmetric
 trace-free table, in $\mathrm{kg\,m^2}$, defined so that its energy in a tide is the contraction
-$Q_{ij}\curv{\tE}_{ij}$ (chapter 13.7). The quadrupole jitters. The equation writes the average of the product
+$Q_{ij}\curv{\tE}_{ij}$ (chapters 11.4 and 13.7). The quadrupole jitters. The equation writes the average of the product
 $Q_{ij}(t)\,Q_{kl}(0)$ as $\Pi_{ijkl}$ times one function of time, built from a spectrum $S_Q$, the strength of the
 jitter at each frequency, in $\mathrm{kg^2\,m^4\,s}$. With $Q_{ij} = q_A\,b^A_{ij}$, the averaged product of two
 coefficients is $b^A_{ij}\Pi_{ijkl}b^B_{kl} = \delta^{AB}$ times that function. So the five coefficients jitter with

@@ -3600,7 +3600,7 @@ symbols:
     tex: '\nu'
     role: none
     kind: A friction coefficient; in J s⁵
-    meaning: 'The rate at which a black hole that does not turn absorbs a slowly changing tide, per square of the tide''s rate of change: $\mathrm dE/\mathrm dt = \nu(\dot{\mathcal E}_{ij}\dot{\mathcal E}_{ij} + \dot{\mathcal B}_{ij}\dot{\mathcal B}_{ij})$ with $\nu = \tfrac{16}{45}G^5M^6/c^{13} = Mr_s^5/90c^3$ (Poisson, stated). $1.9\times10^{-23}$ J s⁵ for $1.36\times10^{23}$ kg, $1.3\times10^{29}$ J s⁵ for thirty solar masses. The paper''s letter; not a frequency.'
+    meaning: 'The rate at which a black hole that does not turn absorbs a slowly changing tide, per square of the tide''s rate of change: $\mathrm dE/\mathrm dt = \nu(\dot{\mathcal E}_{ij}\dot{\mathcal E}_{ij} + \dot{\mathcal B}_{ij}\dot{\mathcal B}_{ij})$ with $\nu = \tfrac{16}{45}G^5M^6/c^{13} = Mr_s^5/90c^3$ (Poisson, stated). $1.9\times10^{-23}$ J s⁵ for $1.36\times10^{23}$ kg, $1.3\times10^{29}$ J s⁵ for thirty solar masses. At high frequency the hole''s friction follows its greybody factor instead, and its sum over every frequency is that of a shell at $1.02\,r_s$ (chapter 13.7). The paper''s letter; not a frequency.'
     chapter: '11.4'
     anchor: a-changing-tide-loses-energy-through-the-horizon
   - key: hole-quadrupole
@@ -3608,7 +3608,7 @@ symbols:
     tex: '\matter{Q}_{ij}'
     role: matter
     kind: A symmetric trace-free table of five independent numbers; in kg m²
-    meaning: 'The quadrupole defined by its energy $Q_{ij}\mathcal E_{ij}$ in a tide; for a body $\tfrac12\int\rho(x_ix_j - \tfrac13r^2\delta_{ij})\,\mathrm dV$, half Newton''s trace-free moment and a sixth of chapter 2.3''s $Q_{ij}$. A black hole''s answers a slow tide as $Q_{ij} = \nu\dot{\mathcal E}_{ij}$, so that $\mathrm{Im}\,\chi = \nu\omega$ with no elastic part.'
+    meaning: 'The quadrupole defined by its energy $Q_{ij}\mathcal E_{ij}$ in a tide; for a body $\tfrac12\int\rho(x_ix_j - \tfrac13r^2\delta_{ij})\,\mathrm dV$, half Newton''s trace-free moment and a sixth of chapter 2.3''s $Q_{ij}$. A black hole''s answers a slow tide as $Q_{ij} = \nu\dot{\mathcal E}_{ij}$, so that $\mathrm{Im}\,\chi = \nu\omega$ with no elastic part. It is the reading of the hole''s thermometer (chapter 13.7).'
     chapter: '11.4'
     anchor: the-holes-quadrupole-answers-a-tide-with-friction-alone
   - key: quadrupole-noise
@@ -3616,10 +3616,9 @@ symbols:
     tex: 'S_Q'
     role: none
     kind: A two-sided spectrum; in kg² m⁴ s
-    meaning: 'The flat spectrum with which each of the five entries of a black hole''s quadrupole trembles at low frequencies, $S_Q = 2k_BT_H\nu = \hbar r_s^5/360\pi G$, from the classical fluctuation–dissipation theorem at the Hawking temperature; $4.7\times10^{-46}$ kg² m⁴ s for $1.36\times10^{23}$ kg. The paper''s letter.'
+    meaning: 'The flat spectrum with which each of the five entries of a black hole''s quadrupole trembles at low frequencies, $S_Q = 2k_BT_H\nu = \hbar r_s^5/360\pi G$, from the classical fluctuation–dissipation theorem at the Hawking temperature; $4.7\times10^{-46}$ kg² m⁴ s for $1.36\times10^{23}$ kg. Divided by $2k_B\nu$ it gives back $T_H$, so the tremor carries only the mass (chapter 13.7). The paper''s letter.'
     chapter: '11.4'
     anchor: the-friction-trembles-at-the-holes-temperature
-
   - key: compactness
     title: Compactness
     tex: '\mathcal C'
@@ -4022,3 +4021,28 @@ symbols:
     meaning: 'The transformation $X_f = f\,\partial_t + t\,\nabla f\cdot\nabla$, with $f$ harmonic: the shift in time for $f = 1$ and a boost for $f$ linear. In general relativity the mass moments are its charges. For $f$ and $g$ of degree two or more the commutator $[X_f, X_g]$ is not of the same form, so these fields do not close.'
     chapter: '13.6'
     anchor: in-general-relativity-the-moments-are-charges-of-motions-that-do-not-close
+
+  - key: planck-mass
+    title: Planck mass
+    tex: 'm_P'
+    role: none
+    kind: A mass; in kilograms
+    meaning: 'The mass $m_P = \sqrt{\hbar c/G} = 2.18\times10^{-8}$ kg. In the time light takes to travel $r_s$, a black hole''s shape trembles by a fraction of $Mr_s^2$ that scales as $m_P/M$ (about $0.25\,m_P/M$, mostly zero-point), so only a hole near the Planck mass would tremble by a fair part of its size. (Not a mass of matter; neutral.)'
+    chapter: '13.7'
+    anchor: beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton
+  - key: shell-radius
+    title: Shell radius of a sum
+    tex: 'R_\ell'
+    role: none
+    kind: A length, one for each degree ℓ of tide; in metres
+    meaning: 'The radius of the thin shell of a body''s mass that has the same sum $\tfrac2\pi\int_0^\infty\omega\,\mathrm{Im}\,\chi_\ell\,\mathrm d\omega$ under a tide of degree $\ell$: $\int\rho\,r^{2\ell-2}\,\mathrm dV = MR_\ell^{2\ell-2}$. A black hole has $R_\ell/r_s = 1.0175$, $1.4555$, $1.6100$, $1.6868$, $1.7324$ for $\ell = 2$ to 6, tending to $3\sqrt3/e = 1.91$.'
+    chapter: '13.7'
+    anchor: every-degree-of-tide-gives-its-own-shell-and-finer-tides-give-shells-farther-out
+  - key: radial-mean
+    title: Mean of an even power of the radius
+    tex: 'm_k'
+    role: none
+    kind: A number for each k; in m²ᵏ
+    meaning: 'The mean of $r^{2k}$ over a body''s mass, $m_k = \int\rho\,r^{2k}\,\mathrm dV/M$; for a round body it is $R_{k+1}^{2k}$. Every density that is nowhere negative has $m_2^2 \le m_1m_3$; a black hole''s sums give $m_2^2/m_1m_3 = 1.117$. (Not a mass.)'
+    chapter: '13.7'
+    anchor: no-distribution-of-positive-mass-has-the-holes-first-three-sums
