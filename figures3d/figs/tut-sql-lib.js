@@ -18,7 +18,7 @@
 //    Hz^-1/2 at 50, 100 and 200 Hz; the quantum noise S = A/P + B P / f^4 with sqrt(A B) fixed so that its least value
 //    over P at each f is h_SQL^2, which touches h_SQL^2 once, where the two terms are equal, at f = (B P / A)^(1/4):
 //    31.6, 100 and 316 Hz for P0/10, P0 and 10 P0;
-//  - the ladder: the ratios on the person of 467, 1.44 x 10^5, 9.5 x 10^17 (stretches of 10^4 s averaged over
+//  - the ladder: the ratios on the person of 467, 1.44 x 10^5, 9.5 x 10^16 (stretches of 10^3 s, shorter than the hour in which the pair falls together, averaged over
 //    4.35 x 10^17 s), 4.1 x 10^31 (tau^3/2 carried to the age of the universe), 1.7 x 10^55 (the ceiling over the
 //    1.5 x 10^15 by which a camera of mass z c^2 / 2G at 3 m outpulls the Earth) and 2.6 x 10^70 (M_s c^2 tau / hbar);
 //    their blurs by chapter 3.7's exact calculation (step 7, the one that reproduces the paper's table): the full
@@ -71,7 +71,7 @@ export const touch = (p) => (B_P0 * p / (A_P0 / p)) ** 0.25;
 
 // ---- the ladder --------------------------------------------------------------------------------------------------
 export const AGE = 4.35e17;              // s
-export const STRETCH = 1e4;              // s
+export const STRETCH = 1e3;              // s
 export const Z = 3, EARTH_G = 9.81;      // m, m s^-2
 export const ladder = () => {
 	const pix = personTide() / pixelTide();
@@ -231,15 +231,16 @@ export async function chapter(check) {
 	has('the paper\'s ceiling falls by the same factor to $1.7\\times10^{55}$, a blur of $1.91°$', 'the Earth-bound ceiling');
 	has('$$\\SNR \\lesssim \\frac{\\matter M_sc^2\\tau}{\\hbar} .$$', 'the ceiling\'s form');
 	has('Its ratio on the person grows as $\\tau^{3/2}$, from $1.44\\times10^5$ in a second', 'the growth');
-	has('which reaches $\\xi$ after $\\sqrt{2/\\curv{\\tE}} = 1.5\\times10^4$ s', 'the stretch\'s length');
-	has('Read in stretches of $10^4$ s and averaged over the age of the universe, the pixel reaches about $10^{18}$, a blur of 5.5°', 'the averaged pixel');
+	has('would part them only after $\\sqrt{2/\\curv{\\tE}} = 1.5\\times10^4$ s', 'the tide\'s parting time');
+	has('$\\sqrt{\\xi^3/G\\matter m} = 3.9\\times10^3$ s, an hour', 'the pair\'s fall');
+	has('stretches of $10^3$ s and averaged over the age of the universe, the pixel reaches about $10^{17}$, a blur of 5.8°', 'the averaged pixel');
 	has('The rule carried to the age of the universe would give $4.1\\times10^{31}$ and 3.2°, a formal extrapolation', 'the formal pixel');
 	const R = ladder();
-	check(sig(Math.sqrt(2 / personTide()), 2) === '1.5e+4' && STRETCH < Math.sqrt(2 / personTide()), 'the stretches are not shorter than the time to reach xi');
-	check(sig(R.grad, 3) === '467' && sig(R.pix, 3) === '1.44e+5' && sig(R.avg, 2) === '9.5e+17' && sig(R.formal, 2) === '4.1e+31' &&
+	check(sig(Math.sqrt(2 / personTide()), 2) === '1.5e+4' && sig(Math.sqrt(XI ** 3 / (G * MASS)), 2) === '3.9e+3' && STRETCH < Math.sqrt(XI ** 3 / (G * MASS)), 'the stretches are not shorter than the pair\'s fall');
+	check(sig(R.grad, 3) === '467' && sig(R.pix, 3) === '1.44e+5' && sig(R.avg, 2) === '9.5e+16' && sig(R.formal, 2) === '4.1e+31' &&
 		sig(R.earth, 2) === '1.7e+55' && sig(R.ceiling, 2) === '2.6e+70', `the ratios ${Object.values(R)}`);
 	check(sig(R.pull, 2) === '1.5e+15' && sig(R.camera, 2) === '2.0e+27', `the camera ${R.camera} kg pulls ${R.pull} g`);
-	const logs = { grad: '2.67', pix: '5.16', avg: '18.0', formal: '31.6', earth: '55.2', ceiling: '70.4' };
+	const logs = { grad: '2.67', pix: '5.16', avg: '17.0', formal: '31.6', earth: '55.2', ceiling: '70.4' };
 	for (const [k, s] of Object.entries(logs)) check(Math.log10(R[k]).toFixed(s.length - s.indexOf('.') - 1) === s, `log10 of ${k} is ${Math.log10(R[k])}, not ${s}`);
 
 	// ---- the blur, by chapter 3.7's exact calculation (step 7), checked against its table and its law
@@ -265,7 +266,7 @@ export async function chapter(check) {
 		// a second route to the same width, within 0.1%
 		check(near(directWidth(d, J0), exactWidth(d), 1e-3), `the two routes to the blur of ${k}: ${directWidth(d, J0)} and ${exactWidth(d)}`);
 	}
-	check(blurs.ceiling.toFixed(2) === '1.51' && blurs.earth.toFixed(2) === '1.91' && blurs.formal.toFixed(1) === '3.2' && blurs.avg.toFixed(1) === '5.5', `the chapter's blurs ${Object.values(blurs)}`);
+	check(blurs.ceiling.toFixed(2) === '1.51' && blurs.earth.toFixed(2) === '1.91' && blurs.formal.toFixed(1) === '3.2' && blurs.avg.toFixed(1) === '5.8', `the chapter's blurs ${Object.values(blurs)}`);
 	check(blurs.grad.toFixed(0) === '26' && blurs.pix.toFixed(0) === '16', `the blurs of the gradiometer and the pixel ${blurs.grad}, ${blurs.pix}`);
 	return { md, sql, s0, R, blurs };
 }

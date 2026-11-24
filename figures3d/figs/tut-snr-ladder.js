@@ -1,7 +1,7 @@
 // The tutorial, chapter 8.6 (tutorial/quantum/quantum-limit.md), its fourth diagram: a ladder of signal-to-noise
 // ratios on the person a metre away. One horizontal axis of log10 SNR from 0 to 72, thin grey, ticked every 10. Four
 // ink dots, named above the axis: the superconducting gradiometer in 1 s (467), the SQL pixel in 1 s (1.44 x 10^5),
-// the SQL pixel in stretches of 10^4 s averaged over the age of the universe (9.5 x 10^17) and the ceiling over the age
+// the SQL pixel in stretches of 10^3 s averaged over the age of the universe (9.5 x 10^16) and the ceiling over the age
 // of the universe (2.6 x 10^70). Two open circles, named below it: the SQL pixel's tau^3/2 carried to the age of the
 // universe (4.1 x 10^31, formal) and the ceiling of a camera no heavier in pull than the Earth (1.7 x 10^55). A thin
 // dashed bracket from the SQL pixel in 1 s to the formal circle, "grows as tau^3/2". Each name ends with its blur by
@@ -15,7 +15,7 @@
 // Exact: every point's place (tut-sql-lib.js computes each ratio from the chapter's numbers and asserts it, and its
 // log10, against the chapter's text and the comment), and every blur, chapter 3.7's exact full width at half maximum
 // under a plane of sensors (step 7, as the site's BlurLaw interactive computes it, checked against chapter 3.7's table
-// and by a second route), asserted against the chapter's 1.51, 1.91, 3.2 and 5.5 degrees and the comment's 26 and 16.
+// and by a second route), asserted against the chapter's 1.51, 1.91, 3.2 and 5.8 degrees and the comment's 26 and 16.
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, AXIS, HAIR, TICK, LABEL_GAP, SIZE, n2 } from './tut-pot-lib.js';
 import { Plot, xAxis } from './tut-prob-lib.js';
 import { INK, DIM, PAGE, tex } from '../lib.js';
@@ -51,7 +51,7 @@ export default async function () {
 
 	// ---- the points
 	const deg = (v) => (v >= 9.95 ? v.toFixed(0) : v.toFixed(1));
-	check(deg(blurs.grad) === '26' && deg(blurs.pix) === '16' && deg(blurs.avg) === '5.5' && deg(blurs.formal) === '3.2' && deg(blurs.earth) === '1.9' && deg(blurs.ceiling) === '1.5', `the blurs ${Object.values(blurs).map(deg)}`);
+	check(deg(blurs.grad) === '26' && deg(blurs.pix) === '16' && deg(blurs.avg) === '5.8' && deg(blurs.formal) === '3.2' && deg(blurs.earth) === '1.9' && deg(blurs.ceiling) === '1.5', `the blurs ${Object.values(blurs).map(deg)}`);
 	const at = (k) => [P.X(lgR[k]), y0];
 	for (const k of ['grad', 'pix', 'avg', 'ceiling']) {
 		const [x, y] = at(k);
@@ -89,7 +89,7 @@ export default async function () {
 	// ---- above the axis: each name clears the leaders to its right
 	const first = (lines, bottom) => bottom - (lines - 1) * PITCH;     // the first baseline, from the last
 	const avgLast = y0 - 8.5;
-	const avg = await flag('avg', [['\\text{the SQL pixel, }10^4\\text{ s stretches}', INK], ['\\text{averaged over the age of}', INK], ['\\text{the universe}', INK], blurLine('avg')], first(4, avgLast), 1);
+	const avg = await flag('avg', [['\\text{the SQL pixel, }10^3\\text{ s stretches}', INK], ['\\text{averaged over the age of}', INK], ['\\text{the universe}', INK], blurLine('avg')], first(4, avgLast), 1);
 	const ceil = await flag('ceiling', [['\\text{the ceiling,}', INK], ['\\text{age of the universe}', INK], blurLine('ceiling')], first(3, avgLast), -1);
 	const topOf = (ls) => Math.min(...ls.map((l) => l.box.t));
 	const pixLast = topOf(avg) - 4.5 - 2.2;
