@@ -3913,3 +3913,20 @@ symbols:
     meaning: 'The moment $m_{pq} = \int w^p(w^*)^q\,\Sigma\,\mathrm d^2s$ of a body''s mass projected along a path, with $w = x + iy$ the place in the plane across the path. A passing mass loses the energy $\tfrac12C^2\sum_{p,q}m_{pq}/b^{p+1}(b^*)^{q+1}$, which holds every $m_{pq}$, while its bending holds only the $m_{0q}$. Not a mass, though it has the letter; the paper''s appendix writes $z$ for $w$.'
     chapter: '13.1'
     anchor: the-passers-bending-holds-only-the-harmonic-moments-of-the-projected-body
+
+  - key: calderon-vectors
+    title: Calderón's pair of null vectors
+    tex: '\boldsymbol{\zeta}_\pm'
+    role: none
+    kind: Two complex vectors; in m⁻¹
+    meaning: 'The paper''s $\boldsymbol\zeta_\pm = \tfrac12(i\boldsymbol\xi \pm \boldsymbol\eta)$, built from a real wavevector $\boldsymbol\xi$ and a real vector $\boldsymbol\eta$ at right angles to it and as long. Each is a null vector, $\boldsymbol\zeta_\pm\cdot\boldsymbol\zeta_\pm = 0$, so $h_\pm = e^{\boldsymbol\zeta_\pm\cdot\mathbf x}$ are harmonic; and $\nabla h_+\cdot\nabla h_- = -\tfrac12|\boldsymbol\xi|^2e^{i\boldsymbol\xi\cdot\mathbf x}$, so readings at two times give the density''s Fourier transform. (Here $\boldsymbol\xi$ is not the separation $\xi^i$ of free particles, $\boldsymbol\eta$ is not the rapidity, the viscosity or $\eta_{\mu\nu}$, and $\boldsymbol\zeta_\pm$ is not the $\zeta^\mu$ of chapter 7.4.)'
+    chapter: '13.2'
+    anchor: two-harmonic-exponentials-multiply-into-any-ripple
+  - key: scene-transform
+    title: Scene transform
+    tex: '\matter{\tilde\rho}(\boldsymbol K, \kappa)'
+    role: matter
+    kind: A complex number for each wavevector K across a flat camera and each rate of decay κ; in kg
+    meaning: 'The paper''s $\tilde\rho(\mathbf K, \kappa) = \int\rho\,e^{i\mathbf K\cdot\mathbf a - \kappa z}\,\mathrm d^2a\,\mathrm dz$ of a scene below a flat camera: a Fourier transform across the camera and a Laplace transform in depth. A reading at one time holds it on the cone $\kappa = K$; readings at two times hold it inside, times $\tfrac12(\kappa^2 - K^2)$. A point mass $m$ at depth $z_0$ below the origin has $\tilde\rho = me^{-\kappa z_0}$. (Here $K = |\mathbf K|$ is not a bulk modulus or a kinetic energy.)'
+    chapter: '13.2'
+    anchor: a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two

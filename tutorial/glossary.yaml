@@ -4755,3 +4755,49 @@ terms:
     definition: 'Reading the mass that a body''s field reports after a tide: the energy $\Delta E$ it gained adds $\Delta E/c^2$. Two weighings of two copies kicked both ways give the even and the odd part of the gain.'
     chapter: '13.1'
     anchor: two-weighings-of-two-copies-read-the-even-part-and-the-odd-part
+
+  - term: reading at one time
+    definition: 'What a camera outside a body records of its field at one instant. It holds only the moments of the density against functions harmonic in the body, so the null space is invisible to it.'
+    chapter: '13.2'
+    anchor: readings-at-two-times-hold-an-integral-that-no-reading-at-one-time-holds
+  - term: reading at two times
+    definition: 'A reading of a moment again after a known tide has acted, or of how the moments of a body at a known temperature change. It holds $\int\rho\,\nabla h\cdot\nabla g\,\mathrm dV$ for harmonic $h$ and $g$, and so the whole density.'
+    chapter: '13.2'
+    anchor: readings-at-two-times-hold-an-integral-that-no-reading-at-one-time-holds
+  - term: harmonic exponential
+    definition: 'A function $e^{\boldsymbol\zeta\cdot\mathbf x}$ whose complex vector $\boldsymbol\zeta$ is a null vector, $\boldsymbol\zeta\cdot\boldsymbol\zeta = 0$, so that it is harmonic. Two of them, $h_\pm$, multiply into any ripple.'
+    chapter: '13.2'
+    anchor: two-harmonic-exponentials-multiply-into-any-ripple
+  - term: polarization identity
+    definition: 'The rule $\nabla a\cdot\nabla b = \tfrac14(|\nabla(a + b)|^2 - |\nabla(a - b)|^2)$, which finds a product from two squares. It turns weighings, which measure squares, into the products that a second reading needs.'
+    chapter: '13.2'
+    anchor: sixteen-weighings-give-one-ripple
+  - term: electrical impedance tomography
+    definition: 'Finding the electrical conductivity inside a body from currents and voltages at its surface. Its linearized form, Calderón''s problem made linear, is the integral $\int\delta\sigma\,\nabla u\cdot\nabla v\,\mathrm dV$ of harmonic potentials, as in gravity''s second reading.'
+    chapter: '13.2'
+    anchor: this-is-calderóns-problem-made-linear-and-in-newtons-gravity-the-linear-form-is-exact
+  - term: conductivity
+    definition: 'How easily electric current flows at a point of a material, in siemens per metre. In chapter 13.2 it is written $\sigma$, not to be confused with a surface density.'
+    chapter: '13.2'
+    anchor: this-is-calderóns-problem-made-linear-and-in-newtons-gravity-the-linear-form-is-exact
+  - term: scene transform
+    definition: 'The paper''s transform of a scene below a flat camera, $\tilde\rho(\mathbf K, \kappa)$: Fourier across the camera and Laplace in depth.'
+    role: matter
+    chapter: '13.2'
+    anchor: a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two
+  - term: Laplace transform
+    definition: 'A weighting of a function by a falling exponential, $\int f(z)\,e^{-\kappa z}\,\mathrm dz$, instead of by a ripple. The scene transform is a Laplace transform in depth.'
+    chapter: '13.2'
+    anchor: a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two
+  - term: cone of the scene transform
+    definition: 'The surface $\kappa = K$ in the space of the scene transform. A reading at one time holds the transform on it, two readings hold it inside, where $\kappa > K$, and the transform of a null-space density is zero on it.'
+    chapter: '13.2'
+    anchor: a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two
+  - term: ellipse
+    definition: 'The curve of points whose distances to two fixed points, its foci, add up to a fixed length, as a loop of string pinned at the foci and pulled taut by a pencil draws it. The pairs of tides that reach one point inside the cone lie on one.'
+    chapter: '13.2'
+    anchor: every-point-inside-the-cone-is-reached-by-an-ellipse-of-pairs-of-tides
+  - term: logarithmic stability
+    definition: 'An error in a result that shrinks only as a power of $1/\ln\mathrm{SNR}$ as the ratio $\mathrm{SNR}$ of the data to their error grows, so that squaring the precision of the data improves the result by a fixed factor. Calderón''s problem has it, and cannot do better.'
+    chapter: '13.2'
+    anchor: fine-detail-still-costs-exponentially-the-two-readings-remove-the-ambiguity-and-keep-the-blur
