@@ -3345,3 +3345,71 @@ terms:
     definition: 'The average of two operators multiplied in both orders, as in the paper''s $\dot Q_g = \tfrac12\sum_a(\mathbf p_a\cdot\nabla g + \nabla g\cdot\mathbf p_a)$. When the two orders differ, as they do for a general $g$, only the average is Hermitian.'
     chapter: '8.2'
     anchor: two-moments-of-a-body-do-not-commute
+  - term: ladder operators (lowering and raising)
+    definition: 'The operators $a = (m\omega x + ip)/\sqrt{2m\hbar\omega}$ and $a^\dagger$ of an oscillator, with $[a, a^\dagger] = 1$. The lowering operator $a$ takes a level down by one quantum and the raising operator $a^\dagger$ up by one.'
+    chapter: '8.3'
+    anchor: the-oscillators-energy-factorizes-into-two-ladder-operators
+  - term: number operator
+    definition: 'The Hermitian product $a^\dagger a$ of an oscillator''s ladder operators. Its eigenvalues are the whole numbers $n = 0, 1, 2, \dots$, the numbers of quanta, and the energy is $\hbar\omega(a^\dagger a + \tfrac12)$.'
+    chapter: '8.3'
+    anchor: the-oscillators-energy-factorizes-into-two-ladder-operators
+  - term: energy level
+    definition: 'One of the definite energies a quantum system can have. An oscillator''s levels are $(n + \tfrac12)\hbar\omega$, evenly spaced by $\hbar\omega$.'
+    chapter: '8.3'
+    anchor: its-energies-are-evenly-spaced-and-the-lowest-is-not-zero
+  - term: quantum (of a mode)
+    definition: 'One step $\hbar\omega$ of the energy of an oscillator or of a mode of a field of angular frequency $\omega$: $1.0\times10^{-29}$ J for the steel ball''s 15 kHz ringing.'
+    chapter: '8.3'
+    anchor: its-energies-are-evenly-spaced-and-the-lowest-is-not-zero
+  - term: ground state
+    definition: 'The lowest level of a quantum system. For an oscillator it is the Gaussian wave function with $a\psi_0 = 0$, of energy $\tfrac12\hbar\omega$, the least that the uncertainty relation allows.'
+    chapter: '8.3'
+    anchor: its-energies-are-evenly-spaced-and-the-lowest-is-not-zero
+  - term: zero-point motion
+    definition: 'The trembling of an oscillator in its ground state, which no cooling removes: a spread of position of standard deviation $x_{\rm zp} = \sqrt{\hbar/2m\omega}$, $7.5\times10^{-21}$ m for the steel ball''s quadrupole swing.'
+    chapter: '8.3'
+    anchor: its-energies-are-evenly-spaced-and-the-lowest-is-not-zero
+  - term: zero-point energy
+    definition: 'The energy $\tfrac12\hbar\omega$ that an oscillator keeps in its ground state, at every temperature.'
+    chapter: '8.3'
+    anchor: its-energies-are-evenly-spaced-and-the-lowest-is-not-zero
+  - term: occupation number
+    definition: 'The mean number of quanta $\bar n$ in an oscillator or a mode of a field. A classical swing of energy $E$ has $\bar n = E/\hbar\omega$; a warm mode has the Bose–Einstein occupation.'
+    chapter: '8.3'
+    anchor: a-warm-mode-holds-about-k_bthbaromega-quanta
+  - term: Bose–Einstein occupation
+    definition: 'The mean number of quanta in a mode in thermal equilibrium, $\bar n = 1/(e^{\hbar\omega/k_BT} - 1)$, from Boltzmann''s weights on the levels summed as a geometric series. It is about $k_BT/\hbar\omega$ when $\hbar\omega \ll k_BT$.'
+    chapter: '8.3'
+    anchor: a-warm-mode-holds-about-k_bthbaromega-quanta
+  - term: mean energy of a mode
+    definition: 'The average energy of an oscillator in thermal equilibrium, $\hbar\omega(\bar n + \tfrac12) = \tfrac12\hbar\omega\coth(\hbar\omega/2k_BT)$: equipartition''s $k_BT$ when $\hbar\omega \ll k_BT$, with the first correction $(\hbar\omega)^2/12k_BT$, and the zero-point energy when $\hbar\omega \gg k_BT$.'
+    chapter: '8.3'
+    anchor: a-warm-mode-holds-about-k_bthbaromega-quanta
+  - term: classical limit
+    definition: 'The regime $\hbar\omega \ll k_BT$, in which a mode holds about $k_BT/\hbar\omega$ quanta, its mean energy is $k_BT$, and the order of two of its quantities matters only by a fraction about $\hbar\omega/k_BT$.'
+    chapter: '8.3'
+    anchor: a-warm-mode-holds-about-k_bthbaromega-quanta
+  - term: frozen mode
+    definition: 'A mode with $\hbar\omega \gg k_BT$, nearly always in its ground state: its occupation is about $e^{-\hbar\omega/k_BT}$ and it holds almost none of its classical share of the heat.'
+    chapter: '8.3'
+    anchor: a-warm-mode-holds-about-k_bthbaromega-quanta
+  - term: coherent state
+    definition: 'An oscillator''s ground state moved in phase space to a point $(x_0, p_0)$: an eigenvector of the lowering operator, $a|\alpha\rangle = \alpha|\alpha\rangle$, holding $\bar n = |\alpha|^2 = E/\hbar\omega$ quanta, whose blob of zero-point width circles the classical ellipse. It is the quantum state of a classical swing. (Not chapter 5.3''s coherent sources, though it is the state of one mode of such a source.)'
+    chapter: '8.3'
+    anchor: a-classical-oscillation-is-a-state-of-many-quanta-in-step
+  - term: mode of a field
+    definition: 'One pattern of a wave that fits in a region, such as $\cos(\mathbf k\cdot\mathbf x)$ or $\sin(\mathbf k\cdot\mathbf x)$ in a box, with $\mathbf k$ and $-\mathbf k$ counted once, whose amplitude swings as an oscillator of angular frequency $\omega = c|\mathbf k|$. A field is a set of independent modes, $D^3\,\mathrm d^3k/(2\pi)^3$ of them in a range $\mathrm d^3k$ for each polarization in a cube of side $D$.'
+    chapter: '8.3'
+    anchor: each-mode-of-a-wave-is-an-oscillator-and-its-quanta-are-photons-or-gravitons
+  - term: mode's mass
+    definition: 'The mass that plays the part of the cart''s $m$ when a mode of a wave is treated as an oscillator, with the mode''s amplitude $q$ in the place of $x$: for a shear wave of density $\rho$ in a cube of side $D$ it is $\tfrac12\rho D^3$, so that the mode''s energy is $\tfrac12 m_D(\dot q^2 + \omega^2q^2)$.'
+    chapter: '8.3'
+    anchor: each-mode-of-a-wave-is-an-oscillator-and-its-quanta-are-photons-or-gravitons
+  - term: photon
+    definition: 'The quantum of a mode of light, with the energy $\hbar\omega$, the momentum $\hbar\mathbf k$ and the helicity $\pm1$.'
+    chapter: '8.3'
+    anchor: each-mode-of-a-wave-is-an-oscillator-and-its-quanta-are-photons-or-gravitons
+  - term: graviton (quantum of a mode)
+    definition: 'The quantum of a mode of gravitational waves, with the energy $\hbar\omega$, the momentum $\hbar\mathbf k$ and the helicity $\pm2$: the smallest packet of energy that a gravitational wave of frequency $\omega$ can carry. That gravity is quantized is stated, not observed: no experiment has detected a graviton.'
+    chapter: '8.3'
+    anchor: each-mode-of-a-wave-is-an-oscillator-and-its-quanta-are-photons-or-gravitons

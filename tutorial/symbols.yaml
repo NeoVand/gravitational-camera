@@ -2494,3 +2494,67 @@ symbols:
     meaning: 'The change of state that a Hermitian generator $G$ makes, the solution of Schrödinger''s equation with $G$ in the place of $H$. It moves every quantity as $U^\dagger FU = F + \lambda\{F, G\} + \dots$, chapter 1.7''s motion. The momentum makes slides, $e^{-isp/\hbar}\psi(x) = \psi(x - s)$, and the paper''s impulse is $e^{i\epsilon Q_g/\hbar}$. (Not chapter 8.1''s beam splitter $U$.)'
     chapter: '8.2'
     anchor: a-generator-is-the-exponent-of-a-unitary-table
+  - key: lowering-operator
+    title: Lowering operator
+    tex: 'a'
+    role: none
+    kind: An operator of an oscillator, not Hermitian; a pure number
+    meaning: 'The combination $a = (m\omega x + ip)/\sqrt{2m\hbar\omega}$ of an oscillator''s position and momentum. With $[x, p] = i\hbar$ it has $[a, a^\dagger] = 1$, and the energy is $H = \hbar\omega(a^\dagger a + \tfrac12)$. It lowers a level by one quantum, $a|n\rangle = \sqrt n\,|n - 1\rangle$, and the ground state is the state with $a\psi_0 = 0$. Used only in chapters 8.3, 8.5 and 8.7. (Not the Kerr parameter, a radius or a semi-major axis.)'
+    chapter: '8.3'
+    anchor: the-oscillators-energy-factorizes-into-two-ladder-operators
+  - key: raising-operator
+    title: Raising operator
+    tex: 'a^\dagger'
+    role: none
+    kind: The conjugate transpose of the lowering operator; a pure number
+    meaning: 'The operator $a^\dagger = (m\omega x - ip)/\sqrt{2m\hbar\omega}$, which raises a level by one quantum, $a^\dagger|n\rangle = \sqrt{n + 1}\,|n + 1\rangle$. The product $a^\dagger a$ is the number operator, whose eigenvalue $n$ counts the quanta.'
+    chapter: '8.3'
+    anchor: the-oscillators-energy-factorizes-into-two-ladder-operators
+  - key: quantum-number
+    title: Number of quanta
+    tex: 'n'
+    role: none
+    kind: A whole number, 0, 1, 2, …; no unit
+    meaning: 'The eigenvalue of the number operator $a^\dagger a$: how many quanta $\hbar\omega$ an oscillator''s level holds above its zero point. (Not chapter 5.1''s refractive index.)'
+    chapter: '8.3'
+    anchor: its-energies-are-evenly-spaced-and-the-lowest-is-not-zero
+  - key: level-energy
+    title: Energy of a level
+    tex: 'E_n'
+    role: none
+    kind: An energy; in J
+    meaning: 'The energies an oscillator of angular frequency $\omega$ can have, $E_n = (n + \tfrac12)\hbar\omega$: evenly spaced by one quantum $\hbar\omega$, with the lowest, $\tfrac12\hbar\omega$, above zero. For the steel ball''s 15 kHz mode the step is $1.0\times10^{-29}$ J.'
+    chapter: '8.3'
+    anchor: its-energies-are-evenly-spaced-and-the-lowest-is-not-zero
+  - key: zero-point-width
+    title: Zero-point width
+    tex: 'x_{\rm zp}'
+    role: none
+    kind: A length; in m
+    meaning: 'The standard deviation of an oscillator''s position in its ground state, $x_{\rm zp} = \sqrt{\hbar/2m\omega}$, the zero-point motion that no cooling removes: $7.5\times10^{-21}$ m for the steel ball''s quadrupole swing, against $2.2\times10^{-16}$ m from heat at 300 K. In a thermal state $\langle x^2\rangle = x_{\rm zp}^2(2\bar n + 1)$.'
+    chapter: '8.3'
+    anchor: its-energies-are-evenly-spaced-and-the-lowest-is-not-zero
+  - key: occupation
+    title: Occupation number
+    tex: '\bar n'
+    role: none
+    kind: A mean number of quanta; no unit
+    meaning: 'The mean number of quanta in a mode. In thermal equilibrium it is the Bose–Einstein occupation $\bar n = 1/(e^{\hbar\omega/k_BT} - 1)$, about $k_BT/\hbar\omega$ when $\hbar\omega \ll k_BT$: $4.1\times10^8$ for the steel ball''s 15 kHz mode at 300 K, 0.09 for silicon''s Raman line. In a coherent state it is $|\alpha|^2 = E/\hbar\omega$. The paper''s $\bar n$.'
+    chapter: '8.3'
+    anchor: a-warm-mode-holds-about-k_bthbaromega-quanta
+  - key: coth
+    title: Hyperbolic cotangent
+    tex: '\coth'
+    role: none
+    kind: A function of a pure number
+    meaning: '$\coth u = \cosh u/\sinh u = (e^u + e^{-u})/(e^u - e^{-u})$, about $1/u + u/3$ for small $u$ and one for large $u$. A warm mode''s mean energy is $\tfrac12\hbar\omega\coth(\hbar\omega/2k_BT)$.'
+    chapter: '8.3'
+    anchor: a-warm-mode-holds-about-k_bthbaromega-quanta
+  - key: coherent-eigenvalue
+    title: Coherent-state amplitude
+    tex: '\alpha'
+    role: none
+    kind: A complex number; no unit
+    meaning: 'The eigenvalue of the lowering operator in a coherent state, $a|\alpha\rangle = \alpha|\alpha\rangle$, with $\alpha = (m\omega x_0 + ip_0)/\sqrt{2m\hbar\omega}$ for the ground state moved to $(x_0, p_0)$. Its squared size $|\alpha|^2$ is the mean number of quanta, and it turns as $\alpha e^{-i\omega t}$. (Not Section VI''s absorption coefficient.)'
+    chapter: '8.3'
+    anchor: a-classical-oscillation-is-a-state-of-many-quanta-in-step
