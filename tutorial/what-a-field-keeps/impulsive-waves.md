@@ -6,7 +6,7 @@ part: '13'
 requires: ['1.8', '2.4', '6.4', '6.5', '7.1', '7.2', '7.3', '13.1', '13.2']
 paper: [sec:second-order, eq:shock, eq:shock-even, eq:massless-pass, eq:pass, eq:push, app:proofs, eq:proof-shock, eq:proof-mass, sec:status, sec:vistas, fig:passing]
 figures: [fig:passing]
-live: []
+live: [impulsive-front]
 depth: A
 ---
 **What you need:** chapters
@@ -166,23 +166,15 @@ m^2c^2$ is constant along a geodesic, and the metric is flat on both sides. So b
 **The jump in $v$.** The same constant, written out, is $-q\,p^v + Fq^2 + p_\perp^2 = -\matter m^2c^2$, so $\dd v/\dd u
 = p^v/q = (\matter m^2c^2 + p_\perp^2)/q^2 + H\delta(u)$. Across the front the coordinate $v$ of the particle therefore
 jumps by $H(\vect x_\perp)$. In the plane of $z$ and $ct$ the path is cut at the front and its far part is shifted by
-$\tfrac12H$ in both $z$ and $ct$, along the front itself. It is continuous only where $H = 0$. In the equation of
-motion for $v$, a $\delta(u)$ multiplies the step that it makes in $\vect p_\perp$, a product that ordinary functions
-do not define.[^distributions]
+$\tfrac12H$ in both $z$ and $ct$, along the front itself (Figure [](#fig:impulsive-front)). It is continuous only
+where $H = 0$. In the equation of motion for $v$, a $\delta(u)$ multiplies the step that it makes in $\vect p_\perp$,
+a product that ordinary functions do not define.[^distributions]
 
-<!-- diagram: tut-impulsive-front — spec: left, a spacetime diagram in (z, ct), z to the right, ct up, equal scales;
-the front u = 0 as a 45° line (field colour, thick); three worldlines, each a straight segment before and after the
-front, in the paper's ink, each crossing the front at a place where H = 0, so that it is continuous in these
-coordinates: (1) slow matter, nearly vertical, with a kink at the front tilting it out of the (z, ct) plane, shown by
-a short arrow across the page labelled Δp⊥; (2) light moving with the front, drawn along a parallel 45° line just
-behind it, never crossing (no kink); (3) light moving along −z, a −45° line crossing the front, with the largest kink.
-A small dashed copy of worldline (1), crossing where H > 0, shows its far part shifted by H/2 in both z and ct along
-the front, the jump in v. Right, a side panel: the plane of the front with one arrow ∇H (uniform, 0.3 in drawing
-units) and, beside it, the three kicks ½q∇H to one scale with q = mc, 0 and 2E/c (E = mc² for the photon), lengths
-0.15, 0, 0.3. Kinks computed from q kept and Δp⊥ = ½q∇H; the tilt is exaggerated by a stated factor. Caption: "Look
-first at the three kinks on the front: slow matter and light running against the front turn, while light riding with
-it does not. The three paths cross where the profile is zero; where it is not, the dashed path shows the far part
-shifted along the front. Kinks drawn for one value of ∇H, exaggerated." -->
+![Look first at the two kinks on the right: slow matter and light running against the front turn, while light riding
+with it does not. Left, the paths against $z$: they cross the front where the profile is zero, and where it is not, the
+dashed path shows the far part shifted along the front. Right, the same paths against the place $x$ across the front,
+taken along $\nabla H$, and under them $\nabla H$ and the kicks $\tfrac12q\nabla H$ to one scale. Kinks drawn for one
+value of $\nabla H$, exaggerated.](tut-impulsive-front){#fig:impulsive-front}
 
 **A number.** For slow matter $q \approx \matter mc$, so every part gets the velocity $\Delta\obs{\vect v} = \tfrac12c
 \nabla H$ whatever its mass, as in free fall. A front with $|\nabla H| = 10^{-6}$ gives every slow part
@@ -265,23 +257,18 @@ weighings in Newton's case. At $\vect\xi = 0$ both profiles are 1, which kicks n
 By 6.5, $\matter{\mathcal N}$ at each point of the front is the integral of $\matter T_{\mu\nu}k^\mu k^\nu$ along the
 null ray through it, with $\matter T_{\mu\nu}$ the stress–energy tensor, in $\mathrm{J\,m^{-3}}$, and $k^\mu = (1, 0,
 0, 1)$ the wave's direction. It is a projection of the body along the wave's path, "as in X-ray tomography". For slow
-matter it is $c^2\matter\Sigma$, so projections along the directions of one great circle give the density everywhere,
-as in chapter [5.6](/tutorial/waves/abel-transform/#a-body-that-is-not-round-needs-views-from-many-directions). Waves
-from every direction give the integrals of $\matter T_{\mu\nu}$ along every null ray, its **light-ray transform**. The
-paper states that what these integrals miss is known [@KrishnanSenapatiVashisth2020]. Chapter
+matter it is $c^2\matter\Sigma$, so projections along the directions of one great circle give the density everywhere
+(Figure [](#fig:light-ray-transform)), as in chapter
+[5.6](/tutorial/waves/abel-transform/#a-body-that-is-not-round-needs-views-from-many-directions). Waves from every
+direction give the integrals of $\matter T_{\mu\nu}$ along every null ray, its **light-ray transform**. The paper
+states that what these integrals miss is known [@KrishnanSenapatiVashisth2020]. Chapter
 [6.5](/tutorial/relativity/stress-energy/#some-stresses-are-invisible-to-every-ray) showed that the stresses $\matter
 T_\phi$, built from any smooth function $\phi$ that is zero outside a region, give zero on every ray, and that in
 ordinary matter they can change the energy density by only about a part in $10^{12}$.
 
-<!-- diagram: tut-light-ray-transform — spec: left, a lumpy body at rest (the paper's stone palette), crossed by a
-bundle of parallel null rays drawn as thin lines in one direction n̂ (light colour), and below it, on the plane of the
-front, the projected Σ as a height map (matter colour); right, the Fourier plane with three slices k·n̂ = 0 for three
-directions n̂ of one great circle (each slice thin, translucent, in the colour of its bundle), all containing the
-circle's axis ν̂, and a fourth dashed slice to suggest that turning n̂ round the circle fills the plane; the
-projection computed exactly for a sum of three Gaussian lumps. Caption: "Look first at the slices on the right: each
-direction of waves gives the transform of the energy that crosses its front on one slice, and the directions of one
-great circle fill every wavevector. The body and its projection are computed; the rays are drawn sparse for clarity."
--->
+![Look first at the slices on the right: each direction of waves gives the transform of the energy that crosses its
+front on one slice, and the directions of one great circle fill every wavevector. The body and its projection are
+computed; the rays are drawn sparse for clarity.](tut-light-ray-transform){#fig:light-ray-transform}
 
 ::: gap
 This sketch states without proof that the null space of the light-ray transform is known, and it does not show how
@@ -346,8 +333,8 @@ s|^2$, with
 
 $$\boxed{\;\sym{flyby-constant}{C} = \frac{4Gp}{c^2}\;}$$
 
-Newton's $C = 2G\matter\mu/V$, for a mass $\matter\mu = p/c$ at $V = c$, is $2Gp/c^2$. The kick is twice Newton's, "as
-for the bending of light". Chapter
+Newton's $C = 2G\matter\mu/V$, for a mass $\matter\mu = p/c$ at $V = c$, is $2Gp/c^2$. The kick is twice Newton's
+(Figure [](#fig:as-profile)), "as for the bending of light". Chapter
 [6.5](/tutorial/relativity/stress-energy/#what-gravitates-is-the-energy-plus-the-sum-of-the-stresses) gives the reason:
 what gravitates is the energy plus the sum of the stresses, $\matter T^{00} + \matter T^{11} + \matter T^{22} + \matter
 T^{33}$. For the particle the only stress is $\matter T^{zz} = \matter T^{00}$, so its source is $\matter T^{00} +
@@ -355,14 +342,9 @@ T^{33}$. For the particle the only stress is $\matter T^{zz} = \matter T^{00}$, 
 far below its $\matter T^{00}$, so its source is $E$ times the same deltas, half as much. Light passing a mass at rest
 is bent by twice Newton's angle for the same reason (chapter 11.1).
 
-<!-- diagram: tut-as-profile — spec: the plane of the front, from −3R to 3R in units of a disc of radius R (the body,
-the paper's stone palette, centred at the origin), with H = −ln|x⊥ − b| for b = (1.5R, 0) drawn as contours at equal
-steps (thin, field colour) and ∇H as arrows on a grid outside a small disc round b (ink); the arrows on the body
-computed exactly, ½∇H to one scale. Inset, lower right: one part of the body at s = (0.5R, 0), with two arrows from it
-toward b to one scale: the kick from this profile, (4Gp/c²)/|b − s|, and Newton's for a mass p/c at c, (2Gp/c²)/|b −
-s|, half as long and dashed. Caption: "Look first at the inset: the kick of a particle without mass is twice Newton's
-for the same energy. The contours of the profile are a logarithm round the point where the path crosses the front, and
-the arrows point toward it." -->
+![Look first at the inset: the kick of a particle without mass is twice Newton's for the same energy. The contours of
+the profile are a logarithm round the point where the path crosses the front, and the arrows point toward
+it.](tut-as-profile){#fig:as-profile}
 
 **The energy.** With $\vect p_\perp = 0$, the paper's [](/paper/#eq:shock) gives each part $\tfrac18cq|\nabla H|^2$,
 and summing as in [](#a-wave-and-its-reverse-together-always-give-energy) gives $\tfrac18\int|\nabla
@@ -392,28 +374,16 @@ $b/V = 34\unit{\mu s}$, which chapter 1.8 estimated changes the energy the tonne
 particle's own path is bent by the ball by $4G\matter M/c^2b = 8\times10^{-24}$ rad, so it is straight. **Meaning:** at
 the speed of light the second reading is the same reading, and the speed of light enters only as the factor two.
 
-<!-- try: impulsive-front — new (P7b-DECISIONS item 5; stand-in: mass-shell of 6.4). Prediction first, in the figure:
-"A sheet of gravity sweeps across a cloud of slow dust, a photon flying with it and a photon flying against it. Which
-are kicked, and which gains most energy?" (Answer shown after a choice: the dust gets ½c∇H; the photon against it the
-largest turn, |∇H|, and the largest energy for its q; the photon with it nothing.) Left panel: the plane of the front,
-x⊥ from −3R to 3R; a body of 200 particles in a disc of radius R (seeded, fixed). Controls: (1) profile, a three-way
-choice: Aichelburg–Sexl H = −k ln|x⊥ − b| with the crossing point b draggable (mouse, touch, arrow keys; kept outside
-the disc), default b = (1.5R, 0); quadrupolar H = (x² − y²)/2f; the real part of 13.2's pair, Re e^{ζ₊·x⊥}, with a
-slider for |ξ| from 0.5/R to 6/R and one for its direction; (2) strength, a slider that sets the largest |∇H| on the
-body from 10⁻⁴ to 10⁻² (shown as a number); (3) sign, ±H; (4) the body's motion along z, a slider for its rapidity
-from −3 (moving with the front, q = mc e^{−3}) through 0 (at rest, q = mc) to +3 (against it), the label reading q/mc.
-Arrows on each particle: the kick ½q∇H, to one stated scale; in AS mode a dashed arrow on the particle nearest b shows
-Newton's kick for the same energy, half as long. Right panel: bars for E₊ − E₀, E₋ − E₀ and E₊ + E₋ − 2E₀, computed
-from the paper's eq:proof-shock per particle, and beside the last a bar for ¼∫|∇H|²𝒩 = ¼Σ c q_a |∇H(x_a)|². Checks the
-component must pass: the last two bars agree to 10⁻¹² relative for every setting; flipping the sign swaps the first
-two bars and leaves the third; at rapidity 0 in AS mode every arrow is the velocity (4Gp/c²)(b − s)/|b − s|², twice
-the dashed one; the third bar is never negative; at rapidity −3 the kicks shrink by e^{−3} ≈ 0.050; a fourth readout,
-the rest-mass change M₊² + M₋² − 2M₀² against Q²Var(∇H)/2c², agrees with it and is zero for a uniform ∇H (test hook).
-Below the panels, three test particles in a strip: a slow grain, a photon along +z (q = 0, no arrow), a photon along
-−z (q = 2E/c, turn |∇H| in radians shown). Both themes, keyboard throughout, panels stacked at 390 px. Text for the
-try block when built: "Predict first, then choose Aichelburg and Sexl's profile and drag the crossing point toward the
-body: the kicks grow as 1/|b − s|, and the sum E₊ + E₋ − 2E₀ stays equal to ¼∫|∇H|²𝒩. Then slide the body's rapidity
-toward the front's direction and watch every kick shrink with q." -->
+::: try {#impulsive-front}
+Predict first: a sheet of gravity sweeps across a cloud of slow dust, a photon flying with it and a photon flying
+against it. Which are kicked, and which gains the most energy for its $q$? The left panel is the plane of the front,
+with a body of 200 particles and an arrow on each for its kick $\tfrac12 q\nabla H$; below it are three test
+particles, a slow grain and the two photons. The right panel has bars for $E_+ - E_0$, $E_- - E_0$ and their sum,
+and beside the sum a bar for $\tfrac14\int|\nabla H|^2\matter{\mathcal N}$. Choose *Aichelburg–Sexl* and drag *b*, the
+point where the particle without mass crosses, toward the body. *The strength* fixes the largest kick, so watch how
+the pattern across the body changes, and whether the last two bars stay equal. Switch from *+H* to *−H*. Then slide
+*The body's rapidity* toward −3, the front's own direction, and watch every kick shrink with $q$.
+:::
 
 ::: check
 ### Q
