@@ -124,7 +124,7 @@ parts:
       - { id: '8.2', slug: quantum/operators, title: 'Operators and commutators, from Poisson brackets', short: Operators, size: M, status: published }
       - { id: '8.3', slug: quantum/quanta, title: "The oscillator's quanta; photons and gravitons", short: Quanta, size: M, status: published }
       - { id: '8.4', slug: quantum/spin, title: 'Spin and the Majorana picture', short: Spin, size: M, status: published }
-      - { id: '8.5', slug: quantum/counting-quanta, title: 'Counting quanta: Poisson, thermal and squeezed', short: Counting quanta, size: M, status: planned }
+      - { id: '8.5', slug: quantum/counting-quanta, title: 'Counting quanta: Poisson, thermal and squeezed', short: Counting quanta, size: M, status: published }
       - { id: '8.6', slug: quantum/quantum-limit, title: 'Measurement, added noise and the standard quantum limit; detectors and strain', short: The quantum limit, size: L, status: planned }
       - { id: '8.7', slug: quantum/quantum-fluctuation, title: 'Fluctuation and dissipation in quantum mechanics', short: Quantum fluctuation, size: M, status: planned }
       - { id: R8, slug: quantum/reading-the-quantum-limits, title: 'Reading the quantum limits', short: Reading the quantum limits, size: M, status: planned, reads: [sec:pixel, sec:near-field] }

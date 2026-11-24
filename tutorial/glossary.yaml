@@ -3493,3 +3493,59 @@ terms:
     definition: 'The paper''s vector $\mathbf P$ with the components $P_k = \epsilon_{kij}(\mathcal E\mathcal B)_{ij}$ of a reading, in $\mathrm{s^{-4}}$, the counterpart of light''s Poynting vector. Over the super-energy it is the Bloch vector of one of the reading''s four spins one half: the direction of travel for one wave, zero for masses at rest.'
     chapter: '8.4'
     anchor: one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector
+  - term: geometric distribution
+    definition: 'A distribution of counts in which each count is a fixed fraction as likely as the one below it. A thermal mode holding $\bar n$ quanta on average gives $P(n) = \bar n^n/(1 + \bar n)^{n+1}$, with the variance $\bar n + \bar n^2$.'
+    chapter: '8.5'
+    anchor: a-thermal-source-gives-geometric-counts-with-a-larger-spread
+  - term: thermal statistics (Bose–Einstein statistics)
+    definition: 'The counts of a mode in thermal equilibrium, which follow the geometric distribution. Their spread exceeds a Poisson count''s by $\bar n^2$, the noise of a wave whose intensity fluctuates as much as its mean.'
+    chapter: '8.5'
+    anchor: a-thermal-source-gives-geometric-counts-with-a-larger-spread
+  - term: quadratures
+    definition: 'The amplitudes $X_1$ and $X_2$ of the cosine and sine parts of a wave of one frequency at one place. For an oscillator they are $x$ and $p/m\omega$, which do not commute.'
+    chapter: '8.5'
+    anchor: a-thermal-source-gives-geometric-counts-with-a-larger-spread
+  - term: intensity
+    definition: 'The power per square metre that a wave carries, averaged over a cycle, in W m⁻². It is in proportion to the sum of the squares of the two quadratures.'
+    chapter: '8.5'
+    anchor: a-thermal-source-gives-geometric-counts-with-a-larger-spread
+  - term: second-order coherence
+    definition: 'The number $g^{(2)} = \langle n(n - 1)\rangle/\bar n^2$, the rate of two counts together over that of independent arrivals: 1 for a coherent source, 2 for a thermal one.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - term: coincidence
+    definition: 'Clicks of two detectors, or two clicks of one, within one short window. Counting coincidences measures the second-order coherence.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - term: bunching
+    definition: 'The tendency of clicks to come close together more often than independent arrivals would, $g^{(2)} > 1$. Thermal light, with $g^{(2)} = 2$, is bunched within a coherence time.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - term: antibunching
+    definition: 'Clicks that come close together less often than independent arrivals would, $g^{(2)} < 1$. No classical wave can produce it; one quantum gives $g^{(2)} = 0$.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - term: classical bound
+    definition: 'An inequality that every classical intensity obeys: $g^{(2)} \ge 1$ for one detector and, by the Cauchy–Schwarz inequality, $g^{(2)}_{12} \le \sqrt{g^{(2)}_{11}g^{(2)}_{22}}$ for two. Quantum states can break it.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - term: intensity interferometry
+    definition: 'Measuring the size of a source from how the correlation of the intensities, or counts, at two detectors falls as they are moved apart. Hanbury Brown and Twiss measured Sirius so in 1956.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - term: Hanbury Brown–Twiss effect
+    definition: 'The correlation of the fluctuating intensities, or the bunching of the counts, of thermal light at two nearby detectors.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - term: squeezed vacuum
+    definition: 'The ground state of an oscillator made narrower than the zero point in one quadrature, by $e^{-r}$, and wider in the other, by $e^{r}$, with the same area on the phase plane. It holds $\sinh^2r$ quanta on average, only in pairs. (Not the tidal squeeze.)'
+    chapter: '8.5'
+    anchor: a-squeezed-state-is-narrower-than-the-zero-point-in-one-direction
+  - term: squeezing parameter
+    definition: 'The number $r$ that says how strongly a state is squeezed: one quadrature''s spread is multiplied by $e^{-r}$ and the other''s by $e^{r}$.'
+    chapter: '8.5'
+    anchor: a-squeezed-state-is-narrower-than-the-zero-point-in-one-direction
+  - term: two-mode squeezed state
+    definition: 'The state $\sum_n(\tanh^nr/\cosh r)\,|n\rangle|n\rangle$ of two modes, which holds quanta only in pairs, one in each. Each mode alone is thermal, yet the two counts are always equal, so two detectors coincide with $g^{(2)}_{12} = 2 + 1/\bar n$, above the bound of 2 for classical thermal beams.'
+    chapter: '8.5'
+    anchor: pairs-in-two-modes-coincide-more-than-thermal-classical-waves-can

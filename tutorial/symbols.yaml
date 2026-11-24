@@ -2630,3 +2630,59 @@ symbols:
     meaning: 'The paper''s $u = \tfrac12(|\mathcal E|^2 + |\mathcal B|^2)$, half the squared length of the reading $\mathcal W$, built as light''s energy density is built from its fields. Every reading has $|\mathbf P| \le u$, with equality for one wave. (Not chapter 6.6''s energy density $u$ of light, or the four-velocity $u^\mu$.)'
     chapter: '8.4'
     anchor: one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector
+  - key: count-distribution
+    title: Count distribution
+    tex: 'P(n)'
+    role: none
+    kind: A probability for each count n = 0, 1, 2, …; no unit
+    meaning: 'The probability that a detector counts $n$ quanta of a mode in a window. A coherent state gives the Poisson law $e^{-\bar n}\bar n^n/n!$, of variance $\bar n$; a thermal mode the geometric law $\bar n^n/(1 + \bar n)^{n+1}$, of variance $\bar n + \bar n^2$. (Not a power, nor the paper''s super-Poynting vector $\mathbf P$.)'
+    chapter: '8.5'
+    anchor: a-steady-source-gives-poisson-counts
+  - key: quadrature
+    title: Quadratures
+    tex: 'X_1, X_2'
+    role: none
+    kind: Two amplitudes, in the unit of the wave
+    meaning: 'The amplitudes of the cosine and sine parts of a wave of one frequency at one place, $q(t) = X_1\cos\omega t + X_2\sin\omega t$. They are fixed for a steady wave and wander over a coherence time for noise; for heat they are independent Gaussian numbers. For an oscillator they are $x$ and $p/m\omega$.'
+    chapter: '8.5'
+    anchor: a-thermal-source-gives-geometric-counts-with-a-larger-spread
+  - key: wave-intensity
+    title: Intensity
+    tex: 'I'
+    role: none
+    kind: A power per unit area; in W m⁻²
+    meaning: 'The power per square metre that a wave carries, averaged over a cycle, in proportion to $X_1^2 + X_2^2$. A detector that counts at random clicks at a mean rate in proportion to it. (Not Stokes $I$, Part 9''s invariant $I$ or a moment of inertia.)'
+    chapter: '8.5'
+    anchor: a-thermal-source-gives-geometric-counts-with-a-larger-spread
+  - key: second-order-coherence
+    title: Second-order coherence
+    tex: 'g^{(2)}'
+    role: none
+    kind: A pure number
+    meaning: 'The rate of coincident counts over that of independent arrivals, $g^{(2)} = \langle n(n - 1)\rangle/\bar n^2 = \langle a^\dagger a^\dagger aa\rangle/\langle a^\dagger a\rangle^2$: 1 for a coherent source, 2 for a thermal one. Every classical wave has $g^{(2)} \ge 1$. The paper''s $g^{(2)}$.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - key: cross-coherence
+    title: Cross coherence of two detectors
+    tex: 'g^{(2)}_{12}'
+    role: none
+    kind: A pure number
+    meaning: 'The rate at which two detectors click together over the rate for independent clicks, $\langle n_1n_2\rangle/\bar n_1\bar n_2$. Classical waves obey $g^{(2)}_{12} \le \sqrt{g^{(2)}_{11}g^{(2)}_{22}}$, at most 2 for thermal beams; a two-mode squeezed state gives $2 + 1/\bar n$. The paper writes it $g^{(2)}$.'
+    chapter: '8.5'
+    anchor: one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one
+  - key: squeezing-parameter
+    title: Squeezing parameter
+    tex: 'r'
+    role: none
+    kind: A real number; no unit
+    meaning: 'How strongly a state is squeezed: a squeezed vacuum has the spread $e^{-r}x_{\rm zp}$ in one quadrature and $e^{r}x_{\rm zp}$ in the other, and holds $\bar n = \sinh^2r$ quanta in pairs. (Not a distance.)'
+    chapter: '8.5'
+    anchor: a-squeezed-state-is-narrower-than-the-zero-point-in-one-direction
+  - key: pair-amplitude
+    title: Amplitudes of a two-mode squeezed state
+    tex: 'c_n'
+    role: none
+    kind: Real numbers; no unit
+    meaning: 'The amplitude $c_n = \tanh^nr/\cosh r$ of $n$ quanta in each of two modes, in the two-mode squeezed state $\sum_nc_n|n\rangle|n\rangle$. Their squares are the thermal law with $\bar n = \sinh^2r$, so each mode alone is thermal.'
+    chapter: '8.5'
+    anchor: pairs-in-two-modes-coincide-more-than-thermal-classical-waves-can
