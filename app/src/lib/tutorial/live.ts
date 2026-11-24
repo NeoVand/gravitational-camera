@@ -87,6 +87,7 @@ import SpinAndGain from './live/SpinAndGain.svelte';
 import HoleAgainstSky from './live/HoleAgainstSky.svelte';
 import TidalFriction from './live/TidalFriction.svelte';
 import BlackHoleCamera from './live/BlackHoleCamera.svelte';
+import Inspiral from './live/Inspiral.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -460,5 +461,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A black hole as the camera’s lens: its tide against distance, with the ring, the orbit and the gain',
 		component: BlackHoleCamera
+	},
+	inspiral: {
+		label:
+			'Two compact bodies spiralling together: their orbit, waves and time to merger, and their place on 0.1’s map',
+		component: Inspiral
 	}
 };

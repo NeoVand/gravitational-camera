@@ -6,7 +6,7 @@ part: '12'
 requires: ['1.3', '1.6', '1.8', '4.2', '5.5', '6.4', '6.5', '7.7', '8.2', '11.1']
 paper: [sec:vistas, fig:milky-way, eq:column, fig:binary-field, fig:sun-lens, eq:one-wave, eq:pass, sec:hair, sec:second-order, sec:one-pixel]
 figures: [fig:milky-way]
-live: []
+live: [inspiral]
 depth: A
 ---
 
@@ -66,7 +66,8 @@ force per unit area with which the gas pushes on any surface, in pascals. The de
 $\matter\rho(r)$, in kilograms per cubic metre, and $\sym{mass-inside}{\matter m}(r)$ is the mass inside the radius
 $r$, which grows as $\dd\matter m/\dd r = 4\pi r^2\matter\rho$ (chapter 1.3).
 
-Take a thin slab of gas between $r$ and $r + \dd r$, with an area $A$ facing the centre. Its mass is $\matter\rho
+Take a thin slab of gas between $r$ and $r + \dd r$, with an area $A$ facing the centre (Figure
+[](#fig:stars-shell)). Its mass is $\matter\rho
 A\,\dd r$. By the shell theorem only the mass inside $r$ pulls on it, with the force $G\matter m\matter\rho A\,\dd
 r/r^2$ toward the centre. The gas below pushes it outward with the force $\matter p(r)A$, and the gas above pushes it
 inward with $\matter p(r + \dd r)A$. The three forces add up to zero, and dividing by $A\,\dd r$ gives
@@ -76,13 +77,9 @@ $$\boxed{\;\frac{\dd\matter p}{\dd r} = -\frac{G\matter m(r)\,\matter\rho(r)}{r^
 This is **hydrostatic balance**: the pressure falls outward at the rate needed to hold each layer up. Both sides are
 in $\mathrm{Pa\,m^{-1}}$, which is $\mathrm{kg\,m^{-2}\,s^{-2}}$.
 
-<!-- diagram: tut-stars-shell — spec: a quarter of a round star in section, warm ground darkening toward the centre;
-one thin slab at radius r, area A, thickness dr, drawn as a small curved box; three arrows on it: the pull G m(r) rho A
-dr / r^2 toward the centre (field colour), the push p(r) A outward from below and p(r + dr) A inward from above (matter
-colour, the lower arrow slightly longer); the inner ball of mass m(r) shaded, the shell outside it unshaded and marked
-"pulls nothing" (1.3's shell theorem). Thin single strokes, labels off the geometry. Caption: "Look first at the two
-pressure arrows on the slab: the push from below is slightly larger than the push from above, and the difference holds
-the slab against the pull of the mass inside it. The shell outside pulls nothing. Schematic." -->
+![Look first at the two pressure arrows on the slab: the push from below is slightly larger than the push from
+above, and the difference holds the slab against the pull of the mass inside it. The shell outside pulls nothing.
+Schematic.](tut-stars-shell){#fig:stars-shell}
 
 **A uniform ball.** If the density is the same everywhere, $\matter m(r) = \tfrac43\pi r^3\matter\rho$, so $\dd\matter
 p/\dd r = -\tfrac43\pi G\matter\rho^2r$. The pressure is zero at the surface $R$, and integrating from the centre to
@@ -257,19 +254,17 @@ into $-\dd(\xi^2\,\dd\theta/\dd\xi)/\dd\xi$, so $\matter M = 4\pi L^3\matter\rho
 
 **The numbers** (a numerical result). At $n = 3$ the equation has no formula for its solution, so we integrate it
 outward from the centre, step by step, to the first zero.[^solver] The surface is at $\xi_1 = 6.897$, with $\omega_3 =
-2.018$, so the centre is $\xi_1^3/3\omega_3 = 54.2$ times denser than the mean. For the Sun, $\matter\rho_c =
+2.018$, so the centre is $\xi_1^3/3\omega_3 = 54.2$ times denser than the mean (Figure [](#fig:stars-lane-emden)).
+For the Sun, $\matter\rho_c =
 7.6\times10^4\unit{kg\,m^{-3}}$, 76 times water, and $\matter p_c = 11.05\,G\matter M^2/R^4 = 1.24\times10^{16}$ Pa,
 93 times the uniform ball's. The gas law gives $T_c = 1.2\times10^7$ K, a quarter below the $1.57\times10^7$ K of
 the solar models fitted to the Sun's measured properties. Those models have twice this density and pressure at the
 centre (stated; chapter 6.5's numbers).
 
-<!-- diagram: tut-stars-lane-emden — spec: left panel, theta(xi) against xi from 0 to 7 for n = 1.5 (dashed) and n = 3
-(solid), from the Lane–Emden solver, with the first zeros xi_1 = 3.654 and 6.897 marked by small ticks on the axis;
-right panel, Eddington's Sun: density over the mean, rho/rho_bar = 54.2 theta^3, against r/R from 0 to 1 (log axis from
-0.01 to 100), with the uniform ball as a thin flat line at 1; mark r/R = 0.25 with "41% of the mass inside". Matter
-colour for the density curves. Caption: "Look first at the right panel's curve against the flat line of the uniform
-ball: Eddington's Sun is 54 times denser than its mean at the centre and holds 41% of its mass inside a quarter of its
-radius. The left panel shows the two solutions of the Lane–Emden equation that the chapter uses. Curves exact." -->
+![Look first at the right panel's curve against the flat line of the uniform ball: Eddington's Sun is 54 times
+denser than its mean at the centre and holds 41% of its mass inside a quarter of its radius. The left panel shows the
+two solutions of the Lane–Emden equation that the chapter uses. Curves
+exact.](tut-stars-lane-emden){#fig:stars-lane-emden}
 
 **What it gives the paper: a lens.** Section XI's waves cross the transparent Sun and are bent by its interior. Chapter
 [11.1](/tutorial/black-holes/schwarzschild/#far-from-a-mass-light-bends-by-twice-newtons-angle) added up the turns
@@ -364,8 +359,8 @@ L^3\matter\rho_c\,\omega_3$ is fixed:
 $$\boxed{\;\sym{chandrasekhar-mass}{\matter M_{\rm Ch}} = \frac{\sqrt{3\pi}}2\,\omega_3\,\frac{(\hbar
 c/G)^{3/2}}{(2m_p)^2} = 1.43\,M_\odot\;} \label{eq:chandrasekhar}$$
 
-This is the **Chandrasekhar mass**, the most that electrons can hold up. Its unit is a mass, since $(\hbar c/G)^{1/2}$
-is the Planck mass, $2.2\times10^{-8}$ kg (chapter
+This is the **Chandrasekhar mass**, the most that electrons can hold up (Figure [](#fig:stars-ends)). Its unit is a
+mass, since $(\hbar c/G)^{1/2}$ is the Planck mass, $2.2\times10^{-8}$ kg (chapter
 [11.3](/tutorial/black-holes/hawking/#a-black-hole-has-a-temperature-lower-the-heavier-it-is)). The often-quoted
 $1.44\,M_\odot$ differs through the mass used per nucleon (the atomic mass unit gives 1.46) and through small
 corrections like those in the box below (stated).
@@ -388,15 +383,10 @@ it is, a neutron star's moment of inertia, quadrupole and Love number (chapter 1
 one per cent by the **I-Love-Q relations** (stated), which [Section XII](/paper/#sec:hair) uses. Above about
 $2\,M_\odot$ nothing holds the core, and it becomes a black hole (chapter 11.1).
 
-<!-- diagram: tut-stars-ends — spec: mass (Msun, linear 0 to 2.5) against radius (km, log 1 to 30,000); the white-dwarf
-branch from the n = 1.5 polytrope, R proportional to M^(-1/3), solid up to about 1 Msun and then bending down dashed
-toward R = 0 at M_Ch = 1.43 (a thin vertical line, labelled); a shaded band for neutron stars at 11–13 km up to about
-2–2.3 Msun (its top edge drawn as a range); the line R = r_s = 2GM/c^2 (field colour), black holes on its far side; the
-paper's objects marked: the 0.6 Msun white dwarf at 10,400 km and the 1.4 Msun neutron star at 12 km. Matter colour for
-the two branches. Caption: "Look first at the white-dwarf branch: the heavier the star, the smaller it is, until at
-1.43 solar masses electrons can hold no more. Neutron stars sit a thousand times smaller, near 12 km, and the line r =
-r_s bounds them all. The white-dwarf curve is the polytrope of index 3/2, exact; the neutron-star band and the bend
-toward the limit are schematic." -->
+![Look first at the white-dwarf branch: the heavier the star, the smaller it is, until at 1.43 solar masses
+electrons can hold no more. Neutron stars sit a thousand times smaller, near 12 km, and the line $r = r_s$ bounds them
+all. The white-dwarf curve is the polytrope of index 3/2, exact; the neutron-star band and the bend toward the limit
+are schematic.](tut-stars-ends){#fig:stars-ends}
 
 ## A core collapse frees a sixth of a solar mass, and neutrinos carry it
 
@@ -461,8 +451,9 @@ We multiply by $d^3$ and integrate from the separation $d$ now to zero, over the
 $$\boxed{\;\sym{merger-time}{\tau} = \frac5{256}\,\frac{c^5d^4}{G^3\matter m_1\matter m_2\matter M}\;} \label{eq:inspiral}$$
 
 This is the time to merger of the **inspiral**, the slow spiral of a pair toward its **merger**.[^tau] Its unit is
-$\mathrm{(m^5s^{-5})\,m^4/(m^9s^{-6})}$, a second. Halving the separation shortens it sixteen times. As $d$ shrinks,
-$\Omega$ grows as $d^{-3/2}$, so the waves' frequency rises ever faster: the chirp whose rate chapter 9.5 used.
+$\mathrm{(m^5s^{-5})\,m^4/(m^9s^{-6})}$, a second. Halving the separation shortens it sixteen times (Figure
+[](#fig:stars-inspiral)). As $d$ shrinks, $\Omega$ grows as $d^{-3/2}$, so the waves' frequency rises ever faster: the
+chirp whose rate chapter 9.5 used.
 
 **The paper's pair.** Two black holes of $30\,M_\odot$ at 2200 km turn at $\Omega = 27.3\unit{s^{-1}}$, each at
 $0.100\,c$, and send waves of 8.7 Hz and wavelength $\lambda = 34{,}400$ km (chapters 1.8 and 7.7). The formula gives
@@ -485,39 +476,22 @@ them.
 are of order $(v/c)^2$ with large coefficients, which here nearly cancel.[^ten] The formula fails near the merger,
 when the holes, each of $r_s = 89$ km, come within a few times their size.
 
-<!-- try: inspiral (new; P6b-DECISIONS item 6; not yet registered in live.ts). Place as a ::: try {#inspiral} block
-here once built, and add inspiral to the front matter's live list.
-Its text: "Predict first: two neutron stars of 1.4 solar masses are 2200 km apart, as far apart as the paper's black
-holes. Do they have more or less time left than the black holes' 8.8 seconds, and by about what factor? Then choose
-the neutron-star masses, set the separation to 2200 km and read the time to merger. Drag the separation and watch the
-time change as its fourth power. On the white-dwarf preset, notice how slowly the frequency moves."
-Controls (exact): mass 1 and mass 2, each a log slider from 0.3 to 60 Msun in 200 equal log steps; separation d, a log
-slider in 400 equal log steps from d_min = 3(r_s1 + r_s2), with r_s = 2Gm/c^2, to 10^6 km; a switch "set the time
-instead", which turns the separation slider into a log slider of tau over the same range, tau(d_min) to tau(10^6 km),
-and solves d = (256 G^3 m1 m2 M tau / 5 c^5)^(1/4). Presets: "the paper's pair" (30 + 30 Msun, 2200 km), "neutron
-stars" (1.4 + 1.4 Msun, 500 km), "white dwarfs" (0.6 + 0.6 Msun, 113,000 km). Opens on the paper's pair.
-Readouts, three figures, from these formulas only: Omega = (GM/d^3)^(1/2); f_GW = Omega/pi; v/c of each body, Omega d
-m_other/(M c); lambda = c/f_GW and lambda/2pi; tau from eq:inspiral, shown in s, min, h, days or years, whichever
-gives a number between 1 and 1000 (years beyond that with a power of ten); d over lambda/2pi. A warning line, "the
-Newtonian orbit is leaving its range", when either v/c exceeds 0.2. Inset: the pair as a dot on 0.1's regime map
-(regime-map's axes, frequency against distance).
-Checks for the builder (each must hold to the figures given): the paper's pair reads Omega = 27.3 s^-1, f_GW = 8.71
-Hz, v/c = 0.100 for each body, lambda = 34,400 km, lambda/2pi = 5480 km, d over lambda/2pi = 0.401, tau = 8.77 s;
-the white dwarfs read f_GW = 3.33 mHz, v/c = 0.00198 and tau = 244,000 years; the neutron-star preset reads f_GW =
-17.4 Hz and tau = 230 s; doubling d at fixed masses multiplies tau by exactly 16; with 30 + 30 Msun, setting tau = 10 s
-returns d = 2270 km; with 30 + 30 Msun the warning appears below d = 554 km and d_min is 532 km; d_min is 24.8 km for
-1.4 + 1.4 Msun and 5.32 km for 0.3 + 0.3 Msun.
-Both themes; keyboard: Tab between sliders, arrow keys one step, Page Up and Page Down ten steps, Home and End the
-ends; phone: at 390 px the readouts sit above the sliders, the inset below. Until it exists, the registered
-near-to-far can stand in: it shows the paper's pair at 2200 km and its waves, but not the time to merger. -->
+::: try {#inspiral}
+A pair of compact bodies turning about each other, with readouts of its angular velocity, the frequency and length
+of its waves, each body's speed and the time to merger from [](#eq:inspiral), and its place on chapter 0.1's map of
+frequency against distance. Sliders set the two masses and the separation; the switch Set the time instead lets you
+set the time to merger and read the separation. Three presets give the paper's pair, two neutron stars and two white
+dwarfs.
 
-<!-- diagram: tut-stars-inspiral — spec: separation (km, log, 10 to 10^6) against time to merger (s, log, 10^-3 to
-10^14), from eq:inspiral: a solid line for 30 + 30 Msun with a dot at 2200 km, 8.8 s, and a dashed line for 0.6 + 0.6
-Msun with a dot at 113,000 km, 244,000 years (7.7 × 10^12 s); both lines of slope 1/4; on the black-hole line a thin
-tick at lambda/2pi = 5500 km marked "near zone ends", and the line greyed below about 530 km (3(r_s1 + r_s2)) where the
-formula fails. Caption: "Look first at the dot at 2200 km: the paper's pair has 8.8 seconds left, and each halving of
-the separation cuts the time sixteen times. The white-dwarf pair on the dashed line has 244,000 years. Lines from the
-quadrupole formula, exact for Newton's orbit; the grey end is outside its range." -->
+Predict first: two neutron stars of 1.4 solar masses are 2200 km apart, as far apart as the paper's black holes. Do
+they have more or less time left than the black holes' 8.8 seconds, and by about what factor? Then choose Neutron
+stars, set the separation to 2200 km and read the time. Drag the separation and watch the time change as its fourth
+power. On White dwarfs, see how slowly the frequency moves.
+:::
+
+![Look first at the dot at 2200 km: the paper's pair has 8.8 seconds left, and each halving of the separation
+cuts the time sixteen times. The white-dwarf pair on the dashed line has 244,000 years. Lines from the quadrupole
+formula, exact for Newton's orbit; the grey ends are outside its range.](tut-stars-inspiral){#fig:stars-inspiral}
 
 ## In waves the Galaxy shows where its stars are
 
@@ -537,9 +511,9 @@ radiance $N(\hat n)$ along a line of sight, chapter
 [5.5](/tutorial/waves/radiance/#a-pixel-measures-radiance-power-per-area-per-solid-angle-and-per-frequency)'s count of
 gravitons per second, per square metre and per steradian, is in proportion to the column of stellar mass along it,
 $\int\matter\rho_\star\,\dd s$. Here $\matter\rho_\star$ is the model's density of stars and $s$ the distance from the
-Sun.[^dark] Toward the centre the line runs 8.2 kpc into rising density and through the bulge. Toward the opposite
-side, the **anticentre**, the density falls away from its value at the Sun. Adding up each column in steps of 0.15 pc
-out to 60 kpc gives (a numerical result, to three figures)
+Sun.[^dark] Toward the centre the line runs 8.2 kpc into rising density and through the bulge (Figure
+[](#fig:stars-columns)). Toward the opposite side, the **anticentre**, the density falls away from its value at the
+Sun. Adding up each column in steps of 0.15 pc out to 60 kpc gives (a numerical result, to three figures)
 
 $$\boxed{\;\frac{N_{\rm centre}}{N_{\rm anticentre}} = 102\;}$$
 
@@ -554,14 +528,9 @@ model's dust adds up to 31 magnitudes, while gravitational waves cross it untouc
 centre is only 1.33 times as bright as the anticentre: in that direction we see only the nearest few kiloparsecs of
 stars.
 
-<!-- diagram: tut-stars-columns — spec: a top view of the model Galaxy's mid-plane (stellar density as a soft
-matter-coloured glow, log scale) with the Sun at 8.2 kpc, 20 pc above the mid-plane (the bulge flattened 0.6, as in
-the model; the 102, 31 and 2.6 below hold only with both); two lines of sight from the Sun, to the centre and to the
-anticentre; below, two strips along each line: the stellar density against distance (0 to 25 kpc), whose areas are the
-columns (ratio 102), and the dust's cumulative extinction in magnitudes (31 at the centre, 2.6 in all toward the
-anticentre). Caption: "Look first at the two areas under the density curves: the line toward the centre crosses a
-hundred times more stars. Above it, the dust's extinction climbs to 31 magnitudes along the same line, which hides that
-centre from light. Curves from the paper's model." -->
+![Look first at the density strip: along the line toward the centre the density of stars rises into the bulge,
+and its column is 102 times the anticentre's. Below it, the dust's extinction climbs to 31 magnitudes along the same
+line, which hides that centre from light. Curves from the paper's model.](tut-stars-columns){#fig:stars-columns}
 
 **Seeing the glow.** At 3 mHz the waves are 0.67 AU long, and an aperture resolves about the wavelength over its
 width, in radians, so the paper's camera 50 AU across sees the glow as sharply as Figure [](/paper/#fig:milky-way), to
