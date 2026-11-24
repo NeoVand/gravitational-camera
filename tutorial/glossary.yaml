@@ -3003,3 +3003,53 @@ terms:
     definition: 'A rule relating the derivatives of the Riemann tensor at neighbouring places, $\nabla_\sigma R_{\alpha\beta\gamma\delta} + \nabla_\gamma R_{\alpha\beta\delta\sigma} + \nabla_\delta R_{\alpha\beta\sigma\gamma} = 0$; stated in chapter 7.2 and used in 7.3 and 9.5.'
     chapter: '7.2'
     anchor: the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more
+  - term: Ricci tensor
+    definition: 'The sum $R_{\mu\nu} = R^\alpha{}_{\mu\alpha\nu}$ of the Riemann tensor over two of its indices, ten numbers at each event. For an observer at rest $c^2R_{00}$ is the trace of the tide, the part of the curvature that changes the volume of a ball of free dust.'
+    role: curv
+    chapter: '7.3'
+    anchor: the-trace-of-the-tide-is-the-ricci-curvature-along-the-observers-time
+  - term: Ricci scalar
+    definition: 'The trace $R = g^{\mu\nu}R_{\mu\nu}$ of the Ricci tensor, one number at each event that every observer agrees on.'
+    role: curv
+    chapter: '7.3'
+    anchor: einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point
+  - term: contracted Bianchi identity
+    definition: 'The rule $\nabla^\mu R_{\mu\nu} = \tfrac12\partial_\nu R$, which follows from the second Bianchi identity by two sums. It says that the Einstein tensor has zero divergence for every metric.'
+    chapter: '7.3'
+    anchor: einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point
+  - term: Einstein tensor
+    definition: 'The table $G_{\mu\nu} = R_{\mu\nu} - \tfrac12Rg_{\mu\nu}$, the combination of the Ricci tensor and scalar whose divergence is zero for every metric.'
+    role: curv
+    chapter: '7.3'
+    anchor: einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point
+  - term: "Einstein's equation"
+    definition: 'The law $G_{\mu\nu} = (8\pi G/c^4)T_{\mu\nu}$ that ties the curvature at each event to the energy and stress there: ten equations, whose factor is fixed by Newton''s law of gravity.'
+    chapter: '7.3'
+    anchor: einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point
+  - term: trace reversal
+    definition: 'Einstein''s equation solved for the Ricci tensor, $R_{\mu\nu} = (8\pi G/c^4)(T_{\mu\nu} - \tfrac12Tg_{\mu\nu})$: the source with its trace reversed. In empty space it gives $R_{\mu\nu} = 0$.'
+    chapter: '7.3'
+    anchor: einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point
+  - term: active density
+    definition: 'The density $\rho + (p_1 + p_2 + p_3)/c^2$ that a pixel inside matter reads through the trace of the tide, $4\pi G$ times it: the mass density plus the principal stresses over $c^2$, a pressure adding and a tension taking away.'
+    role: matter
+    chapter: '7.3'
+    anchor: pressure-and-stress-gravitate
+  - term: cosmological constant
+    definition: 'The constant $\Lambda$, about $1.1\times10^{-52}\,\mathrm{m^{-2}}$, of the term $\Lambda g_{\mu\nu}$ that Einstein''s equation allows. It makes the trace of the tide $-\Lambda c^2 = -1.0\times10^{-35}\,\mathrm{s^{-2}}$ everywhere.'
+    chapter: '7.3'
+    anchor: pressure-and-stress-gravitate
+  - term: Ricci part
+    definition: 'The part of the curvature built from the Ricci tensor and the metric, which Einstein''s equation fixes from the energy and stress at the same event. Inside matter it gives the tide $\tfrac{4\pi G}3(\rho + \Sigma p/c^2)\delta_{ij} - (4\pi G/c^2)(T_{ij} - \tfrac13\delta_{ij}T_{kk})$.'
+    role: curv
+    chapter: '7.3'
+    anchor: inside-matter-the-tide-has-a-part-fixed-by-the-matter-at-that-point
+  - term: Weyl tensor
+    definition: 'The remainder of the Riemann tensor when its Ricci part is removed, with no trace and ten independent numbers. It changes the shape of a ball of free dust and not its volume, comes from matter elsewhere and from waves, and is the whole curvature in empty space.'
+    role: curv
+    chapter: '7.3'
+    anchor: inside-matter-the-tide-has-a-part-fixed-by-the-matter-at-that-point
+  - term: constraint
+    definition: 'One of the four parts of Einstein''s equation, $G^{0\nu} = (8\pi G/c^4)T^{0\nu}$, that hold no second time derivative of the metric: they tie the field at one time to the energy and momentum then, as Gauss''s law does.'
+    chapter: '7.3'
+    anchor: the-ten-equations-are-not-ten-laws-of-motion

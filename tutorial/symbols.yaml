@@ -2230,3 +2230,51 @@ symbols:
     meaning: 'The Riemann tensor with its first index lowered by the metric, $R_{\alpha\beta\gamma\delta} = g_{\alpha\mu}R^\mu{}_{\beta\gamma\delta}$. It changes sign when the first two or the last two indices are exchanged, is unchanged when the two pairs are exchanged, and its cyclic sum over the last three vanishes; so it has 20 independent numbers in four dimensions. In a weak field $R_{\alpha\beta\gamma\delta} = \tfrac12(\partial_\beta\partial_\gamma h_{\alpha\delta} + \partial_\alpha\partial_\delta h_{\beta\gamma} - \partial_\alpha\partial_\gamma h_{\beta\delta} - \partial_\beta\partial_\delta h_{\alpha\gamma})$.'
     chapter: '7.2'
     anchor: to-first-order-the-curvature-is-made-of-second-derivatives-of-the-metric
+  - key: ricci-tensor
+    title: Ricci tensor
+    tex: '\curv{R}_{\mu\nu}'
+    role: curv
+    kind: A symmetric 4 × 4 table, ten numbers at each event; in m⁻²
+    meaning: 'The sum $R_{\mu\nu} = R^\alpha{}_{\mu\alpha\nu}$ of the Riemann tensor over its first and third indices: an average of the tides over directions. For an observer at rest $c^2R_{00}$ is the trace of the tide, which changes the volume of a ball of free dust. Einstein''s equation fixes it from the energy and stress at the same event, $R_{\mu\nu} = (8\pi G/c^4)(T_{\mu\nu} - \tfrac12Tg_{\mu\nu})$, so it is zero in empty space.'
+    chapter: '7.3'
+    anchor: the-trace-of-the-tide-is-the-ricci-curvature-along-the-observers-time
+  - key: ricci-scalar
+    title: Ricci scalar
+    tex: '\curv{R}'
+    role: curv
+    kind: One number at each event, the same for every observer; in m⁻²
+    meaning: 'The trace of the Ricci tensor, $R = g^{\mu\nu}R_{\mu\nu}$. Einstein''s equation makes it $-(8\pi G/c^4)T$, with $T$ the trace of the stress–energy tensor: $8\pi G\rho/c^2$ in dust. (A bare $R$; the Riemann tensor always carries four indices.)'
+    chapter: '7.3'
+    anchor: einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point
+  - key: einstein-tensor
+    title: Einstein tensor
+    tex: '\curv{G}_{\mu\nu}'
+    role: curv
+    kind: A symmetric 4 × 4 table, ten numbers at each event; in m⁻²
+    meaning: 'The combination $G_{\mu\nu} = R_{\mu\nu} - \tfrac12Rg_{\mu\nu}$ of the Ricci tensor and scalar whose divergence is zero for every metric, by the contracted Bianchi identity. Einstein''s equation sets it to $(8\pi G/c^4)T_{\mu\nu}$. (With indices; a bare $G$ is Newton''s constant.)'
+    chapter: '7.3'
+    anchor: einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point
+  - key: stress-energy-trace
+    title: Trace of the stress–energy tensor
+    tex: '\matter{T}'
+    role: matter
+    kind: One number at each event, the same for every observer; in J/m³
+    meaning: 'The contraction $T = g_{\mu\nu}T^{\mu\nu}$, which is $-T^{00} + T^{11} + T^{22} + T^{33}$ in an observer''s own frame: $-\rho c^2 + 3p$ for a fluid, $-\rho c^2$ for dust and $0$ for light. Trace reversal, $R_{\mu\nu} = (8\pi G/c^4)(T_{\mu\nu} - \tfrac12Tg_{\mu\nu})$, uses it. (Not a temperature.)'
+    chapter: '7.3'
+    anchor: einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point
+  - key: cosmological-constant
+    title: Cosmological constant
+    tex: '\Lambda'
+    role: none
+    kind: One number, the same everywhere; in m⁻²
+    meaning: 'The constant in the term $\Lambda g_{\mu\nu}$ that Einstein''s equation allows on its left side, about $1.1\times10^{-52}\,\mathrm{m^{-2}}$ from the expansion of the universe. It adds $-\Lambda c^2 = -1.0\times10^{-35}\,\mathrm{s^{-2}}$ to the trace of the tide everywhere. (A bare $\Lambda$; with indices, $\Lambda_{ij,kl}$ is a projector and $\Lambda^\mu{}_\nu$ a boost.)'
+    chapter: '7.3'
+    anchor: pressure-and-stress-gravitate
+  - key: weyl-tensor
+    title: Weyl tensor
+    tex: '\curv{C}_{\alpha\beta\gamma\delta}'
+    role: curv
+    kind: A tensor of rank 4 with ten independent numbers at each event; in m⁻²
+    meaning: 'What is left of the Riemann tensor when its Ricci part is removed: it has every symmetry of the Riemann tensor and no trace. Einstein''s equation does not fix it at the event; it comes from matter elsewhere and from waves. In empty space it is the whole curvature, and for an observer at rest its ten numbers are the five of a trace-free tide and the five of a trace-free magnetic part.'
+    chapter: '7.3'
+    anchor: inside-matter-the-tide-has-a-part-fixed-by-the-matter-at-that-point
