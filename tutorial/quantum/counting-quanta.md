@@ -6,7 +6,7 @@ part: '8'
 requires: ['3.1', '3.2', '3.3', '4.2', '8.2', '8.3', '8.4']
 paper: [sec:vistas, sec:first-image, sec:thermal]
 figures: []
-live: []
+live: [click-trains]
 depth: A
 ---
 
@@ -89,8 +89,8 @@ So $\langle n^2\rangle = 2\bar n^2 + \bar n$, and the variance is
 
 $$\boxed{\langle n^2\rangle - \bar n^2 = \bar n + \bar n^2} .$$
  **Numbers.** With $\bar n = 4$ the likeliest count is zero, with the probability 0.20, where a coherent mode gives zero
-only 1.8% of the time. **Two limits.** When $\bar n \ll 1$ the counts are nearly Poisson; when $\bar n \gg 1$ the spread
-is about $\bar n$, as large as the mean.
+only 1.8% of the time (Figure [](#fig:counts)). **Two limits.** When $\bar n \ll 1$ the counts are nearly Poisson;
+when $\bar n \gg 1$ the spread is about $\bar n$, as large as the mean.
 
 The extra $\bar n^2$ has a classical meaning. Take a classical wave of angular frequency $\omega$, such as one
 component of light's electric field or a gravitational wave's strain, and write its value at one place as $q(t) =
@@ -131,15 +131,9 @@ Gaussian number with mean zero and $\langle|\alpha|^2\rangle = \bar n$ (stated),
 count probability of a thermal mode, not only its variance, is that of a classical Gaussian wave counted by random
 clicks.[^glauber]
 
-<!-- diagram: tut-count-bars — One panel, about 560 × 300 px at 1440 (full width on a phone). Bars of P(n) for n = 0 to
-14 at n̄ = 4: the coherent (Poisson) state's e^{−4}4ⁿ/n! as ink outlines (0.018, 0.073, 0.147, 0.195, 0.195, 0.156,
-0.104, 0.060, 0.030, 0.013, 0.005, …) and the thermal state's 4ⁿ/5^{n+1} as light grey filled bars beside them (0.200,
-0.160, 0.128, 0.102, 0.082, 0.066, 0.052, 0.042, 0.034, 0.027, 0.021, 0.017, 0.014, 0.011, 0.009), each pair of bars
-side by side at each n. Across: the count n (ticks every 2); up: probability, 0 to 0.21 (ticks every 0.05). A thin
-dashed vertical line at the common mean, n = 4, labelled "n̄ = 4". Labels "coherent (Poisson)" and "thermal
-(geometric)" beside the bars, never on them. No orange or blue. Caption: "Look first at n = 0: a thermal mode with four
-quanta on average is most often empty, while a coherent one almost never is. Both have the mean 4; the thermal counts
-spread with the standard deviation 4.5, the coherent ones with 2. Every bar is exact." -->
+![Look first at $n = 0$: a thermal mode with four quanta on average is most often empty, while a coherent one
+almost never is. Both have the mean 4; the thermal counts spread with the standard deviation 4.5, the coherent ones
+with 2. Every bar is exact.](tut-count-bars){#fig:counts}
 
 ## One number tells the two apart, and no classical wave brings it below one
 
@@ -156,8 +150,8 @@ onto two detectors and counting **coincidences**, clicks of both in one short wi
 
 $$\boxed{g^{(2)} = 1 \ \text{(coherent)} , \qquad g^{(2)} = 2 \ \text{(thermal)}} .$$
 
-Clicks with $g^{(2)} > 1$ show **bunching**. **A number:** with $\bar n = 0.1$ in a window, two or more clicks come in
-0.47% of windows for a coherent mode and 0.83% for a thermal one.
+Clicks with $g^{(2)} > 1$ show **bunching** (Figure [](#fig:click-trains)). **A number:** with $\bar n = 0.1$ in a
+window, two or more clicks come in 0.47% of windows for a coherent mode and 0.83% for a thermal one.
 
 **The classical bound.** We assume that **the counts are made by a classical wave**, as in the last section: its
 intensity cannot be negative and has a probability distribution over the windows. Then $\langle n(n - 1)\rangle =
@@ -185,18 +179,10 @@ $$\boxed{g^{(2)}_{12} \le \sqrt{g^{(2)}_{11}\,g^{(2)}_{22}}} .$$
 This is the **classical bound**. Equality holds when $I_2$ is a fixed multiple of $I_1$, as for one beam split in two,
 so two thermal beams reach at most 2.
 
-<!-- diagram: tut-click-trains — Four horizontal time axes stacked, about 640 × 300 px at 1440 (full width on a phone,
-the axes shortened to keep the same tick density). Each carries about 40 clicks as thin vertical ink ticks over the same
-length, at the same mean rate. Row 1, "steady (coherent)": clicks at independent uniform times (Poisson). Row 2,
-"thermal": clicks drawn from a rate that wanders as an exponentially distributed intensity with a coherence time of
-about a fortieth of the axis, so that clicks cluster in visible bunches with gaps between. Rows 3 and 4, "pair source,
-detector 1" and "detector 2": clicks that coincide in pairs, each tick in row 3 matched by one directly below it in row
-4 (a thin grey vertical hairline joining a few of the pairs), with each row on its own looking bunched like row 2. A
-short bracket under row 2 labelled "coherence time". Labels at the left of each row, never on the ticks. No orange or
-blue. Caption: "Look first at the bottom two rows: every click of one detector has a partner in the other. The steady
+![Look first at the bottom two rows: every click of one detector has a partner in the other. The steady
 source's clicks fall independently, the thermal source's come in bunches a coherence time long, and the pair source's
 two detectors each see thermal bunches but click together. The click times are simulated; the rates and the coherence
-time are schematic." -->
+time are schematic.](tut-click-trains){#fig:click-trains}
 
 ::: history
 ### Hanbury Brown and Twiss measure a star with its bunching
@@ -228,7 +214,8 @@ the ground state by the table
 $$S = \exp\bigl[\tfrac{r}{2}\bigl(a^2 - a^{\dagger2}\bigr)\bigr] ,$$
 
 where the **squeezing parameter** $\sym{squeezing-parameter}{r}$ is a real number with no unit.[^r] Its blob is an
-ellipse of the same area, narrower than the zero point in $x$ and wider in $p$, with the spreads
+ellipse of the same area, narrower than the zero point in $x$ and wider in $p$ (Figure [](#fig:squeezed)), with the
+spreads
 
 $$\sigma_x = e^{-r}x_{\rm zp} , \qquad \sigma_{p/\matter m\omega} = e^{r}x_{\rm zp} .$$
 
@@ -240,18 +227,10 @@ quanta on average (the box below derives both). Each term of the exponent of $S$
 count by two, so the state holds only even counts: its quanta come in pairs. **A number.** At $r = 0.6$ the spread in
 $x$ is $0.55\,x_{\rm zp}$, and the mode holds $\bar n = 0.405$ quanta.
 
-<!-- diagram: tut-phase-blobs — One panel, about 520 × 420 px at 1440 (full width on a phone): chapter 8.3's phase plane
-in the axes x/x_zp across and p/(mω x_zp) up (thin grey axes, ticks at ±2, ±4). Each state drawn as its one-standard-
-deviation contour, with a thin ink edge: the zero point, a circle of radius 1 at the origin, filled light grey,
-labelled "zero point"; a coherent state, the same filled circle centred at (3, 2), labelled "coherent"; a squeezed
-vacuum at r = 0.6, an ellipse at the origin with semi-axes e^{−0.6} = 0.55 along x and e^{0.6} = 1.82 along p, filled
-light grey, drawn over the zero point's circle with a thin dashed outline; and a thermal state with n̄ = 1.5, a circle
-of radius √(2n̄ + 1) = 2 centred at the origin with no fill and a dotted edge, around the other two, labelled
-"thermal". Labels beside the shapes, never on them; "same area" once beside the ellipse. No orange or blue (blue is the
-tidal squeeze). Caption: "Look first at the ellipse at the centre: the squeezed vacuum is narrower than the zero point
-along x and wider along p, with the same area. A coherent state is the zero point moved; a thermal state is a wider
-round blur about the origin, with no phase. Each contour is one standard deviation, exact; the position of the
-coherent state is chosen for clarity." -->
+![Look first at the ellipse at the centre: the squeezed vacuum is narrower than the zero point along $x$ and
+wider along $p$, with the same area. A coherent state is the zero point moved; a thermal state is a wider round blur
+about the origin, with no phase. Each contour is one standard deviation, exact; the position of the coherent state is
+chosen for clarity.](tut-phase-blobs){#fig:squeezed}
 
 ::: derivation
 ### The squeezed vacuum's spreads and its count
@@ -314,23 +293,16 @@ inflation from one born hot, whose opposite directions are independent and give 
 per pixel and window, the pair's excess shrinks to $1/M\bar n$ (the paper problem). Intensity interferometry of
 primordial gravitons has been proposed for this [@KannoSoda2019].
 
-<!-- try: click-trains (a new interactive figure, ClickTrains, on an engine that draws counts per window: coherent,
-Poisson with mean n̄; thermal, a window intensity λ drawn from an exponential law of mean n̄ and then a Poisson count;
-two-mode squeezed, a common count n drawn from the geometric law n̄ⁿ/(1 + n̄)^{n+1} and given to both detectors. Checked
-against g⁽²⁾ = 1.00 and 2.00 at n̄ = 4, g⁽²⁾₁₂ = 5.68 at n̄ = 0.2715 (r = 0.5) and 3.00 at n̄ = 1, within the shown
-statistical error after 10⁵ windows) — Top, about 640 × 160 px: one or two click trains along a time axis, as diagram
-tut-click-trains, scrolling slowly, the windows marked by faint grey ticks. Bottom left, about 320 × 260 px: the
-histogram of counts per window (grey bars) with the Poisson and geometric laws at the same n̄ drawn over it as thin ink
-dots joined by lines, labelled beside them. Bottom right: readouts of the measured n̄, variance, g⁽²⁾ (and, for the
-pair source, g⁽²⁾₁₁, g⁽²⁾₂₂ and g⁽²⁾₁₂) with their standard errors, beside the classical bounds "g⁽²⁾ ≥ 1" and
-"g⁽²⁾₁₂ ≤ √(g⁽²⁾₁₁g⁽²⁾₂₂)", each bound turning to a struck-through grey when the measurement breaks it by more than three
-errors. Controls: a three-way switch "coherent / thermal / pair"; a slider "n̄ per window" from 0.01 to 10,
-logarithmic (opens at 1, coherent); buttons "Run", "Pause" and "Clear". One mode per window throughout. Predict first:
-"At the same mean rate, which train has more close pairs of clicks?" (Answer: the thermal one; its g⁽²⁾ is 2, so two
-or more clicks in a window come about twice as often at small n̄.) Then: "Switch to the pair source and lower n̄. What
-happens to g⁽²⁾₁₂?" (Answer: it grows as 2 + 1/n̄, to about 12 at n̄ = 0.1, while each detector's own g⁽²⁾ stays at 2,
-so the bound of 2 is broken further the fainter the source.) Keyboard: Tab reaches the switch, the slider and the
-buttons, arrows step them, shift for larger steps; both themes; on a phone the panels stack. -->
+::: try {#click-trains}
+Clicks from one of three sources, at a mean count per window that you set: a steady (coherent) source, a thermal one,
+or a source of pairs read by two detectors. The trains of Figure [](#fig:click-trains) scroll along the top; below
+them, the histogram of counts per window with the Poisson and geometric laws drawn over it, and the measured $\bar n$,
+variance and $g^{(2)}$, with their standard errors, beside the two classical bounds. A bound is struck through when a
+measurement breaks it by more than three errors.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, run the
+thermal source at a mean of 10 and say why its histogram falls as a straight line on the logarithmic axis.
+:::
 
 ## Counting adds no noise but needs quanta
 

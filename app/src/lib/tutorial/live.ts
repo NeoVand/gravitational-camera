@@ -70,6 +70,7 @@ import TwoPaths from './live/TwoPaths.svelte';
 import UncertaintyPacket from './live/UncertaintyPacket.svelte';
 import LadderOscillator from './live/LadderOscillator.svelte';
 import MajoranaStars from './live/MajoranaStars.svelte';
+import ClickTrains from './live/ClickTrains.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -341,6 +342,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			"A spin as stars on a sphere: drag four stars of a spin two, or two of light, and read the five components, one spin's Bloch vector and the overlap with a coherent state",
 		component: MajoranaStars
+	},
+	'click-trains': {
+		label:
+			'Clicks from a steady source, a hot one and a source of pairs: the counts per window, their second-order coherence and the classical bounds',
+		component: ClickTrains
 	},
 	'noise-spectrum': {
 		label:
