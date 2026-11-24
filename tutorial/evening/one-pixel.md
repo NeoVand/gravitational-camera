@@ -244,7 +244,7 @@ instead of recording mostly noise.
 [^optics]: The paper's [](/paper/#eq:index) gives $8 \times 10^{-14}$. Stated without proof in chapter 5.5, and
     read in R11.
 
-[^hole]: Derived in chapter 11.1.
+[^hole]: Derived in chapters 5.5 and 11.1.
 
 [^beam]: Chapter [5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array) derives beamforming and its sharpness.
 

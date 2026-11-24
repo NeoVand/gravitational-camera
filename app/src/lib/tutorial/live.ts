@@ -82,6 +82,7 @@ import JordanExplorer from './live/JordanExplorer.svelte';
 import PlanckSpectrum from './live/PlanckSpectrum.svelte';
 import DetailedBalance from './live/DetailedBalance.svelte';
 import GlowBound from './live/GlowBound.svelte';
+import ShadowAndRing from './live/ShadowAndRing.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -430,5 +431,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	'glow-bound': {
 		label: 'A material’s friction, its glow, and how close it comes to the bound its weight allows',
 		component: GlowBound
+	},
+	'shadow-and-ring': {
+		label:
+			'A camera near a black hole: exact rays, the shadow, the Einstein ring, and its sky at rest or falling',
+		component: ShadowAndRing
 	}
 };

@@ -1803,9 +1803,9 @@ symbols:
     tex: 'r_s'
     role: none
     kind: A length; in metres
-    meaning: 'The length $r_s = 2GM/c^2$ of a mass $M$: 8.9 mm for the Earth, 3.0 km for the Sun. A ray passing the mass at the distance $b$ is bent by $2r_s/b$. For a black hole it is the radius of the horizon.'
-    chapter: '5.5'
-    anchor: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact
+    meaning: 'The length $r_s = 2GM/c^2$ of a mass $M$: 8.9 mm for the Earth, 3.0 km for the Sun. A ray passing the mass at the distance $b$ is bent by $2r_s/b$. For a black hole it is the circumference radius of the horizon, where a clock at rest would stop as seen from far away (chapter 5.5 first uses it).'
+    chapter: '11.1'
+    anchor: outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone
   - key: line-impact-parameter
     title: Impact parameter of a line of sight
     tex: 'b'
@@ -3415,3 +3415,68 @@ symbols:
     meaning: 'How long a camera collects. Every count grows in proportion to it, so the errors of a fit to counts fall as $1/\sqrt{t_{\rm obs}}$. The paper writes $\tau$ for it in Section IX, where a lifetime is eighty years. (Not an optical depth, a collision time or the reading time of chapter 8.6.)'
     chapter: R10b
     anchor: a-lifetime-places-the-edge-of-the-core-to-29-km
+
+  - key: circumference-radius
+    title: Circumference radius
+    tex: 'r'
+    role: none
+    kind: A length; in metres
+    meaning: 'The radius of the sphere through a point round a centre, defined by its area $4\pi r^2$: the circumference of a great circle over $2\pi$. Near a mass it differs from a ruler''s distance to the centre; the Schwarzschild metric, its exact tide $GM/r^3$ and its horizon at $r = r_s$ all use it.'
+    chapter: '11.1'
+    anchor: outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone
+  - key: metric-function
+    title: Schwarzschild factor
+    tex: '\field{f}'
+    role: field
+    kind: A pure number at each radius
+    meaning: 'The entry $f(r) = -g_{00}$ of a static round metric, $1 - r_s/r$ outside a mass: a clock at rest at $r$ runs at $\sqrt{f}$ of a far clock''s rate. Used only in chapter 11.1 (not a focal length or a frequency).'
+    chapter: '11.1'
+    anchor: outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone
+  - key: mass-inside
+    title: Mass inside
+    tex: '\matter{m}(r)'
+    role: matter
+    kind: A number for each radius; in kilograms
+    meaning: 'In a static round body, the mass inside the sphere of circumference radius $r$, defined by the metric through $r(1 - h) = 2Gm/c^2$, with $h = 1/g_{rr}$. It grows as $\mathrm dm/\mathrm dr = 4\pi r^2\rho$ and equals the body''s mass $M$ outside it.'
+    chapter: '11.1'
+    anchor: outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone
+  - key: ray-impact-parameter
+    title: Impact parameter of a ray
+    tex: 'b'
+    role: none
+    kind: A length; in metres
+    meaning: 'The distance by which a ray would miss the centre of a mass if it went straight: its angular momentum over its energy, $b = L/E$. Rays with $b < b_c = \sqrt{27}\,GM/c^2$ fall into a black hole; far ones are bent by $2r_s/b$.'
+    chapter: '11.1'
+    anchor: light-can-circle-a-hole-and-the-hole-casts-a-shadow
+  - key: critical-impact-parameter
+    title: Critical impact parameter
+    tex: 'b_c'
+    role: none
+    kind: A length; in metres
+    meaning: 'The impact parameter $b_c = \sqrt{27}\,GM/c^2 = 2.6\,r_s$ of the rays that circle a black hole at its photon sphere, $\tfrac32r_s$. The hole captures every ray inside it, a disc of area $27\pi G^2M^2/c^4$.'
+    chapter: '11.1'
+    anchor: light-can-circle-a-hole-and-the-hole-casts-a-shadow
+  - key: shadow-radius
+    title: Angular radius of the shadow
+    tex: '\alpha_h'
+    role: none
+    kind: An angle; in degrees or radians
+    meaning: 'The angular radius of a black hole''s shadow seen from rest at $r$: $\sin\alpha_h = \sqrt{27}(GM/c^2r)\sqrt{1 - 2GM/c^2r}$, $7.27^\circ$ at $40\,GM/c^2$ and $90^\circ$ at the photon sphere. (Chapter 6.3''s letter; not the deflection angle $\alpha$.)'
+    chapter: '11.1'
+    anchor: light-can-circle-a-hole-and-the-hole-casts-a-shadow
+  - key: deflection-angle
+    title: Deflection angle
+    tex: '\alpha'
+    role: none
+    kind: An angle; in radians
+    meaning: 'The angle by which a mass turns a ray that passes it at the distance $b$: $\alpha = 4GM/bc^2 = 2r_s/b$ far from the mass, $1.75''''$ at the Sun''s edge; by the mass inside the ray''s cylinder for a transparent body. (Not the absorption coefficient $\alpha$.)'
+    chapter: '11.1'
+    anchor: far-from-a-mass-light-bends-by-twice-newtons-angle
+  - key: einstein-radius
+    title: Einstein radius
+    tex: 'b_E'
+    role: none
+    kind: A length; in metres
+    meaning: 'The impact parameter $b_E = \sqrt{2r_sd}$ at which a point mass brings the rays from a source straight behind it to a camera on its axis at the distance $d$. The camera sees them as a ring at the angle $\sqrt{2r_s/d}$: 3.26 m and $25.6''''$ at 26.3 km from the paper''s black hole.'
+    chapter: '11.1'
+    anchor: a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring

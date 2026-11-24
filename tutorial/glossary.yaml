@@ -874,7 +874,7 @@ terms:
     chapter: '0.5'
     anchor: the-reply-can-be-read-by-weighing-the-body-or-by-watching-the-passer
   - term: horizon
-    definition: 'The surface of a black hole from which nothing, not even light, can escape. A changing tide loses energy through it, as if it had friction.'
+    definition: 'The surface of a black hole from which nothing, not even light, can escape. A changing tide loses energy through it, as if it had friction. Chapter 11.1 derives it from the Schwarzschild metric: the sphere $r = r_s$, where a clock at rest would stop as seen from far away.'
     chapter: '0.5'
     anchor: a-black-hole-replies-with-friction-and-a-temperature
   - term: fluctuation–dissipation theorem
@@ -3162,7 +3162,7 @@ terms:
     chapter: '7.7'
     anchor: a-compact-source-is-read-at-zero-wavevector-where-its-stress-is-half-the-acceleration-of-its-quadrupole
   - term: "Birkhoff's theorem"
-    definition: 'In Einstein''s theory, the field outside any spherically symmetric body is the static field of its mass, even while the body pulsates. So a sphere that keeps its shape sends no gravitational wave.'
+    definition: 'In Einstein''s theory, the field outside any spherically symmetric body is the static field of its mass, even while the body pulsates. So a sphere that keeps its shape sends no gravitational wave. Chapter 7.7 states it; chapter 11.1 sketches its proof.'
     chapter: '7.7'
     anchor: a-swelling-sphere-and-a-smooth-wheel-send-nothing
   - term: all-zone solution
@@ -4120,3 +4120,78 @@ terms:
     definition: 'A pixel that counts gravitons one at a time, by a measurement made of spin-two coherent states, instead of recording the wave. It adds no noise, and each click carries 1.17 bits about where its graviton came from.'
     chapter: R10b
     anchor: a-counting-pixel-finds-the-suns-core-to-a-degree-in-half-an-hour
+
+  - term: circumference radius
+    definition: 'The radius $r$ of a sphere round a centre defined by its area, $4\pi r^2$, or the circumference of a great circle over $2\pi$. In curved space it is not the distance a ruler measures from the centre; the exact formulas of the Schwarzschild field use it.'
+    chapter: '11.1'
+    anchor: outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone
+  - term: mass inside
+    definition: 'In Einstein''s theory, the $m(r)$ defined by the metric of a static round body through $r(1 - h) = 2Gm/c^2$, with $h = 1/g_{rr}$. It grows as $\mathrm dm/\mathrm dr = 4\pi r^2\rho$, Newton''s rule, and outside the body it is the body''s mass.'
+    role: matter
+    chapter: '11.1'
+    anchor: outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone
+  - term: Schwarzschild metric
+    definition: 'The field outside any round body in Einstein''s theory, $\mathrm ds^2 = -(1 - r_s/r)c^2\mathrm dt^2 + \mathrm dr^2/(1 - r_s/r) + r^2\mathrm d\Omega^2$, with $r$ the circumference radius. It depends only on the mass.'
+    role: field
+    chapter: '11.1'
+    anchor: outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone
+  - term: Schwarzschild radius
+    definition: 'The length $r_s = 2GM/c^2$ of a mass $M$: 2.95 km for the Sun, 8.87 mm for the Earth. A body inside its own is a black hole, whose horizon is the sphere $r = r_s$.'
+    chapter: '11.1'
+    anchor: outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone
+  - term: hover
+    definition: 'To stay at rest at a fixed distance from a black hole, which takes a rocket. The push needed per kilogram is $GM/r^2\sqrt{1 - r_s/r}$, which grows without limit at the horizon.'
+    chapter: '11.1'
+    anchor: at-the-schwarzschild-radius-clocks-stop-nothing-can-hover-and-nothing-gets-out
+  - term: affine parameter
+    definition: 'A label $\lambda$ along a free path for which the geodesic equation keeps its form. A clock''s proper time is one; light, which has no proper time, is labelled by one instead. It is not a time, and the quantities a metric keeps fixed along a path hold for it too.'
+    chapter: '11.1'
+    anchor: light-can-circle-a-hole-and-the-hole-casts-a-shadow
+  - term: photon sphere
+    definition: 'The sphere $r = \tfrac32r_s = 3GM/c^2$ round a black hole that does not spin, where light can circle the hole; the smallest nudge sends it in or out. Seen from there at rest, the shadow fills half the sky.'
+    chapter: '11.1'
+    anchor: light-can-circle-a-hole-and-the-hole-casts-a-shadow
+  - term: critical impact parameter
+    definition: 'The impact parameter $b_c = \sqrt{27}\,GM/c^2$ that divides the rays a black hole captures from those it lets go: rays aimed closer than $b_c$ fall in.'
+    chapter: '11.1'
+    anchor: light-can-circle-a-hole-and-the-hole-casts-a-shadow
+  - term: capture cross-section
+    definition: 'The area $\pi b_c^2 = 27\pi G^2M^2/c^4$ of the disc of rays that a black hole removes from a beam of short waves: $1.85\times10^8\ \mathrm{m^2}$ for the Sun''s mass. The paper calls it the geometric cross-section.'
+    chapter: '11.1'
+    anchor: light-can-circle-a-hole-and-the-hole-casts-a-shadow
+  - term: shadow of a black hole
+    definition: 'The directions from which no light reaches a camera near a black hole, because their rays trace back to the horizon. Seen from rest at $r$ its angular radius has $\sin\alpha_h = \sqrt{27}(GM/c^2r)\sqrt{1 - 2GM/c^2r}$: $7.27^\circ$ at $40\,GM/c^2$.'
+    chapter: '11.1'
+    anchor: light-can-circle-a-hole-and-the-hole-casts-a-shadow
+  - term: deflection angle
+    definition: 'The angle $\alpha$ by which a mass turns a ray passing it at the distance $b$: $4GM/bc^2 = 2r_s/b$ far from the mass, twice Newton''s value; $1.75''''$ at the Sun''s edge.'
+    chapter: '11.1'
+    anchor: far-from-a-mass-light-bends-by-twice-newtons-angle
+  - term: refractive index of space
+    definition: 'The index $n = 1 - 2\Phi/c^2 = 1 + 2GM/rc^2$ that makes light move near a weak mass as in a medium, half from the slowing of clocks and half from the curving of space. A ray turns toward larger $n$.'
+    chapter: '11.1'
+    anchor: far-from-a-mass-light-bends-by-twice-newtons-angle
+  - term: Einstein radius
+    definition: 'The impact parameter $b_E = \sqrt{2r_sd}$ of the rays that a point mass brings to a camera on its axis at the distance $d$; the camera sees them at the angle $\sqrt{2r_s/d}$: $25.6''''$ at 26.3 km from the paper''s black hole.'
+    chapter: '11.1'
+    anchor: a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring
+  - term: Einstein ring
+    definition: 'The ring round a lensing mass in which a camera on the axis sees a source straight behind it, at the angle $\sqrt{2r_s/d}$ far from the mass; $20.2^\circ$ seen from rest $40\,GM/c^2$ from a black hole, by the exact rays.'
+    chapter: '11.1'
+    anchor: a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring
+  - term: extended lens
+    definition: 'A transparent body used as a lens. In a weak field a ray at the distance $b$ from its centre is bent only by the mass inside the cylinder of radius $b$ along the ray, $\alpha(b) = 4GM_{\rm cyl}(b)/c^2b$; chapter 12.1 derives it for the Sun.'
+    chapter: '11.1'
+    anchor: a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring
+  - term: Shapiro delay
+    definition: 'The extra time a wave takes to pass near a mass: $4GM/c^3$ times a logarithm of the distances, so about $4GM/c^3$ more than for a wave that passes far away. For the Sun $4GM/c^3$ is $19.7\ \mu\mathrm s$.'
+    chapter: '11.1'
+    anchor: a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring
+  - term: wave-optics cut-off
+    definition: 'The lowest frequency a mass can focus, $c^3/8\pi GM$, where its delay spans a radian of phase; equivalently the wavelength must be below $4\pi r_s$. It is 8.1 kHz for the Sun.'
+    chapter: '11.1'
+    anchor: a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring
+  - term: gravitational blueshift
+    definition: 'The rise in frequency of light that falls from far away to a clock at rest, by $1/\sqrt{1 - r_s/r}$ near a mass; a black-body sky stays a black body, warmer by the same factor.'
+    chapter: '11.1'
+    anchor: seen-from-rest-near-a-hole-the-whole-sky-is-warmer
