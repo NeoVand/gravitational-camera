@@ -127,7 +127,7 @@ parts:
       - { id: '8.5', slug: quantum/counting-quanta, title: 'Counting quanta: Poisson, thermal and squeezed', short: Counting quanta, size: M, status: published }
       - { id: '8.6', slug: quantum/quantum-limit, title: 'Measurement, added noise and the standard quantum limit; detectors and strain', short: The quantum limit, size: L, status: published }
       - { id: '8.7', slug: quantum/quantum-fluctuation, title: 'Fluctuation and dissipation in quantum mechanics', short: Quantum fluctuation, size: M, status: published }
-      - { id: R8, slug: quantum/reading-the-quantum-limits, title: 'Reading the quantum limits', short: Reading the quantum limits, size: M, status: planned, reads: [sec:pixel, sec:near-field] }
+      - { id: R8, slug: quantum/reading-the-quantum-limits, title: 'Reading the quantum limits, with the capstone: from two grams to the ceiling', short: Reading the quantum limits, size: L, status: published, reads: [sec:pixel, sec:near-field, sec:no-lens, sec:first-image, sec:vistas] }
 
   - id: '9'
     slug: one-point
@@ -189,7 +189,7 @@ routes:
     chapters: ['0.1', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '6.1', '6.2', '6.4', '6.5', '7.1', '7.2', '7.3', '7.4', '7.5', '7.6', R7]
   - id: section-iv
     title: To Section IV, the near field
-    chapters: ['0.1', '0.2', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', R2, '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '3.9', R3, '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', R4, '8.1', '8.2', '8.3', '8.4', '8.6', '8.7']
+    chapters: ['0.1', '0.2', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', R2, '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '3.9', R3, '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', R4, '8.1', '8.2', '8.3', '8.4', '8.6', '8.7', R8]
   - id: section-v
     title: To Section V, waves from moving bodies
     chapters: ['0.1', '0.3', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '3.1', '3.2', '3.3', '3.5', '3.6', '3.4', '3.7', '3.8', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', R5, '6.1', '6.2', '6.4', '6.5', '7.1', '7.2', '7.3', '7.4', '7.5', '7.6', R7, '7.7', '7.8', R7b]

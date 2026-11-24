@@ -325,12 +325,12 @@ energy at face value, $gz\matter M_s = 2.1\unit{kJ}$, gives half that, $8.5\time
 estimate no near-field camera could draw a face.
 
 The pixel of Section II falls far below the ceiling. Its ratio on the person grows as $\tau^{3/2}$, from
-$1.44\times10^5$ in a second, but only while the pair keeps its shape. The two grams pull each other together, with
-the relative acceleration $2G\matter m/\xi^2 = 1.3\times10^{-9}\unit{m\,s^{-2}}$, and meet after about
-$\sqrt{\xi^3/G\matter m} = 3.9\times10^3$ s, an hour; the person's tide, moving them apart by
-$\tfrac12\curv{\tE}\xi\tau^2$, would part them only after $\sqrt{2/\curv{\tE}} = 1.5\times10^4$ s. Read in
-stretches of $10^3$ s and averaged over the age of the universe, the pixel reaches about $10^{17}$, a blur of 5.8°. The rule carried to the age of the universe would give $4.1\times10^{31}$ and 3.2°, a formal
-extrapolation (Figure [](#fig:snr-ladder)).
+$1.44\times10^5$ in a second, but only while the pair keeps its shape. The two grams pull each other together, with the
+relative acceleration $2G\matter m/\xi^2 = 1.3\times10^{-9}\unit{m\,s^{-2}}$, and meet after about $\sqrt{\xi^3/G\matter
+m} = 3.9\times10^3$ s, an hour; the person's tide, moving them apart by $\tfrac12\curv{\tE}\xi\tau^2$, would part them
+only after $\sqrt{2/\curv{\tE}} = 1.5\times10^4$ s. Read in stretches of $10^3$ s and averaged over the age of the
+universe, the pixel reaches about $10^{17}$, a blur of 5.8°. The rule carried to the age of the universe would give
+$4.1\times10^{31}$ and 3.2°, a formal extrapolation (Figure [](#fig:snr-ladder)).
 
 ![Look first at how little the blur moves: sixty-eight powers of ten of signal-to-noise ratio narrow it from 26° to
 1.5°. The ratios are computed for the person of 70 kg a metre away; the blurs are chapter 3.7's exact calculation. The open circle
