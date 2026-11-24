@@ -64,6 +64,7 @@ import RicciWeyl from './live/RicciWeyl.svelte';
 import GaugeOrWave from './live/GaugeOrWave.svelte';
 import MagneticTide from './live/MagneticTide.svelte';
 import WaveRings from './live/WaveRings.svelte';
+import NearToFar from './live/NearToFar.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -305,6 +306,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A ring of free balls in a gravitational wave coming toward you, with the two arms of a detector you can turn and the magnetic part drawn beside it, turned by 45 degrees',
 		component: WaveRings
+	},
+	'near-to-far': {
+		label:
+			"The changing tide of a turning pair in the plane of its orbit, from Newton's pull of the masses close by to the wave far away, with a probe and a log–log plot of the two laws",
+		component: NearToFar
 	},
 	'noise-spectrum': {
 		label:

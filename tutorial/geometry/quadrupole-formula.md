@@ -6,7 +6,7 @@ part: '7'
 requires: ['1.5b', '1.6', '2.3', '5.2', '5.4', '6.5', '7.2', '7.4', '7.5', '7.6']
 paper: [sec:waves, eq:quadrupole, eq:dumbbell, eq:unresolved, eq:wave-zone, eq:rotor-amplitudes, fig:quadrupole, sec:regimes, sec:near-field, sec:one-pixel, fig:present, sec:vistas, eq:multipole, fig:binary-field]
 figures: [fig:quadrupole, fig:present, fig:binary-field]
-live: [quadrupole]
+live: [quadrupole, near-to-far]
 depth: A
 ---
 
@@ -133,20 +133,13 @@ $$\int\matter T_{kl}\,\dd V = \tfrac12\matter m\Omega^2d^2\bigl(\hat w_k\hat w_l
 
 The second moment is $\matter I_{kl} = \tfrac12\matter md^2\hat u_k\hat u_l$, and since $\dot{\hat u} = \Omega\hat w$ and
 $\dot{\hat w} = -\Omega\hat u$, two derivatives turn $\hat u_k\hat u_l$ into $2\Omega^2(\hat w_k\hat w_l - \hat u_k\hat
-u_l)$. So $\tfrac12\ddot{\matter I}_{kl}$ is the same table, at every instant. Without the rod the total would have the
-trace $\tfrac12\matter m\Omega^2d^2$, twice the kinetic energy, while $\ddot{\matter I}_{kl}$ has none: a camera far away
-reads stress, not only motion.
+u_l)$. So $\tfrac12\ddot{\matter I}_{kl}$ is the same table, at every instant (Figure [](#fig:rotor-stress)). Without the
+rod the total would have the trace $\tfrac12\matter m\Omega^2d^2$, twice the kinetic energy, while $\ddot{\matter
+I}_{kl}$ has none: a camera far away reads stress, not only motion.
 
-<!-- diagram: tut-rotor-stress — One panel, about 520 × 300 px at 1440 (full width on a phone). Left: the rotor seen
-from above, the z axis out of the page (⊙), two filled balls (matter colour) at the ends of a thin rod along û, drawn at
-about 60° from the x axis, with a small curved arrow for the anticlockwise sense of turning. At each ball a short ink
-arrow along ŵ, at right angles to the rod, with one label between them, "masses: ½mΩ²d² ŵŵ"; along the rod a heavier
-ink bar with inward arrowheads at both ends, labelled "rod's tension: −½mΩ²d² ûû". Right: three small glyphs in a row
-joined by "+" and "=": a bar along ŵ (the masses' table), a bar along û with a minus sign (the rod's), and the two
-crossed, labelled "½Ï". No orange or blue, which mean stretch and squeeze in the tutorial's figures. Labels beside the
-geometry, never on a line. Caption: "Look first at the bar along the rod: the masses' momentum flux across the rod and
-the rod's tension along it add up to half the acceleration of the second moment. Without the tension the sum would be
-wrong by the whole bar. Schematic." -->
+![Look first at the bar along the rod: the masses' momentum flux across the rod and the rod's tension along it add up
+to half the acceleration of the second moment. Without the tension the sum would be wrong by the whole bar.
+Schematic.](tut-rotor-stress){#fig:rotor-stress}
 
 **Back in time.** We put [](#eq:virial) into [](#eq:far-stress):
 
@@ -349,10 +342,11 @@ found for a single field.
 **Against the retarded positions.** Newton's field of the masses where they were a time $r/c$ ago, with one delay for
 the whole source, is $\field\Phi - (r/c)\dot{\field\Phi} + \dots$, wrong at order $kr$. In the true field each piece's
 own delay $R/c$ cancels its own $1/R$, which is why the first-order term is uniform and vanishes. For a turning pair at
-$kr = 0.1$ the all-zone solution of the next section differs from Newton's field of the present positions by 0.14 per
-cent in the plane of the orbit and 0.5 per cent on its axis. The retarded positions are turned back by $\Omega r/c =
-kr/2$, which changes the two-armed pattern by about $kr$, 10 per cent: Section VIII's "a tenth to half of a per cent,
-depending on direction, against ten per cent", panel (b) below.
+$kr = 0.1$ the whole tide of the all-zone solution of the next section, measured by its size $|\curv\tE|$, differs from
+Newton's tide of the present positions by 0.14 per cent in the plane of the orbit and 0.5 per cent on its axis (its
+entry $\curv\tE_{zz}$ alone, by 0.30 per cent in the plane). The retarded positions are turned back by $\Omega r/c =
+kr/2$ (Figure [](#fig:present-positions)), which changes the two-armed pattern by about $kr$, 10 per cent: Section
+VIII's "a tenth to half of a per cent, depending on direction, against ten per cent", panel (b) below.
 
 **A body in steady motion.** For one body moving at the constant velocity $\obs{\vect V}$, $\matter\rho(\vect y, t) =
 \matter\rho_0(\vect y - \obs{\vect V}t)$, and chapter 7.4 left its velocity terms to this chapter. The second term,
@@ -367,15 +361,9 @@ every order).
 
 {{paper fig:present}}
 
-<!-- diagram: tut-present-delay — One panel, about 520 × 320 px at 1440 (full width on a phone). A pair of masses (matter
-colour) on a circle round a small cross, drawn solid at their present places; the same pair drawn hollow and pale at
-their retarded places, turned back by the angle Ωr/c (exaggerated to about 25°), labelled "retarded positions". To the
-right, at a distance r, a pixel drawn as a small ring of twelve free balls, its stretch axis (orange) along the solid
-pair's line and its squeeze (blue) across it; a dashed ink line from the pixel along the present line and a dotted
-line along the retarded line, the angle between them marked "Ωr/c = kr/2". Below, one line of type: "zeroth order:
-present positions; first order: uniform, zero by conservation of mass; error (kr)²". Labels beside the geometry.
-Caption: "Look first at the pixel's stretch axis: near a slow source it lies along the masses' present line, not the
-retarded one, because the first-order delay adds only a uniform term, and that term is zero. Angles exaggerated." -->
+![Look first at the pixel's stretch axis: near a slow source it lies along the masses' present line, not the retarded
+one, because the first-order delay adds only a uniform term, and that term is zero. Angles
+exaggerated.](tut-present-delay){#fig:present-positions}
 
 ## One solution runs from Newton's pull near the source to the wave far away
 
@@ -432,19 +420,13 @@ since $\lambda = \pi c/\Omega$. This is the paper's "with the numerical factors 
 radius of the figure's dotted circle.[^section-xi] The **crossover** is the band of distances over which the field passes
 from one law to the other. At its centre the exact field is three times either law, and its local law passes through
 $r^{-3}$, halfway between $r^{-5}$ and $r^{-1}$, at $0.310\lambda$. The crossing lies beyond $\lambda/2\pi$, where $kr =
-1$, because in this component Newton's tide carries the factor 15 against the wave's 1. Elsewhere the crossing moves:
-on the axis of the orbit the two laws cross at $0.21\lambda$, and for the whole tide in the plane, measured by
-$|\curv\tE|$, at $0.40\lambda$.
+1$, because in this component Newton's tide carries the factor 15 against the wave's 1 (Figure [](#fig:crossover)).
+Elsewhere the crossing moves: on the axis of the orbit the two laws cross at $0.21\lambda$, and for the whole tide in
+the plane, measured by $|\curv\tE|$, at $0.40\lambda$.
 
-<!-- diagram: tut-crossover — One panel, about 560 × 340 px at 1440 (full width on a phone). Log–log axes: horizontal
-r/λ from 0.02 to 10, vertical r|𝓔_zz| in the plane of the orbit, in units of GΔIΩ⁴/c⁴, from about 1 to 10⁶. Two thin
-straight asymptotes: the near law (15/4)GΔI/r⁴ (slope −4 on these axes, labelled "Newton's tide, r⁻⁵") and the far law
-4GΔIΩ⁴/c⁴ (horizontal, labelled "wave, 1/r"), both in ink at half weight; the exact curve (GΔI/4r⁴)√(225 + 135(kr)² +
-39(kr)⁴ + 10(kr)⁶ + (kr)⁸), kr = 2πr/λ, in the curvature colour, joining them. A small open circle where the asymptotes
-cross at r = 0.313λ, labelled "0.31λ"; a vertical dotted line at r = λ/2π = 0.159λ, labelled "λ/2π". Labels beside the
-lines, never on them. Caption: "Look first at the open circle: in the plane of the orbit, the near law and the wave law
-of 𝓔_zz cross at 0.31 of a wavelength, twice the reduced wavelength λ/2π, and the exact field of the all-zone solution
-runs from one law to the other. Lines exact." -->
+![Look first at the open circle: in the plane of the orbit, the near law and the wave law of $\curv\tE_{zz}$ cross at
+0.313 of a wavelength, twice the reduced wavelength $\lambda/2\pi$, and the exact field of the all-zone solution runs
+from one law to the other. Lines exact.](tut-crossover){#fig:crossover}
 
 **The paper's pair.** Two black holes of $30\,M_\odot$ each, 2200 km apart, turn by Kepler's law at $\Omega =
 \sqrt{2G\matter m/d^3} = 27.3\unit{s^{-1}}$ (chapter
@@ -456,22 +438,16 @@ the dotted circle and winds into the wave's spiral outside it.[^magnetic]
 
 {{paper fig:binary-field}}
 
-<!-- try: near-to-far (a new interactive figure, NearToFar, on a small engine engine/multipole.ts whose curvature is
-checked against the two asymptotes and the closed form of eq:plane-tide, |𝓔_zz| = (GΔI/4r⁵)√(225 + 135(kr)² + 39(kr)⁴
-+ 10(kr)⁶ + (kr)⁸) in the plane) — Upper panel, about 640 × 400 px at 1440 (full width on a phone): the changing 𝓔_zz of
-eq:multipole in the plane of a circular orbit, drawn as the paper draws fig:binary-field, orange for stretch and blue
-for squeeze, scaled at each place by the local strength; two small balls at the centre turning; a dotted circle at λ/2π
-and a dashed one at 0.313λ; a draggable probe. A zoom slider from 0.02λ to 10λ across the panel (logarithmic) and a
-play button that turns the pattern. Lower panel, about 640 × 200 px: r|𝓔_zz| in the plane against r/λ on log–log
-axes, with its two asymptotes and the probe's place marked. Readouts: "crossing in the plane at 0.313λ", "probe at r =
-… λ, local law r^…" (the logarithmic slope of |𝓔_zz|, from −5 to −1), "exact / near law = …". A second slider halves
-or doubles the orbital speed at fixed separation, which moves the wavelength in metres; a readout gives the crossing in
-km. Opens at a zoom of 2λ, playing, probe at 0.3λ. Predict first: "In the plane of the orbit, the near law and the
-wave law: do they meet at λ/2π, or elsewhere?" (Answer: at 0.31λ, twice λ/2π, because in the plane Newton's tide
-across the plane carries the factor 15 against the wave's (kr)⁴, which reaches 15 at kr = 1.97.) Then: "Halve the
-orbital speed at the same separation. Where does the crossing go?" (Answer: twice as far out in metres, since the
-wavelength doubles, and at the same fraction of a wavelength.) Keyboard: Tab reaches the sliders, the probe and play,
-arrows step them, shift for larger steps; both themes; phone; static on reduced motion. -->
+::: try {#near-to-far}
+The changing tide $\curv\tE_{zz}$ of a turning pair in the plane of its orbit, from the paper's
+[](/paper/#eq:multipole), drawn as the paper's Figure [](/paper/#fig:binary-field) draws it, orange for stretch and blue
+for squeeze. A zoom runs from a fiftieth of a wavelength to ten wavelengths, and a probe reads the field at its
+distance. Below, the plot of [](#eq:plane-tide)'s amplitude against distance shows the two laws. A second slider
+changes the pair's orbital speed at a fixed separation.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, move
+the probe out from the pair and say where the pattern stops turning rigidly and starts to wind into a spiral.
+:::
 
 ::: check
 ### Q
@@ -612,8 +588,9 @@ and the turning table gives $4.55\times10^{-41}$ W at $\Omega = 100.5\unit{s^{-1
     momentum removes the second piece of the third term.
 
 [^error]: The paper's Section XI gives this error as of order $(d/r)^2$, from the higher moments. The $(kr)^2$ comes on
-    top, $0.14(kr)^2$ in the plane of the orbit and $0.50(kr)^2$ on its axis, and is the larger beyond about 3500 km for
-    the black-hole pair below; the paper should say "errors of order $(d/r)^2$ and $(kr)^2$".
+    top, $0.14(kr)^2$ in the plane of the orbit and $0.50(kr)^2$ on its axis for the size of the whole tide, and is the
+    larger beyond about 3500 km for the black-hole pair below; the paper should say "errors of order $(d/r)^2$ and
+    $(kr)^2$".
 
 [^gauge]: With $\partial_ju = -\hat n_j/c$, the chain rule gives $\partial_j[f(u)/r] = -\hat n_j[f/r^2 + \dot f/cr]$, so
     the quadrupole terms of $\field{\bar h}^{0i}$ are $-(2G/c^3)\,\partial_j[\dot{\matter I}_{ij}(u)/r]$, and the spin term
