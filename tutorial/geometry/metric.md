@@ -574,7 +574,7 @@ entries of the metric count as much as the time entry. Near a mass, in the coord
 because their spatial part is the same in every direction), $\field g_{ij} = (1 - 2\field\Phi/c^2)\delta_{ij}$, which
 this chapter states without proof. The spatial entries bend light as much as the time entry does, so a ray that passes a
 mass $\matter M$ at the distance $b$ is turned by $4G\matter M/bc^2$, twice Newton's value for a particle moving at $c$.
-At the Sun's edge this is $1.75''$ (seconds of arc), against Newton's $0.875''$. Chapter 7.4 derives the spatial entries
+At the Sun's edge this is $1.75''$ (seconds of arc), against Newton's $0.88''$. Chapter 7.4 derives the spatial entries
 and chapter 11.1 the bending, which the paper uses in [Section VII](/paper/#sec:no-lens) and [Section
 XI](/paper/#par:the-transparent-sun-as-a-lens).
 

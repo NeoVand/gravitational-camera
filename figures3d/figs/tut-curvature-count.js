@@ -19,15 +19,15 @@ import { chapter, palette, stack, CURV } from './tut-curvature-lib.js';
 const name = 'tut-curvature-count';
 const check = checker(name);
 
-const SQ = 10.4;                           // a square's side
-const IN = 1.7;                            // the air between squares in a block
-const BLOCK = 10;                          // the air between blocks
-const OUTLINE = 0.45;                      // the squares' outline
+export const SQ = 10.4;                           // a square's side
+export const IN = 1.7;                            // the air between squares in a block
+export const BLOCK = 10;                          // the air between blocks
+export const OUTLINE = 0.45;                      // the squares' outline
 const TINT_B = 0.42;                       // the magnetic part's fill: the curvature's colour at this opacity
 const TINT_S = 0.3;                        // the space block's fill: faint ink at this opacity
-const BRACKET = 3.2;                       // the bracket's hooks
-const BRACKET_AIR = 3;                     // between the squares and the bracket
-const LINE_SKIP = 1.6;                     // between the lines of a name
+export const BRACKET = 3.2;                       // the bracket's hooks
+export const BRACKET_AIR = 3;                     // between the squares and the bracket
+export const LINE_SKIP = 1.6;                     // between the lines of a name
 const RULE_AIR = 5;                        // between the names and the rule of ticks
 const TICK_H = 4;                          // a tick's height, up from the rule
 const TICK_W = 0.7;                        // a tick's stroke

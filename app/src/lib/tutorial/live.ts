@@ -60,6 +60,7 @@ import ComplexField from './live/ComplexField.svelte';
 import LongestPath from './live/LongestPath.svelte';
 import StressEnergyTable from './live/StressEnergyTable.svelte';
 import CarryAround from './live/CarryAround.svelte';
+import RicciWeyl from './live/RicciWeyl.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -281,6 +282,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'Carry an arrow round a loop on a sphere without turning it, and compare its turn with the area enclosed; on a flat sheet with polar labels it comes home unturned',
 		component: CarryAround
+	},
+	'ricci-weyl': {
+		label:
+			'A ball of free dust inside matter, beside a mass or in a beam: the tide split into a Ricci part that changes its volume and a Weyl part that changes its shape',
+		component: RicciWeyl
 	},
 	'noise-spectrum': {
 		label:

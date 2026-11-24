@@ -6,7 +6,7 @@ part: '7'
 requires: ['1.3', '1.5', '6.5', '7.1', '7.2']
 paper: [sec:pixel, eq:tidal, eq:magnetic, sec:introduction, sec:one-pixel, sec:vistas, sec:near-field, fig:sky-integral]
 figures: []
-live: []
+live: [ricci-weyl]
 depth: B
 ---
 
@@ -235,21 +235,14 @@ the first two requirements, and the third while $\Lambda$ is small:
 $$\curv G_{\mu\nu} + \Lambda\field g_{\mu\nu} = \frac{8\pi G}{c^4}\matter T_{\mu\nu} .$$
 
 Here $\sym{cosmological-constant}{\Lambda}$ is the **cosmological constant**, about $1.1\times10^{-52}\unit{m^{-2}}$
-from the expansion of the universe (stated).[^Lambda] The trace now gives $\curv R = 4\Lambda - (8\pi G/c^4)\matter
-T$, so the trace-reversed form gains $+\Lambda\field g_{\mu\nu}$, and with $\field g_{00} = -1$ the trace of the tide
-gains $-\Lambda c^2 = -1.0\times10^{-35}\unit{s^{-2}}$ everywhere, the paper's number.
+from the expansion of the universe (stated).[^Lambda] The trace now gives $\curv R = 4\Lambda - (8\pi G/c^4)\matter T$,
+so the trace-reversed form gains $+\Lambda\field g_{\mu\nu}$, and with $\field g_{00} = -1$ the trace of the tide gains
+$-\Lambda c^2 = -9.9\times10^{-36}\unit{s^{-2}}$ everywhere, the paper's $-1\times10^{-35}$ (Figure [](#fig:traces)).
 
-<!-- diagram: tut-einstein-traces — One panel, about 640 × 360 px at 1440 (full width on a phone, labels then above
-each bar). A horizontal bar chart of |tr 𝓔| on a logarithmic axis from 10⁻³⁶ to 10⁻⁵ s⁻², one bar per row, in this
-order, values to two figures: "the Earth's mean density" 4.6 × 10⁻⁶; "water" 8.4 × 10⁻⁷; "Casimir gap, 1 µm"
-−8.1 × 10⁻³⁰; "dark matter round the Sun" 6.0 × 10⁻³¹; "sunlight at the Earth" 8.5 × 10⁻³²; "cosmological constant"
-−1.0 × 10⁻³⁵. Positive traces as solid bars in the matter colour (sunlight in the light colour); the two negative ones
-as outlined, thinly hatched bars, the value printed with its minus sign, and a small legend "outlined: negative trace
-(a ball of dust swells)". A thin vertical dotted line at 9.3 × 10⁻⁹ s⁻² labelled at its top "the person's stretch at
-1 m". Labels left of the bars, values right of them, never on the bars. Caption: "Look first at the two outlined bars:
-the negative energy between the Casimir plates and the cosmological constant make the trace of the tide negative.
-Every bar is tr 𝓔 = 4πG(ρ + Σp/c²) − Λc² for its matter; the scale is logarithmic and spans thirty orders of
-magnitude." -->
+![Look first at the two outlined bars: the negative energy between the Casimir plates and the cosmological constant
+make the trace of the tide negative. Every bar is $\mathrm{tr}\,\curv\tE = 4\pi G(\matter\rho + \Sigma\matter
+p/c^2) - \Lambda c^2$ for its matter; the scale is logarithmic and spans thirty orders of
+magnitude.](tut-einstein-traces){#fig:traces}
 
 ## Inside matter the tide has a part fixed by the matter at that point
 
@@ -359,43 +352,25 @@ tensor. We read these ten equations for the observer at rest, sorted by time ind
 
 Of 7.2's $6 + 8 + 6 = 20$ numbers these remove $1 + 3 + 6$, and $5 + 5 + 0 = 10$ remain, the Weyl tensor's: the five
 of a symmetric trace-free $\curv\tE$ and the five of a symmetric trace-free $\curv\tB$, each one of chapter 1.5's
-tables of five. They are Section II's "ten numbers".
+tables of five. They are Section II's "ten numbers" (Figure [](#fig:twenty-split)).
 
-<!-- diagram: tut-einstein-twenty — One panel, about 560 × 260 px at 1440 (full width on a phone). Chapter 7.2's row of
-twenty small squares in three blocks (6, 8, 6), outlined in thin ink and labelled below "R₀ᵢ₀ⱼ: 𝓔 (6)", "R₀ᵢⱼₖ: 𝓑
-(8)", "Rᵢⱼₖₗ (6)". Recoloured: in the first block 1 square filled in the matter colour and 5 in the curvature colour;
-in the second, 3 in the matter colour and 5 in the curvature colour; in the third, all 6 in the matter colour. Above
-the row two brackets: a dotted one that jumps the gaps over the ten matter-coloured squares, labelled "Ricci: fixed by
-the matter at the point (10)", and one over the ten curvature-coloured squares, labelled "Weyl: from matter elsewhere
-(10)". Under the matter-coloured squares of each block, small labels "tr 𝓔", "𝓑's antisymmetric part", "fixed by 𝓔
-in vacuum". Below the row: "empty space: the Ricci squares are zero, and 5 + 5 = 10 are left". Labels never on the
-squares. Caption: "Look first at the colours: Einstein's equation fixes ten of the twenty curvature numbers from the
-energy and stress at the point (the trace of the tide, the antisymmetric part of the magnetic part, and the six of the
-curvature of space), and leaves the Weyl tensor's ten, five in 𝓔 and five in 𝓑." -->
+![Look first at the colours: Einstein's equation fixes ten of the twenty curvature numbers from the energy and stress
+at the point (the trace of the tide, the antisymmetric part of the magnetic part, and the six of the curvature of
+space), and leaves the Weyl tensor's ten, five in $\curv\tE$ and five in $\curv\tB$.](tut-einstein-twenty){#fig:twenty-split}
 
 **What it means.** The Ricci part changes the volume of a ball of free dust and is set by the matter at that point,
-as chapter 1.5's margin promised. The Weyl part changes the shape and not the volume. Nothing at the point sets it: it
-comes from matter elsewhere, and from gravitational waves (chapter 7.6).
+as chapter 1.5's margin promised. The Weyl part changes the shape and not the volume (Figure [](#fig:three-balls)).
+Nothing at the point sets it: it comes from matter elsewhere, and from gravitational waves (chapter 7.6).
 
 So a pixel in empty space images the matter around it through the Weyl part. In a weak static field that part sums
 distant matter with the weight of the paper's Figure [](/paper/#fig:sky-integral), which averages to zero over the sky
 ([1.5](/tutorial/newton/five-numbers/#averaged-over-the-sky-the-tidal-weight-vanishes)), so a uniform shell round the
 pixel gives none.
 
-<!-- diagram: tut-einstein-three-balls — Three panels side by side, each about 300 × 280 px at 1440 (stacked on a
-phone), each a ball of free dust drawn as a dashed ink circle (the start) and a solid ink outline (a little later,
-deformation exaggerated by the same stated factor in all three, about 30 per cent), with a few dots on the outline.
-(a) "inside water, far from other masses": a faint blue-grey wash fills the panel; the solid outline is a smaller circle, with short inward
-arrows in the curvature colour, all of equal length; under it "volume shrinks, shape kept: Ricci". (b) "beside a mass
-in empty space": a stone sphere at the panel's left edge; the solid outline is an ellipse longer along the line to the
-sphere (orange tint at its two ends) and narrower across (blue tint at the sides), of the same area as the dashed
-circle; under it "shape changes, volume kept: Weyl". (c) "inside a neutrino beam": three thin parallel lines in the
-light colour crossing the panel horizontally, with an arrowhead and the label "beam"; the solid outline an ellipse
-narrower across the beam (blue tint) and unchanged along it; under it "squeezed across the beam only: Ricci, from
-stress". Labels beside the geometry, never on lines. Caption: "Look first at the outlines against the dashed circles:
-inside water far from other masses the ball shrinks and stays round, beside a mass it keeps its volume and changes shape, and inside a beam
-it is squeezed across the beam alone. The first and third are the Ricci part, set by the matter at the ball; the
-second is the Weyl part, set by the mass elsewhere. The deformations are exaggerated." -->
+![Look first at the outlines against the dashed circles: inside water far from other masses the ball shrinks and stays
+round, beside a mass it keeps its volume and changes shape, and inside a beam it is squeezed across the beam alone. The
+first and third are the Ricci part, set by the matter at the ball; the second is the Weyl part, set by the mass
+elsewhere. The deformations are exaggerated.](tut-einstein-three-balls){#fig:three-balls}
 
 ## A single mass stretches twice as hard as it squeezes, in Einstein's theory too
 
@@ -423,26 +398,17 @@ T^{0\nu}$, hold no second derivative of the metric in time; they are **constrain
 the energy and momentum then, as Gauss's law does for the mass (stated without proof). Chapter 7.4 takes up the rest of
 the equation for a weak field, where it becomes a wave equation.
 
-<!-- try: ricci-weyl (a new interactive figure, RicciWeyl, not yet built; a port of the GR course's
-curvature-cloud-explorer, chapter-9.html#curvature-cloud-explorer, Ricci against Weyl) — One panel, about 640 × 460 px
-at 1440 (full width on a phone, controls below the drawing). Left: a ball of 200 free test masses (small dots in the
-observer colour) in a slice through its centre, the starting circle dashed and the ball drawn after a fixed time, its
-deformation exaggerated by a stated factor ("drawn ×N"). Each grain moves by ξ(t) = ξ₀ − ½𝓔ξ₀t² with
-𝓔 = 𝓔^Ricci + 𝓔^Weyl. Controls: a slider "density of the medium" from 0 to 20 000 kg m⁻³ with stops at 0 (empty),
-1000 (water) and 5513 (the Earth's mean); a slider "pressure" from 0 to 0.3ρc² (its effect drawn ×10¹⁴ when below
-10⁻¹⁰ρc², stated beside it; the readout gives the true value); a slider "beam flux F" from 0 to 10⁴ W m⁻² with a stop
-at 1361 (sunlight) and a dial for the beam's direction in the slice; a slider "mass outside" from 0 to 10⁴ kg and a
-slider "its distance" from 0.5 to 5 m, the mass drawn as a stone disc at the slice's edge. The medium's, the beam's
-and the mass's tides are drawn on one stated display scale. Readouts to two figures: tr 𝓔 in s⁻²
-(4πG(ρ + Σp/c²) + 8πGF/c³); "volume changes at V̈/V = −tr 𝓔"; the size of the trace-free part in s⁻², split into
-"Weyl (from the mass outside)" and "Ricci (from the beam and the pressure)". Opens inside water with a 1000 kg mass at
-2 m: the ball shrinks and is drawn slightly elongated toward the mass. Predict first: "Put the ball inside water with
-nothing else nearby. Does it change its shape, its size, or both?" (Answer: only its size; the trace is
-8.4 × 10⁻⁷ s⁻² and the trace-free part is zero.) Then: "Take it out of the water and bring a mass near. What changes
-now?" (Answer: only its shape; the trace is zero and the trace-free part is the Weyl part, −2 : 1 : 1.) Then: "Turn on
-a beam of light through it. Along which directions is it squeezed?" (Answer: across the beam only, by 4πGF/c³ in each
-direction; nothing along it.) Keyboard: Tab reaches every slider and the dial, arrows step them, shift for larger
-steps; both themes; phone; static on reduced motion (the ball drawn at its final shape). -->
+::: try {#ricci-weyl}
+A slice through a ball of free dust, released at rest and drawn a second later, with its starting circle dashed and
+its principal axes marked, orange for a stretch and blue for a squeeze. The sliders set the density of the matter
+around it, its pressure, a mass beside it and a beam of light or neutrinos through it, with the beam's direction on a
+dial. The readouts give the trace of the tide, the ball's rate of change of volume $\ddot V/V = -\mathrm{tr}\,\curv\tE$,
+and the trace-free part split into its Weyl and Ricci shares. The drawing's magnification is stated beside it, because
+the tides span many powers of ten. It opens in water with a tonne two metres away.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, raise
+the pressure and watch which readouts change and which stay.
+:::
 
 ::: check
 ### Q
