@@ -6,7 +6,7 @@ part: '8'
 requires: ['1.7', '4.1', '4.2', '4.3', '8.2']
 paper: [sec:near-field, sec:waves, eq:dumbbell, sec:regimes, sec:thermal, sec:first-image, sec:vistas]
 figures: []
-live: []
+live: [ladder-oscillator]
 depth: A
 ---
 
@@ -21,10 +21,10 @@ Chapters 4.2, R4 and 7.7 used these numbers and left their meaning here. What is
 wave, and when does counting quanta matter? We answer with the operators of [chapter 8.2](/tutorial/quantum/operators/)
 applied to one oscillator, then carry the answer to a wave.
 
-<!-- diagram: tut-quantum-hero — Part 8's hero, described in full in chapter 8.1 (the steel ball and its cold copy,
-each with its quadrupole mode drawn as a ladder of levels, about 4 × 10⁸ quanta filled at 300 K and only the zero
-point when cold). This chapter derives what it shows; its caption may end "The ladder's levels are derived in this
-chapter." -->
+![Look first at the two ladders: the same ball holds hundreds of millions of quanta in its ringing at room
+temperature and almost none when cold. The camera's objects are quantum, and nearly always behave classically. The
+levels are schematic, and broken where hundreds of millions of them are left out. The ladder's levels are derived in
+this chapter.](tut-quantum-hero){#fig:quantum-hero}
 
 ::: plain
 In quantum mechanics a thing that swings or rings, such as a cart on a spring or a ringing steel ball, holds energy
@@ -140,8 +140,8 @@ $$\boxed{\sym{zero-point-width}{x_{\rm zp}} = \sqrt{\frac{\hbar}{2\matter m\omeg
 
 a length, since $\mathrm{J\,s}/(\mathrm{kg\,s^{-1}})$ is $\mathrm{m^2}$. The bell curve $|\psi_0|^2$, of standard
 deviation $x_{\rm zp}$, is the **zero-point motion**, a trembling that no cooling removes, and $E_0 = \tfrac12\hbar\omega$
-is the **zero-point energy**. This is chapter 8.2's Gaussian that reaches $\sigma_x\sigma_p = \hbar/2$, so the ground
-state is as still as quantum mechanics allows.
+is the **zero-point energy** (Figure [](#fig:levels)). This is chapter 8.2's Gaussian that reaches $\sigma_x\sigma_p =
+\hbar/2$, so the ground state is as still as quantum mechanics allows.
 
 **A number.** Chapter
 [4.3](/tutorial/response/elastic-bodies/#a-guessed-shape-overestimates-the-lowest-note-and-a-good-guess-comes-close)
@@ -154,16 +154,9 @@ $2.9\times10^4$ times more ([a later section](#in-a-warm-mode-the-order-of-a-pro
 **A limit.** As $\hbar \to 0$ the steps shrink to nothing, so every energy is allowed, and $x_{\rm zp} \to 0$: the
 classical ball can rest exactly at the bottom.
 
-<!-- diagram: tut-oscillator-levels — One panel, about 520 × 360 px at 1440 (full width on a phone). The parabola
-V = ½mω²x² as a thin ink curve, x across (in units of x_zp, ticks at −4, −2, 0, 2, 4) and energy up (in units of ħω,
-ticks 0 to 4.5). Horizontal ink segments for the levels E_n = (n + ½)ħω, n = 0 to 4, each drawn between the two points
-where it meets the parabola, labelled "n = 0", "n = 1", … at the right, outside the curve. On the n = 0 level, the
-ground-state density |ψ₀|² ∝ e^{−x²/2x_zp²} drawn as a light grey filled bell sitting on the line, with its height
-schematic and its width exact. A small double arrow from the bottom of the parabola to the n = 0 line, labelled "½ħω",
-and a second between n = 2 and n = 3, labelled "ħω". A short bracket under the bell, at e^{−1/2} of its height, labelled
-"±x_zp". No orange or blue. Caption: "Look first at the bottom: the lowest level sits half a step above the floor of
-the well, and its bell curve, the zero-point motion, has the width x_zp. Every step above it is ħω. The parabola and the
-levels are exact; the height of the bell is schematic." -->
+![Look first at the bottom: the lowest level sits half a step above the floor of the well, and its bell curve, the
+zero-point motion, has the width $x_{\rm zp}$. Every step above it is $\hbar\omega$. The parabola and the levels are
+exact; the height of the bell is schematic.](tut-oscillator-levels){#fig:levels}
 
 ## One state fills an area $2\pi\hbar$ of phase space
 
@@ -172,23 +165,17 @@ We want to count states, as chapter
 1.7's phase plane the orbit of energy $E$ is an ellipse of area $2\pi E/\omega$, so the ellipse of level $n$ encloses
 $2\pi E_n/\omega = 2\pi\hbar(n + \tfrac12)$. Each level therefore owns a band of area $2\pi\hbar$, between the
 ellipses that enclose $2\pi\hbar n$ and $2\pi\hbar(n + 1)$, with its own ellipse down the middle. The ground state's
-band is the central disc. So counting states is measuring area in units of $2\pi\hbar$, which is 4.2's cell for a
-coordinate and its momentum. For other systems the rule holds at large $n$ (stated).
+band is the central disc (Figure [](#fig:bands)). So counting states is measuring area in units of $2\pi\hbar$,
+which is 4.2's cell for a coordinate and its momentum. For other systems the rule holds at large $n$ (stated).
 
 **A number.** Chapter 1.7's cart, 2 kg on $50\unit{N\,m^{-1}}$ and swinging 0.1 m to each side, has $E = 0.25$ J and
 an ellipse of area $0.314\unit{J\,s}$, which holds $0.314/6.63\times10^{-34} = 4.7\times10^{32}$ bands: quanta of
 $5.3\times10^{-34}$ J, the "about $5\times10^{32}$ steps" of 1.7's margin note.
 
-<!-- diagram: tut-phase-rings — One panel, about 420 × 420 px at 1440 (full width on a phone): chapter 1.7's phase
-plane in the scaled axes x/x_zp across and p/(mω x_zp) up, so that the ellipses are circles (thin grey axes, ticks at
-±2, ±4). The bands owned by the levels n = 0, 1, 2, 3, between the circles of radius 2√n and 2√(n + 1) in these units
-(the central disc of radius 2 for n = 0), shaded alternately light and lighter grey with no outline. On each band, the
-classical orbit of its level, the circle of radius √(2(2n + 1)) at the energy (n + ½)ħω, drawn as a thin ink line down
-the middle of the band. Each band labelled beside it, outside the drawing: "n = 0", "n = 1", …, and "area 2πħ" once,
-beside the n = 1 band; the n = 0 orbit labelled "encloses πħ". No orange or blue. Caption: "Look first at the shaded
-bands: in these axes every band has the same area, 2πħ, and each belongs to one level, so counting states is measuring
-area. The ink circles are the classical orbits at the energies (n + ½)ħω, each halfway across its band; the ground
-state's band is the central disc. The axes are scaled so that the ellipses are round." -->
+![Look first at the shaded bands: in these axes every band has the same area, $2\pi\hbar$, and each belongs to one
+level, so counting states is measuring area. The ink circles are the classical orbits at the energies $(n +
+\tfrac12)\hbar\omega$, each dividing its band's area in half; the ground state's band is the central disc. The axes
+are scaled so that the ellipses are round.](tut-phase-rings){#fig:bands}
 
 ## A warm mode holds about $\kB T/\hbar\omega$ quanta
 
@@ -238,7 +225,7 @@ $$\langle E\rangle \approx \kB T\Bigl[1 + \frac{1}{12}\Bigl(\frac{\hbar\omega}{\
 This is 4.2's equipartition, $\kB T$ per mode, and the first correction is $(\hbar\omega)^2/12\kB T$: the zero point's
 half quantum almost cancels the half quantum missing from $\bar n$. The regime $\hbar\omega \ll \kB T$ is the
 **classical limit**. When $\hbar\omega \gg \kB T$, $\bar n \approx e^{-\hbar\omega/\kB T}$ and $\langle E\rangle \to
-\tfrac12\hbar\omega$: the mode is a **frozen mode**, nearly always in its ground state.
+\tfrac12\hbar\omega$: the mode is a **frozen mode**, nearly always in its ground state (Figure [](#fig:occupation)).
 
 **Numbers.** For the steel ball at 15.1 kHz and 300 K, $\hbar\omega/\kB T = 1.0\times10^{-29}/4.14\times10^{-21} =
 2.4\times10^{-9}$, and $\bar n = 4.1\times10^8$, the paper's "$4\times10^8$ quanta". Silicon's Raman line (chapter 4.1)
@@ -246,15 +233,9 @@ has the frequency $f = 15.6$ THz, so with Planck's constant $h = 2\pi\hbar$ its 
 1.03\times10^{-20}$ J. Then $\hbar\omega/\kB T = 2.5$ and $\bar n = 0.090$: a quantum mode, the start of Part 10's glow.
 Between the two, at $\kB T = \hbar\omega$, the ground state holds $1 - 1/e = 63\%$ of the probability.
 
-<!-- diagram: tut-occupation — One panel, about 560 × 380 px at 1440 (full width on a phone). Logarithmic axes: across,
-k_BT/ħω from 0.1 to 10¹⁰ (ticks at each power of ten, labelled every second); up, from 10⁻⁵ to 10¹⁰. Three ink curves:
-n̄ = 1/(e^{ħω/k_BT} − 1) (solid), n̄ + ½ = ⟨E⟩/ħω (dashed), and the classical line k_BT/ħω (thin grey). The dashed
-curve meets the grey line at large k_BT/ħω and levels off at ½ at small; the solid curve falls steeply below about 1.
-Two marked points: silicon's Raman line at k_BT/ħω = 0.40, n̄ = 0.090, labelled "silicon, 15.6 THz"; the steel ball at
-k_BT/ħω = 4.1 × 10⁸, n̄ = 4.1 × 10⁸, labelled "steel ball, 15 kHz". Labels beside the points, never on the curves. No
-orange or blue. Caption: "Look first where the dashed curve leaves the grey line: below k_BT ≈ ħω a mode keeps only its
-zero point and its quanta die away exponentially. The steel ball sits far up the classical line, silicon's Raman line
-near the knee. Every curve is exact." -->
+![Look first where the dashed curve leaves the grey line: below $\kB T \approx \hbar\omega$ a mode keeps only its zero
+point and its quanta die away exponentially. The steel ball sits far up the classical line, silicon's Raman line near
+the knee. Every curve is exact.](tut-occupation){#fig:occupation}
 
 ## In a warm mode the order of a product hardly matters
 
@@ -398,24 +379,16 @@ with its own commutator, and, for light and gravity, the gauge that leaves only 
 as a quantum field is known to work only at low energies, which is all the paper needs.
 :::
 
-<!-- try: ladder-oscillator (a new interactive figure, LadderOscillator, on an engine for one oscillator in units of ħω,
-with z = ħω/k_BT: P(n) = (1 − e^{−z})e^{−nz}, n̄ = 1/(e^z − 1), ⟨E⟩/k_BT = (z/2)coth(z/2), checked against the values
-1.000, 1.001, 1.082, 1.657 and 5.000 at z = 0.01, 0.1, 1, 3 and 10, and P(0) = 0.632 at z = 1) — Left, about 420 × 360
-px: the parabola of diagram tut-oscillator-levels with the levels n = 0 to 20 (those above the panel's top are
-omitted), each level carrying a horizontal bar whose length is its thermal probability P(n), in ink, with the
-ground-state bell on the lowest. Right, about 340 × 340 px: the phase plane of diagram tut-phase-rings, in the same
-scaled axes. In the thermal mode it shows a grey disc of radius √(2n̄ + 1) centred on the origin, one standard
-deviation of the thermal spread. With the switch "coherent state" on, it shows instead a round grey blob of radius 1
-(one standard deviation of the zero point) circling the origin on the circle of radius 2√n̄, with the left panel's
-bars replaced by the coherent state's P(n) = e^{−n̄}n̄ⁿ/n! (labelled "chapter 8.5 derives this"). Controls: a slider "k_BT/ħω" from 0.05 to 50, logarithmic
-(opens at 1); the switch; a slider "n̄ of the coherent state" from 0 to 20 (opens at 4); a play/pause button for the
-circling. Readouts: n̄, ⟨E⟩/k_BT to three figures, the share in the ground state as a percentage. Predict first: "At
-k_BT = ħω, how much of the probability is in the ground state?" (Answer: 63%, 1 − 1/e.) Then: "Raise the temperature
-until the mean energy is within 1% of k_BT. How many quanta is that?" (Answer: about two and a half. The excess is
-(ħω)²/12k_BT, which is 0.01 k_BT at k_BT = 2.89ħω, where n̄ = 2.4; the exact excess there is 0.00998 k_BT, and the
-exact 1% point is k_BT = 2.88ħω, where n̄ = 2.41.) Then: "Switch to a coherent state with the same n̄. What is
-different?" (Answer: the blob is small and circles; the thermal disc fills the circle and stays put, with no phase.) Keyboard: Tab reaches the sliders, the switch and the button, arrows step
-them, shift for larger steps; both themes; on a phone the panels stack. -->
+::: try {#ladder-oscillator}
+On the left, the well of Figure [](#fig:levels) with its first twenty levels, each carrying a bar for its thermal
+probability; on the right, the phase plane of Figure [](#fig:bands). A slider sets the temperature, as $\kB T/\hbar\omega$
+from 0.05 to 50, and the right panel shows the thermal spread as a disc. A switch replaces the thermal mode by a
+coherent state with a mean number of quanta you choose, a small blob circling the origin, and its count of quanta on
+the left. The readouts give $\bar n$, the mean energy over $\kB T$ and the share in the ground state.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, raise
+the temperature to 50 and say why the bars of the levels now look like a smooth fall rather than a few steps.
+:::
 
 ::: check
 ### Q

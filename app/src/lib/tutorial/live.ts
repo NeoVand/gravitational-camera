@@ -68,6 +68,7 @@ import NearToFar from './live/NearToFar.svelte';
 import MemoryPattern from './live/MemoryPattern.svelte';
 import TwoPaths from './live/TwoPaths.svelte';
 import UncertaintyPacket from './live/UncertaintyPacket.svelte';
+import LadderOscillator from './live/LadderOscillator.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -329,6 +330,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A wave packet on a line and its distribution of momenta: its width, a chirp and a split into two places, with the product of the two spreads',
 		component: UncertaintyPacket
+	},
+	'ladder-oscillator': {
+		label:
+			'An oscillator in a heat bath: the thermal probability of each level, the mean energy, and on the phase plane the thermal spread against a coherent state circling',
+		component: LadderOscillator
 	},
 	'noise-spectrum': {
 		label:
