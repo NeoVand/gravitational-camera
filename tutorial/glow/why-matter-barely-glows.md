@@ -80,21 +80,13 @@ wavelength spans about 400,000 atoms, so from one atom to the next the wave's sh
 
 To make one phonon, the wave must give it both its energy $\hbar\omega$ and its momentum $\hbar\omega/c$. But an
 acoustic phonon of wavenumber $\omega/c$ has the frequency $c_T\omega/c$, $10^{-5}$ of $\omega$: the two lines $\omega
-= ck$ and $\omega = c_Tk$ cross only at zero. So **a gravitational wave cannot make a single acoustic phonon inside a
-body.**
+= ck$ and $\omega = c_Tk$ cross only at zero (Figure [](#fig:glow-dispersion)). So **a gravitational wave cannot make a
+single acoustic phonon inside a body.**
 
-<!-- diagram: tut-glow-dispersion — One panel, about 600 × 340 px at 1440 (full width on a phone). Horizontal axis
-wavenumber k from 0 to the edge of the crystal's cell, π/a, labelled "k"; vertical axis ω from 0 to about 1.3 ω_0,
-labelled "ω". Three curves: the acoustic branch, rising as c_T k near the origin (a short dashed tangent labelled
-"c_T k") and flattening towards the cell's edge; the optical branch, starting at ω_0 at k = 0 (labelled "ω_0") and
-falling a little towards the edge; and gravity's line ω = ck, drawn as a line almost on the vertical axis, labelled
-"ck (slope 10⁵ times steeper)", which meets the acoustic branch only at the origin and the optical branch near
-k ≈ 0 (a small dot there, "a wave can drive this"). At the right, two small arrows of equal length pointing in
-opposite directions at +k and −k on the acoustic branch, with a brace "a pair: total momentum 0". All neutral greys;
-no colour roles. Caption: "Look first at the steep line: a gravitational wave of any frequency has almost no
-wavenumber, so it meets no acoustic phonon, which would need the same frequency at a far larger wavenumber. It can
-drive the optical vibration, whose frequency at zero wavenumber is not zero, and pairs of phonons whose momenta
-cancel. The branches are schematic; the ratio of slopes is not to scale." -->
+![Look first at the steep line: a gravitational wave of any frequency has almost no wavenumber, so it meets no acoustic
+phonon, which would need the same frequency at a far larger wavenumber. It can drive the optical vibration, whose
+frequency at zero wavenumber is not zero, and pairs of phonons whose momenta cancel. The branches are schematic; the
+ratio of slopes is not to scale.](tut-glow-dispersion){#fig:glow-dispersion}
 
 ## Every channel is a stiffness that relaxes, spread over a band
 
@@ -167,18 +159,13 @@ fraction and its energy, which goes as $k^2$, falls by twice it. At the Fermi su
 
 $$\delta E = -4E_F\,\hat n_x\hat n_y\,u_{xy} .$$
 
-Half the Fermi surface rises in energy and half falls, so the occupied states are no longer the lowest.
+Half the Fermi surface rises in energy and half falls, so the occupied states are no longer the lowest (Figure
+[](#fig:glow-fermi)).
 
-<!-- diagram: tut-glow-fermi — Three small panels in a row (stacked on a phone), about 660 × 240 px at 1440, in the
-(k_x, k_y) plane. Left: the filled Fermi disc of radius k_F, shaded in the matter colour, with a dashed circle of the
-same radius. Middle: just after a sudden shear, the same electrons now fill an ellipse stretched along the diagonal
-k_x = −k_y and squeezed along k_x = k_y (the lowered and raised quarters marked "δE < 0" and "δE > 0"), with the dashed
-circle of the lowest states still drawn. Right: after a few collision times, the disc is round again, with small
-curved arrows from the bulging quarters into the hollow ones labelled "collisions, time τ". The ellipse's distortion is
-exaggerated; no numbers. Caption: "Look first at the middle panel: a sudden shear raises the energy of electrons moving
-along one diagonal and lowers it along the other, so the occupied states are no longer the lowest. Collisions move
-electrons from the raised states to the lowered ones in a time τ, and the energy they release is the stiffness that
-relaxes. The distortion is exaggerated." -->
+![Look first at the middle panel: a sudden shear raises the energy of electrons moving along one diagonal and lowers it
+along the other, so the occupied states are no longer the lowest. Collisions move electrons from the raised states to
+the lowered ones in a time $\tau$, and the energy they release is the stiffness that relaxes. The distortion is
+exaggerated.](tut-glow-fermi){#fig:glow-fermi}
 
 Collisions then move electrons from the raised states above $E_F$ into the lowered states below it, which releases
 $\tfrac12g(E_F)\langle\delta E^2\rangle$ per cubic metre (the box below). Before any collision the electrons resist
@@ -213,10 +200,11 @@ $e^{-t/\tau}$, which is Maxwell's model with $\matter\eta_0 = \matter\mu_\infty\
 
 $$\mathrm{Re}\,\matter\eta = \frac{\tfrac15\,\matter nmv_F^2\,\tau}{1 + \omega^2\tau^2} ,$$
 
-the paper's form. Copper's $\tau = 2.5\times10^{-14}$ s, which follows from how well it conducts electricity (chapter
-R10b), gives $\omega\tau = 2.7$ at 10.1's energy peak and 1.5 at the count's, the paper's "about one". **A limit:** as
-$\tau \to \infty$ the friction at any $\omega > 0$ falls as $1/\tau$ to zero. A perfect metal answers a fast shear as
-a solid, and its whole weight moves to zero frequency.
+the paper's form. Copper's $\tau = 2.5\times10^{-14}$ s, which follows from how well it conducts electricity (reading
+chapter [R10](/tutorial/glow/reading-section-vi/#free-electrons-give-copper-its-friction-and-iron-a-ceiling)), gives
+$\omega\tau = 2.7$ at 10.1's energy peak and 1.5 at the count's, the paper's "about one". **A limit:** as $\tau \to
+\infty$ the friction at any $\omega > 0$ falls as $1/\tau$ to zero. A perfect metal answers a fast shear as a solid, and
+its whole weight moves to zero frequency.
 
 ::: gap
 This sketch skips the Boltzmann equation, which follows the electrons' occupation of each state as the shear and the
@@ -227,20 +215,14 @@ collisions change it. With one collision time for every state its solution is th
 
 We want the weight of the optical vibration that a uniform shear drives in silicon and diamond. Their crystal is two
 interleaved copies of one lattice. A shear moves the copies as a whole, but the bonds then pull one copy against the
-other, so one shifts against the other in proportion to the shear. This is **internal strain**, and **Kleinman's
-parameter** $\sym{kleinman-parameter}{\zeta_K}$, a pure number (0.54 for silicon), measures its size.[^zeta] The shift
-is section 1's optical vibration at zero wavenumber.
+other, so one shifts against the other in proportion to the shear (Figure [](#fig:glow-two-atoms)). This is **internal
+strain**, and **Kleinman's parameter** $\sym{kleinman-parameter}{\zeta_K}$, a pure number (0.54 for silicon), measures
+its size.[^zeta] The shift is section 1's optical vibration at zero wavenumber.
 
-<!-- diagram: tut-glow-two-atoms — One panel, about 600 × 300 px at 1440, two halves side by side (stacked on a
-phone). Left, "at rest": a square patch of a two-dimensional picture of silicon's two interleaved lattices, open
-circles for one copy and filled circles for the other, each filled circle at the centre of four open ones, bonds as
-thin lines. Right, "sheared": the open lattice sheared into a rhombus (orange stretch arrows along one diagonal, blue
-squeeze arrows along the other, the paper's sign colours), and the filled circles shown twice, faint where a shift
-with the lattice would put them and solid where they really sit, a small arrow from each faint circle to its solid one
-labelled "internal strain, ∝ ζ_K". Atoms and bonds neutral. Caption: "Look first at the small arrows: when the lattice
-is sheared, one copy of atoms does not follow it exactly but shifts against the other, so a uniform shear drives the
-vibration in which the two copies swing against each other. The picture is a flat sketch of a three-dimensional
-crystal, and the shift is exaggerated." -->
+![Look first at the small arrows: when the lattice is sheared, one copy of atoms does not follow it exactly but shifts
+against the other, so a uniform shear drives the vibration in which the two copies swing against each other. The
+picture is a flat sketch of a three-dimensional crystal, and the shift is
+exaggerated.](tut-glow-two-atoms){#fig:glow-two-atoms}
 
 **The line.** The vibration is chapter 4.1's oscillator at $\sym{natural-frequency}{\omega_0}$. **Raman scattering**
 shifts the frequency of some of the light a crystal scatters by $\omega_0$, so the vibration is called a **Raman
@@ -266,16 +248,12 @@ two sets: $b^4$ and $b^5$ stretch along the cube's own axes, on the diagonal, an
 $xy$, $yz$ and $zx$, off the diagonal. The turns that leave the crystal unchanged show that **a stretch along a cube
 axis moves both copies alike**, while each shear off the diagonal shifts one copy against the other along the third
 axis (the box below). So only the three shears off the diagonal drive the line, as chapter 5.4's stretch problem took
-on trust. A wave carries two of the five at a time, its polarizations, mixed according to its direction.
+on trust (Figure [](#fig:glow-shears)). A wave carries two of the five at a time, its polarizations, mixed according to
+its direction.
 
-<!-- diagram: tut-glow-shears — One panel, about 640 × 300 px at 1440. Chapter 1.5's five basis shears drawn as small
-rings of free balls (as in 1.5's figure tut-five-basis, orange stretch and blue squeeze arrows), in two rows inside a
-faint cube outline: top row the two on the diagonal, b⁴ and b⁵, labelled "stretch along the cube's axes"; bottom row
-the three off it, b¹, b², b³, labelled "xy, yz, zx". From each ring of the bottom row a short line runs to a small
-drawing of two interleaved atoms with a shift arrow along z, x and y respectively; the top row's rings carry a small
-"0". Neutral apart from the sign colours. Caption: "Look first at the bottom row: each of the three shears off the
-cube's diagonal shifts one copy of atoms against the other along the third axis, while the two stretches along the
-cube's axes shift nothing. So only three of a wave's five shears drive the Raman line. The rings are schematic." -->
+![Look first at the bottom row: each of the three shears off the cube's diagonal shifts one copy of atoms against the
+other along the third axis, while the two stretches along the cube's axes shift nothing. So only three of a wave's five
+shears drive the Raman line. The rings are schematic.](tut-glow-shears){#fig:glow-shears}
 
 Averaged over every direction and both polarizations, the three shears off the diagonal carry $\tfrac35$ of a wave's
 drive (the box), so the line's weight averaged over directions is $\tfrac35\times30.0 = 18.0$ GPa, the paper's 18.
@@ -430,10 +408,10 @@ which is the paper's
 The unit of $G\Delta\matter\mu(\kB T)^3/\hbar^2c^5$ is $\mathrm{W\,m^{-3}}$.[^units]
 
 **Equality** holds when all the weight is a narrow line at $x = 2.821$, 17.2 THz at 293 K, or at $x = 1.594$, 9.7 THz,
-for the count. **Near equality:** silicon's line at $x = 2.55$ reaches 98.5% of its own weight's bound, the paper's
-98%. **Far from it:** diamond's line at $x = 6.55$ reaches 28%; the paper's 16% adds the pairs' 4.16 GPa to the
-weight, and they glow little for it (stated). Silica's flat band gives 69.2%, the paper's 69%; copper's electrons
-alone 37.5%, the paper's 39% with the pairs; water 40% (stated).[^shares]
+for the count (Figure [](#fig:glow-bound)). **Near equality:** silicon's line at $x = 2.55$ reaches 98.5% of its own
+weight's bound, the paper's 98%. **Far from it:** diamond's line at $x = 6.55$ reaches 28%; the paper's 16% adds the
+pairs' 4.16 GPa to the weight, and they glow little for it (stated). Silica's flat band gives 69.2%, the paper's 69%;
+copper's electrons alone 37.5%, the paper's 39% with the pairs; water 40% (stated).[^shares]
 
 **Numbers.** At room temperature 30 GPa radiates at most $5.6\times10^{-35}\unit{W\,m^{-3}}$. The hot iron of the
 closed furnace, 122 GPa at 1500 K, can glow at most $3.1\times10^{-32}\unit{W\,m^{-3}}$. To glow as brightly as the
@@ -459,14 +437,10 @@ from the Room to the Hot iron with its collision rate growing as $T$, switch on 
 at both temperatures.
 :::
 
-<!-- diagram: tut-glow-bound — One panel, about 640 × 340 px at 1440. The curve x³/(e^x − 1) on 0 ≤ x ≤ 10 (thin neutral
-line), its top at x = 2.821 marked "1.421". Four frictions drawn under it as shaded shapes of equal area on linear axes:
-a narrow spike at x = 2.821 labelled "equality, 100%"; silicon's line at x = 2.55, just left, "silicon 98%"; diamond's
-line at x = 6.55, in the tail, "diamond's line 28%"; and copper's broad Drude shoulder falling from x = 0, "copper's
-electrons 38%". Each label sits beside its shape, never on the curve. Matter colour for the frictions. Caption: "Look
-first at the spike at the top of the curve: a weight glows the most when it all sits where x³/(e^x − 1) is largest,
-which is the bound. Silicon's line sits close to it, diamond's far down the Wien tail, and copper's spread-out friction
-wastes most of its weight at low frequency. The shapes have equal areas; their heights are schematic." -->
+![Look first at the spike at the top of the curve: a weight glows the most when it all sits where $x^3/(e^x - 1)$ is
+largest, which is the bound. Silicon's line sits close to it, diamond's far down the Wien tail, and copper's spread-out
+friction wastes most of its weight at low frequency. The shapes have equal areas; their heights are
+schematic.](tut-glow-bound){#fig:glow-bound}
 
 **Absorption.** The same weight bounds what a body can absorb. A path of length $L$ through matter has chapter 5.5's
 optical depth $\sym{optical-depth}{\tau}(\omega) = \alpha L$ (here $\tau$ is the optical depth, not the collision
@@ -536,19 +510,14 @@ Dividing by $P_S$, with $V = \tfrac43\pi R^3$, gives the boxed ratio.
 **Numbers.** For the paper's steel ball, with $c_T = 3200$ and $c_L = 5900\unit{m\,s^{-1}}$ and $\matter\rho =
 7800\unit{kg\,m^{-3}}$, the prefactor is 5.47 (the paper's 5.5), and at $Q = 10$, $\ell_s = 0.83$ nm. A ball of radius
 10 cm glows $1.0\times10^{-46}$ W from its surface and $6.6\times10^8$ times more from its volume.[^steels] With the
-table's volume glows, the two meet at $R = 3(P_S/4\pi R^2)/(P/V)$: 28 nm for diamond, the faintest.[^thirty] **A
-limit:** the surface wins only once $\ell_s$ passes about $5.5R$, so a pure crystal cooled until its phonons cross it
-several times glows at its surface, as Dehnen, Romero and Schäfer found.
+table's volume glows, the two meet at $R = 3(P_S/4\pi R^2)/(P/V)$: 28 nm for diamond, the faintest (Figure
+[](#fig:glow-surface)).[^thirty] **A limit:** the surface wins only once $\ell_s$ passes about $5.5R$, so a pure
+crystal cooled until its phonons cross it several times glows at its surface, as Dehnen, Romero and Schäfer found.
 
-<!-- diagram: tut-glow-surface — Two parts, about 640 × 300 px at 1440 (stacked on a phone). Left: a ball in section,
-its interior lightly stippled with short wavy arrows ("volume: friction inside, ∝ R³/ℓ_s"), and at its rim a few
-outgoing ripples of sound launched where a wave meets the surface ("surface: sound launched at the edge, ∝ R²"). Right:
-a logarithmic size axis from 0.1 nm to 1 m with tick labels, the ratio P_V/P_S drawn as a straight rising line for
-diamond (passing 1 at 28 nm, marked with a dot and "diamond, 28 nm") and for steel (passing 1 below 1 nm), and a dot
-at 10 cm on the steel line, "steel ball: 6.6 × 10⁸". Matter colour for the ball; lines neutral. Caption: "Look first at
-the dots on the right: even diamond, the faintest of the paper's materials, glows more through its volume than through
-its surface once it is larger than 28 nm, and a steel ball of 10 cm glows hundreds of millions of times more through
-its volume. The ripples on the left are schematic; the lines are exact for the paper's formulas." -->
+![Look first at the dots on the right: even diamond, the faintest of the paper's materials, glows more through its
+volume than through its surface once it is larger than 28 nm, and a steel ball of 10 cm glows hundreds of millions of
+times more through its volume. The ripples on the left are schematic; the lines are exact for the paper's
+formulas.](tut-glow-surface){#fig:glow-surface}
 
 ::: check
 ### Q
