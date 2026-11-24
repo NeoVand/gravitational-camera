@@ -894,9 +894,9 @@ terms:
     chapter: R1
     anchor: what-the-premise-asks-existing-instruments-nearly-supply
   - term: standard quantum limit
-    definition: 'The smallest uncertainty in the position of a mass watched for a time that quantum mechanics allows when the watching is the only disturbance, $\sqrt{\hbar\tau/m}$: $3 \times 10^{-16}$ m for a gram watched for a second.'
-    chapter: R1
-    anchor: what-the-premise-asks-existing-instruments-nearly-supply
+    definition: 'The smallest spread of a free mass''s position a time $\tau$ after a first reading of its position, $\sqrt{\hbar\tau/m}$, set by the kick of that reading: $3 \times 10^{-16}$ m for a gram watched for a second. Other ways of reading, such as a quantum non-demolition measurement, can beat it.'
+    chapter: '8.6'
+    anchor: a-free-mass-watched-for-a-time-cannot-be-followed-better-than-the-standard-quantum-limit
   - term: random variable
     definition: 'A quantity whose value is drawn anew each time it is measured, such as the reading of an instrument.'
     chapter: '3.1'
@@ -3549,3 +3549,75 @@ terms:
     definition: 'The state $\sum_n(\tanh^nr/\cosh r)\,|n\rangle|n\rangle$ of two modes, which holds quanta only in pairs, one in each. Each mode alone is thermal, yet the two counts are always equal, so two detectors coincide with $g^{(2)}_{12} = 2 + 1/\bar n$, above the bound of 2 for classical thermal beams.'
     chapter: '8.5'
     anchor: pairs-in-two-modes-coincide-more-than-thermal-classical-waves-can
+  - term: back-action
+    definition: 'The disturbance that a measurement makes to a quantity it does not read. Reading a position to within $\sigma_0$ leaves a spread of momentum of at least $\hbar/2\sigma_0$.'
+    chapter: '8.6'
+    anchor: reading-a-position-disturbs-the-momentum
+  - term: "Heisenberg's microscope"
+    definition: 'Heisenberg''s imagined measurement of 1927: light of wavelength $\lambda$ locates a particle to about $\lambda$, and each photon kicks it by a momentum of about $2\pi\hbar/\lambda$ in a direction the lens cannot fix, so a sharper look gives a harder kick.'
+    chapter: '8.6'
+    anchor: reading-a-position-disturbs-the-momentum
+  - term: reduced mass
+    definition: 'The mass $m_1m_2/(m_1 + m_2)$ with which the distance between two bodies moves when only the forces between them, or forces in proportion to their masses, act; $m/2$ for two equal masses.'
+    chapter: '8.6'
+    anchor: two-gram-masses-read-for-a-second-resolve-a-tide-a-hundred-thousand-times-smaller-than-the-persons
+  - term: quantum non-demolition measurement
+    definition: 'A measurement of a quantity that the reading''s own disturbance never reaches, so that it can be read again and again without the standard quantum limit; the momentum of a free mass is one.'
+    chapter: '8.6'
+    anchor: the-standard-quantum-limit-belongs-to-one-way-of-reading-and-it-can-be-beaten
+  - term: back-action evasion
+    definition: 'Arranging a measurement so that its back-action lands on a quantity that does not feed back into the one being read, as in a quantum non-demolition measurement.'
+    chapter: '8.6'
+    anchor: the-standard-quantum-limit-belongs-to-one-way-of-reading-and-it-can-be-beaten
+  - term: radiation-pressure noise
+    definition: 'The random push of the photons of a laser on the mirrors it reads, which grows as the square root of the power. With shot noise, which falls as the square root, it sets an interferometer''s standard quantum limit.'
+    chapter: '8.6'
+    anchor: the-standard-quantum-limit-belongs-to-one-way-of-reading-and-it-can-be-beaten
+  - term: amplitude spectral density
+    definition: 'The square root of a noise spectrum, in the unit of the quantity per root hertz; LIGO quotes its strain noise so, one-sided, near $10^{-24}\,\mathrm{Hz^{-1/2}}$ at 100 Hz.'
+    chapter: '8.6'
+    anchor: the-standard-quantum-limit-belongs-to-one-way-of-reading-and-it-can-be-beaten
+  - term: phase-insensitive amplifier
+    definition: 'An amplifier that magnifies both quadratures of a wave alike, so that the output carries the amplitude and the phase. By Caves''s theorem it must add at least half a quantum of noise at large gain.'
+    chapter: '8.6'
+    anchor: recording-both-quadratures-of-a-wave-adds-half-a-quantum-of-noise
+  - term: heterodyne detection
+    definition: 'Recording a wave by mixing it with a reference of nearby frequency, which gives both quadratures at once, and with them at least half a quantum of added noise.'
+    chapter: '8.6'
+    anchor: recording-both-quadratures-of-a-wave-adds-half-a-quantum-of-noise
+  - term: added noise
+    definition: 'The noise that a device recording both quadratures of a mode must add to the mode''s own zero point: at least half a quantum, $\tfrac12\hbar\omega$, a variance of at least $x_{\rm zp}^2$ in each quadrature when the device treats them alike (Caves, 1982). With the zero point the record holds at least one quantum of noise. A counter of quanta adds none but loses the phase.'
+    chapter: '8.6'
+    anchor: recording-both-quadratures-of-a-wave-adds-half-a-quantum-of-noise
+  - term: quantum speed limit
+    definition: 'A bound on how fast a quantum state can become different from itself, set by its energy: no state becomes orthogonal to its start in less than $\pi\hbar/2\sigma_E$, or less than $\pi\hbar/2\langle E - E_0\rangle$.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - term: Mandelstam–Tamm bound
+    definition: 'The quantum speed limit $t_\perp \ge \pi\hbar/2\sigma_E$ by the standard deviation of the energy (1945). A state of two levels with equal weights meets it with equality.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - term: Margolus–Levitin bound
+    definition: 'The quantum speed limit $t_\perp \ge \pi\hbar/2\langle E - E_0\rangle$ by the mean energy above the lowest level (1998); named in chapter 8.6.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - term: quantum Fisher information
+    definition: 'The largest Fisher information about a parameter that any measurement of a quantum state can draw, defined by the fall of the overlap of neighbouring states, $1 - F_Q\,\delta\theta^2/4$: $4\sigma_V^2\tau^2/\hbar^2$ when the parameter enters through an interaction $\theta V$ acting for a time $\tau$. With the Cramér–Rao bound it caps a signal-to-noise ratio at $2E_{\rm int}\tau/\hbar$, with $E_{\rm int} = \theta\sigma_V$.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - term: measurement (general)
+    definition: 'A set of positive Hermitian tables $\Pi_k$, one for each outcome, that add to the identity; outcome $k$ has the probability $\langle\psi|\Pi_k|\psi\rangle$. Measurements with orthonormal outcomes are the special case $\Pi_k = |k\rangle\langle k|$.'
+    chapter: '8.6'
+    anchor: a-measurement-is-a-set-of-positive-tables-that-add-to-one-and-a-gravitons-click-carries-about-a-bit
+  - term: POVM (positive operator-valued measure)
+    definition: 'The name of a general measurement, a set of positive tables that add to one. The spin coherent states of all directions, weighted by $(2s + 1)/4\pi$, make one whose outcomes are directions on the sky.'
+    chapter: '8.6'
+    anchor: a-measurement-is-a-set-of-positive-tables-that-add-to-one-and-a-gravitons-click-carries-about-a-bit
+  - term: resonant-mass detector
+    definition: 'A body whose ringing a tide excites, read by transducers. A sphere''s five quadrupole modes ring in proportion to the five numbers of the tide.'
+    chapter: '8.6'
+    anchor: each-kind-of-detector-reads-its-own-part-of-the-tide
+  - term: Newtonian noise
+    definition: 'The changing pull of a detector''s surroundings, such as moving air, ground and people: the near field seen as noise, which observatories model and subtract.'
+    chapter: '8.6'
+    anchor: each-kind-of-detector-reads-its-own-part-of-the-tide

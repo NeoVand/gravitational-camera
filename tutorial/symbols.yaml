@@ -2686,3 +2686,107 @@ symbols:
     meaning: 'The amplitude $c_n = \tanh^nr/\cosh r$ of $n$ quanta in each of two modes, in the two-mode squeezed state $\sum_nc_n|n\rangle|n\rangle$. Their squares are the thermal law with $\bar n = \sinh^2r$, so each mode alone is thermal.'
     chapter: '8.5'
     anchor: pairs-in-two-modes-coincide-more-than-thermal-classical-waves-can
+  - key: first-reading-spread
+    title: Sharpness of a first reading
+    tex: '\sigma_0'
+    role: none
+    kind: A standard deviation; in metres
+    meaning: 'The standard deviation of a free mass''s position at once after a first reading. The reading''s kick then gives its momentum a spread of at least $\hbar/2\sigma_0$, and a time $\tau$ later its position has the spread $\sigma_x(\tau) \ge \sqrt{\sigma_0^2 + (\hbar\tau/2m\sigma_0)^2}$, least when $\sigma_0 = \sqrt{\hbar\tau/2m}$.'
+    chapter: '8.6'
+    anchor: reading-a-position-disturbs-the-momentum
+  - key: reading-time
+    title: Reading time
+    tex: '\tau'
+    role: none
+    kind: A time; in seconds
+    meaning: 'The time over which a mass, a pixel or a camera is watched: between the two readings of a free mass, or the whole observation in the paper''s ceiling $\mathrm{SNR} \lesssim M_sc^2\tau/\hbar$. (Chapter 4.4''s $\tau$ is a relaxation time, and chapter 5.5''s an optical depth.)'
+    chapter: '8.6'
+    anchor: a-free-mass-watched-for-a-time-cannot-be-followed-better-than-the-standard-quantum-limit
+  - key: sql-width
+    title: Standard quantum limit of a free mass
+    tex: '\sigma_{\rm SQL}'
+    role: none
+    kind: A standard deviation; in metres
+    meaning: 'The least spread of a free mass''s position a time $\tau$ after a first reading, $\sqrt{\hbar\tau/m}$, when the reading is of the position and leaves no chirp: $3.25 \times 10^{-16}$ m for a gram and a second. Chapter R1 wrote it $\Delta x$.'
+    chapter: '8.6'
+    anchor: a-free-mass-watched-for-a-time-cannot-be-followed-better-than-the-standard-quantum-limit
+  - key: smallest-tide
+    title: Smallest resolved tide
+    tex: '\Delta\curv{\mathcal{E}}'
+    role: curv
+    kind: A tide; in s⁻²
+    meaning: 'The smallest tide that moves two free masses a distance $\xi$ apart by more than the standard quantum limit in the time $\tau$, about $2\sigma_{\rm SQL}/\xi\tau^2$: $6.5 \times 10^{-14}\,\mathrm{s^{-2}}$ for two grams a centimetre apart read for a second, and $\sqrt2$ times more for the distance between them.'
+    chapter: '8.6'
+    anchor: two-gram-masses-read-for-a-second-resolve-a-tide-a-hundred-thousand-times-smaller-than-the-persons
+  - key: arm-length
+    title: Arm length of an interferometer
+    tex: 'L'
+    role: none
+    kind: A length; in metres
+    meaning: 'The length of each arm of an interferometer such as LIGO, 4 km. A strain $h$ changes the difference of the two arms by $hL$. (Elsewhere $L_k$ are the generators of turns.)'
+    chapter: '8.6'
+    anchor: the-standard-quantum-limit-belongs-to-one-way-of-reading-and-it-can-be-beaten
+  - key: sql-strain
+    title: Standard quantum limit of an interferometer
+    tex: 'h_{\rm SQL}'
+    role: none
+    kind: An amplitude spectral density of strain, one-sided; in Hz⁻¹ᐟ²
+    meaning: 'The least quantum noise of an interferometer with free mirrors of mass $m$ and arms of length $L$ at the angular frequency $\omega$, where shot noise and radiation pressure balance: $\sqrt{8\hbar/m\omega^2L^2}$, $1.8 \times 10^{-24}\,\mathrm{Hz^{-1/2}}$ at 100 Hz for LIGO''s 40 kg mirrors.'
+    chapter: '8.6'
+    anchor: the-standard-quantum-limit-belongs-to-one-way-of-reading-and-it-can-be-beaten
+  - key: energy-spread
+    title: Spread of energy
+    tex: '\sigma_E'
+    role: none
+    kind: A standard deviation; in joules
+    meaning: 'The standard deviation of the energy of a quantum state, $\sqrt{\langle H^2\rangle - \langle H\rangle^2}$. It sets how fast the state can become different from itself: no faster than in the time $\pi\hbar/2\sigma_E$.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - key: orthogonality-time
+    title: Time to become orthogonal
+    tex: 't_\perp'
+    role: none
+    kind: A time; in seconds
+    meaning: 'The first time at which a state has become orthogonal to its starting state, so that one measurement could tell the two apart for certain. Mandelstam and Tamm''s bound is $t_\perp \ge \pi\hbar/2\sigma_E$; a state of two levels meets it.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - key: quantum-fisher
+    title: Quantum Fisher information
+    tex: 'F_Q'
+    role: none
+    kind: A number; in the inverse square of the unit of the parameter
+    meaning: 'The largest Fisher information about a parameter that any measurement of a quantum state can draw. For a parameter $\theta$ that enters through an interaction $\theta V$ acting for a time $\tau$, it is $4\sigma_V^2\tau^2/\hbar^2$, with $\sigma_V$ the standard deviation of $V$.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - key: interaction-energy
+    title: Energy of interaction
+    tex: 'E_{\rm int}'
+    role: none
+    kind: An energy; in joules
+    meaning: 'The spread $\theta\sigma_V$ of the energy $\theta V$ with which a camera and the scene are coupled. No signal-to-noise ratio above $2E_{\rm int}\tau/\hbar$ can be reached in the time $\tau$; for a camera that is not a black hole $E_{\rm int} \le M_sc^2/4$, which gives $M_sc^2\tau/2\hbar$, and the paper rounds the ceiling to $M_sc^2\tau/\hbar$.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - key: source-mass
+    title: Mass of the source
+    tex: '\matter{M}_s'
+    role: matter
+    kind: A mass; in kilograms
+    meaning: 'The mass of the body a camera watches, in the paper''s ceiling $\mathrm{SNR} \lesssim M_sc^2\tau/\hbar$: 70 kg for the person, 324 kg for the locked safe''s gold.'
+    chapter: '8.6'
+    anchor: no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera
+  - key: povm-element
+    title: Table of one outcome of a measurement
+    tex: '\Pi_k'
+    role: none
+    kind: A positive Hermitian table
+    meaning: 'In a general measurement, the table of the outcome $k$: the outcome has the probability $\langle\psi|\Pi_k|\psi\rangle$, and the tables of all the outcomes add to the identity. For chapter 8.1''s orthonormal outcomes, $\Pi_k = |k\rangle\langle k|$.'
+    chapter: '8.6'
+    anchor: a-measurement-is-a-set-of-positive-tables-that-add-to-one-and-a-gravitons-click-carries-about-a-bit
+  - key: coherent-povm
+    title: Measurement by coherent states
+    tex: '\Pi(\hat n)'
+    role: none
+    kind: A positive table for each direction; per steradian
+    meaning: 'The measurement $\Pi(\hat n)\,\mathrm d\Omega = \tfrac{2s+1}{4\pi}|\hat n\rangle_s\langle\hat n|_s\,\mathrm d\Omega$ made of the spin coherent states of all directions. One quantum from $\hat n_0$ clicks at the angle $\vartheta$ from it with the density $\tfrac{2s+1}{4\pi}\cos^{4s}(\vartheta/2)$.'
+    chapter: '8.6'
+    anchor: a-measurement-is-a-set-of-positive-tables-that-add-to-one-and-a-gravitons-click-carries-about-a-bit
