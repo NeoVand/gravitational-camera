@@ -14,23 +14,15 @@ side of the Earth looks down at midnight and sees the planet's layers and, beyon
 years that is about 36,000 gravitons." With Part 10 behind us, can we derive or check every claim of Section IX, and
 how bright, from the stiffness of each layer to the counts of a lifetime, is the paper's first image?
 
-This chapter reads the section in order, as R10 read Section VI, and gives each claim one mark: *checked here* (a
-number recomputed from a result derived earlier), *read now, derived in chapter N*, or *stated in the paper*. Nothing
-is derived here: the one step from outside Part 10, a collision time read from a resistivity, is derived in R10. The
-capstone follows the Sun at midnight from the stiffness of each shell to the edge of the core.
+This chapter reads the section in order (Figure [](#fig:read-ix-map)), as R10 read Section VI, and gives each claim
+one mark: *checked here* (a number recomputed from a result derived earlier), *read now, derived in chapter N*, or
+*stated in the paper*. Nothing is derived here: the one step from outside Part 10, a collision time read from a
+resistivity, is derived in R10. The capstone follows the Sun at midnight from the stiffness of each shell to the edge
+of the core.
 
-<!-- diagram: tut-read-ix-map — One strip, about 640 × 360 px at 1440 (two columns of boxes on a phone), drawn as
-R9's tut-read-viii-map: a box for each section of this chapter in reading order, from "Line of sight" to "Counting
-pixel", then a last box, "The capstone", set apart by a gap. Each box carries the paper's paragraph name, its equation
-labels in small type (column; abel and abel-inverse; jN-friction; glow-bound, used) and the chapters that derive them
-(5.5; 5.6; 5.5 and 10.1; 10.3), with 3.1 on the budget, 3.3 on the fit, R10 on "Materials" for the core's collision
-time, and 8.4 to 8.6 and 9.6 on the last two boxes. Every box has a solid outline: each result is derived in Part 10
-or earlier, and none in this chapter. Dotted insets hold the results stated in the paper (the Sun's 10⁸ W, PREM's
-radii and shear moduli, the core's resistivity, the primordial glow's temperature, Tsang's scaling, the repeaters and
-the converter, Dyson's verdict). Thin arrows run from the capstone box back to the boxes it uses: line of sight, Sun,
-kinks, stiffnesses, count, fit and absorption. Neutral greys; no colour roles. Caption: "Look first at the solid
-boxes: every paragraph of Section IX is derived in Part 10 or earlier, with its stated results in dotted insets. The
-last box follows the paper's first image through all of them." -->
+![Look first at the solid boxes: every paragraph of Section IX is derived in Part 10 or earlier, with its stated
+results in dotted insets. The last box follows the paper's first image through eight of
+them.](tut-read-ix-map){#fig:read-ix-map}
 
 ::: plain
 Section IX draws the paper's first picture in the thermal glow. A camera on the night side of the Earth looks down at
@@ -368,20 +360,12 @@ degree four, the 25 numbers of its brightness (*read now, derived in chapter
 
 ## The capstone: the Sun at midnight, from stiffness to the edge of the core
 
-We follow the paper's first image end to end, shell by shell from the crust in, with the Sun at an equinox.
+We follow the paper's first image end to end, shell by shell from the crust in, with the Sun at an equinox
+(Figure [](#fig:read-ix-capstone)).
 
-<!-- diagram: tut-read-ix-capstone — One panel, about 640 × 420 px at 1440 (stacked on a phone): the cut-away globe
-of fig:earth-glow redrawn flat as a half disc, its five shells in the paper's shell colours, the camera at the top.
-Three thin lines from the camera graze the lower mantle (63.5°), the core (33.1°) and the inner core (11.05°), each
-labelled with its angle at its far end; a fourth, dashed, leaves at 40° toward a small Sun disc at lower left
-("0.107°, 4.0 × 10⁵", schematic in size and distance), with "ground 3.7 × 10⁻⁶" where it leaves the Earth.
-Beside each shell, outside the disc, one small label from the crust in, as in the capstone's table: its share of the
-placeholder (0.203, 0.247, 0.338, 0.158, 0.235) and its j_N. Under the disc a single bar split in the shells'
-colours by their shares of the count, from the crust in (the crust's 12 gravitons as a tick, then 7.5%, 62%, 27% and
-3.2%), with "35,800 in 80 years" above it. Two small tags on the 33.1° line: "core edge ±29 km" and "colour step
-× 5–12". Neutral ink otherwise. Caption: "Look first at the bar: a lifetime's 35,800 gravitons, mostly from the
-lower mantle. The grazing lines place the boundaries whatever the frictions, and the line to the Sun's core passes
-between the kinks at 63° and 33°. Sizes of the Sun and distances schematic; every number from the capstone." -->
+![Look first at the bar: a lifetime's 35,800 gravitons, mostly from the lower mantle. The grazing lines place the
+boundaries whatever the frictions, and the line to the Sun's core passes between the kinks at 63° and 33°. Sizes of
+the Sun and distances schematic; every number from the capstone.](tut-read-ix-capstone){#fig:read-ix-capstone}
 
 **(a) Each shell's friction and glow.** By chapter 10.3 a relaxing stiffness $\Delta\matter\mu$ sends at most
 $5.18\,G\Delta\matter\mu(\kB T)^2/\hbar^2c^5$ gravitons per second per cubic metre, and the placeholder sends $4\pi
