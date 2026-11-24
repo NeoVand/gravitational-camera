@@ -126,17 +126,13 @@ $j = 1$ and $H_0 = 1$ give 6, which is $\nabla^2r^2$. For a number, $j = 1$ and 
 $\nabla^2[r^2(x^2 - y^2)] = 14(x^2 - y^2)$.
 
 So each Laplacian lowers the power of $r$ by two, with a factor that is zero only when $j = 0$, when no power of $r$
-is left. After $j$ Laplacians a nonzero multiple of $H_\ell$ remains, and one more gives zero: $r^{2j}H_\ell$ is
-polyharmonic of order exactly $j + 1$.
+is left (Figure [](#fig:ladder-laplacians)). After $j$ Laplacians a nonzero multiple of $H_\ell$ remains, and one more
+gives zero: $r^{2j}H_\ell$ is polyharmonic of order exactly $j + 1$.
 
-<!-- diagram: tut-ladder-laplacians — spec: two columns of steps, read downward, on the paper's ground. Left column:
-r⁴H₂ (boxed), an arrow labelled ∇² and "× 36" down to r²H₂, an arrow "∇², × 14" down to H₂, an arrow "∇², × 0" down to
-0 (the factors 2j(2ℓ + 2j + 1) for ℓ = 2, j = 2 and 1, exact). Right column: ∇h·∇g = ∂ᵢh ∂ᵢg, an arrow "∇², × 2" down
-to ∂ᵢ∂ₖh ∂ᵢ∂ₖg, an arrow "∇², × 2" down to ∂ᵢ∂ₖ∂ₗh ∂ᵢ∂ₖ∂ₗg, with g drawn as a cubic so that the next arrow, "∇²",
-ends at 0 because "g has no fourth derivatives". Thin single strokes, the arrows in neutral ink, the final zeros in the
-blue of the paper's squeeze. Caption: "Look first at the two zeros at the bottom. On the left, each Laplacian lowers
-the power of r by two and multiplies by a number, until r⁴H₂ is gone after three steps. On the right, each Laplacian
-adds one derivative to each factor of ∇h·∇g, until the derivatives of a cubic tide run out." -->
+![Look first at the two zeros at the bottom. On the left, each Laplacian lowers the power of $r$ by two and multiplies
+by a number, until $r^4H_2$ is gone after three steps. On the right, each Laplacian adds one derivative to each factor
+of $\nabla h\cdot\nabla g$, until the derivatives of a cubic tide run
+out.](tut-ladder-laplacians){#fig:ladder-laplacians}
 
 Chapter 13.2 counted $(n + 1)(n + 2)/2$ monomials $x^ay^bz^c$ of degree $a + b + c = n$, and the counts at degrees $n$
 and $n - 2$ differ by $2n + 1$, 2.2's count of the $H_n$. So the products $r^{2j}H_{n-2j}$, of which a given $j$ gives
@@ -168,18 +164,12 @@ of harmonic polynomials and of the functions $\nabla h\cdot\nabla g$ that the ne
 the data fix that moment to leading order in $\epsilon$. By the paper, a tide of degree $m$ reaches exactly the $P$ of
 its [](/paper/#eq:ladder). Their moments are the **radial moments** $\int\matter\rho\,r^{\ell+2j}Y_\ell\,\dd V$,
 against $r^{2j}H_\ell$ with $j < m$, and $j$ is the moment's **rung**: the paper's floor, a row of beads in panel (b).
-A reading at one time holds the rung $j = 0$ alone, 2.3's multipole moments.
+A reading at one time holds the rung $j = 0$ alone, 2.3's multipole moments (Figure [](#fig:ladder-rungs)).
 
-<!-- diagram: tut-ladder-rungs — spec: fig:ladder(b)'s bead chart rebuilt as a grid: the degree ℓ across (0 to 6, one
-column each, the 2ℓ + 1 beads of each cell in a short row), the rung j upward (0 to 3); each cell labelled once, small,
-∫ρ r^(ℓ+2j) Y_ℓ, outside the beads. Three translucent bands from the bottom: j < 1 labelled "m = 1: one reading, or
-uniform tides", j < 2 "m = 2: quadrupolar tides", j < 3 "m = 3: octupolar tides". Thin dashed diagonals through the
-cells with ℓ + 2j = n, for n = 2, 4, 6, labelled at their ends "n = 2", "n = 4", "n = 6": the orders of a held mass.
-The bead of ∫ρr⁴ (ℓ = 0, j = 2) in the paper's orange, as in fig:ladder(b). Caption: "Look first at the bands: each
-degree of tide adds one floor, one more power of r², to every column of angular patterns. The orange bead, ∫ρr⁴, is the
-first at which the two bodies of the paper's figure differ. The dashed diagonals collect the moments that a held mass
-reaches at one power of its distance. The number of beads in a cell is exact; the spacing is chosen for the
-drawing." -->
+![Look first at the bands: each degree of tide adds one floor, one more power of $r^2$, to every column of angular
+patterns. The bead in the colour of matter, $\int\matter\rho\,r^4$, is the first at which the two bodies of the paper's
+figure differ. The dashed diagonals collect the moments that a held mass reaches at one power of its distance. The
+number of beads in a cell is exact; the spacing is chosen for the drawing.](tut-ladder-rungs){#fig:ladder-rungs}
 
 ## No tide reaches beyond the rungs below its degree, whatever is read
 
@@ -317,25 +307,20 @@ $$\begin{aligned}
 for every tide $g$ of degree up to $m$, by the paper's [](/paper/#eq:ladder-identity). Two densities that differ by
 $\nabla^{2m}\field\psi/4\pi G$ therefore answer every tide of degree up to $m$ alike.[^cone]
 
-The pair's difference is $\nabla^4\field\psi/4\pi G$, the case $m = 2$, with $\field\psi$ zero outside $R$ (the stretch
-problem). For the pair, the Laplacians are taken with the shells as 2.5's surface densities and B's centre as a point,
-every derivative being moved onto the smooth polynomial. That is why every quadrupolar tide treats the pair alike; the
-octupolar difference comes from the computation above.[^slip] The null space of one reading, the densities
-$\nabla^2\field\psi/4\pi G$, is the bottom rung, and each degree of tide beyond the first removes one more.[^converse]
-As an aside, a warm body's tremor climbs the same ladder: in chapter
+The pair's difference is $\nabla^4\field\psi/4\pi G$ (Figure [](#fig:ladder-pair-profiles)), the case $m = 2$, with
+$\field\psi$ zero outside $R$ (the stretch problem). For the pair, the Laplacians are taken with the shells as 2.5's
+surface densities and B's centre as a point, every derivative being moved onto the smooth polynomial. That is why every
+quadrupolar tide treats the pair alike; the octupolar difference comes from the computation above.[^slip] The null space
+of one reading, the densities $\nabla^2\field\psi/4\pi G$, is the bottom rung, and each degree of tide beyond the first
+removes one more.[^converse] As an aside, a warm body's tremor climbs the same ladder: in chapter
 [4.6](/tutorial/response/fluctuation-dissipation/#each-degree-of-the-tremor-holds-one-moment-of-the-density) its degree
 $\ell$ reads $\int\matter\rho\,r^{2\ell-2}\,\dd V$ of a round body, as the tide $\mathrm{Re}\,(x + iy)^\ell/\ell$ does.
 
-<!-- diagram: tut-ladder-pair-profiles — spec: three stacked panels sharing one radial axis r from 0 to 1.15R, with the
-radius R dotted through all three. Top: the difference δρ = ρ_B − ρ_A as arrows on the axis: up at r = 0 (M/2, the
-point), down at r = R/√2 (M, A's shell), up at r = R (M/2, B's shell), arrow lengths in proportion to the masses.
-Middle: ψ₁ with ∇²ψ₁ = 4πG δρ, exact from the pair: ψ₁ = (GM/2R)(2√2 − 1 − R/r) for r < R/√2 (falling to −∞ at the
-centre, clipped and marked so) and (GM/2R)(R/r − 1) between R/√2 and R, zero beyond; kinks at the shells. Bottom: ψ₂
-with ∇²ψ₂ = ψ₁, zero outside R and reaching zero at R with zero slope. Both curves in the field colour; heights
-schematic, each panel on its own scale and marked so. Caption: "Look first at the bottom curve, which meets zero at the
-radius R and stays there: the pair's difference is four derivatives, two Laplacians, of a function that vanishes
-outside the body. The top panel is the difference itself, two shells and a point; the middle one is its potential,
-which already vanishes outside R. The shapes are exact; the heights are schematic." -->
+![Look first at the bottom curve, which meets zero at the radius $R$ and stays there: the pair's difference is four
+derivatives, two Laplacians, of a function that vanishes outside the body. The top panel is the difference itself, two
+shells and a point; the middle one is its potential, which already vanishes outside $R$. The shapes are exact; the
+heights are schematic, and the dashed curve is the bottom one drawn twenty times
+higher.](tut-ladder-pair-profiles){#fig:ladder-pair-profiles}
 
 ## A mass held for an instant is a tide of every degree, so it climbs the whole ladder
 
