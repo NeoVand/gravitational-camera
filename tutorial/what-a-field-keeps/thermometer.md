@@ -133,17 +133,11 @@ With $G\matter M/c^2 = r_s/2$ the factor in front is $(5/32\pi)\matter Mr_s^2$, 
 $\tfrac{256}{225}x^2$, which vanishes at $x = 0$. Above $x \approx 0.5$ the hole swallows nearly every quadrupole wave,
 $\Gamma_2 \approx 1$, and the integrand falls as $x^{-4}$. Swallowing short waves thus stops the endless growth that
 the friction law alone would give (11.4's stretch problem). Only 0.3% of the sum lies below $x = 0.2$, and
-three quarters between 0.3 and 0.6, where the hole begins to swallow waves.
+three quarters between 0.3 and 0.6, where the hole begins to swallow waves (Figure [](#fig:sum-cutoff)).
 
-<!-- diagram: tut-sum-cutoff — spec: one panel, log–log axes, x = GMω/c³ from 0.01 to 3 across (ticks 0.01, 0.1, 1),
-the integrand in units of Mr_s² down the side from 10⁻⁶ to 3 (ticks at each decade). Solid, the integrand
-(5/32π)Γ₂/x⁴ from the ℓ = 2 Regge–Wheeler solution (the same Γ₂ as fig:hole-response), with its maximum, 1.34 at
-x = 0.403, marked by a dot. Dashed, Page's line (5/32π)(256/225)x², which the curve leaves near x = 0.05. Dotted, the
-swallowing tail (5/32π)x⁻⁴, which the curve joins near x = 0.6. The band 0.3 ≤ x ≤ 0.6, which holds 74% of the sum, in
-the paper's pale orange, and a short vertical tick at x = 1/8π = 0.040 labelled "friction law and classical tremor
-hold to the left". Thin single strokes, labels beside the lines, never on them. Caption: "Look first at the shaded
-band: three quarters of the hole's sum comes from frequencies where it begins to swallow waves. Below, the integrand
-follows Page's x², the friction law; above, it falls as x⁻⁴, because every short wave is swallowed. Curves exact." -->
+![Look first at the shaded band: three quarters of the hole's sum comes from frequencies where it begins to swallow
+waves. Below, the integrand follows Page's $x^2$, the friction law; above, it falls as $x^{-4}$, because every short
+wave is swallowed. Curves exact.](tut-sum-cutoff){#fig:sum-cutoff}
 
 **The number** (a numerical result). The input is 11.3's Regge–Wheeler equation for degree two, solved for a wave of
 unit amplitude purely ingoing at the horizon. Far away it is an outgoing wave and an incoming one of amplitude
@@ -275,18 +269,13 @@ $$\boxed{\;R_\ell \to \frac{3\sqrt3}{e}\,r_s = 1.91\,r_s\;} .$$
 that parameter, its radii are $0.668$, $1.226$, $1.459$, $1.580$ and $1.652\,r_s$ for $\ell = 2$ to 6, climbing slowly
 to the same limit, below the hole's because the true $\Gamma_\ell$ also lets in some waves below $x_\ell$. **Meaning:**
 for any body $R_\ell$ tends to the radius of its outermost mass, which high powers of $r$ weigh most. So $1.91\,r_s =
-(2/e)\,b_c$, between the photon sphere at $1.5\,r_s$ and $b_c$, is where the hole's would-be body ends.
+(2/e)\,b_c$, between the photon sphere at $1.5\,r_s$ and $b_c$, is where the hole's would-be body ends (Figure
+[](#fig:hole-shells)).
 
-<!-- diagram: tut-hole-shells — spec: one square panel, the hole seen from above. A filled disc of radius r_s in the
-paper's dark ink for the horizon; thin grey circles at 1.5 r_s (the photon sphere) and at 2.598 r_s (the critical impact
-parameter, drawn as a circle); a dashed circle at 1.9116 r_s, the limit (3√3/e) r_s. Between them seven thin rings at
-the exact radii 1.0175, 1.4555, 1.6100, 1.6868, 1.7324, 1.7626 and 1.7841 r_s, in the paper's orange, each labelled by
-its degree ℓ = 2 … 8 along one radius at the upper right (labels outside the rings, leader lines thin), and on the
-opposite radius, in grey, short ticks at the step absorber's radii 0.668, 1.226, 1.459, 1.580, 1.652 r_s. A scale bar of
-1 r_s. Caption: "Look first at the orange rings crowding toward the dashed circle: each degree of tide answers like a
-shell of the hole's mass at its own radius, and the radii tend to (3√3/e) r_s, between the photon sphere and the
-critical impact parameter. Grey ticks: the step absorber's radii, lower and climbing to the same limit. Radii
-exact." -->
+![Look first at the rings crowding toward the dashed circle: each degree of tide answers like a shell of the hole's
+mass at its own radius, and the radii tend to $(3\sqrt3/e)\,r_s$, between the photon sphere and the critical impact
+parameter. Grey ticks: the step absorber's radii, lower and climbing to the same limit. Radii
+exact.](tut-hole-shells){#fig:hole-shells}
 
 ## No distribution of positive mass has the hole's first three sums
 
@@ -311,9 +300,9 @@ $45/49 = 0.918$.
 
 **The hole.** Read as a round body's, its sums give $m_k = R_{k+1}^{2k}$. From the unrounded radii,
 
-$$m_1 = 1.0352\,r_s^2 , \qquad m_2 = 4.4880\,r_s^4 , \qquad m_3 = 17.418\,r_s^6 ,$$
+$$m_1 = 1.0352\,r_s^2 , \qquad m_2 = 4.4881\,r_s^4 , \qquad m_3 = 17.418\,r_s^6 ,$$
 
-and the test's least value is
+and the test's least value (Figure [](#fig:hankel-test)) is
 
 $$\boxed{\;m_3 - \frac{m_2^2}{m_1} = -2.04\,r_s^6\quad\text{at } a = 4.335\,r_s^2\;} .$$
 
@@ -349,16 +338,9 @@ crossing the Earth loses about $10^{-30}$ of its energy (chapters
 says, "no matter does that to a gravitational wave". **Meaning:** "one tide lets it be drawn as a shell, and three
 allow no drawing".
 
-<!-- diagram: tut-hankel-test — spec: one panel, a from 0 to 9 r_s² across (ticks every 1), the test
-m₃ − 2a m₂ + a² m₁ in r_s⁶ down the side from −3 to 14 (ticks −2, 0, 2, …, 14), the region below zero in the paper's
-pale blue and labelled "no positive mass" at its lower left. Three exact parabolas: the hole's (orange, solid) with
-m₁ = 1.035224, m₂ = 4.488002, m₃ = 17.417661, its least −2.039 at a = 4.335 marked by a dot; a uniform ball with the
-hole's mass and first moment, radius 1.3135 r_s (m₁ = 1.035224, m₂ = 1.275819, m₃ = 1.712094; grey, solid), least
-+0.1398 at a = 1.2324, touching nowhere below zero; and the step absorber with b = b_c (m₁ = 0.446577, m₂ = 2.259846,
-m₃ = 9.648003, from its radii 0.66826, 1.22608, 1.45907 r_s; dark ink, dashed), least −1.787 at a = 5.060. The two
-dips are labelled with their least values; each curve is clipped where it leaves the top. Caption: "Look first at the
-two dips into the blue: the hole's sums and the step absorber's fall below zero, which no positive mass can do; the
-ball's curve stays above. Curves exact, from the radii of panel (c) of the paper's figure." -->
+![Look first at the two dips into the shaded region: the hole's sums and the step absorber's fall below zero, which
+no positive mass can do; the ball's curve stays above. Curves exact, from the unrounded radii of panel (c) of the
+paper's figure.](tut-hankel-test){#fig:hankel-test}
 
 ## The friction would make the hole yield like a liquid, yet its Love number is zero
 
