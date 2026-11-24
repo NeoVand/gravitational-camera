@@ -334,13 +334,13 @@ Section III has one numbered equation and cites two of Section II's.
 | [](/paper/#eq:newton) | near slow matter, the tide is the Hessian of Newton's potential | derived | 1.4 |
 | [](/paper/#eq:wave) | in a wave, the tide is $-\tfrac12\partial_t^2h^{\rm TT}_{ij}$ | read | 7.6 |
 
-Part 5 has also derived ten equations of Sections V, VI, VII and IX, a few of them in a simpler form or as a
-sketch, in chapters [5.1](/tutorial/waves/wave-equation/), [5.2](/tutorial/waves/retarded-waves/),
-[5.3](/tutorial/waves/diffraction/), [5.4](/tutorial/waves/polarization/) and [5.5](/tutorial/waves/radiance/).
-Chapter [5.6](/tutorial/waves/abel-transform/) derived Section IX's Abel transform [](/paper/#eq:abel) and its
-inverse [](/paper/#eq:abel-inverse). Three that they use are still stated: the quadrupole formula and the pair's
-power, which chapter 7.7 derives, and Peters's index. Reading chapter R7 reads Section V with Part 7's amplitudes, R10
-reads Sections VI and IX, and R11 reads Section VII.
+Part 5 has also derived ten equations of Sections V, VI, VII and IX, a few of them in a simpler form or as a sketch, in
+chapters [5.1](/tutorial/waves/wave-equation/), [5.2](/tutorial/waves/retarded-waves/),
+[5.3](/tutorial/waves/diffraction/), [5.4](/tutorial/waves/polarization/) and [5.5](/tutorial/waves/radiance/). Chapter
+[5.6](/tutorial/waves/abel-transform/) derived Section IX's Abel transform [](/paper/#eq:abel) and its inverse
+[](/paper/#eq:abel-inverse). Three that they use are still stated: the quadrupole formula and the pair's power, which
+chapter 7.7 derives, and Peters's index. Reading chapter R7b reads Section V with Part 7's amplitudes, R10 reads
+Sections VI and IX, and R11 reads Section VII.
 
 ::: check
 ### Q

@@ -400,8 +400,9 @@ direction halfway between $\hat n$ and $\hat n\times\vect v$, so the largest eig
 $3G\matter Mv_\perp/cr^3$ (*checked here*, given equation (9)).
 
 The paragraph ends: "The waves of moving bodies and the thermal glow ask far more again, and the glow asks for
-something that no matter can supply." Both claims are *stated in the paper* here, and
-[Section IX](/paper/#sec:first-image) and reading chapter R10 explain them.
+something that no matter can supply." Both claims are *stated in the paper* here. The waves of moving bodies are
+[Section V](/paper/#sec:waves)'s, read by reading chapter R7b; the glow is [Section IX](/paper/#sec:first-image)'s,
+read by R10.
 
 ## The Earth's own tide is subtracted, and its magnetic part weighs the core
 
