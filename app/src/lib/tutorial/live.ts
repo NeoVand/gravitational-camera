@@ -59,6 +59,7 @@ import MassShell from './live/MassShell.svelte';
 import ComplexField from './live/ComplexField.svelte';
 import LongestPath from './live/LongestPath.svelte';
 import StressEnergyTable from './live/StressEnergyTable.svelte';
+import CarryAround from './live/CarryAround.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -275,6 +276,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'The stress–energy tensor as a 4 × 4 table for dust, gas, a beam, light in a box and the Casimir gap, boosted, with its trace, what gravitates and what a ray sees',
 		component: StressEnergyTable
+	},
+	'carry-around': {
+		label:
+			'Carry an arrow round a loop on a sphere without turning it, and compare its turn with the area enclosed; on a flat sheet with polar labels it comes home unturned',
+		component: CarryAround
 	},
 	'noise-spectrum': {
 		label:

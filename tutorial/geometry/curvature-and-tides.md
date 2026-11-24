@@ -6,7 +6,7 @@ part: '7'
 requires: ['1.1', '1.4', '1.5', '6.2', '7.1']
 paper: [sec:pixel, eq:tidal, eq:deviation, eq:newton, eq:magnetic, fig:tidal, fig:tidal-field, sec:one-pixel, eq:bianchi-wave]
 figures: [fig:tidal, fig:tidal-field]
-live: [tidal-ring]
+live: [carry-around, tidal-ring]
 depth: A
 ---
 
@@ -32,6 +32,11 @@ So we ask: falling removes gravity at a point, so what is left, and why is it a 
 relative acceleration of two free balls is the Riemann tensor
 ([](#two-free-balls-drift-apart-by-the-curvature-between-them)), and near slow matter the paper's tide is chapter 1.4's
 ([](#near-slow-matter-the-curvature-is-newtons-tide)).
+
+![Look first at the tube's top: twelve free balls that start on a circle end on an ellipse, squeezed across the line to
+the mass and spread along it. Each ball moves as straight as spacetime allows, and falling with the centre removes the
+pull; what remains is the bending of neighbouring free paths, the curvature. The dashed circles are the ring
+undisturbed. The distortion is exaggerated, and the mass's size and distance are schematic.](tut-curvature-tube){#fig:free-tube}
 
 ::: plain
 On a curved surface such as a sphere, an arrow carried round a loop without ever being turned comes back pointing in a
@@ -73,42 +78,25 @@ used no coordinates, so the curvature cannot depend on the labels.
 
 A non-example is the flat sheet. An arrow carried round any loop on it keeps the same components along fixed straight
 axes, so it comes back unturned. In 7.1's polar coordinates its components along $r$ and $\theta$ change as it goes, and
-the Christoffel symbol $\Gamma^r{}_{\theta\theta} = -r$ is not zero, yet the arrow still comes home unturned.
+the Christoffel symbol $\Gamma^r{}_{\theta\theta} = -r$ is not zero, yet the arrow still comes home unturned (Figure
+[](#fig:carried-arrow)).
 Christoffel symbols can be nonzero where there is no curvature. The next section builds the combination of them that is
 zero for the sheet and $1/a^2$ for the sphere.
 
-<!-- diagram: tut-curvature-loops — Two panels side by side, each about 340 × 300 px at 1440 (stacked on a phone). Left,
-"sphere": a sphere in light oblique view (north pole tilted toward the reader by about 25°), thin ink outline, the
-equator and two meridians (0° and 90° east) as thin ink lines; the octant loop pole → equator along 0°, along the
-equator to 90° east, back to the pole, drawn in the curvature colour, slightly heavier. Short arrows in the observer
-colour at five places on the loop (start at the pole, middle of the first meridian, the corner on the equator at 0°,
-middle of the equator arc, middle of the second meridian), each pointing due south, tangent to the sphere. At the pole
-the starting arrow (dashed) and the returning arrow (solid) drawn from the same point, with a small arc between them
-labelled "90°". Label beside the loop: "area πa²/2". Right, "flat sheet, polar labels": a plane with thin grey circles
-r = 1, 2, 3 and rays every 30°, a loop made of two radial segments and two circular arcs (r from 1 to 3, θ from 0° to
-90°) in the curvature colour, and observer-colour arrows at the same five kinds of place all parallel to one fixed
-direction on the page; at the start the dashed and the solid arrow coincide, labelled "0°". A small note under the
-right panel: "Γ^r_θθ = −r ≠ 0". Labels beside the geometry, never on a line. Caption: "Look first at the two arrows at
-the start of each loop. On the sphere the arrow, never turned on the way, comes home turned by 90°, the area enclosed
-divided by a²; on the flat sheet it comes home unturned, although its polar components change on the way and the
-Christoffel symbols are not zero." -->
+![Look first at the two arrows at the start of each loop. On the sphere the arrow, never turned on the way, comes home
+turned by 90°, the area enclosed divided by $a^2$; on the flat sheet it comes home unturned, although its polar
+components change on the way and the Christoffel symbols are not zero.](tut-curvature-loops){#fig:carried-arrow}
 
-<!-- try: carry-around (new: CarryAround; a port of the GR course's parallel-transport lab and its sphere scene,
-chapter-8.html#scene-sphere) — A sphere of radius a shown in oblique view, which the reader can rotate by dragging the
-background (arrow keys with the sphere focused). A loop on the sphere drawn as a spherical polygon whose three or four
-corners are draggable handles (44 px targets on a phone; Tab selects a corner, arrow keys move it by 1° of latitude or
-longitude, shift by 10°); the edges are arcs of great circles. A play button carries an arrow, in the observer colour,
-round the loop by parallel transport (integrated numerically), leaving faint copies every few degrees; the starting
-arrow stays dashed at the first corner. Readouts, to three figures: "turned by … °", "area / a² = … °" (the enclosed
-area over a², in degrees), and "difference … °" (zero up to the drawing's resolution, below 0.1°). A switch "sphere /
-flat sheet (polar labels)" replaces the sphere by a plane with a polar grid; there the loop's edges are straight
-segments, the arrow returns unturned, and an extra readout shows "Γ^r_θθ = −r at the first corner: … m". Opens on the
-octant (corners at the pole, at 0° on the equator and at 90° east on the equator), with the arrow already carried round
-and the readout at 90.0°. Predict first: "Carry the arrow round one octant. By what angle has it turned when it comes
-home?" (Answer: 90°, the area πa²/2 divided by a².) Then: "Move the corner at 90° east to 45° east, halving the loop's
-area. What happens to the angle?" (Answer: it halves, to 45°.) Then: "Switch to the flat sheet and make any loop. What
-is the angle?" (Answer: 0°, though Γ^r_θθ is not zero.) Both themes, keyboard, phone; static on reduced motion (the
-arrow drawn at its final place with the copies). -->
+::: try {#carry-around}
+A sphere of radius $a$, which you can turn by dragging the background, and a loop on it whose three or four corners
+you can drag; its sides are arcs of great circles. *Carry the arrow round* takes an arrow round the loop without
+turning it, leaving faint copies behind, and the readouts compare the angle by which it comes home turned with the
+area enclosed divided by $a^2$. A switch replaces the sphere by a flat sheet with polar labels, with a readout of the
+Christoffel symbol $\Gamma^r{}_{\theta\theta}$ at the first corner. It opens on the octant of the first section.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, make a
+long thin loop near the equator and a small round one near the pole with the same area, and compare their turns.
+:::
 
 ## The Riemann tensor is built from the Christoffel symbols, yet it is a tensor
 
@@ -291,7 +279,7 @@ $3\xi/2r$ (chapter 1.4's margin note), 1.5 per cent for balls 1 cm apart a metre
 
 **What it means.** Free bodies, each moving as straight as it can, drift together or apart only if spacetime is curved
 between them. Falling removes the Christoffel symbols on one path, and what it cannot remove is their change across the
-gap, which is the Riemann tensor.
+gap, which is the Riemann tensor (Figure [](#fig:deviation)).
 
 ::: gap
 The derivation used coordinates whose Christoffel symbols vanish all along a free path. Such coordinates exist for every
@@ -302,30 +290,9 @@ symbols vanish on the path, nor does it derive the covariant form of the left si
 rotate, with gyroscopes holding its frame still; that frame is the one of this box.
 :::
 
-<!-- diagram: tut-curvature-tube — The hero figure of Part 7, in the stone pipeline (3D, the stone bodies), about
-1200 × 700 px at 1440, cropped to a square on a phone. Spacetime drawn with time upward and two directions of space
-across (the third suppressed). A stone sphere, the mass, sits to the left; its worldline is a short stone column rising
-through the scene. To its right, twelve worldlines of free balls start as a horizontal ring (a dashed ink circle at the
-bottom, "the ring undisturbed") and rise as thin strokes in the observer colour, forming a tube. Over the height of the
-scene the tube's cross-section becomes an ellipse: narrower across the line to the mass (blue tint on the two
-worldlines that close in) and wider along it (orange tint on the two that spread), with the ring's centre falling
-slightly toward the mass. At the top the cross-section is drawn as a solid ellipse in thin ink, with the dashed circle
-repeated beside it for comparison. A small cube at the centre of the bottom ring, in faint ink, labelled "falling
-frame": it rises with the central worldline and stays a cube. Labels: "time" on the vertical axis, "free balls" beside
-the tube, "mass" beside the stone; no other text. Caption: "Look first at the tube's top: twelve free balls that start
-on a circle end on an ellipse, squeezed across the line to the mass and spread along it. Each ball moves as straight as
-spacetime allows, and falling with the centre removes the pull; what remains is the bending of neighbouring free paths,
-the curvature. The distortion is exaggerated, and the mass's size and distance are schematic." -->
-
-<!-- diagram: tut-curvature-deviation — One panel, about 520 × 400 px at 1440 (full width on a phone). Time upward.
-Two worldlines of free balls rising from the bottom, thin, in the observer colour: the reference on the left, straight
-and vertical, labelled "reference ball", and its neighbour on the right, starting parallel a short distance away and
-curving slowly away from it, labelled "neighbour". Three horizontal ink arrows from the reference to the neighbour at
-three heights, each labelled "ξ", the top one longest. Along the reference worldline, small squares in faint ink at the
-three heights, all the same size and orientation, labelled once "falling frame: every Γ^μ_αβ = 0 on this path". A
-small arrow labelled "u" pointing up along the reference worldline at the bottom. Caption: "Look first at the three arrows ξ: in a
-frame falling with the reference ball, in which every Christoffel symbol vanishes along its path, the separation still
-grows, and its acceleration is −R ξ, by the geodesic deviation equation." -->
+![Look first at the three arrows $\xi$: in a frame falling with the reference ball, in which every Christoffel symbol
+vanishes along its path, the separation still grows, and its acceleration is $-\curv R\,\xi$, by the geodesic deviation
+equation.](tut-curvature-deviation){#fig:deviation}
 
 ## For an observer at rest the drift is the paper's tide
 
@@ -517,21 +484,15 @@ index, in proportion to the ball's speed. The magnetic part therefore acts only 
 their velocity, as a magnetic field pushes a moving charge, which is why it is called magnetic. The paper's pixel reads
 it from how the axes of neighbouring gyroscopes twist relative to one another (chapter 7.5).
 
-<!-- diagram: tut-curvature-count — One panel, about 560 × 220 px at 1440 (full width on a phone). Twenty small squares
-in a row, grouped into three blocks with gaps between them, all outlined in thin ink: 6 squares filled in the curvature
-colour, labelled below "R₀ᵢ₀ⱼ: the tide 𝓔 (6)"; 8 squares filled in a lighter tint of the curvature colour, labelled
-"R₀ᵢⱼₖ: the magnetic part 𝓑 (8), chapter 7.5"; 6 squares in faint ink, labelled "Rᵢⱼₖₗ: no time index (6)". Above
-the row a bracket over all twenty, labelled "20 independent numbers at an event". Below, a second thin row marking with
-small ticks the squares that remain free in empty space: 5 of the first block and 5 of the second, with the note
-"empty space: 5 + 5 = 10, the pixel's ten numbers (chapter 7.3)". Labels never on the squares. Caption: "Look first at
-the three blocks: sorted by how many time indices they carry, the twenty numbers of the curvature are the tide, the
-magnetic part and, for an observer at rest in a static field, the curvature of space. In empty space Einstein's
-equation leaves five of the first two blocks each, and fixes the third by the tide." -->
+![Look first at the three blocks: sorted by how many time indices they carry, the twenty numbers of the curvature are
+the tide, the magnetic part and, for an observer at rest in a static field, the curvature of space. In empty space
+Einstein's equation leaves five of the first two blocks each, and fixes the third by the
+tide.](tut-curvature-count){#fig:twenty-numbers}
 
 In empty space Einstein's equation sets ten combinations of the twenty to zero, and chapter 7.3 derives which. What
 remains is the five numbers of a trace-free $\curv\tE$ and the five of a symmetric trace-free $\curv\tB$, each one of
 chapter 1.5's tables of five, with the six of $\curv R_{ijkl}$ then fixed by $\curv\tE$. These are the ten numbers of
-Section II's pixel.[^bianchi]
+Section II's pixel (Figure [](#fig:twenty-numbers)).[^bianchi]
 
 ::: try {#tidal-ring}
 The figure opens with a mass of 70 kg one metre from a ring of twelve free balls, and its readout gives the stretch in
