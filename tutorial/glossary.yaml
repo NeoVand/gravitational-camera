@@ -3963,3 +3963,71 @@ terms:
     definition: 'The mean number of quanta in a mode is the same for every observer, so a radiance divided by $\omega^3$ is too. It is why a moving observer sees a black body in every direction, at the temperature $T/\gamma(1 - \beta\cos\alpha'')$.'
     chapter: '10.1'
     anchor: a-moving-observer-still-sees-a-black-body-hotter-ahead
+  - term: population (of a level)
+    definition: 'The fraction of a body''s matter found in one of its levels of energy. In equilibrium an upper level $\hbar\omega$ above a lower one holds $e^{-\hbar\omega/k_BT}$ times as much.'
+    chapter: '10.2'
+    anchor: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more
+  - term: stimulated emission
+    definition: 'Emission that a passing wave causes, in proportion to the quanta the mode already holds, into the same mode. It cancels the share $P_u/P_l$ of the absorption.'
+    chapter: '10.2'
+    anchor: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more
+  - term: spontaneous emission
+    definition: 'Emission that happens on its own, even into an empty mode: the 1 of $n_\omega + 1$ in the rate at which matter gives a mode quanta. It is the $j_\omega$ of Kirchhoff''s law.'
+    chapter: '10.2'
+    anchor: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more
+  - term: net absorption coefficient
+    definition: 'Absorption less stimulated emission, $\alpha = \kappa(P_l - P_u)$, in m⁻¹: the $\alpha$ of Kirchhoff''s law $j_\omega = \alpha B_\omega$. Its ratio to the spontaneous emission is fixed by the matter''s temperature alone, so the law holds in any surrounding radiation.'
+    chapter: '10.2'
+    anchor: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more
+  - term: inverted population
+    definition: 'More matter in an upper level than in the lower one. The net absorption coefficient is then negative, and the matter amplifies a passing wave.'
+    chapter: '10.2'
+    anchor: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more
+  - term: maser
+    definition: 'A device that amplifies microwaves by stimulated emission from matter with an inverted population; the first, with ammonia, was built in 1954.'
+    chapter: '10.2'
+    anchor: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more
+  - term: fluctuating stress
+    definition: 'The random part of the stress inside warm matter. For a viscous fluid its spectrum per unit volume is $2k_BT\,\mathrm{Re}\,\eta$ for each shear component (Landau and Lifshitz), and it sends out the thermal glow.'
+    chapter: '10.2'
+    anchor: the-same-law-follows-from-the-random-stress-inside-warm-matter
+  - term: emission order
+    definition: 'The order of a correlation that gives the energy a body sends out, the spectrum $S(-\omega)$ at negative frequencies, $2\hbar\bar n\,\mathrm{Im}\,\chi$; the paper''s unsymmetrized (Wightman) order. Only it gives Kirchhoff''s law; the symmetrized order would make a body glow at absolute zero.'
+    chapter: '10.2'
+    anchor: the-same-law-follows-from-the-random-stress-inside-warm-matter
+  - term: entropy (thermodynamic)
+    definition: 'The quantity whose change is $\mathrm dS = \mathrm dQ/T$ when a body at the temperature $T$ takes in the heat $\mathrm dQ$ slowly, in J K⁻¹. It is $k_B\ln2$ times the entropy in bits; a black body holds $4\mathcal U/3T$ per cubic metre, 3.60 $k_B$ per quantum.'
+    chapter: '10.2'
+    anchor: a-glow-carries-entropy-as-well-as-energy
+  - term: second law of thermodynamics
+    definition: 'The total entropy of a closed system never falls. It is why heat flows by itself only from a hotter body to a colder one.'
+    chapter: '10.2'
+    anchor: a-glow-carries-entropy-as-well-as-energy
+  - term: adiabatic invariant
+    definition: 'A quantity that stays fixed when a system is changed slowly compared with its own motion, such as $E/\omega$ for an oscillator; for a mode it is the count of quanta.'
+    chapter: '10.2'
+    anchor: a-slowly-widened-box-keeps-a-black-body-cooler
+  - term: adiabatic expansion
+    definition: 'An expansion slow enough, and with no heat let in, that the entropy stays fixed. A box of black-body radiation widened so stays a black body, its temperature falling as one over its size.'
+    chapter: '10.2'
+    anchor: a-slowly-widened-box-keeps-a-black-body-cooler
+  - term: heat capacity
+    definition: 'How much a body''s energy rises per kelvin, $C = \mathrm dE/\mathrm dT$, in J K⁻¹. A mode has $k_B$ when warm and almost nothing when frozen.'
+    chapter: '10.2'
+    anchor: heat-capacity-says-how-a-bodys-energy-follows-its-temperature
+  - term: Dulong–Petit law
+    definition: 'A hot solid of $N$ atoms has the heat capacity $3Nk_B$, $k_B$ for each of its $3N$ normal modes.'
+    chapter: '10.2'
+    anchor: heat-capacity-says-how-a-bodys-energy-follows-its-temperature
+  - term: Debye frequency and Debye temperature
+    definition: 'In Debye''s model of a solid, the highest frequency $\omega_D$ of its sound waves, set so that there are $3N$ modes, and the temperature $\Theta_D = \hbar\omega_D/k_B$ below which its modes freeze. Diamond''s is 2200 K, copper''s 343 K.'
+    chapter: '10.2'
+    anchor: heat-capacity-says-how-a-bodys-energy-follows-its-temperature
+  - term: stable and unstable balance
+    definition: 'A balance is stable if a small push is undone: a body slightly hotter than its surroundings cools back when its heat capacity is positive, and heats further, unstably, when it is negative.'
+    chapter: '10.2'
+    anchor: a-balance-is-stable-only-if-the-heat-capacity-is-positive
+  - term: negative heat capacity
+    definition: 'A body that grows hotter as it loses energy, such as a black hole, whose heat capacity is $-Mc^2/T$. Its balance with surroundings at its own temperature is unstable.'
+    chapter: '10.2'
+    anchor: a-balance-is-stable-only-if-the-heat-capacity-is-positive

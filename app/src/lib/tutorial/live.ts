@@ -79,6 +79,7 @@ import QuantumTremor from './live/QuantumTremor.svelte';
 import SquareOfVector from './live/SquareOfVector.svelte';
 import JordanExplorer from './live/JordanExplorer.svelte';
 import PlanckSpectrum from './live/PlanckSpectrum.svelte';
+import DetailedBalance from './live/DetailedBalance.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -414,5 +415,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A black body at a temperature you choose: Planck’s spectrum, its peak, and the three factors whose product it is',
 		component: PlanckSpectrum
+	},
+	'detailed-balance': {
+		label:
+			'A slab of two-level matter: the three rates, α and j_ω, and the occupation along a ray through it',
+		component: DetailedBalance
 	}
 };

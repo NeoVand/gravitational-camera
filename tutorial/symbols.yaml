@@ -3222,3 +3222,67 @@ symbols:
     meaning: 'The mean number of quanta in a mode of radiation of angular frequency $\omega$ travelling in a given direction, in any state; the radiance is $I_\omega = \hbar\omega^3n_\omega/4\pi^3c^2$. Its thermal value is $\bar n$. It is the same for every observer, which is why a moving observer still sees a black body.'
     chapter: '10.1'
     anchor: a-moving-observer-still-sees-a-black-body-hotter-ahead
+  - key: level-populations
+    title: Populations of two levels
+    tex: 'P_l, P_u'
+    role: none
+    kind: Two fractions; pure numbers
+    meaning: 'The fractions of matter in a lower and an upper level of energy, $\hbar\omega$ apart (chapter 8.7''s Boltzmann weights $P_m$ for one pair). Matter absorbs a mode''s quanta at the rate $\kappa P_l n_\omega$ and emits at $\kappa P_u(n_\omega + 1)$; in equilibrium $P_u/P_l = e^{-\hbar\omega/k_BT}$. (Not chapter 8.5''s count distribution $P(n)$.)'
+    chapter: '10.2'
+    anchor: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more
+  - key: coupling-per-metre
+    title: Absorption of matter all in its lower level
+    tex: '\kappa'
+    role: none
+    kind: A rate per length; in m⁻¹
+    meaning: 'The chance per metre that a quantum is absorbed by matter that is all in its lower level, the same for emission by the equal entries of chapter 8.7. The net absorption coefficient is $\alpha = \kappa(P_l - P_u)$ and the spontaneous emission $j_\omega = \kappa P_u\hbar\omega^3/4\pi^3c^2$. Local to chapter 10.2.'
+    chapter: '10.2'
+    anchor: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more
+  - key: shear-noise-table
+    title: Shape of the stress noise
+    tex: '\Delta_{ijkl}'
+    role: none
+    kind: A table of numbers with four indices; pure numbers
+    meaning: '$\Delta_{ijkl} = \delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk} - \tfrac23\delta_{ij}\delta_{kl}$, which spreads the random stress of a viscous fluid over its shear components and gives the trace nothing: the stress spectrum is $2k_BT\,\mathrm{Re}\,\eta\,\Delta_{ijkl}$ per unit volume. Its contraction with the projector $\Lambda_{ij,kl}$ is 4. Local to chapter 10.2.'
+    chapter: '10.2'
+    anchor: the-same-law-follows-from-the-random-stress-inside-warm-matter
+  - key: thermodynamic-entropy
+    title: Entropy (thermodynamic)
+    tex: 'S'
+    role: none
+    kind: A number for a body; in J K⁻¹
+    meaning: 'Defined by its changes, $\mathrm dS = \mathrm dQ/T$ for heat taken in slowly. A mode holding $\bar n$ quanta has $S = k_B[(\bar n + 1)\ln(\bar n + 1) - \bar n\ln\bar n]$, which is $k_B\ln2$ times chapter 3.8''s entropy $H$ in bits; one joule per kelvin is $1.04\times10^{23}$ bits. (Not the spectra $S_{yy}(\pm\omega)$, which always carry subscripts.)'
+    chapter: '10.2'
+    anchor: a-glow-carries-entropy-as-well-as-energy
+  - key: entropy-density
+    title: Entropy per volume of a black body
+    tex: 's'
+    role: none
+    kind: An entropy per volume; in J K⁻¹ m⁻³
+    meaning: 'The entropy of a black body in each cubic metre, $s = 4\mathcal U/3T = 16\sigma_{\rm SB}T^3/3c$: $2.5\times10^{-8}$ J K⁻¹ m⁻³ at 293 K, or 3.60 $k_B$ per quantum. (Chapter 5.5''s $s$ is a distance along a ray.)'
+    chapter: '10.2'
+    anchor: a-glow-carries-entropy-as-well-as-energy
+  - key: heat-capacity
+    title: Heat capacity
+    tex: 'C'
+    role: none
+    kind: An energy per temperature; in J K⁻¹
+    meaning: 'How much a body''s energy rises per kelvin, $C = \mathrm dE/\mathrm dT$. A mode has $k_Bx^2e^x/(e^x - 1)^2$ with $x = \hbar\omega/k_BT$; a black hole $-Mc^2/T$, negative, which makes its balance with a sky unstable. (Not chapter 3.8''s capacity in bits.)'
+    chapter: '10.2'
+    anchor: heat-capacity-says-how-a-bodys-energy-follows-its-temperature
+  - key: debye-frequency
+    title: Debye frequency
+    tex: '\omega_D'
+    role: none
+    kind: An angular frequency; in s⁻¹
+    meaning: 'The highest frequency of Debye''s model of a solid, chosen so that sound waves counted as $\omega^2$ up to it make exactly the $3N$ modes of $N$ atoms.'
+    chapter: '10.2'
+    anchor: heat-capacity-says-how-a-bodys-energy-follows-its-temperature
+  - key: debye-temperature
+    title: Debye temperature
+    tex: '\Theta_D'
+    role: none
+    kind: A temperature; in K
+    meaning: 'The temperature $\hbar\omega_D/k_B$ of a solid''s highest modes. Well below it most modes are frozen and the heat capacity falls below $3Nk_B$: at 293 K diamond, whose Debye temperature is 2200 K, holds only 0.16 of it, and copper, whose Debye temperature is 343 K, holds 0.93.'
+    chapter: '10.2'
+    anchor: heat-capacity-says-how-a-bodys-energy-follows-its-temperature

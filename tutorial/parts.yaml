@@ -148,7 +148,7 @@ parts:
     title: The thermal glow
     chapters:
       - { id: '10.1', slug: glow/black-body, title: "The black body and Planck's law; Bose integrals", short: The black body, size: M, status: published }
-      - { id: '10.2', slug: glow/kirchhoff, title: "Kirchhoff's law and detailed balance; entropy and heat capacity", short: "Kirchhoff's law", size: M, status: planned }
+      - { id: '10.2', slug: glow/kirchhoff, title: "Kirchhoff's law and detailed balance; entropy and heat capacity", short: "Kirchhoff's law", size: M, status: published }
       - { id: '10.3', slug: glow/why-matter-barely-glows, title: 'Why matter barely glows: phonons, electrons, Raman lines, and the bound on every glow', short: Why matter barely glows, size: L, status: planned }
       - { id: R10, slug: glow/reading-section-vi, title: 'Reading Section VI', short: Reading Section VI, size: M, status: planned, reads: [sec:thermal] }
       - { id: R10b, slug: glow/reading-section-ix, title: 'Reading Section IX, with the capstone: the Sun at midnight', short: Reading Section IX, size: M, status: planned, reads: [sec:first-image] }
