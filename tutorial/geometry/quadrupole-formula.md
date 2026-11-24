@@ -588,9 +588,9 @@ and the turning table gives $4.55\times10^{-41}$ W at $\Omega = 100.5\unit{s^{-1
     momentum removes the second piece of the third term.
 
 [^error]: The paper's Section XI gives this error as of order $(d/r)^2$, from the higher moments. The $(kr)^2$ comes on
-    top, $0.14(kr)^2$ in the plane of the orbit and $0.50(kr)^2$ on its axis for the size of the whole tide, and is the
-    larger beyond about 3500 km for the black-hole pair below; the paper should say "errors of order $(d/r)^2$ and
-    $(kr)^2$".
+    top, $0.14(kr)^2$ in the plane of the orbit and $0.50(kr)^2$ on its axis for the size of the whole tide. In the plane
+    the higher moments' error is $0.23(d/r)^2$, so the $(kr)^2$ is the larger beyond about 4000 km for the black-hole
+    pair below; the paper should say "errors of order $(d/r)^2$ and $(kr)^2$".
 
 [^gauge]: With $\partial_ju = -\hat n_j/c$, the chain rule gives $\partial_j[f(u)/r] = -\hat n_j[f/r^2 + \dot f/cr]$, so
     the quadrupole terms of $\field{\bar h}^{0i}$ are $-(2G/c^3)\,\partial_j[\dot{\matter I}_{ij}(u)/r]$, and the spin term
@@ -605,7 +605,9 @@ and the turning table gives $4.55\times10^{-41}$ W at $\Omega = 100.5\unit{s^{-1
     its "Newton's pull … falling as $r^{-5}$" is the tide, since the changing pull falls as $r^{-4}$. It should say
     "tide" and add "in the plane of the orbit".
 
-[^magnetic]: The magnetic part has no tide of the mass. Its near field is the spin's, about $G|\vect L|/cr^4$ (chapter
-    7.5), with $|\vect L| = \matter{\Delta I}\,\Omega$, and it equals the wave's $4G\matter{\Delta I}\,\Omega^4/c^4r$ at
-    $r = 4^{-1/3}c/\Omega = 0.63\,c/\Omega$. Since $c/\Omega$ is twice $\lambda/2\pi$, that is $1.26\,\lambda/2\pi$ at
-    any speed: the paper's "at $\lambda/2\pi$ whatever the speed".
+[^magnetic]: The magnetic part has no tide of the mass. Its near field is the spin's (chapter 7.5), with $|\vect L| =
+    \matter{\Delta I}\,\Omega$: on the orbit's axis the spin dipole's largest eigenvalue is $6G|\vect L|/cr^4$, and the
+    wave's magnetic part there is as large as its tide, $8G\matter{\Delta I}\,\Omega^4/c^4r$. They are equal at $r =
+    (3/4)^{1/3}c/\Omega = 0.91\,c/\Omega$. Since $c/\Omega$ is twice $\lambda/2\pi$, that is $1.82\,\lambda/2\pi$ at any
+    speed: the paper's "at $\lambda/2\pi$ whatever the speed" holds in its independence of the speed, with a factor
+    near 1.8 (reading chapter R12).

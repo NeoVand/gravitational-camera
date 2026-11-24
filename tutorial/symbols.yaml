@@ -3878,3 +3878,12 @@ symbols:
     meaning: 'The wedge missing from the flat space around a straight cosmic string, $8\pi G\mu/c^2$: $5.2''''$ for $G\mu/c^2 = 10^{-6}$. A source behind the string is seen twice, at most $\Delta$ apart.'
     chapter: '12.2'
     anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind
+
+  - key: axis-wave-tide
+    title: Tide of a pair's wave on the axis of its orbit
+    tex: '\curv{h}'
+    role: curv
+    kind: A complex number turning with the orbit; in s⁻²
+    meaning: 'The paper''s amplitude of the wave in $\mathcal W = (GM/r^3)\,\mathrm{diag}(1,1,-2) + h\,\mathbf m_0\mathbf m_0^{\mathsf T}$ for one pixel on a pair''s axis, with $\mathbf m_0 = (1, i, 0)$: a tide, not a strain. Two principal null directions sit at $z = \pm(3GM/r^3h)^{1/2}$ and cross the equator where $|h| = 3GM/r^3$.'
+    chapter: R12
+    anchor: on-the-orbits-axis-one-pixel-sees-the-type-pass-from-d-through-ii-toward-n

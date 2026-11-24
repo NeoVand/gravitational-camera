@@ -4691,3 +4691,16 @@ terms:
     definition: 'The step in a background''s temperature across a moving cosmic string, at most $\delta T/T = 8\pi G\mu\gamma v/c^3$ (for a string across the line of sight, moving at right angles to it), from the Doppler shift of the matter that the closing wedge sets moving.'
     chapter: '12.2'
     anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind
+
+  - term: affordance
+    definition: 'What a tool lets the person holding it do. The paper''s Table tab:affordances lists ten things a gravitational camera affords that light does not, from seeing through walls to seeing a beam of light from the side.'
+    chapter: R12
+    anchor: most-of-section-xs-list-rests-on-two-facts-that-earlier-chapters-derived
+  - term: reduced wavelength
+    definition: 'The wavelength over $2\pi$, $\lambda/2\pi = c/\omega$. Within about one reduced wavelength of a source its field is the near field; well beyond it, the wave.'
+    chapter: R12
+    anchor: near-the-pair-the-tide-turns-with-it-and-beyond-three-tenths-of-a-wavelength-it-is-a-wave
+  - term: displacement memory
+    definition: 'The lasting step in the strain that a burst leaves, as distinct from the spin memory in its time integral. It is the same seen from either side of a merging pair''s orbit, so it cannot tell which way the pair turned.'
+    chapter: R12
+    anchor: a-burst-leaves-a-memory-largest-where-the-oscillating-wave-is-weakest
