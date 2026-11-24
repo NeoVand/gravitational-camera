@@ -56,6 +56,7 @@ import OnionPeel from './live/OnionPeel.svelte';
 import LorentzDiagram from './live/LorentzDiagram.svelte';
 import MovingSky from './live/MovingSky.svelte';
 import MassShell from './live/MassShell.svelte';
+import ComplexField from './live/ComplexField.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -257,6 +258,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			"The mass shell in light-cone coordinates: a boost slides a body along it, a wave kicks it while keeping q, and a wave and its reverse change a pair's rest mass",
 		component: MassShell
+	},
+	'complex-field': {
+		label:
+			"Light at one point as one complex vector: boost or turn the sensor and watch E and cB mix while the invariant F·F stays, find the frame where the fields are parallel, and follow light's two special directions",
+		component: ComplexField
 	},
 	'noise-spectrum': {
 		label:

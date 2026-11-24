@@ -6,7 +6,7 @@ part: '6'
 requires: ['1.1', '1.3', '1.5b', '1.7', '6.1', '6.2', '6.3']
 paper: [sec:one-pixel, eq:W, eq:square, eq:one-wave, eq:stars, eq:polar, eq:star-velocity, fig:stars, fig:speedometer, sec:regimes]
 figures: [fig:stars, fig:speedometer]
-live: [stars]
+live: [stars, complex-field]
 depth: A
 ---
 
@@ -195,24 +195,15 @@ A light wave is circularly polarized when its electric field keeps its length an
 passes, and linearly polarized when the field swings to and fro along one line (chapter
 [5.4](/tutorial/waves/polarization/#two-oscillations-a-quarter-cycle-apart-make-a-pattern-that-turns) describes both
 kinds for gravity's waves). In both, the direction $\vect m$ is fixed, and only the number $a$ moves in the complex
-plane, round a circle or along a line through zero. A wave that travels the other way, along $-\hat k$, has $\vect m^*$
-in place of $\vect m$, because for $-\hat k$ the pair $\vect e_1$, $-\vect e_2$ takes the place of $\vect e_1$, $\vect
-e_2$.
+plane, round a circle or along a line through zero (Figure [](#fig:wave-amplitude)). A wave that travels the other way,
+along $-\hat k$, has $\vect m^*$ in place of $\vect m$, because for $-\hat k$ the pair $\vect e_1$, $-\vect e_2$ takes
+the place of $\vect e_1$, $\vect e_2$.
 
-<!-- diagram: tut-maxwell-wave — Two panels side by side, each about 340 × 300 px at 1440 (stacked on a phone). Left,
-"one instant of a wave": a short stretch of the z axis drawn in thin ink running into the picture at a slight angle,
-labelled "k̂"; at one point on it the axes e₁ (across, to the right) and e₂ (up), thin ink, labelled; the arrow E in the
-light role's colour at 30° above e₁, length 1, labelled "E", and the arrow cB in the light role's colour, dashed, the
-same length, a quarter turn anticlockwise from E as seen with k̂ toward the viewer, labelled "cB = k̂ × E". A small
-right-angle mark between them. Right, "the amplitude a in the complex plane": axes Re a and Im a, thin ink, equal scales;
-for a circularly polarized wave with E₁ + iE₂ = E₀e^{−iωt}, the point a = √2E₀e^{iωt} drawn as a dot on a circle of
-radius √2E₀, with eight faint dots at equal steps of ωt and an arrowhead showing anticlockwise motion, labelled
-"circular"; and for a linearly polarized wave along e₁, a = √2E₀cos ωt, a thick segment of the real axis from −√2E₀ to
-√2E₀ with a double arrowhead, labelled "linear". Labels never on a line. Caption: "Look first at the two arrows on the
-left: in a light wave the electric field and c times the magnetic field are equal in length, at right angles, and both
-across the direction of travel. On the right, the one complex number a = √2(E₁ − iE₂) holds the whole wave: it goes
-round a circle for circular polarization, the other way from the electric field because it is √2 times the conjugate
-of E₁ + iE₂, and to and fro on a line for linear polarization." -->
+![Look first at the two arrows above: in a light wave the electric field $\light{\vect E}$ and $c$ times the magnetic
+field, $c\light{\vect B}$, are equal in length, at right angles, and both across the direction of travel $\hat k$.
+Below, the one complex number $a = \sqrt2\,(\light E_1 - i\light E_2)$ holds the whole wave: it goes round a circle for
+circular polarization, the other way from the electric field because it is $\sqrt2$ times the conjugate of $\light E_1 +
+i\light E_2$, and to and fro on a line for linear polarization.](tut-maxwell-wave){#fig:wave-amplitude}
 
 **Gravity's wave, for comparison.** The paper writes gravity's wave in the same way, as chapter 1.5b read:
 
@@ -372,7 +363,7 @@ $$\vect v'_\parallel = \vect v_\parallel, \qquad \vect v'_\perp = \cos\theta\,\v
 u\times\vect v .$$
 
 The boost [](#eq:boost-F) has the same form, with $\cosh\obs\eta$ in place of $\cos\theta$ and $i\sinh\obs\eta$ in place
-of $\sin\theta$. Euler's formula of chapter
+of $\sin\theta$ (Figure [](#fig:imaginary-turn)). Euler's formula of chapter
 [1.5b](/tutorial/newton/complex-numbers/#eulers-formula-a-turn-is-an-exponential) gives $\cos\theta = (e^{i\theta} +
 e^{-i\theta})/2$ and $\sin\theta = (e^{i\theta} - e^{-i\theta})/2i$, and we use these two formulas to define the cosine
 and the sine of any complex $\theta$. At an **imaginary angle**, $\theta = i\obs\eta$ with $\obs\eta$ real, they are
@@ -383,19 +374,10 @@ $$\begin{aligned}\cos(i\obs\eta) &= \frac{e^{-\obs\eta} + e^{\obs\eta}}{2} = \co
 So **a sensor that moves with rapidity $\obs\eta$ along $\hat u$ reads $\light{\vect F}$ as a sensor reads it whose axes
 are turned about $\hat u$ by the imaginary angle $i\obs\eta$.**
 
-<!-- diagram: tut-maxwell-turn — Two panels side by side, each about 340 × 320 px at 1440 (stacked on a phone), the
-same layout. Left, "a turn of the axes by θ": the plane across û seen with û pointing at the viewer (a small dot in a
-circle at the centre, labelled "û"); the unit circle x² + y² = 1, thin ink; the old axes as thin ink arrows and the new
-axes turned anticlockwise by θ = 35°, in the observer colour; the point (cos θ, sin θ) on the circle marked with a dot,
-with the arc from (1, 0) to it heavier, and two short labels "cos θ" and "sin θ" beside the dashed shadows of the dot on
-the axes. Right, "a boost by η": the same axes, and the right-hand branch of the hyperbola x² − y² = 1 for y from −1.6 to
-1.6, thin ink; the point (cosh η, sinh η) for η = ln 2, that is (1.25, 0.75), marked with a dot in the observer colour,
-with the arc of the hyperbola from (1, 0) to it heavier, and labels "cosh η = 1.25" and "sinh η = 0.75" beside its
-dashed shadows. Under each panel one line of the rule in the light role's colour: "F′⊥ = cos θ F⊥ − sin θ û × F" and
-"F′⊥ = cosh η F⊥ − i sinh η û × F". Labels never on a line. Caption: "Look first at the two rules under the panels: they
-are the same rule, with the cosine and sine of the circle on the left and the hyperbolic cosine and sine of the
-hyperbola on the right, and with i in front of sinh η. Putting θ = iη turns one into the other, because
-cos(iη) = cosh η and sin(iη) = i sinh η. The dot on the right is the pixel's 0.6c, η = ln 2." -->
+![Look first at the two rules under the panels: they are the same rule, with the cosine and sine of the circle above
+and the hyperbolic cosine and sine of the hyperbola below, and with $i$ in front of $\sinh\obs\eta$. Putting $\theta =
+i\obs\eta$ turns one into the other, because $\cos(i\obs\eta) = \cosh\obs\eta$ and $\sin(i\obs\eta) =
+i\sinh\obs\eta$. The dot below is the pixel's $0.6c$, $\obs\eta = \ln2$.](tut-maxwell-turn){#fig:imaginary-turn}
 
 **Step 3: the paper's exponential.** Chapter
 [1.7](/tutorial/newton/hamilton/#every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant) built a turn by the
@@ -554,10 +536,11 @@ fields, along one line.
 **What the parallel frame hides.** In that frame $\light{\vect F}' = w\,\hat n$, with $w$ a complex number and $\hat n$
 a real unit vector, the field's axis. A boost along $\hat n$ leaves the part along the motion alone, and there is no
 part across, so by [](#eq:boost-F) it changes nothing. A turn about $\hat n$ changes nothing either. So two sensors that
-move relative to each other along the axis read the same six numbers. When the scene's charges are at rest, their own
-frame is one of these parallel frames, since there $\light{\vect B} = 0$. From one reading a sensor finds the boost
-along $\light{\vect E}\times\light{\vect B}$, across the axis, but never a motion along the axis: **a sensor of light
-reads at most two of the three parts of its own velocity**, as [Section VIII](/paper/#sec:one-pixel) says and chapter
+move relative to each other along the axis read the same six numbers (Figure [](#fig:parallel-frame)). When the
+scene's charges are at rest, their own frame is one of these parallel frames, since there $\light{\vect B} = 0$. From
+one reading a sensor finds the boost along $\light{\vect E}\times\light{\vect B}$, across the axis, but never a motion
+along the axis: **a sensor of light reads at most two of the three parts of its own velocity**, as [Section
+VIII](/paper/#sec:one-pixel) says and chapter
 [0.4](/tutorial/evening/one-pixel/#the-ten-numbers-regroup-into-four-invariants-three-angles-and-a-velocity)'s margin
 promised.
 
@@ -568,16 +551,10 @@ complex table has three different eigenvalues, as in the paper's room of four ma
 pixel in Figure [](/paper/#fig:speedometer) reads all three parts of its own velocity. A single round body gives two
 equal eigenvalues, and then the pixel has light's blind spot.
 
-<!-- diagram: tut-maxwell-parallel — One panel, about 520 × 360 px at 1440 (full width on a phone). A thin ink axis
-across the middle, labelled "n̂" at its right end. On it, from a common point, two arrows in the light role's colour: E,
-length 1, solid, and cB, length 0.6, dashed, drawn slightly above the axis so both show, labelled "E" and "cB". Around the
-axis at its right, a circular arrow in the observer colour, labelled "turn about n̂: no change". Below the axis a straight
-double arrow parallel to it in the observer colour, labelled "boost along n̂: no change". At the left, faint, a straight
-arrow across the axis in the observer colour, labelled "boost across n̂: E and B change". A one-line readout under the
-panel: "F = w n̂, F·F = w² (the same for every observer)". Labels never on a line. Caption: "Look first at the two moves
-in the observer colour along and about the axis: in the frame where the electric and magnetic fields lie along one
-line, a boost along that line and a turn about it leave all six numbers as they are. Only a boost across the line
-changes them. This is why a sensor of light can read at most two of the three parts of its own velocity." -->
+![Look first at the two moves in the observer colour along and about the axis $\hat n$: in the frame where the
+electric and magnetic fields lie along one line, a boost along that line and a turn about it leave all six numbers as
+they are. Only a boost across the line changes them. This is why a sensor of light can read at most two of the three
+parts of its own velocity.](tut-maxwell-parallel){#fig:parallel-frame}
 
 {{paper fig:speedometer}}
 
@@ -634,24 +611,17 @@ directions, not four: its $\mathbf E + ic\mathbf B$ has only one complex invaria
   1.8iz - 1 = 0$, with roots $z = 0.9i \pm 0.436$, both with $|z| = 1$. Their directions are $\hat n = (\pm0.436, 0.9,
   0)$. Both are folded from $\pm\hat x$ toward the motion, their half sum is $(0, 0.9, 0)$, the charge's velocity across
   the line over $c$, and their half difference, $(0.436, 0, 0)$, points along the line to where it is now, with the
-  length $\sqrt{1 - 0.9^2}$. This is the paper's [](/paper/#eq:star-velocity), which the paper proves for gravity, now
-  for light.[^fold]
+  length $\sqrt{1 - 0.9^2}$ (Figure [](#fig:light-directions)). This is the paper's [](/paper/#eq:star-velocity),
+  which the paper proves for gravity, now for light.[^fold]
 
 Whatever its sources, light has only these two directions at a point, so "one point of light cannot tell one source from
 several", in the paper's words. Two masses give gravity four separate directions, and chapter 9.4 shows that one round
 body never does.
 
-<!-- diagram: tut-maxwell-sky — Two discs side by side, each about 300 × 300 px at 1440 (stacked on a phone), each the
-sky around the sensor seen from outside, in the style of the bottom row of the paper's Figure 'stars': a circle for the
-sky, a faint equator ellipse and a faint meridian, the sensor at the centre as a small ring. Left, "charge at rest": a
-small filled disc for the charge along +x, and two dots in the light role's colour on the sky at ±x̂, joined by a thin
-dashed line through the centre. Right, "moving at 0.9c": the charge along +x with a short arrow along +y in the observer
-colour labelled "0.9c"; open circles at the rest positions ±x̂; two filled dots in the light role's colour at
-(±0.436, 0.9, 0), each with a thin curved path from its open circle; a thin arrow from the centre to (0, 0.9, 0) in the
-observer colour, labelled "half sum = v⊥/c". Labels never on a line. Caption: "Look first at the two dots on the right:
-a charge moving across the line of sight at 0.9 of the speed of light folds light's two special directions toward its
-motion, from their places at rest (open circles), and their half sum is its velocity across the line over c, here
-0.9. The directions are the roots z = 0.9i ± 0.436 of m(z)·F = 0." -->
+![Look first at the two dots below: a charge moving across the line of sight at 0.9 of the speed of light folds
+light's two special directions toward its motion, from their places at rest (open circles), and their half sum is its
+velocity across the line over $c$, here 0.9. The directions are the roots $z = 0.9i \pm 0.436$ of $\vect
+m(z)\cdot\light{\vect F} = 0$.](tut-maxwell-sky){#fig:light-directions}
 
 ## Two boosts make a boost and a turn
 
@@ -754,22 +724,16 @@ directions](#light-has-two-special-directions-where-gravity-has-four) computed. 
 splits into four directions, while light's keeps two, as for one charge.
 :::
 
-<!-- try: ComplexField (a new interactive for this chapter; not yet registered in live.ts) — The fields E and cB at one
-point as two arrows in 3D, in the light role's colour (E solid, cB dashed), on a small set of axes that can be turned by
-dragging (lazily loaded; or, without 3D, as three linked views along x, y and z). Readouts: the three complex components
-of F = E + icB to three figures; E² − c²B² and cE·B; the Hermitian length E² + c²B²; and a small sky disc with light's
-two principal null directions, the roots of m(z)·F = 0. Controls: a boost, set by its rapidity η (slider from −2 to 2,
-step 0.01, with β = tanh η and γ = cosh η beside it) and its direction (a choice of x, y, z, or "along E × B"); and a
-turn of the sensor's axes by an angle about a chosen axis. Opens on the field of a charge at rest along +x, seen by a
-sensor at rest. Predict first: "Boost the sensor across the field at 0.6c. Which numbers change, and which stay?"
-(Answer: the components change, E′ₓ = 1.25E and a magnetic field cB′_y = −0.75E appears for a boost along z, and the
-Hermitian length grows from 1 to 2.125; E² − c²B² stays at 1 and E·B at 0.) Then a task: "Set E = (1, 0, 0) and cB = (0,
-½, 0), and find the boost that makes E parallel to B." (Answer: β = ½ along z, the direction of E × B; the sensor then
-reads E′ = (0.866, 0, 0) and no magnetic field. After that the boost along the common axis, x, visibly changes nothing.)
-A second mode, *Plane wave*, shows F = a m with a's point in the complex plane; predict: "Run with the wave at 0.6c.
-What happens to a?" (Answer: it halves, e^{−η} = ½, and the energy density falls to a quarter; the sky shows one double
-direction on k̂ throughout.) Keyboard: Tab reaches each slider and choice, arrows move them; both themes; static on
-reduced motion. -->
+::: try {#complex-field}
+The fields $\light{\vect E}$ and $c\light{\vect B}$ at one point, drawn as seen along each of the three axes, with
+the complex components of $\light{\vect F}$, the two invariants and the Hermitian length beside them, and a small sky
+that marks light's two special directions. The slider boosts the sensor by a rapidity $\obs\eta$ along a direction you
+choose, and a second control turns its axes. The sliders below set the field at rest. A second mode, *Plane wave*, shows
+the amplitude $a$ of a wave in the complex plane. It opens on the field of a charge at rest, read by a sensor at rest.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, turn the
+sensor's axes instead of boosting it, and see which numbers a turn changes.
+:::
 
 ::: check
 ### Q
