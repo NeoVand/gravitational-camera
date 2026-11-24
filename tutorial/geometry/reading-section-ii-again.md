@@ -16,9 +16,9 @@ behind us, can we now derive these claims, and does every number still come out 
 
 {{paper fig:tidal}}
 
-This chapter reads those stretches of [Section II](/paper/#sec:pixel) again, in order, and derives nothing new. Each
-claim gets its chapter and one of R1's marks; *checked here* now means that Part 1 or Part 7 has derived it and this
-chapter recomputes its numbers.
+This chapter reads those stretches of [Section II](/paper/#sec:pixel) again, in order (Figure
+[](#fig:read-ii-again-map)), and derives nothing new. Each claim gets its chapter and one of R1's marks; *checked here*
+now means that Part 1 or Part 7 has derived it and this chapter recomputes its numbers.
 
 ::: plain
 Part 7 derives the parts of Section II that need Einstein's theory. Falling freely
@@ -31,22 +31,10 @@ The magnetic part, which turns neighbouring gyroscopes, comes from motion. Near 
 tide by about the speed of the matter divided by the speed of light, but in a wave the two are equal.
 :::
 
-<!-- diagram: tut-read-ii-again-map — The sibling of R5's map (figs/tut-read-iii-map.js): the same box, type, tint,
-outline, dotted outline and grey arrows, laid out to be read at 390 px, about 560 × 330 px at 1440. Six boxes, one for
-each stretch this chapter reads, in its order, three in the first row and three in the second, joined in reading order
-by thin grey arrows (across each row, and from the end of the first row round to the start of the second). Above the
-first box a greyed box, "Part 7: gravity as geometry", with an arrow down into it. Each box carries the stretch's name
-and, as the site prints them, its equation numbers; under it, the chapters that teach it; on lines of their own, each in
-a small dotted box, the later chapters from which the box holds a claim that is read now. (1) "Plain words: falling,
-curvature, the magnetic part" — 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, filled. (2) "The tide as curvature", (1), (2) — 7.1,
-7.2, filled. (3) "Two limits", (3), (4), with "Fig. 2, Fig. 3" under the numbers — 7.1, 7.2, 7.4, 7.6, filled. (4) "The
-swaying person" — R1, 7.6, filled. (5) "Ten numbers and the Ricci part", (5) — 7.2, 7.3, 7.5, 7.6, filled. (6) "What
-the premise asks; the Earth's own tide; 𝓦" — 7.5, 7.6; dotted 8.6 and 9.3; lower half filled, as R3's mixed boxes. To
-the right of the second row a small box with the orange outline and no fill, "Section V: R7b", reached by a dashed grey
-arrow from box 6, the section's one pointer forward. Labels inside the boxes, never on the arrows. Caption: "Look first
-at the filled boxes: every stretch of Section II that reading chapter R1 left to Einstein's theory is now derived in
-Part 7, and only the quantum limit (8.6) and the complex table 𝓦 at a general point (9.3) are still read. The dashed
-arrow marks the section's pointer to the waves of moving bodies, which reading chapter R7b reads." -->
+![Look first at the filled boxes: every stretch of Section II that reading chapter R1 left to Einstein's theory is
+now derived in Part 7, and only the quantum limit (8.6) and the complex table $\curv{\mathcal W}$ at a general point
+(9.3) are still read. The dashed arrow marks the section's pointer to the waves of moving bodies, which reading
+chapter R7b reads.](tut-read-ii-again-map){#fig:read-ii-again-map}
 
 ## The plain words hold in Einstein's theory
 
