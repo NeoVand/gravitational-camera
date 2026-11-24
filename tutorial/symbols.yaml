@@ -2974,3 +2974,67 @@ symbols:
     meaning: 'The entry of the tide along the line from the pixel to a body coming straight at it, $-2GM/\gamma^3r^3$. It grows as $r^{-3}$, so $3\mathcal E_\parallel/\dot{\mathcal E}_\parallel$ is the time to contact and $\mathcal E_\parallel\ddot{\mathcal E}_\parallel/\dot{\mathcal E}_\parallel^2 = 4/3$ for a body that coasts (the paper''s eq:contact).'
     chapter: '9.4'
     anchor: one-pixel-reads-the-whole-state-of-a-moving-body
+  - key: wave-amplitudes
+    title: Amplitudes of several waves
+    tex: '\curv\alpha_a'
+    role: curv
+    kind: One complex number per wave; in s⁻²
+    meaning: 'The amplitude of wave $a$ in a reading of several waves, $\mathcal W = \sum_a\alpha_a\mathbf m_a\mathbf m_a^{\mathsf T}$; it absorbs the length and phase of the null vector $\mathbf m_a$. The paper writes $c_a$; the tutorial keeps $c$ for the speed of light and the weight components $c_m$.'
+    chapter: '9.5'
+    anchor: two-waves-give-a-reading-of-rank-two-and-the-vector-it-sends-to-zero-leads-to-both
+  - key: pencil-roots
+    title: Roots of the pencil of three waves
+    tex: '\lambda_a'
+    role: none
+    kind: Three complex numbers; no unit
+    meaning: 'The roots of $\det(\mathcal W_+ - \lambda\mathcal W_-)$ for three waves of one frequency, the ratios $\alpha^+_a/\alpha^-_a$ of each wave''s helicity amplitudes. At each root one wave drops out. For a circular binary seen at the inclination $\iota$, $|\lambda| = \cot^4(\iota/2)$. Not a wavelength.'
+    chapter: '9.5'
+    anchor: three-waves-of-one-frequency-are-three-roots-of-one-pencil
+  - key: four-wave-table
+    title: The table of four waves
+    tex: 'A'
+    role: none
+    kind: A complex symmetric table, which can be taken trace-free; no unit
+    meaning: 'The one table with $\mathrm{tr}(A\mathcal W) = 0$ for every reading of four waves from fixed directions (the paper''s eq:four-waves). Each wave''s null vector solves $\mathbf m^{\mathsf T}A\mathbf m = 0$ and $\mathbf m\cdot\mathbf m = 0$, so the four directions are the four principal null directions of $A$. Not chapter 8.7''s sum $A$.'
+    chapter: '9.5'
+    anchor: four-waves-over-time-leave-one-combination-of-the-readings-empty
+  - key: snapshots
+    title: Number of snapshots
+    tex: 'L'
+    role: none
+    kind: A whole number
+    meaning: 'The number of independent sets of moments in a record of waves: 1 for one reading, 2 for one frequency (the parts $\mathcal W_+$ and $\mathcal W_-$), many for a long record. Only in the paper''s eq:wave-count; not the generators $L_k$ or an arm length.'
+    chapter: '9.5'
+    anchor: all-three-cases-are-pronys-problem-and-counting-gives-the-limit
+  - key: moments-y
+    title: Moments of a reading
+    tex: 'y_j'
+    role: none
+    kind: Five complex numbers, j = 0 to 4; in s⁻²
+    meaning: 'The sums $y_j = \sum_a\alpha_az_a^j$ over the waves of a reading, with $z_a$ their stereographic coordinates. They are the five numbers of the reading up to a fixed linear map, because the quartic $\mathbf m(z)^{\mathsf T}\mathcal W\mathbf m(z)$ is $4\sum_k(-1)^k\binom4ky_{4-k}z^k$.'
+    chapter: '9.5'
+    anchor: all-three-cases-are-pronys-problem-and-counting-gives-the-limit
+  - key: prony-polynomial
+    title: Prony's polynomial
+    tex: 'p(z)'
+    role: none
+    kind: A polynomial of degree N in the stereographic coordinate
+    meaning: 'The polynomial $\prod_a(z - z_a) = \sum_kp_kz^k$, with $p_N = 1$, whose roots are the directions of the $N$ waves. Its coefficients solve the linear equations $\sum_kp_ky_{j+k} = 0$ of the paper''s eq:proof-prony.'
+    chapter: '9.5'
+    anchor: all-three-cases-are-pronys-problem-and-counting-gives-the-limit
+  - key: wave-count
+    title: The count of waves
+    tex: 'N_{\max}'
+    role: none
+    kind: A whole number
+    meaning: 'The largest number of waves a point sensor of a field of spin $s$ can separate from $L$ snapshots, $\lfloor L(2s + 1)/(L + 1)\rfloor$ (the paper''s eq:wave-count): 2, 3 and 4 for gravity at one instant, one frequency and over a long record, and 1, 2 and 2 for light.'
+    chapter: '9.5'
+    anchor: all-three-cases-are-pronys-problem-and-counting-gives-the-limit
+  - key: steering-vector
+    title: Steering vector of a source
+    tex: '\mathbf q_a'
+    role: none
+    kind: A column of five complex numbers, of length one; no unit
+    meaning: 'The five numbers, in the orthonormal basis of chapter 1.5, of the unit square $\mathbf m_a\mathbf m_a^{\mathsf T}$ of source $a$: what a unit wave from that direction puts into the reading. Five sources from different directions have independent steering vectors.'
+    chapter: '9.5'
+    anchor: uncorrelated-sources-separate-from-their-average-brightness-and-circular-polarization

@@ -3827,3 +3827,27 @@ terms:
     definition: 'Moving at a constant velocity, with no force speeding the body up or braking it. For a body coasting straight at the pixel the paper''s ratio $\mathcal E_\parallel\ddot{\mathcal E}_\parallel/\dot{\mathcal E}_\parallel^2$ is $4/3$; it is larger when the body is driven toward the pixel and smaller when it brakes.'
     chapter: '9.4'
     anchor: one-pixel-reads-the-whole-state-of-a-moving-body
+  - term: conic
+    definition: 'The set of solutions of one quadratic equation in the three components of a vector, counted up to a common factor, such as $\mathbf m\cdot\mathbf m = 0$. Two conics meet in four points (Bézout''s theorem).'
+    chapter: '9.5'
+    anchor: four-waves-over-time-leave-one-combination-of-the-readings-empty
+  - term: moments of a sum of powers
+    definition: 'The sums $y_j = \sum_a\alpha_az_a^j$, for $j = 0, 1, 2, \dots$, of weights $\alpha_a$ at points $z_a$. The five numbers of a reading of several waves are its moments of degree 0 to 4.'
+    chapter: '9.5'
+    anchor: all-three-cases-are-pronys-problem-and-counting-gives-the-limit
+  - term: Prony's problem
+    definition: 'Finding the points and weights of a sum of powers from its first few moments. Separating waves at one point is Prony''s problem, and its count gives the paper''s limit on the number of waves.'
+    chapter: '9.5'
+    anchor: all-three-cases-are-pronys-problem-and-counting-gives-the-limit
+  - term: snapshot
+    definition: 'One set of five moments: one reading, or one of the two parts of the reading at one frequency. The directions of the waves are the same in every snapshot, and only their amplitudes are new in each. A reading is one snapshot; one frequency gives two.'
+    chapter: '9.5'
+    anchor: all-three-cases-are-pronys-problem-and-counting-gives-the-limit
+  - term: steering vector
+    definition: 'What a unit wave from one direction puts into a sensor''s readings, written as a column of numbers. For one pixel it is the five numbers of the unit square $\mathbf m\mathbf m^{\mathsf T}$ of that direction.'
+    chapter: '9.5'
+    anchor: uncorrelated-sources-separate-from-their-average-brightness-and-circular-polarization
+  - term: time–frequency cell
+    definition: 'A patch of a record: a stretch of duration $\Delta t$ and a band of frequencies about $1/\Delta t$ wide. Two lensed images of one chirp fall in different cells, so in each cell one pixel reads a single wave.'
+    chapter: '9.5'
+    anchor: lensed-images-fall-in-separate-cells-of-time-and-frequency
