@@ -58,6 +58,7 @@ import MovingSky from './live/MovingSky.svelte';
 import MassShell from './live/MassShell.svelte';
 import ComplexField from './live/ComplexField.svelte';
 import LongestPath from './live/LongestPath.svelte';
+import StressEnergyTable from './live/StressEnergyTable.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -269,6 +270,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			"The tossed clock: shape a path between a throw and a catch and compare the proper time it gains with free fall's",
 		component: LongestPath
+	},
+	'stress-energy-table': {
+		label:
+			'The stress–energy tensor as a 4 × 4 table for dust, gas, a beam, light in a box and the Casimir gap, boosted, with its trace, what gravitates and what a ray sees',
+		component: StressEnergyTable
 	},
 	'noise-spectrum': {
 		label:

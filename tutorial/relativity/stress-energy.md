@@ -6,7 +6,7 @@ part: '6'
 requires: ['1.3', '1.6', '6.1', '6.2', '6.4']
 paper: [sec:introduction, sec:affordances, tab:affordances, sec:one-pixel, sec:waves, eq:wave-zone, sec:vistas, sec:second-order, eq:pass, eq:shock-even, eq:massless-pass, app:proofs]
 figures: []
-live: []
+live: [stress-energy-table]
 depth: B
 ---
 
@@ -94,20 +94,14 @@ $$\matter T^{ij} = -(\text{4.3's stress})_{ij} + \matter\rho\,\obs v_i\obs v_j .
 This is the $T_{kl}$ of the paper's [](/paper/#eq:wave-zone), through which chapter
 [5.2](/tutorial/waves/retarded-waves/#far-away-each-direction-carries-one-ripple-of-the-source) read the waves of a
 compact source. A rod stretched along $x$ with the tension $\tau$, a force per area, has $\matter T^{xx} = -\tau$:
-momentum along $+x$ flows toward $-x$. The paper uses this sign, and calls the three eigenvalues of $\matter T^{ij}$ in
-the matter's own frame the **principal stresses** $\sym{principal-stresses}{\matter p_a}$; for a fluid each is $\matter
-p$, and their sum is the paper's "$3p$ for a fluid".
+momentum along $+x$ flows toward $-x$ (Figure [](#fig:momentum-flux-sign)). The paper uses this sign, and calls the
+three eigenvalues of $\matter T^{ij}$ in the matter's own frame the **principal stresses**
+$\sym{principal-stresses}{\matter p_a}$; for a fluid each is $\matter p$, and their sum is the paper's "$3p$ for a
+fluid".
 
-<!-- diagram: tut-stress-flow-sign — Two panels side by side, each about 320 × 280 px at 1440 (stacked on a phone),
-titled "gas at rest" and "stretched rod". Left: a small cube drawn in light oblique projection, faint, inside a field
-of faint dots (the gas). On each of its three visible faces a short thick arrow in the matter colour points outward
-along the face's normal, with a small label "momentum out" beside one of them, and the line "Tˣˣ = +p" under the panel.
-Right: a horizontal rod with a short segment of it drawn as the same cube; at its two end faces (normal along x) the
-arrows point inward, toward the cube's centre, labelled "momentum along +x flows toward −x" once, and small grey arrows
-at the rod's two far ends pulling outward, labelled "tension τ"; the line "Tˣˣ = −τ" under the panel. The faces along
-the rod's sides carry no arrows. Labels never on geometry. Caption: "Look first at the arrows on the faces: in a gas,
-momentum flows out through every face, so the momentum flux is +p; in a stretched rod it flows inward along the rod, so
-the momentum flux is −τ. Chapter 4.3's stress has the opposite sign in both. The arrows' lengths are schematic." -->
+![Look first at the arrows on the faces: in a gas, momentum flows out through every face, so the momentum flux is
+$+\matter p$; in a stretched rod it flows inward along the rod, so the momentum flux is $-\tau$. Chapter 4.3's stress
+has the opposite sign in both. The arrows' lengths are schematic.](tut-stress-flow-sign){#fig:momentum-flux-sign}
 
 **A fluid at rest** has the table
 
@@ -291,24 +285,14 @@ energy alone.
 
 **A box of light weighs its energy.** In a box with mirrored walls, the **photon box**, light of total energy $E_{\rm
 light}$ has the pressure of the third section, so its diagonal momentum fluxes add up to $E_{\rm light}$. The walls'
-tension adds $-E_{\rm light}$, so the box pulls with $E_{\rm light}/c^2$ (and the walls' own mass), not twice that.
-Pressure gravitates where it is, but a bound body's stresses add up to zero.
+tension adds $-E_{\rm light}$, so the box pulls with $E_{\rm light}/c^2$ (and the walls' own mass), not twice that
+(Figure [](#fig:beam-and-box)). Pressure gravitates where it is, but a bound body's stresses add up to zero.
 
-<!-- diagram: tut-stress-beam-box — Two panels side by side, each about 340 × 300 px at 1440 (stacked on a phone).
-Left, titled "a free beam": a thin horizontal beam in the light role's colour across the panel, with a small laser box
-at the left edge and an absorber at the right edge, both faint, joined by a faint bench far below the beam (marked
-"bench, far away"). Above the beam, at a distance b marked by a thin dimension line labelled "b", a ring of eight
-small test masses in ink, deformed as the paper's orange stretch along the line toward the beam (vertical) and blue
-squeeze along the horizontal direction in the page plane, with "(−1, 1, 0) × 4GP/c³b²" below the ring. Below the
-beam a second, identical ring beside a thin line in the matter colour labelled "line of 2P/c³ per metre", deformed
-alike. Right, titled "a box of light": a closed rectangle with doubled (mirrored) walls, six short arrows in the light
-colour inside pointing in six directions, labelled "pressure ⅓𝒰 each way"; small inward arrows in the matter colour on
-the walls labelled "tension"; below the box a bar of height 1 labelled "E/c²" and beside it, in faint outline, a bar
-of height 2 labelled "2E/c², the free beam's", crossed by a thin dotted line at 1. Labels never on geometry. Caption:
-"Look first at the two rings on the left: the beam and a line of matter of twice its energy over c² stretch a ring
-alike, when the bench that holds the laser and the absorber apart is far away. On the right the same light, sealed in
-a mirrored box, pulls only with its energy over c², because the walls' tension cancels the light's pressure. The
-rings' deformation is exaggerated." -->
+![Look first at the two rings: the beam and a line of matter of twice its energy over $c^2$ stretch a ring alike, when
+the bench that holds the laser and the absorber apart is far away. Below, the same light, sealed in a mirrored box,
+pulls only with its energy over $c^2$, because the walls' tension cancels the light's pressure. The rings' deformation
+is exaggerated, and the tide's squeeze, at right angles to the page, is not
+drawn.](tut-stress-beam-box){#fig:beam-and-box}
 
 **Neutrinos.** *Matter at the pixel* also treats dark matter, the Casimir gap (next section) and the cosmological
 constant's $-\Lambda c^2$, which chapter 7.3 computes. Neutrinos streaming from a supernova at nearly $c$ are null dust,
@@ -349,8 +333,8 @@ $$\matter T_{\mu\nu}k^\mu k^\nu = \frac{(E - cp_z)^2}{E}\,\delta^3\bigl(\vect x 
 The ray is $z = ct - u_0$ at fixed $\vect x_\perp = (x, y)$, with $u_0$ its value of 6.4's light-cone coordinate $u =
 ct - z$, and we mark its points by $\ell = ct$, in metres. Along it $z - z_p$ changes by $1 - \obs v_z/c$ per metre
 of $\ell$, because the particle moves along $z$ too. By the rule $\delta(ax) = \delta(x)/|a|$, the ray crosses the
-delta function in $z$ with the weight $1/(1 - \obs v_z/c) = E/(E - cp_z)$, using $\obs v_z = p_zc^2/E$, and one
-factor of $E - cp_z$ cancels:
+delta function in $z$ with the weight $1/(1 - \obs v_z/c) = E/(E - cp_z)$ (Figure [](#fig:ray-crossing)), using
+$\obs v_z = p_zc^2/E$, and one factor of $E - cp_z$ cancels:
 
 $$\boxed{\begin{aligned}\int\matter T_{\mu\nu}k^\mu k^\nu\,\dd\ell &= (E - cp_z)\\ &\quad\times\delta^2\bigl(\vect
 x_\perp - \vect x_{p\perp}\bigr)\end{aligned}} \label{eq:N}$$
@@ -360,15 +344,9 @@ Summed over a body's particles, this is the paper's $\sym{crossing-energy}{\matt
 matter $q_a \approx \matter m_ac$, so $\matter{\mathcal N} = \matter\Sigma c^2$, with
 $\sym{projected-density}{\matter\Sigma}$ the mass per square metre along the ray.
 
-<!-- diagram: tut-stress-null-crossing — One panel, about 460 × 420 px at 1440 (full width on a phone): a spacetime
-diagram with z across and ct upward, equal scales, thin faint axes labelled "z" and "ct". A null ray at 45°, the line
-ct = z + u₀, in ink, labelled "ray, u = u₀", with the rays u = u₀ ± 0.3 thin, dotted and faint on either side. The
-worldline of a particle moving along +z at 0.4c, a straight line of slope 1/0.4 in the matter colour, labelled
-"particle, v_z = 0.4c", with a filled dot at the crossing. A thin bracket along the ray between its crossings with the
-two dotted rays' meeting points on the worldline, labelled "dℓ = du/(1 − v_z/c)", beside a bracket of the same du on
-the z axis. Labels never on lines. Caption: "Look first at the crossing: a ray meets the particle once, and the faster
-the particle runs ahead of the ray, the longer the stretch of the ray its crossing takes. That is the factor
-1/(1 − v_z/c), which turns (E − cp_z)²/E into E − cp_z." -->
+![Look first at the crossing: a ray meets the particle once, and the faster the particle runs ahead of the ray, the
+longer the stretch of the ray its crossing takes. That is the factor $1/(1 - \obs v_z/c)$, which turns $(E -
+cp_z)^2/E$ into $E - cp_z$.](tut-stress-null-crossing){#fig:ray-crossing}
 
 **The null energy condition.** For dust, $\matter T_{\mu\nu}k^\mu k^\nu = \matter\rho(\obs u_\mu k^\mu)^2 \ge 0$; for a
 fluid at rest it is $\matter\rho c^2 + \matter p$ along every null direction; for light, a sum of such squares. So
@@ -405,22 +383,18 @@ is below $6S$, and the energy densities differ by at most $3S$. Steel near its b
 ordinary matter such a $\phi$ could change the energy density by only about a part in $10^{12}$, which is why the paper
 says it "is excluded when the stresses are small beside $\rho c^2$".
 
-<!-- try: stress-energy-table (a new interactive figure, StressEnergyTable, not yet built) — One panel, about 640 × 440
-px at 1440 (full width on a phone). Left: the 4 × 4 table T^{μν} as a grid of cells, rows and columns labelled 0, x, y,
-z, the blocks marked by faint backgrounds (energy density; energy flux / c and c × momentum density, shaded alike to
-show the symmetry; momentum flux), each cell showing its value to three figures in units of a chosen scale and
-coloured by sign (positive warm, negative cool, zero faint). A selector of contents: "dust", "gas at rest", "gas in a
-steel shell" (the volume integral of gas plus shell), "beam along z", "beam and its bench" (the integral over beam and
-bench, per metre), "light in a box", "Casimir gap". A boost slider β from −0.9 to 0.9 (step 0.01; arrow keys by 0.05)
-and a direction (x or z), with readouts β, γ and the rapidity η = artanh β; the table follows 6.2's rule. Readouts on
-the right, to three figures: T⁰⁰; the trace η_{μν}T^{μν} (marked "same for every observer"); T⁰⁰ + T¹¹ + T²² + T³³
-(marked "what gravitates, in this frame"); for the bound contents, the integral of T^{ij} over the body (zero); and
-T_{μν}k^μk^ν for a chosen null direction (+z or −z). Opens on the beam along z at rest: four equal cells
-T⁰⁰ = T⁰ᶻ = Tᶻ⁰ = Tᶻᶻ, trace 0, source 2F/c. Predict first: "Put the beam's light in a mirrored box. Does the box pull
-twice as hard as its light's energy, as the beam did?" (Answer: no. The walls' tension cancels the light's pressure,
-the integral of the stresses is zero, and the box pulls with E/c².) Then: "Boost the beam along itself at 0.6c. By
-what factor does every entry fall?" (Answer: four, e^{−2η} with η = ln 2; the trace stays zero.) Keyboard: Tab reaches
-the selector, the slider and the direction; both themes; static on reduced motion. -->
+::: try {#stress-energy-table}
+The table $\matter T^{\mu\nu}$ as a grid of sixteen cells, coloured by sign, with its blocks shaded: the energy
+density, the two flux blocks, which the symmetry makes equal, and the momentum flux. The selector chooses what fills
+it: dust, a gas at rest, a gas in a steel shell, a beam along $z$, the beam with its bench, light in a mirrored box, or
+the Casimir gap. For the bodies held together by walls, each cell is the average over the body. The slider boosts the
+observer along $x$ or $z$. Beside the table stand $\matter T^{00}$, the trace that every observer agrees on, the sum
+$\matter T^{00} + \matter T^{11} + \matter T^{22} + \matter T^{33}$ that gravitates in this frame, the stresses
+integrated over a bound body, and $\matter T_{\mu\nu}k^\mu k^\nu$ along $+z$ or $-z$.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, choose
+the Casimir gap and find the direction along which $\matter T_{\mu\nu}k^\mu k^\nu$ is negative.
+:::
 
 ::: check
 ### Q
