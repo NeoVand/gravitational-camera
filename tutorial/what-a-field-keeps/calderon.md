@@ -6,7 +6,7 @@ part: '13'
 requires: ['1.5b', '1.7', '2.1', '2.3', '2.4', '2.5', '2.6', '2.7', '3.7', '3.8', '13.1']
 paper: [sec:second-order, eq:hair-commutator, eq:calderon, eq:scene-transform, eq:cone, fig:two-readings, eq:hair-bits]
 figures: [fig:same-outside, fig:two-readings, fig:hair]
-live: [fading-ripple]
+live: [two-readings]
 depth: A
 ---
 
@@ -130,18 +130,13 @@ exponentials harmonic, and because of them $h_+$ grows along $\vect\eta$ and $h_
 take $\vect\xi = (2, 1, -0.5)\unit{m^{-1}}$. Then $|\vect\xi|^2 = 5.25\unit{m^{-2}}$ and
 $\vect\zeta_+\cdot\vect\zeta_- = -2.625\unit{m^{-2}}$, which is $-\tfrac12|\vect\xi|^2$.[^checks]
 
-So a ripple that is not harmonic is the product of two exponentials that are. A reading at two times made with them
-holds the strength of that ripple in the density.
+So a ripple that is not harmonic is the product of two exponentials that are (Figure [](#fig:calderon-pair)). A
+reading at two times made with them holds the strength of that ripple in the density.
 
-<!-- diagram: tut-calderon-pair — spec: one plane containing ξ and η, a body's disc of radius R drawn faint. Behind it,
-the two real growths |h₊| = e^{η·x/2} and |h₋| = e^{−η·x/2} as two grey ramps of shading that rise in opposite
-directions along η (each from e^{−|ξ|R/2} to e^{|ξ|R/2} across the disc, on one log scale, with |ξ|R = 6 for the
-drawing). Across the disc, the crests of cos ξ·x as thin lines at right angles to ξ, spaced 2π/|ξ| exactly. Inset at a
-corner: the vectors ξ and η from one point, at right angles, of equal length, labelled; and ζ± = ½(iξ ± η) named
-beside them. Labels never on the ramps. Caption: "Look first at the two grey ramps: one harmonic exponential grows
-along η and the other along −η, so their product has no growth at all. What is left is the
-ripple whose crests cross the disc, at right angles to ξ. The size of the body and the length of ξ are chosen for the
-drawing." -->
+![Look first at the two grey ramps: one harmonic exponential grows along $\vect\eta$ and the other along
+$-\vect\eta$, so their product has no growth at all. What is left is the ripple whose crests cross the disc, at right
+angles to $\vect\xi$. The size of the body and the length of $\vect\xi$ are chosen for the
+drawing.](tut-calderon-pair){#fig:calderon-pair}
 
 ## Sixteen weighings give one ripple
 
@@ -179,15 +174,11 @@ give both the cosine and the sine ripple of one wavevector. For a check, take on
 then the integral is $A(h)$ itself, and two weighings suffice, as in chapter 13.1.
 
 So every ripple of the density is a finite recipe of pushes and weighings: four real profiles, combined in eight ways,
-each applied to two copies of the body.
+each applied to two copies of the body (Figure [](#fig:sixteen-weighings)).
 
-<!-- diagram: tut-sixteen-weighings — spec: a tree drawn left to right. Root: "one Fourier component" (the complex
-number ∫ρ∇h₊·∇h₋). Two branches: its real and its imaginary part. Four nodes: ∫ρ∇u₊·∇u₋, ∫ρ∇v₊·∇v₋ under the real
-part, ∫ρ∇u₊·∇v₋, ∫ρ∇v₊·∇u₋ under the imaginary part. Eight nodes: A(a + b) and A(a − b) under each. Sixteen leaves:
-E₊ and E₋ under each square, each leaf a small balance icon of one style. Thin single strokes, neutral colour; a count
-under each column: 1, 2, 4, 8, 16. Caption: "Look first at the counts under the columns: one complex ripple of the
-density needs four real integrals, each found from two squares by the polarization identity, and each square from two
-copies kicked both ways. The balances stand for weighings." -->
+![Look first at the counts under the columns: one complex ripple of the density needs four real integrals, each found
+from two squares by the polarization identity, and each square from two copies kicked both ways. The balances stand for
+weighings.](tut-sixteen-weighings){#fig:sixteen-weighings}
 
 ## This is Calderón's problem made linear, and in Newton's gravity the linear form is exact
 
@@ -317,10 +308,10 @@ $$|\vect k| + |\vect K - \vect k| = \kappa .$$
 
 The distances from $\vect k$ to the two points $0$ and $\vect K$ add up to $\kappa$. A loop of string pinned at two
 points and pulled taut by a pencil draws the curve of a fixed sum of distances: an **ellipse**, with the pins as its
-foci. Here the foci are $0$ and $\vect K$, each $K/2$ from the centre $\vect K/2$. At an end of the long axis the
-distances to the two foci are the semi-major axis plus $K/2$ and the semi-major axis minus $K/2$, so their sum,
-$\kappa$, is twice the semi-major axis. An end of the short axis is equally far from both foci, so each distance is
-$\kappa/2$, and Pythagoras's theorem gives
+foci (Figure [](#fig:cone-ellipse)). Here the foci are $0$ and $\vect K$, each $K/2$ from the centre $\vect K/2$. At an
+end of the long axis the distances to the two foci are the semi-major axis plus $K/2$ and the semi-major axis minus
+$K/2$, so their sum, $\kappa$, is twice the semi-major axis. An end of the short axis is equally far from both foci, so
+each distance is $\kappa/2$, and Pythagoras's theorem gives
 
 $$\text{semi-major axis} = \frac\kappa2, \qquad \text{semi-minor axis} = \tfrac12\sqrt{\kappa^2 - K^2} .$$
 
@@ -330,15 +321,9 @@ section, which equals the integral on the left of the paper's [](/paper/#eq:cone
 depend on velocity, and the right side depends only on $(\vect K, \kappa)$. For the pair of the last section the
 semi-axes are 1.14 and $0.760\unit{m^{-1}}$, so the long axis is 1.5 times the short one.[^optical]
 
-<!-- diagram: tut-cone-ellipse — spec: two panels. Left: the plane of wavevectors across the camera, axes k_x and k_y
-in m⁻¹, the foci 0 and K = (1.1, 1.3) as dots, the ellipse |k| + |K − k| = 2.28 drawn exactly (semi-axes 1.141 and
-0.760, long axis along K), and two pairs drawn as arrows from the origin: k = (1.3, 0.4) with k' = K − k from the tip of
-k to K, and one other pair (pale) at another point of the ellipse. Right: the half-plane (K, κ) with κ upward, the
-cone's line κ = K (blue outline, as fig:two-readings), the region above it shaded faint orange, the point
-(1.70, 2.28) marked, and on the cone's line the point (1.70, 1.70) with a short note "the ellipse becomes a segment".
-Caption: "Look first at the ellipse on the left: every wavevector k on it, paired with K − k, reaches the same point of
-the transform, marked on the right inside the cone. On the cone itself the ellipse shrinks to the segment from 0 to K.
-The two pairs drawn are examples." -->
+![Look first at the ellipse on the left: every wavevector $\vect k$ on it, paired with $\vect K - \vect k$, reaches
+the same point of the transform, marked on the right inside the cone. On the cone itself the ellipse shrinks to the
+segment from $0$ to $\vect K$. The two pairs drawn are examples.](tut-cone-ellipse){#fig:cone-ellipse}
 
 ## Fine detail still costs exponentially: the two readings remove the ambiguity and keep the blur
 
@@ -357,9 +342,9 @@ $(R/R_c)^\ell$ at each degree $\ell$ (chapter 2.3). We do not size that cost her
 the price.
 
 For the steel ball one metre across, of chapter 13.1, $R = 0.5\unit m$. Detail of 20 cm, 10 cm and 5 cm needs spans of
-$6.6 \times 10^6$, $4.4 \times 10^{13}$ and $1.9 \times 10^{27}$. The best clocks compare frequencies to about one part
-in $10^{18}$, so detail finer than about 8 cm is out of reach of any precision now known, even before the weighing's own
-smallness. This is the fade of chapter
+$6.6 \times 10^6$, $4.4 \times 10^{13}$ and $1.9 \times 10^{27}$ (Figure [](#fig:detail-cost)). The best clocks
+compare frequencies to about one part in $10^{18}$, so detail finer than about 8 cm is out of reach of any precision now
+known, even before the weighing's own smallness. This is the fade of chapter
 [2.7](/tutorial/outside/evanescent/#undoing-the-fade-multiplies-the-noise) and the paper's
 [](/paper/#eq:evanescent) once more.
 
@@ -399,13 +384,9 @@ The spans above show the reason: a relative precision of $1/\SNR$ reaches $|\vec
 the numbers, since $6.6 \times 10^6$ squared is $4.4 \times 10^{13}$: squaring the precision halves the finest detail,
 from 20 to 10 cm. In the paper's words, "Readings at two times remove the ambiguity and keep the blur."
 
-<!-- diagram: tut-detail-cost — spec: log–log axes; horizontal, the detail 2π/|ξ| from 2 cm to 1 m (decreasing to the
-right is NOT used: increasing to the right, as usual); vertical, the span e^{|ξ|R} from 1 to 10^40, for R = 0.5 m,
-drawn as one exact curve. Three marked points at 20, 10 and 5 cm with their values 6.6 × 10⁶, 4.4 × 10¹³ and
-1.9 × 10²⁷ beside them (labels off the curve), and one faint horizontal line at 10¹⁸ labelled "best clocks". Neutral
-stroke; no colour roles. Caption: "Look first at the three marked points: halving the size of the detail squares the
-precision a second reading needs. The faint line is the best fractional precision of today's clocks, for comparison.
-The ball is the steel ball one metre across." -->
+![Look first at the three marked points: halving the size of the detail squares the precision a second reading needs.
+The faint line is the best fractional precision of today's clocks, for comparison. The ball is the steel ball one metre
+across.](tut-detail-cost){#fig:detail-cost}
 
 ## The bits of a second reading grow as the fourth power of the logarithm
 
@@ -451,38 +432,16 @@ gives $1.1 \times 10^7$ bits.
 Panel (b) of the figure shows the first reading's 169 beads at $10^6$, up to degree twelve. The second reading up to the
 same degree has 455 moments, the sum of $(n + 1)(n + 2)/2$ from $n = 0$ to 12.
 
-<!-- try: two-readings — new (P7a-DECISIONS item 9). Predict first: "Two tides with the same wavevector direction are
-applied in turn. Where does their second reading land, on the cone or inside it?" (Answer, revealed after: on the cone,
-where a second reading holds nothing that the first does not, because parallel k and k' give κ = K.)
-Left panel: the camera's plane of wavevectors, axes k_x, k_y from −3 to 3 m⁻¹. Two draggable arrows from the origin,
-k (default (1.3, 0.4)) and k' (default (−0.2, 0.9)), their sum K drawn from the origin, and the ellipse of all pairs
-|k| + |K − k| = |k| + |k'|, foci 0 and K, drawn live. Keyboard: Tab moves between the two arrow tips; arrow keys move
-the focused tip by 0.05 m⁻¹ (Shift: 0.25).
-Right panel: the half-plane (K, κ), K from 0 to 6 and κ from 0 to 6 m⁻¹, the cone's line κ = K (blue outline), the
-point (|k + k'|, |k| + |k'|) as a dot, and under it a heat map of the size of the chosen scene's second reading,
-½(κ² − K²)|ρ̃(K, κ)| in kg m⁻², with ρ̃ taken at |K| along K's direction, shaded only where it stands above a noise
-floor set by a slider "Signal-to-noise" (10 to 10⁶, logarithmic, default 10³): the floor is the largest value of the
-chosen scene's map over the panel divided by the slider's value.
-Scene menu: "A point mass" (m = 100 kg at depth z₀, slider 0.5 to 3 m, default 1 m; ρ̃ = m e^{−κz₀}); "A nugget minus
-its flush" (a null-space density, built as ∇²ψ/4πG with ψ a smooth bump confined to a ball of radius 0.5 m at depth
-1 m, ψ = ψ₀(1 − r²/a²)³ inside; its transform (κ² − K²)ψ̃/4πG computed by quadrature in a worker).
-Readouts: K, κ, the semi-axes κ/2 and ½√(κ² − K²), the second reading at the dot, and "above the noise" or "below the
-noise".
-Checks: at the defaults the readouts are K = 1.70, κ = 2.28 m⁻¹, semi-axes 1.14 and 0.760 m⁻¹, factor ½(κ² − K²) =
-1.154 m⁻²; making k' parallel to k puts the dot on the cone's line and the semi-minor axis at 0; for the point mass at
-z₀ = 2 m with k = (1, 0) and k' = (0, 1), the reading is 1.83 kg m⁻²; the null-space scene is dark along the cone
-(exactly zero there) and bright inside; raising the slider tenfold moves the readable edge of the point mass's map
-outward by about ln 10/z₀ in κ (2.3 m⁻¹ at z₀ = 1 m).
-Both themes (the paper's palette, swapped per theme); phone: the two panels stacked, left above right, the arrows
-draggable by touch. Stand-in until it is built: the paper's static fig:two-readings in section 6, and the registered
-fading-ripple below for section 8. -->
-
-::: try {#fading-ripple}
-This figure stands in for the cost of fine detail. Predict first: if the crests of a ripple of density come
-twice as close together, how much more precisely must the camera read to see it from the same height? The figure opens
-on a ripple with crests 10 cm apart, read from 10 cm above. Halve the spacing of the crests and watch how much the
-field fades: the factor is squared, as the spans of a second reading are. Then halve the height as well, and see that
-only the product of the wavenumber and the height matters.
+::: try {#two-readings}
+Predict first: two tides whose wavevectors point the same way are applied in turn. Does their second reading land on
+the cone or inside it? And the nugget minus its flush is invisible to every first reading: what does its second
+reading show on the cone, and a little inside it? The left panel is the camera's plane of wavevectors, with the two tides'
+$\vect k$ and $\vect k'$ as arrows, their sum $\vect K$, and the ellipse of every pair that lands where this one
+does. The right panel is the half-plane of $|\vect K|$ and $\kappa$, with the cone's line, the dot where the pair
+lands, and the size of the chosen scene's second reading, shaded where it stands above the noise. Drag the tip of
+$\vect k'$ round until it points along $\vect k$, or Tab to it and move it with the arrow keys. Then choose *A nugget
+minus its flush* in *The scene*. Last, with *A point mass*, raise *Signal-to-noise* from $10^3$ to $10^4$, and watch
+how far the shaded edge moves with *Depth of the mass* at 1 m and at 2 m.
 :::
 
 ::: check

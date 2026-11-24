@@ -90,6 +90,7 @@ import BlackHoleCamera from './live/BlackHoleCamera.svelte';
 import Inspiral from './live/Inspiral.svelte';
 import ThermalHistory from './live/ThermalHistory.svelte';
 import FirstAndSecondOrder from './live/FirstAndSecondOrder.svelte';
+import TwoReadings from './live/TwoReadings.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -478,5 +479,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A mass passing three bodies: its bending and momentum at first order, the energy left inside at second',
 		component: FirstAndSecondOrder
+	},
+	'two-readings': {
+		label:
+			'Two tides on the plane of wavevectors, and where their second reading lands on the cone',
+		component: TwoReadings
 	}
 };
