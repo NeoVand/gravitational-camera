@@ -6,7 +6,7 @@ part: '7'
 requires: ['1.5', '1.5b', '6.1', '7.2', '7.4', '7.5']
 paper: [sec:pixel, eq:wave, eq:magnetic, fig:tidal, fig:tidal-field, sec:regimes, sec:waves, eq:wave-zone, sec:no-lens, eq:beam, sec:one-pixel, eq:square, eq:magnetic-ratio]
 figures: [fig:tidal, fig:tidal-field]
-live: [tidal-rings]
+live: [tidal-rings, wave-rings]
 depth: A
 ---
 
@@ -120,19 +120,12 @@ b_3 - b_0 &= -\field a_{33} , & b_0 + b_3 &= \tfrac12(\field a_{11} + \field a_{
 which set $\field a_{13}$, $\field a_{23}$, $\field a_{33}$ and the sum $\field a_{11} + \field a_{22}$ to zero.
 Harmonic gauge still holds, so it then makes every $\field a_{0\nu}$ zero too. Because $\delta\field a_{11} =
 \delta\field a_{22}$, the difference $\field a_{11} - \field a_{22}$ is untouched, and so is $\field a_{12}$: no choice
-of the $b_\nu$ changes them. Left are $\field a_{11} = -\field a_{22}$ and $\field a_{12}$.
+of the $b_\nu$ changes them. Left are $\field a_{11} = -\field a_{22}$ and $\field a_{12}$ (Figure
+[](#fig:ten-amplitudes)).
 
-<!-- diagram: tut-gw-count — One panel, about 520 × 300 px at 1440 (full width on a phone). A 4 × 4 grid of square
-cells, rows and columns labelled 0, x, y, z (z the direction of travel), each cell holding the amplitude a_μν in small
-type (a₀₀ … a_zz), symmetric cells drawn as a pair. Shading in three tints with a legend below the grid: the seven cells
-of row 0 and column 0 in a pale grey labelled "fixed by harmonic gauge (4)"; the cells a_xz, a_zx, a_yz, a_zy, a_zz and
-the pair a_xx, a_yy (with a small "+" between them, meaning their sum) in a pale field-colour tint labelled "removed by
-the leftover gauge (4)"; a_xy, a_yx and the pair a_xx, a_yy (with a small "−" between them, meaning their difference)
-outlined heavier in the field colour, labelled "left: the two polarizations". The diagonal cells a_xx and a_yy are split
-diagonally into the two tints, since their sum is removed and their difference kept. Under the grid the line
-"10 − 4 − 4 = 2". Caption: "Look first at the heavy cells: of the ten amplitudes of a plane wave travelling along z,
-harmonic gauge fixes the four with a time index, the leftover gauge removes the four along z and the trace across it,
-and two remain." -->
+![Look first at the heavy cells: of the ten amplitudes $\field a_{\mu\nu}$ of a plane wave travelling along $z$,
+harmonic gauge fixes the four with a time index, the leftover gauge removes the three along $z$ and the trace across it,
+and two remain.](tut-gw-count){#fig:ten-amplitudes}
 
 **The transverse-traceless gauge.** The wave now has no entry with a time index. It is **transverse**, with no entry
 along the direction of travel, and **traceless**, with diagonal entries that add to zero, so reversing the trace changes
@@ -283,9 +276,9 @@ right stays at its undisturbed value. Integrating twice in time, with both sides
 $$\boxed{\;\delta\xi_i = \tfrac12\,\field h^{\rm TT}_{ij}\,\xi_j .\;}$$
 
 **LIGO's two arms.** In a plus wave travelling along $z$, an arm of length $L$ along $\vect e_1$ grows by
-$\tfrac12\field h_+L$, and one along $\vect e_2$ shrinks by the same. Their difference is $\field h_+L$, so LIGO's
-strain, the difference of the arms divided by the length of one, is $\field h_+$ itself.[^r1] Arms turned by 45° read
-$\field h_\times$ and nothing of $\field h_+$.
+$\tfrac12\field h_+L$, and one along $\vect e_2$ shrinks by the same (Figure [](#fig:ligo-arms)). Their difference is
+$\field h_+L$, so LIGO's strain, the difference of the arms divided by the length of one, is $\field h_+$ itself.[^r1]
+Arms turned by 45° read $\field h_\times$ and nothing of $\field h_+$.
 
 **A number.** A wave of $\field h_+ = 10^{-21}$ on LIGO's 4 km arms makes a difference of $4\times10^{-18}$ m, about a
 400th of the width of a proton ($1.7\times10^{-15}$ m). The rule assumes arms much shorter than the wavelength, which is
@@ -297,16 +290,9 @@ $\curv\tE_{ij}$, integrated twice in time":
 
 $$\tfrac12\bigl(\field h_{11} - \field h_{22}\bigr)L = -L\iint\bigl(\curv\tE_{11} - \curv\tE_{22}\bigr)\,\dd t\,\dd t .$$
 
-<!-- diagram: tut-gw-arms — One panel, about 520 × 320 px at 1440 (full width on a phone). LIGO seen from above: an
-L of two arms of length L from a corner mass, along e₁ (right) and e₂ (up), drawn as thin ink lines ending in small
-filled squares (the end mirrors, observer colour). The direction of travel ⊙ (out of the page) in the corner, labelled
-"wave along z". The undisturbed arm ends dashed; the disturbed ends displaced, exaggerated: the e₁ arm longer by
-"+½h₊L" (orange bracket, stretch), the e₂ arm shorter by "−½h₊L" (blue bracket, squeeze). To the right, a short ink
-bracket summing the two, labelled "difference h₊L, so the strain is h₊". A pale second copy of the two ends, labelled
-"half a cycle later", with the signs reversed. Labels beside the geometry, never on a line. Caption: "Look first at the
-two brackets: in a plus wave along the arms' normal one arm grows by half the strain and the other shrinks by the same,
-so the difference of the arms divided by their length is the strain itself. Displacements exaggerated about 10²⁰
-times." -->
+![Look first at the two brackets: in a plus wave along the arms' normal one arm grows by half the strain and the
+other shrinks by the same, so the difference of the arms divided by their length is the strain $\field h_+$ itself.
+Displacements exaggerated about $10^{20}$ times.](tut-gw-arms){#fig:ligo-arms}
 
 ::: gap
 In TT gauge a free ball at rest keeps its coordinates as the wave passes, because the pull in chapter 7.1's geodesic
@@ -358,17 +344,13 @@ chapter's rule is that turning the axes anticlockwise by $\theta$ multiplies the
 $\mp i$ is a turn of the axes by $\pm45°$. A pattern turned anticlockwise by 45° in fixed axes reads the same as the old
 pattern in axes turned clockwise by 45°, so its shear is $i$ times the old one. The shear of $\curv\tB$ is
 $-2\curv\tE_\times + 2i\curv\tE_+ = i\curv{s}$. So $\curv\tB$ is the pattern of $\curv\tE$ **turned by 45°** about the
-direction of travel, anticlockwise as seen by the reader toward whom the wave comes. With 1.5b's $\curv\tE_+ = 0.6$ and
-$\curv\tE_\times = 0.25$, in any unit of tide, the two shears are $1.2 + 0.5i$ and $-0.5 + 1.2i$.
+direction of travel, anticlockwise as seen by the reader toward whom the wave comes (Figure
+[](#fig:magnetic-turned)). With 1.5b's $\curv\tE_+ = 0.6$ and $\curv\tE_\times = 0.25$, in any unit of tide, the two
+shears are $1.2 + 0.5i$ and $-0.5 + 1.2i$.
 
-<!-- diagram: tut-gw-turned — Two panels side by side, each about 300 × 300 px at 1440 (stacked on a phone), the
-direction of travel ⊙ out of the page drawn small in each corner. Left, "𝓔, plus": a ring of twelve free balls with
-the paper's arrows, stretched along e₁ (orange) and squeezed along e₂ (blue), its principal axes drawn as two thin
-lines. Right, "𝓑": the same ring and arrows, rotated anticlockwise by 45°, its axes along the diagonals, with a thin
-curved arrow between the panels marked "45°". Under the right panel, in small type, "acts on gyroscopes, not on free
-balls; drawn with 𝓔's convention". Symbols 𝓔 and 𝓑 in the curvature colour. Caption: "Look first at the axes: in a
-plane wave the magnetic part is the tide's own pattern, equal in size and turned by 45° about the direction of travel,
-anticlockwise as seen by a reader the wave approaches." -->
+![Look first at the axes: in a plane wave the magnetic part $\curv\tB$ is the tide's own pattern, equal in size and
+turned by 45° about the direction of travel, anticlockwise as seen by a reader the wave
+approaches.](tut-gw-turned){#fig:magnetic-turned}
 
 **The square of one complex vector.** Chapter
 [1.5b](/tutorial/newton/complex-numbers/#complex-vectors-a-direction-whose-square-is-zero)'s null vector
@@ -426,21 +408,17 @@ period later the two change places. The cross ring does the same along the diago
 is always stretched toward the mass, and its stretch is twice its squeeze.
 :::
 
-<!-- try: wave-rings (a new interactive figure, WaveRings, a port of the GR course's wave lab, chapter-18.html#scene-wave)
-— One panel, about 640 × 440 px at 1440 (full width on a phone, controls below). Left, a ring of twelve free balls (dots
-in the observer colour) in a wave travelling toward the reader (⊙), the undisturbed circle dashed, the displacement
-δξᵢ = ½h_ij ξ_j drawn exaggerated by a stated factor; an L of two arms along e₁ and e₂ drawn through the ring's centre,
-which can be turned. Right, a toggle "show 𝓑" that draws the magnetic part as a second ring, in the curvature colour,
-turned by 45° (or, in a second mode, as six gyroscope pairs whose relative turning is 𝓑_ij ξ_j). Sliders: h₊ and h×
-(each 0 to 1, in units of the exaggerated strain), the phase of h× behind h₊ (0° to 360°), and the arm angle (0° to
-90°); play and pause. Readouts to two figures: "arm difference ΔL/L = …" (= ½(h₁₁ − h₂₂) in the arms' axes, which is
-h₊cos2ψ + h×sin2ψ for the arm angle ψ) and "|𝓔| = …, |𝓑| = …" in units of ω²h, always equal. Opens with h₊ = 1,
-h× = 0, playing. Predict first: "Set h× = 0. Along which directions is the ring stretched, and what happens half a period
-later?" (Answer: along e₁ and squeezed along e₂; half a period later the reverse.) Then: "Add h× of the same size a
-quarter period behind. What does the pattern do now?" (Answer: it turns without changing its shape, at half the wave's
-angular frequency: circular polarization, chapter 5.4.) Then: "Turn the arms by 45°. What do they read in the plus
-wave?" (Answer: nothing; they now read h×.) Keyboard: Tab reaches each slider, the toggle and play, arrows step them,
-shift for larger steps; both themes; phone; static on reduced motion (one frame at the largest stretch). -->
+::: try {#wave-rings}
+A ring of twelve free balls in a wave travelling toward you, with the L of a detector's two arms through its centre.
+Sliders set the plus and cross amplitudes, how far the cross wave runs behind the plus wave, and the angle of the arms.
+A switch draws the magnetic part beside the ring, either as a second ring or as six pairs of gyroscopes. The readouts
+give the arm difference over the length of one arm, the sizes of $\curv\tE$ and $\curv\tB$, and the directions in which
+each ring is stretched. The strain is drawn about $5\times10^{20}$ times larger than LIGO's waves.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, set a
+circular wave and turn the arms: say why the arm difference keeps the same size whatever their angle, and only its
+timing changes.
+:::
 
 ::: check
 ### Q

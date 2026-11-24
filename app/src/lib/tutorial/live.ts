@@ -62,6 +62,8 @@ import StressEnergyTable from './live/StressEnergyTable.svelte';
 import CarryAround from './live/CarryAround.svelte';
 import RicciWeyl from './live/RicciWeyl.svelte';
 import GaugeOrWave from './live/GaugeOrWave.svelte';
+import MagneticTide from './live/MagneticTide.svelte';
+import WaveRings from './live/WaveRings.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -293,6 +295,16 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A grid of rings of free balls under a ripple of coordinate labels and under a real wave: the labels move in one, the measured separations in the other',
 		component: GaugeOrWave
+	},
+	'magnetic-tide': {
+		label:
+			"A pixel beside a passing mass, a spinning ball or shell, and on the Earth's equator: the magnetic part of the tide and two gyroscopes that turn relative to one another",
+		component: MagneticTide
+	},
+	'wave-rings': {
+		label:
+			'A ring of free balls in a gravitational wave coming toward you, with the two arms of a detector you can turn and the magnetic part drawn beside it, turned by 45 degrees',
+		component: WaveRings
 	},
 	'noise-spectrum': {
 		label:

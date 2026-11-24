@@ -6,7 +6,7 @@ part: '7'
 requires: ['1.1', '1.3', '1.5', '1.6', '6.1', '6.5', '7.2', '7.3', '7.4']
 paper: [sec:pixel, eq:magnetic, sec:near-field, eq:magnetic-point, eq:current-column, sec:one-pixel, eq:magnetic-ratio, sec:vistas, eq:multipole]
 figures: []
-live: []
+live: [magnetic-tide]
 depth: A
 ---
 
@@ -201,9 +201,9 @@ v\cdot\vect x/r^3$, the term of [](#eq:flow-rule) in $\nabla\cdot\field{\vect A}
 antisymmetric is left, as the first section requires in empty space. The trace, $2\hat n\cdot(\hat n\times\vect v)$, is
 zero.
 
-**Motion along the line of sight gives nothing**, because then $\hat n\times\vect v = 0$. Only the sideways speed
-$v_\perp = |\hat n\times\vect v|$ counts: the magnetic channel is "the opposite of a Doppler radar", which sees only
-motion along the line.
+**Motion along the line of sight gives nothing**, because then $\hat n\times\vect v = 0$ (Figure
+[](#fig:magnetic-crossing)). Only the sideways speed $v_\perp = |\hat n\times\vect v|$ counts: the magnetic channel is
+"the opposite of a Doppler radar", which sees only motion along the line.
 
 **Numbers.** Chapter [1.5](/tutorial/newton/five-numbers/#a-pixel-that-also-reads-the-twist-records-ten-numbers)
 found from this equation that $|\curv\tB|/|\curv\tE| = \sqrt3\,v_\perp/c$ (Frobenius norms), now derived. For the
@@ -245,19 +245,9 @@ and the hemispheres' angular momenta cancel. The first pattern left in the flow 
 of degree two of the mass flux, and it shows in $\curv\tB$ alone, smaller than a tide by about $v/c$. So does any shear
 motion of a solid, such as a shear wave.
 
-<!-- diagram: tut-magnetic-crossing — Two panels side by side, each about 340 × 300 px at 1440 (stacked on a phone).
-Each shows a pixel at the left (a dashed ring of twelve free balls in ink, about 70 px across) and a stone-coloured ball
-(the mass, 40 px) 220 px to its right on the same horizontal line, with a velocity arrow in ink on the mass. Inside the
-ring, chapter 7.2's ring as a solid ellipse stretched along the line to the mass (orange tint at the two ends on that
-line) and squeezed across it (blue tint at the top and bottom), deformation exaggerated by a stated factor. Above and
-below the ring, two small gyroscopes 1 m apart (discs with an axle, axles parallel, drawn in perspective), each with a
-short curved arrow in the curvature colour showing a turn about the line joining them. (a) "moving across": the mass's
-arrow points up the page; the two curved arrows point in opposite senses, labelled "turn relative to one another,
-𝓑 ≠ 0". (b) "moving toward the pixel": the arrow points left, at the pixel; the ellipse as in (a); no curved arrows,
-labelled "𝓑 = 0". Under each panel "|𝓑|/|𝓔| = √3 v⊥/c" with v⊥ = v in (a) and 0 in (b). Labels beside the geometry,
-never on lines. Caption: "Look first at the gyroscopes. A mass moving across the line of sight makes neighbouring
-gyroscopes turn relative to one another; the same mass moving straight at the pixel makes no magnetic part, though the
-stretch toward it is the same. The deformation and the turning are exaggerated." -->
+![Look first at the gyroscopes. A mass moving across the line of sight makes neighbouring gyroscopes turn relative to
+one another; the same mass moving straight at the pixel makes no magnetic part, though the stretch toward it is the
+same. The deformation and the turning are exaggerated.](tut-magnetic-crossing){#fig:magnetic-crossing}
 
 ## A spinning round body is a spin dipole
 
@@ -284,9 +274,9 @@ the pixel toward the body,
 $$\boxed{\;\begin{aligned}\curv\tB_{ij} = -\frac{3G}{c\,r^4}\Bigl[&L_i\hat n_j + \hat n_iL_j\\ &+ (\vect L\cdot\hat
 n)(\delta_{ij} - 5\hat n_i\hat n_j)\Bigr] ,\end{aligned}\;} \label{eq:spin-dipole}$$
 
-the paper's field of a **spin dipole** in *The magnetic picture*. Its unit is $G/c$ times $\mathrm{kg\,m^2\,s^{-1}}$
-over $\mathrm{m^4}$, which is $\mathrm{s^{-2}}$. Its trace is $2\vect L\cdot\hat n + (\vect L\cdot\hat n)(3 - 5) = 0$,
-as the first section requires outside matter.
+the paper's field of a **spin dipole** in *The magnetic picture* (Figure [](#fig:spin-dipole-sky)). Its unit is $G/c$
+times $\mathrm{kg\,m^2\,s^{-1}}$ over $\mathrm{m^4}$, which is $\mathrm{s^{-2}}$. Its trace is $2\vect L\cdot\hat n +
+(\vect L\cdot\hat n)(3 - 5) = 0$, as the first section requires outside matter.
 
 **Checks.** The field depends on the body only through $\vect L$. A thin shell and a solid ball of equal mass and
 radius, spun at the same rate, pull alike outside, but their moments of inertia, $\tfrac23\matter MR^2$ and
@@ -294,16 +284,9 @@ $\tfrac25\matter MR^2$, make their magnetic parts differ by $5/3$. A uniform bal
 counter-turning shell of the same density has $\vect L = 0$ (chapter 2.8), and no magnetic part outside, "though all of
 it moves". The Earth has $L = 0.3307\,\matter MR^2\Omega = 5.86\times10^{33}\unit{kg\,m^2\,s^{-1}}$.
 
-<!-- diagram: tut-spin-dipole-sky — Two discs side by side, each about 300 × 300 px at 1440 (stacked on a phone), each
-a sphere round a central body in the paper's stone style, seen from the side, shaded by the sign of the component of
-the tide along the line to the body: orange where negative, blue where positive, white where zero, with thin ink
-contours at zero. Left, "point mass, 𝓔ₙₙ = −2GM/r³": uniformly orange. Right, "spin dipole, 𝓑ₙₙ = 6G(L·n̂)/cr⁴", with
-n̂ from the sphere toward the body: orange over the northern hemisphere (there L·n̂ < 0, so 𝓑ₙₙ < 0), blue over the
-southern (𝓑ₙₙ > 0), white on the equator, with the spin axis L drawn as an ink arrow through the
-body. Note under the right disc: "𝓑ₙₙ vanishes on the equator, where the pixel reads 𝓑ₓ_z". Caption: "Look first at the
-right sphere. The magnetic part along the line to a spinning body has opposite signs over its two hemispheres and
-vanishes on its equator, while the stretch of a point mass is the same in every direction. The shading is schematic in
-strength." -->
+![Look first at the right sphere. The magnetic part $\curv\tB_{nn}$ along the line to a spinning body has opposite signs
+over its two hemispheres and vanishes on its equator, while the stretch $\curv\tE_{nn}$ of a point mass is the same in
+every direction. The shading is schematic in strength.](tut-spin-dipole-sky){#fig:spin-dipole-sky}
 
 ## The Earth's magnetic part weighs its core
 
@@ -339,12 +322,12 @@ Section II's formula: the 1 is the pixel's motion, and $I/\matter MR^2$ the plan
 the equatorial radius $6.378\times10^6\unit{m}$, the factor in front is $7.15\times10^{-12}\unit{s^{-2}}$. With the
 Earth's $I/\matter MR^2 = 0.3307$ (chapter
 [1.6](/tutorial/newton/motion/#the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one)) the reading is
-$\curv\tB_{xz} = -4.79\times10^{-12}\unit{s^{-2}}$, and the paper quotes its size, 4.8. The sign gives the sense of the
-turning: by the first section's rule, of two gyroscopes one above the other the upper one turns relative to the lower
-one clockwise as seen from above the north pole. The person walking past 1 m away at $1.4\unit{m\,s^{-1}}$ gives
-$3G\matter Mv/cr^3 = 6.54\times10^{-17}\unit{s^{-2}}$ in the corresponding entry, 73,100 times less, the paper's
-"seventy thousand". A uniform Earth, 0.4, would read $4.29\times10^{-12}\unit{s^{-2}}$, and a hollow shell, $\tfrac23$,
-$2.38\times10^{-12}\unit{s^{-2}}$.
+$\curv\tB_{xz} = -4.79\times10^{-12}\unit{s^{-2}}$ (Figure [](#fig:earth-two-bars)), and the paper quotes its size, 4.8.
+The sign gives the sense of the turning: by the first section's rule, of two gyroscopes one above the other the upper
+one turns relative to the lower one clockwise as seen from above the north pole. The person walking past 1 m away at
+$1.4\unit{m\,s^{-1}}$ gives $3G\matter Mv/cr^3 = 6.54\times10^{-17}\unit{s^{-2}}$ in the corresponding entry, 73,100
+times less, the paper's "seventy thousand". A uniform Earth, 0.4, would read $4.29\times10^{-12}\unit{s^{-2}}$, and a
+hollow shell, $\tfrac23$, $2.38\times10^{-12}\unit{s^{-2}}$.
 
 **A limit.** No round body has $I/\matter MR^2$ above the shell's $\tfrac23$, so the spin never cancels the motion. At
 the poles $\obs{\vect u} = 0$, and the pixel reads the spin dipole alone.
@@ -352,15 +335,9 @@ the poles $\obs{\vect u} = 0$, and the pixel reads the spin dipole alone.
 **What it means.** The mass, the rate and the radius are known, so one reading gives $I/\matter MR^2$, which the steady
 pull hides (chapter 1.3): the Earth's core raises the reading by 12 per cent over a uniform Earth's.
 
-<!-- diagram: tut-earth-two-bars — One panel, about 560 × 300 px at 1440 (full width on a phone). Left: the Earth as a
-stone sphere seen from above the north pole, with the spin L as a ring arrow and the pixel as a small ring on the
-equator at the right, with its velocity arrow u (465 m s⁻¹) in the observer colour pointing up the page. Right: bars on
-one axis in units of 10⁻¹² s⁻², from zero: "the pixel's motion: −7.15", pointing left, labelled "1"; "the planet's spin:
-+2.36", pointing right, labelled "I/MR² = 0.331"; below them a heavier bar "the reading: −4.79" with a bracket showing it
-is their sum. Thin ticks on the axis under the reading for a uniform Earth (−4.29) and a hollow shell (−2.38). Bars in the
-curvature colour. Labels left of the bars, values beside them, never on the bars. Caption: "Look first at the third bar:
-the pixel's motion through the planet's field and the planet's own spin give opposite magnetic parts, and their
-difference reads the moment of inertia. Ticks mark a uniform Earth and a hollow shell." -->
+![Look first at the third bar: the pixel's motion through the planet's field and the planet's own spin give opposite
+magnetic parts, and their difference reads the moment of inertia. The outline is the spin's bar laid at the end of the
+motion's. Ticks mark a uniform Earth and a hollow shell.](tut-earth-two-bars){#fig:earth-two-bars}
 
 ## A body turning at a known rate shows one hidden integral for each harmonic function
 
@@ -446,23 +423,18 @@ flows of mass repel where parallel currents attract. So the analogy guides and d
 $\curv{\mathcal W} = \curv\tE + i\curv\tB$ is gravity's counterpart of $\mathbf E + ic\mathbf B$, which chapter 9.3
 makes exact.
 
-<!-- try: magnetic-tide (a new interactive figure, MagneticTide, not yet built) — One panel, about 640 × 460 px at 1440
-(full width on a phone, controls below), with three modes chosen by tabs. (1) "A passing mass" (opens here): a pixel at
-the centre left, drawn as a ring of twelve free balls with chapter 7.2's ellipse for 𝓔, and two small gyroscopes 1 m
-apart above and below it, whose relative turning is drawn exaggerated by a stated factor (10¹⁵, printed); a 70 kg mass 1
-m to the right with a draggable velocity arrow (speed 0 to 3 m s⁻¹, any direction in the plane; opens at 1.4 m s⁻¹
-straight up, across the line). Readouts to three figures: |𝓑| (10⁻¹⁷ s⁻²), |𝓔| (10⁻⁸ s⁻²), |𝓑|/|𝓔| and √3 v⊥/c side
-by side. Opening values: 9.26, 1.14, 8.09 × 10⁻⁹ and 8.09 × 10⁻⁹ (G = 6.674 × 10⁻¹¹, c = 2.998 × 10⁸). (2) "A spinning
-body": a ball or a thin shell (switch) of 1000 kg and radius 0.5 m, its centre 1.5 m from the pixel, spun about an axis
-across the line at a rate slider (0 to 100 s⁻¹), or "ball inside a counter-turning shell" with a slider for the inner
-radius a/R from 0.5 to 1; readouts L = IΩ and |𝓑| at the pixel from the spin dipole; at a/R = 0.871 both read 0, and the
-shell reads 5/3 of the ball. (3) "The equator": a slider for I/MR² from 0 to 2/3 (ticks at 0.3307, 0.4 and 2/3,
-labelled Earth, uniform, shell); readout 𝓑ₓ_z = −7.15 × 10⁻¹² (1 − I/MR²) s⁻², with the two bars of the Earth diagram.
-Predict first: "Turn the velocity until the mass comes straight at the pixel. What does the magnetic part do?" (It falls
-to zero; the stretch is unchanged.) Then: "Spin a shell and a ball of the same mass and size at the same rate. Which
-shows the larger magnetic part, and by how much?" (The shell, by 5/3.) Then: "Can the equator's reading reach zero for a
-round planet?" (No: the slider stops at the shell's 2/3, where the reading is a third of 7.15 × 10⁻¹².) Keyboard: Tab
-reaches the tabs, the arrow and the sliders; arrows step them, shift for larger steps; both themes; phone. -->
+::: try {#magnetic-tide}
+Three scenes in tabs. In the first, a pixel, drawn as a ring of free balls with two gyroscopes 1 m apart on the line
+beside it, watches a 70 kg mass 1 m away whose velocity arrow you can drag. In the second, a ball or a thin shell of
+1000 kg spins beside the pixel, or a ball spins inside a shell turning the other way, with a slider for the inner
+radius. In the third, a slider sets $I/MR^2$ for a pixel on the Earth's equator, and the two bars of Figure
+[](#fig:earth-two-bars) follow it. The readouts give $|\curv\tB|$, $|\curv\tE|$, their ratio beside $\sqrt3\,v_\perp/c$,
+the spin $L$, and the equator's $\curv\tB_{xz}$. Every exaggeration is printed on the drawing.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, find
+the inner radius at which the ball and the counter-turning shell together give no magnetic part, and say why the
+stretch of the ring is still there.
+:::
 
 ::: check
 ### Q
