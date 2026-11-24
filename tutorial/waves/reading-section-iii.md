@@ -88,10 +88,11 @@ apiece ([1.5](/tutorial/newton/five-numbers/), [R1](/tutorial/newton/reading-sec
 *checked here*). That spin two "shapes much of what a single pixel can measure" is Section VIII's claim: *read now,
 derived in Part 9*.
 
-*Matter moves slowly*, so "its near field reaches far beyond any room", checked in the next two sections. "The
-twisting magnetic part of the tide is small near ordinary matter": by R1's ratio $\sqrt3\,v_\perp/c$, a person walking
-at $1.4\unit{m\,s^{-1}}$ across the line of sight gives a magnetic part $8.1\times10^{-9}$ of the tide (*read now,
-derived in Part 7*, chapter 7.5).
+*Matter moves slowly*, so "its near field reaches far beyond any room", checked in the next two sections. "The twisting
+magnetic part of the tide is small near ordinary matter": by R1's ratio $\sqrt3\,v_\perp/c$, a person walking at
+$1.4\unit{m\,s^{-1}}$ across the line of sight gives a magnetic part $8.1\times10^{-9}$ of the tide (*read now, derived
+in Part 7*, chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight)).
 
 *Matter is spread out.* "The ratio $GM/Rc^2$ of a body … measures how strongly the body curves space." This is the
 **compactness** $\mathcal C = G\matter M/Rc^2$, a pure number, with $R$ the body's radius in metres and
@@ -124,10 +125,12 @@ order $kr$ in the two parts cancel
 *checked here*). Equation [](/paper/#eq:newton) is Section II's statement that near slow matter the tide is the table
 of second derivatives of Newton's potential, which chapter 1.4 derived (R1, *checked here*).
 
-"Outside it the field is radiation, Eq. [](/paper/#eq:wave), falling off as $1/r$." The fall as $1/r$ is 5.2's
-(*checked here*). Equation [](/paper/#eq:wave) itself, the tide of a wave as minus half the second time derivative of
-its strain, is *read now, derived in Part 7* (chapter 7.6). "At 1 Hz the near zone reaches to 48,000 km; at 1 kHz, to
-48 km": $c/2\pi f$ is $4.77\times10^7$ m and $4.77\times10^4$ m (*checked here*).
+"Outside it the field is radiation, Eq. [](/paper/#eq:wave), falling off as $1/r$." The fall as $1/r$ is 5.2's (*checked
+here*). Equation [](/paper/#eq:wave) itself, the tide of a wave as minus half the second time derivative of its strain,
+is *read now, derived in Part 7* (chapter
+[7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain)). "At 1
+Hz the near zone reaches to 48,000 km; at 1 kHz, to 48 km": $c/2\pi f$ is $4.77\times10^7$ m and $4.77\times10^4$ m
+(*checked here*).
 
 ## Every body that moves as a whole lies deep inside its near zone
 

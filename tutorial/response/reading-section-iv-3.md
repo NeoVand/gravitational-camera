@@ -482,9 +482,11 @@ and an applied tide.
 
 With R2's and R3's ledgers, eighteen of the twenty are now derived in full. Section IV's [](/paper/#eq:current-column)
 is derived in its integral; its weight, and [](/paper/#eq:magnetic-point), the magnetic part of one moving mass, wait
-for chapter 7.5. Part 4 has also derived Section VI's [](/paper/#eq:maxwell) (4.4) and [](/paper/#eq:friction-sum)
-(4.5), Section XIII's [](/paper/#eq:dust) (4.5), and the classical side of Appendix A's [](/paper/#eq:jitter-bounds)
-(4.6), whose quantum side waits for Part 8.
+for chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight).
+Part 4 has also derived Section VI's [](/paper/#eq:maxwell) (4.4) and [](/paper/#eq:friction-sum) (4.5), Section XIII's
+[](/paper/#eq:dust) (4.5), and the classical side of Appendix A's [](/paper/#eq:jitter-bounds) (4.6), whose quantum side
+waits for Part 8.
 
 ::: check
 ### Q

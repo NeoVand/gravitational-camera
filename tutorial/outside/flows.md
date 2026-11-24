@@ -144,16 +144,17 @@ $$\boxed{\;\nabla\times(\nabla\times\vect V) = \nabla(\nabla\cdot\vect V) - \nab
 
 This is chapter 1.1's rule for $\vect a\times(\vect b\times\vect c)$, with the derivatives kept in front.
 
-The paper uses this potential: "Outside a body, $\tB$ comes from the potential
-$\int\rho\mathbf v\,\dd V'/|\mathbf x - \mathbf x'|$ of its steady flow of mass", where the paper writes $\mathbf x'$
-for our $\vect y$. We state the rule from chapter 7.5, which derives it. Outside a body, for a steady flow and to
-first order in $v/c$, where $c$ is the speed of light,
+The paper uses this potential: "Outside a body, $\tB$ comes from the potential $\int\rho\mathbf v\,\dd V'/|\mathbf x -
+\mathbf x'|$ of its steady flow of mass", where the paper writes $\mathbf x'$ for our $\vect y$. We state the rule from
+chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#moving-matter-makes-the-magnetic-part-through-the-potential-of-its-flow),
+which derives it. Outside a body, for a steady flow and to first order in $v/c$, where $c$ is the speed of light,
 
 $$\curv{\tB}_{ij} = \frac{G}{c}\,(\partial_ib_j + \partial_jb_i), \qquad \vect b = \nabla\times\field{\vect A} ,$$
 
 with $\vect b$ in $\mathrm{kg\,m^{-1}\,s^{-1}}$. The units agree: $G/c$, in $\mathrm{m^2\,kg^{-1}\,s^{-1}}$, times
 $\mathrm{kg\,s^{-1}}$ divided by a square metre for the two derivatives, is $\mathrm{s^{-2}}$, the unit of a tide. We
-rely on nothing else from chapter 7.5.
+rely on nothing else from chapter [7.5](/tutorial/geometry/gravitomagnetism/).
 
 One mass $\matter M$ at the origin, moving with velocity $\vect v$, has at the point $\vect x$ the potential
 $\field{\vect A} = \matter M\vect v/r$, which points along the velocity and falls as the inverse distance. So $\vect b =
@@ -405,12 +406,13 @@ $\int\vect x\times\matter{\vect J}\,\dd V$, is $\vect L = I\vect\Omega$, so the 
 $$\boxed{\;\field{\vect A} = \frac{\vect L\times\vect x}{2r^3}\;}$$
 
 everywhere outside it. Layers add, so outside a round body whose layers turn rigidly, each at its own rate,
-$\field{\vect A}$ is this with the total angular momentum. Its curl,
-$[3\vect x(\vect L\cdot\vect x) - \vect Lr^2]/2r^5$, is not zero: it is the pattern of a **spin dipole**,
-and the paper's formula for $\curv{\tB}$ outside a spinning round body (in *The magnetic picture*) is built from it in
-chapter 7.5. **A check** of units: $\mathrm{kg\,m^2\,s^{-1}}$ times a metre over $\mathrm{m^3}$ is
-$\mathrm{kg\,s^{-1}}$, the unit of $\field{\vect A}$. The rolls of the last section pass another check: a flow that
-showed outside through a spin dipole would need angular momentum, and they have none.[^L]
+$\field{\vect A}$ is this with the total angular momentum. Its curl, $[3\vect x(\vect L\cdot\vect x) - \vect
+Lr^2]/2r^5$, is not zero: it is the pattern of a **spin dipole**, and the paper's formula for $\curv{\tB}$ outside a
+spinning round body (in *The magnetic picture*) is built from it in chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#a-spinning-round-body-is-a-spin-dipole). **A check** of units:
+$\mathrm{kg\,m^2\,s^{-1}}$ times a metre over $\mathrm{m^3}$ is $\mathrm{kg\,s^{-1}}$, the unit of $\field{\vect A}$.
+The rolls of the last section pass another check: a flow that showed outside through a spin dipole would need angular
+momentum, and they have none.[^L]
 
 So a swirl of rigidly turning layers shows, and only through its angular momentum. A swirl whose rate changes with
 latitude shows through further **moments** of the flow, integrals over the body of the mass flux times a fixed

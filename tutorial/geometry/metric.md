@@ -18,8 +18,10 @@ position", and defines the tide for "an observer at rest, with proper time $t$ a
 {{paper eq:tidal}}
 
 Here $\curv{\tE}_{ij}$ is the tide, and $R_{0i0j}$ are entries of the Riemann curvature tensor, a table built from
-second derivatives of the metric, which chapter 7.2 constructs. This chapter builds what that table is made of: the
-metric, the observer's proper time $t$ and the coordinates.
+second derivatives of the metric, which chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)
+constructs. This chapter builds what that table is made of: the metric, the observer's proper time $t$ and the
+coordinates.
 
 In Newton's theory, as chapter [1.4](/tutorial/newton/tides/) showed, falling cancels the pull of gravity because every
 body falls alike. But a clock on a shelf runs faster than the same clock on the floor. So we ask: if falling cancels
@@ -141,7 +143,8 @@ at every event, and [](#eq:proper-time) is chapter 6.1's proper time.
 $$\dd s^2 = \dd r^2 + r^2\dd\theta^2 ,$$
 
 so $\field g_{rr} = 1$ and $\field g_{\theta\theta} = r^2$, which is in square metres and grows with $r$. The sheet is
-flat; only the labels spread apart. A metric that varies is therefore not, by itself, a sign of gravity, and chapter 7.2
+flat; only the labels spread apart. A metric that varies is therefore not, by itself, a sign of gravity, and chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)
 finds the quantity that tells the two apart.
 
 **The inverse metric** $\sym{inverse-spacetime-metric}{\field g}^{\mu\nu}$ is the inverse matrix, $\field
@@ -273,7 +276,9 @@ $$\boxed{\;\field g_{00} = -\Bigl(1 + \frac{2\field\Phi}{c^2}\Bigr)\;} \label{eq
 The difference from the flat metric is the **metric perturbation** $\sym{metric-perturbation}{\field h}_{\mu\nu} =
 \field g_{\mu\nu} - \field\eta_{\mu\nu}$, a table of small numbers, the quantity that chapter
 [5.2](/tutorial/waves/retarded-waves/) promised. Its first entry is $\field h_{00} = -2\field\Phi/c^2$, a pure number,
-since $\field\Phi$ is in $\mathrm{J\,kg^{-1}} = \mathrm{m^2\,s^{-2}}$. Chapter 7.4 derives the other entries.
+since $\field\Phi$ is in $\mathrm{J\,kg^{-1}} = \mathrm{m^2\,s^{-2}}$. Chapter
+[7.4](/tutorial/geometry/linearized-gravity/#a-static-source-gives-newtons-potential-in-time-and-in-space) derives the
+other entries.
 
 **Weak, in numbers.** The field is **weak** when $|\field h_{00}| = 2|\field\Phi|/c^2 \ll 1$, and the motion slow when
 $\obs v^2/c^2 \ll 1$: chapter 1.2's conditions for Newton's law, made exact. The ratio $|\field\Phi|/c^2 = G\matter
@@ -406,7 +411,9 @@ symbols**.[^gamma] They are symmetric in their lower indices, because the bracke
 [](#eq:geodesic) is in $\mathrm{m\,s^{-2}}$; with other coordinates their units follow the coordinates. In flat
 spacetime with inertial coordinates every symbol vanishes. The paper's convention for the curvature, stated after the
 paper's [](/paper/#eq:tidal), is $R^\alpha{}_{\beta\gamma\delta} = \partial_\gamma\Gamma^\alpha{}_{\beta\delta} -
-\dots$: a derivative of a Christoffel symbol, followed by terms that chapter 7.2 supplies.
+\dots$: a derivative of a Christoffel symbol, followed by terms that chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)
+supplies.
 
 ::: derivation
 ### The geodesic equation from the longest proper time
@@ -545,11 +552,12 @@ the observer's place that chapter
 [6.2](/tutorial/relativity/spacetime-vectors/#lowering-an-index-changes-only-the-sign-of-time) used. The pull of gravity
 lived in the first derivatives, and falling removes it.
 
-The 20 numbers that no frame removes are the curvature of chapter 7.2, the Riemann tensor $R$ of the paper's
-[](/paper/#eq:tidal), and the tide $\curv{\tE}_{ij} = c^2R_{0i0j}$, a symmetric table of three rows, is six of them.
-Panel (a) of the paper's figure below shows what the tide does: a ring of free test masses beside a mass is stretched
-along the line to the mass and squeezed across it, and no falling keeps it round. Panels (b) and (c) show the ring in a
-gravitational wave.
+The 20 numbers that no frame removes are the curvature of chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor),
+the Riemann tensor $R$ of the paper's [](/paper/#eq:tidal), and the tide $\curv{\tE}_{ij} = c^2R_{0i0j}$, a symmetric
+table of three rows, is six of them. Panel (a) of the paper's figure below shows what the tide does: a ring of free test
+masses beside a mass is stretched along the line to the mass and squeezed across it, and no falling keeps it round.
+Panels (b) and (c) show the ring in a gravitational wave.
 
 {{paper fig:tidal}}
 
@@ -562,7 +570,8 @@ below works it out.
 The sketch counts numbers and does not prove that the conditions can be met. For the first derivatives they can: the 40
 Christoffel symbols at P and the 40 first derivatives of the metric determine each other, and a suitable choice of $B$
 removes them all, which gives what are called normal coordinates. That the 20 survivors are independent follows from the
-symmetries of the Riemann tensor (chapter 7.2).
+symmetries of the Riemann tensor (chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)).
 :::
 
 ## Light follows paths on which no proper time passes
@@ -570,13 +579,14 @@ symmetries of the Riemann tensor (chapter 7.2).
 Along the path of a flash proper time does not advance, $\dd\obs\tau = 0$ (chapter
 [6.1](/tutorial/relativity/lorentz/#a-moving-clock-runs-slow-and-a-clocks-own-time-is-the-length-of-its-path)), and such
 a path is called null. Light crosses a metre of space while $x^0 = ct$ advances a metre, so for light the spatial
-entries of the metric count as much as the time entry. Near a mass, in the coordinates of chapter 7.4 (called isotropic,
-because their spatial part is the same in every direction), $\field g_{ij} = (1 - 2\field\Phi/c^2)\delta_{ij}$, which
-this chapter states without proof. The spatial entries bend light as much as the time entry does, so a ray that passes a
-mass $\matter M$ at the distance $b$ is turned by $4G\matter M/bc^2$, twice Newton's value for a particle moving at $c$.
-At the Sun's edge this is $1.75''$ (seconds of arc), against Newton's $0.88''$. Chapter 7.4 derives the spatial entries
-and chapter 11.1 the bending, which the paper uses in [Section VII](/paper/#sec:no-lens) and [Section
-XI](/paper/#par:the-transparent-sun-as-a-lens).
+entries of the metric count as much as the time entry. Near a mass, in the coordinates of chapter
+[7.4](/tutorial/geometry/linearized-gravity/#a-static-source-gives-newtons-potential-in-time-and-in-space) (called
+isotropic, because their spatial part is the same in every direction), $\field g_{ij} = (1 -
+2\field\Phi/c^2)\delta_{ij}$, which this chapter states without proof. The spatial entries bend light as much as the
+time entry does, so a ray that passes a mass $\matter M$ at the distance $b$ is turned by $4G\matter M/bc^2$, twice
+Newton's value for a particle moving at $c$. At the Sun's edge this is $1.75''$ (seconds of arc), against Newton's
+$0.88''$. Chapter 7.4 derives the spatial entries and chapter 11.1 the bending, which the paper uses in [Section
+VII](/paper/#sec:no-lens) and [Section XI](/paper/#par:the-transparent-sun-as-a-lens).
 
 ::: check
 ### Q
@@ -603,8 +613,9 @@ On a flat sheet in polar coordinates, $\Gamma^r{}_{\theta\theta} = -r$. Is the s
 
 ### A
 
-No. The Christoffel symbols depend on the labels, and straight axes set them all to zero. Curvature (chapter 7.2) is
-made of the second derivatives that no change of coordinates removes, and for the flat sheet it is zero.
+No. The Christoffel symbols depend on the labels, and straight axes set them all to zero. Curvature (chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#curvature-is-what-no-change-of-coordinates-removes)) is made of the second
+derivatives that no change of coordinates removes, and for the flat sheet it is zero.
 :::
 
 **The idea to keep: gravity is the metric, a table at each event that turns coordinate labels into what clocks and
@@ -668,8 +679,8 @@ At the origin, near $t = 0$, $\vect x = 0$ and the symbol is zero: the falling o
 origin $\vect x' \approx \vect x$, so the derivative is $\partial'_j\Gamma'^i{}_{00} =
 \partial_i\partial_j\field\Phi/c^2$, which no uniform acceleration can cancel. Times $c^2$ it is
 $\partial_i\partial_j\field\Phi$, chapter 1.4's tidal tensor and the right side of the paper's [](/paper/#eq:newton).
-Chapter 7.2 shows that it is also $c^2R_{0i0j}$, so that the paper's [](/paper/#eq:tidal) becomes the paper's
-[](/paper/#eq:newton) near slow matter.
+Chapter [7.2](/tutorial/geometry/curvature-and-tides/#near-slow-matter-the-curvature-is-newtons-tide) shows that it is
+also $c^2R_{0i0j}$, so that the paper's [](/paper/#eq:tidal) becomes the paper's [](/paper/#eq:newton) near slow matter.
 :::
 :::
 

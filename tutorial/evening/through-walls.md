@@ -255,7 +255,7 @@ camera could not compute from its readings, because many insides give the same p
 [^inertia]: Chapter [1.6](/tutorial/newton/motion/#the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one)
     tells a cored planet from a uniform one by it.
 
-[^spin]: Derived in chapter 7.5.
+[^spin]: Derived in chapter [7.5](/tutorial/geometry/gravitomagnetism/#a-spinning-round-body-is-a-spin-dipole).
 
 [^heat]: Derived in chapter 4.6.
 

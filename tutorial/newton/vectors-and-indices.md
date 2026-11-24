@@ -550,9 +550,10 @@ the equatorial radius of the Earth, $R_\oplus = 6.378\times10^6\unit{m}$. So
 $$\begin{aligned}|\vect\Omega\times\vect x| &= 7.29\times10^{-5}\unit{s^{-1}} \times 6.378\times10^6\unit{m}\\ &= 465\unit{m\,s^{-1}} .\end{aligned}$$
 
 A pixel at rest on the equator therefore moves at 465 metres per second. Sound in air at 20 °C travels at
-$343\unit{m\,s^{-1}}$, so the ground moves 1.36 times faster than sound. The paper's Section II uses this speed,
-because the motion of the ground through the field of a spinning planet gives a pixel on the equator a small
-magnetic part of the tide, a second kind of tide made by moving masses (chapter 7.5).
+$343\unit{m\,s^{-1}}$, so the ground moves 1.36 times faster than sound. The paper's Section II uses this speed, because
+the motion of the ground through the field of a spinning planet gives a pixel on the equator a small magnetic part of
+the tide, a second kind of tide made by moving masses (chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#the-earths-magnetic-part-weighs-its-core)).
 
 The limit of parallel vectors gives the poles. There $\vect x$ lies along the axis, so $\vect\Omega\times\vect x = 0$
 and the ground does not move. Between the equator and a pole, the angle between $\vect x$ and the axis is
@@ -649,13 +650,14 @@ length in the definition of the cross product.
 
 ### The paper
 
-The paper's [Section II](/paper/#sec:pixel) speaks of the magnetic part of the tide, $\curv{\tB}_{ij}$ (a curly
-capital B). It is a second table of the same kind as $\curv{\tE}_{ij}$, made by moving masses and measured, like
-$\curv{\tE}_{ij}$, in $\mathrm{s^{-2}}$; chapter 7.5 introduces it. Inside matter of density $\matter\rho$, in
-kilograms per cubic metre, flowing with velocity $\vect v$, it has the antisymmetric part
-$\curv{\tB}_{[ij]} = -(4\pi G/c)\,\epsilon_{ijk}\,\matter\rho\,v_k$, "which lies along the flow". Here $c$ is the
-speed of light. Check that the right side is in $\mathrm{s^{-2}}$, find the vector of this antisymmetric table and
-which way it points, and find its size for water flowing at $1\unit{m\,s^{-1}}$.
+The paper's [Section II](/paper/#sec:pixel) speaks of the magnetic part of the tide, $\curv{\tB}_{ij}$ (a curly capital
+B). It is a second table of the same kind as $\curv{\tE}_{ij}$, made by moving masses and measured, like
+$\curv{\tE}_{ij}$, in $\mathrm{s^{-2}}$; chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#the-magnetic-part-is-the-curvature-with-one-time-index) introduces it. Inside
+matter of density $\matter\rho$, in kilograms per cubic metre, flowing with velocity $\vect v$, it has the antisymmetric
+part $\curv{\tB}_{[ij]} = -(4\pi G/c)\,\epsilon_{ijk}\,\matter\rho\,v_k$, "which lies along the flow". Here $c$ is the
+speed of light. Check that the right side is in $\mathrm{s^{-2}}$, find the vector of this antisymmetric table and which
+way it points, and find its size for water flowing at $1\unit{m\,s^{-1}}$.
 
 ::: solution
 The units: $G$ in $\mathrm{m^3\,kg^{-1}\,s^{-2}}$ times $\matter\rho$ in $\mathrm{kg\,m^{-3}}$ is $\mathrm{s^{-2}}$,
@@ -682,7 +684,8 @@ multiplied by $v/c = 3.3\times10^{-9}$.
   uses the speed of the ground on the equator, 465 m s⁻¹, and the antisymmetric part $\curv{\tB}_{[ij]}$ of the
   third problem.
 - The paper's equation [](/paper/#eq:magnetic) defines the magnetic part of the tide with $\epsilon_{ipq}$ and fixes
-  $\epsilon_{123} = +1$; chapter 7.5 reads it.
+  $\epsilon_{123} = +1$; chapter
+  [7.5](/tutorial/geometry/gravitomagnetism/#the-magnetic-part-is-the-curvature-with-one-time-index) reads it.
 - The paper's equation [](/paper/#eq:magnetic-point) contains $\hat n\times\vect v$, which is zero for motion along the
   line of sight by the limit of parallel vectors, so only sideways motion makes a magnetic tide.
 - The paper's equation [](/paper/#eq:pixel-kernel) builds the sky as one pixel sees it from the projector $P_{ij}$.

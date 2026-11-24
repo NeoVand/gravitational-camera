@@ -243,8 +243,10 @@ does, with the paper's $\hat n$ in the place of our steered $\hat n'$. Before th
 $\sym{tt-projector}{\Lambda_{ij,kl}}(\hat n)$ of chapter
 [5.2](/tutorial/waves/retarded-waves/#far-away-each-direction-carries-one-ripple-of-the-source) keeps only the part of
 the table that a wave from that direction can carry. The squares of all the components are then added and averaged in
-time. We state this form; chapter 7.6 builds the projector. The paper also uses the magnetic part of the tide to tell
-the front of a flat array from its back, which works well only near the array's axis.[^mirror]
+time. We state this form; chapter
+[7.6](/tutorial/geometry/gravitational-waves/#one-projector-keeps-what-a-wave-can-carry) builds the projector. The paper
+also uses the magnetic part of the tide to tell the front of a flat array from its back, which works well only near the
+array's axis.[^mirror]
 
 **What it means.** An array forms its picture by computation: the delays turn its records into the sum that a lens
 would form with glass, and the width of that sum's peak is set by the width of the array in wavelengths.
@@ -660,11 +662,13 @@ paper's $3 \times 10^{-14}$ s.
     mirror image in the array's plane, because the two give the same delay at every pixel. The paper's pixels also
     record the magnetic part of the tide, $\sym{magnetic-tide}{\curv{\tB}}_{ij}$ (chapter
     [R1](/tutorial/newton/reading-section-ii/#an-ideal-pixel-reads-ten-numbers-and-must-not-turn); $\epsilon_{ipq}$ is
-    the Levi-Civita symbol of chapter 1.1), and the paper sums $\tfrac12(\curv{\tE}_{ij} +
-    \epsilon_{ipq}\hat n_p\curv{\tB}_{qj})$ in place of $\curv{\tE}_{ij}$. This keeps a wave from $\hat n$ and cancels
-    a wave from $-\hat n$ exactly (chapter 7.6 derives the relation in a wave that it uses). But the mirror image of
-    $\hat n$ is $-\hat n$ only on the axis. For a source at the angle $\alpha$ from the axis, the mirror wave keeps
-    $\sin^8\alpha$ of its power: $2 \times 10^{-4}$ at 20°, 6% at 45° and 61% at 70°.
+    the Levi-Civita symbol of chapter 1.1), and the paper sums $\tfrac12(\curv{\tE}_{ij} + \epsilon_{ipq}\hat
+    n_p\curv{\tB}_{qj})$ in place of $\curv{\tE}_{ij}$. This keeps a wave from $\hat n$ and cancels a wave from $-\hat
+    n$ exactly (chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#the-magnetic-part-of-a-wave-is-its-tide-turned-by-45) derives the
+    relation in a wave that it uses). But the mirror image of $\hat n$ is $-\hat n$ only on the axis. For a source at
+    the angle $\alpha$ from the axis, the mirror wave keeps $\sin^8\alpha$ of its power: $2 \times 10^{-4}$ at 20°, 6%
+    at 45° and 61% at 70°.
 
 [^b]: The letter $b$ is not the strength of a point source of chapter 5.2 nor the impact parameter of chapter 1.8.
     We do not write $d$ for the spacing, because Part 3 writes $d$ for the array's datum $-\curv{\tE}_{zz}$.

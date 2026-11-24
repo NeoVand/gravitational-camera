@@ -256,7 +256,8 @@ This is the paper's sentence: "A camera that sees mass sees it on its own slice 
 **Where it fails.** The argument needs a field that is static in one frame for all time. When the body changes its
 motion, the field near it soon settles into the static field of the new motion. Farther out the field goes on pointing
 at where the body would have been, until the news of the change arrives, travelling at the speed of light as a wave (the
-field equations of chapter 7.4).[^near-zone]
+field equations of chapter
+[7.4](/tutorial/geometry/linearized-gravity/#the-field-travels-at-the-speed-of-light)).[^near-zone]
 
 ::: try {#present}
 Predict first: when the moving body stops, will its field everywhere turn at once to point at where it stopped? Press

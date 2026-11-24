@@ -89,8 +89,9 @@ the nearest mass**, which allows the approximation of the next section.
 {{paper fig:tidal}}
 
 The figure above, from the paper, draws twelve free balls in a ring. In panel (a) they float beside a mass, and each
-arrow shows how one ball moves relative to the ring's centre. The rest of this chapter computes those arrows. Panels
-(b) and (c) show the same ring in a gravitational wave, which chapter 7.6 explains, and they can be left until then.
+arrow shows how one ball moves relative to the ring's centre. The rest of this chapter computes those arrows. Panels (b)
+and (c) show the same ring in a gravitational wave, which chapter [7.6](/tutorial/geometry/gravitational-waves/)
+explains, and they can be left until then.
 
 ## The difference in gravity is a table of second derivatives
 
@@ -269,11 +270,12 @@ power faster. At twice the distance the pull is four times weaker and the tide e
 
 {{paper fig:tidal-field}}
 
-Panel (a) of this figure, from the paper, draws a small ring at many points around one mass, and every ring is
-stretched toward the mass. The caption calls the direction up the page $z$, which is this chapter's $x$. The figure
-compresses the strength so that weak regions stay visible, so the true fall with distance is much steeper than it
-looks. In panel (b), midway between two masses, the pulls cancel but the ring is still stretched along the line
-joining them. Panel (c) is a gravitational wave, for chapter 7.6.
+Panel (a) of this figure, from the paper, draws a small ring at many points around one mass, and every ring is stretched
+toward the mass. The caption calls the direction up the page $z$, which is this chapter's $x$. The figure compresses the
+strength so that weak regions stay visible, so the true fall with distance is much steeper than it looks. In panel (b),
+midway between two masses, the pulls cancel but the ring is still stretched along the line joining them. Panel (c) is a
+gravitational wave, for chapter
+[7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain).
 
 ## Tidal brightness is density times the cube of angular size
 
@@ -584,8 +586,9 @@ body that looks twice as wide has twice the angular size, so its tide is $2^3 = 
 ::: paper
 - [Section II](/paper/#sec:pixel) begins with this falling observer, defines the tidal field, computes the person and
   the strain that a detector would read, names the lorry, and gives the Earth's tide, the turning frame and the eötvös.
-- The paper's equation [](/paper/#eq:tidal) defines the tide in general relativity as $c^2R_{0i0j}$. Chapter 7.2 derives
-  it, and this chapter uses only its Newtonian limit.
+- The paper's equation [](/paper/#eq:tidal) defines the tide in general relativity as $c^2R_{0i0j}$. Chapter
+  [7.2](/tutorial/geometry/curvature-and-tides/#for-an-observer-at-rest-the-drift-is-the-papers-tide) derives it, and
+  this chapter uses only its Newtonian limit.
 - The paper's equations [](/paper/#eq:newton) and [](/paper/#eq:deviation) are this chapter's equation [](#eq:tide): the
   tide as the Hessian of the potential, and the motion of free balls.
 - The paper's equation [](/paper/#eq:wave) gives the tide of a gravitational wave, from which it takes its convention
@@ -630,11 +633,11 @@ that they do to a few parts in a billion: the equivalence principle with which t
 [^field]: The field is an acceleration at one point. It should not be confused with the tide, which is the
     field's change from one point to the next.
 
-[^general]: The paper writes the separation as $\xi^i$, with the index raised. In this part of the tutorial a raised
-    and a lowered index mean the same thing; they differ only in relativity, from chapter 6.2. The paper's equation
+[^general]: The paper writes the separation as $\xi^i$, with the index raised. In this part of the tutorial a raised and
+    a lowered index mean the same thing; they differ only in relativity, from chapter 6.2. The paper's equation
     [](/paper/#eq:tidal) defines the tide in general relativity, as $\curv{\tE}_{ij} = c^2R_{0i0j}$, where $R$ is the
-    curvature of spacetime. We state it without proof here; chapter 7.2 derives it and shows that it becomes
-    [](#eq:tide) near slowly moving matter.
+    curvature of spacetime. We state it without proof here; chapter [7.2](/tutorial/geometry/curvature-and-tides/)
+    derives it and shows that it becomes [](#eq:tide) near slowly moving matter.
 
 [^next]: The small parameter is $\xi/r$. The exact difference of the pulls on two balls along the line is
     $G\matter M\,[1/r^2 - 1/(r+\xi)^2]$, which in powers of $\xi$ is $(G\matter M/r^3)(2\xi - 3\xi^2/r + \dots)$.
@@ -670,9 +673,10 @@ that they do to a few parts in a billion: the equivalence principle with which t
     the estimate of 15 per cent is good to about a tenth of itself.
 
 [^conventions]: The paper quotes $7 \times 10^{-11}$ for this sway, because it counts in the convention of a
-    gravitational wave's strain $h$, in which a wave of strain $h$ changes one arm by $h/2$ (chapter 7.6). One arm
-    alone changes by $3.55 \times 10^{-11}$. All three ways of counting give tens of billions of times the strain
-    of the waves that LIGO detects.
+    gravitational wave's strain $h$, in which a wave of strain $h$ changes one arm by $h/2$ (chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#a-wave-of-strain-h-moves-each-ball-by-half-the-strain)). One arm alone
+    changes by $3.55 \times 10^{-11}$. All three ways of counting give tens of billions of times the strain of the waves
+    that LIGO detects.
 
 [^long-arms]: A person 1 m beyond an end mirror of LIGO pulls on that mirror alone, with
     $G\matter M/r^2 = 4.7 \times 10^{-9}\unit{m\,s^{-2}}$, because the other mirrors are 4 km away. This is

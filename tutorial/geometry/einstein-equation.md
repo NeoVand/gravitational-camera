@@ -49,15 +49,17 @@ Summing the Riemann tensor over its first and third indices leaves a table with 
 
 $$\sym{ricci-tensor}{\curv R}_{\mu\nu} = \curv R^\alpha{}_{\mu\alpha\nu} ,$$
 
-with $\alpha$ summed over its four values, in $\mathrm{m^{-2}}$. By 7.2's pair symmetry $\curv R_{\mu\nu} = \curv
-R_{\nu\mu}$, so it holds ten numbers.
+with $\alpha$ summed over its four values, in $\mathrm{m^{-2}}$. By
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)'s
+pair symmetry $\curv R_{\mu\nu} = \curv R_{\nu\mu}$, so it holds ten numbers.
 
-**The derivation.** We work at the observer's event in 7.2's falling frame, where the metric is $\field\eta_{\mu\nu}$.
-In $\curv R_{00} = \curv R^\alpha{}_{0\alpha0}$ the term $\alpha = 0$ is zero, because the Riemann tensor vanishes when
-its last two indices are equal. Raising a spatial index changes no sign (chapter
-[6.2](/tutorial/relativity/spacetime-vectors/#lowering-an-index-changes-only-the-sign-of-time)), so $\curv R^i{}_{0i0} =
-\curv R_{i0i0}$, and the two antisymmetries, a swap within each pair of indices, give $\curv R_{i0i0} = \curv R_{0i0i}$.
-So $\curv R_{00} = \curv R_{0i0i}$, summed over $i$, and
+**The derivation.** We work at the observer's event in
+[7.2](/tutorial/geometry/curvature-and-tides/#two-free-balls-drift-apart-by-the-curvature-between-them)'s falling frame,
+where the metric is $\field\eta_{\mu\nu}$. In $\curv R_{00} = \curv R^\alpha{}_{0\alpha0}$ the term $\alpha = 0$ is
+zero, because the Riemann tensor vanishes when its last two indices are equal. Raising a spatial index changes no sign
+(chapter [6.2](/tutorial/relativity/spacetime-vectors/#lowering-an-index-changes-only-the-sign-of-time)), so $\curv
+R^i{}_{0i0} = \curv R_{i0i0}$, and the two antisymmetries, a swap within each pair of indices, give $\curv R_{i0i0} =
+\curv R_{0i0i}$. So $\curv R_{00} = \curv R_{0i0i}$, summed over $i$, and
 
 $$\boxed{\;\mathrm{tr}\,\curv\tE = c^2\curv R_{00}\;} \label{eq:trace-ricci}$$
 
@@ -97,7 +99,8 @@ $\matter T_{0i} = -\matter T^{0i}$ and $\matter T_{ij} = \matter T^{ij}$, the mo
 ([6.5](/tutorial/relativity/stress-energy/#in-the-stresses-the-sign-is-that-of-a-flow-of-momentum)'s sign: a pressure is
 positive).
 
-**Energy and momentum conserved.** In curved spacetime 6.5's law becomes $\nabla_\mu\matter T^{\mu\nu} = 0$, with 7.2's
+**Energy and momentum conserved.** In curved spacetime 6.5's law becomes $\nabla_\mu\matter T^{\mu\nu} = 0$, with
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)'s
 covariant derivative (one Christoffel term for each index). So the left side must have zero divergence for every metric,
 as an identity, or the equation would add a condition on the matter's motion beyond its own law.
 
@@ -129,10 +132,12 @@ $$\boxed{\;\curv G_{\mu\nu} = \frac{8\pi G}{c^4}\,\matter T_{\mu\nu}\;} \label{e
 Both sides are symmetric, so these are ten equations.
 
 ::: gap
-**The contracted Bianchi identity.** Chapter 7.2 stated the second Bianchi identity in a falling frame, with partial
-derivatives. In any coordinates they become covariant ones (stated), $\nabla_\sigma\curv R_{\alpha\beta\gamma\delta} +
-\nabla_\gamma\curv R_{\alpha\beta\delta\sigma} + \nabla_\delta\curv R_{\alpha\beta\sigma\gamma} = 0$. We multiply by
-$\field g^{\alpha\gamma}$ and sum, which passes through $\nabla$ because $\nabla\field g = 0$. The terms become
+**The contracted Bianchi identity.** Chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more)
+stated the second Bianchi identity in a falling frame, with partial derivatives. In any coordinates they become
+covariant ones (stated), $\nabla_\sigma\curv R_{\alpha\beta\gamma\delta} + \nabla_\gamma\curv
+R_{\alpha\beta\delta\sigma} + \nabla_\delta\curv R_{\alpha\beta\sigma\gamma} = 0$. We multiply by $\field
+g^{\alpha\gamma}$ and sum, which passes through $\nabla$ because $\nabla\field g = 0$. The terms become
 $\nabla_\sigma\curv R_{\beta\delta}$, $\nabla^\alpha\curv R_{\alpha\beta\delta\sigma}$ and, after exchanging the last
 two indices, $-\nabla_\delta\curv R_{\beta\sigma}$. We multiply by $\field g^{\beta\delta}$ and sum; by the antisymmetry
 in the first pair the middle term gives $-\nabla^\alpha\curv R_{\alpha\sigma}$. So $\partial_\sigma\curv R -
@@ -344,23 +349,28 @@ tensor. We read these ten equations for the observer at rest, sorted by time ind
 - The conditions $\curv R_{0k} = 0$ are three. With $\epsilon_{ijk}\epsilon_{ipq} = \delta_{jp}\delta_{kq} -
   \delta_{jq}\delta_{kp}$ and the pair symmetry, the paper's [](/paper/#eq:magnetic) gives
   $\epsilon_{kij}\curv\tB_{ij} = c^2\curv R_{0k}$. The left side holds the antisymmetric part of $\curv\tB$, so in
-  vacuum $\curv\tB$ is symmetric. Its trace is zero in any case, by 7.2's cyclic identity.
+  vacuum $\curv\tB$ is symmetric. Its trace is zero in any case, by
+  [7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)'s
+  cyclic identity.
 - The conditions $\curv R_{ij} = 0$ are six. Since $\curv R_{ij} = -\curv R_{0i0j} + \curv R_{kikj}$, they fix
   $\curv R_{kikj} = \curv\tE_{ij}/c^2$. The six numbers $\curv R_{ijkl}$ have the symmetries of a curvature in three
   dimensions, and there such a table is fixed by its six sums $\curv R_{kikj}$ (stated: in three dimensions a Weyl
   tensor has $6 - 6 = 0$ numbers). So the tide sets the curvature of space.
 
-Of 7.2's $6 + 8 + 6 = 20$ numbers these remove $1 + 3 + 6$, and $5 + 5 + 0 = 10$ remain, the Weyl tensor's: the five
-of a symmetric trace-free $\curv\tE$ and the five of a symmetric trace-free $\curv\tB$, each one of chapter 1.5's
-tables of five. They are Section II's "ten numbers" (Figure [](#fig:twenty-split)).
+Of
+[7.2](/tutorial/geometry/curvature-and-tides/#the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more)'s
+$6 + 8 + 6 = 20$ numbers these remove $1 + 3 + 6$, and $5 + 5 + 0 = 10$ remain, the Weyl tensor's: the five of a
+symmetric trace-free $\curv\tE$ and the five of a symmetric trace-free $\curv\tB$, each one of chapter 1.5's tables of
+five. They are Section II's "ten numbers" (Figure [](#fig:twenty-split)).
 
 ![Look first at the colours: Einstein's equation fixes ten of the twenty curvature numbers from the energy and stress
 at the point (the trace of the tide, the antisymmetric part of the magnetic part, and the six of the curvature of
 space), and leaves the Weyl tensor's ten, five in $\curv\tE$ and five in $\curv\tB$.](tut-einstein-twenty){#fig:twenty-split}
 
-**What it means.** The Ricci part changes the volume of a ball of free dust and is set by the matter at that point,
-as chapter 1.5's margin promised. The Weyl part changes the shape and not the volume (Figure [](#fig:three-balls)).
-Nothing at the point sets it: it comes from matter elsewhere, and from gravitational waves (chapter 7.6).
+**What it means.** The Ricci part changes the volume of a ball of free dust and is set by the matter at that point, as
+chapter 1.5's margin promised. The Weyl part changes the shape and not the volume (Figure [](#fig:three-balls)). Nothing
+at the point sets it: it comes from matter elsewhere, and from gravitational waves (chapter
+[7.6](/tutorial/geometry/gravitational-waves/)).
 
 So a pixel in empty space images the matter around it through the Weyl part. In a weak static field that part sums
 distant matter with the weight of the paper's Figure [](/paper/#fig:sky-integral), which averages to zero over the sky
@@ -374,7 +384,8 @@ elsewhere. The deformations are exaggerated.](tut-einstein-three-balls){#fig:thr
 
 ## A single mass stretches twice as hard as it squeezes, in Einstein's theory too
 
-We want the tide of one round mass from Einstein's equation, as chapters R1 and 7.2 promised.
+We want the tide of one round mass from Einstein's equation, as chapters R1 and
+[7.2](/tutorial/geometry/curvature-and-tides/#near-slow-matter-the-curvature-is-newtons-tide) promised.
 
 **The ratio, exactly.** For an observer at rest outside a round body that does not turn, the tide is trace-free by the
 last section, and the same in every direction across the line to the body. So its eigenvalues are $-2a$ along the line
@@ -395,8 +406,9 @@ $2\pi$.
 
 The ten equations do not each move the field forward in time. Four of them, $\curv G^{0\nu} = (8\pi G/c^4)\matter
 T^{0\nu}$, hold no second derivative of the metric in time; they are **constraints**, which tie the field at one time to
-the energy and momentum then, as Gauss's law does for the mass (stated without proof). Chapter 7.4 takes up the rest of
-the equation for a weak field, where it becomes a wave equation.
+the energy and momentum then, as Gauss's law does for the mass (stated without proof). Chapter
+[7.4](/tutorial/geometry/linearized-gravity/#in-harmonic-gauge-einsteins-equation-is-a-wave-equation-for-each-component)
+takes up the rest of the equation for a weak field, where it becomes a wave equation.
 
 ::: try {#ricci-weyl}
 A slice through a ball of free dust, released at rest and drawn a second later, with its starting circle dashed and

@@ -227,8 +227,10 @@ The near-field scenes. A static field is not radiation, so its picture is limite
   [To Sections VI and IX](/tutorial/#route-sections-vi-and-ix).
 :::
 
-[^quadrupole]: Chapter 7.7 derives the paper's [](/paper/#eq:quadrupole) and [](/paper/#eq:dumbbell), and chapter
-    7.6 shows which motions send out none.
+[^quadrupole]: Chapter 7.7 derives the paper's [](/paper/#eq:quadrupole) and [](/paper/#eq:dumbbell) and shows which
+    motions send out none: a sphere that swells and shrinks and a wheel turning smoothly about its axle; chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#a-body-in-steady-motion-sends-no-wave-and-neither-does-an-even-pressure)
+    shows the same for steady motion and an even pressure.
 
 [^twice]: A pattern that looks the same after half a turn is said to have spin two
     ([1.5b](/tutorial/newton/complex-numbers/)). Chapter 7.7 derives the doubled frequency.

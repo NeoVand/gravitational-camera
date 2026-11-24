@@ -287,8 +287,10 @@ stretch and the squeeze change places. A turn of 45° gives $e^{-i\pi/2} = -i$.
 
 ### Why the two polarizations are 45° apart
 
-In a gravitational wave that travels along $z$, toward us, the tide acts only across the direction of travel, and
-there it has no trace (chapter 1.5; chapter 7.6 derives it). The table in the plane is then
+In a gravitational wave that travels along $z$, toward us, the tide acts only across the direction of travel, and there
+it has no trace (chapter 1.5; chapter
+[7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain) derives
+it). The table in the plane is then
 
 $$\begin{pmatrix}\curv{\tE}_+ & \curv{\tE}_\times\\ \curv{\tE}_\times & -\curv{\tE}_+\end{pmatrix}, \qquad \curv{s} = 2(\curv{\tE}_+ + i\curv{\tE}_\times),$$
 
@@ -633,12 +635,15 @@ tells the story in *An Imaginary Tale* (Princeton, 1998).
     never appear together.
 
 [^plus]: The tides $\curv{\tE}_+$ and $\curv{\tE}_\times$, in $\mathrm{s^{-2}}$, are not the strains $h_+$ and
-    $h_\times$, which are pure numbers. For a steady wave the two are proportional (chapter 7.6).
+    $h_\times$, which are pure numbers. For a steady wave the two are proportional (chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain)).
 
 [^roots]: The zeros were found with a standard root-finder from a grid of starting points, to a tolerance of
     $10^{-10}$ in $|\curv{s}|$ relative to $G\matter M/d^3$. The paper's code checks the two zeros on the bisector at the
     depths $0.9d$, $2d$ and $7d$ (`reference/tests/test_shearzeros.py`).
 
-[^magnetic]: Chapter 7.5 defines the magnetic tide $\curv{\tB}$, and chapter 7.6 shows that in a wave it is
-    $\curv{\tB}_{ij} = \epsilon_{ipq}\hat k_p\curv{\tE}_{qj}$, which with $\hat k\times\vect m = -i\vect m$ gives the
-    paper's equation [](/paper/#eq:square). Chapter 9.3 studies $\curv{\mathcal W}$ itself.
+[^magnetic]: Chapter [7.5](/tutorial/geometry/gravitomagnetism/#the-magnetic-part-is-the-curvature-with-one-time-index)
+    defines the magnetic tide $\curv{\tB}$, and chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#the-magnetic-part-of-a-wave-is-its-tide-turned-by-45) shows that in a
+    wave it is $\curv{\tB}_{ij} = \epsilon_{ipq}\hat k_p\curv{\tE}_{qj}$, which with $\hat k\times\vect m = -i\vect m$
+    gives the paper's equation [](/paper/#eq:square). Chapter 9.3 studies $\curv{\mathcal W}$ itself.

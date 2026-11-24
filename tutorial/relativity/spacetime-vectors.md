@@ -371,7 +371,8 @@ This is chapter [1.1](/tutorial/newton/vectors-and-indices/#turning-the-axes-cha
 rule $T'_{ij} = R_{ik}R_{jl}T_{kl}$, with the boost in place of the turn. A lower index takes the inverse table, as in
 [](#eq:two-rules), and the metric raises or lowers one index at a time, as in $T^\mu{}_\nu = T^{\mu\alpha}\field
 \eta_{\alpha\nu}$. The number of indices is the tensor's **rank**. A number that every observer agrees on has rank 0, a
-four-vector rank 1, a table rank 2, and the Riemann tensor of the paper's [](/paper/#eq:tidal) rank 4 (chapter 7.2).
+four-vector rank 1, a table rank 2, and the Riemann tensor of the paper's [](/paper/#eq:tidal) rank 4 (chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)).
 
 A sum over one upper and one lower index is a **contraction of indices**. It removes both indices, so it lowers the
 rank by two, and a quantity with every index contracted is a number that every observer agrees on, a **Lorentz
@@ -432,17 +433,18 @@ rest, $\obs u^\mu = (c, 0, 0, 0)$, so
 $$\curv{\tE}_{ij} = c^2R_{0i0j} = R_{\mu i\nu j}\,\obs u^\mu\obs u^\nu ,$$
 
 the curvature contracted twice with the observer's four-velocity. We state here without proof that $R_{\alpha\beta
-\gamma\delta}$ is a tensor of rank 4 (chapter 7.2), and that in curved spacetime a general metric $\field g_{\mu\nu}$
-takes the place of $\field\eta_{\mu\nu}$ (chapter
+\gamma\delta}$ is a tensor of rank 4 (chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)),
+and that in curved spacetime a general metric $\field g_{\mu\nu}$ takes the place of $\field\eta_{\mu\nu}$ (chapter
 [7.1](/tutorial/geometry/metric/#a-clocks-own-time-is-set-by-the-metric)). The paper's magnetic part, its
 [](/paper/#eq:magnetic), carries one index 0, so it too belongs to the observer. A moving observer has another
 four-velocity and other axes in space, so it reads another $\curv{\tE}_{ij}$ and another $\curv{\tB}_{ij}$ from the same
 curvature. This is why [Section VIII](/paper/#sec:one-pixel) says that "a moving pixel measures a different mixture of
 stretch and twist from a pixel at rest at the same place". Chapter
 [6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle) works this out
-for light, and chapters 7.5 and 9.3 for gravity. A pixel's ten numbers are five for $\curv{\tE}$ and five for
-$\curv{\tB}$, each, in empty space, a symmetric trace-free table of chapter [1.5](/tutorial/newton/five-numbers/), and
-not the ten of a symmetric table of four rows.
+for light, and chapters [7.5](/tutorial/geometry/gravitomagnetism/#the-earths-magnetic-part-weighs-its-core) and 9.3 for
+gravity. A pixel's ten numbers are five for $\curv{\tE}$ and five for $\curv{\tB}$, each, in empty space, a symmetric
+trace-free table of chapter [1.5](/tutorial/newton/five-numbers/), and not the ten of a symmetric table of four rows.
 
 ::: try {#lorentz-diagram}
 Chapter 6.1's Lorentz diagram, in its third view, *Vectors*. The room's axes and the light lines are drawn as before,

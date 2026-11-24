@@ -602,6 +602,7 @@ surface $3z^2 - R^2 = 2R^2P_2$, so the layer has $\matter Q_{zz} = \int\matter\r
 
 [^twist]: For $c_L/c_T = \sqrt3$ the quadrupole mode has $\omega R/c_T = 2.640$, so the ratio of the sounds hardly
     matters. In the twist $\omega R/c_T = 2.50$. It changes the density nowhere and moves the surface only along itself,
-    so it makes no Newtonian tide; it carries only a current quadrupole, whose gravitomagnetic field (chapter 7.5) is
-    weaker by about $v/c$, the speed of the motion over the speed of light. Appendix A's shape is the gradient of
+    so it makes no Newtonian tide; it carries only a current quadrupole, whose gravitomagnetic field (chapter
+    [7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight))
+    is weaker by about $v/c$, the speed of the motion over the speed of light. Appendix A's shape is the gradient of
     $r^2P_2$, and its mass-weighted product with the twist is zero.

@@ -269,7 +269,9 @@ a patch as wide as the mass is deep.
     [0.4](/tutorial/evening/one-pixel/) and [0.5](/tutorial/evening/what-the-outside-keeps/), which name the chapters
     that prove each claim.
 
-[^blind]: The shell: [1.3](/tutorial/newton/gauss-and-poisson/). Steady motion: chapter 7.6. The string: R12.
+[^blind]: The shell: [1.3](/tutorial/newton/gauss-and-poisson/). Steady motion: chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#a-body-in-steady-motion-sends-no-wave-and-neither-does-an-even-pressure).
+    The string: R12.
 
 [^mean]: Derived in chapter 10.1.
 
@@ -279,7 +281,8 @@ a patch as wide as the mass is deep.
 [^sky]: The light-year is in [Section VI](/paper/#sec:thermal), the AU in [VII](/paper/#sec:no-lens) and
     [XI](/paper/#sec:vistas), the kiloparsec and the magnitude in XI. Thirty magnitudes are $100^6 = 10^{12}$.
 
-[^curly]: Derived in [1.4](/tutorial/newton/tides/), chapter 7.5 and chapter 9.3.
+[^curly]: Derived in [1.4](/tutorial/newton/tides/), chapter
+    [7.5](/tutorial/geometry/gravitomagnetism/#the-magnetic-part-is-the-curvature-with-one-time-index) and chapter 9.3.
 
 [^more]: Other conventions come where they are needed: the hat of a unit vector in
     [1.1](/tutorial/newton/vectors-and-indices/), $\Phi = -GM/r$ in [1.2](/tutorial/newton/field-and-potential/),

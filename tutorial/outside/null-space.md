@@ -440,7 +440,8 @@ These numbers say what breaks the tie. The paper's *What breaks the tie* names r
 than the steady pull outside:
 
 - **spin**: a turning body adds to its tide a part made by its moving mass, as moving charge makes magnetism, and that
-  part measures its angular momentum (chapter 7.5);
+  part measures its angular momentum (chapter
+  [7.5](/tutorial/geometry/gravitomagnetism/#a-spinning-round-body-is-a-spin-dipole));
 - **a kick**: a brief tide from outside leaves an energy that grows with $\int\matter\rho\,r^2\,\dd V$
   ([chapter 1.7](/tutorial/newton/hamilton/#the-bracket-of-two-moments-weighs-the-inside));
 - **heat**: a warm body's pull trembles, and the size of the tremble holds the same integral (chapter [R4](/tutorial/response/reading-section-iv-3/));

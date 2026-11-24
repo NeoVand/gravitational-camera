@@ -479,8 +479,12 @@ the paper's expression, since $c/\omega = \bar\lambda$.
     scaled radius $u$ of chapters 3.6 and 3.7, nor the paper's retarded time $u = t - r/c$ of its Sections V and XI,
     which chapter 5.2 writes out.
 
-[^gw]: Stated here. Chapter 7.4 derives the wave equation of linearized gravity, and chapter 7.6 shows that a wave in
-    empty space has only two independent patterns of stretch, its polarizations $\field h_+$ and $\field h_\times$.
+[^gw]: Stated here. Chapter
+    [7.4](/tutorial/geometry/linearized-gravity/#in-harmonic-gauge-einsteins-equation-is-a-wave-equation-for-each-component)
+    derives the wave equation of linearized gravity, and chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical) shows that a
+    wave in empty space has only two independent patterns of stretch, its polarizations $\field h_+$ and $\field
+    h_\times$.
 
 [^rod]: A twist turns each cross-section of a round rod about its axis, and the angle of twist obeys
     [](#eq:wave-1d) with the speed $c_T$ for a rod of any thickness. A sideways knock would instead bend the rod, and a

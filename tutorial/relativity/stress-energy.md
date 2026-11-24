@@ -229,8 +229,9 @@ thin wall.
 
 ## What gravitates is the energy plus the sum of the stresses
 
-We need one result of Einstein's theory, stated here without proof; chapter 7.3 derives it. **For a source whose field
-is weak and does not change in time**, the potential obeys
+We need one result of Einstein's theory, stated here without proof; chapter
+[7.3](/tutorial/geometry/einstein-equation/#pressure-and-stress-gravitate) derives it. **For a source whose field is
+weak and does not change in time**, the potential obeys
 
 $$\boxed{\;\nabla^2\field\Phi = \frac{4\pi G}{c^2}\Bigl(\matter T^{00} + \matter T^{11} + \matter T^{22} +
 \matter T^{33}\Bigr)\;} \label{eq:source}$$
@@ -295,14 +296,15 @@ is exaggerated, and the tide's squeeze, at right angles to the page, is not
 drawn.](tut-stress-beam-box){#fig:beam-and-box}
 
 **Neutrinos.** *Matter at the pixel* also treats dark matter, the Casimir gap (next section) and the cosmological
-constant's $-\Lambda c^2$, which chapter 7.3 computes. Neutrinos streaming from a supernova at nearly $c$ are null dust,
-and chapter 7.3 finds the squeeze that they make across the line to the star, $GL/c^3r^2$ for the luminosity $L$ in
-watts at the distance $r$. The paper's [*An exploding star*](/paper/#par:an-exploding-star) compares it with the change
-of the star's own tide across that line, $GL\Delta t/c^2r^3$, as a burst that lasts $\Delta t$ carries off the mass
-$L\Delta t/c^2$: the ratio is $r/c\Delta t$. For **a burst of steady luminosity lasting 10 s** (the neutrinos of the
-1987 supernova arrived over 6 to 12 s) at ten kiloparsecs, $3.1\times10^{20}\unit{m}$, it is $1.0\times10^{11}$, the
-paper's "some $10^{11}$". A real burst gives much of its energy in its first second or two, which makes the peak squeeze
-a few times larger.
+constant's $-\Lambda c^2$, which chapter [7.3](/tutorial/geometry/einstein-equation/#pressure-and-stress-gravitate)
+computes. Neutrinos streaming from a supernova at nearly $c$ are null dust, and chapter
+[7.3](/tutorial/geometry/einstein-equation/#inside-matter-the-tide-has-a-part-fixed-by-the-matter-at-that-point) finds
+the squeeze that they make across the line to the star, $GL/c^3r^2$ for the luminosity $L$ in watts at the distance $r$.
+The paper's [*An exploding star*](/paper/#par:an-exploding-star) compares it with the change of the star's own tide
+across that line, $GL\Delta t/c^2r^3$, as a burst that lasts $\Delta t$ carries off the mass $L\Delta t/c^2$: the ratio
+is $r/c\Delta t$. For **a burst of steady luminosity lasting 10 s** (the neutrinos of the 1987 supernova arrived over 6
+to 12 s) at ten kiloparsecs, $3.1\times10^{20}\unit{m}$, it is $1.0\times10^{11}$, the paper's "some $10^{11}$". A real
+burst gives much of its energy in its first second or two, which makes the peak squeeze a few times larger.
 
 ## Along a ray of light the table gives the energy less c times the momentum
 

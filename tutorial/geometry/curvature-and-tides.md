@@ -408,7 +408,11 @@ derivative holds exactly, because the extra term from differentiating the invers
 $\field g$, which are zero there. So [](#eq:linearized) holds exactly at that event with $\field g$ in place of $\field
 h$: the curvature is a combination of the metric's second derivatives, the twenty that survive 7.1's count. The
 symmetries therefore hold exactly there, and since they are equations between tensors, they hold at every event and in
-every frame. Chapters 7.4, 7.5 and 7.6 use this formula.
+every frame. Chapters
+[7.4](/tutorial/geometry/linearized-gravity/#relabelling-the-coordinates-changes-the-table-not-the-curvature),
+[7.5](/tutorial/geometry/gravitomagnetism/#moving-matter-makes-the-magnetic-part-through-the-potential-of-its-flow) and
+[7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain) use this
+formula.
 
 ## Near slow matter the curvature is Newton's tide
 
@@ -422,7 +426,7 @@ $$\begin{aligned}\curv R_{0i0j} = \tfrac12\bigl(&\partial_i\partial_0\field h_{0
 &- \partial_0\partial_0\field h_{ij} - \partial_i\partial_j\field h_{00}\bigr) .\end{aligned}$$
 
 Every term but the last carries a time derivative, which vanishes in a static field. So the entries $\field h_{0i}$ and
-$\field h_{ij}$, which 7.4 derives, do not enter, and
+$\field h_{ij}$, which [7.4](/tutorial/geometry/linearized-gravity/) derives, do not enter, and
 
 $$\curv R_{0i0j} = -\tfrac12\,\partial_i\partial_j\field h_{00} = \frac{\partial_i\partial_j\field\Phi}{c^2} .$$
 
@@ -441,9 +445,10 @@ This is the step that chapter 7.1's paper problem left to this chapter.
 
 **A check.** For a point mass, $\field\Phi = -G\matter M/r$ gives chapter 1.4's $\curv\tE_{ij} = (G\matter
 M/r^3)(\delta_{ij} - 3\hat n_i\hat n_j)$, with $\hat n$ the unit vector toward the mass: a stretch of $-2G\matter M/r^3$
-along the line and squeezes of $+G\matter M/r^3$ across it, the ratio $-2 : 1 : 1$ of 1.4, in its Newtonian form.
-That it holds in Einstein's theory too, outside matter, is chapter 7.3's result. Panel (a) of the paper's
-figure below maps this tide around one mass, with every ring stretched toward it.
+along the line and squeezes of $+G\matter M/r^3$ across it, the ratio $-2 : 1 : 1$ of 1.4, in its Newtonian form. That
+it holds in Einstein's theory too, outside matter, is chapter
+[7.3](/tutorial/geometry/einstein-equation/#a-single-mass-stretches-twice-as-hard-as-it-squeezes-in-einsteins-theory-too)'s
+result. Panel (a) of the paper's figure below maps this tide around one mass, with every ring stretched toward it.
 
 {{paper fig:tidal-field}}
 
@@ -468,10 +473,11 @@ observer's time. A pair with two 0s vanishes, so a component has at most one 0 i
 
 - **Two time indices**, one in each pair: $\curv R_{0i0j}$ and the entries it fixes by the symmetries, such as
   $\curv R_{i0j0}$. It is a symmetric table of three rows, so it has 6 numbers: the tide $\curv\tE_{ij}$.
-- **One time index**: $\curv R_{0ijk}$, antisymmetric in $jk$. There are 3 values of $i$ and 3 pairs $jk$, so 9
-  entries, and the one condition of the count, $\curv R_{0123} + \curv R_{0231} + \curv R_{0312} = 0$, leaves 8. Chapter
-  7.5 packs them into the magnetic part, the paper's [](/paper/#eq:magnetic), $\curv\tB_{ij} = \tfrac12c^2
-  \epsilon_{ipq}\curv R_{pqj0}$, whose trace is zero by the cyclic identity.
+- **One time index**: $\curv R_{0ijk}$, antisymmetric in $jk$. There are 3 values of $i$ and 3 pairs $jk$, so 9 entries,
+  and the one condition of the count, $\curv R_{0123} + \curv R_{0231} + \curv R_{0312} = 0$, leaves 8. Chapter
+  [7.5](/tutorial/geometry/gravitomagnetism/#the-magnetic-part-is-the-curvature-with-one-time-index) packs them into the
+  magnetic part, the paper's [](/paper/#eq:magnetic), $\curv\tB_{ij} = \tfrac12c^2 \epsilon_{ipq}\curv R_{pqj0}$, whose
+  trace is zero by the cyclic identity.
 - **No time index**: $\curv R_{ijkl}$, which by the count has 6 numbers in three dimensions. For an observer at rest in
   a static field these six are the curvature of space at one time. On a slice of space that bends within spacetime they
   differ from it by terms that measure the bending.
@@ -482,17 +488,19 @@ For two balls motionless beside the observer, [](#eq:geodesic-deviation) uses on
 moving ball's four-velocity has spatial components, so the equation then also picks up the components with one time
 index, in proportion to the ball's speed. The magnetic part therefore acts only on moving balls: it pushes them across
 their velocity, as a magnetic field pushes a moving charge, which is why it is called magnetic. The paper's pixel reads
-it from how the axes of neighbouring gyroscopes twist relative to one another (chapter 7.5).
+it from how the axes of neighbouring gyroscopes twist relative to one another (chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation)).
 
 ![Look first at the three blocks: sorted by how many time indices they carry, the twenty numbers of the curvature are
 the tide, the magnetic part and, for an observer at rest in a static field, the curvature of space. In empty space
 Einstein's equation leaves five of the first two blocks each, and fixes the third by the
 tide.](tut-curvature-count){#fig:twenty-numbers}
 
-In empty space Einstein's equation sets ten combinations of the twenty to zero, and chapter 7.3 derives which. What
-remains is the five numbers of a trace-free $\curv\tE$ and the five of a symmetric trace-free $\curv\tB$, each one of
-chapter 1.5's tables of five, with the six of $\curv R_{ijkl}$ then fixed by $\curv\tE$. These are the ten numbers of
-Section II's pixel (Figure [](#fig:twenty-numbers)).[^bianchi]
+In empty space Einstein's equation sets ten combinations of the twenty to zero, and chapter
+[7.3](/tutorial/geometry/einstein-equation/#in-empty-space-only-the-weyl-curvature-is-left-and-it-holds-ten-numbers)
+derives which. What remains is the five numbers of a trace-free $\curv\tE$ and the five of a symmetric trace-free
+$\curv\tB$, each one of chapter 1.5's tables of five, with the six of $\curv R_{ijkl}$ then fixed by $\curv\tE$. These
+are the ten numbers of Section II's pixel (Figure [](#fig:twenty-numbers)).[^bianchi]
 
 ::: try {#tidal-ring}
 The figure opens with a mass of 70 kg one metre from a ring of twelve free balls, and its readout gives the stretch in
@@ -561,9 +569,10 @@ Combine this chapter with chapter 1.5. From [](#eq:linearized), show that for a 
 ::: solution
 With $\alpha = \gamma = 0$ and $\beta = \delta = i$, the time derivatives vanish and $\curv R_{0i0i} =
 -\tfrac12\partial_i\partial_i\field h_{00} = -\tfrac12\nabla^2\field h_{00}$. With $\field h_{00} = -2\field\Phi/c^2$,
-$c^2\curv R_{0i0i} = \nabla^2\field\Phi$, which is $4\pi G\matter\rho$ by Poisson's equation and zero in empty space.
-So the trace of $\curv\tE$ vanishes there, and the tide is a symmetric table with no trace: 1.5's five numbers.
-Chapter 7.3 shows that the trace vanishes outside matter in Einstein's theory too.
+$c^2\curv R_{0i0i} = \nabla^2\field\Phi$, which is $4\pi G\matter\rho$ by Poisson's equation and zero in empty space. So
+the trace of $\curv\tE$ vanishes there, and the tide is a symmetric table with no trace: 1.5's five numbers. Chapter
+[7.3](/tutorial/geometry/einstein-equation/#in-empty-space-only-the-weyl-curvature-is-left-and-it-holds-ten-numbers)
+shows that the trace vanishes outside matter in Einstein's theory too.
 :::
 
 ### The paper
@@ -616,11 +625,12 @@ c^2\curv R_{0i0j}$. In a static weak field [](#eq:linearized) gives $\curv R_{0i
 :::
 
 [^bianchi]: The derivatives of the Riemann tensor obey a second rule, which relates them at neighbouring places. In a
-    local inertial frame it reads $\partial_\sigma\curv R_{\alpha\beta\gamma\delta} +
-    \partial_\gamma\curv R_{\alpha\beta\delta\sigma} + \partial_\delta\curv R_{\alpha\beta\sigma\gamma} = 0$, and it
-    is called the **second Bianchi identity**. We state it without proof; for the linearized curvature it follows from
-    [](#eq:linearized) because partial derivatives commute. Chapter 7.3 uses it to build Einstein's equation, and
-    chapter 9.5 uses it for the paper's [](/paper/#eq:bianchi-wave).
+    local inertial frame it reads $\partial_\sigma\curv R_{\alpha\beta\gamma\delta} + \partial_\gamma\curv
+    R_{\alpha\beta\delta\sigma} + \partial_\delta\curv R_{\alpha\beta\sigma\gamma} = 0$, and it is called the **second
+    Bianchi identity**. We state it without proof; for the linearized curvature it follows from [](#eq:linearized)
+    because partial derivatives commute. Chapter
+    [7.3](/tutorial/geometry/einstein-equation/#einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point)
+    uses it to build Einstein's equation, and chapter 9.5 uses it for the paper's [](/paper/#eq:bianchi-wave).
 
 [^conventions]: With the opposite sign of the Riemann tensor, which some books use, the same stretch would be a positive
     $\curv R_{0x0x}$. With the signature $+{-}{-}{-}$, lowering a spatial index changes its sign, and the tide would be

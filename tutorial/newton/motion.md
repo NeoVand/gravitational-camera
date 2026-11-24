@@ -292,11 +292,11 @@ by the outside and shared by all bodies with the same outside field, and only th
 body the second part is zero, by the symmetry argument above. Spin a body at a known rate, and its angular momentum
 gives $I$, and with it the hidden $\int\matter\rho\,r^2\,\dd V$.
 
-The paper's Section II reads $I$ from the small magnetic part of the tide, a second kind of tide made by moving
-masses, which chapter 7.5 derives. A pixel at rest on the equator moves with the ground at
-$\Omega R = 465\unit{m\,s^{-1}}$ through the field of a planet that is itself spinning. The pixel's motion and the
-planet's spin each make a magnetic part, and the two have opposite signs. With $c$ the speed of light, their sum has
-the size
+The paper's Section II reads $I$ from the small magnetic part of the tide, a second kind of tide made by moving masses,
+which chapter [7.5](/tutorial/geometry/gravitomagnetism/#the-earths-magnetic-part-weighs-its-core) derives. A pixel at
+rest on the equator moves with the ground at $\Omega R = 465\unit{m\,s^{-1}}$ through the field of a planet that is
+itself spinning. The pixel's motion and the planet's spin each make a magnetic part, and the two have opposite signs.
+With $c$ the speed of light, their sum has the size
 
 $$\frac{3G\matter M\Omega}{cR^2}\Bigl(1 - \frac{I}{\matter MR^2}\Bigr) = 4.8 \times 10^{-12}\unit{s^{-2}},$$
 
@@ -575,7 +575,9 @@ skin $\tfrac23\matter mR^2 + \tfrac1{12}\matter mR^2 = 0.75\,\matter mR^2$.
     and $\ddot{\vect x}$ an acceleration.
 
 [^gyro]: In general relativity a gyroscope's axis drifts slowly even with no torque on it, by an amount the satellite
-    Gravity Probe B measured; chapter 7.5 states it, and the GR course derives it (see *Go deeper*).
+    Gravity Probe B measured; chapter
+    [7.5](/tutorial/geometry/gravitomagnetism/#neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation)
+    states it, and the GR course derives it (see *Go deeper*).
 
 [^eigen]: Chapter 1.5 counts the numbers in a symmetric table and its axes, and the figure of chapter 1.1 draws the
     principal axes of a symmetric table of two rows.

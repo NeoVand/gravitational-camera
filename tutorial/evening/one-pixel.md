@@ -249,7 +249,8 @@ instead of recording mostly noise.
 
 [^onepixel]: The paper's [](/paper/#fig:array) explains it in its caption; chapter 9.5 derives it.
 
-[^four]: Chapter 7.6 derives the two polarizations, and
+[^four]: Chapter [7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical)
+    derives the two polarizations, and
     [1.5](/tutorial/newton/five-numbers/#across-a-wave-two-numbers-are-left-and-a-turn-of-45-swaps-them) the 45°.
 
 [^spin]: Made precise in
@@ -276,14 +277,17 @@ instead of recording mostly noise.
 
 [^count]: Derived in chapter 9.5.
 
-[^ratio]: The paper's equation [](/paper/#eq:magnetic-ratio), derived in chapters 7.5 and 7.6.
+[^ratio]: The paper's equation [](/paper/#eq:magnetic-ratio), derived in chapters
+    [7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight)
+    and [7.6](/tutorial/geometry/gravitational-waves/#the-magnetic-part-of-a-wave-is-its-tide-turned-by-45).
 
 [^price]: Derived in chapter 9.5.
 
 [^aberration]: Derived in chapter
     [6.3](/tutorial/relativity/aberration/#at-small-speeds-the-shift-is-the-speed-across-the-line-of-sight-over-c).
 
-[^laplace]: Laplace took this absence to mean that gravity travels far faster than light. Linearized gravity
-    (chapters 7.4 and 7.7) shows that general relativity predicts it, with gravity at light's speed.
+[^laplace]: Laplace took this absence to mean that gravity travels far faster than light. Linearized gravity (chapters
+    [7.4](/tutorial/geometry/linearized-gravity/#the-field-travels-at-the-speed-of-light) and 7.7) shows that general
+    relativity predicts it, with gravity at light's speed.
 
 [^blind]: R9 builds the two scenes.

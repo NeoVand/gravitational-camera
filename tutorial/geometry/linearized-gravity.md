@@ -136,8 +136,9 @@ new label $x + \epsilon\cos(kx - \omega t)$, so the labels of the balls ripple, 
 with the metric, never change (Figure [](#fig:gauge-or-wave)). A table of this kind, $\field h_{\mu\nu} =
 -\partial_\mu\zeta_\nu - \partial_\nu\zeta_\mu$, is called **pure gauge**.
 
-**What it means.** A pixel reads the tide $\curv\tE_{ij} = c^2\curv R_{0i0j}$ (chapter 7.2), a piece of the curvature,
-so no change of coordinates can alter its reading. Every result of the paper is a statement about curvature.
+**What it means.** A pixel reads the tide $\curv\tE_{ij} = c^2\curv R_{0i0j}$ (chapter
+[7.2](/tutorial/geometry/curvature-and-tides/#for-an-observer-at-rest-the-drift-is-the-papers-tide)), a piece of the
+curvature, so no change of coordinates can alter its reading. Every result of the paper is a statement about curvature.
 
 ![Look first at the balls against the lines. On the left a change of coordinates ripples the labels, and the balls keep
 their separations; on the right a gravitational wave changes the separations themselves. Only the right panel has
@@ -190,7 +191,8 @@ That this equation has a solution is chapter
 solution** adds up the source over space, each piece divided by $4\pi$ times its distance and taken at the earlier time
 when a wave leaving it would arrive. It exists for any source that is not too large far away, which this box does not
 make precise. Any $\zeta$ with $\Box\zeta_\nu = 0$ can be added without spoiling the gauge, so the solution is not
-unique; chapter 7.6 uses that leftover freedom to simplify a wave.
+unique; chapter [7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical)
+uses that leftover freedom to simplify a wave.
 :::
 
 ## In harmonic gauge Einstein's equation is a wave equation for each component
@@ -244,9 +246,10 @@ $$\begin{aligned}\sym{einstein-tensor}{\curv G}_{\mu\nu} &= \curv R_{\mu\nu} - \
 -\tfrac12\Box\bigl(\field h_{\mu\nu} - \tfrac12\field\eta_{\mu\nu}\field h^\alpha{}_\alpha\bigr)\\ &=
 -\tfrac12\Box\field{\bar h}_{\mu\nu} .\end{aligned}$$
 
-**Step 4: Einstein's equation.** Chapter 7.3's $\curv G_{\mu\nu} = (8\pi G/c^4)\matter T_{\mu\nu}$, with
-$\sym{stress-energy-tensor}{\matter T}_{\mu\nu}$ the stress–energy tensor of chapter 6.5, becomes the **linearized field
-equation**
+**Step 4: Einstein's equation.** Chapter
+[7.3](/tutorial/geometry/einstein-equation/#einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point)'s
+$\curv G_{\mu\nu} = (8\pi G/c^4)\matter T_{\mu\nu}$, with $\sym{stress-energy-tensor}{\matter T}_{\mu\nu}$ the
+stress–energy tensor of chapter 6.5, becomes the **linearized field equation**
 
 $$\boxed{\;\Box\field{\bar h}_{\mu\nu} = -\frac{16\pi G}{c^4}\,\matter T_{\mu\nu} .\;} \label{eq:field}$$
 
@@ -384,10 +387,11 @@ T_{zz}\,\dd V \approx \matter Mgz_{\rm cm} \approx 690\unit{J}$, with $g = 9.8\u
 1\unit{m}$ the height of their centre of mass, against $\int\matter\rho v^2\,\dd V = 137\unit{J}$. So a metre away it
 gives $\field{\bar h}_{zz}$ of about $2\times10^{-41}$, five times the motion part.
 
-This ladder (Figure [](#fig:hierarchy)) is why chapter 7.5's magnetic part, made from $\field h_{0i}$, is smaller than
-the tide by about $v/c$, and why the stress and motion of matter count only for fast motion and for light. A beam of
-light has a momentum flux equal to its energy density, so its $\field{\bar h}_{ij}$ is as large as its $\field{\bar
-h}_{00}$.
+This ladder (Figure [](#fig:hierarchy)) is why chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#moving-matter-makes-the-magnetic-part-through-the-potential-of-its-flow)'s
+magnetic part, made from $\field h_{0i}$, is smaller than the tide by about $v/c$, and why the stress and motion of
+matter count only for fast motion and for light. A beam of light has a momentum flux equal to its energy density, so its
+$\field{\bar h}_{ij}$ is as large as its $\field{\bar h}_{00}$.
 
 ![Look first at the gaps: each step down the table, from energy to momentum to momentum flux, costs about one factor
 of $v/c$, eight orders of magnitude for a walking person. The hollow tick is the stress of bearing the person's weight
@@ -417,8 +421,9 @@ showed that a field static in the body's own frame depends only on where the bod
 appears as terms in the body's velocity, which chapter 7.7 reads.
 
 In empty space the waves of [](#eq:field) are chapter
-[5.1](/tutorial/waves/wave-equation/#a-plane-wave-is-a-turning-number-that-travels)'s plane waves, and chapter 7.6 shows
-that only two of their ten amplitudes are physical, the strains of the paper's "transverse traceless gauge".
+[5.1](/tutorial/waves/wave-equation/#a-plane-wave-is-a-turning-number-that-travels)'s plane waves, and chapter
+[7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical) shows that only
+two of their ten amplitudes are physical, the strains of the paper's "transverse traceless gauge".
 
 ::: try {#gauge-or-wave}
 A grid of rings of free balls, with the coordinate lines behind them. One slider ripples the labels by the chapter's
@@ -515,7 +520,8 @@ with its sign.
   and for light, its momentum and stress too", the sizes in
   [](#moving-matter-adds-a-potential-of-its-flow).
 - [Section II](/paper/#sec:pixel): the paper's [](/paper/#eq:wave) is written "in the transverse traceless gauge", a
-  gauge of [](#relabelling-the-coordinates-changes-the-table-not-the-curvature) (chapter 7.6).
+  gauge of [](#relabelling-the-coordinates-changes-the-table-not-the-curvature) (chapter
+  [7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical)).
 - [Section V](/paper/#sec:waves): the factor $4G/c^4$ of the paper's [](/paper/#eq:wave-zone) is that of
   [](#eq:retarded), the retarded solution of [](#eq:field) (chapters 5.2 and 7.7).
 - [Section VIII](/paper/#sec:one-pixel), [*The absence of gravitational
@@ -540,10 +546,11 @@ with its sign.
   paper's conventions.
 :::
 
-[^letters]: Three letters look alike. With two indices, $\field h_{\mu\nu}$ is the metric perturbation, and
-    $\field h^\alpha{}_\alpha$, always written with its indices, is its trace. A bare $h$ is the paper's strain of a
-    wave, and in Parts 2 and 4 a harmonic function. The gauge shift $\zeta^\mu$ is not 7.2's separation $\xi^\mu$,
-    nor the paper's $\zeta_\pm$ of Section XIII.
+[^letters]: Three letters look alike. With two indices, $\field h_{\mu\nu}$ is the metric perturbation, and $\field
+    h^\alpha{}_\alpha$, always written with its indices, is its trace. A bare $h$ is the paper's strain of a wave, and
+    in Parts 2 and 4 a harmonic function. The gauge shift $\zeta^\mu$ is not
+    [7.2](/tutorial/geometry/curvature-and-tides/#two-free-balls-drift-apart-by-the-curvature-between-them)'s separation
+    $\xi^\mu$, nor the paper's $\zeta_\pm$ of Section XIII.
 
 [^order]: The derivatives of $\zeta$ with respect to $x'$ and to $x$ differ by a product of two small quantities,
     which is dropped. The same holds for $\field h_{\mu\nu}$ at the point $x'$ and at the point $x$, so the old and

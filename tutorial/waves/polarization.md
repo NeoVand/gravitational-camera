@@ -72,8 +72,8 @@ largest values over a cycle, written as in the paper without the $(t)$, are the 
 h_+$ and $\field h_\times$. The **plus pattern** $e^+$ stretches the ring along $\vect e_1$ and squeezes it along $\vect
 e_2$. The **cross pattern** $e^\times$ does the same along the two diagonals, so it is the plus pattern turned by 45°.
 Each table has $e^A_{ij}e^A_{ij} = 2$ (no sum over $A$, which names the pattern), the paper's normalization, and
-$e^+_{ij}e^\times_{ij} = 0$. That a gravitational wave has these two patterns and no others is stated here; chapter 7.6
-derives it.
+$e^+_{ij}e^\times_{ij} = 0$. That a gravitational wave has these two patterns and no others is stated here; chapter
+[7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical) derives it.
 
 **How the ring moves.** By chapter
 [R1](/tutorial/newton/reading-section-ii/#near-slow-matter-the-tide-is-the-hessian-and-in-a-wave-it-is-the-strains-acceleration),
@@ -461,8 +461,10 @@ below turn the two fifths into the paper's total power, equation [](/paper/#eq:d
 ## What the wave of a rotor cannot show, and what does not radiate
 
 In the paper's [](/paper/#eq:quadrupole) the source enters only through the part of $\ddot{\matter I}_{ij}$ across the
-line of sight and free of trace. This settles which motions send waves, as the paper's
-[*What does not radiate*](/paper/#par:what-does-not-radiate) says; chapters 7.6 and 7.7 derive each case.
+line of sight and free of trace. This settles which motions send waves, as the paper's [*What does not
+radiate*](/paper/#par:what-does-not-radiate) says; chapters
+[7.6](/tutorial/geometry/gravitational-waves/#a-body-in-steady-motion-sends-no-wave-and-neither-does-an-even-pressure)
+and 7.7 derive each case.
 
 - A wheel turning steadily about its own axle keeps the same arrangement of mass, so $\matter I_{ij}$ does not change.
 - A sphere that swells and shrinks keeps $\matter I_{ij}$ a multiple of $\delta_{ij}$, which is all trace.
@@ -644,10 +646,12 @@ so $P = 1.6 \times 6.674 \times 10^{-11} \times 1.03 \times 10^{12}/(2.998 \time
 :::
 
 ::: deeper
-- The [GR course, section 18.3](https://neovand.github.io/general-relativity/chapter-18.html#18-3-why-there-are-two-polarizations-not-ten)
-  shows why a gravitational wave keeps only the plus and cross patterns, the statement this chapter takes from
-  chapter 7.6, and its [lab](https://neovand.github.io/general-relativity/chapter-18.html#scene-wave) draws the two
-  patterns on rings of free particles.
+- The [GR course, section
+  18.3](https://neovand.github.io/general-relativity/chapter-18.html#18-3-why-there-are-two-polarizations-not-ten) shows
+  why a gravitational wave keeps only the plus and cross patterns, the statement this chapter takes from chapter
+  [7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical), and its
+  [lab](https://neovand.github.io/general-relativity/chapter-18.html#scene-wave) draws the two patterns on rings of free
+  particles.
 - M. Maggiore, *Gravitational Waves*, vol. 1 (Oxford, 2008), §3.3, works out the waves of a rotating body and their
   dependence on the inclination, in the paper's notation, together with the total power.
 - E. Hecht, *Optics* (5th ed., Pearson, 2017), chapter 8, treats the polarization and the Stokes parameters of light,

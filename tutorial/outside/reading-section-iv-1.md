@@ -184,8 +184,10 @@ further factor $v/c$, $5 \times 10^{-9}$ for a walker. For one mass moving with 
 
 {{paper eq:magnetic-point}}
 
-The equation is *read now, derived in Part 7* (chapter 7.5). Its units check, because $G\matter M/cr^3$ is in
-$\mathrm{s^{-2}}$ divided by a speed. Grouping moving matter by direction, as for the tidal column, gives
+The equation is *read now, derived in Part 7* (chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight)).
+Its units check, because $G\matter M/cr^3$ is in $\mathrm{s^{-2}}$ divided by a speed. Grouping moving matter by
+direction, as for the tidal column, gives
 
 {{paper eq:current-column}}
 
@@ -538,7 +540,7 @@ $10^{-4}$ of the paper's integration.
 
 R3 adds Section IV's equations from [](/paper/#eq:wiener) to [](/paper/#eq:hyperbolic) after Part 3, among them the
 zeros of the shear [](/paper/#eq:shear-zeros) (3.9), R4 adds the four of heat and an applied tide after Part 4, and
-chapter 7.5 adds the magnetic formulas.
+chapter [7.5](/tutorial/geometry/gravitomagnetism/) adds the magnetic formulas.
 
 ::: check
 ### Q

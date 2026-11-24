@@ -537,9 +537,11 @@ Section IV has twenty numbered equations. R2 read the first six, then [](/paper/
 | [](/paper/#eq:capacity) | their closed form | derived | 3.8 |
 | [](/paper/#eq:hyperbolic) | Laplace's equation in hyperbolic space | derived | 3.9 |
 
-With R2's ledger, fourteen of the twenty are now derived in full and [](/paper/#eq:current-column) in its integral.
-Five wait: [](/paper/#eq:magnetic-point) for chapter 7.5, and the four of heat and an applied tide, the seventh to the
-tenth, for Part 4 and R4. Part 3 has also given Section XII's [](/paper/#eq:hair-bits) (3.8).
+With R2's ledger, fourteen of the twenty are now derived in full and [](/paper/#eq:current-column) in its integral. Five
+wait: [](/paper/#eq:magnetic-point) for chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight),
+and the four of heat and an applied tide, the seventh to the tenth, for Part 4 and R4. Part 3 has also given Section
+XII's [](/paper/#eq:hair-bits) (3.8).
 
 ::: check
 ### Q

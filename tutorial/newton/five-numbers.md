@@ -448,11 +448,13 @@ sign, and at 180° the point is back where it began.](tut-five-turn){#fig:twice}
 
 Moving masses add a second kind of tide, the **magnetic part** $\curv{\tB}_{ij}$ of the paper's equation
 [](/paper/#eq:magnetic), in $\mathrm{s^{-2}}$. It describes how gyroscopes at nearby points turn relative to one
-another. In empty space it is also symmetric and trace-free, which chapter 7.5 derives, so it holds five more
-numbers, and a pixel that reads both parts records ten. In a gravitational wave the two parts are equal in size, and
-$\curv{\tB}$ is $\curv{\tE}$ turned by 45° about the direction of travel. Near slowly moving matter $\curv{\tB}$ is small: for one mass crossing the line of sight at the
-speed $v_\perp$, $|\curv{\tB}|/|\curv{\tE}| = \sqrt3\,v_\perp/c$, with $c$ the speed of light (the second problem
-below), which is $5.8\times10^{-9}$ for a person walking at $1\unit{m\,s^{-1}}$.
+another. In empty space it is also symmetric and trace-free, which chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#the-magnetic-part-is-the-curvature-with-one-time-index) derives, so it holds
+five more numbers, and a pixel that reads both parts records ten. In a gravitational wave the two parts are equal in
+size, and $\curv{\tB}$ is $\curv{\tE}$ turned by 45° about the direction of travel. Near slowly moving matter
+$\curv{\tB}$ is small: for one mass crossing the line of sight at the speed $v_\perp$, $|\curv{\tB}|/|\curv{\tE}| =
+\sqrt3\,v_\perp/c$, with $c$ the speed of light (the second problem below), which is $5.8\times10^{-9}$ for a person
+walking at $1\unit{m\,s^{-1}}$.
 
 ::: try {#five-numbers}
 The figure builds a table from the five coefficients $c_1$ to $c_5$, which you set with the sliders in units of
@@ -535,10 +537,12 @@ $1 + 4 + 0 + 4 + 9 + 1 + 0 + 1 + 4 = 24$, the same, so $|\curv{\tE}| = \sqrt{24}
 
 ### Stretch
 
-The paper's equation [](/paper/#eq:magnetic-point), which chapter 7.5 derives and we take as given, says that a mass
-$\matter M$ in the direction $\hat n$ at the distance $r$, moving with velocity $\vect v$, has the magnetic tide
-$\curv{\tB}_{ij} = (3G\matter M/cr^3)(\hat n_iu_j + \hat n_ju_i)$, where $\vect u = \hat n\times\vect v$. Show that
-$|\curv{\tB}|/|\curv{\tE}| = \sqrt3\,v_\perp/c$, where $v_\perp = |\vect u|$ is the speed across the line of sight.
+The paper's equation [](/paper/#eq:magnetic-point), which chapter
+[7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight)
+derives and we take as given, says that a mass $\matter M$ in the direction $\hat n$ at the distance $r$, moving with
+velocity $\vect v$, has the magnetic tide $\curv{\tB}_{ij} = (3G\matter M/cr^3)(\hat n_iu_j + \hat n_ju_i)$, where
+$\vect u = \hat n\times\vect v$. Show that $|\curv{\tB}|/|\curv{\tE}| = \sqrt3\,v_\perp/c$, where $v_\perp = |\vect u|$
+is the speed across the line of sight.
 
 ::: solution
 The vector $\vect u$ is at right angles to $\hat n$, so $\hat n\cdot\vect u = 0$, and $|\vect u| = v_\perp$. The two
@@ -607,14 +611,15 @@ those five numbers are all that one pixel learns of $S$.
   tables of every degree and proves the count $2\ell + 1$ in general.
 :::
 
-[^wave]: Chapter 7.6 derives the tide of a gravitational wave from relativity. Here we need only the form of its
-    table.
+[^wave]: Chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain)
+    derives the tide of a gravitational wave from relativity. Here we need only the form of its table.
 
 [^spectral]: This is a theorem of linear algebra, which we use without proof. Chapter 3.4 returns to it.
 
-[^ricci]: In relativity the part of the curvature that changes volume is the Ricci curvature, fixed by the matter
-    at the point, and the part that changes shape is the Weyl curvature, which reaches through empty space. Chapter
-    7.3 defines both.
+[^ricci]: In relativity the part of the curvature that changes volume is the Ricci curvature, fixed by the matter at the
+    point, and the part that changes shape is the Weyl curvature, which reaches through empty space. Chapter
+    [7.3](/tutorial/geometry/einstein-equation/) defines both.
 
 [^frob]: The name is that of the mathematician Ferdinand Georg Frobenius. The norm is the ordinary length of the
     nine entries written out as one list.
@@ -622,12 +627,13 @@ those five numbers are all that one pixel learns of $S$.
 [^column]: Chapter 2.3 returns to the tidal column and to what an array of pixels learns of it.
 
 [^lambda]: The paper's equation [](/paper/#eq:wave-zone) writes the wave far from its source with a projector
-    $\Lambda_{ij,kl}(\hat n)$, which keeps from any table exactly this symmetric trace-free part across the
-    direction of travel, as $\Pi_{ijkl}$ keeps the symmetric trace-free part in three dimensions. Chapter 7.6
-    builds it.
+    $\Lambda_{ij,kl}(\hat n)$, which keeps from any table exactly this symmetric trace-free part across the direction of
+    travel, as $\Pi_{ijkl}$ keeps the symmetric trace-free part in three dimensions. Chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#one-projector-keeps-what-a-wave-can-carry) builds it.
 
-[^strain]: The figure's caption names the polarizations by the strains $h_+$ and $h_\times$, which are pure numbers.
-    The tides $\curv{\tE}_+$ and $\curv{\tE}_\times$, in $\mathrm{s^{-2}}$, are proportional to them in a steady
-    wave (chapter 7.6).
+[^strain]: The figure's caption names the polarizations by the strains $h_+$ and $h_\times$, which are pure numbers. The
+    tides $\curv{\tE}_+$ and $\curv{\tE}_\times$, in $\mathrm{s^{-2}}$, are proportional to them in a steady wave
+    (chapter
+    [7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain)).
 
 [^spin]: Chapter 9.1 returns to spin.

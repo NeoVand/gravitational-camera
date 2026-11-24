@@ -236,15 +236,18 @@ thumb to little finger, held at arm's length. Chapter 0.2 shows why a better det
 
 [^room]: Chapter 0.2 tours this picture: why no wall hides a mass, and why the picture blurs.
 
-[^linear]: Chapter 7.4 teaches linearized gravity. [1.2](/tutorial/newton/field-and-potential/) shows that Newton's
-    pulls add.
+[^linear]: Chapter [7.4](/tutorial/geometry/linearized-gravity/) teaches linearized gravity.
+    [1.2](/tutorial/newton/field-and-potential/) shows that Newton's pulls add.
 
 [^ep]: Stated in its Newtonian form in [1.4](/tutorial/newton/tides/), and in Einstein's theory in chapter
     [7.1](/tutorial/geometry/metric/#falling-cancels-gravity-at-a-point-and-only-there).
 
 [^five]: Counted in [1.5](/tutorial/newton/five-numbers/).
 
-[^magnetic]: Derived in chapters 7.5 and 7.6. Chapter [0.4](/tutorial/evening/one-pixel/) shows what the ten numbers can tell.
+[^magnetic]: The magnetic part of moving masses is derived in chapter [7.5](/tutorial/geometry/gravitomagnetism/), and
+    the count of ten in chapter
+    [7.3](/tutorial/geometry/einstein-equation/#in-empty-space-only-the-weyl-curvature-is-left-and-it-holds-ten-numbers).
+    Chapter [0.4](/tutorial/evening/one-pixel/) shows what the ten numbers can tell.
 
 [^deviation]: Derived in [1.4](/tutorial/newton/tides/). [1.1](/tutorial/newton/vectors-and-indices/) teaches the
     labels and the rule for summing.
