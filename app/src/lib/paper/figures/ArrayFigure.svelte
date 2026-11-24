@@ -55,7 +55,7 @@
 	const HALF = $derived((BASE + TOP) / 2);
 	/** The middle of the drawing, where the array is drawn. */
 	const MID = $derived(phone.current ? 172 : 360);
-	const viewBox = $derived(phone.current ? '0 4 344 317' : '0 4 720 317');
+	const viewBox = $derived(phone.current ? '0 4 344 325' : '0 4 720 325');
 	/** How far left of the right end the blur's words may start: they are a little narrower than that. */
 	const BLUR_ROOM = $derived(phone.current ? 88 : 96);
 	const px = (deg: number) => X0 + ((deg + 90) / 180) * (X1 - X0);
@@ -66,7 +66,7 @@
 		curve
 			.map(
 				(v, i) =>
-					`${i ? 'L' : 'M'} ${px(angles[i]).toFixed(1)} ${(BASE - Math.max(v, -0.12) * (BASE - TOP)).toFixed(1)}`
+					`${i ? 'L' : 'M'} ${px(angles[i]).toFixed(1)} ${(BASE - Math.max(v, -0.2) * (BASE - TOP)).toFixed(1)}`
 			)
 			.join(' ')
 	);
@@ -117,10 +117,10 @@
 		</g>
 
 		<line class="hair" x1={X0} y1={BASE} x2={X1} y2={BASE} />
-		<!-- the numbers stand low enough that the curve's dips below the axis (to −0.12 of its height) pass above them -->
+		<!-- the numbers stand low enough that the curve's dips below the axis (to −0.15 of its height, near 60°) pass above them -->
 		{#each [-90, -60, -30, 0, 30, 60, 90] as a (a)}
 			<line class="grid" x1={px(a)} y1={TOP - 6} x2={px(a)} y2={BASE} />
-			<text class="small" x={px(a)} y={BASE + 36} text-anchor="middle">{a < 0 ? `−${-a}` : a}°</text
+			<text class="small" x={px(a)} y={BASE + 44} text-anchor="middle">{a < 0 ? `−${-a}` : a}°</text
 			>
 		{/each}
 		<path d="{path} L {X1} {BASE} L {X0} {BASE} Z" fill="var(--accent)" opacity="0.14" />
@@ -136,7 +136,7 @@
 		<text class="small" x={Math.min(px(fwhm / 2) + 10, X1 - BLUR_ROOM)} y={HALF + 4}>
 			blur {fwhm >= 10 ? fwhm.toFixed(0) : fwhm.toFixed(1)}° wide
 		</text>
-		<text x={(X0 + X1) / 2} y={BASE + 58} text-anchor="middle">angle away from the source</text>
+		<text x={(X0 + X1) / 2} y={BASE + 66} text-anchor="middle">angle away from the source</text>
 		<text
 			class="small"
 			transform="translate({phone.current ? 16 : 22} {(BASE + TOP) / 2}) rotate(-90)"
