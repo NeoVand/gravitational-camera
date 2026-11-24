@@ -866,11 +866,11 @@ terms:
     chapter: '0.5'
     anchor: the-bodys-reply-to-a-pull-reveals-its-inside
   - term: quadrupolar tide
-    definition: 'The tide of a distant mass, which stretches a body along one line and squeezes it across that line. It is a tide of degree two: along every line out from the centre, the kick it gives grows in proportion to the distance.'
+    definition: 'The tide of a distant mass, which stretches a body along one line and squeezes it across that line. It is a tide of degree two: along every line out from the centre, the kick it gives grows in proportion to the distance. Chapter 13.3 makes it precise: its profile is a harmonic quadratic, and it reaches one radial moment beyond the field in every angular pattern, such as $\int\rho\,r^2\,\mathrm dV$.'
     chapter: '0.5'
     anchor: the-bodys-reply-to-a-pull-reveals-its-inside
   - term: octupolar tide
-    definition: 'The finer part of a tide that a nearer mass adds, because it stretches the side of a body that faces it more than the far side. It is a tide of degree three, and in a round body it weighs each piece by the fourth power of its distance from the centre.'
+    definition: 'The finer part of a tide that a nearer mass adds, because it stretches the side of a body that faces it more than the far side. It is a tide of degree three, and in a round body it weighs each piece by the fourth power of its distance from the centre. Chapter 13.3 makes it precise: its profile is a harmonic cubic, and it reaches one radial moment more than a quadrupolar tide in every angular pattern, such as $\int\rho\,r^4\,\mathrm dV$.'
     chapter: '0.5'
     anchor: the-reply-can-be-read-by-weighing-the-body-or-by-watching-the-passer
   - term: horizon
@@ -4833,3 +4833,44 @@ terms:
     role: field
     chapter: '13.5'
     anchor: the-field-of-a-particle-without-mass-is-an-impulsive-wave
+
+  - term: tide of degree m
+    definition: 'An impulsive tide whose profile $g$ is a harmonic polynomial of degree at most $m$. A distant mass makes one of degree two, and nearer masses add higher degrees. Whatever is read after it, it reaches in every angular pattern the radial moments $\int\rho\,r^{\ell+2j}Y_\ell\,\mathrm dV$ with $j < m$, and no others.'
+    chapter: '13.3'
+    anchor: inside-a-body-a-tide-is-a-sum-of-harmonic-polynomials-of-rising-degree
+  - term: polyharmonic polynomial
+    definition: 'A polynomial $P$ that the Laplacian, taken $m$ times, makes zero: $\nabla^{2m}P = 0$. It is then said to be of order $m$; order one is harmonic. Every one is a sum of $r^{2j}$ times harmonic polynomials with $j < m$, and these are the polynomials that tides of degree up to $m$ reach.'
+    chapter: '13.3'
+    anchor: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius
+  - term: biharmonic
+    definition: 'Killed by two Laplacians, $\nabla^4P = 0$: polyharmonic of order two. $r^2$ is biharmonic but not harmonic; $r^4$ is neither. The biharmonic polynomials of degree four fill 14 of the 15 dimensions of all polynomials of that degree; the direction missing is the $r^4$ term of the Fischer decomposition.'
+    chapter: '13.3'
+    anchor: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius
+  - term: Euler's relation
+    definition: 'For a homogeneous polynomial $H_\ell$ of degree $\ell$, $\mathbf x\cdot\nabla H_\ell = \ell H_\ell$, found by differentiating $H_\ell(\lambda\mathbf x) = \lambda^\ell H_\ell(\mathbf x)$ with respect to the number $\lambda$ at $\lambda = 1$. With it, $\nabla^2(r^{2j}H_\ell) = 2j(2\ell + 2j + 1)\,r^{2j-2}H_\ell$.'
+    chapter: '13.3'
+    anchor: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius
+  - term: Fischer decomposition
+    definition: 'The split of a homogeneous polynomial of degree $n$, in exactly one way, as $H_n + r^2H_{n-2} + r^4H_{n-4} + \cdots$ with each $H_\ell$ harmonic. For example $x^2 = \tfrac13(2x^2 - y^2 - z^2) + \tfrac13r^2$.'
+    chapter: '13.3'
+    anchor: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius
+  - term: Almansi's theorem
+    definition: 'The classical theorem (E. Almansi, 1899) that every solution of $\nabla^{2m}f = 0$ in a ball about the origin is $\sum_{j<m}r^{2j}f_j$ with each $f_j$ harmonic. The polynomials of the paper''s ladder are its polynomial case.'
+    chapter: '13.3'
+    anchor: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius
+  - term: radial moment
+    definition: 'A moment of the density $\int\rho\,r^{\ell+2j}Y_\ell\,\mathrm dV$, against one angular pattern $Y_\ell$ of degree $\ell$ times an even power $r^{2j}$ beyond the solid harmonic''s. The field at one time holds those with $j = 0$, the multipole moments; each degree of tide beyond the first adds one more $j$.'
+    chapter: '13.3'
+    anchor: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius
+  - term: rung
+    definition: 'The number $j$ of a radial moment $\int\rho\,r^{\ell+2j}Y_\ell\,\mathrm dV$: the step of the paper''s ladder on which it stands. A reading at one time holds the rung $j = 0$, and a tide of degree $m$ reaches the rungs $j < m$.'
+    chapter: '13.3'
+    anchor: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius
+  - term: Gegenbauer polynomial
+    definition: 'The polynomials $C^{(2)}_n(\cos\gamma)$ defined by $(1 - 2u\cos\gamma + u^2)^{-2} = \sum_nC^{(2)}_n(\cos\gamma)\,u^n$, the fourth power of the Legendre generating function. They expand a held mass''s kernel, $|\mathbf x - \mathbf y|^{-4} = \sum_nC^{(2)}_n(\cos\gamma)\,r^n/s^{n+4}$; for example $C^{(2)}_2 = 2P_0 + 8P_2$.'
+    chapter: '13.3'
+    anchor: a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder
+  - term: triangular system
+    definition: 'A list of equations of which the first holds one unknown, the second that one and one more, and so on, so that they can be solved in turn. Calderón''s problem, made linear about a uniform ball, is one, rung by rung.'
+    chapter: '13.3'
+    anchor: the-same-ladder-appears-in-impedance-tomography

@@ -578,7 +578,9 @@ a little below zero.
 - *A worked case*: "a broad layer of mass has no tidal field at all", and equation [](/paper/#eq:array-data).
 - [Section XII](/paper/#sec:hair) and [Section XIII](/paper/#sec:second-order): the null space is "a property of a
   reading at one time, not of gravity" (chapters
-  [13.2](/tutorial/what-a-field-keeps/calderon/#the-null-space-belongs-to-one-reading-not-to-gravity) and 13.3); *What gravity cannot decohere*, in
+  [13.2](/tutorial/what-a-field-keeps/calderon/#the-null-space-belongs-to-one-reading-not-to-gravity) and
+  [13.3](/tutorial/what-a-field-keeps/ladder/#two-bodies-that-no-quadrupolar-tide-tells-apart));
+  *What gravity cannot decohere*, in
   [the holography section](/paper/#sec:holography) (chapter 13.8).
 - Table [](/paper/#tab:null) lists what the camera cannot see.
 :::

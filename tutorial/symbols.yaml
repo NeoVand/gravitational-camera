@@ -3947,3 +3947,28 @@ symbols:
     meaning: 'The momentum $p = E/c$ of a particle without mass moving at $c$, such as a photon. Its field is the Aichelburg–Sexl wave, of profile $-(8Gp/c^3)\ln|\mathbf x_\perp - \mathbf b|$, and it passes a body with the flyby constant $C = 4Gp/c^2$. (Not a pressure $p$.)'
     chapter: '13.5'
     anchor: the-field-of-a-particle-without-mass-is-an-impulsive-wave
+
+  - key: tide-degree
+    title: Degree of a tide
+    tex: 'm'
+    role: none
+    kind: A whole number, with no unit
+    meaning: 'The paper''s $m$ in its equations ladder and ladder-identity: a tide of degree $m$ has a profile $g$ that is a harmonic polynomial of degree at most $m$. Two is a quadrupolar tide, three an octupolar one. Such a tide reaches the polynomials $P$ with $\nabla^{2m}P = 0$. (In chapter 13.3 no mass is written $m$; elsewhere $m$ is also a mass, or the order of a spherical harmonic.)'
+    chapter: '13.3'
+    anchor: inside-a-body-a-tide-is-a-sum-of-harmonic-polynomials-of-rising-degree
+  - key: harmonic-polynomial
+    title: Harmonic polynomial of degree ℓ
+    tex: 'H_\ell'
+    role: none
+    kind: A homogeneous polynomial of degree ℓ in x, y and z; in metres to the power ℓ
+    meaning: 'Appendix C''s letter for a harmonic polynomial of degree $\ell$, which is $r^\ell Y_\ell$ for a pattern $Y_\ell$ of that degree. It always carries its subscript, so that it is not the bits $H$ of chapter 3.8 or a Hamiltonian. Euler''s relation gives $\nabla^2(r^{2j}H_\ell) = 2j(2\ell + 2j + 1)\,r^{2j-2}H_\ell$.'
+    chapter: '13.3'
+    anchor: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius
+  - key: gegenbauer
+    title: Gegenbauer polynomial
+    tex: 'C^{(2)}_n'
+    role: none
+    kind: A polynomial of degree n in cos γ; no unit
+    meaning: 'Defined by $(1 - 2u\cos\gamma + u^2)^{-2} = \sum_nC^{(2)}_n(\cos\gamma)\,u^n$, so that $|\mathbf x - \mathbf y|^{-4} = \sum_nC^{(2)}_n(\cos\gamma)\,r^n/s^{n+4}$ for $r < s$. Each is a sum of Legendre polynomials of its parity with positive coefficients, such as $C^{(2)}_2 = 2P_0 + 8P_2$. It always carries its superscript, so that it is not the flyby constant $C$.'
+    chapter: '13.3'
+    anchor: a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder

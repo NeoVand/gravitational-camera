@@ -300,8 +300,10 @@ The field's kernel is harmonic, and the energy's is not. For a power of the dist
 [2.2](/tutorial/outside/spherical-harmonics/#the-laplacian-splits-into-a-part-along-the-radius-and-a-part-on-the-sphere)
 gives $\nabla^2r^n = n(n + 1)\,r^{n-2}$ away from $r = 0$. For the field, $n = -1$ gives zero. For the energy, $n = -4$
 gives $12\,r^{-6}$. So the energy weighs the density by a function that no reading of the field at one time can supply,
-and chapter 13.3 derives that the energies at all points $\vect y$ outside the body fix the density. No tonne can be
-brought up and taken away in fifty microseconds, but one that flies past does the same work.
+and chapter
+[13.3](/tutorial/what-a-field-keeps/ladder/#a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder)
+derives that the energies at all points $\vect y$ outside a sphere about the centre that encloses the body fix the
+density. No tonne can be brought up and taken away in fifty microseconds, but one that flies past does the same work.
 
 ## Two weighings of two copies read the even part and the odd part
 

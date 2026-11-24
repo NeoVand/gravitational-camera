@@ -391,7 +391,8 @@ across.](tut-detail-cost){#fig:detail-cost}
 ## The bits of a second reading grow as the fourth power of the logarithm
 
 We want the bits that a second reading holds, by chapter 3.8's rule. Let a mass be held for an instant (chapter 13.1)
-at points anywhere outside a sphere of radius $R_c$ about a body of radius $R$, at many distances. Chapter 13.3
+at points anywhere outside a sphere of radius $R_c$ about a body of radius $R$, at many distances. Chapter
+[13.3](/tutorial/what-a-field-keeps/ladder/#a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder)
 shows that the energies it leaves hold the moment of the density against every polynomial in $x$, $y$ and $z$, and we
 use that result here. A product of $n$ coordinates is fixed by how many of its factors are $x$, $y$ and $z$. With no
 $x$ there are $n + 1$ ways to share the factors between $y$ and $z$, with one $x$ there are $n$, and so on, so there
@@ -422,7 +423,7 @@ $3.19 \times 10^7$ and the first reading's $1.7 \times 10^6$. The sum is an uppe
 as if it were alone. In one angular pattern, moments of different degree give signals that fall off with the held
 mass's distance in nearly the same way, so telling them apart has a price. The paper's 1300 bits at $10^6$ and
 $9.6 \times 10^6$ at $10^{70}$ include it.[^bits] With the held mass on a single sphere they cannot be told apart at
-all, and the second reading gives only as many numbers as the first (chapter 13.3). If a passing tonne makes the second
+all, and the second reading gives only as many numbers as the first (chapter [13.3](/tutorial/what-a-field-keeps/ladder/#a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder)). If a passing tonne makes the second
 reading of the steel ball, its ratio is $4.6 \times 10^{-17}$ times the first's (chapter 13.1). A first reading at
 $10^6$ then leaves nothing of the second to count, and one at $10^{70}$ leaves $4.6 \times 10^{53}$, for which the sum
 gives $1.1 \times 10^7$ bits.
@@ -576,7 +577,7 @@ four real integrals.
 [^sigma]: This $\sigma$ is local to this section and neutral in colour. Elsewhere a bare $\sigma$ in the colour of
     matter is a surface density, and a standard deviation always carries a subscript.
 
-[^rungs]: Chapter 13.3 shows, rung by rung, which tides see which part of the null space.
+[^rungs]: Chapter [13.3](/tutorial/what-a-field-keeps/ladder/#two-bodies-that-no-quadrupolar-tide-tells-apart) shows, rung by rung, which tides see which part of the null space.
 
 [^half]: The paper's "multiplied by half of $\kappa^2 - K^2$, which is the Laplacian in these variables" can be misread:
     the Laplacian brings $\kappa^2 - K^2$, and the second reading carries half of it.

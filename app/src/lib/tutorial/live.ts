@@ -92,6 +92,7 @@ import ThermalHistory from './live/ThermalHistory.svelte';
 import FirstAndSecondOrder from './live/FirstAndSecondOrder.svelte';
 import TwoReadings from './live/TwoReadings.svelte';
 import ImpulsiveFront from './live/ImpulsiveFront.svelte';
+import PushAndWeigh from './live/PushAndWeigh.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -490,5 +491,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A front sweeping a body: kicks ½q∇H, the energy after a wave and its reverse, and the rest mass it leaves',
 		component: ImpulsiveFront
+	},
+	'push-and-weigh': {
+		label:
+			'Two bodies with the same field outside, pushed by a tide of chosen degree and weighed, with the ladder of degrees',
+		component: PushAndWeigh
 	}
 };

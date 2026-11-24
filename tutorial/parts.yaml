@@ -178,7 +178,7 @@ parts:
     chapters:
       - { id: '13.1', slug: what-a-field-keeps/push-and-pass, title: 'First order and second order: the push and the pass', short: The push and the pass, size: M, status: published }
       - { id: '13.2', slug: what-a-field-keeps/calderon, title: "Reading an interior: Calderón's argument; the two readings as one transform", short: "Calderón's argument", size: L, status: published }
-      - { id: '13.3', slug: what-a-field-keeps/ladder, title: 'The ladder of tides: polyharmonic functions', short: The ladder of tides, size: M, status: planned }
+      - { id: '13.3', slug: what-a-field-keeps/ladder, title: 'The ladder of tides: polyharmonic functions', short: The ladder of tides, size: M, status: published }
       - { id: '13.4', slug: what-a-field-keeps/flows-inside, title: 'Flows inside: brackets of moments', short: Flows inside, size: M, status: planned }
       - { id: '13.5', slug: what-a-field-keeps/impulsive-waves, title: 'Impulsive waves and fast particles', short: Impulsive waves, size: M, status: published }
       - { id: '13.6', slug: what-a-field-keeps/algebra-of-moments, title: "The algebra of moments to order 1/c², and Marolf's argument", short: The algebra of moments, size: L, status: planned }
