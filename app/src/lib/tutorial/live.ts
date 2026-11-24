@@ -9,6 +9,7 @@ import QuadrupoleFigure from '../paper/figures/QuadrupoleFigure.svelte';
 import Speedometer from '../paper/figures/interactive/Speedometer.svelte';
 import Stars from '../paper/figures/interactive/Stars.svelte';
 import Voices from '../paper/figures/interactive/Voices.svelte';
+import Sky from '../paper/figures/interactive/Sky.svelte';
 import Present from '../paper/figures/interactive/Present.svelte';
 import Passing from '../paper/figures/hair/Passing.svelte';
 import HoleResponse from '../paper/figures/hair/HoleResponse.svelte';
@@ -100,6 +101,7 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	speedometer: { label: 'One pixel reads its own velocity', component: Speedometer },
 	stars: { label: 'The four special directions of the tide', component: Stars },
 	voices: { label: 'How many waves one pixel can tell apart', component: Voices },
+	sky: { label: 'What one pixel sees of a sky you choose', component: Sky },
 	present: { label: 'Where a moving body is now', component: Present },
 	passing: { label: 'A mass passing a body, and what it weighs', component: Passing },
 	'hole-response': { label: "A black hole's reply to a tide", component: HoleResponse },

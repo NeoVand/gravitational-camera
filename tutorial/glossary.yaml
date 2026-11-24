@@ -3851,3 +3851,35 @@ terms:
     definition: 'A patch of a record: a stretch of duration $\Delta t$ and a band of frequencies about $1/\Delta t$ wide. Two lensed images of one chirp fall in different cells, so in each cell one pixel reads a single wave.'
     chapter: '9.5'
     anchor: lensed-images-fall-in-separate-cells-of-time-and-frequency
+  - term: spectral matrix
+    definition: 'The table of mean products $\langle\mathbf x\mathbf x^\dagger\rangle$ of a sensor''s complex amplitudes at one frequency, averaged over many stretches of its record. For one pixel it is a $10\times10$ Hermitian table, 100 real numbers; its diagonal holds the spectra of the ten records.'
+    chapter: '9.6'
+    anchor: the-pixels-spectral-matrix-splits-into-three-blocks-by-helicity
+  - term: helicity block
+    definition: 'One of the three parts of a pixel''s spectral matrix in the coordinates $\mathcal W_+$ and $\mathcal W_-$: two $5\times5$ Hermitian blocks, which carry the sky''s brightness plus and minus its circular polarization, and one complex symmetric block, which carries its linear polarization.'
+    chapter: '9.6'
+    anchor: the-pixels-spectral-matrix-splits-into-three-blocks-by-helicity
+  - term: chiral sky
+    definition: 'A sky of waves with a handedness: its total circular polarization, the sum of $V$ over all directions, is not zero. One pixel reads it as $\mathrm{Im}\langle\tilde{\mathcal E}\!:\!\tilde{\mathcal B}^*\rangle$.'
+    chapter: '9.6'
+    anchor: one-pixel-tells-whether-the-sky-has-a-handedness
+  - term: positive (Hermitian table)
+    definition: 'A Hermitian table $C$ whose eigenvalues are all zero or more, so that $\mathbf y^\dagger C\mathbf y \ge 0$ for every column $\mathbf y$. Every spectral matrix is positive. The complex form of 3.4''s positive semidefinite.'
+    chapter: '9.6'
+    anchor: a-sky-obeys-an-inequality-that-a-standing-wave-breaks
+  - term: convex cone
+    definition: 'A set closed under adding its members and under multiplying them by positive numbers. The spectral matrices that skies of independent waves can give form one, smaller than the set of all positive Hermitian tables.'
+    chapter: '9.6'
+    anchor: a-sky-obeys-an-inequality-that-a-standing-wave-breaks
+  - term: witness
+    definition: 'An inequality that every member of a convex set obeys and some table outside it breaks. The paper''s eq:sky-witness is obeyed by every sky of independent waves and broken by a standing wave.'
+    chapter: '9.6'
+    anchor: a-sky-obeys-an-inequality-that-a-standing-wave-breaks
+  - term: spherical design
+    definition: 'A set of points on the sphere whose average of every polynomial of degree $t$ or less equals the average over the whole sphere. The twelve corners of an icosahedron are a design of degree five, the six of an octahedron of degree three.'
+    chapter: '9.6'
+    anchor: twelve-sources-look-to-the-pixel-like-a-uniform-sky
+  - term: single pixel's picture
+    definition: 'The picture of the sky''s brightness that one pixel''s data fix: the sky''s spherical harmonics of degree four and below, and nothing else. For a point source it is $\sum_{\ell\le4}(2\ell+1)P_\ell(\cos\vartheta)/25$, 51.6° wide at half height and negative near 60°.'
+    chapter: '9.6'
+    anchor: a-single-pixels-picture-of-the-sky-is-blurred-over-52

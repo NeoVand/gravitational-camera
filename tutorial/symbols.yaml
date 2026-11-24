@@ -3038,3 +3038,27 @@ symbols:
     meaning: 'The five numbers, in the orthonormal basis of chapter 1.5, of the unit square $\mathbf m_a\mathbf m_a^{\mathsf T}$ of source $a$: what a unit wave from that direction puts into the reading. Five sources from different directions have independent steering vectors.'
     chapter: '9.5'
     anchor: uncorrelated-sources-separate-from-their-average-brightness-and-circular-polarization
+  - key: spectral-matrix
+    title: Spectral matrix of one pixel
+    tex: 'C'
+    role: none
+    kind: A 10×10 Hermitian table; in s⁻⁴
+    meaning: 'The mean products $\langle\mathbf x\mathbf x^\dagger\rangle$ of a pixel''s ten complex amplitudes $\tilde{\mathcal E}$, $\tilde{\mathcal B}$ at one frequency, over many stretches of the record: 100 real numbers. In the helicity coordinates it has the blocks $C_+$, $C_-$ (Hermitian) and $C_{+-}$ (complex symmetric for a sky of independent waves), and chapter 9.5''s $C_I$, $C_V$ are $C_+ \pm C_-$. The paper writes $C$ for one helicity block. (Not 9.3''s moment of inertia or 9.7''s $C(\iota, \theta)$.)'
+    chapter: '9.6'
+    anchor: the-pixels-spectral-matrix-splits-into-three-blocks-by-helicity
+  - key: sky-stokes
+    title: The sky's brightness and polarization
+    tex: 'I(\hat n),\ V(\hat n),\ (Q - iU)(\hat n)'
+    role: none
+    kind: Functions on the sky; in s⁻⁴ sr⁻¹
+    meaning: 'The sums over the sources in a small patch of directions, divided by its solid angle, of $|\alpha^+|^2 + |\alpha^-|^2$ (the brightness), $|\alpha^+|^2 - |\alpha^-|^2$ (the circular polarization) and $2\alpha^+\alpha^-$ (the linear polarization). For one wave they are chapter 5.4''s Stokes parameters times $\omega^4/2$. A pixel reads 25 numbers of $I$, 25 of $V$ and 18 of $Q - iU$. (Not 9.2''s invariant $I$.)'
+    chapter: '9.6'
+    anchor: the-pixels-spectral-matrix-splits-into-three-blocks-by-helicity
+  - key: pixel-picture
+    title: The single pixel's picture of a point
+    tex: 'K(\vartheta)'
+    role: none
+    kind: A function of the angle from the source; a pure number, 1 at the source
+    meaning: 'The projection of a point source onto the spherical harmonics of degree four and below, divided by its value at the source: $K = \sum_{\ell=0}^{4}(2\ell+1)P_\ell(\cos\vartheta)/25$. It is 51.6° wide at half height, crosses zero at 43.9°, dips to $-0.152$ at 59.5° and is 0.2 directly behind the source.'
+    chapter: '9.6'
+    anchor: a-single-pixels-picture-of-the-sky-is-blurred-over-52
