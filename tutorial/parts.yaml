@@ -160,7 +160,7 @@ parts:
       - { id: '11.1', slug: black-holes/schwarzschild, title: 'Schwarzschild and Birkhoff; the horizon, light, the shadow, lensing', short: Schwarzschild, size: L, status: published }
       - { id: '11.2', slug: black-holes/spin, title: 'Spin, no hair, superradiance', short: Spin and no hair, size: M, status: published }
       - { id: '11.3', slug: black-holes/hawking, title: 'Hawking radiation', short: Hawking radiation, size: M, status: published }
-      - { id: '11.4', slug: black-holes/under-tides, title: 'Black holes under tides: Love numbers, absorption, the friction of the horizon', short: Black holes under tides, size: M, status: planned }
+      - { id: '11.4', slug: black-holes/under-tides, title: 'Black holes under tides: Love numbers, absorption, the friction of the horizon', short: Black holes under tides, size: M, status: published }
       - { id: R11, slug: black-holes/reading-section-vii, title: 'Reading Section VII', short: Reading Section VII, size: S, status: planned, reads: [sec:no-lens] }
 
   - id: '12'

@@ -85,6 +85,7 @@ import GlowBound from './live/GlowBound.svelte';
 import ShadowAndRing from './live/ShadowAndRing.svelte';
 import SpinAndGain from './live/SpinAndGain.svelte';
 import HoleAgainstSky from './live/HoleAgainstSky.svelte';
+import TidalFriction from './live/TidalFriction.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -448,5 +449,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A hole against a warm sky: what its greybody factors take, what its glow adds, and how dark its disc looks',
 		component: HoleAgainstSky
+	},
+	'tidal-friction': {
+		label:
+			'A moon’s tide on the Earth and on a hole, with the horizon’s friction set against the greybody factor and Page’s line',
+		component: TidalFriction
 	}
 };

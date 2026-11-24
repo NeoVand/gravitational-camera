@@ -2268,7 +2268,7 @@ terms:
     chapter: '4.6'
     anchor: the-theorem-holds-for-every-linear-body-at-every-frequency
   - term: Love number
-    definition: 'The pure number $k_2$ that says how much a round body yields to a steady tide: its new quadrupole adds, at its surface, $k_2$ times the tide''s potential. A uniform fluid ball has $\tfrac32$, a rigid one 0, the Earth about 0.30.'
+    definition: 'The pure number $k_2$ that says how much a round body yields to a steady tide: its new quadrupole adds, at its surface, $k_2$ times the tide''s potential. A uniform fluid ball has $\tfrac32$, a rigid one 0, the Earth about 0.30, and a black hole that does not turn exactly 0, because its horizon allows no reply (chapter 11.4).'
     chapter: '4.6'
     anchor: the-static-end-of-the-response-is-the-love-number
   - term: surface gravity
@@ -4334,3 +4334,29 @@ terms:
     definition: 'The energy a hole removes from a uniform sky, net of its own glow, over what a black disc of the capture cross-section would remove: 0.93, 0.54 and 0.29 at ten, three and twice the equilibrium mass against the 0.905 K sky, and zero at that mass.'
     chapter: '11.3'
     anchor: a-shadow-stays-pale-while-the-skys-gravitons-are-long
+
+  - term: horizon friction
+    definition: 'The friction $\nu$ with which a black hole''s horizon takes energy from a slowly changing tide, at the rate $\nu(\dot{\mathcal E}_{ij}\dot{\mathcal E}_{ij} + \dot{\mathcal B}_{ij}\dot{\mathcal B}_{ij})$, with $\nu = Mr_s^5/90c^3$ for a hole that does not turn. The same number fixes the hole''s absorption of long gravitational waves.'
+    chapter: '11.4'
+    anchor: a-changing-tide-loses-energy-through-the-horizon
+  - term: tidal heating
+    definition: 'The energy a body takes from a changing tide. For a black hole it goes through the horizon, grows the horizon''s area and adds to the hole''s mass; for the paper''s pair of thirty-solar-mass holes 2200 km apart it is $5\times10^{38}$ W, $3.3\times10^{-7}$ of what they radiate.'
+    chapter: '11.4'
+    anchor: a-changing-tide-loses-energy-through-the-horizon
+  - term: "the hole's quadrupole"
+    definition: 'Section XIV''s quadrupole $Q_{ij}$, defined by its energy $Q_{ij}\mathcal E_{ij}$ in a tide: half Newton''s trace-free moment and a sixth of chapter 2.3''s. A black hole''s follows the tide''s rate of change, $Q_{ij} = \nu\dot{\mathcal E}_{ij}$.'
+    role: matter
+    chapter: '11.4'
+    anchor: the-holes-quadrupole-answers-a-tide-with-friction-alone
+  - term: partial wave
+    definition: 'The part of a plane wave that has one degree $\ell$ round a centre. Far away each is an incoming and an outgoing spherical wave, and the incoming part of degree $\ell$ brings what crosses an area $\pi(2\ell + 1)c^2/\omega^2$.'
+    chapter: '11.4'
+    anchor: the-same-friction-absorbs-long-gravitational-waves
+  - term: quadrupole noise
+    definition: 'The random trembling of a black hole''s quadrupole, with the flat spectrum $S_Q = 2k_BT_H\nu = \hbar r_s^5/360\pi G$ at frequencies where $\hbar\omega \ll k_BT_H$. It is the horizon''s friction at the Hawking temperature.'
+    chapter: '11.4'
+    anchor: the-friction-trembles-at-the-holes-temperature
+  - term: flat spectrum
+    definition: 'A spectrum that is the same at every frequency, as of chapter 3.2''s white noise. A black hole''s quadrupole noise is flat because its friction grows in proportion to the frequency.'
+    chapter: '11.4'
+    anchor: the-friction-trembles-at-the-holes-temperature

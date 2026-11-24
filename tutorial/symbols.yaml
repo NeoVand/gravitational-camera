@@ -3594,3 +3594,28 @@ symbols:
     meaning: 'The area $(\pi c^2/\omega^2)\sum_\ell(2\ell + 1)\Gamma_\ell$ from which a hole takes the energy of a beam at angular frequency $\omega$; it tends to $27\pi G^2M^2/c^4$ for short waves, reaching it near $GM\omega/c^3 = 1$. (Part 3''s bare $\sigma$ is a surface density.)'
     chapter: '11.3'
     anchor: mode-by-mode-a-hole-is-a-grey-body
+
+  - key: horizon-friction
+    title: Horizon friction
+    tex: '\nu'
+    role: none
+    kind: A friction coefficient; in J s⁵
+    meaning: 'The rate at which a black hole that does not turn absorbs a slowly changing tide, per square of the tide''s rate of change: $\mathrm dE/\mathrm dt = \nu(\dot{\mathcal E}_{ij}\dot{\mathcal E}_{ij} + \dot{\mathcal B}_{ij}\dot{\mathcal B}_{ij})$ with $\nu = \tfrac{16}{45}G^5M^6/c^{13} = Mr_s^5/90c^3$ (Poisson, stated). $1.9\times10^{-23}$ J s⁵ for $1.36\times10^{23}$ kg, $1.3\times10^{29}$ J s⁵ for thirty solar masses. The paper''s letter; not a frequency.'
+    chapter: '11.4'
+    anchor: a-changing-tide-loses-energy-through-the-horizon
+  - key: hole-quadrupole
+    title: "Section XIV's quadrupole"
+    tex: '\matter{Q}_{ij}'
+    role: matter
+    kind: A symmetric trace-free table of five independent numbers; in kg m²
+    meaning: 'The quadrupole defined by its energy $Q_{ij}\mathcal E_{ij}$ in a tide; for a body $\tfrac12\int\rho(x_ix_j - \tfrac13r^2\delta_{ij})\,\mathrm dV$, half Newton''s trace-free moment and a sixth of chapter 2.3''s $Q_{ij}$. A black hole''s answers a slow tide as $Q_{ij} = \nu\dot{\mathcal E}_{ij}$, so that $\mathrm{Im}\,\chi = \nu\omega$ with no elastic part.'
+    chapter: '11.4'
+    anchor: the-holes-quadrupole-answers-a-tide-with-friction-alone
+  - key: quadrupole-noise
+    title: "A black hole's quadrupole noise"
+    tex: 'S_Q'
+    role: none
+    kind: A two-sided spectrum; in kg² m⁴ s
+    meaning: 'The flat spectrum with which each of the five entries of a black hole''s quadrupole trembles at low frequencies, $S_Q = 2k_BT_H\nu = \hbar r_s^5/360\pi G$, from the classical fluctuation–dissipation theorem at the Hawking temperature; $4.7\times10^{-46}$ kg² m⁴ s for $1.36\times10^{23}$ kg. The paper''s letter.'
+    chapter: '11.4'
+    anchor: the-friction-trembles-at-the-holes-temperature
