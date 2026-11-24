@@ -6,7 +6,7 @@ part: '12'
 requires: ['1.3', '1.8', '5.5', '6.3', '7.1', '8.3', '10.1', '10.2']
 paper: [sec:vistas, eq:graviton-temperature, fig:black-hole, sec:affordances, tab:null, sec:no-lens, sec:first-image]
 figures: [fig:black-hole]
-live: []
+live: [thermal-history]
 depth: B
 ---
 
@@ -109,8 +109,8 @@ obeys $c\,\dd t = a\,|\dd\vect x|$, and the comoving distance it covers between 
 $$d_{\rm c} = \int_{t_{\rm e}}^{t_0}\frac{c\,\dd t}{a} .$$
 
 A source at rest among the galaxies sends one crest at $t_{\rm e}$ and the next a period $\delta t_{\rm e}$ later,
-and they arrive at $t_0$ and $t_0 + \delta t_0$. The source and the observer keep their comoving positions, so both
-crests cover the same $d_{\rm c}$:
+and they arrive at $t_0$ and $t_0 + \delta t_0$ (Figure [](#fig:universe-crests)). The source and the observer keep
+their comoving positions, so both crests cover the same $d_{\rm c}$:
 
 $$\int_{t_{\rm e}}^{t_0}\frac{c\,\dd t}{a} = \int_{t_{\rm e} + \delta t_{\rm e}}^{t_0 + \delta t_0}\frac{c\,\dd t}{a} .$$
 
@@ -119,14 +119,9 @@ over which $a$ hardly changes, so each end is its length times $c/a$:
 
 $$\frac{c\,\delta t_0}{a_0} = \frac{c\,\delta t_{\rm e}}{a_{\rm e}} .$$
 
-<!-- diagram: tut-universe-crests — spec: a horizontal time axis from t_e (left) to t_0 (right) under a band of
-comoving space; a source at the left emits two crests a period delta t_e apart, drawn as two thin wave-crest marks;
-the two null paths run to the observer at the right as parallel lines in comoving coordinates (light colour), and the
-wavelength between the crests drawn as a short bracket at the start and a longer one at the end, the ratio a_0/a_e
-(the drawing uses a_0/a_e = 3); the grid behind them widens in proper distance from left to right. Labels off the
-geometry. Caption: "Look first at the two brackets: the two crests cross the same comoving distance, so the time
-between them, and the wavelength, grows in proportion to the scale factor. The ratio 3 is chosen for the drawing; the
-microwave sky's is 1091." -->
+![Look first at the two brackets: the two crests cross the same comoving distance, so the time between them, and the
+wavelength, grows in proportion to the scale factor. The ratio 3 is chosen for the drawing; the microwave sky's is
+1091.](tut-universe-crests){#fig:universe-crests}
 
 So the period, and the wavelength $\lambda = c\,\delta t$, grow in proportion to $a$. This is the **cosmological
 redshift** (the GR course's section 19.6):
@@ -232,15 +227,12 @@ heavier electrons. Above $2\times10^{15}$ K, $mc^2/\kB$ for the heaviest, the to
 | electron, muon, tau | fermion | 3 × 2 × 2 = 12 | kinds × spins × antiparticles |
 | neutrinos | fermion | 3 × 1 × 2 = 6 | one spin state, against the motion (with it for antineutrinos) |
 
-The bosons hold 28 states and the fermions 90, so $g_{*s} = 28 + \tfrac78\cdot90 = 106.75$. The graviton is not
-counted: it had already stopped interacting, which is the point of the next section.
+The bosons hold 28 states and the fermions 90, so $g_{*s} = 28 + \tfrac78\cdot90 = 106.75$ (Figure
+[](#fig:universe-gstar)). The graviton is not counted: it had already stopped interacting, which is the point of the
+next section.
 
-<!-- diagram: tut-universe-gstar — spec: the table above drawn as one horizontal bar per particle row, its length the
-states g (bosons solid, fermions drawn full length with the last eighth hatched and marked 7/8), the running sums 28
-and 78.75 at the ends of the two groups and 106.75 at the foot; a second, short bar group for today: photons 2 and
-neutrinos 6 × 7/8 × 4/11, total 3.91. Matter colour for the fermions' bars, neutral for the bosons'. Caption: "Look
-first at the hatched ends: each fermion state counts seven eighths of a boson's. The hot Standard Model counts 106.75;
-today's photons and neutrinos count 3.91. Every length is a count." If drawn, it may replace the table. -->
+![Look first at the hatched ends: each fermion state counts seven eighths of a boson's. The hot Standard Model counts
+106.75; today's photons and neutrinos count 3.91. Every length is a count.](tut-universe-gstar){#fig:universe-gstar}
 
 ## Gravitons parted first and kept a colder share of the heat
 
@@ -275,8 +267,8 @@ decoupling they travel freely, so by the redshift their $Ta$ stays fixed:
 
 $$T_ga_0 = T_{\rm d}a_{\rm d} .$$
 
-The other particles annihilated species by species, but their total entropy in a comoving volume stayed fixed.
-Counting the neutrinos today at their own temperature, as in today's 3.91,
+The other particles annihilated species by species, but their total entropy in a comoving volume stayed fixed (Figure
+[](#fig:universe-temperatures)). Counting the neutrinos today at their own temperature, as in today's 3.91,
 
 $$106.75\,(T_{\rm d}a_{\rm d})^3 = 3.91\,(T_\gamma a_0)^3 .$$
 
@@ -291,15 +283,10 @@ particles would make it colder."** The temperature $T_g$ falls as $g_{*s}^{-1/3}
 species at the start leave the gravitons a smaller share of the entropy, and the rest later goes to what is still in
 contact, the photons and in part the neutrinos. Doubling the count to 213.5 gives 0.718 K.
 
-<!-- diagram: tut-universe-temperatures — spec: horizontal axis log10 of the photons' temperature from 32 (left) to
-0.435 (2.7255 K, right), vertical axis T a in units of today's photon value (0 to 1.1); three lines: gravitons flat at
-0.3321 from the left edge to the right; neutrinos following the photons' line until 10^10 K, then flat at 0.7138;
-photons stepping up at each annihilation (top quark, W/Z/Higgs, bottom/charm/tau, the quarks' confinement near
-1.7 × 10^12 K, muons, electrons near 6 × 10^9 K), each step from (g*s before / g*s after)^(1/3), ending at 1;
-the right-edge values written 2.7255 K, 1.945 K and 0.905 K. Colours: photons light, gravitons field, neutrinos
-neutral. Caption: "Look first at the flat graviton line: it parted near the Planck temperature and missed every step.
-Each step of the photon line is an annihilation, its height set by the count before and after. The ends are exact;
-the steps' places are schematic, their heights from the counts." -->
+![Look first at the flat graviton line: it parted near the Planck temperature and missed every step. Each step of the
+photon line is an annihilation, its height set by the count before and after. The ends are exact; the steps' places are
+schematic, their heights from the counts. Lines that share a value are drawn side by
+side.](tut-universe-temperatures){#fig:universe-temperatures}
 
 **Inflation** is a proposed period of very fast early expansion, by a factor of $e^{60}$ or more in length (stated).
 Coming after the gravitons decoupled, it would have grown every volume by at least $e^{180}$ and thinned them to
@@ -428,21 +415,17 @@ $$\boxed{\;2.0\%\ \text{farther}\;} ,$$
 the paper's "only $2\%$ farther away". Other measured shares change it by under 0.03%.[^dist]
 
 **What we see.** The 0.28 Gpc is also the horizon at the light's release, so larger patterns obeyed the rule until
-then, and both skies show the same large spots. Seen from 14 Gpc, 0.28 Gpc spans 0.02 rad, and a pattern of degree
-$\sym{degree}{\ell}$ has features about $\pi/\ell$ wide (chapter
+then, and both skies show the same large spots (Figure [](#fig:universe-surfaces)). Seen from 14 Gpc, 0.28 Gpc spans
+0.02 rad, and a pattern of degree $\sym{degree}{\ell}$ has features about $\pi/\ell$ wide (chapter
 [2.2](/tutorial/outside/spherical-harmonics/#a-pattern-of-degree-ell-has-features-about-piell-wide)), so the skies
 part above $\ell \approx \pi/0.02 \approx 160$, where waves print different patterns on the two surfaces. The full
 calculation puts this near $\ell \approx 100$ [@Bartolo2019; @Ricciardone2021]. On those scales only the light shows
 **acoustic peaks**, from sound waves in the plasma, and **Silk damping**, a blur from diffusion, while the gravitons
 gain from decaying early potentials, the **integrated Sachs–Wolfe effect** [@Schulze2023].
 
-<!-- diagram: tut-universe-surfaces — spec: a half-disc slice of the sky around us at the centre; two concentric arcs,
-the light's surface at 13.86 Gpc (light colour) and the gravitons' at 14.14 Gpc (field colour), the gap of 0.28 Gpc
-exaggerated tenfold and marked so; one long wave (a large spot, wavelength several Gpc) drawn as a shaded band crossing
-both arcs and printing the same warm patch on each; one short wave (wavelength below 0.28 Gpc) crossing them with its
-crests falling on different phases, so the two arcs carry different patches. Caption: "Look first at the large spot:
-it lies across both surfaces, so both skies show it. A wave shorter than the gap prints different patterns on the two
-surfaces. The gap is drawn ten times too wide." -->
+![Look first at the large spot: it lies across both surfaces, so both skies show it. A wave shorter than the gap prints
+different patterns on the two surfaces. The gap, and the short wave with it, are drawn ten times too
+wide.](tut-universe-surfaces){#fig:universe-surfaces}
 
 ## A cosmic string removes a wedge of space, invisible to every pixel but not to what lies behind
 
@@ -461,17 +444,11 @@ zero, however heavy the string: the row "a straight cosmic string and empty spac
 Earth's mass in every 4.4 km, and $\Delta = 2.5\times10^{-5}$ rad, $5.2''$.
 
 **Double images.** With the wedge missing, two straight rays from one source, one on each side of the string, can meet
-at the observer: a source behind is seen twice, at most $\Delta$ apart.
+at the observer: a source behind is seen twice, at most $\Delta$ apart (Figure [](#fig:universe-string)).
 
-<!-- diagram: tut-universe-string — spec: left panel, a flat plane with a thin wedge of angle Delta (exaggerated to
-about 20 degrees, marked so) cut out at the string (a dot) and its edges glued, shown by matching tick marks; a source
-behind and the observer in front, two straight rays (light colour) passing either side and meeting at the observer, the
-two images at the observer drawn Delta apart. Right panel, seen from above: the observer at the bottom, the background
-at the top, the string (a dot) between them moving to the right at v (observer colour arrow), the plane it has swept
-drawn as a dashed line to its left; rays from the background passing left of the string arrive shaded warm by
-delta T / T = 8 pi G mu gamma v / c^3, rays passing right of it unchanged. Caption: "Look first at the glued edges:
-space is flat, but a ray on each side of the string reaches the observer, so a source behind is seen twice. Moving,
-the string leaves a warmer half of the sky behind it. The wedge's angle is exaggerated." -->
+![Look first at the glued edges: space is flat, but a ray on each side of the string reaches the observer, so a source
+behind is seen twice. Moving, the string leaves a warmer half of the sky behind it. The wedge's angle is
+exaggerated.](tut-universe-string){#fig:universe-string}
 
 **The step.** We want the largest temperature step that a moving string makes in a background. We look at the
 background past an upright string, which moves to the right at the speed $\obs v$, at right angles to its length and
@@ -497,39 +474,19 @@ A tilted string, or one moving partly along our line of sight, makes a smaller s
 $G\matter\mu/c^2 = 10^{-6}$ at $\obs v = c/2$, $\obs\gamma = 1.155$ and the step is $1.45\times10^{-5}$, the paper's
 "$1.5\times10^{-5}$": 13 μK on the 0.905 K glow. **Limit.** A string at rest makes double images but no step.
 
-<!-- try: thermal-history (new; P6b-DECISIONS item 6; not yet registered in live.ts). Place as a ::: try
-{#thermal-history} block here once built, and add thermal-history to the front matter's live list.
-Reader text (it must not give the answers): "Predict first: suppose the hot universe had twice as many kinds of
-particle as the Standard Model. Would today's graviton glow be warmer or colder than with the Standard Model alone?
-Drag the temperature from the Planck temperature down to today and watch what each line does at each annihilation.
-Then double the hot count and compare the graviton readout with your prediction. One line says what can be dragged."
-Controls. (1) Slider "temperature of the photons": log10 of T from 32.15 (1.42 × 10^32 K) down to 0.435 (2.7255 K),
-step 0.01, default 12.0. (2) Slider "hot count g*s at the gravitons' decoupling": 106.75 to 1000, step 0.25, default
-106.75, with a snap button "Standard Model" (106.75) and "twice" (213.5). (3) Switch "inflation after decoupling",
-default off. Arrow keys step each slider by one step, Page Up/Down by 1.0 (log10 T) or 10 (count), Home/End to the
-ends.
-Plot (diagram tut-universe-temperatures): horizontal axis log10 T from 32.15 (left) to 0.435 (right); vertical axis
-T a over today's photon value, 0 to 1.1. Photons: (3.909/g(T))^(1/3) above 5.9 × 10^9 K, then 1. Neutrinos: the
-photons' line down to 10^10 K, then flat at (4/11)^(1/3) = 0.7138. Gravitons: flat at (3.909/g_hot)^(1/3) across the
-whole axis; hidden when the inflation switch is on. g(T), stepped (places schematic, heights exact): g_hot (the
-second slider) above 2.0 × 10^15 K, so that the photon and graviton lines meet at the left edge (any species beyond
-the Standard Model's are taken to annihilate there with the top quark); then each value down to the temperature at
-which the named species annihilate: 96.25 to 1.2 × 10^15 K (W, Z, Higgs); 86.25 to 4.9 × 10^13 K (bottom); 75.75 to
-2.1 × 10^13 K (tau); 72.25 to 1.5 × 10^13 K (charm); 61.75 to 1.7 × 10^12 K (quarks and gluons confined into pions);
-17.25 to 1.2 × 10^12 K (muons and pions); 10.75 to 5.9 × 10^9 K (electrons); 3.909 below. A vertical marker at the
-slider's temperature.
-Readouts at the marker: g*s there; 1 + z = T / (2.7255 K × the photons' T a value); the three temperatures today,
-2.7255 K, 1.945 K and T_g = 2.7255 K × (3.909/g_hot)^(1/3). Readouts of the count: T_g, Delta N_eff = (8/7)(T_g /
-1.9454 K)^4, Omega_g = 6.619 × 10^-7 (T_g / 0.90507 K)^4 (H_0 = 67.4) and Omega_g h^2 = 3.007 × 10^-7 (T_g /
-0.90507 K)^4. With inflation on: T_g "none", Delta N_eff 0, Omega_g 0.
-Builder's checks (not for the reader's text): g_hot 106.75 gives T_g 0.9051 K, Delta N_eff 0.0535, Omega_g 6.62 ×
-10^-7, Omega_g h^2 3.01 × 10^-7; 213.5 gives 0.7184 K, 0.0212, 2.63 × 10^-7; 1000 gives 0.4293 K, 0.00271,
-3.35 × 10^-8. At T = 10^13 K the readout shows g*s 61.75 and 1 + z = 9.21 × 10^12; at 10^11 K, 10.75 and
-5.14 × 10^10; at 3000 K, 3.909 and 1101.
-Both themes; on a phone (390 px) the readouts stack under the plot. Until it exists, the registered planck-spectrum
-can stand in (recommended over hole-against-sky, which answers 11.3's question): its "Graviton sky" preset sets
-0.905 K and its slider reaches the 2.7255 K microwave sky, so a reader can compare the spectra, though not see the
-count of species. -->
+::: try {#thermal-history}
+The universe's thermal history from the Planck temperature to today: for the photons, the neutrinos and the
+gravitons, the temperature times the scale factor, $Ta$, in units of today's photons, against the photons'
+temperature, with a step at each annihilation. One slider sets the temperature, and the readouts give $g_{*s}$ and
+$1 + z$ there. The other sets the hot count $g_{*s}$ when the gravitons decoupled, with the buttons Standard Model and
+Twice; the switch Inflation after decoupling removes the gravitons. The readouts below give $T_g$,
+$\Delta N_{\rm eff}$ and $\Omega_g$ today.
+
+Predict first: suppose the hot universe had twice as many kinds of particle as the Standard Model. Would today's
+graviton glow be warmer or colder than with the Standard Model alone? Drag the temperature from the Planck temperature
+down to today and watch what each line does at each annihilation. Then press Twice and compare the graviton readout
+with your prediction.
+:::
 
 ::: check
 ### Q

@@ -88,6 +88,7 @@ import HoleAgainstSky from './live/HoleAgainstSky.svelte';
 import TidalFriction from './live/TidalFriction.svelte';
 import BlackHoleCamera from './live/BlackHoleCamera.svelte';
 import Inspiral from './live/Inspiral.svelte';
+import ThermalHistory from './live/ThermalHistory.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -466,5 +467,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'Two compact bodies spiralling together: their orbit, waves and time to merger, and their place on 0.1’s map',
 		component: Inspiral
+	},
+	'thermal-history': {
+		label:
+			'From the Planck temperature to today: the photons’, neutrinos’ and gravitons’ T a, and what the hot count leaves',
+		component: ThermalHistory
 	}
 };
