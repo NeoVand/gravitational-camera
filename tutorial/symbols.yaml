@@ -2870,3 +2870,51 @@ symbols:
     meaning: 'The paper''s amplitudes in $\mathcal W_\pm = \alpha^\pm\,\vect m\vect m^{\mathsf T}$, the parts of one wave''s reading at $e^{\mp i\omega t}$ in $\mathcal W(t) = \mathcal W_+e^{-i\omega t} + \mathcal W_-e^{i\omega t}$ (since $\mathcal W$ is complex, $\mathcal W_-$ is not the conjugate of $\mathcal W_+$). $\alpha^+$ belongs to the helicity $+2$ and $\alpha^-$ to $-2$; a wave of helicity $+2$ has $\mathcal W_+ = \tilde{\mathcal E}$. For the rotor seen at the inclination $\iota$, $|\alpha^+/\alpha^-| = \cot^4(\iota/2)$. (The paper''s $\alpha^\pm_a$ of its pencil; not chapter 8.3''s coherent state $\alpha$.)'
     chapter: '9.1'
     anchor: on-the-sky-a-quantity-of-spin-weight-s-begins-at-degree-s
+  - key: weyl-eigenvalue
+    title: Eigenvalue of the complex tidal table
+    tex: '\curv{w}_a'
+    role: curv
+    kind: Three complex numbers that add up to zero; in s⁻²
+    meaning: 'The paper''s eigenvalues $w_1$, $w_2$, $w_3$ of $\mathcal W$, the roots of $\lambda^3 - \tfrac12I\lambda - \tfrac13J$. Every observer, turned or moving, finds the same three. One mass gives $(GM/r^3)(1, 1, -2)$; a repeated eigenvalue is $w = -J/I$, positive for a single body. They are real for a scene at rest and complex when something in the scene moves or turns. (Not chapter 3.9''s place $w = x + iy$ on a camera''s plane.)'
+    chapter: '9.2'
+    anchor: two-complex-numbers-fix-the-eigenvalues-of-a-trace-free-three-by-three-table
+  - key: invariant-i
+    title: First invariant of a reading
+    tex: 'I'
+    role: none
+    kind: A complex number; in s⁻⁴
+    meaning: 'The paper''s $I = \mathrm{tr}\,\mathcal W^2 = w_1^2 + w_2^2 + w_3^2$, the same for every observer. With $J$ it fixes the eigenvalues, the roots of $\lambda^3 - \tfrac12I\lambda - \tfrac13J$. One mass gives $6(GM/r^3)^2$, $1.31 \times 10^{-16}\,\mathrm{s^{-4}}$ for a person a metre away; a single wave gives 0. In Part 9 a bare $I$ is always this invariant. (Not Stokes $I$, an intensity, a moment of inertia or a second moment $I_{ij}$.)'
+    chapter: '9.2'
+    anchor: two-complex-numbers-fix-the-eigenvalues-of-a-trace-free-three-by-three-table
+  - key: invariant-j
+    title: Second invariant of a reading
+    tex: 'J'
+    role: none
+    kind: A complex number; in s⁻⁶
+    meaning: 'The paper''s $J = \mathrm{tr}\,\mathcal W^3 = w_1^3 + w_2^3 + w_3^3 = 3\det\mathcal W$, the same for every observer. One mass gives $-6(GM/r^3)^3$. Two eigenvalues are equal exactly when $1 - 6J^2/I^3 = 0$, and then the repeated one is $-J/I$. (Not the current column $\mathbf J$ or a momentum density.)'
+    chapter: '9.2'
+    anchor: two-complex-numbers-fix-the-eigenvalues-of-a-trace-free-three-by-three-table
+  - key: complex-rotation
+    title: Complex rotation
+    tex: 'P'
+    role: none
+    kind: A 3×3 table of complex numbers with PᵀP = 1 and determinant 1
+    meaning: 'A table that keeps the dot product without conjugates, as turns and boosts do. Every one splits as $P = R_0e^{iK_0}$, a boost $e^{iK_0}$ followed by a real turn $R_0$, with $e^{2iK_0} = P^\dagger P$. A reading with three different eigenvalues is $\mathcal W = P\,\mathrm{diag}(w_1, w_2, w_3)\,P^{\mathsf T}$. (Not a power, a projector $P_{ij}$, a count distribution $P(n)$ or the bold super-Poynting vector $\mathbf P$.)'
+    chapter: '9.2'
+    anchor: every-complex-rotation-is-a-boost-followed-by-a-turn
+  - key: polar-turn
+    title: The turn of a complex rotation
+    tex: 'R_0'
+    role: none
+    kind: A real orthogonal 3×3 table
+    meaning: 'The real part left of a complex rotation $P$ once its boost is removed, $R_0 = Pe^{-iK_0}$. For a reading it holds three angles, the orientation of the field''s own axes. For two boosts of $0.6c$ at right angles it is a turn of $12.7°$, the Wigner rotation.'
+    chapter: '9.2'
+    anchor: every-complex-rotation-is-a-boost-followed-by-a-turn
+  - key: polar-boost
+    title: The boost of a complex rotation
+    tex: 'K_0'
+    role: none
+    kind: A real antisymmetric 3×3 table; a pure number
+    meaning: 'The table with $e^{2iK_0} = P^\dagger P$ for a complex rotation $P$, unique because a positive Hermitian table has one Hermitian logarithm. Written $K_0 = -\eta\,\hat u\cdot\mathbf L$, it makes $e^{iK_0}$ the boost of rapidity $\eta$ along $\hat u$; for a reading, the velocity of the field''s own rest frame.'
+    chapter: '9.2'
+    anchor: every-complex-rotation-is-a-boost-followed-by-a-turn

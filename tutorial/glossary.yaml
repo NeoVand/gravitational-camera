@@ -3711,3 +3711,67 @@ terms:
     definition: 'Sachs''s result that the field of a source at the distance $r$ splits by spin weight about the line of sight, the extreme weight falling as $1/r$, the next as $1/r^2$, the middle one as $1/r^3$, and so on. (Not chapter 5.6''s onion peeling.)'
     chapter: '9.1'
     anchor: on-the-sky-a-quantity-of-spin-weight-s-begins-at-degree-s
+  - term: complex symmetric table
+    definition: 'A table of complex numbers equal to its own transpose, $T^{\mathsf T} = T$, such as the paper''s $\mathcal W = \mathcal E + i\mathcal B$. Its eigenvectors of different eigenvalues are orthogonal without conjugates, but its eigenvalues may be complex, an eigenvector may be null, and it may not be diagonalizable.'
+    chapter: '9.2'
+    anchor: a-complex-symmetric-table-keeps-orthogonality-without-conjugates-and-loses-the-rest
+  - term: unconjugated product
+    definition: 'The product $\mathbf u\cdot\mathbf v = u_iv_i$ of two complex vectors with no conjugate, the one a complex symmetric table can be moved across. It is not a length: a null vector has $\mathbf m\cdot\mathbf m = 0$. Two vectors with $\mathbf u\cdot\mathbf v = 0$ are orthogonal in the unconjugated sense.'
+    chapter: '9.2'
+    anchor: a-complex-symmetric-table-keeps-orthogonality-without-conjugates-and-loses-the-rest
+  - term: complex orthogonal table
+    definition: 'A table $P$ with $P^{\mathsf T}P = 1$, which keeps the unconjugated product. Those of determinant 1 are the complex rotations, the turns and boosts.'
+    chapter: '9.2'
+    anchor: a-complex-symmetric-table-keeps-orthogonality-without-conjugates-and-loses-the-rest
+  - term: null eigenvector
+    definition: 'An eigenvector $\mathbf v$ with $\mathbf v\cdot\mathbf v = 0$, which no factor can scale to $\mathbf v\cdot\mathbf v = 1$; $\mathbf m$ is one for $\mathbf m\mathbf m^{\mathsf T}$.'
+    chapter: '9.2'
+    anchor: a-complex-symmetric-table-keeps-orthogonality-without-conjugates-and-loses-the-rest
+  - term: nilpotent
+    definition: 'Said of a table some power of which is zero. All its eigenvalues are zero. A wave''s reading has a zero square; the paper''s type III table has a zero cube.'
+    chapter: '9.2'
+    anchor: a-complex-symmetric-table-keeps-orthogonality-without-conjugates-and-loses-the-rest
+  - term: characteristic polynomial
+    definition: 'The polynomial $\det(\lambda - T)$ whose roots are the eigenvalues of $T$. For a trace-free $3\times3$ reading it is $\lambda^3 - \tfrac12I\lambda - \tfrac13J$.'
+    chapter: '9.2'
+    anchor: two-complex-numbers-fix-the-eigenvalues-of-a-trace-free-three-by-three-table
+  - term: "Newton's identities"
+    definition: 'The rules that turn sums of powers of the roots of a polynomial into its coefficients. For a trace-free $3\times3$ table they give $w_1w_2 + w_2w_3 + w_3w_1 = -\tfrac12I$ and $w_1w_2w_3 = \tfrac13J$.'
+    chapter: '9.2'
+    anchor: two-complex-numbers-fix-the-eigenvalues-of-a-trace-free-three-by-three-table
+  - term: discriminant
+    definition: 'The product of the squared differences of the roots of a polynomial, zero exactly when a root repeats. For the cubic of a reading it is $\tfrac12I^3 - 3J^2$, which is $\tfrac12I^3$ times $1 - 6J^2/I^3$.'
+    chapter: '9.2'
+    anchor: one-combination-of-the-two-numbers-marks-a-repeated-eigenvalue
+  - term: diagonalizable
+    definition: 'Said of a table that can be written $V\,\mathrm{diag}(\lambda_1, \dots)\,V^{-1}$, that is, one whose eigenvectors include a full set of independent directions. Every real symmetric table is; $\mathbf m\mathbf m^{\mathsf T}$ is not.'
+    chapter: '9.2'
+    anchor: a-complex-symmetric-table-keeps-orthogonality-without-conjugates-and-loses-the-rest
+  - term: minimal polynomial
+    definition: 'The polynomial of lowest degree, with leading coefficient 1, that a table satisfies when its powers are put in for the variable. Its roots are the eigenvalues, and the table is diagonalizable exactly when none repeats: $(\mathcal W - w)(\mathcal W + 2w)$ for one mass, $\mathcal W^2$ for one wave. A nonzero $(\mathcal W - w)(\mathcal W + 2w)$ with $w = -J/I$ marks type II.'
+    chapter: '9.2'
+    anchor: six-shapes-told-apart-by-what-the-tables-powers-do
+  - term: Cayley–Hamilton theorem
+    definition: 'Every square table satisfies its own characteristic polynomial. For a trace-free $3\times3$ reading, $\mathcal W^3 - \tfrac12I\mathcal W - \tfrac13J = 0$, so $I = J = 0$ forces $\mathcal W^3 = 0$.'
+    chapter: '9.2'
+    anchor: six-shapes-told-apart-by-what-the-tables-powers-do
+  - term: Jordan block
+    definition: 'A square table with one eigenvalue along its diagonal, 1 on the line directly above it and 0 elsewhere. A block larger than one has a single eigenvector.'
+    chapter: '9.2'
+    anchor: six-shapes-told-apart-by-what-the-tables-powers-do
+  - term: Jordan form
+    definition: 'The form of a table in its best axes: Jordan blocks along the diagonal. The six shapes of a reading have blocks of sizes 1, 1, 1 (types I, D, O), 2 and 1 (II, N) and 3 (III). Two complex symmetric tables with the same Jordan form are carried into each other by a complex orthogonal table (Gantmacher).'
+    chapter: '9.2'
+    anchor: six-shapes-told-apart-by-what-the-tables-powers-do
+  - term: Takagi decomposition
+    definition: 'The singular value decomposition of a complex symmetric table written with one unitary table, $\mathcal W = U\Sigma U^{\mathsf T}$. Its singular values are not the sizes of the eigenvalues: a wave has singular values $|\mathcal W|$, 0, 0 and every eigenvalue zero.'
+    chapter: '9.2'
+    anchor: singular-values-are-not-the-sizes-of-the-eigenvalues
+  - term: pencil
+    definition: 'The family $A - \lambda B$ of two square tables for every number $\lambda$. Its generalized eigenvalues are the roots of $\det(A - \lambda B)$.'
+    chapter: '9.2'
+    anchor: a-pencil-of-two-tables-has-generalized-eigenvalues
+  - term: generalized eigenvalue
+    definition: 'A number $\lambda$ for which some nonzero $\mathbf x$ has $A\mathbf x = \lambda B\mathbf x$, a root of $\det(A - \lambda B)$. For two tables built from the same three squares, $\sum_a\alpha_a\mathbf m_a\mathbf m_a^{\mathsf T}$ and $\sum_a\beta_a\mathbf m_a\mathbf m_a^{\mathsf T}$, they are the ratios $\alpha_a/\beta_a$.'
+    chapter: '9.2'
+    anchor: a-pencil-of-two-tables-has-generalized-eigenvalues
