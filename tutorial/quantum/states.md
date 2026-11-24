@@ -6,7 +6,7 @@ part: '8'
 requires: ['1.5b', '1.7', '2.3', '3.1']
 paper: [sec:near-field, sec:holography, sec:second-order, sec:first-image]
 figures: []
-live: []
+live: [two-paths]
 depth: A
 ---
 
@@ -22,19 +22,10 @@ imagine a bar that is in both safes at once, which is not the same as a bar in o
 is a superposition of two places, and why does a camera that learns the place end it? We build the answer from a
 particle that can go two ways.
 
-<!-- diagram: tut-quantum-hero — The hero of Part 8 as a whole, drawn once for the part and shown at the head of each of
-its chapters (8.2 to 8.7 show it too). It tells the part's story, that the camera's objects are quantum and nearly
-always behave classically, not this chapter's; this chapter's own scene is diagram tut-mass-two-places. In the stone
-pipeline of the paper's 3D figures (FIGURE_WORKFLOW.md), about 680 × 380 px at 1440 and full width on a phone. Left:
-the steel ball of radius 10 cm of chapter 4.1, in polished stone, beside a second copy of itself drawn cold and
-frosted. Right of each ball, its lowest quadrupole mode drawn as a ladder of evenly spaced thin horizontal levels
-(spacing ħω, a few dozen drawn, the ladder fading upward to show that it continues). On the warm ball's ladder the
-levels are filled up to a soft band labelled "about 4 × 10⁸ quanta at 300 K" (chapter 4.1's k_BT/ħω = 4.2 × 10⁸ at
-15 kHz); on the cold ball's ladder only the lowest level is filled, labelled "zero point, ½ħω". No orange or blue
-(they mean stretch and squeeze). Labels beside the ladders, never on a level. Caption: "Look first at the two ladders:
-the same ball holds hundreds of millions of quanta in its ringing at room temperature and almost none when cold. The
-camera's objects are quantum, and nearly always behave classically. The ladder's levels are schematic; chapter 8.3
-derives them." -->
+![Look first at the two ladders: the same ball holds hundreds of millions of quanta in its ringing at room
+temperature and almost none when cold. The camera's objects are quantum, and nearly always behave classically. The
+ladder's levels are schematic, and broken where hundreds of millions of them are left out; chapter 8.3 derives
+them.](tut-quantum-hero){#fig:quantum-hero}
 
 ::: plain
 In quantum mechanics the state of a thing is a list of complex numbers, one for each way a measurement of it could come
@@ -145,19 +136,12 @@ Making path $L$ longer multiplies its amplitude by $e^{i\phi}$, where the phase 
 grows with the extra length ([the wave function](#a-particle-on-a-line-is-described-by-a-wave-function) gives the rule).
 This is the unitary table $D = \mathrm{diag}(e^{i\phi}, 1)$, and because $e^{i\phi}$ is real only for a whole or a half
 turn, it is one reason that amplitudes must be complex, whichever table the mirror is given. A mirror, a delay on path
-$L$ and a second mirror make a **Mach–Zehnder interferometer**, an **interferometer** being any instrument that splits a
-wave and brings the parts together again.
+$L$ and a second mirror make a **Mach–Zehnder interferometer** (Figure [](#fig:mach-zehnder)), an **interferometer**
+being any instrument that splits a wave and brings the parts together again.
 
-<!-- diagram: tut-mach-zehnder — One panel, about 560 × 300 px at 1440 (full width on a phone). A thin ink arrow enters
-from the left along a horizontal line labelled "L in". It meets the first half-silvered mirror (a short thick grey line
-at 45°), from which two paths leave: path L straight on, then turned down by a full mirror (short black line), and
-path R reflected upward, then turned right by a second full mirror, forming a rectangle. On path L a small light-grey
-plate labelled "delay φ". The two paths meet at the second half-silvered mirror at the far corner, from which two exits
-leave, labelled "exit L" and "exit R", each ending at a small detector glyph. Beside the panel, a small plot of
-P_R = cos²(φ/2) for φ from 0 to 2π (ink line, pure numbers on the axes, ticks at 0, π, 2π), with P_L = sin²(φ/2) as a
-dashed line. No orange or blue. Labels beside the paths, never on them. Caption: "Look first at the second mirror,
-where the two paths meet. A particle sent in along L leaves along R with the probability cos²(φ/2): every time when
-the delay is zero, never when it is half a turn." -->
+![Look first at the second mirror, where the two paths meet. A particle sent in along $L$ leaves along $R$ with the
+probability $\cos^2(\phi/2)$: every time when the delay is zero, never when it is half a turn. The dashed line is
+$P_L = \sin^2(\phi/2)$.](tut-mach-zehnder){#fig:mach-zehnder}
 
 A particle enters along $L$. The first mirror makes $U|L\rangle$, the delay turns the amplitude on $L$, and the second
 mirror mixes the two amplitudes again:
@@ -193,16 +177,11 @@ $$P_R = \frac14 + \frac14 + \frac12\cos\phi .$$
 
 Each path alone contributes $\tfrac14$. The last term, the **interference term**, comes from adding amplitudes before
 squaring, and it holds the whole dependence on $\phi$. It can be negative, and at $\phi = \pi$ it cancels the two
-quarters: this is the dark exit that no list of probabilities could give.
+quarters: this is the dark exit that no list of probabilities could give (Figure [](#fig:amplitude-arrows)).
 
-<!-- diagram: tut-amplitude-arrows — Two small panels side by side, about 560 × 260 px at 1440 (stacked on a phone),
-each a complex plane with thin grey axes. Left, "φ = 0": two equal ink arrows of length ½, both pointing straight up
-(each is i/2), drawn head to tail, reaching i; a thicker arrow from the origin to i, labelled "sum, length 1". Right,
-"φ = π": the first arrow i e^{iπ}/2 = −i/2 points down, the second i/2 points up from its head, and the sum returns to
-the origin, marked with a small open circle labelled "sum 0". Below each panel the probability as a squared length:
-"P_R = 1" and "P_R = 0", and in smaller type "each arrow alone: ¼". No orange or blue. Caption: "Look first at the
-right panel: the amplitudes of the two paths point opposite ways and cancel, although each alone would give a
-probability of a quarter. Amplitudes add; their squared lengths are the probabilities." -->
+![Look first at the right panel: the amplitudes of the two paths point opposite ways and cancel, although each alone
+would give a probability of a quarter. Amplitudes add; their squared lengths are the probabilities. Arrows that would
+lie on one another are drawn side by side.](tut-amplitude-arrows){#fig:amplitude-arrows}
 
 **A limit.** Block path $R$ with an absorber. The particle then reaches the second mirror only along $L$, with the
 amplitude $e^{i\phi}/\sqrt2$, and leaves along each exit with an amplitude of size $\tfrac12$, so with the probability
@@ -325,24 +304,17 @@ For a body much heavier than the mass, $\matter m/\matter M \to 0$, the body sta
 $12G\matter md^2/r^5$.
 :::
 
-<!-- diagram: tut-mass-two-places — One panel, about 560 × 340 px at 1440 (full width on a phone). Left: a grey wall
-(light hatching). Behind it a small ball (matter colour) drawn twice, solid and outlined, a distance d apart along a
-horizontal line, each inside a thin ring (the trap that holds it), with a bracket "d"; one line of type beneath:
-"(|L⟩ + |R⟩)/√2". Right, outside the wall at a marked distance "r", a pixel: a ring of free balls drawn twice,
-overlaid, as two very slightly different ellipses labelled "|e_L⟩" and "|e_R⟩" (the difference hugely exaggerated).
-Below the scene, a strip of three small fringe plots, P_R against φ: overlap 1 (full swing from 0 to 1), overlap 0.5
-(from 0.25 to 0.75) and overlap 0 (flat at ½), each labelled with its overlap ⟨e_R|e_L⟩. Ink lines; no orange or blue.
-Caption: "Look first at the two rings, the pixel's two possible readings. The more they differ, the smaller their
-overlap and the shallower the fringes when the mass's two places are brought together. A ring that tells the places
-apart leaves no fringes. The rings' difference is hugely exaggerated." -->
+![Look first at the two rings, the pixel's two possible readings. The more they differ, the smaller their overlap
+$\langle e_R|e_L\rangle$ and the shallower the fringes when the mass's two places are brought together. A ring that
+tells the places apart leaves no fringes. The rings' difference is hugely exaggerated.](tut-mass-two-places){#fig:mass-two-places}
 
-Now let anything outside the wall, such as a pixel's masses, end in the state $\sym{record-state}{|e_L\rangle}$ if
-the mass is at $L$ and $|e_R\rangle$ if it is at $R$, each of length one. The rule for two things, a further
-postulate, is that the state of the mass and the record is a column with one amplitude for each pair of outcomes. When
-each is in a state of its own, the amplitude of a pair is the product of their two amplitudes, and we write the product
-as $|L\rangle|e_L\rangle$. The bracket of two products is then the product of the brackets,
-$\langle L\,e|R\,e'\rangle = \langle L|R\rangle\langle e|e'\rangle$, because each term of the sum over pairs is a term of
-the one bracket times a term of the other.
+Now let anything outside the wall, such as a pixel's masses, end in the state $\sym{record-state}{|e_L\rangle}$ if the
+mass is at $L$ and $|e_R\rangle$ if it is at $R$, each of length one (Figure [](#fig:mass-two-places)). The rule for two
+things, a further postulate, is that the state of the mass and the record is a column with one amplitude for each pair
+of outcomes. When each is in a state of its own, the amplitude of a pair is the product of their two amplitudes, and we
+write the product as $|L\rangle|e_L\rangle$. The bracket of two products is then the product of the brackets, $\langle
+L\,e|R\,e'\rangle = \langle L|R\rangle\langle e|e'\rangle$, because each term of the sum over pairs is a term of the one
+bracket times a term of the other.
 
 Take first a record with two outcomes, $|0\rangle = (1, 0)$ and $|1\rangle = (0, 1)$, and let $|e_L\rangle = (1, 0)$ and
 $|e_R\rangle = (\cos\theta, \sin\theta)$, where the angle $\theta$ sets how different the two records are. With the
@@ -412,23 +384,16 @@ field in empty space limits what a camera can learn in the time available. Whene
 recombining the mass radiates the record away, so the fringes are lost whether or not it looks.[^slow] Chapter 13.8
 returns to decoherence by gravity.
 
-<!-- try: two-paths (a new interactive figure, TwoPaths, on an engine that multiplies the tables U, diag(e^{iφ}, 1), U
-of the interferometer section for a particle entering along L, with the record |e_L⟩ = (1, 0), |e_R⟩ = (cos θ, sin θ)
-of the record section's four-entry example, and is checked against P_R = ½(1 + cos θ cos φ),
-P_L = ½(1 − cos θ cos φ): with cos θ = 1 and φ = 0, π/2, π it gives P_R = 1, 0.5, 0; with cos θ = 0.5, 0.75, 0.5,
-0.25; with cos θ = 0, 0.5 at every φ; with path R blocked, 0.25 at each exit at every φ) — Left, about 420 × 300 px:
-the interferometer of diagram tut-mach-zehnder, the delay on path L drawn as a plate whose thickness follows φ, and a
-bar at each exit showing P_L and P_R. Right, about 300 × 300 px: the complex plane with the two amplitudes that reach
-exit R, ie^{iφ}/2 by way of L and i/2 by way of R, drawn head to tail with their sum; below it one line, "interference
-term ½ cos φ × overlap = …". Under both, a small plot of P_R against φ from 0 to 2π for the current overlap, with the
-current φ marked. Controls: a slider for φ from 0 to 2π (steps of π/12); a slider "record of the path" setting the
-overlap cos θ from 1 (no record) to 0 (perfect record); a button "block path R". Readouts: P_L and P_R to two
-decimals, the overlap, the swing of the fringes. Opens at φ = π/3 with overlap 1 (P_R = 0.75). Predict first: "With a
-perfect record of the path, what is the probability at exit L when φ = 0, where without a record it is zero?"
-(Answer: ½, and ½ at every delay.) Then: "Set the record half-way, overlap 0.5. How deep are the fringes?" (Answer:
-P_R swings between 0.25 and 0.75, a swing of 0.5, the overlap.) Then: "Block path R. What is left?" (Answer: ¼ at each
-exit at every delay; half of the particles are absorbed.) Keyboard: Tab reaches the sliders and the button, arrows
-step them, shift for larger steps; both themes; on a phone the panels stack. -->
+::: try {#two-paths}
+The interferometer of Figure [](#fig:mach-zehnder), with the delay on path $L$ and a bar at each exit for its
+probability. Beside it, the complex plane holds the two amplitudes that reach exit $R$, drawn head to tail with their
+sum, and below both, the fringes of $P_R$ against the delay. Sliders set the delay $\phi$ and how good a record of the
+path the outside keeps, from none (overlap 1) to a perfect one (overlap 0); a button blocks path $R$. The tables are
+multiplied as in the last two sections, and the readouts give both exit probabilities and the swing of the fringes.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, set the
+overlap to 0.5 and say which part of the amplitude at exit $R$ no longer adds to the other path's.
+:::
 
 ::: check
 ### Q
