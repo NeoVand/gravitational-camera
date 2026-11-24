@@ -3118,3 +3118,35 @@ symbols:
     meaning: 'Section VIII''s $|\mathcal W|/\sigma_n$ for the whole reading, with $\sigma_n$ the noise on each of the ten numbers in an orthonormal basis. Its parts are $\rho_\pm$ for the two frequency parts of a cycle ($\rho_+^2 + \rho_-^2 = \rho^2$) and $\rho_E = |\mathcal E|/\sigma_n$ for the tide alone, $\rho/\sqrt2$ for a wave. One pixel places one wave to $1/\rho$ radian in each direction, a sensor of light to $\sqrt2/\rho$. (Not a density, which is also $\rho$.)'
     chapter: '9.7'
     anchor: one-waves-direction-is-known-to-1ρ-a-factor-2-better-than-lights
+  - key: field-snr
+    title: Signal-to-noise ratio of the tide
+    tex: '\rho_E'
+    role: none
+    kind: A pure number
+    meaning: 'In Section VIII''s depth bounds, the size of the tide read by a pixel and its neighbours over its noise. Seven pixels averaged give $\rho_E = \sqrt7\,\rho$. With $\rho_G$ it gives the range, $(\sigma_r/r)^2 = 1/\rho_E^2 + 1/\rho_G^2$.'
+    chapter: R9b
+    anchor: the-neighbours-range-a-mass-to-a-part-in-a-million-and-masses-on-one-line-read-as-one
+  - key: gradient-snr
+    title: Signal-to-noise ratio of the gradient of the tide
+    tex: '\rho_G'
+    role: none
+    kind: A pure number
+    meaning: 'The size of the gradient of the tide over its noise, read by differences between a pixel''s neighbours at the distance $b$: $\rho_G = \sqrt{30}\,\rho b/r$ for a mass at the distance $r$. It usually sets the range, $\sigma_r/r \approx 1/\rho_G$: 1.3 × 10⁻⁶ for a person 3 m away read to 10⁻¹⁶ s⁻² with neighbours 10 cm away.'
+    chapter: R9b
+    anchor: the-neighbours-range-a-mass-to-a-part-in-a-million-and-masses-on-one-line-read-as-one
+  - key: magnetic-snr
+    title: Signal-to-noise ratio of the magnetic part
+    tex: '\rho_B'
+    role: none
+    kind: A pure number
+    meaning: 'The size of the magnetic part of the tide over its noise. Near a mass crossing the line of sight at $v_\perp$ it is $(\sqrt3\,v_\perp/c)\rho$, and a lone pixel ranges the mass to $\sigma_r/r = 1/\rho_B$ (the paper''s eq:magnetic-range): 0.034 for a person walking at 1.4 m/s, 3 m away, read at $\rho = 4.2\times10^6$, so no range at all.'
+    chapter: R9b
+    anchor: the-neighbours-range-a-mass-to-a-part-in-a-million-and-masses-on-one-line-read-as-one
+  - key: effective-depth
+    title: Effective depth of bodies on one line
+    tex: 'r_{\rm eff}'
+    role: none
+    kind: A length, in metres
+    meaning: 'The single distance at which the tide and its gradient place several bodies on one line through the pixel: $\sum_iM_ir_i^{-3}/\sum_iM_ir_i^{-4}$, weighted toward the nearer. Two equal masses $\Delta$ apart, centred at $r$, read as one at $r - \Delta^2/r$.'
+    chapter: R9b
+    anchor: the-neighbours-range-a-mass-to-a-part-in-a-million-and-masses-on-one-line-read-as-one
