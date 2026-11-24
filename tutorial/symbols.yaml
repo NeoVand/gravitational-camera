@@ -2382,3 +2382,67 @@ symbols:
     meaning: 'The strength of the part of a burst''s pattern that is stronger along an axis than across it, $\mathrm dE/\mathrm d\Omega'' = (E/4\pi)[1 + q\,P_2(\cos\theta'')]$; it leaves the memory $(qGE/2c^4r)\sin^2\theta$. (Not chapter 3.7''s $q = kz$.)'
     chapter: '7.8'
     anchor: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good
+  - key: quantum-state
+    title: Quantum state (a ket)
+    tex: '|\psi\rangle'
+    role: none
+    kind: A column of complex amplitudes of length one; no unit
+    meaning: 'The quantum state of a system: one complex amplitude for each outcome of a complete measurement, with the squared sizes adding to one. For a particle that can take path $L$ or $R$ it is $|\psi\rangle = \psi_L|L\rangle + \psi_R|R\rangle$. An overall factor $e^{i\alpha}$ changes nothing. (Not chapter 1.7''s classical state, a point of phase space.)'
+    chapter: '8.1'
+    anchor: a-quantum-state-is-a-list-of-complex-amplitudes
+  - key: amplitude
+    title: Amplitude of an outcome
+    tex: '\psi_L'
+    role: none
+    kind: A complex number; no unit
+    meaning: 'One entry of a quantum state, here the amplitude for the path $L$, $\psi_L = \langle L|\psi\rangle$. Its squared modulus is the probability of the outcome (the Born rule). Amplitudes of two ways to the same outcome add before they are squared, so they can cancel.'
+    chapter: '8.1'
+    anchor: a-quantum-state-is-a-list-of-complex-amplitudes
+  - key: bra
+    title: Bra
+    tex: '\langle\chi|'
+    role: none
+    kind: A row of complex numbers; no unit
+    meaning: 'The row of the conjugated entries of the state $|\chi\rangle$. A bra times a ket is a bracket, $\langle\chi|\psi\rangle = \sum_i\chi_i^*\psi_i$.'
+    chapter: '8.1'
+    anchor: a-quantum-state-is-a-list-of-complex-amplitudes
+  - key: bracket
+    title: Bracket of two states
+    tex: '\langle\chi|\psi\rangle'
+    role: none
+    kind: A complex number; no unit
+    meaning: 'Dirac''s product of two states, $\sum_i\chi_i^*\psi_i$, with the first factor conjugated: chapter 1.5b''s Hermitian product $\psi\cdot\chi^*$ written the other way round. Its squared modulus is the probability that a measurement asking "is it in $|\chi\rangle$?" says yes; it is one for a state with itself and zero for orthogonal states.'
+    chapter: '8.1'
+    anchor: a-quantum-state-is-a-list-of-complex-amplitudes
+  - key: unitary-table
+    title: Beam splitter (a unitary table)
+    tex: 'U'
+    role: none
+    kind: A 2 × 2 table of complex numbers with U†U = 1; no unit
+    meaning: 'The half-silvered mirror as a table that multiplies the state, $U = \tfrac{1}{\sqrt2}\bigl(\begin{smallmatrix}1 & i\\ i & 1\end{smallmatrix}\bigr)$: through with the amplitude $1/\sqrt2$, reflected with $i/\sqrt2$, a choice that treats both arrivals alike (a real table would also do). A unitary table keeps every bracket, so probabilities still add to one. (Not chapter 1.2''s potential energy $U$.)'
+    chapter: '8.1'
+    anchor: amplitudes-add-so-two-paths-can-cancel
+  - key: path-phase
+    title: Phase of a delay
+    tex: '\phi'
+    role: none
+    kind: An angle; in radians
+    meaning: 'The phase $e^{i\phi}$ that a longer path $L$ gives its amplitude, $\phi = 2\pi\ell/\lambda$ for an extra length $\ell$. In a Mach–Zehnder interferometer the particle leaves along $R$ with the probability $\cos^2(\phi/2)$.'
+    chapter: '8.1'
+    anchor: amplitudes-add-so-two-paths-can-cancel
+  - key: wave-function
+    title: Wave function
+    tex: '\psi(x)'
+    role: none
+    kind: A complex function of position; in m^(−1/2) on a line
+    meaning: 'The amplitudes of a particle''s positions: the probability of finding it between $x$ and $x + \mathrm dx$ is $|\psi(x)|^2\,\mathrm dx$. A particle of momentum $p$ and energy $E$ is the ripple $e^{i(px - Et)/\hbar}$, of wavelength $2\pi\hbar/p$. (Not chapter 2.5''s null-space potential $\psi$.)'
+    chapter: '8.1'
+    anchor: a-particle-on-a-line-is-described-by-a-wave-function
+  - key: record-state
+    title: States of a record
+    tex: '|e_L\rangle,\ |e_R\rangle'
+    role: none
+    kind: Two quantum states of length one, of whatever outside the mass keeps a record
+    meaning: 'The states in which a pixel''s masses, a graviton or anything else outside ends when the mass is at $L$ or at $R$. They multiply the interference term by their overlap: $P_R = \tfrac12[1 + \mathrm{Re}(\langle e_R|e_L\rangle e^{i\phi})]$, so a perfect record, $\langle e_R|e_L\rangle = 0$, leaves no fringes.'
+    chapter: '8.1'
+    anchor: a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records

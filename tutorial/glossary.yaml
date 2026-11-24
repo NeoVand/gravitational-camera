@@ -3213,3 +3213,75 @@ terms:
     definition: 'A lasting offset in the time integral of the strain after a burst, the partner of the memory. For a pair that does not precess it goes as $\sin^2\iota\cos\iota$ and records which way the pair turned.'
     chapter: '7.8'
     anchor: the-waves-own-energy-leaves-a-memory-too
+  - term: quantum state
+    definition: 'The state of a system in quantum mechanics: a list of complex amplitudes, one for each outcome of a complete measurement, whose squared sizes add to one. It gives the probability of every outcome, not the value of any quantity. (Not chapter 1.7''s classical state, a point of phase space.)'
+    chapter: '8.1'
+    anchor: a-quantum-state-is-a-list-of-complex-amplitudes
+  - term: amplitude (quantum)
+    definition: 'A complex number in a quantum state, one for each outcome; its squared size is the probability of that outcome. Amplitudes of two ways to the same outcome add before they are squared.'
+    chapter: '8.1'
+    anchor: a-quantum-state-is-a-list-of-complex-amplitudes
+  - term: ket and bra
+    definition: 'Dirac''s names for a state written as a column, $|\psi\rangle$, and as the row of its conjugated entries, $\langle\chi|$. A bra times a ket is the bracket $\langle\chi|\psi\rangle = \sum_i\chi_i^*\psi_i$, which conjugates the first factor.'
+    chapter: '8.1'
+    anchor: a-quantum-state-is-a-list-of-complex-amplitudes
+  - term: Born rule
+    definition: 'The rule that a measurement asking whether a system in the state $|\psi\rangle$ is in the state $|\chi\rangle$ says yes with the probability $|\langle\chi|\psi\rangle|^2$.'
+    chapter: '8.1'
+    anchor: probabilities-are-the-squared-sizes-of-amplitudes
+  - term: overall phase and relative phase
+    definition: 'A factor $e^{i\alpha}$ on every amplitude of a state is an overall phase and changes no probability. A factor on one amplitude only is a relative phase, and it changes how the amplitudes add when two paths meet.'
+    chapter: '8.1'
+    anchor: probabilities-are-the-squared-sizes-of-amplitudes
+  - term: half-silvered mirror (beam splitter)
+    definition: 'A plate that lets half of the light falling on it through and reflects the other half. For one particle the tutorial writes it as the unitary table $\tfrac{1}{\sqrt2}\bigl(\begin{smallmatrix}1 & i\\ i & 1\end{smallmatrix}\bigr)$, which treats both arrivals alike; a real table such as $\tfrac{1}{\sqrt2}\bigl(\begin{smallmatrix}1 & 1\\ 1 & -1\end{smallmatrix}\bigr)$ would also do.'
+    chapter: '8.1'
+    anchor: a-quantum-state-is-a-list-of-complex-amplitudes
+  - term: unitary
+    definition: 'A table $U$ of complex numbers with $U^\dagger U = 1$, where $U^\dagger$ is its conjugate transpose. It keeps every bracket of two states, so lengths stay one and probabilities still add to one.'
+    chapter: '8.1'
+    anchor: amplitudes-add-so-two-paths-can-cancel
+  - term: interferometer
+    definition: 'An instrument that splits a wave or a particle and brings the parts together again. In a Mach–Zehnder interferometer, two half-silvered mirrors with a delay $\phi$ between them, a particle leaves one exit with the probability $\cos^2(\phi/2)$.'
+    chapter: '8.1'
+    anchor: amplitudes-add-so-two-paths-can-cancel
+  - term: interference term
+    definition: 'The part of a probability that comes from adding two amplitudes before squaring, $2\,\mathrm{Re}(a^*b)$ in $|a + b|^2$. It can be negative, so two ways to the same outcome can cancel.'
+    chapter: '8.1'
+    anchor: amplitudes-add-so-two-paths-can-cancel
+  - term: superposition of states
+    definition: 'A quantum state that is a sum of other states with complex amplitudes, such as a particle on two paths at once. It is not ignorance of which state holds: its parts interfere, while a mixture''s do not. (Not chapter 1.2''s superposition of fields.)'
+    chapter: '8.1'
+    anchor: amplitudes-add-so-two-paths-can-cancel
+  - term: mixture
+    definition: 'A system that is in one of several states with given probabilities, as a particle on one path that we do not know. Its probabilities add, so it shows no interference.'
+    chapter: '8.1'
+    anchor: amplitudes-add-so-two-paths-can-cancel
+  - term: state of definite energy
+    definition: 'A quantum state in which a measurement of the energy gives the same value $E$ every time. It evolves as $e^{-iEt/\hbar}$, an overall phase that turns at the angular frequency $E/\hbar$.'
+    chapter: '8.1'
+    anchor: a-state-of-definite-energy-turns-at-a-rate-set-by-its-energy
+  - term: wave function
+    definition: 'The amplitudes of a particle''s positions, a complex function $\psi(x)$ with $|\psi(x)|^2$ the probability density of finding it at $x$.'
+    chapter: '8.1'
+    anchor: a-particle-on-a-line-is-described-by-a-wave-function
+  - term: de Broglie wavelength
+    definition: 'The wavelength $\lambda = 2\pi\hbar/p$ of the wave function of a particle of momentum $p$: 0.18 nm for a neutron at room temperature, $6.6\times10^{-28}$ m for a gram moving at a millimetre a second.'
+    chapter: '8.1'
+    anchor: a-particle-on-a-line-is-described-by-a-wave-function
+  - term: wave packet
+    definition: 'A sum of ripples with nearby wavenumbers that is large only in one region: a particle that is somewhere, where a single ripple of definite momentum is equally likely to be anywhere.'
+    chapter: '8.1'
+    anchor: a-particle-on-a-line-is-described-by-a-wave-function
+  - term: which-path information
+    definition: 'A record, kept by anything outside, of which way a particle or a mass went. It multiplies the interference term by the overlap $\langle e_R|e_L\rangle$ of the two possible records, and a perfect record removes the interference.'
+    chapter: '8.1'
+    anchor: a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records
+  - term: environment
+    definition: 'In quantum mechanics, the many things outside a system that touch it (air, light, fields) and can keep records of its state.'
+    chapter: '8.1'
+    anchor: a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records
+  - term: decoherence
+    definition: 'The loss of interference when the environment keeps records of which state a system is in: the overlaps of the records of its many parts multiply and fall quickly to zero. A perfect camera is a perfect source of it.'
+    chapter: '8.1'
+    anchor: a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records
