@@ -3374,3 +3374,27 @@ symbols:
     meaning: 'The gravitational power a sphere without internal friction sends from its surface, where a wave launches sound: the paper''s $4\pi R^2(\pi^2/24)(1 + 3c_T/2c_L)G\rho c_T^3(k_BT)^2/\hbar c^5$, after Dehnen, Romero and Schäfer, growing as $T^2$. A steel ball of 10 cm sends $10^{-46}$ W.'
     chapter: '10.3'
     anchor: ordinary-bodies-glow-through-their-volume-not-their-surface
+  - key: count-friction
+    title: Count-equivalent friction
+    tex: '\matter{\eta_N}'
+    role: matter
+    kind: A number; in pascal seconds
+    meaning: 'The constant friction that would send as many gravitons as a material''s real friction $\mathrm{Re}\,\eta(\omega)$ does. The paper''s scenes give each material this one number, from which $j_N = 16G\eta_N\sigma_{\rm SB}T^3/(2.70\,k_Bc^3)$. For iron''s electrons at their ceiling, $\eta_N = (\hbar\Delta\mu/2k_BT)(\pi^2/6)/2\zeta(3) = 1.08\times10^{-3}$ Pa s at 293 K, and $1.09\times10^{-3}$ Pa s with iron''s phonon pairs.'
+    chapter: R10
+    anchor: the-closed-furnace-from-the-friction-of-iron-to-a-count-of-gravitons
+  - key: common-glow
+    title: Common glow of the closed furnace
+    tex: 'g'
+    role: none
+    kind: A pure number
+    meaning: 'The glow that the walls and the floor add to a line of sight through either furnace, in units of the cold block''s own glow along it. With $g = 0.67$ the hot block''s 26-fold count reads as $(26.2 + g)/(1 + g) = 16$ times the cold one.'
+    chapter: R10
+    anchor: the-closed-furnace-from-the-friction-of-iron-to-a-count-of-gravitons
+  - key: resistivity
+    title: Resistivity
+    tex: '\rho_e'
+    role: none
+    kind: A number for each material; in ohm metres
+    meaning: 'The electric field needed to drive a unit of current density through a material. In Drude''s picture it sets the collision time of the free electrons, $\tau = m/ne^2\rho_e$: $1.5\times10^{-16}$ s for the Earth''s liquid core at about $1\ \mu\Omega$ m, and $2.5\times10^{-14}$ s for copper at $1.68\times10^{-8}\ \Omega$ m. (Not the density $\rho$.)'
+    chapter: R10
+    anchor: free-electrons-give-copper-its-friction-and-iron-a-ceiling

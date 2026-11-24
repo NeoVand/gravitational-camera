@@ -4099,3 +4099,15 @@ terms:
     definition: 'The distance $\ell_s = Q\hbar c_T/k_BT$ that a thermal phonon travels before it is damped, about a nanometre in ordinary solids at room temperature.'
     chapter: '10.3'
     anchor: ordinary-bodies-glow-through-their-volume-not-their-surface
+  - term: count-equivalent friction
+    definition: 'The friction, the same at every frequency, that would make a body send as many gravitons as its real friction does. It weights low frequencies more than the effective friction, which matches the power: for iron at 293 K, its electrons at their ceiling, it is $1.09\times10^{-3}$ Pa s, against an effective friction of $5.9\times10^{-4}$ Pa s.'
+    chapter: R10
+    anchor: the-closed-furnace-from-the-friction-of-iron-to-a-count-of-gravitons
+  - term: common glow
+    definition: 'In the closed furnace, the glow of the steel walls and the floor, which lines of sight through both furnaces receive alike. It is about two-thirds of the cold block''s own glow, and it brings the hot block''s 26-fold count down to the sixteen times that a pixel reads.'
+    chapter: R10
+    anchor: the-closed-furnace-from-the-friction-of-iron-to-a-count-of-gravitons
+  - term: resistivity
+    definition: 'The electric field needed to drive a unit of current density through a material, in ohm metres. In Drude''s picture, where collisions stop the electrons'' drift at the rate $1/\tau$, it gives their collision time $\tau = m/ne^2\rho_e$: $2.5\times10^{-14}$ s for copper, and a fraction of a femtosecond in the Earth''s core.'
+    chapter: R10
+    anchor: free-electrons-give-copper-its-friction-and-iron-a-ceiling
