@@ -57,6 +57,7 @@ import LorentzDiagram from './live/LorentzDiagram.svelte';
 import MovingSky from './live/MovingSky.svelte';
 import MassShell from './live/MassShell.svelte';
 import ComplexField from './live/ComplexField.svelte';
+import LongestPath from './live/LongestPath.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -263,6 +264,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			"Light at one point as one complex vector: boost or turn the sensor and watch E and cB mix while the invariant F·F stays, find the frame where the fields are parallel, and follow light's two special directions",
 		component: ComplexField
+	},
+	'longest-path': {
+		label:
+			"The tossed clock: shape a path between a throw and a catch and compare the proper time it gains with free fall's",
+		component: LongestPath
 	},
 	'noise-spectrum': {
 		label:

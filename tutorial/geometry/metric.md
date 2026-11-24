@@ -6,7 +6,7 @@ part: '7'
 requires: ['1.2', '1.4', '1.6', '6.1', '6.2']
 paper: [sec:pixel, eq:tidal, eq:deviation, eq:newton, sec:near-field, sec:introduction, sec:no-lens, sec:vistas]
 figures: [fig:tidal]
-live: []
+live: [longest-path]
 depth: A
 ---
 
@@ -310,39 +310,23 @@ $$\Delta\obs\tau_a = (2a - a^2)\,\frac{g^2T^3}{24c^2} .$$
 This is largest at $a = 1$, the free path. A path that rises half as high, $a = \tfrac12$, or 1.5 times as high, $a =
 \tfrac32$, gains $\tfrac34$ as much, $2.68 \times 10^{-16}\unit{s}$,[^exact] and $a = 0$ is the clock that stays on the
 ground. A clock that rises higher spends its time where clocks run faster, but it must move faster to get there and
-back, and speed slows a clock; the free path strikes the balance that ages most.
+back, and speed slows a clock; the free path strikes the balance that ages most (Figure
+[](#fig:tossed-paths)).
 
-<!-- diagram: tut-metric-tossed — One panel, about 640 × 380 px at 1440 (full width on a phone). A spacetime diagram
-with time t across, from 0 to 2 s, and height z upward, from 0 to 8 m, thin ink axes labelled "t (s)" and "height (m)",
-ticks at 0, 1, 2 s and 0, 2, 4, 6, 8 m. Two filled dots on the time axis at t = 0 and t = 2 s, labelled "throw" and
-"catch". Four worldlines between them: the ground clock along the axis z = 0, thin ink, labelled "stays: 0"; the free
-fall parabola z = ½ g t (2 − t) with g = 9.81 m s⁻² (peak 4.91 m at t = 1 s), in the observer colour, solid and
-slightly heavier, labelled "free fall: 3.57"; the parabola of half its height (peak 2.45 m) and that of 1.5 times its
-height (peak 7.36 m), both thin dashed in the observer colour, labelled "half as high: 2.68" and "1.5 times as high:
-2.68". The labels give each path's gain of proper time over the ground clock in units of 10⁻¹⁶ s, set beside each
-curve near its peak, never on a line. Caption: "Look first at the solid curve: of all paths between the throw and the
-catch, the clock in free fall ages most. The numbers are each path's gain over the clock that stays on the ground, in
-units of 10⁻¹⁶ s; the dashed paths, though one rises higher, gain only three quarters as much." -->
+![Look first at the solid curve: of all paths between the throw and the catch, the clock in free fall ages most. The
+numbers are each path's gain over the clock that stays on the ground, in units of $10^{-16}\unit{s}$; the dashed
+paths, though one rises higher, gain only three quarters as much.](tut-metric-tossed){#fig:tossed-paths}
 
-<!-- try: longest-path (new: LongestPath) — The tossed clock above, made interactive. A height-against-time plane in a
-uniform field: coordinate time t across from 0 to T, height upward, with the ground as the time axis, thin ink axes.
-Two fixed events on the ground, "throw" at t = 0 and "catch" at t = T, as filled dots. A path between them that the
-reader shapes by dragging three handles (at t = T/4, T/2 and 3T/4; the path is the smooth curve through the two events
-and the three handles, heights never below 0), drawn in the observer colour; the free-fall parabola z = ½gt(T − t)
-drawn faintly dashed for comparison. Two readouts, to three figures: "your path gains … × 10⁻¹⁶ s" and "free fall
-gains … × 10⁻¹⁶ s", each the gain of proper time over a clock that stays on the ground, (1/c²)∫(gz − ½v²)dt computed
-by the trapezoid rule on 400 steps; a third readout, "your path / free fall", as a fraction. A button "fall freely"
-puts the three handles on the parabola. Sliders: T from 0.5 to 4 s (step 0.1 s), and g with three stops, "Earth 9.81",
-"Moon 1.62" and "neutron star 1.3 × 10¹²" (m s⁻²), with the warning "weak field fails: |Φ|/c² ≈ 0.17 at the surface"
-shown at the third stop (where the readouts switch to units of seconds). Opens on the parabola at T = 2 s with
-g = 9.81: both readouts 3.57. Predict first: "Between the same two events, which path ages most: staying on the
-ground, rising higher than a thrown ball, or the thrown ball's own path?" (Answer: the thrown ball's. Staying gains 0;
-any other path gains less than 3.57, for example 2.68 for half or 1.5 times the height.) Then: "Double the flight time
-to 4 s. How much more does the thrown clock gain?" (Answer: eight times, since the gain is g²T³/24c²: 28.6 × 10⁻¹⁶ s =
-2.86 × 10⁻¹⁵ s.) Then: "On the Moon, with the same T = 2 s, how large is the gain?" (Answer: (1.62/9.81)² = 0.0273
-times the Earth's, 0.097 × 10⁻¹⁶ s.) Keyboard: Tab moves between the three handles, the button and the sliders; arrow
-keys move the selected handle up and down by 0.1 m (shift: 1 m); both themes; on a phone the handles are 44 px
-targets; static on reduced motion. -->
+::: try {#longest-path}
+The tossed clock's two events, the throw and the catch, on a plane of height against coordinate time. Three handles
+shape a path between them, and the free-fall parabola is drawn faintly for comparison. The readouts give the proper
+time that your path and free fall each gain over a clock that stays on the ground, in units of $10^{-16}\unit{s}$, and
+their ratio; *fall freely* puts the handles on the parabola. The sliders set the flight time $T$ and the acceleration
+of fall $g$, with stops for the Earth, the Moon and a neutron star.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, find a
+path that rises higher than the ball and still gains less than the clock on the ground.
+:::
 
 **What it means.** A falling body is not pushed by a force. It takes the path along which its own clock runs longest,
 and near a mass, where clocks deeper down run slower, that path curves the way Newton's pull would bend it.
@@ -353,19 +337,11 @@ We want to compare two clocks at rest at heights 0 and $h$, because the paper's 
 make this comparison. The lower one sends a flash of light up to the upper one at each of its ticks. We assume that
 **the field does not change in time**: the metric does not depend on $t$. Then every flash follows the same path, only
 shifted in $t$, and takes the same coordinate time to climb, so two flashes that leave $\Delta t$ apart arrive $\Delta
-t$ apart.
+t$ apart (Figure [](#fig:clocks-flashes)).
 
-<!-- diagram: tut-metric-clocks — One panel, about 560 × 400 px at 1440 (full width on a phone). Coordinate time t
-across and height upward, thin ink axes labelled "t" and "height". Two horizontal worldlines (clocks at rest), in the
-observer colour: the lower one at height 0, labelled "lower clock", and the upper one at height h, labelled "upper
-clock". From the lower worldline two flashes of light rise to the upper one, drawn as two identical slightly curved
-lines in the light role's colour, the second a copy of the first shifted along t by Δt. The two departure events on the
-lower line and the two arrival events on the upper line marked by small filled dots. Below the lower line a bracket
-between the departures labelled "Δτ_lower = (1 + Φ(0)/c²) Δt", and above the upper line a bracket between the arrivals,
-of exactly the same length on the page, labelled "Δτ_upper = (1 + Φ(h)/c²) Δt". Between the two brackets on the left a
-small label "same Δt". Labels never on a line. Caption: "Look first at the two brackets: they span the same coordinate
-time Δt, because the field does not change and the second flash is a copy of the first. The clocks' own times across
-them differ by the fraction [Φ(h) − Φ(0)]/c², so the upper clock records more." -->
+![Look first at the two brackets: they span the same coordinate time $\Delta t$, because the field does not change
+and the second flash is a copy of the first. The clocks' own times across them differ by the fraction
+$[\field\Phi(h) - \field\Phi(0)]/c^2$, so the upper clock records more.](tut-metric-clocks){#fig:clocks-flashes}
 
 Each clock is at rest, so its own time is $\dd\obs\tau = \sqrt{-\field g_{00}}\,\dd t \approx (1 + \field\Phi/c^2)\,\dd
 t$, by [](#eq:g00). Between the two flashes the lower clock records $(1 + \field\Phi(0)/c^2)\Delta t$ and the upper one
@@ -556,17 +532,11 @@ derivatives. So
 
 $$\boxed{\;100 - 80 = 20\;}$$
 
-combinations of second derivatives of the metric at P survive every choice of coordinates.
+combinations of second derivatives of the metric at P survive every choice of coordinates (Figure [](#fig:count)).
 
-<!-- diagram: tut-metric-count — One panel, about 560 × 300 px at 1440 (full width on a phone). Two rows of three
-horizontal bars, drawn to one scale (4 px per number). Top row, labelled "the metric at an event": bars of length 10,
-40 and 100, labelled "values 10", "first derivatives 40", "second derivatives 100", thin ink outlines with a faint ink
-fill. Bottom row, labelled "a change of coordinates can set": bars of length 10 (with a note "of 16; 6 are turns and
-boosts"), 40 and 80, aligned under the bars above, in the observer colour. The part of the top row's third bar not
-matched below, 20 numbers long, filled in the curvature colour and labelled "20 remain: curvature". Labels beside the
-bars, never on them. Caption: "Look first at the coloured end of the longest bar: of the metric's 100 second derivatives
-at an event, a change of coordinates can remove 80, and the 20 that remain are the curvature. The values and the first
-derivatives can all be set, to those of flat spacetime and to zero." -->
+![Look first at the coloured end of the longest bar: of the metric's 100 second derivatives at an event, a change of
+coordinates can remove 80, and the 20 that remain are the curvature. The values and the first derivatives can all be
+set, to those of flat spacetime and to zero.](tut-metric-count){#fig:count}
 
 **What it means.** In the new coordinates the metric is $\field\eta_{\mu\nu}$ at P and its first derivatives vanish
 there, so free bodies move straight at steady speed at P, and clocks tick as in chapter 6.1. This is the local inertial
