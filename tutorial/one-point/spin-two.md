@@ -6,7 +6,7 @@ part: '9'
 requires: ['1.1', '1.5', '1.5b', '1.7', '6.6', '7.6', '8.4']
 paper: [sec:regimes, sec:one-pixel, eq:W, eq:square, eq:one-wave, eq:invariants, eq:pencil, eq:pixel-kernel, eq:sky-count, eq:ranging-instant, sec:first-image]
 figures: []
-live: []
+live: [square-of-vector]
 depth: A
 ---
 
@@ -25,17 +25,9 @@ We answer with the tables of chapters [1.5](/tutorial/newton/five-numbers/) and
 [1.5b](/tutorial/newton/complex-numbers/), the waves of chapters [6.6](/tutorial/relativity/maxwell-complex/) and
 [7.6](/tutorial/geometry/gravitational-waves/), and the spin of chapter [8.4](/tutorial/quantum/spin/).
 
-<!-- diagram: tut-one-point-hero — The hero of Part 9, in the stone pipeline (design/FIGURE_WORKFLOW.md; image-model
-candidates in two runs as style references, final marks from code). One small pixel, a stone ring of free balls with a
-gyroscope at its centre, sits at the centre of a clear glass sphere, the sky around one point. On the glass, four small
-stars (ink dots with a faint glow) mark the four principal null directions of the reading of two stone masses outside
-the sphere (Petrov type I: four separate points, computed from eq:stars for the two masses of the paper's fig:stars).
-A passing plane wave, drawn as a few faint parallel crests crossing the sphere from the upper right, carries a second
-set of four stars, drawn as touching dots, all on its direction of travel where the crests leave the glass. No orange
-or blue on the stars; orange and blue only on the ring, for its stretch and squeeze under the wave. No text in the
-image. Caption: "Look first at the two sets of stars on the glass: the reading of two masses puts its four special
-directions at four separate places on the sky, and a single passing wave puts all four of its own on its direction of
-travel. The marks are computed; the stone is schematic." 9.4 reuses it. -->
+![Look first at the two sets of stars on the glass: the reading of two masses puts its four special directions at four
+separate places on the sky, and a single passing wave puts all four of its own on its direction of travel. The marks are
+computed; the stone is schematic.](tut-one-point-hero){#fig:one-point-hero}
 
 ::: plain
 A reading of the paper's pixel is five complex numbers. When the field is turned about any line through the pixel,
@@ -164,21 +156,14 @@ paper's invariants [](/paper/#eq:invariants), $I = \mathrm{tr}\,\curv{\mathcal W
 \mathrm{tr}\,\curv{\mathcal W}^3$, which chapter 9.2 studies.
 
 Rank does not depend on the axis, but weights do. About an axis at 60° to the wave the same reading fills all five
-weights, and it still has rank one. A weight's share is the length $|\curv c_m|\sqrt{\langle T_m|T_m\rangle}$ of its
-part $\curv c_mT_m$ over the reading's length $|\curv{\mathcal W}| = \sqrt{\langle\curv{\mathcal W}|\curv{\mathcal
-W}\rangle}$, and the squares of the five shares add to one, because the tables are orthogonal. The section on overlaps
-finds the share of the weight 2, $\cos^4(30°) = 0.56$.
+weights, and it still has rank one (Figure [](#fig:spin-weight-bars)). A weight's share is the length
+$|\curv c_m|\sqrt{\langle T_m|T_m\rangle}$ of its part $\curv c_mT_m$ over the reading's length $|\curv{\mathcal W}| =
+\sqrt{\langle\curv{\mathcal W}|\curv{\mathcal W}\rangle}$, and the squares of the five shares add to one, because the
+tables are orthogonal. The section on overlaps finds the share of the weight 2, $\cos^4(30°) = 0.56$.
 
-<!-- diagram: tut-spin-weight-bars — Three small panels side by side at 1440 (stacked on a phone), each a row of five
-vertical bars at m = −2, −1, 0, 1, 2 (ticks labelled −2 … 2, axis label "spin weight m about ẑ"), bar height |c_m|
-times the square root of ⟨T_m|T_m⟩ over the reading's length (so the squares add to one), from 0 to 1, thin ink
-outlines filled in ink at 30% opacity; above each panel a small sketch of the axis ẑ (thin ink arrow) and the source.
-(a) "a mass on the axis": only m = 0, height 1. (b) "a wave along the axis": only m = 2, height 1 (W ∝ mm^T, k̂ = ẑ).
-(c) "the same wave tilted by 60°": heights 0.0625 (m = −2), 0.2165 (−1), 0.4593 (0), 0.6495 (1), 0.5625 (2, which is
-cos⁴30°, the share the text computes), with the label "rank 1" under it, as under (b); under (a) "rank 3". All heights
-from nums.py in the 9.1 scratch folder (Wigner's d² of 60°), rechecked in 9.1-revise/check.py. No orange or blue.
-Caption: "Look first at the middle panel: a wave seen along its own direction fills one extreme bar. Tilted, the same wave fills all five, yet its reading is still a square of rank one; a mass on
-the axis fills only the middle bar. Heights computed." -->
+![Look first at the middle panel: a wave seen along its own direction fills one extreme bar. Tilted, the same wave
+fills all five, yet its reading is still a square of rank one; a mass on the axis fills only the middle bar. Heights
+computed.](tut-spin-weight-bars){#fig:spin-weight-bars}
 
 ## Light's wave is the vector itself: spin one against spin two
 
@@ -192,19 +177,13 @@ a plane wave of any spin $s$ is, at a point, a number times $\vect m^{\otimes s}
 entries $m_{i_1}\cdots m_{i_s}$.
 
 So a turn by $\psi$ about the direction of travel multiplies light's wave by $e^{-i\psi}$ and gravity's by
-$e^{-2i\psi}$. A half turn, $\psi = \pi$, gives $-1$ for light and $+1$ for gravity. This is Section III's sentence
-written in algebra: "An arrow turned by half a circle points the other way, but a pattern of stretch and squeeze
-turned by half a circle looks exactly as it did before."
+$e^{-2i\psi}$. A half turn, $\psi = \pi$, gives $-1$ for light and $+1$ for gravity (Figure [](#fig:half-turn)). This
+is Section III's sentence written in algebra: "An arrow turned by half a circle points the other way, but a pattern of
+stretch and squeeze turned by half a circle looks exactly as it did before."
 
-<!-- diagram: tut-half-turn — After 1.5b's tut-cx-spin. Two rows, three columns, about 560 × 360 px at 1440 (full width
-on a phone). Columns: turned by 0°, 90°, 180° about k̂ (k̂ out of the page toward the viewer, drawn as a small circled
-dot at the centre). Top row, gravity: a ring of twelve free balls under the plus pattern of Re(mm^T), squeezed along
-e₁ (blue arrows) and stretched along e₂ (orange arrows), movement exaggerated; at 90° stretch and squeeze have changed
-places; at 180° the ring is exactly as at 0°. Under each, the factor e^{−2iψ}: 1, −1, 1. Bottom row, light: one ink
-arrow, light's E, along e₁ at 0°, along e₂ at 90°, along −e₁ at 180°; under each e^{−iψ}: 1, −i, −1. Thin grey axes
-e₁, e₂ in each cell, labels beside the axes, never on the ring. Orange and blue only for stretch and squeeze.
-Caption: "Look first at the right-hand column: half a turn gives gravity's pattern back and reverses light's arrow,
-because gravity's wave is multiplied by e^{−2iψ} and light's by e^{−iψ}. Movements exaggerated." -->
+![Look first at the right-hand column: half a turn gives gravity's pattern back and reverses light's arrow, because
+gravity's wave is multiplied by $e^{-2i\psi}$ and light's by $e^{-i\psi}$. Movements
+exaggerated.](tut-half-turn){#fig:half-turn}
 
 ## The square holds four numbers: a direction and one complex amplitude
 
@@ -308,7 +287,8 @@ $$\boxed{\;|\langle\vect m_1\vect m_1^{\mathsf T}|\vect m_2\vect m_2^{\mathsf T}
 
 These are chapter 8.4's [spin coherent states](/tutorial/quantum/spin/#a-spin-s-is-2s-stars-on-the-sky), whose overlap
 is $\cos^{4s}(\vartheta/2)$, with $s = 1$ for light and $s = 2$ for gravity. **Numbers.** At 60° the readings of two
-gravitational waves overlap by 0.32, and the fields of two light waves by 0.56.
+gravitational waves overlap by 0.32, and the fields of two light waves by 0.56
+(Figure [](#fig:two-overlaps)).
 **Limits.** At $\vartheta = 0$ both overlaps are 1. At $\vartheta = 180°$ both are 0, because a wave from behind
 carries $\vect m^*$ instead of $\vect m$, the opposite weight.
 
@@ -320,15 +300,9 @@ This higher power is Section III's "spin-two envelope of a sparse array": in the
 [*One pixel and many*](/paper/#par:one-pixel-and-many), two pixels far apart weight each false direction of their
 pattern by $\cos^8(\vartheta/2)$.
 
-<!-- diagram: tut-two-overlaps — One panel, about 560 × 320 px at 1440 (full width on a phone). Across, the angle ϑ
-between two directions of travel from 0° to 180°, ticks every 30°, labelled "angle between the two waves, ϑ"; up, the
-overlap from 0 to 1, ticks at 0, 0.25, 0.5, 0.75, 1. Two curves, thin single strokes: light, cos⁴(ϑ/2), dashed ink,
-labelled "light, spin one" beside its right half; gravity, cos⁸(ϑ/2), solid ink, labelled "gravity, spin two", the
-narrower curve. Small ink dots with values beside them, never on the curves: at 30°, 0.87 and 0.76; at 60°, 0.56 and
-0.32; at 90°, 0.25 and 0.063. Widths at half height marked by thin grey ticks on the axis: light 2·arccos(2^{−1/4}) =
-65.5°, gravity 2·arccos(2^{−1/8}) = 47.0°. No orange or blue. Caption: "Look first at the half heights: two
-gravitational waves stop resembling each other at a smaller angle than two light waves do, because a square overlaps
-as the square of a vector's overlap. Curves exact." -->
+![Look first at the half heights: two gravitational waves stop resembling each other at a smaller angle than two light
+waves do, because a square overlaps as the square of a vector's overlap. Curves
+exact.](tut-two-overlaps){#fig:two-overlaps}
 
 ## On the sky, a quantity of spin weight $s$ begins at degree $|s|$
 
@@ -397,26 +371,17 @@ gives the same pattern back, where light's arrow is reversed. And two waves from
 $\cos^8(\vartheta/2)$ against light's $\cos^4(\vartheta/2)$, 0.32 against 0.56 at 60°, so one pixel tells them apart
 more sharply than a sensor of light does.
 
-<!-- try: square-of-vector (a new interactive figure, SquareOfVector) — Left: a sky disc (the hemisphere toward the
-reader, as 6.6's stereographic map, with the far side shown faint), on which the reader drags the wave's direction of
-travel k̂ (a filled ink dot), and a second, hollow dot for the axis about which the weights are counted (default ẑ, the
-disc's centre). Beside the disc, the two arrows e₁ and e₂ of the wave's m drawn in a small 3D inset, and a ring of free
-balls under the tide Re[(α⁺e^{−iωt} + α⁻e^{iωt}) mm^T] seen along k̂ (orange stretch, blue squeeze), animated
-slowly, with a switch "helicity +2 / −2 / linear" (α⁻ = 0, α⁺ = 0, α⁺ = α⁻). Right: two rows of bars. Gravity: five
-bars at m = −2 … 2, each of height |c_m| times the
-square root of ⟨T_m|T_m⟩ over |W| (the squares add to one) with a small dial for its phase. Light: three bars at
-m = −1, 0, 1 for F = a m from the same direction, scaled the same way. Readouts: the rank of W (singular values above
-10⁻⁹ of the largest), tr W² and tr W³ (both 0 for a wave), the direction read back by −P/|E|² as a second small ring on
-the disc (it must sit on −k̂, the source), and the angle between k̂ and the axis. A second mode, "two waves", adds a
-second dragged direction and shows the overlap cos⁸(ϑ/2) against light's cos⁴(ϑ/2), the rank (2) and the direction
-−P/|E|² falling between the two sources. Checks: k̂ on the axis gives one bar, at m = 2 for gravity and at m = 1 for
-light; at 60° the gravity bars are 0.0625, 0.2165, 0.4593, 0.6495, 0.5625 (m = −2 … 2) and light's 0.25, 0.612, 0.75
-(m = −1, 0, 1); k̂ opposite the axis gives one bar at m = −2 and at m = −1; two waves 60° apart overlap 0.316 and
-0.5625; the two waves of the paper problem (along ẑ and x̂, plus polarization, equal strength) give −P/|E|² =
-−(0.5, 0, 0.5). Predict first: "Point the wave along the axis. Which bars are not zero?" (One extreme bar for gravity,
-m = 2, and one for light, m = 1.) Then: "Tilt the wave by 60°. How many bars fill, and what is the rank?" (All five,
-and all three for light; the rank is still one.) Keyboard: arrow keys move the selected dot by 1°, Tab switches between
-the wave and the axis, H cycles the helicity. Both themes; on a phone the bars sit under the disc. -->
+::: try {#square-of-vector}
+A wave's direction of travel, which you drag across a sky seen from above, and an axis about which its reading is
+sorted by spin weight. Beside the sky, a ring of free balls shows the wave's pattern of stretch and squeeze, turning in
+the sense its helicity sets. On the right, five bars give the shares of the five weights for gravity and three for
+light, as in Figure [](#fig:spin-weight-bars), with the rank, the two invariants and the direction that the paper's
+[](/paper/#eq:one-wave) reads back. A second mode adds a second wave and shows the two overlaps of Figure
+[](#fig:two-overlaps).
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, put
+the two waves of the paper problem in, along $\hat z$ and $\hat x$, and see where the direction read back lands.
+:::
 
 ::: check
 ### Q

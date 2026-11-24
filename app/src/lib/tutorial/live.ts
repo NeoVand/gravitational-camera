@@ -73,6 +73,7 @@ import MajoranaStars from './live/MajoranaStars.svelte';
 import ClickTrains from './live/ClickTrains.svelte';
 import QuantumLimit from './live/QuantumLimit.svelte';
 import QuantumTremor from './live/QuantumTremor.svelte';
+import SquareOfVector from './live/SquareOfVector.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -358,6 +359,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A body trembling at any temperature: its symmetrized tremor, the two orders and the static jitter between its bounds',
 		component: QuantumTremor
+	},
+	'square-of-vector': {
+		label:
+			"A wave seen about any axis: its five spin weights against light's three, and the square that is left",
+		component: SquareOfVector
 	},
 	'noise-spectrum': {
 		label:
