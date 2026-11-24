@@ -36,6 +36,7 @@ const ISE_OK = [
 /** [pattern, message, allowed uses per chapter] */
 const BANNED = [
 	[/\bclearly\b/gi, '"clearly"', 0],
+	[/PAPER[- ]NOTES/g, '"PAPER-NOTES" (a design file the reader cannot see)', 0],
 	[/\bobviously\b/gi, '"obviously"', 0],
 	[/\btrivially\b/gi, '"trivially"', 0],
 	[/\bsimply\b/gi, '"simply" (as a softener)', 0],

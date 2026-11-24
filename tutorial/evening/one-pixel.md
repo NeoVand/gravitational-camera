@@ -109,11 +109,12 @@ appears, and the motion test jumps.
 ## Four special directions sort every reading
 
 Every reading also picks out four directions on the sky around the pixel, the solutions of an equation of the fourth
-degree built from it. These are the field's **principal null directions**, and their pattern sorts fields into kinds,
-a sorting called the **Petrov classification**.[^petrov] For a single wave, all four point along its direction of
-travel. For a single round body at rest, two point towards the body and two directly away from it. For two bodies not
-in line with the pixel, and for most other scenes, they are four separate directions. So one reading says whether the
-field could come from one body, could come from one wave, or needs more.
+degree built from it. These are the field's **principal null directions**, and their pattern sorts fields into kinds, a
+sorting called the **Petrov classification**.[^petrov] For a single wave, all four point along its direction of travel.
+For a single round body at rest, two point towards the body and two directly away from it. For two bodies, and for most
+other scenes, they are four separate directions; only special arrangements, such as two bodies on one line through the
+pixel, give fewer. So one reading says whether the field could come from one body, could come from one wave, or needs
+more.
 
 {{paper fig:stars}}
 

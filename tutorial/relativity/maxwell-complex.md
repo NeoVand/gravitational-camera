@@ -620,8 +620,8 @@ directions, not four: its $\mathbf E + ic\mathbf B$ has only one complex invaria
   which the paper proves for gravity, now for light.[^fold]
 
 Whatever its sources, light has only these two directions at a point, so "one point of light cannot tell one source from
-several", in the paper's words. Two masses give gravity four separate directions, and chapter 9.4 shows that one round
-body never does.
+several", in the paper's words. Two masses generally give gravity four separate directions, and chapter 9.4 shows that
+one round body never does.
 
 ![Look first at the two dots below: a charge moving across the line of sight at 0.9 of the speed of light folds
 light's two special directions toward its motion, from their places at rest (open circles), and their half sum is its

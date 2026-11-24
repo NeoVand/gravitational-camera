@@ -3791,3 +3791,39 @@ terms:
     definition: 'The part of a pixel''s velocity that a single round body leaves unreadable: its speed along the line to the body. Two eigenvalues of the body''s reading are equal, and a boost along that line changes nothing at any speed. A second body removes it everywhere off the line through the two bodies, and so does a body that is not round, off any axis of symmetry.'
     chapter: '9.3'
     anchor: in-a-room-at-rest-a-pixel-reads-its-own-velocity
+  - term: celestial sphere
+    definition: 'The sphere of all directions around a point, the sky seen from a pixel. Each direction on it can be labelled by one complex number, its stereographic coordinate.'
+    chapter: '9.4'
+    anchor: a-direction-on-the-sky-is-a-complex-number
+  - term: quartic
+    definition: 'A polynomial of degree four. The paper''s $\mathbf m(z)^{\mathsf T}\mathcal W\mathbf m(z)$ is a quartic in the stereographic coordinate $z$, and its four roots are the principal null directions.'
+    chapter: '9.4'
+    anchor: four-directions-solve-one-quartic
+  - term: multiplicity of a root
+    definition: 'The number of times the factor $z - z_k$ of a root $z_k$ divides a polynomial. A single wave''s quartic $4\alpha(z - z_k)^4$ has one root of multiplicity four; one body''s has two roots of multiplicity two.'
+    chapter: '9.4'
+    anchor: four-directions-solve-one-quartic
+  - term: Petrov type
+    definition: 'The pattern of coincidences among a reading''s four principal null directions: I (four separate), II (two together, two apart), D (two pairs), III (three together), N (all four together) and O (no field). It goes with the shape of chapter 9.2, so the invariants and the powers of the reading test it without solving the quartic.'
+    chapter: '9.4'
+    anchor: the-pattern-of-the-four-directions-is-the-fields-petrov-type
+  - term: algebraically special
+    definition: 'Said of a reading whose four principal null directions are not all separate: Petrov''s types II, D, III, N and O. One body (D) and one wave (N) are algebraically special; two bodies in general are not, though special arrangements, such as two bodies on one line through the pixel or two equal pulls at right angles, give type D.'
+    chapter: '9.4'
+    anchor: the-pattern-of-the-four-directions-is-the-fields-petrov-type
+  - term: Möbius map
+    definition: 'A map of the sky that sends the stereographic coordinate $z$ to a ratio of two linear functions of $z$. Every boost and every turn acts on the sky in this way; a boost along $\hat z$ multiplies $z$ by $e^{\eta}$, which is the aberration of light.'
+    chapter: '9.4'
+    anchor: moving-the-pixel-moves-the-four-directions-as-rays-of-light
+  - term: sideways velocity
+    definition: 'The part $\mathbf v_\perp$ of a body''s velocity across the line from the pixel to where the body is now. For a single body moving at any speed it is $c$ times the half sum of its two pairs of principal null directions (the paper''s eq:star-velocity).'
+    chapter: '9.4'
+    anchor: one-pixel-reads-the-whole-state-of-a-moving-body
+  - term: time to contact
+    definition: 'The time $-r/\dot r$ in which a body coming straight at the pixel would arrive if it kept its speed. Because the tide along the line grows as $r^{-3}$, it is $3\mathcal E_\parallel/\dot{\mathcal E}_\parallel$, read from the tide alone (the paper''s eq:contact).'
+    chapter: '9.4'
+    anchor: one-pixel-reads-the-whole-state-of-a-moving-body
+  - term: coasting
+    definition: 'Moving at a constant velocity, with no force speeding the body up or braking it. For a body coasting straight at the pixel the paper''s ratio $\mathcal E_\parallel\ddot{\mathcal E}_\parallel/\dot{\mathcal E}_\parallel^2$ is $4/3$; it is larger when the body is driven toward the pixel and smaller when it brakes.'
+    chapter: '9.4'
+    anchor: one-pixel-reads-the-whole-state-of-a-moving-body

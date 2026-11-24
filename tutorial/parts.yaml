@@ -136,7 +136,7 @@ parts:
       - { id: '9.1', slug: one-point/spin-two, title: 'Spin two: a wave is the square of a vector; spin weight', short: Spin two, size: M, status: published }
       - { id: '9.2', slug: one-point/complex-symmetric, title: 'Complex symmetric matrices: invariants and Jordan forms', short: Complex symmetric matrices, size: M, status: published }
       - { id: '9.3', slug: one-point/the-matrix-w, title: 'The matrix 𝒲: four invariants, an orientation, a velocity', short: The matrix W, size: L, status: published }
-      - { id: '9.4', slug: one-point/petrov, title: 'Principal null directions and the Petrov classification', short: Principal null directions, size: M, status: planned }
+      - { id: '9.4', slug: one-point/petrov, title: 'Principal null directions and the Petrov classification', short: Principal null directions, size: M, status: published }
       - { id: R9, slug: one-point/reading-section-viii, title: 'Reading Section VIII, part 1', short: Reading Section VIII (1), size: M, status: planned, reads: [sec:one-pixel] }
       - { id: '9.5', slug: one-point/separating-waves, title: 'Separating waves at one point', short: Separating waves, size: M, status: planned }
       - { id: '9.6', slug: one-point/the-sky-at-one-point, title: 'The sky at one point', short: The sky at one point, size: M, status: planned }

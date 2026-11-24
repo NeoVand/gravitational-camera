@@ -2934,3 +2934,43 @@ symbols:
     meaning: 'The length defined by writing a spinning body''s angular momentum as $Mca\,\hat z$: its angular momentum divided by its mass and the speed of light. For a spinning black hole the eigenvalues of $\mathcal W$ are proportional to $(r - ia\cos\vartheta)^{-3}$ (Kerr), and outside any round spinning body this holds to first order in $a$, so their phase is $3a\cos\vartheta/r$. For the Earth $a = 3.27$ m, and the phase at the surface above a pole is $1.5 \times 10^{-6}$. (Not a shell''s radius, a lattice constant or a light amplitude.)'
     chapter: '9.3'
     anchor: complex-eigenvalues-mean-that-something-in-the-room-moves-or-turns
+  - key: stereographic-z
+    title: Stereographic coordinate
+    tex: 'z'
+    role: none
+    kind: A complex number; no unit
+    meaning: 'The complex number that labels a direction on the sky around the pixel: $z = 0$ is $+\hat z$, $|z| = 1$ the equator, $z \to \infty$ the direction $-\hat z$, with $|z| = \tan(\vartheta/2)$ and $\arg z$ the azimuth. The opposite direction is $-1/\bar z$. In Part 9 the letter is only this number, never a depth; the axis is written $\hat z$.'
+    chapter: '9.4'
+    anchor: a-direction-on-the-sky-is-a-complex-number
+  - key: sky-direction
+    title: Direction of a point of the sky
+    tex: '\hat k(z)'
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'The direction $(2\,\mathrm{Re}\,z, 2\,\mathrm{Im}\,z, 1 - |z|^2)/(1 + |z|^2)$ of the stereographic coordinate $z$: the direction of travel of a wave whose null vector is $\mathbf m(z)$. Chapter 6.6 wrote it $\hat n(z)$; the tutorial keeps $\hat n$ for the direction toward a source.'
+    chapter: '9.4'
+    anchor: a-direction-on-the-sky-is-a-complex-number
+  - key: sideways-velocity
+    title: Sideways velocity of a body
+    tex: '\obs{\mathbf v}_\perp'
+    role: obs
+    kind: A vector; in m/s
+    meaning: 'The part of a moving body''s velocity across the line from the pixel to where the body is now. For a single round body at any speed, $\mathbf v_\perp/c$ is the half sum of its two pairs of principal null directions (the paper''s eq:star-velocity), and the line turns at $\mathbf v_\perp/r$.'
+    chapter: '9.4'
+    anchor: one-pixel-reads-the-whole-state-of-a-moving-body
+  - key: present-line
+    title: Direction to where a body is now
+    tex: '\hat n'
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'The unit vector from the pixel to the present position of a moving body, at the pixel''s own time. The half difference of the body''s two pairs of principal null directions lies along it, with the length $(1 - v_\perp^2/c^2)^{1/2}$, and its rate of turning $|\dot{\hat n}| = v_\perp/r$ gives the distance $r$.'
+    chapter: '9.4'
+    anchor: one-pixel-reads-the-whole-state-of-a-moving-body
+  - key: line-tide
+    title: Tide along the line to a body
+    tex: '\curv{\mathcal E}_\parallel'
+    role: curv
+    kind: A number; in s⁻²
+    meaning: 'The entry of the tide along the line from the pixel to a body coming straight at it, $-2GM/\gamma^3r^3$. It grows as $r^{-3}$, so $3\mathcal E_\parallel/\dot{\mathcal E}_\parallel$ is the time to contact and $\mathcal E_\parallel\ddot{\mathcal E}_\parallel/\dot{\mathcal E}_\parallel^2 = 4/3$ for a body that coasts (the paper''s eq:contact).'
+    chapter: '9.4'
+    anchor: one-pixel-reads-the-whole-state-of-a-moving-body

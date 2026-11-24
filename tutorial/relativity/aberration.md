@@ -360,10 +360,10 @@ direction of travel makes the angle $\alpha'$ with the direction behind. The pap
 speed of light*](/paper/#par:through-a-room-at-nearly-the-speed-of-light) flies a pixel through a still room, where
 nothing moves. The four principal null directions of the room's tide, the directions on the sky along which its field
 takes its simplest form ([0.4](/tutorial/evening/one-pixel/#four-special-directions-sort-every-reading)), change under a
-boost as directions of travel do (chapter 9.4, stated without proof), so they crowd "toward the direction behind it,
+boost as directions of travel do (chapter 9.4), so they crowd "toward the direction behind it,
 within angles of it that shrink as $1/\gamma$". Flown along the axis of the tide's middle eigenvalue, the one of its
 three eigenvalues ([1.4](/tutorial/newton/tides/)) that lies between the other two, the four directions start at right
-angles to the motion (9.4, stated), so $\cos\theta = 0$ becomes $\cos\theta' = -\obs\beta$, "one cone of half-angle
+angles to the motion (9.4), so $\cos\theta = 0$ becomes $\cos\theta' = -\obs\beta$, "one cone of half-angle
 $\arccos\beta$" about the direction behind.
 
 ![Look first at the dashed circle: it holds the forward half of the sky in both panels. At rest it is at $90°$ from
@@ -454,7 +454,7 @@ frame has the dipole $\pm1.12\unit{mK}$, the same fraction, "exactly as for the 
 
 We want the paper's [](/paper/#eq:proof-stars), the four principal null directions of a moving body's tide (defined with
 the moving sky, above), from which Section VIII reads the body's whole state. For a body at rest they fall in two pairs
-on the line through the body (chapter 9.4, stated without proof), and the aberration of [](#eq:ray-boost) does the rest.
+on the line through the body (chapter 9.4), and the aberration of [](#eq:ray-boost) does the rest.
 
 **Who moves.** The paper's Appendix C works in the body's rest frame, and the pixel moves through it with
 $c\,\obs{\vect\beta}$, so the primes belong to the pixel. In the pixel's frame the sign flips: the body moves with
