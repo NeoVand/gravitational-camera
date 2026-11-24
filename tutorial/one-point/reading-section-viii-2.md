@@ -18,27 +18,14 @@ chapters [9.5](/tutorial/one-point/separating-waves/), [9.6](/tutorial/one-point
 what does one pixel on a desk learn about a person, a rotor and a passing wave?
 
 This chapter reads the sixteen paragraphs from [*Separating waves at one
-point*](/paper/#par:separating-waves-at-one-point) to [*Precision of depth*](/paper/#par:precision-of-depth) in order.
-As in R9, each claim gets one mark: *checked here* (a number recomputed from a result derived earlier), *read now,
-derived in chapter N*, or *stated in the paper*; a fourth, *derived here*, marks the last three equations, which no
-earlier chapter derives.
+point*](/paper/#par:separating-waves-at-one-point) to [*Precision of depth*](/paper/#par:precision-of-depth) in order
+(Figure [](#fig:read-viii-2-map)). As in R9, each claim gets one mark: *checked here* (a number recomputed from a
+result derived earlier), *read now, derived in chapter N*, or *stated in the paper*; a fourth, *derived here*, marks
+the last three equations, which no earlier chapter derives.
 
-<!-- diagram: tut-read-viii-2-map — The map of the second half of Section VIII, as R9's tut-read-viii-map draws the first
-half (same kit, same size, about 640 × 560 px at 1440, one column on a phone). Sixteen boxes in the paper's order, in two
-columns of eight read down, joined by thin arrows: Separating waves (pencil, four-waves, wave-count; 9.5), Lensed images
-(9.5), The sky (pixel-kernel, sky-count, sky-witness; 9.6), Ranging (ranging-instant, ranging-C, helicity-split; 9.7),
-Absence of aberration (6.3, 7.7, 9.3), Tests of GR (bianchi-wave, wave-vector; 9.7), Matter at the pixel (1.4, 7.3, 7.5),
-What no reading can tell (1.4, 2.3, 9.4), One pixel and many (9.1, 9.7), Variation across the array (8.6), Depth
-(one-pixel-range; 1.4, 7.5), Front and back (1.4), Three dimensions (2.5, 5.6), Precision (tab:one-pixel; 9.7),
-Separation with noise (9.7), Precision of depth (depth-bound, magnetic-range; 3.3). Each box holds its paragraph's name,
-its equation labels in small type and its chapters. Fill: solid for a box derived in Part 9 or earlier, or derived here;
-hatched for one whose main result rests on an estimate or on stated coefficients (Lensed images, Ranging); a dotted
-inset in a box for its stated results (Sylvester and Bézout, the convex cone, Sachs, Carlip, the subspace bound and
-Capon's factor, the 2.2 and 1.26, the 0.7 fit). A last box below both columns, outlined in the curvature colour, is the
-capstone, with arrows into it from Depth, Separation with noise, Precision of depth and What no reading can tell. A faint
-dashed strip at the top stands for R9's first half. Caption: "Look first at the solid boxes: every paragraph of the
-second half of Section VIII is derived in Part 9 or earlier, or derived here, with its stated results in dotted insets.
-Four of them meet in the capstone." -->
+![Look first at the solid boxes: every paragraph of the second half of Section VIII is derived in Part 9 or earlier,
+or derived here, with its stated results in dotted insets. The two hatched boxes rest on an estimate or on stated
+coefficients. Four boxes meet in the capstone.](tut-read-viii-2-map){#fig:read-viii-2-map}
 
 ::: plain
 The second half of Section VIII asks what one pixel, and a few side by side, can learn beyond one wave. One pixel
@@ -378,23 +365,16 @@ second order (*checked here*). That they are told apart beyond about $0.7(r^2/b)
 ## The capstone: one pixel on a desk
 
 A pixel on a desk has six neighbours 10 cm away. A person of 70 kg stands 3 m away, the paper's rotor turns 3 m away
-with the pixel in its plane, and a wave at 100 Hz of strain $10^{-21}$ passes. We choose the noise: $\sigma_n =
-10^{-16}\unit{s^{-2}}$ on each coefficient in the person's slow band, and a record at 100 Hz long enough that the wave's
-whole reading has $\rho = |\curv{\mathcal W}|/\sigma_n = 12$.
+with the pixel in its plane, and a wave at 100 Hz of strain $10^{-21}$ passes (Figure [](#fig:read-viii-2-desk)). We
+choose the noise: $\sigma_n = 10^{-16}\unit{s^{-2}}$ on each coefficient in the person's slow band, and a record at
+100 Hz long enough that the wave's whole reading has $\rho = |\curv{\mathcal W}|/\sigma_n = 12$.
 
-<!-- diagram: tut-read-viii-2-desk — The capstone's desk seen from above, about 560 × 420 px at 1440 (full width on a
-phone). A rounded rectangle for the desk; at its centre the pixel as a small ring with its six neighbours as dots 10 cm
-away (two drawn along x and y, the pair along z drawn as a dot in a circle, out of the page), one bracket "b = 10 cm".
-To the left, 3 m away (not to scale, "3 m" on a thin dimension line), the person as a plain upright figure in the matter
-colour, with a short arrow for a walk of 1.4 m/s across the line of sight. Below right, 3 m away, the rotor: two dots on
-a bar inside a circle with a curved arrow, in the matter colour, labelled "2 × 1 kg, 12 cm, 50 turns/s". From the upper
-right, parallel thin lines with an arrow in the curvature colour for the wave, labelled "100 Hz, h = 10⁻²¹". Beside each
-object its numbers, small: by the person "ρ = 4.2 × 10⁶", "σ_r = 3.9 µm, σ_M = 0.27 g", "ρ_B = 0.034"; by a cart arrow
-on the pixel "41 m/s across, nothing along"; by the rotor "99 × the wave"; by the wave "4.8° or 6.8°", "error 12%, not
-8.3%". Steps (a) to (h) as small circled letters beside the numbers they give. No orange or blue. Caption: "Look first
-at the three distances of 3 m: the same pixel weighs the person to about a quarter of a gram, cannot range it alone,
-and reads the wave beneath a rotor 99 times stronger at a price of √2. Distances not to scale; numbers exact for the
-chosen noise." -->
+![Look first at the two objects 3 m from the pixel. With its six neighbours the pixel weighs the person to about a
+quarter of a gram and finds the distance to 3.9 µm, but alone, at $\rho_B = 0.034$, it cannot find the distance at
+all; on a cart it reads its own velocity across the line to 41 m/s and not at all along it. It reads the wave
+beneath a rotor 99 times stronger at a price of $\sqrt2$: the amplitude to 12% instead of 8.3%, and the direction to
+6.8° instead of 4.8°. Distances not to scale; numbers exact for the chosen
+noise.](tut-read-viii-2-desk){#fig:read-viii-2-desk}
 
 **(a) The person's tide.** $G\matter M/r^3 = 1.73\times10^{-10}\unit{s^{-2}}$, and $|\curv\tE| = \sqrt6\,G\matter M/r^3 =
 4.24\times10^{-10}\unit{s^{-2}}$ gives $\rho = 4.24\times10^6$. Then $I = 1.80\times10^{-19}\unit{s^{-4}}$, $J =
