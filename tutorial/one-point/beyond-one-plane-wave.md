@@ -393,12 +393,13 @@ $(F^{-1})_{aa} = \sigma_n^2/(2 - |\mathbf u_E|^2) = \sigma_n^2$, against $\sigma
 $$\boxed{\;\sigma_a\ \text{grows by exactly}\ \sqrt2 = 1.41 .\;}$$
 
 Nothing in $F$ depends on $\mathbf N$, so the price is the same however strong the near field is: it takes the wave's
-tide, and the wave is read from its magnetic part, which carries half its signal. Every change of a wave
-changes $\curv\tE$ and $\curv\tB$ by equal amounts, so its direction pays the same $\sqrt2$. **Without the magnetic
-part** the corner 2 becomes 1, $F$ is singular and the error infinite: the whole electric part cannot find a wave
-beneath an unknown pull, as [R9](/tutorial/one-point/reading-section-viii/#ten-numbers-are-six-more-than-a-wave-needs)
-saw at one instant. With the near field free at every frequency, the Fisher matrix of a record splits into such
-blocks, one per frequency, so the argument holds over time too.
+tide, and the wave is read from its magnetic part, which carries half its signal (Figure [](#fig:near-field-price)).
+Every change of a wave changes $\curv\tE$ and $\curv\tB$ by equal amounts, so its direction pays the same $\sqrt2$.
+**Without the magnetic part** the corner 2 becomes 1, $F$ is singular and the error infinite: the whole electric part
+cannot find a wave beneath an unknown pull, as
+[R9](/tutorial/one-point/reading-section-viii/#ten-numbers-are-six-more-than-a-wave-needs) saw at one instant. With the
+near field free at every frequency, the Fisher matrix of a record splits into such blocks, one per frequency, so the
+argument holds over time too.
 
 **The rotor.** Ignored, the rotor adds to the wave's estimate half the wave-shaped part of its tide, at most $99/2
 \approx 50$ times the wave; the paper states 35 for its example.[^geometry] In its plane the exact field of a turning
@@ -408,13 +409,9 @@ geometry, the paper's "less than $10^{-4}$". An array that reads only $\curv\tE$
 varies across it. Section VIII states that the factor on the wave's error is then 2.2 for an array a metre
 across, or 1.26 if it reads $\curv\tB$ as well.
 
-<!-- diagram: tut-near-field-price — About 520 × 200 px at 1440 (full width on a phone). One horizontal bar of ten equal
-cells, the wave's ten numbers, split by a thin gap into two halves of five: left half labelled "ℰ (tide)", right half
-"ℬ (magnetic part)". Above the left half, a bracket in the matter colour labelled "taken by the near field, any
-size"; the right half filled in the curvature colour and labelled "left for the wave: half its signal". Under the bar,
-the result "error × √2". No orange or blue. Caption: "Look first at the bracket: an unknown near field uses up the five
-numbers of the tide, and the wave is read from the other five, which hold half its signal, so its error grows by
-exactly √2. Schematic." -->
+![Look first at the bracket: an unknown near field uses up the five numbers of the tide, and the wave is read from the
+other five, which hold half its signal, so its error grows by exactly $\sqrt2$. The lower row, without a near field,
+reads the wave from all ten numbers. Schematic.](tut-near-field-price){#fig:near-field-price}
 
 ## Many pixels separate more sources and remove false fringes
 
