@@ -106,7 +106,7 @@ parts:
     title: Gravity as geometry, and its waves
     chapters:
       - { id: '7.1', slug: geometry/metric, title: 'The metric, proper time and free fall', short: The metric, size: L, status: published }
-      - { id: '7.2', slug: geometry/curvature-and-tides, title: 'Curvature and tides: the Riemann tensor and geodesic deviation', short: Curvature and tides, size: L, status: planned }
+      - { id: '7.2', slug: geometry/curvature-and-tides, title: 'Curvature and tides: the Riemann tensor and geodesic deviation', short: Curvature and tides, size: L, status: published }
       - { id: '7.3', slug: geometry/einstein-equation, title: "Einstein's equation; Ricci and Weyl", short: "Einstein's equation", size: L, status: planned }
       - { id: '7.4', slug: geometry/linearized-gravity, title: 'Linearized gravity and gauge', short: Linearized gravity, size: L, status: planned }
       - { id: '7.5', slug: geometry/gravitomagnetism, title: "Gravity's electric and magnetic parts; gravitomagnetism", short: Gravitomagnetism, size: M, status: planned }

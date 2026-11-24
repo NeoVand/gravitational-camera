@@ -2214,3 +2214,19 @@ symbols:
     meaning: 'The paper''s $\mathcal N(\mathbf x_\perp) = \int T_{\mu\nu}k^\mu k^\nu\,\mathrm d\ell$ along the null ray through $\mathbf x_\perp$, with $k^\mu = (1, 0, 0, 1)$ and $\ell = ct$ along the ray: the energy, less $c$ times the momentum along the wave, that crosses the front there. For particles it is $c\sum_aq_a\delta^2(\mathbf x_\perp - \mathbf x_a)$ with $q = E/c - p_z$; for slow matter $\Sigma c^2$. Ordinary matter has $\mathcal N \ge 0$.'
     chapter: '6.5'
     anchor: along-a-ray-of-light-the-table-gives-the-energy-less-c-times-the-momentum
+  - key: riemann
+    title: Riemann tensor
+    tex: '\curv{R}^\alpha{}_{\beta\gamma\delta}'
+    role: curv
+    kind: A tensor of rank 4 with twenty independent numbers at each event; in m⁻² when every coordinate is a length
+    meaning: 'The curvature of spacetime, in the paper''s (MTW''s) convention $R^\alpha{}_{\beta\gamma\delta} = \partial_\gamma\Gamma^\alpha{}_{\beta\delta} - \partial_\delta\Gamma^\alpha{}_{\beta\gamma} + \Gamma^\alpha{}_{\gamma\sigma}\Gamma^\sigma{}_{\beta\delta} - \Gamma^\alpha{}_{\delta\sigma}\Gamma^\sigma{}_{\beta\gamma}$. It is the one combination of the metric''s derivatives that no change of coordinates removes: two neighbouring free balls drift apart by $-R^\mu{}_{\alpha\nu\beta}u^\alpha\xi^\nu u^\beta$, and for an observer at rest the tide is $\mathcal E_{ij} = c^2R_{0i0j}$.'
+    chapter: '7.2'
+    anchor: the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor
+  - key: riemann-lowered
+    title: Riemann tensor, all indices lowered
+    tex: '\curv{R}_{\alpha\beta\gamma\delta}'
+    role: curv
+    kind: A tensor of rank 4; in m⁻² when every coordinate is a length
+    meaning: 'The Riemann tensor with its first index lowered by the metric, $R_{\alpha\beta\gamma\delta} = g_{\alpha\mu}R^\mu{}_{\beta\gamma\delta}$. It changes sign when the first two or the last two indices are exchanged, is unchanged when the two pairs are exchanged, and its cyclic sum over the last three vanishes; so it has 20 independent numbers in four dimensions. In a weak field $R_{\alpha\beta\gamma\delta} = \tfrac12(\partial_\beta\partial_\gamma h_{\alpha\delta} + \partial_\alpha\partial_\delta h_{\beta\gamma} - \partial_\alpha\partial_\gamma h_{\beta\delta} - \partial_\beta\partial_\delta h_{\alpha\gamma})$.'
+    chapter: '7.2'
+    anchor: to-first-order-the-curvature-is-made-of-second-derivatives-of-the-metric

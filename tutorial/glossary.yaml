@@ -2951,3 +2951,55 @@ terms:
     definition: 'The condition $T_{\mu\nu}k^\mu k^\nu \ge 0$ for every null $k^\mu$, which dust, light and fluids with $\rho c^2 + p \ge 0$ satisfy; the Casimir gap is an exception.'
     chapter: '6.5'
     anchor: along-a-ray-of-light-the-table-gives-the-energy-less-c-times-the-momentum
+  - term: parallel transport
+    definition: 'Carrying an arrow along a path on a surface, or through spacetime, so that at each small step it stays parallel to itself in the nearly flat patch around it: carrying it without turning.'
+    chapter: '7.2'
+    anchor: curvature-is-what-no-change-of-coordinates-removes
+  - term: holonomy
+    definition: 'The turn of an arrow carried without turning round a closed loop. On a sphere of radius $a$ it is the area enclosed divided by $a^2$; on a flat sheet it is zero.'
+    chapter: '7.2'
+    anchor: curvature-is-what-no-change-of-coordinates-removes
+  - term: curvature
+    definition: 'The turn of an arrow carried without turning round a small loop, divided by the loop''s area: $1/a^2$ for a sphere of radius $a$. In spacetime it is held by the Riemann tensor, and no change of coordinates can create or remove it.'
+    role: curv
+    chapter: '7.2'
+    anchor: curvature-is-what-no-change-of-coordinates-removes
+  - term: Riemann tensor
+    definition: 'The table of rank 4, built from the Christoffel symbols and their derivatives, that measures the curvature of spacetime; it has 20 independent numbers at each event, and the tide is $c^2R_{0i0j}$.'
+    role: curv
+    chapter: '7.2'
+    anchor: the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor
+  - term: sign convention (Riemann tensor)
+    definition: 'The choice of the overall sign of the Riemann tensor. The paper uses that of Misner, Thorne and Wheeler, $R^\alpha{}_{\beta\gamma\delta} = \partial_\gamma\Gamma^\alpha{}_{\beta\delta} - \dots$, with signature $-{+}{+}{+}$, so that a stretch is a negative entry of the tide.'
+    chapter: '7.2'
+    anchor: the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor
+  - term: cyclic identity (first Bianchi identity)
+    definition: 'The rule $R_{\alpha\beta\gamma\delta} + R_{\alpha\gamma\delta\beta} + R_{\alpha\delta\beta\gamma} = 0$: the sum of the Riemann tensor over the cyclic orders of its last three indices vanishes. In four dimensions it removes one of 21 numbers, leaving 20.'
+    chapter: '7.2'
+    anchor: the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor
+  - term: covariant derivative
+    definition: 'The rate of change of a vector that removes the part due only to the labels, $\nabla_\gamma v^\alpha = \partial_\gamma v^\alpha + \Gamma^\alpha{}_{\gamma\beta}v^\beta$. Two of them taken in opposite orders differ by the Riemann tensor.'
+    chapter: '7.2'
+    anchor: the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor
+  - term: geodesic deviation
+    definition: 'The relative acceleration of two neighbouring free bodies, $\mathrm d^2\xi^\mu/\mathrm d\tau^2 = -R^\mu{}_{\alpha\nu\beta}u^\alpha\xi^\nu u^\beta$: each moves as straight as it can, and they drift together or apart only where spacetime is curved.'
+    role: curv
+    chapter: '7.2'
+    anchor: two-free-balls-drift-apart-by-the-curvature-between-them
+  - term: Fermi coordinates
+    definition: 'Coordinates that fall with one free body and do not turn, built from non-turning axes carried along its path; in them every Christoffel symbol vanishes all along that path.'
+    chapter: '7.2'
+    anchor: two-free-balls-drift-apart-by-the-curvature-between-them
+  - term: linearized curvature
+    definition: 'The Riemann tensor of a weak field to first order in $h_{\mu\nu}$, $R_{\alpha\beta\gamma\delta} = \tfrac12(\partial_\beta\partial_\gamma h_{\alpha\delta} + \partial_\alpha\partial_\delta h_{\beta\gamma} - \partial_\alpha\partial_\gamma h_{\beta\delta} - \partial_\beta\partial_\delta h_{\alpha\gamma})$.'
+    role: curv
+    chapter: '7.2'
+    anchor: to-first-order-the-curvature-is-made-of-second-derivatives-of-the-metric
+  - term: radius of curvature
+    definition: 'The length $|R|^{-1/2}$ made from one component of the curvature: the radius of a sphere whose curvature has the same size. A metre from a person of 70 kg it is $3.1\times10^{12}$ m; at the Earth''s surface $1.7\times10^{11}$ m.'
+    chapter: '7.2'
+    anchor: near-slow-matter-the-curvature-is-newtons-tide
+  - term: second Bianchi identity
+    definition: 'A rule relating the derivatives of the Riemann tensor at neighbouring places, $\nabla_\sigma R_{\alpha\beta\gamma\delta} + \nabla_\gamma R_{\alpha\beta\delta\sigma} + \nabla_\delta R_{\alpha\beta\sigma\gamma} = 0$; stated in chapter 7.2 and used in 7.3 and 9.5.'
+    chapter: '7.2'
+    anchor: the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more
