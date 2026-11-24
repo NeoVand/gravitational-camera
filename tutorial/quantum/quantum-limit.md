@@ -6,7 +6,7 @@ part: '8'
 requires: ['1.4', 'R1', '3.1', '3.2', '3.3', '3.7', '3.8', '8.1', '8.2', '8.3', '8.4']
 paper: [sec:pixel, sec:near-field, sec:first-image, sec:no-lens, sec:one-pixel]
 figures: []
-live: []
+live: [quantum-limit]
 depth: A
 ---
 
@@ -93,19 +93,12 @@ goes to zero, and classical mechanics follows a free mass as closely as we like.
 
 **What it means.** Past the best $\sigma_0$, reading more sharply at the start blurs the end more. If the first reading
 is ten times sharper than the best, the second term of [](#eq:spread) is a hundred times larger than there, and the
-final spread is seven times $\sigma_{\rm SQL}$. The best is a compromise, not zero, and it grows as $\sqrt\tau$.
+final spread is seven times $\sigma_{\rm SQL}$ (Figure [](#fig:sql-compromise)). The best is a compromise, not zero,
+and it grows as $\sqrt\tau$.
 
-<!-- diagram: tut-sql-compromise — One panel, about 560 × 380 px at 1440 (full width on a phone), logarithmic on both
-axes: across, σ₀/σ_SQL from 0.03 to 30; up, σ_x(τ)/σ_SQL from 0.5 to 30. Three curves, thin single strokes: the first
-reading's own term σ₀ (a straight line of slope +1, dashed grey, labelled "first reading" beside its upper end), the
-back-action's term ħτ/2mσ₀ (a straight line of slope −1, dashed grey, labelled "back-action" beside its upper left
-end), and their quadrature sum √(σ₀² + (ħτ/2mσ₀)²) in ink, labelled "σ_x(τ)". The minimum of the sum at σ₀/σ_SQL =
-1/√2 = 0.707, value 1, marked with an ink dot and a thin horizontal line at σ_x(τ)/σ_SQL = 1 labelled "σ_SQL = √(ħτ/m)"
-at the right; a thin vertical tick on the axis at 0.707 labelled "√(ħτ/2m)". Two small open circles on the ink curve at
-σ₀/σ_SQL = 0.0707 and 7.07 (ten times sharper and ten times looser than the best), each at height 7.07, labelled "×7".
-No orange or blue (they are the tide's stretch and squeeze). Caption: "Look first at the lowest point of the ink
-curve: no first reading leaves the mass better known after the time τ than √(ħτ/m). Sharper readings (left) leave a
-larger kick, looser ones (right) a larger start. The curves are exact for a packet with no chirp." -->
+![Look first at the lowest point of the ink curve: no first reading leaves the mass better known after the time
+$\tau$ than $\sqrt{\hbar\tau/\matter m}$. Sharper readings (left) leave a larger kick, looser ones (right) a larger
+start. The curves are exact for a packet with no chirp.](tut-sql-compromise){#fig:sql-compromise}
 
 ## Two gram masses read for a second resolve a tide a hundred thousand times smaller than the person's
 
@@ -134,19 +127,11 @@ larger one is the distance between two equal masses.
 
 **Against real instruments.** The superconducting gradiometer of Section II reaches $0.02\unit{E}$ in a second,
 $2\times10^{-11}\unit{s^{-2}}$ (*stated in the paper*), and so gives the person R1's ratio of 467. On the paper's
-reading it is 300 times short of the ideal pixel.[^grad]
+reading it is 300 times short of the ideal pixel (Figure [](#fig:sql-pixel)).[^grad]
 
-<!-- diagram: tut-sql-pixel — Two panels, about 640 × 300 px at 1440 (stacked on a phone). Left: two small grey balls,
-labelled "1 g" each, a centimetre apart along a horizontal line, drawn twice, at "t = 0" (top) and "t = 1 s" (bottom);
-above each ball a narrow ink bell for its position's spread, of width σ₀ = 2.3 × 10⁻¹⁶ m at the top and σ_SQL =
-3.25 × 10⁻¹⁶ m at the bottom (both drawn hugely magnified; a note "spreads magnified about 10¹³ times"); at the right,
-the person (the stone figure of Part 1, small) a metre away along the same line, with a thin dimension line "1 m".
-Right: a vertical logarithmic strip of tides from 10⁻¹⁵ to 10⁻⁸ s⁻², with three ticks labelled beside them: "the
-person, 9.3 × 10⁻⁹", "gradiometer, 0.02 E in 1 s, 2 × 10⁻¹¹" and "the SQL pixel, 6.5 × 10⁻¹⁴", the last with a short
-bracket up to "9.2 × 10⁻¹⁴ (distance of the two)". No orange or blue except a short orange arrow on each ball at the
-bottom showing the stretch toward the person, labelled "½𝓔ξτ²". Caption: "Look first at the strip: the ideal pixel of
-Section II reads tides 144,000 times smaller than the person's. The bells are the position's spreads at the first and
-the second reading; their sizes and the person's distance are not to scale." -->
+![Look first at the strip: the ideal pixel of Section II reads tides 144,000 times smaller than the person's. The
+bells are the position's spreads at the first and the second reading; their sizes and the person's distance are not
+to scale.](tut-sql-pixel){#fig:sql-pixel}
 
 ## The standard quantum limit belongs to one way of reading, and it can be beaten
 
@@ -189,24 +174,18 @@ difference over $L$, which gives $8\hbar/\matter m\omega^2L^2$.
 makes the shot noise, the other the radiation pressure. Chapter 8.5's
 [squeezed vacuum](/tutorial/quantum/counting-quanta/#a-squeezed-state-is-narrower-than-the-zero-point-in-one-direction),
 sent in instead, narrows one quadrature and widens the other. Squeezed in the shot-noise quadrature, it reads the
-length more finely than the zero point allows, but alone this acts as more power. Squeezed in a mixture of the two, it
-makes the reading's noise and the mirrors' kick partly cancel, so the quantum noise falls below the limit in a band.
-In 2020 LIGO Livingston did this and inferred, after subtracting its classical noise, a quantum noise 3 dB (half the
-power) below its standard quantum limit at 40 Hz (H. Yu and colleagues, *Nature* 583, 43; stated). That quantum part
-was 28% of the total noise power, so the total stayed above the limit. The paper's ceiling
+length more finely than the zero point allows, but alone this acts as more power (Figure
+[](#fig:sql-interferometer)). Squeezed in a mixture of the two, it makes the reading's noise and the mirrors' kick
+partly cancel, so the quantum noise falls below the limit in a band. In 2020 LIGO Livingston did this and inferred,
+after subtracting its classical noise, a quantum noise 3 dB (half the power) below its standard quantum limit at 40 Hz
+(H. Yu and colleagues, *Nature* 583, 43; stated). That quantum part was 28% of the total noise power, so the total
+stayed above the limit. The paper's ceiling
 ([below](#no-state-changes-faster-than-its-energy-spread-allows-and-that-caps-every-camera)) does not use this limit.
 
-<!-- diagram: tut-sql-interferometer — One panel, about 560 × 380 px at 1440 (full width on a phone), logarithmic on
-both axes: across, frequency from 10 to 1000 Hz; up, strain noise from 10⁻²⁵ to 10⁻²² Hz^-1/2. The line h_SQL(f) =
-√(8ħ/mω²L²) for m = 40 kg, L = 4 km (falling as 1/f, through 3.65 × 10⁻²⁴ at 50 Hz, 1.83 × 10⁻²⁴ at 100 Hz,
-0.914 × 10⁻²⁴ at 200 Hz), thick ink, labelled "h_SQL" at its right end. For three laser powers, P₀/10, P₀ and 10P₀,
-with P₀ chosen so that the curve touches h_SQL at 100 Hz, the total quantum noise √(S_shot + S_rp) as thin grey
-curves, each flat at high frequency (shot noise, ∝ P^-1/2) and falling as f⁻² at low frequency (radiation pressure,
-∝ P^1/2), touching the h_SQL line once, at 31.6 Hz, 100 Hz and 316 Hz; each labelled "P₀/10", "P₀", "10 P₀" beside its
-flat part. The touching points marked with small ink dots. No orange or blue. Caption: "Look first at the dots: each
-laser power reaches the limit at one frequency only, where its shot noise and its radiation pressure are equal. More
-power helps above that frequency and hurts below it, and squeezing in the shot-noise quadrature acts as more power.
-The curves are exact for an ideal interferometer of LIGO's size; real noise has other sources." -->
+![Look first at the dots: each laser power reaches the limit at one frequency only, where its shot noise and its
+radiation pressure are equal. More power helps above that frequency and hurts below it, and squeezing in the
+shot-noise quadrature acts as more power. The curves are exact for an ideal interferometer of LIGO's size; real noise
+has other sources.](tut-sql-interferometer){#fig:sql-interferometer}
 
 ## Recording both quadratures of a wave adds half a quantum of noise
 
@@ -350,19 +329,11 @@ $1.44\times10^5$ in a second, but only while the masses stay close: the person's
 $\tfrac12\curv{\tE}\xi\tau^2$, which reaches $\xi$ after $\sqrt{2/\curv{\tE}} = 1.5\times10^4$ s, about four
 hours. Read in stretches of $10^4$ s and averaged over the age of the universe, the pixel reaches about $10^{18}$, a
 blur of 5.5°. The rule carried to the age of the universe would give $4.1\times10^{31}$ and 3.2°, a formal
-extrapolation.
+extrapolation (Figure [](#fig:snr-ladder)).
 
-<!-- diagram: tut-snr-ladder — One panel, about 640 × 300 px at 1440 (rotated to a vertical ladder on a phone): a
-horizontal axis of log₁₀ SNR on the person a metre away from 0 to 72, thin grey with ticks every 10. Four ink dots on
-it, each with its label above and its blur from chapter 3.7's law below in grey: "superconducting gradiometer, 1 s"
-at 467 (log 2.67), blur 26°; "the SQL pixel, 1 s" at 1.44 × 10⁵ (log 5.16), blur 16°; "the SQL pixel, 10⁴ s stretches
-averaged over the age of the universe" at 9.5 × 10¹⁷ (log 18.0), blur 5.5°; "the ceiling, age of the universe" at
-2.6 × 10⁷⁰ (log 70.4), blur 1.5°. Two open circles: one at 4.1 × 10³¹ (log 31.6) labelled "SQL pixel, τ^3/2 carried to
-the age of the universe (formal)", blur 3.2°, and one at 1.7 × 10⁵⁵ (log 55.2) labelled "ceiling, a camera no heavier
-in pull than the Earth", blur 1.9°. A thin dashed bracket from the SQL pixel at 1 s to the formal open circle labelled
-"grows as τ^3/2". No orange or blue. Caption: "Look first at how little the blur moves: sixty-eight powers of ten of
-signal-to-noise ratio narrow it from 26° to 1.5°. The ratios are computed for the person of 70 kg a metre away; the
-blurs are chapter 3.7's law. The open circle at 4 × 10³¹ is a formal extrapolation." -->
+![Look first at how little the blur moves: sixty-eight powers of ten of signal-to-noise ratio narrow it from 26° to
+1.5°. The ratios are computed for the person of 70 kg a metre away; the blurs are chapter 3.7's law. The open circle
+at $4\times10^{31}$ is a formal extrapolation.](tut-snr-ladder){#fig:snr-ladder}
 
 ## A measurement is a set of positive tables that add to one, and a graviton's click carries about a bit
 
@@ -454,24 +425,17 @@ and a sphere's five quadrupole modes ring in proportion to the five numbers of $
 All of them feel the changing pull of air, ground and people nearby, the **Newtonian noise**: Part 2's near field seen
 as noise, which observatories model and subtract [@Harms2019].
 
-<!-- try: quantum-limit (a new interactive figure, QuantumLimit, two panels on an exact engine: panel 1 uses the
-spread σ_x(τ)² = σ₀² + (ħτ/2mσ₀)² and the tide 2σ_x(τ)/ξτ² with ħ = 1.0546 × 10⁻³⁴ J s; panel 2 uses the one-sided
-quantum noise S_h = (S_shot + S_rp) of an ideal interferometer, S_shot = A/P and S_rp = BP/f⁴ with AB fixed by
-S_h,min = 8ħ/mω²L², checked against h_SQL = 1.83 × 10⁻²⁴ Hz^-1/2 at 100 Hz for 40 kg and 4 km) — Panel 1, about
-640 × 300 px at 1440: two free masses drawn as grey balls, each with its position's bell drawn at the start (σ₀) and
-at τ (σ_x(τ)), magnified; readouts of σ₀, σ_x(τ) in units of σ_SQL and in metres, and the tide resolved by two masses,
-2σ_x(τ)/ξτ², with the paper's one-mass value and the value for the distance of the two, √2 larger, side by side; a
-small log–log copy of diagram tut-sql-compromise with a dot that follows the slider. Controls: a slider "σ₀ / optimum"
-from 0.03 to 30, logarithmic (opens at 1), sliders for m (1 mg to 10 kg, opens at 1 g), τ (1 ms to 100 s, opens at
-1 s) and ξ (1 mm to 1 m, opens at 1 cm). Panel 2, about 640 × 300 px: diagram tut-sql-interferometer's axes with the
-h_SQL line and one grey noise curve for the chosen power; a dot where the curve touches the line, its frequency read
-out. Controls: a slider "laser power / P₀" from 0.01 to 100, logarithmic (opens at 1); a slider for the frequency of
-interest (10 to 1000 Hz, opens at 100 Hz) whose readout gives the noise there over h_SQL. Predict first: "Read the
-first position ten times more sharply than the optimum. Does the final uncertainty shrink?" (Answer: no; it grows
-sevenfold, √(1/200 + 50) ≈ 7.07, from the back-action.) Then: "At 100 Hz, which laser power touches the limit?"
-(Answer: only P₀; any other power is above the line at 100 Hz, and more power helps only above its touching
-frequency, which moves as √P.) Keyboard: Tab reaches each slider, arrows step it, shift for larger steps; both
-themes; on a phone the panels stack. -->
+::: try {#quantum-limit}
+Two panels. In the first, two free masses are read once, left alone for a time $\tau$ and read again; the bells show
+each position's spread at the two readings, magnified, and the small plot beside them is Figure [](#fig:sql-compromise)
+with a dot at your first reading. You set the first reading's sharpness against its best value, the mass, the time and
+the separation, and read the tide the pair resolves: the paper's one-mass estimate beside the value for the distance
+of the two. The second panel has the axes of Figure [](#fig:sql-interferometer), the line $h_{\rm SQL}$ for mirrors of
+40 kg and arms of 4 km, and the quantum noise for a laser power you choose.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, set
+the mass to 10 kg, the time to 100 s and the separation to 10 cm, and check the Practice problem's two tides.
+:::
 
 ::: check
 ### Q

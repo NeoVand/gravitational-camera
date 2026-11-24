@@ -71,6 +71,7 @@ import UncertaintyPacket from './live/UncertaintyPacket.svelte';
 import LadderOscillator from './live/LadderOscillator.svelte';
 import MajoranaStars from './live/MajoranaStars.svelte';
 import ClickTrains from './live/ClickTrains.svelte';
+import QuantumLimit from './live/QuantumLimit.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -347,6 +348,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'Clicks from a steady source, a hot one and a source of pairs: the counts per window, their second-order coherence and the classical bounds',
 		component: ClickTrains
+	},
+	'quantum-limit': {
+		label: 'The standard quantum limit: a free mass watched twice, and an interferometer',
+		component: QuantumLimit
 	},
 	'noise-spectrum': {
 		label:
