@@ -112,7 +112,7 @@ parts:
       - { id: '7.5', slug: geometry/gravitomagnetism, title: "Gravity's electric and magnetic parts; gravitomagnetism", short: Gravitomagnetism, size: L, status: published }
       - { id: '7.6', slug: geometry/gravitational-waves, title: 'Gravitational waves and their two polarizations', short: Gravitational waves, size: M, status: published }
       - { id: R7, slug: geometry/reading-section-ii-again, title: 'Reading Section II again, the relativistic half', short: Reading Section II again, size: S, status: published, reads: [sec:pixel] }
-      - { id: '7.7', slug: geometry/quadrupole-formula, title: 'The quadrupole formula, from the near zone to the wave zone', short: The quadrupole formula, size: L, status: planned }
+      - { id: '7.7', slug: geometry/quadrupole-formula, title: 'The quadrupole formula, from the near zone to the wave zone', short: The quadrupole formula, size: L, status: published }
       - { id: '7.8', slug: geometry/wave-energy, title: 'Wave energy, damping by viscosity, and memory', short: Wave energy, size: M, status: planned }
       - { id: R7b, slug: geometry/reading-section-v, title: 'Reading Section V, with the capstone: the sealed rotor', short: Reading Section V, size: M, status: planned, reads: [sec:waves] }
 

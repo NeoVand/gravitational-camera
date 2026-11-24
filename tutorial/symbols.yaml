@@ -2318,3 +2318,19 @@ symbols:
     meaning: 'The spatial part of the metric perturbation of a wave in the transverse-traceless gauge, where every entry with a time index is zero. It has $\hat k_jh^{\rm TT}_{ij} = 0$ and $h^{\rm TT}_{ii} = 0$, so it holds two numbers, $h^{\rm TT}_{ij} = h_+e^+_{ij} + h_\times e^\times_{ij}$. From any harmonic-gauge plane wave it is $\Lambda_{ij,kl}(\hat k)\bar h_{kl}$. Its tide is $\mathcal E_{ij} = -\tfrac12\partial_t^2h^{\rm TT}_{ij}$, and it moves a free ball by $\tfrac12h^{\rm TT}_{ij}\xi_j$.'
     chapter: '7.6'
     anchor: of-the-ten-amplitudes-of-a-plane-wave-two-are-physical
+  - key: stress-transform
+    title: Transform of the stress
+    tex: '\matter{\tilde T}_{kl}(\omega, \vect k)'
+    role: matter
+    kind: A symmetric table of complex numbers for each frequency and wavevector; in N m s
+    meaning: 'The stress $T_{kl}$ of a source, the flow of momentum through it, transformed in time and space: $\tilde T_{kl}(\omega, \mathbf k) = \int T_{kl}\,e^{i\omega t - i\mathbf k\cdot\mathbf x}\,\mathrm dt\,\mathrm d^3x$. Far away, the wave in the direction $\hat n$ reads it at $\mathbf k = \omega\hat n/c$, the paper''s eq:wave-zone. For a compact source it is $-\tfrac12\omega^2\tilde I_{kl}$ at $\mathbf k = 0$.'
+    chapter: '7.7'
+    anchor: far-away-each-direction-reads-the-stress-at-one-wavevector
+  - key: radiated-power
+    title: Power radiated in gravitational waves
+    tex: 'P'
+    role: none
+    kind: A number; a power, in W
+    meaning: 'The energy that a source sends out in gravitational waves each second, through any sphere round it. For a compact source it is $P = (G/5c^5)\langle\dddot I_{ij}\dddot I_{ij}\rangle$ with the trace of $I_{ij}$ removed; two 1 kg masses 1 m apart at sixteen turns a second give $4.55 \times 10^{-41}$ W. (Not the projector $P_{ij}$ of chapter 7.6.)'
+    chapter: '7.7'
+    anchor: the-power-is-set-by-the-third-derivative-of-the-quadrupole

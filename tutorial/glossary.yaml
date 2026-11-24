@@ -3151,3 +3151,27 @@ terms:
     role: curv
     chapter: '7.6'
     anchor: the-magnetic-part-of-a-wave-is-its-tide-turned-by-45
+  - term: tensor virial identity
+    definition: 'For an isolated source free of outside forces, the total stress inside it, the momentum its parts carry together with the pushes and pulls between them, is half the second time derivative of its second moment: $\int T_{kl}\,\mathrm dV = \tfrac12\ddot I_{kl}$. It follows from the conservation of energy and momentum.'
+    role: matter
+    chapter: '7.7'
+    anchor: a-compact-source-is-read-at-zero-wavevector-where-its-stress-is-half-the-acceleration-of-its-quadrupole
+  - term: quadrupole formula
+    definition: 'The strain far from a compact, slow source: $h^{\rm TT}_{ij} = (2G/c^4r)\ddot I^{\rm TT}_{ij}(t - r/c)$, the part of the second time derivative of the second moment across the line of sight with no trace, taken at the retarded time.'
+    role: field
+    chapter: '7.7'
+    anchor: a-compact-source-is-read-at-zero-wavevector-where-its-stress-is-half-the-acceleration-of-its-quadrupole
+  - term: "Birkhoff's theorem"
+    definition: 'In Einstein''s theory, the field outside any spherically symmetric body is the static field of its mass, even while the body pulsates. So a sphere that keeps its shape sends no gravitational wave.'
+    chapter: '7.7'
+    anchor: a-swelling-sphere-and-a-smooth-wheel-send-nothing
+  - term: all-zone solution
+    definition: 'The paper''s exact solution of linearized gravity outside a compact source, kept to the mass quadrupole (eq:multipole). Near the source it is Newton''s field of the masses where they are now; far away it is the quadrupole wave.'
+    role: field
+    chapter: '7.7'
+    anchor: one-solution-runs-from-newtons-pull-near-the-source-to-the-wave-far-away
+  - term: crossover (near zone to wave zone)
+    definition: 'The band of distances over which the changing field of a source passes from the near law to the wave law. For the tide $\mathcal E_{zz}$ across the plane of a turning pair''s orbit, at a point in that plane, the two laws are equal at $0.313\lambda$, twice the reduced wavelength $\lambda/2\pi$; on the axis of the orbit the near and far laws of the tide meet at $0.21\lambda$.'
+    role: curv
+    chapter: '7.7'
+    anchor: one-solution-runs-from-newtons-pull-near-the-source-to-the-wave-far-away
