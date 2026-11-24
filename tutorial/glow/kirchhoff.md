@@ -109,16 +109,11 @@ The upper level's emission has two parts. The part in proportion to $n_\omega$ i
 radiation causes it, it adds quanta to the same mode, and it cancels the share $P_u/P_l$ of the absorption. The part
 that remains in an empty mode, the 1 of $n_\omega + 1$, is **spontaneous emission**. So $\alpha$ is the **net
 absorption coefficient**, absorption less stimulated emission, and $j_\omega$ is the spontaneous emission, as the paper
-says.
+says (Figure [](#fig:balance-rates)).
 
-<!-- diagram: tut-balance-rates — One panel, about 600 × 300 px at 1440 (full width on a phone). Left: two horizontal
-levels of the matter, "l" below and "u" above, a gap marked "ħω", with the fractions P_l and P_u written beside them.
-Right: a mode's ladder of levels n_ω − 1, n_ω, n_ω + 1 (evenly spaced, neutral). Three arrows join the two: up on the
-matter with down on the ladder, "absorption ∝ P_l n_ω"; down on the matter with up on the ladder, "stimulated ∝ P_u
-n_ω"; the same pair dashed, "spontaneous ∝ P_u". A brace groups the first two as "net absorption α ∝ P_l − P_u". All
-neutral; no colour roles. Caption: "Look first at the dashed arrow: it is the only one that does not need quanta
-already in the mode. The other two both grow with n_ω, and their difference is the net absorption. The levels are
-schematic." -->
+![Look first at the dashed arrows: they are the only pair that does not need quanta already in the mode. The other two
+pairs both grow with $n_\omega$, and their difference is the net absorption. The levels are
+schematic.](tut-balance-rates){#fig:balance-rates}
 
 **Temperature.** We assume that **the matter is at the temperature $T$**, so that its populations have chapter
 [4.2](/tutorial/response/temperature/#the-chance-of-a-state-falls-exponentially-with-its-energy)'s Boltzmann ratio
@@ -177,9 +172,9 @@ $$\frac{\dd n_\omega}{\dd s} = \alpha\,\bigl[\bar n(T) - n_\omega\bigr] .$$
 
 The **optical depth** of a stretch of the ray is $\sym{optical-depth}{\tau} = \int\alpha\,\dd s$ along it, a pure
 number (chapter [5.5](/tutorial/waves/radiance/#along-a-ray-matter-adds-its-glow-and-takes-a-share-of-what-passes)).
-Over a few optical depths the occupation relaxes to the matter's own $\bar n(T)$, from above or below. In gravity every
-body's optical depth is tiny and nothing arrives from behind, so $n_\omega \ll \bar n$ and we drop $\alpha
-n_\omega$. Integrating along the line of sight gives
+Over a few optical depths the occupation relaxes to the matter's own $\bar n(T)$, from above or below (Figure
+[](#fig:balance-ray)). In gravity every body's optical depth is tiny and nothing arrives from behind, so $n_\omega \ll
+\bar n$ and we drop $\alpha n_\omega$. Integrating along the line of sight gives
 
 $$\boxed{n_\omega = \sum_k\tau_k(\omega)\,\bar n(T_k)} ,$$
 
@@ -187,13 +182,9 @@ each body's optical depth times its own occupation. Multiplied by $\hbar\omega^3
 and added over frequencies, this is the paper's [](/paper/#eq:column) (chapter
 [5.5](/tutorial/waves/radiance/#when-nothing-absorbs-a-pixel-adds-the-glow-along-its-line)).
 
-<!-- diagram: tut-balance-ray — One panel, about 600 × 320 px at 1440. Horizontal axis: optical depth along the ray
-through a slab, 0 to 5, linear. Vertical axis: n_ω/n̄(T), 0 to 2. Three curves start at the left edge at 2, 1 and
-0 and relax as n̄ + (n₀ − n̄)e^{−τ}, all meeting the line at 1 (thin dashed, labelled "n̄(T)") by τ ≈ 4. Neutral
-greys, three line styles. A small inset near the origin shows the thin case, τ from 0 to 0.01, where the lowest curve
-is a straight ramp n_ω = τ n̄. Caption: "Look first at the three curves meeting: whatever enters the slab, the
-occupation relaxes to the slab's own n̄(T), so the slab's glow does not depend on the radiation around it. In gravity
-every body lives in the inset, where the occupation is τ times n̄. Curves exact." -->
+![Look first at the three curves meeting: whatever enters the slab, the occupation relaxes to the slab's own
+$\bar n(T)$, so the slab's glow does not depend on the radiation around it. In gravity every body lives in the inset,
+where the occupation is $\tau$ times $\bar n$. Curves exact.](tut-balance-ray){#fig:balance-ray}
 
 **The Earth.** The paper's Earth is five uniform shells, the onion of chapter
 [5.6](/tutorial/waves/abel-transform/#uniform-shells-are-peeled-from-the-outside-in), from the crust at 700 K to the
@@ -315,7 +306,7 @@ P_u)$. So the friction that absorbs a wave is the same jiggling that sends one o
 at absolute zero would glow with its zero point, which a cold body has no way to give away (8.7). So the paper takes
 the stress in the "unsymmetrized (Wightman) order", the emission order. At 293 K the symmetrized order would overstate
 the glow by $(\bar n + \tfrac12)/\bar n = 1.15$ at $\omega = 10^{13}\unit{s^{-1}}$ (1.6 THz), and 8.9 times at the
-energy peak.
+energy peak (Figure [](#fig:balance-orders)).
 
 ::: gap
 This sketch takes three steps on trust. Landau and Lifshitz's spectrum of the stress is stated, not derived. Stresses
@@ -325,13 +316,9 @@ stress, and it returns the classical result where $S(-\omega)$ tends to the clas
 same law is the known result that its gravitational glow is set by its shear viscosity [@GhiglieriLaine2015].
 :::
 
-<!-- diagram: tut-balance-orders — One panel, about 560 × 340 px at 1440. Horizontal axis x = ħω/k_BT from 0 to 6.
-Vertical axis: the stress spectrum per Re η in units of k_BT, on a logarithmic scale from 10⁻² to 10. Two curves: the
-emission order 2x n̄(x) (solid, falling from 2 at x = 0 to 0.357 at x = 2.821), and the symmetrized order
-x(2n̄ + 1) = x coth(x/2) (dashed, rising from 2 and growing as x). A dotted horizontal line at 2 marks the classical
-2k_BT. A dot on each curve at x = 2.821 (0.357 and 3.18), with the ratio "8.9×" between them. Neutral; no colour roles.
-Caption: "Look first at the dashed curve climbing: the symmetrized order keeps the zero point and grows without limit,
-while the emission order dies away with Planck's n̄. Only the solid curve gives Kirchhoff's law. Curves exact." -->
+![Look first at the dashed curve climbing: the symmetrized order keeps the zero point and grows without limit, while
+the emission order dies away with Planck's $\bar n$. Only the solid curve gives Kirchhoff's law. Curves
+exact.](tut-balance-orders){#fig:balance-orders}
 
 ## A glow carries entropy as well as energy
 
@@ -430,17 +417,12 @@ modes, up to the **Debye frequency** $\sym{debye-frequency}{\omega_D}$ that leav
 $$\frac{C}{3N\kB} = \frac{3}{x_D^3}\int_0^{x_D}\frac{x^4e^x\,\dd x}{(e^x - 1)^2} .$$
 
 **Numbers.** At 293 K diamond, with the paper's Debye temperature of 2200 K, holds only 0.16 of its classical heat
-capacity, while copper, whose Debye temperature is 343 K, holds 0.93. So most of diamond's modes are frozen, which is
-why Section VI keeps "the quantum occupations, which matter for diamond".
+capacity, while copper, whose Debye temperature is 343 K, holds 0.93 (Figure [](#fig:heat-capacity)). So most of
+diamond's modes are frozen, which is why Section VI keeps "the quantum occupations, which matter for diamond".
 
-<!-- diagram: tut-heat-capacity — Two panels side by side (stacked on a phone), about 680 × 300 px at 1440. Left: a
-mode's C/k_B against k_BT/ħω from 0 to 3 (solid), rising from 0 to the dotted line at 1, with Debye's C/3Nk_B against
-T/Θ_D on the same axes (dashed); two dots on the dashed curve, "diamond, 293 K" at T/Θ_D = 0.133 (0.16) and "copper"
-at 0.854 (0.93). Right, on its own axes: a black hole's C against its temperature, the falling curve C = −Mc²/T with
-M ∝ 1/T, so C ∝ −1/T², drawn below zero, with one dot at 0.902 K labelled "the paper's hole, −1.4 × 10⁴⁰ J/K". All
-neutral greys. Caption: "Look first at the left panel's dots: at room temperature copper's modes are nearly all awake
-and diamond's mostly frozen. On the right, a black hole's heat capacity is negative at every temperature. Curves exact;
-the right panel's vertical scale is schematic." -->
+![Look first at the left panel's dots: at room temperature copper's modes are nearly all awake and diamond's mostly
+frozen. On the right, a black hole's heat capacity is negative at every temperature. Curves
+exact.](tut-heat-capacity){#fig:heat-capacity}
 
 ## A balance is stable only if the heat capacity is positive
 
