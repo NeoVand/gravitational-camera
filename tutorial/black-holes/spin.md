@@ -120,22 +120,17 @@ second.
 path has $\dd s^2 = \field g_{00}\,c^2\dd t^2$. Where $\field g_{00} = -(1 - r_sr/\Sigma)$ is positive, such a path
 would have $c^2\dd\obs\tau^2 < 0$, which no body can have (11.1's argument inside the horizon). This region, between
 the horizon and the surface $r = G\matter M/c^2 + \sqrt{(G\matter M/c^2)^2 - a^2\cos^2\vartheta}$, is the
-**ergosphere**. It touches the horizon at the poles and reaches out to $r_s$ on the equator. Inside it every term of
-$\dd s^2$ except the cross term is positive, so a path with $\dd s^2 < 0$ needs $2\field g_{0\varphi}c\,\dd
-t\,\dd\varphi < 0$, and with $\field g_{0\varphi} < 0$ that means $\dd\varphi/\dd t > 0$. Every body there is carried
-round in the sense of the spin, though it can still escape. This is **frame dragging**, chapter
+**ergosphere**. It touches the horizon at the poles and reaches out to $r_s$ on the equator (Figure
+[](#fig:kerr-horizons)). Inside it every term of $\dd s^2$ except the cross term is positive, so a path with
+$\dd s^2 < 0$ needs $2\field g_{0\varphi}c\,\dd t\,\dd\varphi < 0$, and with $\field g_{0\varphi} < 0$ that means
+$\dd\varphi/\dd t > 0$. Every body there is carried round in the sense of the spin, though it can still escape. This is
+**frame dragging**, chapter
 [7.5](/tutorial/geometry/gravitomagnetism/#neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation)'s
 turning of gyroscopes by a spinning mass, grown large.
 
-<!-- diagram: tut-kerr-horizons — Two panels side by side (stacked on a phone), about 680 × 300 px at 1440. Left:
-against χ from 0 to 1 (horizontal axis, labelled "χ = ac²/GM"), the outer horizon r_+ = 1 + √(1 − χ²) and the
-equatorial edge of the ergosphere, 2, both in units of GM/c² on one vertical scale from 0 to 2.2 (r_+ a solid
-neutral curve falling from 2 to 1; the ergosphere a dashed horizontal line at 2, labelled "ergosphere, equator"), the
-band between them shaded faint. Right: Ω_H = χ/(r_+² + χ²) in units of c³/GM, rising from 0 to 0.5. On both, the
-paper's five spins 0.7, 0.9, 0.99, 0.998 and 1 marked as small ticks with their values. Caption: "Look first at the
-gap between the two curves on the left: it is the ergosphere on the equator, empty for a hole that does not spin and
-widest at the greatest spin, where the horizon has shrunk to half its size. On the right, the rate at which the
-horizon turns. Every curve is exact for Kerr's metric." -->
+![Look first at the gap between the two curves on the left: it is the ergosphere on the equator, empty for a hole that
+does not spin and widest at the greatest spin, where the horizon has shrunk to half its size. On the right, the rate at
+which the horizon turns. Every curve is exact for Kerr's metric.](tut-kerr-horizons){#fig:kerr-horizons}
 
 ## Far away, a spinning hole is a mass and a spin dipole
 
@@ -165,24 +160,18 @@ n_iL_j + (\vect L\cdot\hat n)(\delta_{ij} - 5\hat n_i\hat n_j)]$, with $\hat n$ 
 the body. We put $\vect L = \matter J\hat z$, so $\vect L\cdot\hat n = -\matter J\cos\vartheta$. Along $\hat n$ the
 bracket is $2\vect L\cdot\hat n - 4\vect L\cdot\hat n = 2\matter J\cos\vartheta$, so $\curv\tB_{nn} = -2 \times
 3G\matter J\cos\vartheta/cr^4$. Across $\hat n$ the bracket is $\vect L\cdot\hat n$, so each entry is $+3G\matter
-J\cos\vartheta/cr^4$. This is the boxed diagonal, number for number.[^off] So Kerr's $a$ is the hole's angular
-momentum over $\matter Mc$, and a pixel far away reads it from the phase $3a\cos\vartheta/r$ of its eigenvalues,
-as chapter 9.3's pixel read the Earth's.[^kerr]
+J\cos\vartheta/cr^4$. This is the boxed diagonal, number for number (Figure [](#fig:kerr-far-field)).[^off] So
+Kerr's $a$ is the hole's angular momentum over $\matter Mc$, and a pixel far away reads it from the phase
+$3a\cos\vartheta/r$ of its eigenvalues, as chapter 9.3's pixel read the Earth's.[^kerr]
 
 **Number.** We measure every length in units of $G\matter M/c^2$, so that $r$ and $a$ become pure numbers. For $\chi =
 0.9$, on the axis at $r = 30$ (so $r = 33a$), the exact imaginary part of $(r - ia)^{-3}$ is $3.323\times10^{-6}$,
 against the first-order $3a/r^4 = 3.333\times10^{-6}$. They differ by 0.3%, the size $\tfrac{10}{3}(a/r)^2$ of the
 first neglected term. **Limit:** for $a \to 0$ the reading is 11.1's exact tide.
 
-<!-- diagram: tut-kerr-far-field — Two spheres side by side (stacked on a phone), about 640 × 300 px at 1440. Left: a
-sphere of directions round a spinning hole (a small dark disc at the centre, a short arrow up its axis labelled "J"),
-coloured by the sign of the far-field magnetic entry along the radius, −6GJ cos ϑ/cr⁴: orange over the northern
-hemisphere, blue over the southern, fading to white at the equator, with the strength following |cos ϑ|. Right: the same
-sphere round a spinning ball (a lit stone ball with the same arrow), coloured from 7.5's spin dipole, eq:spin-dipole of
-that chapter, 𝓑_nn = 6G(L·n̂)/cr⁴. The two patterns are identical. Caption: "Look first at the equator of each sphere:
-the magnetic part vanishes there and changes sign across it, for the hole as for the ball. Far away a spinning hole and
-a spinning ball of the same mass and angular momentum give the same pattern; the colour scale is schematic in strength."
--->
+![Look first at the equator of each sphere: the magnetic part vanishes there and changes sign across it, for the hole as
+for the ball. Far away a spinning hole and a spinning ball of the same mass and angular momentum give the same pattern;
+the colour scale is schematic in strength.](tut-kerr-far-field){#fig:kerr-far-field}
 
 **Every moment is fixed.** Any stationary field in empty space has a tower of **mass moments** $\matter M_\ell$ and
 **current moments** $S_\ell$ (the moments of chapter
@@ -353,10 +342,10 @@ the bracket is negative, and $\delta E$ must be negative or zero:
 
 $$\boxed{\;0 < \omega < m\Omega_H \quad\Longrightarrow\quad \delta E \le 0\;} .$$
 
-The hole gives energy to the wave, which leaves stronger than it came. This is **superradiance**. In words: the wave's
-pattern turns at $\omega/m$, and if that is slower than the horizon, the horizon drags it forward.[^doppler] For a wave
-with $\omega = m\Omega_H$ exactly, the first law says only that the area does not change; that such a wave is neither
-absorbed nor amplified is stated, from Teukolsky's equation.
+The hole gives energy to the wave, which leaves stronger than it came. This is **superradiance** (Figure
+[](#fig:kerr-superradiance)). In words: the wave's pattern turns at $\omega/m$, and if that is slower than the
+horizon, the horizon drags it forward.[^doppler] For a wave with $\omega = m\Omega_H$ exactly, the first law says only
+that the area does not change; that such a wave is neither absorbed nor amplified is stated, from Teukolsky's equation.
 
 **Limits.** A hole that does not spin has $\Omega_H = 0$, so the bracket is $1$ and every wave is absorbed or passes,
 $\delta E \ge 0$. A wave with $m \le 0$, turning against the hole or not at all, is never amplified. Chapter
@@ -379,14 +368,9 @@ gravitational waves in one mode and in step, Section XI's [*Counting coincidence
 "cloud of light bosons about a spinning hole", whose gravitons arrive independently, $g^{(2)} = 1$, as chapter
 [8.5](/tutorial/quantum/counting-quanta/#a-steady-source-gives-poisson-counts)'s steady source does.
 
-<!-- diagram: tut-kerr-superradiance — One panel, about 600 × 300 px at 1440. Horizontal axis the wave's frequency in
-units of mΩ_H, from 0 to 2, labelled "ω / mΩ_H"; vertical axis the energy the hole takes for a fixed growth of its area,
-drawn as the sign of δE = (κc²/8πG) δA / (1 − mΩ_H/ω): a bar chart of eight thin vertical bars at ω/mΩ_H = 0.25, 0.5,
-0.75, 0.9, 1.1, 1.25, 1.5 and 2, pointing down (blue, labelled "hole gives energy: superradiance") left of 1 and up
-(orange, labelled "hole absorbs") right of it, their lengths 1/|1 − mΩ_H/ω| capped at a fixed height. A thin vertical
-line at 1, labelled "ω = mΩ_H". Caption: "Look first at the line ω = mΩ_H: to its left the hole loses energy to the
-wave, to its right it absorbs. Only the sign comes from the first law and the area theorem; the bar lengths are
-schematic and the true gains need Teukolsky's equation." -->
+![Look first at the line $\omega = m\Omega_H$: to its left the hole loses energy to the wave, to its right it absorbs.
+Only the sign comes from the first law and the area theorem; the bar lengths are schematic (the two nearest the line are
+cut short), and the true gains need Teukolsky's equation.](tut-kerr-superradiance){#fig:kerr-superradiance}
 
 ::: try {#spin-and-gain}
 A spinning hole cut through its axis, drawn to scale: the horizon, the ergosphere and a few marks turning with the
