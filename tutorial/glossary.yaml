@@ -3775,3 +3775,19 @@ terms:
     definition: 'A number $\lambda$ for which some nonzero $\mathbf x$ has $A\mathbf x = \lambda B\mathbf x$, a root of $\det(A - \lambda B)$. For two tables built from the same three squares, $\sum_a\alpha_a\mathbf m_a\mathbf m_a^{\mathsf T}$ and $\sum_a\beta_a\mathbf m_a\mathbf m_a^{\mathsf T}$, they are the ratios $\alpha_a/\beta_a$.'
     chapter: '9.2'
     anchor: a-pencil-of-two-tables-has-generalized-eigenvalues
+  - term: similar tables
+    definition: 'Two square tables $A$ and $PAP^{-1}$, the second being the first written in other axes. They have the same eigenvalues. Because $\Lambda^{\mathsf T} = \Lambda^{-1}$, a moving pixel''s reading $\Lambda\mathcal W\Lambda^{\mathsf T}$ is similar to the reading at rest.'
+    chapter: '9.3'
+    anchor: the-eigenvalues-are-the-same-for-every-observer
+  - term: principal observer
+    definition: 'The observer at a point for whom the tide and the magnetic part of the field share the same axes, so that its reading is $R_0\,\mathrm{diag}(w_1, w_2, w_3)\,R_0^{\mathsf T}$ with $R_0$ a real turn. Its frame is the field''s rest frame. For three different eigenvalues it is unique, and it reads the least $|\mathcal E|^2 + |\mathcal B|^2$ of all observers there.'
+    chapter: '9.3'
+    anchor: ten-numbers-are-four-invariants-three-angles-and-a-velocity
+  - term: field's own axes
+    definition: 'The three directions along which the principal observer finds both the tide and the magnetic part diagonal: the columns of $R_0$ in the paper''s $P = R_0e^{iK_0}$. Their orientation is three of a pixel''s ten numbers.'
+    chapter: '9.3'
+    anchor: ten-numbers-are-four-invariants-three-angles-and-a-velocity
+  - term: radial blind spot
+    definition: 'The part of a pixel''s velocity that a single round body leaves unreadable: its speed along the line to the body. Two eigenvalues of the body''s reading are equal, and a boost along that line changes nothing at any speed. A second body removes it everywhere off the line through the two bodies, and so does a body that is not round, off any axis of symmetry.'
+    chapter: '9.3'
+    anchor: in-a-room-at-rest-a-pixel-reads-its-own-velocity

@@ -2918,3 +2918,19 @@ symbols:
     meaning: 'The table with $e^{2iK_0} = P^\dagger P$ for a complex rotation $P$, unique because a positive Hermitian table has one Hermitian logarithm. Written $K_0 = -\eta\,\hat u\cdot\mathbf L$, it makes $e^{iK_0}$ the boost of rapidity $\eta$ along $\hat u$; for a reading, the velocity of the field''s own rest frame.'
     chapter: '9.2'
     anchor: every-complex-rotation-is-a-boost-followed-by-a-turn
+  - key: tide-eigenvalue
+    title: Eigenvalues of the tide
+    tex: '\curv{\lambda}_a'
+    role: curv
+    kind: Three real numbers; in s⁻²
+    meaning: 'The eigenvalues $\lambda_1$, $\lambda_2$, $\lambda_3$ of the tide $\mathcal E$ along its principal axes, which add up to zero in empty space. In a room of masses at rest a slow pixel reads $\mathcal B_{bc} = (v_a/c)(\lambda_c - \lambda_b)$ for $(a, b, c)$ in cyclic order, so each gap between two of them reads one component of its velocity, to $c\sigma_n/(\sqrt2|\lambda_b - \lambda_c|)$. (Not a wavelength, nor chapter 9.2''s variable $\lambda$ of the characteristic polynomial.)'
+    chapter: '9.3'
+    anchor: in-a-room-at-rest-a-pixel-reads-its-own-velocity
+  - key: kerr-parameter
+    title: Kerr's spin parameter
+    tex: 'a'
+    role: none
+    kind: A length; in m
+    meaning: 'The length defined by writing a spinning body''s angular momentum as $Mca\,\hat z$: its angular momentum divided by its mass and the speed of light. For a spinning black hole the eigenvalues of $\mathcal W$ are proportional to $(r - ia\cos\vartheta)^{-3}$ (Kerr), and outside any round spinning body this holds to first order in $a$, so their phase is $3a\cos\vartheta/r$. For the Earth $a = 3.27$ m, and the phase at the surface above a pole is $1.5 \times 10^{-6}$. (Not a shell''s radius, a lattice constant or a light amplitude.)'
+    chapter: '9.3'
+    anchor: complex-eigenvalues-mean-that-something-in-the-room-moves-or-turns

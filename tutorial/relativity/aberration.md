@@ -247,7 +247,7 @@ its direction needs the rule for components. We state two results without proof.
 - **Light.** The electric field of a charge moving steadily points straight away from where the charge is now (chapter
   [6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle)).
 - **Gravity.** The stretch axis of the tide of a mass moving steadily lies along the line to where the mass is now, and
-  the invariants of the tide, the combinations of its numbers that every observer at the pixel finds the same
+  the invariants of the full reading, tide and magnetic part together, the combinations of its numbers that every observer at the pixel finds the same
   ([0.4](/tutorial/evening/one-pixel/#the-ten-numbers-regroup-into-four-invariants-three-angles-and-a-velocity)), are
   those at rest (chapter 9.3).
 
