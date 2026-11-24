@@ -21,22 +21,14 @@ order, and derives nothing new. It completes the readings of chapters [R1](/tuto
 [R3](/tutorial/noise/reading-section-iv-2/) and [R4](/tutorial/response/reading-section-iv-3/), which marked these
 claims *read now, derived in Part 8*. Each claim gets its chapter and a mark: *checked here* (derived earlier, with its
 numbers recomputed here), *read now, derived in Part N*, or *stated in the paper*. Two optional stretches of Sections
-IX and XI follow, then the capstone. The map below draws the stretches in order.
+IX and XI follow, then the capstone. The map below draws the stretches in order (Figure
+[](#fig:read-quantum-map)).
 
-<!-- diagram: tut-read-quantum-map — The map of the stretches read here, drawn as R1–R7 draw theirs: about 640 × 260 px
-at 1440, stacked into one column on a phone. Upper strip, in the paper's order, six boxes joined by thin arrows:
-"§II What the premise asks: 6.5 × 10⁻¹⁴ s⁻²" (8.6); "§IV plain words: 10⁷⁰, 1.5°, 22 kB" (8.6, 3.7, 3.8); "What heat
-reveals: 4 × 10⁸ quanta, no graviton" (8.3); "Limits on sensitivity (1): SNR ≲ M_s c²τ/ħ" (8.6, with a dotted "11.1"
-for the camera's mass bound); "Limits on sensitivity (2): a mass in two places" (8.1, with a dotted "13.8" for
-decoherence by gravity); "App. A, quoted by What an applied tide reveals: Eq. jitter-bounds" (8.7). Each box carries its
-chapters beneath in grey. Filled boxes are derived in Part 8; a box with a dotted chapter number holds a claim read now
-and derived later. Lower strip, offset to the right and drawn with a dashed outline to mark it optional: "§IX Counting
-or recording, with §VII's sentence: 1.17 bits" (8.4, 8.6) and "§XI Counting coincidences: g⁽²⁾" (8.5), with "read ahead
-for R10 and R11" and "R12" in small grey type. Both strips end in an arrow to one box at the right, "capstone: from two
-grams to the ceiling". Ink and grey only; no orange or blue. Caption: "Look first at the filled boxes: every quantum
-statement of Sections II and IV and Appendix A is now derived in Part 8, except the camera's mass bound (11.1) and
-decoherence by gravity (13.8). The dashed strip holds two optional stretches of Sections IX and XI, with one sentence of
-Section VII, that need only Part 8." -->
+![Look first at the filled boxes: every quantum statement of Sections II and IV and Appendix A is now derived in Part
+8, except the camera's mass bound (11.1), the resolution of the which-way puzzle, which is stated in the paper, and
+decoherence by gravity (13.8). A half-filled box also holds a claim read now, in its dotted box, or stated in the paper.
+The dashed strip holds two optional stretches of Sections IX and XI, with one sentence of Section VII, that need only
+Part 8.](tut-read-quantum-map){#fig:read-quantum-map}
 
 ::: plain
 Quantum mechanics enters the paper's near field in three places. First, the slow motions of ordinary bodies are
@@ -296,27 +288,17 @@ $\tau$, while the averaged pixel grows only as $\sqrt\tau$, so the longer both w
 $5.3\times10^{-12}$ of what the gram pixel resolves in a second
 ([above](#the-balls-tremor-is-classical-holds-four-hundred-million-quanta-and-needs-no-graviton)).
 
-**(e) The gram in two places.** Its tide is $1.2\times10^{-11}$ of the gram pixel's limit, and any pixel that read it
-would end the superposition ([above](#a-camera-that-could-read-a-quantum-mass-would-end-its-superposition)).
+**(e) The gram in two places.** Its tide is $1.2\times10^{-11}$ of the gram pixel's limit (Figure
+[](#fig:quantum-tides)), and any pixel that read it would end the superposition
+([above](#a-camera-that-could-read-a-quantum-mass-would-end-its-superposition)).
 
 **(f) What the ceiling means.** A blur of $1.51°$ is 2.6 cm on a person a metre away, too coarse to draw a face
 (3.7, [above](#the-plain-words-ceiling-its-blur-and-its-22-kilobytes-come-out-of-parts-3-and-8)).
 
-<!-- diagram: tut-quantum-tides — the capstone's tides, a different story from 8.6's tut-snr-ladder (which draws
-signal-to-noise ratios and blurs and is referred to, not repeated). One panel, about 560 × 380 px at 1440 (full width on a
-phone): a vertical logarithmic axis of tides a metre away, in s⁻², from 10⁻⁸ at the top to 10⁻³⁰ at the bottom, thin grey,
-ticks every two decades. Left of the axis, the instruments' smallest resolved steady tides, as short ink bars with
-labels to the left: "superconducting gradiometer, one second, 2 × 10⁻¹¹"; "the gram pixel at the standard quantum limit,
-one second, 6.5 × 10⁻¹⁴" with a thin bracket up to "9.2 × 10⁻¹⁴ (distance of the two)"; and, as a dotted bar, "the gram
-pixel in 10³ s stretches over the age of the universe, 9.8 × 10⁻²⁶" (the person's 9.34 × 10⁻⁹ over 9.5 × 10¹⁶; the
-stretches end because the two grams fall together under their own pull in about an hour, 3.9 × 10³ s). Right of the
-axis, the scenes as ink dots with labels to the right: "the person, 9.34 × 10⁻⁹"; "a gram in two places a micrometre
-apart, 8.0 × 10⁻²⁵"; "the steel ball's thermal tremor, 3.4 × 10⁻²⁵"; "its zero-point tremor, 1.2 × 10⁻²⁹". A thin dashed
-grey line across from the one-second gram pixel's bar, labelled "one second at the SQL". Labels never on marks; no orange
-or blue. Caption: "Look first at the gap below the dashed line: the quantum scenes of Section IV lie more than ten powers
-of ten below what the best pixel of Section II resolves in a second, and the ball's zero point more than fifteen. The
-dotted bar holds only for a tide that stays steady for the age of the universe, which these scenes do not. Instrument
-bars are for a steady tide; the tremors are root-mean-square values." -->
+![Look first at the gap below the dashed line: the quantum scenes of Section IV lie more than ten powers of ten below
+what the best pixel of Section II resolves in a second, and the ball's zero point more than fifteen. The dotted bar holds
+only for a tide that stays steady for the age of the universe, which these scenes do not. Instrument bars are for a
+steady tide; the tremors are root-mean-square values.](tut-quantum-tides){#fig:quantum-tides}
 
 {{paper fig:resolution-law}}
 
