@@ -216,7 +216,7 @@ unit vectors across the wave's direction; its dot product with itself is zero. C
 spin one, and that the table $\vect m\vect m^{\mathsf T}$ is symmetric, has no trace and has spin two (*checked
 here*). That a wave's whole field is a multiple of that table is *read now, derived in Part 9* (chapter 9.1), and so
 are the uses the paper lists, from "the four principal null directions of a reading" to "the spin-two envelope of a
-sparse array" (reading chapter R9).
+sparse array" (reading chapter R9b).
 
 *Matter is slow*, "$v/c \ll 1$: this puts the edge of the near zone, $\lambda/2\pi \sim L/(v/c)$, far beyond any <!-- lint-allow: \sim -->
 room". A body of size $L$ whose parts move at the speed $v$ changes in a time near $L/v$, so its angular frequency is

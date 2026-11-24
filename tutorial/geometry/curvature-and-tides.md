@@ -602,7 +602,7 @@ c^2\curv R_{0i0j}$. In a static weak field [](#eq:linearized) gives $\curv R_{0i
 - The paper's [](/paper/#eq:magnetic) packs the eight numbers with one time index; Section II's "ten numbers" are the
   count of [](#the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more).
 - In [Section VIII](/paper/#sec:one-pixel), the paper's [](/paper/#eq:bianchi-wave) follows from the second Bianchi
-  identity "with no field equations assumed" (chapter 9.5).
+  identity "with no field equations assumed" (chapter 9.7).
 :::
 
 ::: deeper
@@ -630,7 +630,7 @@ c^2\curv R_{0i0j}$. In a static weak field [](#eq:linearized) gives $\curv R_{0i
     Bianchi identity**. We state it without proof; for the linearized curvature it follows from [](#eq:linearized)
     because partial derivatives commute. Chapter
     [7.3](/tutorial/geometry/einstein-equation/#einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point)
-    uses it to build Einstein's equation, and chapter 9.5 uses it for the paper's [](/paper/#eq:bianchi-wave).
+    uses it to build Einstein's equation, and chapter 9.7 uses it for the paper's [](/paper/#eq:bianchi-wave).
 
 [^conventions]: With the opposite sign of the Riemann tensor, which some books use, the same stretch would be a positive
     $\curv R_{0x0x}$. With the signature $+{-}{-}{-}$, lowering a spatial index changes its sign, and the tide would be

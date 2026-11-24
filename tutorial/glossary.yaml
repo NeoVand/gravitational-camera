@@ -3000,7 +3000,7 @@ terms:
     chapter: '7.2'
     anchor: near-slow-matter-the-curvature-is-newtons-tide
   - term: second Bianchi identity
-    definition: 'A rule relating the derivatives of the Riemann tensor at neighbouring places, $\nabla_\sigma R_{\alpha\beta\gamma\delta} + \nabla_\gamma R_{\alpha\beta\delta\sigma} + \nabla_\delta R_{\alpha\beta\sigma\gamma} = 0$; stated in chapter 7.2 and used in 7.3 and 9.5.'
+    definition: 'A rule relating the derivatives of the Riemann tensor at neighbouring places, $\nabla_\sigma R_{\alpha\beta\gamma\delta} + \nabla_\gamma R_{\alpha\beta\delta\sigma} + \nabla_\delta R_{\alpha\beta\sigma\gamma} = 0$; stated in chapter 7.2 and used in 7.3 and 9.7.'
     chapter: '7.2'
     anchor: the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more
   - term: Ricci tensor

@@ -291,4 +291,4 @@ instead of recording mostly noise.
     [7.4](/tutorial/geometry/linearized-gravity/#the-field-travels-at-the-speed-of-light) and 7.7) shows that general
     relativity predicts it, with gravity at light's speed.
 
-[^blind]: R9 builds the two scenes.
+[^blind]: R9b builds the two scenes.
