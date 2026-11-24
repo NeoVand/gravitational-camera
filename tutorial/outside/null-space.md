@@ -608,7 +608,9 @@ a little below zero.
     surface density, as chapter 1.3's pillbox showed for a sheet. The last section treats the skin.
 
 [^script]: We write the families in script letters. The paper's $\mathcal N$ of Section XIII, an energy crossing a
-    front, is a different object and appears only in Part 13.
+    front, is a different object and appears in chapters
+    [6.5](/tutorial/relativity/stress-energy/#along-a-ray-of-light-the-table-gives-the-energy-less-c-times-the-momentum)
+    and [13.5](/tutorial/what-a-field-keeps/impulsive-waves/#whatever-crosses-the-front-keeps-q-and-is-kicked-in-proportion-to-it).
 
 [^likely]: Chapter 3.5 derives the paper's equation [](/paper/#eq:wiener) for this best guess. With finitely many
     pixels the noiseless best guess is still harmonic, but it is not $\matter\rho_h$.

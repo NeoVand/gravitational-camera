@@ -2035,7 +2035,7 @@ symbols:
     tex: 'q'
     role: none
     kind: A momentum; in kg m s⁻¹
-    meaning: 'The light-cone component $q = E/c - p_z$ of a body''s four-momentum: about $mc$ for slow matter, $mc/2$ at $0.6c$ along $+z$, zero for light along $+z$. With the other component, $q(E/c + p_z) = m^2c^2 + p_\perp^2$. An impulsive plane wave along $z$ keeps it. (Not chapter 3.7''s $q = kz$.)'
+    meaning: 'The light-cone component $q = E/c - p_z$ of a body''s four-momentum: about $mc$ for slow matter, $mc/2$ at $0.6c$ along $+z$, zero for light along $+z$. With the other component, $q(E/c + p_z) = m^2c^2 + p_\perp^2$. An impulsive plane wave along $z$ keeps it, because its metric does not contain $v$ (chapter 13.5). (Not chapter 3.7''s $q = kz$.)'
     chapter: '6.4'
     anchor: along-one-line-light-cone-coordinates-turn-a-boost-into-a-stretch
   - key: transverse-momentum
@@ -2051,7 +2051,7 @@ symbols:
     tex: 'H'
     role: none
     kind: A function across the wave front; in metres
-    meaning: 'The profile $H(\mathbf x_\perp)$ of the paper''s impulsive plane wave, $\mathrm ds^2 = -\mathrm du\,\mathrm dv + H\delta(u)\,\mathrm du^2 + \mathrm d\mathbf x_\perp^2$. A particle that crosses it receives the sideways momentum $\tfrac12q\nabla H$. (Not the Hamiltonian, the Wiener filter or the bits $H$.)'
+    meaning: 'The profile $H(\mathbf x_\perp)$ of the paper''s impulsive plane wave, $\mathrm ds^2 = -\mathrm du\,\mathrm dv + H\delta(u)\,\mathrm du^2 + \mathrm d\mathbf x_\perp^2$. A particle that crosses it receives the sideways momentum $\tfrac12q\nabla H$, which chapter 13.5 derives from the geodesic equation. (Not the Hamiltonian, the Wiener filter or the bits $H$.)'
     chapter: '6.4'
     anchor: a-sideways-kick-that-keeps-q-fixes-the-energy-gained
   - key: light-cone-total
@@ -3930,3 +3930,20 @@ symbols:
     meaning: 'The paper''s $\tilde\rho(\mathbf K, \kappa) = \int\rho\,e^{i\mathbf K\cdot\mathbf a - \kappa z}\,\mathrm d^2a\,\mathrm dz$ of a scene below a flat camera: a Fourier transform across the camera and a Laplace transform in depth. A reading at one time holds it on the cone $\kappa = K$; readings at two times hold it inside, times $\tfrac12(\kappa^2 - K^2)$. A point mass $m$ at depth $z_0$ below the origin has $\tilde\rho = me^{-\kappa z_0}$. (Here $K = |\mathbf K|$ is not a bulk modulus or a kinetic energy.)'
     chapter: '13.2'
     anchor: a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two
+
+  - key: transverse-position
+    title: Place across the wave
+    tex: '\mathbf x_\perp'
+    role: none
+    kind: A vector of two components; in metres
+    meaning: 'The place $(x, y)$ on the front of a wave moving along $z$, the plane across its direction. An impulsive wave''s profile $H(\mathbf x_\perp)$ and the energy $\mathcal N(\mathbf x_\perp)$ that crosses the front are functions of it.'
+    chapter: '13.5'
+    anchor: a-sudden-sheet-of-gravity-is-an-exact-solution-of-einsteins-equation
+  - key: massless-momentum
+    title: Momentum of a particle without mass
+    tex: 'p'
+    role: none
+    kind: A number; in kg m s⁻¹
+    meaning: 'The momentum $p = E/c$ of a particle without mass moving at $c$, such as a photon. Its field is the Aichelburg–Sexl wave, of profile $-(8Gp/c^3)\ln|\mathbf x_\perp - \mathbf b|$, and it passes a body with the flyby constant $C = 4Gp/c^2$. (Not a pressure $p$.)'
+    chapter: '13.5'
+    anchor: the-field-of-a-particle-without-mass-is-an-impulsive-wave

@@ -243,7 +243,8 @@ one cone of half-angle $\arccos\obs\beta$ about the direction behind. **Number:*
 0.462$ and the half-angle is $62.5°$. **Limit:** at $\obs\beta = 0$ the cone is the plane; as $\obs\beta \to 1$ the
 sine of its half-angle, $\sqrt{1 - \obs\beta^2} = 1/\obs\gamma$, shrinks as the paper's $1/\gamma$. So all furniture
 looks to the pixel like a wave from in front, a shock like Aichelburg and Sexl's for a mass at the speed of light
-(*stated in the paper* [@AichelburgSexl1971]).
+(the boosted limit *stated in the paper* [@AichelburgSexl1971]; the shock's profile *derived in chapter
+[13.5](/tutorial/what-a-field-keeps/impulsive-waves/#the-field-of-a-particle-without-mass-is-an-impulsive-wave)*).
 
 [*Counting coincidences*](/paper/#par:counting-coincidences) was read ahead in chapter
 [R8](/tutorial/quantum/reading-the-quantum-limits/#read-ahead-coincidences-tell-a-sky-born-hot-from-one-born-in-inflation):

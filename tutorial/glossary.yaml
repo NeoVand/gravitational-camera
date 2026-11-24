@@ -754,7 +754,7 @@ terms:
     chapter: '1.7'
     anchor: a-sudden-kick-changes-the-kinetic-energy-in-two-parts
   - term: impulsive tide
-    definition: 'A tide that acts for an instant, with the potential $-\epsilon\,g(\vect x)\,\delta(t)$. It gives each part of a body the impulse $\epsilon m\nabla g$ where it stands and leaves the energy $\epsilon\dot Q_g + \tfrac12\epsilon^2\int\rho|\nabla g|^2\,\mathrm dV$.'
+    definition: 'A tide that acts for an instant, with the potential $-\epsilon\,g(\vect x)\,\delta(t)$. It gives each part of a body the impulse $\epsilon m\nabla g$ where it stands and leaves the energy $\epsilon\dot Q_g + \tfrac12\epsilon^2\int\rho|\nabla g|^2\,\mathrm dV$. Its relativistic form is the impulsive plane wave of chapter 13.5, with $\epsilon g$ replaced by $\tfrac12cH$.'
     chapter: '1.7'
     anchor: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass
   - term: moment of the mass
@@ -4801,3 +4801,35 @@ terms:
     definition: 'An error in a result that shrinks only as a power of $1/\ln\mathrm{SNR}$ as the ratio $\mathrm{SNR}$ of the data to their error grows, so that squaring the precision of the data improves the result by a fixed factor. Calderón''s problem has it, and cannot do better.'
     chapter: '13.2'
     anchor: fine-detail-still-costs-exponentially-the-two-readings-remove-the-ambiguity-and-keep-the-blur
+
+  - term: impulsive plane wave
+    definition: 'The paper''s metric $\mathrm ds^2 = -\mathrm du\,\mathrm dv + H(\vect x_\perp)\,\delta(u)\,\mathrm du^2 + \mathrm d\vect x_\perp^2$: spacetime flat everywhere except on a plane front moving at $c$. It is an exact solution of Einstein''s equation in empty space wherever its profile $H$ is harmonic across the front, and it gives whatever crosses it the sideways momentum $\tfrac12q\nabla H$. The relativistic form of an impulsive tide.'
+    role: field
+    chapter: '13.5'
+    anchor: a-sudden-sheet-of-gravity-is-an-exact-solution-of-einsteins-equation
+  - term: front
+    definition: 'The plane $u = ct - z = 0$ of an impulsive plane wave, moving along $+z$ at the speed of light. The whole wave lies on it, so a body meets all of it at one instant.'
+    chapter: '13.5'
+    anchor: a-sudden-sheet-of-gravity-is-an-exact-solution-of-einsteins-equation
+  - term: profile
+    definition: 'The function $H(\vect x_\perp)$, in metres, that sets the strength of an impulsive plane wave at each place on its front. Its gradient, a pure number, fixes the kick.'
+    chapter: '13.5'
+    anchor: a-sudden-sheet-of-gravity-is-an-exact-solution-of-einsteins-equation
+  - term: exact solution
+    definition: 'A metric that satisfies Einstein''s equation with no term neglected, not only to first order in a weak field. The impulsive plane wave is one because its curvature is exactly linear in its profile.'
+    chapter: '13.5'
+    anchor: a-sudden-sheet-of-gravity-is-an-exact-solution-of-einsteins-equation
+  - term: plane-fronted wave
+    definition: 'A wave of gravity whose metric is $-\mathrm du\,\mathrm dv + H(u, \vect x_\perp)\,\mathrm du^2 + \mathrm d\vect x_\perp^2$, with a profile $H$ that may change with $u$: an exact solution of Einstein''s equation in empty space wherever $H$ is harmonic in $\vect x_\perp$ at each $u$. The impulsive plane wave is the special case $H(\vect x_\perp)\,\delta(u)$.'
+    chapter: '13.5'
+    anchor: whatever-crosses-the-front-keeps-q-and-is-kicked-in-proportion-to-it
+  - term: light-ray transform
+    definition: 'The integrals of the stress–energy tensor, $\int T_{\mu\nu}k^\mu k^\nu$, along every null ray. Impulsive waves from every direction read it; the stresses $(\partial_\mu\partial_\nu - \eta_{\mu\nu}\Box)\phi$ give zero on every ray.'
+    role: matter
+    chapter: '13.5'
+    anchor: pairs-of-waves-read-the-fourier-transform-of-what-crosses-the-front
+  - term: Aichelburg–Sexl wave
+    definition: 'The field of a particle without mass of momentum $p$: an impulsive plane wave with the profile $H = -(8Gp/c^3)\ln|\vect x_\perp - \vect b|$, found by P. C. Aichelburg and R. U. Sexl in 1971. It kicks a body at rest twice as hard as Newton''s law would for a mass $p/c$ at $c$.'
+    role: field
+    chapter: '13.5'
+    anchor: the-field-of-a-particle-without-mass-is-an-impulsive-wave
