@@ -318,11 +318,13 @@ $\bar n^2$, is $10^{-30}$ times its clicks' term, $\bar n$. A detector watching 
 $10^{30}$ windows. If a window is one coherence time, about $3\times10^{-14}$ s at room temperature (chapter 5.3), it
 waits about $3\times10^{16}$ s, a billion years, for each click.
 
-The paper's [primordial graviton background](/paper/#par:a-primordial-graviton-background), if it exists, has the
-0.905 K of the paper's equation [](/paper/#eq:graviton-temperature). Its gravitons left equilibrium near the Planck
-temperature and have kept a black-body spectrum since, so chapter 8.3's $\bar n = 1/(e^{\hbar\omega/\kB T} - 1)$ still
-holds; inflation would have diluted the background away. At 10 GHz, a wavelength of 3 cm, $\bar n = 1.43$;
-at 100 GHz, $\bar n = 5.0\times10^{-3}$. Such a sky's pairs of clicks are common only at centimetre wavelengths.
+The paper's [primordial graviton background](/paper/#par:a-primordial-graviton-background), if it exists, has the 0.905
+K of the paper's equation [](/paper/#eq:graviton-temperature), derived in chapter
+[12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat). Its gravitons left
+equilibrium near the Planck temperature and have kept a black-body spectrum since, so chapter 8.3's $\bar n =
+1/(e^{\hbar\omega/\kB T} - 1)$ still holds; inflation would have diluted the background away. At 10 GHz, a wavelength of
+3 cm, $\bar n = 1.43$; at 100 GHz, $\bar n = 5.0\times10^{-3}$. Such a sky's pairs of clicks are common only at
+centimetre wavelengths.
 
 ::: check
 ### Q

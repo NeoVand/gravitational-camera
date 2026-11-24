@@ -633,8 +633,9 @@ paper's numbers, within corrections of order $(v/c)^2$.
 
 [^mbar]: Astronomers write $\mu$ for it; the tutorial keeps $\mu$ for chapter 4.3's shear modulus.
 
-[^rhoc]: The critical density is the mean density at which the universe's space, on the largest scales, is flat.
-    Chapter 12.2 derives it and writes it $\rho_{\rm crit}$, so that $\matter\rho_c$ is always a central density.
+[^rhoc]: The critical density is the mean density at which the universe's space, on the largest scales, is flat. Chapter
+    [12.2](/tutorial/sky/universe/#the-universe-expands-uniformly-and-a-critical-density-decides-its-fate) derives it
+    and writes it $\rho_{\rm crit}$, so that $\matter\rho_c$ is always a central density.
 
 [^light]: In the Sun the fraction is small: at the centre of Eddington's model the light's pressure is
     $4\times10^{-4}$ of the gas's, so the numbers below leave it out. The index 3 comes from the fraction being the

@@ -385,9 +385,10 @@ the old $\bar n = 1/(e^{\hbar\omega/\kB T} - 1)$, which is $1/(e^{\hbar\omega'/\
 body again, cooler. Its volume $V = L^3$ times $T^3$, and with it the entropy $sV$, is unchanged. This is an
 **adiabatic expansion**. Doubling a 293 K box gives 146.5 K.
 
-Chapter 12.2 uses this to cool the paper's graviton sky to 0.905 K, the paper's
-[](/paper/#eq:graviton-temperature). In its factor $(3.91/106.75)^{1/3}$ the two numbers count the kinds of particle
-that held the heat today and when the gravitons parted; those that annihilated in between heated only the photons.
+Chapter [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat) uses this to cool the
+paper's graviton sky to 0.905 K, the paper's [](/paper/#eq:graviton-temperature). In its factor $(3.91/106.75)^{1/3}$
+the two numbers count the kinds of particle that held the heat today and when the gravitons parted; those that
+annihilated in between heated what was still in contact, never the gravitons.
 
 ## Heat capacity says how a body's energy follows its temperature
 
@@ -526,7 +527,8 @@ $B_\omega$.
 - Section VII's [*A black hole as the lens*](/paper/#par:a-black-hole-as-the-lens): "like every such balance, this
   one is unstable" (chapter R11).
 - Section XI's [*A primordial graviton background*](/paper/#par:a-primordial-graviton-background): conservation of
-  entropy and the paper's [](/paper/#eq:graviton-temperature) (chapter 12.2).
+  entropy and the paper's [](/paper/#eq:graviton-temperature) (chapter
+  [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat)).
 :::
 
 ::: deeper

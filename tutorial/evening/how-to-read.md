@@ -271,7 +271,9 @@ a patch as wide as the mass is deep.
 
 [^blind]: The shell: [1.3](/tutorial/newton/gauss-and-poisson/). Steady motion: chapter
     [7.6](/tutorial/geometry/gravitational-waves/#a-body-in-steady-motion-sends-no-wave-and-neither-does-an-even-pressure).
-    The string: R12.
+    The string: chapter
+    [12.2](/tutorial/sky/universe/#a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind)
+    and R12b.
 
 [^mean]: Derived in chapter 10.1.
 

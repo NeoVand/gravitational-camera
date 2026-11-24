@@ -168,7 +168,7 @@ parts:
     title: The sky
     chapters:
       - { id: '12.1', slug: sky/stars, title: 'Stars, compact objects, supernovae and the Galaxy', short: Stars, size: L, status: published }
-      - { id: '12.2', slug: sky/universe, title: 'The expanding universe, its thermal history, and a graviton background', short: The universe, size: L, status: planned }
+      - { id: '12.2', slug: sky/universe, title: 'The expanding universe, its thermal history, and a graviton background', short: The universe, size: L, status: published }
       - { id: R12, slug: sky/reading-sections-x-and-xi, title: 'Reading Sections X and XI', short: Reading Sections X and XI, size: M, status: planned, reads: [sec:affordances, sec:vistas] }
 
   - id: '13'

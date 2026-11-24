@@ -4530,3 +4530,164 @@ terms:
     definition: 'A set of pulsars whose arrival times are followed for years, so that nanohertz gravitational waves passing the Earth show as a pattern of shifts across the sky.'
     chapter: '12.1'
     anchor: when-the-fuel-is-gone-crowded-particles-hold-the-star-up
+
+  - term: cosmic microwave background
+    definition: 'The light left from the early universe, which fills the sky as a black body at 2.7255 K, slightly warmer in the direction of our motion and with spots of about one part in $10^5$.'
+    chapter: '12.2'
+  - term: scale factor
+    definition: 'The factor $a(t)$, equal to 1 today, by which a uniform expansion has stretched every distance between galaxies.'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - term: comoving distance
+    definition: 'The distance between two galaxies today, a label that a uniform expansion does not change; at the time $t$ the distance is $a(t)$ times it.'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - term: Hubble's law
+    definition: 'In a uniform expansion every galaxy recedes at a speed proportional to its distance, $v = Hd$.'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - term: Hubble rate
+    definition: 'The rate of a uniform expansion, $H = \dot a/a$, in s⁻¹. Its value today is the Hubble constant: $H_0 = 67.4\,\mathrm{km\,s^{-1}\,Mpc^{-1}} = 2.18\times10^{-18}\,\mathrm{s^{-1}}$ from the microwave sky, about 73 from nearby galaxies, a gap not yet understood.'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - term: Friedmann equation
+    definition: 'The law of a uniform expansion, $H^2 = 8\pi G\rho/3 - kc^2/a^2$ (in Einstein''s theory $\rho$ counts every energy over $c^2$ and $\Lambda c^2/3$ is added): the energy of a thrown body, for every shell of the universe at once.'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - term: curvature of space
+    definition: 'In a uniform universe, the constant $k$ of the Friedmann equation, in m⁻²: positive for a closed space, zero for a flat one.'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - term: flat universe
+    definition: 'A uniform universe whose space has no curvature, $k = 0$; its density is the critical density. Ours is flat within a fraction of a per cent.'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - term: critical density
+    definition: 'The density of a flat uniform universe, $3H^2/8\pi G$: $8.53\times10^{-27}\,\mathrm{kg\,m^{-3}}$ today, five protons per cubic metre.'
+    role: matter
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - term: cosmological redshift
+    definition: 'The stretching of a wave by the expansion on its way, $1 + z = a_0/a_{\rm e}$: its wavelength grows in proportion to the scale factor.'
+    chapter: '12.2'
+    anchor: expansion-stretches-every-wave-so-a-black-body-stays-black
+  - term: plasma
+    definition: 'A gas of free electrons and nuclei. Before $z = 1090$ the universe''s plasma scattered light; the microwave sky is the light released when it became neutral, at about 3000 K.'
+    role: matter
+    chapter: '12.2'
+    anchor: expansion-stretches-every-wave-so-a-black-body-stays-black
+  - term: thermal history
+    definition: 'The sequence of the universe''s temperatures, and of which particles were in contact at each, from its hot beginning to today.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: boson
+    definition: 'A particle, such as a photon or a graviton, any number of which can share one mode; its thermal occupation is $1/(e^x - 1)$.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: fermion
+    definition: 'A particle, such as an electron, a quark or a neutrino, that obeys the exclusion principle: at most one in each mode, with the thermal occupation $1/(e^x + 1)$. Each fermion state carries seven eighths of a boson state''s energy and entropy.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: effective number of species
+    definition: 'The count $g_{*s}$ of states that carry a hot mixture''s entropy, bosons counting 1 and fermions $\tfrac78$ each: 106.75 for the Standard Model, 3.91 today if the neutrinos left before the electrons and positrons annihilated (3.93 with the small share of their heat that reached the neutrinos).'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: antiparticle
+    definition: 'A particle of the same mass as another and of opposite charge, such as the positron for the electron.'
+    role: matter
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: annihilation
+    definition: 'The meeting of a particle and its antiparticle, which turns them into lighter particles. In the cooling universe a species annihilates once $k_BT$ falls below its $mc^2$, and its entropy heats what is still in contact.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: neutrino temperature
+    definition: 'The temperature of the neutrinos left from the early universe, $(4/11)^{1/3}T_\gamma = 1.945$ K, colder than the photons because the electrons and positrons annihilated into photons after the neutrinos had stopped interacting.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: Standard Model
+    definition: 'The established theory of every known particle except the graviton: quarks, gluons, the photon, $W$ and $Z$, the Higgs, electrons, muons, taus and neutrinos. Hot, it counts $g_{*s} = 106.75$.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: W and Z
+    definition: 'The heavy bosons of the weak force, $W^+$, $W^-$ and $Z$. Being massive particles of spin 1, each has three spin states, where a massless photon has two polarizations.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: Higgs
+    definition: 'The boson of spin 0 that gives the other particles of the Standard Model their mass; it has one state.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: muon and tau
+    definition: 'Heavier copies of the electron, 207 and 3480 times its mass, each with two spin states and an antiparticle.'
+    role: matter
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: decoupling
+    definition: 'The moment a species meets other particles less often than once in an expansion time $1/H$; after it, the species travels freely and keeps its own temperature. Neutrinos decouple at about $10^{10}$ K, gravitons near the Planck temperature.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - term: Planck temperature
+    definition: 'The temperature $\sqrt{\hbar c^5/G}/k_B = 1.42\times10^{32}$ K, near which gravitons decouple; only above it do they meet one another more than once in an expansion time.'
+    chapter: '12.2'
+    anchor: gravitons-parted-first-and-kept-a-colder-share-of-the-heat
+  - term: inflation
+    definition: 'A proposed period of very fast early expansion, by a factor of $e^{60}$ or more in length. If it followed the gravitons'' decoupling, it diluted their thermal background to nothing.'
+    chapter: '12.2'
+    anchor: gravitons-parted-first-and-kept-a-colder-share-of-the-heat
+  - term: effective number of neutrino species
+    definition: 'The energy density of all radiation other than photons, in units of one neutrino species at $T_\nu$: $N_{\rm eff} = 2.99 \pm 0.17$ measured by Planck (2.86 ± 0.13 with the Atacama Cosmology Telescope added), 3.044 expected. A 0.905 K graviton background adds 0.054.'
+    chapter: '12.2'
+    anchor: gravitons-parted-first-and-kept-a-colder-share-of-the-heat
+  - term: density parameter
+    definition: 'A species'' energy density over the critical density times $c^2$: $6.6\times10^{-7}$ for the 0.905 K graviton background with $H_0 = 67.4\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$, $5.6\times10^{-7}$ with 73. The temperature fixes $\Omega_gh^2 = 3.0\times10^{-7}$.'
+    chapter: '12.2'
+    anchor: gravitons-parted-first-and-kept-a-colder-share-of-the-heat
+  - term: horizon (cosmological)
+    definition: 'The distance light has travelled since the start of the expansion, at a given time. At the microwave sky''s release it was 0.28 Gpc in comoving distance. A pattern larger than it is superhorizon: nothing has yet moved across it.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - term: superhorizon
+    definition: 'Of a pattern whose wavelength is longer than the cosmological horizon, so that nothing has moved across it; on such scales every glow''s temperature follows $\dot\Theta = -\dot\Phi$.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - term: adiabatic perturbation
+    definition: 'A departure from uniformity in which every species is denser or thinner by the same fraction of its own number, as if that place had expanded a little less or more.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - term: Sachs–Wolfe effect
+    definition: 'The pattern of warmer and cooler patches that the universe''s metric prints on a background on large scales.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - term: last-scattering surface
+    definition: 'The sphere around us at which the light of the microwave sky was last scattered by free electrons, at $z = 1090$, 13.86 Gpc away in comoving distance.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - term: acoustic peaks
+    definition: 'The preferred sizes of spots in the microwave sky, printed by sound waves in the plasma before its release. The graviton sky has none.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - term: Silk damping
+    definition: 'The blurring of the microwave sky below a few arcminutes by photons diffusing through the plasma. The graviton sky, never scattered, has none.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - term: integrated Sachs–Wolfe effect
+    definition: 'The change of a glow''s temperature in potentials that decay while its quanta cross them.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - term: cosmic string
+    definition: 'A thin straight line of energy, with a tension equal to its energy per length, that may have been left from the early universe. Space around it is flat with a wedge missing, so no pixel can see it.'
+    role: matter
+    chapter: '12.2'
+    anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind
+  - term: deficit angle
+    definition: 'The wedge $8\pi G\mu/c^2$ missing from the space around a straight cosmic string; a source behind it is seen twice, at most that angle apart.'
+    chapter: '12.2'
+    anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind
+  - term: wake (of a cosmic string)
+    definition: 'The part of the plane that a moving cosmic string has already swept. Across it the matter on the two sides approaches at $\gamma v\cdot8\pi G\mu/c^2$, so light seen through it is warmer.'
+    chapter: '12.2'
+    anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind
+  - term: Kaiser–Stebbins effect # <!-- lint-allow: Kaiser -->
+    definition: 'The step in a background''s temperature across a moving cosmic string, at most $\delta T/T = 8\pi G\mu\gamma v/c^3$ (for a string across the line of sight, moving at right angles to it), from the Doppler shift of the matter that the closing wedge sets moving.'
+    chapter: '12.2'
+    anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind

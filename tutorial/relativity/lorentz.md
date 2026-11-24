@@ -559,7 +559,8 @@ wR_*^3/G$ is the paper's last line. Directly across the path $\obs v_\perp = \ob
   the boost in any direction, used to carry the body's worldline into the pixel's frame.
 - [*Through a room at nearly the speed of light*](/paper/#par:through-a-room-at-nearly-the-speed-of-light), with angles
   that shrink as $1/\obs\gamma$, and [*A cosmic string*](/paper/#par:a-cosmic-string), whose step of temperature carries
-  the factor $\obs\gamma\obs v$.
+  the factor $\obs\gamma\obs v$ (derived in chapter
+  [12.2](/tutorial/sky/universe/#a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind)).
 :::
 
 ::: deeper

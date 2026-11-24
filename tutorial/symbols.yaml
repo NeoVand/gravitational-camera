@@ -3741,3 +3741,140 @@ symbols:
     meaning: 'The time a circular pair of masses $m_1$ and $m_2$ at separation $d$ has left before it merges, by the quadrupole formula: $\tfrac5{256}c^5d^4/G^3m_1m_2M$. 8.8 s for the paper''s black holes at 2200 km, 244,000 years for two white dwarfs in a ten-minute orbit. (Not the optical depth.)'
     chapter: '12.1'
     anchor: two-compact-bodies-spiral-together-and-the-papers-pair-has-nine-seconds-left
+
+  - key: scale-factor
+    title: Scale factor
+    tex: 'a(t)'
+    role: none
+    kind: A pure number at each time, equal to 1 today
+    meaning: 'The factor by which a uniform expansion has stretched every distance between galaxies: $d(t) = a(t)\,d_{\rm c}$. Wavelengths grow in proportion to it, so a black body cools as $T \propto 1/a$; the microwave sky was released at $a = 1/1091$. (Not Kerr''s length $a$ of chapter 11.2.)'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - key: comoving-distance
+    title: Comoving distance
+    tex: 'd_{\rm c}'
+    role: none
+    kind: A length; in metres or gigaparsecs
+    meaning: 'The distance between two galaxies today, which a uniform expansion leaves unchanged as a label; the distance at time $t$ is $a(t)\,d_{\rm c}$. Light covers $\int c\,\mathrm dt/a$ of it: 13.86 Gpc from the microwave sky''s release, 14.14 Gpc from the start.'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - key: hubble-rate
+    title: Hubble rate
+    tex: 'H'
+    role: none
+    kind: A rate; in s⁻¹ (astronomers quote km s⁻¹ Mpc⁻¹)
+    meaning: 'The rate of a uniform expansion, $H = \dot a/a$, so that a galaxy at distance $d$ recedes at $v = Hd$. Today it is the Hubble constant $H_0 = 67.4\,\mathrm{km\,s^{-1}\,Mpc^{-1}} = 2.18\times10^{-18}\,\mathrm{s^{-1}}$ from the microwave sky (about 73 from nearby galaxies), and $1/H_0 = 14.5$ billion years. (Not the Wiener filter, the bits $H$, or chapter 11.4''s $H(r)$.)'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - key: critical-density
+    title: Critical density
+    tex: '\matter{\rho}_{\rm crit}'
+    role: matter
+    kind: A density; in kg m⁻³
+    meaning: 'The density of a flat uniform universe, $3H^2/8\pi G$: $8.53\times10^{-27}\,\mathrm{kg\,m^{-3}}$ today, five protons per cubic metre. At it every shell of the expanding matter moves at exactly its escape speed. (Not chapter 12.1''s central density $\rho_c$.)'
+    chapter: '12.2'
+    anchor: the-universe-expands-uniformly-and-a-critical-density-decides-its-fate
+  - key: cosmological-redshift
+    title: Redshift
+    tex: 'z'
+    role: none
+    kind: A pure number
+    meaning: 'How much a wave has been stretched by the expansion on its way: $1 + z = \lambda_0/\lambda_{\rm e} = a_0/a_{\rm e}$. The microwave sky was released at $z = 1090$; for a near galaxy $z \approx v/c$. (Not a height or a camera''s distance.)'
+    chapter: '12.2'
+    anchor: expansion-stretches-every-wave-so-a-black-body-stays-black
+  - key: internal-states
+    title: States per mode
+    tex: 'g'
+    role: none
+    kind: A whole number
+    meaning: 'The number of internal states (spins or polarizations, colours, particle and antiparticle) that a species of particle has for each mode of motion: 2 for photons and gravitons, 4 for electrons and positrons. (With indices, $g_{ij}$ is the metric.)'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - key: entropy-species
+    title: Effective number of species
+    tex: 'g_{*s}'
+    role: none
+    kind: A pure number
+    meaning: 'The count of states that carry the entropy of a hot mixture, $\sum_{\rm bosons}g + \tfrac78\sum_{\rm fermions}g$, each species weighted by the cube of its temperature over the photons'': 106.75 for the whole Standard Model, 3.91 today (photons and neutrinos, if the neutrinos left before the pairs annihilated; 3.93 with the small share of heat that reached them).'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - key: photon-temperature
+    title: Temperature of the microwave sky
+    tex: 'T_\gamma'
+    role: none
+    kind: A temperature; in kelvin
+    meaning: 'The temperature of the cosmic microwave background today, $2.7255$ K (Fixsen 2009), the paper''s $T_\gamma$.'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - key: neutrino-temperature
+    title: Neutrino temperature
+    tex: 'T_\nu'
+    role: none
+    kind: A temperature; in kelvin
+    meaning: 'The temperature of the neutrinos left from the early universe, $(4/11)^{1/3}T_\gamma = 1.945$ K, lower than the photons'' because the electrons and positrons annihilated into photons after the neutrinos had stopped interacting. (A subscript only; the paper''s $\nu$ is the horizon friction.)'
+    chapter: '12.2'
+    anchor: when-a-species-disappears-its-entropy-heats-what-remains
+  - key: planck-temperature
+    title: Planck temperature
+    tex: 'T_{\rm P}'
+    role: none
+    kind: A temperature; in kelvin
+    meaning: 'The temperature $\sqrt{\hbar c^5/G}/k_B = 1.42\times10^{32}$ K, near which gravitons meet each other once in an expansion time, and above which the quantum theory of gravity is unknown.'
+    chapter: '12.2'
+    anchor: gravitons-parted-first-and-kept-a-colder-share-of-the-heat
+  - key: graviton-temperature
+    title: Temperature of the graviton background
+    tex: 'T_g'
+    role: none
+    kind: A temperature; in kelvin
+    meaning: 'The paper''s temperature of a primordial graviton background today, $(3.91/106.75)^{1/3}T_\gamma = 0.905$ K (0.907 K with the neutrinos'' small share of the pairs'' heat), if gravitons were once in equilibrium and inflation did not dilute them; lower if there are more particles than the Standard Model''s.'
+    chapter: '12.2'
+    anchor: gravitons-parted-first-and-kept-a-colder-share-of-the-heat
+  - key: extra-species
+    title: Extra neutrino species
+    tex: '\Delta N_{\rm eff}'
+    role: none
+    kind: A pure number
+    meaning: 'Radiation beyond the photons and three neutrinos, in units of one neutrino species at $T_\nu$. The graviton background adds $\tfrac87(T_g/T_\nu)^4 = 0.054$, the paper''s "0.05 of an extra species".'
+    chapter: '12.2'
+    anchor: gravitons-parted-first-and-kept-a-colder-share-of-the-heat
+  - key: density-parameter
+    title: Density parameter
+    tex: '\Omega_g'
+    role: none
+    kind: A pure number
+    meaning: 'A species'' energy density over $\rho_{\rm crit}c^2$. For the 0.905 K graviton background $\Omega_g = 6.6\times10^{-7}$ with $H_0 = 67.4\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$ and $5.6\times10^{-7}$ with 73, since only $\Omega_gh^2 = 3.0\times10^{-7}$ is fixed ($h = H_0/100\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$); for the microwave sky $5.4\times10^{-5}$. (Not a solid angle or a rotation rate.)'
+    chapter: '12.2'
+    anchor: gravitons-parted-first-and-kept-a-colder-share-of-the-heat
+  - key: metric-stretch
+    title: Fractional stretch of space (Section XI)
+    tex: '\field{\Phi}'
+    role: field
+    kind: A small pure number at each place and time
+    meaning: 'The paper''s departure of the universe''s metric from uniformity, $g_{ij} = a^2(1 + 2\Phi)\delta_{ij}$: lengths at that place are stretched by the extra fraction $\Phi$. Outside the horizon every glow''s temperature follows $\dot\Theta = -\dot\Phi$. (Not the Newtonian potential $\Phi$ of chapter 1.2.)'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - key: temperature-contrast
+    title: Fractional change of temperature
+    tex: '\Theta'
+    role: none
+    kind: A small pure number at each place, direction and time
+    meaning: 'The fractional departure of a glow''s temperature from its mean, $T = \bar T(1 + \Theta)$: about $10^{-5}$ in the microwave sky''s spots.'
+    chapter: '12.2'
+    anchor: on-large-scales-the-graviton-sky-shares-the-lights-spots
+  - key: string-mass-per-length
+    title: Mass per length of a cosmic string
+    tex: '\matter{\mu}'
+    role: matter
+    kind: A mass per length; in kg m⁻¹
+    meaning: 'The mass of a cosmic string per metre, with an equal tension $\mu c^2$ along it; $G\mu/c^2 = 10^{-6}$ is $1.35\times10^{21}\,\mathrm{kg\,m^{-1}}$. (Not chapter 4.3''s shear modulus.)'
+    chapter: '12.2'
+    anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind
+  - key: deficit-angle
+    title: Deficit angle
+    tex: '\Delta'
+    role: none
+    kind: An angle; in radians
+    meaning: 'The wedge missing from the flat space around a straight cosmic string, $8\pi G\mu/c^2$: $5.2''''$ for $G\mu/c^2 = 10^{-6}$. A source behind the string is seen twice, at most $\Delta$ apart.'
+    chapter: '12.2'
+    anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind

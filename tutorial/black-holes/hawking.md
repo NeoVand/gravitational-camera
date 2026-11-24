@@ -64,7 +64,8 @@ quantum mechanics a hole is at absolute zero and perfectly black, as chapter 11.
 
 **Numbers.** A hole of the Sun's mass is at $6.2\times10^{-8}$ K, 44 million times colder than the microwave sky.
 Solving [](#eq:hawking) for the mass gives $\matter M = \hbar c^3/8\pi G\kB T_H$. At 0.905 K, the graviton sky of
-chapter 12.2, it is the **equilibrium mass**
+chapter [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat), it is the
+**equilibrium mass**
 
 $$\sym{equilibrium-mass}{\matter M_{\rm eq}} = 1.356\times10^{23}\unit{kg} ,$$
 

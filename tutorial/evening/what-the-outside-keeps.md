@@ -281,7 +281,9 @@ About a million numbers against a billion cells, the square and the cube of a th
 [^hawking]: The theorem is in chapter 4.6, the temperature in 11.3, and the paper's equation
     [](/paper/#eq:hole-thermometer) in 13.7.
 
-[^numbers]: Chapter 11.3 gives the mass and its steady tide, 12.2 the temperature and 13.7 the trembling tide.
+[^numbers]: Chapter 11.3 gives the mass and its steady tide,
+    [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat) the temperature and 13.7
+    the trembling tide.
 
 [^holography]: Chapter 13.8.
 

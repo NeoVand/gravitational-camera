@@ -504,8 +504,9 @@ x_0^3/6 = 0.048$ is 2.0% of $2\zeta(3)$, so 98.0% pass.
 - [Section IX](/paper/#sec:first-image): the paper's [](/paper/#eq:jN-friction), the filter above two terahertz,
   "near $90\,\mathrm{THz}$" and "$2.70\,k_BT \approx 1\,\mathrm{eV}$".
 - [Section III](/paper/#sec:regimes): Figure [](/paper/#fig:regimes)'s thermal sources, at the energy peak.
-- [Section XI](/paper/#sec:vistas): the paper's [](/paper/#eq:graviton-temperature), the count
-  $N = \zeta(3)(k_BT/\hbar)^3/2\pi^3c^2$ and the dipole from our motion (chapter R12).
+- [Section XI](/paper/#sec:vistas): the paper's [](/paper/#eq:graviton-temperature), the count $N =
+  \zeta(3)(k_BT/\hbar)^3/2\pi^3c^2$ and the dipole from our motion (chapters
+  [12.2](/tutorial/sky/universe/#the-graviton-sky-is-a-uniform-glow-with-a-dipole-untouched-by-lenses) and R12b).
 :::
 
 ::: deeper

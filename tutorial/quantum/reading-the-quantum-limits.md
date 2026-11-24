@@ -256,9 +256,10 @@ a degree in half an hour" (the rate is R10b's).
 Section XI's [*Counting coincidences*](/paper/#par:counting-coincidences) uses the **second-order coherence**
 $\sym{second-order-coherence}{g^{(2)}}$, the rate of coincident counts over that of independent arrivals
 ([8.5](/tutorial/quantum/counting-quanta/#one-number-tells-the-two-apart-and-no-classical-wave-brings-it-below-one)).
-Chapter 8.5 derived $g^{(2)} = 1$ for one mode of a coherent source and $g^{(2)} = 2$ for a thermal one (*checked here*).
-The $0.905\unit K$ glow is *read now, derived in Part 12*; at 10 GHz it holds $\bar n = 1.43$ gravitons per mode, so its
-pairs of clicks would be common.[^bunch]
+Chapter 8.5 derived $g^{(2)} = 1$ for one mode of a coherent source and $g^{(2)} = 2$ for a thermal one (*checked
+here*). The $0.905\unit K$ glow is *read now, derived in chapter
+[12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat)*; at 10 GHz it holds $\bar n
+= 1.43$ gravitons per mode, so its pairs of clicks would be common.[^bunch]
 
 Inflation "makes gravitons in pairs of opposite momentum, a two-mode squeezed state" (*stated in the paper*), a state of
 two modes made only of pairs, one quantum in each. Chapter
@@ -328,8 +329,8 @@ which R9 will read.
 
 Every statement of Section II is now derived or stated. In Section IV the quantum statements are derived in Part 8,
 except the camera's mass bound (chapter 11.1), the resolution of the which-way puzzle (stated in the paper) and
-decoherence by gravity (chapter 13.8). The $10^{-30}$ gravitons per mode come in Part 10 and R10b, and the
-$0.905\unit K$ glow in Part 12 and R12.
+decoherence by gravity (chapter 13.8). The $10^{-30}$ gravitons per mode come in Part 10 and R10b, and the $0.905\unit
+K$ glow in chapter [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat) and R12b.
 
 ::: check
 ### Q
