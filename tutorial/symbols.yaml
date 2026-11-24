@@ -2790,3 +2790,51 @@ symbols:
     meaning: 'The measurement $\Pi(\hat n)\,\mathrm d\Omega = \tfrac{2s+1}{4\pi}|\hat n\rangle_s\langle\hat n|_s\,\mathrm d\Omega$ made of the spin coherent states of all directions. One quantum from $\hat n_0$ clicks at the angle $\vartheta$ from it with the density $\tfrac{2s+1}{4\pi}\cos^{4s}(\vartheta/2)$.'
     chapter: '8.6'
     anchor: a-measurement-is-a-set-of-positive-tables-that-add-to-one-and-a-gravitons-click-carries-about-a-bit
+  - key: step-function
+    title: Step function
+    tex: '\theta(t)'
+    role: none
+    kind: A function of time; no unit
+    meaning: 'One for $t > 0$ and zero for $t < 0$. In the Kubo formula $\chi_{yy}(t) = (i/\hbar)\,\theta(t)\langle[y(t), y(0)]\rangle$ it says that a body answers a blow only after it. (Not an angle $\theta$.)'
+    chapter: '8.7'
+    anchor: the-response-to-a-push-is-a-commutator
+  - key: symmetrized-spectrum
+    title: Symmetrized spectrum
+    tex: '\bar S_{yy}'
+    role: none
+    kind: A real, even function of the angular frequency (two-sided); the square of the unit of y times a second
+    meaning: 'The transform of the average of the two orders, $\tfrac12\langle y(t)y(0) + y(0)y(t)\rangle$, in chapter 3.2''s convention, so that $\langle y^2\rangle = \int\bar S_{yy}\,\mathrm d\omega/2\pi$. By the quantum fluctuation–dissipation theorem it is $\hbar\coth(\hbar\omega/2k_BT)\,\mathrm{Im}\,\chi_{yy}$. Chapter 4.6''s classical $S_{yy} = 2k_BT\,\mathrm{Im}\,\chi_{yy}/\omega$ is its limit when $\hbar\omega \ll k_BT$.'
+    chapter: '8.7'
+    anchor: the-tremor-at-each-frequency-is-hbarcothhbaromega2k_bt-times-the-friction-there
+  - key: unsymmetrized-spectrum
+    title: Unsymmetrized spectrum
+    tex: 'S_{yy}(\omega)'
+    role: none
+    kind: A real function of the angular frequency, not even; the square of the unit of y times a second
+    meaning: 'The transform of one order alone, $\int\langle y(t)y(0)\rangle e^{i\omega t}\,\mathrm dt$; $S_{yy}(-\omega)$ is that of the other order. Positive frequencies are absorption, negative ones emission: in equilibrium $S_{yy}(\omega) = 2\hbar(\bar n + 1)\,\mathrm{Im}\,\chi_{yy}$ and $S_{yy}(-\omega) = e^{-\hbar\omega/k_BT}S_{yy}(\omega)$, detailed balance. (Chapter 4.6''s classical $S_{yy}$ is even and has no bar either; in Part 8 it is $\bar S_{yy}$.)'
+    chapter: '8.7'
+    anchor: a-cold-body-can-take-energy-from-a-push-but-has-none-to-give
+  - key: frequency-weight
+    title: Weight of the frequencies of a response
+    tex: '\mu(\mathrm d\omega)'
+    role: none
+    kind: A probability distribution over the positive angular frequencies; no unit
+    meaning: 'Appendix A''s measure $(2/\pi\chi_0)\,\mathrm{Im}\,\chi(\omega)\,\mathrm d\omega/\omega$, the share of the static compliance $\chi_0$ held near each frequency. It adds up to one by the dispersion relation at zero frequency, and its mean of $\omega^2$ is $A/\chi_0$ by the sum rule. (Not the shear modulus $\mu$.)'
+    chapter: '8.7'
+    anchor: the-static-jitter-lies-between-two-bounds
+  - key: artanh
+    title: Inverse hyperbolic tangent
+    tex: '\mathrm{artanh}'
+    role: none
+    kind: A function of a number between −1 and 1
+    meaning: 'The inverse of $\tanh$: $\mathrm{artanh}\,z = u$ when $\tanh u = z$, about $z$ for small $z$. The quantum thermometer is $T = \hbar\omega/2k_B\,\mathrm{artanh}(\hbar\,\mathrm{Im}\,\chi_{yy}/\bar S_{yy})$.'
+    chapter: '8.7'
+    anchor: the-thermometer-still-needs-no-model
+  - key: mode-coupling
+    title: Weight of a mode in a reading
+    tex: 'c_n'
+    role: none
+    kind: A number for each normal mode; the unit of the reading per unit of mass-weighted amplitude
+    meaning: 'How far mode $n$ moves a reading $y$, or a moment $Q_h$, per unit of its mass-weighted amplitude (chapters 4.3 and 4.6; Appendix A''s $c_n$). The same $c_n^2$ weigh the mode in the reading''s tremor and in its response, $\chi_{yy} = \sum_nc_n^2/(\omega_n^2 - \omega^2 - i\Gamma_n\omega)$. (Not the amplitudes $c_n$ of chapter 8.5 or the Fourier coefficients of chapter 2.6.)'
+    chapter: '8.7'
+    anchor: the-tremor-at-each-frequency-is-hbarcothhbaromega2k_bt-times-the-friction-there

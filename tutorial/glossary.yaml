@@ -3621,3 +3621,59 @@ terms:
     definition: 'The changing pull of a detector''s surroundings, such as moving air, ground and people: the near field seen as noise, which observatories model and subtract.'
     chapter: '8.6'
     anchor: each-kind-of-detector-reads-its-own-part-of-the-tide
+  - term: zero-point tremor
+    definition: 'The trembling that a body keeps at absolute zero, the zero-point motion of its modes: an oscillator keeps $\langle x^2\rangle = \hbar/2m\omega$, and a body''s static jitter stays at most $\tfrac12\hbar\sqrt{A\chi_0}$.'
+    chapter: '8.7'
+    anchor: a-cold-oscillator-still-trembles
+  - term: blow
+    definition: 'A push so brief that the body does not move while it acts. In quantum mechanics a blow of impulse $\epsilon$ on a reading $y$ acts on the state as the unitary $e^{i\epsilon y/\hbar}$.'
+    chapter: '8.7'
+    anchor: the-response-to-a-push-is-a-commutator
+  - term: step function
+    definition: 'The function $\theta(t)$ that is one for $t > 0$ and zero for $t < 0$; it makes a response begin only after the push.'
+    chapter: '8.7'
+    anchor: the-response-to-a-push-is-a-commutator
+  - term: Kubo formula
+    definition: 'The response of a reading to its conjugate push as the commutator of the reading at two times, $\chi_{yy}(t) = (i/\hbar)\,\theta(t)\langle[y(t), y(0)]\rangle$ (Kubo, 1957).'
+    chapter: '8.7'
+    anchor: the-response-to-a-push-is-a-commutator
+  - term: symmetrized spectrum
+    definition: 'The spectrum of the average of the two orders of a quantum correlation, $\tfrac12\langle y(t)y(0) + y(0)y(t)\rangle$: the tremor that a classical record shows.'
+    chapter: '8.7'
+    anchor: the-tremor-at-each-frequency-is-hbarcothhbaromega2k_bt-times-the-friction-there
+  - term: quantum fluctuation–dissipation theorem
+    definition: 'The rule that a body trembles at each frequency by $\hbar\coth(\hbar\omega/2k_BT)$ times its friction there, $\bar S_{yy} = \hbar\coth(\hbar\omega/2k_BT)\,\mathrm{Im}\,\chi_{yy}$. It is the classical theorem while $\hbar\omega \ll k_BT$ and keeps the zero point when the body is cold.'
+    chapter: '8.7'
+    anchor: the-tremor-at-each-frequency-is-hbarcothhbaromega2k_bt-times-the-friction-there
+  - term: unsymmetrized spectra
+    definition: 'The spectra $S_{yy}(\omega)$ and $S_{yy}(-\omega)$ of the two orders of a quantum correlation taken apart; their difference is $2\hbar\,\mathrm{Im}\,\chi_{yy}$ in every steady state.'
+    chapter: '8.7'
+    anchor: a-cold-body-can-take-energy-from-a-push-but-has-none-to-give
+  - term: detailed balance
+    definition: 'In thermal equilibrium, the rule $S_{yy}(-\omega) = e^{-\hbar\omega/k_BT}S_{yy}(\omega)$: a body gives a quantum less often than it takes one, by the Boltzmann factor of the quantum.'
+    chapter: '8.7'
+    anchor: a-cold-body-can-take-energy-from-a-push-but-has-none-to-give
+  - term: absorption and emission (of quanta)
+    definition: 'The positive and negative frequencies of an unsymmetrized spectrum: a body takes a quantum from a push at positive frequencies and gives one at negative ones. A body at absolute zero absorbs but does not emit.'
+    chapter: '8.7'
+    anchor: a-cold-body-can-take-energy-from-a-push-but-has-none-to-give
+  - term: net absorption
+    definition: 'The difference of a body''s absorption and emission, $S_{yy}(\omega) - S_{yy}(-\omega) = 2\hbar\,\mathrm{Im}\,\chi_{yy}$: the net energy it takes from a push at a positive frequency. It is the friction.'
+    chapter: '8.7'
+    anchor: a-cold-body-can-take-energy-from-a-push-but-has-none-to-give
+  - term: quantum jitter
+    definition: 'The static jitter of a quantum body, $\langle\delta y^2\rangle = \int\bar S_{yy}\,\mathrm d\omega/2\pi$; it lies between $k_BT\chi_0$ and the jitter of one mode at the root-mean-square frequency, and is not zero at absolute zero.'
+    chapter: '8.7'
+    anchor: the-static-jitter-lies-between-two-bounds
+  - term: concave function
+    definition: 'A function whose graph lies below each of its tangent lines, as $\sqrt x$ does.'
+    chapter: '8.7'
+    anchor: the-static-jitter-lies-between-two-bounds
+  - term: Jensen's inequality
+    definition: 'For a concave function $F$ and any distribution, $\langle F(X)\rangle \le F(\langle X\rangle)$: the average of the function is at most its value at the mean.'
+    chapter: '8.7'
+    anchor: the-static-jitter-lies-between-two-bounds
+  - term: quantum thermometer
+    definition: 'The model-independent thermometer with the quantum factor, $T = \hbar\omega/2k_B\,\mathrm{artanh}(\hbar\,\mathrm{Im}\,\chi_{yy}/\bar S_{yy})$, which becomes the classical one when $\hbar\omega \ll k_BT$.'
+    chapter: '8.7'
+    anchor: the-thermometer-still-needs-no-model
