@@ -6,7 +6,7 @@ part: '13'
 requires: ['1.3', '1.7', '2.1', '2.3', '2.4', '2.8', '4.2', '4.5', '4.6', '6.1', '6.4', '8.2', '8.7', '13.2', '13.4']
 paper: [sec:second-order, eq:moment-bracket, eq:push, eq:hair-commutator, eq:flow-bracket, eq:hidden-spin, eq:thermal-moment, eq:sum-rule, fig:hidden-flow, app:proofs, sec:status]
 figures: [fig:hidden-flow]
-live: [phase-space, hidden-flow]
+live: [phase-space, marolf-top]
 depth: A
 ---
 
@@ -71,7 +71,8 @@ $$\boxed{\;\{L_y, L_x\} = -L_z ,\qquad \{L_x, L_y\} = L_z .\;}$$
 
 Here $L_x$, $L_y$, $L_z$ are the components of $\sym{angular-momentum}{\vect L}$, in joule seconds.[^L] The unit checks:
 each term of a bracket divides by a place times a momentum, a joule second. For the two tops and $\epsilon = 0.01$ rad,
-to first order in $\epsilon$, $L_y$ becomes $1.995$ and $2.030\unit{J\,s}$, so $\delta L_y/\epsilon$ gives $-L_z$.
+to first order in $\epsilon$, $L_y$ becomes $1.995$ and $2.030\unit{J\,s}$, so $\delta L_y/\epsilon$ gives $-L_z$
+(Figure [](#fig:bracket-response)).
 
 **The non-example.** Without the turn, every function $f(L_x, L_y)$ of the readings is the same for the two tops, and
 watching longer adds nothing: no torque acts, so $\{L_x, H\} = \{L_y, H\} = 0$.
@@ -83,16 +84,10 @@ changes the rate of another moment, $\matter{\dot Q_h}$, by
 $\epsilon\int\sym{density}{\matter\rho}\,\nabla g\cdot\nabla h\,\dd V$, which, beyond linear profiles, the field
 outside does not hold at any one time.
 
-<!-- diagram: tut-bracket-response — spec: two panels side by side. Left: a wall (a vertical grey band) with the two
-tops behind it, each drawn as a cone on a point with its arrow L in three dimensions, exact: L = (1, 2, 0.5) and
-L = (1, 2, −3) J s, drawn in one oblique projection (x to the right, y into the page at 30°, z up), neutral ink. In
-front of the wall a camera icon with a readout box: "Lₓ = 1, L_y = 2" for both, and "L_z = ?" in grey. Right: the same
-two tops after the stand is turned by ε about x (ε drawn as 0.1 rad for visibility, said in the caption), each arrow
-in its old position pale and its new position solid; beside each, the change of L_y drawn as a short arrow along y,
-orange for the first (δL_y = −0.5ε) and blue for the second (+3ε), labelled beside, off the geometry. Caption: "Look
-first at the two short arrows on the right: the same turn moves the two tops' L_y in opposite directions, by −L_z
-times the angle, although the camera on the left reads the same two numbers for both. The angle is drawn ten times
-larger than the text's 0.01 rad." -->
+![Look first at the two short arrows on the right: the same turn moves the two tops' $L_y$ in opposite directions, by
+$-L_z$ times the angle, although the camera on the left reads the same two numbers for both. The turn is drawn as 0.1
+rad, ten times larger than the text's 0.01 rad, and the turned arrows are exact; the short arrows are the change of
+$L_y$ per radian, to the scale of $\vect L$.](tut-bracket-response){#fig:bracket-response}
 
 ## The moments and the energy generate everything that can be known of a body
 
@@ -392,7 +387,8 @@ boxed brackets show that the same rule holds at every degree:
 $$\{\matter{Q_h}, \matter{Q_g}\} = -P\bigl[h\nabla g - g\nabla h\bigr] ,$$
 
 minus the charge of $[X_h, X_g]$ at $t = 0$, where the $t^2$ term vanishes. So the bracket of two moments is not a
-moment but a moment of the flow: matter supplies, to order $1/c^2$, a bracket for charges whose fields do not close.
+moment but a moment of the flow: matter supplies, to order $1/c^2$, a bracket for charges whose fields do not close
+(Figure [](#fig:moment-algebra)).
 Paul Dirac and Julian Schwinger found the bracket of the energy density $T^{00}$ at two points that Poincaré
 invariance requires [@Dirac1962; @Schwinger1963]. In this chapter's order it is
 
@@ -402,14 +398,10 @@ with $\delta$ Dirac's delta function. Multiplied by $h(\vect x)g(\vect y)$ and i
 the paper's [](/paper/#eq:moment-bracket) after one integration by parts. We state it without proof. The paper's
 [*Open problems*](/paper/#sec:status) lists the full theory's algebra as open.
 
-<!-- diagram: tut-moment-algebra — spec: a three-by-three table of brackets, rows and columns Q_h, Q̇_h and H (the
-energy), each cell one formula, neutral ink: {Q_h, Q_g} = 0 in Newton's theory and the paper's eq:moment-bracket at
-order 1/c²; {Q_h, Q̇_g} = ∫ρ∇h·∇g (the paper's eq:hair-commutator over iħ); {Q̇_h, Q̇_g} = the paper's eq:flow-bracket;
-{Q_h, H} = −{H, Q_h} = Q̇_h; {Q̇_h, H} = Q̈_h; {H, H} = 0; the lower triangle drawn pale (fixed by antisymmetry). Each
-cell has a thin coloured band on its left edge for what it reads: density (orange), flow (blue), nothing (grey), and
-a small tag "1/c⁰" or "1/c²" in its corner. Caption: "Look first at the coloured bands: the bracket of a moment with
-a rate weighs the density, the bracket of two rates and, at order 1/c², the bracket of two moments of the energy weigh
-the flow, and the energy turns each moment into its rate. Cells below the diagonal follow by antisymmetry." -->
+![Look first at the bands: the bracket of a moment with a rate weighs the density, the bracket of two rates and, at
+order $1/c^2$, the bracket of two moments of the energy weigh the flow, and the energy turns each moment into its rate.
+Cells below the diagonal, drawn pale, follow by antisymmetry, $\{B, A\} = -\{A, B\}$. The tag in each corner is the
+order of the leading term.](tut-moment-algebra){#fig:moment-algebra}
 
 ## Marolf's boundary algebra holds the interior, but watching cannot read it
 
@@ -455,19 +447,15 @@ $$A(t) = e^{-1/t^2} \text{ for } t > 0, \qquad A(t) = 0 \text{ for } t \le 0 .$$
 
 Its derivatives for $t > 0$ are $A' = (2/t^3)\,e^{-1/t^2}$, $A'' = (4/t^6 - 6/t^4)\,e^{-1/t^2}$, and so on: each is a
 polynomial in $s = 1/t$ times $e^{-s^2}$, which falls faster than any power of $s$ grows. Every derivative at $t = 0$
-is therefore zero, and so is the series for all time, while $A(1) = e^{-1} = 0.37$. Their own example is a bump on a
+is therefore zero, and so is the series for all time, while $A(1) = e^{-1} = 0.37$ (Figure [](#fig:analytic-pulse)).
+Their own example is a bump on a
 wave that has not yet reached the place read, where the series gives zero. In quantum mechanics, they show,
 expectation values in states whose energies lie below some bound are analytic in time, so the derivatives at one time
 fix the values at all times. We state this without proof.
 
-<!-- diagram: tut-analytic-pulse — spec: one plot, t from −1 to 3 across, A from 0 to 1 up. The exact curve
-A(t) = e^{−1/t²} for t > 0 and 0 before, a thin neutral stroke; its Taylor series at t = 0, the flat line A = 0,
-dashed orange along the whole axis; a small dot at t = 0 labelled "every derivative zero" above, off the curve; two
-light markers at t = 0.5 (A = 0.018) and t = 1 (A = 0.37). Below, a thin strip: a boundary reading drawn the same way,
-flat until a pulse arrives at t = 1.5 and then rising, with the label "the pulse reaches the boundary", off the curve.
-Caption: "Look first at the dashed line: the Taylor series at t = 0 of e^{−1/t²} is zero, yet the function rises. A
-reading whose every bracket with the energy vanishes at one time may still change later. The curve is exact; the
-strip below is schematic." -->
+![Look first at the dashed line: the Taylor series at $t = 0$ of $e^{-1/t^2}$ is zero, yet the function rises. A
+reading whose every bracket with the energy vanishes at one time may still change later. The curve is exact; the strip
+below is schematic.](tut-analytic-pulse){#fig:analytic-pulse}
 
 **The paper's answer.** Marolf's limit, in the paper's words, "holds for an observer who only measures the field. An
 observer who can apply a tide measures brackets, since the bracket of two quantities is the response of the first to
@@ -480,27 +468,13 @@ and can be read at any later time.
 **What it means.** Classical physics keeps one part of the holography of information: an operation followed by a
 reading.[^h138]
 
-<!-- try: marolf-top — new (P7b-DECISIONS item 5; stays on its stand-ins). Predict first: "Two tops have the same Lₓ
-and L_y. You may watch them as long as you like, or give each one small turn about x. Which tells you how they spin
-about z?" (Answer, revealed after: only the turn.) Mode "A top": left, a top drawn in three dimensions (an oblique
-view that can be turned by dragging) with its arrow L, the stone palette, neutral arrow; a slider "L_z" from −4 to 4
-J s while Lₓ = 1 and L_y = 2 stay fixed, and a readout box "What the field reads: Lₓ, L_y" that does not change as the
-slider moves. Right: a button "Turn by ε about x" (ε from a small slider, 0.001 to 0.1 rad, default 0.01) that animates
-the arrow's turn and shows the readouts δL_y/ε and −L_z side by side; a second button "Watch for ten seconds" that runs
-the free top and shows Lₓ, L_y unchanged. Mode "The hidden swirl": 13.4's sphere in section with its two flows, a
-slider "Radius of the inner ball", 0.5 to 0.98 R, default 2^(−1/5) = 0.871 R (marked "no angular momentum"), and the
-readouts L_z (in M Ω R²) and the bracket {Q_{x²−y²}, Q_{2xy}} c² = −2∫(x² + y²)ℓ_z dV (in M Ω R⁴), exact from
-lib/hair/flow.ts (bracket(3, …)/2), with 0.111 at the default and zero at 2^(−1/7) = 0.906 R. Checks: δL_y/ε = −0.5000
-and +3.0000 for L_z = 0.5 and −3 to first order (an exact turn of 0.01 rad gives −0.510 and +2.990); the bracket
-equals half the octupolar sum of hidden-flow at every radius. Both themes;
-keyboard: Tab through sliders and buttons, arrow keys on sliders, Enter to turn; phone: the two panels stacked.
-Stand-ins until it is built: phase-space (above) and hidden-flow (below). -->
-
-::: try {#hidden-flow}
-Predict first: with the inner ball at $0.5R$, where the angular momentum printed below the plots is negative, which
-sign does the bracket of the two quadrupoles of the energy take? Read the plot of degree three, whose sum, halved, is
-$c^2$ times that bracket in $\matter M\Omega R^4$; the plot of degree two is a different bracket, of two rates. Drag
-*Radius of the inner ball* to 0.5, or use the arrow keys.
+::: try {#marolf-top}
+Predict first: two tops have the same $L_x$ and $L_y$ and different $L_z$. You may watch them for as long as you like,
+or give each a small turn about $x$. Which tells you $L_z$? And does the exact turn's $\delta L_y/\epsilon$ approach
+$-L_z$ from above or from below as $\epsilon$ shrinks? In *A top*, set the slider $L_z$ to 0.5 J s, press *Watch for ten
+seconds* and read *What the field reads*. Then press *Turn by ε about x* and compare the two readouts beside it. Set the
+slider $L_z$ to −3, turn again, and step *The angle of the turn, ε* down. Last, choose *The hidden swirl* and move
+*Radius of the inner ball* from "no angular momentum" to "zero bracket", watching the angular momentum and the bracket.
 :::
 
 ::: check

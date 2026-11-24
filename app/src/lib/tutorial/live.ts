@@ -94,6 +94,7 @@ import TwoReadings from './live/TwoReadings.svelte';
 import ImpulsiveFront from './live/ImpulsiveFront.svelte';
 import PushAndWeigh from './live/PushAndWeigh.svelte';
 import TidesInTurn from './live/TidesInTurn.svelte';
+import MarolfTop from './live/MarolfTop.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -502,5 +503,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A ball of 400 particles kicked by one tide and read by another, in either order, against the wait',
 		component: TidesInTurn
+	},
+	'marolf-top': {
+		label:
+			'A free top whose L_x, L_y never change, turned by ε to read L_z, and the hidden swirl’s bracket of two quadrupoles',
+		component: MarolfTop
 	}
 };
