@@ -3062,3 +3062,59 @@ symbols:
     meaning: 'The projection of a point source onto the spherical harmonics of degree four and below, divided by its value at the source: $K = \sum_{\ell=0}^{4}(2\ell+1)P_\ell(\cos\vartheta)/25$. It is 51.6° wide at half height, crosses zero at 43.9°, dips to $-0.152$ at 59.5° and is 0.2 directly behind the source.'
     chapter: '9.6'
     anchor: a-single-pixels-picture-of-the-sky-is-blurred-over-52
+  - key: reduced-distance
+    title: Distance in reduced wavelengths
+    tex: 'kr'
+    role: none
+    kind: A pure number
+    meaning: 'The distance $r$ to a source of waves times $k = \omega/c$: the distance in reduced wavelengths $c/\omega$, which are 477 km at 100 Hz. By peeling, a source''s near-field terms of spin weight 1 and 0 are smaller than its wave by about $1/kr$ and $1/(kr)^2$.'
+    chapter: '9.7'
+    anchor: a-nearby-source-spoils-the-square-only-at-second-order
+  - key: rank-constant
+    title: The coefficient of the departure from rank one
+    tex: 'C(\iota, \theta)'
+    role: none
+    kind: A pure number
+    meaning: 'The coefficient in the paper''s eq:ranging-instant, $s_2/s_1 = C/(kr)^2$, for two masses turning in a circle seen at the inclination $\iota$ and the wave phase $\theta$ (the paper''s eq:ranging-C). It is 2 edge-on and, at $\theta = 0$, vanishes at $\cos^2\iota = 1/3$. (Not 9.3''s moment of inertia or 9.6''s spectral matrix.)'
+    chapter: '9.7'
+    anchor: a-nearby-source-spoils-the-square-only-at-second-order
+  - key: wave-phase
+    title: Phase of a turning pair's wave
+    tex: '\theta'
+    role: none
+    kind: An angle, in radians
+    meaning: 'The phase of the wave of two masses turning in a circle, zero when its plus tide is largest, in the paper''s eq:ranging-C. (Not a polar angle, which is $\vartheta$.)'
+    chapter: '9.7'
+    anchor: a-nearby-source-spoils-the-square-only-at-second-order
+  - key: helicity-split
+    title: The split between the two helicities' directions
+    tex: '\Delta\theta_\pm'
+    role: none
+    kind: An angle, in radians
+    meaning: 'The angle between the directions read from the two frequency parts $\mathcal W_\pm$ of a turning pair''s reading, $8|\cot\iota|/kr$ (the paper''s eq:helicity-split), not a change of the phase $\theta$: 0.069 rad at $kr = 200$ and $\iota = 30°$. Because it falls only as $1/kr$, it ranges the source out to $kr$ of order $\rho$.'
+    chapter: '9.7'
+    anchor: the-two-frequency-parts-tilt-apart-and-the-angle-between-them-ranges-the-source
+  - key: phase-speed
+    title: Phase speed of a metric wave
+    tex: 'v_p'
+    role: none
+    kind: A speed, in m s⁻¹
+    meaning: 'The speed $\omega/|\mathbf k|$ at which a wave''s crests move. In Einstein''s theory it is $c$; in any metric theory the second Bianchi identity gives $\mathcal B_{ij} = (c/v_p)\epsilon_{ipq}\hat k_p\mathcal E_{qj}$ (the paper''s eq:bianchi-wave).'
+    chapter: '9.7'
+    anchor: the-second-bianchi-identity-ties-a-metric-waves-magnetic-part-to-its-tide
+  - key: wave-vector-p
+    title: The wave vector read at one point
+    tex: '\mathbf p'
+    role: none
+    kind: A vector with no unit
+    meaning: 'The vector $(c/v_p)\hat k$, which one reading gives through the paper''s eq:wave-vector, $(|\mathcal E|^2 - \mathcal E^2)\mathbf p = \sum_j\mathbf t_j\times\mathbf b_j$ (with $\mathbf t_j$, $\mathbf b_j$ the columns of $\mathcal E$, $\mathcal B$; the paper writes $\mathbf e_j$ for $\mathbf t_j$), whenever the tide has rank two or more. Its direction is the wave''s direction of travel and its length the refractive index $n = c/v_p$.'
+    chapter: '9.7'
+    anchor: summing-cross-products-of-the-columns-gives-the-waves-direction-and-speed
+  - key: reading-snr
+    title: Signal-to-noise ratio of one reading
+    tex: '\rho'
+    role: none
+    kind: A pure number
+    meaning: 'Section VIII''s $|\mathcal W|/\sigma_n$ for the whole reading, with $\sigma_n$ the noise on each of the ten numbers in an orthonormal basis. Its parts are $\rho_\pm$ for the two frequency parts of a cycle ($\rho_+^2 + \rho_-^2 = \rho^2$) and $\rho_E = |\mathcal E|/\sigma_n$ for the tide alone, $\rho/\sqrt2$ for a wave. One pixel places one wave to $1/\rho$ radian in each direction, a sensor of light to $\sqrt2/\rho$. (Not a density, which is also $\rho$.)'
+    chapter: '9.7'
+    anchor: one-waves-direction-is-known-to-1ρ-a-factor-2-better-than-lights

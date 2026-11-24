@@ -10,6 +10,8 @@ import Speedometer from '../paper/figures/interactive/Speedometer.svelte';
 import Stars from '../paper/figures/interactive/Stars.svelte';
 import Voices from '../paper/figures/interactive/Voices.svelte';
 import Sky from '../paper/figures/interactive/Sky.svelte';
+import Ranging from '../paper/figures/interactive/Ranging.svelte';
+import Beyond from '../paper/figures/interactive/Beyond.svelte';
 import Present from '../paper/figures/interactive/Present.svelte';
 import Passing from '../paper/figures/hair/Passing.svelte';
 import HoleResponse from '../paper/figures/hair/HoleResponse.svelte';
@@ -102,6 +104,8 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 	stars: { label: 'The four special directions of the tide', component: Stars },
 	voices: { label: 'How many waves one pixel can tell apart', component: Voices },
 	sky: { label: 'What one pixel sees of a sky you choose', component: Sky },
+	ranging: { label: 'How far away a wave source is, from one pixel', component: Ranging },
+	beyond: { label: 'A wave of another theory of gravity, read at one pixel', component: Beyond },
 	present: { label: 'Where a moving body is now', component: Present },
 	passing: { label: 'A mass passing a body, and what it weighs', component: Passing },
 	'hole-response': { label: "A black hole's reply to a tide", component: HoleResponse },

@@ -3883,3 +3883,31 @@ terms:
     definition: 'The picture of the sky''s brightness that one pixel''s data fix: the sky''s spherical harmonics of degree four and below, and nothing else. For a point source it is $\sum_{\ell\le4}(2\ell+1)P_\ell(\cos\vartheta)/25$, 51.6° wide at half height and negative near 60°.'
     chapter: '9.6'
     anchor: a-single-pixels-picture-of-the-sky-is-blurred-over-52
+  - term: metric theory of gravity
+    definition: 'A theory in which gravity is the curvature of a spacetime metric and free bodies fall along its geodesics, as in Einstein''s theory, while the field equation may differ. Its plane waves may have up to six polarizations and a phase speed other than $c$, and the second Bianchi identity still ties their magnetic part to their tide.'
+    chapter: '9.7'
+    anchor: the-second-bianchi-identity-ties-a-metric-waves-magnetic-part-to-its-tide
+  - term: vector polarizations
+    definition: 'The two polarizations of a metric wave that mix the direction of travel with one direction across it: with the wave along $z$, the entries $\mathcal E_{xz}$ and $\mathcal E_{yz}$ of its tide. Einstein''s theory has none.'
+    chapter: '9.7'
+    anchor: the-second-bianchi-identity-ties-a-metric-waves-magnetic-part-to-its-tide
+  - term: breathing polarization
+    definition: 'The polarization of a metric wave that squeezes or stretches equally in every direction across the wave: with the wave along $z$, $\mathcal E_{xx} = \mathcal E_{yy}$. A massive scalar wave has it, with a longitudinal part $(1 - n^2)$ times as large.'
+    chapter: '9.7'
+    anchor: the-second-bianchi-identity-ties-a-metric-waves-magnetic-part-to-its-tide
+  - term: longitudinal polarization
+    definition: 'The polarization of a metric wave that squeezes or stretches along its direction of travel: with the wave along $z$, $\mathcal E_{zz}$. A purely longitudinal wave has no magnetic part, so one pixel cannot read its speed.'
+    chapter: '9.7'
+    anchor: the-second-bianchi-identity-ties-a-metric-waves-magnetic-part-to-its-tide
+  - term: subspace method
+    definition: 'A way of finding uncorrelated sources from the averaged products of an array''s records: the sources'' steering vectors span one subspace, and the noise fills the rest. With $5N$ numbers per steering vector, $N$ pixels find up to $5N - 1$ sources. MUSIC is the best known.'
+    chapter: '9.7'
+    anchor: many-pixels-separate-more-sources-and-remove-false-fringes
+  - term: minimum-variance (Capon) estimator
+    definition: 'An estimate of the power arriving from one direction that weighs the records so as to pass that direction whole and let through the least power from all others. For two pixels far apart it lifts the true fringe above the next false one by $1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$.'
+    chapter: '9.7'
+    anchor: many-pixels-separate-more-sources-and-remove-false-fringes
+  - term: fringe
+    definition: 'One of the directions in which two sensors far apart respond equally, because the phase between their records repeats whenever the path difference changes by a wavelength. Only one fringe holds the source; for sensors $D$ apart they are $c/(fD)$ apart at broadside, with $c/f$ the wavelength.'
+    chapter: '9.7'
+    anchor: many-pixels-separate-more-sources-and-remove-false-fringes
