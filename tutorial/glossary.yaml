@@ -3116,3 +3116,38 @@ terms:
     definition: 'The turning of a moving gyroscope by its motion through the static field of a mass, about 6600 milliarcseconds a year for Gravity Probe B.'
     chapter: '7.5'
     anchor: neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation
+  - term: transverse (of a gravitational wave)
+    definition: 'Having no entry along the direction of travel: a strain with $\hat k_jh_{ij} = 0$, which stretches and squeezes only across the wave.'
+    chapter: '7.6'
+    anchor: of-the-ten-amplitudes-of-a-plane-wave-two-are-physical
+  - term: traceless (of a gravitational wave)
+    definition: 'With diagonal entries that add to zero, $h_{ii} = 0$, so that the stretch along one direction across the wave equals the squeeze along the perpendicular one.'
+    chapter: '7.6'
+    anchor: of-the-ten-amplitudes-of-a-plane-wave-two-are-physical
+  - term: transverse-traceless gauge
+    definition: 'The coordinates in which a gravitational wave has no entry with a time index, none along its direction of travel and no trace, reached from harmonic gauge with the gauge freedom left in it. In them the wave is two numbers, $h_+$ and $h_\times$.'
+    role: field
+    chapter: '7.6'
+    anchor: of-the-ten-amplitudes-of-a-plane-wave-two-are-physical
+  - term: strain of a gravitational wave
+    definition: 'The table $h^{\rm TT}_{ij}$ of a wave in the transverse-traceless gauge. A free ball moves by $\tfrac12h^{\rm TT}_{ij}\xi_j$, so in a plus wave one arm of LIGO grows by $\tfrac12hL$ and the other shrinks by the same, and their difference over $L$ is $h$.'
+    role: field
+    chapter: '7.6'
+    anchor: a-wave-of-strain-h-moves-each-ball-by-half-the-strain
+  - term: transverse trace-free projector
+    definition: 'The table $\Lambda_{ij,kl}(\hat n) = \tfrac12(P_{ik}P_{jl} + P_{il}P_{jk}) - \tfrac12P_{ij}P_{kl}$, which keeps of any symmetric table only its part across $\hat n$ with no trace, the part a wave along $\hat n$ can carry. Applying it twice is applying it once, and its trace $\Lambda_{ij,ij} = 2$ counts the polarizations.'
+    chapter: '7.6'
+    anchor: one-projector-keeps-what-a-wave-can-carry
+  - term: proper distance
+    definition: 'The distance between two nearby points measured with the metric, as a ruler would read it. In a gravitational wave it changes between free balls even where their coordinates do not.'
+    chapter: '7.6'
+    anchor: a-wave-of-strain-h-moves-each-ball-by-half-the-strain
+  - term: TT coordinates
+    definition: 'The coordinates of the transverse-traceless gauge. Free balls at rest keep their TT coordinates as a wave passes, while their proper distances change, so the motion shows in the metric rather than in the labels.'
+    chapter: '7.6'
+    anchor: a-wave-of-strain-h-moves-each-ball-by-half-the-strain
+  - term: turned by 45° (magnetic part of a wave)
+    definition: 'In a plane wave the magnetic part of the tide, $\mathcal B_{ij} = \epsilon_{ipq}\hat k_p\mathcal E_{qj}$, is the pattern of the tide turned anticlockwise by 45° about the direction of travel, as seen by a reader the wave approaches, and of the same size.'
+    role: curv
+    chapter: '7.6'
+    anchor: the-magnetic-part-of-a-wave-is-its-tide-turned-by-45

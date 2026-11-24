@@ -2310,3 +2310,11 @@ symbols:
     meaning: 'The rate at which the axis of a gyroscope at rest in a steady weak field turns relative to the distant stars, $\vect\Omega_{\rm g} = -(c/2)\nabla\times\vect h_0 = (2G/c^2)\vect b$. Outside a spinning body it is the Lense–Thirring precession. Two gyroscopes a small vector $\vect\xi$ apart differ by $\mathcal B_{ij}\xi_j/c$.'
     chapter: '7.5'
     anchor: neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation
+  - key: tt-strain
+    title: Strain of a gravitational wave (TT gauge)
+    tex: '\field{h}^{\rm TT}_{ij}'
+    role: field
+    kind: A symmetric table of pure numbers at each event, across the direction of travel and with no trace
+    meaning: 'The spatial part of the metric perturbation of a wave in the transverse-traceless gauge, where every entry with a time index is zero. It has $\hat k_jh^{\rm TT}_{ij} = 0$ and $h^{\rm TT}_{ii} = 0$, so it holds two numbers, $h^{\rm TT}_{ij} = h_+e^+_{ij} + h_\times e^\times_{ij}$. From any harmonic-gauge plane wave it is $\Lambda_{ij,kl}(\hat k)\bar h_{kl}$. Its tide is $\mathcal E_{ij} = -\tfrac12\partial_t^2h^{\rm TT}_{ij}$, and it moves a free ball by $\tfrac12h^{\rm TT}_{ij}\xi_j$.'
+    chapter: '7.6'
+    anchor: of-the-ten-amplitudes-of-a-plane-wave-two-are-physical
