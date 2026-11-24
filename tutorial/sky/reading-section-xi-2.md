@@ -24,22 +24,14 @@ XI, and what would the camera see beside a black hole against the first light?
 
 Reading chapter R12 read Section XI up to [the Milky
 Way](/tutorial/sky/reading-sections-x-and-xi/#in-waves-the-galaxys-centre-is-a-hundred-times-brighter-than-the-opposite-sky);
-this chapter reads the rest in order, with the [plain words](/paper/#sec:vistas)' claims where they return. As in
-[R11](/tutorial/black-holes/reading-section-vii/), each claim is *checked here* (a number recomputed from an earlier
-result), *read now, derived in chapter N*, or *stated in the paper*; *derived here* marks two steps no chapter takes.
+this chapter reads the rest in order, with the [plain words](/paper/#sec:vistas)' claims where they return (Figure
+[](#fig:read-xi-2-map)). As in [R11](/tutorial/black-holes/reading-section-vii/), each claim is *checked here* (a
+number recomputed from an earlier result), *read now, derived in chapter N*, or *stated in the paper*; *derived here*
+marks two steps no chapter takes.
 
-<!-- diagram: tut-read-xi-2-map — spec: as R11's tut-read-vii-map. Nine columns left to right, one per stretch of the
-second half of Section XI in the paper's order (plain words; the background; the four properties; the hole against
-the glow; the bookkeeping and spin; the falling camera, the fast pixel and the coincidences; the string; the
-transparent Sun; scattering and tails). Under each, solid boxes for the chapters it rests on (12.2, 10.1, R10b, 6.3,
-11.1, 11.2, 11.3, 11.4, 9.3, 9.4, 8.5, R8, 12.1, 5.3, 7.3, 7.8, 2.8, 7.5), filled for "read now", outlined with a tick
-for "checked here", dotted insets for "stated in the paper" (Teukolsky and Press's gains, the spots scale by scale,
-Patla and Nemiroff's 23.5 AU, the Shapiro delay, the shock, the tail). Two hatched boxes for "derived here": the
-delay's slope under the transparent Sun, and the cone under the fast pixel. The last box, at the right, gathers arrows
-from the hole, the bookkeeping and the falling camera into the capstone. Neutral boxes; the derived, checked and
-stated marks carry no role colour. Caption: "Look first at the solid boxes: every stretch of the second half of
-Section XI rests on chapters of Parts 6 to 12, with its stated results in dotted insets. The last box follows one hole
-through three of them." -->
+![Look first at the solid boxes: every stretch of the second half of Section XI rests on chapters of Parts 2 to 12,
+with its stated results in dotted insets. The last box follows one hole through four of
+them.](tut-read-xi-2-map){#fig:read-xi-2-map}
 
 ::: plain
 The second half of Section XI imagines a sky of gravitons left from the hot early universe. If it exists, it is a
@@ -362,21 +354,14 @@ records is *stated in the paper* [@DeWitt1960; @BlanchetDamour1992].
 ## The capstone: a black hole against the first light
 
 A hole of ten equilibrium masses, $\matter M = 1.356\times10^{24}$ kg or 18 Moon masses, stands against the 0.905 K
-glow, and the camera is at rest at $r = 40\,G\matter M/c^2$, 4.03 cm away in circumference radius. Each row feeds on
-earlier ones, and all but three recompute in a line with $G$, $c$, $\hbar$ and $\kB$: (e) needs the orbit integrated
-above, (f) chapter 11.3's Regge–Wheeler greybody factors, and (g) the stated 91%.
+glow, and the camera is at rest at $r = 40\,G\matter M/c^2$, 4.03 cm away in circumference radius (Figure
+[](#fig:read-xi-hole)). Each row feeds on earlier ones, and all but three recompute in a line with $G$, $c$, $\hbar$
+and $\kB$: (e) needs the orbit integrated above, (f) chapter 11.3's Regge–Wheeler greybody factors, and (g) the stated
+91%.
 
-<!-- diagram: tut-read-xi-hole — spec: a strip of nine small panels (a) to (i), left to right, joined by arrows that
-carry each panel's number into the next, as R11's tut-read-vii-capstone. (a) a thermometer against a uniform field-
-coloured glow, 0.905 K far away and 0.929 K at the camera; (b) a square metre receiving gravitons, 3.9 × 10^14 per
-second per steradian, with one 5.7 mm wavelength drawn to scale against the capture disc of (c); (c) the hole with
-its capture disc 1.05 cm across and the label 0.0905 K; (d) the camera's sky as a disc of directions with the shadow
-7.27° in radius at rest and, dashed inside it, 5.80° falling; (e) the same sky with the Einstein ring at 20.2°; (f)
-two grey discs, 93% dark by energy and 82% by count; (g) one mode turning with a spinning hole, ten times the sky at
-42.7 GHz; (h) the thermometer read backwards to 40 GM/c^2; (i) two counting pixels back to back, g2 = 2 for a hot sky.
-Angles to scale in (d) and (e); sizes in (b) and (c) to scale with each other; the rest schematic. Caption: "Look
-first at the arrows: each panel's number feeds the next. The angles depend only on the distance in units of GM/c²;
-the mass sets how dark the disc is. Angles and the two lengths of (b) and (c) are to scale; the rest is schematic." -->
+![Look first at the arrows: each panel's number feeds the next. The angles depend only on the distance in units of
+$G\matter M/c^2$; the mass sets how dark the disc is. Angles and the two lengths of (b) and (c) are to scale; the rest
+is schematic.](tut-read-xi-hole){#fig:read-xi-hole}
 
 | Step | Formula | Number | Chapter |
 |---|---|---|---|
