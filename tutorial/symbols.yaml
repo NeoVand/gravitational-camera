@@ -3997,3 +3997,28 @@ symbols:
     meaning: 'The rate at which the spherical layer of radius $r$ of a round body turns about the $z$ axis, so that $\vect J = \rho\,\Omega(r)\,(-y, x, 0)$. The hidden swirl has $\Omega(r) = +\Omega$ inside $2^{-1/5}R$ and $-\Omega$ outside. Averages over directions are written $\langle\cdot\rangle$, so that this $\Omega$ is never a solid angle.'
     chapter: '13.4'
     anchor: octupolar-tides-read-the-hidden-swirl
+
+  - key: energy-moment
+    title: Moment of the energy
+    tex: '\matter{Q_h}'
+    role: matter
+    kind: A number; in kilograms times the unit of $h$
+    meaning: 'The energies of a body''s parts divided by $c^2$ and weighted by a function of position, $Q_h = \sum_aE_ah(\vect x_a)/c^2$: to a first approximation, the moment that the field reports once energy has weight. At order $1/c^2$ the moments the field reports also weigh the stresses (Blanchet and Damour), and a tide couples to a moving part through $\Phi(E + \vect p\cdot\vect v)/c^2$. As $c$ grows it becomes Newton''s moment of the mass. To order $1/c^2$ two of them do not commute, $\{Q_h, Q_g\} = \int\vect J\cdot(g\nabla h - h\nabla g)\,\mathrm dV/c^2$; for the dipoles this is $-L_z/c^2$.'
+    chapter: '13.6'
+    anchor: to-order-1c²-the-moments-of-the-energy-do-not-commute
+  - key: angular-momentum-density
+    title: Density of angular momentum
+    tex: '\ell_z'
+    role: none
+    kind: A number at each point; in kg m⁻¹ s⁻¹
+    meaning: 'The angular momentum about the $z$ axis per unit volume, $\ell_z = xJ_y - yJ_x$, with $\vect J$ the density of momentum; its integral is $L_z$. The bracket of the moments of the energy against $x^2 - y^2$ and $2xy$ is $-(2/c^2)\int(x^2 + y^2)\,\ell_z\,\mathrm dV$, which the hidden swirl does not make zero. Not a multipole degree $\ell$.'
+    chapter: '13.6'
+    anchor: to-order-1c²-the-moments-of-the-energy-do-not-commute
+  - key: moment-field
+    title: Vector field of a moment
+    tex: 'X_f'
+    role: none
+    kind: A vector field on spacetime, a first derivative in $t$ and $\vect x$; written with $c = 1$
+    meaning: 'The transformation $X_f = f\,\partial_t + t\,\nabla f\cdot\nabla$, with $f$ harmonic: the shift in time for $f = 1$ and a boost for $f$ linear. In general relativity the mass moments are its charges. For $f$ and $g$ of degree two or more the commutator $[X_f, X_g]$ is not of the same form, so these fields do not close.'
+    chapter: '13.6'
+    anchor: in-general-relativity-the-moments-are-charges-of-motions-that-do-not-close

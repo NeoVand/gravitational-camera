@@ -4919,3 +4919,52 @@ terms:
     definition: 'A normal mode of a body or a trapped gas in which its cross-section oscillates as an ellipse. A vortex splits the two whose ellipses turn in opposite senses, by the bracket of two rates divided by the sum rule of chapter 4.5.'
     chapter: '13.4'
     anchor: a-vortex-splits-the-quadrupole-modes-of-a-trapped-gas
+
+  - term: bracket as a response
+    definition: 'The Poisson bracket read as a measurement made by pushing: the motion that a quantity $A$ generates, run for a small amount $\epsilon$, changes any quantity $B$ by $\epsilon\{B, A\}$. Chapter 13.4''s symmetric and antisymmetric parts of a response are such changes, with brief tides as the pushes.'
+    chapter: '13.6'
+    anchor: looking-gives-values-pushing-gives-brackets
+  - term: moment of the energy
+    definition: 'The energies of a body''s parts divided by $c^2$ and weighted by a function of position, $Q_h = \sum_aE_ah(\vect x_a)/c^2$. Because energy has weight, these are to a first approximation the moments that the field outside reports; to order $1/c^2$ two of them do not commute. At that order the moments the field reports also weigh the stresses (Blanchet and Damour''s $\sigma = (T^{00} + T^{ii})/c^2$, plus terms in time derivatives), and only the mass is spared.'
+    chapter: '13.6'
+    anchor: to-order-1c²-the-moments-of-the-energy-do-not-commute
+  - term: centre of energy
+    definition: 'The average place of a body''s parts, each weighted by its energy. For a spinning body it depends on the frame, and its coordinates do not commute: for a body at rest with spin $S_z$, the two dipole moments of the energy have the bracket $-S_z/c^2$.'
+    chapter: '13.6'
+    anchor: to-order-1c²-the-moments-of-the-energy-do-not-commute
+  - term: density of angular momentum
+    definition: 'The angular momentum about an axis per unit volume, $\ell_z = xJ_y - yJ_x$ about the $z$ axis, whose integral is $L_z$. A sphere whose core and shell turn opposite ways has $L_z = 0$ but not $\int(x^2 + y^2)\,\ell_z\,\mathrm dV = 0$.'
+    chapter: '13.6'
+    anchor: to-order-1c²-the-moments-of-the-energy-do-not-commute
+  - term: vector field
+    definition: 'A direction of motion given at every point or event, written as a first derivative $a\,\partial_t + \vect b\cdot\nabla$: for a small $\lambda$ it moves each event by $(\lambda a, \lambda\vect b)$. A boost along $x$ is $x\,\partial_t + t\,\partial_x$, with $c = 1$.'
+    chapter: '13.6'
+    anchor: in-general-relativity-the-moments-are-charges-of-motions-that-do-not-close
+  - term: commutator of two vector fields
+    definition: 'The difference $[X, Y] = XY - YX$ of two vector fields applied in the two orders, which is again a vector field: the amount by which two small motions fail to undo each other round a small loop. Two boosts give a rotation.'
+    chapter: '13.6'
+    anchor: in-general-relativity-the-moments-are-charges-of-motions-that-do-not-close
+  - term: closes
+    definition: 'Said of a family of vector fields when the commutator of any two of its members is again a combination of members. The shift in time, the boosts and the turns close; the fields $f\,\partial_t + t\,\nabla f\cdot\nabla$ of degree two and higher do not.'
+    chapter: '13.6'
+    anchor: in-general-relativity-the-moments-are-charges-of-motions-that-do-not-close
+  - term: Poincaré group
+    definition: 'The motions of flat spacetime that keep every interval: the shifts in time and space, the turns and the boosts.'
+    chapter: '13.6'
+    anchor: in-general-relativity-the-moments-are-charges-of-motions-that-do-not-close
+  - term: charge of a transformation
+    definition: 'The quantity that Noether''s construction attaches to a transformation, read on a sphere outside the body; it need not be conserved. For a field of directions $\boldsymbol\xi$ in space it is the momentum carried along it, $\int\vect J\cdot\boldsymbol\xi\,\mathrm dV$; in general relativity the mass moments are the charges of the fields $(f/c)\,\partial_t + ct\,\nabla f\cdot\nabla$, written $f\,\partial_t + t\,\nabla f\cdot\nabla$ when $c = 1$ (not the electric charge of chapter 6.6).'
+    chapter: '13.6'
+    anchor: in-general-relativity-the-moments-are-charges-of-motions-that-do-not-close
+  - term: boundary observable
+    definition: 'A quantity built from the fields near the boundary of space at one time. The energy is one, because Gauss''s law, or in general relativity a surface integral, reads it there.'
+    chapter: '13.6'
+    anchor: marolfs-boundary-algebra-holds-the-interior-but-watching-cannot-read-it
+  - term: algebra of observables
+    definition: 'Everything that can be built from a set of quantities by sums, products and brackets. Marolf argued that the algebra of a gravitating system''s boundary observables holds a complete set of observables.'
+    chapter: '13.6'
+    anchor: marolfs-boundary-algebra-holds-the-interior-but-watching-cannot-read-it
+  - term: complete set of observables
+    definition: 'A set of quantities whose values together fix the state of a system.'
+    chapter: '13.6'
+    anchor: marolfs-boundary-algebra-holds-the-interior-but-watching-cannot-read-it
