@@ -83,6 +83,7 @@ import PlanckSpectrum from './live/PlanckSpectrum.svelte';
 import DetailedBalance from './live/DetailedBalance.svelte';
 import GlowBound from './live/GlowBound.svelte';
 import ShadowAndRing from './live/ShadowAndRing.svelte';
+import SpinAndGain from './live/SpinAndGain.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -436,5 +437,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A camera near a black hole: exact rays, the shadow, the Einstein ring, and its sky at rest or falling',
 		component: ShadowAndRing
+	},
+	'spin-and-gain': {
+		label:
+			'A spinning hole cut through its axis: its horizon, ergosphere and spin energy, and whether a wave turning with it gains',
+		component: SpinAndGain
 	}
 };

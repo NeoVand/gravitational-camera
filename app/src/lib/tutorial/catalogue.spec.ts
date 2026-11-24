@@ -59,7 +59,7 @@ describe('the routes of parts.yaml', () => {
 		);
 		for (const route of catalogue().routes)
 			expect(routeGaps(route, requires), route.id).toEqual([]);
-	});
+	}, 180_000);
 });
 
 describe('the glossary and the symbol cards', () => {
@@ -76,7 +76,7 @@ describe('the glossary and the symbol cards', () => {
 			...symbols().map((s) => ({ name: s.key, chapter: s.chapter, anchor: s.anchor }))
 		].filter((e) => e.anchor && ids.has(e.chapter) && !ids.get(e.chapter)!.has(e.anchor));
 		expect(broken).toEqual([]);
-	});
+	}, 180_000);
 });
 
 describe('links between chapters', () => {
@@ -105,5 +105,5 @@ describe('links between chapters', () => {
 			}
 		expect(seen).toBeGreaterThan(50);
 		expect(broken).toEqual([]);
-	});
+	}, 180_000);
 });

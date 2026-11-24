@@ -854,7 +854,7 @@ terms:
     chapter: '0.5'
     anchor: one-reading-shows-only-a-list-of-weighted-totals
   - term: hair
-    definition: 'Any detail of a body that its gravitational field outside could show, beyond its mass, its spin and its electric charge. By the no-hair theorem a black hole has none.'
+    definition: 'Any detail of a body that its gravitational field outside could show, beyond its mass, its spin and its electric charge. By the no-hair theorem a black hole has none; chapter 11.2 states the theorem with its conditions.'
     chapter: '0.5'
     anchor: the-list-is-short-and-a-black-holes-is-the-shortest
   - term: first order
@@ -4195,3 +4195,80 @@ terms:
     definition: 'The rise in frequency of light that falls from far away to a clock at rest, by $1/\sqrt{1 - r_s/r}$ near a mass; a black-body sky stays a black body, warmer by the same factor.'
     chapter: '11.1'
     anchor: seen-from-rest-near-a-hole-the-whole-sky-is-warmer
+
+  - term: Kerr metric
+    definition: 'The field outside a spinning black hole in Einstein''s theory, found by Roy Kerr in 1963: stationary, symmetric about the axis of spin and empty outside the hole. It depends on the mass and on the spin parameter $a$, and for $a = 0$ it is the Schwarzschild metric.'
+    role: field
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - term: "Kerr's spin parameter"
+    definition: 'The length $a = J/Mc$ of a spinning body or black hole: its angular momentum over its mass and the speed of light. A black hole needs $a \le GM/c^2$; the Earth has $a = 3.27$ m, 740 times its $GM/c^2$.'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - term: dimensionless spin
+    definition: 'The pure number $\chi = ac^2/GM = cJ/GM^2$, at most 1 for a black hole. The paper writes $a = 0.7\,GM/c^2$ for $\chi = 0.7$; the Sun has $\chi = 0.22$.'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - term: outer horizon
+    definition: 'The horizon of a spinning black hole, at $r_+ = GM/c^2 + \sqrt{(GM/c^2)^2 - a^2}$ in Kerr''s coordinates: $2GM/c^2$ for a hole that does not spin, half that at the greatest spin.'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - term: horizon angular velocity
+    definition: 'The rate $\Omega_H = ac/(r_+^2 + a^2)$ at which the horizon of a spinning black hole turns, as seen from far away, from 0 without spin to $c^3/2GM$ at the greatest spin; 660 turns a second for ten solar masses at $\chi = 0.7$.'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - term: ergosphere
+    definition: 'The region round a spinning black hole, between its horizon and a surface that reaches $2GM/c^2$ on the equator, inside which nothing can stay at rest relative to the distant stars; every body there is carried round with the spin, though it can still escape.'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - term: mass moments and current moments
+    definition: 'The tower of moments, defined by Geroch and Hansen, that fixes a stationary field in empty space, of the mass and of its flow; far away they become the multipole moments. For a Kerr hole $M_\ell + iS_\ell/c = M(ia)^\ell$, so its quadrupole is $-Ma^2$.'
+    role: matter
+    chapter: '11.2'
+    anchor: far-away-a-spinning-hole-is-a-mass-and-a-spin-dipole
+  - term: no-hair theorem
+    definition: 'In Einstein''s theory, a stationary black hole with only empty space or an electric and magnetic field outside it, a regular horizon in one piece and flat space far away, is fixed by its mass, its angular momentum and its charge. Uncharged and at rest, it shows seven numbers.'
+    chapter: '11.2'
+    anchor: a-hole-at-rest-shows-seven-numbers-and-nothing-of-what-fell-in
+  - term: ringdown
+    definition: 'The ringing of a newly formed or disturbed black hole, at frequencies set by its mass and spin alone, by which it sends away its lumps as gravitational waves or into the hole.'
+    chapter: '11.2'
+    anchor: a-hole-at-rest-shows-seven-numbers-and-nothing-of-what-fell-in
+  - term: area theorem
+    definition: 'In Einstein''s theory, if the energy every observer measures along a ray of light is never negative and no singularity can be seen from outside, the area of a horizon never decreases (Hawking, 1971). Quantum effects break it.'
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+  - term: irreducible mass
+    definition: 'The mass $M_{\rm irr} = M\sqrt{(1 + \sqrt{1 - \chi^2})/2}$ of a hole that does not spin and has the same horizon area as a spinning one. It never decreases, so at most $(M - M_{\rm irr})c^2$ can be taken out: 29.3% of the mass at the greatest spin.'
+    role: matter
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+  - term: "Christodoulou's formula"
+    definition: 'The mass of a Kerr hole in terms of its irreducible mass and its angular momentum, $M^2 = M_{\rm irr}^2 + (cJ/2GM_{\rm irr})^2$ (Christodoulou, 1970), from the area of its horizon. Because $M_{\rm irr}$ never decreases, the mass never falls below it.'
+    role: matter
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+  - term: surface gravity of a horizon
+    definition: 'The acceleration $\kappa$ in the first law of black-hole mechanics: for a hole that does not spin, $c^4/4GM$, the push needed to hover at the horizon as measured from far away. It is zero at the greatest spin.'
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+  - term: first law of black-hole mechanics
+    definition: 'The rule $\mathrm d(Mc^2) = (\kappa c^2/8\pi G)\,\mathrm dA + \Omega_H\,\mathrm dJ$ that ties a small change of a Kerr hole''s energy to the changes of its horizon area and its angular momentum (Bardeen, Carter and Hawking, 1973).'
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+  - term: "Penrose's process"
+    definition: 'A way of taking energy out of a spinning hole: a body splits inside the ergosphere, one piece of negative energy, as counted far away, falls in, and the other leaves with more energy than the whole brought (Penrose, 1969).'
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+  - term: superradiance
+    definition: 'The amplification of a wave by a spinning black hole: a wave of frequency $\omega$ that turns round the axis as $e^{im\varphi}$ with $0 < \omega < m\Omega_H$ leaves with more energy than it brought, because absorbing it would shrink the horizon''s area.'
+    chapter: '11.2'
+    anchor: a-hole-amplifies-a-wave-that-turns-with-it-more-slowly-than-its-horizon
+  - term: superradiant instability
+    definition: 'The growth by superradiance of a cloud of a light boson bound round a spinning hole, which draws out the hole''s spin until $\Omega_H$ falls to about $\omega/m$ (Detweiler, 1980).'
+    chapter: '11.2'
+    anchor: a-hole-amplifies-a-wave-that-turns-with-it-more-slowly-than-its-horizon
+  - term: boson cloud
+    definition: 'A field of a hypothetical very light particle of spin zero or one, trapped round a black hole in orbits like an atom''s. Grown by superradiance, it sends out gravitational waves at twice its frequency, all in one mode, whose gravitons arrive independently, $g^{(2)} = 1$.'
+    chapter: '11.2'
+    anchor: a-hole-amplifies-a-wave-that-turns-with-it-more-slowly-than-its-horizon

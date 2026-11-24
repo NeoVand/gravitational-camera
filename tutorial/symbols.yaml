@@ -2931,9 +2931,9 @@ symbols:
     tex: 'a'
     role: none
     kind: A length; in m
-    meaning: 'The length defined by writing a spinning body''s angular momentum as $Mca\,\hat z$: its angular momentum divided by its mass and the speed of light. For a spinning black hole the eigenvalues of $\mathcal W$ are proportional to $(r - ia\cos\vartheta)^{-3}$ (Kerr), and outside any round spinning body this holds to first order in $a$, so their phase is $3a\cos\vartheta/r$. For the Earth $a = 3.27$ m, and the phase at the surface above a pole is $1.5 \times 10^{-6}$. (Not a shell''s radius, a lattice constant or a light amplitude.)'
-    chapter: '9.3'
-    anchor: complex-eigenvalues-mean-that-something-in-the-room-moves-or-turns
+    meaning: 'The length defined by writing a spinning body''s angular momentum as $Mca\,\hat z$: its angular momentum divided by its mass and the speed of light. For a spinning black hole the eigenvalues of $\mathcal W$ are proportional to $(r - ia\cos\vartheta)^{-3}$ (Kerr), and outside any round spinning body this holds to first order in $a$, so their phase is $3a\cos\vartheta/r$. For the Earth $a = 3.27$ m, and the phase at the surface above a pole is $1.5 \times 10^{-6}$. A black hole needs $a \le GM/c^2$ (chapter 11.2; chapter 9.3 first uses it). (Not a shell''s radius, a lattice constant, a light amplitude or a scale factor.)'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
   - key: stereographic-z
     title: Stereographic coordinate
     tex: 'z'
@@ -3480,3 +3480,60 @@ symbols:
     meaning: 'The impact parameter $b_E = \sqrt{2r_sd}$ at which a point mass brings the rays from a source straight behind it to a camera on its axis at the distance $d$. The camera sees them as a ring at the angle $\sqrt{2r_s/d}$: 3.26 m and $25.6''''$ at 26.3 km from the paper''s black hole.'
     chapter: '11.1'
     anchor: a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring
+
+  - key: hole-angular-momentum
+    title: Angular momentum of a black hole
+    tex: '\matter J'
+    role: matter
+    kind: A vector along the spin axis; in kg m² s⁻¹
+    meaning: 'The angular momentum of a spinning black hole, $J = Mca$, which with its mass and charge fixes its field. Far away it is the spin dipole of chapter 7.5, there written $\boldsymbol L$. (Not the invariant $J = \mathrm{tr}\,\mathcal W^3$ of Part 9, nor the current column.)'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - key: dimensionless-spin
+    title: Dimensionless spin
+    tex: '\chi'
+    role: none
+    kind: A pure number from 0 to 1 for a black hole
+    meaning: '$\chi = ac^2/GM = cJ/GM^2$, the spin parameter in units of $GM/c^2$; the paper writes $a = 0.7\,GM/c^2$ for $\chi = 0.7$. The Sun has 0.22 and the Earth 738. (Only in chapters 11.2 and 11.3; never 4.5''s response $\chi(\omega)$.)'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - key: outer-horizon
+    title: Radius of the outer horizon
+    tex: 'r_+'
+    role: none
+    kind: A length; in metres
+    meaning: 'Where Kerr''s $\Delta = r^2 - r_sr + a^2$ vanishes, $r_+ = GM/c^2 + \sqrt{(GM/c^2)^2 - a^2}$, in Kerr''s coordinate $r$: $r_s$ without spin, $GM/c^2$ at the greatest spin. It exists only for $a \le GM/c^2$.'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - key: horizon-angular-velocity
+    title: Horizon angular velocity
+    tex: '\Omega_H'
+    role: none
+    kind: An angular velocity; in rad s⁻¹
+    meaning: 'The rate $\Omega_H = ac/(r_+^2 + a^2)$ at which a spinning hole''s horizon turns as seen from far away: $0.204\,c^3/GM$ at $\chi = 0.7$, $c^3/2GM$ at the greatest spin. A wave turning as $e^{im\varphi}$ is amplified when $\omega < m\Omega_H$.'
+    chapter: '11.2'
+    anchor: a-spinning-hole-adds-its-spin-to-its-mass-and-the-spin-has-a-ceiling
+  - key: horizon-area
+    title: Area of a horizon
+    tex: 'A'
+    role: none
+    kind: An area; in m²
+    meaning: 'The area $A = 4\pi(r_+^2 + a^2)$ of a Kerr hole''s horizon, $4\pi r_s^2$ without spin. By the area theorem it never decreases. (Not 4.5''s sum $A$ nor 5.4''s amplitude.)'
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+  - key: irreducible-mass
+    title: Irreducible mass
+    tex: '\matter M_{\rm irr}'
+    role: matter
+    kind: A mass; in kilograms
+    meaning: 'The mass of a hole without spin that has the same horizon area, $M_{\rm irr} = M\sqrt{(1 + \sqrt{1 - \chi^2})/2}$. It never decreases; $M - M_{\rm irr}$ is the share held in spin, $1 - 1/\sqrt2 = 29.3\%$ of the mass at the greatest spin.'
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+  - key: horizon-surface-gravity
+    title: Surface gravity of a horizon
+    tex: '\kappa'
+    role: none
+    kind: An acceleration; in m s⁻²
+    meaning: 'The coefficient of $\mathrm dA$ in the first law, $c^2\sqrt{(GM/c^2)^2 - a^2}/(r_+^2 + a^2)$: $c^4/4GM$ without spin, the hovering acceleration at the horizon as measured from far away, and zero at the greatest spin. (Only in chapters 11.2 and 11.3; the paper''s Section XIII uses $\kappa$ for a decay rate.)'
+    chapter: '11.2'
+    anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
