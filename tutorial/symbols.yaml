@@ -3619,3 +3619,28 @@ symbols:
     meaning: 'The flat spectrum with which each of the five entries of a black hole''s quadrupole trembles at low frequencies, $S_Q = 2k_BT_H\nu = \hbar r_s^5/360\pi G$, from the classical fluctuation–dissipation theorem at the Hawking temperature; $4.7\times10^{-46}$ kg² m⁴ s for $1.36\times10^{23}$ kg. The paper''s letter.'
     chapter: '11.4'
     anchor: the-friction-trembles-at-the-holes-temperature
+
+  - key: compactness
+    title: Compactness
+    tex: '\mathcal C'
+    role: none
+    kind: A pure number
+    meaning: 'A body''s $GM/Rc^2$, for mass $M$ and radius $R$: how strongly it curves space. $6.96\times10^{-10}$ for the Earth, one half at a black hole''s horizon. Every optical constant of a body for gravitational waves is $\mathcal C$ times factors below one, and its focal ratio as a lens is $1/8\mathcal C$.'
+    chapter: 'R11'
+    anchor: every-optical-constant-of-a-body-is-its-compactness-times-factors-below-one
+  - key: reduced-wavelength
+    title: Reduced wavelength
+    tex: '\bar\lambda'
+    role: none
+    kind: A length; in metres
+    meaning: 'The wavelength over $2\pi$, $\bar\lambda = c/\omega$ for a wave of angular frequency $\omega$: 47.7 km at 1 kHz. A body much smaller than $\bar\lambda$ diffracts a wave instead of bending, reflecting or shadowing it.'
+    chapter: 'R11'
+    anchor: every-optical-constant-of-a-body-is-its-compactness-times-factors-below-one
+  - key: lens-parameter
+    title: The point lens's wave number w
+    tex: 'w'
+    role: none
+    kind: A pure number
+    meaning: 'For a point mass $M$ as a lens and a wave of frequency $f$ and wavelength $\lambda$, $w = 8\pi GMf/c^3 = 4\pi r_s/\lambda$. On the axis the lens raises the intensity by $\pi w/(1 - e^{-\pi w})$ (stated in the paper''s Section XI): 795 for the hole of the equilibrium mass at 10 µm, 3.3 at the cut-off $w = 1$, and near 1 only for $w \ll 1$. (Not an eigenvalue of $\mathcal W$, nor a place on the camera''s plane.)'
+    chapter: 'R11'
+    anchor: the-camera-must-orbit-26-km-away-where-the-hole-gathers-130-times-its-area

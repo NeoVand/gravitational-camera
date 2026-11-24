@@ -450,7 +450,9 @@ focuses only if the delay spans a radian of the wave's phase, $2\pi f\times4G\ma
 frequencies $f > c^3/8\pi G\matter M$, or wavelengths $c/f$ shorter than $4\pi r_s$.[^freq] This **wave-optics
 cut-off** is 8.1 kHz for the Sun, and for Section VII's hole it is $4\pi r_s = 2.54$ mm, or 118 GHz, the paper's
 "2.5 mm" and "120 GHz". Below it, diffraction erases the focus. How strongly a point lens still focuses above it, the
-paper's gain of 800 at $10\,\mu$m, is chapter R11's subject.
+paper's gain of 800 at $10\,\mu$m, is chapter
+[R11](/tutorial/black-holes/reading-section-vii/#the-camera-must-orbit-26-km-away-where-the-hole-gathers-130-times-its-area)'s
+subject.
 
 ## Seen from rest near a hole, the whole sky is warmer
 

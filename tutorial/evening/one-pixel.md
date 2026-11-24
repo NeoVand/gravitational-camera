@@ -241,8 +241,9 @@ instead of recording mostly noise.
   counts the twenty numbers of curvature at a point, of which a pixel in empty space reads ten.
 :::
 
-[^optics]: The paper's [](/paper/#eq:index) gives $8 \times 10^{-14}$. Stated without proof in chapter 5.5, and
-    read in R11.
+[^optics]: The paper's [](/paper/#eq:index) gives $8 \times 10^{-14}$. Stated without proof in chapters 5.1 and
+    5.5, and read in
+    [R11](/tutorial/black-holes/reading-section-vii/#matter-barely-slows-a-wave-and-reflects-less-still).
 
 [^hole]: Derived in chapters 5.5 and 11.1.
 

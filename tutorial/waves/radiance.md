@@ -386,12 +386,12 @@ the paper warns.
 
 ## Matter makes no useful lens or mirror, and gravity focuses well only when it is very compact
 
-This section is brief, and chapter R11 reads the rest of the paper's [Section VII](/paper/#sec:no-lens). A glass lens
-focuses light because it delays the wave more at its centre, where it is thick, than at its edge, where it is thin.
-We want the focal length of such a lens. Take a lens of radius $R$, in metres, whose thickness falls from $h$ on its
-axis to zero at its rim along a parabola: at the distance $a$ from the axis it is $h(1 - a^2/R^2)$ thick
-(Figure [](#fig:rad-lenses)).[^h] We assume that **the lens is thin**, so that every ray crosses it nearly parallel
-to the axis.
+This section is brief, and chapter [R11](/tutorial/black-holes/reading-section-vii/) reads the rest of the paper's
+[Section VII](/paper/#sec:no-lens). A glass lens focuses light because it delays the wave more at its centre, where it
+is thick, than at its edge, where it is thin. We want the focal length of such a lens. Take a lens of radius $R$, in
+metres, whose thickness falls from $h$ on its axis to zero at its rim along a parabola: at the distance $a$ from the
+axis it is $h(1 - a^2/R^2)$ thick (Figure [](#fig:rad-lenses)).[^h] We assume that **the lens is thin**, so that every
+ray crosses it nearly parallel to the axis.
 
 By chapter [5.1](/tutorial/waves/wave-equation/#a-medium-can-slow-a-wave-and-its-refractive-index-measures-how-much),
 a slab of thickness $L$ holds a wave back by the phase $(n - 1)\,\omega L/c$, with $\sym{refractive-index}{n}$ its

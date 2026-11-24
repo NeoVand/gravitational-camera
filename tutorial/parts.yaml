@@ -161,7 +161,7 @@ parts:
       - { id: '11.2', slug: black-holes/spin, title: 'Spin, no hair, superradiance', short: Spin and no hair, size: M, status: published }
       - { id: '11.3', slug: black-holes/hawking, title: 'Hawking radiation', short: Hawking radiation, size: M, status: published }
       - { id: '11.4', slug: black-holes/under-tides, title: 'Black holes under tides: Love numbers, absorption, the friction of the horizon', short: Black holes under tides, size: M, status: published }
-      - { id: R11, slug: black-holes/reading-section-vii, title: 'Reading Section VII', short: Reading Section VII, size: S, status: planned, reads: [sec:no-lens] }
+      - { id: R11, slug: black-holes/reading-section-vii, title: 'Reading Section VII', short: Reading Section VII, size: S, status: published, reads: [sec:no-lens] }
 
   - id: '12'
     slug: sky
@@ -197,6 +197,9 @@ routes:
   - id: section-v
     title: To Section V, waves from moving bodies
     chapters: ['0.1', '0.3', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '3.1', '3.2', '3.3', '3.5', '3.6', '3.4', '3.7', '3.8', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', R5, '6.1', '6.2', '6.4', '6.5', '7.1', '7.2', '7.3', '7.4', '7.5', '7.6', R7, '7.7', '7.8', R7b]
+  - id: section-vii
+    title: To Section VII, a camera without a lens
+    chapters: ['0.1', '0.4', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', '1.8', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '4.1', '4.2', '4.3', '4.4', '4.5', '5.1', '5.2', '5.3', '5.4', '5.5', R5, '6.1', '6.2', '6.3', '6.4', '6.5', '7.1', '7.2', '7.3', '7.4', '7.5', '8.1', '8.2', '8.3', '11.1', '11.2', '11.3', R11]
   - id: section-viii
     title: To Section VIII, one pixel
     chapters: ['0.1', '0.4', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '3.1', '3.2', '3.3', '6.1', '6.2', '6.3', '6.4', '6.5', '6.6', '7.1', '7.2', '7.3', '7.4', '7.5', '7.6', '8.1', '8.2', '8.4', '9.1', '9.2', '9.3', '9.4', R9, '9.5', '9.6', '9.7', R9b]

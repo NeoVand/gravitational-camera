@@ -86,6 +86,7 @@ import ShadowAndRing from './live/ShadowAndRing.svelte';
 import SpinAndGain from './live/SpinAndGain.svelte';
 import HoleAgainstSky from './live/HoleAgainstSky.svelte';
 import TidalFriction from './live/TidalFriction.svelte';
+import BlackHoleCamera from './live/BlackHoleCamera.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -454,5 +455,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A moon’s tide on the Earth and on a hole, with the horizon’s friction set against the greybody factor and Page’s line',
 		component: TidalFriction
+	},
+	'black-hole-camera': {
+		label:
+			'A black hole as the camera’s lens: its tide against distance, with the ring, the orbit and the gain',
+		component: BlackHoleCamera
 	}
 };
