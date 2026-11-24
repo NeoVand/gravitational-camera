@@ -131,9 +131,9 @@ Last, the Earth's own tide on the ground is $3.08 \times 10^{-6}\unit{s^{-2}}$ (
 
 ## Equations (1) and (2) define the tide and say what it does
 
-The body of [Section II](/paper/#sec:pixel) starts again from the falling observer. It defines the tide for an
-observer at rest, with $t$ the observer's **proper time**, the time read on the observer's own clock (chapter 7.1),
-and $x^0 = ct$:
+The body of [Section II](/paper/#sec:pixel) starts again from the falling observer. It defines the tide for an observer
+at rest, with $t$ the observer's **proper time**, the time read on the observer's own clock (chapter
+[7.1](/tutorial/geometry/metric/#a-clocks-own-time-is-set-by-the-metric)), and $x^0 = ct$:
 
 {{paper eq:tidal}}
 
@@ -586,8 +586,9 @@ $6.54 \times 10^{-17}\unit{s^{-2}}$, and the ratio is 73,100. The last section s
     is an idealization, as it is in the paper (1.4).
 
 [^riemann]: The paper writes the Riemann tensor's sign convention as $R^\alpha{}_{\beta\gamma\delta} =
-    \partial_\gamma\Gamma^\alpha_{\beta\delta} - \dots$, where the $\Gamma$ are the Christoffel symbols of chapter 7.1.
-    With it, a stretch is a negative entry, as in 1.4.
+    \partial_\gamma\Gamma^\alpha_{\beta\delta} - \dots$, where the $\Gamma$ are the Christoffel symbols of chapter
+    [7.1](/tutorial/geometry/metric/#free-bodies-follow-geodesics-and-the-christoffel-symbols-hold-newtons-pull). With
+    it, a stretch is a negative entry, as in 1.4.
 
 [^lorry]: A lorry of 20 tonnes at 10 m makes a stretch of $2G\matter M/r^3 = 2.7 \times 10^{-9}\unit{s^{-2}}$, about
     a third of the person's at 1 m.

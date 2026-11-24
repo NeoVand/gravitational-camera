@@ -312,10 +312,12 @@ holds in every inertial frame, because every such frame has the same table $\fie
 $R$ itself, exactly as an upper one does.
 
 In curved spacetime the same holds in the local frame of a freely falling observer, one moved by gravity alone, because
-there the metric is $\field\eta_{\mu\nu}$ at the observer's place (chapter 7.1). That is the frame of the paper's
-[](/paper/#eq:deviation). Its $\xi^i$ is a separation in the observer's own space, with $\xi^0 = 0$, and its components
-are 1.4's $\xi_i$. The paper also sums spatial indices both low, as $p$ and $q$ in $\epsilon_{ipq}R_{pqj0}$ of the
-paper's [](/paper/#eq:magnetic). The tutorial keeps writing spatial indices low, except where it quotes the paper.
+there the metric is $\field\eta_{\mu\nu}$ at the observer's place (chapter
+[7.1](/tutorial/geometry/metric/#falling-removes-the-fields-first-derivatives-at-a-point-but-not-its-second)). That is
+the frame of the paper's [](/paper/#eq:deviation). Its $\xi^i$ is a separation in the observer's own space, with $\xi^0
+= 0$, and its components are 1.4's $\xi_i$. The paper also sums spatial indices both low, as $p$ and $q$ in
+$\epsilon_{ipq}R_{pqj0}$ of the paper's [](/paper/#eq:magnetic). The tutorial keeps writing spatial indices low, except
+where it quotes the paper.
 
 ## The gradient is a lower-index vector, and the wave operator is its square
 
@@ -351,11 +353,12 @@ derivative brings down $ik_\mu$, so
 
 $$\Box\phi = \field\eta^{\mu\nu}(ik_\mu)(ik_\nu)\,\phi = -(k\cdot k)\,\phi .$$
 
-The plane wave solves $\Box\phi = 0$ exactly when $k\cdot k = -\omega^2/c^2 + |\vect k|^2 = 0$, that is, when
-$\omega = c|\vect k|$: the wave four-vector of a wave that travels at $c$ is null. A gravitational wave of 1 kHz along
-$x$ has $\omega/c = |\vect k| = 2\pi\times1000/(2.998\times10^8\unit{m\,s^{-1}}) = 2.10\times10^{-5}\unit{m^{-1}}$, one
-cycle per 300 km, and $k\cdot k = 0$. Chapter 6.3 boosts this four-vector to find the Doppler shift and the tilt of
-starlight.
+The plane wave solves $\Box\phi = 0$ exactly when $k\cdot k = -\omega^2/c^2 + |\vect k|^2 = 0$, that is, when $\omega =
+c|\vect k|$: the wave four-vector of a wave that travels at $c$ is null. A gravitational wave of 1 kHz along $x$ has
+$\omega/c = |\vect k| = 2\pi\times1000/(2.998\times10^8\unit{m\,s^{-1}}) = 2.10\times10^{-5}\unit{m^{-1}}$, one cycle
+per 300 km, and $k\cdot k = 0$. Chapter
+[6.3](/tutorial/relativity/aberration/#a-ray-of-light-is-a-null-four-vector-and-a-boost-changes-its-frequency-and-its-direction-together)
+boosts this four-vector to find the Doppler shift and the tilt of starlight.
 
 ## A tensor is a table whose every index changes with the boost
 
@@ -382,10 +385,12 @@ everyone's dot product.
 
 **Counting.** A symmetric table of four rows, $T^{\mu\nu} = T^{\nu\mu}$, has its 4 diagonal entries and the 6 entries
 above the diagonal free, since those below repeat them: 10 numbers. The stress–energy tensor $\matter T^{\mu\nu}$ of
-matter, which holds its energy, momentum and stress, is such a table (chapter 6.5). An antisymmetric table, $A^{\mu\nu} =
--A^{\nu\mu}$, has zeros on its diagonal and is fixed by the 6 entries above it. Light's electric and magnetic fields,
-three numbers each, make such a table (chapter 6.6): the "six numbers" that [Section VIII](/paper/#sec:one-pixel)
-counts for a sensor of light.
+matter, which holds its energy, momentum and stress, is such a table (chapter
+[6.5](/tutorial/relativity/stress-energy/#ten-numbers-say-where-energy-and-momentum-are-and-where-they-flow)). An
+antisymmetric table, $A^{\mu\nu} = -A^{\nu\mu}$, has zeros on its diagonal and is fixed by the 6 entries above it.
+Light's electric and magnetic fields, three numbers each, make such a table (chapter
+[6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle)): the "six
+numbers" that [Section VIII](/paper/#sec:one-pixel) counts for a sensor of light.
 
 **A non-example.** A fluid at rest has an energy density $\matter\rho c^2$ and a pressure $p$ in every direction, both
 in joules per cubic metre. (The letter $p$ alone is the pressure; the four-momentum of the next section always carries
@@ -393,17 +398,20 @@ its index, $p^\mu$.) Take dust, a cloud of grains at rest with no pressure, $p =
 $0.6c$. Its energy density grows by $\obs\gamma^2 = 1.5625$: once because each grain's energy grows by $\obs\gamma$, and
 once because the grains crowd closer by $\obs\gamma$ along the motion. A four-vector with no part in space, such as
 $(\matter\rho c^2, 0, 0, 0)$, would have its time component grow by a single $\obs\gamma$. So the list $(\matter\rho
-c^2, p, p, p)$ is not a four-vector, and chapter 6.5 shows that its four numbers are the diagonal of a tensor of rank 2,
-the stress–energy tensor.
+c^2, p, p, p)$ is not a four-vector, and chapter
+[6.5](/tutorial/relativity/stress-energy/#in-the-stresses-the-sign-is-that-of-a-flow-of-momentum) shows that its four
+numbers are the diagonal of a tensor of rank 2, the stress–energy tensor.
 
 ## What an observer measures is a contraction with its own four-velocity
 
 We want a rule for what an observer measures that any frame can compute, because the paper's pixel moves and its tide is
-defined "for an observer at rest". We assume, from chapter 6.4, that **a particle of mass $\matter m$ has the
-four-momentum $\sym{four-momentum}{p^\mu} = \matter m\,\obs u^\mu_{\rm particle}$, with $\obs u^\mu_{\rm particle}$ its
-four-velocity, and that the energy an observer measures is $c$ times the time component $p^0$ in the observer's own
-frame.** In a frame where the particle moves at $\obs v$, $cp^0 = \obs\gamma\matter mc^2$, which for a slow particle is
-$\matter mc^2 + \tfrac12\matter m\obs v^2$: the energy of the mass at rest plus the energy of motion of chapter
+defined "for an observer at rest". We assume, from chapter
+[6.4](/tutorial/relativity/energy-and-momentum/#momentum-and-energy-are-the-parts-of-one-four-vector), that **a particle
+of mass $\matter m$ has the four-momentum $\sym{four-momentum}{p^\mu} = \matter m\,\obs u^\mu_{\rm particle}$, with
+$\obs u^\mu_{\rm particle}$ its four-velocity, and that the energy an observer measures is $c$ times the time component
+$p^0$ in the observer's own frame.** In a frame where the particle moves at $\obs v$, $cp^0 = \obs\gamma\matter mc^2$,
+which for a slow particle is $\matter mc^2 + \tfrac12\matter m\obs v^2$: the energy of the mass at rest plus the energy
+of motion of chapter
 [1.2](/tutorial/newton/field-and-potential/#the-work-done-by-gravity-depends-only-on-the-ends-of-the-path). In the
 observer's own frame its four-velocity is $\obs u^\mu = (c, 0, 0, 0)$, so $-p_\mu\obs u^\mu = -p_0c = cp^0$, because
 lowering flips the sign of the time component, $p_0 = -p^0$. The left side is a contraction, the same in every frame, so
@@ -425,13 +433,16 @@ $$\curv{\tE}_{ij} = c^2R_{0i0j} = R_{\mu i\nu j}\,\obs u^\mu\obs u^\nu ,$$
 
 the curvature contracted twice with the observer's four-velocity. We state here without proof that $R_{\alpha\beta
 \gamma\delta}$ is a tensor of rank 4 (chapter 7.2), and that in curved spacetime a general metric $\field g_{\mu\nu}$
-takes the place of $\field\eta_{\mu\nu}$ (chapter 7.1). The paper's magnetic part, its [](/paper/#eq:magnetic), carries
-one index 0, so it too belongs to the observer. A moving observer has another four-velocity and other axes in space, so
-it reads another $\curv{\tE}_{ij}$ and another $\curv{\tB}_{ij}$ from the same curvature. This is why [Section
-VIII](/paper/#sec:one-pixel) says that "a moving pixel measures a different mixture of stretch and twist from a pixel at
-rest at the same place". Chapter 6.6 works this out for light, and chapters 7.5 and 9.3 for gravity. A pixel's ten
-numbers are five for $\curv{\tE}$ and five for $\curv{\tB}$, each, in empty space, a symmetric trace-free table of
-chapter [1.5](/tutorial/newton/five-numbers/), and not the ten of a symmetric table of four rows.
+takes the place of $\field\eta_{\mu\nu}$ (chapter
+[7.1](/tutorial/geometry/metric/#a-clocks-own-time-is-set-by-the-metric)). The paper's magnetic part, its
+[](/paper/#eq:magnetic), carries one index 0, so it too belongs to the observer. A moving observer has another
+four-velocity and other axes in space, so it reads another $\curv{\tE}_{ij}$ and another $\curv{\tB}_{ij}$ from the same
+curvature. This is why [Section VIII](/paper/#sec:one-pixel) says that "a moving pixel measures a different mixture of
+stretch and twist from a pixel at rest at the same place". Chapter
+[6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle) works this out
+for light, and chapters 7.5 and 9.3 for gravity. A pixel's ten numbers are five for $\curv{\tE}$ and five for
+$\curv{\tB}$, each, in empty space, a symmetric trace-free table of chapter [1.5](/tutorial/newton/five-numbers/), and
+not the ten of a symmetric table of four rows.
 
 ::: try {#lorentz-diagram}
 Chapter 6.1's Lorentz diagram, in its third view, *Vectors*. The room's axes and the light lines are drawn as before,
@@ -519,11 +530,13 @@ $0.6c$.
 
 ::: solution
 Both indices of $T^{\mu\nu}$ are contracted with $\field\eta_{\mu\nu}$, so the result is an invariant, and since the
-metric is diagonal only the four diagonal entries enter, with the signs $-{+}{+}{+}$. For the fluid it is
-$-\matter\rho c^2 + 3p$. For dust, $p = 0$, the trace at rest is $-\matter\rho c^2$. Seen from $0.6c$, [](#eq:tensor)
-gives $\matter T'^{00} = 1.5625\,\matter\rho c^2$ and $\matter T'^{11} = 0.5625\,\matter\rho c^2$, so $-\matter T'^{00} + \matter T'^{11} = -\matter\rho
-c^2$ again, while the plain sum of the diagonal changes from $\matter\rho c^2$ to $2.125\,\matter\rho c^2$. Chapter 6.5
-uses this trace, which differs from chapter 1.5's trace of a table in space.
+metric is diagonal only the four diagonal entries enter, with the signs $-{+}{+}{+}$. For the fluid it is $-\matter\rho
+c^2 + 3p$. For dust, $p = 0$, the trace at rest is $-\matter\rho c^2$. Seen from $0.6c$, [](#eq:tensor) gives $\matter
+T'^{00} = 1.5625\,\matter\rho c^2$ and $\matter T'^{11} = 0.5625\,\matter\rho c^2$, so $-\matter T'^{00} + \matter
+T'^{11} = -\matter\rho c^2$ again, while the plain sum of the diagonal changes from $\matter\rho c^2$ to
+$2.125\,\matter\rho c^2$. Chapter
+[6.5](/tutorial/relativity/stress-energy/#in-the-stresses-the-sign-is-that-of-a-flow-of-momentum) uses this trace, which
+differs from chapter 1.5's trace of a table in space.
 :::
 
 ### The paper
@@ -540,7 +553,8 @@ derivatives taken in either order agree. The 00 component is $\partial_0\partial
 c^{-2}\partial_t^2\phi + (-c^{-2}\partial_t^2\phi + \nabla^2\phi) = \nabla^2\phi$. Lowering both indices flips the sign
 twice, so $S^{00} = S_{00}$, and the density of energy, the entry 00 with raised indices, gains $\nabla^2\phi$, as the
 paper says. A divergence of zero means that the added energy and momentum are conserved, so nothing forbids them;
-chapter 6.5 reads what this means for the paper's null space.
+chapter [6.5](/tutorial/relativity/stress-energy/#some-stresses-are-invisible-to-every-ray) reads what this means for
+the paper's null space.
 :::
 :::
 
@@ -559,7 +573,7 @@ chapter 6.5 reads what this means for the paper's null space.
   paper's one display of $\field\eta_{\mu\nu}$.
 - Appendix C, [*The energy given by an impulsive wave*](/paper/#par:the-energy-given-by-an-impulsive-wave): the metric
   $\dd s^2 = -\dd u\,\dd v + \dots$, which is $\field\eta_{\mu\nu}$ written with $u = ct - z$ and $v = ct + z$ (chapter
-  6.4).
+  [6.4](/tutorial/relativity/energy-and-momentum/#along-one-line-light-cone-coordinates-turn-a-boost-into-a-stretch)).
 :::
 
 ::: deeper
@@ -584,16 +598,17 @@ chapter 6.5 reads what this means for the paper's null space.
 
 [^eta]: The letter $\eta$ has four meanings in the tutorial. The Minkowski metric always carries its two indices,
     $\field\eta_{\mu\nu}$ or $\field\eta^{\mu\nu}$, and the colour of fields, because it is the flat form of the metric
-    through which gravity acts (chapter 7.1). The rapidity $\obs\eta$ of chapter
+    through which gravity acts (chapter [7.1](/tutorial/geometry/metric/)). The rapidity $\obs\eta$ of chapter
     [6.1](/tutorial/relativity/lorentz/#rapidities-add-where-velocities-do-not) is the paper's letter, in the observer's
     colour. The viscosity of chapter [4.4](/tutorial/response/viscosity/) is $\matter\eta$, in the colour of matter, and
     the paper's vector $\vect\eta$ of Section XIII returns in chapter 13.2.
 
 [^lambda]: The $4\times4$ table $\Lambda^\mu{}_\nu$ always carries its indices. The paper's $\Lambda = \exp(-i\eta\,\hat
     u\cdot\mathbf L)$ in [*One complex matrix*](/paper/#par:one-complex-matrix) is a $3\times3$ complex table that
-    describes the same boost acting on the paper's complex tide; chapter 6.6 links the two. The projector
-    $\Lambda_{ij,kl}$ of chapter [5.2](/tutorial/waves/retarded-waves/) is a third object, and a bare $\Lambda$ is chapter
-    3.8's logarithm or the cosmological constant.
+    describes the same boost acting on the paper's complex tide; chapter
+    [6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle) links the
+    two. The projector $\Lambda_{ij,kl}$ of chapter [5.2](/tutorial/waves/retarded-waves/) is a third object, and a bare
+    $\Lambda$ is chapter 3.8's logarithm or the cosmological constant.
 
 [^random]: For a boost at a random speed of $0.27c$ in a random direction, all sixteen entries of
     $\field\eta_{\alpha\beta}\Lambda^\alpha{}_\mu\Lambda^\beta{}_\nu - \field\eta_{\mu\nu}$ are below $3\times10^{-16}$,
@@ -607,4 +622,6 @@ chapter 6.5 reads what this means for the paper's null space.
     The tutorial names them only here and speaks of upper and lower indices instead.
 
 [^sym]: Units: a momentum in $\mathrm{kg\,m\,s^{-1}}$ times a speed in $\mathrm{m\,s^{-1}}$ is
-    $\mathrm{kg\,m^2\,s^{-2}}$, a joule. Chapter 6.4 builds the four-momentum and its time component.
+    $\mathrm{kg\,m^2\,s^{-2}}$, a joule. Chapter
+    [6.4](/tutorial/relativity/energy-and-momentum/#momentum-and-energy-are-the-parts-of-one-four-vector) builds the
+    four-momentum and its time component.

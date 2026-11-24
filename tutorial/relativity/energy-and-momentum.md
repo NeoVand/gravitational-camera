@@ -162,8 +162,10 @@ In the system's rest frame, where $\sum_a\vect p_a = 0$, [](#eq:system-mass) bec
 $$\matter M = \sum_a\matter m_a + \frac{1}{c^2}\sum_a\bigl(E_a - \matter m_ac^2\bigr) .$$
 
 The energy of the bonds between the parts counts as well. This we state without proof, because it needs the energy of
-the fields between the parts (chapters 6.5 and 6.6). Bonds have negative energy, so a bound body is lighter than its
-parts pulled apart, and the energy needed to pull it apart is its **binding energy**.
+the fields between the parts (chapters [6.5](/tutorial/relativity/stress-energy/) and
+[6.6](/tutorial/relativity/maxwell-complex/#the-energy-of-the-field-and-its-flow-are-two-products-of-the-complex-field)).
+Bonds have negative energy, so a bound body is lighter than its parts pulled apart, and the energy needed to pull it
+apart is its **binding energy**.
 
 **The weight of heat.** We heat a body at rest without moving it: a flame, a current, or two equal beams of light from
 opposite sides add the energy $\Delta U$, in joules, to the random motion and the bonds of its atoms, its **internal
@@ -368,7 +370,8 @@ XIII's equation the impulsive tide "without the restriction to slow matter".
 
 Reversing $H$ reverses the first term of the paper's [](/paper/#eq:shock) and keeps the second, so a wave and its
 reverse together always give energy: summed over a body, this is the paper's [](/paper/#eq:shock-even), in which
-$\mathcal N$ is the energy, less $c$ times the momentum along $z$, that crosses each point of the front (chapter 6.5
+$\mathcal N$ is the energy, less $c$ times the momentum along $z$, that crosses each point of the front (chapter
+[6.5](/tutorial/relativity/stress-energy/#along-a-ray-of-light-the-table-gives-the-energy-less-c-times-the-momentum)
 builds it).
 
 ## A body's rest mass in light-cone form is a sum and a weighted variance
@@ -571,10 +574,11 @@ wave. As a check, [](#eq:system-mass) gives $\matter{\mathcal M}_+^2c^2 = (2.05^
   mass.
 :::
 
-[^letters]: The letter $E$ for an energy is not the electric field $\light{\vect E}$ of light (chapter 6.6), nor the
-    tidal tensor $\curv{\tE}_{ij}$, nor the eötvös, a unit of tide. The letter $p$ alone is a pressure in the tutorial,
-    so the size of the momentum is written $|\vect p|$, and $p^\mu$ always carries its index; so does the total
-    four-momentum $P^\mu$ of the next section, because a bare $P$ is a power.
+[^letters]: The letter $E$ for an energy is not the electric field $\light{\vect E}$ of light (chapter
+    [6.6](/tutorial/relativity/maxwell-complex/#the-electric-and-magnetic-fields-are-defined-by-the-force-on-a-test-charge)),
+    nor the tidal tensor $\curv{\tE}_{ij}$, nor the eötvös, a unit of tide. The letter $p$ alone is a pressure in the
+    tutorial, so the size of the momentum is written $|\vect p|$, and $p^\mu$ always carries its index; so does the
+    total four-momentum $P^\mu$ of the next section, because a bare $P$ is a power.
 
 [^observer]: This is chapter 6.2's rule $E = -p_\mu\obs u^\mu$, the energy that an observer of four-velocity $\obs u^\mu$
     measures: $1.25\,\matter mc^2$ for the room and $\matter mc^2$ for an observer moving with the particle.
@@ -587,14 +591,14 @@ wave. As a check, [](#eq:system-mass) gives $\matter{\mathcal M}_+^2c^2 = (2.05^
     the way up.
 
 [^plausible]: Two facts make it plausible. First, bodies of every composition fall alike (chapter
-    7.1). The binding energy of the
+    [7.1](/tutorial/geometry/metric/#falling-cancels-gravity-at-a-point-and-only-there)). The binding energy of the
     nuclei is a share of the rest mass that differs by $8.6\times10^{-4}$ between titanium and platinum, and the
     MICROSCOPE satellite found that the two fall alike to about three parts in $10^{15}$, $[-1.5 \pm 2.3 \pm
     1.5]\times10^{-15}$ (P. Touboul and colleagues, *Physical Review Letters* 129, 121102, 2022). If only the nuclear
     binding energy could fall differently, and its strong and electric parts do not cancel, it falls as the rest mass
     does to $3\times10^{-15}/8.6\times10^{-4}$, a few parts in $10^{12}$. Second, pressure is a source of gravity in
-    relativity, but chapter 6.5 proves that in a steady body at rest the pressures and tensions add up to zero, so they
-    add nothing to its weight.
+    relativity, but chapter [6.5](/tutorial/relativity/stress-energy/#the-stresses-of-a-body-at-rest-add-up-to-zero)
+    proves that in a steady body at rest the pressures and tensions add up to zero, so they add nothing to its weight.
 
 [^cone-letters]: The paper's letters in Appendix C, kept here: $u = ct - z$ is not the four-velocity $\obs u^\mu$, nor the
     retarded time $u = t - r/c$ of the paper's Sections V and XI; $v = ct + z$ is not a speed; $q = E/c - p_z$ is not

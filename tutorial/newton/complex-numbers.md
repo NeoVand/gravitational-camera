@@ -473,12 +473,13 @@ imaginary part is $-2\curv{\tE}_\times + 2i\curv{\tE}_+ = i\curv{s}$, so it is t
 $\curv{\tE}_+ = 0.6$ and $\curv{\tE}_\times = 0.25$, in any unit of tide, the two shears are $1.2 + 0.5i$ and
 $-0.5 + 1.2i = i(1.2 + 0.5i)$.
 
-We state here, without proof, that this imaginary part is the wave's magnetic tide $\curv{\tB}$, which twists
-gyroscopes rather than moving free balls, so that $\curv{\mathcal W} = \curv{\tE} + i\curv{\tB}$, the paper's equation
-[](/paper/#eq:W).[^magnetic] This is the sense of the paper's remark that in a wave $\curv{\tB}$ is $\curv{\tE}$
-turned by 45°. We also state that the field of light in a plane wave is a complex multiple of $\vect m$ itself
-(chapter 6.6). Light's field is the vector and gravity's is its square, and chapter 9.1 shows that this is the
-difference between spin one and spin two.
+We state here, without proof, that this imaginary part is the wave's magnetic tide $\curv{\tB}$, which twists gyroscopes
+rather than moving free balls, so that $\curv{\mathcal W} = \curv{\tE} + i\curv{\tB}$, the paper's equation
+[](/paper/#eq:W).[^magnetic] This is the sense of the paper's remark that in a wave $\curv{\tB}$ is $\curv{\tE}$ turned
+by 45°. We also state that the field of light in a plane wave is a complex multiple of $\vect m$ itself (chapter
+[6.6](/tutorial/relativity/maxwell-complex/#in-a-light-wave-the-complex-field-is-a-multiple-of-one-null-vector)).
+Light's field is the vector and gravity's is its square, and chapter 9.1 shows that this is the difference between spin
+one and spin two.
 
 ::: check
 ### Q

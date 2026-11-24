@@ -712,10 +712,11 @@ Chapter 7.2 shows that it is also $c^2R_{0i0j}$, so that the paper's [](/paper/#
     part in $10^{15}$. With the Earth's whole potential in $\field\Phi$, the gains change by the fraction
     $7.0 \times 10^{-10}$, so they still hold to nine figures.
 
-[^doppler]: A box accelerating at $g$ in empty space gives the same result with no gravity at all. Light from the
-    floor takes the time $h/c$ to reach the ceiling, which meanwhile gains the speed $gh/c$. A receiver moving away at
-    the speed $u$ receives a frequency lowered by the fraction $u/c$ (the Doppler shift of chapter 6.3), here
-    $gh/c^2$, as in [](#eq:rate).
+[^doppler]: A box accelerating at $g$ in empty space gives the same result with no gravity at all. Light from the floor
+    takes the time $h/c$ to reach the ceiling, which meanwhile gains the speed $gh/c$. A receiver moving away at the
+    speed $u$ receives a frequency lowered by the fraction $u/c$ (the Doppler shift of chapter
+    [6.3](/tutorial/relativity/aberration/#light-from-ahead-is-bluer-and-light-from-behind-is-redder)), here $gh/c^2$,
+    as in [](#eq:rate).
 
 [^towers]: R. V. Pound and G. A. Rebka sent gamma rays up and down a tower 22.5 m high and found shifts agreeing with
     $gh/c^2 = 2.46 \times 10^{-15}$ to ten per cent (*Physical Review Letters* 4, 337, 1960). T. Bothwell and colleagues

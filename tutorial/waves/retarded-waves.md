@@ -367,12 +367,12 @@ lines.](tut-ret-far){#fig:ret-far}
 
 **Gravity, with its factors stated.** For gravity the field is the **metric perturbation**, a table of small pure
 numbers that says how much a weak gravitational field changes the distances and times measured by rulers and clocks
-(chapters 7.1 and 7.4 build it). The form of it that obeys a wave equation is the trace-reversed perturbation
-$\sym{trace-reversed-perturbation}{\field{\bar h}}_{ij}$. Linearized gravity, Einstein's theory to first order in a weak
-field, gives each of its components the equation $\Box\field{\bar h}_{ij} = -16\pi G\matter T_{ij}/c^4$ (stated here;
-chapter 7.4 derives it), where $\Box = -c^{-2}\partial_t^2 + \nabla^2$. Here $\matter T_{ij}$, in pascals, is the flow
-of momentum through matter: the momentum along $i$ that crosses a unit area facing $j$ each second. In a body at rest it
-is the stress of chapter
+(chapters [7.1](/tutorial/geometry/metric/) and 7.4 build it). The form of it that obeys a wave equation is the
+trace-reversed perturbation $\sym{trace-reversed-perturbation}{\field{\bar h}}_{ij}$. Linearized gravity, Einstein's
+theory to first order in a weak field, gives each of its components the equation $\Box\field{\bar h}_{ij} = -16\pi
+G\matter T_{ij}/c^4$ (stated here; chapter 7.4 derives it), where $\Box = -c^{-2}\partial_t^2 + \nabla^2$. Here $\matter
+T_{ij}$, in pascals, is the flow of momentum through matter: the momentum along $i$ that crosses a unit area facing $j$
+each second. In a body at rest it is the stress of chapter
 [4.3](/tutorial/response/elastic-bodies/#stress-is-force-per-area-and-it-too-is-a-symmetric-table) with its sign
 reversed, so that a fluid at the pressure $p$ has $+p\,\delta_{ij}$ here and $-p\,\delta_{ij}$ there, and moving matter
 adds the momentum it carries.[^T] This is [](#eq:wave-source) with the source $s = 16\pi G\matter T_{ij}/c^4$, in
@@ -597,10 +597,10 @@ numbers, $c/2\pi f$ is $4.77 \times 10^7$ m at 1 Hz and $4.77 \times 10^4$ m at 
     order one.
 
 [^T]: For matter of density $\matter\rho$ moving at the velocity $\vect v$ it includes $\matter\rho v_iv_j$, the
-    momentum per unit volume $\matter\rho v_j$ carried along $v_i$. The sign follows from Newton's third law: the
-    stress is the force that the far side exerts on a face, and the momentum that flows across the face is what the
-    near side gives up. Chapter 6.5 builds the whole table, the stress–energy tensor, of which this is the part in
-    space.
+    momentum per unit volume $\matter\rho v_j$ carried along $v_i$. The sign follows from Newton's third law: the stress
+    is the force that the far side exerts on a face, and the momentum that flows across the face is what the near side
+    gives up. Chapter [6.5](/tutorial/relativity/stress-energy/) builds the whole table, the stress–energy tensor, of
+    which this is the part in space.
 
 [^n]: Elsewhere the paper's $\hat n$ points the other way, from the pixel toward the source (chapter 1.1), and a wave
     then travels along $-\hat n$. In this chapter, as in the paper's Sections V and XI, $\hat n$ points from the source

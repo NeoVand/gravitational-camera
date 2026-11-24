@@ -262,7 +262,8 @@ About a million numbers against a billion cells, the square and the cube of a th
 [^ratio]: Derived in [1.7](/tutorial/newton/hamilton/#a-ball-and-a-shell-gain-in-the-ratio-three-to-five). The
     figure's shell is thicker, so its bar is lower.
 
-[^weight]: Stated in chapter [1.7](/tutorial/newton/hamilton/), derived in chapter 6.4.
+[^weight]: Stated in chapter [1.7](/tutorial/newton/hamilton/), derived in chapter
+    [6.4](/tutorial/relativity/energy-and-momentum/#a-bodys-mass-is-its-total-energy-so-heat-has-weight).
 
 [^pass]: The paper's equation [](/paper/#eq:pass), derived in chapter
     [1.8](/tutorial/newton/orbits-and-kicks/#what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass);

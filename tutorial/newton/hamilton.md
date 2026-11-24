@@ -412,11 +412,13 @@ less than a tenth of the mean kinetic energy of a single atom at room temperatur
 away in fifty microseconds, and this is why its next paragraph, and chapter 1.8, let the tonne fly past instead.
 
 Energy has weight: a body that gains the energy $\Delta E$ gains the mass $\Delta E/c^2$, with $c$ the speed of light
-(stated here; chapter 6.4 derives it). A part on the ball's equator, at the distance $R$ from the $z$ axis, gains
-$\tfrac12(\epsilon R/c)^2 = 2.5 \times 10^{-42}$ of its own weight, and parts on the axis gain nothing. The ball
-gains two fifths of the equator's share, $1.0 \times 10^{-42}$, because two fifths is its average of
-$(x^2 + y^2)/R^2$. The paper's "five parts in $10^{41}$" is $\tfrac12(\Delta v/c)^2$ for the whole
-$\Delta v$ of $3 \times 10^{-12}\unit{m\,s^{-1}}$, recoil included: fifty times the share of the inside.
+(stated here; chapter
+[6.4](/tutorial/relativity/energy-and-momentum/#a-bodys-mass-is-its-total-energy-so-heat-has-weight) derives it). A part
+on the ball's equator, at the distance $R$ from the $z$ axis, gains $\tfrac12(\epsilon R/c)^2 = 2.5 \times 10^{-42}$ of
+its own weight, and parts on the axis gain nothing. The ball gains two fifths of the equator's share, $1.0 \times
+10^{-42}$, because two fifths is its average of $(x^2 + y^2)/R^2$. The paper's "five parts in $10^{41}$" is
+$\tfrac12(\Delta v/c)^2$ for the whole $\Delta v$ of $3 \times 10^{-12}\unit{m\,s^{-1}}$, recoil included: fifty times
+the share of the inside.
 
 ::: try {#phase-space}
 Predict first: kick the cart as it passes the centre of its swing, moving, and again at the end of its swing, at rest.

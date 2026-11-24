@@ -245,7 +245,7 @@ pixel's frame is a fixed combination of those in the body's frame, so it too dep
 its direction needs the rule for components. We state two results without proof.
 
 - **Light.** The electric field of a charge moving steadily points straight away from where the charge is now (chapter
-  6.6).
+  [6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle)).
 - **Gravity.** The stretch axis of the tide of a mass moving steadily lies along the line to where the mass is now, and
   the invariants of the tide, the combinations of its numbers that every observer at the pixel finds the same
   ([0.4](/tutorial/evening/one-pixel/#the-ten-numbers-regroup-into-four-invariants-three-angles-and-a-velocity)), are
@@ -389,8 +389,10 @@ from rest far away. We take three inputs without proof. The hovering camera sees
 directions from which no light comes, centred on the hole with the angular radius $\alpha_h$, where $\sin\alpha_h =
 (3\sqrt3\,G\matter M/rc^2)(1 - 2G\matter M/rc^2)^{1/2}$ (chapter 11.1). The falling camera passes it inward at $\obs v =
 (2G\matter M/r)^{1/2}$ (chapter 11.1). Where they pass, spacetime is flat over a small region, so their views differ by
-chapter 6.1's boost (chapter 7.1). The falling camera moves through the hovering camera's frame toward the hole, so
-[](#eq:source-angle) with $\alpha = \alpha_h$ gives its shadow.
+chapter 6.1's boost (chapter
+[7.1](/tutorial/geometry/metric/#falling-removes-the-fields-first-derivatives-at-a-point-but-not-its-second)). The
+falling camera moves through the hovering camera's frame toward the hole, so [](#eq:source-angle) with $\alpha =
+\alpha_h$ gives its shadow.
 
 At $r = 40\,G\matter M/c^2$, the distance of the paper's Figure [](/paper/#fig:black-hole), $\alpha_h = 7.27°$ and
 $\obs\beta = (2/40)^{1/2} = 0.224$, so $\cos\alpha' = 0.99489$ and the shadow shrinks to $5.80°$, the paper's

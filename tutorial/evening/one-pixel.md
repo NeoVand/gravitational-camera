@@ -234,8 +234,8 @@ instead of recording mostly noise.
 :::
 
 ::: deeper
-- Chapters 9.1 to 9.5 and R9 teach one point of the field, and 6.3 aberration, on the
-  [route to Section VIII](/tutorial/#route-section-viii).
+- Chapters 9.1 to 9.5 and R9 teach one point of the field, and [6.3](/tutorial/relativity/aberration/) aberration, on
+  the [route to Section VIII](/tutorial/#route-section-viii).
 - The [GR course, section 10.10](https://neovand.github.io/general-relativity/chapter-10.html#10-10-why-twenty-curvature-numbers-survive-local-flattening)
   counts the twenty numbers of curvature at a point, of which a pixel in empty space reads ten.
 :::
@@ -256,7 +256,9 @@ instead of recording mostly noise.
     [1.5b](/tutorial/newton/complex-numbers/#a-tide-across-a-direction-is-one-complex-number-and-turning-the-axes-turns-it-back-by-twice-the-angle)
     and chapter 9.1.
 
-[^charge]: Derived in chapter 6.6, and for gravity in chapter 9.3.
+[^charge]: Derived in chapter
+    [6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle), and for
+    gravity in chapter 9.3.
 
 [^regroup]: The paper's equation [](/paper/#eq:polar), derived in chapters 9.2 and 9.3.
 
@@ -264,8 +266,9 @@ instead of recording mostly noise.
 
 [^speed]: Derived in chapter 9.3.
 
-[^light]: Derived in chapter 9.3. Where light's electric and magnetic fields are parallel, a motion along them
-    changes nothing, so a sensor of light reads at most two parts of its velocity (chapter 6.6).
+[^light]: Derived in chapter 9.3. Where light's electric and magnetic fields are parallel, a motion along them changes
+    nothing, so a sensor of light reads at most two parts of its velocity (chapter
+    [6.6](/tutorial/relativity/maxwell-complex/#one-complex-number-is-the-same-for-every-observer)).
 
 [^petrov]: Taught in chapter 9.4.
 
@@ -277,7 +280,8 @@ instead of recording mostly noise.
 
 [^price]: Derived in chapter 9.5.
 
-[^aberration]: Derived in chapter 6.3.
+[^aberration]: Derived in chapter
+    [6.3](/tutorial/relativity/aberration/#at-small-speeds-the-shift-is-the-speed-across-the-line-of-sight-over-c).
 
 [^laplace]: Laplace took this absence to mean that gravity travels far faster than light. Linearized gravity
     (chapters 7.4 and 7.7) shows that general relativity predicts it, with gravity at light's speed.

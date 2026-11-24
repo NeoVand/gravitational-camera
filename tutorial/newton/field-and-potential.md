@@ -71,9 +71,9 @@ called the **inverse-square law**. The units agree: $\mathrm{m^3\,kg^{-1}\,s^{-2
 $\mathrm{m^2}$ is $\mathrm{kg\,m\,s^{-2}}$, a newton.
 
 We state this law and do not derive it. Newton inferred it from the motion of the Moon and the planets, and every
-measurement since has confirmed it under two conditions: **the bodies move slowly** compared with light, and **the
-field is weak**, in a sense that chapter 7.1 makes exact. Both hold by a wide margin in every scene of this part.
-Chapter 1.3 shows where the square comes from.
+measurement since has confirmed it under two conditions: **the bodies move slowly** compared with light, and **the field
+is weak**, in a sense that chapter [7.1](/tutorial/geometry/metric/#free-fall-is-the-path-along-which-a-clock-ages-most)
+makes exact. Both hold by a wide margin in every scene of this part. Chapter 1.3 shows where the square comes from.
 
 The paper's simplest scene is a person of 70 kg standing 1 m from a small free ball. The person pulls on the ball with
 the force $G\matter M\matter m/r^2$, so the ball accelerates by
@@ -556,10 +556,11 @@ later, in the work of Lagrange (1773) and Laplace (1782) on the gravity of the p
     Earth's own pull, forty million times larger, is left out. The paper's camera reads tides, and the paper subtracts
     the Earth's tide, which is steady and known, as it subtracts the room ([Section II](/paper/#sec:pixel)).
 
-[^clocks]: Chapter 7.1 derives that a clock higher up runs faster by the fraction $\Delta\field\Phi/c^2$, where $c$ is
-    the speed of light. For one metre of height at the ground this is $gh/c^2 = 1.1 \times 10^{-16}$. Atomic clocks
-    have measured it over 33 cm (C. W. Chou and colleagues, *Science* 329, 1630, 2010) and across one millimetre
-    (T. Bothwell and colleagues, *Nature* 602, 420, 2022).
+[^clocks]: Chapter [7.1](/tutorial/geometry/metric/#clocks-higher-up-run-faster-clocks-read-the-potential) derives that
+    a clock higher up runs faster by the fraction $\Delta\field\Phi/c^2$, where $c$ is the speed of light. For one metre
+    of height at the ground this is $gh/c^2 = 1.1 \times 10^{-16}$. Atomic clocks have measured it over 33 cm (C. W.
+    Chou and colleagues, *Science* 329, 1630, 2010) and across one millimetre (T. Bothwell and colleagues, *Nature* 602,
+    420, 2022).
 
 [^kinetic]: Take the dot product of both sides of the law with the velocity $\vect v$. The left side becomes
     $\dd(\tfrac12\matter m v^2)/\dd t$, because $\dd(\vect v\cdot\vect v)/\dd t = 2\vect v\cdot\dd\vect v/\dd t$. The

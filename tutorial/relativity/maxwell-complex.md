@@ -432,9 +432,11 @@ has the parts $\obs\gamma r_\parallel$ along the motion and $r_\perp$ across it,
 sensor to where the charge is now. Seen from the charge, the sensor moves with $-\vect v$, so its boost is along $\hat u
 = -\hat v$, with $\obs\gamma = \cosh\obs\eta$. By [](#eq:boost-F) it keeps the part of the field along the motion and
 multiplies the part across by $\obs\gamma$, so it reads a field along $\obs\gamma\vect r$: the field points from where
-the charge is now, chapter 6.3's present position.[^present] The imaginary part of [](#eq:boost-F) is $c\light{\vect B}
-= -\sinh\obs\eta\,(-\hat v)\times\light{\vect E}_0 = \obs\gamma(\vect v/c)\times\light{\vect E}_0$, and $\light{\vect
-E}$ has $\obs\gamma$ times the part of $\light{\vect E}_0$ across $\vect v$, so
+the charge is now, chapter
+[6.3](/tutorial/relativity/aberration/#the-steady-field-of-a-moving-body-depends-on-where-the-body-is-now)'s present
+position.[^present] The imaginary part of [](#eq:boost-F) is $c\light{\vect B} = -\sinh\obs\eta\,(-\hat
+v)\times\light{\vect E}_0 = \obs\gamma(\vect v/c)\times\light{\vect E}_0$, and $\light{\vect E}$ has $\obs\gamma$ times
+the part of $\light{\vect E}_0$ across $\vect v$, so
 
 $$c\light{\vect B} = \frac{\vect v}{c}\times\light{\vect E} .$$
 
@@ -460,11 +462,13 @@ turn. A turn of the axes by $\theta$ about $\hat k$ gives $\light{\vect F}' = \c
 phase only. At the imaginary angle $\theta = i\obs\eta$ the phase $e^{i\theta}$ becomes the real factor $e^{-\obs\eta}$:
 a turn changes the phase of a wave, and a boost changes its size.
 
-The factor is chapter 6.3's Doppler factor, by which the frequency of the wave falls for a sensor that runs with it,
-$\obs\gamma(1 - \obs\beta) = \cosh\obs\eta - \sinh\obs\eta = e^{-\obs\eta}$. So the field's amplitude falls by the same
-factor as its frequency, and the energy density $u = \tfrac12\varepsilon_0|a|^2$ by its square, $e^{-2\obs\eta} = (1 -
-\obs\beta)/(1 + \obs\beta)$. The direction $\vect m$ does not change, so the polarization, the path of $a$ in the
-complex plane, keeps its shape and only shrinks.
+The factor is chapter
+[6.3](/tutorial/relativity/aberration/#light-from-ahead-is-bluer-and-light-from-behind-is-redder)'s Doppler factor, by
+which the frequency of the wave falls for a sensor that runs with it, $\obs\gamma(1 - \obs\beta) = \cosh\obs\eta -
+\sinh\obs\eta = e^{-\obs\eta}$. So the field's amplitude falls by the same factor as its frequency, and the energy
+density $u = \tfrac12\varepsilon_0|a|^2$ by its square, $e^{-2\obs\eta} = (1 - \obs\beta)/(1 + \obs\beta)$. The
+direction $\vect m$ does not change, so the polarization, the path of $a$ in the complex plane, keeps its shape and only
+shrinks.
 
 **A number.** At $0.6c$ along the wave, $e^{-\ln2} = \tfrac12$: the sensor reads half the field and a quarter of the
 energy density. Running against the wave at $0.6c$, it reads twice the field and four times the energy density, and
@@ -801,9 +805,9 @@ found.
 
 ### Stretch
 
-Combine this chapter with chapter 6.3. Show that a sensor moving at $\obs\beta$ against a circularly polarized wave
-reads its amplitude larger by $e^{\obs\eta}$, and its energy density larger by $(1 + \obs\beta)/(1 - \obs\beta)$, and
-compare the second factor with 6.3's Doppler factor. Evaluate both at $0.6c$.
+Combine this chapter with chapter [6.3](/tutorial/relativity/aberration/). Show that a sensor moving at $\obs\beta$
+against a circularly polarized wave reads its amplitude larger by $e^{\obs\eta}$, and its energy density larger by $(1 +
+\obs\beta)/(1 - \obs\beta)$, and compare the second factor with 6.3's Doppler factor. Evaluate both at $0.6c$.
 
 ::: solution
 Against the wave the boost is along $-\hat k$, and $(-\hat k)\times\vect m = i\vect m$, so [](#eq:boost-F) gives
@@ -893,8 +897,8 @@ Wigner placed it in the theory of the Lorentz group in 1939 (*Annals of Mathemat
     the series of the cosine and the sine converge for every complex number. The practice problem does it at $\theta =
     -i\obs\eta$.
 
-[^present]: Chapter 6.3 shows that the light a moving body sends shows where it was, while its steady field shows where
-    it is now; the paper's Figure [](/paper/#fig:present) draws it for gravity.
+[^present]: Chapter [6.3](/tutorial/relativity/aberration/) shows that the light a moving body sends shows where it was,
+    while its steady field shows where it is now; the paper's Figure [](/paper/#fig:present) draws it for gravity.
 
 [^FF]: In the notation of chapter 6.2, the real part is a contraction of every index of the field tensor:
     $\light F_{\mu\nu}\light F^{\mu\nu} = 2(\light B^2 - \light E^2/c^2)$, so $\light E^2 - c^2\light B^2 = -\tfrac12c^2
@@ -914,8 +918,10 @@ Wigner placed it in the theory of the Lorentz group in 1939 (*Annals of Mathemat
 
 [^fold]: The paper's Appendix C, [*The principal null directions of a moving
     body*](/paper/#par:the-principal-null-directions-of-a-moving-body), carries the directions at rest into the moving
-    frame by the aberration of light (chapter 6.3). The same holds here: the roots for light are the two directions
-    $\pm$ the line to the charge in its own frame, aberrated.
+    frame by the aberration of light (chapter
+    [6.3](/tutorial/relativity/aberration/#one-step-of-appendix-c-the-directions-of-a-moving-body-are-its-directions-at-rest-aberrated)).
+    The same holds here: the roots for light are the two directions $\pm$ the line to the charge in its own frame,
+    aberrated.
 
 [^wigner]: The product of the two $4\times4$ boosts of chapter 6.2 gives the same velocity, $(0.6, 0.48, 0)\,c$, and the
     same turn, $12.680°$.

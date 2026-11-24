@@ -239,7 +239,8 @@ thumb to little finger, held at arm's length. Chapter 0.2 shows why a better det
 [^linear]: Chapter 7.4 teaches linearized gravity. [1.2](/tutorial/newton/field-and-potential/) shows that Newton's
     pulls add.
 
-[^ep]: Stated in its Newtonian form in [1.4](/tutorial/newton/tides/), and in Einstein's theory in chapter 7.1.
+[^ep]: Stated in its Newtonian form in [1.4](/tutorial/newton/tides/), and in Einstein's theory in chapter
+    [7.1](/tutorial/geometry/metric/#falling-cancels-gravity-at-a-point-and-only-there).
 
 [^five]: Counted in [1.5](/tutorial/newton/five-numbers/).
 

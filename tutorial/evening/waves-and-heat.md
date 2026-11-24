@@ -253,8 +253,9 @@ The near-field scenes. A static field is not radiation, so its picture is limite
 
 [^column]: Chapter 5.5 derives this sum, the paper's [](/paper/#eq:column).
 
-[^weight]: An energy weighs that energy divided by the square of the speed of light (chapter 6.4), so a megajoule
-    weighs $1.1 \times 10^{-11}$ kg. Heating a kilogram of iron to 1500 K takes less than a megajoule.
+[^weight]: An energy weighs that energy divided by the square of the speed of light (chapter
+    [6.4](/tutorial/relativity/energy-and-momentum/#a-bodys-mass-is-its-total-energy-so-heat-has-weight)), so a
+    megajoule weighs $1.1 \times 10^{-11}$ kg. Heating a kilogram of iron to 1500 K takes less than a megajoule.
 
 [^metal]: In a metal the electrons collide with the vibrating atoms at a rate that grows with the temperature, as
     the frequency of the glow does, so the friction falls as one over the temperature and the count grows as its

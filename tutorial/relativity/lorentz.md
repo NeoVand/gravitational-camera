@@ -51,9 +51,9 @@ against which the places and times of events are measured (chapter
 [1.6](/tutorial/newton/motion/#in-a-turning-frame-two-extra-accelerations-appear)). Here we picture it as a lattice of
 rulers filling space, with a clock at every crossing. A frame is **inertial** when a body that nothing pushes or pulls
 keeps its speed and its direction in it. In this chapter there is no gravity, so an inertial frame is one that feels no
-force and does not turn; how free fall fits in is the subject of chapter 7.1. The **rest frame** of a body or an
-observer is the inertial frame in which it is at rest: its point of view, with its own rulers and clocks. A body's path
-through space and time, the list of events it passes through, is its **worldline**.
+force and does not turn; how free fall fits in is the subject of chapter [7.1](/tutorial/geometry/metric/). The **rest
+frame** of a body or an observer is the inertial frame in which it is at rest: its point of view, with its own rulers
+and clocks. A body's path through space and time, the list of events it passes through, is its **worldline**.
 
 A non-example is a platform that turns. Chapter [1.6](/tutorial/newton/motion/#a-turning-pixel-feels-a-pseudo-tide)
 found that a free ring on it stretches across the axis with no mass to cause it, so a frame carried by the platform is
@@ -69,9 +69,10 @@ whatever the motion of the source of the light and of the one who measures it.**
 below passes one check of it, since a speed added to $c$ gives $c$.
 
 The evidence is that Michelson and Morley, and many after them, found light's speed the same along the Earth's motion
-and across it (the box below; chapter 6.3 adds the tilt of starlight). Einstein made the fact part of a principle: no
-experiment done inside a closed laboratory moving steadily can tell how fast the laboratory moves, so light timed inside
-any such laboratory must have the same speed.
+and across it (the box below; chapter
+[6.3](/tutorial/relativity/aberration/#at-small-speeds-the-shift-is-the-speed-across-the-line-of-sight-over-c) adds the
+tilt of starlight). Einstein made the fact part of a principle: no experiment done inside a closed laboratory moving
+steadily can tell how fast the laboratory moves, so light timed inside any such laboratory must have the same speed.
 
 ::: history
 ### From the ether to relativity
@@ -219,7 +220,9 @@ events that light or any slower signal can connect, every observer agrees which 
 effect before its cause.
 
 This gives the sense of the paper's sentence: the tide that a pixel reads from a steadily moving body depends on where
-the body is on the pixel's own slice of simultaneity (chapter 6.3, and Figure [](/paper/#fig:present)).
+the body is on the pixel's own slice of simultaneity (chapter
+[6.3](/tutorial/relativity/aberration/#the-steady-field-of-a-moving-body-depends-on-where-the-body-is-now), and Figure
+[](/paper/#fig:present)).
 
 ## A moving clock runs slow, and a clock's own time is the length of its path
 
@@ -266,11 +269,13 @@ orbital motion slows its clocks against those at rest relative to the Sun by $1 
 which is 0.16 s a year.[^sun] A clock on the equator moves at $465\unit{m\,s^{-1}}$ round the Earth's axis (chapter
 [1.1](/tutorial/newton/vectors-and-indices/#a-small-turn-is-a-cross-product-and-the-equator-moves-faster-than-sound)),
 so, gravity aside, it runs slow against a clock that does not turn with the Earth by $\obs\beta^2/2 =
-1.2\times10^{-12}$, a tenth of a microsecond a day. Chapter 7.1 adds the effect of gravity, which slows a clock at the
-ground by $6.96\times10^{-10}$, some 580 times the equator's effect of motion. What cancels is the difference between
-clocks on the equator and at the pole. The surface of the sea has the same potential of gravity and of the Earth's
-turning, taken together, everywhere on it (chapter [1.2](/tutorial/newton/field-and-potential/) defines the potential),
-so every clock at sea level ticks at the same rate (N. Ashby, *Living Reviews in Relativity* 6, 1, 2003).
+1.2\times10^{-12}$, a tenth of a microsecond a day. Chapter
+[7.1](/tutorial/geometry/metric/#clocks-higher-up-run-faster-clocks-read-the-potential) adds the effect of gravity,
+which slows a clock at the ground by $6.96\times10^{-10}$, some 580 times the equator's effect of motion. What cancels
+is the difference between clocks on the equator and at the pole. The surface of the sea has the same potential of
+gravity and of the Earth's turning, taken together, everywhere on it (chapter
+[1.2](/tutorial/newton/field-and-potential/) defines the potential), so every clock at sea level ticks at the same rate
+(N. Ashby, *Living Reviews in Relativity* 6, 1, 2003).
 
 This is the meaning of the paper's "observer at rest, with proper time $t$" in [](/paper/#eq:tidal): $t$ is the time on
 the pixel's own clock, and for an observer at rest it is also the time of the frame.
@@ -412,8 +417,9 @@ the hyperbola is the set of events one tick from the origin for every
 observer.](tut-lorentz-hyperbola){#fig:rapidity-hyperbola}
 
 The paper writes the pixel's speed in this form, "with rapidity $\eta$ along a unit vector $\hat u$ (speed
-$c\tanh\eta$)", in [*One complex matrix*](/paper/#par:one-complex-matrix), beside [](/paper/#eq:W). Chapter 6.6 shows that
-the paper's boost there is this table with the rapidity made into an imaginary angle of turn.
+$c\tanh\eta$)", in [*One complex matrix*](/paper/#par:one-complex-matrix), beside [](/paper/#eq:W). Chapter
+[6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle) shows that the
+paper's boost there is this table with the rapidity made into an imaginary angle of turn.
 
 ## A boost can point in any direction
 
@@ -434,8 +440,9 @@ $\vect\beta$", to carry a body's field and the rays of its light into the pixel'
 Chapter 6.2 writes [](#eq:boost) as one table of four rows and four columns, $\Lambda^\mu{}_\nu$.
 
 Two boosts along different directions do not make a single boost. They make a boost followed by a turn of the axes. We
-state this without proof here; chapter 6.6 computes it, and for $0.6c$ along $x$ followed by $0.6c$ along $y$ the turn
-is $12.7°$. Only boosts along one line combine by adding their rapidities.
+state this without proof here; chapter [6.6](/tutorial/relativity/maxwell-complex/#two-boosts-make-a-boost-and-a-turn)
+computes it, and for $0.6c$ along $x$ followed by $0.6c$ along $y$ the turn is $12.7°$. Only boosts along one line
+combine by adding their rapidities.
 
 ::: try {#lorentz-diagram}
 The room's axes $x$ and $ct$ in light-seconds, the light lines dashed, and the pixel's axes $ct'$ and $x'$ drawn over
@@ -582,8 +589,9 @@ wR_*^3/G$ is the paper's last line. Directly across the path $\obs v_\perp = \ob
 [^tau]: The letter $\tau$ has other meanings in the tutorial: the averaging time of chapter 3.2, the relaxation time
     of chapter 4.4 and the optical depth of chapter 5.5. The proper time carries the observer's colour.
 
-[^sun]: The Sun's gravity slows the Earth's clocks by twice as much, $9.9\times10^{-9}$; chapter 7.1 derives it. On a
-    circular orbit the effect of motion is exactly half the effect of gravity, because $\obs v^2 = G\matter M_\odot/r$.
+[^sun]: The Sun's gravity slows the Earth's clocks by twice as much, $9.9\times10^{-9}$; chapter
+    [7.1](/tutorial/geometry/metric/#clocks-higher-up-run-faster-clocks-read-the-potential) derives it. On a circular
+    orbit the effect of motion is exactly half the effect of gravity, because $\obs v^2 = G\matter M_\odot/r$.
 
 [^check]: For three random velocities up to $0.8c$ and three random positions, the boost of [](#eq:boost) gives the
     same $R_*$ as both forms of [](#eq:rstar) to a few parts in $10^{16}$.
@@ -596,5 +604,6 @@ wR_*^3/G$ is the paper's last line. Directly across the path $\obs v_\perp = \ob
 [^exp]: Write the table as $1\cosh\obs\eta - K\sinh\obs\eta$, with $K$ the table with 0 on the diagonal and 1 off it.
     Since $K^2 = 1$, the series of $e^{-\obs\eta K}$ splits into even powers, which give $\cosh\obs\eta$, and odd
     powers, which give $-K\sinh\obs\eta$. So the boost is the exponential $e^{-\obs\eta K}$, as a turn is the
-    exponential of a fixed table times its angle. Chapter 6.6 makes the angle imaginary and writes the paper's
-    $\exp(-i\eta\,\hat u\cdot\mathbf L)$.
+    exponential of a fixed table times its angle. Chapter
+    [6.6](/tutorial/relativity/maxwell-complex/#a-moving-sensor-reads-the-field-turned-by-an-imaginary-angle) makes the
+    angle imaginary and writes the paper's $\exp(-i\eta\,\hat u\cdot\mathbf L)$.
