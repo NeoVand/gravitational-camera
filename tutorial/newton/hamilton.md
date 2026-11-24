@@ -606,8 +606,9 @@ momenta can take any values, so every $\partial F/\partial\vect x_a$ is zero and
 
 [^tonne]: Chapter 1.4's tide formula needs the ball's radius to be small compared with the distance $b$; here it is a
     third of it, and the pull also changes while the tonne passes, so these are estimates. Chapter 1.8 adds up the
-    pull exactly and finds $3.0 \times 10^{-12}\unit{m\,s^{-1}}$ at the near edge, $2.0 \times 10^{-12}$ at the centre
-    and a tidal kick of $6.7 \times 10^{-13}\unit{m\,s^{-1}}$ at the edge.
+    pull along the path and finds $3.0 \times 10^{-12}\unit{m\,s^{-1}}$ at the near edge and $2.0 \times 10^{-12}$ at
+    the centre, a difference of $1.0 \times 10^{-12}$; the tidal kick, to first order in the radius, is
+    $6.7 \times 10^{-13}\unit{m\,s^{-1}}$ at the edge.
 
 [^bracket-unit]: Units: $Q_h\dot Q_g$ divided by a joule second is a kilogram times the units of $h$ and $g$ per
     square metre, the unit of $\matter\rho\,\nabla h\cdot\nabla g\,\dd V$.

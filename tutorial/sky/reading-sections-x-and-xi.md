@@ -120,10 +120,10 @@ marked).
   ([9.6](/tutorial/one-point/the-sky-at-one-point/#twelve-sources-look-to-the-pixel-like-a-uniform-sky)). An array
   breaks the tie.
 
-The passing mass and the two tides are *stated in the paper*; chapters 13.1 and 13.4 will derive them. So "the
-channels cover for one another": the glow places what the near field cannot (chapter
-[5.6](/tutorial/waves/abel-transform/#uniform-shells-are-peeled-from-the-outside-in)), and the near field weighs what
-the glow cannot.
+The passing mass is *read now, derived in chapter [13.1](/tutorial/what-a-field-keeps/push-and-pass/)*, and the two
+tides are *stated in the paper* until chapter 13.4. So "the channels cover for one another": the glow places what the
+near field cannot (chapter [5.6](/tutorial/waves/abel-transform/#uniform-shells-are-peeled-from-the-outside-in)), and
+the near field weighs what the glow cannot.
 
 ## Near the pair the tide turns with it, and beyond three-tenths of a wavelength it is a wave
 
@@ -376,7 +376,7 @@ inside the shell is it the remnant's.
 | The paper's table or equation | Its mark here |
 |---|---|
 | Table [](/paper/#tab:affordances), the affordances | *read now*, the rows derived in 7.8 and 5.5; 2.5 and 3.9; 1.3 and 2.3; 6.4; R10 and 10.2; 4.4 and 10.3; 5.4 and R5; 2.8 and 7.5; 6.5; 4.6 and R4 |
-| Table [](/paper/#tab:null), the blind spots | *read now*, the rows derived in the chapters of the third section; the two rows of 13.1 and 13.4 *stated in the paper* until those chapters |
+| Table [](/paper/#tab:null), the blind spots | *read now*, the rows derived in the chapters of the third section; the row of 13.1 *read now, derived in chapter 13.1*; that of 13.4 *stated in the paper* until that chapter |
 | [](/paper/#eq:multipole), the field in every zone | *stated in the paper* (Thorne's); checked, and its tide derived, in 7.7 |
 | [](/paper/#eq:memory), the memory | *stated in the paper*, and sketched in 7.8 at depth B |
 | [](/paper/#eq:merger-memory), a merger's memory | *read now, derived in chapter 7.8* |

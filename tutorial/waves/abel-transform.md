@@ -468,7 +468,7 @@ $\arcsin(3480/6371) = 33.1^\circ$ and $\arcsin(5701/6371) = 63.5^\circ$.
 - [*A mass that passes*](/paper/#par:a-mass-that-passes) in Section XIII, [](/paper/#eq:pass), and the appendix's
   [*What the passes of a mass determine*](/paper/#par:what-the-passes-of-a-mass-determine): the mass per area projected
   along a path, whose transform is the density's on a slice, so that paths whose directions all lie in one plane fix the
-  density (chapter 13.2).
+  density (chapter [13.1](/tutorial/what-a-field-keeps/push-and-pass/#passes-along-one-great-circle-of-directions-give-the-density)).
 :::
 
 ::: deeper

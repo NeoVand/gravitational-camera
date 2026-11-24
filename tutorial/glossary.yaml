@@ -858,11 +858,11 @@ terms:
     chapter: '0.5'
     anchor: the-list-is-short-and-a-black-holes-is-the-shortest
   - term: first order
-    definition: 'Said of an effect that grows in proportion to a small quantity: the pull of a body on a small mass doubles when the small mass doubles.'
+    definition: 'Said of an effect that grows in proportion to a small quantity: the pull of a body on a small mass doubles when the small mass doubles. Chapter 13.1 makes it precise for a probe: the momentum a passing mass trades with a body and the odd part of a push are first order, and hold only what the steady field holds.'
     chapter: '0.5'
     anchor: the-bodys-reply-to-a-pull-reveals-its-inside
   - term: second order
-    definition: 'Said of an effect that grows as the square of a small quantity: the energy a small mass leaves in a body quadruples when the small mass doubles. The shell theorem holds at first order only.'
+    definition: 'Said of an effect that grows as the square of a small quantity: the energy a small mass leaves in a body quadruples when the small mass doubles. The shell theorem holds at first order only. Chapter 13.1 shows that a passing mass''s loss of energy, a second-order effect, fixes the density.'
     chapter: '0.5'
     anchor: the-bodys-reply-to-a-pull-reveals-its-inside
   - term: quadrupolar tide
@@ -4717,3 +4717,41 @@ terms:
     definition: 'The part of a burst that arrives after it, inside the light cone, because waves scatter off the curvature they cross. In curved space Huygens''s principle fails, and the tail records the mass between the source and the camera.'
     chapter: R12b
     anchor: matter-scatters-almost-nothing-so-every-picture-is-emitted-pulled-or-yielded
+
+  - term: probe
+    definition: 'Anything sent at a body to learn about it, such as a passing mass or a brief tide, with a strength that can be turned up or down. Its effects are counted by their order in that strength.'
+    chapter: '13.1'
+    anchor: a-probe-reads-the-field-at-first-order-and-the-bodys-reply-at-second
+  - term: odd part
+    definition: 'The part of the energy that an impulsive tide gives a body which changes sign when the tide does, $\epsilon\dot Q_g$: first order, and a reading of the field at two times. It holds nothing about the density beyond what the field holds, but with the places of the parts known, odd parts give every momentum.'
+    chapter: '13.1'
+    anchor: a-probe-reads-the-field-at-first-order-and-the-bodys-reply-at-second
+  - term: even part
+    definition: 'The part of the energy that an impulsive tide gives a body which keeps its sign when the tide is reversed, $\tfrac12\epsilon^2\int\rho\,|\nabla g|^2\,\mathrm dV$: second order, and a weighing of the inside.'
+    chapter: '13.1'
+    anchor: a-probe-reads-the-field-at-first-order-and-the-bodys-reply-at-second
+  - term: planar moment
+    definition: 'A moment $m_{pq} = \int w^p(w^*)^q\,\Sigma\,\mathrm d^2s$ of a body''s mass projected along a path, with $w = x + iy$. It is a complex number, not a mass.'
+    chapter: '13.1'
+    anchor: the-passers-bending-holds-only-the-harmonic-moments-of-the-projected-body
+  - term: annulus
+    definition: 'A ring-shaped band of the plane between two circles about one centre. The losses of a passing mass on an annulus of impact points round a body give every planar moment.'
+    chapter: '13.1'
+    anchor: the-passers-loss-of-energy-holds-every-moment-of-the-projected-body
+  - term: moment determinacy
+    definition: 'The fact that a distribution of mass of bounded size is fixed by all its polynomial moments, because they give its Fourier transform at every wavevector.'
+    chapter: '13.1'
+    anchor: the-passers-loss-of-energy-holds-every-moment-of-the-projected-body
+  - term: great circle
+    definition: 'The set of all directions at right angles to one axis, as the directions along the equator are at right angles to the Earth''s axis. Projections along the directions of one great circle fix a body''s transform at every wavevector.'
+    chapter: '13.1'
+    anchor: passes-along-one-great-circle-of-directions-give-the-density
+  - term: held mass
+    definition: 'A mass held still for an instant at a point outside a body and then taken away: an impulsive tide of profile $1/|\vect x - \vect y|$, whose energy weighs the density by $|\vect x - \vect y|^{-4}$, a kernel that is not harmonic.'
+    role: matter
+    chapter: '13.1'
+    anchor: a-mass-held-for-an-instant-leaves-energy-through-a-kernel-that-is-not-harmonic
+  - term: weighing
+    definition: 'Reading the mass that a body''s field reports after a tide: the energy $\Delta E$ it gained adds $\Delta E/c^2$. Two weighings of two copies kicked both ways give the even and the odd part of the gain.'
+    chapter: '13.1'
+    anchor: two-weighings-of-two-copies-read-the-even-part-and-the-odd-part
