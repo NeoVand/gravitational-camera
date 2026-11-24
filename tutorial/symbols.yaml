@@ -2334,3 +2334,51 @@ symbols:
     meaning: 'The energy that a source sends out in gravitational waves each second, through any sphere round it. For a compact source it is $P = (G/5c^5)\langle\dddot I_{ij}\dddot I_{ij}\rangle$ with the trace of $I_{ij}$ removed; two 1 kg masses 1 m apart at sixteen turns a second give $4.55 \times 10^{-41}$ W. (Not the projector $P_{ij}$ of chapter 7.6.)'
     chapter: '7.7'
     anchor: the-power-is-set-by-the-third-derivative-of-the-quadrupole
+  - key: wave-energy-density
+    title: Energy density of a gravitational wave
+    tex: '\matter{\mathcal U}'
+    role: matter
+    kind: A number; an energy per volume, in J/m³
+    meaning: 'The energy that a gravitational wave carries in each cubic metre, averaged over a cycle: $\mathcal U = (c^2/32\pi G)\langle\dot h^{\rm TT}_{ij}\dot h^{\rm TT}_{ij}\rangle = (c^2/16\pi G)\langle\dot h_+^2 + \dot h_\times^2\rangle$. It moves at $c$, so the flux is $c\,\mathcal U$. A wave of strain $10^{-21}$ at 100 Hz holds $5.3\times10^{-12}\ \mathrm{J\,m^{-3}}$. It has a meaning only averaged over several wavelengths. Chapters 6.5 and 7.3 use the same letter for the energy density of light. (Not a displacement, a field, a light-cone coordinate or the retarded time, all written $u$.)'
+    chapter: '7.8'
+    anchor: the-heat-comes-from-the-wave-so-the-wave-carries-energy
+  - key: emission-direction
+    title: Direction of emission
+    tex: '\hat n'''
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'In the paper''s memory formula, eq:memory, the direction in which a piece of a burst''s energy leaves its source. The energy sent into each steradian about it is $\mathrm dE/\mathrm d^2\hat n''$, which the paper writes $\mathrm dE/\mathrm d\Omega''$.'
+    chapter: '7.8'
+    anchor: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good
+  - key: camera-direction
+    title: Direction from a source to the camera
+    tex: '\hat N'
+    role: none
+    kind: A vector of length one; no unit
+    meaning: 'In the paper''s memory formulas, the unit vector from the source of a burst to the camera. Emission close to $\hat N$ is crowded by the factor $1/(1 - \hat n''\cdot\hat N)$ but has little part across $\hat N$.'
+    chapter: '7.8'
+    anchor: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good
+  - key: memory-step
+    title: Memory
+    tex: '\Delta\field h^{\rm TT}_{ij}'
+    role: field
+    kind: A symmetric table of pure numbers across the line of sight, with no trace
+    meaning: 'The strain after a burst minus the strain before it, a constant. One narrow jet of energy $E$ at the angle $\theta$ leaves $\Delta h_+ = (2GE/c^4r)(1 + \cos\theta)$; a sphere or a dipole leaves nothing; a core collapse at 10 kpc with $q = 0.01$ leaves $4\times10^{-21}$ seen from the side.'
+    chapter: '7.8'
+    anchor: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good
+  - key: radiated-energy
+    title: Energy radiated in a burst of waves
+    tex: '\matter{\Delta E}'
+    role: matter
+    kind: A number; an energy, in J
+    meaning: 'The energy that a merger sends out in gravitational waves, which sets its memory, $\Delta h_+ = (G\Delta E/24c^4r)\sin^2\iota\,(17 + \cos^2\iota)$. The first merger LIGO detected radiated about three solar masses, $5.4\times10^{47}$ J.'
+    chapter: '7.8'
+    anchor: the-waves-own-energy-leaves-a-memory-too
+  - key: burst-asymmetry
+    title: Asymmetry of a burst
+    tex: 'q'
+    role: none
+    kind: A pure number
+    meaning: 'The strength of the part of a burst''s pattern that is stronger along an axis than across it, $\mathrm dE/\mathrm d\Omega'' = (E/4\pi)[1 + q\,P_2(\cos\theta'')]$; it leaves the memory $(qGE/2c^4r)\sin^2\theta$. (Not chapter 3.7''s $q = kz$.)'
+    chapter: '7.8'
+    anchor: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good

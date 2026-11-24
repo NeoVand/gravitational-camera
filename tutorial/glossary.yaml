@@ -3175,3 +3175,41 @@ terms:
     role: curv
     chapter: '7.7'
     anchor: one-solution-runs-from-newtons-pull-near-the-source-to-the-wave-far-away
+  - term: heat balance (wave energy)
+    definition: 'The argument that fixes a gravitational wave''s energy: the heat that a viscous medium makes, $\tfrac12\eta\dot h_{ij}\dot h_{ij}$ per cubic metre per second, must equal the energy the wave loses, $16\pi G\eta/c^2$ times its energy density. The viscosity cancels, so the energy belongs to the wave.'
+    chapter: '7.8'
+    anchor: the-heat-comes-from-the-wave-so-the-wave-carries-energy
+  - term: energy density of a gravitational wave
+    definition: 'The energy a gravitational wave holds in each cubic metre, $(c^2/16\pi G)\langle\dot h_+^2 + \dot h_\times^2\rangle$, averaged over a cycle and over a region several wavelengths across. Times $c$ it is the energy flux.'
+    role: matter
+    chapter: '7.8'
+    anchor: the-heat-comes-from-the-wave-so-the-wave-carries-energy
+  - term: scattering cross-section
+    definition: 'The power a body scatters out of a wave divided by the flux that falls on it: the area of wave front whose energy it sends off in new directions. For the $1/r$ field of a mass the total is infinite, because waves passing far away are still turned through small angles, as in Rutherford scattering; what is finite is the differential cross-section.'
+    chapter: '7.8'
+    anchor: matter-barely-touches-the-waves
+  - term: differential cross-section
+    definition: 'The scattering cross-section per steradian into a given direction, in $\mathrm{m^2\,sr^{-1}}$. For gravitational waves and a mass $m$, at large angles, it is of order $(Gm/c^2)^2$ per steradian (Peters 1976), about $3\times10^{-51}\,\mathrm{m^2}$ per steradian for a person.'
+    chapter: '7.8'
+    anchor: matter-barely-touches-the-waves
+  - term: burst
+    definition: 'A brief release of energy carried away by particles that move at nearly the speed of light, such as the neutrinos of a collapsing star or the gravitational waves of a merger.'
+    chapter: '7.8'
+    anchor: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good
+  - term: jet
+    definition: 'A burst that sends all its energy along one direction. A narrow jet of energy $E$ leaves the memory $(2GE/c^4r)(1 + \cos\theta)$ at the angle $\theta$ from it, tending to $4GE/c^4r$ close to its line; exactly on the line symmetry allows none.'
+    chapter: '7.8'
+    anchor: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good
+  - term: memory (gravitational)
+    definition: 'The lasting change of strain that a burst leaves when it carries energy away unevenly: free bodies it passes end slightly farther apart or closer together for good. Only the quadrupole and higher parts of the burst''s pattern leave memory.'
+    role: field
+    chapter: '7.8'
+    anchor: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good
+  - term: linear and nonlinear memory
+    definition: 'The memory left by matter or neutrinos that fly away is the linear memory; the memory left by the energy of the gravitational waves themselves is the nonlinear memory, largest seen edge-on to a merger.'
+    chapter: '7.8'
+    anchor: the-waves-own-energy-leaves-a-memory-too
+  - term: spin memory
+    definition: 'A lasting offset in the time integral of the strain after a burst, the partner of the memory. For a pair that does not precess it goes as $\sin^2\iota\cos\iota$ and records which way the pair turned.'
+    chapter: '7.8'
+    anchor: the-waves-own-energy-leaves-a-memory-too
