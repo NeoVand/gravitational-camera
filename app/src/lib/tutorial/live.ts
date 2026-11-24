@@ -69,6 +69,7 @@ import MemoryPattern from './live/MemoryPattern.svelte';
 import TwoPaths from './live/TwoPaths.svelte';
 import UncertaintyPacket from './live/UncertaintyPacket.svelte';
 import LadderOscillator from './live/LadderOscillator.svelte';
+import MajoranaStars from './live/MajoranaStars.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -335,6 +336,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'An oscillator in a heat bath: the thermal probability of each level, the mean energy, and on the phase plane the thermal spread against a coherent state circling',
 		component: LadderOscillator
+	},
+	'majorana-stars': {
+		label:
+			"A spin as stars on a sphere: drag four stars of a spin two, or two of light, and read the five components, one spin's Bloch vector and the overlap with a coherent state",
+		component: MajoranaStars
 	},
 	'noise-spectrum': {
 		label:

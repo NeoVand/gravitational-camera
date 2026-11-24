@@ -6,7 +6,7 @@ part: '8'
 requires: ['1.1', '1.5', '1.5b', '1.7', '2.2', '8.1', '8.2']
 paper: [sec:one-pixel, eq:one-spin, eq:stars, eq:square, sec:first-image]
 figures: []
-live: [stars]
+live: [stars, majorana-stars]
 depth: A
 ---
 
@@ -23,8 +23,10 @@ special directions of a reading, and chapter 1.5b showed that a pattern of stret
 how can a reading's five complex numbers be four arrows on a sphere? We answer with the states of
 [chapter 8.1](/tutorial/quantum/states/) and the operators of [chapter 8.2](/tutorial/quantum/operators/).
 
-<!-- diagram: tut-quantum-hero — Part 8's hero, described in full in chapter 8.1 (the steel ball and its cold copy,
-each with its quadrupole mode drawn as a ladder of levels). Shown here unchanged. -->
+![Look first at the two ladders: the same ball holds hundreds of millions of quanta in its ringing at room
+temperature and almost none when cold. The camera's objects are quantum, and nearly always behave classically. The
+ladder's levels are schematic, and broken where hundreds of millions of them are left out; chapter 8.3 derives
+them.](tut-quantum-hero){#fig:quantum-hero}
 
 ::: plain
 Some particles, such as electrons and atoms of silver, carry a small amount of turning, called spin. Measured along any
@@ -111,18 +113,11 @@ $$\boxed{|\langle\hat n_1|\hat n_2\rangle|^2 = \cos^2\frac{\vartheta_{12}}{2} = 
 
 For directions 60° apart it is $\cos^230° = 0.75$: a spin prepared up along one is found up along the other three times
 in four. At 90° it is $\tfrac12$, and at 180° it is zero, so opposite points of the sphere are orthogonal states,
-which never answer alike.
+which never answer alike (Figure [](#fig:bloch-sphere)).
 
-<!-- diagram: tut-bloch-sphere — One panel, about 520 × 420 px at 1440 (full width on a phone). A sphere drawn as a thin
-ink circle with a dashed equator ellipse, and thin grey axes x, y, z from its centre (z up). A solid ink arrow from the
-centre to a point on the sphere at ϑ = 40°, φ = 30°, labelled "|n̂₁⟩". A second ink arrow at 60° from the first, in the
-same vertical plane, labelled "|n̂₂⟩", with a thin arc between the two tips labelled "60°" and, beside it, "|⟨n̂₁|n̂₂⟩|² =
-cos² 30° = 0.75". Inside the sphere a shorter grey arrow toward (½, 0, ½), ending in a small open dot labelled "half
-|↑⟩, half |+x⟩: |b| = 0.71". At the north and south poles small dots labelled "|↑⟩" and "|↓⟩", with a note between
-them "opposite points are orthogonal states". No orange or blue (they mean stretch and squeeze). Labels beside the
-geometry, never on it. Caption: "Look first at the two arrows on the sphere: every state of a spin one half is up
-along one direction, and two states 60° apart answer alike three times in four. A mixture, inside, has a shorter
-arrow. The perspective is schematic." -->
+![Look first at the two arrows on the sphere: every state of a spin one half is up along one direction, and two
+states 60° apart answer alike three times in four. A mixture, inside, has a shorter
+arrow.](tut-bloch-sphere){#fig:bloch-sphere}
 
 Chapter 8.2 made a unitary table $e^{-i\lambda G/\hbar}$ from a
 [generator](/tutorial/quantum/operators/#a-generator-is-the-exponent-of-a-unitary-table) $G$. With $G$ the spin along
@@ -300,7 +295,7 @@ $\hat z$, $\curv{\mathcal W} \propto \vect m\vect m^{\mathsf T}$, and $\vect m(z
 m^{\mathsf T}\vect m(z) = (\vect m\cdot\vect m(z))^2 = 2z^4$, whose four roots are $z = 0$: the north pole, the
 direction of travel. For a body on the $z$ axis, $\curv{\mathcal W} \propto \mathrm{diag}(1, 1, -2)$ gives $(1 -
 z^2)^2 - (1 + z^2)^2 - 8z^2 = -12z^2$: two stars at the north pole, and two missing roots, which are stars at the
-south pole.
+south pole (Figure [](#fig:majorana-three)).
 
 A **spin coherent state** $|\hat n\rangle_s = |\hat n\rangle\cdots|\hat n\rangle$ has all $2s$ spins up along $\hat n$,
 so all its stars sit there. Like chapter 8.3's
@@ -318,17 +313,10 @@ $$\frac{2s + 1}{4\pi}\int|\hat n\rangle_s\langle\hat n|_s\;\dd\Omega = 1 ,$$
 with chapter 2.2's solid angle $\dd\Omega$, so $(2s + 1)/4\pi$ times $|{}_s\langle\hat n|\psi\rangle|^2$ is a
 probability density over the sky, which chapter 8.6 uses to measure a direction.
 
-<!-- diagram: tut-majorana-three — Three small spheres side by side, about 640 × 260 px at 1440 (stacked on a phone),
-each a thin ink circle with a dashed equator and a faint z axis. Left, "one wave": four touching dots at the north
-pole (the direction of travel k̂), and from the centre an ink arrow of length 1 up to them, labelled "P/u, length 1".
-Middle, "one body at rest": two touching dots at the north pole and two at the south pole (the line to the body), and
-at the centre a small open circle labelled "P/u = 0". Right, "a body and a wave together" (the wave along the line to
-the body, its tide E₊ equal to the body's w; the paper's type II): two touching dots at the north pole and two single
-dots at 120° from it in the x, z plane, at (±0.87, 0, −0.5), and an ink arrow up of length 0.4 labelled "P/u = 0.4".
-Dots in ink (the curvature colour may mark them); no orange or blue. Caption: "Look first at the arrows: one spin of a
-reading is pure for a wave, unpolarized for a body at rest, and in between for a body and a wave together. Each dot is
-one of the reading's four spins one half, a star of Majorana and a principal null direction of the paper. The stars
-are computed; the spheres' perspective is schematic." -->
+![Look first at the arrows, the Bloch vector $\mathbf b = \mathbf P/u$: one spin of a reading is pure for a wave,
+unpolarized for a body at rest, and in between for a body and a wave together. Each dot is one of the reading's four
+spins one half, a star of Majorana and a principal null direction of the paper. The stars are
+computed.](tut-majorana-three){#fig:majorana-three}
 
 <!-- diagram: tut-light-gravity-stars — dropped in revision: it repeated chapter 6.6's figure of light's two directions
 and the paper's fig:stars, which the try block below shows live. -->
@@ -417,25 +405,16 @@ arranged; then raise the speed and watch what the pairs do. Afterwards, say why 
 opposite, using the field's rest frame.
 :::
 
-<!-- try: majorana-stars (a new interactive figure, MajoranaStars, specified on the card; it may replace the stars
-block above when built) — An engine that holds a spin-two state as five complex components c_m, m = −2…2, in the
-basis 𝒴_m of S_z = [iL_z, ·] on complex symmetric trace-free tables (phases fixed by S_x − iS_y from the top state
-m mᵀ, m = (1, i, 0)/√2), builds the state from four stars by the symmetric product of the four states |n̂_j⟩, and
-finds the stars of a state as the roots of p(z) = Σ(−1)^{2−m} √C(4, 2+m) c_m z^{2+m}, mapped by n̂(z) = (2 Re z, 2 Im z,
-1 − |z|²)/(1 + |z|²); checked against m(z)ᵀ W m(z) = 2p(z) and against ϱ₁ = ½(1 + P·σ/u): all four stars together
-give |P|/u = 1; two at each pole give 0; a body and a wave of equal tide along its line (two stars at the pole, two at
-(±0.87, 0, −0.5)) gives 0.4; with the wave's tide three times the body's (E₊ = 3w) the free stars sit at 90° and
-|P|/u = 6/7; two coincident pairs 120° apart give one spin a Bloch vector of length 0.91 along their bisector. Left,
-about 420 × 420 px: a sphere that the reader turns, with up to four stars (two for light, by a switch) that can be
-dragged; from the centre an arrow for P/u with its length shown to two decimals. Right, about 300 × 420 px: five bars
-for the components c_m, height |c_m| and colour wheel or small dial for the phase; below them a readout "|P|/u = …"
-and "overlap with the coherent state at n̂: |⟨n̂|ψ⟩|² = …", with n̂ chosen by clicking on the sphere (cos⁸(30°) = 0.32
-for a coherent state 60° away). Presets: wave, body at rest, body with a wave, two bodies (four stars in two opposite
-pairs, arrow 0). Opens on the body with a wave. Predict first: "Put all four stars together. How long is the arrow of
-one spin?" (Answer: one; the spin is pure.) Then: "Put two stars at each pole. What is it now?" (Answer: zero; each
-spin is unpolarized, as in a single body's rest frame.) Then: "Move one of the four stars away from the other three.
-Does the arrow stay at one?" (Answer: no; it shortens, and the four are entangled.) Keyboard: Tab moves between stars,
-arrows move the selected star, shift for larger steps; both themes; on a phone the panels stack. -->
+::: try {#majorana-stars}
+A sphere you can turn, carrying the four Majorana stars of a spin two, or with a switch the two of light. Drag the stars
+anywhere, or choose a reading from the presets: a wave, a body at rest, a body with a wave along its line, two bodies.
+The arrow from the centre is one spin's Bloch vector $\mathbf b = \mathbf P/u$; the bars beside the sphere show the
+sizes and phases of the five components $c_m$; and a ring that you place on the sphere reads the overlap of the state
+with the coherent state there.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, place
+the ring on a star of the wave's reading and then at the opposite pole, and say why the overlap falls from one to zero.
+:::
 
 ::: check
 ### Q
