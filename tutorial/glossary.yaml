@@ -3083,3 +3083,36 @@ terms:
     definition: 'Coordinates in which the spatial part of the metric is the same in every direction. Near slow matter, to first order, $\mathrm ds^2 = -(1 + 2\Phi/c^2)c^2\mathrm dt^2 + (1 - 2\Phi/c^2)\,\mathrm d\boldsymbol x^2$.'
     chapter: '7.4'
     anchor: a-static-source-gives-newtons-potential-in-time-and-in-space
+  - term: electric part
+    definition: 'The tide $\mathcal E_{ij} = c^2R_{0i0j}$, the part of the curvature with two time indices, named for its kinship with an electric field: near slow matter it is the Hessian of the potential of the mass.'
+    role: curv
+    chapter: '7.5'
+    anchor: the-magnetic-part-is-the-curvature-with-one-time-index
+  - term: gravitomagnetism
+    definition: 'The part of gravity made by moving mass, by kinship with magnetism: the magnetic part of the tide comes from the curl of the potential of a flow of mass, as a magnetic field comes from the curl of the vector potential of a current. The factors and some signs differ.'
+    chapter: '7.5'
+    anchor: the-name-comes-from-electromagnetism-which-guides-but-does-not-prove
+  - term: current quadrupole
+    definition: 'The moment of degree two of a flow of mass, a pattern of flow that a twisting motion can carry without changing any density. It shows only in the magnetic part of the tide.'
+    chapter: '7.5'
+    anchor: a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight
+  - term: magnetic moment of a flow
+    definition: 'For a solid harmonic $g$, the integral $\int(\vect x\times\rho\vect v)\cdot\nabla g\,\mathrm dV$. Outside a steady flow the magnetic part of the tide is fixed by these moments; for $g = x_k$ the moment is the angular momentum $L_k$.'
+    chapter: '7.5'
+    anchor: a-body-turning-at-a-known-rate-shows-one-hidden-integral-for-each-harmonic-function
+  - term: Fermi–Walker transport
+    definition: 'The rule by which a gyroscope carries its axis along its path in spacetime: kept at right angles to its four-velocity and otherwise carried without turning, with a correction for its acceleration.'
+    chapter: '7.5'
+    anchor: neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation
+  - term: Lense–Thirring precession
+    definition: 'The turning of a gyroscope near a spinning body, $(G/c^2r^3)[3(\vect L\cdot\hat x)\hat x - \vect L]$: along the spin over the poles, against it over the equator. Gravity Probe B measured it about the Earth.'
+    chapter: '7.5'
+    anchor: neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation
+  - term: frame dragging
+    definition: 'The dragging round of the axes that gyroscopes hold still by a moving or spinning mass, of which the Lense–Thirring precession is the example near a spinning body.'
+    chapter: '7.5'
+    anchor: neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation
+  - term: geodetic precession
+    definition: 'The turning of a moving gyroscope by its motion through the static field of a mass, about 6600 milliarcseconds a year for Gravity Probe B.'
+    chapter: '7.5'
+    anchor: neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation

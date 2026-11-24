@@ -109,7 +109,7 @@ parts:
       - { id: '7.2', slug: geometry/curvature-and-tides, title: 'Curvature and tides: the Riemann tensor and geodesic deviation', short: Curvature and tides, size: L, status: published }
       - { id: '7.3', slug: geometry/einstein-equation, title: "Einstein's equation; Ricci and Weyl", short: "Einstein's equation", size: L, status: published }
       - { id: '7.4', slug: geometry/linearized-gravity, title: 'Linearized gravity and gauge', short: Linearized gravity, size: L, status: published }
-      - { id: '7.5', slug: geometry/gravitomagnetism, title: "Gravity's electric and magnetic parts; gravitomagnetism", short: Gravitomagnetism, size: M, status: planned }
+      - { id: '7.5', slug: geometry/gravitomagnetism, title: "Gravity's electric and magnetic parts; gravitomagnetism", short: Gravitomagnetism, size: L, status: published }
       - { id: '7.6', slug: geometry/gravitational-waves, title: 'Gravitational waves and their two polarizations', short: Gravitational waves, size: M, status: planned }
       - { id: '7.7', slug: geometry/quadrupole-formula, title: 'The quadrupole formula, from the near zone to the wave zone', short: The quadrupole formula, size: L, status: planned }
       - { id: '7.8', slug: geometry/wave-energy, title: 'Wave energy, damping by viscosity, and memory', short: Wave energy, size: M, status: planned }

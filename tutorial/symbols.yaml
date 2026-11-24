@@ -2294,3 +2294,19 @@ symbols:
     meaning: 'The sum $h^\alpha{}_\alpha = \eta^{\alpha\beta}h_{\alpha\beta} = -h_{00} + h_{11} + h_{22} + h_{33}$. Trace reversal, $\bar h_{\mu\nu} = h_{\mu\nu} - \tfrac12\eta_{\mu\nu}h^\alpha{}_\alpha$, changes its sign. Near a static slow body it is $-4\Phi/c^2$. Always written with its indices: a bare $h$ is a strain.'
     chapter: '7.4'
     anchor: trace-reversal-and-harmonic-gauge-tidy-the-equation
+  - key: flow-curl
+    title: Curl of the flow's potential
+    tex: '\field{\vect b}'
+    role: field
+    kind: A vector at each point; in kg m⁻¹ s⁻¹
+    meaning: 'The curl $\vect b = \nabla\times\vect A$ of the potential of a flow. Outside matter the magnetic part of the tide is $\mathcal B_{ij} = (G/c)(\partial_ib_j + \partial_jb_i)$, and a gyroscope at rest in a steady weak field turns at $(2G/c^2)\vect b$. Outside a round spinning body it is the spin dipole $[3\hat x(\vect L\cdot\hat x) - \vect L]/2r^3$.'
+    chapter: '7.5'
+    anchor: moving-matter-makes-the-magnetic-part-through-the-potential-of-its-flow
+  - key: gyroscope-precession
+    title: Precession of a gyroscope
+    tex: '\vect\Omega_{\rm g}'
+    role: none
+    kind: An angular velocity; in rad/s
+    meaning: 'The rate at which the axis of a gyroscope at rest in a steady weak field turns relative to the distant stars, $\vect\Omega_{\rm g} = -(c/2)\nabla\times\vect h_0 = (2G/c^2)\vect b$. Outside a spinning body it is the Lense–Thirring precession. Two gyroscopes a small vector $\vect\xi$ apart differ by $\mathcal B_{ij}\xi_j/c$.'
+    chapter: '7.5'
+    anchor: neighbouring-gyroscopes-turn-relative-to-one-another-at-the-magnetic-part-times-their-separation
