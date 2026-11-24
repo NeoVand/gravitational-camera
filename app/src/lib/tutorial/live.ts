@@ -61,6 +61,7 @@ import LongestPath from './live/LongestPath.svelte';
 import StressEnergyTable from './live/StressEnergyTable.svelte';
 import CarryAround from './live/CarryAround.svelte';
 import RicciWeyl from './live/RicciWeyl.svelte';
+import GaugeOrWave from './live/GaugeOrWave.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -287,6 +288,11 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A ball of free dust inside matter, beside a mass or in a beam: the tide split into a Ricci part that changes its volume and a Weyl part that changes its shape',
 		component: RicciWeyl
+	},
+	'gauge-or-wave': {
+		label:
+			'A grid of rings of free balls under a ripple of coordinate labels and under a real wave: the labels move in one, the measured separations in the other',
+		component: GaugeOrWave
 	},
 	'noise-spectrum': {
 		label:

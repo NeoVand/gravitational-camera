@@ -6,7 +6,7 @@ part: '7'
 requires: ['1.3', '6.2', '6.5', '7.1', '7.2', '7.3']
 paper: [sec:introduction, sec:pixel, eq:wave, sec:waves, eq:wave-zone, sec:vistas, eq:multipole, fig:binary-field, sec:one-pixel]
 figures: []
-live: []
+live: [gauge-or-wave]
 depth: A
 ---
 
@@ -133,24 +133,15 @@ On paper this is a wave that travels along $x$ at the speed $\omega/k$, and that
 1\unit{mm}$ and $k = 1\unit{m^{-1}}$ the entry $\field h'_{xx}$ reaches $2\times10^{-3}$, $2\times10^{18}$ times LIGO's
 waves. Yet its curvature is zero, because it came from $\field h_{\mu\nu} = 0$. A free ball at rest at $x$ carries the
 new label $x + \epsilon\cos(kx - \omega t)$, so the labels of the balls ripple, but the distances between them, measured
-with the metric, never change. A table of this kind, $\field h_{\mu\nu} = -\partial_\mu\zeta_\nu -
-\partial_\nu\zeta_\mu$, is called **pure gauge**.
+with the metric, never change (Figure [](#fig:gauge-or-wave)). A table of this kind, $\field h_{\mu\nu} =
+-\partial_\mu\zeta_\nu - \partial_\nu\zeta_\mu$, is called **pure gauge**.
 
 **What it means.** A pixel reads the tide $\curv\tE_{ij} = c^2\curv R_{0i0j}$ (chapter 7.2), a piece of the curvature,
 so no change of coordinates can alter its reading. Every result of the paper is a statement about curvature.
 
-<!-- diagram: tut-gauge-or-wave — Two panels side by side, each about 340 × 300 px at 1440 (stacked on a phone). Each
-shows a square grid of 7 × 7 free balls (small filled dots in the observer colour) over thin grey coordinate lines.
-Left, "pure gauge": the coordinate lines ripple along x as a sine wave of exaggerated amplitude (vertical lines bunched
-and spread), while every ball keeps its place on an even square lattice, so the balls now sit off the rippled lines;
-beside it the note "labels move, balls do not: curvature 0". Right, "a real wave" (a plus-polarized wave travelling out
-of the page): the coordinate lines are straight and even, and the balls are displaced from them, the lattice stretched
-along x (orange tint on the balls at the two ends of each row) and squeezed along y (blue tint at the ends of each
-column), exaggerated; beside it "separations change: curvature ≠ 0". One small double-headed ink arrow between two
-neighbouring balls in each panel, labelled "proper separation", unchanged on the left and longer on the right. Labels
-beside the geometry, never on a line. Caption: "Look first at the balls against the lines. On the left a change of
-coordinates ripples the labels, and the balls keep their separations; on the right a gravitational wave changes the
-separations themselves. Only the right panel has curvature. Amplitudes are exaggerated." -->
+![Look first at the balls against the lines. On the left a change of coordinates ripples the labels, and the balls keep
+their separations; on the right a gravitational wave changes the separations themselves. Only the right panel has
+curvature. Amplitudes are exaggerated.](tut-gauge-or-wave){#fig:gauge-or-wave}
 
 ## Trace reversal and harmonic gauge tidy the equation
 
@@ -269,17 +260,12 @@ momentum, $\partial^\mu\matter T_{\mu\nu} = 0$. So the gauge condition and the c
 at this order.[^bound]
 
 **What it means.** Each entry of $\field{\bar h}_{\mu\nu}$ obeys its own wave equation, made by its own entry of
-$\matter T_{\mu\nu}$: the energy density makes $\field{\bar h}_{00}$, the momentum density $\field{\bar h}_{0i}$, and
-the momentum flux and the stresses $\field{\bar h}_{ij}$.
+$\matter T_{\mu\nu}$ (Figure [](#fig:linear-steps)): the energy density makes $\field{\bar h}_{00}$, the momentum
+density $\field{\bar h}_{0i}$, and the momentum flux and the stresses $\field{\bar h}_{ij}$.
 
-<!-- diagram: tut-linear-steps — One strip of four boxes joined by thin ink arrows, about 1000 × 150 px at 1440
-(a 2 × 2 grid on a phone, read row by row). Each box, outlined in thin ink, holds one equation and a short label above
-it. Box 1, "7.2's curvature, contracted": R_μν = ½(∂_α∂_μ h^α_ν + ∂_α∂_ν h^α_μ − ∂_μ∂_ν h^α_α − □h_μν). Box 2, "harmonic
-gauge, ∂^μ h̄_μν = 0": R_μν = −½□h_μν. Box 3, "the Einstein tensor": G_μν = −½□h̄_μν. Box 4, "7.3's equation":
-□h̄_μν = −16πG T_μν/c⁴, the box drawn slightly heavier. Under the arrow between boxes 1 and 2 the small note "three terms
-cancel". Curvature symbols (R, G) in the curvature colour, h and h̄ in the field colour, T in the matter colour.
-Caption: "Look first at the last box: four steps turn the curvature of a weak field into one wave equation for each
-entry of the trace-reversed perturbation, with the energy and stress of matter as its source." -->
+![Look first at the last box: four steps turn the curvature of a weak field into one wave equation for each entry of
+the trace-reversed perturbation $\field{\bar h}_{\mu\nu}$, with the energy and stress of matter as its
+source.](tut-linear-steps){#fig:linear-steps}
 
 ## A static source gives Newton's potential, in time and in space
 
@@ -398,20 +384,14 @@ T_{zz}\,\dd V \approx \matter Mgz_{\rm cm} \approx 690\unit{J}$, with $g = 9.8\u
 1\unit{m}$ the height of their centre of mass, against $\int\matter\rho v^2\,\dd V = 137\unit{J}$. So a metre away it
 gives $\field{\bar h}_{zz}$ of about $2\times10^{-41}$, five times the motion part.
 
-This ladder is why chapter 7.5's magnetic part, made from $\field h_{0i}$, is smaller than the tide by about $v/c$, and
-why the stress and motion of matter count only for fast motion and for light. A beam of light has a momentum flux equal
-to its energy density, so its $\field{\bar h}_{ij}$ is as large as its $\field{\bar h}_{00}$.
+This ladder (Figure [](#fig:hierarchy)) is why chapter 7.5's magnetic part, made from $\field h_{0i}$, is smaller than
+the tide by about $v/c$, and why the stress and motion of matter count only for fast motion and for light. A beam of
+light has a momentum flux equal to its energy density, so its $\field{\bar h}_{ij}$ is as large as its $\field{\bar
+h}_{00}$.
 
-<!-- diagram: tut-linear-hierarchy — One panel, about 560 × 240 px at 1440 (full width on a phone). Three horizontal
-bars on a logarithmic axis from 10⁻⁴⁴ to 10⁻²⁴, one per row, for the 70 kg person walking at 1.4 m s⁻¹, seen at 1 m:
-"h₀₀, from the energy" 1.0 × 10⁻²⁵; "h̄₀ᵢ, from the momentum" 9.7 × 10⁻³⁴; "h̄ᵢⱼ, its motion part ρvᵢvⱼ"
-4.5 × 10⁻⁴². Bars solid in the field colour, the longest darkest. On the third row a small hollow tick at 2 × 10⁻⁴¹,
-labelled "with the stress of standing on a floor". Between consecutive bars, at their right ends, a small bracket
-labelled "× 2v/c" (first gap) and "× v/c" (second gap), with v/c = 4.7 × 10⁻⁹ printed once below the axis. Labels left
-of the bars, values right of them, never on the bars. Caption: "Look first at the gaps: each step down the table, from
-energy to momentum to momentum flux, costs about one factor of v/c, eight orders of magnitude for a walking person. The
-hollow tick is the stress of bearing the person's weight on a floor, five times the motion part. Logarithmic
-scale." -->
+![Look first at the gaps: each step down the table, from energy to momentum to momentum flux, costs about one factor
+of $v/c$, eight orders of magnitude for a walking person. The hollow tick is the stress of bearing the person's weight
+on a floor, five times the motion part. Logarithmic scale.](tut-linear-hierarchy){#fig:hierarchy}
 
 ## The field travels at the speed of light
 
@@ -440,21 +420,17 @@ In empty space the waves of [](#eq:field) are chapter
 [5.1](/tutorial/waves/wave-equation/#a-plane-wave-is-a-turning-number-that-travels)'s plane waves, and chapter 7.6 shows
 that only two of their ten amplitudes are physical, the strains of the paper's "transverse traceless gauge".
 
-<!-- try: gauge-or-wave (a new interactive figure, GaugeOrWave, not yet built) — One panel, about 640 × 460 px at 1440
-(full width on a phone, controls below). A 5 × 5 grid of rings of twelve free balls (small dots in the observer colour),
-drawn in coordinates over thin grey coordinate lines, each ring's undisturbed circle dashed. Two sliders: "gauge shift ε"
-(0 to 0.3 of the ring spacing, drawn as the pure-gauge relabelling x' = x + ε cos(kx − ωt) with k set by the grid,
-which moves each ball's coordinate position and the lines' labels together) and "real wave h₊" (0 to 0.3, drawn
-exaggerated with a stated factor, a plus-polarized wave travelling out of the screen, which moves the balls relative to
-one another); a play button that runs t, and a pause. Readouts, to two figures: "largest change in the proper separation
-of neighbouring balls: … (fraction)" computed from the metric, and "tide at the centre 𝓔ₓₓ = … (in units of ω²)" from
-−½∂²ₜh₊. Opens with the gauge shift at 0.2 and the wave at 0, playing. Predict first: "Only the gauge shift is on. The
-coordinate lines ripple. Do the balls move relative to one another?" (Answer: no; the separations change by 0 and the
-tide is 0, because a pure-gauge table has no curvature.) Then: "Turn the gauge shift off and the wave on. What changes
-now?" (Answer: the rings become ellipses, stretched along x and squeezed along y in turn; the separations change by about
-h₊/2 and the tide is not zero.) Then: "Turn both on. Which readout does the gauge shift affect?" (Answer: neither.)
-Keyboard: Tab reaches both sliders and the play button, arrows step them, shift for larger steps; both themes; phone;
-static on reduced motion (one frame at the phase of largest stretch). -->
+::: try {#gauge-or-wave}
+A grid of rings of free balls, with the coordinate lines behind them. One slider ripples the labels by the chapter's
+gauge shift $\zeta_x = \epsilon\cos(kx - \omega t)$; the other adds a real wave of plus polarization travelling out
+of the page. A switch draws the scene either as rulers measure it or at the balls' labels. The readouts give the largest
+change in the measured separation of neighbouring balls, the tide $\curv\tE_{xx}$ from the linearized curvature, and
+the entries $\field h'_{xx}$ and $\field h'_{0x}$ at the centre.
+
+Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, switch
+to the labels view with only the real wave on, and say why the balls keep their labels while the rings in the rulers
+view stretch.
+:::
 
 ::: check
 ### Q
