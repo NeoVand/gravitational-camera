@@ -268,8 +268,8 @@ where $\lfloor x\rfloor$ is the largest whole number not above $x$. This is the 
 {{paper eq:wave-count}}
 
 **No method does better.** $N$ waves have $N$ directions and $LN$ amplitudes, $N(L + 1)$ complex unknowns, against the
-$L(2s + 1)$ complex numbers recorded: the same inequality. The count holds "generically", because snapshots whose
-amplitudes are all proportional add no new equations.[^generic]
+$L(2s + 1)$ complex numbers recorded: the same inequality (Figure [](#fig:wave-count)). The count holds "generically",
+because snapshots whose amplitudes are all proportional add no new equations.[^generic]
 
 | | one instant, $L = 1$ | one frequency, $L = 2$ | long record, $L \to \infty$ |
 |---|---|---|---|
@@ -290,15 +290,9 @@ coefficients has the determinant $96\prod_{a<b}(z_a - z_b)$, and the map from a 
 since 9.4's factors 2, $4\sqrt2$, 12, $-4\sqrt2$ and 2 are nonzero. So every reading is a sum of five squares for any
 five directions we choose, and five waves can look like any other five: a pixel cannot find them.
 
-<!-- diagram: tut-wave-count — About 560 × 300 px at 1440 (full width on a phone). Three small panels side by side,
-"one instant (L = 1)", "one frequency (L = 2)", "long record (L large)". In each, a horizontal axis "number of waves N"
-from 1 to 6 with ticks, one rising step line of dots, "unknowns N(L + 1)" in ink, and a flat horizontal line "recorded
-L(2s + 1)" drawn twice, solid in the curvature colour for gravity (s = 2: 5, 10, 5L) and dashed in the light colour for
-light (s = 1: 3, 6, 3L). The largest N with unknowns at or below the recorded line is ringed on each: gravity 2, 3, 4;
-light 1, 2, 2. For the long record, plot unknowns and recorded per snapshot, N(L + 1)/L and 2s + 1, with L = 20. No
-orange or blue. Caption: "Look first at the rings: the largest number of waves whose unknowns, a direction and L
-amplitudes each, still fit within the numbers recorded. Gravity's rings sit at 2, 3 and 4, light's at 1, 2 and 2. Counts
-exact." -->
+![Look first at the rings: the largest number of waves whose unknowns, a direction and $L$ amplitudes each, still fit
+within the numbers recorded. Gravity's rings sit at 2, 3 and 4, light's at 1, 2 and 2. Counts
+exact.](tut-wave-count){#fig:wave-count}
 
 ::: try {#voices}
 Predict first: the pixel finds four waves from its record. What will it find when a fifth is added? Then raise the
@@ -351,8 +345,8 @@ A stretch of record of duration $\Delta t$ resolves frequencies about $1/\Delta 
 $\Delta t$ long and $1/\Delta t$ wide in frequency is a **time–frequency cell**. A pair of neutron stars at 100 Hz rises
 in frequency at the rate $\dot f = 17\unit{Hz\,s^{-1}}$,[^chirp] and it crosses one cell's width in one cell's time when
 $\dot f\,\Delta t = 1/\Delta t$, so the cells are $\Delta t = 1/\sqrt{\dot f} = 0.24\unit{s}$ long and $4.1\unit{Hz}$
-wide. Two images half a second apart differ by $7.4\unit{Hz}$, 1.8 cells: the paper's "the cells stay separate even for
-images only half a second out of step". In each cell the pixel reads one wave.
+wide. Two images half a second apart differ by $7.3\unit{Hz}$, 1.8 cells: the paper's "the cells stay separate even for
+images only half a second out of step". In each cell the pixel reads one wave (Figure [](#fig:lens-cells)).
 
 One wave is placed to within $1/\rho$ radian at the signal-to-noise ratio $\rho$ of its cell, a number with no unit
 (stated here, derived in chapter 9.7).[^rho] An arcsecond is $4.85\times10^{-6}$ rad, so it needs
@@ -367,14 +361,9 @@ pixel separates the images of a lensed chirp, but it places them an arcsecond ap
 Images that overlap in frequency, as a steady source's do, are a Prony problem whose errors grow as a power of one over
 their separation (stated without proof).
 
-<!-- diagram: tut-lens-cells — About 560 × 260 px at 1440 (full width on a phone). A time–frequency plane: horizontal
-axis "time (s)" from −2 to 0.5, vertical axis "frequency (Hz)" from 60 to 200, with a faint grid of rectangular cells
-0.24 s wide and 4.1 Hz tall (draw only a band of them near the curves). Two chirp curves of a neutron-star pair
-(chirp mass 1.2 solar masses, f rising as (t_c − t)^(−3/8), the first at 100 Hz at t = 0), the second shifted 0.5 s
-later, both thin lines in the curvature colour, the second at lower opacity. At t = 0 mark the two frequencies with
-small dots and a bracket labelled "7.4 Hz: 1.8 cells". No orange or blue. Caption: "Look first at the bracket: two
-images of one chirp, half a second out of step, sit in different cells, so one pixel reads each as a single wave. Chirps
-exact for a neutron-star pair; the grid's cell size is the 4.1 Hz by 0.24 s of the text." -->
+![Look first at the bracket: two images of one chirp, half a second out of step, sit in different cells, so one pixel
+reads each as a single wave. Chirps exact for a neutron-star pair; the grid's cell size is the $4.1\unit{Hz}$ by
+$0.24\unit{s}$ of the text.](tut-lens-cells){#fig:lens-cells}
 
 ::: check
 ### Q
