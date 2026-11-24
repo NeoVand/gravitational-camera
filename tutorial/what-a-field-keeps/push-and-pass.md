@@ -6,7 +6,7 @@ part: '13'
 requires: ['1.3', '1.5b', '1.6', '1.7', '1.8', '2.1', '2.5', '2.6', '6.4']
 paper: [sec:second-order, eq:push, eq:pass, app:proofs, fig:passing, fig:hair, tab:hair, eq:calderon]
 figures: [fig:passing, fig:hair]
-live: [passing]
+live: [first-and-second-order]
 depth: A
 ---
 
@@ -156,21 +156,16 @@ bends the passer as a point of its mass would. The paper calls this "the shell t
 
 The passer's angle of bending is $|\Delta P|/\matter\mu V = 2G\matter M/|b|V^2$ for a round body: $1.9 \times
 10^{-16}$ rad for the steel ball of 4110 kg at $|b| = 1.5\unit{m}$ and $44\unit{km\,s^{-1}}$, as chapter 1.8 found.
-The two bodies of the figure bend it by the same angle, exactly. Far away only the term $q = 0$ survives, and every body
-bends the passer as a point mass does.
+The two bodies of the figure bend it by the same angle, exactly (Figure [](#fig:pass-two-orders)). Far away only the
+term $q = 0$ survives, and every body bends the passer as a point mass does.
 
 Up to the total degree $n$, the bending holds $m_{00}$, the mass, and the complex numbers $m_{01}$ to $m_{0n}$: in all,
 $1 + 2n$ real numbers.
 
-<!-- diagram: tut-pass-two-orders — spec: the pair of fig:passing side by side (left the thin shell of radius R/√2,
-right the point of M/2 at the centre of a shell of radius R; the paper's cutaway stone bodies), each under its own copy
-of one pass at b = 1.5R, the path seen from the side as a long straight line that leaves bent by the same small angle
-(exaggerated alike for both and marked as such), with one shared label above both: "first order: the same". Below each
-body, a bar of the internal energy left, to one exact scale: 0.080 and 0.104 in units of MC²/2R², labelled with their
-values, and one shared label below: "second order: different". No arrows inside the bodies (fig:passing has them).
-Caption: "Look first at the two bars: one pass leaves 0.080 and 0.104, in units of MC²/2R², inside two bodies that the
-pass bends by exactly the same angle. Left, a thin shell of radius R/√2; right, half the mass at the centre of a shell
-of radius R. The bending is drawn much larger than it is, alike for both, and the cutaway bodies are pictures." -->
+![Look first at the two bars: one pass leaves 0.080 and 0.104, in units of $\matter MC^2/2R^2$, inside two bodies that
+the pass bends by exactly the same angle. Left, a thin shell of radius $R/\sqrt2$; right, half the mass at the centre
+of a shell of radius $R$. The bending is drawn much larger than it is, alike for both, and the cutaway bodies are
+pictures.](tut-pass-two-orders){#fig:pass-two-orders}
 
 ## The passer's loss of energy holds every moment of the projected body
 
@@ -199,17 +194,12 @@ $q - p \ne j$ averages to zero, and what remains, $\tfrac12C^2\sum_pm_{p,p+j}|b|
 $p \ge \max(0, -j)$, is a series in powers of $1/|b|$. Such a series, known over a range of radii, has only one set of
 coefficients, because a power series that vanishes over a range vanishes term by term. So the losses on an
 **annulus** of impact points, a ring-shaped band of them round the body and outside the circle that holds it, give
-every $m_{pq}$.[^nine]
+every $m_{pq}$ (Figure [](#fig:pass-annulus)).[^nine]
 
-<!-- diagram: tut-pass-annulus — spec: left, a lopsided projected body (two lumps, as in the try spec) seen along the
-path, with impact points as small beads on three circles round it (radii 1.5, 2.2 and 3 times the body's radius, 12
-beads each), the annulus between the inner and outer circle faintly shaded. Right, a grid of the terms (p, q) with
-p + q from 0 to 4: rows by the power p + q (labelled |b|^-(p+q+2) at the left), columns by q − p from −4 to 4 (labelled
-e^{i(q−p)φ} along the top), one dot per term at its exact place, so that every row has p + q + 1 dots; the dots (0, q)
-and (q, 0), the bending's terms, filled on the two outer diagonals, the others open. Caption: "Look first at the grid:
-every term of the loss has its own power of the distance (its row) and its own number of turns round the body (its
-column), so losses over a band of radii pull every term apart. The filled dots on the two edges are the only terms the
-bending holds. The body and the number of beads are chosen for the drawing." -->
+![Look first at the grid: every term of the loss has its own power of the distance (its row) and its own number of
+turns round the body (its column), so losses over a band of radii pull every term apart. The filled dots on the two
+edges are the only terms the bending holds. The body and the number of beads are chosen for the
+drawing.](tut-pass-annulus){#fig:pass-annulus}
 
 Up to the total degree $n$ there are $(n + 1)(n + 2)/2$ pairs $(p, q)$. Because $m_{qp} = m_{pq}^*$, a pair with
 $p \ne q$ and its mirror $(q, p)$ share one complex number, two real numbers, and a pair with $p = q$ gives one real
@@ -282,24 +272,18 @@ directions are at right angles to the Earth's axis. Take any $\vect k$. If $\vec
 direction $\hat n = \vect k\times\hat\nu/|\vect k\times\hat\nu|$ is at right angles to $\hat\nu$, so it lies on the
 great circle, and it is at right angles to $\vect k$, so $\vect k$ lies on its slice. If $\vect k$ is along $\hat\nu$,
 every direction of the circle is at right angles to it. So the slices of one great circle fill the whole space of
-wavevectors. The losses on paths whose directions lie in one plane give $\tilde{\matter\rho}$ at every $\vect k$, and
-2.6's inverse transform gives $\matter\rho$ everywhere.
+wavevectors (Figure [](#fig:pass-slice)). The losses on paths whose directions lie in one plane give
+$\tilde{\matter\rho}$ at every $\vect k$, and 2.6's inverse transform gives $\matter\rho$ everywhere.
 
 A round body needs one direction only. Its $\matter\Sigma$ is then the Abel transform of chapter
 [5.6](/tutorial/waves/abel-transform/#the-transform-can-be-undone), which can be undone. In the paper's Table
 [](/paper/#tab:hair), the row "A mass that passes" ends with "the density" for a stone, and with "what the hole absorbs,
 set by its mass and spin" for a black hole.
 
-<!-- diagram: tut-pass-slice — spec: left, a lumpy body (the paper's stone palette) with three bundles of parallel paths
-along three directions of one great circle (the circle drawn faint round the body, its axis ν̂ as a short arrow); for
-one direction, the projected mass Σ drawn as a shaded sheet on the plane across it. Right, wavevector space with the
-same axis ν̂: the slice plane k·n̂ = 0 for each of the three directions (thin, translucent, each in the colour of its
-bundle), all containing ν̂, and a fourth, dashed, to suggest that turning n̂ round the circle sweeps the slices through
-every k. Every plane passes through the origin. Exact geometry; the body and the number of paths are chosen for the
-drawing. Caption: "Look first at the three slices on the right: each direction of paths gives the density's transform
-on one plane of wavevectors, and as the direction turns round the great circle, the planes turn about its axis and fill
-the space. Left, the body, three bundles of paths in directions of one great circle, and the projected mass for one of
-them. The body's shape and the spacing of the paths are chosen for the drawing." -->
+![Look first at the three slices on the right: each direction of paths gives the density's transform on one plane of
+wavevectors, and as the direction turns round the great circle, the planes turn about its axis and fill the space.
+Left, the body, three bundles of paths in directions of one great circle, and the projected mass for one of them. The
+body's shape and the spacing of the paths are chosen for the drawing.](tut-pass-slice){#fig:pass-slice}
 
 ## A mass held for an instant leaves energy through a kernel that is not harmonic
 
@@ -371,30 +355,14 @@ which the ball's slowest ringing that a tide can set going, at the angular frequ
 10^4\unit{s^{-1}}$,[^ring] turns through 0.54 radians. Chapter 1.8 estimated that this changes the internal energy by
 10 to 15 per cent and leaves the recoil as it is. Chapter 13.5 removes the condition of slow motion.[^shock]
 
-<!-- try: first-and-second-order — new (P7a-DECISIONS item 9). Left: a projected body, chosen from three: the pair of
-fig:passing (both bodies drawn side by side, each with its own bead and path), a uniform ball and a thin shell of the
-same mass and radius, and a lopsided body of two lumps, masses 0.7M and 0.3M at w = (0.27 − 0.09i)R and
-w = (−0.63 + 0.21i)R, so that the origin is its centre of mass. The passer's straight path crosses the page at the bead,
-whose position b the reader drags round the body (arrow keys move it: left and right turn φ by 5°, up and down change
-|b| by 0.05R; the bead cannot enter the circle |b| = 1.05R). Sliders: the passing mass, ×1 to ×4 of the paper's tonne
-(default ×1), and |b| from 1.05R to 4R (default 1.5R). Right, three readouts for each body of the chosen pair (for the
-lopsided body, one): (1) the momentum handed to the passer sideways, |ΔP| in units of MC₀/R with C₀ the tonne's C, with
-the parts from m_00, m_01, …, m_04 listed under it (the boxed series); (2) the bending angle |ΔP|/μV in units of
-2GM/RV²; (3) the internal energy left, in units of MC₀²/2R², from lib/hair/passing.ts (bodyF − recoilF, times the
-square of the mass slider) for the round bodies and from section 3's planar series, to forty terms, for the lumps.
-Checks: at b = 1.5R and ×1 the pair's internal energies read 0.080 and 0.104 and their momenta and angles agree to every
-printed digit; ×2 doubles both momenta, leaves both angles as they are and multiplies both energies by four; for the
-lopsided body, the momentum changes round a circle at fixed |b| only through m_01 to m_04, while the energy changes
-through every m_pq; its angle at |b| = 4R is within 1.3 per cent of a point mass's (−1.2 to +1.3), and at 1.5R it runs
-from −7.8 to +12.7 per cent, depending on the direction. Both themes; keyboard; phone: the two panels stacked. Stand-in
-until it is built: the registered `passing`, which shows the energies against b but not the bending, as below. -->
-
-::: try {#passing}
-Predict first: if the passing mass were doubled, by what factor would each body's internal energy change? And which of
-the two readings, the bending or the energy, can tell the shell from the point inside a shell? The figure shows the
-paper's two bodies under one pass, with a bar for the energy left inside each, in units of $\matter MC^2/2R^2$, for a
-fixed passing mass. Drag the bead from $|b| = 1.5R$ out to $4R$. The two energies differ at every distance, while the
-bending, which the figure does not draw, is $2G\matter M/|b|V^2$ for both.
+::: try {#first-and-second-order}
+Predict first: as the passer goes once round the lopsided body at a fixed distance, which reading changes more with
+the direction, the bending or the energy left inside? And does the bending change more at $4R$ or at $1.5R$? The
+figure draws the chosen body, the passer's straight path and the bead where the path crosses the page. For each body
+it reads the sideways momentum, with its parts from $m_{00}$ to $m_{04}$ listed under it, the bending angle and the
+energy left inside. Start with *The paper's pair* and set *The passing mass* from one tonne to four. Then choose *Two
+lumps*, set *Distance of the pass* to $4R$, and drag the bead once round the body, or turn it with the arrow keys; do
+it again at $1.5R$.
 :::
 
 ::: check

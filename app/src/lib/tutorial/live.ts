@@ -89,6 +89,7 @@ import TidalFriction from './live/TidalFriction.svelte';
 import BlackHoleCamera from './live/BlackHoleCamera.svelte';
 import Inspiral from './live/Inspiral.svelte';
 import ThermalHistory from './live/ThermalHistory.svelte';
+import FirstAndSecondOrder from './live/FirstAndSecondOrder.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -472,5 +473,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'From the Planck temperature to today: the photons’, neutrinos’ and gravitons’ T a, and what the hot count leaves',
 		component: ThermalHistory
+	},
+	'first-and-second-order': {
+		label:
+			'A mass passing three bodies: its bending and momentum at first order, the energy left inside at second',
+		component: FirstAndSecondOrder
 	}
 };
