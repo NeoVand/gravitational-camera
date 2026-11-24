@@ -84,6 +84,7 @@ import DetailedBalance from './live/DetailedBalance.svelte';
 import GlowBound from './live/GlowBound.svelte';
 import ShadowAndRing from './live/ShadowAndRing.svelte';
 import SpinAndGain from './live/SpinAndGain.svelte';
+import HoleAgainstSky from './live/HoleAgainstSky.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -442,5 +443,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A spinning hole cut through its axis: its horizon, ergosphere and spin energy, and whether a wave turning with it gains',
 		component: SpinAndGain
+	},
+	'hole-against-sky': {
+		label:
+			'A hole against a warm sky: what its greybody factors take, what its glow adds, and how dark its disc looks',
+		component: HoleAgainstSky
 	}
 };

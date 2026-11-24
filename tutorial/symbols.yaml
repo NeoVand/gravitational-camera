@@ -3537,3 +3537,60 @@ symbols:
     meaning: 'The coefficient of $\mathrm dA$ in the first law, $c^2\sqrt{(GM/c^2)^2 - a^2}/(r_+^2 + a^2)$: $c^4/4GM$ without spin, the hovering acceleration at the horizon as measured from far away, and zero at the greatest spin. (Only in chapters 11.2 and 11.3; the paper''s Section XIII uses $\kappa$ for a decay rate.)'
     chapter: '11.2'
     anchor: the-area-of-a-horizon-never-shrinks-so-spin-holds-energy-that-can-be-taken-out
+
+  - key: hawking-temperature
+    title: Hawking temperature
+    tex: 'T_H'
+    role: none
+    kind: A temperature; in kelvin
+    meaning: 'The temperature of a black hole''s own glow, $k_BT_H = \hbar\kappa/2\pi c = \hbar c^3/8\pi GM$ without spin (stated): $6.2\times10^{-8}$ K for the Sun''s mass, 0.905 K for $1.356\times10^{23}$ kg. The paper''s letter; it falls as $1/M$.'
+    chapter: '11.3'
+    anchor: a-black-hole-has-a-temperature-lower-the-heavier-it-is
+  - key: equilibrium-mass
+    title: Equilibrium mass
+    tex: '\matter M_{\rm eq}'
+    role: matter
+    kind: A mass; in kilograms
+    meaning: 'The mass of the hole whose Hawking temperature is the graviton sky''s 0.905 K: $M_{\rm eq} = \hbar c^3/8\pi Gk_B T = 1.356\times10^{23}$ kg, 1.85 Moon masses (the paper rounds it to $1.36\times10^{23}$ kg). Its $r_s$ is 0.201 mm.'
+    chapter: '11.3'
+    anchor: a-black-hole-has-a-temperature-lower-the-heavier-it-is
+  - key: hole-entropy
+    title: Entropy of a black hole
+    tex: 'S'
+    role: none
+    kind: An entropy; in J K⁻¹
+    meaning: 'The Bekenstein–Hawking entropy $S = k_BAc^3/4G\hbar = 4\pi Gk_BM^2/\hbar c$ (stated), for which $T_H\,\mathrm dS = c^2\,\mathrm dM$: $4.9\times10^{62}\,k_B$ for the equilibrium mass. (Not the tidal column $S(\hat n)$ or a spectrum, which carries subscripts.)'
+    chapter: '11.3'
+    anchor: a-hovering-observer-near-the-horizon-finds-empty-space-warm
+  - key: greybody-factor
+    title: Greybody factor
+    tex: '\Gamma_\ell(\omega)'
+    role: none
+    kind: A probability; a pure number from 0 to 1 (negative for amplified modes of a spinning hole)
+    meaning: 'The share of a wave of degree $\ell$ and angular frequency $\omega$ that a black hole absorbs, net of stimulated emission. It tends to Page''s $(256/225)(GM\omega/c^3)^6$ for long quadrupole waves and to 1 for short ones; $\Gamma_2 = 0.055$ at $GM\omega/c^3 = 0.3$. (Not chapter 4.1''s damping rate or chapter 7.1''s Christoffel symbols.)'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - key: hole-occupation
+    title: Occupation at the hole's temperature
+    tex: 'n_H'
+    role: none
+    kind: A mean number of quanta per mode; no unit
+    meaning: 'The thermal occupation $1/(e^{\hbar\omega/k_BT_H} - 1)$ of a mode at the Hawking temperature, which the hole emits in the share $\Gamma_\ell$; for a spinning hole it is taken at $\omega - m\Omega_H$ and is negative for $\omega < m\Omega_H$. The paper''s letter.'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - key: background-occupation
+    title: Occupation of the sky
+    tex: 'n_{\rm bg}'
+    role: none
+    kind: A mean number of quanta per mode; no unit
+    meaning: 'The occupation of a mode of the sky that reaches a hole; the hole returns $n_{\rm bg} + \Gamma_\ell(n_H - n_{\rm bg})$. For the 0.905 K graviton sky it is $1/(e^{\hbar\omega/k_BT} - 1)$ with $T = 0.905$ K. The paper''s letter.'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - key: absorption-cross-section
+    title: Absorption cross-section
+    tex: '\sigma_{\rm abs}'
+    role: none
+    kind: An area; in m²
+    meaning: 'The area $(\pi c^2/\omega^2)\sum_\ell(2\ell + 1)\Gamma_\ell$ from which a hole takes the energy of a beam at angular frequency $\omega$; it tends to $27\pi G^2M^2/c^4$ for short waves, reaching it near $GM\omega/c^3 = 1$. (Part 3''s bare $\sigma$ is a surface density.)'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body

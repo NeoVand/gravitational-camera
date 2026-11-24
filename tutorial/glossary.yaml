@@ -4272,3 +4272,65 @@ terms:
     definition: 'A field of a hypothetical very light particle of spin zero or one, trapped round a black hole in orbits like an atom''s. Grown by superradiance, it sends out gravitational waves at twice its frequency, all in one mode, whose gravitons arrive independently, $g^{(2)} = 1$.'
     chapter: '11.2'
     anchor: a-hole-amplifies-a-wave-that-turns-with-it-more-slowly-than-its-horizon
+
+  - term: Hawking temperature
+    definition: 'The temperature of a black hole''s own glow, $k_BT_H = \hbar c^3/8\pi GM$ (Hawking, 1974–75; stated), lower for heavier holes: $6.2\times10^{-8}$ K for the Sun''s mass and 0.905 K for $1.356\times10^{23}$ kg. It holds for a hole formed by collapse, far heavier than the Planck mass.'
+    chapter: '11.3'
+    anchor: a-black-hole-has-a-temperature-lower-the-heavier-it-is
+  - term: Hawking radiation
+    definition: 'The faint thermal glow that quantum fields give a black hole, at its Hawking temperature, in every kind of quantum light enough to be made: gravitons and photons for a cold hole, other particles as well for a hot one.'
+    chapter: '11.3'
+    anchor: a-black-hole-has-a-temperature-lower-the-heavier-it-is
+  - term: equilibrium mass
+    definition: 'The mass $1.356\times10^{23}$ kg, 1.85 Moon masses, of the black hole whose Hawking temperature equals the 0.905 K of the graviton sky. Against that sky it cannot be seen, though its balance with it is unstable.'
+    role: matter
+    chapter: '11.3'
+    anchor: a-black-hole-has-a-temperature-lower-the-heavier-it-is
+  - term: Planck mass
+    definition: 'The mass $\sqrt{\hbar c/G} = 2.2\times10^{-8}$ kg, at which the quantum and the gravity of a body become equally important. Hawking''s temperature holds for holes far heavier than it.'
+    chapter: '11.3'
+    anchor: a-black-hole-has-a-temperature-lower-the-heavier-it-is
+  - term: proper acceleration
+    definition: 'The acceleration that a body''s own accelerometer reads, in m s⁻². A camera hovering at $r$ outside a black hole has $GM/r^2\sqrt{1 - r_s/r}$; a freely falling one has none.'
+    chapter: '11.3'
+    anchor: a-hovering-observer-near-the-horizon-finds-empty-space-warm
+  - term: Unruh effect
+    definition: 'An observer with a steady proper acceleration $a$ through empty, flat space finds the vacuum warm, at $k_BT = \hbar a/2\pi c$ (Unruh, 1976; stated): 1 K needs $2.5\times10^{20}$ m s⁻². Carried from near a horizon to far away, it gives the Hawking temperature.'
+    chapter: '11.3'
+    anchor: a-hovering-observer-near-the-horizon-finds-empty-space-warm
+  - term: Bekenstein–Hawking entropy
+    definition: 'The entropy of a black hole, a quarter of its horizon area in units of $G\hbar/c^3$: $S = k_BAc^3/4G\hbar = 4\pi Gk_BM^2/\hbar c$ (stated). With the Hawking temperature it makes the first law''s area term the heat $T_H\,\mathrm dS$; $4.9\times10^{62}\,k_B$ for the equilibrium mass.'
+    chapter: '11.3'
+    anchor: a-hovering-observer-near-the-horizon-finds-empty-space-warm
+  - term: evaporation of a black hole
+    definition: 'The loss of a hole''s mass to its own Hawking radiation. The power grows as $1/M^2$ and the lifetime as $M^3$; in geometric optics, for one kind of quantum, $t = (20480\pi/27)G^2M^3/\hbar c^4$, $10^{45}$ years for the equilibrium mass.'
+    chapter: '11.3'
+    anchor: a-hole-that-loses-heat-grows-hotter-so-its-balance-with-a-sky-cannot-last
+  - term: greybody factor
+    definition: 'The share $\Gamma_\ell(\omega)$ of a wave of degree $\ell$ and angular frequency $\omega$ reaching a black hole that the hole absorbs, net of the emission the wave stimulates; the rest is scattered back. By detailed balance the hole''s spontaneous emission is the same share of the thermal occupation at its own temperature. (Not a damping rate.)'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - term: grey body
+    definition: 'A body that absorbs only a fraction of each mode that reaches it, and so glows by the same fraction of a black body''s glow at its temperature. A black hole is one, mode by mode.'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - term: Regge–Wheeler equation
+    definition: 'The wave equation $\mathrm d^2\psi/\mathrm dr_*^2 + [\omega^2/c^2 - V_\ell(r)]\psi = 0$ for one polarization of a gravitational wave of degree $\ell$ round a Schwarzschild hole, with a barrier $V_\ell$ that peaks near the photon sphere (Regge and Wheeler, 1957). It gives the greybody factors.'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - term: tortoise coordinate
+    definition: 'The length $r_* = r + r_s\ln(r/r_s - 1)$, which runs from $-\infty$ at a horizon to about $r$ far away, so that a wave near a hole moves as on an ordinary line.'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - term: "Page's limit"
+    definition: 'The absorption of long quadrupole waves by a Schwarzschild hole, $\Gamma_2 \to (256/225)(GM\omega/c^3)^6$ as $GM\omega/c^3 \to 0$ (Page, 1976).'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - term: absorption cross-section
+    definition: 'The area $\sigma_{\rm abs} = (\pi c^2/\omega^2)\sum_\ell(2\ell + 1)\Gamma_\ell$ from which a hole takes a beam''s energy at the angular frequency $\omega$. It tends to the capture cross-section $27\pi G^2M^2/c^4$ for waves short against the hole.'
+    chapter: '11.3'
+    anchor: mode-by-mode-a-hole-is-a-grey-body
+  - term: shadow depth
+    definition: 'The energy a hole removes from a uniform sky, net of its own glow, over what a black disc of the capture cross-section would remove: 0.93, 0.54 and 0.29 at ten, three and twice the equilibrium mass against the 0.905 K sky, and zero at that mass.'
+    chapter: '11.3'
+    anchor: a-shadow-stays-pale-while-the-skys-gravitons-are-long

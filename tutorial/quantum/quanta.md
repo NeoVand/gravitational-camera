@@ -478,7 +478,7 @@ rounds to $7\times10^{17}$.
   2.82\,k_BT$, and the occupations of its modes (Part 10).
 - Section IX's [*Counting or recording*](/paper/#par:counting-or-recording): "$10^{-30}$ gravitons on average" in each
   mode, and half a quantum of added noise (chapters 8.5 and 8.6).
-- [Section XI](/paper/#sec:vistas): the occupations $n_H$ and $n_{\rm bg}$ (Part 12).
+- [Section XI](/paper/#sec:vistas): the occupations $n_H$ and $n_{\rm bg}$ (chapter 11.3).
 :::
 
 ::: deeper
