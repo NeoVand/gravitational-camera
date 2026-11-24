@@ -223,7 +223,7 @@ The near-field scenes. A static field is not radiation, so its picture is limite
 :::
 
 ::: deeper
-- In this tutorial: chapters 5.3 to 5.6, 7.6 to 7.8, Part 10 and R10, in the order of the route
+- In this tutorial: chapters 5.3 to 5.6, 7.6 to 7.8, Part 10, R10 and R10b, in the order of the route
   [To Sections VI and IX](/tutorial/#route-sections-vi-and-ix).
 :::
 
@@ -276,7 +276,7 @@ The near-field scenes. A static field is not radiation, so its picture is limite
 [^sqrt]: Chapter 3.1 derives this square-root law.
 
 [^abel]: The peeling inverts an Abel transform, the paper's [](/paper/#eq:abel), taught in chapter [5.6](/tutorial/waves/abel-transform/#the-transform-can-be-undone) and read in
-    R10. Its [simulation](/paper/#fig:earth-inverted) recovers the layers from a lifetime of counts.
+    R10b. Its [simulation](/paper/#fig:earth-inverted) recovers the layers from a lifetime of counts.
 
 [^detector]: Matter absorbs only through the friction by which it glows. A cubic metre of detector crossed by one
     graviton a second would wait $2 \times 10^{29}$ years, $10^{19}$ ages of the universe, for its first count

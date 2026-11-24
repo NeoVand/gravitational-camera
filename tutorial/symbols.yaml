@@ -3398,3 +3398,20 @@ symbols:
     meaning: 'The electric field needed to drive a unit of current density through a material. In Drude''s picture it sets the collision time of the free electrons, $\tau = m/ne^2\rho_e$: $1.5\times10^{-16}$ s for the Earth''s liquid core at about $1\ \mu\Omega$ m, and $2.5\times10^{-14}$ s for copper at $1.68\times10^{-8}\ \Omega$ m. (Not the density $\rho$.)'
     chapter: R10
     anchor: free-electrons-give-copper-its-friction-and-iron-a-ceiling
+
+  - key: detector-rate
+    title: Gravitons received per second
+    tex: '\dot N_{\rm det}'
+    role: none
+    kind: A rate; in s⁻¹
+    meaning: 'The gravitons a detector of one square metre that collects from every direction receives each second: the number radiance added over the sky, $\int N\,\mathrm d\Omega$. From the whole Earth below, with every shell at its bound, it is $1.42\times10^{-5}\ \mathrm{s^{-1}}$, one graviton every 19.6 hours. (Not $\dot N$, the gravitons a body sends in all directions.)'
+    chapter: R10b
+    anchor: the-earth-below-sends-a-square-metre-one-graviton-every-twenty-hours
+  - key: exposure-time
+    title: Exposure time
+    tex: 't_{\rm obs}'
+    role: none
+    kind: A time; in seconds or years
+    meaning: 'How long a camera collects. Every count grows in proportion to it, so the errors of a fit to counts fall as $1/\sqrt{t_{\rm obs}}$. The paper writes $\tau$ for it in Section IX, where a lifetime is eighty years. (Not an optical depth, a collision time or the reading time of chapter 8.6.)'
+    chapter: R10b
+    anchor: a-lifetime-places-the-edge-of-the-core-to-29-km

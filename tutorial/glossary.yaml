@@ -4111,3 +4111,12 @@ terms:
     definition: 'The electric field needed to drive a unit of current density through a material, in ohm metres. In Drude''s picture, where collisions stop the electrons'' drift at the rate $1/\tau$, it gives their collision time $\tau = m/ne^2\rho_e$: $2.5\times10^{-14}$ s for copper, and a fraction of a femtosecond in the Earth''s core.'
     chapter: R10
     anchor: free-electrons-give-copper-its-friction-and-iron-a-ceiling
+
+  - term: graviton budget
+    definition: 'How many gravitons a detector of one square metre would receive from a scene, and so how long it waits for one: from 0.73 a second for the Sun''s core to one every 19.6 hours for the whole Earth below and one in $9\times10^7$ years for the closed furnace''s hot iron at 3.5 m.'
+    chapter: R10b
+    anchor: the-earth-below-sends-a-square-metre-one-graviton-every-twenty-hours
+  - term: counting pixel
+    definition: 'A pixel that counts gravitons one at a time, by a measurement made of spin-two coherent states, instead of recording the wave. It adds no noise, and each click carries 1.17 bits about where its graviton came from.'
+    chapter: R10b
+    anchor: a-counting-pixel-finds-the-suns-core-to-a-degree-in-half-an-hour

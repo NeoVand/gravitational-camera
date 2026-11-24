@@ -212,7 +212,7 @@ the field it crosses, at first order in its speed over $c$, as 7.5's
 from the tide it crosses. An interferometer meets it "at first order in the length of its arms over the wavelength…"
 [@BaskaranGrishchuk2004]. For LIGO at 100 Hz, with arms of length $L = 4$ km and the wavelength $\lambda = 3000$ km,
 that ratio is $L/\lambda = 1.3\times10^{-3}$. "The waves of moving bodies" are [Section V](/paper/#sec:waves)'s, which
-reading chapter R7b reads, and the thermal glow is Section IX's, for reading chapter R10.
+reading chapter R7b reads, and the thermal glow is Section IX's, for reading chapter R10b.
 
 In [*The Earth's own tide*](/paper/#par:the-earths-own-tide), a pixel at rest on the equator moves with the ground at
 $\Omega R = 465\unit{m\,s^{-1}}$, where $\Omega$ is the Earth's rate of turning and $R$ its equatorial radius. "The two

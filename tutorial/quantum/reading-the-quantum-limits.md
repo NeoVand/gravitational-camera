@@ -217,7 +217,7 @@ vanishes, but the jitter keeps the zero-point swing given
 ## Read ahead: a counter adds no noise, and each graviton tells about one bit
 
 The next two sections read stretches of Sections IX and XI that need only Part 8. Readers on the route to Section IV
-may skip them; reading chapters R10, R11 and R12 will point back here.
+may skip them; reading chapters R10b, R11 and R12 will point back here.
 
 Section IX's [*Counting or recording*](/paper/#par:counting-or-recording) states the tension: each mode of the thermal
 glow "holds of order $10^{-30}$ gravitons on average" (*read now, derived in Part 10*). A device that records both
@@ -249,7 +249,7 @@ Each click carries $\log_2 5 - 4/(5\ln2) = 1.168$ bits about the direction for a
 3.3's measure of how sharply data fix a number, is 2 about each angle for a graviton. That is half of 4, the quantum
 Fisher information of 8.6 for one angle alone, the paper's "half the quantum limit" (*all checked here*). At one
 graviton a second, 1800 gravitons give the information 3600 per angle and an error of $1/\sqrt{3600}$ rad $= 0.95°$, "to
-a degree in half an hour" (the rate is R10's).
+a degree in half an hour" (the rate is R10b's).
 
 ## Read ahead: coincidences tell a sky born hot from one born in inflation
 
@@ -328,7 +328,7 @@ which R9 will read.
 
 Every statement of Section II is now derived or stated. In Section IV the quantum statements are derived in Part 8,
 except the camera's mass bound (chapter 11.1), the resolution of the which-way puzzle (stated in the paper) and
-decoherence by gravity (chapter 13.8). The $10^{-30}$ gravitons per mode come in Part 10 and R10, and the
+decoherence by gravity (chapter 13.8). The $10^{-30}$ gravitons per mode come in Part 10 and R10b, and the
 $0.905\unit K$ glow in Part 12 and R12.
 
 ::: check

@@ -240,7 +240,7 @@ thermal glow "holds of order $10^{-30}$ gravitons on average". Recorded quadratu
 noise is $10^{-30}$ of a quantum against at least one, the zero point's half and the device's half: "recorded pixel by
 pixel, a thermal gravitational image would be buried in that noise". A counter adds no noise, because an empty mode
 never clicks (chapter [8.5](/tutorial/quantum/counting-quanta/#counting-adds-no-noise-but-needs-quanta)), but it loses
-the phase that an array needs to combine its pixels. This is Section IX's tension, read in chapter R10.
+the phase that an array needs to combine its pixels. This is Section IX's tension, read in chapter R10b.
 
 ## No state changes faster than its energy spread allows, and that caps every camera
 
@@ -411,7 +411,7 @@ $\theta$ and $S_\perp$ for $V\tau/\hbar$, so the quantum Fisher information give
 $F_Q = 4\,\mathrm{Var}(S_\perp) = 2s$: in a coherent state each of the $2s$ spins one half adds $\tfrac14$ to the
 variance. The click draws half of it, the paper's "half the quantum limit $2s$ for one angle alone". **A number.** One
 graviton a second for half an hour, 1800 gravitons with $F = 2$ each, gives $F = 3600$ per angle, and an error of
-$1/\sqrt{3600} = 0.0167$ rad, $0.95°$: Section IX's Sun's core "to a degree in half an hour" (read in chapter R10).
+$1/\sqrt{3600} = 0.0167$ rad, $0.95°$: Section IX's Sun's core "to a degree in half an hour" (read in chapter R10b).
 
 ## Each kind of detector reads its own part of the tide
 

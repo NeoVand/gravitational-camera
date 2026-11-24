@@ -202,7 +202,7 @@ array resolves no finer than about $\lambda/D$, with $D$ its width
 here*).[^wheel] The thermal glow is faint because matter barely absorbs, and so barely emits
 ([5.5](/tutorial/waves/radiance/#a-warm-bodys-glow-over-its-absorption-is-the-radiance-of-an-enclosure-at-its-temperature),
 *checked here*); that "almost no gravitons arrive" needs the graviton, a quantum of the wave (*read now, derived in
-Parts 8 and 10*, reading chapter R10).
+Parts 8 and 10*, reading chapter R10b).
 
 ## One property of gravity and two small numbers of matter decide what the camera can do
 
@@ -339,8 +339,8 @@ chapters [5.1](/tutorial/waves/wave-equation/), [5.2](/tutorial/waves/retarded-w
 [5.3](/tutorial/waves/diffraction/), [5.4](/tutorial/waves/polarization/) and [5.5](/tutorial/waves/radiance/). Chapter
 [5.6](/tutorial/waves/abel-transform/) derived Section IX's Abel transform [](/paper/#eq:abel) and its inverse
 [](/paper/#eq:abel-inverse). Three that they use are still stated: the quadrupole formula and the pair's power, which
-chapter 7.7 derives, and Peters's index. Reading chapter R7b reads Section V with Part 7's amplitudes, R10 reads
-Sections VI and IX, and R11 reads Section VII.
+chapter 7.7 derives, and Peters's index. Reading chapter R7b reads Section V with Part 7's amplitudes, R10 and R10b
+read Sections VI and IX, and R11 reads Section VII.
 
 ::: check
 ### Q
