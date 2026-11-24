@@ -2278,3 +2278,19 @@ symbols:
     meaning: 'What is left of the Riemann tensor when its Ricci part is removed: it has every symmetry of the Riemann tensor and no trace. Einstein''s equation does not fix it at the event; it comes from matter elsewhere and from waves. In empty space it is the whole curvature, and for an observer at rest its ten numbers are the five of a trace-free tide and the five of a trace-free magnetic part.'
     chapter: '7.3'
     anchor: inside-matter-the-tide-has-a-part-fixed-by-the-matter-at-that-point
+  - key: gauge-shift
+    title: Gauge shift
+    tex: '\zeta^\mu'
+    role: none
+    kind: Four functions of the event; in metres
+    meaning: 'The small change of coordinates $x''^\mu = x^\mu + \zeta^\mu(x)$ of a weak field. It changes the metric perturbation by $h''_{\mu\nu} = h_{\mu\nu} - \partial_\mu\zeta_\nu - \partial_\nu\zeta_\mu$ and leaves the linearized curvature unchanged. Choosing it with $\Box\zeta_\nu = \partial^\mu\bar h_{\mu\nu}$ reaches harmonic gauge. (Not the separation $\xi$ of two free balls, nor the Calderón exponentials $\zeta_\pm$ of Section XIII.)'
+    chapter: '7.4'
+    anchor: relabelling-the-coordinates-changes-the-table-not-the-curvature
+  - key: perturbation-trace
+    title: Trace of the metric perturbation
+    tex: '\field{h}^\alpha{}_\alpha'
+    role: field
+    kind: One pure number at each event, the same for every observer
+    meaning: 'The sum $h^\alpha{}_\alpha = \eta^{\alpha\beta}h_{\alpha\beta} = -h_{00} + h_{11} + h_{22} + h_{33}$. Trace reversal, $\bar h_{\mu\nu} = h_{\mu\nu} - \tfrac12\eta_{\mu\nu}h^\alpha{}_\alpha$, changes its sign. Near a static slow body it is $-4\Phi/c^2$. Always written with its indices: a bare $h$ is a strain.'
+    chapter: '7.4'
+    anchor: trace-reversal-and-harmonic-gauge-tidy-the-equation

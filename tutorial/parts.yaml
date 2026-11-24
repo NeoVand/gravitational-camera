@@ -108,7 +108,7 @@ parts:
       - { id: '7.1', slug: geometry/metric, title: 'The metric, proper time and free fall', short: The metric, size: L, status: published }
       - { id: '7.2', slug: geometry/curvature-and-tides, title: 'Curvature and tides: the Riemann tensor and geodesic deviation', short: Curvature and tides, size: L, status: published }
       - { id: '7.3', slug: geometry/einstein-equation, title: "Einstein's equation; Ricci and Weyl", short: "Einstein's equation", size: L, status: published }
-      - { id: '7.4', slug: geometry/linearized-gravity, title: 'Linearized gravity and gauge', short: Linearized gravity, size: L, status: planned }
+      - { id: '7.4', slug: geometry/linearized-gravity, title: 'Linearized gravity and gauge', short: Linearized gravity, size: L, status: published }
       - { id: '7.5', slug: geometry/gravitomagnetism, title: "Gravity's electric and magnetic parts; gravitomagnetism", short: Gravitomagnetism, size: M, status: planned }
       - { id: '7.6', slug: geometry/gravitational-waves, title: 'Gravitational waves and their two polarizations', short: Gravitational waves, size: M, status: planned }
       - { id: '7.7', slug: geometry/quadrupole-formula, title: 'The quadrupole formula, from the near zone to the wave zone', short: The quadrupole formula, size: L, status: planned }
@@ -191,7 +191,7 @@ routes:
     chapters: ['0.1', '0.2', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', R2, '3.1', '3.2', '3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '3.9', R3, '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', R4]
   - id: section-viii
     title: To Section VIII, one pixel
-    chapters: ['0.1', '0.4', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '6.1', '6.2', '6.3', '6.4', '6.5', '6.6', '7.1', '7.2', '7.4', '7.5', '7.6', '8.1', '8.4', '9.1', '9.2', '9.3', '9.4', '9.5', R9]
+    chapters: ['0.1', '0.4', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '6.1', '6.2', '6.3', '6.4', '6.5', '6.6', '7.1', '7.2', '7.3', '7.4', '7.5', '7.6', '8.1', '8.4', '9.1', '9.2', '9.3', '9.4', '9.5', R9]
   - id: sections-vi-and-ix
     title: To Sections VI and IX, the thermal glow and a first image
     chapters: ['0.1', '0.3', '0.6', '1.1', '1.2', '1.3', '1.4', '1.5', '1.5b', '1.6', '1.7', R1, '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '3.1', '3.2', '3.3', '3.5', '3.6', '3.4', '3.7', '3.8', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '6.1', '6.2', '6.4', '6.5', '7.1', '7.2', '7.3', '7.4', '7.5', '7.6', '7.7', '7.8', '8.1', '8.3', '8.5', '10.1', '10.2', '10.3', R10]

@@ -3053,3 +3053,33 @@ terms:
     definition: 'One of the four parts of Einstein''s equation, $G^{0\nu} = (8\pi G/c^4)T^{0\nu}$, that hold no second time derivative of the metric: they tie the field at one time to the energy and momentum then, as Gauss''s law does.'
     chapter: '7.3'
     anchor: the-ten-equations-are-not-ten-laws-of-motion
+  - term: linear theory
+    definition: 'Einstein''s theory for a weak field, $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$, keeping every quantity to first order in $h_{\mu\nu}$ and dropping products. Its error relative to what it keeps is about $|h|$: $10^{-25}$ beside a person, 8 per cent at the scale of the orbit of two black holes about to merge.'
+    role: field
+    chapter: '7.4'
+    anchor: a-weak-field-is-a-small-table-laid-on-flat-spacetime
+  - term: gauge transformation
+    definition: 'A small change of coordinates $x''^\mu = x^\mu + \zeta^\mu$, which changes the metric perturbation by $-\partial_\mu\zeta_\nu - \partial_\nu\zeta_\mu$ and leaves the curvature unchanged. The freedom to make it is gauge freedom, and a choice within it is a gauge.'
+    chapter: '7.4'
+    anchor: relabelling-the-coordinates-changes-the-table-not-the-curvature
+  - term: pure gauge
+    definition: 'A metric perturbation of the form $-\partial_\mu\zeta_\nu - \partial_\nu\zeta_\mu$, made by relabelling flat spacetime. It can look like a wave, but it has no curvature and moves no free ball relative to another.'
+    chapter: '7.4'
+    anchor: relabelling-the-coordinates-changes-the-table-not-the-curvature
+  - term: trace-reversed perturbation
+    definition: 'The table $\bar h_{\mu\nu} = h_{\mu\nu} - \tfrac12\eta_{\mu\nu}h^\alpha{}_\alpha$, whose trace is minus that of $h_{\mu\nu}$, so that reversing twice returns $h_{\mu\nu}$. Near slow matter it holds the whole field in one entry, $\bar h_{00} = -4\Phi/c^2$.'
+    role: field
+    chapter: '7.4'
+    anchor: trace-reversal-and-harmonic-gauge-tidy-the-equation
+  - term: harmonic gauge
+    definition: 'The choice of coordinates in which $\partial^\mu\bar h_{\mu\nu} = 0$, also called the Lorenz gauge. It can always be reached, and in it Einstein''s equation for a weak field is one wave equation for each entry of $\bar h_{\mu\nu}$.'
+    chapter: '7.4'
+    anchor: trace-reversal-and-harmonic-gauge-tidy-the-equation
+  - term: linearized field equation
+    definition: 'Einstein''s equation for a weak field in harmonic gauge, $\Box\bar h_{\mu\nu} = -16\pi GT_{\mu\nu}/c^4$: each entry of the trace-reversed perturbation obeys the wave equation, with one entry of the stress–energy tensor as its source.'
+    chapter: '7.4'
+    anchor: in-harmonic-gauge-einsteins-equation-is-a-wave-equation-for-each-component
+  - term: isotropic coordinates
+    definition: 'Coordinates in which the spatial part of the metric is the same in every direction. Near slow matter, to first order, $\mathrm ds^2 = -(1 + 2\Phi/c^2)c^2\mathrm dt^2 + (1 - 2\Phi/c^2)\,\mathrm d\boldsymbol x^2$.'
+    chapter: '7.4'
+    anchor: a-static-source-gives-newtons-potential-in-time-and-in-space
