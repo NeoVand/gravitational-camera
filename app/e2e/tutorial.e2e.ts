@@ -24,7 +24,7 @@ test('tutorial: the home page lists the parts, the routes and the ledger', async
 	await expect(
 		page.locator('#part-1 li', { hasText: 'Tides: the difference in gravity' })
 	).toBeVisible();
-	expect(await page.locator('section.route').count()).toBe(5);
+	expect(await page.locator('section.route').count()).toBe(6);
 	await expect(page.locator('.ledger')).toContainText(/0 of \d+/);
 	await page.getByRole('link', { name: 'Glossary' }).click();
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Glossary');
