@@ -86,7 +86,7 @@ light. The grid has one point in each small cube of volume $(2\pi/D)^3$ in the s
 volume $\dd^3k$ holds $D^3\,\dd^3k/(2\pi)^3$ modes for each polarization.[^halves]
 
 The wavevectors whose length lies between $k$ and $k + \dd k$ fill a spherical shell of radius $k$ and thickness
-$\dd k$, of volume $4\pi k^2\,\dd k$, so the shell holds
+$\dd k$ (Figure [](#fig:planck-shell)), of volume $4\pi k^2\,\dd k$, so the shell holds
 
 $$\sym{mode-number}{\dd N_{\rm modes}} = \frac{D^3}{(2\pi)^3}\,4\pi k^2\,\dd k = \frac{D^3k^2\,\dd k}{2\pi^2}$$
 
@@ -101,15 +101,10 @@ be. A gravitational wave has two polarizations, chapter
 [7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical)'s $h_+$ and
 $h_\times$, so it has twice this many modes. Light also has two, and so the same count.
 
-<!-- diagram: tut-planck-shell — Two panels side by side (one above the other on a phone), about 640 × 300 px at 1440.
-Left: chapter 8.3's grid in the (k_x, k_y) plane, a square lattice of small dots with spacing 2π/D marked once by a
-bracket, and a thin ring of radius k and width dk shaded in a pale neutral; one small square cell of side 2π/D drawn
-round one dot; the label "2πk dk" beside the ring. Right: the same idea in three dimensions, a sphere of radius k cut
-open to show a shell of thickness dk, labelled "4πk² dk", with a few lattice dots on its surface. No colour roles (the
-grid and the shell are neutral). Caption: "Look first at the shaded ring: each dot is one wave that fits in the box,
-one per cell of area (2π/D)², so the ring holds 2πk dk D²/(2π)² of them. In three dimensions the shell holds
-4πk² dk D³/(2π)³, which grows as the square of the frequency. The dots are drawn far wider apart than in a real
-box." -->
+![Look first at the shaded ring: each dot is one wave that fits in the box, one per cell of area $(2\pi/D)^2$, so the
+ring holds $2\pi k\,\dd k\,D^2/(2\pi)^2$ of them. In three dimensions the shell holds $4\pi k^2\,\dd k\,D^3/(2\pi)^3$,
+which grows as the square of the frequency. The dots are drawn far wider apart than in a real
+box.](tut-planck-shell){#fig:planck-shell}
 
 **Check.** The count does not depend on the shape of the box (the margin note above). **Number.** The 293 K glow is
 brightest at 17.2 THz ([below](#the-energy-of-the-glow-peaks-at-2.82-thermal-energies-and-the-count-at-1.59)), an
@@ -176,19 +171,14 @@ infinite energy (the box below).
 $\omega^3e^{-\hbar\omega/\kB T}$. This fall is the **Wien tail**. Its modes are 8.3's frozen modes: one quantum costs
 far more than heat can supply, so they almost never hold one, and the total stays finite.
 
-**Number.** The classical law fails over most of the glow. Only 3.5% of the energy lies below $\hbar\omega = \kB
-T$,[^share] and at $\hbar\omega = \kB T$ itself the Rayleigh–Jeans law overstates the radiance by $e - 1$, or 72%.
-Both numbers depend on $x$ alone, so they are the same at every temperature.
+**Number.** The classical law fails over most of the glow (Figure [](#fig:planck-curves)). Only 3.5% of the energy
+lies below $\hbar\omega = \kB T$,[^share] and at $\hbar\omega = \kB T$ itself the Rayleigh–Jeans law overstates the
+radiance by $e - 1$, or 72%. Both numbers depend on $x$ alone, so they are the same at every temperature.
 
-<!-- diagram: tut-planck-curves — One panel, about 640 × 380 px at 1440 (full width on a phone). B_ω against
-frequency f = ω/2π from 0 to 250 THz on linear axes, for 293 K, 700 K and 1500 K, three neutral greys from light to
-dark (temperatures are neutral). On each curve a small filled dot at the energy peak, f = 2.821 k_BT/h (17.2, 41.2,
-88.2 THz), and a small open dot at the number peak of B_ω/ħω, f = 1.594 k_BT/h (9.73, 23.2, 49.8 THz), placed on the
-curve at that frequency. The Rayleigh–Jeans line ω²k_BT/4π³c² for 1500 K dashed, leaving the frame upward. Axis labels
-"frequency (THz)" and "B_ω", no numbers on the vertical axis (shape only). Caption: "Look first at the dashed line:
-the classical law follows the 1500 K curve only at the lowest frequencies, then climbs without limit, while the true
-glow turns over and dies away. Filled dots mark where the energy per unit frequency peaks, open dots where the count of
-quanta peaks; both move in proportion to the temperature. All curves are exact." -->
+![Look first at the dashed line: the classical law follows the 1500 K curve only at the lowest frequencies, then
+climbs without limit, while the true glow turns over and dies away. Filled dots mark where the energy per unit
+frequency peaks, open dots where the count of quanta peaks; both move in proportion to the temperature. The 293 K
+curve, in the inset, is drawn forty times taller. All curves are exact.](tut-planck-curves){#fig:planck-curves}
 
 **Meaning.** A black body is a set of oscillators, each holding chapter 8.3's thermal occupation. Light and gravity
 differ only in what their quanta are, photons or gravitons (that gravitational waves come in quanta is stated, in
@@ -207,7 +197,7 @@ by counting quanta in cells, as this chapter does.
 
 We want three totals over all frequencies: the power, the number of quanta, and their ratio, the mean energy of a
 quantum. With $\omega = (\kB T/\hbar)\,x$, each becomes a constant times $\int_0^\infty x^n\,\dd x/(e^x - 1)$, with $n
-= 3$ for the energy and $n = 2$ for the count.
+= 3$ for the energy and $n = 2$ for the count (Figure [](#fig:planck-integrals)).
 
 **The integrals.** For $x > 0$, $e^{-x} < 1$, so chapter 8.3's geometric series gives
 
@@ -237,13 +227,9 @@ $$\begin{aligned}
 \int_0^\infty\frac{x^3\,\dd x}{e^x - 1} &= \frac{\pi^4}{15} = 6.494 .
 \end{aligned}$$
 
-<!-- diagram: tut-planck-integrals — One panel, about 560 × 340 px at 1440. The three curves x^n/(e^x − 1) for n = 1,
-2, 3 on 0 ≤ x ≤ 12, in three neutral line styles (thin solid, medium, thick), each with its area shaded very faintly
-and labelled at its right end: "area π²/6 = 1.645", "2ζ(3) = 2.404", "π⁴/15 = 6.494". Peaks marked by a small dot and a
-short vertical tick to the axis: n = 2 at x = 1.594 (height 0.648), n = 3 at x = 2.821 (height 1.421); the n = 1
-curve starts at 1 and only falls, with no dot. Axis label "x = ħω/k_BT". Caption: "Look first at the peaks: counting
-quanta (n = 2) peaks at x = 1.59, energy (n = 3) at 2.82, and the n = 1 curve falls from the start. The areas are the
-Bose integrals n! ζ(n + 1). All curves are exact." -->
+![Look first at the peaks: counting quanta ($n = 2$) peaks at $x = 1.59$, energy ($n = 3$) at 2.82, and the $n = 1$
+curve falls from the start. The areas are the Bose integrals $n!\,\zeta(n + 1)$. All curves are
+exact.](tut-planck-integrals){#fig:planck-integrals}
 
 **The power.** In the variable $x$, Planck's law is $B_\omega\,\dd\omega = (\hbar/4\pi^3c^2)(\kB T/\hbar)^4\,x^3\,\dd
 x/(e^x - 1)$, so the integral with $n = 3$ gives
@@ -417,7 +403,7 @@ therefore Planck's law at the temperature $T' = T(\alpha')$, with
 
 $$\boxed{T(\alpha') = \frac{T}{\obs\gamma\,(1 - \obs\beta\cos\alpha')}} ,$$
 
-chapter 6.3's result, now derived from the **invariance of the occupation**.
+chapter 6.3's result, now derived from the **invariance of the occupation** (Figure [](#fig:planck-moving)).
 
 ::: gap
 This sketch assumes that a boost carries one mode into one mode. With the momentum $\vect p = \hbar\vect k$, the
@@ -428,15 +414,9 @@ quanta fill by $\omega/\omega'$, so the product $\dd V\,\dd^3p$, and with it the
 every observer (stated; proved in Misner, Thorne and Wheeler, section 22.6 [@MisnerThorneWheeler1973]).
 :::
 
-<!-- diagram: tut-planck-moving — Two discs side by side (stacked on a phone), about 640 × 320 px at 1440: the sky of a
-black body seen from rest (left) and at 0.6c (right), each drawn as a circle in the plane of the motion with the
-observer at its centre and the motion to the right (an arrow labelled "0.6c" in the observer colour on the right disc).
-The rim of each disc is filled by the temperature seen in that direction, from a sequential neutral-to-warm scale:
-uniform at T on the left; on the right 2T straight ahead, 0.8T at right angles to the motion in the observer's frame,
-0.5T straight behind, with three small labels "2T", "0.8T", "T/2" outside the rim. A thin bar beside the right disc
-shows the colour scale from T/2 to 2T. Caption: "Look first at the right disc's rim: moving at 0.6c through a glow of
-one temperature, the observer sees a black body in every direction, twice as hot ahead and half as hot behind. The
-temperatures are exact; the colours are a scale, not the glow's real colour." -->
+![Look first at the right disc's rim: moving at $0.6c$ through a glow of one temperature, the observer sees a black
+body in every direction, twice as hot ahead and half as hot behind. The temperatures are exact; the colours are a
+scale, not the glow's real colour.](tut-planck-moving){#fig:planck-moving}
 
 **Checks.** At $\obs\beta = 0$ the temperature is $T$ everywhere. At $0.6c$, $\obs\gamma = 1.25$: straight
 ahead ($\alpha' = 0$) the factor is $1/(1.25\times0.4) = 2$, twice $T$; straight behind it is $1/(1.25\times1.6) =
