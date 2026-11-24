@@ -234,7 +234,7 @@ instead of recording mostly noise.
 :::
 
 ::: deeper
-- Chapters 9.1 to 9.5 and R9 teach one point of the field, and [6.3](/tutorial/relativity/aberration/) aberration, on
+- Chapters 9.1 to 9.7, R9 and R9b teach one point of the field, and [6.3](/tutorial/relativity/aberration/) aberration, on
   the [route to Section VIII](/tutorial/#route-section-viii).
 - The [GR course, section 10.10](https://neovand.github.io/general-relativity/chapter-10.html#10-10-why-twenty-curvature-numbers-survive-local-flattening)
   counts the twenty numbers of curvature at a point, of which a pixel in empty space reads ten.
@@ -247,7 +247,7 @@ instead of recording mostly noise.
 
 [^beam]: Chapter [5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array) derives beamforming and its sharpness.
 
-[^onepixel]: The paper's [](/paper/#fig:array) explains it in its caption; chapter 9.5 derives it.
+[^onepixel]: The paper's [](/paper/#fig:array) explains it in its caption; chapter 9.6 derives it.
 
 [^four]: Chapter [7.6](/tutorial/geometry/gravitational-waves/#of-the-ten-amplitudes-of-a-plane-wave-two-are-physical)
     derives the two polarizations, and
@@ -281,7 +281,7 @@ instead of recording mostly noise.
     [7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight)
     and [7.6](/tutorial/geometry/gravitational-waves/#the-magnetic-part-of-a-wave-is-its-tide-turned-by-45).
 
-[^price]: Derived in chapter 9.5.
+[^price]: Derived in chapter 9.7.
 
 [^aberration]: Derived in chapter
     [6.3](/tutorial/relativity/aberration/#at-small-speeds-the-shift-is-the-speed-across-the-line-of-sight-over-c).
