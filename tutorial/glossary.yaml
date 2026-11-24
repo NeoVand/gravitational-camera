@@ -3285,3 +3285,63 @@ terms:
     definition: 'The loss of interference when the environment keeps records of which state a system is in: the overlaps of the records of its many parts multiply and fall quickly to zero. A perfect camera is a perfect source of it.'
     chapter: '8.1'
     anchor: a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records
+  - term: operator
+    definition: 'In quantum mechanics, the table that stands for a measurable quantity: its eigenvalues are the possible outcomes, its eigenvectors the states in which the quantity has a definite value, and its mean in a state $|\psi\rangle$ is $\langle\psi|A|\psi\rangle$.'
+    chapter: '8.2'
+    anchor: a-measurable-quantity-is-a-hermitian-table
+  - term: expectation value
+    definition: 'The mean of a quantum quantity in a state, $\langle A\rangle = \langle\psi|A|\psi\rangle$: the outcomes weighted by their probabilities, over many runs prepared alike.'
+    chapter: '8.2'
+    anchor: a-measurable-quantity-is-a-hermitian-table
+  - term: Hermitian (self-adjoint)
+    definition: 'Of a table of complex numbers, equal to its conjugate transpose, $A^\dagger = A$. Its eigenvalues are real and its eigenvectors for different eigenvalues orthogonal, so it can stand for a measurable quantity.'
+    chapter: '8.2'
+    anchor: a-measurable-quantity-is-a-hermitian-table
+  - term: Pauli matrices
+    definition: 'The three Hermitian tables $\sigma_1$, $\sigma_2$, $\sigma_3$ of two rows, each with the outcomes $\pm1$; $\sigma_3 = \mathrm{diag}(1, -1)$ asks which of two paths a particle took. Chapter 8.4 uses them for a spin.'
+    chapter: '8.2'
+    anchor: a-measurable-quantity-is-a-hermitian-table
+  - term: commutator
+    definition: 'The difference $[A, B] = AB - BA$ of two operators multiplied in the two orders. Two quantities whose commutator is not zero cannot both have definite values in one state.'
+    chapter: '8.2'
+    anchor: two-quantities-that-do-not-commute-cannot-both-be-sharp
+  - term: commuting quantities
+    definition: 'Two quantum quantities whose commutator is zero. They share their eigenvectors, so a state can give both a definite value.'
+    chapter: '8.2'
+    anchor: two-quantities-that-do-not-commute-cannot-both-be-sharp
+  - term: "Robertson's inequality"
+    definition: 'The bound $\sigma_A\sigma_B \ge \tfrac12|\langle[A, B]\rangle|$ on the standard deviations of two quantities in any one state, derived from the Cauchy–Schwarz inequality.'
+    chapter: '8.2'
+    anchor: two-quantities-that-do-not-commute-cannot-both-be-sharp
+  - term: momentum operator
+    definition: 'Momentum acting on a wave function by differentiating it, $p\psi = -i\hbar\,\mathrm d\psi/\mathrm dx$, so that the ripple $e^{ipx/\hbar}$ has the definite momentum $p$. It gives $[x, p] = i\hbar$.'
+    chapter: '8.2'
+    anchor: momentum-is-a-derivative-and-x-p-ihbar
+  - term: "Heisenberg's uncertainty relation"
+    definition: 'The bound $\sigma_x\sigma_p \ge \hbar/2$ on the spreads of position and momentum in any state: Robertson''s inequality with $[x, p] = i\hbar$, and chapter 2.6''s uncertainty relation with $p = \hbar k$. A Gaussian wave packet reaches it.'
+    chapter: '8.2'
+    anchor: the-uncertainty-relation-is-robertsons-inequality-for-position-and-momentum
+  - term: chirp
+    definition: 'A phase $e^{iax^2}$ that multiplies a wave function: it leaves the probability density alone but spreads the momenta, so a chirped packet is far from the least value of $\sigma_x\sigma_p$.'
+    chapter: '8.2'
+    anchor: the-uncertainty-relation-is-robertsons-inequality-for-position-and-momentum
+  - term: "Schrödinger's equation"
+    definition: 'The rule by which every quantum state changes in time, $i\hbar\,\mathrm d|\psi\rangle/\mathrm dt = H|\psi\rangle$, with $H$ the operator of the energy. A state of definite energy $E$ turns as $e^{-iEt/\hbar}$.'
+    chapter: '8.2'
+    anchor: the-quantum-equation-of-motion-is-the-classical-one-with-ihbar-times-the-bracket
+  - term: Heisenberg equation
+    definition: 'The rate of change of a quantum mean, $\mathrm d\langle A\rangle/\mathrm dt = (i/\hbar)\langle[H, A]\rangle$: Hamilton''s $\dot A = \{A, H\}$ with the commutator over $i\hbar$ in the place of the Poisson bracket.'
+    chapter: '8.2'
+    anchor: the-quantum-equation-of-motion-is-the-classical-one-with-ihbar-times-the-bracket
+  - term: "Dirac's rule (correspondence)"
+    definition: 'The rule $[A, B] = i\hbar\{A, B\}$ that takes Poisson brackets to commutators. With every product of positions and momenta written in the symmetric order, it is exact when one quantity has degree at most two, and when one depends on the positions alone and the other has degree at most two in the momenta, which covers every commutator the paper uses; for higher powers it fails by terms of order $\hbar^2$.'
+    chapter: '8.2'
+    anchor: the-quantum-equation-of-motion-is-the-classical-one-with-ihbar-times-the-bracket
+  - term: degree (in positions and momenta)
+    definition: 'The largest number of positions and momenta multiplied together in one term of a quantity: two for the kinetic energy $p^2/2m$, three for $x^3$. Dirac''s rule is exact when one of the two quantities has degree at most two.'
+    chapter: '8.2'
+    anchor: the-quantum-equation-of-motion-is-the-classical-one-with-ihbar-times-the-bracket
+  - term: symmetrized product
+    definition: 'The average of two operators multiplied in both orders, as in the paper''s $\dot Q_g = \tfrac12\sum_a(\mathbf p_a\cdot\nabla g + \nabla g\cdot\mathbf p_a)$. When the two orders differ, as they do for a general $g$, only the average is Hermitian.'
+    chapter: '8.2'
+    anchor: two-moments-of-a-body-do-not-commute

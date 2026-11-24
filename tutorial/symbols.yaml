@@ -2446,3 +2446,51 @@ symbols:
     meaning: 'The states in which a pixel''s masses, a graviton or anything else outside ends when the mass is at $L$ or at $R$. They multiply the interference term by their overlap: $P_R = \tfrac12[1 + \mathrm{Re}(\langle e_R|e_L\rangle e^{i\phi})]$, so a perfect record, $\langle e_R|e_L\rangle = 0$, leaves no fringes.'
     chapter: '8.1'
     anchor: a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records
+  - key: operator
+    title: Operator of a quantity
+    tex: 'A'
+    role: none
+    kind: A Hermitian table (or, on wave functions, a rule such as a derivative); in the unit of its quantity
+    meaning: 'The table that stands for a measurable quantity, $A = \sum_k a_k|k\rangle\langle k|$: its eigenvalues $a_k$ are the possible outcomes and its eigenvectors $|k\rangle$ the states in which the quantity has a definite value. It equals its conjugate transpose, $A^\dagger = A$. The tutorial puts no hat on an operator (hats are unit vectors) and gives it its quantity''s letter. (Not chapter 4.5''s sum $A$.)'
+    chapter: '8.2'
+    anchor: a-measurable-quantity-is-a-hermitian-table
+  - key: quantum-mean
+    title: Expectation value
+    tex: '\langle A\rangle'
+    role: none
+    kind: A real number; in the unit of $A$
+    meaning: 'The mean of the outcomes of $A$ over many runs prepared in the state $|\psi\rangle$, each weighted by its Born-rule probability: $\langle A\rangle = \langle\psi|A|\psi\rangle$. It is chapter 3.1''s mean, not chapter 3.2''s average over time.'
+    chapter: '8.2'
+    anchor: a-measurable-quantity-is-a-hermitian-table
+  - key: pauli
+    title: Pauli matrices
+    tex: '\sigma_1,\ \sigma_2,\ \sigma_3'
+    role: none
+    kind: Three Hermitian 2 × 2 tables; pure numbers
+    meaning: '$\sigma_1 = \bigl(\begin{smallmatrix}0 & 1\\ 1 & 0\end{smallmatrix}\bigr)$, $\sigma_2 = \bigl(\begin{smallmatrix}0 & -i\\ i & 0\end{smallmatrix}\bigr)$, $\sigma_3 = \mathrm{diag}(1, -1)$, each with the outcomes $\pm1$, and $[\sigma_1, \sigma_2] = 2i\sigma_3$. Bold $\boldsymbol\sigma$ is the three together. They carry numbers, never letters: $\sigma_x$ is a standard deviation and a bare $\sigma$ a surface density.'
+    chapter: '8.2'
+    anchor: a-measurable-quantity-is-a-hermitian-table
+  - key: commutator
+    title: Commutator
+    tex: '[A, B]'
+    role: none
+    kind: An operator; in the unit of $AB$
+    meaning: 'The difference $AB - BA$ of two products of operators. If it is not zero, no state gives both quantities definite values, and $\sigma_A\sigma_B \ge \tfrac12|\langle[A, B]\rangle|$. Dirac''s rule makes it $i\hbar$ times the Poisson bracket, as in $[x, p] = i\hbar$.'
+    chapter: '8.2'
+    anchor: two-quantities-that-do-not-commute-cannot-both-be-sharp
+  - key: momentum-operator
+    title: Momentum operator
+    tex: 'p = -i\hbar\,\mathrm d/\mathrm dx'
+    role: none
+    kind: An operator on wave functions; in kg m s⁻¹
+    meaning: 'Momentum acting on a wave function: $p\psi = -i\hbar\,\mathrm d\psi/\mathrm dx$, chosen so that the ripple $e^{ipx/\hbar}$ is a state of definite momentum $p$. With position it gives $[x, p] = i\hbar$, and with any function of position $[f(x), p] = i\hbar f''(x)$.'
+    chapter: '8.2'
+    anchor: momentum-is-a-derivative-and-x-p-ihbar
+  - key: generated-unitary
+    title: Unitary table made by a generator
+    tex: 'U = e^{-i\lambda G/\hbar}'
+    role: none
+    kind: A unitary operator; no unit
+    meaning: 'The change of state that a Hermitian generator $G$ makes, the solution of Schrödinger''s equation with $G$ in the place of $H$. It moves every quantity as $U^\dagger FU = F + \lambda\{F, G\} + \dots$, chapter 1.7''s motion. The momentum makes slides, $e^{-isp/\hbar}\psi(x) = \psi(x - s)$, and the paper''s impulse is $e^{i\epsilon Q_g/\hbar}$. (Not chapter 8.1''s beam splitter $U$.)'
+    chapter: '8.2'
+    anchor: a-generator-is-the-exponent-of-a-unitary-table
