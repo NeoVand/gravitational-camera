@@ -152,9 +152,9 @@ $$\frac{\dd\obs\tau}{\dd t} = \sqrt{1 - \frac{r_s}{r}}$$
 
 of the far clock's rate, which tends to 1 far away. At the Earth's surface it loses $6.96\times10^{-10}$, 22 ms a
 year. The rate falls to zero at $r = r_s$: seen from far away, a clock held there would stop, and its light would
-arrive redshifted without limit. The sphere $r = r_s$ is the **horizon**, the surface from inside which nothing
-escapes (stated below). A body of radius $R$ that fills it has the **compactness** $\mathcal C = G\matter M/Rc^2$
-(chapter
+arrive redshifted without limit (Figure [](#fig:schw-clocks)). The sphere $r = r_s$ is the **horizon**, the surface from
+inside which nothing escapes (stated below). A body of radius $R$ that fills it has the **compactness**
+$\mathcal C = G\matter M/Rc^2$ (chapter
 [0.4](/tutorial/evening/one-pixel/#no-lens-can-be-made-so-the-camera-computes-its-pictures)) at $R = r_s$, exactly
 $\tfrac12$: Section III's "about one half for a black hole".
 
@@ -171,13 +171,8 @@ $$\boxed{\;a = \frac{G\matter M}{r^2\sqrt{1 - r_s/r}}\;} .$$
 "grows without limit as it nears the horizon". Beside a hole of 30 solar masses ($r_s = 88.6$ km), at $1.01\,r_s$, a
 hovering camera needs $5.0\times10^{12}\unit{m\,s^{-2}}$, half a million million times the Earth's gravity.
 
-<!-- diagram: tut-schw-clocks — One panel, about 600 × 320 px at 1440 (full width on a phone). Horizontal axis r/r_s
-from 1 to 6, labelled "r / r_s"; two curves on one shared vertical scale from 0 to 2: the clock rate √(1 − r_s/r),
-rising from 0 at the horizon toward 1 (observer colour, labelled "clock rate"), and the hovering acceleration in units
-of its Newtonian value, 1/√(1 − r_s/r), falling from infinity toward 1 (neutral, labelled "a / (GM/r²)"), cut off at 2
-with a small arrow "→ ∞". A thin vertical line at r = r_s, "horizon", and a dashed one at r = 1.5 r_s, "photon
-sphere". Caption: "Look first at the horizon line: there a clock at rest stops, as seen from far away, and the push
-needed to hold it grows without limit. Both curves are exact for the Schwarzschild metric." -->
+![Look first at the horizon line: there a clock at rest stops, as seen from far away, and the push needed to hold it
+grows without limit. Both curves are exact for the Schwarzschild metric.](tut-schw-clocks){#fig:schw-clocks}
 
 **Inside.** For $r < r_s$ the factor $1 - r_s/r$ is negative, so $\field g_{00} > 0$ and $\field g_{rr} < 0$. A path
 at fixed $r$ would then have $c^2\dd\obs\tau^2 < 0$, which no body or flash can have. Inside the horizon $r$ behaves
@@ -222,10 +217,10 @@ respect to $\obs\tau$ and dividing by $2\,\dd r/\dd\obs\tau$,
 $$\frac{\dd^2r}{\dd\obs\tau^2} = -\frac{G\matter M}{r^2}\quad\text{exactly.} \label{eq:fall}$$
 
 **Across.** Two such bodies fall along neighbouring radii an angle $\delta\varphi$ apart, released at the same $r$
-with the same $E$. By symmetry they stay at one $r$ at each $\obs\tau$, and $\delta\varphi$ stays fixed. On the
-sphere through them the metric's $r^2\dd\varphi^2$ makes their separation $\xi = r\,\delta\varphi$. This is also the
-separation that the falling bodies measure with their own rulers, because motion shortens a ruler only along the motion
-(chapter
+with the same $E$ (Figure [](#fig:schw-falling-pair)). By symmetry they stay at one $r$ at each $\obs\tau$, and
+$\delta\varphi$ stays fixed. On the sphere through them the metric's $r^2\dd\varphi^2$ makes their separation
+$\xi = r\,\delta\varphi$. This is also the separation that the falling bodies measure with their own rulers, because
+motion shortens a ruler only along the motion (chapter
 [6.1](/tutorial/relativity/lorentz/#a-moving-ruler-is-shorter-along-its-motion-and-distances-in-a-bodys-own-frame-are-longer)),
 and the separation lies across it. So by [](#eq:fall)
 
@@ -240,14 +235,9 @@ $$\boxed{\;\curv{\tE} = \frac{G\matter M}{r^3}\,\mathrm{diag}(1, 1, -2)\;} \labe
 
 exactly, for every body falling along a radius, whatever its $E$.
 
-<!-- diagram: tut-schw-falling-pair — One panel, about 560 × 340 px at 1440. A small dark disc (the hole) at the
-left, with three thin radial lines fanning from it. Two pairs of small balls on them, each shown at two moments
-(faint, then solid): a pair on one radius, one ball above the other, drawn farther apart at the later moment (orange
-arrows, "stretch, 2GM/r³"); and a pair on two neighbouring radii at one r, drawn closer together at the later moment,
-the gap labelled "r δφ" (blue arrows, "squeeze, GM/r³"). A short arc on a circle round the hole marks the gap as part
-of the circumference. Caption: "Look first at the pair on two radii: both fall by the exact law of a single body, so
-their gap r δφ shrinks with r, a squeeze GM/r³ across. Empty space has no trace of tide, so the stretch along the
-radius is twice as large. Distances are not to scale." -->
+![Look first at the pair on two radii: both fall by the exact law of a single body, so their gap $r\,\delta\varphi$
+shrinks with $r$, a squeeze $G\matter M/r^3$ across. Empty space has no trace of tide, so the stretch along the radius
+is twice as large. Distances are not to scale.](tut-schw-falling-pair){#fig:schw-falling-pair}
 
 **Two cameras.** A camera at rest at $r$ has, at each instant, the four-velocity of a body released from rest there,
 and the tide depends only on the place and the four-velocity (chapter 7.2), so the hovering camera reads
@@ -320,22 +310,16 @@ $$\sym{critical-impact-parameter}{b_c} = \tfrac32\sqrt3\,r_s = \sqrt{27}\,\frac{
 
 Both $r_s$ and $b_c$ are lengths, and $b_c = 2.6\,r_s$. Rays with $b > b_c$ turn at the barrier and leave; rays with
 $b < b_c$ pass over it and fall in; a ray with $b = b_c$ circles the photon sphere for ever, though the smallest
-nudge sends it in or out. A hole therefore removes from any beam the disc of rays inside $b_c$, the **capture
-cross-section**
+nudge sends it in or out (Figure [](#fig:schw-barrier)). A hole therefore removes from any beam the disc of rays inside
+$b_c$, the **capture cross-section**
 
 $$\boxed{\;\pi b_c^2 = \frac{27\pi G^2\matter M^2}{c^4}\;} ,$$
 
 Section XI's geometric cross-section: $1.85\times10^8\unit{m^2}$ for the Sun's mass. For Section VII's hole the disc
 is 0.52 mm in radius, about a grain of sand, and waves much longer than that pass it almost unabsorbed (chapter 11.3).
 
-<!-- diagram: tut-schw-barrier — Two panels side by side (stacked on a phone), about 680 × 300 px at 1440. Left: the
-barrier (1 − r_s/r)/r² against r/r_s from 1 to 8, peaking at 1.5 (dashed vertical, "photon sphere"), with three
-horizontal levels 1/b²: above the peak ("b < b_c: falls in"), touching it ("b = b_c"), below it ("b > b_c: turns
-back"). Right: the plane of the orbit with the hole as a dark disc of radius r_s, the photon sphere dashed, and three
-exact rays from the left with b = 0.8 b_c (ends on the horizon), b = 1.0001 b_c (winds once round the photon sphere)
-and b = 1.6 b_c (bent and leaving), all from the section's orbit equation. Neutral greys, rays in
-the light colour. Caption: "Look first at the peak: a ray whose level 1/b² clears it falls into the hole, and one that
-meets it turns back. The rays are exact Schwarzschild rays." -->
+![Look first at the peak: a ray whose level $1/b^2$ clears it falls into the hole, and one that meets it turns back. The
+rays are exact Schwarzschild rays.](tut-schw-barrier){#fig:schw-barrier}
 
 **The angle at the camera.** A camera at rest at $r$ has its own clock, $\dd\obs\tau = \sqrt{\field f}\,\dd t$, and
 across the radius its own ruler measures $r\,\dd\varphi$. Light moves at $c$ in the camera's frame, so a ray arriving
@@ -344,12 +328,12 @@ at the angle $\psi$ from the direction of the hole has $\sin\psi$ equal to its s
 
 $$\sin\psi = \frac{b}{r}\sqrt{1 - \frac{r_s}{r}} .$$
 
-**The shadow.** The **shadow** of a hole is the set of directions from which no light comes. Take a camera outside
-the photon sphere, where the barrier falls with $r$. A ray seen away from the hole ($\psi > 90°$), traced back, moves
-outward and comes from far away. A ray seen toward the hole, traced back, moves inward: the barrier turns it out to
-far away if $b > b_c$, and it ends on the horizon if $b < b_c$. At a fixed $r$, $\sin\psi$ grows with $b$, so the
-dark directions are those within the angle $\sym{shadow-radius}{\alpha_h}$ of the hole (chapter 6.3's letter), the
-value of $\psi$ at $b = b_c$:
+**The shadow.** The **shadow** of a hole is the set of directions from which no light comes (Figure
+[](#fig:schw-shadow-angle)). Take a camera outside the photon sphere, where the barrier falls with $r$. A ray seen away
+from the hole ($\psi > 90°$), traced back, moves outward and comes from far away. A ray seen toward the hole, traced
+back, moves inward: the barrier turns it out to far away if $b > b_c$, and it ends on the horizon if $b < b_c$. At a
+fixed $r$, $\sin\psi$ grows with $b$, so the dark directions are those within the angle $\sym{shadow-radius}{\alpha_h}$
+of the hole (chapter 6.3's letter), the value of $\psi$ at $b = b_c$:
 
 $$\boxed{\;\sin\alpha_h = \sqrt{27}\,\frac{G\matter M}{c^2r}\sqrt{1 - \frac{2G\matter M}{c^2r}}\;} ,$$
 
@@ -363,14 +347,9 @@ horizon, because the light it bends toward the camera fills out its edge. **An o
 $4.3\times10^6$ solar masses at 8.28 kpc, the shadow is $53\,\mu$as across, and the Event Horizon Telescope's ring
 measured $52\,\mu$as in 2022.
 
-<!-- diagram: tut-schw-shadow-angle — One panel, about 560 × 320 px at 1440. The hole at the left (dark disc r_s,
-photon sphere dashed), a camera at the right drawn as a small square at r = 8 r_s. Through the camera, the cone of the
-shadow: two straight lines at ±α_h from the line to the hole, the cone shaded faint. One exact ray arriving at the
-camera at the angle ψ just outside the cone (light colour), bent round the photon sphere, with its impact parameter b
-marked far from the hole as a perpendicular to its straight asymptote. Labels: "ψ", "α_h", "b". Caption: "Look first
-at the cone: every direction inside it traces back to the horizon, so no light comes from it. A ray at the angle ψ
-has sin ψ = (b/r)√(1 − r_s/r), and the cone's edge is the ray with b = b_c. The ray is exact; the camera's size is
-not to scale." -->
+![Look first at the cone: every direction inside it traces back to the horizon, so no light comes from it. A ray at the
+angle $\psi$ has $\sin\psi = (b/r)\sqrt{1 - r_s/r}$, and the cone's edge is the ray with $b = b_c$. The ray is exact;
+the camera's size is not to scale.](tut-schw-shadow-angle){#fig:schw-shadow-angle}
 
 ## Far from a mass, light bends by twice Newton's angle
 
@@ -440,8 +419,8 @@ $$\boxed{\;\sym{einstein-radius}{b_E} = \sqrt{2r_sd}\;} ,$$
 
 and sees them as the **Einstein ring** round the mass, at the angle $b_E/d = \sqrt{2r_s/d}$. A ring, because the
 source, the mass and the camera lie on one line, so every ray at $b_E$, whatever its direction round the axis, reaches
-the camera. **Numbers** for Section VII's hole: at 1 m the ring is $1.15°$ in radius, the paper's "$1.2^\circ$"; at
-26.3 km, $b_E = 3.26$ m and the ring is $25.6''$.[^rounding]
+the camera (Figure [](#fig:schw-ring)). **Numbers** for Section VII's hole: at 1 m the ring is $1.15°$ in radius, the
+paper's "$1.2^\circ$"; at 26.3 km, $b_E = 3.26$ m and the ring is $25.6''$.[^rounding]
 
 **The exact ring.** Figure [](/paper/#fig:black-hole)'s dashed ring, seen from $40\,G\matter M/c^2$, is where the sky
 straight behind the hole appears. Its rays come in from far away to their nearest point $r_0$, where $1/b^2 = \field
@@ -458,14 +437,9 @@ short: near a hole the exact rays matter. Rays seen between the shadow and the r
 bring light from the opposite side of the sky, so the figure shows the Milky Way's band below the hole a second time,
 as an arc above it.
 
-<!-- diagram: tut-schw-ring — Two panels (stacked on a phone), about 680 × 300 px at 1440. Left: a source far to the
-left, the mass at the centre, the camera on the axis at the distance d to the right; two rays at ±b_E bent toward the
-axis and meeting at the camera, with a few rays at larger b crossing farther away along the line of foci (marked
-"b²/2r_s"). Right: the camera's sky as a disc, the mass at the centre, the ring at √(2r_s/d) drawn as a light-coloured
-circle; beside it a second small sky at 40 GM/c² with the shadow filled dark (7.27°), the exact ring (20.2°, solid)
-and the weak-field ring (18.1°, dashed). Caption: "Look first at the two rays meeting at the camera: they pass at the
-Einstein radius, and by symmetry so does every ray at that distance, so the source appears as a ring. Near a hole
-(right) the exact ring is larger than the weak-field one. The left panel is not to scale." -->
+![Look first at the two rays meeting at the camera: they pass at the Einstein radius, and by symmetry so does every ray
+at that distance, so the source appears as a ring. Near a hole (right) the exact ring is larger than the weak-field one.
+The left panel is not to scale.](tut-schw-ring){#fig:schw-ring}
 
 A transparent body, an **extended lens**, bends a ray that crosses it only by the mass inside the cylinder of radius
 $b$ along the ray, as chapter 12.1 shows for Section XI's transparent Sun (Figure [](/paper/#fig:sun-lens)).
