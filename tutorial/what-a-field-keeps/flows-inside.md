@@ -6,7 +6,7 @@ part: '13'
 requires: ['1.1', '1.4', '1.5b', '1.6', '1.7', '1.8', '2.1', '2.3', '2.5', '2.6', '2.8', '4.3', '4.5', '7.5', '13.2', '13.3']
 paper: [sec:second-order, eq:flow-bracket, eq:hidden-spin, fig:hidden-flow, eq:calderon, eq:sum-rule, tab:hair, tab:null, sec:near-field]
 figures: [fig:hidden-flow]
-live: [hidden-flow]
+live: [tides-in-turn]
 depth: A
 ---
 
@@ -97,8 +97,9 @@ $\sym{bracket-of-rates}{\{\matter{\dot Q_h}, \matter{\dot Q_g}\}}$. So
 $$\boxed{\;\frac{\delta_g\matter{Q_h} - \delta_h\matter{Q_g}}{\epsilon} = \tau^2\,\{\matter{\dot Q_h}, \matter{\dot Q_g}\} + O(\tau^3) ,\;}$$
 
 the paper's "the change of $Q_h$ per unit of a weak impulse of profile $g$, less the change of $Q_g$ per unit of one of
-profile $h$, is $\tau^2\{\dot Q_h, \dot Q_g\}$". Chapter 2.8 read instead how fast the moment changes; differentiated
-once, the series makes the two orders of that reading differ by $2\tau\{\matter{\dot Q_h}, \matter{\dot Q_g}\}$.
+profile $h$, is $\tau^2\{\dot Q_h, \dot Q_g\}$" (Figure [](#fig:tides-in-turn)). Chapter 2.8 read instead how fast the
+moment changes; differentiated once, the series makes the two orders of that reading differ by
+$2\tau\{\matter{\dot Q_h}, \matter{\dot Q_g}\}$.
 
 In the symmetric part the terms in $\tau^2$ add up, and by the product rule
 
@@ -123,16 +124,10 @@ times for the Earth, read a minute after the tide.
 **What it means.** The symmetric part appears at the first power of $\tau$ and weighs the density (chapter 13.2). The
 antisymmetric part appears first at the second power and weighs the momenta: the flow.
 
-<!-- diagram: tut-tides-in-turn — spec: two timelines stacked on the left, each a short horizontal arrow of time from
-t = 0 to τ: above, a kick icon labelled "kick g" at t = 0 and an eye icon "read h" at τ; below, "kick h" and "read g".
-On the right, one plot: horizontal τ from 0 to 0.02 (the twelve-particle model's units), vertical the response δQ/ε.
-Two exact curves from the boxed series for that model (S = −5.80, Ṡ/2 = 0.80, bracket 5.32): the response "kick g, read
-h" = τS + τ²(Ṡ/2 + 5.32/2) and "kick h, read g" = τS + τ²(Ṡ/2 − 5.32/2), thin single strokes, orange and blue; their
-half sum as a dashed neutral line (nearly straight: the density); the gap between the two curves shaded faint, with
-"τ² { Q̇_h, Q̇_g }" labelled beside the shading, off the curves. Caption: "Look first at the shaded gap: the two orders
-start along the same straight line, which weighs the density, and part as the square of the time, by the bracket of
-the two rates, which weighs the flow. The curves are the series of the text for the twelve parts of the margin note,
-without its higher terms." -->
+![Look first at the shaded gap: the two orders start along the same straight line, which weighs the density, and part
+as the square of the time, by the bracket of the two rates, which weighs the flow. The lower panel is the upper one
+less that straight line, drawn forty times higher. The curves are the series of the text for the twelve parts of the
+margin note, without its higher terms.](tut-tides-in-turn){#fig:tides-in-turn}
 
 ## The bracket of two rates is an integral of the flow
 
@@ -187,7 +182,7 @@ of real tides.
 **Turning $\vect\eta$.** The bracket gives the component of $\matter{\tilde{\vect J}}$ along $\vect\eta$, and
 $\vect\eta$ may be any vector at right angles to $\vect\xi$ and as long. Turning it a right angle about $\vect\xi$
 gives a second component, and the two make the **transverse part** of the transform, its part at right angles to
-$\vect\xi$.
+$\vect\xi$ (Figure [](#fig:flow-transverse)).
 
 **The third component.** The part along $\vect\xi$, the **longitudinal part**, comes from chapter 2.8's continuity
 equation, $\partial\matter\rho/\partial t + \nabla\cdot\matter{\vect J} = 0$. We multiply it by
@@ -208,15 +203,9 @@ $\matter{\vect J}(\vect x) = \int\matter{\tilde{\vect J}}(\vect\xi)\,e^{-i\vect\
 gives $\matter{\vect J}$ itself. In the paper's words, "The flows that have no magnetic field outside … are therefore
 read from outside as the density is."
 
-<!-- diagram: tut-flow-transverse — spec: one wavevector ξ drawn as a long arrow from a point, upward and to the right;
-the plane at right angles to ξ drawn as a faint parallelogram through the same point. In that plane, η in two positions
-at a right angle to each other (η and ξ̂ × η), of the same length as ξ, solid and pale. A flow's transform J̃ drawn from
-the same point (a neutral arrow, not in any plane), with its two projections: onto the plane (the transverse part, a
-dashed arrow, labelled "read by the bracket of h₊ and h₋") and onto ξ (the longitudinal part, a dashed arrow along ξ,
-labelled "read by dρ̃/dt"), with thin dotted drop lines. Labels never on the arrows. Caption: "Look first at the two
-dashed arrows: the bracket of Calderón's pair reads the part of the flow's transform at right angles to ξ, one
-component for each position of η, and the rate of change of the density reads the part along ξ. The lengths are
-chosen for the drawing." -->
+![Look first at the two dashed arrows: the bracket of Calderón's pair reads the part of the flow's transform at right
+angles to $\vect\xi$, one component for each position of $\vect\eta$, and the rate of change of the density reads the
+part along $\vect\xi$. The lengths are chosen for the drawing.](tut-flow-transverse){#fig:flow-transverse}
 
 ## Every silent flow is read by Calderón's pair
 
@@ -352,7 +341,7 @@ $$\{\matter{\dot Q_h}, \matter{\dot Q_g}\} = -4\Omega\cdot\tfrac{8}{15}\cdot\tfr
 and $r + \dd r$ has the volume $4\pi r^2\,\dd r$, and in it $\varpi^{2n-2}$ averages to
 $\langle\sin^{2n-2}\theta\rangle\,r^{2n-2}$. So the layer's **share** of the bracket goes as
 $\matter\rho\,\Omega(r)\,r^{2n}\,\dd r$, as the figure's panel (b) draws it: a finer tide gives the outer layers more
-weight.
+weight (Figure [](#fig:shares-by-degree)).
 
 **The hidden swirl.** Let a uniform sphere's inner ball, out to the radius $a$, turn at $+\Omega$ and the rest at
 $-\Omega$. The shares add up to $\int_0^ar^{2n}\,\dd r - \int_a^Rr^{2n}\,\dd r = (2a^{2n+1} - R^{2n+1})/(2n + 1)$, so
@@ -381,16 +370,9 @@ swirl, in $\mathrm{kg\,m^6\,s^{-1}}$. Its rigid value is again $-\tfrac{32}{35}\
 $\langle\sin^6\theta\rangle = \tfrac{16}{35}$ and a uniform ball's
 $\int\matter\rho\,r^6\,\dd V = \tfrac13\matter MR^6$, by a coincidence of the degrees three and four.
 
-<!-- diagram: tut-shares-by-degree — spec: three small plots stacked, for n = 2, 3 and 4, each with the radius r/R from
-0 to 1 across and its own vertical scale (each drawn to its own greatest value, as fig:hidden-flow(b) does). In each,
-the share of each radius for the hidden swirl at a = 2^{-1/5}R, with the inner ball turning at +Ω: −r^{2n} inside a
-(orange area below the line) and +r^{2n} outside it (blue area above the line), exact, as the live figure hidden-flow
-draws them. Under the common radius axis, three small ticks at the zeros of the sums, 2^{-1/5} = 0.871,
-2^{-1/7} = 0.906 and 2^{-1/9} = 0.926, labelled "n = 2", "n = 3", "n = 4" below them; a thin vertical line at 0.871
-through all three plots. Beside each plot its sum, 0, +0.221 and +0.389 (in M Ω R^{2n−2}), outside the areas. Caption:
-"Look first at the blue areas: with each degree the outer layers count for more, so at degree two the areas balance
-and at degrees three and four the outer part wins. The ticks under the axis mark where the inner ball would have to end
-for each sum to vanish." -->
+![Look first at the areas above the line: with each degree the outer layers count for more, so at degree two the areas
+balance and at degrees three and four the outer part wins. The ticks under the axis mark where the inner ball would
+have to end for each sum to vanish.](tut-shares-by-degree){#fig:shares-by-degree}
 
 ## At a known rate of turning, the field outside holds the first rung of the ladder
 
@@ -457,38 +439,14 @@ the turning gas carries each ellipse round, as in the first section's picture. W
 of $1.44 \times 10^{-25}\unit{kg}$, $\varpi$ of $5\unit{\mu m}$ in root mean square and $\hbar$ per atom give
 $58\unit{s^{-1}}$, about 9 Hz.
 
-<!-- try: tides-in-turn — new (P7a-DECISIONS item 9). Predict first: "A sphere's inner ball and outer shell turn
-opposite ways with no angular momentum. Kick it with a quadrupolar tide and read the other quadrupolar moment, then do
-it the other way round. Do the two readings differ? With octupolar tides?" (Answer, revealed after: not with
-quadrupolar tides; yes with octupolar ones.)
-Left panel: a body of 400 particles drawn in section through its equator, in the paper's stone palette, each particle
-with a short velocity tick. Menu "The flow": "At rest"; "Turning rigidly"; "The hidden swirl" (with a slider "Radius of
-the inner ball", 0.5 to 0.98 R, default 2^(−1/5) = 0.871 R, marked "no angular momentum" there and "octupolar zero" at
-2^(−1/7) = 0.906 R); "Rolls" (2.8's stretch problem's flow, V = K(1 − r²/R²)² ẑ). Menu "The pair of tides":
-"Quadrupolar" ((x + iy)²/2), "Octupolar" ((x + iy)³/3), "Degree four" ((x + iy)⁴/4), "Quadrupole with octupole"
-(h = z² − (x² + y²)/2, g = z³ − (3/2) z (x² + y²)). Two buttons, "Kick g, read h" and "Kick h, read g", each running
-the response; "Both" runs both.
-Right panel: the responses δQ/ε against τ from 0 to 0.05 of the turning period (both orders, orange and blue), their
-half sum (dashed neutral: straight, the density) and half difference (a parabola: the flow), from the particles
-integrated with velocity Verlet over the short time (a worker). Readouts: the bracket {Q̇_h, Q̇_g}, exact, in units of
-M Ω R^(2n−2) for the three pairs (x + iy)ⁿ/n on the turning flows (lib/hair/flow.ts, bracket), and in units of K R³ for
-the rolls (36 ∫V_z dV for the mixed pair, zero for the others); and the measured difference of the two responses over
-τ².
-Checks: at rest the two curves coincide; turning rigidly, quadrupolar, the difference over τ² tends to −0.8 = −2 × 2/5;
-the hidden swirl at 0.871 R gives coinciding quadrupolar curves and octupolar ones that part, with the readout 0.221;
-at 0.906 R the octupolar curves coincide again; degree four at 0.871 R reads 0.389; the mixed pair gives coinciding
-curves on every turning flow (the swirl is odd under x → −x, and the mixed pair's vector is even); rolls give coinciding
-curves for all three pairs of equal degree (zero by parity) and parting curves for the mixed pair, with the readout
-384π/35 = 34.5 in units of K R³.
-Both themes; keyboard: Tab through menus, slider and buttons, arrow keys on the slider; phone: the two panels stacked.
-Stand-in until it is built: the registered hidden-flow, below. -->
-
-::: try {#hidden-flow}
-Predict first: between which two radii of the inner ball do the sums of degree two and three have opposite signs,
-and which is positive there? Each sum is the bracket $\{\matter{\dot Q_h}, \matter{\dot Q_g}\}$ of the two tides of
-its degree, in units of $\matter M\Omega R^{2n-2}$, with the inner ball turning at $+\Omega$. The figure opens at
-$0.871R$. Drag the slider "Radius of the inner ball", or use the arrow keys, and find the two radii. On the way, check
-that the sum of degree two is always $-2$ times the angular momentum printed at the foot of the figure.
+::: try {#tides-in-turn}
+Predict first: halve the wait $\tau$ between the kick and the reading. By what factor does the gap between the two
+orders shrink? The figure draws a ball of 400 particles in the chosen flow and, below it, the two readings
+$\delta Q/\epsilon$ against $\tau$, one for each order, with half their sum and half their difference in a second
+plot. Beside them it reads out the bracket $\{\matter{\dot Q_h}, \matter{\dot Q_g}\}$ and the measured difference
+over $\tau^2$. Start with "Turning rigidly" and "Quadrupolar", press "Both", and move "The wait, τ". Then choose
+"The hidden swirl", find a pair whose two readings part at "no angular momentum", and move "Radius of the inner ball"
+to "octupolar zero". Last, choose "Rolls" and try each pair in turn.
 :::
 
 
