@@ -95,6 +95,7 @@ import ImpulsiveFront from './live/ImpulsiveFront.svelte';
 import PushAndWeigh from './live/PushAndWeigh.svelte';
 import TidesInTurn from './live/TidesInTurn.svelte';
 import MarolfTop from './live/MarolfTop.svelte';
+import ReadableCells from './live/ReadableCells.svelte';
 
 /**
  * The interactive figures a chapter can mount with `::: try {#id}`, by id. A chapter that names an id not listed
@@ -508,5 +509,10 @@ export const tutorialLive: Record<string, { label: string; component: Component 
 		label:
 			'A free top whose L_x, L_y never change, turned by ε to read L_z, and the hidden swirl’s bracket of two quadrupoles',
 		component: MarolfTop
+	},
+	'readable-cells': {
+		label:
+			'A stone cut into the cells that paired tides resolve, against the numbers looking reads, as SNR and R_c/a change',
+		component: ReadableCells
 	}
 };

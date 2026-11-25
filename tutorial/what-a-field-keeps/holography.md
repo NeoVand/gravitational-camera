@@ -6,7 +6,7 @@ part: '13'
 requires: ['2.3', '2.4', '2.5', '3.8', '6.5', '8.1', '8.6', '11.1', '11.2', '13.1', '13.2', '13.3', '13.6', '13.7']
 paper: [sec:holography, eq:dp-energy, eq:split, eq:hair-bits, tab:hair, fig:hair, fig:ladder, eq:ladder, eq:dust, eq:push, sec:hair, sec:second-order, sec:near-field, sec:status]
 figures: [fig:hair, fig:ladder]
-live: [same-outside]
+live: [readable-cells, same-outside]
 depth: A
 ---
 
@@ -165,18 +165,13 @@ $$\begin{aligned}
 
 the second being 12.1's virial identity before its average over time. The three terms in
 $\int\matter T^{ii}\,\dd V/c^2$, from the stress in the first, from $r^2$ and from the current, then come with
-$1 + \tfrac13 - \tfrac43 = 0$. The monopole is $\int\matter T^{00}\,\dd V/c^2$, the conserved energy over $c^2$, as
-Birkhoff requires.[^bd] The hiding is done by conservation and the elliptic constraints of a hyperbolic theory, not by
-the ellipticity of Newton's equation.
+$1 + \tfrac13 - \tfrac43 = 0$ (Figure [](#fig:breathing-stone)). The monopole is $\int\matter T^{00}\,\dd V/c^2$, the
+conserved energy over $c^2$, as Birkhoff requires.[^bd] The hiding is done by conservation and the elliptic constraints
+of a hyperbolic theory, not by the ellipticity of Newton's equation.
 
-<!-- diagram: tut-breathing-stone — spec: left, a stone drawn three times along a short time axis, a uniform ball, a
-thick shell, a thin shell (cutaways shaded by density in the matter colour), arrows showing the round motion. Right,
-two stacked plots of the monopole outside, at r = 10a, against the retarded time over two cycles: top, "scalar theory",
-the exact boxed curve −(G/r)[M + Ï_r/6c²] with Ï_r for I_r(t) = Ma²(0.8 − 0.2 cos ωt), the ripple drawn magnified
-10¹² times with that factor stated in the caption; bottom, "Einstein", a flat line. Beneath, three bars of heights 1,
-1/3 and −4/3 labelled "stress", "r² term", "current", with their sum, zero, marked. Caption: "Look first at the bars:
-in Einstein's theory the three terms of order 1/c² cancel, so the breathing stone sends nothing, while a scalar theory
-sees its ∫ρr². The ripple is magnified; the shapes are exact." -->
+![Look first at the bars: in Einstein's theory the three terms of order $1/c^2$ cancel, so the breathing stone sends
+nothing, while a scalar theory sees its $\int\matter\rho\,r^2\,\dd V$. The ripple is magnified $10^{12}$ times, for a
+stone of radius 10 cm that swings once a millisecond; the shapes are exact.](tut-breathing-stone){#fig:breathing-stone}
 
 **The general statement** (stated). A source watched from outside for all time is known only through its **light-cone
 transform**, its transform in space and time on the light cone $|\vect k| = \omega/c$ of wavevector and frequency
@@ -189,21 +184,14 @@ record is an area times a time, the source a volume times a time.
 times give only the harmonic moments of its mass and its flow.[^twotimes] The body's own motion does climb 13.3's
 ladder without a push, but at a cost of $(\omega a/c)^2$ per rung.[^passive]
 
-**The four entries.** Watching or pushing, with an instantaneous field or one that travels at $c$, make four cases.
-Watching leaves a null space either way. Pushing removes it with **logarithmic stability**, an error that falls only as
-one over the logarithm of the noise (13.2). A wave shorter in wavelength than the body reads its transform at
-wavevectors $|\vect q| \le 2\omega/c$ with **Hölder stability**, an error that falls as a power of the noise, to
-about half a wavelength (Stefanov and Uhlmann, stated).
+**The four entries.** Watching or pushing, with an instantaneous field or one that travels at $c$, make four cases
+(Figure [](#fig:holo-table)). Watching leaves a null space either way. Pushing removes it with **logarithmic
+stability**, an error that falls only as one over the logarithm of the noise (13.2). A wave shorter in wavelength than
+the body reads its transform at wavevectors $|\vect q| \le 2\omega/c$ with **Hölder stability**, an error that falls as
+a power of the noise, to about half a wavelength (Stefanov and Uhlmann, stated).
 
-<!-- diagram: tut-holo-table — spec: a two-by-two table, columns "watching" and "pushing", rows "c → ∞" and "finite
-c". Entries: watching, c → ∞: "harmonic part only; null space ∇²ψ; 2.5"; watching, finite c: "light-cone transform
-only; null space □ψ; Birkhoff; Devaney–Wolf"; pushing, c → ∞: "all of ρ; logarithmic; 13.2, Mandache"; pushing,
-finite c: "waves through the body: |q| ≤ 2ω/c; Hölder to λ/2, logarithmic beyond; Stefanov–Uhlmann". Each entry has a
-small icon (an eye, an eye with a clock, a hand, a hand with a wave); the two watching entries shaded the same pale
-grey, the two pushing entries white; a thin arrow from left to right labelled "acting removes the null space" and one
-down the pushing column labelled "a short wave removes the logarithm to λ/2". Caption: "Look first at the left
-column: watching, with or without the speed of light, leaves a null space. The entries are stated results, sourced in
-the text." -->
+![Look first at the left column: watching, with or without the speed of light, leaves a null space. The entries are
+stated results, sourced in the text.](tut-holo-table){#fig:holo-table}
 
 ## Pushing reads the volume, but only to a number of cells set by the logarithm
 
@@ -338,19 +326,14 @@ without $\hbar$ of the **holography of information**, quantum gravity's argument
 everything inside it: an operation from outside and a reading of the energy, which gives a density and a motion, not a
 state (13.6).
 
-<!-- try: readable-cells — new (P7b-DECISIONS item 5). Predict first: "Make the camera a million times more sensitive.
-Does the number of cells you can resolve inside the stone grow a million times, a thousand times, or a few times?"
-Left, a disc of radius a cut into square cells of side d (the count's cube root along a radius), redrawn as the
-sliders move; right, the readouts. Sliders: log₁₀ SNR from 3 to 122 (start 6) and R_c/a from 1.2 to 10 (start 3). A
-choice of region for the ceiling marker on the SNR slider: a metre, the Earth, the Hubble radius. A toggle "black hole"
-replaces the disc by a dark disc and seven beads, whatever the sliders say. Readouts: N₁ = (⌊L/Λ⌋ + 1)², N₂ from the
-paired-tides count (masses in pairs on the sphere R_c; design/research/holography/scripts/paired-tides), d/a =
-(4π/3N₂)^(1/3), and N₂/N₁; no bits readout (not yet counted for pairs). Exact checks (R_c/a = 3): N₁ = 169 at 10⁶ and
-21,609 at 10⁷⁰; N₂ = 271 at 10⁶, 1682 at 10¹², 21,675 at 10³⁰, 251,536 at 10⁷⁰; d/a = 0.25 at 10⁶, 0.026 at 10⁷⁰;
-from 10⁶ to 10¹² N₂ grows 6.2 times, from 10⁷⁰ to 10⁷⁶ 1.27 times; ceiling markers at 1.9×10⁶⁹ (a metre), 7.8×10⁸²
-(the Earth), 3.6×10¹²¹ (the Hubble radius); the asymptotic κ for pairs is 0.014, 0.053, 0.073 and 0.107 at R_c/a =
-1.2, 2, 3 and 10. No answer is shown: the readouts are live values only. Both themes, keyboard (arrows one power of ten, Page keys
-ten), phone. -->
+::: try {#readable-cells}
+Predict first: make the camera a million times more sensitive. Do the cells that pushing resolves inside the stone
+grow a million times, a thousand times, or a few times? And is it worth more to gain that factor in sensitivity or to
+bring the camera sphere from three radii to two? The figure cuts a disc of the stone into cells of the side the count
+allows and reads out what looking and pushing in pairs give. Move *Signal-to-noise ratio* from $10^6$ to $10^{12}$,
+then from $10^{70}$ to $10^{76}$. Choose a region and press the tick for its ceiling. Slide *Radius of the camera
+sphere* down from 3. Last, switch on *Black hole*.
+:::
 
 ## Quantum mechanics caps the sensitivity by the area of the region
 
@@ -409,20 +392,14 @@ cells.[^sparse]
 | the Hubble radius, $1.37\times10^{26}$ m | $2.3\times10^{122}$ | 280 | $1.28\times10^6$ |
 
 A stone that is not itself a black hole has $\matter M_s < \ell_{\rm r}c^2/6G$ and the ceiling $S_{\rm BH}/6\pi$, about
-2 per cent fewer cells. The area grows by $10^{52}$ and the cells by a factor of five. We call this **holographic
-sparseness**: what a field shows of ordinary matter is a power of the logarithm of the area, far below the
-$(A/\ell_P^2)^{3/4}$ that stable matter can hold ('t Hooft, stated) and the $A/4\ell_P^2$ of a black hole. "Sparse" is
-about what can be read, not what is there.
+2 per cent fewer cells. The area grows by $10^{52}$ and the cells by a factor of five (Figure [](#fig:cells-vs-snr)).
+We call this **holographic sparseness**: what a field shows of ordinary matter is a power of the logarithm of the area,
+far below the $(A/\ell_P^2)^{3/4}$ that stable matter can hold ('t Hooft, stated) and the $A/4\ell_P^2$ of a black
+hole. "Sparse" is about what can be read, not what is there.
 
-<!-- diagram: tut-cells-vs-snr — spec: log–log axes, horizontal ln SNR from 7 to 300 (ticks at the ln of 10³, 10⁶,
-10³⁰, 10⁷⁰, 10¹²⁰), vertical the count from 10 to 10⁷. Two exact curves from three radii: N₁ = (⌊L/Λ⌋ + 1)² as a
-staircase in the field colour, labelled "looking", and N₂ from the paired-tides count (46 at 10³, 271 at 10⁶, 1682 at
-10¹², 21,675 at 10³⁰, 251,536 at 10⁷⁰, 1,227,687 at 10¹²⁰) in the matter colour, labelled "pushing", with the dashed
-asymptote 0.073(L/Λ)³. Vertical thin lines at 10⁶, the paper's 10⁷⁰, and the ceilings S_BH/2π of a metre (1.9×10⁶⁹)
-and of the Hubble radius (3.6×10¹²¹). Beside each vertical line, a small disc cut into a grid of cells of the side d/a
-(0.25, 0.026, 0.026, 0.015). Caption: "Look first at how close the two curves stay: pushing passes looking between
-10³ and 10⁶ and beats it by a factor of about twelve only at the paper's ceiling. The curves are counted; the discs
-are drawn to scale." -->
+![Look first at how close the two curves stay: pushing passes looking between $10^3$ and $10^6$ and beats it by a
+factor of about twelve only at the paper's ceiling. Dashed: the law $0.073(L/\Lambda)^3$ that pushing approaches. The
+curves are counted; the discs are drawn to scale.](tut-cells-vs-snr){#fig:cells-vs-snr}
 
 **The black hole.** A hole at rest shows seven numbers at one time, its mass, spin and place
 ([11.2](/tutorial/black-holes/spin/#a-hole-at-rest-shows-seven-numbers-and-nothing-of-what-fell-in) and the hole's
@@ -464,8 +441,8 @@ from outside, which the branches answer differently, the paper's [](/paper/#eq:d
 **What does differ** is the measure by which Diósi and Penrose proposed that gravity itself ends superpositions, the
 **Diósi–Penrose energy** $\sym{diosi-penrose-energy}{E_G}$: the gravitational self-energy of the difference of the
 two densities [@Diosi1987; @Penrose1996]. Penrose estimates the time of the collapse as $\hbar/E_G$. For a ball and a
-shell of mass $\matter M$ and radius $R$ the fields agree outside, the shell's is zero inside, and the ball's is
-$G\matter Mr/R^3$ (chapter 1.3), so with $\int_0^Rr^4\,\dd r = R^5/5$,
+shell of mass $\matter M$ and radius $R$ the fields agree outside (Figure [](#fig:dp-fields)), the shell's is zero
+inside, and the ball's is $G\matter Mr/R^3$ (chapter 1.3), so with $\int_0^Rr^4\,\dd r = R^5/5$,
 
 $$\boxed{\;\begin{aligned}
 E_G &= \frac{1}{8\pi G}\int|\field{\vect g}_1 - \field{\vect g}_2|^2\,\dd V\\
@@ -483,11 +460,8 @@ one of $R + \delta$, has inside the difference $3G\matter M\delta r/R^4$ to firs
 $E_G = \tfrac{9}{10}(\delta/R)^2G\matter M^2/R$, 0.2 per cent above the exact value at $\delta/R = 10^{-3}$. The time
 is longer by $R^2/9\delta^2$, $1.1\times10^5$ there.
 
-<!-- diagram: tut-dp-fields — spec: one plot, r/R from 0 to 2.5 across, the field g in units of GM/R² up. The ball's
-field rises linearly to 1 at r = R (matter-coloured solid), the shell's is zero inside and jumps to 1 at R (dashed);
-outside both follow 1/r² as one curve. The triangle between them inside R is shaded faintly, labelled "g₁ − g₂", with
-a small inset of the integrand (r/R)⁴ whose area is 1/5. Caption: "Look first at the shaded triangle: the two fields
-differ only inside, and the square of that difference, integrated, is E_G = GM²/10R. Exact curves." -->
+![Look first at the shaded triangle: the two fields differ only inside, and the square of that difference, integrated,
+is $E_G = G\matter M^2/10R$. Exact curves.](tut-dp-fields){#fig:dp-fields}
 
 **Stated.** The simplest form of the proposal, with no free length, has been excluded by experiment
 [@DonadiEtAl2021]. **What it means.** Such a pair "would separate two ways in which gravity
