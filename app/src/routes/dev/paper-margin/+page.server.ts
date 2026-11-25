@@ -1,10 +1,12 @@
+import { resolve } from '$app/paths';
 import {
 	SAMPLE_FILE,
 	SAMPLE_HREF,
 	marginChapter,
 	paperMargin,
 	paperRendered,
-	renderChapterFile
+	renderChapterFile,
+	underRoot
 } from '#lib/server/sources.js';
 import { fixturePaperLinks } from '#lib/tutorial/paper-links.js';
 import type { PageServerLoad } from './$types';
@@ -45,10 +47,12 @@ export const load: PageServerLoad = () => {
 		else for (const m of b.html.matchAll(/\sid="([^"]+)"/g)) ids.add(m[1]);
 	const local = (html: string) =>
 		html.replace(/ href="#([^"]+)"/g, (whole, id: string) => (ids.has(id) ? whole : ''));
+	// the plain-words box links into the tutorial from the site's root, which the published site moves under its base
+	const root = resolve('/');
 	const excerpt = blocks.map((b) =>
 		b.kind === 'figure'
 			? { ...b, captionHtml: local(b.captionHtml) }
-			: { ...b, html: local(b.html) }
+			: { ...b, html: underRoot(local(b.html), root) }
 	);
 	const sample = renderChapterFile(SAMPLE_FILE);
 	return {
