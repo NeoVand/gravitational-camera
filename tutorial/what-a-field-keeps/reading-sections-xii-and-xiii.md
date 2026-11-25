@@ -35,28 +35,15 @@ holds the whole density. With chapters 13.1 to 13.7 behind us, which claims of t
 check, where does the paper say more than it shows, and what would a camera that both watches and pushes learn of a
 ball and a shell of one mass?
 
-We read the two sections paragraph by paragraph. Each claim is *checked here* (a number recomputed from an earlier
-result), *read now, derived in chapter N*, or *stated in the paper* (cited there without proof). A bare chapter number
-in parentheses, as "(13.4)", marks a smaller step derived in that chapter. Sections XIV and XV are read in R13b,
-*Reading Sections XIV and XV*, after chapter 13.8.
+We read the two sections paragraph by paragraph (Figure [](#fig:read-xii-xiii-map)). Each claim is *checked here* (a
+number recomputed from an earlier result), *read now, derived in chapter N*, or *stated in the paper* (cited there
+without proof). A bare chapter number in parentheses, as "(13.4)", marks a smaller step derived in that chapter.
+Sections XIV and XV are read in R13b, *Reading Sections XIV and XV*, after chapter 13.8.
 
-<!-- diagram: tut-read-xii-xiii-map — spec: a map of the two sections in the style of tut-read-x-xi-map. Two columns of
-boxes, one per stretch, top to bottom in the paper's order: Section XII (plain words; the field at one time; the number
-of bits with fig:hair) and Section XIII (plain words and opening; the field at two times; the two readings as one
-transform; stability; an impulsive tide and a weighing; a mass that passes; the impulsive waves; the bits of a second
-reading; what a tide of a given degree reaches; the flow; the algebra of the moments). Each box carries, in small
-type, the chapter numbers it rests on (XII: 2.3, 2.5, 3.8, 11.2; XIII: 1.4, 1.7, 1.8, 2.6, 2.8, 4.2, 4.5, 6.4, 6.5,
-8.2, 8.7, 13.1–13.6). Fill: solid (derived) where every equation of the stretch is derived; a dotted inset for the
-stated results (Donnelly–Giddings and Corvino–Schoen; Kolmogorov–Tikhomirov and Skiba–Zahariuta; Hansen; Yagi–Yunes;
-Parker, Markel–Schotland and Arridge–Schotland; Alessandrini and Mandache; Balasin and Steinbauer; Krishnan et al.;
-Garde et al.; Compère et al.; Marolf; Jacobson–Nguyen); a hatched corner where a step is a sketch at depth B (moment
-determinacy in 13.1, the wave of finite duration in 13.5). A small margin flag on the box "the field at two times" for
-the margin note on the impulses, and on "the bits of a second reading" for the 1300 bits. The last box, set apart, is
-the capstone: a ball and a shell, with arrows from the seven boxes it uses (one time, the field at two times, the
-weighing, stability, the pass, the impulsive waves, the algebra). Caption: "Look first at the solid boxes: every
-paragraph of Sections XII and XIII rests on chapters of Parts 1 to 13, with its stated results in dotted insets. The
-two flags mark where the paper says more than it shows. The last box follows one ball and one shell through seven of
-them." -->
+![Look first at the solid boxes: every paragraph of Sections XII and XIII rests on chapters of Parts 1 to 13, with
+its stated results in dotted insets. The hatched corners mark a step sketched at depth B, and the two flags mark
+where the paper says more than it shows. The last box follows one ball and one shell through seven of
+them.](tut-read-xii-xiii-map){#fig:read-xii-xiii-map}
 
 ::: plain
 At any one moment, the gravity outside a body shows only certain averages of its mass, so a hollow shell and a solid
@@ -470,23 +457,13 @@ brackets
 
 ## The capstone: a ball and a shell read every way
 
-<!-- diagram: tut-read-ball-shell — spec: a strip of seven panels (a)–(g) left to right, as tut-read-vii-capstone, the
-ball above and the shell below in each, cutaways in the matter colour (uniform fill for the ball, a thin ring for the
-shell), both of radius 0.5 m drawn alike. (a) one time: identical grey arrows of pull outside both, the tag "1176 bits,
-both". (b) heat: a few short random arrows in each, the tag "tremor 411 : 685 kg m²". (c) quadrupolar impulsive tide:
-impulses along (x, −y), orange outward and blue inward, bars 2.06 and 3.43 × 10⁻¹⁸ J. (d) one ripple: faint parallel
-bands one metre apart across both bodies, the tag "1250 kg against 0; span e^π = 23". (e) the tonne's pass at
-b = 1.5 m: a bead on its line, the tag "4.55 × 10⁻³³ of its speed; interior 2.1 × 10⁻³⁴". (f) a flash of light on the
-same line, drawn as a thin dashed ray, the tag "same reading at 3.1 × 10²³ J". (g) the counter-turning ball (inner
-part orange, outer blue, small curved arrows) against the shell at rest, the tag "0.111 MΩR⁴/c² against 0". A thin
-arrow under the strip carries each panel's number into the next where it is reused (the profile g from (b) to (c); C
-from (e) to (f)). Caption: "Look first at panel (a), where the two bodies cannot be told apart, and then at (b) and (c),
-where heat and one push separate them by three to five. The numbers are exact; the arrows, bands and bars are
-schematic." -->
+![Look first at panel (a), where the two bodies cannot be told apart, and then at (b) and (c), where heat and one
+push separate them by three to five. Each tag gives the ball's number before the shell's. The numbers are exact; the
+bands, bars and paths are to scale, and the arrows are schematic.](tut-read-ball-shell){#fig:read-ball-shell}
 
-The capstone follows chapter 13.1's steel ball, 1 m across and 4110 kg, and a thin shell of the same mass and radius,
-$R = 0.5$ m, through Part 13's readings. Each row can be recomputed from the table with $G$ and $c$, and row (e) with
-the pass's series.
+The capstone follows chapter 13.1's steel ball, 1 m across and 4110 kg, and a thin shell of the same mass and
+radius, $R = 0.5$ m, through Part 13's readings (Figure [](#fig:read-ball-shell)). Each row can be recomputed from
+the table with $G$ and $c$, and row (e) with the pass's series.
 
 | Step | Formula | Ball | Shell | Chapter |
 |---|---|---|---|---|
