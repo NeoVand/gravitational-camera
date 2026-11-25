@@ -14,19 +14,77 @@ const hydrated = (page: Page) =>
 		() => document.querySelector('article [class*="symbol-"]')?.getAttribute('role') === 'button'
 	);
 
-test('tutorial: the home page lists the parts, the routes and the ledger', async ({ page }) => {
+test('tutorial: the front page shows the parts, the routes and the equations', async ({ page }) => {
+	await page.setViewportSize({ width: 1440, height: 900 });
 	await page.goto('/tutorial/');
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(
 		'From calculus to the gravitational camera'
 	);
 	await expect(page.locator('header nav a[aria-current="page"]')).toContainText('Tutorial');
-	expect(await page.locator('section.part').count()).toBe(14);
-	await expect(
-		page.locator('#part-1 li', { hasText: 'Tides: the difference in gravity' })
-	).toBeVisible();
-	expect(await page.locator('section.route').count()).toBe(8);
-	await expect(page.locator('.ledger')).toContainText(/0 of \d+/);
-	await page.getByRole('link', { name: 'Glossary' }).click();
+
+	// the banner's seam moves from the keyboard
+	const seam = page.getByRole('slider', { name: 'The seam between light and gravity' });
+	await expect(seam).toHaveAttribute('aria-valuenow', '50');
+	// (pressed again until the page has hydrated and the key takes)
+	await expect(async () => {
+		await seam.press('ArrowLeft');
+		expect(Number(await seam.getAttribute('aria-valuenow'))).toBeLessThan(50);
+	}).toPass();
+	await expect(page.getByRole('link', { name: 'Begin with one evening' })).toHaveAttribute(
+		'href',
+		/tutorial\/evening\/a-camera-for-gravity\/$/
+	);
+
+	// fourteen parts, each a picture that links to its first chapter, its chapters folded away
+	const parts = page.locator('li.part');
+	await expect(parts).toHaveCount(14);
+	const newton = page.locator('#part-1');
+	await expect(newton.locator('h3')).toHaveText("Newton's gravity");
+	await expect(newton.locator('a.opening')).toHaveAttribute(
+		'href',
+		/newton\/vectors-and-indices\/$/
+	);
+	const tides = newton.getByRole('link', { name: 'Tides: the difference in gravity; the Hessian' });
+	await expect(tides).toBeHidden();
+	await newton.locator('summary').click();
+	await expect(tides).toBeVisible();
+	await expect(newton.locator('.chapters em.reading')).toHaveText('reading');
+	// the part's drawing is fetched as it nears the screen, and drawn in the theme's colours
+	await newton.scrollIntoViewIfNeeded();
+	await expect(newton.locator('.picture svg.drawing')).toBeAttached({ timeout: 20_000 });
+	await expect(newton.locator('.picture [role="img"]')).toHaveAttribute(
+		'aria-label',
+		/ring of free balls/
+	);
+
+	// eight routes, each with its picture, its time and a path of dots that name their chapters
+	const routes = page.locator('li.route');
+	await expect(routes).toHaveCount(8);
+	const toII = page.locator('#route-section-ii');
+	await expect(toII.locator('h3')).toHaveText('Section II, what a pixel measures');
+	await expect(toII.locator('.length')).toContainText(
+		/\d+ chapters from \d+ parts, about [\d½]+ hours/
+	);
+	await expect(toII.getByRole('link', { name: 'Start the route' })).toHaveAttribute(
+		'href',
+		/evening\/a-camera-for-gravity\/$/
+	);
+	const dots = toII.locator('svg a[data-rove]');
+	expect(await dots.count()).toBeGreaterThan(10);
+	await dots.first().focus();
+	await expect(toII.locator('.tip')).toContainText('A camera for gravity');
+	await page.keyboard.press('ArrowRight');
+	await expect(toII.locator('.tip')).toContainText('How to read the rest');
+
+	// every numbered equation, as many tiles as the sentence counts
+	const sentence = await page.locator('section.equations .head p').textContent();
+	const [, derived, total] = sentence!.match(/(\d+) of (\d+) are derived in the tutorial/)!;
+	await expect(page.locator('section.equations a.tile')).toHaveCount(Number(total));
+	await expect(page.locator('section.equations a.tile.derived')).toHaveCount(Number(derived));
+	await page.locator('section.equations a.tile').first().hover();
+	await expect(page.locator('section.equations .reading')).toContainText(/\(1\) (derived|stated)/);
+
+	await page.getByRole('link', { name: 'glossary', exact: true }).first().click();
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Glossary');
 	await page.goto('/tutorial/symbols/');
 	await expect(page.locator('#symbol-tidal-tensor .q-curv').first()).toBeVisible();

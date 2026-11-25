@@ -41,7 +41,7 @@ export interface Catalogue {
 }
 
 /** Page segments the tutorial keeps for itself, which no part may take as its slug. */
-const RESERVED_SLUGS = ['glossary', 'symbols', 'palette'];
+const RESERVED_SLUGS = ['glossary', 'symbols', 'palette', 'pictures'];
 
 /** Reads parts.yaml's parsed object; throws on anything malformed. `paperLabels`, if given, checks `reads`. */
 export function parseCatalogue(raw: unknown, paperLabels?: ReadonlySet<string>): Catalogue {
