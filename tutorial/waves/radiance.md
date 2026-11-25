@@ -618,8 +618,8 @@ Kirchhoff's law with a constant $\alpha$ gives $j_E = \alpha\,\sigma_{\rm SB}T^4
     slab, and $R$ always the radius of a lens; the Earth's radius is $R_\oplus$.
 
 [^steel]: This is chapter 5.1's steel: density $\matter\rho = 7850\unit{kg\,m^{-3}}$ and shear sound at $c_T = 3000$
-    m/s, so that $\matter\mu = \matter\rho c_T^2 = 71$ GPa. Rounded, its $1.7 \times 10^{-23}$ and $2.8 \times
-    10^{-46}$ are the paper's $2\times10^{-23}$ and $3\times10^{-46}$.
+    m/s, so that $\matter\mu = \matter\rho c_T^2 = 71$ GPa. Its $1.7 \times 10^{-23}$ is the paper's, and
+    $2.8 \times 10^{-46}$ rounds to the paper's $3\times10^{-46}$.
 
 [^lens]: This is the paper's lens, "a metre thick and a metre in radius", which focuses "some $6\times10^{12}$
     metres away, at the distance of Pluto". Since $f$ grows as $R^2$, a lens 1.3 m in radius would focus at

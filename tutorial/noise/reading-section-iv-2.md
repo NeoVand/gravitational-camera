@@ -304,8 +304,8 @@ the readings by only $D = 0.17$, and no linear image can forbid it
 prior ([3.9](/tutorial/noise/positivity/#non-negative-least-squares-keeps-only-the-masses-the-data-need), *checked
 here*). It puts $315 \pm 20$ kg in the right safe and $0.3 \pm 2.0$ kg in the left (the mean and the spread over the
 noise), the paper's "$315 \pm 20\,\mathrm{kg}$ … and almost nothing in the left".[^draws] At $10^4$ the right safe holds
-$327.6 \pm 0.7$ kg, the paper's "$328 \pm 1$" (Appendix A's "$327.6 \pm 0.6$", over fewer draws). "The small excess" of
-3.3 kg comes mostly from the bar's centre falling between the points of the grid (3.9, *checked here*).
+$327.6 \pm 0.7$ kg, the paper's "$328 \pm 1$", as in Appendix A. "The small excess" of 3.3 kg comes mostly from the
+bar's centre falling between the points of the grid (3.9, *checked here*).
 
 "A scene made of a few compact masses is resolved down to separations that shrink as a power of the sensitivity … not as
 its logarithm." Chapter

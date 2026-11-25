@@ -11,7 +11,7 @@ live: [scene-sun-at-midnight, graviton-count, onion-peel, planck-spectrum]
 
 The paper's [Section IX](/paper/#sec:first-image) draws its first picture in the thermal glow: a camera on the night
 side of the Earth looks down at midnight and sees the planet's layers and, beyond them, the Sun's core. "In eighty
-years that is about 36,000 gravitons." With Part 10 behind us, can we derive or check every claim of Section IX, and
+years that is about 35,000 gravitons." With Part 10 behind us, can we derive or check every claim of Section IX, and
 how bright, from the stiffness of each layer to the counts of a lifetime, is the paper's first image?
 
 This chapter reads the section in order (Figure [](#fig:read-ix-map)), as R10 read Section VI, and gives each claim
@@ -31,7 +31,7 @@ that cross the hot core are the brightest. Beyond the Earth the Sun's core shine
 times brighter for each patch of sky.
 
 The picture is faint. A square metre receives at most one graviton from the whole Earth every twenty hours, about
-36,000 in a lifetime: enough for a picture of fourteen parts, or, for a planet known to be made of round shells, to
+35,000 in a lifetime: enough for a picture of fourteen parts, or, for a planet known to be made of round shells, to
 find the edge of the core to about 30 km. No detector made of matter could catch these gravitons, and one that records
 the wave would bury them in quantum noise. A camera that counts them one at a time could still find the Sun's core
 through the Earth in half an hour.
@@ -218,7 +218,7 @@ the temperature trades against its shape (*read now, derived in chapter
 Chapter 5.6's figure: a round planet of up to five shells, a line of sight you drag or turn with the arrow keys, and
 the brightness against the angle from straight down. Choose *The paper's Earth* and answer the figure's three
 predictions. Then predict which shell a lifetime leaves least certain, turn on *Noise*, set *Counts in all* near
-36,000 and press *Peel*.
+35,000 and press *Peel*.
 :::
 
 ## A lifetime places the edge of the core to 29 km
@@ -431,7 +431,7 @@ less of the Earth's hotter ones, so a cubic metre crossed by one a second waits 
 :::
 
 **The idea to keep: no shell can glow beyond its stiffness, so the whole Earth sends a square metre one graviton every
-twenty hours. A lifetime's 36,000 gravitons draw fourteen picture elements or place the core's edge to 29 km, and no
+twenty hours. A lifetime's 35,000 gravitons draw fourteen picture elements or place the core's edge to 29 km, and no
 detector made of matter could catch them.**
 
 ::: problems

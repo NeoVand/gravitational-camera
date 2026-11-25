@@ -446,7 +446,7 @@ hole does all three (11.1, 11.3), and matter's glow is too faint for any detecto
 *What each channel cannot tell apart.* The harmonic part of the density (2.5), the shell theorem's first order (13.1),
 the mass that heat reveals (4.2, 13.2), the rung that each degree of tide adds (13.3) and the motion that tides read
 (13.4) are derived as stated, and so are the rolls of "a flow round an axis" (2.8), friction tied to temperature
-"from a count of gravitons" (R12) and the sky's limit of degree four "from the second moments of a reading" (9.6).
+"in a count of gravitons" (R12) and the sky's limit of degree four "in the second moments of a reading" (9.6).
 Two phrases leave out a condition: the rolls are silent only to first order in $v/c$ (2.8), and pressure is silent
 for waves (7.6). "A black hole does not" means that its tremor and its weighing give nothing new (11.4, 13.7), and
 "no more than the mass and the spin" is derived for a hole that does not turn and stated for one that turns.

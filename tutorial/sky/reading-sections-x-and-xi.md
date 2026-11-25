@@ -206,8 +206,8 @@ with the pair.
 They cross the equator, $|z| = 1$, where $|\curv h| = 3G\matter M/r^3$, one and a half times the static stretch
 $2G\matter M/r^3$ (*checked here*). That is not at $\lambda/2\pi$. On the axis the wave's tide is $|\curv h| =
 8G\matter{\Delta I}\,\Omega^4/c^4r$, twice 7.7's edge-on law, with $\matter{\Delta I}$ the reduced mass ($15\,M_\odot$
-here) times $d^2$. Equal to $3G\matter M/r^3$, it gives $r = 66{,}900$ km, 12 reduced wavelengths, the paper's "twelve
-times farther", near its estimate $(\lambda/2\pi)(c/\obs v)$ of ten (*checked here*).
+here) times $d^2$. Equal to $3G\matter M/r^3$, it gives $r = 66{,}900$ km, 12 reduced wavelengths, near the paper's
+estimate $(\lambda/2\pi)(c/\obs v)$, "ten times farther" (*checked here*).
 
 The magnetic part has no tide of the mass, only the spin's. On the axis chapter
 [7.5](/tutorial/geometry/gravitomagnetism/#a-spinning-round-body-is-a-spin-dipole)'s spin dipole has the eigenvalues

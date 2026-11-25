@@ -299,7 +299,7 @@ Carrying the errors through the peeling gives the five glows to 1.0, 1.6, 2.2, 3
 
 ::: gap
 These errors belong to the peeling model, not to the paper. The paper fits the radii and glows of five shells together
-by maximum likelihood to the Poisson counts (chapter 3.1) of about 36,000 gravitons in eighty years, and reads the
+by maximum likelihood to the Poisson counts (chapter 3.1) of about 35,000 gravitons in eighty years, and reads the
 errors from the Fisher information of chapter [3.3](/tutorial/noise/measuring-a-number/). Those errors follow how many
 gravitons each shell sends, not the order of a peeling. The fit places the boundary of the core to within 29 km, and
 chapter R10b reads the rest.

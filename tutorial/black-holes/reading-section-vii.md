@@ -63,10 +63,10 @@ is $c/(1\unit{kHz}) = 300$ km long, so "a lens able to act on it at all would ha
 here*).
 
 A sharp face reflects the amplitude $4\pi G\matter\mu/c^2\omega^2$ (*stated in the paper*; 5.5 explains the quarter),
-$1.7\times10^{-23}$ for that steel, and its square, $2.8\times10^{-46}$, of the energy: the paper's "$2\times10^{-23}$"
-and "$3\times10^{-46}$" (*checked here*). Absorption is weaker still, as the optical depth below shows. So
-[R9](/tutorial/one-point/reading-section-viii/)'s stated claim that matter neither reflects nor absorbs is now checked:
-walls send the camera no echoes.
+$1.7\times10^{-23}$ for that steel, and its square, $2.8\times10^{-46}$, of the energy: the paper's
+"$1.7\times10^{-23}$" and "$3\times10^{-46}$" (*checked here*). Absorption is weaker still, as the optical depth below
+shows. So [R9](/tutorial/one-point/reading-section-viii/)'s stated claim that matter neither reflects nor absorbs is now
+checked: walls send the camera no echoes.
 
 ## Every optical constant of a body is its compactness times factors below one
 
