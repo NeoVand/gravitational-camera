@@ -44,28 +44,10 @@ We read the two sections paragraph by paragraph. Each claim is *checked here* (a
 result), *read now, derived in chapter N*, or *stated in the paper* (cited there without proof). A bare chapter number
 in parentheses, as "(13.7)", marks a smaller step derived in that chapter. This is the last reading chapter.
 
-<!-- diagram: tut-read-xiv-xv-map — spec: a map of the two sections in the style of tut-read-x-xi-map, in neutrals
-with the matter colour for the stone's side only (no orange or blue anywhere: there is no stretch or squeeze in this
-map). Two columns of boxes, one per section, top to bottom in the paper's order. Section XIV: plain words; the
-response to a tide; the fluctuations of the quadrupole; the weight of the response, with fig:hole-response; Table
-tab:hair. Section XV: plain words; black holes and the classical limit; what gravity cannot decohere. Each box
-carries, in small type, the chapter numbers it rests on (XIV: 4.5, 4.6, 11.2, 11.3, 11.4, 13.7; the table: 1.7, 1.8,
-2.5, 2.8, 3.8, 4.2, 4.5, 4.6, 11.2, 11.4, 13.1, 13.3, 13.4, 13.7; XV: 2.5, 8.1, 8.6, 11.1, 13.1, 13.6, 13.8). Fill:
-solid (derived) where every equation of the section is derived; a dotted inset for the stated results
-(Binnington–Poisson, Damour–Nagar and Charalambous et al.; Poisson's 16/45; Goldberger–Rothstein; Kehagias–Riotto;
-Porto and Goldberger–Li–Rothstein; Laddha et al., Chowdhury et al., Donnelly and Calmet et al.; Belenchia et al. and
-Danielson et al.; Donadi et al.; Allali–Hertzberg); a hatched corner where a step is a sketch at depth B (the zero
-Love number and Page's 256/225 in 11.4, the radii of every degree in 13.7, the count of cells in 13.8, which is the
-tutorial's own and carries a small "tutorial's own" tag). A small margin flag on four boxes for the places where the
-paper says more than it shows: the weight (the factor left out, the rounded radii, the attribution), XV's plain words
-((R/d)² against (R/d)³, the bead with no density, the tremor left out), the classical limit (the same count), and
-"cannot decohere" (readings at two times need impulses). Below the two columns, two thin boxes: the Conclusion, with
-its four paragraphs and the chapters each rests on, and Section XVII's six open problems. The last box, set apart, is
-the capstone: a black hole and a moon, with thin arrows from the six boxes it uses (the response, the fluctuations,
-the weight, the table, the classical limit, and XII's bits from R13). Caption: "Look first at the solid boxes: every
-paragraph of Sections XIV and XV rests on chapters of Parts 4 to 13, with its stated results in dotted insets. The
-flags mark where the paper says more than it shows. The last box follows one hole and one moon down the table's
-rows." -->
+![Look first at the solid boxes: every paragraph of Sections XIV and XV rests on chapters of Parts 1 to 13, with its
+stated results in dotted insets. The hatched corners mark a step sketched at depth B, and the flags mark where the paper
+says more than it shows. The last box follows one hole and one moon down the table's
+rows.](tut-read-xiv-xv-map){#fig:read-xiv-xv-map}
 
 ::: plain
 Section XIV pushes a black hole with tides. A steady tide raises no bulge on it. A changing tide loses energy into it,
@@ -343,20 +325,9 @@ remark [@AllaliHertzberg2020] are *stated in the paper*.
 
 ## The capstone: a black hole and a moon of one mass
 
-<!-- diagram: tut-read-hole-moon — spec: Table tab:hair redrawn for two bodies of one mass, in neutrals and the matter
-colour only (no orange or blue: nothing is stretched or squeezed here). At the top, two small discs labelled "not to
-scale": the hole, a black disc with a thin grey ring for its horizon, tagged "0.905 K, r_s = 0.201 mm"; the moon, a
-disc in the matter colour, tagged "3000 kg m⁻³, R_m = 2210 km". Between them a small bell curve, "one tide, about a
-second", with an arrow to each disc tagged "slow" (hole) and "fast" (moon). Below, seven rows (a)–(g), each a thin
-rule with the row's name at left and the two numbers in two columns: (a) one time: "7 numbers, 139.5 bits" | "1176
-bits"; (b) a steady tide: "k₂ = 0" | "k₂ = 0.031"; (c) the tide at ω = 1 s⁻¹: "friction, 1.85 × 10⁻²³" | "dust,
-−1.32 × 10³⁵ kg m² s²"; (d) the sums: a row of five short ticks at 1.02, 1.46, 1.61, 1.69, 1.73 r_s climbing to a
-dashed 1.91, tagged "fails the test" | ticks at 0.775, 0.809, 0.833 R_m climbing to a dashed 1, tagged "passes";
-(e) the tremor: "0.905 K: its mass" | "the whole interior"; (f) a weighing after the tide: "5.2 × 10⁻⁴⁴ J: its mass"
-| "1.32 × 10¹⁵ J: its density"; (g) the most any camera could read: "1450 bits" | "2.8 × 10⁵ cells of 55 km".
-Caption: "Look first at row (d): the moon's shell radii climb toward its surface and pass the test of positive mass,
-while the hole's climb toward 1.91 r_s too slowly at the third step. The numbers are exact; the discs and ticks are
-schematic." -->
+![Look first at row (d): the moon's shell radii climb toward its surface and pass the test of positive mass, while the
+hole's climb toward $1.91\,r_s$ and fail it. The numbers are exact and the ticks are to scale along each line; the
+discs are not to scale.](tut-read-hole-moon){#fig:read-hole-moon}
 
 The capstone sets the 0.905 K hole beside a rocky moon of the same mass, $\matter M = 1.356\times10^{23}$ kg, uniform at
 3000 kg m⁻³, of radius $R_{\rm m} = (3\matter M/4\pi\matter\rho)^{1/3} = 2210$ km. Both meet one tide of profile $g =
