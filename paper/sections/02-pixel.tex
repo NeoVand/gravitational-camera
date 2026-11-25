@@ -17,7 +17,7 @@ slightly towards each other, so the ring is squeezed across that line. Figure~\r
 Moon does the same to the Earth's oceans, and this raises the tides. For this
 reason, the difference in gravity between nearby points is called the
 \textbf{tidal field}, or simply the tide. The tide is the only effect of
-gravity that any detector can measure. Figure~\ref{fig:tidal-field} maps the tide around one mass, around two masses and in a wave.
+gravity that a freely falling detector can measure at one place. Figure~\ref{fig:tidal-field} maps the tide around one mass, around two masses and in a wave.
 
 The tide is measured in units of ``per second squared''. A tide of one per
 second squared means that two free balls one metre apart accelerate relative
@@ -46,7 +46,7 @@ produce a magnetic field as well as an electric one. This second kind does not
 stretch or squeeze. Instead, it makes gyroscopes at neighbouring points turn
 slightly relative to one another. It is called the
 \textbf{\href{https://en.wikipedia.org/wiki/Gravitoelectromagnetism}{magnetic
-part}} of the tidal field. It is also a symmetric 3 by 3 table with five
+part}} of the tidal field. In empty space it is also a symmetric 3 by 3 table with five
 independent numbers. Near slowly moving matter it is very small, but in a
 gravitational wave it is as strong as the first part. An ideal pixel of our
 camera records all ten numbers at every moment.
@@ -93,8 +93,8 @@ camera records what remains.
 
 A freely falling observer feels no gravitational field at their own position.
 What remains measurable is how the field differs between nearby points: the
-tidal field. For an observer at rest, with proper time $t$ and coordinates
-$x^0 = ct$, $x^i$, it is the symmetric tensor
+tidal field. For an observer at rest relative to the masses, with proper time $t$ and
+its own local orthonormal coordinates $x^0 = ct$, $x^i$, it is the symmetric tensor
 \begin{equation}\label{eq:tidal}
 \tE_{ij} = c^2 R_{0i0j},
 \end{equation}
@@ -152,16 +152,20 @@ $h_{ij}^{\TT}$ (in the transverse traceless gauge),
 \tE_{ij} = -\tfrac{1}{2}\,\partial_t^2 h_{ij}^{\TT} .
 \end{equation}
 An interferometer such as LIGO reads one component of $\tE_{ij}$, integrated
-twice in time, as the fractional change $h$ in the length of its arms.
+twice in time, as the difference $h$ of the fractional changes in the lengths
+of its two arms.
 
 Such a detector therefore responds to the ordinary pull of a passing lorry and
 to a wave from a distant collision, and nothing in its one reading tells them
 apart. The pull is not small. A person of $70\,\mathrm{kg}$ standing one metre
-away produces $\tE \approx 9\times10^{-9}\,\mathrm{s^{-2}}$. If they sway by
+away, taken as a point mass, produces $\tE \approx 9\times10^{-9}\,\mathrm{s^{-2}}$. If they sway by
 five centimetres once a second, the field changes by $3\,\delta r/r$ of
-itself, about $1.4\times10^{-9}\,\mathrm{s^{-2}}$, which a detector reads as a
+itself, about $1.4\times10^{-9}\,\mathrm{s^{-2}}$, which a detector small compared
+with that distance reads as a
 strain $h = 2\,\delta\tE/\omega^2 \approx 7\times10^{-11}$, where
-$\omega = 2\pi f$ is the angular frequency, here $2\pi\,\mathrm{s^{-1}}$. The
+$\omega = 2\pi f$ is the angular frequency, here $2\pi\,\mathrm{s^{-1}}$.
+Beside one of LIGO's mirrors, which alone feels the sway, the strain over its
+four-kilometre arm is about $3\times10^{-15}$. The
 waves LIGO detects have strains near $10^{-21}$. This is why people and
 vehicles must be kept away from its mirrors \cite{ThorneWinstein1999}. The
 signal that the observatory removes as contamination is the one that a
@@ -199,11 +203,12 @@ the premise asks little more than exists. Tides are measured in eotvos,
 $1\,\mathrm{E} = 10^{-9}\,\mathrm{s^{-2}}$, and the person a metre away is nine
 of them. An atom gradiometer carried over a buried tunnel reaches
 $20\,\mathrm{E}$ in ten minutes \cite{Stray2022}; a superconducting one in the
-laboratory, $0.02\,\mathrm{E}$ in a second \cite{MoodyPaikCanavan2002}, a
+laboratory, $0.02\,\mathrm{E\,Hz^{-1/2}}$ \cite{MoodyPaikCanavan2002},
+taken here as $0.02\,\mathrm{E}$ for one second of averaging, a
 signal-to-noise ratio of five hundred on that person; and a satellite has
 carried one as sensitive around the Earth \cite{RummelYiStummer2011}. Two free
 masses of a gram, a centimetre apart and read for a second at the standard
-quantum limit, would resolve $6\times10^{-14}\,\mathrm{s^{-2}}$, a hundred
+quantum limit, would resolve $9\times10^{-14}\,\mathrm{s^{-2}}$, a hundred
 thousand times less than the person's tide. The magnetic part asks more. It
 can be read by gyroscopes \cite{Nichols2011}, by a gradiometer in motion
 \cite{BraginskyCavesThorne1977,MashhoonPaikWill1989} or by light sent both ways
@@ -224,10 +229,10 @@ equator moves with the ground at $\Omega R = 465\,\mathrm{m\,s^{-1}}$ through
 the field of a planet that is itself spinning, and the two together
 (Eq.~\eqref{eq:magnetic-point} and the spin dipole of
 Section~\ref{sec:near-field}) give it a magnetic part
-$(3GM\Omega/cR^2)(1 - I/MR^2) = 4.8\times10^{-12}\,\mathrm{s^{-2}}$, with $I$
+$(3GM\Omega/cR^2)(1 - C/MR^2) = 4.8\times10^{-12}\,\mathrm{s^{-2}}$, with $C$
 the planet's moment of inertia: seventy thousand times the magnetic part of a
 person walking past a metre away at $1.4\,\mathrm{m\,s^{-1}}$. This too is steady, and it is a measurement:
-one pixel on the ground reads $I/MR^2$, the number that tells a planet with a
+one pixel on the ground reads $C/MR^2$, the number that tells a planet with a
 core from one without.
 
 The two parts are best written as one complex matrix, $\mathcal W = \tE +

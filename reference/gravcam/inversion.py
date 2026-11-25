@@ -148,7 +148,7 @@ def footprint(cells, center, half=(0.45, 0.6)) -> np.ndarray:
 def positive_case(snr: float, trials: int = 3000, side: float = 1.0, n: int = 11, seed: int = 1) -> dict:
     """The same data, reconstructed with every cell's mass constrained to be non-negative (non-negative least
     squares, no prior): mean and spread over noise of the mass found in each safe. The spread needs thousands of
-    draws to settle: forty gave 317 +- 16 kg at SNR 10^3, three thousand give 316 +- 20 kg."""
+    draws to settle: forty gave 317 +- 16 kg at SNR 10^3, three thousand give 315 +- 20 kg."""
     from scipy.optimize import nnls
 
     pixels = array_pixels(side, n)

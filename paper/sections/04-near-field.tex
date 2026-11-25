@@ -87,7 +87,7 @@ finely than the blur would suggest. In one example, a bar of gold of
 $324$ kilograms lies in one of two steel safes $3.5$ metres away, and a camera
 of 121 pixels a metre across must find it. At a signal-to-noise ratio of 34,
 the camera picks the wrong safe only once in a thousand tries. At a ratio of a
-thousand, and using only the fact that mass is positive, it finds $316 \pm 20$
+thousand, and using only the fact that mass is positive, it finds $315 \pm 20$
 kilograms in the right safe. Figure~\ref{fig:locked-safe} shows this scene, and its live version sets it beside the view in ordinary light.
 
 A near-field picture also holds very little information. A
@@ -106,7 +106,7 @@ so the camera weighs what it sees. And it is present whether or not anything
 moves, so a perfectly still scene is visible too.
 
 \paragraph{How bright.} A body of mean density $\bar\rho$ and radius $R$ at
-distance $r$ produces a tidal field of magnitude
+distance $r$ produces a tidal field whose stretch along the line to it is
 \begin{equation}\label{eq:tidal-brightness}
 \frac{2GM}{r^{3}} = \frac{8\pi G}{3}\,\bar\rho\,\theta^{3},
 \qquad \theta = \frac{R}{r} .
@@ -130,7 +130,7 @@ line of sight with each part weighted by the inverse of its distance;
 Fig.~\ref{fig:sky-integral} shows where the weighting comes from. The
 integral starts a short distance $r_{\min}$ from the camera (a quarter of a
 metre in the scenes of this paper), since matter at the camera itself would make $S$
-diverge logarithmically, although not $\tE_{ij}$. A single pixel measures only
+diverge logarithmically, although, for a smooth density, not $\tE_{ij}$. A single pixel measures only
 five numbers, the quadrupole of $S$ over the whole sky; an array, by comparing
 the field from pixel to pixel, measures more.
 
@@ -206,7 +206,7 @@ produce the same field at every point outside both, however close. More
 generally, adding to a body the density $\delta\rho = \nabla^2\psi/4\pi G$,
 with $\psi$ any smooth function that vanishes outside it, changes the
 potential by $\psi$ and so changes nothing outside \cite{YurtseverMarzbanMeila2011};
-ordinary positive densities $\rho_0 \pm \epsilon\,\delta\rho$ make such pairs
+ordinary positive densities $\rho_0 \pm \epsilon\,\delta\rho$, for small $\epsilon$, make such pairs
 out of real matter. The tidal column is therefore a rendering of a known
 scene, the natural picture of what the camera responds to, and not a quantity
 the camera could reconstruct uniquely. The near-field images of this paper show $S$
@@ -216,14 +216,14 @@ inertia (\emph{The magnetic picture}, above); and heat, or a tide applied from
 outside, reveals the rest (\emph{What heat reveals} and \emph{What an applied tide reveals}, below). The camera's position matters too: inside a closed
 spherical shell it feels no tide from the shell at all, whatever its mass.
 
-\paragraph{What the image does show.} The ambiguity has an exact shape. For a
-body whose outside is connected, every density splits in one way only into two
+\paragraph{What the image does show.} The ambiguity has an exact shape. In any
+bounded body every density splits in one way only into two
 parts,
 \begin{equation}\label{eq:split}
 \rho = \rho_h + \frac{\nabla^2\psi}{4\pi G} ,
 \end{equation}
 where $\rho_h$ is harmonic inside the body, $\nabla^2\rho_h = 0$, and $\psi$
-vanishes on the surface together with its gradient. The field outside fixes
+vanishes on the surface together with its gradient. For a body whose outside is connected, the field outside fixes
 $\rho_h$ completely and is blind to the rest \cite{Isakov1990}. The potential
 outside is built from the moments $\int\rho\,h\,\dd V$ of the density against
 functions $h$ harmonic in the body (the solid harmonics $r^\ell Y_{\ell m}$
@@ -302,7 +302,7 @@ $\rho\mathbf{v} = \nabla\times\nabla\times\mathbf{V}$, with $\mathbf{V}$ vanishi
 together with its derivatives at the surface, that potential is a pure gradient
 outside, and $\tB = 0$ there. Every confined flow that is the same all round an axis and turns in its
 meridian planes, such as the simplest convection rolls inside a star or a
-planet's core, is of this form: it is silent outside, however fast it runs. Of
+planet's core, is of this form in a body without a hole through it: it is silent outside, however fast it runs. Of
 such a flow only the swirl about the axis shows, and only through its harmonic
 part, of which the spin dipole is the first term.
 Figure~\ref{fig:silent-flows} shows both kinds of flow inside a ball and the
@@ -356,7 +356,7 @@ nugget from its flush and its skin, and the shell from the ball, whose
 tremors differ by $5/3$ whatever their elastic constants and their friction;
 these set only at which frequencies the tremor lies, not how much of it there
 is. The octupole gives $\int\rho\,r^4\,\dd V$, and so on. For a round body the
-whole sequence fixes the density at every radius, since a positive
+whole sequence fixes the density at every radius, since a
 distribution on a finite interval is fixed by its moments; for any body, the
 products $\nabla h\cdot\nabla g$ of harmonic functions reach every Fourier
 component of the density, as Calder\'on showed for an inverse problem of the
@@ -372,14 +372,14 @@ Three conditions apply: the modes that carry the tremor must be classical,
 $\hbar\omega \ll k_BT$; slow enough to be seen as near field, $\omega r \ll c$;
 and measured in full. All three hold for a solid, whose smooth moments fall on
 its lowest modes of vibration. In a lattice ball of 924 masses joined by
-springs, $85\%$ of the quadrupole's tremor lies at one frequency and $99\%$
+springs, $85\%$ of the tremor of the quadrupole along a lattice axis lies at one frequency and $99\%$
 below twice it; a shell of the same mass and radius, whose thickness is a third of its
-radius, trembles $1.22$ times as much, the ratio of their second moments, at
-frequencies more than twice as low (Fig.~\ref{fig:tremor}). A steel ball ten
-centimetres in radius rings in its lowest quadrupole mode near $15\,\mathrm{kHz}$,
+radius, trembles $1.22$ times as much, the ratio of their second moments, with
+its strongest mode more than twice as low (Fig.~\ref{fig:tremor}). A steel ball ten
+centimetres in radius rings in its lowest spheroidal quadrupole mode, at an estimated $15\,\mathrm{kHz}$,
 with $4\times10^8$ quanta in it at room temperature, and its tremor makes a
 tide of $3\times10^{-25}\,\mathrm{s^{-2}}$ a metre away, where $\omega r/c =
-3\times10^{-4}$. That mode emits one graviton in $7\times10^{17}$ years. The
+3\times10^{-4}$. That mode emits one graviton in a time of order $10^{18}$ years. The
 camera detects the ball's ringing without receiving any of its radiation: the graviton
 counts that limit the thermal glow (Section~\ref{sec:thermal}) say nothing
 about the near field. The cost is distance. A quadrupole's tide falls as
@@ -394,7 +394,7 @@ to a metre costs $10^{14}$ times as long.
 identical: lattices of equal masses joined by springs, with the same total mass
 and radius, the shell's thickness a third of its radius. Each curve adds up, mode
 by mode in order of frequency, the mean square rate of change of the
-quadrupole moment, Eq.~\eqref{eq:thermal-multipole}; frequency is in units of
+quadrupole moment along a lattice axis, $h = z^2 - \tfrac12(x^2 + y^2)$, the $m = 0$ term of Eq.~\eqref{eq:thermal-multipole}; frequency is in units of
 the ball's strongest quadrupole mode. The totals are in the ratio of the
 bodies' second moments, $\int\rho\,r^2\,\dd V$, whatever the springs; the shell
 is softer, and its tremor lies at lower frequencies.}\label{fig:tremor}
@@ -413,8 +413,8 @@ where $\chi_h$ is the response of $Q_h$ to a tide whose potential is $-F h$.
 The friction and the stiffness of the body spread the response over frequency
 but cannot change its total. The static part of the response is the body's
 tidal Love number \cite{Love1909}: a ball of rigidity $\mu$, density $\rho$ and
-surface gravity $g$ acquires a quadrupole $\tfrac13 k_2R^5/G$ times the applied
-tide, with $k_2 = \tfrac32/(1 + 19\mu/2\rho g R)$ for a uniform ball; for the
+surface gravity $g$ acquires a trace-free second moment $\int\rho\,(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$ of $-\tfrac13 k_2R^5/G$ times the applied
+tide, with $k_2 = \tfrac32/(1 + 19\mu/2\rho g R)$ for a uniform incompressible ball; for the
 steel ball, $k_2 = 4\times10^{-16}$. The same compliance sets the static
 jitter, $\langle\delta Q_h^2\rangle = k_BT\,\chi_h(0)$. Quantum mechanics
 bounds the jitter between the classical value and that of a single mode at the
@@ -513,7 +513,7 @@ of the reconstructed image of a point, for a flat array, Eq.~\eqref{eq:resolutio
 ``Row'': the same for a single row of sensors over a two-dimensional scene.
 ``Two points'': the smallest separation at which two equal point masses show
 a dip between them in the array's image (Sparrow's criterion); as for
-any image formed in amplitude, this slightly exceeds the full width. The last
+the Airy amplitude, this slightly exceeds the full width. The last
 column is the first estimate.}\label{tab:resolution}
 \end{table}
 
@@ -547,8 +547,8 @@ geophysics, as the downward continuation of gravity and magnetic surveys
 
 \paragraph{A flown gradiometer.} The law can be read off an instrument that
 exists. The satellite GOCE carried a gradiometer around the Earth for four
-years at a height of $z = 254\,\mathrm{km}$, reading the tide to between
-$0.01$ and $0.02\,\mathrm{E}$ in a second \cite{RummelYiStummer2011}. Its final
+years, three of them at a height of $z = 254\,\mathrm{km}$, reading the tide with a noise of between
+$0.01$ and $0.02\,\mathrm{E\,Hz^{-1/2}}$ \cite{RummelYiStummer2011}. Its final
 map of the Earth's field runs out of signal between spherical harmonic degrees
 $\ell = 280$ and $300$ \cite{BrockmannSchubertSchuh2021,Kvas2021}, where the
 pattern on the ground has wavenumber $k = \ell/R$, so that $kz$ is between $11$
@@ -565,7 +565,7 @@ row of Table~\ref{tab:resolution}.
 \caption{The near-field blur, for a row of pixels over a
 two-dimensional scene: two line masses a distance $z/2$ apart at depth $z$, recorded
 with signal-to-noise ratio $10^6$. (a) The geometry, to scale, and what the
-pixels record: $-\tE_{zz}$ along the row, a single smooth bump. (b) The best
+pixels record: $-\tE_{zz}$ along the row, a single smooth bump. (b) The best linear
 reconstruction of the masses that the noise allows, the Wiener filter of
 Eq.~\eqref{eq:wiener}; its ripples
 are the price of discarding the detail that noise has swamped. The bar is the
@@ -631,23 +631,23 @@ $\SNR = 10^3$. Asked instead for an image that assumes little beyond mass lying
 in the plane of the safes, the
 same data weigh the contents of a safe only to within $\pm 730\,\mathrm{kg}$ at
 $\SNR = 10^3$: the image cannot say where the gold is. The array is a small
-camera in the sense of Eq.~\eqref{eq:handheld}, whose blur of about $33^\circ$,
-two metres at that distance, is as wide as the gap between the safes, and a broad layer of mass has
-no tidal field at all. Appendix~\ref{app:benchmarks} gives the details, and
+camera in the sense of Eq.~\eqref{eq:handheld}, whose blur of about $32^\circ$,
+two metres at that distance, is as wide as the gap between the safes, and most of the uncertainty lies in
+fine patterns of mass that the data do not reach. Appendix~\ref{app:benchmarks} gives the details, and
 the effect of tilting the array, which matters only through where its pixels
 are.
 
 \paragraph{The positivity of mass.} One fact is missing from that image: mass is
-never negative. A Gaussian image allows a cell to hold minus five hundred
-kilograms of gold beside one holding plus five hundred, and the near field
+never negative. A Gaussian image allows a cell to hold plus five hundred
+kilograms of gold with minus five hundred spread round it, and the near field
 cannot see the difference; that is where its large errors hide. Requiring every
 cell's mass to be positive, and assuming nothing else, the same data at
-$\SNR = 10^3$ put $316 \pm 20\,\mathrm{kg}$ in the right-hand safe (the mean
+$\SNR = 10^3$ put $315 \pm 20\,\mathrm{kg}$ in the right-hand safe (the mean
 and spread over noise) and almost nothing in the left; at $\SNR = 10^4$,
 $328 \pm 1\,\mathrm{kg}$, the
 small excess being the cost of modelling a bar as a grid of points. This is the
 mathematics of super-resolution of positive sources
-\cite{Donoho1992,CandesFernandezGranda2014}: a scene made of a few compact
+\cite{MorgenshternCandes2016}, and of sparse ones \cite{Donoho1992}: a scene made of a few compact
 masses is resolved down to separations that shrink as a power of the
 sensitivity, as for the two masses above, not as its
 logarithm. The logarithmic law of Eq.~\eqref{eq:resolution} is the limit for a
@@ -693,7 +693,7 @@ $x = \pm d/2$, on the bisector $x = 0$ the term $\tE_{xy}$ vanishes by symmetry
 and $\tE_{xx} - \tE_{yy}$ is proportional to $y^2 - d^2/4$. Shallower than
 $\tfrac{\sqrt3}{2}d$, four more zeros appear off the bisector. The separation of the two zeros gives $d$ directly, with no
 reconstruction (Fig.~\ref{fig:buried-ruler}). Noise places each to within about $z^2/2\mathcal{R}d$, so they
-separate two masses once $d$ exceeds about $z/\sqrt{2\mathcal{R}}$: the limit of
+separate two masses once $d$ exceeds about $z/\sqrt{2\mathcal{R}}$: the scale of
 \emph{The precision of a simple scene}, above, now reached by inspection. For unequal masses the zeros
 move with depth, and their separation gives $d$ only approximately. The rule
 for any thin layer of matter, seen from a height $z$ much greater than its
@@ -722,7 +722,7 @@ Top: the ordinary near-field picture, $-\tE_{zz}$, in which the two merge as $z$
 grows. Bottom: the phase of the shear in the plane,
 $(\tE_{xx} - \tE_{yy}) + 2i\,\tE_{xy}$, which turns once around each of two
 zeros (circles). The zeros lie on the perpendicular bisector of the pair,
-exactly $d$ apart
+exactly $d$ apart at every depth, and the only zeros
 at every depth greater than $\tfrac{\sqrt3}{2}d$.}\label{fig:buried-ruler}
 \end{figure}
 
@@ -745,7 +745,7 @@ blur only from $1.5^\circ$ to $1.9^\circ$.
 Quantum mechanics sets a sharper limit when the scene is itself quantum. Hold a
 mass $m$ behind a wall in a superposition of two places a distance $d$ apart.
 The centre of mass of an isolated system cannot move, so the two branches
-differ in their quadrupole, about $md^2$, and a camera that read it before
+differ in their quadrupole, by about $md^2$ when the body that recoils is centred on the mass, and a camera that read it before
 light from the place where the superposition is undone could arrive would learn
 which way the mass went faster than causality allows. The resolution of
 exactly this thought experiment \cite{Belenchia2018,DanielsonSatishchandranWald2022}
@@ -758,7 +758,7 @@ through a wall ends the object's superposition.
 
 \paragraph{The information in a near-field image.} The resolution law says how fine the
 detail of a near-field image can be. A different question, the one Shannon
-asked of a telegraph line \cite{Shannon1948}, is how much the image can say:
+asked of a noisy channel \cite{Shannon1948}, is how much the image can say:
 how many bits the data carry about the scene. Equation~\eqref{eq:array-data}
 answers it with no further assumption. Each Fourier component of the scene
 reaches the array as a signal in additive Gaussian noise, standing above it by
@@ -785,7 +785,7 @@ $10^{10}$.
 The two terms have a plain reading. The patterns that survive the noise are
 the components with $q < q_c$, and there are $q_c^2/4\pi$ of them per area
 $z^2$; the rest of Eq.~\eqref{eq:capacity} is the number of bits each carries
-on average, $(q_c/3 - \tfrac12)/\ln 2$, the mean of $2\log_2 s$ over them.
+on average, $(q_c/3 - \tfrac12)/\ln 2$, the mean of $\log_2 s$ over them.
 Greater sensitivity gives both more patterns and more bits in each, so with
 $q_c \approx \ln\SNR$ the information grows, eventually, as
 $(\ln\SNR)^3/12\pi\ln 2$. At
@@ -854,8 +854,10 @@ hyperbolic space in Poincar\'e's ball,
 $R^2(\dd r^2 + r^2\dd\Omega^2)/(R^2 - r^2)^2$, with unequal scales in depth
 and across; for tidal sensors their ratio is the $5/2$ of the variances of a
 point beneath a flat array (\emph{The precision of a simple scene}, above). The
-harmonic measure of the sphere, taken as a family of probabilities, has the
-hyperbolic metric exactly \cite{ItohShishido2008}.
+harmonic measure of the sphere, taken as a family of probabilities, has a
+metric of the same kind; the Poisson
+kernel of hyperbolic space, which coincides with it only in two
+dimensions, has the hyperbolic metric exactly \cite{ItohShishido2008}.
 
 \begin{figure}
 \centering

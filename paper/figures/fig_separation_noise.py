@@ -137,7 +137,7 @@ def separation_noise(data=None):
     a.set_ylim(0.9, 25)
     a.set_yticks([1, 2, 5, 10, 20])
     a.set_yticklabels(["1", "2", "5", "10", "20"])
-    a.set_ylabel(r"cost to the wave, $D$")
+    a.set_ylabel("cost to the wave")
     mf.letter(a, "(a)")
     # (b) the range of one mass
     b.plot(X, d_closed, color=mf.INK, lw=mf.CURVE2)

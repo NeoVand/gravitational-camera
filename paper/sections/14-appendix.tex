@@ -43,7 +43,7 @@ masses at the nodes of a grid $25\,\mathrm{cm}$ apart, $5\,\mathrm{m}\times
 equal to the gold's mass; it is computed through the singular values of the
 design matrix, which stays exact at any noise. A safe's mass is the sum over the
 cells of its footprint, $0.9\,\mathrm{m}$ wide. Gold $0.2\,\mathrm{m}$ farther
-back and $14\%$ heavier, so as to pull as hard on the array's centre, is told
+back and $14\%$ heavier, so as to raise the same tide at the array's centre, is told
 apart at $\SNR \approx 10^3$, from the way the field changes across the array.
 The posterior uncertainty is $\pm 730\,\mathrm{kg}$ at $\SNR = 10^3$ and $\pm
 490\,\mathrm{kg}$ at $10^6$ for the metre-wide array, and $\pm 350\,\mathrm{kg}$
@@ -51,9 +51,10 @@ at $10^6$ for one six metres across; these belong to the array and the noise,
 not to the data. Tilting changes nothing in principle, since each pixel reads
 the whole tensor wherever it points: turned through $70^\circ$, the metre-wide
 array tells the two safes apart $9\%$ better, and the six-metre one, whose near
-edge then comes within $0.7\,\mathrm{m}$ of the safes, thirty times better. The
+edge then comes within $0.28\,\mathrm{m}$ of the left safe, thirty times better. The
 positive reconstruction is non-negative least squares on the same grid, with no
-prior, over forty draws of the noise.
+prior, over three thousand draws of the noise: $315 \pm 20\,\mathrm{kg}$ in the
+right-hand safe at $\SNR = 10^3$, and $327.6 \pm 0.6\,\mathrm{kg}$ at $10^4$.
 
 \paragraph{The trembling lattice.} The ball and the shell of
 Fig.~\ref{fig:tremor} are the sites of a simple cubic lattice of unit spacing
@@ -87,7 +88,7 @@ $\sqrt{x}\coth(s\sqrt{x})$ is concave in $x$ for any $s > 0$,
 k_BT\chi_0 \le \langle\delta Q_h^2\rangle \le
 \frac{\hbar}{2}\sqrt{A\chi_0}\,\coth\!\Big(\frac{\hbar}{2k_BT}\sqrt{\frac{A}{\chi_0}}\Big),
 \end{equation}
-with the upper bound reached by a single mode. The shell drive of
+with the upper bound reached by a single undamped mode. The shell drive of
 Eq.~\eqref{eq:thermometer} has no monopole or dipole.
 
 \section{Where each result is checked}\label{app:checks}
@@ -265,7 +266,8 @@ $|b|^{-(p+q+2)}e^{i(q-p)\varphi}$, with $\varphi$ the angle of $b$, and no two
 terms share both the power and the angular frequency. Its values on an annulus
 of impact points around the body therefore give every $m_{pq}$: all the
 polynomial moments of $\Sigma$, which fix a distribution of bounded support;
-the integral is the logarithm of the exponential transform of $\Sigma$, whose
+the integral is a constant times the logarithm of the exponential transform of
+$\Sigma$ scaled to at most one, whose
 values outside the support are known to determine it
 \cite{GustafssonPutinar2017}.
 The Fourier transform of $\Sigma$ for a path along $\hat n$ is that of $\rho$ on
@@ -273,8 +275,8 @@ the plane $\mathbf k\cdot\hat n = 0$, and every $\mathbf k$ is perpendicular to
 some $\hat n$ of a given great circle. The momentum given to the body is
 $C\sum_q m_{0q}/\bar b^{q+1}$, which holds only the moments against the powers
 of $\bar z$, the harmonic ones. For a mass held at the point $\mathbf y$, at
-the angle $\gamma$ from $\mathbf x$,
-$|\mathbf x - \mathbf y|^{-4} = \sum_n C^{(2)}_n(\cos\gamma)\,|\mathbf x|^n/|\mathbf y|^{n+4}$,
+the angle $\vartheta$ from $\mathbf x$,
+$|\mathbf x - \mathbf y|^{-4} = \sum_n C^{(2)}_n(\cos\vartheta)\,|\mathbf x|^n/|\mathbf y|^{n+4}$,
 and the Gegenbauer polynomial $C^{(2)}_n$ is a sum, with positive
 coefficients, of every Legendre polynomial of its parity up to the degree $n$;
 the values at points outside the body therefore give every moment
@@ -284,7 +286,8 @@ $\int\rho\,r^{\ell+2j}Y_\ell\,\dd V$.
 $\dd s^2 = -\dd u\,\dd v + H(\mathbf x_\perp)\,\delta(u)\,\dd u^2 + \dd\mathbf x_\perp^2$,
 with $u = ct - z$ and $v = ct + z$, a solution of Einstein's equations in
 vacuum when $H$ is harmonic across the front. It does not contain $v$, so a
-free particle keeps $q = E/c - p_z$, and $u$ advances uniformly along its
+free particle keeps $q = E/c - p_z$, the $E - cp_z$ of
+Section~\ref{sec:second-order} divided by $c$, and $u$ advances uniformly along its
 path. Across the front the geodesic obeys
 $\ddot{\mathbf x}_\perp = \tfrac12\nabla H\,\delta(u)\,\dot u^2$, which gives
 the particle the momentum $\tfrac12q\nabla H$ at $u = 0$. Its energy follows
@@ -315,5 +318,6 @@ which is not negative, and vanishes for a uniform $\nabla H$, which moves a
 body without heating it. One wave alone can lower the mass. Two equal masses
 flying apart with $p = \tfrac34mc$, across the direction of the wave, have the
 rest mass $2.5\,m$ together, and the wave whose $\nabla H$ at each is
-$-2\mathbf p_\perp/q$ stops their motion apart and leaves $2\,m$.
+$-2\mathbf p_\perp/q$ stops their motion apart and leaves $2\,m$, moving
+together along $-z$ at $0.22\,c$.
 

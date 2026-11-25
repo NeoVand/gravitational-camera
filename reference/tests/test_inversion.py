@@ -84,7 +84,7 @@ def test_positivity_finds_the_gold_where_the_gaussian_image_cannot():
     linear = worked_case(1e3)
     positive = positive_case(1e3, trials=20)
     m, s = positive["right"]
-    assert abs(m - GOLD_MASS) < 0.1 * GOLD_MASS and s < 30.0      # 316 +- 20 kg over 3000 draws
+    assert abs(m - GOLD_MASS) < 0.1 * GOLD_MASS and s < 30.0      # 315 +- 20 kg over 3000 draws
     assert positive["left"][0] < 5.0                                 # nothing in the empty safe
     assert linear["right"][1] > 20 * s                               # against +-730 kg without positivity
 

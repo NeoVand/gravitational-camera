@@ -2636,7 +2636,7 @@ def black_hole_camera():
     ax.text(1.6e-4, person * 3.5, r"a person a metre from the camera, $10^{-8}$\,s$^{-2}$", fontsize=6.5, color=ACCENT2, va="bottom")
     pts = [(rs, r"horizon, 0.2\,mm", (6, 0), "left"),
            (1.0, r"1\,m: ring $1.2^\circ$", (6, 2), "left"),
-           (cam, "the camera: 26\\,km,\n" r"ring $25''$, orbit 9\,s", (-6, -2), "right"),
+           (cam, "the camera: 26\\,km,\n" r"ring $26''$, orbit 9\,s", (-6, -2), "right"),
            (far, r"12,500\,km", (-4, -4), "right")]
     for x, label, (dx, dy), ha in pts:
         y = lens.tide(M, x)

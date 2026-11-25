@@ -11,7 +11,7 @@ only approximates):
              for glass, and standing for concrete and plaster; copper standing for gold; water, from its simulated
              spectrum);
   hot metal  a metal's friction falls as 1/T when its collision rate grows as T (Section VI), so the hot iron has
-             the cold iron's friction times 293 K / T: its count grows as T^2, about 25 times at 1500 K;
+             the cold iron's friction times 293 K / T: its count grows as T^2, about 26 times at 1500 K;
   cap        the most a relaxing shear stiffness can send, glowbounds.count_bound: the Earth's and the Moon's
              shells, with the stiffnesses of glowbounds.EARTH_SHELLS, wood, and honey. An upper bound, not an
              estimate;

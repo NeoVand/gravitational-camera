@@ -19,14 +19,14 @@ the brightest thing in the night sky in light, is faint in this glow, because
 its interior is cooler and smaller. Figure~\ref{fig:sun-at-midnight}, at the start of the paper, is this view, and Figure~\ref{fig:earth-glow} shows the shells and how the brightness changes with the angle of the line of sight.
 
 \textbf{How few gravitons arrive.} A
-\href{https://en.wikipedia.org/wiki/Graviton}{graviton} is the smallest possible
-packet of gravitational-wave energy, as a photon is for light. A picture made by
+\href{https://en.wikipedia.org/wiki/Graviton}{graviton} is the smallest
+packet of energy that a gravitational wave of a given frequency can carry, as a photon is for light. A picture made by
 counting gravitons is limited by how many arrive. A detector of one square
 metre receives at most one graviton from the whole Earth below every twenty
 hours. In eighty years that is about 36,000 gravitons. Random arrivals
 fluctuate: a count of $N$ varies by about the square root of $N$ from one
 exposure to the next. To be sure that one part of the picture is ten per cent
-brighter than another, each part needs about 2500 gravitons. A lifetime's
+brighter than a level known in advance, each part needs about 2500 gravitons. A lifetime's
 36,000 gravitons are therefore enough for a picture of only about fourteen
 parts, or picture elements. Everyday objects in a room send a single graviton to
 the detector only once in millions of years. Figure~\ref{fig:budget} compares how many gravitons different objects send out.
@@ -87,7 +87,7 @@ in gravitons per second, per square metre of aperture, per steradian.
 
 Figure~\ref{fig:sun-at-midnight} evaluates Eq.~\eqref{eq:column} for an
 observer on the night side of the Earth, at latitude $40^\circ$ at local
-midnight. The Earth is modelled as five uniform shells with rounded textbook
+midnight at an equinox. The Earth is modelled as five uniform shells with rounded textbook
 radii and temperatures, from a crust at $700\,\mathrm{K}$ to an inner core at
 $5500\,\mathrm{K}$. Looking straight down, the line of sight runs through
 $12{,}700\,\mathrm{km}$ of rock and iron, and the expected brightness is at
@@ -110,12 +110,12 @@ gravitational sky by day and by night.
 (a) The model's five shells, to scale, in a globe with a quarter cut away. Every
 line of sight starts at the camera on the surface; the three drawn graze the
 boundaries of the inner core, the core and the lower mantle, which they meet
-at $\arcsin(r/R)$ from straight down: $11^\circ$, $33^\circ$ and $63^\circ$. The
+at $\arcsin(r/R)$ from straight down: $11^\circ$, $33^\circ$ and $63^\circ$. At an equinox the
 line to the Sun's core leaves $40^\circ$ from straight down, as in
-Fig.~\ref{fig:sun-at-midnight}, and crosses only the mantle. The Sun's size and
+Fig.~\ref{fig:sun-at-midnight}, and misses the core. The Sun's size and
 distance are schematic; the surface is NASA's Blue Marble. (b) The brightness,
 Eq.~\eqref{eq:column}, against the angle of the line of sight, with each
-shell's share shaded in its colour in (a). Its steps fall exactly at the
+shell's share shaded in its colour in (a). Its kinks fall exactly at the
 grazing angles, so their places are a measurement of the radii that does not
 depend on the friction, here the most that each shell's stiffness allows, which
 sets only their heights.}\label{fig:earth-glow}
@@ -144,8 +144,8 @@ the numbers a camera would receive in each of the scenes of this paper.
 The Sun delivers about one graviton per square metre per second. The whole
 Earth below delivers at most one every twenty hours,
 $3.6\times10^{4}$ per square metre in eighty years. That is a coarse picture: picking out features of
-ten per cent contrast at five standard deviations takes about $2500$ counts
-each, so a lifetime's exposure resolves about fourteen picture
+ten per cent contrast at five standard deviations against a known level takes
+about $2500$ counts each, so a lifetime's exposure resolves about fourteen picture
 elements. Everyday objects in a room take millions of years
 for a single graviton. These counts assume no other background. If the
 primordial glow of Section~\ref{sec:vistas} exists, its
@@ -163,7 +163,7 @@ mean, are what such a filter must remove.
 Scene, and what is counted & Regime & One graviton per square metre every \\ \hline
 The Sun at midnight: the Sun's core & thermal & second \\
 The Sun at midnight: the whole Earth below & thermal & 20 hours, or more \\
-The closed furnace: the hot iron, at $3.5\,\mathrm{m}$ & thermal & $9\times10^{7}$ years \\
+The closed furnace: the hot iron, at $3.9\,\mathrm{m}$ & thermal & $1.1\times10^{8}$ years \\
 Which way it turns: one turning pair, at $4.5\,\mathrm{m}$ & waves & $4\times10^{7}$ years \\
 The other scenes & near field & none needed \\
 \end{tabular}
@@ -213,7 +213,7 @@ the crust's emissivity is read first and each deeper one in turn, as in the
 onion-peeling reconstructions of flames and plasmas \cite{Dasch1992}. Where the
 emissivity jumps, at a boundary of radius $r$, $\dd N/\dd b$ diverges as
 $(r - b)^{-1/2}$: the brightness has a kink at $\sin\theta = r/R$, and these
-kinks are the steps of Fig.~\ref{fig:earth-glow}. Their places are geometry,
+kinks are those of Fig.~\ref{fig:earth-glow}. Their places are geometry,
 the radii of the boundaries; the friction, the temperatures and the exposure set
 only their heights.
 
@@ -269,7 +269,8 @@ weight far beyond the band of heat, to about $3\%$ of the placeholder's
 friction, a fifth of what the figures grant it. In counts the core may then
 hardly stand out from the mantle. In
 colour it does. The core's gravitons, from electrons whose friction is flat
-across the band, carry about $2.70\,k_BT \approx 1\,\mathrm{eV}$; the mantle's,
+across the band, carry about $2.70\,k_BT \approx 1\,\mathrm{eV}$ at the outer
+core's $4500\,\mathrm{K}$; the mantle's,
 confined below its highest vibrations, $0.09$ to $0.17\,\mathrm{eV}$. The
 boundary of the core, $33^\circ$ from straight down, is a step in the colour of
 the glow by a factor of five to twelve, for any resistivity between half a
@@ -311,8 +312,8 @@ could record.
 \paragraph{Counting or recording.} These budgets count gravitons, while the
 array of Section~\ref{sec:no-lens} records the field at each pixel and
 combines the records afterwards. In the thermal regime the two are in
-tension. The radiation is so weak that each of its modes holds of order
-$10^{-30}$ gravitons on average, and any device that records both quadratures
+tension. The radiation is so weak that each of its modes holds
+$10^{-30}$ gravitons or fewer on average, and any device that records both quadratures
 of a field at a pixel must add at least half a quantum of noise per mode
 \cite{Caves1982}; recorded pixel by pixel, a thermal gravitational image would
 be buried in that noise. Counting avoids the noise but loses the phase that
@@ -333,7 +334,8 @@ A counting pixel still learns where each graviton came from. One graviton of
 helicity two from $\hat n$ excites the five local modes of its helicity in the
 state of Eq.~\eqref{eq:square}, a coherent state of spin two
 \cite{Arecchi1972}, and the measurement made of all such states, equally
-weighted over the sky, is complete. It clicks at the angle $\vartheta$ from
+weighted over the sky, is complete. Labelling each click by the direction
+opposite to that of its coherent state, it clicks at the angle $\vartheta$ from
 $\hat n$ with probability density $(5/4\pi)\cos^8(\vartheta/2)$, and adds no
 noise: an empty mode never clicks. Each graviton then carries $1.17$ bits about
 its direction, against $0.62$ for a photon at a point sensor of light and none

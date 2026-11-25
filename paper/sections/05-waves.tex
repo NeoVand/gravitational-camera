@@ -23,9 +23,9 @@ arranged in the same way;
 \end{itemize}
 
 The waves are extremely weak. Two masses of one kilogram each, one metre apart,
-spun sixteen times a second, send out a power of $4.5\times10^{-41}$ watts. A
+spun sixteen times a second, send out a power of $4.6\times10^{-41}$ watts. A
 \href{https://en.wikipedia.org/wiki/Graviton}{graviton} is the smallest
-possible packet of gravitational-wave energy, as a photon is for light. This
+packet of energy that a gravitational wave of a given frequency can carry, as a photon is for light. This
 spinning pair sends out about one graviton every fifteen years.
 
 The waves are also very long. A wave cannot show details much smaller than its
@@ -39,8 +39,9 @@ millions of times longer than they are. For example, a pair of balls turning
 once a second sends out waves $150{,}000$ kilometres long. Seen in its own
 waves, a compact, slowly moving body is therefore a single point, with no
 shape. Only a source larger than its own waves can show a shape. One example
-is the generators of a power grid that covers a continent, which all turn in
-step and send out waves $3000$ kilometres long.
+is a power grid that covers a continent: those of its generators that turn fifty
+times a second all turn in step, and the slight lopsidedness of their nearly
+round rotors sends out waves $3000$ kilometres long.
 
 Even a single point carries some information, through the
 \textbf{\href{https://en.wikipedia.org/wiki/Polarization_(waves)}{polarization}}
@@ -53,8 +54,8 @@ spinning dumbbell, is hidden inside a sealed box.
 round and round as the rotor turns, in the same direction. This is called
 circular polarization.
 \item Seen edge-on, from the plane in which the rotor turns, the pattern does
-not turn. It only pulses back and forth along fixed directions, and it is eight
-times weaker. This is called linear polarization.
+not turn. It only pulses back and forth along fixed directions, and it carries
+eight times less power. This is called linear polarization.
 \item Seen from directions in between, the pattern does something in between.
 \end{itemize}
 The camera cannot resolve the rotor, but from the polarization it can tell
@@ -64,11 +65,13 @@ The figures of this section show these effects with the speed of light (and so
 of gravity) imagined to be only twenty centimetres a second. This makes the
 waves ten centimetres long, short enough for a camera a metre and a half across
 to show each rotor as a small spot. At the true speed of light nothing would be
-resolved, but the polarization would still show which way each rotor turns. Figure~\ref{fig:which-way} shows three sealed boxes in this way, and its live version sets them beside the view in ordinary light.
+resolved, and the room would lie close to the rotors, in their near field; there
+the pattern of stretch and squeeze still turns with each rotor and shows which
+way it turns. Figure~\ref{fig:which-way} shows three sealed boxes in this way, and its live version sets them beside the view in ordinary light.
 \end{quote}
 
-Outside the near zone a source of mass quadrupole moment $I_{ij}(t)$ produces
-the strain
+In the wave zone, $r \gg \lambda/2\pi$, a source of mass quadrupole moment
+$I_{ij}(t)$ produces the strain
 \begin{equation}\label{eq:quadrupole}
 h_{ij}^{\TT}(t, r) = \frac{2G}{c^{4} r}\,
 \ddot I_{ij}^{\TT}\!\left(t - \frac{r}{c}\right),
@@ -80,7 +83,7 @@ at angular velocity $\Omega$,
 P = \frac{8}{5}\,\frac{G m^{2} d^{4}\,\Omega^{6}}{c^{5}} .
 \end{equation}
 Two one-kilogram masses a metre apart, spun sixteen times a second, radiate
-$4.5\times10^{-41}\,\mathrm{W}$: one graviton every fifteen years.
+$4.6\times10^{-41}\,\mathrm{W}$: one graviton every fifteen years.
 
 \paragraph{A compact body is a point.} The waves of Eq.~\eqref{eq:dumbbell} have
 twice the rotation frequency, so their wavelength is $\lambda = \pi c/\Omega$,
@@ -102,7 +105,8 @@ size and speed, the wave is
 h_{ij}^{\TT}(\omega, r\hat n) = \frac{4G}{c^4 r}\,e^{i\omega r/c}\,
 \Lambda_{ij,kl}(\hat n)\,\tilde T_{kl}\!\left(\omega, \frac{\omega\hat n}{c}\right),
 \end{equation}
-with $\Lambda$ the transverse trace-free projection and $\tilde T_{kl}(\omega,
+with $\hat n$ here pointing from the source, $\Lambda$ the transverse
+trace-free projection and $\tilde T_{kl}(\omega,
 \mathbf k) = \int T_{kl}\,e^{i\omega t - i\mathbf k\cdot\mathbf x}\,\dd t\,
 \dd^3x$: each direction carries one Fourier component of the stress, on the
 sphere $|\mathbf k| = \omega/c$. A camera at distance $r$ whose aperture $D$
@@ -110,8 +114,10 @@ spans the directions within $D/r$ of the source reads a cap of that sphere,
 and so sees the source with detail $\lambda r/D$, as any aperture does. A
 compact source is the point $\mathbf k \to 0$, Eq.~\eqref{eq:quadrupole}. The
 simplest source larger than its wave is many compact ones driven in step,
-such as the generators of a continental power grid, which turn together over
-distances greater than the $3000\,\mathrm{km}$ wavelength of their waves. Its
+such as the generators of a continental power grid that turn fifty times a
+second: they turn together over distances greater than the
+$3000\,\mathrm{km}$ wavelength of their waves, which only the small asymmetries
+of their nearly round rotors send out. Its
 wave is that of one rotor times the sum $\sum_s e^{-i\phi_s - i\omega\hat
 n\cdot\mathbf x_s/c}$ over their positions and phases. Close together they
 add their amplitudes, and $N$ rotors radiate $N^2$ times the power of one; far
@@ -119,14 +125,15 @@ apart they add their powers, $N$ times. Such a source does show its form, but
 the camera must undo, for each point of the source, the delays from that
 point, not those of a plane wave, because an aperture wide enough to resolve
 it lies in its Fresnel zone, $D^2 \gg \lambda r$; and two sources in step are
-separated only once $D \gtrsim 1.4\,\lambda r/s$ for a separation $s$, against
+separated only once
+$D \gtrsim 1.4\,\lambda r/s$ for a separation $s$, against
 about $\lambda r/s$ for sources that are not, the familiar penalty of imaging
 in coherent light.
 
 \paragraph{The polarization of an unresolved source.} The radiation is not the same in all
 directions, and it is polarized (Fig.~\ref{fig:quadrupole}). Along the axis
 of rotation it is strongest and circularly polarized, with the handedness of
-the rotation; in the plane of rotation it is eight times weaker and linearly
+the rotation; in the plane of rotation it carries eight times less power and is linearly
 polarized.
 
 \begin{figure*}
@@ -162,9 +169,12 @@ a quarter of a cycle apart: $h_+(t) = h_+\cos 2\Omega u$ and
 $h_\times(t) = h_\times\sin 2\Omega u$, with $u = t - r/c$. Here $\Delta I$ is
 the difference between the two principal moments of inertia in the plane of
 rotation ($md^2/2$ for the pair of Eq.~\eqref{eq:dumbbell}), and the axes lie
-across the line of sight, one of them along the projection of the spin; on
+across the line of sight, the first along the projection of the spin and the
+second a quarter turn from it anticlockwise as the camera sees it; on
 axes turned through any angle the two amplitudes mix as a spin-two pair, while
-the Stokes parameters $I$ and $V$ below do not change. The pattern of stretching that passes over the camera
+the Stokes parameters $I$ and $V$ below, the sum and the difference of the
+squared amplitudes of the parts of the wave that turn anticlockwise and
+clockwise as the camera sees them, do not change. The pattern of stretching that passes over the camera
 therefore turns, and the share of the signal that is circularly polarized,
 the ratio of the Stokes parameters $V$ and $I$,
 \begin{equation}\label{eq:circular}
@@ -190,13 +200,13 @@ rotation, its size the tilt.}\label{fig:polarization}
 
 \paragraph{What does not radiate.} The source of the wave field is the part of
 the stress that is transverse to the line of sight and has no trace. Steady
-motion in a straight line radiates nothing: its quadrupole grows, but with a
-constant second derivative, and only a change in that radiates. Nor does
+motion in a straight line radiates nothing: it is a body at rest seen by a
+moving observer. Nor does
 anything that keeps spherical symmetry, however violently it pulsates, or a
 wheel turning steadily about its axis of symmetry, whose arrangement of mass
 does not change.
 And a pressure that is the same in all directions is pure trace: it is removed
-exactly by the projection in Eq.~\eqref{eq:quadrupole}, a statement we have
+exactly by the projection in Eq.~\eqref{eq:wave-zone}, a statement we have
 verified numerically. The camera sees shear and lopsided motion, not pressure.
 
 Because everyday speeds are so far below that of light, these effects cannot
@@ -205,10 +215,12 @@ $150{,}000\,\mathrm{km}$ long, and a room is deep inside their near zone.
 Figure~\ref{fig:which-way} is therefore drawn with the speed of light, and of
 gravity with it, set to twenty centimetres a second, so that the waves are ten
 centimetres long and an array a metre and a half across shows each rotor as a
-spot. The change rescales the wavelength and nothing else: the balls move at
-$1.4\,\mathrm{m\,s^{-1}}$, seven times faster than the slowed light, where
-Eq.~\eqref{eq:dumbbell} would not hold. The polarization,
-Eq.~\eqref{eq:circular}, does not depend on the speed of light.
+spot. The change rescales the wavelength and everything that depends on it: the
+balls move at $1.4\,\mathrm{m\,s^{-1}}$, seven times faster than the slowed
+light, where Eq.~\eqref{eq:dumbbell} would not hold, and each pair is
+$4.4$ wavelengths across. The polarization of a compact source,
+Eq.~\eqref{eq:circular}, does not depend on the speed of light, and the figure
+gives each pair that polarization.
 
 \begin{figure*}
 \centering
@@ -219,10 +231,12 @@ an array $1.5\,\mathrm{m}$ wide can resolve the boxes. Three sealed steel boxes 
 in the top and middle ones a pair of balls turns once a second, in opposite
 senses, and the bottom pair is still. (a) Ordinary light, from the same
 camera: the boxes are sealed and look the same. (b) The waves: each turning
-pair is an Airy spot, Eq.~\eqref{eq:diffraction}, and the still pair is dark;
-the colour is the degree of circular polarization $V/I$ of Eq.~\eqref{eq:circular}, magenta
+pair is an Airy spot, Eq.~\eqref{eq:diffraction}, of an array focused at the
+shelf's distance, and the still pair is dark;
+the colour is the degree of circular polarization $V/I$ of Eq.~\eqref{eq:circular}, that of a compact rotor, magenta
 where the pattern of stretching turns anticlockwise as the camera sees it and
 green where it turns clockwise. At the true speed of light the waves are
-$1.5\times10^{8}\,\mathrm{m}$ long and nothing is resolved, but the
-polarization still gives the sense of turning.}\label{fig:which-way}
+$1.5\times10^{8}\,\mathrm{m}$ long and nothing is resolved; a camera in the
+room, deep inside their near zone, reads the Newtonian tide, whose stretch
+turns with each pair and still gives the sense of turning.}\label{fig:which-way}
 \end{figure*}
