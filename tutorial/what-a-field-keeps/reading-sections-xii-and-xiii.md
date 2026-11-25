@@ -363,8 +363,10 @@ The paper's "$1300$ bits at a signal-to-noise ratio of $10^6$ and $9.6\times10^6
 paper*. They come from its own computation, in its reference implementation (`reference/gravcam/passing.py`), which
 the text does not show. Applied moment by moment, the rule that gave the first reading's 1200 gives 2580 and
 $3.19 \times 10^7$ (13.2). The paper's numbers include an unmentioned price: moments of one pattern fall off with the
-held mass's distance in nearly the same way, and telling them apart costs bits. On one sphere they cannot be told apart
-at all: "read on a single sphere, the second reading gives only as many as the first" (13.3). For a pass, the second
+held mass's distance in nearly the same way, and telling them apart costs bits. With one mass at a time on one sphere
+they cannot be told apart at all: "read on a single sphere, the second reading gives only as many as the first"
+(13.3). Masses held in pairs on one sphere read every rung
+([13.8](/tutorial/what-a-field-keeps/holography/#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm)). For a pass, the second
 reading's ratio is smaller by $2G\matter\mu/bV^2$, $4.6 \times 10^{-17}$ for the tonne at 1.5 m and 44 km/s
 (*checked here*, by 13.1).
 

@@ -363,8 +363,10 @@ and the kernel averaged over directions is $(s^2 - r^2)^{-2} = \sum_k(k + 1)\,r^
 at $s^{-4}$ and $s^{-6}$, and at $s^{-8}$ the term $3\int\matter\rho\,r^4\,\dd V$ gives B more than A by
 $\tfrac38\epsilon^2\matter MR^4/s^8$.
 
-On a sphere of one radius the moments of one pattern $Y_\ell$ on different rungs arrive with the same pattern of the
-mass's direction and add into one number, so only distances that vary pull the rungs apart.
+For one mass at a time on a sphere of one radius, the moments of one pattern $Y_\ell$ on different rungs arrive with
+the same pattern of the mass's direction and add into one number, so only distances that vary pull the rungs apart.
+Two masses held together on one sphere sort the rungs by the pair of directions
+([13.8](/tutorial/what-a-field-keeps/holography/#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm)).
 
 ## The same ladder appears in impedance tomography
 
@@ -409,12 +411,12 @@ $x^2y^2$ are not.
 
 ### Q
 
-Why must a held mass be used at several distances to read every rung?
+Why must a single held mass be used at several distances to read every rung?
 
 ### A
 
 At one distance the moments of one angular pattern on different rungs arrive with the same pattern, and add into one
-number.
+number. Two masses held at once on one sphere read them by direction instead.
 :::
 
 **The idea to keep: whatever is read after it, a tide of degree $m$ reaches exactly the polynomials killed by $m$

@@ -4046,3 +4046,68 @@ symbols:
     meaning: 'The mean of $r^{2k}$ over a body''s mass, $m_k = \int\rho\,r^{2k}\,\mathrm dV/M$; for a round body it is $R_{k+1}^{2k}$. Every density that is nowhere negative has $m_2^2 \le m_1m_3$; a black hole''s sums give $m_2^2/m_1m_3 = 1.117$. (Not a mass.)'
     chapter: '13.7'
     anchor: no-distribution-of-positive-mass-has-the-holes-first-three-sums
+
+  - key: looking-count
+    title: Numbers a reading at one time holds
+    tex: 'N_1'
+    role: none
+    kind: A count; a pure number
+    meaning: 'The multipole moments of a body that stand above the noise, read on a sphere of radius $R_c = e^\Lambda a$ with the monopole at $\mathrm{SNR}$: $N_1 = (\lfloor L/\Lambda\rfloor + 1)^2$, with $L = \ln\mathrm{SNR}$. From three radii it is 169 at $10^6$ and 21,609 at $10^{70}$; none of them is a cell of the interior. (Not a number of particles.)'
+    chapter: '13.8'
+    anchor: looking-at-a-body-gives-a-hologram-that-loses-the-null-space
+  - key: cell-count
+    title: Cells that pushing resolves
+    tex: 'N_2'
+    role: none
+    kind: A count; a pure number
+    meaning: 'The interior cells of a body that masses held in pairs on a sphere of radius $R_c = e^\Lambda a$, with weighings, resolve: about $\kappa(L/\Lambda)^3$ with $L = \ln\mathrm{SNR}$, the SNR of the weighing''s own leading term. From three radii it is 271 at $10^6$ and $2.5\times10^5$ at $10^{70}$. The count is the tutorial''s own (chapter 13.8).'
+    chapter: '13.8'
+    anchor: pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm
+  - key: cell-constant
+    title: Constant of the cell law
+    tex: '\kappa'
+    role: none
+    kind: A pure number
+    meaning: 'The constant in $N_2 \approx \kappa(L/\Lambda)^3$ for masses held in pairs, $\kappa = \Lambda^3\int_0^{1/2}\tfrac23(1 - 2p)\,\mathrm dp/[\Lambda + h(p)]^3$ with $h$ the entropy of a coin in nats: 0.073 from three radii. The integral does not depend on SNR; the counted ratio $N_2/(L/\Lambda)^3$ is 0.080 at $\mathrm{SNR} = 10^{70}$ and drifts toward it. One mass at a time gives 0.043. Local to chapter 13.8; not 13.2''s decay rate $\kappa$ or a surface gravity.'
+    chapter: '13.8'
+    anchor: pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm
+  - key: cell-size
+    title: Size of a cell
+    tex: 'd'
+    role: none
+    kind: A length; in metres
+    meaning: 'The side of the smallest volume of a body whose mean density the data fix, from $\tfrac43\pi a^3 = N_2d^3$: about $3.9\,a\Lambda/\ln\mathrm{SNR}$ for masses held in pairs, $0.026a$ at $10^{70}$ from three radii. (Not the array datum $d$ of Section IV.)'
+    chapter: '13.8'
+    anchor: pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm
+  - key: planck-length
+    title: Planck length
+    tex: '\ell_P'
+    role: none
+    kind: A length; in metres
+    meaning: 'The length $\ell_P = \sqrt{\hbar G/c^3} = 1.6\times10^{-35}$ m. In a region of radius $\ell_{\rm r}$, the signal-to-noise ratio of reading a scene''s mass through its pull is at most $\ell_{\rm r}^2/2\ell_P^2$, $1.9\times10^{69}$ for a metre.'
+    chapter: '13.8'
+    anchor: quantum-mechanics-caps-the-sensitivity-by-the-area-of-the-region
+  - key: area-entropy
+    title: Area entropy of a region
+    tex: 'S_{\rm BH}'
+    role: none
+    kind: A pure number (an entropy in units of $k_B$)
+    meaning: 'A quarter of the area of a sphere in units of $\ell_P^2$, $S_{\rm BH} = 4\pi\ell_{\rm r}^2/4\ell_P^2$: the Bekenstein–Hawking entropy a black hole of that horizon would have (11.3, stated). In the region, the signal-to-noise ratio of reading a scene''s mass through its pull is at most $S_{\rm BH}/2\pi$. For a sphere of radius one metre the entropy is $1.2\times10^{70}$.'
+    chapter: '13.8'
+    anchor: quantum-mechanics-caps-the-sensitivity-by-the-area-of-the-region
+  - key: pointer-spread
+    title: Spread of a pointer state
+    tex: '\sigma_y'
+    role: none
+    kind: A length; in metres
+    meaning: 'The standard deviation of the position $y$ of a camera''s pointer after a reading. Two readings $\Delta y$ apart leave records with the overlap $e^{-\Delta y^2/8\sigma_y^2}$: 0.044 at $\Delta y = 5\sigma_y$.'
+    chapter: '13.8'
+    anchor: gravity-cannot-decohere-a-ball-and-a-shell
+  - key: diosi-penrose-energy
+    title: Diósi–Penrose energy
+    tex: 'E_G'
+    role: none
+    kind: An energy; in joules
+    meaning: 'The gravitational self-energy of the difference of two arrangements of mass, $E_G = (1/8\pi G)\int|\vect g_1 - \vect g_2|^2\,\mathrm dV$, which sets Diósi and Penrose''s time $\hbar/E_G$. For a ball and a shell, $GM^2/10R$: $5.7\times10^{-34}$ J and 0.19 s for a glass bead of a micrometre.'
+    chapter: '13.8'
+    anchor: gravity-cannot-decohere-a-ball-and-a-shell

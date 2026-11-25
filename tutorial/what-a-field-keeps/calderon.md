@@ -422,8 +422,10 @@ a guide only when many degrees are read, as at $10^{70}$, where it gives $3.06 \
 $3.19 \times 10^7$ and the first reading's $1.7 \times 10^6$. The sum is an upper bound, because it reads each moment
 as if it were alone. In one angular pattern, moments of different degree give signals that fall off with the held
 mass's distance in nearly the same way, so telling them apart has a price. The paper's 1300 bits at $10^6$ and
-$9.6 \times 10^6$ at $10^{70}$ include it.[^bits] With the held mass on a single sphere they cannot be told apart at
-all, and the second reading gives only as many numbers as the first (chapter [13.3](/tutorial/what-a-field-keeps/ladder/#a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder)). If a passing tonne makes the second
+$9.6 \times 10^6$ at $10^{70}$ include it.[^bits] With one mass held at a time on a single sphere they cannot be told apart
+at all, and the second reading gives only as many numbers as the first; two masses held together on one sphere tell
+them apart by their directions (chapters [13.8](/tutorial/what-a-field-keeps/holography/#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm) and
+[13.3](/tutorial/what-a-field-keeps/ladder/#a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder)). If a passing tonne makes the second
 reading of the steel ball, its ratio is $4.6 \times 10^{-17}$ times the first's (chapter 13.1). A first reading at
 $10^6$ then leaves nothing of the second to count, and one at $10^{70}$ leaves $4.6 \times 10^{53}$, for which the sum
 gives $1.1 \times 10^7$ bits.

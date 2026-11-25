@@ -4993,3 +4993,52 @@ terms:
     definition: 'A term added to a dispersion relation when a response does not fall to zero at high frequency, such as an answer local in time. A black hole''s static response needs one: without it, its friction would give it the Love number 1.35, where its own is zero.'
     chapter: '13.7'
     anchor: the-friction-would-make-the-hole-yield-like-a-liquid-yet-its-love-number-is-zero
+
+  - term: hologram
+    definition: 'A record on a surface from which a field in the volume beyond it can be rebuilt. The skin of balayage on a sphere round a body is a hologram of its pull outside, and a lossy one: every density with the same harmonic part sweeps to the same skin.'
+    chapter: '13.8'
+    anchor: looking-at-a-body-gives-a-hologram-that-loses-the-null-space
+  - term: elliptic equation
+    definition: 'An equation like Laplace''s or Poisson''s, whose solution at every point follows the sources everywhere at once, with no speed of travel.'
+    chapter: '13.8'
+    anchor: the-speed-of-light-does-not-add-the-third-dimension
+  - term: hyperbolic equation
+    definition: 'An equation like the wave equation, whose news travels at a finite speed. Einstein''s equation is one. (Not the hyperbolic geometry of the near field in Section IV.)'
+    chapter: '13.8'
+    anchor: the-speed-of-light-does-not-add-the-third-dimension
+  - term: light-cone transform
+    definition: 'The transform of a source in space and time, $\tilde s(\omega, \vect k)$, kept only where $|\vect k| = \omega/c$. It is all that the field outside, watched for all time, records of a source.'
+    chapter: '13.8'
+    anchor: the-speed-of-light-does-not-add-the-third-dimension
+  - term: non-radiating source
+    definition: 'A source that makes no field outside itself at any time: $c^{-2}\ddot\psi - \nabla^2\psi$ with $\psi$ zero outside the body. These sources are the null space of the record outside (Devaney and Wolf; Bleistein and Cohen).'
+    chapter: '13.8'
+    anchor: the-speed-of-light-does-not-add-the-third-dimension
+  - term: cell
+    definition: 'In a count of what a field reveals, the smallest volume of a body whose mean density the data fix, of size $d$. From three radii, masses held in pairs and weighings at $\mathrm{SNR} = 10^{70}$ resolve about $2.5\times10^5$ cells of a stone, each 0.026 of its radius.'
+    chapter: '13.8'
+    anchor: pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm
+  - term: causal diamond
+    definition: 'The events that a signal sent from one event can reach, and that can send a signal to one later event. For a ball of radius $\ell_{\rm r}$ it lasts the time $2\ell_{\rm r}/c$, and any experiment confined to the ball fits in it.'
+    chapter: '13.8'
+    anchor: quantum-mechanics-caps-the-sensitivity-by-the-area-of-the-region
+  - term: Planck length
+    definition: 'The length $\ell_P = \sqrt{\hbar G/c^3} = 1.6\times10^{-35}$ m, at which quantum mechanics and gravity meet. In a region of radius $\ell_{\rm r}$, the signal-to-noise ratio of reading a scene''s mass through its pull is at most $\ell_{\rm r}^2/2\ell_P^2$.'
+    chapter: '13.8'
+    anchor: quantum-mechanics-caps-the-sensitivity-by-the-area-of-the-region
+  - term: holographic sparseness
+    definition: 'The tutorial''s name for its own count: read through its field, ordinary matter in a region shows at most about $0.073\,[\ln(S_{\rm BH}/2\pi)/\Lambda]^3$ cells, a power of the logarithm of the region''s area, from $2.4\times10^5$ for a metre to $1.3\times10^6$ for the Hubble radius. It is about what can be read, not what is there.'
+    chapter: '13.8'
+    anchor: ordinary-matter-is-holographically-sparse-and-a-black-hole-shows-seven-numbers
+  - term: holography of information
+    definition: 'The argument of quantum gravity that the boundary of a region holds everything inside it. Without $\hbar$, what remains of it is an operation from outside followed by a reading of the energy.'
+    chapter: '13.8'
+    anchor: pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm
+  - term: pointer state
+    definition: 'The state of a camera''s pointer, the part whose position shows the reading, after a reading. For two Gaussian pointer states of spread $\sigma_y$ whose readings are $\Delta y$ apart the overlap is $e^{-\Delta y^2/8\sigma_y^2}$.'
+    chapter: '13.8'
+    anchor: gravity-cannot-decohere-a-ball-and-a-shell
+  - term: Diósi–Penrose energy
+    definition: 'The gravitational self-energy of the difference of two arrangements of mass, $E_G = (1/8\pi G)\int|\vect g_1 - \vect g_2|^2\,\mathrm dV$, proposed by Diósi and Penrose to set the time $\hbar/E_G$ in which gravity ends their superposition. For a ball and a shell of mass $M$ and radius $R$ it is $GM^2/10R$.'
+    chapter: '13.8'
+    anchor: gravity-cannot-decohere-a-ball-and-a-shell
