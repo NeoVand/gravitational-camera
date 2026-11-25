@@ -119,10 +119,10 @@ which is the paper's equation:
 
 {{paper eq:calderon}}
 
-In the paper's words, "the data at two times are the Fourier transform of the density".[^push] Both sides are in
-$\mathrm{kg\,m^{-2}}$: the density in $\mathrm{kg\,m^{-3}}$, each gradient in $\mathrm{m^{-1}}$ and the volume in
-$\mathrm m^3$. The exponent has the paper's plus sign, so for a real density the right side is the complex conjugate of
-chapter 2.6's transform, with the same modulus (2.6's table of conventions).
+In the paper's words, "the data at two times, given a known push", are "the Fourier transform of the density".[^push]
+Both sides are in $\mathrm{kg\,m^{-2}}$: the density in $\mathrm{kg\,m^{-3}}$, each gradient in $\mathrm{m^{-1}}$ and
+the volume in $\mathrm m^3$. The exponent has the paper's plus sign, so for a real density the right side is the complex
+conjugate of chapter 2.6's transform, with the same modulus (2.6's table of conventions).
 
 For a check, put $\vect\eta = 0$. Then $\vect\zeta = i\vect\xi/2$ and $\vect\zeta\cdot\vect\zeta = -|\vect\xi|^2/4$,
 which is not zero, so $e^{i\vect\xi\cdot\vect x/2}$ is not harmonic. The real parts $\pm\vect\eta/2$ are what make the
@@ -281,7 +281,7 @@ By the triangle inequality, $|\vect k + \vect k'| \le |\vect k| + |\vect k'|$, s
 when $\vect k$ and $\vect k'$ point the same way. In the space of $(\vect K, \kappa)$ the surface $\kappa = K$ is a
 cone, which we call **the cone** of the scene transform. A reading at one time holds $\matter{\tilde\rho}$ on the cone.
 Two readings hold it inside, times $\tfrac12(\kappa^2 - K^2)$. Differentiating $e^{i\vect K\cdot\vect a - \kappa z}$
-twice shows that $\kappa^2 - K^2$ is the factor that the Laplacian brings to it, and it vanishes on the cone.[^half] For
+twice shows that $\kappa^2 - K^2$ is the factor that the Laplacian brings to it, and it vanishes on the cone. For
 a scene of bounded depth, the values at every $\kappa > K$ fix the depth profile of the ripple $\vect K$, because a
 Laplace transform known on an interval can be undone (stated here without proof).
 
@@ -417,18 +417,20 @@ against the leading term $L^3/(3\Lambda^2\ln2)$ of the paper's [](/paper/#eq:hai
 degree, in place of $2n$, bring one more power of the readable degree $L/\Lambda$.
 
 From three radii, $\Lambda = \ln3 = 1.10$. At $\SNR = 10^6$ the sum runs to degree 12 and gives 2580 bits, against the
-first reading's 1200. The boxed term gives only 1650 there, because twelve degrees are too few for an integral. It is
-a guide only when many degrees are read, as at $10^{70}$, where it gives $3.06 \times 10^7$ against the sum's
-$3.19 \times 10^7$ and the first reading's $1.7 \times 10^6$. The sum is an upper bound, because it reads each moment
-as if it were alone. In one angular pattern, moments of different degree give signals that fall off with the held
-mass's distance in nearly the same way, so telling them apart has a price. The paper's 1300 bits at $10^6$ and
-$9.6 \times 10^6$ at $10^{70}$ include it.[^bits] With one mass held at a time on a single sphere they cannot be told apart
-at all, and the second reading gives only as many numbers as the first; two masses held together on one sphere tell
-them apart by their directions (chapters [13.8](/tutorial/what-a-field-keeps/holography/#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm) and
-[13.3](/tutorial/what-a-field-keeps/ladder/#a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder)). If a passing tonne makes the second
-reading of the steel ball, its ratio is $4.6 \times 10^{-17}$ times the first's (chapter 13.1). A first reading at
-$10^6$ then leaves nothing of the second to count, and one at $10^{70}$ leaves $4.6 \times 10^{53}$, for which the sum
-gives $1.1 \times 10^7$ bits.
+first reading's 1200. The boxed term gives only 1650 there, because twelve degrees are too few for an integral. It is a
+guide only when many degrees are read, as at $10^{70}$, where it gives $3.06 \times 10^7$ against the sum's $3.19 \times
+10^7$ and the first reading's $1.7 \times 10^6$. The sum is an upper bound, because it reads each moment as if it were
+alone. In one angular pattern, moments of different degree give signals that fall off with the held mass's distance in
+nearly the same way, so telling them apart has a price. The paper's 1300 bits at $10^6$ and $9.6 \times 10^6$ at
+$10^{70}$ include it, as the paper says. With one mass held at a time on a single sphere they cannot be told apart at
+all, and the second reading gives only as many numbers as the first; two masses held together on one sphere tell them
+apart by their directions (chapters
+[13.8](/tutorial/what-a-field-keeps/holography/#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm)
+and
+[13.3](/tutorial/what-a-field-keeps/ladder/#a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder)).
+If a passing tonne makes the second reading of the steel ball, its ratio is $4.6 \times 10^{-17}$ times the first's
+(chapter 13.1). A first reading at $10^6$ then leaves nothing of the second to count, and one at $10^{70}$ leaves $4.6
+\times 10^{53}$, for which the sum gives $1.1 \times 10^7$ bits.
 
 {{paper fig:hair}}
 
@@ -566,7 +568,7 @@ four real integrals.
     Lane–Emden $\xi$. $\vect\eta$ is not the rapidity, the viscosity or $\eta_{\mu\nu}$, and $\vect\zeta_\pm$ is not
     chapter 7.4's $\zeta^\mu$.
 
-[^push]: This needs a known push between the two times: an applied tide, or heat at a known temperature. A cold body
+[^push]: The known push is "an applied tide, or heat at a known temperature". A cold body
     at rest with nothing applied has $\matter{\dot Q_g} = 0$, so a second reading of its field repeats the first.
 
 [^checks]: For thirty point masses at random in a ball of radius 0.5 m, the two sides of the boxed equation agree to
@@ -581,9 +583,6 @@ four real integrals.
 
 [^rungs]: Chapter [13.3](/tutorial/what-a-field-keeps/ladder/#two-bodies-that-no-quadrupolar-tide-tells-apart) shows, rung by rung, which tides see which part of the null space.
 
-[^half]: The paper's "multiplied by half of $\kappa^2 - K^2$, which is the Laplacian in these variables" can be misread:
-    the Laplacian brings $\kappa^2 - K^2$, and the second reading carries half of it.
-
 [^slice]: Chapter 13.1 found that passes along one direction read the three-dimensional transform on a plane of
     wavevectors through the origin. A flat camera reads its own transform on the cone, and inside it.
 
@@ -593,6 +592,3 @@ four real integrals.
 
 [^Lambda]: This $\Lambda$ is chapter 3.8's logarithm, not the projector of Part 7. The paper writes $H$ for the
     first reading's bits, which chapter 3.8 called $C_{\rm body}$; $H_2$ is the second reading's.
-
-[^bits]: The paper prints these numbers beside the rule that gives the sum above, without saying that they include
-    this price.

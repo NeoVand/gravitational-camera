@@ -2,10 +2,11 @@
  * Chapter 7.5's magnetic tide: the figure's model against the chapter. The magnetic part of one moving mass is
  * symmetric and trace-free, zero for motion along the line of sight, and √3 v⊥/c times the electric part in norm;
  * both it and the spin dipole follow from the flow rule (G/c)(∂_ib_j + ∂_jb_i), b = ∇ × A; the spin dipole is
- * trace-free, with its pole and equator values; the equator's reading is −7.15 × 10⁻¹² (1 − I/MR²) s⁻², from the
+ * trace-free, with its pole and equator values; the equator's reading is −7.15 × 10⁻¹² (1 − C/MR²) s⁻², from the
  * formula and from the two rules added; gyroscopes 1 m apart there turn at 1.6 × 10⁻²⁰ rad/s; and each prediction is
  * answered only once the reader has done what it asks.
  */
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import {
 	BALANCE,
@@ -35,6 +36,7 @@ import {
 	equatorTable,
 	gyroPair,
 	inUnits,
+	inertia,
 	landed,
 	length,
 	magneticPoint,
@@ -48,6 +50,7 @@ import {
 	spinDipole,
 	spinRatio,
 	spinTable,
+	spinning,
 	spun,
 	stepped,
 	straightAt,
@@ -232,6 +235,18 @@ describe('the spin dipole, eq:spin-dipole', () => {
 		close(angularMomentum('ball', 50), 5000, 1e-12);
 	});
 
+	it('reads the moment of inertia C, ⅖MR² for the ball and ⅔MR² for the shell, and L = CΩ', () => {
+		const ball = spinning('ball', 50);
+		close(ball.C, 0.4 * BODY.M * BODY.R ** 2, 1e-12);
+		close(ball.C, 100, 1e-12);
+		close(ball.L, ball.C * 50, 1e-12);
+		const shell = spinning('shell', 50);
+		close(shell.C, (2 / 3) * BODY.M * BODY.R ** 2, 1e-12);
+		close(shell.L, shell.C * 50, 1e-12);
+		// the counter-turning body reads the whole ball's C
+		expect(spinning('counter', 50, BALANCE).C).toBe(inertia('ball'));
+	});
+
 	it('vanishes for a ball of radius 2^(−1/5) R = 0.871 R inside a counter-turning shell', () => {
 		expect(three(BALANCE)).toBe('0.871');
 		expect(angularMomentum('counter', 80, BALANCE)).toBe(0);
@@ -382,6 +397,14 @@ describe('the predictions', () => {
 });
 
 describe('the words', () => {
+	it('write the moment of inertia C, as chapter 7.5 and the paper do', () => {
+		const figure = readFileSync('src/lib/tutorial/live/MagneticTide.svelte', 'utf8');
+		expect(figure).toContain('label="Moment of inertia C/MR²"');
+		expect(figure).toContain('readout="C/MR² = {ratioWords(ratio)}"');
+		expect(figure).toContain('C over M R squared');
+		expect(figure).not.toMatch(/\bI\/(MR²|\$\{M\}R\^2)|L = I(Ω|\\\\Omega)|math="I"|I over M R/u);
+	});
+
 	it('write numbers to three figures', () => {
 		expect(three(0)).toBe('0');
 		expect(three(-4.7855e-12)).toBe('−4.79 × 10⁻¹²');

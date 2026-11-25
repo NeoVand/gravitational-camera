@@ -14,19 +14,22 @@
 // marks as stated in the paper. Four boxes carry R13's hatched corner, where a step they rest on is a sketch at depth
 // B: the response (the zero Love number and Page's 256/225 in 11.4), the weight (the radii's formula in 13.7), and
 // Section XV's plain words and the classical limit (13.8's count of cells, a sketch at depth B there and the
-// tutorial's own, so those two corners carry a small grey tag, "tutorial's own"). Six boxes carry R13's flag in the
-// margin at their right, where the chapter says the paper says more than it shows. Below, set apart by a gap, the last
+// tutorial's own, so those two corners carry a small grey tag, "tutorial's own"). Three boxes carry R13's flag in the
+// margin at their right, where the chapter says the paper says more than it shows: the fluctuations (the paper's c/r_s,
+// a little loose), What gravity cannot decohere (readings at two times differ only where impulses are supplied) and
+// the Conclusion (two phrases leave out a condition). Below, set apart by a gap, the last
 // box, the capstone, outlined a little heavier, with grey arrows into it along a bus outside the column's left side
 // from the five boxes whose results its table quotes and from R13's bits, a stub above the column.
 // Departures from the diagram's comment, where the chapter's text decides: one column read down, as every reading map
 // since R11, not two; each box lists every chapter its section cites and only those, not the comment's three lists;
 // the dotted insets are the results the sections mark stated in the paper (eleven): Binnington and Poisson, Damour and
 // Nagar and Goldberger and Rothstein are read now, derived in 11.4, and Kehagias and Riotto, Porto and Goldberger, Li
-// and Rothstein are cited in notes that the flag of the weight covers, so they have none, while the table's three
+// and Rothstein are cited in the weight's text without a mark of stated, so they have none, while the table's three
 // entries of the hole, the holographic principle and the hole's gain under any tide are marked stated and have one;
-// Section XV's plain words carry the hatched corner too, since they rest on 13.8's count; there are six flags, not
-// four, since the chapter also finds the paper's c/r_s a little loose and says the Conclusion's phrases say more;
-// the bead with no density is flagged in its own section, What gravity cannot decohere; the Conclusion's "Parts that
+// Section XV's plain words carry the hatched corner too, since they rest on 13.8's count; there are three flags, not
+// four, since the paper as corrected leaves the weight's factor and radii, the plain words' count and tremor, the
+// classical limit's count and the bead's density nothing more to show, while the chapter still finds the paper's c/r_s
+// a little loose and says two of the Conclusion's phrases leave out a condition; the Conclusion's "Parts that
 // exist" rest on stated results, so its chapters stand in a dotted box; the caption names the hatched corners and the
 // Parts the chapters belong to (1 to 13, since the sections cite 1.5, 1.7, 1.8, 2.5, 2.8 and 3.2).
 // Every name, number and chapter is checked against the chapter's text (its headings in order, the paragraph each
@@ -59,10 +62,7 @@ export const SECTIONS = [
 		[[null, 'a little stricter than the paper\'s $c/r_s$']]],
 	['A hole weighs like a shell a little outside its horizon, yet its sums belong to no body', 'The weight of a black|hole\'s response',
 		['[*The weight of a black hole\'s response*](/paper/#par:the-weight-of-a-black-holes-response)'], '4.5, 11.1, 11.3, 11.4, 13.7', [],
-		'the formula a sketch at depth B', [
-			['factor', 'leaves out a factor'], ['rounded', 'needs the unrounded radii'],
-			['KR', 'The paper attributes this positive measure'], ['known', 'says more than its sources']
-		]],
+		'the formula a sketch at depth B', null],
 	['The table, row by row: the stone\'s column reads the interior, and the hole\'s returns its mass', 'The table, row by row',
 		['In Table [](/paper/#tab:hair)'], '1.7, 1.8, 2.5, 2.8, 3.8, 4.2, 4.5, 4.6, 11.2, 11.4, 13.1, 13.3, 13.4, 13.7', [
 			['the hole\'s degree-$m$ tides', 'for tides of degree up to $m$'],
@@ -72,18 +72,18 @@ export const SECTIONS = [
 	['Section XV\'s plain words: looking gives a surface\'s worth, and pushing gives the inside, slowly', 'Section XV\'s plain words',
 		['The box\'s sphere of radius $R$'], '2.5, 8.1, 13.1, 13.2, 13.8', [
 			['the holographic principle', 'The **holographic principle**']
-		], 'by 13.8\'s count', [['Rd', 'counts at a detail $d$ chosen freely'], ['tremor', 'The plain words leave out the tremor']]],
+		], 'by 13.8\'s count', null],
 	['A hole gives seven numbers, a temperature and its mass again, and without quantum physics no temperature', 'Black holes and the|classical limit',
 		['[*Black holes and the classical limit*](/paper/#par:black-holes-and-the-classical-limit)'], '2.5, 6.4, 11.2, 11.4, 13.1, 13.2, 13.3, 13.6, 13.7, 13.8', [
 			['the gain under any tide', 'is set by its mass and spin alone'],
 			['the four quantum arguments', 'Four quantum arguments']
-		], 'by a count that is the tutorial\'s own', [[null, 'The paragraph\'s $(R/d)^2$ against $(R/d)^3$ repeats the plain words\' count.']]],
+		], 'by a count that is the tutorial\'s own', null],
 	['A ball and a shell leave gravity no record, yet differ in their Diósi–Penrose energy', 'What gravity cannot|decohere',
 		['[*What gravity cannot decohere*](/paper/#par:what-gravity-cannot-decohere)'], '2.5, 4.5, 6.4, 13.1, 13.8', [
 			['Belenchia et al., Danielson et al.', '[@Belenchia2018; @DanielsonSatishchandranWald2022]'],
 			['Donadi et al.\'s experiment', '[@DonadiEtAl2021]'],
 			['Allali and Hertzberg\'s remark', '[@AllaliHertzberg2020]']
-		], null, [['impulses', 'differ only where heat, the zero point or a tide supplies impulses'], ['density', 'Section XV names no density for the bead']]]
+		], null, [['impulses', 'differ only where heat, the zero point or a tide supplies impulses']]]
 ];
 // numbers a pattern takes for chapters: "and 1.070 times", "1.69 and 1.73"
 const NOT_CITED = ['1.070', '1.73'];
@@ -104,7 +104,7 @@ const PARAGRAPHS = [
 	['The vector and its square', 'R3, R9b, 0.2, 9.3'],
 	['Parts that exist', 'R1, 8.6']
 ];
-const CONCLUSION_FLAG = 'Four phrases leave out a condition';
+const CONCLUSION_FLAG = 'Two phrases leave out a condition';
 // Section XVII's six problems: [the box's words, a phrase of the problem, the chapters it cites]
 const PROBLEMS = [
 	['1. what a finite record recovers', 'a finite record recovers', '13.8'],
@@ -124,7 +124,7 @@ const USES = [
 	['The weight of a black|hole\'s response', '| (d) the sums | $0.345\\,\\matter Mr_s^2', 'the hole\'s $0.345\\,\\matter Mr_s^2$'],
 	['The table, row by row', '| (f) a weighing after the tide |', '| Its weight, after a tide | 1.7, 13.1: the density | 11.4: its mass |'],
 	['Black holes and the|classical limit', 'seven numbers, $7\\log_2\\SNR = 139.5$ bits', '"seven numbers at one time" are its mass, place and spin'],
-	['Black holes and the|classical limit', 'row (g) 13.8\'s count of cells', 'finds three laws in the phrase, by a count']
+	['Black holes and the|classical limit', 'row (g) 13.8\'s count of cells', 'derives both laws, by a count']
 ];
 // R13's bits, the stub: the capstone's words, and R13's
 const R13_USE = ['1176 bits from $3R_{\\rm m}$', '| (a) one time | the paper\'s [](/paper/#eq:hair-bits) from $3R$ at $10^6$ | 1176 bits |'];
@@ -187,7 +187,8 @@ export default async function () {
 	const capstone = sectionText(8);
 	// the chapters a section cites: every way the chapter names one, every parenthesis that holds only chapters, and
 	// every cell of a table that starts with chapters ("| 2.5, 2.8: the harmonic moments")
-	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const CH = /^(R\d+b?|\d+\.\d+)$/;
 	const citesOf = (sec) => {
 		const out = new Set();
@@ -239,10 +240,8 @@ export default async function () {
 			else check(sec.includes(words), `the flag of "${s[0]}": ${words}`);
 		}
 	}
-	// the notes on the paper's saying more, each in the box whose section marks it
-	check(notes.factor.startsWith(' The paper\'s "each tide of degree') && notes.known.startsWith(' The paper\'s "are known" says more than its sources'), 'the notes of the weight');
 	check(SECTIONS.reduce((n, s) => n + s[4].length, 0) === 11, 'the insets are not eleven');
-	check(SECTIONS.filter((s) => s[5]).length === 4 && SECTIONS.filter((s) => s[6]).length === 5, 'not four hatched corners and five flags on the sections');
+	check(SECTIONS.filter((s) => s[5]).length === 4 && SECTIONS.filter((s) => s[6]).length === 2, 'not four hatched corners and two flags on the sections');
 	// the sketches: 11.4's (the zero Love number, Page's 256/225), 13.7's formula, and 13.8's count, a sketch at depth B
 	// there and the tutorial's own
 	check(sectionText(1).includes('*read now, derived in chapter [11.4](/tutorial/black-holes/under-tides/#a-steady-tide-raises-no-bulge-on-a-hole)*, as a sketch at depth B') &&
@@ -250,7 +249,7 @@ export default async function () {
 	check(sectionText(3).includes('the radii numerical, the formula a sketch at depth B'), 'the weight\'s sketch');
 	const ch138 = (await (await fetch('/tutorial/what-a-field-keeps/holography.md')).text()).replace(/\s+/g, ' ');
 	check(ch138.includes('The count is a sketch at depth B.') && ch138.includes('[^own]: This count is the tutorial\'s own'), '13.8\'s count is not a sketch at depth B, the tutorial\'s own');
-	check(notes.Rd.includes('(13.8\'s count, the tutorial\'s own)'), 'the note on the plain words\' count');
+	check(notes.Rd.includes('(13.8\'s count)'), 'the note on the plain words\' count');
 	// the Conclusion: four paragraphs, the chapters each cites, the stated one, and the phrases that say more
 	const concl = sectionText(10);
 	check(concl.includes('[Section XVI](/paper/#sec:conclusion), the *Conclusion*, gathers the paper in four paragraphs.'), 'the Conclusion\'s four paragraphs');

@@ -115,11 +115,11 @@ async function numbers() {
 	const r = Math.cbrt(2 * G * M), T = 2 * Math.PI * Math.sqrt(r ** 3 / (G * M));
 	check((r / 1e3).toFixed(1) === '26.3' && T.toFixed(1) === '8.9' && near(T, 2 * Math.PI * Math.SQRT2, 1e-9), `the orbit ${r} m, ${T} s`);
 	has('It falls to $1\\unit{s^{-2}}$ at 26.3 km', 'the orbit\'s radius');
-	has('| (c) orbit | $2G\\matter M/r^3 = 1\\unit{s^{-2}}$; period $t = 2\\pi\\sqrt{r^3/G\\matter M}$ | 26.3 km; 8.9 s | 11.1, 1.8 |', '(c)');
+	has('| (c) orbit | $2G\\matter M/r^3 = 1\\unit{s^{-2}}$; period $T = 2\\pi\\sqrt{r^3/G\\matter M}$ | 26.3 km; 8.9 s | 11.1, 1.8 |', '(c)');
 	// (d) the view: the ring's angle and b_E
 	const th = Math.sqrt((2 * rs) / r), arcsec = th / DEG * 3600, be = th * r;
 	check(arcsec.toFixed(1) === '25.5' && be.toFixed(2) === '3.25', `the view ${arcsec}'' ${be} m`);
-	has('| (d) view | $\\theta_E = \\sqrt{2r_s/r}$, $b_E = \\theta_Er$, $\\theta_Et/\\pi$ | $25.5\'\'$, 3.25 m, 0.35 ms a turn | here |', '(d)');
+	has('| (d) view | $\\theta_E = \\sqrt{2r_s/r}$, $b_E = \\theta_Er$, $\\theta_ET/\\pi$ | $25.5\'\'$, 3.25 m, 0.35 ms a turn | here |', '(d)');
 	// (e) the area gathered, and the annulus's radii for b_E = 3.25 m
 	const area = Math.PI * A * Math.sqrt(A * A + 4 * be * be), gain = area / (Math.PI * A * A);
 	check(area.toFixed(2) === '1.02' && gain.toFixed(0) === '130', `the area ${area} m^2, ${gain}`);

@@ -1,7 +1,7 @@
 ---
 id: '8.5'
 title: 'Counting quanta: Poisson, thermal and squeezed'
-question: 'Section XI says that gravitons from a coherent source "arrive independently", that from a thermal sky "they bunch", and that inflation''s pairs "coincide … more than any two classical fields allow". How can the timing of clicks tell a steady source from a hot one, and what can no classical field do?'
+question: 'Section XI says that gravitons from a coherent source "arrive independently", that from a thermal sky "they bunch", and that inflation''s pairs "coincide … more than any two classical fields of thermal statistics allow". How can the timing of clicks tell a steady source from a hot one, and what can no classical field do?'
 part: '8'
 requires: ['3.1', '3.2', '3.3', '4.2', '8.2', '8.3', '8.4']
 paper: [sec:vistas, sec:first-image, sec:thermal]
@@ -279,9 +279,9 @@ $\langle n^2\rangle = 2\bar n^2 + \bar n$ over the thermal law, and
 $$\boxed{g^{(2)}_{12} = 2 + \frac{1}{\bar n}} .$$
 
 The classical bound for two beams that are each thermal is $\sqrt{2\times2} = 2$, so the pair beats it by $1/\bar n$:
-the paper's "more than any two classical fields allow".[^wording] Two classical beams can at best carry the same
-intensity, and even then each detector clicks at random on its own, so their counts differ; here the two counts are
-always equal.
+the paper's "more than any two classical fields of thermal statistics allow".[^wording] Two classical beams can at
+best carry the same intensity, and even then each detector clicks at random on its own, so their counts differ; here
+the two counts are always equal.
 
 **Numbers.** At $r = 0.5$, $\bar n = 0.27$ and $g^{(2)}_{12} = 5.68$. At $\bar n = 1$ it is 3. **A
 limit.** When $\bar n \gg 1$ the excess vanishes, and the pair looks like one thermal beam split in two.
@@ -313,7 +313,7 @@ instead: the coherent state's $P(n)$ depends on $|\alpha|$ alone, not on the ang
 Counting does need quanta. The 35,619 gravitons of the paper's simulated Earth have a Poisson spread of
 $\sqrt{35{,}619} = 189$, a relative error of 0.53%. Their counts are Poisson although the Earth's glow is thermal.
 Section IX's [*Counting or recording*](/paper/#par:counting-or-recording) says that each mode of matter's thermal glow
-"holds of order $10^{-30}$ gravitons on average", and at so small an $\bar n$ the thermal variance's wave term,
+"holds $10^{-30}$ gravitons or fewer on average", and at $\bar n = 10^{-30}$ the thermal variance's wave term,
 $\bar n^2$, is $10^{-30}$ times its clicks' term, $\bar n$. A detector watching one such mode clicks once in about
 $10^{30}$ windows. If a window is one coherence time, about $3\times10^{-14}$ s at room temperature (chapter 5.3), it
 waits about $3\times10^{16}$ s, a billion years, for each click.
@@ -389,7 +389,7 @@ beats by $1/M\bar n$.
 - Section XI's [*Counting coincidences*](/paper/#par:counting-coincidences): $g^{(2)} = 1$, 2 and $2 + 1/\bar n$, and
   inflation's pairs.
 - Section IX's [simulated thermal Earth](/paper/#fig:earth-inverted): 35,619 gravitons with Poisson errors.
-- Section IX's [*Counting or recording*](/paper/#par:counting-or-recording): $10^{-30}$ gravitons per mode, and counting
+- Section IX's [*Counting or recording*](/paper/#par:counting-or-recording): $10^{-30}$ gravitons or fewer per mode, and counting
   that "avoids the noise but loses the phase" (chapter 8.6).
 - Section XI's [*A primordial graviton background*](/paper/#par:a-primordial-graviton-background) and the paper's
   [](/paper/#eq:graviton-temperature): the 0.905 K sky, about one graviton per mode at 10 GHz.
@@ -416,8 +416,8 @@ beats by $1/M\bar n$.
 
 [^r]: This $r$ is not a distance. The squeeze is on the phase plane, not in space like chapter 1.4's tidal squeeze.
 
-[^wording]: The paper's words hold for classical fields with these statistics. Classical intensities that fluctuate
-    more reach more: $I_1 = I_2 = X^2$, with $X$ one Gaussian number, gives $g^{(2)}_{11} = g^{(2)}_{22} =
+[^wording]: The bound depends on the statistics. Classical intensities that fluctuate more than thermal ones reach
+    more: $I_1 = I_2 = X^2$, with $X$ one Gaussian number, gives $g^{(2)}_{11} = g^{(2)}_{22} =
     g^{(2)}_{12} = 3$.
 
 [^added]: We use this here as the paper states it; chapter 8.6 derives it.

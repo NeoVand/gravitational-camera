@@ -156,7 +156,8 @@ export default async function () {
 	const ledger = sectionText(14).split('[^')[0];
 	const furnace = sectionText(13);
 	// the chapters a section cites: every way the chapter names one, less the pointers that are not marks
-	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const citesOf = (sec) => {
 		let s = sec;
 		for (const n of NOT_CITED) s = s.split(n).join(' ');

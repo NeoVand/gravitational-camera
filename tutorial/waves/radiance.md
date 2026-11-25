@@ -353,11 +353,11 @@ gravitons, $j_N = 1.5 \times 10^{-15}\unit{s^{-1}\,m^{-3}\,sr^{-1}}$, and a cubi
 
 **Real water.** The table's water is not the placeholder. Its friction falls with frequency across the glow's band
 (chapter 4.4 gives its effective friction, the constant friction that would glow as brightly, as $5.4 \times
-10^{-5}\unit{Pa\,s}$), so it glows about 19 times more faintly,
-at $1.1 \times 10^{-35}\unit{W\,m^{-3}}$. More of its glow comes at low frequencies, so its mean graviton energy is
-only $1.7\,\kB T$: the $2.70\,\kB T$ of Step 2 holds only for a friction the same at every frequency. A person, taken
-as 70 litres of water at 293 K, sends $7.7 \times 10^{-37}$ W, the paper's "about $10^{-36}$ watts", or one graviton
-every $2.8 \times 10^8$ years.[^person]
+10^{-5}\unit{Pa\,s}$), so it glows about 19 times more faintly, at $1.1 \times 10^{-35}\unit{W\,m^{-3}}$. More of its
+glow comes at low frequencies, so its mean graviton energy is only $1.7\,\kB T$: the $2.70\,\kB T$ of Step 2 holds only
+for a friction the same at every frequency. A person, taken as 70 litres of water at 293 K, sends $7.7 \times 10^{-37}$
+W, or one graviton every $2.8 \times 10^8$ years. At body temperature, 310 K, the paper's figures are "about
+$9\times10^{-37}\,\mathrm{W}$" and one graviton in "$2.4\times10^{8}$ years".[^person]
 
 **The closed furnace.** A friction that stayed the same at every temperature would make the 1500 K block send
 $(1500/293)^3 = 134$ times as many gravitons as the 293 K one, the paper's "more than a hundredfold". But the friction
@@ -367,7 +367,7 @@ that counts is the one at the frequencies of the glow, and a hotter body glows a
 drew iron's friction as the ceiling on a metal's friction, which falls as $1/\omega$. A metal's electrons collide more
 often in proportion to the temperature, so the friction at the glow's peak stays the same fraction of that ceiling. The
 hot block's friction is therefore $1500/293 = 5.1$ times lower, its count grows as $T^3/T = T^2$, and it sends
-$(1500/293)^2 = 26$ times as many gravitons, the paper's "nearer 25".
+$(1500/293)^2 = 26$ times as many gravitons, the paper's "nearer 26".
 
 The pixels' readings differ by less, because each line of sight also crosses the steel walls and ends on the floor,
 which are at 293 K in both furnaces and add the same glow to both. Count the cold block's glow as one unit and the
@@ -606,22 +606,24 @@ Kirchhoff's law with a constant $\alpha$ gives $j_E = \alpha\,\sigma_{\rm SB}T^4
 [^sigma]: In Part 3 a bare $\matter\sigma$ is a surface density, so this chapter writes $\sigma_{\rm SB}$; the paper
     writes $\sigma$. The value is the same as for light, because light also has two polarizations.
 
-[^person]: These figures are at 293 K, the temperature of the table, whose last column gives water's $1.7\,\kB T$. A
-    person is at 310 K. With the same friction the power grows as $T^4$, to $9.6 \times 10^{-37}$ W, and the count as
-    $T^3$, to one graviton every $2.4 \times 10^8$ years, close to the paper's "two hundred million years".
+[^person]: The first figures are at 293 K, the temperature of the table, whose last column gives water's $1.7\,\kB T$.
+    A person is at 310 K. With the same friction the power would grow as $T^4$, to $9.6 \times 10^{-37}$ W, and the
+    count as $T^3$, to one graviton every $2.4 \times 10^8$ years. Water's friction falls with frequency, and a warmer
+    body glows at higher frequencies, so the table's full spectrum gives a little less power, $9.1 \times 10^{-37}$ W,
+    and the same $2.4 \times 10^8$ years.
 
 [^f]: In this section $f$ is a focal length, the paper's letter in Section VII. Elsewhere in Part 5 it is a frequency.
 
 [^h]: This $h$ is a thickness, not the strain $h$ of chapter 5.1. In this chapter $L$ is always the thickness of a
     slab, and $R$ always the radius of a lens; the Earth's radius is $R_\oplus$.
 
-[^steel]: This is chapter 5.1's steel: density $\matter\rho = 7850\unit{kg\,m^{-3}}$ and shear sound at $c_T =
-    3000$ m/s, so that $\matter\mu = \matter\rho c_T^2 = 71$ GPa. The paper's $2 \times 10^{-23}$ and
-    $4 \times 10^{-46}$ use a stiffer steel, $\matter\mu = 80$ GPa, which gives $1.9 \times 10^{-23}$ and
-    $3.6 \times 10^{-46}$.
+[^steel]: This is chapter 5.1's steel: density $\matter\rho = 7850\unit{kg\,m^{-3}}$ and shear sound at $c_T = 3000$
+    m/s, so that $\matter\mu = \matter\rho c_T^2 = 71$ GPa. Rounded, its $1.7 \times 10^{-23}$ and $2.8 \times
+    10^{-46}$ are the paper's $2\times10^{-23}$ and $3\times10^{-46}$.
 
-[^lens]: The paper says that a steel lens a metre thick focuses "some $10^{13}$ metres away, beyond the orbit of
-    Pluto". It does not give the radius. Since $f$ grows as $R^2$, a lens 1.3 m in radius would focus at $10^{13}$ m.
+[^lens]: This is the paper's lens, "a metre thick and a metre in radius", which focuses "some $6\times10^{12}$
+    metres away, at the distance of Pluto". Since $f$ grows as $R^2$, a lens 1.3 m in radius would focus at
+    $10^{13}$ m.
 
 [^N]: This $N$ is the paper's letter for the focal ratio in Section VII. It is not the number radiance $N(\hat n)$ of
     the first section.

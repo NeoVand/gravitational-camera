@@ -255,7 +255,7 @@ are exact, the dashed lines are their tails $\matter\mu_\infty^2/\matter\eta_0\o
 The paper's real water is different again. Its friction at terahertz frequencies comes from motions much faster than
 Maxwell's rearrangement: the stretching of the hydrogen bonds between neighbouring molecules, near 8 THz, and the
 rocking of the molecules. The paper takes it from a computer simulation of water. Near 8 THz the simulated friction is
-$2 \times 10^{-4}\unit{Pa\,s}$, a third of the same simulated water's everyday viscosity, $7 \times
+$2.4 \times 10^{-4}\unit{Pa\,s}$, a third of the same simulated water's everyday viscosity, $7 \times
 10^{-4}\unit{Pa\,s}$ ([*Friction at the frequencies of heat*](/paper/#par:friction-at-the-frequencies-of-heat)). At
 the glow's peak, 17 THz, it has fallen to $4.2 \times 10^{-5}\unit{Pa\,s}$.
 
@@ -505,7 +505,7 @@ for $Q = 173$.
   friction at the frequency of the wave" (chapters 5.1 and 7.8).
 - [*Friction at the frequencies of heat*](/paper/#par:friction-at-the-frequencies-of-heat) writes
   [](/paper/#eq:maxwell), $\matter\mu_\infty = \matter\eta_0/\tau$, the free electrons with $\tfrac25\matter nE_F$ and
-  the ceiling $\matter nmv_F^2/10\omega$, silicon's 0.03 Pa s and water's $2 \times 10^{-4}\unit{Pa\,s}$ near 8 THz;
+  the ceiling $\matter nmv_F^2/10\omega$, silicon's 0.03 Pa s and water's $2.4 \times 10^{-4}\unit{Pa\,s}$ near 8 THz;
   its sum rule [](/paper/#eq:friction-sum) is chapter [4.5](/tutorial/response/causality/#causality-fixes-a-materials-total-friction)'s. Table [](/paper/#tab:materials) gives each material's
   effective friction, and Figure [](/paper/#fig:materials) its friction at each frequency.
 - [*Volume and surface emission*](/paper/#par:volume-and-surface-emission) uses

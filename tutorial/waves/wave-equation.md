@@ -283,7 +283,7 @@ density $\matter\rho$, which we state without proof (chapter R11 reads it):
 {{paper eq:index}}
 
 The units agree, since $G\matter\rho$ is in $\mathrm{s^{-2}}$, like $\omega^2$. For steel at 1 kHz,
-$n - 1 = 8.3 \times 10^{-14}$, which the paper rounds to $10^{-13}$. The index exceeds one, so matter slows the wave,
+$n - 1 = 8.3 \times 10^{-14}$, the paper's $8\times10^{-14}$. The index exceeds one, so matter slows the wave,
 and it falls as $1/\omega^2$, so matter is dispersive for gravitational waves.
 
 ## A damping term makes a wave fade at a fixed rate per metre

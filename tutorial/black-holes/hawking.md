@@ -1,7 +1,7 @@
 ---
 id: '11.3'
 title: 'Hawking radiation'
-question: 'Section XI says that a black hole "gives off a faint glow of its own, at a Hawking temperature that is lower for heavier holes", and that a hole of $1.36\times10^{23}$ kilograms "cannot be seen against the glow at all". What is a black hole''s temperature, why does a hole glow at all, and how dark is its shadow against a warm sky?'
+question: 'Section XI says that a black hole "gives off a faint glow of its own, at a Hawking temperature that is lower for heavier holes", and that a hole of $1.356\times10^{23}$ kilograms "cannot be seen against the glow at all". What is a black hole''s temperature, why does a hole glow at all, and how dark is its shadow against a warm sky?'
 part: '11'
 requires: ['4.2', '8.3', '11.1', '11.2']
 paper: [sec:vistas, fig:black-hole, sec:no-lens, fig:black-hole-camera, sec:hole, eq:hole-thermometer, sec:holography]
@@ -23,7 +23,7 @@ $40\,G\matter M/c^2$ from a black hole sees it: a nearly uniform glow at 0.929 K
 away is at 0.905 K, and chapter 11.1 found that
 [it looks warmer](/tutorial/black-holes/schwarzschild/#seen-from-rest-near-a-hole-the-whole-sky-is-warmer) from rest
 near a hole.) The paper's [Section XI](/paper/#sec:vistas) then says that the disc need not be there. A hole of
-$1.36\times10^{23}$ kilograms, nearly twice the Moon's mass, "gives back as much as it receives, and so it cannot be
+$1.356\times10^{23}$ kilograms, nearly twice the Moon's mass, "gives back as much as it receives, and so it cannot be
 seen against the glow at all".
 
 {{paper fig:black-hole}}
@@ -71,7 +71,7 @@ chapter [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-
 
 $$\sym{equilibrium-mass}{\matter M_{\rm eq}} = 1.356\times10^{23}\unit{kg} ,$$
 
-1.85 times the Moon's mass: a hole of this mass is exactly as warm as the graviton sky.[^mass] At the 2.7255 K of the
+1.85 times the Moon's mass: a hole of this mass is exactly as warm as the graviton sky. At the 2.7255 K of the
 microwave sky the mass is $4.50\times10^{22}$ kg, three times less. The hole of the equilibrium mass has $r_s = 0.201$
 mm, and a metre away its steady tide is chapter
 [11.1](/tutorial/black-holes/schwarzschild/#the-tide-outside-a-round-mass-is-exactly-newtons)'s
@@ -345,9 +345,9 @@ beyond. **Results:**
 
 $$\boxed{\;D = 0.93,\ 0.54,\ 0.29 \quad\text{for}\quad \matter M = 10,\ 3,\ 2\ \matter M_{\rm eq}\;} ,$$
 
-Section XI's "$93\%$ … $54\%$ … $29\%$".[^depth] The depth reaches 0.99 at 27 times the equilibrium mass, and above
-about a hundred times, $10^{25}$ kg, the hole is black. At the equilibrium mass $D = 0$, and a lighter hole has
-$D < 0$: it glows.
+Section XI's "in energy, $93\%$", "$54\%$" and "$29\%$".[^depth] The depth reaches 0.99 at 27 times the equilibrium
+mass, and above about a hundred times, $10^{25}$ kg, the hole is black. At the equilibrium mass $D = 0$, and a lighter
+hole has $D < 0$: it glows.
 
 **Why the shadow is pale.** The sky's energy peaks at $\hbar\omega = 2.82\,\kB T$, 53 GHz, where the gravitons are 5.6
 mm long, Section XI's "about six millimetres". A hole of twice the equilibrium mass has a capture disc 2.1 mm across,
@@ -402,9 +402,9 @@ own, as chapter 10.2's matter with an inverted population, a maser, amplifies a 
 
 **Numbers.** With the paper's greatest gain of 91% for the mode $\ell = m = 2$ at chapter 11.2's spin $\chi = 0.998$
 (from Teukolsky's equation, stated), a hole of ten times the equilibrium mass returns
-$0.116 + 0.91\times1.116 = 1.13$ gravitons at $x = 0.90$, where the sky holds 0.12: ten times the sky.[^bright] At
-$\chi = 0.7$ the greatest gain is 0.27%, near $x \approx 0.34$, and there the mode is about 0.7% brighter, the
-paper's "under one per cent".
+$0.110 + 0.91\times1.128 = 1.14$ gravitons at the paper's $x = 0.92$, where $n_H = -1.018$ and the sky holds 0.11:
+ten times the sky.[^bright] At $\chi = 0.7$ the greatest gain is 0.27%, near $x \approx 0.34$, and there the mode is
+about 0.7% brighter, the paper's "under one per cent".
 
 ::: check
 ### Q
@@ -477,7 +477,7 @@ $0.0236 - 0.055\times0.0231 = 0.0223$, 5.4% less than the sky.
 
 ::: paper
 - [Section XI](/paper/#sec:vistas), [*A primordial graviton background*](/paper/#par:a-primordial-graviton-background):
-  the Hawking temperature and $1.36\times10^{23}$ kg, the bookkeeping, the greybody factors, the depths and the
+  the Hawking temperature and $1.356\times10^{23}$ kg, the bookkeeping, the greybody factors, the depths and the
   spinning hole brighter than the sky.
 - [Section VII](/paper/#sec:no-lens), [*A black hole as the lens*](/paper/#par:a-black-hole-as-the-lens): the hole in
   balance with the graviton sky, its gain of "less than a part in $10^{51}$", and "like every such balance, this one is
@@ -501,15 +501,11 @@ $0.0236 - 0.055\times0.0231 = 0.0223$, 5.4% less than the sky.
   treatment that this chapter states.
 :::
 
-[^mass]: The paper's "$1.36\times10^{23}$ kilograms … exactly $0.905$ kelvin" is rounded: $1.36\times10^{23}$ kg gives
-    0.902 K, and exactly 0.905 K needs $1.356\times10^{23}$ kg.
-
 [^S]: This $S$ is an entropy, not the tidal column $S(\hat n)$ or a spectrum, which always carries subscripts.
 
 [^Gamma]: Not chapter 4.1's damping rate $\Gamma$ nor chapter 7.1's Christoffel symbols.
 
-[^depth]: The paper's "$93\%$ as dark as that disc" and its companions hold for the energy removed, not for the
-    count of gravitons.
+[^depth]: Counted in gravitons, not weighed in energy, the depths are 82%, 32% and 14%.
 
-[^bright]: The paper's "ten times as bright as the sky" depends on a frequency it does not give: with the 91% gain the
-    ratio is 8.7 at $x = 0.85$, 9.7 at 0.90 and 12 at 0.93, close to the threshold $2\Omega_H$.
+[^bright]: The ratio, 10.3 at $x = 0.92$, depends steeply on the frequency: with the 91% gain it is 8.7 at
+    $x = 0.85$, 9.7 at 0.90 and 12 at 0.93, close to the threshold $2\Omega_H$.

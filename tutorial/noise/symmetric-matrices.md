@@ -409,12 +409,12 @@ a whitened gain for each ripple. Its $\pi$ is the $2\pi$ of $2\pi G\,k\,e^{-kz}$
 $\SNR = 2G\matter m/(z^2\sqrt{N_0})$ (chapter 3.3).
 
 **The blind spot.** At $k = 0$ the gain is exactly zero, so under an endless flat camera the uniform layer is in the
-null space: the paper's "a broad layer of mass has no tidal field at all" (chapter
+null space: in the paper's words, "a uniform sheet is invisible" (chapter
 [2.5](/tutorial/outside/null-space/#a-uniform-sheet-is-invisible-to-a-tidal-camera)). An endless even sheet pulls with
-the same force at every height, so it makes no tide; the safe's patch is no such sheet. The finest ripples are lost to
-the noise, not invisible, because their gains fall exponentially but never reach zero. Bodies with depth have many
-more blind patterns, since mass can be moved inside a body in endless ways that change nothing outside it (chapter
-2.5).
+the same force at every height, so it makes no tide; a finite patch, such as the safe's, is no such sheet. The finest
+ripples are lost to the noise, not invisible, because their gains fall exponentially but never reach zero. Bodies with
+depth have many more blind patterns, since mass can be moved inside a body in endless ways that change nothing outside
+it (chapter 2.5).
 
 ## Dividing by a small gain multiplies the noise
 
@@ -556,9 +556,10 @@ the twelve cells of the right-hand safe gives a standard deviation of 729 kg, th
 :::
 
 ::: paper
-- [*A worked case*](/paper/#par:a-worked-case) (Section IV) gives the $\pm730$ kg and "a broad layer of mass has no
-  tidal field at all"; [*The worked inversion*](/paper/#par:the-worked-inversion) (Appendix A) computes the image
-  through the singular values of the design matrix.
+- [*A worked case*](/paper/#par:a-worked-case) (Section IV) gives the $\pm730$ kg and places "most of the uncertainty"
+  in "fine patterns of mass that the data do not reach"; [*The worked inversion*](/paper/#par:the-worked-inversion)
+  (Appendix A) computes the image through the singular values of the design matrix. [*How sharp*](/paper/#par:how-sharp)
+  says that "a uniform sheet is invisible".
 - The paper's equation [](/paper/#eq:array-data) is the flat camera diagonalized by ripples, and [](/paper/#eq:wiener)
   the weight each pattern receives.
 - [Section II](/paper/#sec:pixel) reads one mass's tide by its eigenvalues, $-2 : 1 : 1$, and [*The magnetic

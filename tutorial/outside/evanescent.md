@@ -322,7 +322,8 @@ ripples fainter than their noise, a small loss that chapter 3.7 measures.
 The real floor is finite, and its edges are made of ripples with $k \neq 0$, which is why it makes a tide of
 $4.5 \times 10^{-8}\unit{s^{-2}}$ at the camera (chapter 1.3). The accelerometer's factor has no $k$: at
 $\vect k = 0$ it gives a pull of $2\pi G\matter\sigma$ toward the sheet, the pull of chapter 1.3. So a gravimeter
-sees the mean that a tidal camera cannot. This is the paper's "a broad layer of mass has no tidal field at all".
+sees the mean that a tidal camera cannot. In the paper's words, "a uniform sheet is invisible": "it has no tidal field
+at all".
 
 ## Undoing the fade multiplies the noise
 

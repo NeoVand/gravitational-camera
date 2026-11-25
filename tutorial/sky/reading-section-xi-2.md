@@ -29,7 +29,7 @@ this chapter reads the rest in order, with the [plain words](/paper/#sec:vistas)
 number recomputed from an earlier result), *read now, derived in chapter N*, or *stated in the paper*; *derived here*
 marks two steps no chapter takes.
 
-![Look first at the solid boxes: every stretch of the second half of Section XI rests on chapters of Parts 2 to 12,
+![Look first at the solid boxes: every stretch of the second half of Section XI rests on chapters of Parts 2 to 13,
 with its stated results in dotted insets. The last box follows one hole through four of
 them.](tut-read-xi-2-map){#fig:read-xi-2-map}
 
@@ -84,7 +84,7 @@ ahead (*read now, derived in chapters
 
 *It shares the large spots.* The paper writes small departures from uniformity as $\field g_{ij} = a^2(1 +
 2\field\Phi)\delta_{ij}$, with $a$ the scale factor and $\sym{metric-stretch}{\field\Phi}$ a pure number. **This
-$\field\Phi$ is a fractional stretch of lengths, not the Newtonian potential.**[^Phi] With
+$\field\Phi$ is a fractional stretch of lengths, not the Newtonian potential.** With
 $\sym{temperature-contrast}{\Theta}$ the fractional change of a glow's temperature, $\dot\Theta = -\dot{\field\Phi}$
 holds for any massless quanta on scales larger than the horizon, the distance light had then travelled (*read now,
 derived in chapter [12.2](/tutorial/sky/universe/#on-large-scales-the-graviton-sky-shares-the-lights-spots)*). The
@@ -123,9 +123,9 @@ the hole passed above it, but it bent past the point straight behind and comes f
 side of the sky appears on the opposite side of the hole" (*read now* from 11.1's fan of rays).
 
 The hole's Hawking temperature, $T_H = \hbar c^3/8\pi G\matter M\kB$, is 0.905 K at chapter 11.3's equilibrium mass,
-$1.356\times10^{23}$ kg or 1.85 Moon masses, the paper's "$1.36\times10^{23}$ kilograms … nearly twice" the Moon's
-(*checked here*).[^mass] A heavier hole is colder than the glow and casts a shadow, and a lighter one glows (*read now,
-derived in chapter [11.3](/tutorial/black-holes/hawking/#a-black-hole-has-a-temperature-lower-the-heavier-it-is)*).
+$1.356\times10^{23}$ kg or 1.85 Moon masses, the paper's "$1.356\times10^{23}\,\mathrm{kg}$, nearly twice the mass of
+the Moon" (*checked here*). A heavier hole is colder than the glow and casts a shadow, and a lighter one glows (*read
+now, derived in chapter [11.3](/tutorial/black-holes/hawking/#a-black-hole-has-a-temperature-lower-the-heavier-it-is)*).
 The hole in balance is dark against the warmer microwave sky, and it "still lenses the sky's spots" (11.3, 12.2).
 
 ## Mode by mode a hole returns the sky changed by its share, and spin can make it bright
@@ -163,17 +163,17 @@ and $m = 2$, the exponent of $n_H$ is
 $$\begin{aligned}\frac{\hbar(\omega - 2\Omega_H)}{\kB T_H} &= \frac{2\pi c(\omega - 2\Omega_H)}{\kappa}\\
 &= \frac{2\pi(x - 0.939)}{0.0297} ,\end{aligned}$$
 
-for any mass. The gain is largest close below the threshold $x = 0.939$, at a frequency the paper does not give; we
-take $x = 0.90$. There the exponent is $-8.2$ and $n_H = 1/(e^{-8.2} - 1) = -1.000$. For ten equilibrium masses $x =
-0.90$ is 42.7 GHz, where the 0.905 K sky holds $n_{\rm bg} = 0.116$, so the mode returns $0.116 + 0.91\times1.116 =
-1.13$, 9.7 times the sky. Since 91% is the peak gain, 9.7 is the most the mode can return there.[^bright]
+for any mass. The gain is largest close below the threshold $x = 0.939$, at the paper's "$GM\omega/c^3 = 0.92$".
+There the exponent is $-4.0$ and $n_H = 1/(e^{-4.0} - 1) = -1.018$. For ten equilibrium masses $x = 0.92$ is
+43.6 GHz, where the 0.905 K sky holds $n_{\rm bg} = 0.110$, so the mode returns $0.110 + 0.91\times1.128 = 1.14$,
+10.3 times the sky. Since 91% is the peak gain, 10.3 is the most the mode can return there.[^bright]
 
 *A hole that does not spin.* Its $\Gamma_\ell$ come from the Regge–Wheeler equation (*read now, derived in chapter
 11.3*), and Page's limit $\Gamma_2 \to (256/225)x^6$ for long waves is *read now, derived in chapter
 [11.4](/tutorial/black-holes/under-tides/#the-same-friction-absorbs-long-gravitational-waves)*. The **shadow depth**
 is the energy a hole removes from the sky, net of its own glow, over what a black disc of 11.1's capture area
 $27\pi G^2\matter M^2/c^4$ would remove. Against 0.905 K it is 0.93, 0.54 and 0.29 at ten, three and two
-equilibrium masses, "$93\%$ … $54\%$ … $29\%$", and counted in gravitons 82%, 32% and 14% (*checked
+equilibrium masses, "in energy, $93\%$", "$54\%$" and "$29\%$", and counted in gravitons 82%, 32% and 14% (*checked
 here*).[^depth] It reaches 0.99 at 27.[^black]
 
 ## A falling camera sees a smaller shadow, and a fast pixel sees every scene as a wave
@@ -330,15 +330,15 @@ such a sum, which gives the exact point lens to $10^{-10}$ and, at 30 kHz, the g
 At 1 AU the central rays' geometric gain is $(1 - d/f_0)^{-2} = 1.0621$, the "$6\%$", reached above about 10 kHz.
 At 1 kHz the wave gives 88% of that excess, and at 100 Hz 26.5%, "$27\%$". At 50 AU, beyond the central focus, the
 gain is 3.35, 43.8 and 478 at 10 kHz, 100 kHz and 1 MHz, "$3.4$", "$44$" and "$480$", in proportion to $f$: 0.86,
-1.13 and 1.23 times a point mass's $\pi w$, the paper's "from $0.9$ to $1.2$". It equals $\pi w$ at 548 AU, where the
+1.13 and 1.23 times a point mass's $\pi w$, the paper's "from $0.86$ to $1.23$". It equals $\pi w$ at 548 AU, where the
 rays graze the limb (*checked here*).[^point] At $10^{13}$ Hz the same proportion gives $4.8\times10^9$, "some
 $5\times10^9$".
 
 ## Matter scatters almost nothing, so every picture is emitted, pulled or yielded
 
 [*Scattering, earthquakes and tails*](/paper/#par:scattering-earthquakes-and-tails): a body of mass $\matter m$
-scatters gravitational waves with a cross-section of order $(G\matter m/c^2)^2$, $2.7\times10^{-51}\unit{m^2}$ for a
-person of 70 kg, "$3\times10^{-51}$" (*read now*, an estimate in chapter
+scatters gravitational waves with a cross-section per unit solid angle, at large angles, of order $(G\matter m/c^2)^2$,
+$2.7\times10^{-51}\unit{m^2\,sr^{-1}}$ for a person of 70 kg, "$3\times10^{-51}$" (*read now*, an estimate in chapter
 [7.8](/tutorial/geometry/wave-energy/#matter-barely-touches-the-waves); Peters's result *stated*
 [@Peters1976]).[^scatter] So no scene can be lit, and every picture is the scene's glow (Parts 5 to 10), its pull
 (Parts 1 and 2), or its yield to a pull (Part 4).
@@ -372,7 +372,7 @@ is schematic.](tut-read-xi-hole){#fig:read-xi-hole}
 | (d) the shadow | at (a)'s $r$, 11.1's arcsine; falling, 6.3's aberration | $7.27°$; $5.80°$ falling | 11.1, 6.3 |
 | (e) the ring | the ray that turns through 180° | $20.2°$ | 11.1, here |
 | (f) how dark | (c)'s 0.0905 K against (a), (b)'s wavelength against (c)'s disc: depth by energy; by count | 93%; 82% | 11.3, here |
-| (g) with spin | (a)'s sky at $\chi = 0.998$, $\ell = m = 2$, $x = 0.90$: 42.7 GHz | 9.7 times the sky | 11.2, 11.3 |
+| (g) with spin | (a)'s sky at $\chi = 0.998$, $\ell = m = 2$, $x = 0.92$: 43.6 GHz | 10.3 times the sky | 11.2, 11.3 |
 | (h) how deep | (a) read backwards: $1 - 2G\matter M/c^2r = (T_g/T_{\rm seen})^2$ | $r = 40\,G\matter M/c^2$ from 2.6% | 11.1 |
 | (i) counting | (a)'s thermal sky: $g^{(2)}$ per mode; opposite directions | 2; $2 + 1/\bar n$ only if born in inflation | 8.5, R8 |
 
@@ -474,43 +474,35 @@ bullets have no numbers.
   [](/paper/#fig:black-hole)'s rays.
 :::
 
-[^mass]: The paper's "$1.36\times10^{23}$ kilograms … exactly $0.905$ kelvin": that mass has $T_H = 0.902$ K, and
-    exactly 0.905 K needs $1.356\times10^{23}$ kg.
-
-[^leak]: The paper's 3.91 assumes that the neutrinos left at once. A little of the electrons' heat leaked into them,
+[^leak]: The paper's 3.91 counts "neutrinos that decoupled at once". A little of the electrons' heat leaked into them,
     which gives 3.93 and $T_g = 0.907$ K (chapter 12.2).
 
-[^omega]: The paper's "$7\times10^{-7}$" takes the microwave sky's Hubble constant, 67.4 km s⁻¹ Mpc⁻¹. The
-    temperature fixes only $\Omega_gh^2 = 3.0\times10^{-7}$, with $h$ that constant over 100; the nearby galaxies' 73
-    gives $5.6\times10^{-7}$.
+[^omega]: The paper's "$7\times10^{-7}$" is "for $H_0 = 67\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$", the microwave sky's Hubble
+    constant. The temperature fixes only $\Omega_gh^2 = 3.0\times10^{-7}$, with $h$ that constant over 100; the nearby
+    galaxies' 73 gives $5.6\times10^{-7}$.
 
-[^Phi]: The paper's "$\Phi$ that of the spatial metric": the metric's entries change by $2\Phi$, and lengths by
-    $\Phi$.
+[^bright]: The ratio depends steeply on the frequency. With the 91% gain it is 8.7 at $x = 0.85$, 9.7 at 0.90 and 12.0
+    at 0.93, where $n_H = -1.19$; each is the most that frequency allows. At $\chi = 0.7$ the greatest gain, 0.27% near
+    $x = 0.34$, makes the mode 0.7% brighter, "under one per cent".
 
-[^bright]: The paper's "ten times as bright as the sky" depends on a frequency it does not give. With the 91% gain the
-    ratio is 8.7 at $x = 0.85$, 9.7 at 0.90 and 12.0 at 0.93, where $n_H = -1.19$; each is the most that frequency
-    allows. At $\chi = 0.7$ the greatest gain, 0.27% near $x = 0.34$, makes the mode 0.7% brighter, "under one per
-    cent".
-
-[^depth]: The paper's "$93\%$ … $54\%$ … $29\%$" hold weighed in energy, not counted. The greybody factors are those
-    of chapter 11.3, from the Regge–Wheeler equation for $\ell = 2$ to 40, with the capture area above $x = 6$.
+[^depth]: The greybody factors are those of chapter 11.3, from the Regge–Wheeler equation for $\ell = 2$ to 40, with the
+    capture area above $x = 6$.
 
 [^black]: The paper's "above about a hundred times, $10^{25}\,\mathrm{kg}$, is it black": a hundred equilibrium masses
     is $1.4\times10^{25}$ kg, where the depth is 0.9995, and it is already 0.99 at 27 times.
 
-[^g2]: The paper's "more than any two classical fields allow" holds for classical fields that fluctuate as a thermal
-    sky does: for them the Cauchy–Schwarz inequality caps the coincidences in two directions at 2 (chapter 8.5).
-    Fields that fluctuate more can pass it. Its "$g^{(2)} = 2$" holds for one mode: a pixel that gathers $K$
-    independent modes sees $1 + 1/K$ (chapter 8.5 writes $M$ for $K$).
+[^g2]: The paper's "any two classical fields of thermal statistics": for them the Cauchy–Schwarz inequality caps
+    the coincidences in two directions at 2 (chapter 8.5), and fields that fluctuate more can pass it. Its
+    "$g^{(2)} = 2$" is "for counts within one mode and one coherence time": a pixel that gathers $K$ independent modes
+    sees $1 + 1/K$ (chapter 8.5 writes $M$ for $K$).
 
-[^ring]: The paper's "from farther away a compact source directly behind the Sun appears as a ring inside the solar
-    disc" holds only out to 548 AU; beyond, the ring lies outside the limb.
+[^ring]: The paper's "out to $548\,\mathrm{AU}$": beyond, the ring lies outside the limb.
 
-[^Phisign]: The paper's "$\Phi' = \alpha$ is the extra path through its field": the extra path falls with $b$, with
-    slope $-\alpha$, so in the phase $e^{ik[b^2/2d - \Phi]}$ the $\Phi$ with $\Phi' = \alpha$ is minus the extra path.
+[^Phisign]: The extra path falls with $b$, with slope $-\alpha$, so in the phase $e^{ik[b^2/2d - \Phi]}$ the $\Phi$
+    with $\Phi' = \alpha$ is "minus the extra path through its field", as the paper says.
 
 [^point]: The paper's $\pi w$ is the short-wave form of a point mass's $\pi w/(1 - e^{-\pi w})$. They differ only at
     10 kHz, where the full factor is 3.97 and the Sun's gain is 0.84 of it.
 
-[^scatter]: The paper's "cross-section … of order $(Gm/c^2)^2$" is a cross-section per steradian at large angles.
-    The total is infinite, since waves passing far away are still turned through small angles (chapter 7.8).
+[^scatter]: The total cross-section is infinite, since waves passing far away are still turned through small angles
+    (chapter 7.8).

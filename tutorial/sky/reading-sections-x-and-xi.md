@@ -29,9 +29,9 @@ We read Section X, and Section XI as far as *The Milky Way* (Figure [](#fig:read
 *read now, derived in chapter N*, or *stated in the paper*.
 
 ![Look first at the solid boxes: Section X and every paragraph of Section XI read here rest on chapters of Parts 1 to
-12, with their stated results in dotted insets, hollow where chapters
-[13.1](/tutorial/what-a-field-keeps/push-and-pass/) and [13.4](/tutorial/what-a-field-keeps/flows-inside/) will derive
-them. The hatched box rests on a sketch at depth B. The last box follows one collapsing star through three of
+12, with their stated results in dotted insets, and the two that chapters
+[13.1](/tutorial/what-a-field-keeps/push-and-pass/) and [13.4](/tutorial/what-a-field-keeps/flows-inside/) derive named
+with their chapters. The hatched box rests on a sketch at depth B. The last box follows one collapsing star through three of
 them.](tut-read-x-xi-map){#fig:read-x-xi-map}
 
 ::: plain
@@ -153,13 +153,14 @@ $\lambda = \pi c/\Omega = 34{,}400$ km long, and the pair has 8.8 s left before 
 paper's "ten seconds", "a tenth of the speed of light" and "35,000 km".[^35000] The **reduced wavelength**
 $\lambda/2\pi$, the wavelength over $2\pi$, is 5480 km, 2.5 times the separation. Inside it the changing tide turns
 rigidly with the pair and falls as $r^{-5}$; beyond it the pattern winds into a spiral falling as $r^{-1}$ (*read now,
-derived in chapter 7.7*).[^tide] In the plane of the orbit the two laws cross at $(15/16)^{1/4}c/\Omega = 0.313\lambda$,
-10,800 km, the paper's "$0.3\,\lambda$" (*checked here*, by 7.7).[^plane]
+derived in chapter 7.7*). In the plane of the orbit the two laws cross at $(15/16)^{1/4}c/\Omega = 0.313\lambda$,
+10,800 km, the paper's "$0.3\,\lambda$ in the plane of the orbit" (*checked here*, by 7.7); the next section's
+table gives the other crossings.
 
-An array this near resolves the two holes only if it meets chapter
-[3.7](/tutorial/noise/blur-law/#what-the-law-means)'s blur law, so being near "is not enough by itself". In the near
-zone the field is Newton's with an error of order $(d/r)^2$;[^error] far away it is the quadrupole wave, with an
-error of order $\lambda/r$ and $|\curv\tB| = |\curv\tE|$ (*read now, derived in chapters 7.7 and
+An array this near resolves the two holes only if it meets chapter [3.7](/tutorial/noise/blur-law/#what-the-law-means)'s
+blur law, so being near "is not enough by itself". In the near zone the field is Newton's "with errors of order
+$(d/r)^2$ and $(\omega r/c)^2$";[^error] far away it is the quadrupole wave, with an error of order $\lambda/r$ and
+$|\curv\tB| = |\curv\tE|$ (*read now, derived in chapters 7.7 and
 [7.6](/tutorial/geometry/gravitational-waves/#the-magnetic-part-of-a-wave-is-its-tide-turned-by-45)*).
 
 {{paper fig:binary-field}}
@@ -205,8 +206,8 @@ with the pair.
 They cross the equator, $|z| = 1$, where $|\curv h| = 3G\matter M/r^3$, one and a half times the static stretch
 $2G\matter M/r^3$ (*checked here*). That is not at $\lambda/2\pi$. On the axis the wave's tide is $|\curv h| =
 8G\matter{\Delta I}\,\Omega^4/c^4r$, twice 7.7's edge-on law, with $\matter{\Delta I}$ the reduced mass ($15\,M_\odot$
-here) times $d^2$. Equal to $3G\matter M/r^3$, it gives $r = 66{,}900$ km, 12 reduced wavelengths, where the paper's
-estimate $(\lambda/2\pi)(c/\obs v)$ gives ten (*checked here*).
+here) times $d^2$. Equal to $3G\matter M/r^3$, it gives $r = 66{,}900$ km, 12 reduced wavelengths, the paper's "twelve
+times farther", near its estimate $(\lambda/2\pi)(c/\obs v)$ of ten (*checked here*).
 
 The magnetic part has no tide of the mass, only the spin's. On the axis chapter
 [7.5](/tutorial/geometry/gravitomagnetism/#a-spinning-round-body-is-a-spin-dipole)'s spin dipole has the eigenvalues
@@ -237,8 +238,8 @@ here, not the orbit's rate $\Omega$), seen from the direction $\hat N$, the stra
 
 which chapter
 [7.8](/tutorial/geometry/wave-energy/#a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good) sketches at
-depth B (*stated in the paper* [@Christodoulou1991; @Thorne1992]). Applied to the waves of a merger, whose power goes as
-$(1 + \cos^2\iota)^2/4 + \cos^2\iota$ at the inclination $\iota$, it gives the paper's
+depth B (*stated in the paper* [@Christodoulou1991; @Thorne1992]). Applied to the waves of a merger, "taken to have
+the inspiral's pattern of power", $(1 + \cos^2\iota)^2/4 + \cos^2\iota$ at the inclination $\iota$, it gives the paper's
 
 {{paper eq:merger-memory}}
 
@@ -277,7 +278,7 @@ change of tide across the line is $r/c\Delta t$: $1.0\times10^{11}$ for 10 s at 
 (*checked here*).[^ten]
 
 A burst that leaves unevenly leaves memory (*read now, derived in chapter 7.8*). A narrow jet of energy $\matter E$
-leaves the paper's $\Delta h = (2G\matter E/c^4r)(1 + \cos\theta)$ at the angle $\theta$ from it, up to 1 in units of
+leaves the paper's $\Delta h_+ = (2G\matter E/c^4r)(1 + \cos\theta)$ at the angle $\theta$ from it, up to 1 in units of
 $4G\matter E/c^4r$ close to its line. On the line itself it leaves none, although $1 + \cos\theta$ is largest there:
 seen along the jet, the emission is round about the line of sight, so it picks out no direction across the sky for a
 strain to stretch along. Two opposite jets leave $\tfrac12$ in every direction off their axis.[^jets] A sphere and a
@@ -440,41 +441,32 @@ $r/c\Delta t = 1.03\times10^{11}$. And $qGE/2c^4r = 0.01\times6.67\times10^{-11}
   field of every multipole in every zone.
 :::
 
-[^bench]: The paper's "pulls like a line of matter with twice the mass" needs the bench that holds the laser and the
-    absorber to be much farther from the pixel than the beam. The light pushes the absorber with the force $P/c$, so
-    the bench is under that tension, which pulls like $-P/c^3$ per metre. With the bench as close as the beam a pixel
-    reads $P/c^3$, the energy alone (chapter 6.5).
+[^bench]: The paper's observer is "far nearer to it than to the bench that holds its ends apart". The light pushes the
+    absorber with the force $P/c$, so the bench is under that tension, which pulls like $-P/c^3$ per metre. With the
+    bench as close as the beam a pixel reads $P/c^3$, the energy alone (chapter 6.5).
 
 [^nhat]: The paper's $\hat n$ here points from the source; Sections IV, VII and VIII point it toward the source.
 
 [^35000]: The paper's "35,000 km" is 1.6% above Newton's 34,400 km for exactly 2200 km. That is within the corrections
     to Newton's law, of order $G\matter M/c^2d$, 4% for the total mass $\matter M$ (chapter 12.1).
 
-[^tide]: The paper's "Newton's pull of two masses … falling as $r^{-5}$": the changing pull falls as $r^{-4}$, and the
-    changing tide, which the Figure plots, as $r^{-5}$. It should say "tide".
-
-[^plane]: The paper's "$0.3\,\lambda$" holds for $\curv\tE_{zz}$ in the plane of the orbit, which its panel (c) shows;
-    the next section's table gives the other crossings.
-
-[^error]: The paper's "an error of order $(d/r)^2$" leaves out a second error, of order $(kr)^2$ with $k =
-    2\pi/\lambda$, which comes from the delay. For the whole changing tide in the plane of the orbit the first is
-    $0.23(d/r)^2$, from Newton's next moment, and the second $0.14(kr)^2$ (chapter 7.7). They are equal where $r^4 =
+[^error]: The second error, with $\omega r/c = kr$ and $k = 2\pi/\lambda$, comes from the delay. For the whole
+    changing tide in the plane of the orbit the first is $0.23(d/r)^2$, from Newton's next moment, and the second
+    $0.14(kr)^2$ (chapter 7.7). They are equal where $r^4 =
     (0.23/0.14)\,d^2/k^2$, at about 4000 km for this pair.
 
-[^typeN]: The paper's "the type goes from D through II to N": $z^2 = 3G\matter M/r^3\curv h$ falls as $r^{-2}$ and
-    reaches zero only as $r \to \infty$, so the field is of type II at every finite distance. It should say "toward
-    N".
+[^typeN]: The paper's "the type goes from D through II toward N": $z^2 = 3G\matter M/r^3\curv h$ falls as $r^{-2}$
+    and reaches zero only as $r \to \infty$.
 
-[^magnetic]: The paper's "falls at $\lambda/2\pi$ whatever the speed": the independence of the speed holds, but on the
-    axis the factor is about 1.8, or 1.7 if the sizes of the whole tensors are compared.
+[^magnetic]: The paper's crossover "falls near $\lambda/2\pi$ whatever the speed": on the axis the factor is about
+    1.8, or 1.7 if the sizes of the whole tensors are compared.
 
-[^axes]: The paper's $\Delta h$, in the paper's [](/paper/#eq:merger-memory) and [](/paper/#eq:burst-memory) and in
-    its jet formula, is the plus part of the strain, along and across the axis as it appears on the sky; the cross part is
-    zero. The paper's [](/paper/#eq:merger-memory) also assumes that all the energy, the merger's own included, leaves
-    with the slow inspiral's pattern, so it is an estimate.
+[^axes]: The paper's $\Delta h_+$, in its [](/paper/#eq:merger-memory) and [](/paper/#eq:burst-memory) and in its
+    jet formula, is the plus part of the strain, along and across "the source's axis as seen on the sky", and
+    "$\Delta h_\times = 0$". The paper's [](/paper/#eq:merger-memory) gives all the energy, the merger's own included,
+    "the inspiral's pattern of power", so it is an estimate.
 
-[^ten]: The paper's "some $10^{11}$" needs a duration that it does not state. Ten seconds, as in 1987, gives
-    $1.0\times10^{11}$ across the line and $5.1\times10^{10}$ along it, where the change of tide is twice as large.
+[^ten]: The paper's "some $10^{11}$" is "over a burst of ten seconds", as in 1987: $1.0\times10^{11}$ across the
+    line and $5.1\times10^{10}$ along it, where the change of tide is twice as large.
 
-[^jets]: The paper's "two opposite jets leave the same $2GE/c^4r$" holds when the jets share $E$. With $E$ in each it
-    is $4GE/c^4r$.
+[^jets]: The paper's jets are two "that share it", the energy $E$. With $E$ in each it is $4GE/c^4r$.

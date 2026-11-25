@@ -105,11 +105,12 @@ $\tau B_\omega$ (*checked here*). *Brightness is set by temperature and high-fre
 [10.2](/tutorial/glow/kirchhoff/#matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more)'s
 law with 4.4's friction at the wave's frequency).
 
-*The glow is faint.* A person, taken as 70 litres of water at 293 K, sends the table's $1.1\times10^{-35}$
-$\mathrm{W\,m^{-3}}$ times $0.07\unit{m^3}$, or $7.7\times10^{-37}$ W: "about $10^{-36}$ W". At water's mean
-graviton energy of $1.7\,\kB T$ that is one graviton every $2.8\times10^8$ years (*checked here*, as in chapter
-[5.5](/tutorial/waves/radiance/#a-materials-brightness-is-its-friction-times-a-power-of-its-temperature)).[^person]
-The plain words' "hundred watts of infrared light" is a net loss, not an emission.[^infrared]
+*The glow is faint.* A person, taken as 70 litres of water at body temperature, 310 K, with water's friction from the
+paper's table, radiates $9.1\times10^{-37}$ W: "about $9\times10^{-37}\,\mathrm{W}$", the plain words' "about
+$10^{-36}$ watts". At water's mean graviton energy there, $1.64\,\kB T$, that is one graviton every $2.4\times10^8$
+years, the plain words' "two hundred and forty million years" (*checked here*, as in chapter
+[5.5](/tutorial/waves/radiance/#a-materials-brightness-is-its-friction-times-a-power-of-its-temperature)).[^person] The
+plain words set it against "about a kilowatt of infrared light", all that the person's skin emits.[^infrared]
 
 {{paper fig:line-integral}}
 
@@ -133,9 +134,9 @@ hide what lies behind it or add to it? Then drag the divider to the left and com
 A friction the same at every frequency and temperature makes the count grow as $T^3$, and $(1500/293)^3 = 134$ is "more
 than a hundredfold" (*checked here*, by
 [10.1](/tutorial/glow/black-body/#three-integrals-of-one-kind-give-the-power-the-count-and-the-mean-energy)). A
-metal's friction at the glow's peak falls as $1/T$, so its count grows as $T^2$: $(1500/293)^2 = 26.2$, "nearer 25"
+metal's friction at the glow's peak falls as $1/T$, so its count grows as $T^2$: $(1500/293)^2 = 26.2$, "nearer 26"
 (*checked here*, by
-[10.3](/tutorial/glow/why-matter-barely-glows/#each-material-of-the-table-is-a-weight-at-a-place)).[^25] The
+[10.3](/tutorial/glow/why-matter-barely-glows/#each-material-of-the-table-is-a-weight-at-a-place)). The
 caption's sixteen and twenty-two are *checked*
 [at the end](#the-closed-furnace-from-the-friction-of-iron-to-a-count-of-gravitons).
 
@@ -226,9 +227,9 @@ paper's constant $10^{-3}\unit{Pa\,s}$ (*checked here*).
 The three shears carry $\tfrac12$, $\tfrac58$ and $\tfrac23$ of a wave's drive along a cube edge, a face diagonal and a
 body diagonal (10.3), so the line is $\tfrac54$ and $\tfrac43$ as bright along the diagonals (*checked here*). Its 60%
 polarization along a face diagonal is derived in the stretch problem of chapter [5.4](/tutorial/waves/polarization/)
-(*read now*). The glass and water spectra are *stated in the paper* [@Leonforte2006; @Schulz2020]; that of water
-gives $2.4\times10^{-4}\unit{Pa\,s}$ near 8 THz, 0.35 of its steady $6.9\times10^{-4}\unit{Pa\,s}$, so the
-paper's "a third" holds (*checked here*).[^water]
+(*read now*). The glass and water spectra are *stated in the paper* [@Leonforte2006; @Schulz2020]; that of water gives
+$2.4\times10^{-4}\unit{Pa\,s}$ near 8 THz, the paper's figure, 0.35 of its steady $6.9\times10^{-4}\unit{Pa\,s}$: "a
+third" (*checked here*).[^water]
 
 ## Even a perfect crystal glows through pairs of phonons
 
@@ -385,8 +386,8 @@ glow**, the walls' and the floor's share that both lines receive, is $\sym{commo
 chapter 5.5's two-thirds.
 
 **How faint.** In all directions the hot block sends $4\pi j_N\times0.1\unit{m^3} = 5.4\times10^{-14}$ gravitons a
-second, one every 580,000 years. A square metre 3.5 m away, the distance of Section IX's graviton budget (chapter
-R10b), catches one every $9.0\times10^7$ years.
+second, one every 580,000 years. A square metre at the line's 3.86 m, the distance of Section IX's graviton budget
+(chapter R10b), catches one every $1.1\times10^8$ years.
 
 ## The ledger accounts for all eight of Section VI's equations
 
@@ -484,25 +485,20 @@ the paper's [](/paper/#eq:surface-glow) gives $1.0\times10^{-46}$ W, and $P_V/P_
   Quantum Gravity* 1 (1984) 305: the surface glow of the last paragraph.
 :::
 
-[^person]: The paper's "about $10^{-36}$ watts" and "two hundred million years" use water's friction. Its full
-    spectrum gives $7.80\times10^{-37}$ W and one graviton every $2.75\times10^8$ years
-    at 293 K, and $9.1\times10^{-37}$ W and $2.4\times10^8$ years at the body's 310 K. Water's everyday
-    $10^{-3}\unit{Pa\,s}$ would give $1.8\times10^{-35}$ W at 310 K.
+[^person]: At a room's 293 K the same 70 litres give $7.80\times10^{-37}$ W and one graviton every $2.75\times10^8$
+    years. Water's everyday $10^{-3}\unit{Pa\,s}$ would give $1.8\times10^{-35}$ W at 310 K.
 
-[^infrared]: The paper's "about a hundred watts of infrared light" is the net loss to a room: skin of 1.8 m² at 306 K
-    and emissivity 0.98 emits 880 W, about a kilowatt, and takes back 740 W from walls at 293 K.
+[^infrared]: Skin of 1.8 m² at 306 K and emissivity 0.98 emits 880 W, about a kilowatt, and takes back 740 W from walls
+    at 293 K, so the net loss to a room is about a hundred watts.
 
-[^water]: The paper's $2\times10^{-4}\unit{Pa\,s}$ near 8 THz rounds down the cited model's $2.4\times10^{-4}$
-    ($2.6\times10^{-4}$ at 7 THz).
+[^water]: At 7 THz it is $2.6\times10^{-4}\unit{Pa\,s}$.
 
-[^shares]: The paper's 39 and 40 per cent for copper and water take each weight, the integral of the paper's
-    [](/paper/#eq:friction-sum), only up to $\hbar\omega = 60\,\kB T$, leaving out 1.1% of copper's and 3.2% of
-    water's. With the whole weight they are 38.2% and 39.1%.
+[^shares]: Copper's 38% and water's 39% take each weight, the integral of the paper's [](/paper/#eq:friction-sum), to
+    every frequency: 38.2% and 39.1%. Stopped at $\hbar\omega = 60\,\kB T$, the weight would leave out 1.1% of copper's
+    and 3.2% of water's, and the shares would read 39% and 40%.
 
-[^25]: The paper's "nearer 25" and "about 25" round $(1500/293)^2 = 26.2$, the value its own scene computes.
-
-[^thirty]: The paper's 30 nm is a fair rounding of diamond's crossing, 28 nm with the sound speeds of its own elastic
-    constants, $c_T = 12.35$ and $c_L = 18.15\unit{km\,s^{-1}}$. Steel, copper, silicon and silica cross below 1 nm.
+[^thirty]: Diamond's crossing is 28 nm with the sound speeds of its own elastic constants, $c_T = 12.35$ and $c_L =
+    18.15\unit{km\,s^{-1}}$. Steel, copper, silicon and silica cross below 1 nm.
 
 [^steels]: The paper's prefactor 5.5 is that of $c_T = 3200\unit{m\,s^{-1}}$, which gives 5.47 and $6.6\times10^8$.
     Section IV's steel, with $3000\unit{m\,s^{-1}}$, would give 5.6 and $7.2\times10^8$.

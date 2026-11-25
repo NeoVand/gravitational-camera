@@ -250,9 +250,10 @@ Independent waves add them, so for every sky of independent waves
 $$\boxed{\;\begin{aligned}\mathrm{Im}\,\langle\tilde{\curv\tE}\!:\!\tilde{\curv\tB}^*\rangle &= \oint V\,\dd\Omega,\\
 \langle\tilde{\curv\tE}\!:\!\tilde{\curv\tE}^*\rangle &= \oint I\,\dd\Omega .\end{aligned}\;} \label{eq:handedness}$$
 
-For an isotropic sky, the same in every direction, the ratio is the circular fraction $V/I$ itself, and that is the
-paper's statement: such a sky "puts exactly $(V/I)\langle\tE\!:\!\tE^*\rangle$ into the imaginary part of
-$\langle\tE\!:\!\tB^*\rangle$". The box itself holds for any sky of independent sources. **Limits.** An unpolarized sky
+The ratio of the two is the sky's whole $V$ over its whole $I$, and that is the paper's statement: any such sky
+"puts exactly $(\int V\,\dd\Omega/\int I\,\dd\Omega)\langle\tE\!:\!\tE^*\rangle$ into the imaginary part of
+$\langle\tE\!:\!\tB^*\rangle$". For an isotropic sky, the same in every direction, it is the circular fraction $V/I$
+itself. **Limits.** An unpolarized sky
 gives 0, and a sky of helicity $+2$ alone, for which $\tilde{\curv\tB} = -i\tilde{\curv\tE}$, gives 1.
 
 A single interferometer cannot do this. If it is small against the wavelength, it records one real combination
@@ -489,9 +490,8 @@ $P_{ii} = 2$ and $P_{ij}P_{ij} = 2$ give $2\times2 + 2 - 2 = 4$, which is $e^+\!
     $\curv\alpha^-$ are $\omega^2$ times 5.4's $\tilde{\field h}_{\rm a}$ and $\tilde{\field h}^*_{\rm c}$. The
     letters $I$ and $V$ here are the sky's, not 9.2's invariant; $Q$ and $U$ are not a moment or a quality factor.
 
-[^even]: The paper's reason for the 25 numbers of $I$, its even kernel, gives only 15 of them; degrees 1 and 3
-    come through $H$.
+[^even]: The even kernel gives 15 of the 25 numbers of $I$; degrees 1 and 3 come through $H$, in the cross terms of
+    the tide and the magnetic part.
 
-[^lisa]: LISA, moving on its orbit, sees the degrees one and three of $V$ but not the net $V$ (N. Seto, *Phys.
-    Rev. Lett.* 97, 151101, 2006). The paper's "single planar interferometer" cites Seto and Taruya, whose result is
-    for pairs.
+[^lisa]: LISA, moving on its orbit, sees the degrees one and three of $V$ but not the net $V$ [@Seto2006], the paper's
+    source for a single interferometer.

@@ -300,9 +300,9 @@ With $c$ the speed of light, their sum has the size
 
 $$\frac{3G\matter M\Omega}{cR^2}\Bigl(1 - \frac{I}{\matter MR^2}\Bigr) = 4.8 \times 10^{-12}\unit{s^{-2}},$$
 
-where the pixel's motion gives the 1 and the planet's spin gives $I/\matter MR^2$. It is about a two-thousandth of
-the person's tide at a metre. The mass, the rate and the radius are known, so one pixel on the ground reads
-$I/\matter MR^2$.
+where the pixel's motion gives the 1 and the planet's spin gives $I/\matter MR^2$ (the paper writes $C$ for this moment
+about the axis of spin). It is about a two-thousandth of the person's tide at a metre. The mass, the rate and the radius
+are known, so one pixel on the ground reads $I/\matter MR^2$.
 
 ## In a turning frame, two extra accelerations appear
 
@@ -544,13 +544,13 @@ skin $\tfrac23\matter mR^2 + \tfrac1{12}\matter mR^2 = 0.75\,\matter mR^2$.
 
 ::: paper
 - [Section II](/paper/#sec:pixel) assumes that the pixel does not rotate, gives the pseudo-tide of the Earth's
-  turning, holds the frame still with gyroscopes, and says that a pixel on the ground reads $I/\matter MR^2$.
+  turning, holds the frame still with gyroscopes, and says that a pixel on the ground reads $C/\matter MR^2$, with $C$
+  for the moment of inertia about the axis of spin.
 - [Section IV](/paper/#sec:near-field), *The magnetic picture*, compares the ball and the shell by their moments of
   inertia, $5/3$, and builds the counter-turning ball of the stretch problem. *What breaks the tie* splits $I_x$, as
   in this chapter, and solves the two-layer Earth.
 - [Section VIII](/paper/#sec:one-pixel), *Ten numbers*, reads the speed $(1 - C/\matter MR^2)\,\Omega R =
-  311\unit{m\,s^{-1}}$ from a pixel on the equator, with $C$ for the moment of inertia and $\Omega$ for the Earth's
-  spin.
+  311\unit{m\,s^{-1}}$ from a pixel on the equator, with the same $C$ and $\Omega$ for the Earth's spin.
 - [Section XIII](/paper/#sec:second-order) kicks bodies with impulsive tides, whose energy, equation
   [](/paper/#eq:push), chapter 1.7 derives. It finds that a ball and a shell gain energy in the ratio 3 : 5 of their
   $\int\matter\rho\,r^2\,\dd V$, the number that this chapter shows the outside cannot see.

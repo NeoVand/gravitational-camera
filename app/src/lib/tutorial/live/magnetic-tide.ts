@@ -7,12 +7,12 @@
  * ratio |𝓑|/|𝓔| = √3 v⊥/c.
  *
  * A spinning body. A round body whose spherical layers each turn rigidly, with angular momentum L, makes the spin
- * dipole 𝓑_ij = −(3G/cr⁴)[L_in̂_j + n̂_iL_j + (L·n̂)(δ_ij − 5n̂_in̂_j)]: a ball (I = ⅖MR²), a thin shell (⅔MR²), or a
+ * dipole 𝓑_ij = −(3G/cr⁴)[L_in̂_j + n̂_iL_j + (L·n̂)(δ_ij − 5n̂_in̂_j)]: a ball (C = ⅖MR²), a thin shell (⅔MR²), or a
  * uniform ball whose inner part, of radius a, turns against the shell outside it, L = ⅖MR²Ω(2(a/R)⁵ − 1), which is
  * zero at a = 2^(−1/5) R.
  *
- * The equator. A pixel at rest on the Earth's equator reads 𝓑_xz = −(3GMΩ/cR²)(1 − I/MR²): the 1 is its own motion
- * through the static field, I/MR² the planet's spin.
+ * The equator. A pixel at rest on the Earth's equator reads 𝓑_xz = −(3GMΩ/cR²)(1 − C/MR²): the 1 is its own motion
+ * through the static field, C/MR² the planet's spin.
  *
  * Gyroscopes a small vector ξ apart turn relative to one another at δΩ_i = 𝓑_ij ξ_j / c.
  */
@@ -97,7 +97,7 @@ export const BALANCE = 2 ** -0.2;
 
 export type Body = 'ball' | 'shell' | 'counter';
 
-/** I/MR² of a uniform ball and of a thin shell. */
+/** C/MR² of a uniform ball and of a thin shell. */
 export const BALL_RATIO = 2 / 5;
 export const SHELL_RATIO = 2 / 3;
 
@@ -115,7 +115,7 @@ export function spinRatio(body: Body, inner = 1): number {
 /** The figure's body: 1000 kg, radius 0.5 m, its centre 1.5 m from the pixel. */
 export const BODY = { M: 1000, R: 0.5, r: 1.5 };
 
-/** The angular momentum L = IΩ of the figure's body, kg m² s⁻¹, signed along the axis. */
+/** The angular momentum L = CΩ of the figure's body, kg m² s⁻¹, signed along the axis. */
 export const angularMomentum = (body: Body, rate: number, inner = 1, b = BODY) =>
 	spinRatio(body, inner) * b.M * b.R ** 2 * rate;
 
@@ -130,13 +130,13 @@ export const inertia = (body: Body, b = BODY) =>
 export const spinTable = (body: Body, rate: number, inner = 1, b = BODY) =>
 	spinDipole([0, 0, angularMomentum(body, rate, inner, b)], b.r, [1, 0, 0]);
 
-/** The readouts of the spinning body: I, L, |𝓑|, |𝓔|, |𝓑| over a ball's at the same rate, and the gyroscopes' δΩ. */
+/** The readouts of the spinning body: C, L, |𝓑|, |𝓔|, |𝓑| over a ball's at the same rate, and the gyroscopes' δΩ. */
 export function spinning(body: Body, rate: number, inner = 1, b = BODY) {
 	const B = spinTable(body, rate, inner, b);
 	const E = electricPoint(b.M, b.r, SIGHT);
 	const ball = norm(spinTable('ball', rate, 1, b));
 	return {
-		I: inertia(body, b),
+		C: inertia(body, b),
 		L: angularMomentum(body, rate, inner, b),
 		B: norm(B),
 		E: norm(E),
@@ -147,24 +147,24 @@ export function spinning(body: Body, rate: number, inner = 1, b = BODY) {
 
 // --- the equator ---------------------------------------------------------------------------------------------------
 
-/** The Earth: GM, m³ s⁻²; Ω, s⁻¹; the equatorial radius, m; I/MR². */
+/** The Earth: GM, m³ s⁻²; Ω, s⁻¹; the equatorial radius, m; C/MR². */
 export const EARTH = { GM: 3.986e14, omega: 7.292e-5, R: 6.378e6, ratio: 0.3307 };
 
 /** The factor in front, 3GMΩ/cR², s⁻²: 7.15 × 10⁻¹². */
 export const equatorFactor = (e = EARTH, c = C) => (3 * e.GM * e.omega) / (c * e.R ** 2);
 
-/** The two parts of eq:earth: the pixel's motion, −3GMΩ/cR², and the planet's spin, +3GIΩ/cR⁴; s⁻². */
+/** The two parts of eq:earth: the pixel's motion, −3GMΩ/cR², and the planet's spin, +3GCΩ/cR⁴; s⁻². */
 export const equatorParts = (ratio: number, e = EARTH) => ({
 	motion: -equatorFactor(e),
 	spin: equatorFactor(e) * ratio
 });
 
-/** eq:earth: 𝓑_xz = −(3GMΩ/cR²)(1 − I/MR²), s⁻². */
+/** eq:earth: 𝓑_xz = −(3GMΩ/cR²)(1 − C/MR²), s⁻². */
 export const equatorReading = (ratio: number, e = EARTH) => -equatorFactor(e) * (1 - ratio);
 
 /**
  * The same from the two rules, as the chapter adds them: a pixel moving with u = ΩR ŷ past the mass at rest reads
- * what a pixel at rest reads of the mass moving with −u; the spin dipole with L = I Ω ẑ, at n̂ = −x̂. Returns the
+ * what a pixel at rest reads of the mass moving with −u; the spin dipole with L = C Ω ẑ, at n̂ = −x̂. Returns the
  * full table.
  */
 export function equatorTable(ratio: number, e = EARTH, c = C): Mat3 {
@@ -181,7 +181,7 @@ export function equator(ratio: number, e = EARTH) {
 	return { reading, ...equatorParts(ratio, e), gyro: Math.abs(reading) / C };
 }
 
-/** The planets the equator slider marks, I/MR². */
+/** The planets the equator slider marks, C/MR². */
 export const RATIO_MARKS = { earth: EARTH.ratio, uniform: BALL_RATIO, shell: SHELL_RATIO };
 
 // --- gyroscopes ----------------------------------------------------------------------------------------------------
@@ -290,7 +290,7 @@ export const INNER: Range = {
 	large: 0.05,
 	stops: [BALANCE]
 };
-/** The equator's I/MR², to the shell's ⅔; a step stops at the Earth's 0.3307. */
+/** The equator's C/MR², to the shell's ⅔; a step stops at the Earth's 0.3307. */
 export const RATIO: Range = {
 	min: 0,
 	max: SHELL_RATIO,

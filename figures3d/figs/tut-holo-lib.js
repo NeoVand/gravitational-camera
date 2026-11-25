@@ -145,7 +145,7 @@ export async function chapter(check) {
 	has(r`At $10^{70}$ the stone is resolved into about forty cells along a radius.`, 'forty cells');
 	check(Math.round(1 / dOverA(N2(70 * Math.log(10)))) === 39, 'forty cells');
 	has(r`each 0.026 of the radius across`, 'the opening\'s 0.026');
-	has(r`Pushing gains about twelve, not a hundred.`, 'twelve');
+	has(r`Pushing gains about twelve. This chapter derives these counts.`, 'twelve');
 	check(Math.round(N2(70 * Math.log(10)) / N1(70 * Math.log(10))) === 12, 'twelve');
 	// the ceilings
 	has(r`The ceiling is $1.9\times10^{69}$ for a region of radius one metre`, 'the ceiling of a metre');

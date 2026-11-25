@@ -585,7 +585,8 @@ body that looks twice as wide has twice the angular size, so its tide is $2^3 = 
 
 ::: paper
 - [Section II](/paper/#sec:pixel) begins with this falling observer, defines the tidal field, computes the person and
-  the strain that a detector would read, names the lorry, and gives the Earth's tide, the turning frame and the eötvös.
+  the strains that a small detector and LIGO would read, names the lorry, and gives the Earth's tide, the turning
+  frame and the eötvös.
 - The paper's equation [](/paper/#eq:tidal) defines the tide in general relativity as $c^2R_{0i0j}$. Chapter
   [7.2](/tutorial/geometry/curvature-and-tides/#for-an-observer-at-rest-the-drift-is-the-papers-tide) derives it, and
   this chapter uses only its Newtonian limit.
@@ -683,4 +684,5 @@ that they do to a few parts in a billion: the equivalence principle with which t
     equation [](#eq:difference) used directly, since the separation is far larger than the distance. The sway
     changes the pull by $2\,\delta r/r$, which is 10 per cent, so the free mirror swings by
     $4.7 \times 10^{-10}/39.5 = 1.2 \times 10^{-11}\unit{m}$. Divided by 4 km this is a strain of
-    $3 \times 10^{-15}$, three million times the strain of LIGO's waves.
+    $3 \times 10^{-15}$, the figure Section II gives beside one of LIGO's mirrors, three million times the strain of
+    LIGO's waves.

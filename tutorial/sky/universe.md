@@ -593,8 +593,9 @@ $8\pi\times10^{-6}\times1.155\times\tfrac12 = 1.45\times10^{-5}$.
     = \kB[x\bar n_{\rm F} + \ln(1 + e^{-x})]$ (Landau and Lifshitz, *Statistical Physics*, §55). Integrating by
     parts, the second term gives a third of the first.
 
-[^leak]: The paper's 3.91 and 0.905 K assume this too. A little of the pairs' heat leaked into the neutrinos,
-    which makes their $N_{\rm eff}$ (next section) 3.044, not 3; with it the count is 3.93 and $T_g = 0.907$ K.
+[^leak]: The paper's 3.91 and 0.905 K assume this too, "neutrinos that decoupled at once". A little of the pairs'
+    heat leaked into the neutrinos, which makes their $N_{\rm eff}$ (next section) 3.044, not 3; with it the count is
+    3.93 and $T_g = 0.907$ K.
 
 [^gamma]: The rate $\Gamma$ is in $\mathrm{s^{-1}}$: $\mathrm{m^{-3}}\times\mathrm{m^2}\times\mathrm{m\,s^{-1}}$.
     Not 4.1's damping rate or 11.3's greybody factor.
@@ -602,13 +603,13 @@ $8\pi\times10^{-6}\times1.155\times\tfrac12 = 1.45\times10^{-5}$.
 [^act]: With the Atacama Cosmology Telescope's data, Calabrese and colleagues (2025) find $2.86 \pm 0.13$, 1.8
     standard deviations below $3.044 + 0.054 = 3.098$.
 
-[^Omega]: The paper's "$7\times10^{-7}$" takes the microwave sky's $H_0$ without naming it. This $\Omega$ is not a
-    solid angle or a rotation rate, and $h$ is not Planck's constant.
+[^Omega]: The paper's "$7\times10^{-7}$" is "for $H_0 = 67\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$", the microwave sky's.
+    This $\Omega$ is not a solid angle or a rotation rate, and $h$ is not Planck's constant.
 
 [^third]: A third of a degree is $\lambda/D = 0.337°$, rounded; Rayleigh's $1.22\lambda/D$ gives $0.41°$.
 
-[^Phi]: The paper's "$\Phi$ that of the spatial metric": the metric's entries change by the fraction $2\Phi$, and
-    lengths by $\Phi$.
+[^Phi]: The paper's "$\Phi$ that of lengths": the metric's entries change by the fraction $2\Phi$, and lengths by
+    $\Phi$.
 
 [^dist]: With $H_0 = 70\unit{km\,s^{-1}\,Mpc^{-1}}$ and 30% matter the ratio is 1.0204 if the radiation's density is
     kept, and 1.0201 if its share is kept.

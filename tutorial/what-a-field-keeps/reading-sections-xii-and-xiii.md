@@ -41,9 +41,8 @@ without proof). A bare chapter number in parentheses, as "(13.4)", marks a small
 Sections XIV and XV are read in R13b, *Reading Sections XIV and XV*, after chapter 13.8.
 
 ![Look first at the solid boxes: every paragraph of Sections XII and XIII rests on chapters of Parts 1 to 13, with
-its stated results in dotted insets. The hatched corners mark a step sketched at depth B, and the two flags mark
-where the paper says more than it shows. The last box follows one ball and one shell through seven of
-them.](tut-read-xii-xiii-map){#fig:read-xii-xiii-map}
+its stated results in dotted insets. The hatched corners mark a step sketched at depth B. The last box follows one
+ball and one shell through seven of them.](tut-read-xii-xiii-map){#fig:read-xii-xiii-map}
 
 ::: plain
 At any one moment, the gravity outside a body shows only certain averages of its mass, so a hollow shell and a solid
@@ -58,14 +57,14 @@ though fine detail still costs a great deal, and two pushes in either order read
 
 ## Section XII's plain words: one reading holds a short list, and the scale from bald to hairy is short
 
-**Hair** is whatever the field outside could show of what lies inside; a black hole in equilibrium shows only its
-mass, spin and charge (chapter 11.2). The **multipole moments**, the weighted totals of the mass that the field
-outside carries, are chapter 2.3's. From three radii, "each step is three times weaker than the last" is 2.3's factor
-$R/R_c = \tfrac13$ per degree
+**Hair** is whatever the field outside could show of what lies inside; a black hole in equilibrium shows only its mass,
+spin and charge (chapter 11.2). The **multipole moments**, the weighted totals of the mass that the field outside
+carries, are chapter 2.3's. From three radii, "each step is three times weaker than the last" is 2.3's factor $R/R_c =
+\tfrac13$ per degree
 ([2.3](/tutorial/outside/multipoles/#each-degree-has-a-ceiling-lower-than-the-last-by-the-size-over-the-distance)). The
 box's counts of bits are checked under *The number of bits*. The neutron star's "to within about one per cent" is
-*stated in the paper* [@YagiYunes2013], and "about nine times" is $1176/140 = 8.4$.[^nine] The paragraph after the box
-gathers Section IV's ambiguity, blur, bits and heat, read in R2 to R4, into "one subject".
+*stated in the paper* [@YagiYunes2013], and "about eight and a half times" is $1176/140 = 8.4$. The paragraph after the
+box gathers Section IV's ambiguity, blur, bits and heat, read in R2 to R4, into "one subject".
 
 ## At one time the field holds the harmonic moments, and Einstein's theory fixes still less
 
@@ -102,7 +101,7 @@ of $10^{70}$ (read in R8), $L = 161.2$ and $H = 1.685 \times 10^6$ bits, or 211 
 "$1.7\times10^6$" and "two hundred kilobytes" (*checked here*). A black hole's moments are fixed by its mass and spin
 [@Hansen1974] (*stated in the paper*), so with its place it holds seven numbers and at most $7\log_2\SNR$ bits: 139.5
 at $10^6$ and 1628 at $10^{70}$, the paper's "140" and "1600" (*checked here*). The ratios, 8.4 and 1035, are the
-paper's "nearly nine" and "a thousand".
+paper's "about eight and a half" and "a thousand".
 
 {{paper fig:hair}}
 
@@ -191,7 +190,7 @@ with $\vect K = \vect k + \vect k'$ and $\kappa = |\vect k| + |\vect k'| \ge K$ 
 One reading holds the transform on the cone $\kappa = K$, and readings at two times hold it inside. Differentiating
 $e^{i\vect K\cdot\vect a - \kappa z}$ twice gives $\kappa^2 - K^2$ times itself, so a null density has the transform
 $(\kappa^2 - K^2)\tilde\psi/4\pi G$ (*checked here*): zero on the cone, and inside it what the second reading
-holds.[^half]
+holds, which carries half of it.
 
 {{paper fig:two-readings}}
 
@@ -209,7 +208,7 @@ $e^{|\vect\xi|R}$ from one side to the other, so detail of size $2\pi/|\vect\xi|
 $e^{-|\vect\xi|R}$. For the steel ball of radius 0.5 m, 10 cm of detail needs one part in $e^{31.4} = 4.4 \times
 10^{13}$
 ([13.2](/tutorial/what-a-field-keeps/calderon/#fine-detail-still-costs-exponentially-the-two-readings-remove-the-ambiguity-and-keep-the-blur)).
-The multipoles that build the profiles reach the camera weakened by the paper's $(R/r)^\ell$.[^Rc] That the stability
+The multipoles that build the profiles reach the camera weakened by the paper's $(R/R_c)^\ell$. That the stability
 of Calderón's problem, "for conductivities bounded beforehand", is logarithmic and cannot be better is *stated in the
 paper* [@Alessandrini1988; @Mandache2001]. "Readings at two times remove the ambiguity and keep the blur."
 
@@ -238,7 +237,8 @@ both ways. That enough impulses give "every momentum" is Appendix C, read in
 "The measurement is far beyond reach." An impulse of $\Delta v = 3 \times 10^{-12}\unit{m\,s^{-1}}$ raises the weight
 by $\tfrac12(\Delta v/c)^2 = 5.0 \times 10^{-41}$ of itself, "five parts in $10^{41}$" (*checked here*). A tonne held a
 metre from the edge for 50 µs gives the edge
-$G \times 1000\unit{kg}/(1\unit m)^2 \times 50\unit{\mu s} = 3.3 \times 10^{-12}\unit{m\,s^{-1}}$.[^dv] The impulse
+$G \times 1000\unit{kg}/(1\unit m)^2 \times 50\unit{\mu s} = 3.3 \times 10^{-12}\unit{m\,s^{-1}}$, the paper's "pull
+of a tonne a metre from the edge".[^dv] The impulse
 must also be over before the body responds, the body's motions slow beside light, and the result is the first order in
 $1/c^2$ (13.1). Chapter 13.5 removes the restriction to slow matter and to order $1/c^2$; the impulse must still be
 brief.
@@ -279,7 +279,8 @@ terms, and the third gives B more than A by $\tfrac{C^2}{2}\cdot\tfrac{8}{15}\cd
 \matter MC^2R^4/15b^6$ (*checked here*). At $b = 1.5R$ the full sums leave 0.0803 inside A and 0.1041 inside B, in
 units of $\matter MC^2/2R^2$: the caption's "0.080 and 0.104", whose ratio, 1.296, is the "$30\%$" (*checked here*, by
 1.8).[^thirty] The tonne's "five parts in $10^{33}$" is 13.1's $4.5 \times 10^{-33}$, rechecked in the
-capstone.[^frozen]
+capstone, and the part that depends on the interior, $(1914 - 1827)/1914$ of it, is $2.1 \times 10^{-34}$, the
+paper's "$2\times10^{-34}$" (*checked here*, by 13.1).[^frozen]
 
 {{paper fig:passing}}
 
@@ -298,10 +299,10 @@ $\sym{wave-profile}{H}$, in metres, harmonic across its front, is an exact solut
 ([13.5](/tutorial/what-a-field-keeps/impulsive-waves/#a-sudden-sheet-of-gravity-is-an-exact-solution-of-einsteins-equation)),
 and the field of a particle without mass is one [@AichelburgSexl1971]
 ([13.5](/tutorial/what-a-field-keeps/impulsive-waves/#the-field-of-a-particle-without-mass-is-an-impulsive-wave)). A
-particle that crosses the wave keeps $E - cp_z$ and gains the sideways momentum $(E - cp_z)\nabla H/2c$
-[@Balasin1997; @Steinbauer1998]
-([13.5](/tutorial/what-a-field-keeps/impulsive-waves/#whatever-crosses-the-front-keeps-q-and-is-kicked-in-proportion-to-it)),[^q]
-so it gains the paper's
+particle that crosses the wave keeps $E - cp_z$ and gains the sideways momentum $(E - cp_z)\nabla H/2c$ [@Balasin1997;
+@Steinbauer1998]
+([13.5](/tutorial/what-a-field-keeps/impulsive-waves/#whatever-crosses-the-front-keeps-q-and-is-kicked-in-proportion-to-it)),
+with $E - cp_z = cq$, "$c$ times the $q$ of Appendix C", so it gains the paper's
 
 {{paper eq:shock}}
 
@@ -322,7 +323,7 @@ Pairs of waves read $\tilde{\matter{\mathcal N}}(\vect\xi)$, the Fourier transfo
 ([13.5](/tutorial/what-a-field-keeps/impulsive-waves/#pairs-of-waves-read-the-fourier-transform-of-what-crosses-the-front)).
 What their integrals along the rays of light leave undetermined is *stated in the paper*
 [@KrishnanSenapatiVashisth2020]. The stresses $(\partial_\mu\partial_\nu - \eta_{\mu\nu}\Box)\phi$ give zero along every
-ray, and in ordinary matter they would change the energy density by about a part in $10^{12}$ (6.5).[^none]
+ray, and in ordinary matter they would change the energy density by about a part in $10^{12}$ (6.5).
 
 The particle without mass has $H = -(8Gp/c^3)\ln|\vect x_\perp - \vect b|$, with $p$ its momentum, and a body at rest
 gains the paper's
@@ -347,12 +348,11 @@ chapter
 [13.2](/tutorial/what-a-field-keeps/calderon/#the-bits-of-a-second-reading-grow-as-the-fourth-power-of-the-logarithm)*).
 
 The paper's "$1300$ bits at a signal-to-noise ratio of $10^6$ and $9.6\times10^6$ at $10^{70}$" are *stated in the
-paper*. They come from its own computation, in its reference implementation (`reference/gravcam/passing.py`), which
-the text does not show. Applied moment by moment, the rule that gave the first reading's 1200 gives 2580 and
-$3.19 \times 10^7$ (13.2). The paper's numbers include an unmentioned price: moments of one pattern fall off with the
-held mass's distance in nearly the same way, and telling them apart costs bits. With one mass at a time on one sphere
-they cannot be told apart at all: "read on a single sphere, the second reading gives only as many as the first"
-(13.3). Masses held in pairs on one sphere read every rung
+paper*, from its reference implementation (`reference/gravcam/passing.py`), "with one mass held at a time and after
+the cost of telling apart radial powers that fall off from nearly the same radius". Without that cost, applied moment
+by moment, the rule that gave the first reading's 1200 gives 2580 and $3.19 \times 10^7$ (13.2). With one mass at a
+time on one sphere the powers cannot be told apart at all: "Held on a single sphere, one mass at a time gives only as
+many as the first reading" (13.3). "Masses held in pairs give every moment"
 ([13.8](/tutorial/what-a-field-keeps/holography/#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm)). For a pass, the second
 reading's ratio is smaller by $2G\matter\mu/bV^2$, $4.6 \times 10^{-17}$ for the tonne at 1.5 m and 44 km/s
 (*checked here*, by 13.1).
@@ -376,11 +376,12 @@ every rung below $m$ is reached, Appendix C, in
 [13.3](/tutorial/what-a-field-keeps/ladder/#every-polynomial-on-the-ladder-is-reached)). The triangular structure of
 linearized impedance tomography is *stated in the paper* [@GardeHirvensalo2025; @GardeHyvonen2024].
 
-Two densities that differ by $\nabla^{2m}\field\psi$ "have the same exterior field and the same response to every
-tide of degree up to $m$, and differ under a tide of degree $m + 1$" (*read now, derived in chapter
-[13.3](/tutorial/what-a-field-keeps/ladder/#two-bodies-that-no-quadrupolar-tide-tells-apart)*, with two
-caveats).[^strong] Their transforms differ by $(\kappa^2 - K^2)^m\tilde\psi$, and their second readings by half of
-$(\kappa^2 - K^2)^{m+1}\tilde\psi$ (13.3).
+Two densities that differ by $\nabla^{2m}\field\psi$, "with $\psi$ and its derivatives to order $2m - 1$ vanishing on
+the body's surface", "have the same exterior field and the same response to every tide of degree up to $m$, and in
+general differ under a tide of degree $m + 1$" (*read now, derived in chapter
+[13.3](/tutorial/what-a-field-keeps/ladder/#two-bodies-that-no-quadrupolar-tide-tells-apart)*).[^strong] Their
+transforms differ by $(\kappa^2 - K^2)^m\tilde\psi$, and their second readings by half of $(\kappa^2 -
+K^2)^{m+1}\tilde\psi$ (13.3).
 
 The pair's numbers (*checked here*): the profile $\tfrac12(x^2 - y^2)$ has $|\nabla g|^2 = x^2 + y^2$, averaging
 $\tfrac23r^2$, so A and B both gain
@@ -415,9 +416,8 @@ way and the rest the other, it is the paper's
 (*read now, derived in chapter
 [13.4](/tutorial/what-a-field-keeps/flows-inside/#octupolar-tides-read-the-hidden-swirl)*). The rigid ball gives
 $-\tfrac{32}{35}\matter M\Omega R^4$, and the split multiplies it by $2^{-2/5} - 1$: $\tfrac{32}{35}(1 - 2^{-2/5}) =
-0.2214$ (*checked here*). The paper's "with $\Omega$ the rate of turning" does not say whose rate. The value is
-$+0.221\,\matter M\Omega R^4$ for the inner ball's rate, in the positive sense about $z$, and
-$-0.221\,\matter M\Omega R^4$ for the outer part's (13.4). The trapped gas's splitting is *stated in the paper*
+0.2214$ (*checked here*), "with $\Omega$ the rate of the inner ball, anticlockwise about $z$". For the outer part's
+rate it is $-0.221\,\matter M\Omega R^4$ (13.4). The trapped gas's splitting is *stated in the paper*
 [@ZambelliStringari1998].
 
 {{paper fig:hidden-flow}}
@@ -428,8 +428,9 @@ $-0.221\,\matter M\Omega R^4$ for the outer part's (13.4). The trapped gas's spl
 bracket with every harmonic moment vanishes does not depend on the momenta, and one whose bracket with the energy also
 vanishes is a constant
 ([13.6](/tutorial/what-a-field-keeps/algebra-of-moments/#the-moments-and-the-energy-generate-everything-that-can-be-known-of-a-body),
-from Appendix C). In general relativity the mass moments are the charges of the motions $f\,\partial_t +
-t\,\nabla f\cdot\nabla$, with $f$ harmonic [@CompereOliveriSeraj2018] (*stated in the paper*).[^c] That these motions
+from Appendix C). In general relativity the mass moments are the charges of the motions $(f/c)\,\partial_t +
+ct\,\nabla f\cdot\nabla$, with $f$ harmonic [@CompereOliveriSeraj2018] (*stated in the paper*); the $t^2$ of their
+commutator is $c^2t^2$ (13.6). That these motions
 do not close at degree two and above is derived in
 [13.6](/tutorial/what-a-field-keeps/algebra-of-moments/#in-general-relativity-the-moments-are-charges-of-motions-that-do-not-close).
 For matter the bracket follows from those of the energy density [@Dirac1962; @Schwinger1963] (*stated in the paper*),
@@ -438,8 +439,9 @@ and the moments of the energy obey the paper's
 {{paper eq:moment-bracket}}
 
 (*read now, derived in chapter
-[13.6](/tutorial/what-a-field-keeps/algebra-of-moments/#to-order-1c²-the-moments-of-the-energy-do-not-commute)*, where
-it is exact for free particles and needs "To order $1/c^2$" only for the potential energy). Two dipoles give
+[13.6](/tutorial/what-a-field-keeps/algebra-of-moments/#to-order-1c²-the-moments-of-the-energy-do-not-commute)*), "to
+order $1/c^2$, and exactly for free particles"; the moments the field reports at this order "also weigh the stresses"
+(13.6). Two dipoles give
 $-L_z/c^2$ [@Pryce1948], and the quadrupoles $x^2 - y^2$ and $2xy$ give $-(2/c^2)\int(x^2 + y^2)\,
 \sym{angular-momentum-density}{\ell_z}\,\dd V$, with $\ell_z$ the density of angular momentum about $z$ (13.6). For the
 hidden swirl this is $\tfrac{16}{35}(1 - 2^{-2/5})\,\matter M\Omega R^4/c^2 = 0.111\,\matter M\Omega R^4/c^2$, half
@@ -575,8 +577,7 @@ $\tfrac12C^2F/\matter\mu V^2 = 4.5 \times 10^{-33}$ of the speed.
   and Figure [](/paper/#fig:hair).
 - [Section XIII](/paper/#sec:second-order) in full: its fifteen equations and Figures [](/paper/#fig:two-readings),
   [](/paper/#fig:passing), [](/paper/#fig:ladder) and [](/paper/#fig:hidden-flow).
-- The Introduction's last bullet, whose "the field at two times gives all of it" the margin note on the impulses
-  qualifies.
+- The Introduction's last bullet, whose "under a known push" the margin note on the impulses spells out.
 :::
 
 ::: deeper
@@ -586,43 +587,25 @@ $\tfrac12C^2F/\matter\mu V^2 = 4.5 \times 10^{-33}$ of the speed.
   remark on $L_x$, $L_y$ and $L_z$.
 :::
 
-[^nine]: The paper's "about nine times" and "nearly nine" are 8.4 (8.6 from the rounded 1200), nearer eight than nine.
-
 [^H]: This $H$ is the bits, not 1.7's energy, 3.5's Wiener filter, or the wave's profile below. Here $\Lambda$ is not
     Part 7's projector.
 
 [^thirty]: The "$30\%$" is the energy left inside. With the recoil, which both share, the totals differ by 4.5 per cent.
 
-[^twotimes]: The paper's "the data at two times are the Fourier transform of the density", and its Introduction's "the
-    field at two times gives all of it", need something to supply the impulses: a tide, heat at a known temperature,
-    or a quantum state's zero point. A classical body at rest, read at any number of times, shows only the harmonic
-    moments of $\matter\rho$; a known rate of turning
+[^twotimes]: The "known push" of the paper's "the data at two times, given a known push", and of its Introduction, is
+    whatever supplies the impulses: a tide, heat at a known temperature, or a quantum state's zero point. A classical
+    body at rest, read at any number of times, shows only the harmonic moments of $\matter\rho$; a known rate of turning
     ([13.4](/tutorial/what-a-field-keeps/flows-inside/#at-a-known-rate-of-turning-the-field-outside-holds-the-first-rung-of-the-ladder))
-    and the passive ladder of a moving body (chapter 13.8) add a little. The same holds for *The two readings as one transform* and *Stability*.
+    and the passive ladder of a moving body (chapter 13.8) add a little. The same holds for *The two readings as one
+    transform* and *Stability*.
 
-[^half]: The paper's "multiplied by half of $\kappa^2 - K^2$, which is the Laplacian in these variables" can be
-    misread: the Laplacian brings $\kappa^2 - K^2$, and the second reading carries half of it.
-
-[^Rc]: The paper's $r$ here is the camera sphere's radius, written $R_c$ in its paragraphs on bits and in 13.2.
-
-[^dv]: The paper's $3 \times 10^{-12}\unit{m\,s^{-1}}$ is the held tonne's whole pull at the edge, nearly half of it a
-    kick to the ball as a whole. Its tidal part, the edge's impulse less the centre's, is
-    $1.9 \times 10^{-12}\unit{m\,s^{-1}}$ (*checked here*).
+[^dv]: This is the held tonne's whole pull at the edge, nearly half of it a kick to the ball as a whole. Its tidal part,
+    the edge's impulse less the centre's, is $1.9 \times 10^{-12}\unit{m\,s^{-1}}$ (*checked here*).
 
 [^frozen]: The pass lasts $b/V = 34\unit{\mu s}$, half a radian of the ball's slowest ringing, so "the parts of the
     body do not move meanwhile" holds only roughly; the internal energy changes by 10 to 15 per cent (1.8).
 
-[^q]: The paper writes $E - cp_z$ here and $q = E/c - p_z$ in its Appendix C; they are the same component, $E - cp_z =
-    cq$ (13.5).
-
-[^none]: The paper's "has none" means that the integral of such a stress along every ray of light is zero.
-
-[^strong]: First, "with $\psi$ confined to the body" reads two ways. Take $\psi = (R^2 - r^2)^2$ inside and zero
-    outside, confined in 2.5's sense. As a smooth function inside, its $\nabla^4\psi$ is 120 and has a mass, so that
-    reading needs every derivative up to order $2m - 1$ to vanish on the surface. Counted with the surface layer where
-    $\nabla^2\psi$ jumps, as 13.3 counts the pair, it has no mass, and 2.5's sense is enough. Second, "differ under a
-    tide of degree $m + 1$" fails when $\psi$ is itself the Laplacian of a confined function, as for A and B, whom
+[^strong]: The surface condition matters for $m \ge 2$: $\psi = (R^2 - r^2)^2$ inside and zero outside vanishes outside
+    with its gradient, yet as a smooth function inside its $\nabla^4\psi$ is 120 and has a mass, because $\nabla^2\psi$
+    jumps at $R$. "In general" excepts a $\psi$ that is itself the Laplacian of such a function, as for A and B, whom
     every tide of degree two treats alike (13.3).
-
-[^c]: The paper writes this field without $c$. In SI units it is $(f/c)\,\partial_t + ct\,\nabla f\cdot\nabla$, and the
-    $t^2$ of its commutator becomes $c^2t^2$ (13.6).

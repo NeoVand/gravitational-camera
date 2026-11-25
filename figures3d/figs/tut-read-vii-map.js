@@ -120,7 +120,8 @@ export default async function () {
 	const ledger = sectionText(7).split('[^')[0];
 	const capstone = sectionText(6);
 	// the chapters a section cites: every way the chapter names one
-	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const citesOf = (sec) => {
 		const out = new Set();
 		for (const re of [`\\[${C}\\]\\(/tutorial/`, `[Cc]hapters? \\[?${C}`, `\\(${C}\\)`, `(?<![\\d.\\w$])${C}'s\\b`, `(?:by|from|as in|with|and) \\[?${C}`])

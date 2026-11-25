@@ -109,7 +109,8 @@ the fraction
 
 $$\frac{8.8 \times 10^{-21}\unit{J}}{1000\unit{kg} \times (44{,}000\unit{m\,s^{-1}})^2} = 4.5 \times 10^{-33},$$
 
-the paper's "five parts in $10^{33}$", far beyond reach.
+the paper's "five parts in $10^{33}$", far beyond reach. Only a twentieth of that loss depends on what is inside the
+ball.
 
 A warm body needs no tonne. The random motion of its atoms makes its shape tremble, and the size of the trembling
 depends on the same weighted total as a kick's energy, so a camera that only watches can read the inside.[^tremor]
@@ -134,7 +135,7 @@ together, and the **fluctuation–dissipation theorem** states the link: the tre
 the temperature. A black hole's shape trembles too, and its trembling divided by the horizon's friction gives the
 Hawking temperature, the temperature that quantum mechanics gives a hole.[^hawking]
 
-Take a hole of $1.36 \times 10^{23}\unit{kg}$, about twice the mass of the Moon, whose temperature is
+Take a hole of $1.356 \times 10^{23}\unit{kg}$, about twice the mass of the Moon, whose temperature is
 $0.905\unit{K}$. A camera one metre away, watching for one second, would see a trembling tide of about
 $4 \times 10^{-32}\unit{s^{-2}}$, against a steady tide of about $2 \times 10^{13}\unit{s^{-2}}$, which is about
 $5 \times 10^{44}$ times larger.[^numbers] A stone's trembling holds its whole interior, but a hole's holds only its
@@ -211,11 +212,13 @@ $7 \times \log_2 10^{70} = 7 \times 70 \times 3.32 \approx 1630$ bits, a thousan
 ### The paper
 
 In the plain words of [Section XV](/paper/#sec:holography), find the passage headed *Looking gives only a surface's
-worth*. For a sphere read with detail a thousandth of its radius, how many numbers does the field carry, and how many
-cells does the inside hold?
+worth*. For a camera three body radii away, at a signal-to-noise ratio of a million and at $10^{70}$, how many numbers
+does the field carry, and how many cells of the body do the kicks reach?
 
 ::: solution
-About a million numbers against a billion cells, the square and the cube of a thousand.
+About 170 numbers against 270 cells at a million, and about twenty thousand against a quarter of a million at
+$10^{70}$. The numbers grow as the square of $R/d$ and the cells as its cube, but the detail $d$ shrinks only slowly
+as the sensitivity grows, so the gap widens slowly too.
 :::
 :::
 

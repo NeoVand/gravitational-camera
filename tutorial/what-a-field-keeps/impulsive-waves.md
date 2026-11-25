@@ -483,9 +483,8 @@ H|^2 = 64G^2p^2/c^6|\vect b - \vect s|^2$. With $\matter{\mathcal N} = \matter\S
 [^distributions]:  Balasin and Steinbauer give this product a meaning [@Balasin1997; @Steinbauer1998], and with it
     the jump in $v$ by $H$; we state their treatment without proof.
 
-[^e-cpz]:  The paper's Section XIII writes $E - cp_z$ and its Appendix C $q = E/c - p_z$ without saying that they are
-    the same component: $E - cp_z = cq$, so for slow matter $E - cp_z \approx \matter mc^2$ while $q \approx \matter
-    mc$.
+[^e-cpz]:  The paper's Section XIII writes $E - cp_z$, "$c$ times the $q$ of Appendix C", and its Appendix C
+    $q = E/c - p_z$: so for slow matter $E - cp_z \approx \matter mc^2$ while $q \approx \matter mc$.
 
 [^script]:  This $\matter{\mathcal N}$ is not chapter 2.5's script families of interiors.
 

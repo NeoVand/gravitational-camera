@@ -49,7 +49,7 @@ kilobytes. A camera that could read a mass held in two places at once would end 
 
 The paragraph [*What the premise asks*](/paper/#par:what-the-premise-asks) of Section II ends its list of instruments
 with an ideal one: two free masses of a gram, a centimetre apart and read for a second at the standard quantum limit,
-"would resolve $6\times10^{-14}\,\mathrm{s^{-2}}$". Reading a free mass's position kicks its momentum, the
+"would resolve $9\times10^{-14}\,\mathrm{s^{-2}}$". Reading a free mass's position kicks its momentum, the
 **back-action** of the reading, and the kick makes the mass drift. The best compromise between a sharp first reading
 and a small drift is the **standard quantum limit**. Chapter
 [8.6](/tutorial/quantum/quantum-limit/#a-free-mass-watched-for-a-time-cannot-be-followed-better-than-the-standard-quantum-limit)
@@ -63,13 +63,16 @@ for a gram and a second, about a fifth of a proton's width. It is the quantity t
 given (*checked here*).
 
 By the paper's equation [](/paper/#eq:deviation), masses a distance $\sym{separation}{\xi} = 1$ cm apart are moved
-relative to each other by $\tfrac12\curv\tE\xi\tau^2$, so the smallest tide they resolve is $2\sigma_{\rm SQL}/\xi\tau^2
-= 6.5\times10^{-14}\unit{s^{-2}}$
+relative to each other by $\tfrac12\curv\tE\xi\tau^2$, so with one of them a perfect reference the smallest tide they
+resolve is $2\sigma_{\rm SQL}/\xi\tau^2 = 6.5\times10^{-14}\unit{s^{-2}}$
 ([8.6](/tutorial/quantum/quantum-limit/#two-gram-masses-read-for-a-second-resolve-a-tide-a-hundred-thousand-times-smaller-than-the-persons),
-*checked here*).[^sqrt2] The person a metre away makes $9.34\times10^{-9}\unit{s^{-2}}$, which is 144,000 times more,
-"a hundred thousand times less than the person's tide". So this pixel reads the person with a signal-to-noise ratio of
-$1.44\times10^5$ in one second. The paragraph's superconducting gradiometer, at $0.02$ eötvös (E) or
-$2\times10^{-11}\unit{s^{-2}}$ in a second, gives R1's 467, "five hundred", and the ideal pixel does 308 times better.
+*checked here*). Their distance, with a spread from each, resolves $\sqrt2$ times more,
+$9.2\times10^{-14}\unit{s^{-2}}$, the paper's figure.[^sqrt2] The person a metre away makes
+$9.34\times10^{-9}\unit{s^{-2}}$, which is 101,000 times more, "a hundred thousand times less than the person's tide"
+(*checked here*). Like 8.6, this chapter carries the one-mass estimate, 144,000 times below the person's tide, so this
+pixel reads the person with a signal-to-noise ratio of $1.44\times10^5$ in one second. The paragraph's superconducting
+gradiometer, at $0.02$ eötvös (E) or $2\times10^{-11}\unit{s^{-2}}$ in a second, as the paper takes it, gives R1's 467,
+"five hundred", and the ideal pixel does 308 times better.
 
 The limit belongs to one way of reading: the position is read twice, and the first reading's kick spoils the second.
 A reading whose kick never disturbs the quantity being read, a **quantum non-demolition measurement**, can beat the
@@ -110,14 +113,15 @@ $5.0\times10^8$ at Lamb's exact 12.6 kHz (*checked here*).[^lamb] Chapter 8.3 al
 **zero-point motion**, the swing that it keeps with no heat at all: $7.5\times10^{-21}$ m at the poles, $2.9\times10^4$
 times less than the thermal swing of $2.2\times10^{-16}$ m.
 
-"That mode emits one graviton in $7\times10^{17}$ years." A **graviton** is one quantum $\hbar\omega$ of a mode of a
-gravitational wave ([8.3](/tutorial/quantum/quanta/#each-mode-of-a-wave-is-an-oscillator-and-its-quanta-are-photons-or-gravitons),
-a sketch for the field). With chapter 7.7's power of a ringing quadrupole, $4.9\times10^{-55}$ W, one graviton leaves
-every $\hbar\omega/P = 2.1\times10^{25}$ s, or $6.5\times10^{17}$ years (*checked here*, as in R4).[^graviton] "The
-camera detects the ball's ringing without receiving any of its radiation", because the near field is the Newtonian pull
-of the ball's present shape and not radiation, so no quantum needs to arrive (8.3; *checked here*). This is why "the
-graviton counts that limit the thermal glow … say nothing about the near field". The other two conditions and the
-cost of distance were R4's.
+"That mode emits one graviton in a time of order $10^{18}$ years." A **graviton** is one quantum $\hbar\omega$ of a
+mode of a gravitational wave
+([8.3](/tutorial/quantum/quanta/#each-mode-of-a-wave-is-an-oscillator-and-its-quanta-are-photons-or-gravitons), a
+sketch for the field). With chapter 7.7's power of a ringing quadrupole, $4.9\times10^{-55}$ W, one graviton leaves
+every $\hbar\omega/P = 2.1\times10^{25}$ s, or $6.5\times10^{17}$ years, at the 15.1 kHz trial note (*checked here*, as
+in R4).[^graviton] "The camera detects the ball's ringing without receiving any of its radiation", because the near
+field is the Newtonian pull of the ball's present shape and not radiation, so no quantum needs to arrive (8.3; *checked
+here*). This is why "the graviton counts that limit the thermal glow … say nothing about the near field". The other two
+conditions and the cost of distance were R4's.
 
 ## No camera's state can change fast enough to pass about $10^{70}$ on a person
 
@@ -156,15 +160,15 @@ is $1.91°$ (*checked here*). Fifteen powers of ten widen the blur only "from $1
 The second paragraph holds "a mass $m$ behind a wall in a superposition of two places a distance $d$ apart". A
 **superposition of states** is a state whose amplitudes are shared between the two places, so that both can interfere
 ([8.1](/tutorial/quantum/states/#amplitudes-add-so-two-paths-can-cancel), *checked here*). "The two branches differ in
-their quadrupole, about $md^2$." The body that moved the mass recoils, because forces inside an isolated system cannot
-move its centre of mass, so the two branches have the same mass and the same centre of mass and first differ in their
-second moments. Chapter
-[8.1](/tutorial/quantum/states/#a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records)
-found that difference to be $\matter md^2(1 + \matter m/\matter M)$ for a recoiling body of mass $\matter M$ whose centre
-is at the mass, such as a trap around it (*checked here*). For a gram split by a micrometre, $\matter md^2 =
-10^{-15}\unit{kg\,m^2}$, and 8.1 derived the difference of the two tides a metre away along the split,
-$12G\matter md^2/r^5 = 8.0\times10^{-25}\unit{s^{-2}}$. That is $1.2\times10^{-11}$ of what the gram pixel of Section II
-resolves in a second.
+their quadrupole, by about $md^2$ when the body that recoils is centred on the mass." The body that moved the mass
+recoils, because forces inside an isolated system cannot move its centre of mass, so the two branches have the same
+mass and the same centre of mass and first differ in their second moments. Chapter
+[8.1](/tutorial/quantum/states/#a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records) found
+that difference to be $\matter md^2(1 + \matter m/\matter M)$ for a recoiling body of mass $\matter M$ whose centre is
+at the mass, such as a trap around it (*checked here*). For a gram split by a micrometre, $\matter md^2 =
+10^{-15}\unit{kg\,m^2}$, and 8.1 derived the difference of the two tides a metre away along the split, $12G\matter
+md^2/r^5 = 8.0\times10^{-25}\unit{s^{-2}}$. That is $1.2\times10^{-11}$ of what the gram pixel of Section II resolves
+in a second.
 
 "A camera that read it before light from the place where the superposition is undone could arrive would learn which way
 the mass went faster than causality allows." The puzzle and its resolution are *stated in the paper*
@@ -209,10 +213,10 @@ at or below its value at the mean, here at $\omega^2 = A/\chi_0$. Since $u\coth 
 
 {{paper eq:jitter-bounds}}
 
-"With the upper bound reached by a single mode": the average equals its value at the mean only when the weight
-sits at one frequency, as it does for one undamped mode. For the steel ball as one mode at Lamb's 12.6 kHz and 300 K,
-$u = 1.0\times10^{-9}$, and the two bounds differ by $u\coth u - 1 \approx u^2/3 = 3.4\times10^{-19}$ of the jitter
-($4.9\times10^{-19}$ for the 15.1 kHz trial mode). R4's check is now derived. At absolute zero the lower bound
+"With the upper bound reached by a single undamped mode": the average equals its value at the mean only when the weight
+sits at one frequency, as it does for one mode with no line width. For the steel ball as one mode at Lamb's 12.6 kHz
+and 300 K, $u = 1.0\times10^{-9}$, and the two bounds differ by $u\coth u - 1 \approx u^2/3 = 3.4\times10^{-19}$ of the
+jitter ($4.9\times10^{-19}$ for the 15.1 kHz trial mode). R4's check is now derived. At absolute zero the lower bound
 vanishes, but the jitter keeps the zero-point swing given
 [above](#the-balls-tremor-is-classical-holds-four-hundred-million-quanta-and-needs-no-graviton).
 
@@ -222,7 +226,7 @@ The next two sections read stretches of Sections IX and XI that need only Part 8
 may skip them; reading chapters R10b, R11 and R12 will point back here.
 
 Section IX's [*Counting or recording*](/paper/#par:counting-or-recording) states the tension: each mode of the thermal
-glow "holds of order $10^{-30}$ gravitons on average" (*read now, derived in Part 10*). A device that records both
+glow "holds $10^{-30}$ gravitons or fewer on average" (*read now, derived in Part 10*). A device that records both
 quadratures of a mode, the amplitudes of its cosine and sine parts, adds at least half a quantum of noise, the **added
 noise** of Caves's theorem
 ([8.6](/tutorial/quantum/quantum-limit/#recording-both-quadratures-of-a-wave-adds-half-a-quantum-of-noise), *checked
@@ -231,10 +235,10 @@ that noise". "Counting avoids the noise but loses the phase", because a coherent
 not on its phase ([8.5](/tutorial/quantum/counting-quanta/#counting-adds-no-noise-but-needs-quanta), *checked here*).
 The paragraph's remedies are *stated in the paper*.
 
-Section VII's [*What a lens would add*](/paper/#par:what-a-lens-would-add) names what combining the field before
-detection buys; by Section IX, it is an image made from counts, whose information grows with the occupation rather
-than its square (*stated in the paper*). The counting pixel below needs no lens.[^lens] The rest of that paragraph is
-classical, for R11.
+Section VII's [*What a lens would add*](/paper/#par:what-a-lens-would-add) says that combining the field before
+detection "is what lets a camera form an image from counted gravitons instead of recording noise": by Section IX, an
+image whose information grows with the occupation rather than its square (*stated in the paper*). The counting pixel
+below, which counts with no combining, needs no lens. The rest of that paragraph is classical, for R11.
 
 A graviton's **helicity** is $\pm2$, its angular momentum about its direction of travel in units of $\hbar$
 ([8.3](/tutorial/quantum/quanta/#each-mode-of-a-wave-is-an-oscillator-and-its-quanta-are-photons-or-gravitons)), which
@@ -263,12 +267,13 @@ here*). The $0.905\unit K$ glow is *read now, derived in chapter
 [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat)*; at 10 GHz it holds $\bar n
 = 1.43$ gravitons per mode, so its pairs of clicks would be common.[^bunch]
 
-Inflation "makes gravitons in pairs of opposite momentum, a two-mode squeezed state" (*stated in the paper*), a state of
-two modes made only of pairs, one quantum in each. Chapter
+Inflation "makes gravitons in pairs of opposite momentum, a two-mode squeezed state" (*stated in the paper*), a state
+of two modes made only of pairs, one quantum in each. Chapter
 [8.5](/tutorial/quantum/counting-quanta/#pairs-in-two-modes-coincide-more-than-thermal-classical-waves-can) showed that
 each mode of such a pair alone is thermal and that the two together give $\sym{cross-coherence}{g^{(2)}_{12}} = 2 +
 1/\bar n$: 5.68 at $\bar n = 0.27$, and 3 at $\bar n = 1$. Two classical beams with thermal statistics reach at most 2,
-by the Cauchy–Schwarz inequality, which is the paper's "more than any two classical fields allow" (*checked here*).
+by the Cauchy–Schwarz inequality, which is the paper's "more than any two classical fields of thermal statistics allow"
+(*checked here*).
 
 ## The capstone: from two grams to the ceiling
 
@@ -431,21 +436,16 @@ is $\sqrt{\hbar G/c^3} = 1.6\times10^{-35}$ m, and $12G\matter md^2/r^5 = 8.0\ti
   beat it.
 :::
 
-[^sqrt2]: This is the paper's one-mass estimate. The distance between two free grams, each with its own spread, has
-    $\sqrt2$ times the spread, as for one body of the reduced mass $\matter m/2$, and resolves $9.2\times10^{-14}\unit
-    {s^{-2}}$ (8.6). Both are "about $10^{-13}$"; the paper does not say which it means.
+[^sqrt2]: The distance between two free grams, each with its own spread, has $\sqrt2$ times the spread of one, as
+    for one body of the reduced mass $\matter m/2$ (8.6).
 
 [^patch]: A patch is a square of the scene whose side is its distance from the camera. At $10^{70}$ exactly, as R3
     computed, the integral gives $1.78\times10^5$ bits.
 
-[^lamb]: The paper's "near 15 kHz" is Rayleigh's bound for a guessed shape, 20% above Lamb's exact note (4.3).
+[^lamb]: The paper's "an estimated $15\,\mathrm{kHz}$" is Rayleigh's bound for a guessed shape, 20% above Lamb's exact note (4.3).
 
-[^graviton]: The paper's $7\times10^{17}$ years uses Rayleigh's 15.1 kHz. The time per graviton grows as $\omega^{-3}$,
-    so at Lamb's 12.6 kHz it is about $10^{18}$ years.
-
-[^lens]: Section VII's sentence says that combining before detection "is what lets a camera count gravitons instead of
-    recording noise". Section IX's counting pixel counts "with no coherent combination at all", so the sentence is
-    best read as forming an image from counted gravitons.
+[^graviton]: The time per graviton grows as $\omega^{-3}$, so at Lamb's 12.6 kHz it is $1.1\times10^{18}$ years.
+    Both are of order $10^{18}$.
 
 [^bunch]: A thermal sky bunches by 2 within one mode and one coherence time; a pixel that collects many modes in a
     window sees $g^{(2)}$ near 1 (8.5).

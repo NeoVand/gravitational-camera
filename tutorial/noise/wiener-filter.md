@@ -18,8 +18,8 @@ little closer together than the masses: at 0.236 depths on each side of the cent
 the picture falls below zero, and its deepest dip lies exactly midway, at $-0.40$ of the peak's height. Beyond the
 peaks it dips again, to $-0.16$ at 0.49 depths from the centre.
 
-The caption calls this picture "the best reconstruction of the masses that the noise allows", and it calls the swings
-below zero its ripples, "the price of discarding the detail that noise has swamped". This tutorial keeps the word
+The caption calls this picture "the best linear reconstruction of the masses that the noise allows", and it calls the
+swings below zero its ripples, "the price of discarding the detail that noise has swamped". This tutorial keeps the word
 ripple for one Fourier component, a pattern with one fixed spacing between its crests (chapter
 [2.6](/tutorial/outside/fourier/#a-ripple-in-space-is-a-turning-number-as-an-oscillation-in-time-is)), and calls the
 swings ringing. So this chapter asks: when noise has swamped the finest ripples, what is the best image that the data
@@ -388,9 +388,9 @@ We want to know what a linear estimate cannot do, because the paper's images of 
 
 **Positivity.** A linear rule turns the readings $-\mathbf y$ into minus the image of $\mathbf y$, so for some data it
 must draw negative mass. The Gaussian prior allows it too: the paper's [*The positivity of
-mass*](/paper/#par:the-positivity-of-mass) says that it lets a cell hold "minus five hundred kilograms of gold beside
-one holding plus five hundred", and that is where the $\pm730$ kg hides. Requiring positive mass makes the rule
-non-linear, and for the safe it pays: the paper's positive image puts $316 \pm 20$ kg in the right-hand safe (the mean
+mass*](/paper/#par:the-positivity-of-mass) says that it lets a cell hold "plus five hundred kilograms of gold with minus
+five hundred spread round it", and that is where the $\pm730$ kg hides. Requiring positive mass makes the rule
+non-linear, and for the safe it pays: the paper's positive image puts $315 \pm 20$ kg in the right-hand safe (the mean
 and spread over the noise), where the Wiener filter puts 228 kg on average, with the posterior's spread of 729 kg. The
 paper's prior is not Gaussian, so the best linear guess is not the best guess. Chapter 3.9 treats positivity.
 
@@ -570,13 +570,13 @@ the cut-off of the first line of the paper's [](/paper/#eq:cutoff).
 ::: paper
 - The paper's equation [](/paper/#eq:wiener) is the filter derived here; Figure [](/paper/#fig:resolution-law)(a) draws
   it.
-- Figure [](/paper/#fig:nearfield) shows its point-spread function on two masses, ringing included. Its caption's
-  "best reconstruction" is the best linear one.
+- Figure [](/paper/#fig:nearfield) shows its point-spread function on two masses, ringing included, as "the best
+  linear reconstruction".
 - [*What the image does show*](/paper/#par:what-the-image-does-show) (Section IV) states that a linear estimate with a
   white prior is harmonic.
 - [*A worked case*](/paper/#par:a-worked-case) and [*The worked inversion*](/paper/#par:the-worked-inversion)
   (Appendix A) give the safe's Gaussian posterior and its $\pm730$ kg; [*The positivity of
-  mass*](/paper/#par:the-positivity-of-mass) gives the positive image's $316 \pm 20$ kg.
+  mass*](/paper/#par:the-positivity-of-mass) gives the positive image's $315 \pm 20$ kg.
 :::
 
 ::: deeper

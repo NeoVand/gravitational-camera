@@ -471,8 +471,8 @@ An infinite uniform sheet makes such a change. It pulls toward itself with $2\pi
 $\matter\sigma$ is its mass per unit area, so on each side its potential is linear in the height. So the room of the
 locked safe, with its floor treated as an infinite sheet of concrete of $720\unit{kg\,m^{-2}}$, has the same tide
 everywhere above the floor as the same room with no floor. A gravimeter tells them apart at once: the sheet pulls with
-$3.0 \times 10^{-7}\unit{m\,s^{-2}}$, sixty-five times the pull of the person at a metre. This is the paper's "a broad
-layer of mass has no tidal field at all".
+$3.0 \times 10^{-7}\unit{m\,s^{-2}}$, sixty-five times the pull of the person at a metre. This is the paper's "a uniform
+sheet is invisible: its pull is the same at every pixel and at every height, so it has no tidal field at all".
 
 A real floor is finite, and its edges make a tide, $4.5 \times 10^{-8}\unit{s^{-2}}$ for the camera of the locked safe
 (chapter 1.3). Chapter 2.7 shows that a flat camera's reading of each ripple of a layer carries a factor $k$, the
@@ -575,7 +575,7 @@ a little below zero.
   core", the round body at $5513\unit{kg\,m^{-3}}$ and the balayage; the paper's equation [](/paper/#eq:wiener) is
   chapter 3.5's.
 - Figure [](/paper/#fig:same-outside) and *What breaks the tie*: the three bodies, with 0.25, 0.48 and $0.75\,mR^2$.
-- *A worked case*: "a broad layer of mass has no tidal field at all", and equation [](/paper/#eq:array-data).
+- *How sharp*: equation [](/paper/#eq:array-data), and "a uniform sheet is invisible".
 - [Section XII](/paper/#sec:hair) and [Section XIII](/paper/#sec:second-order): the null space is "a property of a
   reading at one time, not of gravity" (chapters
   [13.2](/tutorial/what-a-field-keeps/calderon/#the-null-space-belongs-to-one-reading-not-to-gravity) and

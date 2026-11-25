@@ -1,10 +1,11 @@
 /**
  * Chapter 8.6's standard quantum limit, on an exact engine. Panel 1: a free mass read to σ₀ at the start spreads to
  * σ_x(τ)² = σ₀² + (ħτ/2mσ₀)² after the time τ; the least of it is σ_SQL = √(ħτ/m), at σ₀ = √(ħτ/2m); two masses a
- * distance ξ apart then resolve the tide 2σ_x(τ)/ξτ² on the paper's one-mass estimate, and √2 times that for the
- * distance of the two. Panel 2: an ideal interferometer of LIGO's size, mirrors of 40 kg and arms of 4 km, whose
- * one-sided quantum noise is S_h = S_shot + S_rp, S_shot = A/P and S_rp = BP/f⁴, with AB fixed so that the least of
- * S_h at each frequency is h_SQL² = 8ħ/mω²L², and the power in units of P₀, the power that touches h_SQL at 100 Hz.
+ * distance ξ apart then resolve the tide 2σ_x(τ)/ξτ² on the one-mass estimate, and √2 times that for the
+ * distance of the two, the paper's figure. Panel 2: an ideal interferometer of LIGO's size, mirrors of 40 kg and
+ * arms of 4 km, whose one-sided quantum noise is S_h = S_shot + S_rp, S_shot = A/P and S_rp = BP/f⁴, with AB fixed
+ * so that the least of S_h at each frequency is h_SQL² = 8ħ/mω²L², and the power in units of P₀, the power that
+ * touches h_SQL at 100 Hz.
  * Settings, curves, words and the predictions are pure functions too.
  */
 import { stepped, type Range } from './near-to-far';
@@ -86,9 +87,11 @@ export const endOverSql = (r: number) => Math.sqrt((r * r + 1 / (r * r)) / 2);
 /** σ_x(τ)/σ_SQL against x = σ₀/σ_SQL, the compromise curve: √(x² + 1/4x²). */
 export const compromise = (x: number) => Math.hypot(x, 1 / (2 * x));
 
-/** The smallest tide resolved on the paper's one-mass estimate, 2σ/ξτ², s⁻². */
+/** The smallest tide resolved on the one-mass estimate, 2σ/ξτ², s⁻². */
 export const tideOne = (sigma: number, xi: number, tau: number) => (2 * sigma) / (xi * tau * tau);
-/** The same for the distance of two equal masses, whose spreads add in squares: √2 times more. */
+/**
+ * The same for the distance of two equal masses, whose spreads add in squares: √2 times more, the paper's figure.
+ */
 export const tideTwo = (sigma: number, xi: number, tau: number) =>
 	Math.SQRT2 * tideOne(sigma, xi, tau);
 

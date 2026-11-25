@@ -428,11 +428,11 @@ The $N$ terms with $s = s'$ are each 1. The others average to zero when the phas
 wavelengths apart, when we average over directions. So the average of $|\mathcal A|^2$ is $N$, and the whole radiates
 $N$ times the power of one. This is **incoherent addition**: the powers add.
 
-**A number.** The generators of a continental power grid, such as Europe's, turn in step, 50 times a second. A spinning
-rotor looks the same after half a turn, so their waves have twice that frequency, 100 Hz. They are $2.998 \times
-10^8/100 = 3000$ km long, the paper's figure, and the grid stretches over more than one wavelength. Its array factor
-then changes with the direction $\hat n$, so the grid has a shape that waves can show: it is a source larger than its
-wave.
+**A number.** Those generators of a continental power grid, such as Europe's, that turn 50 times a second all turn in
+step, and their nearly round rotors send waves through their slight lopsidedness. A spinning rotor looks the same after
+half a turn, so their waves have twice that frequency, 100 Hz. They are $2.998 \times 10^8/100 = 3000$ km long, the
+paper's figure, and the grid stretches over more than one wavelength. Its array factor then changes with the direction
+$\hat n$, so the grid has a shape that waves can show: it is a source larger than its wave.
 
 ## Only the $1/r$ part carries energy to infinity
 

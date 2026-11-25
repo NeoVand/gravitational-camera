@@ -1,7 +1,7 @@
 ---
 id: '7.5'
 title: "Gravity's electric and magnetic parts; gravitomagnetism"
-question: 'A pixel at rest on the equator reads a magnetic part of the tide of size $4.8\times10^{-12}\,\mathrm{s^{-2}}$, and the paper says that "one pixel on the ground reads $I/MR^2$, the number that tells a planet with a core from one without". What makes a magnetic part of the tide, and why does it need motion?'
+question: 'A pixel at rest on the equator reads a magnetic part of the tide of size $4.8\times10^{-12}\,\mathrm{s^{-2}}$, and the paper says that "one pixel on the ground reads $C/MR^2$, the number that tells a planet with a core from one without". What makes a magnetic part of the tide, and why does it need motion?'
 part: '7'
 requires: ['1.1', '1.3', '1.5', '1.6', '6.1', '6.5', '7.2', '7.3', '7.4']
 paper: [sec:pixel, eq:magnetic, sec:near-field, eq:magnetic-point, eq:current-column, sec:one-pixel, eq:magnetic-ratio, sec:vistas, eq:multipole]
@@ -10,12 +10,13 @@ live: [magnetic-tide]
 depth: A
 ---
 
-In the paper's [Section II](/paper/#sec:pixel), [*The Earth's own tide*](/paper/#par:the-earths-own-tide) ends with
-the planet's turning. A pixel at rest on the equator moves with the ground at $465\unit{m\,s^{-1}}$ through the field of
-a spinning planet, and the two together give it a magnetic part of the tide of size
-$(3G\matter M\Omega/cR^2)(1 - I/\matter MR^2) = 4.8\times10^{-12}\unit{s^{-2}}$. In the paper's words, "it is a
-measurement: one pixel on the ground reads $I/MR^2$, the number that tells a planet with a core from one without". This
-second kind of tide, Section II says, "makes gyroscopes at neighbouring points turn slightly relative to one another".
+In the paper's [Section II](/paper/#sec:pixel), [*The Earth's own tide*](/paper/#par:the-earths-own-tide) ends with the
+planet's turning. A pixel at rest on the equator moves with the ground at $465\unit{m\,s^{-1}}$ through the field of a
+spinning planet, and the two together give it a magnetic part of the tide of size $(3G\matter M\Omega/cR^2)(1 -
+C/\matter MR^2) = 4.8\times10^{-12}\unit{s^{-2}}$, with $C$ the planet's moment of inertia, its resistance to being
+spun, in $\mathrm{kg\,m^2}$. In the paper's words, "it is a measurement: one pixel on the ground reads $C/MR^2$, the
+number that tells a planet with a core from one without". This second kind of tide, Section II says, "makes gyroscopes
+at neighbouring points turn slightly relative to one another".
 
 So we ask what makes a magnetic part of the tide, and why it needs motion. It is the curvature with one time index
 (chapter
@@ -234,9 +235,9 @@ $\curv\tB \approx G\matter Mv/cr^3$, so
 
 $$\frac{|\curv\tB|}{|\delta\curv\tE|} \approx \frac vc\,\frac rd = \frac{\omega r}{c} :$$
 
-"more than $v/c$, but still far below one in the near zone". The paper writes $(v/c)(r/L)$, with $L$ the size of the
-source, which agrees when $v \approx \omega L$, that is, when the source moves by about its own size. For the paper's
-person swaying by 5 cm once a second, 1 m away, $\omega r/c = 2.1\times10^{-8}$, twenty times $v/c$.
+the paper's "about $kr$ at the frequency $\omega$ of the change", with $k = \omega/c$, "more than $v/c$, but still far
+below one in the near zone". For the paper's person swaying by 5 cm once a second, 1 m away, $\omega r/c =
+2.1\times10^{-8}$, twenty times $v/c$.
 
 **Flows that change no density.** In chapter
 [4.3](/tutorial/response/elastic-bodies/#a-guessed-shape-overestimates-the-lowest-note-and-a-good-guess-comes-close)'s
@@ -310,17 +311,18 @@ $\obs{\vect u} = \Omega R\,\hat y$, with $\Omega R = 465\unit{m\,s^{-1}}$ (chapt
 Toward the centre $\hat n = -\hat x$, so $\hat n\times\obs{\vect u} = -\Omega R\,\hat z$, and the motion gives
 $\curv\tB_{xz} = \curv\tB_{zx} = -3G\matter M\Omega/cR^2$.
 
-**Step 3: the spin.** In [](#eq:spin-dipole), $\vect L\cdot\hat n = 0$ on the equator and $L_z\hat n_x = -I\Omega$,
-with $I$ the moment of inertia in $\mathrm{kg\,m^2}$, so the spin gives $\curv\tB_{xz} = \curv\tB_{zx} =
-+3GI\Omega/cR^4$. The two steps have opposite signs, and with every other entry zero their sum is
+**Step 3: the spin.** In [](#eq:spin-dipole), $\vect L\cdot\hat n = 0$ on the equator and $L_z\hat n_x = -C\Omega$,
+with $C$ the moment of inertia about the axis, in $\mathrm{kg\,m^2}$ (the paper's letter; chapter 1.6 writes $I$), so
+the spin gives $\curv\tB_{xz} = \curv\tB_{zx} = +3GC\Omega/cR^4$. The two steps have opposite signs, and with every
+other entry zero their sum is
 
-$$\boxed{\;\curv\tB_{xz} = -\frac{3G\matter M\Omega}{cR^2}\Bigl(1 - \frac{I}{\matter MR^2}\Bigr) ,\;} \label{eq:earth}$$
+$$\boxed{\;\curv\tB_{xz} = -\frac{3G\matter M\Omega}{cR^2}\Bigl(1 - \frac{C}{\matter MR^2}\Bigr) ,\;} \label{eq:earth}$$
 
-Section II's formula: the 1 is the pixel's motion, and $I/\matter MR^2$ the planet's spin.
+Section II's formula: the 1 is the pixel's motion, and $C/\matter MR^2$ the planet's spin.
 
 **Numbers.** With $G\matter M = 3.986\times10^{14}\unit{m^3\,s^{-2}}$, $\Omega = 7.292\times10^{-5}\unit{s^{-1}}$ and
 the equatorial radius $6.378\times10^6\unit{m}$, the factor in front is $7.15\times10^{-12}\unit{s^{-2}}$. With the
-Earth's $I/\matter MR^2 = 0.3307$ (chapter
+Earth's $C/\matter MR^2 = 0.3307$ (chapter
 [1.6](/tutorial/newton/motion/#the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one)) the reading is
 $\curv\tB_{xz} = -4.79\times10^{-12}\unit{s^{-2}}$ (Figure [](#fig:earth-two-bars)), and the paper quotes its size, 4.8.
 The sign gives the sense of the turning: by the first section's rule, of two gyroscopes one above the other the upper
@@ -329,10 +331,10 @@ $1.4\unit{m\,s^{-1}}$ gives $3G\matter Mv/cr^3 = 6.54\times10^{-17}\unit{s^{-2}}
 times less, the paper's "seventy thousand". A uniform Earth, 0.4, would read $4.29\times10^{-12}\unit{s^{-2}}$, and a
 hollow shell, $\tfrac23$, $2.38\times10^{-12}\unit{s^{-2}}$.
 
-**A limit.** No round body has $I/\matter MR^2$ above the shell's $\tfrac23$, so the spin never cancels the motion. At
+**A limit.** No round body has $C/\matter MR^2$ above the shell's $\tfrac23$, so the spin never cancels the motion. At
 the poles $\obs{\vect u} = 0$, and the pixel reads the spin dipole alone.
 
-**What it means.** The mass, the rate and the radius are known, so one reading gives $I/\matter MR^2$, which the steady
+**What it means.** The mass, the rate and the radius are known, so one reading gives $C/\matter MR^2$, which the steady
 pull hides (chapter 1.3): the Earth's core raises the reading by 12 per cent over a uniform Earth's.
 
 ![Look first at the third bar: the pixel's motion through the planet's field and the planet's own spin give opposite
@@ -429,7 +431,7 @@ makes exact.
 Three scenes in tabs. In the first, a pixel, drawn as a ring of free balls with two gyroscopes 1 m apart on the line
 beside it, watches a 70 kg mass 1 m away whose velocity arrow you can drag. In the second, a ball or a thin shell of
 1000 kg spins beside the pixel, or a ball spins inside a shell turning the other way, with a slider for the inner
-radius. In the third, a slider sets $I/MR^2$ for a pixel on the Earth's equator, and the two bars of Figure
+radius. In the third, a slider sets $C/MR^2$ for a pixel on the Earth's equator, and the two bars of Figure
 [](#fig:earth-two-bars) follow it. The readouts give $|\curv\tB|$, $|\curv\tE|$, their ratio beside $\sqrt3\,v_\perp/c$,
 the spin $L$, and the equator's $\curv\tB_{xz}$. Every exaggeration is printed on the drawing.
 
@@ -492,7 +494,7 @@ Mv_\perp\xi/c^2r^3 = 8.7\times10^{-27}\unit{rad\,s^{-1}}$.
 ### Stretch
 
 Combine this chapter with chapters 1.1 and 1.6. Mars has $G\matter M = 4.283\times10^{13}\unit{m^3\,s^{-2}}$, an
-equatorial radius of 3396 km, a sidereal day of 24.62 hours and $I/\matter MR^2 = 0.364$. Find the speed of its equator
+equatorial radius of 3396 km, a sidereal day of 24.62 hours and $C/\matter MR^2 = 0.364$. Find the speed of its equator
 and the size of the reading there, for Mars and for a uniform Mars. Which planet gathers more of its mass toward its
 centre, Mars or the Earth?
 
@@ -508,8 +510,8 @@ reading by 12 per cent, Mars's by 6 per cent.
 
 Check Section VIII's estimate of the changing part, beside the paper's [](/paper/#eq:magnetic-ratio). A point mass
 $\matter M$ sways across the line of sight, at $d\sin\omega t$ along $\hat y$, and the pixel is a distance $r \gg d$
-away along $\hat x$. Show that the amplitudes of $|\curv\tB|$ and $|\delta\curv\tE|$ have the ratio $\omega r/c$, and
-say which length the paper's $L$ must be.
+away along $\hat x$. Show that the amplitudes of $|\curv\tB|$ and $|\delta\curv\tE|$ have the ratio $\omega r/c$, the
+paper's $kr$.
 
 ::: solution
 With the mass at the origin, the tide at $\vect x$ is $G\matter M(\delta_{ij}r^2 - 3x_ix_j)/r^5$ (chapter
@@ -517,8 +519,7 @@ With the mass at the origin, the tide at $\vect x$ is $G\matter M(\delta_{ij}r^2
 mass by $d\hat y$ changes it by $-d\,\partial_y$ of this. At $\vect x = r\hat x$ only the derivative of $x_ix_j$
 survives: $\delta\curv\tE_{xy} = \delta\curv\tE_{yx} = 3G\matter Md/r^4$, so $|\delta\curv\tE| = 3\sqrt2\,G\matter
 Md/r^4$. The velocity, of amplitude $\omega d$, lies across the line of sight, so $|\curv\tB|$ reaches
-$3\sqrt2\,G\matter M\omega d/cr^3$, and the ratio is $\omega r/c$: $2.1\times10^{-8}$ for the paper's person. The
-paper's $(v/c)(r/L)$ with $v = \omega d$ gives this only for $L = d$, the amplitude of the motion.
+$3\sqrt2\,G\matter M\omega d/cr^3$, and the ratio is $\omega r/c = kr$: $2.1\times10^{-8}$ for the paper's person.
 :::
 :::
 

@@ -42,12 +42,12 @@ The [plain words](/paper/#sec:one-pixel) first count: a sensor of light reads si
 needs four (*read now, derived in chapter
 [9.1](/tutorial/one-point/spin-two/#the-square-holds-four-numbers-a-direction-and-one-complex-amplitude)*). Every
 observer agrees on four of the ten, and three more give the field's axes and three a velocity.[^distinct] So a pixel in
-a still room reads its own velocity,[^person] and motion within the room shows in the invariants[^motion] (*read now,
-derived in chapter [9.3](/tutorial/one-point/the-matrix-w/)*, numbers *checked here*
+a still room reads its own velocity,[^person] and motion within the room usually shows in the invariants[^motion]
+(*read now, derived in chapter [9.3](/tutorial/one-point/the-matrix-w/)*, numbers *checked here*
 [below](#ten-numbers-are-four-invariants-an-orientation-and-a-velocity)). Every reading also has four directions whose
 pattern sorts fields and gives a moving body's position, velocity and mass (*read now, derived in chapter
-[9.4](/tutorial/one-point/petrov/)*, numbers *checked here* [below](#four-directions-on-the-sky-sort-every-reading)).[^four]
-The rest, from *Separating waves* on, is read in R9b.
+[9.4](/tutorial/one-point/petrov/)*, numbers *checked here*
+[below](#four-directions-on-the-sky-sort-every-reading)).[^four] The rest, from *Separating waves* on, is read in R9b.
 
 ## Ten numbers are six more than a wave needs
 
@@ -199,17 +199,16 @@ speed of the matter. In a wave $\curv\tB$ is $\curv\tE$ turned by 45° about $\h
 crossing the line of sight at the speed $\obs v_\perp$ the ratio is $\sqrt3\,\obs v_\perp/c$
 ([7.5](/tutorial/geometry/gravitomagnetism/#a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight)),
 $8.09\times10^{-9}$ for a person walking past at $1.4\unit{m\,s^{-1}}$ (*checked here*). The changing part of the
-field, at the angular frequency $\omega$, has a magnetic part smaller than its tide "by $kr$", with $k = \omega/c$ and
-$r$ the distance: "more than $v/c$, but still far below one in the near zone" (*read now, derived in chapter
-7.5*).[^kr]
+field, at the angular frequency $\omega$, has a magnetic part smaller than its tide "by about $kr$", with $k =
+\omega/c$ and $r$ the distance: "more than $v/c$, but still far below one in the near zone" (*read now, derived in
+chapter 7.5*).[^kr]
 
-"Averaged over time", independent waves have equal magnetic and electric parts in mean square (*read now, derived in
+"Averaged over time, in mean square", independent waves have equal magnetic and electric parts (*read now, derived in
 chapter [9.3](/tutorial/one-point/the-matrix-w/#how-large-the-magnetic-part-is-and-where-the-field-points)*).[^mean]
 "In a standing wave the magnetic part vanishes where the electric part is largest." Two plus waves of amplitude
 $\curv\tE_+$ along $\pm\hat x$, with $x$ the distance along their line, give $\curv\tE = 2\curv\tE_+\cos kx\cos\omega
 t\,\mathrm{diag}(0, 1, -1)$. Their magnetic parts, which change sign with the direction of travel, add to
-$2\curv\tE_+\sin kx\sin\omega t$ times the table with 1 at $yz$ and $zy$, zero where $\cos kx = \pm1$ (*checked
-here*).
+$2\curv\tE_+\sin kx\sin\omega t$ times the table with 1 at $yz$ and $zy$, zero where $\cos kx = \pm1$ (*checked here*).
 
 ## Ten numbers are four invariants, an orientation and a velocity
 
@@ -255,11 +254,11 @@ $$\frac{3.00\times10^8\unit{m\,s^{-1}}\times10^{-16}}{\sqrt2\times10^{-8}} = 2.1
 
 ## Complex eigenvalues show motion in the scene, and light reads less
 
-"If the eigenvalues are complex, something in the scene moves relative to the rest of it, or turns" (*read now,
-derived in chapter
+"If the eigenvalues are complex, something in the scene moves relative to the rest of it, or turns" (*read now, derived
+in chapter
 [9.3](/tutorial/one-point/the-matrix-w/#complex-eigenvalues-mean-that-something-in-the-room-moves-or-turns)*). That
-outside a spinning body they go as $(r - ia\cos\vartheta)^{-3}$ is Kerr's result, *stated in the paper* [@Kerr1963];
-chapter 9.3 derived the phase $3a/r$ on the axis. Here $\sym{kerr-parameter}{a}$ is the angular
+outside a spinning body they go, to first order in $a$, as $(r - ia\cos\vartheta)^{-3}$ is Kerr's result, *stated in
+the paper* [@Kerr1963]; chapter 9.3 derived the phase $3a/r$ on the axis. Here $\sym{kerr-parameter}{a}$ is the angular
 momentum over $\matter Mc$, a length, and $\vartheta$ the angle from the spin axis. For the Earth $a =
 5.86\times10^{33}/(5.97\times10^{24}\times2.998\times10^8) = 3.27\unit{m}$, and at the polar surface, $r =
 6.357\times10^6\unit{m}$, the phase is $1.54\times10^{-6}$, the paper's $1.5\times10^{-6}$ (*checked here*).[^kerr]
@@ -269,7 +268,7 @@ On the equator the eigenvalues stay real at first order, and the velocity read i
 $$\begin{aligned}\Bigl(1 - \frac{C}{\matter MR^2}\Bigr)\Omega R &= 0.6693\times465.1\unit{m\,s^{-1}}\\ &= 311\unit{m\,s^{-1}},\end{aligned}$$
 
 with $\Omega = 7.292\times10^{-5}\unit{s^{-1}}$ the Earth's rate of turning, $R = 6.378\times10^6\unit{m}$ its radius
-and $C$ its moment of inertia, $0.3307\,\matter MR^2$, which Section II calls $I$ (*checked here*).
+and $C$ its moment of inertia, $0.3307\,\matter MR^2$, Section II's letter too (*checked here*).
 
 {{paper fig:speedometer}}
 
@@ -285,9 +284,10 @@ $\light{\vect B}$, a boost along their axis changes nothing, so a sensor reads a
 (*read now, derived in chapters
 [6.6](/tutorial/relativity/maxwell-complex/#one-complex-number-is-the-same-for-every-observer) and
 [9.3](/tutorial/one-point/the-matrix-w/#light-reads-only-two-components-of-its-own-velocity-gravity-reads-three)*). One
-body has the same blind spot along the line to it: "coming straight at the pixel, even at $0.3\,c$, it shows no $\tB$ at
-all", and its exact field gives a magnetic part below $10^{-16}$ of the tide, the rounding error (*checked here*). "Two
-bodies, or one that is not round, remove the blind spot" (*read now, derived in chapter 9.3*).[^line]
+body has the same blind spot along the line to it: "coming straight at the pixel, even at $0.3\,c$, it shows no $\tB$
+at all", and its exact field gives a magnetic part below $10^{-16}$ of the tide, the rounding error (*checked here*).
+"Two bodies seen off the line through them, or one that is not round seen off its axis, generally remove the blind
+spot" (*read now, derived in chapter 9.3*).[^line]
 
 ## One pixel reads the position, velocity and mass of a moving body
 
@@ -449,64 +449,58 @@ $|\curv\tE|^2 = 6s^2$, a ratio of $1.29$, where one mass at rest has none.
   builds curvature invariants like $I$ and $J$ and shows what they miss.
 :::
 
-[^distinct]: The paper's "one observer" exists only when the three eigenvalues differ. One round body has two equal
-    ones, $4.67\times10^{-9}\unit{s^{-2}}$ for the person of 70 kg a metre away, and a boost along the line to it
-    changes nothing, so no observer on that line is singled out (9.3).
+[^distinct]: There is one such observer only when the three eigenvalues differ, as the paper says. One round body has
+    two equal ones, $4.67\times10^{-9}\unit{s^{-2}}$ for the person of 70 kg a metre away, and a boost along the line
+    to it changes nothing, so no observer on that line is singled out (9.3).
 
-[^person]: The paper's "about two metres per second" near a person holds only across the line to the person, where
-    the gap $3G\matter M/r^3$ ($\matter M = 70$ kg, $r = 1$ m) gives $1.5\unit{m\,s^{-1}}$. Along that line, two
-    equal eigenvalues leave the velocity unread.
+[^person]: Near a person, the paper's "about two metres per second" is the speed across the line to the person, where
+    the gap $3G\matter M/r^3$ ($\matter M = 70$ kg, $r = 1$ m) gives $1.5\unit{m\,s^{-1}}$. Along that line, two equal
+    eigenvalues leave the velocity unread.
 
-[^motion]: The paper's "the invariants show it" is proved only the other way round: a room at rest gives real
-    eigenvalues. One body moving steadily gives real ones too: with $G\matter M = c = 1$, the figure's body at $0.9c$,
-    1.5 units away, gives $-0.593$, $0.296$ and $0.296$ (9.3).
+[^motion]: What is proved is the other way round: a room at rest gives real eigenvalues. Hence the paper's "usually".
+    One body moving steadily gives real ones too: with $G\matter M = c = 1$, the figure's body at $0.9c$, 1.5 units
+    away, gives $-0.593$, $0.296$ and $0.296$ (9.3).
 
-[^four]: The paper's "for anything more complicated", and its main text's "four distinct points" for two or more
-    bodies, hold in general but not always. With $G = 1$, masses 1 and 0.45 on one line through the pixel, 1.5 and
-    0.9 away on opposite sides, make one body's reading, with the eigenvalue $0.914$ twice (9.4). Two equal masses at
-    right angles give two pairs that point at neither (*Check yourself*).
+[^four]: Hence the paper's "usually four separate directions" and "generally four distinct points". With $G = 1$,
+    masses 1 and 0.45 on one line through the pixel, 1.5 and 0.9 away on opposite sides, make one body's reading, with
+    the eigenvalue $0.914$ twice (9.4). Two equal masses at right angles give two pairs that point at neither (*Check
+    yourself*).
 
-[^light]: The paper's "any field of light that is not a pure wave has two separate null directions" needs
-    $\light{\vect F}\cdot\light{\vect F} \neq 0$. A static field with $c\light{\vect B}$ as large as $\light{\vect E}$
-    and at right angles to it has $\light{\vect F}\cdot\light{\vect F} = 0$ and one double direction, although it is
-    not a wave (6.6).
+[^light]: Hence the paper's "any field of light whose invariant is not zero has two separate null directions". A static
+    field with $c\light{\vect B}$ as large as $\light{\vect E}$ and at right angles to it has
+    $\light{\vect F}\cdot\light{\vect F} = 0$ and one double direction, although it is not a wave (6.6).
 
-[^convention]: The paper's [](/paper/#eq:one-spin) does not say that the state is $\curv{\mathcal W}$ and not its
-    conjugate, which would reverse the arrow to $-\mathbf P/u$, toward the source. With 8.4's choice, a plus wave along
-    $\hat z$ has $\mathbf P/u = (0, 0, 1)$, its direction of travel.
+[^convention]: The paper takes $\curv{\mathcal W}$ itself as the state. Its conjugate would reverse the arrow to
+    $-\mathbf P/u$, toward the source. With this choice, 8.4's, a plus wave along $\hat z$ has $\mathbf P/u = (0, 0,
+    1)$, its direction of travel.
 
-[^kr]: The paper's middle form $(v/c)(r/L)$, with $L$ the source's size, needs the amplitude $d$ of its sway in place
-    of $L$. The changing tide goes as $G\matter Md/r^4$ and its magnetic part as $G\matter M\omega d/cr^3$, so the
-    ratio is $\omega r/c = kr = (v/c)(r/d)$, with $v = \omega d$. For a person 1.7 m tall swaying by 5 cm, the two
-    forms differ 34-fold (7.5).
+[^kr]: For a body swaying with the amplitude $d$, the changing tide goes as $G\matter Md/r^4$ and its magnetic part as
+    $G\matter M\omega d/cr^3$, so the ratio is $\omega r/c = kr = (v/c)(r/d)$, with $v = \omega d$ (7.5).
 
-[^mean]: The paper's "averaged over time" is exact in mean square: the time average of $|\curv\tB|^2$ equals that of
-    $|\curv\tE|^2$. The average of the ratio can be infinite: in the standing wave below, where $kx = \pi/4$, it is
-    $|\tan\omega t|$.
+[^mean]: The time average of $|\curv\tB|^2$ equals that of $|\curv\tE|^2$, but the average of the ratio itself can be
+    infinite: in the standing wave below, where $kx = \pi/4$, it is $|\tan\omega t|$.
 
-[^K0]: The paper's [](/paper/#eq:polar) does not say that $K_0$ is real and antisymmetric, which is what makes the
-    split work. For the moving pixel below, its entries above the diagonal, $0.342$, $0.577$ and $-0.174$, are real
-    and make a vector of length $0.693 = \ln2$.
+[^K0]: That $K_0$ is real and antisymmetric is what makes the split work. For the moving pixel below, its entries above
+    the diagonal, $0.342$, $0.577$ and $-0.174$, are real and make a vector of length $0.693 = \ln2$.
 
-[^v]: The paper's [](/paper/#eq:speedometer) does not define $\obs v_a$, and the paper speaks there of "the
-    velocity of the scene relative to itself", the opposite. The formula holds for the pixel's own velocity, in
-    right-handed axes. Beside the person, a pixel crossing the line at $1\unit{m\,s^{-1}}$ reads an entry of
-    $4.7\times10^{-17}\unit{s^{-2}}$, whose sign the scene's velocity or left-handed axes would reverse.
+[^v]: The paper's "pixel's velocity $\mathbf v$ through the room" is the opposite of the velocity "of the scene
+    relative to itself" that $P$ holds. The formula holds in right-handed axes. Beside the person, a pixel crossing the
+    line at $1\unit{m\,s^{-1}}$ reads an entry of $4.7\times10^{-17}\unit{s^{-2}}$, whose sign the scene's velocity or
+    left-handed axes would reverse.
 
-[^kerr]: The paper's $(r - ia\cos\vartheta)^{-3}$ is exact only for Kerr's black hole. For the Earth it holds to first
-    order in $a$, which is enough, because $a/r = 5.2\times10^{-7}$. The paper's $1.5\times10^{-6}$ "from above a
-    pole" is the value at the polar surface, and it falls as $1/r$, to half that value 6,357 km above the pole.
+[^kerr]: Kerr's $(r - ia\cos\vartheta)^{-3}$ is exact for his black hole. For the Earth the first order in $a$ is
+    enough, because $a/r = 5.2\times10^{-7}$. The phase falls as $1/r$, to half its surface value 6,357 km above the
+    pole.
 
-[^line]: The paper's "two bodies, or one that is not round" holds only off the line through two bodies and off the
-    axis of a body that is not round. On that line, masses 1 and 0.45 at 1.5 and 0.9 ($G = 1$) give $-1.83$, $0.91$ and
-    $0.91$, so a boost along it reads no magnetic part, and a body symmetric about an axis, seen along it, keeps two equal
+[^line]: On the line through two bodies, masses 1 and 0.45 at 1.5 and 0.9 ($G = 1$) give $-1.83$, $0.91$ and $0.91$, so
+    a boost along it reads no magnetic part, and a body symmetric about an axis, seen along it, keeps two equal
     eigenvalues (9.3).
 
-[^first]: The paper's "first-order form" of its [](/paper/#eq:star-velocity), 7.5's $|\curv\tB|/|\curv\tE| =
-    \sqrt3\,\obs v_\perp/c$, is a separate result that gives only the size of $\obs v_\perp$. The figure's body at
-    $0.9c$ has the exact ratio $0.993$, against $\sqrt3\times0.9 = 1.56$.
+[^first]: To first order, 7.5's $|\curv\tB|/|\curv\tE| = \sqrt3\,\obs v_\perp/c$ gives the size of $\obs v_\perp$ but
+    not its direction, as the paper says. The figure's body at $0.9c$ has the exact ratio $0.993$, against
+    $\sqrt3\times0.9 = 1.56$.
 
-[^contact]: The paper's [](/paper/#eq:contact) takes the tide along the line to grow as $r^{-3}$. Exactly, it is
-    $-2G\matter M/\obs\gamma^3r^3$, so the law needs $\obs\gamma$ to stay fixed, which holds while $\obs\gamma^2r|\ddot r|
-    \ll c^2$, with $\ddot r$ the acceleration along the line. For 9.4's walker, 5 m away and speeding up at
-    $0.05\unit{m\,s^{-2}}$, $r|\ddot r|/c^2 = 2.8\times10^{-18}$.
+[^contact]: Exactly, the tide along the line is $-2G\matter M/\obs\gamma^3r^3$, so its $r^{-3}$ law needs $\obs\gamma$
+    to stay fixed, which holds while $\obs\gamma^2r|\ddot r| \ll c^2$, the paper's condition, with $\ddot r$ the
+    acceleration along the line. For 9.4's walker, 5 m away and speeding up at $0.05\unit{m\,s^{-2}}$, $r|\ddot r|/c^2
+    = 2.8\times10^{-18}$.

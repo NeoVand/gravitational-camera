@@ -118,11 +118,11 @@ power to see. Another yardstick, such as a patch of side $2z$, would multiply $\
 shows that this moves the cut-off only by the logarithm of that constant.[^yardstick]
 
 **A number.** The person one metre away, of mass 70 kg, makes a peak tide of $2G\matter{m}/z^3 = 9.3\times10^{-9}
-\unit{s^{-2}}$ (chapter 1.4). For $\SNR = 10^3$ the noise averaged over a square metre must be a thousand times
-smaller, so $\sqrt{N_0} = 9.3\times10^{-12}\unit{s^{-2}\,m}$. The noise of the tide averaged over each square
-metre is then $9.3\times10^{-12}\unit{s^{-2}}$, or 0.009 eötvös, where one eötvös (E) is $10^{-9}\unit{s^{-2}}$. The
-gravity satellite GOCE read the tide to between 0.01 and 0.02 E in one second, which is a noise of the same
-size.[^goce-noise]
+\unit{s^{-2}}$ (chapter 1.4). For $\SNR = 10^3$ the noise averaged over a square metre must be a thousand times smaller,
+so $\sqrt{N_0} = 9.3\times10^{-12}\unit{s^{-2}\,m}$. The noise of the tide averaged over each square metre is then
+$9.3\times10^{-12}\unit{s^{-2}}$, or 0.009 eötvös, where one eötvös (E) is $10^{-9}\unit{s^{-2}}$. The gravity satellite
+GOCE read the tide with a noise of between 0.01 and 0.02 E per root hertz, roughly its noise after one second (chapter
+3.2), which is a noise of the same size.[^goce-noise]
 
 **The result.** The sensitivity of the camera is one pure number, $\SNR = 2G\matter{m}/(z^2\sqrt{N_0})$.
 
@@ -538,16 +538,15 @@ negative also separates a few compact masses far more finely than the blur.[^lat
 The rest of this section is a set of estimates. Each gives its inputs, the arithmetic in one line, and a
 comparison.
 
-**A satellite that flew.** GOCE carried a gradiometer, an instrument that measures the tide, around the Earth at
-a height $z = 254\unit{km}$ for four years. On a sphere the field is sorted into patterns labelled by a whole
-number $\ell$, the **spherical-harmonic degree** (chapter 2.2). A pattern of degree $\ell$ has crests about
-$2\pi R/\ell$ apart on a sphere of radius $R$, so on the ground its wavenumber is $k = \ell/R$. GOCE's final map
-runs out of signal between degrees $\ell = 280$ and $300$ (the paper's paragraph "A flown gradiometer"
-[@BrockmannSchubertSchuh2021; @Kvas2021]). With the Earth's radius $R = 6371\unit{km}$, the cut-off is
-$q_c = \ell z/R = 11.2$ to $12.0$. Reading \eqref{eq:cutoff-here} backwards, $\SNR = e^{q_c}/\pi q_c$, which is
-2000 to 4200. The blur $4.43/q_c$ is 21° to 23°, and on the ground the blur $4.43\,z/q_c$ is 94 to 101 km,
-about a hundred kilometres. Four years of GOCE's measurements correspond to the first row of the
-table.[^goce-flat]
+**A satellite that flew.** GOCE carried a gradiometer, an instrument that measures the tide, around the Earth for four
+years, three of them at a height $z = 254\unit{km}$. On a sphere the field is sorted into patterns labelled by a whole
+number $\ell$, the **spherical-harmonic degree** (chapter 2.2). A pattern of degree $\ell$ has crests about $2\pi
+R/\ell$ apart on a sphere of radius $R$, so on the ground its wavenumber is $k = \ell/R$. GOCE's final map runs out of
+signal between degrees $\ell = 280$ and $300$ (the paper's paragraph "A flown gradiometer" [@BrockmannSchubertSchuh2021;
+@Kvas2021]). With the Earth's radius $R = 6371\unit{km}$, the cut-off is $q_c = \ell z/R = 11.2$ to $12.0$. Reading
+\eqref{eq:cutoff-here} backwards, $\SNR = e^{q_c}/\pi q_c$, which is 2000 to 4200. The blur $4.43/q_c$ is 21° to 23°,
+and on the ground the blur $4.43\,z/q_c$ is 94 to 101 km, about a hundred kilometres. GOCE's measurements correspond to
+the first row of the table.[^goce-flat]
 
 **The eye.** The human eye resolves about one arcminute, $2.9\times10^{-4}$ radians. Setting $4.43/q_c$ equal to
 it gives $q_c = 15{,}230$, and then $\SNR = e^{q_c}/\pi q_c$, a number with 6610 digits. The paper rounds it to

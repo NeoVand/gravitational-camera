@@ -10,10 +10,11 @@ live: [longest-path]
 depth: A
 ---
 
-An astronaut in orbit floats beside her spacecraft. The paper's [Section II](/paper/#sec:pixel) begins with her, and its
-plain words conclude: "At any single point, therefore, the effect of gravity can be cancelled by falling freely." The
-body of the section starts from the same fact, "A freely falling observer feels no gravitational field at their own
-position", and defines the tide for "an observer at rest, with proper time $t$ and coordinates $x^0 = ct$":
+An astronaut in orbit floats beside her spacecraft. The paper's [Section II](/paper/#sec:pixel) begins with her, and
+its plain words conclude: "At any single point, therefore, the effect of gravity can be cancelled by falling freely."
+The body of the section starts from the same fact, "A freely falling observer feels no gravitational field at their own
+position", and defines the tide for "an observer at rest relative to the masses, with proper time $t$", in coordinates
+of its own with $x^0 = ct$:
 
 {{paper eq:tidal}}
 
@@ -164,10 +165,13 @@ g_{00}(\obs u^0)^2 = -c^2$ and
 
 $$\obs u^\mu = \Bigl(\frac{c}{\sqrt{-\field g_{00}}},\ 0,\ 0,\ 0\Bigr) .$$
 
-**The paper's observer at rest.** The paper's [](/paper/#eq:tidal) is written for "an observer at rest, with proper time
-$t$", so its $t$ is the time on that observer's own clock. In a static field $\sqrt{-\field g_{00}}$ does not change
-along the observer's worldline, so changing from the far clock's time to the observer's own changes the unit of $t$ by a
-constant factor, and makes $\field g_{00} = -1$ at the observer's place.
+**The paper's observer at rest.** The paper's [](/paper/#eq:tidal) is written for "an observer at rest relative to the
+masses, with proper time $t$", so its $t$ is the time on that observer's own clock. In a static field $\sqrt{-\field
+g_{00}}$ does not change along the observer's worldline, so changing from the far clock's time to the observer's own
+changes the unit of $t$ by a constant factor, and makes $\field g_{00} = -1$ at the observer's place. Coordinates in
+which the metric at one place takes the flat values of chapter 6.2, $-1$ for time and $+1$ for each direction of space
+with nothing off the diagonal, are called **local orthonormal coordinates**: they are the paper's "own local
+orthonormal coordinates" of the observer, the readings of its own clock and of rulers at right angles.
 
 An observer at rest on the ground is not in free fall, because its support pushes it up. The paper's pixel is such an
 observer, and the free test masses inside it fall relative to its case. The tide is their relative acceleration, so the
@@ -687,7 +691,7 @@ also $c^2R_{0i0j}$, so that the paper's [](/paper/#eq:tidal) becomes the paper's
 ::: paper
 - [Section II](/paper/#sec:pixel): the astronaut ([](#falling-cancels-gravity-at-a-point-and-only-there)); the freely
   falling observer ([](#falling-removes-the-fields-first-derivatives-at-a-point-but-not-its-second)); the tide of
-  the paper's [](/paper/#eq:tidal) "for an observer at rest, with proper time $t$"
+  the paper's [](/paper/#eq:tidal) "for an observer at rest relative to the masses, with proper time $t$"
   ([](#a-clocks-own-time-is-set-by-the-metric)); and its sign convention for the curvature, which starts from
   [the Christoffel symbols](#free-bodies-follow-geodesics-and-the-christoffel-symbols-hold-newtons-pull).
 - [*Other gravitational sensors*](/paper/#par:other-gravitational-sensors), in Section IV: clocks "reading the potential

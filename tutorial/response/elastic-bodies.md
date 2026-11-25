@@ -348,7 +348,7 @@ $$\boxed{\;\omega_1 \le \sqrt{\frac{3\matter\mu V/R^2}{3\matter M/10}} = \sqrt{1
 \label{eq:ball-note}$$
 
 **A number.** For $R = 0.10\unit{m}$ and $c_T = 3000\unit{m\,s^{-1}}$ the bound is $9.49 \times
-10^4\unit{s^{-1}}$, a frequency $f = \omega/2\pi$ of 15.1 kHz. This is the paper's "near 15 kHz".
+10^4\unit{s^{-1}}$, a frequency $f = \omega/2\pi$ of 15.1 kHz. This is the paper's "estimated $15\,\mathrm{kHz}$".
 
 **The exact note** (stated, not derived). Lamb solved the free elastic sphere exactly (see *Go deeper*), with functions
 that generalize the Bessel functions of [chapter
@@ -356,11 +356,12 @@ that generalize the Bessel functions of [chapter
 mode that changes the ball's mass quadrupole has $\omega R/c_T = 2.645$ when $c_L/c_T = 1.84$. For the steel ball that
 is 12.6 kHz. One mode is lower: a twist at 11.9 kHz, in which the two hemispheres turn against each other. The twist
 moves no mass toward or away from the centre, so it leaves the quadrupole unchanged, and Appendix A's shape contains
-none of it.[^twist] So [](#eq:ball-note) bounds the 12.6 kHz mode, and the paper's "lowest quadrupole mode" is the
-lowest mode that changes the mass quadrupole. Rayleigh's $\sqrt{10} = 3.16$ lies 20% above 2.645, on the side the bound
-requires, because the true mode is not a uniform shear. **A check** the reader can make: [](#eq:ball-note) and Lamb's
-value both scale as $c_T/R$, so a ball of half the radius rings an octave higher. Figure [](#fig:trial) shows the
-shape and the three notes.
+none of it.[^twist] Modes like the twist, which move each part only around the centre, are called **torsional**, and
+modes that move mass toward or away from the centre are called **spheroidal**. So [](#eq:ball-note) bounds the 12.6 kHz
+mode, the paper's "lowest spheroidal quadrupole mode". Rayleigh's $\sqrt{10} = 3.16$ lies 20% above 2.645, on the side
+the bound requires, because the true mode is not a uniform shear. **A check** the reader can make: [](#eq:ball-note)
+and Lamb's value both scale as $c_T/R$, so a ball of half the radius rings an octave higher. Figure [](#fig:trial)
+shows the shape and the three notes.
 
 ![Look first at the arrows, Appendix A's displacement in a section through the axis: the shape pulls the ball out
 along its axis (orange, away from the centre) and in round its equator (blue, toward it), most at the surface. The
@@ -585,8 +586,8 @@ surface $3z^2 - R^2 = 2R^2P_2$, so the layer has $\matter Q_{zz} = \int\matter\r
     and the third together leave $\tfrac13\matter\mu\,\partial_i(\nabla\cdot\vect u)$.
 
 [^steel]: Handbook steels have $c_T \approx 3200$ and $c_L \approx 5900\unit{m\,s^{-1}}$, in nearly the same ratio, and
-    so $\matter\mu$ near 80 GPa and $\matter K$ near 160 GPa. The paper's numbers for its steel wall in Section VII use
-    such a value; those for the steel ball use the round $c_T = 3000\unit{m\,s^{-1}}$, and so does this tutorial.
+    so $\matter\mu$ near 80 GPa and $\matter K$ near 160 GPa. The paper's numbers for its steel ball, and for its steel
+    wall in Section VII, agree with the round $c_T = 3000\unit{m\,s^{-1}}$, which this tutorial uses.
 
 [^wavenumber]: So at the same frequency a gravitational wave is a hundred thousand times longer than shear sound, which
     is the paper's "a wave's wavenumber is about $10^{-5}$ of that of a sound wave of the same frequency" (chapter
@@ -597,8 +598,8 @@ surface $3z^2 - R^2 = 2R^2P_2$, so the layer has $\matter Q_{zz} = \int\matter\r
 
 [^lattice]: These counts hold on a rebuild of Appendix A's lattice (924 sites within six spacings of the centre, less
     the centre, and 668 beyond four), whose stiffness matrix has exactly six zero eigenvalues. On it Appendix A's trial
-    shape lies 85% at one frequency (a pair of modes of equal frequency), the paper's "85% of the quadrupole's tremor
-    lies at one frequency", and its quotient is 14% above that frequency.
+    shape lies 85% at one frequency (a pair of modes of equal frequency), the paper's "85% of the tremor of the
+    quadrupole along a lattice axis lies at one frequency", and its quotient is 14% above that frequency.
 
 [^twist]: For $c_L/c_T = \sqrt3$ the quadrupole mode has $\omega R/c_T = 2.640$, so the ratio of the sounds hardly
     matters. In the twist $\omega R/c_T = 2.50$. It changes the density nowhere and moves the surface only along itself,

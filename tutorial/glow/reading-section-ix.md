@@ -61,9 +61,9 @@ gravitons per second, per square metre, per steradian.
 
 ## At midnight the Sun's core outshines the ground ten billion times
 
-The observer stands "at latitude 40° at local midnight".[^equinox] Straight down, the line crosses the Earth's
-diameter, 12,742 km, "12,700 km", and reads $N = 1.18\times10^{-5}$, "at most $1.2\times10^{-5}$" (*checked here*, in
-the capstone's [step (b)](#the-capstone-the-sun-at-midnight-from-stiffness-to-the-edge-of-the-core)).
+The observer stands "at latitude 40° at local midnight at an equinox".[^equinox] Straight down, the line crosses the
+Earth's diameter, 12,742 km, "12,700 km", and reads $N = 1.18\times10^{-5}$, "at most $1.2\times10^{-5}$" (*checked
+here*, in the capstone's [step (b)](#the-capstone-the-sun-at-midnight-from-stiffness-to-the-edge-of-the-core)).
 
 The Sun's "$10^8$ W" in gravitational waves is *stated in the paper* [@GarciaCelyRingwald2025; @Steane2024;
 @Weinberg1965]. Spread over a sphere of one astronomical unit, $1.496\times10^{11}$ m, it is
@@ -99,7 +99,7 @@ $\arcsin(1221.5/6371) = 11.05°$, the caption's 63°, 33° and 11° (*checked he
 [R2](/tutorial/outside/reading-section-iv-1/#three-channels-together-weigh-the-earths-core)'s "radius of the core,
 3480 km, from the kinks" is now derived. In panel (b) the curve stays continuous at each boundary, and its slope
 becomes infinite on the inner side of the grazing angle, a square-root kink (below). Inside 63.5° the brightness
-doubles within half a degree, from $4.1\times10^{-7}$ to $8.1\times10^{-7}$ at 63.0° (*checked here*).[^steps] The
+doubles within half a degree, from $4.1\times10^{-7}$ to $8.1\times10^{-7}$ at 63.0° (*checked here*). The
 frictions set only the heights.
 
 ## The Moon is faint, and every brightness of the Earth is an upper bound
@@ -139,8 +139,8 @@ took as an input, and
 
 A count of $N$ random arrivals varies by about $\sqrt N$ (*read now, derived in chapter
 [3.1](/tutorial/noise/probability/#rare-events-are-counted-with-the-poisson-distribution)*). For one part of a picture
-to stand ten per cent above another by five such deviations, $0.1N = 5\sqrt N$, so $N = (5/0.1)^2 = 2500$, and
-$35{,}800/2500 = 14.3$ parts, "about fourteen" picture elements (*checked here*).[^2500]
+to stand ten per cent above a level known in advance by five such deviations, $0.1N = 5\sqrt N$, so $N = (5/0.1)^2 =
+2500$, and $35{,}800/2500 = 14.3$ parts, "about fourteen" picture elements (*checked here*).[^2500]
 
 "These counts assume no other background." Section XI's primordial glow, at 0.905 K (*stated in the paper*), has
 10.1's $\sym{black-body-number-radiance}{N_{\rm bb}} = \zeta(3)(\kB T/\hbar)^3/2\pi^3c^2 = 3.6\times10^{14}$ gravitons
@@ -154,20 +154,21 @@ remove "its fluctuations, not its known mean" (*read now, derived in chapter
 Chapter 0.3's count: a source from the paper's table, a detector area and an exposure, with the arrivals on a time
 line and a picture cut into parts of 2500 gravitons each. Predict first: how many picture elements does a lifetime of
 the Earth below give on one square metre? Choose *The Earth below*, one square metre and the third tick of *Exposure*.
-Then choose *Hot iron, 3.5 m* and predict whether even the longest exposure gives it one element.
+Then choose *Hot iron, 3.9 m* and predict whether even the longest exposure gives it one element.
 :::
 
-## The budget runs from a second to ninety million years
+## The budget runs from a second to a hundred and ten million years
 
 The paper's Table [](/paper/#tab:budget) gives the wait for one graviton on a square metre that collects from every
 direction:
 
 - **The Sun's core**: 0.73 a second, "second", and **the Earth below**: 19.6 hours, "20 hours, or more" (above).
-- **The hot iron at 3.5 m**:
+- **The hot iron at 3.9 m**:
   [R10](/tutorial/glow/reading-section-vi/#the-closed-furnace-from-the-friction-of-iron-to-a-count-of-gravitons)
   followed the closed furnace's block, a tenth of a cubic metre at 1500 K, to $5.4\times10^{-14}$ gravitons a second
-  in all directions. Spread over $4\pi(3.5\unit m)^2 = 154\unit{m^2}$, that is one per square metre every
-  $9.0\times10^7$ years, the plain words' "millions of years" (*checked here*).[^furnace]
+  in all directions. Spread over $4\pi(3.86\unit m)^2 = 187\unit{m^2}$, at the length of the line of sight to the
+  block's middle, that is one per square metre every $1.1\times10^8$ years, "$1.1\times10^{8}$", the plain words'
+  "millions of years" (*checked here*).[^furnace]
 - **The turning pair at 4.5 m**: two 33 kg balls 0.44 m apart, turning at $\Omega = 2\pi\unit{s^{-1}}$, radiate
   $(32/5)G\mu^2a^4\Omega^6/c^5 = 1.1\times10^{-46}$ W, with $\mu = 16.5$ kg their reduced mass and $a = 0.44$ m (*read
   now, derived in chapter
@@ -290,10 +291,10 @@ $$\begin{aligned}
 at 4500 K, "about 3%" (*checked here*). The outer core's 15.8% is also a ratio of counts at 4500 K, its bound's to the
 placeholder's, so the two compare like with like: 3.0% is 0.19 of 15.8%, "a fifth of what the figures grant it".
 
-*In colour it does.* A flat friction gives gravitons of mean energy $2.70\,\kB T$, 1.05 eV at the outer core's
-4500 K: "about $2.70\,\kB T \approx 1\,\mathrm{eV}$".[^ev] A mean energy weights by $x^3$ where a count weights by
-$x^2$, so with the electrons' fall above $1/\tau$ it is 0.91, 0.995 and 1.04 eV at 0.5, 1 and 3 µΩ m. The mantle's
-flat band below $x_c = 0.566$ (33 THz) or 1.13 (66 THz) at 2800 K gives
+*In colour it does.* A flat friction gives gravitons of mean energy $2.70\,\kB T$, 1.05 eV at 4500 K: "about $2.70\,\kB
+T \approx 1\,\mathrm{eV}$ at the outer core's $4500\,\mathrm{K}$".[^ev] A mean energy weights by $x^3$ where a count
+weights by $x^2$, so with the electrons' fall above $1/\tau$ it is 0.91, 0.995 and 1.04 eV at 0.5, 1 and 3 µΩ m. The
+mantle's flat band below $x_c = 0.566$ (33 THz) or 1.13 (66 THz) at 2800 K gives
 
 $$\begin{aligned}
 \bar E &= \kB T\,\frac{\int_0^{x_c}x^3\,\dd x/(e^x - 1)}{\int_0^{x_c}x^2\,\dd x/(e^x - 1)}\\
@@ -325,11 +326,10 @@ Rothman and Boughn are *stated in the paper* [@Dyson2013; @RothmanBoughn2006].
 
 ## Recording adds half a quantum, so a thermal camera must count
 
-[*Counting or recording*](/paper/#par:counting-or-recording): "each of its modes holds of order $10^{-30}$ gravitons on
-average". Chapter
-[10.2](/tutorial/glow/kirchhoff/#what-a-pixel-receives-holds-far-less-than-one-quantum-per-mode) showed that a thin
-body sends a pixel the occupation $\sym{optical-depth}{\tau}\bar n$: its optical depth, here a pure number and not a
-time, times the thermal occupation $\bar n = 1/(e^x - 1)$. Summed over the shells straight down it is
+[*Counting or recording*](/paper/#par:counting-or-recording): "each of its modes holds $10^{-30}$ gravitons or fewer on
+average". Chapter [10.2](/tutorial/glow/kirchhoff/#what-a-pixel-receives-holds-far-less-than-one-quantum-per-mode)
+showed that a thin body sends a pixel the occupation $\sym{optical-depth}{\tau}\bar n$: its optical depth, here a pure
+number and not a time, times the thermal occupation $\bar n = 1/(e^x - 1)$. Summed over the shells straight down it is
 $7.8\times10^{-31}$ at 30 THz and $1.4\times10^{-31}$ at 100 THz (*checked here*).[^occ]
 
 Recording both quadratures of a mode adds at least half a quantum of noise [@Caves1982] (*read now, derived in
@@ -438,11 +438,11 @@ detector made of matter could catch them.**
 ### Practice
 
 Rerun the hot iron of the budget for a block at 3000 K, its friction still falling as $1/T$: its wait on a square
-metre at 3.5 m, and its count against that of R10's cold block, the same block at 293 K.
+metre at 3.86 m, and its count against that of R10's cold block, the same block at 293 K.
 
 ::: solution
-Its count grows as $\matter\eta T^3 \propto T^2$, four times the 1500 K block's, so the wait is $9.0\times10^7/4 =
-2.2\times10^7$ years, and $(3000/293)^2 = 105$ times the cold block's count.
+Its count grows as $\matter\eta T^3 \propto T^2$, four times the 1500 K block's, so the wait is $1.1\times10^8/4 =
+2.7\times10^7$ years, and $(3000/293)^2 = 105$ times the cold block's count.
 :::
 
 ### Stretch
@@ -485,30 +485,23 @@ $1/1.53\times10^{-37}$ s $= 2.1\times10^{29}$ years.
   detector made of matter could catch one.
 :::
 
-[^2500]: The paper's 2500 counts treat one part's level as known. Telling two measured parts apart doubles the
-    variance of their difference, so each part needs about 5000 counts, and a lifetime gives about seven elements.
+[^2500]: Telling two measured parts apart, with no level known, doubles the variance of their difference, so each part
+    needs about 5000 counts, and a lifetime gives about seven elements.
 
-[^equinox]: The paper's "latitude 40° at local midnight" puts the Sun 40° from straight down only at an equinox, as
-    its scene does. At midnight the Sun lies the latitude plus its declination from straight down: 16.6° at the December
+[^equinox]: At midnight the Sun lies the latitude plus its declination from straight down: 16.6° at the December
     solstice, when the line to it crosses the outer core (grazed at 33.1°), and 63.4° in June.
 
-[^steps]: The paper's caption calls the kinks "steps", but the brightness is continuous and only its slope breaks.
-    Its 40° line, which "crosses only the mantle", also crosses 65 km of crust. This chapter would write "kinks" and
-    "misses the core".
+[^furnace]: The furnace stands 3.5 m in front of the camera along the floor; the line of sight to the block's middle is
+    3.86 m (R10). At 3.5 m the wait would be $9.0\times10^7$ years.
 
-[^furnace]: The paper's 3.5 m is the furnace's distance along the floor. The line of sight to the block's middle is
-    3.86 m (R10), and over $4\pi(3.86\unit m)^2 = 187\unit{m^2}$ the wait is $1.1\times10^8$ years. R10 and this
-    chapter use 3.5 m to match the paper.
+[^ev]: The outer core lies inside the kink at 33°. At the inner core's 5500 K the same mean energy is 1.28 eV.
 
-[^ev]: The paper's "$2.70\,\kB T \approx 1\,\mathrm{eV}$" names no temperature. It is 1.05 eV at the outer core's
-    4500 K, inside the kink at 33°, and 1.28 eV at the inner core's 5500 K.
+[^occ]: A metre of water in a room gives $1.7\times10^{-39}$ (chapter 10.2), so the paper's "or fewer" covers every
+    scene.
 
-[^occ]: The paper's "of order $10^{-30}$" holds for the Earth, at $7.8\times10^{-31}$ to $1.4\times10^{-31}$. A metre
-    of water in a room gives $1.7\times10^{-39}$ (chapter 10.2), so "$10^{-30}$ or less" would cover every scene.
-
-[^convention]: The paper's clicks peak at the source only if each click is labelled by the direction opposite to its
-    state's, a flip that the paper does not state. A graviton "from $\hat n$" travels along $-\hat n$, so by Section
-    VIII's convention its state points along $-\hat n$. With the flip, the peak is $5/4\pi = 0.40$ per steradian.
+[^convention]: A graviton "from $\hat n$" travels along $-\hat n$, so by Section VIII's convention its state points
+    along $-\hat n$. The paper labels "each click by the direction opposite to that of its coherent state", so the
+    clicks peak at the source, $5/4\pi = 0.40$ per steradian.
 
 [^rate]: The paper's "roughly one" and "at one graviton a second" round its model's 0.733 a second (0.607 at the
     Sun's central $1.57\times10^7$ K). At 0.733, half an hour brings 1320 clicks and an error of 1.12°. One degree

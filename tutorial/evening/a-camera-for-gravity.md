@@ -57,7 +57,8 @@ each other, and the ring is squeezed across the line.
 
 This difference in gravity between nearby points is called the **tide**, after the tides of the sea, which the Moon
 raises in the same way. Falling cannot remove it, because one acceleration can match the pull at one place but not at
-two. So the tide is the only effect of gravity that a detector can measure, and it is what a pixel records.
+two. So the tide is the only effect of gravity that a freely falling detector can measure at one place, and it is
+what a pixel records.
 
 ## The tide at a point is a table of numbers, ten in all
 
@@ -259,7 +260,7 @@ thumb to little finger, held at arm's length. Chapter 0.2 shows why a better det
 [^earth]: Computed in [1.4](/tutorial/newton/tides/).
 
 [^sway]: The last margin note of [1.4](/tutorial/newton/tides/) works out the tenth, the swing and the strain. The
-    main text of [Section II](/paper/#sec:pixel) gives $7 \times 10^{-11}$ for the same sway, because it means a
-    detector much smaller than its distance from the person. Chapter 1.4 explains both readings.
+    main text of [Section II](/paper/#sec:pixel) gives both: $7 \times 10^{-11}$ for a detector small compared with its
+    distance from the person, and $3 \times 10^{-15}$ beside one of LIGO's mirrors. Chapter 1.4 explains both readings.
 
 [^zones]: Chapter [5.2](/tutorial/waves/retarded-waves/#beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1) derives both regions and the boundary between them, with its $2\pi$.

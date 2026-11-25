@@ -10,10 +10,10 @@ live: [sky-patterns]
 depth: A
 ---
 
-For four years the satellite GOCE carried a gradiometer, an instrument that measures the tide, around the Earth at a
-height of 254 km. The paper's [Section IV](/paper/#sec:near-field) reports, in its paragraph *A flown gradiometer*,
-that the final map "runs out of signal between spherical harmonic degrees $\ell = 280$ and $300$". What is the degree
-of a pattern on a sphere, and how is any pattern on the sky split into degrees?
+For four years the satellite GOCE carried a gradiometer, an instrument that measures the tide, around the Earth, three
+of them at a height of 254 km. The paper's [Section IV](/paper/#sec:near-field) reports, in its paragraph *A flown
+gradiometer*, that the final map "runs out of signal between spherical harmonic degrees $\ell = 280$ and $300$". What is
+the degree of a pattern on a sphere, and how is any pattern on the sky split into degrees?
 
 Chapter 1.5 met the
 [degree of a pattern on the sky](/tutorial/newton/five-numbers/#patterns-of-higher-degree-hold-7-9-and-more-numbers)

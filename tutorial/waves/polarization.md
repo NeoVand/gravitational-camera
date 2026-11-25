@@ -16,9 +16,9 @@ rotor is a single point (chapter
 [0.3](/tutorial/evening/waves-and-heat/#a-slow-body-is-far-smaller-than-its-waves-so-it-is-a-point)). Yet the plain
 words of the section describe what a ring of free balls feels as the wave passes. "Seen along the rotor's axis, the
 pattern of stretch and squeeze turns round and round as the rotor turns, in the same direction." Seen edge-on, the
-pattern "only pulses back and forth along fixed directions, and it is eight times weaker". From this, the paper says,
-the camera "can tell which way the rotor turns and how its axis is tilted". How does one unresolved wave carry the
-sense of turning of its source?
+pattern "only pulses back and forth along fixed directions, and it carries eight times less power". From this, the
+paper says, the camera "can tell which way the rotor turns and how its axis is tilted". How does one unresolved wave
+carry the sense of turning of its source?
 
 The answer lies in the two patterns of stretch that make up every gravitational wave, and in the timing between
 them. The paper describes the wave by four numbers, the Stokes parameters, and uses the two that do not change when
@@ -416,7 +416,7 @@ axis. Both survive any turn of the camera's axes, which is why the paper describ
 ## The rotor shines eight times less edge-on
 
 We want the power that the rotor sends in each direction, compared with the power along its axis, because the paper
-says the edge-on wave is "eight times weaker". A gravitational wave carries the energy flux
+says that edge-on the wave "carries eight times less power". A gravitational wave carries the energy flux
 
 $$F = \frac{c^3}{16\pi G}\,\bigl\langle\dot{\field h}_+^2 + \dot{\field h}_\times^2\bigr\rangle ,$$
 
@@ -443,11 +443,11 @@ $$\boxed{\;\frac{F(\iota)}{F(0)} = \frac{1 + 6\cos^2\iota + \cos^4\iota}{8}\;} \
 at the same distance. This is the rotor's **radiation pattern**, the way its power is shared among directions, drawn in
 panel (a) of the paper's figure below.
 
-**Numbers.** Edge-on, $\cos\iota = 0$ and the ratio is $\tfrac18$: the paper's "eight times weaker". Two factors make
-the eight. The edge-on amplitude is half the face-on one, which gives a quarter of the power, and only one of the two
-polarizations is left, which halves it again. The power falls to half of its value on the axis where
-$\cos^4\iota + 6\cos^2\iota - 3 = 0$, so $\cos^2\iota = \sqrt{12} - 3 = 0.464$ and $\iota = 47°$.
-Averaged over all directions, with $x = \cos\iota$ spread evenly between $-1$ and 1 as it is on a sphere,
+**Numbers.** Edge-on, $\cos\iota = 0$ and the ratio is $\tfrac18$: the paper's "eight times less power". Two factors
+make the eight. The edge-on amplitude is half the face-on one, which gives a quarter of the power, and only one of the
+two polarizations is left, which halves it again. The power falls to half of its value on the axis where $\cos^4\iota +
+6\cos^2\iota - 3 = 0$, so $\cos^2\iota = \sqrt{12} - 3 = 0.464$ and $\iota = 47°$. Averaged over all directions, with
+$x = \cos\iota$ spread evenly between $-1$ and 1 as it is on a sphere,
 
 $$\frac12\int_{-1}^{1}\frac{1 + 6x^2 + x^4}{8}\,\dd x = \frac{2 + 4 + \tfrac25}{16} = \frac25 .$$
 
@@ -478,12 +478,12 @@ of $V/I$. It shows no shape. A uniform rod of mass $\matter M = 2$ kg and length
 the paper's pair, has the pair's $\matter{\Delta I}$, $\matter ML^2/12 = 0.5\unit{kg\,m^2}$, so [](#eq:rotor) gives the
 two the same wave in every direction. Their arrangements of mass differ first in the fourth moment along the rod,
 $\int\matter\rho\,x^4\,\dd V$, which enters the wave weaker than the quadrupole by about the square of the speed of the
-ends, under 100 m/s, over the speed of light. So a camera far away records the same data to about one part in $10^{13}$.
-No aperture can resolve a body millions of times smaller than its wavelength (chapter
+ends, under 100 m/s, over the speed of light. So a camera far away records the same data to about one part in
+$10^{13}$. No aperture can resolve a body millions of times smaller than its wavelength (chapter
 [5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array)): only the near
 field, where the separate tides of the masses can be read, tells the two apart. In the paper's Figure
 [](/paper/#fig:which-way), drawn with the speed of light slowed so that the waves are 10 cm long, each turning pair is
-chapter 5.3's diffraction spot, and the colour of the spot is its $V/I$.
+chapter 5.3's diffraction spot, and the colour of the spot is the $V/I$ that a compact rotor would have.
 
 {{paper fig:which-way}}
 
@@ -602,7 +602,7 @@ way its axes point.
 Derive the angular factors of the paper's [](/paper/#eq:rotor-amplitudes), its equation [](/paper/#eq:circular) and the
 factor of eight, by projection as in this chapter. Then, with the energy flux $c^3\langle\dot{\field h}_+^2 +
 \dot{\field h}_\times^2\rangle/16\pi G$ (stated; chapter 7.8), add up the power over a sphere of radius $r$ to recover
-the paper's [](/paper/#eq:dumbbell), and check Section V's $4.5 \times 10^{-41}$ W and "one graviton every fifteen
+the paper's [](/paper/#eq:dumbbell), and check Section V's $4.6 \times 10^{-41}$ W and "one graviton every fifteen
 years" for two 1 kg masses a metre apart at sixteen turns a second, with a graviton of the wave's frequency carrying the
 energy $\hbar\omega = 2\hbar\Omega$ (stated; chapter 8.3).
 
@@ -632,10 +632,10 @@ so $P = 1.6 \times 6.674 \times 10^{-11} \times 1.03 \times 10^{12}/(2.998 \time
 ::: paper
 - [Section V](/paper/#sec:waves): the polarization paragraph of the plain words, which this chapter opens with;
   [*The polarization of an unresolved source*](/paper/#par:the-polarization-of-an-unresolved-source), circular along
-  the axis and "eight times weaker" in the plane, which is [](#eq:pattern).
+  the axis and carrying "eight times less power" in the plane, which is [](#eq:pattern).
 - [*The sense of turning*](/paper/#par:the-sense-of-turning): [](/paper/#eq:rotor-amplitudes), derived here as
-  [](#eq:rotor), and [](/paper/#eq:circular), with the sentence that "the two amplitudes mix as a spin-two pair, while
-  the Stokes parameters $I$ and $V$ below do not change", which is [](#eq:stokes-turn).
+  [](#eq:rotor), and [](/paper/#eq:circular), with the sentence that "the two amplitudes mix as a spin-two pair", while
+  the Stokes parameters $I$ and $V$ "do not change", which is [](#eq:stokes-turn).
 - Figures [](/paper/#fig:quadrupole), [](/paper/#fig:polarization) and [](/paper/#fig:which-way) draw the radiation
   pattern, the ellipses, $V/I$ against $\iota$ and the coloured spots.
 - [*What does not radiate*](/paper/#par:what-does-not-radiate) lists the motions of the last section.

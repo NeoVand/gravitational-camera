@@ -3,8 +3,8 @@
 // rising from 0 towards the dotted line at 1, and Debye's C / 3 N k_B against T / Theta_D on the same axes (dashed),
 // with two dots on it, "diamond, 293 K" at T / Theta_D = 0.133 (0.16) and "copper, 293 K" at 0.854 (0.93). Right, on
 // its own axes: a black hole's heat capacity C = -M c^2 / T against its temperature from 0 to 3 K, with M = hbar c^3 /
-// 8 pi G k_B T, so that C = -hbar c^5 / 8 pi G k_B T^2, drawn below zero, with one dot at 0.902 K, "the paper's hole,
-// -1.4 x 10^40 J/K". Ink and the page's greys only: no orange or blue.
+// 8 pi G k_B T, so that C = -hbar c^5 / 8 pi G k_B T^2, drawn below zero, with one dot at 0.905 K, "the paper's hole,
+// -1.35 x 10^40 J/K". Ink and the page's greys only: no orange or blue.
 // Departures from the diagram's comment: the right panel's axis up is numbered, in units of 10^40 J/K, from -7 to 0,
 // so that its curve and its dot are exact rather than schematic, and the caption no longer calls its scale schematic;
 // its axis across stands at the panel's foot, level with the left panel's, and C = 0 is the panel's top edge, drawn
@@ -13,7 +13,7 @@
 // each curve on the left is left out where it is within 1.5 pt of its axis. The two panels stay side by side on a phone, the figure being one drawing.
 // Exact: C_mode (asserted against the derivative of the mode's energy), Debye's curve (Simpson's rule, with its hot
 // and cold limits), the two dots and their values 0.16 and 0.93, the hole's curve and its dot (T_H and C asserted
-// against the chapter's 0.902 K, -1.4 x 10^40 and -1.35 x 10^40 J/K in tut-balance-lib.js). Schematic: nothing.
+// against the chapter's 1.356 x 10^23 kg, 0.905 K and -1.35 x 10^40 J/K in tut-balance-lib.js). Schematic: nothing.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, HAIR, n2 } from './tut-pot-lib.js';
 import { Plot, xAxis, yAxis } from './tut-prob-lib.js';
 import { graph, longest } from './tut-fourier-lib.js';
@@ -108,7 +108,7 @@ export default async function () {
 		check(near(hawking(HOLE), hole.T, 1e-15), 'the dot\'s temperature');
 		dot(q, 'the hole\'s dot');
 		const a = await S.clear('\\text{the paper\'s hole,}', q[0] + DOT + LABEL_GAP + 1, q[1] + DOT + LABEL_GAP + 2, 0, 0, [0.6, 0.8]);
-		const b = await placed('-1.4\\times10^{40}\\ \\text{J/K}', a.box.l, a.box.b + 3.2, 0, 0, INK);
+		const b = await placed('-1.35\\times10^{40}\\ \\text{J/K}', a.box.l, a.box.b + 3.2, 0, 0, INK);
 		L.push(a, b);
 	}
 

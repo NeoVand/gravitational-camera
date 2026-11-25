@@ -131,9 +131,11 @@ Last, the Earth's own tide on the ground is $3.08 \times 10^{-6}\unit{s^{-2}}$ (
 
 ## Equations (1) and (2) define the tide and say what it does
 
-The body of [Section II](/paper/#sec:pixel) starts again from the falling observer. It defines the tide for an observer
-at rest, with $t$ the observer's **proper time**, the time read on the observer's own clock (chapter
-[7.1](/tutorial/geometry/metric/#a-clocks-own-time-is-set-by-the-metric)), and $x^0 = ct$:
+The body of [Section II](/paper/#sec:pixel) starts again from the falling observer. It defines the tide "for an
+observer at rest relative to the masses", with $t$ the observer's **proper time**, the time read on the observer's own
+clock (chapter [7.1](/tutorial/geometry/metric/#a-clocks-own-time-is-set-by-the-metric)), and "its own local
+orthonormal coordinates $x^0 = ct$, $x^i$", axes at right angles with lengths and times measured by the observer's own
+rulers and clock:
 
 {{paper eq:tidal}}
 
@@ -226,7 +228,8 @@ So one arm changes by $h/2$ of its length and the other by $-h/2$, and their dif
 wave lined up with the arms, LIGO's strain and the paper's $h$ are the same number.
 
 The paper's next sentence says that an interferometer, an instrument like LIGO that compares the lengths of its arms
-with light, "reads one component of $\curv{\tE}_{ij}$, integrated twice in time". The component is
+with light, "reads one component of $\curv{\tE}_{ij}$, integrated twice in time, as the difference $h$ of the
+fractional changes in the lengths of its two arms", as above. The component is
 $\curv{\tE}_{xx} - \curv{\tE}_{yy}$, which is $\sqrt2$ times the coefficient of $\curv{\tE}$ along 1.5's basis table
 $b^4$. This is 1.4's last section and 1.5's contraction with $\mathrm{diag}(1, -1, 0)$ (*checked here*).
 
@@ -245,13 +248,13 @@ change is $1.27 \times 10^{-9}$ when the person steps back 5 cm and $1.55 \times
 and 16.6 per cent of the stretch. The two differ because $r^{-3}$ is not a straight line, and that is why the paper
 writes "about".
 
-The paper then says that a detector reads this "as a strain $h = 2\,\delta\curv{\tE}/\omega^2 \approx 7\times10^{-11}$".
-Section II thus gives two strains for this person, $7 \times 10^{-11}$ here and $3 \times 10^{-15}$ in its plain words.
-They belong to two different detectors, and the first is counted in the convention of equation (4). Four numbers make
-the picture complete. The first three use a small detector, built like LIGO but with arms a few centimetres long, which
-is close to one pixel. The tide is nearly the same across it, so equation (2) holds, and 1.4 found that a free arm of
-length $L$ along the line to the person changes by $\delta L/L = \delta\curv{\tE}/\omega^2$. With $\omega^2 =
-39.5\unit{s^{-2}}$:
+The paper then says that "a detector small compared with that distance reads" this "as a strain $h =
+2\,\delta\curv{\tE}/\omega^2 \approx 7\times10^{-11}$", and that "beside one of LIGO's mirrors, which alone feels the
+sway, the strain over its four-kilometre arm is about $3\times10^{-15}$". The two strains belong to two different
+detectors, and the first is counted in the convention of equation (4). Four numbers make the picture complete. The first
+three use a small detector, built like LIGO but with arms a few centimetres long, which is close to one pixel. The tide
+is nearly the same across it, so equation (2) holds, and 1.4 found that a free arm of length $L$ along the line to the
+person changes by $\delta L/L = \delta\curv{\tE}/\omega^2$. With $\omega^2 = 39.5\unit{s^{-2}}$:
 
 - *One arm*, along the line to the person, changes by $1.40 \times 10^{-9}/39.5 = 3.55 \times 10^{-11}$ of its length.
 - *The difference of two arms divided by the length of an arm*, the strain as the plain words define it, is larger by
@@ -260,7 +263,7 @@ length $L$ along the line to the person changes by $\delta L/L = \delta\curv{\tE
   twice the one-arm strain, $2 \times 3.55 \times 10^{-11} = 7.1 \times 10^{-11}$, the paper's
   "$\approx 7\times10^{-11}$" (the convention is *read now, derived in Part 7*).
 - *The real LIGO*, with arms 4 km long, is not a small detector. The person moves only the nearest mirror, and the
-  strain, by the plain words' definition again, is their $2.96 \times 10^{-15}$.
+  strain, by the plain words' definition again, is the $2.96 \times 10^{-15}$ found above.
 
 In the same order, the four strains are $3.55 \times 10^{10}$, $5.3 \times 10^{10}$, $7.1 \times 10^{10}$ and
 $3.0 \times 10^{6}$ times the $10^{-21}$ of LIGO's waves (all *checked here*). All of them are enormous, and
@@ -360,14 +363,15 @@ idea." Each instrument it lists is *stated in the paper*, from its source:
 "In the near field the premise asks little more than exists." A **gravity gradiometer** is any instrument that measures
 the tide, the gradient of gravity. Tides are measured in eötvös, and "the person a metre away is nine of them":
 $9.34\unit{E}$ (1.4, *checked here*). An atom gradiometer carried over a buried tunnel reached $20\unit{E}$ in ten
-minutes [@Stray2022], and a superconducting one in the laboratory reaches $0.02\unit{E}$ in a second
-[@MoodyPaikCanavan2002] (both *stated in the paper*). The second gives the ratio of 467 found above, the paper's "five
+minutes [@Stray2022], and a superconducting one in the laboratory reaches "$0.02\,\mathrm{E\,Hz^{-1/2}}$"
+[@MoodyPaikCanavan2002] (both *stated in the paper*), which the paper takes "as $0.02\,\mathrm{E}$ for one second of
+averaging" (chapter 3.2 explains the unit and this reading). That gives the ratio of 467 found above, the paper's "five
 hundred".[^sqrt] A satellite has carried a gradiometer as sensitive around the Earth [@RummelYiStummer2011]; chapter
 [0.2](/tutorial/evening/through-walls/#the-blur-shrinks-only-with-the-number-of-digits-of-the-sensitivity) reads its
 map.
 
 The paper then asks how fine a reading the laws of physics allow. Two free masses of a gram, a centimetre apart and read
-for a second at the **standard quantum limit**, "would resolve $6\times10^{-14}\unit{s^{-2}}$". Watching a mass
+for a second at the **standard quantum limit**, "would resolve $9\times10^{-14}\unit{s^{-2}}$". Watching a mass
 disturbs it, so quantum mechanics sets a smallest uncertainty on its position. For a mass $m$, in kilograms, watched
 for a time $\tau$, in seconds, with the watching as the only disturbance, that smallest uncertainty is the standard
 quantum limit:
@@ -375,14 +379,16 @@ quantum limit:
 $$\begin{aligned}\Delta x = \sqrt{\frac{\hbar\tau}{m}} &= \sqrt{\frac{1.055 \times 10^{-34} \times 1}{10^{-3}}}\unit{m}\\ &= 3.25 \times 10^{-16}\unit{m}.\end{aligned}$$
 
 Here $\sym{hbar}{\hbar}$ is the reduced Planck constant, in joule seconds (*read now, derived in Part 8*, chapter 8.6).
-By equation (2), two masses a distance $\xi$ apart, starting at rest, are moved relative to each other by
-$\tfrac12\curv{\tE}\xi\tau^2$ in the time $\tau$. The smallest tide that moves them by $\Delta x$ is therefore about
+Each of the two masses has this uncertainty, so their separation is uncertain by $\sqrt2$ times as much,
+$4.59 \times 10^{-16}\unit{m}$: the same as one mass of half a gram (the pair's reduced mass). By equation (2), two
+masses a distance $\xi$ apart, starting at rest, are moved relative to each other by $\tfrac12\curv{\tE}\xi\tau^2$
+in the time $\tau$. The smallest tide that moves them by the uncertainty of their separation is therefore about
 
-$$\begin{aligned}\curv{\tE} \approx \frac{2\,\Delta x}{\xi\tau^2} &= \frac{2 \times 3.25 \times 10^{-16}}{0.01 \times 1^2}\unit{s^{-2}}\\ &= 6.5 \times 10^{-14}\unit{s^{-2}},\end{aligned}$$
+$$\begin{aligned}\curv{\tE} \approx \frac{2\sqrt2\,\Delta x}{\xi\tau^2} &= \frac{2 \times 4.59 \times 10^{-16}}{0.01 \times 1^2}\unit{s^{-2}}\\ &= 9.2 \times 10^{-14}\unit{s^{-2}},\end{aligned}$$
 
-the paper's "$6\times10^{-14}$", and $9.34 \times 10^{-9}/6.5 \times 10^{-14} = 144{,}000$, "a hundred thousand times
-less than the person's tide" (*checked here*, given $\Delta x$). The estimate is an order of magnitude: factors such as
-the $\sqrt2$ of two masses each with its own uncertainty belong to chapter 8.6.
+the paper's "$9\times10^{-14}$", and $9.34 \times 10^{-9}/9.2 \times 10^{-14} = 102{,}000$, "a hundred thousand times
+less than the person's tide" (*checked here*, given $\Delta x$). The estimate is an order of magnitude, and chapter 8.6
+derives the limit.
 
 "The magnetic part asks more." It can be read by gyroscopes [@Nichols2011], by a gradiometer in motion
 [@BraginskyCavesThorne1977; @MashhoonPaikWill1989], by light sent both ways round a loop [@Frauendiener2020], and
@@ -427,15 +433,16 @@ $$\begin{aligned}\Omega R &= 7.292 \times 10^{-5}\unit{s^{-1}} \times 6.378 \tim
 Here $\Omega$ is the planet's own spin. The pixel's motion and the planet's spin each give the pixel a small magnetic
 part, of opposite signs, and the paper gives their sum as
 
-$$\frac{3G\matter M\Omega}{cR^2}\Bigl(1 - \frac{I}{\matter MR^2}\Bigr).$$
+$$\frac{3G\matter M\Omega}{cR^2}\Bigl(1 - \frac{C}{\matter MR^2}\Bigr).$$
 
-Here $c$ is the speed of light and $\sym{moment-of-inertia}{I}$ is the planet's moment of inertia, in
-$\mathrm{kg\,m^2}$. The units check: $G\matter M\Omega/cR^2$ is $\mathrm{m^3\,s^{-2}} \times \mathrm{s^{-1}}$ divided
-by $\mathrm{m\,s^{-1}} \times \mathrm{m^2}$, which is $\mathrm{s^{-2}}$. The 1 in the bracket is the pixel's motion:
-the ground carries the pixel across the line to the Earth's centre at $v = \Omega R$, at the distance $r = R$, and
-equation (9) then gives $3G\matter Mv/cr^3 = 3G\matter M\Omega/cR^2$. The second term comes from the field of the
-planet's spin, which Section IV calls its spin dipole (*read now, derived in Part 7*, chapter 7.5). The Earth's measured
-$I/\matter MR^2$ is 0.3307, which the paper rounds to 0.331 in Section IV (1.6). The factor in front is
+Here $c$ is the speed of light and $C$ is the planet's moment of inertia about its axis of spin, in $\mathrm{kg\,m^2}$:
+1.6's $\sym{moment-of-inertia}{I}$ about that axis, for which geophysicists write $C$. The units check: $G\matter
+M\Omega/cR^2$ is $\mathrm{m^3\,s^{-2}} \times \mathrm{s^{-1}}$ divided by $\mathrm{m\,s^{-1}} \times \mathrm{m^2}$,
+which is $\mathrm{s^{-2}}$. The 1 in the bracket is the pixel's motion: the ground carries the pixel across the line to
+the Earth's centre at $v = \Omega R$, at the distance $r = R$, and equation (9) then gives $3G\matter Mv/cr^3 =
+3G\matter M\Omega/cR^2$. The second term comes from the field of the planet's spin, which Section IV calls its spin
+dipole (*read now, derived in Part 7*, chapter 7.5). The Earth's measured $C/\matter MR^2$ is 0.3307, which the paper
+rounds to 0.331 in Section IV (1.6). The factor in front is
 
 $$\begin{aligned}\frac{3G\matter M\Omega}{cR^2} &= \frac{3 \times 3.986 \times 10^{14} \times 7.292 \times 10^{-5}}{3.00 \times 10^8 \times (6.378 \times 10^6)^2}\unit{s^{-2}}\\ &= 7.15 \times 10^{-12}\unit{s^{-2}},\end{aligned}$$
 
@@ -450,9 +457,9 @@ $$\begin{aligned}\frac{3G\matter Mv}{cr^3} &= \frac{3 \times 6.674 \times 10^{-1
 The ratio is $4.78 \times 10^{-12}/6.54 \times 10^{-17} = 73{,}100$, the paper's "seventy thousand times" (*checked
 here*, given the formula).
 
-The paragraph closes with a measurement: "one pixel on the ground reads $I/\matter MR^2$, the number that tells a planet
+The paragraph closes with a measurement: "one pixel on the ground reads $C/\matter MR^2$, the number that tells a planet
 with a core from one without". The mass, the rate and the radius are known, so the only unknown in the formula is
-$I/\matter MR^2$. Chapter [1.6](/tutorial/newton/motion/#the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one)
+$C/\matter MR^2$. Chapter [1.6](/tutorial/newton/motion/#the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one)
 showed what that number holds: 0.4 for a uniform ball, 0.3307 for the Earth, and, with a core of radius 3480 km, a core
 of $12{,}500\unit{kg\,m^{-3}}$ inside a mantle of $4150\unit{kg\,m^{-3}}$ (*checked here*). The steady pull outside
 cannot show it, by the shell theorem of 1.3.
@@ -473,7 +480,7 @@ Of Section II's five numbered equations, the reader can now derive two, and unde
 | [](/paper/#eq:wave) | in a wave, $-\tfrac12\partial_t^2h^{\rm TT}_{ij}$ | read, used for the convention of $h$ | 7.6 |
 | [](/paper/#eq:magnetic) | the magnetic part $\curv{\tB}_{ij}$ | read | 7.5 |
 
-Every number of the section is now checked. Three of them, the quantum limit's $6.5 \times 10^{-14}\unit{s^{-2}}$,
+Every number of the section is now checked. Three of them, the quantum limit's $9.2 \times 10^{-14}\unit{s^{-2}}$,
 the Earth's magnetic part and the factor 73,100, are checked given a formula that a later part derives.
 
 Reading chapter R7 reads Section II again after Part 7. It adds equation (1) and geodesic deviation in relativity (7.2);
@@ -544,7 +551,7 @@ away.
 ### The paper
 
 Reproduce the four numbers of the paragraph *The Earth's own tide*: $3.1 \times 10^{-6}\unit{s^{-2}}$,
-$465\unit{m\,s^{-1}}$, $4.8 \times 10^{-12}\unit{s^{-2}}$ (with $I/\matter MR^2 = 0.3307$ and the formula stated in the
+$465\unit{m\,s^{-1}}$, $4.8 \times 10^{-12}\unit{s^{-2}}$ (with $C/\matter MR^2 = 0.3307$ and the formula stated in the
 paper) and "seventy thousand", taking the person's magnetic part as $3G\matter Mv/cr^3$ from the paper's
 equation [](/paper/#eq:magnetic-point).
 
@@ -564,7 +571,7 @@ $6.54 \times 10^{-17}\unit{s^{-2}}$, and the ratio is 73,100. The last section s
 - [*What the premise asks*](/paper/#par:what-the-premise-asks): the instruments, the ratio of five hundred and the
   standard quantum limit.
 - [*The Earth's own tide*](/paper/#par:the-earths-own-tide): the Earth's tide, the speed of the ground, and the
-  magnetic part that reads $I/\matter MR^2$, with equation [](/paper/#eq:magnetic-point) from
+  magnetic part that reads $C/\matter MR^2$, with equation [](/paper/#eq:magnetic-point) from
   [Section IV](/paper/#sec:near-field).
 - [*One complex matrix*](/paper/#par:one-complex-matrix), in Section VIII, takes up $\curv{\mathcal W}$ from the
   section's last paragraph.

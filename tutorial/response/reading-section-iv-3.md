@@ -129,8 +129,8 @@ here*). The right-hand side of the paper's [](/paper/#eq:thermal-moment) holds o
 springs and the friction "set only at which frequencies the tremor lies, not how much of it there is" (4.6, *checked
 here*). "The octupole gives $\int\rho\,r^4\,\dd V$, and so on."
 
-"For a round body the whole sequence fixes the density at every radius, since a positive distribution on a finite
-interval is fixed by its moments." A round body's density depends only on $r$, and the tremors give its moments
+"For a round body the whole sequence fixes the density at every radius, since a distribution on a finite interval
+is fixed by its moments." A round body's density depends only on $r$, and the tremors give its moments
 $\int\matter\rho\,r^{2\ell-2}\,\dd V$, from $r = 0$ to $R$, for every $\ell$. Chapter
 [3.9](/tutorial/noise/positivity/#a-positive-distribution-of-mass-is-fixed-by-a-few-of-its-moments) showed that such
 moments fix a distribution (*checked here*, with the theorem for all moments stated there).
@@ -169,24 +169,26 @@ The second is that the modes be "slow enough to be seen as near field, $\omega r
 frequencies reads only part of the sum. "All three hold for a solid,
 whose smooth moments fall on its lowest modes of vibration."
 
-"In a lattice ball of 924 masses joined by springs, $85\%$ of the quadrupole's tremor lies at one frequency and $99\%$
-below twice it." The **lattice ball** is Appendix A's, read
+"In a lattice ball of 924 masses joined by springs, $85\%$ of the tremor of the quadrupole along a lattice axis lies at
+one frequency and $99\%$ below twice it." The **lattice ball** is Appendix A's, read
 [below](#appendix-as-lattice-adds-up-the-modes-and-its-sums-hold-for-any-springs), and its 924 masses were counted in
 [4.3](/tutorial/response/elastic-bodies/#masses-on-springs-move-in-normal-modes). Its strongest frequency, a pair of
 modes with the same note, holds 0.848 of the tremor, and 0.992 lies below twice that frequency.[^axis] "A shell of the
 same mass and radius, whose thickness is a third of its radius, trembles $1.22$ times as much, the ratio of their second
 moments": its 668 masses give 1.2203, the ratio of the lattices' $\sum_p\matter m_pr_p^2$, where $p$ numbers the masses
 ([4.6](/tutorial/response/fluctuation-dissipation/#each-degree-of-the-tremor-holds-one-moment-of-the-density), *checked
-here*). It trembles "at frequencies more than twice as low": its strongest mode lies 2.34 times lower than the
+here*). It trembles "with its strongest mode more than twice as low": that mode lies 2.34 times lower than the
 ball's.[^mean]
 
-"A steel ball ten centimetres in radius rings in its lowest quadrupole mode near $15\,\mathrm{kHz}$." Chapter
+"A steel ball ten centimetres in radius rings in its lowest spheroidal quadrupole mode, at an estimated
+$15\,\mathrm{kHz}$." A **spheroidal** mode is one that moves mass toward or away from the centre, unlike a twist (4.3).
+Chapter
 [4.3](/tutorial/response/elastic-bodies/#a-guessed-shape-overestimates-the-lowest-note-and-a-good-guess-comes-close)
-derived the number by **Rayleigh's method**, which bounds the lowest note from above by the stiffness of a guessed shape
-over its mass. With the shear speed $\sym{shear-speed}{c_T} = 3000\unit{m\,s^{-1}}$ the bound is $\sqrt{10}\,c_T/R =
-9.49\times10^4\unit{s^{-1}}$, or 15.1 kHz (*checked here*). Lamb's exact solution for an elastic sphere, also in 4.3,
-puts the lowest mass-quadrupole note at 12.6 kHz.[^lamb] The tutorial's steel has the density
-$\matter\rho = 7850\unit{kg\,m^{-3}}$, so the ball weighs $\matter M = 32.9\unit{kg}$ and the shear modulus is
+derived the number by **Rayleigh's method**, which bounds the lowest note from above by the stiffness of a guessed
+shape over its mass. With the shear speed $\sym{shear-speed}{c_T} = 3000\unit{m\,s^{-1}}$ the bound is
+$\sqrt{10}\,c_T/R = 9.49\times10^4\unit{s^{-1}}$, or 15.1 kHz (*checked here*). Lamb's exact solution for an elastic
+sphere, also in 4.3, puts the lowest spheroidal quadrupole note at 12.6 kHz.[^lamb] The tutorial's steel has the
+density $\matter\rho = 7850\unit{kg\,m^{-3}}$, so the ball weighs $\matter M = 32.9\unit{kg}$ and the shear modulus is
 $\sym{shear-modulus}{\matter\mu} = \matter\rho c_T^2 = 71\unit{GPa}$ (4.3).
 
 "With $4\times10^8$ quanta in it at room temperature." A **quantum** is one step $\hbar\omega$ of a mode's energy
@@ -202,13 +204,14 @@ $2.7\times10^{16}$ times less than from chapter 1.4's person of 70 kg standing a
 3\times10^{-4}$": $9.49\times10^4 \times 1\unit m/(3.00\times10^8\unit{m\,s^{-1}}) = 3.2\times10^{-4}$ (*checked here*;
 5.2 gives $2.6\times10^{-4}$ at Lamb's note).
 
-"That mode emits one graviton in $7\times10^{17}$ years." A **graviton** is the quantum of a gravitational wave (chapter
-8.3). The number needs the power that a ringing quadrupole radiates, *read now, derived in Part 7* (chapter
-7.7).[^graviton] With it the mode radiates $4.9\times10^{-55}\unit W$, one graviton every $6.5\times10^{17}$ years,
-fifty million times the age of the universe. "The camera detects the ball's ringing without receiving any of its
-radiation." The camera reads the near field, the Newtonian pull of the ball's present shape (5.2), and that pull is not
-radiation. So "the graviton counts that limit the thermal glow … say nothing about the near field" (*checked here*; the
-glow is Section VI's, read in R10).
+"That mode emits one graviton in a time of order $10^{18}$ years." A **graviton** is the quantum of a gravitational
+wave (chapter 8.3). The number needs the power that a ringing quadrupole radiates, *read now, derived in Part 7*
+(chapter 7.7).[^graviton] With it the trial shape at Rayleigh's 15.1 kHz radiates $4.9\times10^{-55}\unit W$, one
+graviton every $6.5\times10^{17}$ years. The time per graviton grows as $\omega^{-3}$, so at Lamb's 12.6 kHz it is
+about $1.1\times10^{18}$ years, eighty million times the age of the universe. "The camera detects the ball's ringing
+without receiving any of its radiation." The camera reads the near field, the Newtonian pull of the ball's present
+shape (5.2), and that pull is not radiation. So "the graviton counts that limit the thermal glow … say nothing about
+the near field" (*checked here*; the glow is Section VI's, read in R10).
 
 "The cost is distance." Chapter [3.3](/tutorial/noise/measuring-a-number/#a-tremor-far-below-the-noise-can-still-be-detected)
 sketched why. Forces inside the body move neither its mass nor its centre. The centre's own Brownian wandering says
@@ -314,13 +317,15 @@ $0.219\unit{kg\,m^2}$, five thirds of the ball's.
 
 "The static part of the response is the body's tidal Love number" [@Love1909]. The **Love number**
 $\sym{love-number}{k_2}$ is a pure number: the potential that a body adds by yielding to a steady tide, as a fraction
-of the tide's own potential at its surface ([4.6](/tutorial/response/fluctuation-dissipation/#the-static-end-of-the-response-is-the-love-number),
-*checked here*). A ball of fluid yields completely and has $k_2 = \tfrac32$. "A ball of rigidity $\mu$, density $\rho$
-and surface gravity $g$ acquires a quadrupole $\tfrac13k_2R^5/G$ times the applied tide": the quadrupole here is the
-trace-free second moment, and the rule carries a minus sign.[^sign]
+of the tide's own potential at its surface
+([4.6](/tutorial/response/fluctuation-dissipation/#the-static-end-of-the-response-is-the-love-number), *checked here*).
+A ball of fluid yields completely and has $k_2 = \tfrac32$. "A ball of rigidity $\mu$, density $\rho$ and surface
+gravity $g$ acquires a trace-free second moment $\int\rho\,(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$ of $-\tfrac13
+k_2R^5/G$ times the applied tide": the minus sign holds because the body grows longer along the axis that the tide
+stretches.[^sign]
 
-"With $k_2 = \tfrac32/(1 + 19\mu/2\rho gR)$ for a uniform ball" is Kelvin's result, *stated in the paper* and stated
-in 4.6, for an incompressible ball.[^kelvin] The paper's $g$ is the surface gravity, which 4.6 writes
+"With $k_2 = \tfrac32/(1 + 19\mu/2\rho gR)$ for a uniform incompressible ball" is Kelvin's result, *stated in the
+paper* and stated in 4.6.[^kelvin] The paper's $g$ is the surface gravity, which 4.6 writes
 $\sym{surface-gravity}{g_{\rm s}} = G\matter M/R^2$, in $\mathrm{m\,s^{-2}}$, so that $g$ stays a profile. For the steel
 ball $g_{\rm s} = 2.2\times10^{-7}\unit{m\,s^{-2}}$, and its rigidity beats its gravity by $19\matter\mu/2\matter\rho
 g_{\rm s}R = 3.9\times10^{15}$. "For the steel ball, $k_2 = 4\times10^{-16}$": $3.8\times10^{-16}$ (4.6, *checked
@@ -504,7 +509,7 @@ quadrupole the integral is in the ratio of $\int\matter\rho r^2\,\dd V$, $\matte
 
 ### Q
 
-How can a camera see the steel ball's ringing although the ball emits one graviton in about $7\times10^{17}$ years?
+How can a camera see the steel ball's ringing although the ball emits one graviton in about $10^{18}$ years?
 
 ### A
 
@@ -608,32 +613,30 @@ $g_{\rm s} = G\matter M/R^2 = 2.2\times10^{-7}\unit{m\,s^{-2}}$, $19\matter\mu/2
     the geodesists' harmonics, normalized to $4\pi$, would make each factor $4\pi$ times larger.
 
 [^axis]: These numbers, like the paper's 85%, belong to one quadrupole, $h = z^2 - \tfrac12(x^2 + y^2)$, along an
-    axis of the lattice, as 4.6 draws it. A cubic lattice is not the same in every direction. For $h = xy$ the totals
-    and their ratio 1.2203 are unchanged, but the strongest note holds 0.90 of the tremor and lies 0.81 times as high.
-    Summed over all five orders, as the caption's Eq. [](/paper/#eq:thermal-multipole) is, the strongest single note
-    holds only 0.54, though 0.98 still lies below twice it. So the 85% belongs to the quadrupole along an axis,
-    which the caption does not say.
+    axis of the lattice, the $m = 0$ term of Eq. [](/paper/#eq:thermal-multipole) that the caption names and 4.6
+    draws. A cubic lattice is not the same in every direction. For $h = xy$ the totals and their ratio 1.2203 are
+    unchanged, but the strongest note holds 0.90 of the tremor and lies 0.81 times as high. Summed over all five
+    orders, the strongest single note holds only 0.54, though 0.98 still lies below twice it.
 
 [^mean]: The strongest mode and the median of the tremor both lie 2.34 times lower. The mean frequency weighted by
     the tremor is only 1.71 times lower, because the shell keeps 23% of its tremor in higher modes.
 
-[^lamb]: The paper's "near 15 kHz" is Rayleigh's estimate, as Appendix A says. A twist at 11.9 kHz lies lower,
-    but it moves no mass inward or outward and
-    makes no tide, so the paper's "lowest quadrupole mode" means the lowest that changes the mass quadrupole.
+[^lamb]: The paper's estimated 15 kHz is Rayleigh's, as Appendix A says. A twist at 11.9 kHz lies lower, but it is a
+    torsional mode, which turns each part around the centre, so it moves no mass inward or outward and makes no tide.
 
 [^graviton]: The power is the quadrupole formula $P = (G/5c^5)\langle\dddot I_{ij}\dddot I_{ij}\rangle$, with
     $I_{ij} = \tfrac15\matter MRq\,\mathrm{diag}(-1, -1, 2)$ the trial shape's trace-free second moment and each time
     derivative a factor $\omega$; the count of gravitons divides it by $\hbar\omega$ (chapters 7.7 and 8.3).
 
-[^sign]: The rule is for the trace-free second moment $\int\matter\rho(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$, and
-    it reads $-\tfrac13k_2R^5\curv{\tE}_{ij}/G$, with $\curv{\tE}_{ij}$ the tide. A stretch along $z$ has a negative
+[^sign]: For the trace-free second moment $\int\matter\rho(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$ the rule
+    reads $-\tfrac13k_2R^5\curv{\tE}_{ij}/G$, with $\curv{\tE}_{ij}$ the tide. A stretch along $z$ has a negative
     $\curv{\tE}_{zz}$ and makes the body longer along $z$: hence the minus sign. With 2.3's quadrupole, three times as
     large, the factor is $k_2R^5/G$. The margin note of
     [4.6's Love-number section](/tutorial/response/fluctuation-dissipation/#the-static-end-of-the-response-is-the-love-number)
     lists the three quadrupoles of these chapters.
 
-[^kelvin]: The paper does not say "incompressible". Steel is not, but for a ball whose rigidity so far exceeds its
-    gravity, a compressible ball with steel's ratio of moduli yields only 0.3% more, so the paper's number stands.
+[^kelvin]: Steel is not incompressible, but for a ball whose rigidity so far exceeds its gravity, a compressible ball
+    with steel's ratio of moduli yields only 0.3% more, so the paper's number stands.
 
 [^checks]: A quadrature of the shell against a dozen random point masses agrees to twelve figures, and a numerical
     second derivative of the shell's potential gives the same tide $6GfD/a^5$.

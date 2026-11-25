@@ -243,7 +243,7 @@
 	const squareMetres = (m2: number) =>
 		`${m2 >= 9.95 ? Math.round(m2) : Number(m2.toPrecision(2))} m²`;
 
-	/** A waiting time after "every": "second", "20 hours", "9.0 × 10⁷ years". */
+	/** A waiting time after "every": "second", "20 hours", "1.1 × 10⁸ years". */
 	const wait = (s: number) => (Math.abs(s - 1) < 1e-6 ? 'second' : duration(s));
 
 	const spread = $derived(Math.sqrt(mu));
@@ -515,7 +515,7 @@
 				options={[
 					{ value: 'sun', label: 'The Sun’s core', icon: Sun03Icon },
 					{ value: 'earth', label: 'The Earth below', icon: Globe02Icon },
-					{ value: 'iron', label: 'Hot iron, 3.5 m', icon: FireIcon },
+					{ value: 'iron', label: 'Hot iron, 3.9 m', icon: FireIcon },
 					{ value: 'pair', label: 'Turning pair, 4.5 m', icon: Orbit01Icon }
 				]}
 				bind:value={sourceId}
@@ -572,7 +572,8 @@
 				math={'\\sqrt{\\mu}'}
 			/>. A brightness found from <Tex math="N" /> counts is uncertain by <Tex
 				math={'1/\\sqrt{N}'}
-			/> of itself. To see one part ten per cent brighter than another at five standard deviations,
+			/> of itself. To see one part ten per cent brighter than a level known in advance at five standard
+			deviations,
 			<Tex math={'5\\sqrt{N}'} /> must be <Tex math="0.1\,N" />, which takes <Tex
 				math={`N = ${COUNTS_PER_ELEMENT}`}
 			/> counts in each part.

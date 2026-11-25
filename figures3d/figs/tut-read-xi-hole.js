@@ -16,7 +16,7 @@
 //  (f) how dark: two discs on the glow, darkened by the depth weighed in energy, 93%, and counted, 82%.
 //      "93% by energy; 82% by count".
 //  (g) with spin: the hole turning (an ink arrow round it) and the mode l = m = 2 turning with it (two arrows, half a
-//      turn apart). "9.7 times the sky at 42.7 GHz".
+//      turn apart). "10.3 times the sky at 43.6 GHz".
 //  (h) how deep: the hole, the camera at r (a dimension) and the thermometer at the camera. "r = 40 GM/c^2 from 2.6%".
 //  (i) counting: two pixels back to back, gravitons arriving at each from opposite directions. "g2 = 2; 2 + 1/n only
 //      if born in inflation".
@@ -52,7 +52,7 @@ const MU = 10;                              // the hole's mass in equilibrium ma
 const R = 40;                               // the camera's distance, GM/c^2
 const ZETA3 = 1.2020569031595942;
 const MOON = 7.342e22;                      // kg (tut-hawking-lib's BODIES)
-const CHI = 0.998, GAIN = 0.91, XSPIN = 0.9;  // (g): the spin, the stated peak gain of l = m = 2, the frequency chosen
+const CHI = 0.998, GAIN = 0.91, XSPIN = 0.92;  // (g): the spin, the stated peak gain of l = m = 2, the frequency chosen
 
 // ---- the drawing (figure points, y down) ------------------------------------------------------------------------
 const SIZE = 9.6;                           // every label and number: R11's capstone's
@@ -167,17 +167,19 @@ of $7.27°$ at $40\,G\matter M/c^2$, where $\obs v = 0.224c$`, 'the falling shad
 	has('counted in gravitons 82%, 32% and 14%', 'the depths in counts');
 	has(r`| (f) how dark | (c)'s 0.0905 K against (a), (b)'s wavelength against (c)'s disc: depth by energy; by count | 93%; 82% | 11.3, here |`, '(f)');
 
-	// (g) with spin: the threshold, the temperature, the gain at x = 0.90, 42.7 GHz
+	// (g) with spin: the threshold, the temperature, the gain at x = 0.92, 43.6 GHz
 	const rp = 1 + Math.sqrt(1 - CHI * CHI), omegaH = CHI / (2 * rp), kappa = Math.sqrt(1 - CHI * CHI) / (2 * rp);
 	check(omegaH.toFixed(3) === '0.469' && kappa.toFixed(4) === '0.0297' && (kappa / 0.25).toFixed(3) === '0.119' && (2 * omegaH).toFixed(3) === '0.939', `the spinning hole ${omegaH} ${kappa}`);
-	const expo = (2 * Math.PI * (XSPIN - 2 * omegaH)) / kappa, nH = 1 / Math.expm1(expo);
+	// the exponent as the chapter's equation reads it, with the threshold and kappa rounded to 0.939 and 0.0297 (unrounded
+	// it is -3.94, and n_H -1.020)
+	const expo = (2 * Math.PI * (XSPIN - Number((2 * omegaH).toFixed(3)))) / Number(kappa.toFixed(4)), nH = 1 / Math.expm1(expo);
 	const ghz = (XSPIN * C ** 3) / GM / (2 * Math.PI) / 1e9;
 	const nbg = 1 / Math.expm1((2 * Math.PI * HBAR * ghz * 1e9) / (KB * T)), out = nbg + GAIN * (nbg - nH);
-	check(expo.toFixed(1) === '-8.2' && nH.toFixed(3) === '-1.000' && ghz.toFixed(1) === '42.7' && nbg.toFixed(3) === '0.116' && out.toFixed(2) === '1.13' && (out / nbg).toFixed(1) === '9.7', `the mode ${expo} ${nH} ${ghz} ${nbg} ${out}`);
-	has(r`There the exponent is $-8.2$ and $n_H = 1/(e^{-8.2} - 1) = -1.000$. For ten equilibrium masses $x =
-0.90$ is 42.7 GHz, where the 0.905 K sky holds $n_{\rm bg} = 0.116$, so the mode returns $0.116 + 0.91\times1.116 =
-1.13$, 9.7 times the sky.`, 'the bright mode');
-	has(r`| (g) with spin | (a)'s sky at $\chi = 0.998$, $\ell = m = 2$, $x = 0.90$: 42.7 GHz | 9.7 times the sky | 11.2, 11.3 |`, '(g)');
+	check(expo.toFixed(1) === '-4.0' && nH.toFixed(3) === '-1.018' && ghz.toFixed(1) === '43.6' && nbg.toFixed(3) === '0.110' && (nbg - nH).toFixed(3) === '1.128' && out.toFixed(2) === '1.14' && (out / nbg).toFixed(1) === '10.3', `the mode ${expo} ${nH} ${ghz} ${nbg} ${out}`);
+	has(r`There the exponent is $-4.0$ and $n_H = 1/(e^{-4.0} - 1) = -1.018$. For ten equilibrium masses $x = 0.92$ is
+43.6 GHz, where the 0.905 K sky holds $n_{\rm bg} = 0.110$, so the mode returns $0.110 + 0.91\times1.128 = 1.14$,
+10.3 times the sky.`, 'the bright mode');
+	has(r`| (g) with spin | (a)'s sky at $\chi = 0.998$, $\ell = m = 2$, $x = 0.92$: 43.6 GHz | 10.3 times the sky | 11.2, 11.3 |`, '(g)');
 
 	// (h) how deep: the thermometer read backwards
 	const back = 2 / (1 - (1 / 1.026) ** 2);
@@ -464,7 +466,7 @@ const NUMS = {
 	d: ['7.27^\\circ;', '5.80^\\circ\\text{ falling}'],
 	e: ['20.2^\\circ'],
 	f: ['93\\%\\text{ by energy;}', '82\\%\\text{ by count}'],
-	g: ['9.7\\text{ times the sky}', '\\text{at }42.7\\ \\mathrm{GHz}'],
+	g: ['10.3\\text{ times the sky}', '\\text{at }43.6\\ \\mathrm{GHz}'],
 	h: ['r = 40\\,GM/c^2', '\\text{from }2.6\\%'],
 	i: ['g^{(2)} = 2;', '2 + 1/\\bar n\\text{ only if}', '\\text{born in inflation}']
 };

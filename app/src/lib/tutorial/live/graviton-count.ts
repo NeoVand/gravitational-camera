@@ -1,10 +1,10 @@
 /**
  * The numbers of chapter 0.3's graviton count, for its live figure. Gravitons arrive one at a time and at random, so
  * the count in an exposure is a Poisson draw: its mean μ is the rate times the time, and it varies by √μ about it.
- * A part of a picture is told ten per cent brighter than another at five standard deviations when 5√N = 0.1 N, that
- * is with N = (5/0.1)² = 2500 counts in it, so an exposure of mean count μ gives ⌊μ/2500⌋ picture elements (paper,
- * Section IX, *The graviton budget*). The rates are the paper's Table tab:budget, for a detector of one square metre
- * that collects from every direction.
+ * A part of a picture is told ten per cent brighter than a level known in advance at five standard deviations when
+ * 5√N = 0.1 N, that is with N = (5/0.1)² = 2500 counts in it, so an exposure of mean count μ gives ⌊μ/2500⌋ picture
+ * elements (paper, Section IX, *The graviton budget*). The rates are the paper's Table tab:budget, for a detector of
+ * one square metre that collects from every direction.
  *
  * Besides those numbers this draws, from a seeded generator, one exposure: the counts of each picture element at a
  * hundred moments of it, and the arrivals as dots on a time line, thinned to at most 500.
@@ -33,7 +33,10 @@ export interface Source {
 	every: number;
 }
 
-/** The thermal and wave rows of the paper's table tab:budget. */
+/**
+ * The thermal and wave rows of the paper's table tab:budget. The hot iron's 1.1 × 10⁸ years is the block's
+ * 5.4 × 10⁻¹⁴ gravitons a second spread over 4π(3.86 m)², the line of sight to its middle (chapter R10b).
+ */
 export const SOURCES: Record<SourceId, Source> = {
 	sun: { id: 'sun', name: 'The Sun’s core', scene: 'the Sun’s core, at midnight', every: 1 },
 	earth: {
@@ -45,8 +48,8 @@ export const SOURCES: Record<SourceId, Source> = {
 	iron: {
 		id: 'iron',
 		name: 'Hot iron',
-		scene: 'the hot iron of the closed furnace, at 3.5 m',
-		every: 9e7 * YEAR
+		scene: 'the hot iron of the closed furnace, at 3.9 m',
+		every: 1.1e8 * YEAR
 	},
 	pair: {
 		id: 'pair',

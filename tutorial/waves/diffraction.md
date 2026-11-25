@@ -494,12 +494,12 @@ I(\hat n') &= \Bigl\langle\Bigl(\sum_pu_p(t - \tau_p)\Bigr)^2\Bigr\rangle\\
 
 Each term needs the records of only two pixels, $p$ and $q$, taken at the same time once the delays are undone. A
 source that glows steadily is **stationary** in chapter 3.2's sense, so each term has the same value whenever it is
-measured. So two pixels that record together can be moved from one pair of places to the next, measuring the terms
-one pair at a time. The terms with $p = q$ are each pixel's own mean power, which is the same for every steering
-$\hat n'$, and they are all that one pixel alone can measure. Radio astronomers image thermal sources in this way: the
-Earth's turning carries pairs of dishes, recording together, through the separations of a far wider dish over many
-hours. So the paper's sentence that thermal radiation "needs every pixel at the same moment" asks for more than the
-sum needs: the pixels must record together in pairs, and different pairs may record at different times.
+measured. So two pixels that record together can be moved from one pair of places to the next, measuring the terms one
+pair at a time. The terms with $p = q$ are each pixel's own mean power, which is the same for every steering $\hat n'$,
+and they are all that one pixel alone can measure. Radio astronomers image thermal sources in this way: the Earth's
+turning carries pairs of dishes, recording together, through the separations of a far wider dish over many hours. So
+thermal radiation, in the paper's words, "needs pixels recording together, at least in pairs", and different pairs may
+record at different times.
 
 **What it means.** A steady source can be imaged with time in place of pixels, and thermal light with pairs of pixels
 that record together. In the near field, in the paper's words,

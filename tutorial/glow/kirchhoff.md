@@ -198,10 +198,10 @@ $\bar n = 0.255$. Water's friction there is $5.4\times10^{-5}$ Pa s, the constan
 its simulated spectrum (the paper's Table [](/paper/#tab:materials)); its everyday $10^{-3}$ Pa s belongs to slow flow
 (chapter 4.4).
 
-These are Section IX's "of order $10^{-30}$ gravitons" in each mode for the Earth, and a room's bodies hold far fewer.
-Chapter R10b sets them beside chapter [8.6](/tutorial/quantum/quantum-limit/)'s half quantum of noise. **Meaning.** A
-glow of matter is a black body diluted by its optical depth: its spectrum keeps the shape $\alpha B_\omega$, with
-about $10^{30}$ times fewer quanta in each mode than in a closed box.
+These are Section IX's "$10^{-30}$ gravitons or fewer" in each mode: near $10^{-30}$ for the Earth, and far fewer for a
+room's bodies. Chapter R10b sets them beside chapter [8.6](/tutorial/quantum/quantum-limit/)'s half quantum of noise.
+**Meaning.** A glow of matter is a black body diluted by its optical depth: its spectrum keeps the shape $\alpha
+B_\omega$, with about $10^{30}$ times fewer quanta in each mode than in a closed box.
 
 ::: try {#detailed-balance}
 A slab of two-level matter at one frequency, with a ray passing through it from the left. The Slab slider sets its
@@ -432,8 +432,8 @@ G\matter M\kB$ (stated; chapter 11.3) falls as $1/\matter M$, so $\dd T_H/\dd\ma
 
 $$\boxed{C = \frac{\dd(\matter Mc^2)}{\dd T_H} = -\frac{\matter Mc^2}{T_H}} .$$
 
-Section VII's hole of $1.36\times10^{23}$ kg is at 0.902 K,[^hole] with $C = -1.4\times10^{40}\unit{J\,K^{-1}}$. So
-its balance with the 0.905 K graviton sky is, "like every such balance", unstable.
+Section VII's hole of $1.356\times10^{23}$ kg is at 0.905 K, with $C = -1.35\times10^{40}\unit{J\,K^{-1}}$. So its
+balance with the 0.905 K graviton sky is, "like every such balance", unstable.
 
 ::: check
 ### Q
@@ -520,7 +520,7 @@ $B_\omega$.
 - Section VI's [*Friction at the frequencies of heat*](/paper/#par:friction-at-the-frequencies-of-heat):
   "$\mathrm{Re}\,\eta(\omega)$ is the spectrum of the material's stress at zero wavenumber", and diamond's quantum
   occupations and 2200 K.
-- Section IX's [*Counting or recording*](/paper/#par:counting-or-recording): "of order $10^{-30}$ gravitons on
+- Section IX's [*Counting or recording*](/paper/#par:counting-or-recording): "$10^{-30}$ gravitons or fewer on
   average" in each mode (chapter R10b).
 - Section VII's [*A black hole as the lens*](/paper/#par:a-black-hole-as-the-lens): "like every such balance, this
   one is unstable" (chapter R11).
@@ -551,6 +551,3 @@ $B_\omega$.
 
 [^maser]: An inverted population would need $e^{-x} > 1$, a negative temperature in Boltzmann's ratio. It can only be
     made by pumping energy in from outside.
-
-[^hole]: The paper's $1.36\times10^{23}$ kg is $1.356\times10^{23}$ kg rounded: that mass gives 0.905 K, and
-    $1.36\times10^{23}$ kg gives 0.902 K. The heat capacity is $-1.35\times10^{40}\unit{J\,K^{-1}}$ either way.

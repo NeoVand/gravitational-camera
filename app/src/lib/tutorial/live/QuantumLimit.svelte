@@ -625,7 +625,7 @@
 						<span class="eq"
 							><Tex math={`2\\sigma_x(\\tau)/\\xi\\tau^2 = ${perSecond(one.one)}`} /></span
 						>
-						<span class="also">the paper’s one-mass estimate</span>
+						<span class="also">the one-mass estimate</span>
 						<span class="eq"
 							><Tex
 								math={`\\sqrt2\\times2\\sigma_x(\\tau)/\\xi\\tau^2 = ${perSecond(one.two)}`}

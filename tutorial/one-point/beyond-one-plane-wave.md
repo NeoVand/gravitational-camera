@@ -115,7 +115,7 @@ the wave's phase $\sym{wave-phase}{\theta}$, zero when its plus tide is largest:
 It follows from [](#eq:departure), with the two parts entering in proportion to $\cos^4(\iota/2)e^{-i\theta}$ and
 $\sin^4(\iota/2)e^{i\theta}$.
 
-**Limits.** Seen edge-on, $\iota = 90°$, the paper's $A$ and $D$ are both $\cos^2\theta$ and $B = 0$, so $C = 2$ at
+**Limits.** Seen edge-on, $\iota = 90°$, the paper's $A$ and $Z$ are both $\cos^2\theta$ and $B = 0$, so $C = 2$ at
 every phase where the wave itself is not zero. At $\theta = 0$, $C$ is proportional to $|1 - 3\cos^2\iota|$ and
 vanishes at $\cos^2\iota = \tfrac13$, $\iota = 54.7°$.
 
@@ -402,12 +402,12 @@ near field free at every frequency, the Fisher matrix of a record splits into su
 argument holds over time too.
 
 **The rotor.** Ignored, the rotor adds to the wave's estimate half the wave-shaped part of its tide, at most $99/2
-\approx 50$ times the wave; the paper states 35 for its example.[^geometry] In its plane the exact field of a turning
-quadrupole gives it a magnetic part $0.31\,kr = 2.0\times10^{-6}$ times its tide, with $kr = \omega r/c =
-6.3\times10^{-6}$: at most $2\times10^{-4}$ of the wave, and a shift of the estimate by $9\times10^{-5}$ in the same
-geometry, the paper's "less than $10^{-4}$". An array that reads only $\curv\tE$ must model the rotor from how its tide
-varies across it. Section VIII states that the factor on the wave's error is then 2.2 for an array a metre
-across, or 1.26 if it reads $\curv\tB$ as well.
+\approx 50$ times the wave; the paper states 35 for a wave arriving $35^\circ$ from the rotor's axis on the side away
+from it.[^geometry] In its plane the exact field of a turning quadrupole gives it a magnetic part $0.31\,kr =
+2.0\times10^{-6}$ times its tide, with $kr = \omega r/c = 6.3\times10^{-6}$: at most $2\times10^{-4}$ of the wave, and
+a shift of the estimate by $9\times10^{-5}$ in the same geometry, the paper's "less than $10^{-4}$". An array that
+reads only $\curv\tE$ must model the rotor from how its tide varies across it. Section VIII states that the factor on
+the wave's error is then 2.2 for an array a metre across, or 1.26 if it reads $\curv\tB$ as well.
 
 ![Look first at the bracket: an unknown near field uses up the five numbers of the tide, and the wave is read from the
 other five, which hold half its signal, so its error grows by exactly $\sqrt2$. The lower row, without a near field,
@@ -421,15 +421,15 @@ vector of $5N$ numbers at one frequency and helicity. We state that a **subspace
 the averaged records into a part the sources fill and a part only the noise fills, separates up to $5N - 1$ uncorrelated
 sources, against $N - 1$ for scalar sensors and $3N - 1$ for sensors of light.
 
-**False fringes.** Two sensors a distance $D$ apart (not the $D$ of the paper's $C$) respond equally in a set of
-directions, their **fringes**, $\vartheta_1 = c/(fD)$ apart at broadside (across their baseline), with $f$ the
-frequency and $c/f$ the wavelength. Two pixels compare whole tables, so by chapter 9.1 a direction $\vartheta$ away is
-weighted by $\cos^8(\vartheta/2)$. We state that a **minimum-variance (Capon) estimator**, which passes one direction
-whole and lets through the least power from all others, then lifts the true fringe above the next false one by $1 +
-\rho^2[1 - \cos^8(\vartheta_1/2)]$. With $D$ a hundred wavelengths, $1 - \cos^8(0.005) = 1.0\times10^{-4}$, so the
-factor is 2 at $\rho = 100$, the paper's "once $\rho$ exceeds about a hundred". At 55° from broadside the nearer false
-fringe, $1.72\,c/(fD)$ away, stands higher than the far one at $1.77\,c/(fD)$ (the paper's 1.8). For scalar sensors
-the overlap is 1 and the factor stays 1.
+**False fringes.** Two sensors a distance $D$ apart respond equally in a set of directions, their **fringes**,
+$\vartheta_1 = c/(fD)$ apart at broadside (across their baseline), with $f$ the frequency and $c/f$ the wavelength. Two
+pixels compare whole tables, so by chapter 9.1 a direction $\vartheta$ away is weighted by $\cos^8(\vartheta/2)$. We
+state that a **minimum-variance (Capon) estimator**, which passes one direction whole and lets through the least power
+from all others, then lifts the true fringe above the next false one by $1 + \rho^2[1 - \cos^8(\vartheta_1/2)]$. With
+$D$ a hundred wavelengths, $1 - \cos^8(0.005) = 1.0\times10^{-4}$, so the factor is 2 at $\rho = 100$, the paper's
+"once $\rho$ exceeds about a hundred". At 55° from broadside the nearer false fringe, $1.72\,c/(fD)$ away, stands
+higher than the far one at $1.77\,c/(fD)$ (the paper's 1.8). For scalar sensors the overlap is 1 and the factor stays
+1.
 
 {{paper fig:two-pixels}}
 
@@ -521,8 +521,8 @@ $p_z = 2n\curv\tE_{xx}^2/(2\curv\tE_{xx}^2) = n$, and $p_x = p_y = 0$.
 [^exact]: The exact linearized field of a turning point quadrupole matches these within 1.3% at $kr = 80$ and 0.5% at
     $kr = 200$.
 
-[^phases]: The paper's "within a few per cent at $kr = 80$" holds at the phase $\theta = 0$. Over the whole cycle
-    the next order reaches 10% at $kr = 80$ and 4% at $kr = 200$ ($\iota$ from 15° to 60°).
+[^phases]: The paper's "within a few per cent at $kr = 80$" is for the phase $\theta = 0$, as it says. Over the whole
+    cycle the next order reaches 10% at $kr = 80$ and 4% at $kr = 200$ ($\iota$ from 15° to 60°).
 
 [^static]: The pair's mass also makes a steady tide, of order $(c/v)^2$ times the departure, with $v$ the masses'
     speed. The paper reads the oscillating part from the rate of change of $\mathcal W$, which holds none of it.
@@ -532,5 +532,5 @@ $p_z = 2n\curv\tE_{xx}^2/(2\curv\tE_{xx}^2) = n$, and $p_x = p_y = 0$.
 [^columns]: The paper writes $\vect e_j$ for $\vect t_j$. Here $\vect e_1$ and $\vect e_2$ stay the axes across a
     wave.
 
-[^geometry]: The paper does not state its geometry. A pixel in the rotor's plane at 30° from $x$, with the wave from
-    $(-0.45, -0.35, 0.82)$, gives 35.5.
+[^geometry]: A pixel in the rotor's plane at 30° from $x$, with the wave from $(-0.45, -0.35, 0.82)$, 34.8° from the
+    rotor's axis, gives 35.5.

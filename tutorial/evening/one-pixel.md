@@ -21,8 +21,9 @@ see a moving body where it is now, as long as it knows what kind of scene it fac
 ## No lens can be made, so the camera computes its pictures
 
 Curved glass bends light towards a focus because light is slower in glass than in air. Matter barely slows
-gravitational waves: steel slows a wave that vibrates a thousand times a second by one part in $10^{13}$, so a steel
-lens a metre thick would focus it some $10^{13}\unit{m}$ away, about as far as Pluto.[^optics]
+gravitational waves: steel slows a wave that vibrates a thousand times a second by about eight parts in $10^{14}$, so a
+steel lens a metre thick and two metres across would focus it some $6 \times 10^{12}\unit{m}$ away, as far as the orbit
+of Pluto.[^optics]
 
 A mass also bends passing waves by its gravity, and a mass used in this way is a **gravitational lens**. How strongly
 it bends them is set by its **compactness**: Newton's constant times its mass, divided by its radius and by the square
@@ -90,11 +91,11 @@ exception: its tide is the same in every direction across the line to it, and a 
 twist, so that part of its speed cannot be read.[^round]
 
 In a room whose masses are all at rest, a pixel at rest reads no twist, so the field's rest frame is the room's. A
-moving pixel then finds its own velocity from one reading, at any speed, with no map of the room. A pixel that reads
-the tide of a room, about $10^{-8}\unit{s^{-2}}$ near a person, to one part in $10^8$ finds its speed to about
-$2\unit{m\,s^{-1}}$, the pace of a brisk walk. Roughly, the error is the speed of light times the relative noise,
-$3.00 \times 10^8\unit{m\,s^{-1}} \times 10^{-8} = 3\unit{m\,s^{-1}}$, which the paper's full formula refines to
-2.[^speed]
+moving pixel then finds its own velocity from one reading, at any speed, with no map of the room. A pixel that reads the
+tide of a room, about $10^{-8}\unit{s^{-2}}$ near a person, to one part in $10^8$ finds its speed across the line to the
+person to about $2\unit{m\,s^{-1}}$, the pace of a brisk walk. Roughly, the error is the speed of light times the
+relative noise, $3.00 \times 10^8\unit{m\,s^{-1}} \times 10^{-8} = 3\unit{m\,s^{-1}}$, which the paper's full formula
+refines to 2.[^speed]
 
 However the pixel moves, a room at rest gives invariants of the form of a still room's. So when they leave that form,
 something in the room moves or turns.[^light]
@@ -224,8 +225,8 @@ About 200 times more finely: to one part in $2 \times 10^{10}$.
 In the plain words of [Section VII](/paper/#sec:no-lens), what would a real lens add to the camera?
 
 ::: solution
-Only a quantum advantage: gathering the faintest waves before detection lets the camera count single gravitons
-instead of recording mostly noise.
+Only a quantum advantage: gathering the faintest waves before detection lets the camera form its picture from single
+counted gravitons instead of recording mostly noise.
 :::
 :::
 
@@ -241,8 +242,7 @@ instead of recording mostly noise.
   counts the twenty numbers of curvature at a point, of which a pixel in empty space reads ten.
 :::
 
-[^optics]: The paper's [](/paper/#eq:index) gives $8 \times 10^{-14}$. Stated without proof in chapters 5.1 and
-    5.5, and read in
+[^optics]: The slowing is the paper's [](/paper/#eq:index). Stated without proof in chapters 5.1 and 5.5, and read in
     [R11](/tutorial/black-holes/reading-section-vii/#matter-barely-slows-a-wave-and-reflects-less-still).
 
 [^hole]: Derived in chapters 5.5 and 11.1.
@@ -265,7 +265,7 @@ instead of recording mostly noise.
 
 [^regroup]: The paper's equation [](/paper/#eq:polar), derived in chapters 9.2 and 9.3.
 
-[^round]: Shown in chapter 9.3. Two bodies remove this blind spot.
+[^round]: Shown in chapter 9.3. Two bodies seen off the line through them generally remove this blind spot.
 
 [^speed]: Derived in chapter 9.3.
 

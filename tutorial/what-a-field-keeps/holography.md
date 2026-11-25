@@ -31,16 +31,17 @@ null space), [3.8](/tutorial/noise/bits/#a-bodys-field-at-one-time-holds-about-1
 
 Put a stone of radius $a$, in metres, at the centre of a glass sphere of radius $R_c = 3a$ whose surface is covered with
 cameras. Section XV's plain words suppose that a camera reads the field on a sphere of radius $R$ "with detail down to a
-size $d$". Then the field "carries about $(R/d)^2$ such numbers", while the inside, "cut into cells of size $d$, holds
-about $(R/d)^3$ cells". With $R/d = 100$ that is ten thousand numbers against a million cells, which fill a cube of side
-$R = R_c$. The stone, a ball of radius $R_c/3$, holds about $1.6\times10^5$ cells of that size.
+size $d$". Then the field "carries about $(R/d)^2$ such numbers, while the number of cells of size $d$ in the body
+grows as $(R/d)^3$". "But the size $d$ that can be read shrinks only slowly as the instrument improves": three body
+radii away, at a signal-to-noise ratio of a million, the camera "reads about 170 numbers", and pushing reaches "about
+270 cells of the body".
 
 So we ask how much of the stone's inside its field outside holds, once noise, the speed of light and quantum mechanics
 are counted, and why gravity cannot decohere a ball and a shell. A camera's **signal-to-noise ratio** $\SNR$ is its
 reading over its noise (3.8), and **pushing** is 13.1's protocol: masses held near the stone for an instant, then a
 weighing. At the paper's ceiling, $\SNR = 10^{70}$, looking reads $2.2\times10^4$ numbers and pushing about
 $2.5\times10^5$ cells, each 0.026 of the radius across, each count at its own reading's $\SNR$. Pushing gains about
-twelve, not a hundred.
+twelve. This chapter derives these counts.
 
 ::: plain
 A hologram is a film from which a picture with depth can be rebuilt. The pull outside a stone equals the pull of a
@@ -93,8 +94,10 @@ a ratio of variances, the square of an $\SNR$, over $2\Lambda$, and the same cou
 
 {{paper fig:hair}}
 
-**What it means.** The paper's $(R/d)^2$ against $(R/d)^3$ treats the detail $d$ as free. At a given sensitivity it is
-not: the [third section](#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm) finds it.
+**What it means.** At a given sensitivity the detail $d$ of the paper's $(R/d)^2$ is not free: looking resolves $d
+\approx R_c\Lambda/L$, and the [third
+section](#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm) finds the $d$ that pushing
+resolves.
 
 ## The speed of light does not add the third dimension
 
@@ -307,8 +310,8 @@ Each count is at its own reading's $\SNR$: for $N_1$ the static pull's, for $N_2
 term, the energy the mass gains, which is far smaller (the paper's Section XIII). So the columns compare equal values
 of two different ratios. The ceiling of the next section bounds both.
 
-At $10^{70}$ the stone is resolved into about forty cells along a radius. The paper's $R/d = 100$, with its $R$ the
-reading sphere at $3a$, is $d = 0.03a$, which pairs reach at $\SNR = 10^{59.4}$.[^Rd] The paper's Figure
+At $10^{70}$ the stone is resolved into about forty cells along a radius. A detail of a hundredth of the reading
+sphere's radius, $d = 0.03a$, is reached by pairs at $\SNR = 10^{59.4}$.[^Rd] The paper's Figure
 [](/paper/#fig:ladder)(b) draws the rungs that pushing adds, a bead for each moment.
 
 {{paper fig:ladder}}
@@ -320,8 +323,9 @@ $\sigma_k \approx \exp[-\Lambda(k/\kappa)^{1/3}] = \exp(-2.62\,k^{1/3})$, the fo
 for operators this smooth; the constant and the rate $n[\Lambda + h(p)]$ are this tutorial's. The cell law is a count
 of the same kind, in one model.
 
-**What it means.** Section XV's "precision that grows as the logarithm of the sensitivity" is three laws: the cell size
-falls as $1/\ln\SNR$, the cells grow as $(\ln\SNR)^3$ and the bits as $(\ln\SNR)^4$ (13.2). This is what remains
+**What it means.** Section XV's "resolution that sharpens as the logarithm of the sensitivity, so that the cells
+resolved grow as its cube" is two laws of three: the cell size falls as $1/\ln\SNR$ and the cells grow as
+$(\ln\SNR)^3$, while the bits grow as $(\ln\SNR)^4$ (13.2). This is what remains
 without $\hbar$ of the **holography of information**, quantum gravity's argument that a region's boundary holds
 everything inside it: an operation from outside and a reading of the energy, which gives a density and a motion, not a
 state (13.6).
@@ -571,8 +575,8 @@ times the ball and shell's $G\matter M^2/10R$.
     $\matter T^{\mu\nu}$. For a body held by its own gravity, gravity's force enters the conservation identities and
     adds the potential energy, negligible for a stone. The cancellation is algebra either way.
 
-[^twotimes]: The paper's "the field at two times gives all of it" (Introduction) needs impulses: a tide, heat at a
-    known temperature, or the zero point. A body turning at a known rate shows the first rung (13.4).
+[^twotimes]: The Introduction's "under a known push" is an impulse: a tide, heat at a known temperature, or the
+    zero point. A body turning at a known rate shows the first rung (13.4).
 
 [^passive]: At order $1/c^{2k}$ Blanchet's expansion adds Almansi's rung
     $\int r^{\ell+2k}Y_\ell\,\partial_t^{2k}\matter T^{00}\,\dd V$ of the changing part (stated). For the 10 cm steel
@@ -592,9 +596,9 @@ times the ball and shell's $G\matter M^2/10R$.
     $\mathcal G = \sqrt{(2\ell_1 + 1)(2\ell_2 + 1)/4\pi(2\ell + 1)}\,\langle\ell_10\,\ell_20|\ell0\rangle$ the Gaunt
     coefficient of two patterns, from 2.2's expansion of $1/|\vect x - \vect y|$.
 
-[^Rd]: Taking $R$ to be the stone's radius instead, $d = 0.01a$ would need about $10^{182}$.
+[^Rd]: A hundredth of the stone's radius, $d = 0.01a$, would need about $10^{182}$.
 
 [^sparse]: This count is the tutorial's own, from the ceiling of Ng, Lloyd and Boixo et al. and the cell law, for a
     camera at a fixed multiple of the radius.
 
-[^density]: Section XV names no density; soda-lime glass, 2500 kg m⁻³, gives 0.14 s.
+[^density]: The time goes as the inverse square of the density: soda-lime glass, 2500 kg m⁻³, gives 0.14 s.

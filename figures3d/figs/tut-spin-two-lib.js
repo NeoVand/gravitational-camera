@@ -140,9 +140,13 @@ export const WIDTHS = { light: '65.5', gravity: '47.0' };
 export async function chapter(check) {
 	const md = await (await fetch('/tutorial/one-point/spin-two.md')).text();
 	const flat = md.replace(/<!--[\s\S]*?-->/g, ' ').replace(/\s+/g, ' ');
-	const tryComment = (md.match(/<!-- try: square-of-vector[\s\S]*?-->/) ?? [''])[0].replace(/\s+/g, ' ');
+	// the try comment became the interactive SquareOfVector: the chapter's try block, its registration, and its tests,
+	// which carry the comment's numbers
+	const tryBlock = (md.match(/^::: try \{#square-of-vector\}\n[\s\S]*?^:::$/m) ?? [''])[0].replace(/\s+/g, ' ');
+	const live = await (await fetch('/app/src/lib/tutorial/live.ts')).text();
+	const tests = (await (await fetch('/app/src/lib/tutorial/live/square-of-vector.spec.ts')).text()).replace(/\s+/g, ' ');
 	const has = (s, what) => check(flat.includes(s), `the chapter does not say ${what}: ${s}`);
-	check(tryComment.length > 0, 'the chapter has lost its try comment');
+	check(tryBlock.includes('five bars give the shares of the five weights for gravity and three for light') && /\nlive: \[square-of-vector\]\n/.test(md) && live.includes("'square-of-vector': {"), 'the chapter has lost its try block, or the interactive its registration');
 	// the four figures stand in the chapter under their names
 	for (const [n, id] of [['tut-one-point-hero', 'one-point-hero'], ['tut-spin-weight-bars', 'spin-weight-bars'], ['tut-half-turn', 'half-turn'], ['tut-two-overlaps', 'two-overlaps']])
 		has(`](${n}){#fig:${id}}`, `the figure ${n}`);
@@ -203,7 +207,7 @@ export async function chapter(check) {
 	check(near(tilted.shares.reduce((s, v) => s + v * v, 0), 1, 1e-12), 'the squares of the shares do not add to one');
 	check(near(tilted.shares[4], Math.cos(rad(30)) ** 4, 1e-12) && tilted.shares[4].toFixed(2) === '0.56', 'the share of the weight 2 is not cos^4 30');
 	check(tilted.rank === 1, 'the tilted wave is not of rank one');
-	check(tryComment.includes(`at 60° the gravity bars are ${BARS60.join(', ')} (m = −2 … 2)`), 'the try comment\'s bars');
+	check(tests.includes(`fill all five at 60°: ${BARS60.join(', ')},`), 'the interactive\'s bars');
 
 	// ---- the half turn
 	has(String.raw`So a turn by $\psi$ about the direction of travel multiplies light's wave by $e^{-i\psi}$ and gravity's by $e^{-2i\psi}$. A half turn, $\psi = \pi$, gives $-1$ for light and $+1$ for gravity (Figure [](#fig:half-turn)).`, 'the half turn');
@@ -230,7 +234,7 @@ export async function chapter(check) {
 	has(String.raw`$$\boxed{\;|\langle\vect m_1\vect m_1^{\mathsf T}|\vect m_2\vect m_2^{\mathsf T}\rangle|^2 = \cos^8\frac\vartheta2 .\;}$$`, 'the overlap of two squares');
 	has('At 60° the readings of two gravitational waves overlap by 0.32, and the fields of two light waves by 0.56 (Figure [](#fig:two-overlaps)).', 'the overlaps at 60 degrees');
 	has(String.raw`At $\vartheta = 0$ both overlaps are 1. At $\vartheta = 180°$ both are 0`, 'the limits');
-	check(tryComment.includes('two waves 60° apart overlap 0.316 and 0.5625'), 'the try comment\'s overlaps');
+	check(tests.includes('overlap 0.316 for gravity and 0.5625 for light at 60°') && tryBlock.includes('shows the two overlaps of Figure [](#fig:two-overlaps)'), 'the interactive\'s overlaps');
 	const m1 = [cx(Math.SQRT1_2), cx(0, Math.SQRT1_2), cx(0)];
 	for (let d = 0; d <= 180; d += 7.5) {
 		const t = rad(d), m2 = [cx(Math.cos(t) * Math.SQRT1_2), cx(0, Math.SQRT1_2), cx(-Math.sin(t) * Math.SQRT1_2)];

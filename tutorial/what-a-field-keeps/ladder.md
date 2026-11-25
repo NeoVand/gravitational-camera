@@ -512,11 +512,11 @@ products reach $r^2H_\ell$ for every $H_\ell$, whose moments are $\int\matter\rh
     [](/paper/#eq:cone), by half of $(\kappa^2 - K^2)^{m+1}\tilde\psi/4\pi G$: both vanish on the cone $\kappa = K$,
     where one reading looks, more steeply as $m$ grows.
 
-[^slip]: Such densities "differ under a tide of degree $m + 1$", as the paper says, unless $\field\psi$ is itself the
-    Laplacian of a confined function. Only then is every $\int\field\psi\,\nabla^{2m}(r^{2m}H_\ell)\,\dd V$, a positive
-    multiple of $\int\field\psi\,H_\ell\,\dd V$, zero. The paper's pair is such a case at $m = 1$: its difference is
-    $\nabla^2\field\psi_1/4\pi G$ with $\field\psi_1 = \nabla^2\field\psi_2$, and every tide of degree two gives both
-    $\tfrac13\matter MR^2$.
+[^slip]: Such densities "in general differ under a tide of degree $m + 1$", in the paper's words: not when $\field\psi$
+    is itself the Laplacian of a confined function. Only then is every $\int\field\psi\,\nabla^{2m}(r^{2m}H_\ell)\,\dd
+    V$, a positive multiple of $\int\field\psi\,H_\ell\,\dd V$, zero. The paper's pair is such a case at $m = 1$: its
+    difference is $\nabla^2\field\psi_1/4\pi G$ with $\field\psi_1 = \nabla^2\field\psi_2$, and every tide of degree two
+    gives both $\tfrac13\matter MR^2$.
 
 [^converse]: Conversely, a density $\matter{\delta\rho}$ that the field outside and every tide of degree up to $m$
     treat as zero is $\nabla^{2m}\field\psi/4\pi G$ with $\field\psi$ as above. By chapter

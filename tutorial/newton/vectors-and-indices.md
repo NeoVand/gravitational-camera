@@ -717,9 +717,9 @@ and the symbol $\epsilon_{ijk}$ carries Levi-Civita's name. Albert Einstein intr
 summation sign in his 1916 paper on the foundations of general relativity.
 :::
 
-[^hats]: In two places the paper uses $\hat n$ the other way round, for the direction from a source to the point
-    where its field is measured: in Section V, at equation [](/paper/#eq:wave-zone), and in Section XI, at equation
-    [](/paper/#eq:multipole). The chapters that read those equations say so.
+[^hats]: In two places the paper uses $\hat n$ the other way round, for the direction from a source to the point where
+    its field is measured: in Section V, at equation [](/paper/#eq:wave-zone), where it says so, and in Section XI, at
+    equation [](/paper/#eq:multipole). The chapters that read those equations say so.
 
 [^person]: Chapter [1.4](/tutorial/newton/tides/) derives this table from Newton's law. Here we only read it; nothing
     in this chapter depends on where it comes from.

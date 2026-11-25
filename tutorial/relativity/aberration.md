@@ -273,8 +273,8 @@ P.-S. Laplace, in volume IV (Book X) of his *Traité de mécanique céleste* (18
 was when its gravity set out. The Moon's orbit would then speed up faster than observed, so he concluded that gravity
 travels at least seven million times faster than light. S. Carlip (*Physics Letters A* 267, 81, 2000) showed that
 general relativity, with gravity at the speed of light, predicts the same absence of aberration: for bodies that
-accelerate, the delay cancels to first order because mass and momentum are conserved, the paper's "through this
-cancellation".
+accelerate, the delay cancels because mass is conserved, and its next term because momentum is, the paper's "through
+this cancellation".
 :::
 
 ## Light from ahead is bluer and light from behind is redder

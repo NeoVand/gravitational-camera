@@ -216,7 +216,7 @@ $$7\log_2\SNR\ \text{bits},$$
 140 at $\SNR = 10^6$ and 1630 at $10^{70}$ (the paper rounds to 1600), whatever the hole's size. Here $10^{70}$ is the
 ceiling that Section IV's [*Limits on sensitivity*](/paper/#par:limits-on-sensitivity) estimates for a camera watching
 a person for the age of the universe. A stone read from three of its radii holds 1176 bits at $10^6$, by the paper's
-[](/paper/#eq:hair-bits), 8.4 times as much.[^nine]
+[](/paper/#eq:hair-bits), 8.4 times as much, the paper's "factor of about eight and a half".
 
 {{paper fig:hair}}
 
@@ -491,12 +491,9 @@ gives 140. The paper's [](/paper/#eq:hair-bits) gives 1176 bits for a body from 
 [^off]: Off the axis, 7.5's table also has entries that mix the radius with the directions across it. They change the
     eigenvalues only at second order in $a/r$, because they couple eigenvalues that differ.
 
-[^kerr]: The paper's "outside a spinning body … proportional to $(r - ia\cos\vartheta)^{-3}$" is exact only for Kerr's
-    hole. For the Earth it holds to first order in $a$, enough for its $1.5\times10^{-6}$; at second order the Earth's
+[^kerr]: The paper's "to first order in $a$, proportional to $(r - ia\cos\vartheta)^{-3}$" is exact only for
+    Kerr's hole. For the Earth first order is enough for its $1.5\times10^{-6}$; at second order the Earth's
     flattening, $J_2R^2 = 4.4\times10^{10}\unit{m^2}$ against $a^2 = 10.7\unit{m^2}$, takes over.
-
-[^nine]: The paper's "a factor of nearly nine" between a person and a black hole at $\SNR = 10^6$: its own
-    [](/paper/#eq:hair-bits) gives 1176 bits against 140, a ratio of 8.4 (8.6 from the rounded 1200).
 
 [^A]: Not 4.5's sum $A$ nor 5.4's amplitude.
 

@@ -387,8 +387,9 @@ $$\boxed{\;\begin{gathered}\text{two functions harmonic in a connected region}\\
 
 This is **unique continuation**. For the camera it means that a noiseless reading of a body's potential in any small
 piece of the empty space round it would fix that potential everywhere outside the body, provided the outside is
-connected, as the paper assumes before its split.[^flat] The potential $\field\psi$ of the split is a non-example: it
-vanishes on the whole outside without vanishing everywhere, because inside the body it is not harmonic.
+connected, the condition the paper attaches to what the field outside fixes.[^flat] The potential $\field\psi$ of the
+split is a non-example: it vanishes on the whole outside without vanishing everywhere, because inside the body it is not
+harmonic.
 
 No real camera gets this much. A ripple of density whose crests lie $\lambda$ apart, in metres, makes a potential that
 fades with the height $z$ above the body as $e^{-2\pi z/\lambda}$: the paper's equation [](/paper/#eq:evanescent), with

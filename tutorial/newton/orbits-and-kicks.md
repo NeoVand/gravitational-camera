@@ -116,15 +116,15 @@ stretches the ring along the line to the mass twice as much as it squeezes it ac
 the ring's long axis turns once in each orbit. The stretch is exaggerated, the same at all four places, and the rings
 are drawn far larger than any ring could be beside a real orbit.](tut-orb-ring){#fig:orbit-ring}
 
-Three numbers show the range. At the Earth's surface the stretch is $3.08 \times 10^{-6}\unit{s^{-2}}$, and
-equation [](#eq:tide-period) gives 84.3 minutes, as before. Beside the person of chapter 1.4, whose stretch at 1 m is
-$9.34 \times 10^{-9}\unit{s^{-2}}$, a free pebble would orbit once in 25.5 hours, at $0.068\unit{mm\,s^{-1}}$. The
-paper's [Section VII](/paper/#sec:no-lens) imagines a small black hole of $1.36 \times 10^{23}\unit{kg}$ used as a lens.
-Its tide falls to $1\unit{s^{-2}}$ at 26.3 km. There the two ends of a camera a metre long are pulled apart at
-$1\unit{m\,s^{-2}}$, a tenth of the Earth's gravity, which a camera can bear. By equation [](#eq:tide-period) any free orbit there takes $2\pi\sqrt2 = 8.9\unit{s}$, whatever the mass of the
-hole. The camera would have to move at $2\pi r/T = 18.6\unit{km\,s^{-1}}$, and the hole would pull on it with
-$13{,}100\unit{m\,s^{-2}}$, 1340 times the Earth's gravity: the paper's "once every nine seconds", "19 km s⁻¹" and
-"1340".
+Three numbers show the range. At the Earth's surface the stretch is $3.08 \times 10^{-6}\unit{s^{-2}}$, and equation
+[](#eq:tide-period) gives 84.3 minutes, as before. Beside the person of chapter 1.4, whose stretch at 1 m is $9.34
+\times 10^{-9}\unit{s^{-2}}$, a free pebble would orbit once in 25.5 hours, at $0.068\unit{mm\,s^{-1}}$. The paper's
+[Section VII](/paper/#sec:no-lens) imagines a small black hole of $1.356 \times 10^{23}\unit{kg}$ used as a lens. Its
+tide falls to $1\unit{s^{-2}}$ at 26.3 km. There the two ends of a camera a metre long are pulled apart at
+$1\unit{m\,s^{-2}}$, a tenth of the Earth's gravity, which a camera can bear. By equation [](#eq:tide-period) any free
+orbit there takes $2\pi\sqrt2 = 8.9\unit{s}$, whatever the mass of the hole. The camera would have to move at $2\pi r/T
+= 18.6\unit{km\,s^{-1}}$, and the hole would pull on it with $13{,}100\unit{m\,s^{-2}}$, 1340 times the Earth's gravity:
+the paper's "once every nine seconds", "19 km s⁻¹" and "1340".
 
 ## Energy and angular momentum fix the size and shape of an orbit
 
@@ -361,7 +361,8 @@ atom at room temperature.[^kT]
 
 What the ball gains, the tonne loses. Its kinetic energy $\tfrac12\matter\mu V^2$ falls by $\Delta E$, so its speed
 falls by $\Delta E/\matter\mu V$, a fraction $\Delta E/\matter\mu V^2 = 4.5 \times 10^{-33}$ of itself: the paper's
-"five parts in $10^{33}$". The share of the inside is $2.1 \times 10^{-34}$.
+"five parts in $10^{33}$". The share of the inside is $2.1 \times 10^{-34}$, the paper's "part that depends on the
+ball's interior", "$2\times10^{-34}$".
 
 The paper sharpens this with a pair of bodies that the outside cannot tell apart. Body A is a thin shell of mass
 $\matter M$ and radius $R/\sqrt2$. Body B has half its mass at a point at the centre and half on a thin shell of
@@ -535,15 +536,15 @@ passing clouds of gas heat star clusters and slowly break them up [@Spitzer1958]
 [^mu]: The paper writes $\mu$ for the passing mass in Section XIII and for the rigidity of a solid in Sections IV and
     VI; the two never meet.
 
-[^C]: The paper also writes $C$ for the moment of inertia in Section VIII and for a capacity in Section IV. Here it is
-    always $2G\matter\mu/V$.
+[^C]: The paper also writes $C$ for the moment of inertia in Sections II and VIII and for a capacity in Section IV. Here
+    it is always $2G\matter\mu/V$.
 
-[^ring]: The paper's steel ball of radius 10 cm rings in its slowest way near 15 kHz (Section IV). The frequency of a
-    ringing scales as one over the size, so a ball of radius 0.5 m rings near 3 kHz, a period of 330 μs. The pass, of
-    45 to 91 μs, is then a seventh to a quarter of a period, so the parts held by their neighbours do not stay quite
-    still. Driving the ringing with the tonne's full tide shows that the frozen estimate of the internal energy is off
-    by about 10 to 15 per cent, probably too low. The recoil, most of the total, does not depend on how the parts are
-    held.
+[^ring]: The paper's steel ball of radius 10 cm rings in its lowest spheroidal quadrupole mode "at an estimated
+    $15\,\mathrm{kHz}$" (Section IV). The frequency of a ringing scales as one over the size, so a ball of radius 0.5 m
+    rings near 3 kHz, a period of 330 μs. The pass, of 45 to 91 μs, is then a seventh to a quarter of a period, so the
+    parts held by their neighbours do not stay quite still. Driving the ringing with the tonne's full tide shows that
+    the frozen estimate of the internal energy is off by about 10 to 15 per cent, probably too low. The recoil, most of
+    the total, does not depend on how the parts are held.
 
 [^push]: Chapter 1.7 derives the paper's equation [](/paper/#eq:push), the energy that any impulsive tide gives a body
     that may already be moving. For a body at rest its first term vanishes, and with the impulse of equation

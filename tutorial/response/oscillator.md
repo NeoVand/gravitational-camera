@@ -21,9 +21,10 @@ among them shows how the mass inside is arranged. The friction at each frequency
 trembles there, and a tide applied from outside is a push, whose reply this chapter describes.
 
 The paper's paragraph [*What heat reveals*](/paper/#par:what-heat-reveals) says that "a steel ball ten centimetres in
-radius rings in its lowest quadrupole mode near 15 kHz".[^ball] In Section VI, the paper's figure of real materials
-draws the friction of a silicon crystal as a narrow peak at one frequency, "drawn as damped oscillators of the measured
-widths". The ball and the crystal are very different bodies, but the paper treats both as things that ring.
+radius rings in its lowest spheroidal quadrupole mode, at an estimated $15\,\mathrm{kHz}$".[^ball] In Section VI, the
+paper's figure of real materials draws the friction of a silicon crystal as a narrow peak at one frequency, "drawn as
+damped oscillators of the measured widths". The ball and the crystal are very different bodies, but the paper treats
+both as things that ring.
 
 So we ask how anything that can ring answers a push that rises and falls, and which part of its answer takes energy
 from the push. The answer is one function of the frequency, the response function, and this chapter builds it for the
@@ -412,11 +413,11 @@ radius thick (orange). Each curve adds up the shares of the modes in order of fr
 vertical axis, $\langle\dot q^2\rangle$, is the mean square rate of change of the body's quadrupole moment: the
 figure's $q$ is that moment, not the cart's coordinate.
 
-In the ball, "85% of the quadrupole's tremor lies at one frequency": one line holds most of the weight, which is why the
-paper can speak of the steel ball's one quadrupole mode. The shell's curve ends 1.22 times higher. Each total is set by
-each piece's mass times the square of its distance from the centre, added up over the body, whatever the springs, and
-the shell's mass lies farther out. The shell is also softer, so its steps come at lower frequencies. Chapter 4.6 derives
-the curves, and reading chapter
+In the ball, "85% of the tremor of the quadrupole along a lattice axis lies at one frequency": one line holds most of
+the weight, which is why the paper can speak of the steel ball's one quadrupole mode. The shell's curve ends 1.22 times
+higher. Each total is set by each piece's mass times the square of its distance from the centre, added up over the
+body, whatever the springs, and the shell's mass lies farther out. The shell is also softer, so its steps come at lower
+frequencies. Chapter 4.6 derives the curves, and reading chapter
 [R4](/tutorial/response/reading-section-iv-3/#the-tremor-lies-in-a-few-classical-notes-and-the-camera-reads-it-without-one-graviton)
 checks the 85%.
 
@@ -543,11 +544,11 @@ $Q = 173$ loses 3.6% of its energy in each swing.
 
 ### The paper
 
-The paper's *What heat reveals* says that the steel ball rings "near 15 kHz", with "$4\times10^8$ quanta in it at room
-temperature", and that a metre away "$\omega r/c = 3\times10^{-4}$". Check the last two from the first. Take the energy
-of one quantum of a mode as $\hbar\omega$, with $\hbar = 1.055\times10^{-34}\unit{J\,s}$ (stated here; chapter 8.3
-explains the quantum $\hbar\omega$), and a mode's thermal energy as $\kB T = 4.14\times10^{-21}\unit{J}$ at 300 K
-(chapter 0.6; chapter 4.2 shows why each mode holds this much).
+The paper's *What heat reveals* says that the steel ball rings "at an estimated $15\,\mathrm{kHz}$", with
+"$4\times10^8$ quanta in it at room temperature", and that a metre away "$\omega r/c = 3\times10^{-4}$". Check the last
+two from the first. Take the energy of one quantum of a mode as $\hbar\omega$, with $\hbar =
+1.055\times10^{-34}\unit{J\,s}$ (stated here; chapter 8.3 explains the quantum $\hbar\omega$), and a mode's thermal
+energy as $\kB T = 4.14\times10^{-21}\unit{J}$ at 300 K (chapter 0.6; chapter 4.2 shows why each mode holds this much).
 
 ::: solution
 "15 kHz" is a frequency $f$ in cycles per second, so $\omega = 2\pi f = 9.42\times10^4\unit{s^{-1}}$. One quantum is
@@ -558,8 +559,9 @@ $\omega r/c = 9.42\times10^4 \times 1/3.00\times10^8 = 3.1\times10^{-4}$. Both a
 :::
 
 ::: paper
-- [*What heat reveals*](/paper/#par:what-heat-reveals) (Section IV) says that the steel ball "rings" near 15 kHz, and
-  its Figure [](/paper/#fig:tremor) shows a body's trembling shared among normal modes, each an oscillator of this chapter.
+- [*What heat reveals*](/paper/#par:what-heat-reveals) (Section IV) says that the steel ball "rings" at an estimated
+  15 kHz, and its Figure [](/paper/#fig:tremor) shows a body's trembling shared among normal modes, each an oscillator
+  of this chapter.
 - [*What an applied tide reveals*](/paper/#par:what-an-applied-tide-reveals) writes the response of a moment of the mass
   to a tide as $\chi_h$, and its sum rule [](/paper/#eq:sum-rule) adds up $\omega\,\mathrm{Im}\,\chi_h$, the line of
   this chapter's [](#eq:power) (chapters 4.5 and 4.6).

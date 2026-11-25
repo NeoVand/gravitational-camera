@@ -278,11 +278,11 @@ $9.3\times10^{-9}\unit{s^{-2}}$ (chapter
 [1.4](/tutorial/newton/tides/#beside-one-mass-the-ring-stretches-along-the-line-and-squeezes-across-it)), the paper's "a
 part in $10^{22}$".
 
-**The bench.** The bench that holds the laser and the absorber apart runs along the beam, and the beam's push puts it in
-tension, a momentum flux of $-P/c$ over its cross-section: a line of $-P/c^3$ kilograms per metre. Beam and bench weigh
-the beam's energy over $c^2$, as von Laue's theorem requires. A pixel reads the paper's $2P/c^3$ per metre only if **the
-bench is much farther from the pixel than the beam is**; with the bench as near as the beam, it would read $P/c^3$, the
-energy alone.
+**The bench.** The bench that holds the laser and the absorber apart runs along the beam, and the beam's push puts it
+in tension, a momentum flux of $-P/c$ over its cross-section: a line of $-P/c^3$ kilograms per metre. Beam and bench
+weigh the beam's energy over $c^2$, as von Laue's theorem requires. A pixel reads the paper's $2P/c^3$ per metre only
+if **the bench is much farther from the pixel than the beam is**, the paper's observer "far nearer to it than to the
+bench that holds its ends apart"; with the bench as near as the beam, it would read $P/c^3$, the energy alone.
 
 **A box of light weighs its energy.** In a box with mirrored walls, the **photon box**, light of total energy $E_{\rm
 light}$ has the pressure of the third section, so its diagonal momentum fluxes add up to $E_{\rm light}$. The walls'

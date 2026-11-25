@@ -550,10 +550,10 @@ is the blind spot, and the reason [](#eq:velocity), derived for different eigenv
 [^five]: Chapter 9.5 finds the five squares for a given reading.
 
 [^line]: On that line the field is symmetric about it, two eigenvalues stay equal, and a boost along it still leaves
-    $\curv\tB' = 0$. The paper's "Two bodies … remove the blind spot" holds off that line.
+    $\curv\tB' = 0$: hence the paper's "two bodies seen off the line through them".
 
-[^mean]: The paper says "averaged over time". The mean squares are equal, but the time average of $|\curv\tB|/|\curv\tE|$
-    itself can diverge, as for two opposite waves of one polarization, where $\curv\tE$ passes through zero.
+[^mean]: The paper says "averaged over time, in mean square". The time average of $|\curv\tB|/|\curv\tE|$ itself can
+    diverge, as for two opposite waves of one polarization, where $\curv\tE$ passes through zero.
 
 [^shift]: To first order an eigenvalue $\curv\lambda_a$ with the unit axis $\mathbf u_a$ moves by $i\,\mathbf
     u_a\cdot\curv\tB\mathbf u_a$, as putting $\curv\lambda_a + \delta$ and $\mathbf u_a + \delta\mathbf u$ into the

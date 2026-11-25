@@ -6,7 +6,7 @@
  * so that edits to the sources show up on reload.
  */
 import { execFileSync } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { parse as parseYaml } from 'yaml';
@@ -21,6 +21,8 @@ import type { RenderedChapter } from '#lib/tutorial/render.js';
 import { tutorialLive } from '#lib/tutorial/live.js';
 import { ROLES } from '#lib/tutorial/colour.js';
 import { marginNotes } from '#lib/tutorial/paper-links.js';
+import { plainLinks } from '#lib/tutorial/plain-links.js';
+import type { PlainLink } from '#lib/tutorial/plain-links.js';
 import type { MarginChapter, MarginNote, PaperLink } from '#lib/tutorial/paper-links.js';
 import type {
 	ChapterRef,
@@ -102,15 +104,34 @@ export function paperTree(): { meta: Record<string, any>; blocks: any[] } {
 	);
 }
 
+/** The paper's labels and equations, from its tree alone (the tutorial's catalogue needs them before the paper is
+ * rendered, since the rendered paper links into the catalogue's chapters). */
+export const paperIndex = (): PaperIndex => once('paper:index', () => indexPaper(paperTree()));
+
+/** The plain-words boxes' links into the tutorial (plain-links.ts), by the box's section, for published chapters. */
+export function plainLinksBySection(
+	links: readonly PlainLink[] = plainLinks
+): Map<string, { phrase: string; href: string }[]> {
+	const out = new Map<string, { phrase: string; href: string }[]>();
+	for (const link of links) {
+		const href = chapterHref(link.chapter, link.anchor);
+		if (!href) continue;
+		const list = out.get(link.section) ?? [];
+		list.push({ phrase: link.phrase, href });
+		out.set(link.section, list);
+	}
+	return out;
+}
+
 export const paperRendered = (): RenderedPaper =>
-	once('paper:html', () => renderPaper(paperTree()));
+	once('paper:html', () => renderPaper(paperTree(), { plainLinks: plainLinksBySection() }));
 
 /** What a chapter needs of the paper: its labels and equations, and its figures by id. */
 export function paperContext(): { index: PaperIndex; figures: Map<string, FigureBlock> } {
 	return once('paper:context', () => {
 		const figures = new Map<string, FigureBlock>();
 		for (const b of paperRendered().blocks) if (b.kind === 'figure') figures.set(b.id, b);
-		return { index: indexPaper(paperTree()), figures };
+		return { index: paperIndex(), figures };
 	});
 }
 
@@ -121,7 +142,7 @@ const readYaml = (file: string): unknown =>
 
 export const catalogue = (): Catalogue =>
 	once('tutorial:catalogue', () =>
-		parseCatalogue(readYaml('parts.yaml'), new Set(paperContext().index.labels.keys()))
+		parseCatalogue(readYaml('parts.yaml'), new Set(paperIndex().labels.keys()))
 	);
 
 export const chapterById = (id: string): Chapter | undefined =>
@@ -322,6 +343,20 @@ export const marginChapter = (
 	equationHtml: rendered.firstEquationHtml
 });
 
+/**
+ * What the margin shows of each chapter, kept while the chapter's file is unchanged: the margin points into nearly
+ * every chapter, and rendering them all again on each reload of the paper in development would take many seconds.
+ */
+const marginChapters = new Map<string, { modified: number; chapter: MarginChapter }>();
+function marginChapterOf(c: Chapter): MarginChapter {
+	const modified = statSync(path.join(TUTORIAL_DIR, `${c.slug}.md`)).mtimeMs;
+	const hit = marginChapters.get(c.id);
+	if (hit?.modified === modified) return hit.chapter;
+	const chapter = marginChapter(loadChapter(c), c.short, `/tutorial/${c.slug}/`);
+	marginChapters.set(c.id, { modified, chapter });
+	return chapter;
+}
+
 /** The margin notes for these links, from the published chapters (and any others given, as in tests). */
 export function paperMargin(
 	links: readonly PaperLink[],
@@ -332,8 +367,7 @@ export function paperMargin(
 	for (const link of links) {
 		if (chapters.has(link.chapter)) continue;
 		const c = chapterById(link.chapter);
-		if (c?.status === 'published')
-			chapters.set(c.id, marginChapter(loadChapter(c), c.short, `/tutorial/${c.slug}/`));
+		if (c?.status === 'published') chapters.set(c.id, marginChapterOf(c));
 	}
 	return marginNotes(links, chapters, paperAnchors());
 }

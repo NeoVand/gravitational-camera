@@ -69,7 +69,7 @@ The person's tide is 54,000 times the Moon's (the paper's "some fifty thousand")
 between four and five steps higher. The tides span 45 steps, and the lengths 38, from LIGO's arm, stretched by
 $4 \times 10^{-18}\unit{m}$, to a supernova in our Galaxy, $3.1 \times 10^{20}\unit{m}$ away.[^ladder]
 
-Both ends of the tide ladder belong to one black hole of $1.36 \times 10^{23}\unit{kg}$, about two Moon masses. Its
+Both ends of the tide ladder belong to one black hole of $1.356 \times 10^{23}\unit{kg}$, about two Moon masses. Its
 steady tide at a metre, $2 \times 10^{13}\unit{s^{-2}}$, would tear the camera apart. The tide falls to a bearable
 $1\unit{s^{-2}}$ only 26 km away ([0.4](/tutorial/evening/one-pixel/)), where it pulls the ends of a camera a metre
 long apart with a tenth of the Earth's gravity. The hole is warm, so it trembles, and seen from a metre for one second

@@ -50,21 +50,23 @@ with $\sym{refractive-index}{n}$ the refractive index, the factor by which matte
 density in $\mathrm{kg\,m^{-3}}$ and $\omega$ the angular frequency in $\mathrm{s^{-1}}$ (*stated in the paper*
 [@Peters1974], as in chapter
 [5.1](/tutorial/waves/wave-equation/#a-medium-can-slow-a-wave-and-its-refractive-index-measures-how-much)). For steel,
-$\matter\rho = 7850\unit{kg\,m^{-3}}$, at 1 kHz it is $8.3\times10^{-14}$, the paper's "$10^{-13}$" (*checked here*).
-Press's stiffness term $16\pi G\matter\mu/c^2\omega^2$, with $\sym{shear-modulus}{\matter\mu}$ the shear modulus in
-pascals, is $7.6\times10^{-23}$ for the paper's 80 GPa (*checked here*); the term, and the $(v/c)^2$ of free matter
-whose velocities spread by $v$, are *stated in the paper* [@Press1979; @FlaugerWeinberg2018].
+$\matter\rho = 7850\unit{kg\,m^{-3}}$, at 1 kHz it is $8.3\times10^{-14}$, the paper's "$8\times10^{-14}$" (*checked
+here*). Press's stiffness term $16\pi G\matter\mu/c^2\omega^2$, with $\sym{shear-modulus}{\matter\mu}$ the shear modulus
+in pascals, is $6.7\times10^{-23}$ for the 71 GPa of chapter 5.1's steel, with $c_T = 3000\unit{m\,s^{-1}}$ (*checked
+here*); the term, and the $(v/c)^2$ of free matter whose velocities spread by $v$, are *stated in the paper*
+[@Press1979; @FlaugerWeinberg2018].
 
 By chapter 5.5, a thin lens of radius $R$ and central thickness $h$ focuses at $f = R^2/2(n - 1)h$, so a steel lens
-1 m in radius and 1 m thick focuses at $6.0\times10^{12}$ m, or 40 AU, near Pluto (*checked here*).[^pluto] The wave
+1 m in radius and 1 m thick focuses at $6.0\times10^{12}$ m, or 40 AU, the paper's "some $6\times10^{12}$ metres
+away, at the distance of Pluto" (*checked here*). The wave
 is $c/(1\unit{kHz}) = 300$ km long, so "a lens able to act on it at all would have to be far larger" (*checked
 here*).
 
 A sharp face reflects the amplitude $4\pi G\matter\mu/c^2\omega^2$ (*stated in the paper*; 5.5 explains the quarter),
-$1.9\times10^{-23}$ at 80 GPa, and its square, $3.6\times10^{-46}$, of the energy: the paper's "$2\times10^{-23}$" and
-"$4\times10^{-46}$" (*checked here*).[^steels] Absorption is weaker still, as the optical depth below shows. So
-[R9](/tutorial/one-point/reading-section-viii/)'s stated claim that matter neither reflects nor absorbs is now
-checked: walls send the camera no echoes.
+$1.7\times10^{-23}$ for that steel, and its square, $2.8\times10^{-46}$, of the energy: the paper's "$2\times10^{-23}$"
+and "$3\times10^{-46}$" (*checked here*). Absorption is weaker still, as the optical depth below shows. So
+[R9](/tutorial/one-point/reading-section-viii/)'s stated claim that matter neither reflects nor absorbs is now checked:
+walls send the camera no echoes.
 
 ## Every optical constant of a body is its compactness times factors below one
 
@@ -125,8 +127,8 @@ here*).
 
 A hole whose Hawking temperature $T_H = \hbar c^3/8\pi G\matter M\kB$ equals the graviton sky's 0.905 K has
 $\sym{equilibrium-mass}{\matter M_{\rm eq}} = 1.356\times10^{23}$ kg, 1.85 Moon masses (*read now, derived in chapter
-11.3*).[^mass] Lighter holes are hotter and evaporate, and the balance is unstable because a hole that loses heat grows
-hotter (*read now, derived in chapters 11.3 and
+11.3*), the paper's "$1.356\times10^{23}$ kilograms". Lighter holes are hotter and evaporate, and the balance is
+unstable because a hole that loses heat grows hotter (*read now, derived in chapters 11.3 and
 [10.2](/tutorial/glow/kirchhoff/#a-balance-is-stable-only-if-the-heat-capacity-is-positive)*). From the 2.7255 K
 microwave sky its capture area takes at most $8.8\times10^{-52}$ of $\matter Mc^2$ each second, "less than a part in
 $10^{51}$" (*read now, derived in chapter
@@ -145,10 +147,10 @@ angle $\theta_E = \sqrt{2r_s/d}$, are *read now, derived in chapter 11.1*.
 
 "The camera cannot sit close." By chapter
 [11.1](/tutorial/black-holes/schwarzschild/#the-tide-outside-a-round-mass-is-exactly-newtons)'s exact tide the stretch
-along the line to the hole is $2G\matter M/r^3$: $1.8\times10^{13}\unit{s^{-2}}$ at a metre, where the ring is
-$1.15°$, "$1.2^\circ$". It falls to $1\unit{s^{-2}}$ at 26.3 km, where the ring is $25.5''$ and its rays pass $b_E =
-3.25$ m from the hole. There the pull is 1340 times the Earth's gravity, and a circular orbit runs at 18.6 km s⁻¹,
-once every 8.9 s (*checked here*, by
+along the line to the hole is $2G\matter M/r^3$: $1.8\times10^{13}\unit{s^{-2}}$ at a metre, where the ring is $1.15°$,
+"$1.2^\circ$". It falls to $1\unit{s^{-2}}$ at 26.3 km, where the ring is $25.5''$, the paper's "$26''$", and its rays
+pass $b_E = 3.25$ m from the hole. There the pull is 1340 times the Earth's gravity, and a circular orbit runs at
+18.6 km s⁻¹, once every 8.9 s (*checked here*, by
 [1.8](/tutorial/newton/orbits-and-kicks/#the-period-of-a-free-orbit-is-set-by-the-tide-where-it-runs)). The camera's
 axis, from the camera through the hole, turns with the orbit, so a patch of sky is in focus for
 $2\theta_E/(2\pi/8.9\unit{s}) = 0.35$ ms a turn, "a third of a millisecond" (*derived here*).
@@ -206,9 +208,9 @@ ten times farther, or less?
 [](/paper/#eq:beam) does the lens's sum by computation (*read now, derived in chapter 5.3*). A converter of gravitons
 into photons a metre across (chapter [R10b](/tutorial/glow/reading-section-ix/)) "would gather as much as the hole",
 whose dish is 1.14 m (*checked here*). The quantum half, an image formed from counted gravitons when each mode holds
-$10^{-30}$, is *stated in the paper*, and chapter
+"$10^{-30}$ gravitons or fewer", is *stated in the paper*, and chapter
 [R8](/tutorial/quantum/reading-the-quantum-limits/#read-ahead-a-counter-adds-no-noise-and-each-graviton-tells-about-one-bit)
-reads it.[^count]
+reads it.
 
 The near field's blur comes from Laplace's equation, the paper's [](/paper/#eq:evanescent) (*read now, derived in
 chapter [2.7](/tutorial/outside/evanescent/#the-same-fade-appears-for-every-field-that-obeys-laplaces-equation)*).
@@ -250,20 +252,22 @@ $$\begin{aligned}
 
 since the wave's tide is transverse, $\hat n_s\curv\tE_{sj} = 0$. For a wave from $-\hat n$ the sign of $\hat k$ flips,
 and the same combination is $-\curv\tE_{ij}$. So the half-sum $\tfrac12(\curv\tE_{ij} + \epsilon_{ipq}\hat
-n_p\curv\tB_{qj})$ keeps the wave from $\hat n$ and cancels the one from $-\hat n$.[^frontback] The sharpness is the
-paper's
+n_p\curv\tB_{qj})$ keeps the wave from $\hat n$ and cancels the one from $-\hat n$. A flat array "confuses $\hat n$ with
+its mirror image in the array's plane", and the half-sum keeps $\sin^8\alpha$ of that wave's power, with $\alpha$ the
+angle from the normal: 6% at $45°$ and 61% at $70°$ (chapter 5.3). The sharpness is the paper's
 
 {{paper eq:diffraction}}
 
 for an aperture of width $D$, and for a steady source one moving pixel synthesizes the aperture, as a radar does with
 one moving antenna (both *read now, derived in chapter 5.3*). The phase of thermal radiation wanders within $\hbar/\kB
-T = 2.6\times 10^{-14}$ s at 293 K, "about $3\times10^{-14}$ s" (*checked here*).[^pairs]
+T = 2.6\times 10^{-14}$ s at 293 K, "about $3\times10^{-14}$ s" (*checked here*), so an averaged image "needs pixels
+recording together, at least in pairs", as in radio astronomy (chapter 5.3).
 
 {{paper fig:array}}
 
-Arrays 2, 5 and 30 wavelengths wide give round-aperture patterns $29.8°$, $11.8°$ and $1.97°$ wide at half height
-(*checked here*, by 5.3).[^airy] The single pixel's curve is $51.6°$ wide, "some fifty degrees", and dips to $-0.15$
-at $59.5°$ (*read now, derived in chapter
+Arrays 2, 5 and 30 wavelengths wide give round-aperture patterns $29.8°$, $11.8°$ and $1.97°$ wide at half height, the
+caption's "scalar pattern of a round aperture" (*checked here*, by 5.3).[^airy] The single pixel's curve is $51.6°$
+wide, "some fifty degrees", and dips to $-0.15$ at $59.5°$ (*read now, derived in chapter
 [9.6](/tutorial/one-point/the-sky-at-one-point/#a-single-pixels-picture-of-the-sky-is-blurred-over-52)*).
 
 ::: try {#array}
@@ -376,30 +380,6 @@ At 1 kHz, $\bar\lambda = 47.7$ km, so $\Delta\phi = 3\mathcal C\bar\lambda/R = 1
   derives the bending $4GM/bc^2$ that every lens here rests on.
 :::
 
-[^pluto]: The paper's "some $10^{13}$ metres … beyond the orbit of Pluto" gives no radius. Since $f$ grows as $R^2$, a
-    lens 1.3 m in radius focuses at $1.0\times10^{13}$ m, 68 AU, beyond Pluto's 39.5 AU.
-
-[^steels]: The paper's reflection uses $\matter\mu = 80$ GPa. The steel of chapter 5.1, with $c_T = 3000\unit{m\,
-    s^{-1}}$ and 71 GPa, reflects $1.7\times10^{-23}$ of the amplitude and $2.8\times10^{-46}$ of the energy.
-
-[^mass]: The paper's "$1.36\times10^{23}\,\mathrm{kg}$ at $0.905\,\mathrm{K}$": that mass has $T_H = 0.902$ K, and
-    0.905 K needs $1.356\times10^{23}$ kg. The paper's own numbers for the hole come from $1.36\times10^{23}$ kg; they
-    differ from ours below their rounding (that mass gives a gain of 797, ours 795), and its "$25''$" is our $25.5''$
-    rounded down.
-
-[^count]: The paper's "count gravitons instead of recording noise" implies that a camera can count only after
-    combining the field. Section IX's pixel counts gravitons alone, with no combining. What combining buys is an image
-    formed from the counts (R8).
-
-[^frontback]: The paper's "even a flat array can tell front from back" holds only in part, near the array's normal. A
-    flat array confuses $\hat n$ not with $-\hat n$ but with its mirror image in the array's plane, and the half-sum
-    keeps $\sin^8\alpha$ of that wave's power, with $\alpha$ the angle from the normal: 6% at $45°$ and 61% at $70°$
-    (chapter 5.3).
-
-[^pairs]: The paper's "needs every pixel at the same moment": an averaged image needs only pairs of pixels recording
-    together, as in radio astronomy (chapter 5.3).
-
-[^airy]: The paper's caption calls each curve the power of its [](/paper/#eq:beam), "the pattern of a round aperture".
-    With $\Lambda(\hat n)$ in the sum, an unpolarized source gives that pattern times $(1 + 6\cos^2\theta +
-    \cos^4\theta)/8$, with $\theta$ the steering angle, so the widths are $28.5°$, $11.7°$ and $1.97°$. The figure
-    plots the round aperture's pattern alone.
+[^airy]: With $\Lambda(\hat n)$ in the sum, the power of the paper's [](/paper/#eq:beam) for an unpolarized source is
+    that pattern times $(1 + 6\cos^2\theta + \cos^4\theta)/8$, with $\theta$ the steering angle, so its widths are
+    $28.5°$, $11.7°$ and $1.97°$, "within five per cent in width".

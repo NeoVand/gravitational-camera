@@ -124,7 +124,7 @@ $\sym{angular-size}{\theta} = R/r$ is its angular size, a pure number. The units
 $G\matter{\bar\rho}$ is $\mathrm{m^3\,kg^{-1}\,s^{-2}} \times \mathrm{kg\,m^{-3}} = \mathrm{s^{-2}}$. Writing the
 mass of a ball as $\tfrac43\pi R^3\matter{\bar\rho}$ turns the left side into the right
 ([1.4](/tutorial/newton/tides/#tidal-brightness-is-density-times-the-cube-of-angular-size), *checked here*). The
-paper's "magnitude" here is the stretch, the eigenvalue of the tide that is largest in size, and not the length of the
+paper's "stretch along the line to it" is the eigenvalue of the tide that is largest in size, not the length of the
 whole table that chapter 1.5 gives every tide.
 
 "A person one metre away … outweighs the Moon in the camera's view some fifty thousand times." Chapter 1.4 treats a
@@ -159,13 +159,13 @@ $\vartheta = 54.74°$, the caption's "$54.7^\circ$", and averages to zero over t
 around the camera is invisible to it" (1.5, *checked here*).
 
 "The integral starts a short distance $r_{\min}$ from the camera (a quarter of a metre in the scenes of this paper),
-since matter at the camera itself would make $S$ diverge logarithmically, although not $\tE_{ij}$." Near the pixel each
-line of sight adds the local density times $\dd r/r$, which grows without limit as $r_{\min}$ shrinks, while the
-trace-free weight averages the nearby matter away
+since matter at the camera itself would make $S$ diverge logarithmically, although, for a smooth density, not
+$\tE_{ij}$." Near the pixel each line of sight adds the local density times $\dd r/r$, which grows without limit as
+$r_{\min}$ shrinks, while the trace-free weight averages the nearby matter away
 ([2.3](/tutorial/outside/multipoles/#at-the-cameras-own-place-the-tide-stays-finite-while-the-tidal-column-grows-without-limit),
-*checked here*). The tide stays finite inside smooth matter such as air and only jumps across a smooth face of a solid,
-but at a sharp edge or corner of a solid some entries off the diagonal grow like the logarithm of one over the distance
-to the edge (2.3's margin note).
+*checked here*). The tide stays finite inside smooth matter such as air and only jumps across a smooth face of a solid;
+at a sharp edge or corner of a solid, where the density is not smooth, some entries off the diagonal grow like the
+logarithm of one over the distance to the edge (2.3's margin note).
 
 "A single pixel measures only five numbers, the quadrupole of $S$ over the whole sky": each entry of the tidal weight
 is a pattern of degree two on the sky, so a pixel reads the five coefficients of degree two of $S$ and nothing else
@@ -254,11 +254,12 @@ smooth function in $\mathrm{J\,kg^{-1}}$ that vanishes outside the body together
 **confined**), "changes the potential by $\psi$ and so changes nothing outside" [@YurtseverMarzbanMeila2011]
 ([2.5](/tutorial/outside/null-space/#a-confined-laplacian-added-to-a-body-changes-nothing-outside), *checked here*).
 
-"Ordinary positive densities $\rho_0 \pm \epsilon\,\delta\rho$ make such pairs out of real matter", where $\epsilon$ is
-a pure number. For chapter 2.5's steel ball of radius 10 cm and density $\matter\rho_0 = 7850\unit{kg\,m^{-3}}$, with
-$\field\psi = A(1 - r^2/R^2)^2$ and $A = \pi GR^2\matter\rho_0/3$, $\epsilon = 1$ is the largest value that keeps both
-densities positive, and there the balls reach $13{,}100$ and $15{,}700\unit{kg\,m^{-3}}$ (*checked here*). The word
-"ordinary" holds for small $\epsilon$: at $\epsilon = 0.1$ both balls stay within 10 per cent of steel's density.
+"Ordinary positive densities $\rho_0 \pm \epsilon\,\delta\rho$, for small $\epsilon$, make such pairs out of real
+matter", where $\epsilon$ is a pure number. For chapter 2.5's steel ball of radius 10 cm and density
+$\matter\rho_0 = 7850\unit{kg\,m^{-3}}$, with $\field\psi = A(1 - r^2/R^2)^2$ and $A = \pi GR^2\matter\rho_0/3$,
+$\epsilon = 1$ is the largest value that keeps both densities positive, and there the balls reach $13{,}100$ and
+$15{,}700\unit{kg\,m^{-3}}$, positive but no longer steel (*checked here*). At $\epsilon = 0.1$ both balls stay within
+10 per cent of steel's density.
 
 "The tidal column is therefore a rendering of a known scene … and not a quantity the camera could reconstruct uniquely",
 because the two balls of a pair have different tidal columns but the same field outside (2.5, *checked here*). "The
@@ -291,9 +292,9 @@ inside the body, and $\field\psi$ is confined. That the two parts are orthogonal
 *checked here*
 ([2.5](/tutorial/outside/null-space/#every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see)).
 That together they make up every density is the step that 2.5 sketched and the paper takes from Isakov's book
-[@Isakov1990] (*stated in the paper*). The paper's condition, a body "whose outside is connected", is what lets "the
-field outside" fix $\matter\rho_h$ "completely", since a camera outside cannot reach into a sealed hollow; the split
-itself holds in any bounded body (2.5's gap box).
+[@Isakov1990] (*stated in the paper*). The split holds "in any bounded body"; the condition "for a body whose outside is
+connected" is what lets "the field outside" fix $\matter\rho_h$ "completely", since a camera outside cannot reach into
+a sealed hollow (2.5's gap box).
 
 "The potential outside is built from the moments $\int\rho\,h\,\dd V$ of the density against functions $h$ harmonic in
 the body" ([2.3](/tutorial/outside/multipoles/#outside-a-body-the-potential-is-a-list-of-moments), *checked here*).
@@ -418,10 +419,10 @@ is $4\pi\vect V$, zero outside, and a gradient has no curl
 here*).
 
 "Every confined flow that is the same all round an axis and turns in its meridian planes, such as the simplest
-convection rolls inside a star or a planet's core, is of this form: it is silent outside, however fast it runs." A
-**meridian plane** contains the axis, and such a flow is a set of **rolls** in those planes
-([2.8](/tutorial/outside/flows/#every-steady-flow-round-an-axis-is-a-swirl-plus-rolls), *checked here*). "Of this
-form" needs a body without a hole through it, although the rolls are silent in a body of any shape (2.8's margin
+convection rolls inside a star or a planet's core, is of this form in a body without a hole through it: it is silent
+outside, however fast it runs." A **meridian plane** contains the axis, and such a flow is a set of **rolls** in those
+planes ([2.8](/tutorial/outside/flows/#every-steady-flow-round-an-axis-is-a-swirl-plus-rolls), *checked here*). In a
+body with a hole through it the flow need not be of this form, but the rolls are silent all the same (2.8's margin
 note), and "however fast" holds to first order in $v/c$.
 
 "Of such a flow only the swirl about the axis shows, and only through its harmonic part." The **swirl** is the part

@@ -346,8 +346,8 @@ body of radius $R$ acquires
 $$\matter Q_{ij} = -\frac{\sym{love-number}{k_2}\,R^5}{G}\,\curv{\tE}_{ij} , \label{eq:love}$$
 
 and the pure number $k_2$ is the body's **Love number**. The paper writes the same rule for the trace-free second
-moment, $\int\matter\rho(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$, which is a third of $\matter Q_{ij}$: "a quadrupole
-$\tfrac13k_2R^5/G$ times the applied tide". The minus sign makes a body yield toward a stretch, since a negative
+moment, $\int\matter\rho(x_ix_j - \tfrac13r^2\delta_{ij})\,\dd V$, which is a third of $\matter Q_{ij}$: that moment is
+"$-\tfrac13 k_2R^5/G$ times the applied tide". The minus sign makes a body yield toward a stretch, since a negative
 $\curv{\tE}_{zz}$ stretches along $z$ and the body grows longer along $z$.
 
 **Why this quantity.** The tide's potential near the body's centre is $\tfrac12\curv{\tE}_{ij}x_ix_j$ (chapter 2.3), and
@@ -514,10 +514,9 @@ factor cancels in $T$.[^scale] The thermometer gives $T = \omega S_Q/2\kB\nu\ome
 {{paper eq:hole-thermometer}}
 
 the Hawking temperature. With the paper's $S_Q = \hbar r_s^5/360\pi G$ and $\nu = \matter Mr_s^5/90c^3$, the ratio
-$S_Q/\nu$ is $\hbar c^3/4\pi G\matter M$, as the equation says. The paper's hole of $1.36\times10^{23}\unit{kg}$, about
-twice the Moon's mass, is at 0.902 K. To the three figures of its mass, that is the 0.905 K that the paper's
-[](/paper/#eq:graviton-temperature) predicts for gravitons left from the early universe: the hole is as warm as the sky
-round it. Chapter
+$S_Q/\nu$ is $\hbar c^3/4\pi G\matter M$, as the equation says. The paper's hole of $1.356\times10^{23}\unit{kg}$,
+about twice the Moon's mass, is at 0.905 K, the temperature that the paper's [](/paper/#eq:graviton-temperature)
+predicts for gravitons left from the early universe: the hole is as warm as the sky round it. Chapter
 [4.5](/tutorial/response/causality/#a-blow-holds-every-frequency-and-the-energy-it-leaves-is-the-same-total) showed its
 response, Figure [](/paper/#fig:hole-response), and chapter
 [13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)

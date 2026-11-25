@@ -134,10 +134,10 @@ at high sensitivity, because the image of a point is wider than $\pi/q_c$": the 
 $10^3$, but 2.6° against 3.4° at $10^{30}$, since $4.43 > \pi$ (3.7, *checked here*). That geophysicists and
 acousticians meet the same limit is *stated in the paper*.
 
-The paragraph [*A flown gradiometer*](/paper/#par:a-flown-gradiometer) reads the law on GOCE. The satellite flew at
-$z = 254\unit{km}$ for most of its four years, from 2009 to 2012, and was then lowered in steps to 224 km by 2013;
-the paper puts all four years at 254 km.[^goce] Its map "runs out of signal between spherical harmonic degrees
-$\ell = 280$ and $300$" (*stated in the paper*). A pattern of **degree** $\ell$ on a sphere of radius $R$ has crests about
+The paragraph [*A flown gradiometer*](/paper/#par:a-flown-gradiometer) reads the law on GOCE. The satellite flew
+for four years, "three of them at a height of $z = 254\,\mathrm{km}$", from 2009 to 2012, and was then lowered in steps
+to 224 km by 2013. Its map "runs out of signal between spherical harmonic degrees $\ell = 280$ and $300$" (*stated in
+the paper*). A pattern of **degree** $\ell$ on a sphere of radius $R$ has crests about
 $2\pi R/\ell$ apart, so on the ground $k = \ell/R$
 ([2.2](/tutorial/outside/spherical-harmonics/#a-pattern-of-degree-ell-has-features-about-piell-wide)). With
 $R = 6371\unit{km}$,
@@ -149,8 +149,8 @@ to four thousand", and $4.43/q_c$ is 22.7° to 21.2°, "$21^\circ$ to $23^\circ$
 the blur is $4.43\,z/q_c$, 101 to 94 km, "a hundred kilometres … seen from two and a half times as high". At 224 km
 the same degrees give a blur of 24° to 26°, still the table's first row.
 
-In the paper's figure of two buried masses, the caption's "best reconstruction of the masses that the noise allows" is
-the best *linear* one, the Wiener filter
+In the paper's figure of two buried masses, the caption's "best linear reconstruction of the masses that the noise
+allows" is the Wiener filter
 ([3.5](/tutorial/noise/wiener-filter/#a-linear-guess-cannot-keep-mass-positive-and-with-a-white-prior-it-is-harmonic)).
 "The bar is the blur, $0.21\,z$": for a row at $10^6$, $3.79/17.84 = 0.212$, and the exact width is 0.2118 (3.5, 3.7,
 *checked here*). "Its ripples are the price of discarding the detail that noise has swamped": the picture dips to
@@ -261,18 +261,18 @@ from the singular values of the **design matrix**, whose columns are the reading
 [3.5](/tutorial/noise/wiener-filter/#many-unknowns-are-guessed-together-with-the-same-formula), *checked here*). Summed
 over the twelve cells that cover the front of a safe, its standard deviation is 729 kg.
 
-The paper gives two reasons. The first holds: "the array is a small camera in the sense of Eq.
+The paper gives two reasons. The first: "the array is a small camera in the sense of Eq.
 [](/paper/#eq:handheld)". With the camera's width $D = 1\unit{m}$ and $r = 3.5\unit{m}$, $2r/D = 7$ and
 
 $$\begin{gathered}\ell_{\max} = 2 + \frac{\ln 10^3}{\ln 7} = 2 + \frac{6.91}{1.95} = 5.55,\\ \Delta\theta = \frac{\pi}{5.55} = 32.4° ,\end{gathered}$$
 
-or 1.98 m at 3.5 m, against the paper's "about $33^\circ$, two metres"
-([2.3](/tutorial/outside/multipoles/#round-the-camera-distant-matter-makes-a-sum-of-growing-harmonics), *checked here*);
-"about $32^\circ$" would match. That is wider than the 1.4 m of floor between the safes. The second reason, "a broad
-layer of mass has no tidal field at all", is true of an endless layer under a flat camera, but the $\pm730$ kg does not
-come from there.[^layer] It comes from the fine patterns that move mass between neighbouring cells, which the data
-cannot reach: 177 kg of noise let in and 707 kg of the prior's doubt left behind, $\sqrt{177^2 + 707^2} = 729\unit{kg}$
-([3.5](/tutorial/noise/wiener-filter/#many-unknowns-are-guessed-together-with-the-same-formula), *checked here*).
+or 1.98 m at 3.5 m, the paper's "about $32^\circ$, two metres"
+([2.3](/tutorial/outside/multipoles/#round-the-camera-distant-matter-makes-a-sum-of-growing-harmonics), *checked here*).
+That is wider than the 1.4 m of floor between the safes. The second: "most of the uncertainty lies in fine patterns of
+mass that the data do not reach". These are the patterns that move mass between neighbouring cells; through them 177
+kg of noise is let in and 707 kg of the prior's doubt is left behind, $\sqrt{177^2 + 707^2} = 729\unit{kg}$
+([3.5](/tutorial/noise/wiener-filter/#many-unknowns-are-guessed-together-with-the-same-formula), *checked here*). A
+uniform layer, by contrast, is among the best-measured patterns there.[^layer]
 
 ::: derivation
 ### Appendix A's four other numbers
@@ -281,8 +281,9 @@ The posterior's spread is $\pm489$ kg at $10^6$ for the metre-wide array, "$\pm4
 metres across, "$\pm350$". They "belong to the array and the noise, not to the data", because 3.5's posterior
 covariance never contains the readings.
 
-Gold 0.2 m farther back and heavier by $(4.096/3.916)^3 = 1.144$, "14% heavier", raises as strong a tide at the
-array's centre; an equal pull, the paper's words, would need the square, 1.094. At $10^3$ its readings lie 6.9 noise
+Gold 0.2 m farther back and "14% heavier, so as to raise the same tide at the array's centre": the factor is
+$(4.096/3.916)^3 = 1.144$, since the tide falls as the cube of the distance; an equal pull would need only
+$(4.096/3.916)^2 = 1.094$. At $10^3$ its readings lie 6.9 noise
 standard deviations from the true gold's, so it is "told apart".
 
 Turning the arrays through 70° raises the separation of the two safes by a factor of 1.087 for the metre-wide one,
@@ -292,30 +293,31 @@ Turning the arrays through 70° raises the separation of the two safes by a fact
 ## Positivity alone weighs the gold to $315 \pm 20$ kg
 
 The paragraph [*The positivity of mass*](/paper/#par:the-positivity-of-mass) adds the fact the Gaussian image lacks:
-mass is never negative. It says that a Gaussian image allows "minus five hundred kilograms of gold beside one holding
-plus five hundred". Two such neighbouring cells would move the readings by $D = 35$, which the camera sees plainly.
-What hides is a scene of three parts whose masses add to nearly zero: $+500$ kg in the safe's twelve cells, $-903$ kg
-spread thinly over 111 cells round it, and $+394$ kg over 108 others. It moves the readings by only $D = 0.17$, and no
-linear image can forbid it ([3.9](/tutorial/noise/positivity/#a-linear-image-cannot-use-the-sign-of-mass), *checked
-here*).
+mass is never negative. It says that a Gaussian image allows "plus five hundred kilograms of gold with minus five
+hundred spread round it". The spreading matters: two neighbouring cells of $+500$ and $-500$ kg would move the readings
+by $D = 35$, which the camera sees plainly. What hides is a scene of three parts whose masses add to nearly zero: $+500$
+kg in the safe's twelve cells, $-903$ kg spread thinly over 111 cells round it, and $+394$ kg over 108 others. It moves
+the readings by only $D = 0.17$, and no linear image can forbid it
+([3.9](/tutorial/noise/positivity/#a-linear-image-cannot-use-the-sign-of-mass), *checked here*).
 
 **Non-negative least squares** finds the scene with the smallest misfit among those with no negative mass, and uses no
 prior ([3.9](/tutorial/noise/positivity/#non-negative-least-squares-keeps-only-the-masses-the-data-need), *checked
 here*). It puts $315 \pm 20$ kg in the right safe and $0.3 \pm 2.0$ kg in the left (the mean and the spread over the
-noise), the paper's "$316 \pm 20\,\mathrm{kg}$ … and almost nothing in the left".[^draws] At $10^4$ the right safe
-holds $327.6 \pm 0.7$ kg, the paper's "$328 \pm 1$". "The small excess" of 3.3 kg comes mostly from the bar's centre
-falling between the points of the grid (3.9, *checked here*).
+noise), the paper's "$315 \pm 20\,\mathrm{kg}$ … and almost nothing in the left".[^draws] At $10^4$ the right safe holds
+$327.6 \pm 0.7$ kg, the paper's "$328 \pm 1$" (Appendix A's "$327.6 \pm 0.6$", over fewer draws). "The small excess" of
+3.3 kg comes mostly from the bar's centre falling between the points of the grid (3.9, *checked here*).
 
-"A scene made of a few compact masses is resolved down to separations that shrink as a power of the sensitivity … not
-as its logarithm." Chapter
-[3.9](/tutorial/noise/positivity/#positivity-resolves-as-a-power-of-the-sensitivity-not-its-logarithm) showed why:
-among positive scenes, a small measured spread of mass forces the mass to lie near one point, so the separation that
-decides one mass or two scales as $z/\sqrt{\mathcal R}$ (*checked here*, as a sketch). Drawing the two apart improves
-more slowly, about as the cube root of the sensitivity, from $0.14\,z$ at $10^3$ to $0.016\,z$ at $10^6$. The paper
-calls this "the mathematics of super-resolution of positive sources" (*stated in the paper*). What is proved is that
-positive point sources on a fine grid are recovered stably by a positive fit, with no minimum separation as long as
-not too many crowd together.[^superres] "The logarithmic law … is the limit for a scene crowded with mass", and "the
-electrostatic analogue, whose charges have two signs, does not have" this prior (3.9, *checked here*).
+"A scene made of a few compact masses is resolved down to separations that shrink as a power of the sensitivity … not as
+its logarithm." Chapter
+[3.9](/tutorial/noise/positivity/#positivity-resolves-as-a-power-of-the-sensitivity-not-its-logarithm) showed why: among
+positive scenes, a small measured spread of mass forces the mass to lie near one point, so the separation that decides
+one mass or two scales as $z/\sqrt{\mathcal R}$ (*checked here*, as a sketch). Drawing the two apart improves more
+slowly, about as the cube root of the sensitivity, from $0.14\,z$ at $10^3$ to $0.016\,z$ at $10^6$. The paper calls
+this "the mathematics of super-resolution of positive sources" [@MorgenshternCandes2016], "and of sparse ones"
+[@Donoho1992] (*stated in the paper*). What Morgenshtern and Candès proved is that positive point sources on a fine grid
+are recovered stably by a positive fit, with no minimum separation as long as not too many crowd together.[^superres]
+"The logarithmic law … is the limit for a scene crowded with mass", and "the electrostatic analogue, whose charges have
+two signs, does not have" this prior (3.9, *checked here*).
 
 ## The zeros of the shear give a thin layer's size, with no image at all
 
@@ -375,14 +377,15 @@ $1.9^\circ$".
 
 The second paragraph holds a mass $m$ behind a wall "in a superposition of two places a distance $d$ apart", a quantum
 state that holds both places at once (*read now, derived in Part 8*, chapter 8.1). "The two branches differ in their
-quadrupole, about $md^2$", because the centre of mass cannot move (2.3, *checked here*). How the puzzle resolves is
+quadrupole, by about $md^2$ when the body that recoils is centred on the mass", because the centre of mass cannot move
+(2.3, *checked here*). How the puzzle resolves is
 *stated in the paper*, and that a perfect camera is "a perfect source of decoherence" is *read now, derived in Part
 13* (chapter [13.8](/tutorial/what-a-field-keeps/holography/#gravity-cannot-decohere-a-ball-and-a-shell)).
 
 ## A near-field picture holds a few dozen bits for each patch of its scene
 
 The paragraph [*The information in a near-field image*](/paper/#par:the-information-in-a-near-field-image) asks how
-many bits the data carry about the scene, "the one Shannon asked of a telegraph line".[^shannon] "A real signal in
+many bits the data carry about the scene, "the one Shannon asked of a noisy channel". "A real signal in
 Gaussian noise with power ratio $s^2$ carries at most $\tfrac12\log_2(1+s^2)$ bits", reached when the signal is itself
 Gaussian ([3.8](/tutorial/noise/bits/#one-number-read-through-gaussian-noise-carries-at-most-tfrac12log_21-s2-bits),
 *checked here*). Adding this over the independent ripples, $q\,\dd q/2\pi$ real numbers per area $z^2$, gives the
@@ -402,8 +405,8 @@ integral's 37.9 at $10^3$, 2.9% low, and 751 against 754 at $10^{10}$, 0.36% low
 
 "The patterns that survive the noise are the components with $q < q_c$, and there are $q_c^2/4\pi$ of them per area
 $z^2$": 8.6 at $10^3$. A **pattern** is a ripple the camera keeps. Each carries on average $(q_c/3 - \tfrac12)/\ln2 =
-4.3$ bits, "about nine patterns of four bits each" (3.8, *checked here*). This average is the mean of $\log_2s$ over
-the patterns, which the paper writes as the mean of $2\log_2s$; the numbers it prints are right.[^mirror]
+4.3$ bits, "about nine patterns of four bits each" (3.8, *checked here*). This average is "the mean of $\log_2 s$ over
+them".[^mirror]
 
 The rest of the paragraph is numbers, all from the integral: 200.9 bits at $10^6$, "200 bits"; $1.55\times10^4$ at
 $10^{30}$, "$1.6\times10^4$"; and $1.78\times10^5$ bits at $10^{70}$, which is 22.3 kilobytes of 8000 bits, spread over
@@ -442,9 +445,10 @@ and "the number of patterns resolved is counted per area $z^2$" (3.9, *checked h
 metrics for a mass inside a sphere of sensors are *stated in the paper*, but one part can be checked. Near the sensors
 the tidal metric weighs a step in depth by 4 and a step across by 10, so a step across counts $5/2$ times as much.
 Chapter 3.9's flat array has the Fisher metric $\mathcal R^2(\tfrac52\,\dd x_0^2 + \tfrac52\,\dd y_0^2 + \dd
-z^2)/z^2$, with the same ratio (3.3, 3.9, *checked here*). The last sentence, that the harmonic measure of the sphere
-"has the hyperbolic metric exactly", is *stated in the paper*; it holds exactly in two dimensions, but in three the weights
-along and across the radius differ, by 10% at 0.6 of the radius.[^itoh]
+z^2)/z^2$, with the same ratio (3.3, 3.9, *checked here*). The last sentence gives the harmonic measure of the sphere
+"a metric of the same kind", whose weights along and across the radius differ, by 10% at 0.6 of the radius, and says
+that the Poisson kernel of hyperbolic space, "which coincides with it only in two dimensions, has the hyperbolic metric
+exactly" (*stated in the paper*).[^itoh]
 
 The section ends: "The near field is where everyday things are visible, and it can never be sharp. Sharp images need
 waves." The first sentence is the blur law of 3.7 (*checked here*); the second is Part 5's, read in R5.
@@ -611,13 +615,13 @@ close to the 38 of a patch: a simple scene spends nearly the whole budget on fou
 
 Reproduce the numbers of *A worked case*: the 1.8 standard deviations and 18% at $\SNR = 10$, the ratio 34 for one
 error in a thousand, and the small camera's blur from the paper's equation [](/paper/#eq:handheld), against the
-paper's "about $33^\circ$, two metres".
+paper's "about $32^\circ$, two metres".
 
 ::: solution
 The two safes' predictions lie $D = 1.81$ noise standard deviations apart at $\SNR = 10$, so $P(Z > 0.906) = 0.183$.
 Since $D = 0.181\,\SNR$, one error in a thousand, $D = 6.18$, needs $\SNR = 34.1$. With $2r/D = 7$, $\ell_{\max} = 2 +
-\ln10^3/\ln7 = 5.55$, and $\pi/5.55 = 0.566$ radians $= 32.4°$, 1.98 m at 3.5 m. The paper rounds this to "about
-$33^\circ$"; its two metres stand.
+\ln10^3/\ln7 = 5.55$, and $\pi/5.55 = 0.566$ radians $= 32.4°$, 1.98 m at 3.5 m: the paper's "about $32^\circ$" and
+its two metres.
 :::
 :::
 
@@ -652,12 +656,8 @@ $33^\circ$"; its two metres stand.
   regularization and positivity, the three ideas of this part.
 :::
 
-[^sparrow]: It is 2% wider at $10^3$ and 4% at $10^{60}$. The caption says so "as for any image formed in
-    amplitude"; that holds for the round pupil's $2J_1(x)/x$, but a Gaussian picture's Sparrow separation is below its
-    full width (3.7).
-
-[^goce]: The paper's "between 0.01 and 0.02 E in a second" reads a noise density of 10 to
-    $20\unit{mE\,Hz^{-1/2}}$ as a one-second noise, which is $\sqrt2$ quieter (3.2's practice problem).
+[^sparrow]: It is 2% wider at $10^3$ and 4% at $10^{60}$, "as for the Airy amplitude", the round pupil's
+    $2J_1(x)/x$. Not every picture behaves so: a Gaussian picture's Sparrow separation is below its full width (3.7).
 
 [^code]: The numbers of the worked case and the capstone come from the paper's reference code,
     `reference/gravcam/inversion.py`, which follows Appendix A, as in 3.9.
@@ -666,20 +666,15 @@ $33^\circ$"; its two metres stand.
     best-measured patterns, with 0.94 of the largest whitened gain
     ([3.4](/tutorial/noise/symmetric-matrices/#for-a-flat-array-the-patterns-are-ripples)).
 
-[^draws]: Appendix A says "over forty draws of the noise". Forty cannot pin a spread of 20 kg: with the reference
-    code's seed, the first ten sets of forty give means of 312 to 318 kg and spreads of 14.5 to 45 kg. The printed
-    $316 \pm 20$ needs thousands of draws.
+[^draws]: Appendix A takes these "over three thousand draws of the noise". Forty would not pin a spread of 20 kg:
+    with the reference code's seed, the first ten sets of forty give means of 312 to 318 kg and spreads of 14.5 to
+    45 kg.
 
-[^superres]: Section IV cites Donoho and Candès with Fernandez-Granda, whose theorems allow sources of either
-    sign. The theorem for positive sources on a grid is Morgenshtern and Candès's [@MorgenshternCandes2016], which
-    Section IV does not cite; 3.9's *Go deeper* gives its conditions.
-
-[^shannon]: The bound used here is Shannon's for a continuous signal in white Gaussian noise; the telegraph was his
-    example of a discrete channel (3.8).
+[^superres]: Donoho's theorem allows sources of either sign, but needs few of them in each window about one blur
+    wide; 3.9's *Go deeper* gives the conditions of both.
 
 [^mirror]: Each real number carries $\tfrac12\log_2(1 + s^2) \approx \log_2s$ bits, and $q_c^2/4\pi$ counts real
-    numbers. The paper's $2\log_2s$ is the content of a ripple and its mirror together, and there are half as many
-    such pairs (3.8).
+    numbers. A ripple and its mirror together carry $2\log_2s$, and there are half as many such pairs (3.8).
 
 [^itoh]: The harmonic measure seen from a point inside a ball, the skin of balayage of
     [2.4](/tutorial/outside/greens-functions/#on-a-sphere-kelvins-image-gives-the-potential-inside-and-the-skin-of-balayage),

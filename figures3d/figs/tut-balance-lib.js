@@ -20,8 +20,8 @@
 //    asserted against the derivative of x nbar's energy; Debye's 3 / x_D^3 int_0^x_D x^4 e^x dx / (e^x - 1)^2 by
 //    Simpson's rule, 0.16 for diamond (2200 K) and 0.93 for copper (343 K) at 293 K, tending to 1 when hot and to
 //    (4 pi^4 / 5) (T / Theta_D)^3 when cold;
-//  - the hole: T_H = hbar c^3 / 8 pi G M k_B, 0.902 K for 1.36 x 10^23 kg and 0.905 K for 1.356 x 10^23 kg, and
-//    C = -M c^2 / T_H = -hbar c^5 / 8 pi G k_B T_H^2, -1.35 x 10^40 J/K at both (the chapter's -1.4 x 10^40).
+//  - the hole: T_H = hbar c^3 / 8 pi G M k_B, 0.905 K for the paper's 1.356 x 10^23 kg, and
+//    C = -M c^2 / T_H = -hbar c^5 / 8 pi G k_B T_H^2, -1.35 x 10^40 J/K.
 import { HBAR } from './tut-quantum-lib.js';
 import { KB, G } from './tut-osc-lib.js';
 import { C } from './tut-metric-lib.js';
@@ -64,7 +64,7 @@ export function debye(t) {
 export const DIAMOND = { T: 293, theta: 2200 }, COPPER = { T: 293, theta: 343 };
 
 // ---- the black hole ---------------------------------------------------------------------------------------------
-export const HOLE = 1.36e23, HOLE_EXACT = 1.356e23;          // kg: the paper's mass, and the mass it rounds
+export const HOLE = 1.356e23;                                // kg: the paper's mass
 /** The Hawking temperature of the mass M, K. */
 export const hawking = (M) => (HBAR * C ** 3) / (8 * Math.PI * G * M * KB);
 /** The heat capacity -M c^2 / T_H at the Hawking temperature T, with M = hbar c^3 / 8 pi G k_B T, J/K. */
@@ -164,13 +164,11 @@ export async function chapter(check) {
 	// ---- the hole
 	has('$$\\boxed{C = \\frac{\\dd(\\matter Mc^2)}{\\dd T_H} = -\\frac{\\matter Mc^2}{T_H}} .$$', 'the hole\'s heat capacity');
 	has('its Hawking temperature $T_H = \\hbar c^3/8\\pi G\\matter M\\kB$', 'the Hawking temperature');
-	has('Section VII\'s hole of $1.36\\times10^{23}$ kg is at 0.902 K,[^hole] with $C = -1.4\\times10^{40}\\unit{J\\,K^{-1}}$', 'the hole\'s numbers');
-	has('The heat capacity is $-1.35\\times10^{40}\\unit{J\\,K^{-1}}$ either way.', 'the margin note\'s heat capacity');
+	has('Section VII\'s hole of $1.356\\times10^{23}$ kg is at 0.905 K, with $C = -1.35\\times10^{40}\\unit{J\\,K^{-1}}$', 'the hole\'s numbers');
 	const hole = { T: hawking(HOLE), C: (-HOLE * C * C) / hawking(HOLE) };
-	check(hole.T.toFixed(3) === '0.902' && hawking(HOLE_EXACT).toFixed(3) === '0.905', `the hole's temperature ${hole.T}`);
+	check(hole.T.toFixed(3) === '0.905', `the hole's temperature ${hole.T}`);
 	check(near(holeC(hole.T), hole.C, 1e-12 * Math.abs(hole.C)), 'C = -M c^2 / T_H is not -hbar c^5 / 8 pi G k_B T^2');
-	check((hole.C / 1e40).toFixed(2) === '-1.35' && (hole.C / 1e40).toFixed(1) === '-1.4', `the hole's C ${hole.C}`);
-	check(((-HOLE_EXACT * C * C) / hawking(HOLE_EXACT) / 1e40).toFixed(2) === '-1.35', 'the exact mass\'s C');
+	check((hole.C / 1e40).toFixed(2) === '-1.35', `the hole's C ${hole.C}`);
 
 	/** Whether the diagram `name` is drawn (its figure line, with the caption `caption`) or still planned (its comment). */
 	const state = (name, id, caption) => {

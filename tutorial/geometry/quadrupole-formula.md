@@ -11,7 +11,7 @@ depth: A
 ---
 
 The paper's [Section V](/paper/#sec:waves) says that "two masses of one kilogram each, one metre apart, spun sixteen
-times a second, send out a power of $4.5\times10^{-41}$ watts",[^rounding] about one graviton, the smallest packet of
+times a second, send out a power of $4.6\times10^{-41}$ watts",[^rounding] about one graviton, the smallest packet of
 wave energy, every fifteen years. Its [Section XI](/paper/#sec:vistas) follows two black holes in orbit, whose field
 turns rigidly with them close by and winds into a spiral far away. Both rest on the paper's
 
@@ -494,8 +494,9 @@ often a graviton, of energy $\hbar\omega$, leaves.
 
 ::: solution
 The square of the table is 6, so [](#eq:power) gives $P = (6G/5c^5)\,\omega^6(1.42\times10^{-16}\unit{kg\,m^2})^2 =
-4.9\times10^{-55}$ W. A graviton of $\hbar\omega = 1.0\times10^{-29}$ J then leaves every $6.5\times10^{17}$ years, the
-paper's "$7\times10^{17}$", fifty million times the age of the universe.
+4.9\times10^{-55}$ W. A graviton of $\hbar\omega = 1.0\times10^{-29}$ J then leaves every $6.5\times10^{17}$ years,
+fifty million times the age of the universe. At the exact note of 12.6 kHz (chapter 4.3), since the time per
+graviton grows as $\omega^{-3}$, it is about $1.1\times10^{18}$ years, the paper's "time of order $10^{18}$ years".
 :::
 
 ### Stretch
@@ -529,7 +530,7 @@ and the turning table gives $4.55\times10^{-41}$ W at $\Omega = 100.5\unit{s^{-1
   [](/paper/#eq:dumbbell), [](/paper/#eq:unresolved), [](/paper/#eq:wave-zone) and [](/paper/#eq:rotor-amplitudes);
   *What does not radiate*; Figure [](/paper/#fig:quadrupole).
 - [Section III](/paper/#sec:regimes): the near zone, the wave zone and "matter is slow".
-- [Section IV](/paper/#sec:near-field): the ringing ball's "one graviton in $7\times10^{17}$ years".
+- [Section IV](/paper/#sec:near-field): the ringing ball's "one graviton in a time of order $10^{18}$ years".
 - [Section VIII](/paper/#sec:one-pixel), [*The absence of gravitational
   aberration*](/paper/#par:the-absence-of-gravitational-aberration): the present positions to order $(kr)^2$, and Figure
   [](/paper/#fig:present).
@@ -555,8 +556,8 @@ and the turning table gives $4.55\times10^{-41}$ W at $\Omega = 100.5\unit{s^{-1
 - M. Maggiore, *Gravitational Waves*, vol. 1 (Oxford, 2008), chapter 3: the formula, the sky integrals and the rotor.
 :::
 
-[^rounding]: The paper's [](/paper/#eq:dumbbell) gives $4.55\times10^{-41}$ W, as [the power
-    section](#the-power-is-set-by-the-third-derivative-of-the-quadrupole) finds, so the paper's 4.5 should read 4.6.
+[^rounding]: [The power section](#the-power-is-set-by-the-third-derivative-of-the-quadrupole) finds
+    $4.55\times10^{-41}$ W from the paper's [](/paper/#eq:dumbbell), which the paper rounds to 4.6.
 
 [^n]: As in the paper's Sections V and XI; elsewhere its $\hat n$ points from the pixel toward the source. $\Lambda$ is
     the same for both.
@@ -571,9 +572,10 @@ and the turning table gives $4.55\times10^{-41}$ W at $\Omega = 100.5\unit{s^{-1
     $-(G\matter m^2/d)\hat u_k\hat u_l$, the rod's $-Fd\,\hat u_k\hat u_l$, since $G\matter m^2/d^2 = \matter
     m\Omega^2d/2$.
 
-[^wavezone]: The paper says "outside the near zone". Near $r = \lambda/2\pi$ the terms in $1/r^2$ and $1/r^3$ of [the
-    all-zone solution](#one-solution-runs-from-newtons-pull-near-the-source-to-the-wave-far-away) are as large as the
-    term in $1/r$, so the formula holds in the wave zone, $r \gg \lambda/2\pi$.
+[^wavezone]: The paper states it "in the wave zone, $r \gg \lambda/2\pi$". Near $r = \lambda/2\pi$ the terms in
+    $1/r^2$ and $1/r^3$ of [the all-zone
+    solution](#one-solution-runs-from-newtons-pull-near-the-source-to-the-wave-far-away) are as large as the term in
+    $1/r$.
 
 [^dipole]: The two moments below the quadrupole cannot radiate: the mass $\matter M$ does not change, and the second
     derivative of $\matter M\vect x_{\rm cm}$ is the rate of change of the total momentum, which is zero.
@@ -584,13 +586,13 @@ and the turning table gives $4.55\times10^{-41}$ W at $\Omega = 100.5\unit{s^{-1
 [^sky]: So $\oint\Lambda_{ij,kl}\,\dd\Omega$, made symmetric in $kl$, is $\tfrac{2\pi}{15}(6\delta_{ik}\delta_{jl} +
     6\delta_{il}\delta_{jk} - 4\delta_{ij}\delta_{kl})$ (Maggiore 2008, chapter 3).
 
-[^conserved]: The paper says it cancels "because mass and momentum are conserved". At first order mass suffices;
-    momentum removes the second piece of the third term.
+[^conserved]: As the paper's Section VIII says, the first-order retardation cancels "because mass is conserved, and a
+    term of the next order because momentum is": momentum removes the second piece of the third term.
 
-[^error]: The paper's Section XI gives this error as of order $(d/r)^2$, from the higher moments. The $(kr)^2$ comes on
-    top, $0.14(kr)^2$ in the plane of the orbit and $0.50(kr)^2$ on its axis for the size of the whole tide. In the plane
-    the higher moments' error is $0.23(d/r)^2$, so the $(kr)^2$ is the larger beyond about 4000 km for the black-hole
-    pair below; the paper should say "errors of order $(d/r)^2$ and $(kr)^2$".
+[^error]: The paper's Section XI gives the errors as "of order $(d/r)^2$ and $(\omega r/c)^2$", the first from the
+    higher moments. For the size of the whole tide the second is $0.14(kr)^2$ in the plane of the orbit and
+    $0.50(kr)^2$ on its axis. In the plane the higher moments' error is $0.23(d/r)^2$, so the $(kr)^2$ is the larger
+    beyond about 4000 km for the black-hole pair below.
 
 [^gauge]: With $\partial_ju = -\hat n_j/c$, the chain rule gives $\partial_j[f(u)/r] = -\hat n_j[f/r^2 + \dot f/cr]$, so
     the quadrupole terms of $\field{\bar h}^{0i}$ are $-(2G/c^3)\,\partial_j[\dot{\matter I}_{ij}(u)/r]$, and the spin term
@@ -601,13 +603,12 @@ and the turning table gives $4.55\times10^{-41}$ W at $\Omega = 100.5\unit{s^{-1
 [^fd]: The result is exact: it is derived from [](/paper/#eq:multipole) with the turning table, not fitted. Finite
     differences of that solution's curvature agree with it to one part in $10^9$ from $0.02\lambda$ to $10\lambda$.
 
-[^section-xi]: The paper's $0.3\lambda$ holds for $\curv\tE_{zz}$ in the plane of the orbit, which its panel (c) shows, and
-    its "Newton's pull … falling as $r^{-5}$" is the tide, since the changing pull falls as $r^{-4}$. It should say
-    "tide" and add "in the plane of the orbit".
+[^section-xi]: The paper's $0.3\lambda$ holds for $\curv\tE_{zz}$ "in the plane of the orbit", which its panel (c)
+    shows, and its "Newton's tide of two masses, turning rigidly with them and falling as $r^{-5}$" is the tide, while
+    the changing pull falls as $r^{-4}$.
 
 [^magnetic]: The magnetic part has no tide of the mass. Its near field is the spin's (chapter 7.5), with $|\vect L| =
     \matter{\Delta I}\,\Omega$: on the orbit's axis the spin dipole's largest eigenvalue is $6G|\vect L|/cr^4$, and the
     wave's magnetic part there is as large as its tide, $8G\matter{\Delta I}\,\Omega^4/c^4r$. They are equal at $r =
     (3/4)^{1/3}c/\Omega = 0.91\,c/\Omega$. Since $c/\Omega$ is twice $\lambda/2\pi$, that is $1.82\,\lambda/2\pi$ at any
-    speed: the paper's "at $\lambda/2\pi$ whatever the speed" holds in its independence of the speed, with a factor
-    near 1.8 (reading chapter R12).
+    speed: the paper's crossover "near $\lambda/2\pi$ whatever the speed" (reading chapter R12).

@@ -6,6 +6,7 @@ import {
 	AU,
 	C,
 	EARTH,
+	HBAR,
 	HOLE,
 	LADDERS,
 	LENGTHS,
@@ -78,11 +79,19 @@ describe('the marks are the paper’s numbers', () => {
 		expect(9e-9 / moon).toBeGreaterThan(4.5e4);
 		expect(9e-9 / moon).toBeLessThan(5.5e4);
 		expect(Math.round(5e-9 / moon / 1e4)).toBe(3);
-		// "0.02 E in a second", "6 × 10⁻¹⁴ s⁻²", "4 × 10⁻³² s⁻²"
+		// "0.02 E in a second", "9 × 10⁻¹⁴ s⁻²", "4 × 10⁻³² s⁻²"
 		expect(markOf(TIDES, 'gradiometer').value).toBeCloseTo(2e-11, 20);
-		expect(markOf(TIDES, 'quantum-limit').value).toBe(6e-14);
+		expect(markOf(TIDES, 'quantum-limit').value).toBe(9e-14);
 		expect(markOf(TIDES, 'hole-tremor').value).toBe(4e-32);
-		// the hole of 1.36 × 10²³ kg: "2 × 10¹³ s⁻²" at a metre, "1 s⁻² at 26 km"
+		// the quantum limit of two gram masses a centimetre apart, read for a second: the distance of the two is
+		// uncertain by √2 √(ħτ/m), so 2√2 √(ħτ/m)/ξτ² = 9.2 × 10⁻¹⁴ s⁻², the paper's 9 × 10⁻¹⁴ (the one-mass
+		// estimate, without the √2, is 6.5 × 10⁻¹⁴)
+		const sql = Math.sqrt((HBAR * 1) / 1e-3);
+		expect(figures((2 * Math.SQRT2 * sql) / (0.01 * 1 ** 2), 2)).toBe(9.2e-14);
+		expect(figures((2 * sql) / (0.01 * 1 ** 2), 2)).toBe(6.5e-14);
+		expect(figures((2 * Math.SQRT2 * sql) / 0.01, 1)).toBe(markOf(TIDES, 'quantum-limit').value);
+		// the hole of 1.356 × 10²³ kg: "2 × 10¹³ s⁻²" at a metre, "1 s⁻² at 26 km"
+		expect(HOLE).toBe(1.356e23);
 		expect(figures(tide(HOLE, 1), 1)).toBe(2e13);
 		expect(figures(tide(HOLE, 1), 2)).toBe(1.8e13);
 		expect(figures(tide(HOLE, 26e3), 1)).toBe(1);

@@ -12,10 +12,10 @@ live: [regime-map, rotor-polarization]
 The paper's Figure [](/paper/#fig:regimes), below, is a map with frequency across and distance up, both in powers of
 ten. A diagonal line crosses it. Below the line sit the Moon's tide, an earthquake, a passing lorry, a person walking
 and a rotor beside one of LIGO's mirrors; far to the right, above it, sit a warm object in the room, the Earth's
-interior and the Sun's core. The plain words of [Section III](/paper/#sec:regimes) draw the lesson: "Everything in daily
-life therefore happens in the near field."[^daily] With Part 5 behind us, which of Section III's claims about the three
-regimes and the three facts can we now check for ourselves, and how far can Part 5 alone take one of the paper's wave
-scenes?
+interior and the Sun's core. The plain words of [Section III](/paper/#sec:regimes) draw the lesson: "Everything in
+daily life that moves mechanically therefore happens in the near field."[^daily] With Part 5 behind us, which of
+Section III's claims about the three regimes and the three facts can we now check for ourselves, and how far can Part 5
+alone take one of the paper's wave scenes?
 
 This chapter reads Section III in order, one heading for each stretch of text: its plain words, the near-zone
 condition [](/paper/#eq:nearzone), Figure [](/paper/#fig:regimes), Table [](/paper/#tab:regimes) and the paragraph
@@ -275,9 +275,9 @@ At the slowed speed of $0.20\unit{m\,s^{-1}}$ the wavelength is $0.20/2 = 0.10$ 
 **(b) The zone.** The near zone of each pair reaches $\lambda/2\pi = 1.6$ cm. The camera, 4.5 m away, is 283 times
 farther than that, deep in the wave zone, so what reaches it is a wave falling as $1/r$
 ([5.2](/tutorial/waves/retarded-waves/#beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1)).
-The pair, however, is wide for its wave. At this slowed light its balls, 0.44 m apart, are 4.4 wavelengths apart, so
-it is not a **compact source**, one much smaller than its wavelength (5.2). The figure gives it a compact source's
-polarization by choice, and the steps below follow the figure.
+The pair, however, is wide for its wave. At this slowed light its balls, 0.44 m apart, are 4.4 wavelengths apart, so it
+is not a **compact source**, one much smaller than its wavelength (5.2). As the paper says, the figure gives each pair
+the polarization of a compact source, and the steps below follow the figure.
 
 **(c) Focusing.** The shelf lies inside the array's **Fresnel zone**, the distances closer than about $D^2/\lambda =
 1.5^2/0.10 = 22.5$ m, where the fronts from a source are curved across the array, here by 6.25 cm of path at its rim.
@@ -440,16 +440,16 @@ rounding.
   explains the radius at which a body's compactness reaches one half.
 :::
 
-[^daily]: The figure's caption has the exact phrase, "everything that moves mechanically": the glow of a warm
-    object in the room reaches a camera as a wave, as the table below shows.
+[^daily]: The qualifier matters: the glow of a warm object in the room is not mechanical motion, and it reaches a
+    camera as a wave, as the table below shows.
 
-[^moon]: The rise comes from the Earth turning beneath the tide, whose own pattern changes far more slowly
+[^moon]: As the caption says, this placement is an upper bound. The rise comes from the Earth turning beneath the
+    tide, whose own pattern changes over 13.7 days
     ([5.2](/tutorial/waves/retarded-waves/#a-source-sends-its-news-outward-at-the-speed-of-the-wave)).
 
 [^wheel]: The table's "accelerating bodies" is shorthand that Section V fills in: a wheel turning steadily about its
     axle accelerates every part and sends nothing
     ([5.4](/tutorial/waves/polarization/#what-the-wave-of-a-rotor-cannot-show-and-what-does-not-radiate)).
 
-[^caption]: The caption's last sentence, that "the polarization still gives the sense of turning", is right for a
-    camera beyond the near zone. For a camera in the room only one word is wrong: it reads the sense from the turning
-    near tide, and polarization belongs to a wave.
+[^caption]: The caption's last sentence says the same: "a camera in the room, deep inside their near zone, reads the
+    Newtonian tide, whose stretch turns with each pair and still gives the sense of turning".

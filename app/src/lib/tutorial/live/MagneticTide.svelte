@@ -6,8 +6,8 @@
 	 * keys. Its magnetic part, eq:magnetic-point, turns the gyroscopes relative to one another, drawn sped up; it
 	 * vanishes when the mass moves along the line of sight, and |𝓑|/|𝓔| = √3 v⊥/c. A spinning body: a ball, a thin
 	 * shell, or a ball inside a counter-turning shell, 1000 kg and 0.5 m, 1.5 m away, spun about an axis out of the
-	 * screen; the spin dipole at the pixel depends on the body only through L = IΩ. The equator: a slider for I/MR²,
-	 * to the shell's ⅔, and the Earth's reading 𝓑_xz = −7.15 × 10⁻¹² (1 − I/MR²) s⁻² as the sum of two bars. The
+	 * screen; the spin dipole at the pixel depends on the body only through L = CΩ. The equator: a slider for C/MR²,
+	 * to the shell's ⅔, and the Earth's reading 𝓑_xz = −7.15 × 10⁻¹² (1 − C/MR²) s⁻² as the sum of two bars. The
 	 * figure opens on the passing mass at 1.4 m s⁻¹ across the line, playing. Three predictions at the top, one for
 	 * each scene, are answered once the reader has done what each asks. Under reduced motion it opens paused, the
 	 * senses of the turning drawn as arrows.
@@ -487,7 +487,7 @@
 				'spin',
 				eq.spin,
 				Z.rows[1],
-				`the planet’s spin, I/MR² = ${ratioWords(ratio)}: ${signed(eq.spin)}`
+				`the planet’s spin, C/MR² = ${ratioWords(ratio)}: ${signed(eq.spin)}`
 			),
 			row('reading', eq.reading, Z.rows[2], `the reading, their sum: ${signed(eq.reading)}`, true)
 		];
@@ -661,7 +661,7 @@
 			);
 		return (
 			`The Earth seen from above the north pole, turning anticlockwise, with a pixel on the equator carried by the ground at 465 metres per second. ` +
-			`Three bars on one axis, in units of 10 to the minus 12 per second squared: the pixel's motion, ${three(eq.motion / 1e-12)}; the planet's spin for I over M R squared = ${ratioWords(ratio)}, ${three(eq.spin / 1e-12)}; and their sum, the reading, ${three(eq.reading / 1e-12)}. ` +
+			`Three bars on one axis, in units of 10 to the minus 12 per second squared: the pixel's motion, ${three(eq.motion / 1e-12)}; the planet's spin for C over M R squared = ${ratioWords(ratio)}, ${three(eq.spin / 1e-12)}; and their sum, the reading, ${three(eq.reading / 1e-12)}. ` +
 			`Ticks mark a uniform Earth, minus 4.29, and a hollow shell, minus 2.38.`
 		);
 	});
@@ -671,7 +671,7 @@
 			? `Magnetic part ${three(pass.B)} s⁻²; electric part ${three(pass.E)} s⁻²; ratio ${three(pass.ratio)}, and √3 v⊥/c = ${three(pass.rule)}.`
 			: mode === 'spinning'
 				? `L = ${three(spinNow.L)} kg m² s⁻¹; magnetic part ${three(spinNow.B)} s⁻².`
-				: `I/MR² = ${ratioWords(ratio)}; reading 𝓑xz = ${three(eq.reading)} s⁻².`
+				: `C/MR² = ${ratioWords(ratio)}; reading 𝓑xz = ${three(eq.reading)} s⁻².`
 	);
 
 	// --- the formulas -----------------------------------------------------------------------------------------------
@@ -733,10 +733,10 @@
 				<button type="button" class="next" onclick={() => pick(3)}>Next prediction</button>
 			{:else if revealed && step === 3}
 				<strong>No.</strong> The reading <Tex
-					math={`${B}_{xz} = -${FACTOR}\\,(1 - I/${M}R^2)\\,\\mathrm{s^{-2}}`}
+					math={`${B}_{xz} = -${FACTOR}\\,(1 - C/${M}R^2)\\,\\mathrm{s^{-2}}`}
 					trust
-				/> would vanish only at <Tex math={`I/${M}R^2 = 1`} trust />. No round body has <Tex
-					math={`I/${M}R^2`}
+				/> would vanish only at <Tex math={`C/${M}R^2 = 1`} trust />. No round body has <Tex
+					math={`C/${M}R^2`}
 					trust
 				/> above a thin shell’s <Tex math="\tfrac23" />, with all its mass at the surface, so the
 				slider stops there, where the reading is <Tex
@@ -748,7 +748,7 @@
 			{:else if step === 2}
 				The answer appears once you have spun a ball and a thin shell at the same rate.
 			{:else}
-				The answer appears once you have taken the slider for <Tex math={`I/${M}R^2`} trust /> as far
+				The answer appears once you have taken the slider for <Tex math={`C/${M}R^2`} trust /> as far
 				as it goes.
 			{/if}
 		</p>
@@ -1097,13 +1097,13 @@
 				>
 					<Slider
 						id="{uid}-ratio"
-						label="Moment of inertia I/MR²"
+						label="Moment of inertia C/MR²"
 						icon={EarthIcon}
 						min={RATIO.min}
 						max={RATIO.max}
 						step={RATIO.step}
 						bind:value={() => ratio, setRatio}
-						readout="I/MR² = {ratioWords(ratio)}"
+						readout="C/MR² = {ratioWords(ratio)}"
 						marks={[
 							{ at: RATIO_MARKS.earth, label: 'Earth, 0.3307' },
 							{ at: RATIO_MARKS.uniform, label: 'uniform, 0.4' },
@@ -1200,8 +1200,8 @@
 						<span class="also"
 							>{bodyName}, 1000 kg, radius 0.5 m, centre 1.5 m away, spun at
 							<span class="value">{rate}</span>
-							s⁻¹ about an axis across the line; <Tex math="I" /> =
-							<span class="value">{three(spinNow.I)}</span>
+							s⁻¹ about an axis across the line; <Tex math="C" /> =
+							<span class="value">{three(spinNow.C)}</span>
 							kg m²{body === 'counter' ? ' for the whole ball' : ''}</span
 						>
 					</dd>
@@ -1212,7 +1212,7 @@
 						<Tex
 							math={body === 'counter'
 								? 'L = \\tfrac25MR^2\\Omega\\,(2a^5/R^5 - 1)'
-								: 'L = I\\Omega'}
+								: 'L = C\\Omega'}
 						/> =
 						<span class="value">{three(spinNow.L)}</span> <span class="also">kg m² s⁻¹</span>
 					</dd>
@@ -1249,7 +1249,7 @@
 				<div class="row">
 					<dt>The reading</dt>
 					<dd>
-						<Tex math={`${B}_{xz} = -${FACTOR}\\,(1 - I/${M}R^2) =`} trust />
+						<Tex math={`${B}_{xz} = -${FACTOR}\\,(1 - C/${M}R^2) =`} trust />
 						<span class="value curv">{three(eq.reading)}</span> <span class="also">s⁻²</span>
 					</dd>
 				</div>
@@ -1291,7 +1291,7 @@
 				/>; with the axis across the line, <Tex math="\mathbf L\cdot\hat n = 0" /> and only <Tex
 					math={`${B}_{xz} = -3GL/cr^4`}
 					trust
-				/> is left. A ball has <Tex math={`I = \\tfrac25${M}R^2`} trust />, a thin shell <Tex
+				/> is left. A ball has <Tex math={`C = \\tfrac25${M}R^2`} trust />, a thin shell <Tex
 					math={`\\tfrac23${M}R^2`}
 					trust
 				/>. In the counter-turning body the inner ball and the shell outside it have the same
@@ -1300,7 +1300,7 @@
 				With <Tex math={`G${M} = 3.986\\times10^{14}\\,\\mathrm{m^3\\,s^{-2}}`} trust />, <Tex
 					math={'\\Omega = 7.292\\times10^{-5}\\,\\mathrm{s^{-1}}'}
 				/> and <Tex math={'R = 6.378\\times10^6\\,\\mathrm{m}'} />. The 1 is the pixel’s motion
-				through the planet’s field, <Tex math={`I/${M}R^2`} trust /> the planet’s spin; the Earth’s is
+				through the planet’s field, <Tex math={`C/${M}R^2`} trust /> the planet’s spin; the Earth’s is
 				{EARTH.ratio}. The slider stops at a thin shell’s <Tex math="\tfrac23" />, the largest any
 				round body has.
 			{/if}

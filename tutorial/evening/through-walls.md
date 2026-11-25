@@ -125,9 +125,9 @@ universe, and that gives 1.5°: no camera of this kind could draw a face.[^eye]
 
 {{paper fig:resolution-law}}
 
-The satellite GOCE measured the tide from 254 km up for four years, and the paper reads its map as a ratio of two to
-four thousand and a blur of 21° to 23°, near the first entry of the list.[^goce] The limit belongs to Laplace's equation, not to the
-instrument, so cameras made of clocks or accelerometers follow the same law.[^sensors]
+The satellite GOCE measured the tide for four years, three of them from 254 km up, and the paper reads its map as a
+ratio of two to four thousand and a blur of 21° to 23°, near the first entry of the list.[^goce] The limit belongs to
+Laplace's equation, not to the instrument, so cameras made of clocks or accelerometers follow the same law.[^sensors]
 
 ::: try {#near-field-blur}
 Predict first: the two masses, half their depth apart, show as two bumps at a ratio of a million. How far must the
@@ -148,11 +148,11 @@ empty safes subtracted. The case asks three questions.
 so the camera picks the wrong safe 18% of the time. At 34 it is wrong once in a thousand tries.[^which]
 
 **How much gold, from a cautious picture?** A picture that assumes little, like the flush, weighs a safe only to within
-$\pm 730\unit{kg}$ at a ratio of a thousand. It allows minus five hundred kilograms in one place beside plus five
-hundred in the next, and the near field cannot see the difference.[^cautious]
+$\pm 730\unit{kg}$ at a ratio of a thousand. It allows plus five hundred kilograms in one place with minus five hundred
+spread round it, and the near field cannot see the difference.[^cautious]
 
 **How much gold, if mass is never negative?** Requiring every part of the picture to hold a positive mass, the same
-data find $316 \pm 20\unit{kg}$ in the right-hand safe and almost nothing in the left.[^positive]
+data find $315 \pm 20\unit{kg}$ in the right-hand safe and almost nothing in the left.[^positive]
 
 {{paper fig:locked-safe}}
 
@@ -281,8 +281,9 @@ camera could not compute from its readings, because many insides give the same p
 [^which]: The camera errs when the noise carries its readings past the midpoint between the two answers, 0.9 spreads
     away, which happens 18% of the time (chapter 3.3).
 
-[^cautious]: This array is small beside its distance, so its blur is about 33°, 2 m at the safes, as wide as the gap
-    between them, and a uniform layer of mass raises no tide. Chapter R3 works the case.
+[^cautious]: This array is small beside its distance, so its blur is about 32°, 2 m at the safes, as wide as the gap
+    between them, and most of the doubt lies in fine patterns of mass that the data do not reach. Chapter R3 works the
+    case.
 
 [^positive]: At $10^4$, $328 \pm 1\unit{kg}$: the small excess is the cost of modelling the bar as a grid of points.
     Chapter 3.9 explains why positivity is so powerful.

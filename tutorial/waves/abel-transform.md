@@ -223,10 +223,10 @@ so one camera has the data of all of them.
 ## A boundary shows as a kink at an angle that only geometry sets
 
 We want to know what a boundary between two layers does to the curve, because the paper's Figure
-[](/paper/#fig:earth-glow) shows a step at each boundary. Let $j_N$ jump at the radius $r_0$, so that it is larger on the
-inner side of $r_0$ than on the outer side by $\Delta j$, in the same unit. We write the glow as a part with no jump at
-$r_0$ plus a uniform ball of glow $\Delta j$ and radius $r_0$. A line with $b < r_0$ crosses that ball along a chord, so
-by the uniform ball of the first section the ball adds
+[](/paper/#fig:earth-glow) shows a kink at each boundary. Let $j_N$ jump at the radius $r_0$, so that it is larger on
+the inner side of $r_0$ than on the outer side by $\Delta j$, in the same unit. We write the glow as a part with no
+jump at $r_0$ plus a uniform ball of glow $\Delta j$ and radius $r_0$. A line with $b < r_0$ crosses that ball along a
+chord, so by the uniform ball of the first section the ball adds
 
 $$\Delta N(b) = 2\,\Delta j\sqrt{r_0^2 - b^2}$$
 
@@ -244,15 +244,15 @@ $$\boxed{\sin\theta = \frac{r_0}{R} .}$$
 
 **Numbers.** For the paper's Earth, with $R = 6371\unit{km}$, the top of the inner core, at 1222 km, shows at
 $11.1^\circ$ from straight down; the top of the core, at 3480 km, at $33.1^\circ$; the top of the lower mantle, at 5701
-km, at $63.5^\circ$. These are the $11^\circ$, $33^\circ$ and $63^\circ$ of the paper's figure. The line toward the
-Sun's core, $40^\circ$ from straight down, passes $6371\sin 40^\circ = 4095\unit{km}$ from the centre, outside the core,
-so it "crosses only the mantle", as the paper says (and the thin crust at each end).
+km, at $63.5^\circ$. These are the $11^\circ$, $33^\circ$ and $63^\circ$ of the paper's figure. At an equinox the line
+toward the Sun's core, $40^\circ$ from straight down, passes $6371\sin 40^\circ = 4095\unit{km}$ from the centre,
+outside the core, so it "misses the core", as the paper says.
 
-**The paper's steps.** The square root makes the edge sharp. A line that passes only 1 km inside the core's edge,
+**Steep, but continuous.** The square root makes the edge sharp. A line that passes only 1 km inside the core's edge,
 $0.011^\circ$ steeper than the grazing line, already runs $2\sqrt{2 \times 3480 \times 1} = 167\unit{km}$ through the
-core, and a line 10 km inside runs 527 km. What the paper's figure draws as a step is this steep but continuous rise. In
-the paper's model the brightness doubles between $63.5^\circ$ and $63^\circ$, within half a degree inside the edge of
-the lower mantle, so at the figure's scale the rise looks like a step.
+core, and a line 10 km inside runs 527 km. In the paper's model the brightness doubles between $63.5^\circ$ and
+$63^\circ$, within half a degree inside the edge of the lower mantle, so at the scale of the paper's figure the steep
+but continuous rise after each kink looks almost like a step.
 
 {{paper fig:earth-glow}}
 
@@ -265,9 +265,9 @@ many gravitons are counted, so they change only how high the curve climbs at the
 places are geometry".
 
 ![Look first at the inset: close inside the boundary the brightness rises with a vertical tangent, and the corner sits
-exactly at the line that grazes the boundary. At the scale of the main plot this continuous rise looks like the step of
-the paper's figure. The curve is exact for a planet glowing three times as brightly inside $0.6R$ as outside; only the
-height of the rise, not its place, depends on the glow.](tut-abel-kink){#fig:abel-kink}
+exactly at the line that grazes the boundary. At the scale of the main plot this continuous rise looks almost like a
+step, as in the paper's figure. The curve is exact for a planet glowing three times as brightly inside $0.6R$ as
+outside; only the height of the rise, not its place, depends on the glow.](tut-abel-kink){#fig:abel-kink}
 
 ## Uniform shells are peeled from the outside in
 
@@ -460,7 +460,7 @@ $\arcsin(3480/6371) = 33.1^\circ$ and $\arcsin(5701/6371) = 63.5^\circ$.
   [*Recovering the layers*](/paper/#par:recovering-the-layers): [](/paper/#eq:abel) and [](/paper/#eq:abel-inverse), the
   kinks, onion peeling, and the friction behind the heights, [](/paper/#eq:jN-friction).
 - Figures [](/paper/#fig:earth-glow), [](/paper/#fig:earth-inverted) and [](/paper/#fig:sun-at-midnight): the curve with
-  its steep rises, which the paper calls steps, at the grazing angles, and the layers recovered from a lifetime of counts.
+  its kinks at the grazing angles, and the layers recovered from a lifetime of counts.
 - [*What breaks the tie*](/paper/#par:what-breaks-the-tie) in Section IV: the glow would show the nugget, the flush and the
   skin of Figure [](/paper/#fig:same-outside) as a spot, a gradient and a ring.
 - [*Three dimensions*](/paper/#par:three-dimensions) in Section VIII: images from several places combine into a map of the

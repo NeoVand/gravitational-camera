@@ -186,19 +186,22 @@ $-2.039\,r_s^6$ at $a = 4.335\,r_s^2$, is times $\matter M$ the paper's "$-2.04\
 [13.7](/tutorial/what-a-field-keeps/thermometer/#no-distribution-of-positive-mass-has-the-holes-first-three-sums)).[^rounded]
 "One tide lets it be drawn as a shell, and three allow no drawing."
 
-For one degree the hole only absorbs, $\Gamma_\ell \ge 0$, so $\omega\,\mathrm{Im}\,\chi_\ell$ is a **positive
-measure** in frequency, a weighting that is nowhere negative, and its moments pass every such test (13.7).[^KR] "It is
-the sums across the degrees that belong to no body." A **step absorber**, which takes every wave aimed inside a fixed
-impact parameter, fails worse, with the ratio 1.185 whatever the parameter (*checked here*, by 13.7). "No matter does
-that to a gravitational wave": one crossing the Earth loses about $10^{-30}$ of its energy (13.7).
+For one degree the hole only absorbs, $\Gamma_\ell \ge 0$, so $\omega\,\mathrm{Im}\,\chi_\ell$ is a **positive measure**
+in frequency, a weighting that is nowhere negative, "as for every passive response" [@KehagiasRiotto2026], and its
+moments pass every such test (13.7). "It is the sums across the degrees that belong to no body." A **step absorber**,
+which takes every wave aimed inside a fixed impact parameter, fails worse, with the ratio 1.185 whatever the parameter
+(*checked here*, by 13.7). "No matter does that to a gravitational wave": one crossing the Earth loses about $10^{-30}$
+of its energy (13.7).
 
 Matter's dispersion relation, $\chi(0) = (2/\pi)\int\mathrm{Im}\,\chi\,\dd\omega/\omega$, would give a body of radius
 $r_s$ the Love number $k_2 = (15/128\pi)\int\Gamma_2x^{-6}\,\dd x = (15/128\pi)\times36.13 = 1.35$, in Section IV's
 convention, where a ball of liquid has $\tfrac32$ (*checked here*, by
 [13.7](/tutorial/what-a-field-keeps/thermometer/#the-friction-would-make-the-hole-yield-like-a-liquid-yet-its-love-number-is-zero)).
 The hole's own is zero, so the relation needs a **subtraction**: a **local term**, a reply at the instant of the
-push that is one real number at every frequency, added to the integral. If one subtraction suffices, it is $-1.35$
-(13.7).[^known] "The two numbers give the sizes": 1.35 of the dispersive part, and zero of the whole.
+push that is one real number at every frequency, added to the integral. That it cannot hold for a hole without one
+"is known" [@Porto2016; @KehagiasRiotto2026]. If one subtraction suffices, the local term is $-1.35$ (13.7), and the
+part "from waves near the hole's size, which the $1.35$ includes, cannot be told from such local terms"
+[@GoldbergerLiRothstein2021].
 
 {{paper fig:hole-response}}
 
@@ -249,26 +252,30 @@ that pull nothing outside (2.5). The swept skin is thus a hologram of the pull t
 **holographic principle**, quantum gravity's claim that a region's boundary can hold all that lies inside it, is
 *stated in the paper*, and classical physics keeps "a weaker statement that holds exactly".
 
-The box's sphere of radius $R$ read "with detail down to a size $d$" carries "$(R/d)^2$" numbers against "$(R/d)^3$"
-cells, "ten thousand" against "a million" at $R/d = 100$. At a given sensitivity $d$ is not free, and by 13.8's count
-pushing gains a factor 1.6 over looking at an $\SNR$ of $10^6$ and about twelve at $10^{70}$, never a hundred.[^Rd]
-"Doing something gives the inside" is 13.1's protocol, and the density "everywhere" is 13.2's. The box's three
-differences from the quantum version, and its black hole, are read under *Black holes and the classical limit*.
+The box's sphere of radius $R$ read "with detail down to a size $d$" carries "$(R/d)^2$" numbers, while the cells of the
+body grow as "$(R/d)^3$". "But the size $d$ that can be read shrinks only slowly as the instrument improves": from three
+body radii, at an $\SNR$ of $10^6$, "about 170 numbers" against about 270 cells, and at $10^{70}$ "about twenty thousand
+and a quarter of a million" (*read now*, by 13.8's count). Pushing gains a factor 1.6 over looking at $10^6$ and about
+twelve at $10^{70}$.[^Rd] "Doing something gives the inside" is 13.1's protocol, and the density "everywhere" is 13.2's.
+The box's three differences from the quantum version, and its black hole, are read under *Black holes and the classical
+limit*.
 
 A **superposition** is a state in which a body is in two arrangements at once, and **decoherence** is the loss of
 their interference when the surroundings record which one it is in (8.1). The box's ball and shell "with the same
-mass and the same energy" pull alike outside, so gravity keeps no record "unless a tide from outside acts on the
-body".[^tremor]
+mass and the same energy" pull alike outside at any one moment, so gravity keeps no record "unless a tide from
+outside acts on the body". Outside they differ "only in the slight trembling of their pull over time", which heat and
+the zero point make unequal, "and in their reply to such a tide" (13.8).
 
 ## A hole gives seven numbers, a temperature and its mass again, and without quantum physics no temperature
 
-[*Black holes and the classical limit*](/paper/#par:black-holes-and-the-classical-limit): "the exterior field
-determines the interior, with a precision that grows as the logarithm of the sensitivity". Chapter
+[*Black holes and the classical limit*](/paper/#par:black-holes-and-the-classical-limit): "the exterior field determines
+the interior, with a resolution that sharpens as the logarithm of the sensitivity, so that the cells resolved grow as
+its cube". Chapter
 [13.8](/tutorial/what-a-field-keeps/holography/#pushing-reads-the-volume-but-only-to-a-number-of-cells-set-by-the-logarithm)
-finds three laws in the phrase, by a count that is the tutorial's own: cells shrink as $1/\ln\SNR$ and grow in number
-as $(\ln\SNR)^3$, and the bits grow as $(\ln\SNR)^4$ (13.2). The statement "is one about
-operations": for given tides, moments and times, two interiors are either told apart or not, and the paper's
-[](/paper/#eq:split) says which for one reading (2.5) and its [](/paper/#eq:ladder) for tides of a given degree (13.3).
+derives both laws, by a count that is the tutorial's own: cells shrink as $1/\ln\SNR$ and grow in number as
+$(\ln\SNR)^3$; the bits grow as $(\ln\SNR)^4$ (13.2). The statement "is one about operations": for given tides, moments
+and times, two interiors are either told apart or not, and the paper's [](/paper/#eq:split) says which for one reading
+(2.5) and its [](/paper/#eq:ladder) for tides of a given degree (13.3).
 
 For a hole, "seven numbers at one time" are its mass, place and spin
 ([11.2](/tutorial/black-holes/spin/#a-hole-at-rest-shows-seven-numbers-and-nothing-of-what-fell-in)), and "a
@@ -280,7 +287,8 @@ Four quantum arguments, *stated in the paper*, say that the outside holds more [
 @ChowdhuryPapadoulakiRaju2021; @Donnelly2018; @CalmetEtAl2022], and chapter 13.8 reads them as the **holography of
 information**, the argument that a region's boundary holds everything inside it. "The first two are said by their
 authors to have no classical counterpart, and for a reading at one time they have none", by Newton's shell theorem
-(2.5). The paragraph's $(R/d)^2$ against $(R/d)^3$ repeats the plain words' count.
+(2.5). From three radii the paragraph's moments, "about $170$ at $\SNR = 10^6$ and $2.2\times10^4$ at $10^{70}$",
+against the cells that pairs resolve, "a gain of $1.6$ and of $12$", repeat the plain words' count (13.8).
 
 "An impulsive tide followed by a weighing is what remains" of the first two without $\hbar$ (13.1, 13.8). It "needs
 time" and gives "a density and a motion, not a state" (13.6). It is not peculiar to gravity: for charges, "the
@@ -290,9 +298,10 @@ $q\epsilon\nabla g$ and so the energy $\tfrac12\epsilon^2(q^2/m)|\nabla g|^2$. W
 part of a body "can be shielded from the tide", that "the quantity read is the mass itself", and that the result stays
 "in the field outside", as weight (6.4).
 
-On a black hole the method fails. A hole's tremor is "of order $\hbar$": its square, the spectrum $S_Q$, is
-proportional to $\hbar$, so its size goes as $\sqrt\hbar$, and the paper's Table labels the tremor's row with $S_Q$
-(13.7). Without $\hbar$ the hole "is at zero temperature and has no tremor, and under a tide it gives only its mass".
+On a black hole the method fails. "The square of a hole's tremor is of order $\hbar$": the spectrum $S_Q$ is
+proportional to $\hbar$, so the tremor's size goes as $\sqrt\hbar$, and the paper's Table labels the tremor's row with
+$S_Q$ (13.7). Without $\hbar$ the hole "is at zero temperature and has no tremor, and under a tide it gives only its
+mass".
 
 ## A ball and a shell leave gravity no record, yet differ in their Diósi–Penrose energy
 
@@ -436,11 +445,11 @@ hole does all three (11.1, 11.3), and matter's glow is too faint for any detecto
 
 *What each channel cannot tell apart.* The harmonic part of the density (2.5), the shell theorem's first order (13.1),
 the mass that heat reveals (4.2, 13.2), the rung that each degree of tide adds (13.3) and the motion that tides read
-(13.4) are derived as stated. Four phrases leave out a condition: rolls are silent for flows round an axis, to first
-order in $v/c$ (2.8); pressure is silent for waves (7.6); friction and temperature are tied only in the count of
-gravitons (R12); and the sky's limit of degree four is for its second moments (9.6). "A black hole does not" means
-that its tremor and its weighing give nothing new (11.4, 13.7), and "the mass and the spin again" is derived for a
-hole that does not turn.
+(13.4) are derived as stated, and so are the rolls of "a flow round an axis" (2.8), friction tied to temperature
+"from a count of gravitons" (R12) and the sky's limit of degree four "from the second moments of a reading" (9.6).
+Two phrases leave out a condition: the rolls are silent only to first order in $v/c$ (2.8), and pressure is silent
+for waves (7.6). "A black hole does not" means that its tremor and its weighing give nothing new (11.4, 13.7), and
+"no more than the mass and the spin" is derived for a hole that does not turn and stated for one that turns.
 
 *The vector and its square.* A pixel reads its own velocity only in a room at rest, and its test for motion misses a
 single body in steady motion (9.3). It separates four waves where light separates two over a long record
@@ -533,34 +542,22 @@ $\sqrt{3\times(5/32\pi)\times6.938}\,r_s = 1.0175\,r_s$.
   time.
 :::
 
-[^factor]: The paper's "each tide of degree $\ell$ gives $\int\rho\,r^{2\ell-2}\,\dd V$" leaves out a factor. Each
-    tide $r^\ell Y_{\ell m}$ of the paper's [](/paper/#eq:thermal-multipole), which sums over the orders $m$, gives
-    $\ell(2\ell + 1)/4\pi$ times it; Section XIV's quadrupole gives $\tfrac13$ (13.7). The radii do not depend on the
-    factor, because body and shell are weighed by the same tide.
+[^factor]: The paper's "fixed multiple": each tide $r^\ell Y_{\ell m}$ of the paper's
+    [](/paper/#eq:thermal-multipole), which sums over the orders $m$, gives $\ell(2\ell + 1)/4\pi$ times the moment;
+    Section XIV's quadrupole gives $\tfrac13$ (13.7). The radii do not depend on the factor, because body and shell are
+    weighed by the same tide.
 
 [^a]: Here $a$ is the test's free number, not Kerr's $a$.
 
-[^rounded]: The paper's "$-2.04$ at $4.34$" needs the unrounded radii. The printed 1.02, 1.46 and 1.61 give $-2.43$ at
-    $4.37$, because $R_3$ enters $m_2^2$ as its eighth power (13.7).
+[^rounded]: The paper takes them "from the unrounded radii". To two places, 1.02, 1.46 and 1.61, the radii give
+    $-2.43$ at $4.37$, because $R_3$ enters $m_2^2$ as its eighth power (13.7).
 
-[^KR]: The paper attributes this positive measure to Kehagias and Riotto [@KehagiasRiotto2026], who assume it for any
-    causal passive body. For the hole it follows from $\Gamma_\ell \ge 0$ alone (13.7).
-
-[^known]: The paper's "are known" says more than its sources. Porto shows that a subtraction is needed
-    [@Porto2016], the cancellation holds if one subtraction suffices [@KehagiasRiotto2026], and the part from short
-    waves cannot be told from local terms [@GoldbergerLiRothstein2021] (13.7).
-
-[^Rd]: The paper's $(R/d)^2$ against $(R/d)^3$ counts at a detail $d$ chosen freely: a million cubes of side $d$
-    fill a cube of side $R$, and the stone, a ball of radius $R/3$, holds about $1.6\times10^5$ of them. From three
-    radii, looking holds $(\lfloor\ln\SNR/\Lambda\rfloor + 1)^2$ numbers, with $\Lambda = \ln3$, and the cells
-    that pairs of held masses resolve grow as $\kappa(\ln\SNR/\Lambda)^3$, with $\kappa \to 0.073$ at large $\SNR$
-    (13.8's count, the tutorial's own). Counted, they are 169 against 271 at $10^6$ and $2.2\times10^4$ against
-    $2.5\times10^5$ at $10^{70}$, and pairs reach $d = R/100$ at about $10^{59}$.
-
-[^tremor]: The plain words leave out the tremor, which heat and the zero point make unequal for a ball and a shell
-    (13.8).
+[^Rd]: From three radii, looking holds $(\lfloor\ln\SNR/\Lambda\rfloor + 1)^2$ numbers, with $\Lambda = \ln3$, and
+    the cells that pairs of held masses resolve grow as $\kappa(\ln\SNR/\Lambda)^3$, with $\kappa \to 0.073$ at large
+    $\SNR$ (13.8's count). Counted, they are 169 against 271 at $10^6$ and $2.2\times10^4$ against $2.5\times10^5$ at
+    $10^{70}$. Cells a hundredth of the camera sphere's radius across are reached by pairs only at about $10^{59}$.
 
 [^impulses]: "Readings at two times" differ only where heat, the zero point or a tide supplies impulses, as R13's
     note says (13.8).
 
-[^density]: Section XV names no density for the bead; soda-lime glass, 2500 kg m⁻³, gives 0.14 s.
+[^density]: The time goes as the inverse square of the density: soda-lime glass, 2500 kg m⁻³, gives 0.14 s.

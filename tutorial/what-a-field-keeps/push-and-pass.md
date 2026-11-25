@@ -492,13 +492,13 @@ $b^{-6}$ differ by $\tfrac12C^2 \times \tfrac{8}{15} \times \tfrac14\matter MR^4
 [^rank]: For thirty parts at random places and the profiles $1/|\vect x - \vect y|$ of 400 points $\vect y$ outside,
     the table of gradients has rank 90, which is $3N$.
 
-[^dv]: The paper's "tide of a tonne a metre away", $3 \times 10^{-12}\unit{m\,s^{-1}}$ at the edge, is the whole pull
-    of a tonne held 1 m from the edge for 50 µs. Of it, $1.5 \times 10^{-12}\unit{m\,s^{-1}}$, the pull at the centre,
-    is the recoil of the ball; the change from the centre to the edge is $1.85 \times 10^{-12}\unit{m\,s^{-1}}$, and
-    $9.9 \times 10^{-13}\unit{m\,s^{-1}}$ to first order in the radius.
+[^dv]: The paper's "pull of a tonne a metre from the edge", $3 \times 10^{-12}\unit{m\,s^{-1}}$ at the edge, is the
+    whole pull of a tonne held 1 m from the edge for 50 µs. Of it, $1.5 \times 10^{-12}\unit{m\,s^{-1}}$, the pull at
+    the centre, is the recoil of the ball; the change from the centre to the edge is $1.85 \times
+    10^{-12}\unit{m\,s^{-1}}$, and $9.9 \times 10^{-13}\unit{m\,s^{-1}}$ to first order in the radius.
 
 [^tonne]: The paper's "five parts in $10^{33}$" is this whole loss. Of it, 95 per cent is the recoil, which weighs the
-    ball and nothing else.
+    ball and nothing else; the rest, the paper's "$2\times10^{-34}$", is the inside's share.
 
 [^ring]: H. Lamb's solution for a free elastic sphere (1882) puts this ringing of a steel ball of radius 10 cm near
     12.6 kHz, and the frequency goes as one over the radius. The paper's rougher 15 kHz, which chapter 1.8 scaled,
@@ -507,5 +507,5 @@ $b^{-6}$ differ by $\tfrac12C^2 \times \tfrac{8}{15} \times \tfrac14\matter MR^4
 [^shock]: There the impulsive wave of the paper's [](/paper/#eq:shock) gives the energy at any speed, light included,
     and the paper's [](/paper/#eq:massless-pass) is the pass at the speed of light.
 
-[^thirty]: The paper's plain words say "energies in them that differ by $30\%$". These are the energies inside; with
-    the recoil, the totals differ by 4.5 per cent.
+[^thirty]: The paper's plain words say "energies inside them that differ by $30\%$, not counting the push that moves
+    each body as a whole". With that push, the recoil, the totals differ by 4.5 per cent.

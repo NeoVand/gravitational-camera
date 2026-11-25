@@ -8,7 +8,7 @@
 // a uniform Earth (-4.29) and a hollow shell (-2.38).
 // Departures from the diagram's comment: the Earth stands above the bars, not left of them, so that one drawing about
 // 250 points wide keeps its text readable on a phone. The bars' names stand in a column left of the axis and carry the
-// factors of eq:earth, "(1)", "(I/MR^2)" and "(1 - I/MR^2)"; the Earth's I/MR^2 = 0.3307 (the chapter's value; the
+// factors of eq:earth, "(1)", "(C/MR^2)" and "(1 - C/MR^2)"; the Earth's C/MR^2 = 0.3307 (the chapter's value; the
 // comment's 0.331) is printed under the Earth. Each value stands right of its bar's zero end for the bars pointing left
 // and right of the end for the bar pointing right, so that none touches a name. The comment's bracket is the spin's bar laid
 // in outline at the motion's end, reaching exactly to the reading's end. The ticks for a uniform Earth and a shell rise from the axis,
@@ -58,8 +58,8 @@ export default async function () {
 	// ---- the rows: names in a column, the bars from zero
 	const rows = [
 		{ key: 'motion', name: '\\text{the pixel’s motion }(1)', v: u12(e.earth.motion), printed: '-7.15', h: BAR_H, op: 0.75 },
-		{ key: 'spin', name: '\\text{the planet’s spin }(I/MR^2)', v: u12(e.earth.spin), printed: '+2.36', h: BAR_H, op: 0.75 },
-		{ key: 'reading', name: '\\text{the reading }(1 - I/MR^2)', v: u12(e.earth.sum), printed: '-4.79', h: READ_H, op: 1 }
+		{ key: 'spin', name: '\\text{the planet’s spin }(C/MR^2)', v: u12(e.earth.spin), printed: '+2.36', h: BAR_H, op: 0.75 },
+		{ key: 'reading', name: '\\text{the reading }(1 - C/MR^2)', v: u12(e.earth.sum), printed: '-4.79', h: READ_H, op: 1 }
 	];
 	for (const r of rows) check((r.v > 0 ? '+' : '') + r.v.toFixed(2) === r.printed, `the ${r.key} bar prints ${r.printed}, not ${r.v.toFixed(2)}`);
 	check(near(rows[0].v + rows[1].v, rows[2].v, 1e-12), 'the reading is not the sum');
@@ -98,7 +98,7 @@ export default async function () {
 	L.push(await placed(`{\\color{${OBS}}\\boldsymbol u}\\ (${Math.round(OMEGA * R_EARTH)}\\,\\mathrm{m\\,s^{-1}})`, px[0] + VEC / 2 + LABEL_GAP + 1, (ua.A[1] + ua.B[1]) / 2, 0, 0.5, INK));
 	L.push(await placed('\\text{the pixel}', px[0] + PIX + LABEL_GAP + 1.2, px[1] + 1, 0, 0, INK));
 	check(String(FACTORS.earth) === '0.3307', 'the Earth\'s factor');
-	const under = await stack(['\\text{the Earth from above the north pole,}', 'I/MR^2 = 0.3307'], ec[0], ec[1] + RE + LABEL_GAP + 3, 0.5, INK);
+	const under = await stack(['\\text{the Earth from above the north pole,}', 'C/MR^2 = 0.3307'], ec[0], ec[1] + RE + LABEL_GAP + 3, 0.5, INK);
 	L.push(under);
 
 	// ---- the bars

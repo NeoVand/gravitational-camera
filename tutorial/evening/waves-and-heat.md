@@ -32,13 +32,12 @@ than spread evenly as in a sphere. A dumbbell spun end over end, like the pairs 
 quadrupole moment, so it sends out waves.[^quadrupole] A wheel turning smoothly on its axle sends out none, because its
 mass is always arranged in the same way.
 
-The paper's example is two masses of one kilogram, a metre apart and spun sixteen times a second, which send out
-$4.5 \times 10^{-41}$ W. The pair looks the same after half a turn, as the stretched ring of
-[chapter 0.1](/tutorial/evening/a-camera-for-gravity/) does, so its waves vibrate twice in each turn, 32 times a
-second.[^twice] A **graviton** is the smallest possible packet of
-gravitational-wave energy, as a photon is for light. Its energy is Planck's constant, $6.6 \times 10^{-34}$
-joule-seconds, times the frequency, which here gives $2.1 \times 10^{-32}$ J. The pair therefore sends out one
-graviton about every fifteen years.[^graviton]
+The paper's example is two masses of one kilogram, a metre apart and spun sixteen times a second, which send out $4.6
+\times 10^{-41}$ W. The pair looks the same after half a turn, as the stretched ring of [chapter
+0.1](/tutorial/evening/a-camera-for-gravity/) does, so its waves vibrate twice in each turn, 32 times a second.[^twice]
+A **graviton** is the smallest packet of energy that a gravitational wave of a given frequency can carry, as a photon is
+for light. Its energy is Planck's constant, $6.6 \times 10^{-34}$ joule-seconds, times the frequency, which here gives
+$2.1 \times 10^{-32}$ J. The pair therefore sends out one graviton about every fifteen years.[^graviton]
 
 ## A slow body is far smaller than its waves, so it is a point
 
@@ -55,7 +54,8 @@ body's moving parts, so a slower body has waves that are longer compared with it
 Everyday bodies move millions of times more slowly than light. A pair of balls turning once a second sends out waves
 150,000 km long, twelve times the diameter of the Earth. Seen in its own waves, a compact body that moves slowly is
 therefore a single point, with no shape. Only a source larger than its waves can show a shape, such as a continent's
-power grid, whose generators turn in step 50 times a second and send out waves 3000 km long.
+power grid, whose generators turn in step 50 times a second; the slight lopsidedness of their nearly round rotors sends
+out waves 3000 km long.
 
 ## A point still shows which way it turns
 
@@ -116,12 +116,12 @@ five times as hot, look? Drag the divider to the left, so that both furnaces are
 the glow.
 :::
 
-Both blocks show through their steel. The hot iron sends out about 25 times as many gravitons as the cold,[^metal]
+Both blocks show through their steel. The hot iron sends out about 26 times as many gravitons as the cold,[^metal]
 but the furnaces' own steel and the floor behind add the same glow to both lines of sight, so the hot block looks
 sixteen times as bright through its middle.
 
-The glow is also extraordinarily faint. A person sends out about $10^{-36}$ W of it, against about 100 W of infrared
-light, which is one graviton every two or three hundred million years.[^person]
+The glow is also extraordinarily faint. A person, taken as seventy litres of water at body temperature, sends out about
+$10^{-36}$ W of it, against about a kilowatt of infrared light, which is one graviton every 240 million years.[^person]
 
 ## A first image: the Sun at midnight, and how few gravitons arrive
 
@@ -135,12 +135,12 @@ graviton per square metre per second at the Earth.[^sun] These gravitons come fr
 degree across, so they show the Sun's core and nothing else. The whole Earth below sends one square metre at most
 one graviton every twenty hours.
 
-In eighty years one square metre collects about 35,000 gravitons from the Earth below. A count of random arrivals
-varies from one exposure to the next by about its own square root.[^sqrt] Suppose one part of a picture is ten per
-cent brighter than another. To be sure of it at five standard deviations, the brighter part's extra tenth must be five
-times that spread. This happens at 2500 gravitons in each part: their tenth, 250, is five times their square root, 50.
-Each part told apart in this way is a **picture element**, and a lifetime gives $35{,}000 / 2500 = 14$ of them.
-The limit is the count, not the sharpness.
+In eighty years one square metre collects about 35,000 gravitons from the Earth below. A count of random arrivals varies
+from one exposure to the next by about its own square root.[^sqrt] Suppose one part of a picture is ten per cent
+brighter than a level known in advance. To be sure of it at five standard deviations, the brighter part's extra tenth
+must be five times that spread. This happens at 2500 gravitons in each part: their tenth, 250, is five times their
+square root, 50. Each part told apart in this way is a **picture element**, and a lifetime gives $35{,}000 / 2500 = 14$
+of them. The limit is the count, not the sharpness.
 
 ::: try {#graviton-count}
 Predict first: how many picture elements would one of the turning pairs in the boxes give, watched for a lifetime on
@@ -236,7 +236,7 @@ The near-field scenes. A static field is not radiation, so its picture is limite
     ([1.5b](/tutorial/newton/complex-numbers/)). Chapter 7.7 derives the doubled frequency.
 
 [^graviton]: Chapter 8.3 introduces the graviton and its energy. Here
-    $2.1 \times 10^{-32}\unit{J} / 4.5 \times 10^{-41}\unit{W} = 4.7 \times 10^{8}\unit{s}$.
+    $2.1 \times 10^{-32}\unit{J} / 4.6 \times 10^{-41}\unit{W} = 4.6 \times 10^{8}\unit{s}$.
 
 [^diffraction]: Chapter [5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array) derives it.
 
@@ -261,10 +261,10 @@ The near-field scenes. A static field is not radiation, so its picture is limite
 
 [^metal]: In a metal the electrons collide with the vibrating atoms at a rate that grows with the temperature, as
     the frequency of the glow does, so the friction falls as one over the temperature and the count grows as its
-    square: $(1500/293)^2 = 26$, the paper's "about 25" (chapters 10.1 and 10.3).
+    square: $(1500/293)^2 = 26$, the paper's "about 26" (chapters 10.1 and 10.3).
 
-[^person]: The person is 70 litres of water, glowing $1.1 \times 10^{-35}$ W per cubic metre with water's friction
-    at the frequencies of heat ([table of materials](/paper/#tab:materials)): $8 \times 10^{-37}$ W. A
+[^person]: The person is 70 litres of water at 310 K, glowing $1.3 \times 10^{-35}$ W per cubic metre with water's
+    friction at the frequencies of heat ([table of materials](/paper/#tab:materials)): $9 \times 10^{-37}$ W. A
     graviton at $10^{13}$ vibrations a second carries $7 \times 10^{-21}$ J.
 
 [^bound]: Causality fixes a material's friction summed over all frequencies, and this sum rule caps the glow: the

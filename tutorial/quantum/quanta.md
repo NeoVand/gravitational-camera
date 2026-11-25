@@ -1,7 +1,7 @@
 ---
 id: '8.3'
 title: "The oscillator's quanta; photons and gravitons"
-question: 'Section IV says that the steel ball "rings in its lowest quadrupole mode near 15 kHz, with $4\times10^8$ quanta in it at room temperature", and Section V that a spinning pair "sends out about one graviton every fifteen years". What is a quantum of a ringing body or of a wave, and when does counting quanta matter?'
+question: 'Section IV says that the steel ball "rings in its lowest spheroidal quadrupole mode, at an estimated 15 kHz, with $4\times10^8$ quanta in it at room temperature", and Section V that a spinning pair "sends out about one graviton every fifteen years". What is a quantum of a ringing body or of a wave, and when does counting quanta matter?'
 part: '8'
 requires: ['1.7', '4.1', '4.2', '4.3', '8.2']
 paper: [sec:near-field, sec:waves, eq:dumbbell, sec:regimes, sec:thermal, sec:first-image, sec:vistas]
@@ -10,11 +10,12 @@ live: [ladder-oscillator]
 depth: A
 ---
 
-The plain words of the paper's [Section V](/paper/#sec:waves) define the graviton as "the smallest possible packet of
-gravitational-wave energy, as a photon is for light",[^packet] and say that two spinning masses send out "about one
-graviton every fifteen years". In Section IV, [*What heat reveals*](/paper/#par:what-heat-reveals) says that a steel
-ball ten centimetres in radius "rings in its lowest quadrupole mode near $15\,\mathrm{kHz}$, with $4\times10^8$ quanta
-in it at room temperature". The same paragraph makes it the first condition on a body's tremor that "the modes that
+The plain words of the paper's [Section V](/paper/#sec:waves) define the graviton as "the smallest packet of energy
+that a gravitational wave of a given frequency can carry, as a photon is for light",[^packet] and say that two
+spinning masses send out "about one graviton every fifteen years". In Section IV, [*What heat
+reveals*](/paper/#par:what-heat-reveals) says that a steel ball ten centimetres in radius "rings in its lowest
+spheroidal quadrupole mode, at an estimated $15\,\mathrm{kHz}$, with $4\times10^8$ quanta in it at room
+temperature". The same paragraph makes it the first condition on a body's tremor that "the modes that
 carry the tremor must be classical, $\hbar\omega \ll k_BT$".
 
 Chapters 4.2, R4 and 7.7 used these numbers and left their meaning here. What is a quantum of a ringing body or of a
@@ -457,27 +458,28 @@ the tide is $1.2\times10^{-29}\unit{s^{-2}}$, $2.9\times10^4$ times weaker.
 
 ### The paper
 
-Check Section IV's "$4\times10^8$ quanta" and "one graviton in $7\times10^{17}$ years" from 4.3's frequency and 7.7's
-power of a ringing quadrupole.
+Check Section IV's "$4\times10^8$ quanta" and "one graviton in a time of order $10^{18}$ years" from 4.3's frequencies
+and 7.7's power of a ringing quadrupole.
 
 ::: solution
 At 15.1 kHz, $\bar n = 4.1\times10^8$. The power is $P = (G/5c^5)\langle\dddot
 I_{ij}\dddot I_{ij}\rangle$ with $I_{ij} = \tfrac15\matter MRq\,\mathrm{diag}(-1, -1, 2)$ (R4), so $\langle\dddot
 I_{ij}\dddot I_{ij}\rangle = 6\,\omega^6(\matter MR/5)^2\langle q^2\rangle$ with $\langle q^2\rangle = \kB T/k$. That
-gives $P = 4.9\times10^{-55}$ W, and $\hbar\omega/P = 2.1\times10^{25}$ s, or $6.5\times10^{17}$ years, which the paper
-rounds to $7\times10^{17}$.
+gives $P = 4.9\times10^{-55}$ W, and $\hbar\omega/P = 2.1\times10^{25}$ s, or $6.5\times10^{17}$ years. At fixed
+temperature and shape $P$ grows as $\omega^4$, so the time per graviton goes as $\omega^{-3}$: at the exact 12.6 kHz
+it is $(15.1/12.6)^3 = 1.72$ times longer, $1.1\times10^{18}$ years. Both are the paper's "of order $10^{18}$".
 :::
 :::
 
 ::: paper
 - Section IV's [*What heat reveals*](/paper/#par:what-heat-reveals): the condition "$\hbar\omega \ll k_BT$", the ball's
-  "$4\times10^8$ quanta" and its "one graviton in $7\times10^{17}$ years".
+  "$4\times10^8$ quanta" and its "one graviton in a time of order $10^{18}$ years".
 - [Section V](/paper/#sec:waves): the graviton in its plain words, and the paper's [](/paper/#eq:dumbbell) with "one
   graviton every fifteen years".
 - [Section III](/paper/#sec:regimes) and [Section VI](/paper/#sec:thermal): the thermal glow, peaking at $\hbar\omega =
   2.82\,k_BT$, and the occupations of its modes (Part 10).
-- Section IX's [*Counting or recording*](/paper/#par:counting-or-recording): "$10^{-30}$ gravitons on average" in each
-  mode, and half a quantum of added noise (chapters 8.5 and 8.6).
+- Section IX's [*Counting or recording*](/paper/#par:counting-or-recording): "$10^{-30}$ gravitons or fewer on average"
+  in each mode, and half a quantum of added noise (chapters 8.5 and 8.6).
 - [Section XI](/paper/#sec:vistas): the occupations $n_H$ and $n_{\rm bg}$ (chapter 11.3).
 :::
 
@@ -495,8 +497,8 @@ rounds to $7\times10^{17}$.
     coefficient of chapter 8.2's chirp, in $\mathrm{m^{-2}}$. The letters $a$ and $a^\dagger$ appear only in chapters
     8.3, 8.5 and 8.7.
 
-[^packet]: The paper and chapter 0.3 say "smallest possible". A graviton's energy is $\hbar\omega$, so it is the
-    smallest packet only among waves of one frequency.
+[^packet]: A graviton's energy is $\hbar\omega$, so waves of a lower frequency come in smaller packets; no packet is
+    the smallest of all.
 
 [^n]: This $n$ counts quanta. It is not chapter 5.1's refractive index or a number of particles per cubic metre.
 

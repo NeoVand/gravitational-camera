@@ -28,7 +28,7 @@ export const tide = (M: number, r: number) => (2 * G * M) / r ** 3;
 export const PERSON = 70;
 export const MOON = { M: 7.342e22, r: 3.844e8 };
 export const EARTH = { M: 5.972e24, R: 6.371e6 };
-export const HOLE = 1.36e23;
+export const HOLE = 1.356e23;
 
 /** x = 2πħf/k_BT at the peak of a thermal spectrum per unit frequency, the root of x = 3(1 − e^(−x)), 2.8214. */
 export const PEAK = (() => {
@@ -152,7 +152,7 @@ export const TIDES: Ladder = {
 				short: 'a hole’s trembling',
 				value: 4e-32,
 				scene:
-					'A black hole of 1.36 × 10²³ kg is as warm as the sky of gravitons, 0.905 K, and like every warm body it trembles. A camera a metre away, watching for one second, would feel the trembling as this tide.',
+					'A black hole of 1.356 × 10²³ kg is as warm as the sky of gravitons, 0.905 K, and like every warm body it trembles. A camera a metre away, watching for one second, would feel the trembling as this tide.',
 				section: 'XIV',
 				label: 'sec:hole'
 			},
@@ -163,7 +163,7 @@ export const TIDES: Ladder = {
 				id: 'quantum-limit',
 				name: 'two gram masses at the quantum limit',
 				short: 'the quantum limit',
-				value: 6e-14,
+				value: 9e-14,
 				scene:
 					'Two free masses of a gram, a centimetre apart, read for one second as finely as quantum mechanics allows (the standard quantum limit), would resolve this tide.',
 				section: 'II',
@@ -233,7 +233,7 @@ export const TIDES: Ladder = {
 				short: 'a camera’s limit',
 				value: 1,
 				scene:
-					'The black hole of 1.36 × 10²³ kg could serve as a lens, but its tide falls to a bearable 1 s⁻² only 26 km away, so a camera using it must stay that far off.',
+					'The black hole of 1.356 × 10²³ kg could serve as a lens, but its tide falls to a bearable 1 s⁻² only 26 km away, so a camera using it must stay that far off.',
 				section: 'VII',
 				label: 'fig:black-hole-camera'
 			},

@@ -29,14 +29,14 @@ const check = checker(name);
 // [its heading in the chapter, the box's name, its numbers (TeX, a line each), taught in, read now and derived later
 // in, its fill, optional]
 export const STRETCHES = [
-	['Two gram masses at the standard quantum limit resolve a tide 144,000 times below the person\'s', '§II What the premise asks', ['6.5\\times10^{-14}\\,\\mathrm{s^{-2}}'], '8.6', [], 'solid', false],
+	['Two gram masses at the standard quantum limit resolve a tide 144,000 times below the person\'s', '§II What the premise asks', ['\\text{one mass }6.5,', '\\text{two }9.2\\!\\times\\!10^{-14}'], '8.6', [], 'solid', false],
 	['The plain words\' ceiling, its blur and its 22 kilobytes come out of Parts 3 and 8', '§IV plain words', ['10^{70}\\text{, }1.5^\\circ\\text{,}', '\\text{22 kB}'], '3.7, 3.8, 8.6', [], 'solid', false],
 	['The ball\'s tremor is classical, holds four hundred million quanta and needs no graviton', 'What heat reveals', ['4\\times10^8\\text{ quanta}', '\\text{no graviton}'], '7.7, 8.3', [], 'solid', false],
 	['No camera\'s state can change fast enough to pass about $10^{70}$ on a person', 'Limits on sensitivity (1)', ['\\mathrm{SNR}\\lesssim', 'M_sc^2\\tau/\\hbar'], '3.7, 8.6', ['11.1'], 'half', false],
 	['A camera that could read a quantum mass would end its superposition', 'Limits on sensitivity (2)', ['\\text{a mass in}', '\\text{two places}'], '8.1', ['13.8'], 'half', false],
 	['Appendix A\'s quantum jitter lies between the classical value and one mode', 'App. A, quoted by What an applied tide reveals', ['(\\mathrm{A1})'], '4.5, 8.7', [], 'solid', false],
 	['Read ahead: a counter adds no noise, and each graviton tells about one bit', '§IX Counting or recording', ['\\text{with §VII\'s sentence:}', '1.17\\text{ bits}'], '8.4, 8.5, 8.6', ['Part 10'], 'half', true],
-	['Read ahead: coincidences tell a sky born hot from one born in inflation', '§XI Counting coincidences', ['g^{(2)}'], '8.5', ['Part 12'], 'half', true]
+	['Read ahead: coincidences tell a sky born hot from one born in inflation', '§XI Counting coincidences', ['g^{(2)}'], '8.5', ['12.2'], 'half', true]
 ];
 // the reading chapters each optional stretch is read ahead for
 const AHEAD = { 6: 'for R10 and R11', 7: 'for R12' };
@@ -107,15 +107,21 @@ export default async function () {
 	check(section(6).includes('[*What a lens would add*]') && section(6).includes('Section VII'), 'Section VII\'s sentence is not read in the stretch of Section IX');
 	check(section(1).includes('plain words of Section IV'), 'the second stretch is not the plain words of Section IV');
 	check(section(5).includes('Appendix A') && section(5).includes('{{paper eq:jitter-bounds}}'), 'the sixth stretch does not show eq:jitter-bounds');
-	// the marks: read now and derived later in 11.1, 13.8, Part 10 and Part 12, and nothing else
-	check(/\*read now, derived in Part 11\*, chapter 11\.1/.test(flat) && /\*read now, derived in Part 13\*, chapter 13\.8/.test(flat), 'the marks of 11.1 and 13.8');
-	check(/\*read now, derived in Part 10\*/.test(section(6).replace(/\s+/g, ' ')) && /\*read now, derived in Part 12\*/.test(section(7).replace(/\s+/g, ' ')), 'the marks of Parts 10 and 12');
-	check((flat.match(/\*read now, derived in Part \d+\*/g) ?? []).filter((m) => Number(m.match(/\d+/)[0]) > 8).length === 4, 'the chapter reads now more than four claims derived after Part 8');
+	// the marks: read now and derived later in 11.1, 13.8, Part 10 and 12.2, and nothing else
+	const one = (i) => section(i).replace(/\s+/g, ' ');
+	check(/\*read now, derived in Part 11\*, chapter 11\.1/.test(one(3)) && /\*read now, derived in Part 13\*, chapter \[13\.8\]\(\/tutorial\//.test(one(4)), 'the marks of 11.1 and 13.8');
+	check(/\*read now, derived in Part 10\*/.test(one(6)) && /\*read now, derived in chapter \[12\.2\]\(\/tutorial\//.test(one(7)), 'the marks of Part 10 and 12.2');
+	const laterMarks = [...flat.matchAll(/\*read now, derived in (?:Part (\d+)\*|chapter \[(\d+)\.\d+\])/g)].filter((m) => Number(m[1] ?? m[2]) > 8);
+	check(laterMarks.length === 4, `the chapter reads now ${laterMarks.length} claims derived after Part 8, not four`);
 	check(section(4).includes('*stated in the paper*') && section(6).includes('*stated in the paper*') && section(7).includes('*stated in the paper*'), 'the stated claims of the half-filled boxes');
 	for (const i of [0, 1, 2, 5]) check(!/\*read now|\*stated in the paper\*/.test(section(i)), `the filled box ${i + 1} holds a claim not checked here`);
 	// the numbers: the pixel's tide, the ceiling's 10^70, its blur and its 22 kilobytes, the quanta, the bits, (A1)
 	const sig = (v, d) => Number(v).toPrecision(d);
 	check(sig(pixelTide(), 2) === '6.5e-14' && flat.includes('$2\\sigma_{\\rm SQL}/\\xi\\tau^2 = 6.5\\times10^{-14}\\unit{s^{-2}}$'), 'the pixel\'s tide');
+	// the box prints both: the one-mass estimate, and the two masses' distance, sqrt 2 more, the paper's figure
+	check(sig(Math.SQRT2 * pixelTide(), 2) === '9.2e-14' && flat.includes('resolves $\\sqrt2$ times more, $9.2\\times10^{-14}\\unit{s^{-2}}$, the paper\'s figure') && flat.includes('this chapter carries the one-mass estimate'), 'the two masses\' tide');
+	const tex2 = (await (await fetch('/paper/sections/02-pixel.tex')).text()).replace(/\s+/g, ' ');
+	check(tex2.includes('would resolve $9\\times10^{-14}\\,\\mathrm{s^{-2}}$') && flat.includes('"would resolve $9\\times10^{-14}\\,\\mathrm{s^{-2}}$"'), 'the paper\'s 9 x 10^-14');
 	const ceiling = ladder().ceiling, d = Math.log10(ceiling);
 	check(sig(ceiling, 2) === '2.6e+70' && Math.round(d) === 70 && flat.includes('it is $2.6\\times10^{70}$, "about $10^{70}$"'), `the ceiling ${ceiling}`);
 	check(blur(d).toFixed(2) === '1.51' && flat.includes('a blur of $1.51°$ at that ratio'), `the ceiling's blur ${blur(d)}`);

@@ -223,8 +223,8 @@ m(z) = 0$, whose four roots are the four directions. They are the four principal
 300 readings, and complex Gaussian noise on every component of $10^{-4}$ of the signal's typical size, the root mean
 square of the noise-free components. Over 1,200 such records the median angle between a found direction and the true
 one is about $2\times10^{-5}$ rad, and about four records in five have all four directions within $10^{-4}$ rad. The
-worst reach about $2\times10^{-3}$ rad, where two sources are a few degrees apart. That is the paper's "located to
-$10^{-4}$ radian from three hundred readings", for a typical record.[^typical]
+worst reach about $2\times10^{-3}$ rad, where two sources are a few degrees apart. That is the paper's "typically
+located to $10^{-4}$ radian from three hundred readings".
 
 ## All three cases are Prony's problem, and counting gives the limit
 
@@ -466,11 +466,7 @@ recorded; with $N = 3$, nine against six.
 [^A]: The paper's letter. Since $\curv{\mathcal W}$ has no trace, $A$ can be taken trace-free. It is not chapter 8.7's
     sum $A$, nor 9.1's amplitude of the rotor.
 
-[^typical]: The paper's "located to $10^{-4}$ radian" holds typically, not for every record: one record in five has a
-    direction off by more than $10^{-4}$ rad.
-
-[^map]: The paper's Section VIII says the five numbers "are the moments". They are, up to a fixed linear map, as its
-    Appendix C says: in 9.1's components, $y_0 = c_2/2$.
+[^map]: As Section VIII and Appendix C say. In 9.1's components, for example, $y_0 = c_2/2$.
 
 [^moment-problem]: Gaspard de Prony posed it in 1795, for sums of decaying exponentials.
 
@@ -486,8 +482,8 @@ recorded; with $N = 3$, nine against six.
 [^IV]: The letter $I_a$, with its index, is one source's brightness, not 9.2's invariant $I = \mathrm{tr}\,\curv{\mathcal
     W}^2$.
 
-[^closed]: The paper's "in closed form" is loose. The fractions are the roots of a polynomial of degree five, which has no
-    general formula, and linear algebra alone finds them.
+[^closed]: The fractions are the roots of a polynomial of degree five, which has no general formula; linear algebra alone
+    finds them, the paper's "by linear algebra alone".
 
 [^rho]: Tilting a wave by one radian changes its reading by about its own size, so by chapter 3.3's Cramér–Rao bound
     a direction is known to about the noise over the signal, $1/\rho$.

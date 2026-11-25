@@ -10,12 +10,12 @@ live: [lorentz-diagram]
 depth: A
 ---
 
-The paper's Figure [](/paper/#fig:speedometer) sends a pixel across a room of four masses at 0.6 of the speed of
-light, and the pixel reads its own velocity from the tide alone. Its [Section VIII](/paper/#sec:one-pixel) then
-says that "a camera that sees mass sees it on its own slice of simultaneity". Long before that, in
-[Section II](/paper/#sec:pixel), the paper defines the tide "for an observer at rest, with proper time $t$ and
-coordinates $x^0 = ct$". All three sentences assume that an observer's clock and an observer's sense of "now" depend on
-how the observer moves.
+The paper's Figure [](/paper/#fig:speedometer) sends a pixel across a room of four masses at 0.6 of the speed of light,
+and the pixel reads its own velocity from the tide alone. Its [Section VIII](/paper/#sec:one-pixel) then says that "a
+camera that sees mass sees it on its own slice of simultaneity". Long before that, in [Section II](/paper/#sec:pixel),
+the paper defines the tide "for an observer at rest relative to the masses, with proper time $t$", and it writes the
+observer's time as the coordinate $x^0 = ct$. All three sentences assume that an observer's clock and an observer's
+sense of "now" depend on how the observer moves.
 
 {{paper fig:speedometer}}
 
@@ -277,8 +277,9 @@ gravity and of the Earth's turning, taken together, everywhere on it (chapter
 [1.2](/tutorial/newton/field-and-potential/) defines the potential), so every clock at sea level ticks at the same rate
 (N. Ashby, *Living Reviews in Relativity* 6, 1, 2003).
 
-This is the meaning of the paper's "observer at rest, with proper time $t$" in [](/paper/#eq:tidal): $t$ is the time on
-the pixel's own clock, and for an observer at rest it is also the time of the frame.
+This is the meaning of the paper's "observer at rest relative to the masses, with proper time $t$" in
+[](/paper/#eq:tidal): $t$ is the time on the pixel's own clock, and for an observer at rest it is also the time of the
+frame.
 
 ## A moving ruler is shorter along its motion, and distances in a body's own frame are longer
 
@@ -545,9 +546,9 @@ wR_*^3/G$ is the paper's last line. Directly across the path $\obs v_\perp = \ob
 :::
 
 ::: paper
-- [Section II](/paper/#sec:pixel), [](/paper/#eq:tidal): the tide "for an observer at rest, with proper time $t$ and
-  coordinates $x^0 = ct$", which this chapter's [proper time](#a-moving-clock-runs-slow-and-a-clocks-own-time-is-the-length-of-its-path)
-  explains.
+- [Section II](/paper/#sec:pixel), [](/paper/#eq:tidal): the tide "for an observer at rest relative to the masses, with
+  proper time $t$", which this chapter's
+  [proper time](#a-moving-clock-runs-slow-and-a-clocks-own-time-is-the-length-of-its-path) explains.
 - [*One complex matrix*](/paper/#par:one-complex-matrix), beside [](/paper/#eq:W): a pixel moving "with rapidity $\eta$"
   at the speed $c\tanh\eta$ ([rapidity](#rapidities-add-where-velocities-do-not)).
 - [*The state of a moving body*](/paper/#par:the-state-of-a-moving-body), [](/paper/#eq:moving-state): $\obs\gamma$ and

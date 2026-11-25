@@ -149,7 +149,7 @@ $G^5\matter M^6/c^{13}$, and only the number $\tfrac{16}{45}$ needs Poisson's ca
 $r_s = 2G\matter M/c^2$, the paper's second form agrees:
 $\matter Mr_s^5/90c^3 = 32\,G^5\matter M^6/90c^{13} = \tfrac{16}{45}G^5\matter M^6/c^{13}$.
 
-**Numbers.** For Section VII's hole of $1.36\times10^{23}$ kg, $\nu = 1.9\times10^{-23}\unit{J\,s^5}$. Since $\nu$
+**Numbers.** For Section VII's hole of $1.356\times10^{23}$ kg, $\nu = 1.9\times10^{-23}\unit{J\,s^5}$. Since $\nu$
 grows as $\matter M^6$, a hole of thirty solar masses has $\nu = 1.3\times10^{29}\unit{J\,s^5}$. Take the paper's pair
 of such holes $d = 2200$ km apart (Section XI). With $\hat n$ the unit vector from a hole to its companion, each feels
 the tide $(G\matter M/d^3)(\delta_{ij} - 3\hat n_i\hat n_j)$, which turns with the orbit at
@@ -386,7 +386,7 @@ of $\matter Q_{ij}$ tremble alike and independently:
 
 **Units:** $\hbar r_s^5/G$ is $\mathrm{J\,s\,m^5}$ over $\mathrm{m^3\,kg^{-1}\,s^{-2}}$, or $\mathrm{kg^2\,m^4\,s}$, a
 squared quadrupole per hertz. **Limit:** as $\hbar \to 0$ the noise vanishes, as it must for 11.1's classical hole,
-which is at absolute zero. **Number:** for Section VII's hole, $S_Q = 4.6\times10^{-46} \unit{kg^2\,m^4\,s}$.[^mass]
+which is at absolute zero. **Number:** for Section VII's hole, $S_Q = 4.6\times10^{-46} \unit{kg^2\,m^4\,s}$.
 Averaged over one second, each entry trembles by $\sqrt{S_Q/1\unit s} = 2.2\times10^{-23} \unit{kg\,m^2}$, about
 $4\times10^{-39}$ of $\matter Mr_s^2$.
 
@@ -548,10 +548,10 @@ $\Gamma_2 = 16G\nu\omega^6/5c^5$, the paper's limit.
   proves that the area the friction grows never shrinks.
 :::
 
-[^sign]: The paper's Section IV writes "a quadrupole $\tfrac13k_2R^5/G$ times the applied tide" without the sign. The
-    exact rule has $-\tfrac13k_2R^5/G$, because a negative $\curv\tE_{zz}$ stretches along $z$ and the body grows
-    longer along $z$: in the Moon's tide, $\curv\tE_{zz} = -1.7\times10^{-13}\unit{s^{-2}}$ along the line to the
-    Moon, and the Earth's moment gains $+2.7\times10^{30}\unit{kg\,m^2}$ in its $zz$ entry.
+[^sign]: The paper's Section IV writes it "$-\tfrac13 k_2R^5/G$ times the applied tide": a negative $\curv\tE_{zz}$
+    stretches along $z$ and the body grows longer along $z$. In the Moon's tide, $\curv\tE_{zz} =
+    -1.7\times10^{-13}\unit{s^{-2}}$ along the line to the Moon, and the Earth's moment gains
+    $+2.7\times10^{30}\unit{kg\,m^2}$ in its $zz$ entry.
 
 [^nu]: The paper's letter. Here $\nu$ is not a frequency, which stays $\omega$; the letter $f$ is the push.
 
@@ -564,6 +564,3 @@ $\Gamma_2 = 16G\nu\omega^6/5c^5$, the paper's limit.
 [^split]: Chapter 4.5 promised these results to 11.4 and
     [13.7](/tutorial/what-a-field-keeps/thermometer/). Chapter 13.7 derives the sum
     $0.345\,\matter Mr_s^2$, the shells, the failed positivity test and the Love number 1.35.
-
-[^mass]: The paper's $1.36\times10^{23}$ kg rounds 11.3's $1.356\times10^{23}$ kg, whose $T_H$ is the paper's 0.905 K.
-    The noise at $1.36\times10^{23}$ kg is 1.5% larger.

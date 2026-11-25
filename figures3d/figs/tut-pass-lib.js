@@ -136,7 +136,13 @@ export async function chapter(check) {
 	{
 		const cm = LUMPS.reduce((s, l) => [s[0] + l.m * l.w[0], s[1] + l.m * l.w[1]], [0, 0]);
 		check(near(cm[0], 0, 1e-15) && near(cm[1], 0, 1e-15) && near(LUMPS[0].m + LUMPS[1].m, 1, 1e-15), 'the lopsided body\'s centre of mass');
-		check(comments.some((c) => c.includes('masses 0.7M and 0.3M at w = (0.27 − 0.09i)R and w = (−0.63 + 0.21i)R')), 'the try comment\'s lumps');
+		// the try comment became the interactive FirstAndSecondOrder: its try block names the two lumps, and the module
+		// it registers places them where these do
+		const live = await (await fetch('/app/src/lib/tutorial/live.ts')).text();
+		const mod = await (await fetch('/app/src/lib/tutorial/live/first-and-second-order.ts')).text();
+		const tryBlock = (md.match(/^::: try \{#first-and-second-order\}\n[\s\S]*?^:::$/m) ?? [''])[0];
+		check(tryBlock.includes('*Two\nlumps*') && /\nlive: \[first-and-second-order\]\n/.test(md) && live.includes("'first-and-second-order': {") &&
+			mod.includes(`{ mass: ${LUMPS[0].m}, at: cx(${LUMPS[0].w[0]}, ${LUMPS[0].w[1]}) }`) && mod.includes(`{ mass: ${LUMPS[1].m}, at: cx(${LUMPS[1].w[0]}, ${LUMPS[1].w[1]}) }`), 'the interactive\'s lumps');
 	}
 
 	// ---- the slices

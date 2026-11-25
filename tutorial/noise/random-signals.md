@@ -476,14 +476,14 @@ one over the square root.**
 ### Practice
 
 The gradiometer of the satellite GOCE had a one-sided $\sqrt{S_1}$ of 10 to $20\unit{mE\,Hz^{-1/2}}$ in its band
-from 5 to 100 mHz (R. Rummel, W. Yi and C. Stummer, *J. Geod.* 85, 777, 2011), which the paper reads as 0.01 to
-0.02 E in a second ([*A flown gradiometer*](/paper/#par:a-flown-gradiometer)). Find the two-sided $\sqrt{S(0)}$, the
-noise after one second read strictly, and the noise averaged over a day if the noise were white.
+from 5 to 100 mHz (R. Rummel, W. Yi and C. Stummer, *J. Geod.* 85, 777, 2011), the paper's "noise of between $0.01$
+and $0.02\,\mathrm{E\,Hz^{-1/2}}$" ([*A flown gradiometer*](/paper/#par:a-flown-gradiometer)). Find the two-sided
+$\sqrt{S(0)}$, the noise after one second read strictly, and the noise averaged over a day if the noise were white.
 
 ::: solution
 By $S_1 = 2S(\omega)$, $\sqrt{S(0)} = \sqrt{S_1/2} = 7.1$ to $14\unit{mE\,s^{1/2}}$, or $0.71$ to
 $1.4\times10^{-11}\unit{s^{-2}\,Hz^{-1/2}}$. By [](#eq:var-time) the noise after one second is
-$\sigma_n(1\unit{s}) = 0.0071$ to $0.014\unit{E}$, a factor $\sqrt2$ below the paper's reading. A day is 86,400 s, and
+$\sigma_n(1\unit{s}) = 0.0071$ to $0.014\unit{E}$, a factor $\sqrt2$ below 0.01 to 0.02 E. A day is 86,400 s, and
 $\sqrt{86{,}400} = 294$, so the noise would fall to $2.4$ to $4.8\times10^{-5}\unit{E}$. But GOCE's noise rises
 roughly as $1/f$ below its band, whose longest period is 200 s, so this red part sets the floor of a day's average.
 :::
@@ -568,10 +568,11 @@ $10^3$. At $\SNR = 10$ each pixel's noise is larger than the gold's peak tide, $
     $\mathrm{Var}\,\bar n = (2\sigma_n^2\tau_c/\tau)\bigl[1 - (\tau_c/\tau)(1 - e^{-\tau/\tau_c})\bigr]$, which is
     $2\sigma_n^2\tau_c/\tau$ for $\tau \gg \tau_c$ and tends to $\sigma_n^2$ as $\tau \to 0$.
 
-[^strict]: This is the paper's reading, and the tutorial keeps it. The source (M. V. Moody, H. J. Paik and
-    E. R. Canavan, *Rev. Sci. Instrum.* 73, 3957, 2002) quotes $0.02\unit{E\,Hz^{-1/2}}$ as a one-sided amplitude
-    spectral density $\sqrt{S_1}$, as data sheets do. Read strictly, $S(0) = S_1/2$, so the noise after one second is
-    $0.014\unit{E}$, and the ratio on the person is about 660 rather than 467.
+[^strict]: The paper quotes the source's "$0.02\,\mathrm{E\,Hz^{-1/2}}$" and takes it "as $0.02\,\mathrm{E}$ for one
+    second of averaging", and the tutorial keeps that reading. The source (M. V. Moody, H. J. Paik and E. R. Canavan,
+    *Rev. Sci. Instrum.* 73, 3957, 2002) gives it as a one-sided amplitude spectral density $\sqrt{S_1}$, as data sheets
+    do. Read strictly, $S(0) = S_1/2$, so the noise after one second is $0.014\unit{E}$, and the ratio on the person is
+    about 660 rather than 467.
 
 [^ahead]: Chapter [3.7](/tutorial/noise/blur-law/) builds the blur law on $N_0$ and on the spectrum $S_\sigma$ of the
     last section: its signal-to-noise ratio compares the peak tide of a mass at depth $z$ with $\sqrt{N_0}/z$.

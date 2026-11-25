@@ -455,15 +455,15 @@ $\pi$, and 0.01 rad needs $N = 10^4$.
 
 ### The paper
 
-Check the paper's "the centre of mass of an isolated system cannot move, so the two branches differ in their
-quadrupole, about $md^2$" when the body that recoils is not centred on the mass. Let the mass start a distance $s$ along
-$x$ from that body's centre, and find the change of the second moment between the two branches.
+The paper says that "the two branches differ in their quadrupole, by about $md^2$ when the body that recoils is
+centred on the mass". Find the change when it is not. Let the mass start a distance $s$ along $x$ from that body's
+centre, and find the change of the second moment between the two branches.
 
 ::: solution
 With the origin at the centre of mass, let the mass start at $x_1$ and the body at $x_2$, with $x_1 - x_2 = s$. In
 branch $R$ the mass moves by $d$ and the body by $-\matter md/\matter M$, so the dipole changes by $\matter md -
 \matter md = 0$, and the second moment by $\matter m(2x_1d + d^2) + \matter M(-2x_2\matter md/\matter M +
-\matter m^2d^2/\matter M^2) = 2\matter mds + \matter md^2(1 + \matter m/\matter M)$. The paper's "about $md^2$" holds
+\matter m^2d^2/\matter M^2) = 2\matter mds + \matter md^2(1 + \matter m/\matter M)$. It is about $\matter md^2$ only
 when $s$ is at most of order $d$, which needs the body that recoils to be centred on the mass, as a trap around it is.
 A separate body pushing a gram of gold from beside it has its centre at least the gram's radius, 2.3 mm, away, so at
 $d = 1\unit{\mu m}$ the change is $(2s/d + 1)\,\matter md^2 \approx 5\times10^3\,\matter md^2$.
@@ -505,10 +505,10 @@ $d = 1\unit{\mu m}$ the change is $(2s/d + 1)\,\matter md^2 \approx 5\times10^3\
 
 [^psi]: This $\psi$ is not chapter 2.5's null-space potential.
 
-[^centred]: The paper's "about $md^2$" assumes this. For a separate body pushing a gram of gold from beside it, the
-    change is about $5\times10^3\,\matter md^2$ at $d = 1\unit{\mu m}$ (the paper problem below). The conclusion does
-    not depend on it, because the two arrangements differ in their quadrupole either way, and the argument of the
-    paper's sources holds for whatever that quadrupole is.
+[^centred]: The paper's "about $md^2$" holds under this condition, which it states. For a separate body pushing a gram
+    of gold from beside it, the change is about $5\times10^3\,\matter md^2$ at $d = 1\unit{\mu m}$ (the paper problem
+    below). The conclusion does not depend on it, because the two arrangements differ in their quadrupole either way,
+    and the argument of the paper's sources holds for whatever that quadrupole is.
 
 [^gauss]: The packet $\psi(x) = (2\pi\sigma^2)^{-1/4}e^{-x^2/4\sigma^2}$ has for $|\psi|^2$ a bell curve of standard
     deviation $\sigma$ (chapter 3.1). In the bracket $\int\psi(x)\,\psi(x - \Delta)\,\dd x$, completing the square in the

@@ -14,7 +14,7 @@ Chapter [7.1](/tutorial/geometry/metric/#falling-removes-the-fields-first-deriva
 ended with a count. At one event, a change of coordinates can give the metric the values of flat spacetime and remove
 all its first derivatives, so that a box falling freely feels no pull there. But 20 combinations of the metric's second
 derivatives survive every choice of coordinates. The paper's [Section II](/paper/#sec:pixel) names what is left. For an
-observer at rest, with proper time $t$, the tide is
+observer at rest relative to the masses, with proper time $t$, the tide is
 
 {{paper eq:tidal}}
 

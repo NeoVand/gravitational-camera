@@ -62,9 +62,9 @@ $s$ read in $L$ independent snapshots
 
 {{paper eq:wave-count}}
 
-For $s = 1$, 2 and 4 it gives 1, 2, 2; 2, 3, 4; and 4, 6, 8 at one instant, at one frequency and over a long record,
-so spin four "would separate six waves at one frequency" (*checked here*). With noise of $10^{-4}$ of the signal, four
-waves "are located to $10^{-4}$ radian from three hundred readings".[^typical] From second moments alone, one
+For $s = 1$, 2 and 4 it gives 1, 2, 2; 2, 3, 4; and 4, 6, 8 at one instant, at one frequency and over a long record, so
+spin four "would separate six waves at one frequency" (*checked here*). With noise of $10^{-4}$ of the signal, four
+waves "are typically located to $10^{-4}$ radian from three hundred readings".[^typical] From second moments alone, one
 pixel separates five uncorrelated sources whose circular fractions differ (*read now, derived in chapter
 [9.5](/tutorial/one-point/separating-waves/#uncorrelated-sources-separate-from-their-average-brightness-and-circular-polarization)*).
 
@@ -87,7 +87,7 @@ Through the paper's kernel
 
 {{paper eq:pixel-kernel}}
 
-and the linear polarization's spin weight four, the pixel reads
+with the cross terms of the tide and the magnetic part, and the linear polarization's spin weight four, the pixel reads
 
 {{paper eq:sky-count}}
 
@@ -514,27 +514,26 @@ $\sqrt2\times\tfrac12(2\pi\times100)^2\times10^{-21}$; then the three traces
   $\vect x_s$, which the paper cites for depth.
 :::
 
-[^typical]: The paper's $10^{-4}$ radian holds for a typical record: over 200 records the median error is
-    $2\times10^{-5}$ rad, and the worst reach $2\times10^{-3}$ rad, where two sources lie a few degrees apart (9.5).
+[^typical]: Over 200 records the median error is $2\times10^{-5}$ rad, and the worst reach $2\times10^{-3}$ rad, where
+    two sources lie a few degrees apart (9.5).
 
-[^even]: The paper's reason for the brightness's 25 numbers, its kernel, gives only 15: the kernel is even in $\hat n$
-    and reaches degrees 0, 2 and 4. Degrees 1 and 3 enter through the tide's products with the magnetic part (9.6).
+[^even]: The kernel is even in $\hat n$ and reaches the brightness's degrees 0, 2 and 4, fifteen numbers. Degrees 1 and
+    3, the other ten, enter through the tide's products with the magnetic part, which are odd in $\hat n$ (9.6).
 
-[^phase]: The paper's "within a few per cent at $kr = 80$ … under one per cent at $kr = 200$" holds at the phase $\theta
-    = 0$ of its Figure [](/paper/#fig:ranging)(a). Over the whole cycle the next order reaches 10 per cent at $kr = 80$,
-    falling as $1/kr$ (9.7).
+[^phase]: The paper's "within a few per cent at $kr = 80$ … under one per cent at $kr = 200$" is for $C$ at the phase
+    $\theta = 0$ of its Figure [](/paper/#fig:ranging)(a), as it says. Over the whole cycle the next order reaches 10
+    per cent at $kr = 80$, falling as $1/kr$ (9.7).
 
-[^mass]: The paper's "because mass and momentum are conserved": mass alone cancels the first-order term, which would
-    err by $kr$, 10 per cent at $kr = 0.1$. Momentum removes a next-order term, $(kd)(kr)$ of the steady tide for an
-    orbit of size $d < r$, under 1 per cent there (7.7).
+[^mass]: The conservation of mass cancels the first-order term, which would err by $kr$, 10 per cent at $kr = 0.1$.
+    That of momentum removes a next-order term, $(kd)(kr)$ of the steady tide for an orbit of size $d < r$, under 1 per
+    cent there (7.7).
 
-[^rotor]: The paper's "a hundred times its size" and "thirty-five times the true one" need a geometry it does not give:
-    99 in the rotor's plane, 21 on its axis, 35.5 in the capstone's (e), and at most 47 over all wave directions,
-    within 9.7's bound of $99/2$.
+[^rotor]: The ratio is 99 in the rotor's plane, where the paper puts the camera, and 21 on its axis. Ignoring the rotor
+    makes the wave 35.5 times the true one from the paper's direction, $35^\circ$ from the rotor's axis on the side away
+    from it, the capstone's (e), and at most 47 over all wave directions, within 9.7's bound of $99/2$.
 
-[^letter]: The paper's caption calls this factor $D$, which also names the array's width and a term of the paper's
-    [](/paper/#eq:ranging-C). It is a pure number: exactly $\sqrt2 = 1.41$ at one pixel.
+[^letter]: The factor is a pure number: exactly $\sqrt2 = 1.41$ at one pixel.
 
-[^million]: The paper's "a hundred million times worse than with neighbours" depends on $b/r$, which it does not fix.
-    The full bound of the paper's [](/paper/#eq:depth-bound) gives $2.3\times10^7$ at the desk's $b/r = 1/30$,
-    $6.6\times10^7$ at 0.1 (its approximation $r/(\sqrt{30}\rho b)$ gives $6.8\times10^7$) and $10^8$ near 0.15.
+[^million]: The paper's "a hundred million times worse than with neighbours" is at $b = r/6$, where the full bound of
+    its [](/paper/#eq:depth-bound) gives $1.07\times10^8$. It depends on $b/r$: $2.3\times10^7$ at the desk's $b/r =
+    1/30$, and $6.6\times10^7$ at 0.1 (the approximation $r/(\sqrt{30}\rho b)$ gives $6.8\times10^7$).

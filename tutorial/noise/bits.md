@@ -386,7 +386,7 @@ that $\Lambda > L$, only the monopole stands above the noise, the integral fails
 **A black hole has seven numbers.** A black hole at rest is fixed by its mass, the three components of its spin and the
 three of its position.[^nohair] Each is read at most at $\SNR$, so the hole gives at most $7\log_2\SNR$ bits: 140 at
 $10^6$ and 1630 at $10^{70}$, whatever its size. A body read from three radii holds 8.4 times as much at $10^6$, the
-paper's "nearly nine", and 1035 times as much at $10^{70}$, "a thousand".
+paper's "about eight and a half", and 1035 times as much at $10^{70}$, "a thousand".
 
 {{paper fig:hair}}
 
@@ -485,7 +485,7 @@ noise adds almost nothing.
 
 Reproduce the numbers of the paper's paragraph [*The number of bits*](/paper/#par:the-number-of-bits) from its equation
 [](/paper/#eq:hair-bits): 1200 bits from three radii at $10^6$, $1.7\times10^6$ at $10^{70}$, a black hole's 140 and
-1600, and the ratios "nearly nine" and "a thousand".
+1600, and the ratios "about eight and a half" and "a thousand".
 
 ::: solution
 With $\Lambda = \ln3 = 1.0986$: at $10^6$, $L = 13.816$, $L^3/3\Lambda^2 = 728.27$ and $L^2/2\Lambda = 86.87$, so

@@ -147,7 +147,8 @@ export default async function () {
 	check(paras.length === FIRST_HALF + 16 && paras[FIRST_HALF - 1] === 'The state of a moving body', `Section VIII's paragraphs ${paras}`);
 	check(PARAGRAPHS.every((p, k) => paras[FIRST_HALF + k] === p[0]), 'the boxes are not the paper\'s last sixteen paragraphs, in order');
 	const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-	const C = '(R\\d+b?|\\d\\.\\d)(?!\\d)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d\\.\\d)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const citesOf = (sec) => {
 		let s = sec;
 		for (const n of NOT_CITED) s = s.split(n).join(' ');

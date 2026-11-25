@@ -87,8 +87,7 @@ K, has $\matter M = 1.356\times10^{23}$ kg and $r_s = 0.20$ mm, so its shape tre
 $2\times10^{-16}\unit{kg\,m^2}$ in the time light takes to travel $r_s$, 0.67 ps. Chapter 11.4's one-second average is
 ten million times smaller: averaging over a time $t$ keeps only frequencies below about $1/t$, where the flat thermal
 part shrinks as $1/\sqrt t$ and the zero-point part is nearly absent. **Meaning:** the tremor's square is of order
-$\hbar$ (Section XV says "the tremor", loosely), and only a hole near the Planck mass would tremble by a fair part of
-its size.
+$\hbar$, as Section XV says, and only a hole near the Planck mass would tremble by a fair part of its size.
 
 **What it carries.** The mass fixes $T_H$, so the tremor "carries $M$ again" (Table [](/paper/#tab:hair), row *Its
 tremor*), where a stone's carries its whole interior (4.6). A spectrum compares readings at two times (13.2), so
@@ -374,10 +373,10 @@ term local in time, one real number at every frequency. It adds nothing to $\mat
 the sum, the $-A/\omega^2$ part of $\chi$, stand. The static response then needs a **subtraction**, the local term
 added to the integral. If one subtraction suffices, the local term must be $-1.35$ in these units and cancels the
 integral [@KehagiasRiotto2026]. Porto shows the relation cannot hold without a subtraction [@Porto2016], and
-Goldberger, Li and Rothstein that the part from short waves cannot be told from local terms
-[@GoldbergerLiRothstein2021]. The 1.35 uses $\Gamma_2$ near $x \approx 0.4$, where a point's response is defined only
-by convention. In the paper's words, "the two numbers give the sizes": 1.35 of the dispersive part, zero of the
-whole.[^rms]
+Goldberger, Li and Rothstein that the part "from waves near the hole's size, which the $1.35$ includes, cannot be told
+from such local terms", in the paper's words [@GoldbergerLiRothstein2021]. The 1.35 uses $\Gamma_2$ near
+$x \approx 0.4$, where a point's response is defined only by convention. So 1.35 is the size of the dispersive part,
+and zero that of the whole.[^rms]
 
 ::: try {#hole-response}
 The paper's figure, live, in three panels: the horizon with a ring at each degree's shell radius, the
@@ -477,7 +476,7 @@ paper's 4.34.
   Figure [](/paper/#fig:hole-response) and Table [](/paper/#tab:hair).
 - [Section IV](/paper/#sec:near-field): the paper's [](/paper/#eq:sum-rule), [](/paper/#eq:thermal-multipole) and
   [](/paper/#eq:thermometer), for the matter the hole is weighed against.
-- [Section XV](/paper/#sec:holography): "a temperature at two", and a hole's tremor "of order $\hbar$".
+- [Section XV](/paper/#sec:holography): "a temperature at two", and the square of a hole's tremor "of order $\hbar$".
 :::
 
 ::: deeper
@@ -514,8 +513,9 @@ paper's 4.34.
 
 [^mk]: Not a mass: $m_1$ is in $\mathrm{m^2}$, $m_2$ in $\mathrm{m^4}$ and $m_3$ in $\mathrm{m^6}$.
 
-[^precision]: The printed radii, 1.02, 1.46 and 1.61, give $-2.43$ at $4.37$. The test fails either way, but $-2.04$
-    needs the unrounded radii, because $R_3$ enters $m_2^2$ as its eighth power.
+[^precision]: The paper takes it "from the unrounded radii". To two places, 1.02, 1.46 and 1.61, they give $-2.43$
+    at $4.37$: the test fails either way, but $-2.04$ needs the unrounded radii, because $R_3$ enters $m_2^2$ as its
+    eighth power.
 
 [^scale]: On the scale where a liquid ball has $\tfrac34$, the would-be Love number is 0.674. We keep 4.6's scale,
     the paper's.

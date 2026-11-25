@@ -11,7 +11,7 @@ live: [quadrupole, scene-which-way]
 
 The plain words of the paper's [Section V](/paper/#sec:waves) put a number on how weak the waves of moving bodies are:
 "Two masses of one kilogram each, one metre apart, spun sixteen times a second, send out a power of
-$4.5\times10^{-41}$ watts." Reading chapter [R5](/tutorial/waves/reading-section-iii/) met such pairs in sealed boxes
+$4.6\times10^{-41}$ watts." Reading chapter [R5](/tutorial/waves/reading-section-iii/) met such pairs in sealed boxes
 and found which way they turn with Part 5's tools, leaving the strength of their waves to Part 7. With Part 7 behind
 us, can we now derive every claim of Section V, and what does one sealed rotor look like to a pixel beside it and to a
 camera far away?
@@ -144,15 +144,15 @@ The simplest source larger than its wave is many compact ones driven in step.
 ## The polarization of an unresolved rotor gives its sense of turning and its tilt
 
 [*The polarization of an unresolved source*](/paper/#par:the-polarization-of-an-unresolved-source) says that "along the
-axis of rotation it is strongest and circularly polarized, with the handedness of the rotation; in the plane of rotation
-it is eight times weaker and linearly polarized". The **polarization** of a wave is the way its pattern of stretch is
-oriented and changes during each cycle (5.4). The angle between the rotor's spin and the direction from the rotor to
-the camera is the **inclination** $\sym{inclination}{\iota}$. Chapter
+axis of rotation it is strongest and circularly polarized, with the handedness of the rotation; in the plane of
+rotation it carries eight times less power and is linearly polarized". The **polarization** of a wave is the way its
+pattern of stretch is oriented and changes during each cycle (5.4). The angle between the rotor's spin and the
+direction from the rotor to the camera is the **inclination** $\sym{inclination}{\iota}$. Chapter
 [5.4](/tutorial/waves/polarization/#the-rotor-shines-eight-times-less-edge-on) found the power sent toward $\iota$,
 relative to the power along the axis, to be $(1 + 6\cos^2\iota + \cos^4\iota)/8$, panel (a) below. Edge-on it is
-$\tfrac18$: the amplitude is halved, which quarters the power, and one of the two polarizations is gone, which halves it
-again (*checked here*). Averaged over the sky the curve is $\tfrac25$, so the total power is $\tfrac85\pi r^2$ times the
-flux on the axis at the distance $r$, which with 7.8's flux gives the paper's [](/paper/#eq:dumbbell) again.
+$\tfrac18$: the amplitude is halved, which quarters the power, and one of the two polarizations is gone, which halves
+it again (*checked here*). Averaged over the sky the curve is $\tfrac25$, so the total power is $\tfrac85\pi r^2$ times
+the flux on the axis at the distance $r$, which with 7.8's flux gives the paper's [](/paper/#eq:dumbbell) again.
 
 {{paper fig:quadrupole}}
 
@@ -201,10 +201,10 @@ sources.
 stress that is transverse to the line of sight and has no trace", the projector of the paper's [](/paper/#eq:wave-zone)
 (7.7, *checked here*).
 
-- Steady motion "radiates nothing: its quadrupole grows, but with a constant second derivative". Chapter
+- "Steady motion in a straight line radiates nothing: it is a body at rest seen by a moving observer." Chapter
   [7.6](/tutorial/geometry/gravitational-waves/#a-body-in-steady-motion-sends-no-wave-and-neither-does-an-even-pressure)
-  found it by relativity: a body moving steadily is a body at rest seen by a moving observer, so its field falls as
-  $1/r^3$, with no part falling as $1/r$ (*checked here*).[^steady]
+  derived it by relativity: the field of a body at rest, seen from a moving frame, falls as $1/r^3$, with no part
+  falling as $1/r$ (*checked here*).[^steady]
 - Anything "that keeps spherical symmetry, however violently it pulsates", has the second moment
   $\tfrac13\delta_{ij}\int\matter\rho\,r^2\,\dd V$ at every instant, which is pure trace, and the projector removes it
   (7.7, *checked here*).
@@ -213,7 +213,7 @@ stress that is transverse to the line of sight and has no trace", the projector 
 - The last case is "a pressure that is the same in all directions", which "is pure trace: it is removed exactly by the
   projection". Its stress is $\matter p\,\delta_{kl}$, and $\Lambda_{ij,kl}\delta_{kl} = 0$ exactly (7.6, *checked
   here*), so a sealed box of gas whose pressure rises and falls evenly sends nothing at all. The paper adds that it has
-  "verified numerically" the statement (*stated in the paper*).[^projection]
+  "verified numerically" the statement (*stated in the paper*).
 
 "The camera sees shear and lopsided motion, not pressure." In chapter
 [7.7](/tutorial/geometry/quadrupole-formula/#a-compact-source-is-read-at-zero-wavevector-where-its-stress-is-half-the-acceleration-of-its-quadrupole)'s
@@ -229,9 +229,9 @@ The **near zone**, where the field follows the source almost at once, reaches $\
 $0.20\unit{m\,s^{-1}}$. A pair turning once a second sends waves at 2 Hz, $0.20/2 = 0.10$ m long, the paper's ten
 centimetres (R5, *checked here*). The figure's balls, 0.44 m apart, move at $\Omega d/2 = 1.38\unit{m\,s^{-1}}$, the
 paper's 1.4, which is 6.9 times the slowed light, "seven times faster". The paper's [](/paper/#eq:dumbbell) assumes $v
-\ll c$, so it "would not hold" (7.7, *checked here*).[^rescales] "The polarization … does not depend on the speed of
-light": by the paper's [](/paper/#eq:rotor-amplitudes), $V/I$ depends only on the inclination (5.4, *checked
-here*, for a compact source).
+\ll c$, so it "would not hold" (7.7, *checked here*).[^rescales] "The polarization of a compact source, … does not
+depend on the speed of light, and the figure gives each pair that polarization": by the paper's
+[](/paper/#eq:rotor-amplitudes), $V/I$ depends only on the inclination (5.4, *checked here*).
 
 {{paper fig:which-way}}
 
@@ -411,42 +411,39 @@ gone, but $V/I$ has fallen by only 0.3 per cent, so its size measures the tilt f
   1987): the physics of Section V at full length.
 :::
 
-[^wave-zone]: The paper says "outside the near zone"; the formula holds in the wave zone, $r \gg \lambda/2\pi$, since
-    near $\lambda/2\pi$ the terms in $1/r^2$ and $1/r^3$ are as large as the wave's (7.7).
+[^wave-zone]: The paper states it "in the wave zone, $r \gg \lambda/2\pi$": near $\lambda/2\pi$ the terms in $1/r^2$
+    and $1/r^3$ are as large as the wave's (7.7).
 
-[^rounding]: The paper's 4.5 should read 4.6, since the formula gives $4.552\times10^{-41}$ W (7.7).
+[^rounding]: The formula gives $4.552\times10^{-41}$ W, which the paper rounds to 4.6 (7.7).
 
 [^n]: As in Section XI; elsewhere the paper's $\hat n$ points from the pixel toward the source.
 
-[^grid]: The paper says only that the generators "turn in step". Turning 50 times a second, as on a 50 Hz grid, holds
-    for two-pole machines. Four-pole machines turn 25 times a second and would give 6000 km, and only through their
-    flaws, since a perfect four-fold rotor sends no wave.
+[^grid]: The paper counts only the generators "that turn fifty times a second", the two-pole machines of a 50 Hz
+    grid, and their waves come from "the small asymmetries of their nearly round rotors". Four-pole machines turn 25
+    times a second and would give 6000 km, again only through their flaws, since a perfect four-fold rotor sends no
+    wave.
 
 [^criterion]: The paper names no criterion. With Sparrow's, which asks only that a dip appear, or with a round
     aperture, the factor lies between 1.4 and 1.6 (5.3).
 
-[^axes]: The paper does not state the handedness of the axes or the origin of the phase, on which the sign of
-    $\field h_\times$ depends; 5.4 takes $\vect e_1\times\vect e_2 = \hat n$. The sign of $V$ is fixed in words.
+[^axes]: The paper fixes the axes as 5.4 does: "the first along the projection of the spin and the second a quarter
+    turn from it anticlockwise as the camera sees it".
 
-[^stokes]: The paper uses $I$ and $V$ without defining them for a gravitational wave. Chapter 5.4 defines all four,
-    $I$, $Q$, $U$ and $V$, from the two polarizations.
+[^stokes]: The paper defines them as "the sum and the difference of the squared amplitudes of the parts of the wave
+    that turn anticlockwise and clockwise as the camera sees them". Chapter 5.4 defines all four, $I$, $Q$, $U$ and
+    $V$, from the two polarizations.
 
 [^steady]: The quadrupole formula about a fixed origin stops applying once the body has moved far from it; the
     argument from relativity does not.
 
-[^projection]: The projector that acts on the stress is the one in the paper's [](/paper/#eq:wave-zone); the paper
-    cites its [](/paper/#eq:quadrupole) instead.
+[^rescales]: The change "rescales the wavelength and everything that depends on it": the balls become faster than
+    the slowed light, and "each pair is $4.4$ wavelengths across", no longer a compact source (R5).
 
-[^rescales]: The paper says the change "rescales the wavelength and nothing else". It also makes the balls faster than
-    the slowed light and the pair 4.4 wavelengths across, no longer compact, so the figure gives it a compact source's
-    $V/I$ by choice (R5).
+[^caption]: At the true speed of light, as the caption says, "a camera in the room, deep inside their near zone, reads
+    the Newtonian tide, whose stretch turns with each pair and still gives the sense of turning" (R5).
 
-[^caption]: The caption's "the polarization still gives the sense of turning" holds beyond the near zone. At the true
-    speed of light a camera in the room reads the sense of turning from the near tide, whose stretch turns with each
-    pair (R5).
-
-[^present]: Section VIII says that the first-order delay cancels "because mass and momentum are conserved". At first
-    order mass alone suffices, and momentum removes part of the next term (7.7).
+[^present]: Section VIII says that the first-order retardation cancels "because mass is conserved, and a term of the
+    next order because momentum is" (7.7).
 
 [^kr]: Between the whole tables, measured by their sizes, the ratio $|\curv\tB|/|\curv\tE|$ is $0.31\,kr$ in the plane
     and $kr$ on the axis.

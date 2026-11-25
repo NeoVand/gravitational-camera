@@ -106,7 +106,8 @@ export default async function () {
 	check(STRETCHES.every((s, i) => heads[i] === s[0]), 'the stretches are not the chapter\'s first ten sections, in order');
 	const section = (i) => text.split(/^## .*$/m)[i + 1].replace(/\s+/g, ' ');
 	const ledger = section(10).split('[^')[0];
-	const C = '(R\\d+b?|\\d+\\.\\d+b?)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d+\\.\\d+b?)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const citesOf = (sec) => {
 		const out = new Set();
 		for (const re of [`\\[${C}\\]\\(/tutorial/`, `\\[${C}'s [^\\]]*\\]\\(/tutorial/`, `[Cc]hapters? ${C}(?![\\d.]\\d)`, `\\(${C}\\)`, `(?<![\\d.])${C}'s\\b`])

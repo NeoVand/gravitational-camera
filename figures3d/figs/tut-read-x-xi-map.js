@@ -9,8 +9,9 @@
 // links one), under it the paper's equations, figures and tables that the section shows or links, as the site numbers
 // them, and under those, in grey, the chapters the section cites (on two lines where they need them); at its right,
 // each in a small dotted box, the results the section marks as stated in the paper, named by their authors where the
-// section cites one. The two results that chapters 13.1 and 13.4 will derive are hollow dotted boxes (the page shows
-// through them), each marked with its chapter. The box of Memory is hatched, its words on clearings of the page, since
+// section cites one. The two results that chapters 13.1 and 13.4 derive, which the chapter reads now (*read now,
+// derived in chapter 13.1*, and 13.4, in its third section and its ledger), are dotted boxes filled as the others,
+// each named with its chapter. The box of Memory is hatched, its words on clearings of the page, since
 // its first equation is stated and only sketched in 7.8 at depth B (R10's rule); every other box is filled. Below the
 // column, set apart by a gap, the last box, the capstone, outlined a little heavier, with grey arrows into it along a
 // bus outside the column's left side from the three boxes whose results its steps use: Two facts (all energy
@@ -21,7 +22,7 @@
 // wave zones; the axis), and the column is one column read down, as R11's; each box lists every chapter its section
 // cites, and only those (9.4 under the axis, 1.4 and R9 under the beam, 1.6, 2.5, 7.7, 12.2 and others under the blind
 // spots, 3.7 and 12.1 under the pair, 5.3, 9.1 and 12.1 under the Milky Way; 7.5 appears only where a section cites
-// it); 12.2 is a solid chapter, since it is written, and only 13.1 and 13.4 are hollow; Wiseman and Will's shape is
+// it); 13.1 and 13.4 stand in their insets, not in the list, since each names one result; Wiseman and Will's shape is
 // read now, derived in 7.8, so it has no inset, while the spin memory, Favata's recoil and the count of thousands
 // are stated and do; the boxes carry no tick for checked here, since every section checks a number (R11 marks only
 // derived here, which this chapter does not use); the capstone's arrows come from the three boxes its table and its
@@ -38,8 +39,8 @@ const check = checker(name);
 
 // ---- the eight sections, in order (tutorial/sky/reading-sections-x-and-xi.md) ---------------------------------------
 // [the section's heading, the box's name, a phrase of the section that names what the box is called, the chapters it
-// cites, the results stated (the inset's words, the section's words that name the result, the later chapter that will
-// derive it or null), hatched (with the section's words)]
+// cites, the results stated (the inset's words, the section's words that name the result, the chapter that
+// derives it or null), hatched (with the section's words)]
 export const SECTIONS = [
 	['Most of Section X\'s list rests on two facts that earlier chapters derived', 'Two facts and the affordances',
 		'Section X\'s plain words name two facts', '4.6, 5.4, 6.4, 7.8', [], null],
@@ -47,8 +48,8 @@ export const SECTIONS = [
 		'A beam of power $P$ carries energy', 'R9, 1.4, 6.5, 7.5', [], null],
 	['Each channel has blind spots, and another channel covers them', 'The blind spots',
 		'collects the **blind spots**', '1.3, 1.6, 2.5, 2.8, 4.6, 5.5, 5.6, 7.3, 7.5, 7.6, 7.7, 9.6, 11.1, 12.2', [
-			['the passing mass, 13.1', 'The passing mass and the two tides', '13.1'],
-			['the two tides, 13.4', 'The passing mass and the two tides', '13.4']
+			['the passing mass, 13.1', 'The passing mass is *read now, derived in chapter [13.1](/tutorial/', '13.1'],
+			['the two tides, 13.4', 'the two tides are *read now, derived in chapter [13.4](/tutorial/', '13.4']
 		], null],
 	['Near the pair the tide turns with it, and beyond three-tenths of a wavelength it is a wave', 'A pair of black holes',
 		'[*A pair of black holes, from the near zone to the wave zone*](/paper/#par:a-pair-of-black-holes-from-the-near-zone-to-the-wave-zone)',
@@ -89,7 +90,7 @@ const USES = [
 	['An exploding star', '$4.0\\times10^{-21}$', 'it is $4.0\\times10^{-21}$'],
 	['An exploding star', '| (f) waves | a round collapse | none | 11.1 |', 'so a round collapse radiates nothing']
 ];
-const CAPTION = 'Look first at the solid boxes: Section X and every paragraph of Section XI read here rest on chapters of Parts 1 to 12, with their stated results in dotted insets, hollow where chapters 13.1 and 13.4 will derive them. The hatched box rests on a sketch at depth B. The last box follows one collapsing star through three of them.';
+const CAPTION = 'Look first at the solid boxes: Section X and every paragraph of Section XI read here rest on chapters of Parts 1 to 12, with their stated results in dotted insets, and the two that chapters [13.1](/tutorial/what-a-field-keeps/push-and-pass/) and [13.4](/tutorial/what-a-field-keeps/flows-inside/) derive named with their chapters. The hatched box rests on a sketch at depth B. The last box follows one collapsing star through three of them.';
 const POINTER = 'We read Section X, and Section XI as far as *The Milky Way* (Figure [](#fig:read-x-xi-map)).';
 
 // ---- the drawing (figure points, y down); the type, strokes and kit of R11's map -----------------------------------
@@ -136,7 +137,8 @@ export default async function () {
 	const ledger = sectionText(9);
 	const capstone = sectionText(8);
 	// the chapters a section cites: every way the chapter names one
-	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const citesOf = (sec) => {
 		const out = new Set();
 		for (const re of [`\\[${C}\\]\\(/tutorial/`, `[Cc]hapters? \\[?${C}`, `\\(${C}\\)`, `(?<![\\d.\\w$])${C}'s\\b`, `(?:by|from|as in|with|and) \\[?${C}`])
@@ -150,7 +152,7 @@ export default async function () {
 	const ledgerRefs = [...ledger.matchAll(/\| (?:Table )?\[\]\(\/paper\/#((?:eq|tab):[\w-]+)\),/g)].map((m) => m[1]);
 	check(ledgerRefs.join() === 'tab:affordances,tab:null,eq:multipole,eq:memory,eq:merger-memory,eq:burst-memory', `the ledger's rows ${ledgerRefs}`);
 	check(/\| \[\]\(\/paper\/#eq:multipole\), the field in every zone \| \*stated in the paper\* \(Thorne's\); checked, and its tide derived, in 7\.7 \|/.test(ledger), 'the ledger does not state Thorne\'s field');
-	check(ledger.includes('the two rows of 13.1 and 13.4 *stated in the paper* until those chapters'), 'the ledger does not state the rows of 13.1 and 13.4');
+	check(/the row of \[13\.1\]\(\/tutorial\/[^)]*\) \*read now, derived in chapter 13\.1\*; that of \[13\.4\]\(\/tutorial\/[^)]*\) \*read now, derived in chapter 13\.4\*/.test(ledger), 'the ledger does not leave the rows of 13.1 and 13.4 to those chapters');
 	const refsOf = (sec, kind) => [...new Set([...sec.matchAll(new RegExp(`(?:\\{\\{paper |\\]\\(/paper/#)${kind}:([\\w-]+)`, 'g'))].map((m) => m[1]))];
 	const eqsOf = SECTIONS.map((_, k) => refsOf(sectionText(k), 'eq'));
 	const figsOf = SECTIONS.map((_, k) => refsOf(sectionText(k), 'fig'));
@@ -163,20 +165,24 @@ export default async function () {
 	for (const [k, s] of SECTIONS.entries()) {
 		const sec = sectionText(k);
 		check(sec.includes(s[2]), `the section "${s[0]}" does not name ${s[2]}`);
-		// the chapters cited: the box's list, and the later chapters, which stand in the hollow insets instead
+		// the chapters cited: the box's list, and the chapters of Part 13, which stand in their insets instead
 		const later = s[4].filter((x) => x[2]).map((x) => x[2]);
 		const cited = citesOf(sec);
 		check(sorted(cited.filter((c) => !later.includes(c))).join(', ') === s[3], `the section "${s[0]}" cites ${sorted(cited)}, the box lists ${s[3]}`);
-		for (const c of later) check(cited.includes(c) && order(c) >= 13, `the later chapter ${c} of "${s[0]}"`);
-		// the results stated: every sentence that marks one is named by an inset, and every inset's words are there
+		for (const c of later) check(cited.includes(c) && order(c) >= 13, `the inset's chapter ${c} of "${s[0]}"`);
+		// the results stated: every sentence that marks one is named by an inset, and every inset's words are there; a
+		// result named with its chapter is read now and derived in that chapter
 		const marks = sentences(sec).filter((m) => m.includes('*stated in the paper*'));
-		for (const m of marks) check(s[4].some(([, words]) => m.includes(words)), `the section "${s[0]}" states a result no inset shows: ${m}`);
-		for (const [, words] of s[4]) check(marks.some((m) => m.includes(words)), `the inset "${words}" of "${s[0]}" is not marked stated`);
+		for (const m of marks) check(s[4].some(([, words, c]) => !c && m.includes(words)), `the section "${s[0]}" states a result no inset shows: ${m}`);
+		for (const [, words, c] of s[4]) {
+			if (c) check(sec.includes(words) && words.includes(`*read now, derived in chapter [${c}]`), `the inset "${words}" of "${s[0]}" is not read now and derived in ${c}`);
+			else check(marks.some((m) => m.includes(words)), `the inset "${words}" of "${s[0]}" is not marked stated`);
+		}
 		check(!sec.includes('*derived here*'), `the section "${s[0]}" derives a step here`);
 		// hatched only where the section rests on a sketch at depth B
 		check(sec.includes('depth B') === Boolean(s[5]) && (!s[5] || sec.includes(s[5])), `the section "${s[0]}" and depth B`);
 	}
-	check(flat.includes('The passing mass and the two tides are *stated in the paper*; chapters 13.1 and 13.4 will derive them.'), 'the chapter does not leave the two rows to 13.1 and 13.4');
+	check(/The passing mass is \*read now, derived in chapter \[13\.1\]\(\/tutorial\/what-a-field-keeps\/push-and-pass\/\)\*, and the two tides are \*read now, derived in chapter \[13\.4\]\(\/tutorial\/what-a-field-keeps\/flows-inside\//.test(flat), 'the chapter does not leave the two rows to 13.1 and 13.4');
 	check(sectionText(3).includes('(*stated in the paper*). Chapter 7.7 states it from Thorne, checks that it solves'), 'Thorne\'s field is not stated and checked in 7.7');
 	check(sectionText(5).includes('*read now, derived in chapter [7.8]') && sectionText(5).includes('the shape of Wiseman and Will'), 'Wiseman and Will\'s shape is not derived in 7.8');
 	check(SECTIONS.reduce((n, s) => n + s[4].length, 0) === 11, 'the insets are not eleven');
@@ -273,8 +279,8 @@ export default async function () {
 			for (const j of row) {
 				const box = { l: x, r: x + ws[j], t: top, b: top + h };
 				const g = await placedBase(textOf(stated[j][0]), (box.l + box.r) / 2, (box.t + box.b) / 2 - (inkT + inkB) / 2, DIM);
-				out.push({ ...g, dotted: box, words: stated[j][0], hollow: Boolean(stated[j][2]) });
-				dots.push({ box, what: `the dotted box of "${stated[j][0]}" in ${what}`, hollow: Boolean(stated[j][2]) });
+				out.push({ ...g, dotted: box, words: stated[j][0], derivedIn: stated[j][2] });
+				dots.push({ box, what: `the dotted box of "${stated[j][0]}" in ${what}` });
 				x += ws[j] + LATER_GAP;
 			}
 			top += h + LATER_GAP;
@@ -316,8 +322,8 @@ export default async function () {
 			const iy = m - (inset.t + inset.b) / 2;
 			for (const d of inset.dots) {
 				const box = shift(d.box, xr, iy);
-				// a hollow box (a result a later chapter will derive) and every box on hatching show the page
-				if (d.hollow || hatched) S.raw(`<path d="M${n2(box.l)},${n2(box.t)}H${n2(box.r)}V${n2(box.b)}H${n2(box.l)}Z" fill="${PAGE}"/>`, 0.5);
+				// every box on hatching shows the page
+				if (hatched) S.raw(`<path d="M${n2(box.l)},${n2(box.t)}H${n2(box.r)}V${n2(box.b)}H${n2(box.l)}Z" fill="${PAGE}"/>`, 0.5);
 				dotted(S, box, d.what);
 			}
 			for (const g of inset.out) {
@@ -331,7 +337,7 @@ export default async function () {
 		}
 		top = b + ROW_GAP;
 	}
-	check(ins[2].out.every((g) => g.hollow) && ins.every((x, k) => k === 2 || x.out.every((g) => !g.hollow)), 'the hollow insets are not exactly the two of 13.1 and 13.4');
+	check(ins[2].out.map((g) => g.derivedIn).join() === '13.1,13.4' && ins.every((x, k) => k === 2 || x.out.every((g) => !g.derivedIn)), 'the insets named with their chapters are not exactly the two of 13.1 and 13.4');
 
 	// ---- the arrows of the reading order: down the column, under the words ------------------------------------------
 	for (let k = 0; k + 1 < SECTIONS.length; k++) {

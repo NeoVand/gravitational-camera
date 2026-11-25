@@ -12,10 +12,9 @@
 // by their authors where the section cites one paper, and by the result where it cites more. Two boxes carry a hatched
 // corner, R12's hatching in a dog-ear at the top right, since one step of each is a sketch at depth B (the step from
 // the moments to the projected body in 13.1, the closing condition on a wave of finite duration in 13.5) while the
-// rest is derived. Two boxes carry a small ink flag in the margin at their right, where the paper says more than it
-// shows: the field at two times (the margin note on the impulses: the data at two times are the transform only when
-// something supplies the impulses) and the bits of a second reading (the paper's 1300 bits, which include a price it
-// does not mention). Below the column, set apart by a gap, the last box, the capstone, outlined a little heavier, with
+// rest is derived. No box carries R13b's flag: the corrected paper shows what it says at the field at two times (the
+// margin note on the impulses now spells out its "known push") and at the bits of a second reading (its 1300 bits
+// name the cost of telling the radial powers apart). Below the column, set apart by a gap, the last box, the capstone, outlined a little heavier, with
 // grey arrows into it along a bus outside the column's left side from the seven boxes whose results its table quotes.
 // Departures from the diagram's comment, where the chapter's text decides: the boxes are the chapter's sections in one
 // column read down, as in every reading map since R11, not two columns; each box lists every chapter its section cites
@@ -60,8 +59,7 @@ export const SECTIONS = [
 	['Section XIII\'s plain words: the pull is first order, and the body\'s reply is second', 'Section XIII\'s plain words',
 		['The plain words define **first order** and **second order**'], '1.7, 1.8, 2.6, 6.4, 13.1, 13.2, 13.3', [], null, null],
 	['At two times the readings hold a bracket, and products of tides build every ripple', 'The field at two times',
-		['[*The field at two times*](/paper/#par:the-field-at-two-times)'], '1.7, 2.5, 4.2, 4.5, 8.2, 13.2', [], null,
-		'are told apart "as soon as they are warm or a tide is applied".[^twotimes]'],
+		['[*The field at two times*](/paper/#par:the-field-at-two-times)'], '1.7, 2.5, 4.2, 4.5, 8.2, 13.2', [], null, null],
 	['A flat camera reads the scene\'s transform on a cone at one time and inside it at two', 'The two readings as one transform',
 		['[*The two readings as one transform*](/paper/#par:the-two-readings-as-one-transform)'], '13.2', [
 			['Parker\'s formula', '[@Parker1973]'],
@@ -86,7 +84,7 @@ export const SECTIONS = [
 	['A second reading holds a volume\'s worth of moments, but the paper\'s bits include a price', 'The bits of a second reading',
 		['[*The bits of a second reading*](/paper/#par:the-bits-of-a-second-reading)'], '13.1, 13.2, 13.3, 13.8', [
 			['the 1300 bits', 'The paper\'s "$1300$ bits']
-		], null, 'The paper\'s numbers include an unmentioned price'],
+		], null, null],
 	['A tide of degree m reaches m rungs of the ladder', 'What a tide of a given|degree reaches',
 		['[*What a tide of a given degree reaches*](/paper/#par:what-a-tide-of-a-given-degree-reaches)'], '13.3', [
 			['the triangular structure', 'The triangular structure of linearized impedance tomography']
@@ -119,7 +117,7 @@ const USES = [
 	['The algebra of the moments|and the energy', '$0.111\\,\\matter M\\Omega R^4/c^2$.', '= 0.111\\,\\matter M\\Omega R^4/c^2$, half']
 ];
 const LEDGER_EQS = 'hair-bits,hair-commutator,dust,calderon,scene-transform,cone,push,pass,shock,shock-even,massless-pass,ladder,ladder-identity,flow-bracket,hidden-spin,moment-bracket';
-const CAPTION = 'Look first at the solid boxes: every paragraph of Sections XII and XIII rests on chapters of Parts 1 to 13, with its stated results in dotted insets. The hatched corners mark a step sketched at depth B, and the two flags mark where the paper says more than it shows. The last box follows one ball and one shell through seven of them.';
+const CAPTION = 'Look first at the solid boxes: every paragraph of Sections XII and XIII rests on chapters of Parts 1 to 13, with its stated results in dotted insets. The hatched corners mark a step sketched at depth B. The last box follows one ball and one shell through seven of them.';
 const POINTER = 'We read the two sections paragraph by paragraph (Figure [](#fig:read-xii-xiii-map)).';
 // the reading chapters cited, and their files, for their parts
 const READING = { R2: 'outside/reading-section-iv-1', R3: 'noise/reading-section-iv-2', R4: 'response/reading-section-iv-3', R8: 'quantum/reading-the-quantum-limits' };
@@ -176,7 +174,8 @@ export default async function () {
 	const ledger = sectionText(15);
 	const capstone = sectionText(14);
 	// the chapters a section cites: every way the chapter names one, and every parenthesis that holds only chapters
-	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const citesOf = (sec) => {
 		const out = new Set();
 		for (const re of [`\\[${C}\\]\\(/tutorial/`, `[Cc]hapters? \\[?${C}`, `\\(${C}\\)`, `(?<![\\d.\\w$])${C}'s\\b`, `(?:by|from|as in|with|and|read in) \\[?${C}`])
@@ -226,14 +225,15 @@ export default async function () {
 		check(!s[6] || rawSection(k).includes(s[6]), `the flag of "${s[0]}"`);
 	}
 	check(SECTIONS.reduce((n, s) => n + s[4].length, 0) === 19, 'the insets are not nineteen');
-	check(SECTIONS.filter((s) => s[5]).length === 2 && SECTIONS.filter((s) => s[6]).length === 2 && CAPTION.includes('the two flags'), 'not two hatched corners and two flags');
+	check(SECTIONS.filter((s) => s[5]).length === 2 && SECTIONS.filter((s) => s[6]).length === 0 && !CAPTION.includes('flag'), 'not two hatched corners and no flags');
 	// the two sketches: 13.1's step to the projected body, 13.5's wave of finite duration
 	check(sectionText(8).includes('([13.1](/tutorial/what-a-field-keeps/push-and-pass/#the-passers-loss-of-energy-holds-every-moment-of-the-projected-body), where the step from the moments to $\\matter\\Sigma$ is a sketch at depth B)'), 'the pass\'s sketch is not 13.1\'s');
-	// the two flags: the margin note on the impulses, and the 1300 bits the text does not show
+	// no flags: the margin note on the impulses spells out the paper's "known push" and no longer qualifies it, and the
+	// 1300 bits are the paper's own computation, stated, with no price left unmentioned
 	const note = text.match(/^\[\^twotimes\]:([\s\S]*?)(?=^\[\^)/m)?.[1].replace(/\s+/g, ' ') ?? '';
-	check(note.includes('need something to supply the impulses'), 'the margin note on the impulses');
-	check(flat.includes('The Introduction\'s last bullet, whose "the field at two times gives all of it" the margin note on the impulses qualifies.'), 'the paper box does not name the margin note on the impulses');
-	check(sectionText(10).includes('which the text does not show') && flat.includes('except the 1300 bits, which come from the paper\'s own computation'), 'the 1300 bits are not shown as the paper\'s own');
+	check(note.includes('is whatever supplies the impulses'), 'the margin note on the impulses');
+	check(flat.includes('The Introduction\'s last bullet, whose "under a known push" the margin note on the impulses spells out.'), 'the paper box does not name the margin note on the impulses');
+	check(flat.includes('except the 1300 bits, which come from the paper\'s own computation') && !/unmentioned price|says more than it shows:|which the text does not show/.test(flat.split('](tut-read-xii-xiii-map)')[1]), 'the 1300 bits are not the paper\'s own, or a remark on the paper\'s saying more is left');
 	// the capstone: its chapters (the table's last column) and the boxes it uses
 	const capCites = new Set();
 	const capRows = [...capstone.matchAll(/\| \(([a-z])\) [^|]*\|[^|]*\|[^|]*\|[^|]*\|([^|]*)\|/g)];

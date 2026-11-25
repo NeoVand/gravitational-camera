@@ -531,10 +531,10 @@ $\curv{\tB} = 0$ in their frame, so $|\mathbf P|/u = 0$ there, whatever their nu
     $e^{-i\theta}$ and $e^{-2i\theta}$ when the axes turn, are the components $m = -1$ and $-2$. Its null vector
     $\vect m$ was built from the turned axes themselves, so it turned as a state does.
 
-[^conj]: The paper takes $\curv{\mathcal W}$ as the state, not its conjugate, and this fixes the signs below: with
-    $\curv{\mathcal W}^*$ the Bloch vector would be $-\mathbf P/u$, and every star would move to the
-    opposite point. By the same choice, Section IX's graviton "from $\hat n$" is in the coherent state at $\hat k =
-    -\hat n$, so its click "at the angle $\vartheta$ from $\hat n$" names each outcome by the opposite direction.
+[^conj]: The paper takes $\curv{\mathcal W}$ itself as the state, not its conjugate, and this fixes the signs below:
+    with $\curv{\mathcal W}^*$ the Bloch vector would be $-\mathbf P/u$, and every star would move to the opposite
+    point. By the same choice, Section IX's graviton "from $\hat n$" is in the coherent state at $\hat k = -\hat n$,
+    which is why the paper labels "each click by the direction opposite to that of its coherent state".
 
 [^b]: Bold $\mathbf b$, b for Bloch, is not the second amplitude $b$ of a state $(a, b)$, which is never bold,
     or chapter 8.2's kick $b$.

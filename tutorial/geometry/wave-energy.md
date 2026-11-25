@@ -198,11 +198,11 @@ $(G\matter m/c^2)^2$ per steradian, a result of P. C. Peters [@Peters1976] state
 plausible because $G\matter m/c^2$, half the Schwarzschild radius, is the only length that gravity makes from a mass.
 
 **The estimate.** For a person of 70 kg, $G\matter m/c^2 = 5.2\times10^{-26}$ m, so the cross-section is about
-$2.7\times10^{-51}\unit{m^2}$ per steradian: the paper's $3\times10^{-51}\unit{m^2}$. The person's outline, about
-$0.7\unit{m^2}$, is $10^{50}$ times larger. Absorption does more, but still almost nothing. By the first section a wave
-loses the fraction $\alpha$ of its flux in each metre, so a volume $V$ absorbs the power $\alpha FV$, the flux that falls
-on the area $\alpha V$. For 70 kg of water, $0.07\unit{m^3}$, that area is $1.25\times10^{-37}\unit{m^{-1}}\times
-0.07\unit{m^3} = 8.7\times10^{-39}\unit{m^2}$.
+$2.7\times10^{-51}\unit{m^2}$ per steradian: the paper's $3\times10^{-51}\unit{m^2\,sr^{-1}}$. The person's outline,
+about $0.7\unit{m^2}$, is $10^{50}$ times larger. Absorption does more, but still almost nothing. By the first section
+a wave loses the fraction $\alpha$ of its flux in each metre, so a volume $V$ absorbs the power $\alpha FV$, the flux
+that falls on the area $\alpha V$. For 70 kg of water, $0.07\unit{m^3}$, that area is
+$1.25\times10^{-37}\unit{m^{-1}}\times 0.07\unit{m^3} = 8.7\times10^{-39}\unit{m^2}$.
 
 So, in the words of the paper's [*Scattering, earthquakes and
 tails*](/paper/#par:scattering-earthquakes-and-tails), "a scene cannot be illuminated with gravitational waves". Every
@@ -416,8 +416,8 @@ using $3\cos^2\iota + 2\sin^2\iota = 2 + \cos^2\iota$.
 :::
 
 **Checks.** Seen face-on, $\iota = 0$, the pattern is the same all round the line of sight and leaves nothing. The
-memory is largest edge-on, $\tfrac{17}{24}G\matter{\Delta E}/c^4r$, where the oscillating wave is eight times weaker
-(chapter 5.4), as the paper's Figure [](/paper/#fig:memory), panel (a), shows. The paper's [](/paper/#eq:memory),
+memory is largest edge-on, $\tfrac{17}{24}G\matter{\Delta E}/c^4r$, where the oscillating wave carries eight times less
+power (chapter 5.4), as the paper's Figure [](/paper/#fig:memory), panel (a), shows. The paper's [](/paper/#eq:memory),
 summed numerically over the sky, agrees to $10^{-14}$.
 
 **A number.** The first merger that LIGO detected radiated about three solar masses, $5.4\times10^{47}$ J, from 410
@@ -554,7 +554,8 @@ for $3\times10^{46}$ J at 10 kpc.
 - [Section XI](/paper/#sec:vistas): [*Memory*](/paper/#par:memory), with the paper's [](/paper/#eq:memory) and
   [](/paper/#eq:merger-memory) and the spin memory; [*An exploding star*](/paper/#par:an-exploding-star), with the jets,
   the paper's [](/paper/#eq:burst-memory) and $4\times10^{-21}$; Figure [](/paper/#fig:memory); and [*Scattering,
-  earthquakes and tails*](/paper/#par:scattering-earthquakes-and-tails), with $(Gm/c^2)^2$ and $3\times10^{-51}\unit{m^2}$.
+  earthquakes and tails*](/paper/#par:scattering-earthquakes-and-tails), with $(Gm/c^2)^2$ and
+  $3\times10^{-51}\unit{m^2\,sr^{-1}}$.
 :::
 
 ::: deeper
@@ -585,8 +586,8 @@ for $3\times10^{46}$ J at 10 kpc.
 [^u]: Chapters 6.5 and 7.3 use this letter, in this colour, for the energy density of light; here it is the wave's.
     The matter colour fits because an energy density is a source of gravity, as the waves' is in the fifth section.
 
-[^peters]: The paper's "cross-section … of order $(Gm/c^2)^2$" is this one, per steradian at large angles, as the
-    title of Peters's paper, "Differential cross sections…", says.
+[^peters]: The paper states it in the same way: "the cross-section per unit solid angle of a body of mass $m$, at
+    large angles, is of order $(Gm/c^2)^2$".
 
 [^step]: The step has the transform $\int_0^\infty e^{i\omega t}\,\dd t = i/\omega$, taken with a small damping
     $e^{-\epsilon t}$ that makes the integral converge.

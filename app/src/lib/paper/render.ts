@@ -66,6 +66,60 @@ const plainBody = (blocks: Node[]): Node[] => {
 	return after.length ? [{ ...first, c: after }, ...rest] : rest;
 };
 
+/** A phrase of a plain-words box to link, and where to. */
+export interface PhraseLink {
+	phrase: string;
+	href: string;
+}
+
+/** Tags that have no closing tag. */
+const VOID = /^(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)$/i;
+
+/**
+ * Where a phrase can be linked in some HTML: in its text, outside every link (an <a> cannot hold another) and
+ * outside KaTeX's mathematics. Returns the offsets of each occurrence, in order.
+ */
+export function phraseSites(html: string, phrase: string): number[] {
+	const needle = esc(phrase);
+	const sites: number[] = [];
+	// for each open element, whether text inside it may be linked
+	const open: boolean[] = [];
+	const free = () => open.every(Boolean);
+	const tags = /<(\/?)([a-zA-Z][\w-]*)([^>]*?)(\/?)>/g;
+	let at = 0;
+	const search = (end: number) => {
+		if (!free()) return;
+		const text = html.slice(at, end);
+		for (let i = text.indexOf(needle); i >= 0; i = text.indexOf(needle, i + needle.length))
+			sites.push(at + i);
+	};
+	for (const m of html.matchAll(tags)) {
+		search(m.index);
+		at = m.index + m[0].length;
+		const [, closing, name, attrs, selfClosing] = m;
+		if (closing) open.pop();
+		else if (!selfClosing && !VOID.test(name))
+			open.push(name.toLowerCase() !== 'a' && !/\bclass="[^"]*\bkatex\b/.test(attrs));
+	}
+	search(html.length);
+	return sites;
+}
+
+/**
+ * Links the one occurrence of each phrase in a plain-words box. A phrase found never or twice is left unlinked rather
+ * than failing the build, since the paper's wording may change under it: plain-links.spec.ts fails instead, naming it.
+ */
+export function linkPhrases(html: string, links: readonly PhraseLink[]): string {
+	for (const { phrase, href } of links) {
+		const sites = phraseSites(html, phrase);
+		if (sites.length !== 1) continue;
+		const needle = esc(phrase);
+		const at = sites[0];
+		html = `${html.slice(0, at)}<a class="tutorial-link" href="${esc(href)}">${needle}</a>${html.slice(at + needle.length)}`;
+	}
+	return html;
+}
+
 /** The identifier of a run-in paragraph heading ("\\paragraph{The Earth's own tide.}" gives "par:the-earths-own-tide"),
  * which LaTeX does not label; it is made from the heading's words, so that it stays put while they do. */
 export const runInId = (content: Node[]) => `par:${slugify(wordsOf(content))}`;
@@ -152,7 +206,15 @@ export function indexPaper(doc: { blocks: Node[] }): PaperIndex {
 	return { labels, citeNumbers, equations: equationTex };
 }
 
-export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] }): RenderedPaper {
+export interface PaperOptions {
+	/** by section id, the phrases of the section's plain-words box to link into the tutorial (plain-links.ts) */
+	plainLinks?: ReadonlyMap<string, readonly PhraseLink[]>;
+}
+
+export function renderPaper(
+	doc: { meta: Record<string, Node>; blocks: Node[] },
+	options: PaperOptions = {}
+): RenderedPaper {
 	// ---- first pass: number everything that can be referred to ---------------
 	const { labels, citeNumbers } = indexPaper(doc);
 
@@ -167,6 +229,9 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 	const contents: RenderedPaper['contents'] = [];
 	let referencesHtml = '';
 	const runInIds = uniqueIds();
+	/** the section being rendered, whose plain-words box takes that section's links */
+	let section = '';
+	const boxed = new Set<string>();
 
 	const math = (tex: string, display: boolean): string => {
 		const label = tex.match(/\\label\{([^}]+)\}/)?.[1];
@@ -206,14 +271,24 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 					if (level >= 3)
 						return `<h4 class="run-in" id="${esc(runInIds(runInId(content)))}">${inlines(content)}</h4>`;
 					const number = labels.get(id);
+					if (level === 1) section = id;
 					const tag = level === 1 ? 'h2' : 'h3';
 					if (level === 1 && number) contents.push({ id, number, titleHtml: inlines(content) });
 					return `<${tag} id="${esc(id)}">${number ? `<span class="number">${number}</span> ` : ''}${inlines(content)}</${tag}>`;
 				}
-				case 'BlockQuote':
+				case 'BlockQuote': {
 					// the LaTeX `quote` environment carries the plain-language summaries, closed until opened;
-					// their leading "In plain words." becomes the summary that opens them
-					return `<details class="plain"><summary>In plain words</summary>${blocksHtml(plainBody(n.c))}</details>`;
+					// their leading "In plain words." becomes the summary that opens them; phrases of the text link into
+					// the tutorial
+					const links = options.plainLinks?.get(section) ?? [];
+					if (links.length && boxed.has(section))
+						throw new Error(
+							`Paper: ${section} has two plain-words boxes, so plain-links.ts cannot tell them apart`
+						);
+					boxed.add(section);
+					const body = linkPhrases(blocksHtml(plainBody(n.c)), links);
+					return `<details class="plain"><summary>In plain words</summary>${body}</details>`;
+				}
 				case 'RawBlock': {
 					const src = String(n.c[1]).trim();
 					if (IGNORED_RAW.some((re) => re.test(src))) return '';
@@ -269,6 +344,10 @@ export function renderPaper(doc: { meta: Record<string, Node>; blocks: Node[] })
 			});
 		} else push(block(n));
 	}
+
+	for (const key of options.plainLinks?.keys() ?? [])
+		if (!boxed.has(key))
+			throw new Error(`Paper: plain-links.ts names ${key}, which has no plain-words box`);
 
 	// ---- front matter --------------------------------------------------------
 	const meta = (key: string): string => {

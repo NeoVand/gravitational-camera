@@ -43,11 +43,31 @@ describe('the counts of the paper’s budget', () => {
 	});
 
 	it('waits tens of millions of years for one count from the furnace and the turning pair', () => {
-		expect(timeFor(SOURCES.iron, 1, 1) / YEAR).toBeCloseTo(9e7, -5);
+		expect(timeFor(SOURCES.iron, 1, 1) / YEAR).toBeCloseTo(1.1e8, -5);
 		expect(timeFor(SOURCES.pair, 1, 1) / YEAR).toBeCloseTo(4e7, -5);
 		// a lifetime: under one chance in a million of a single count
 		const mu = expectedCount(SOURCES.iron, 1, LIFETIME);
 		expect(1 - poissonChance(0, mu)).toBeLessThan(1e-6);
+	});
+
+	it('spreads the hot iron’s gravitons over a sphere as wide as the line of sight, 3.86 m', () => {
+		// R10's block: 5.4 × 10⁻¹⁴ gravitons a second in all directions
+		const rate = 5.4e-14;
+		const wait = (r: number) => (4 * Math.PI * r ** 2) / rate / YEAR;
+		// "4π(3.86 m)² = 187 m²", "1.1 × 10⁸ years", the table's row "at 3.9 m"
+		expect(Math.round(4 * Math.PI * 3.86 ** 2)).toBe(187);
+		expect(Number(wait(3.86).toPrecision(2))).toBe(1.1e8);
+		expect(SOURCES.iron.every / YEAR).toBe(1.1e8);
+		expect(SOURCES.iron.scene).toContain('3.9 m');
+		// the furnace's 3.5 m along the floor would have given 9.0 × 10⁷ years
+		expect(Number(wait(3.5).toPrecision(2))).toBe(9.0e7);
+	});
+
+	it('gives the hot iron no picture element on a square metre even in 10¹⁰ years', () => {
+		expect(pictureElements(expectedCount(SOURCES.iron, 1, 1e10 * YEAR))).toBe(0);
+		expect(Math.round(expectedCount(SOURCES.iron, 1, 1e10 * YEAR))).toBe(91);
+		// the first element on a square metre: 2500 × 1.1 × 10⁸ = 2.75 × 10¹¹ years
+		expect(timeFor(SOURCES.iron, 1, COUNTS_PER_ELEMENT) / YEAR).toBeCloseTo(2.75e11, -8);
 	});
 
 	it('counts picture elements only when they are whole', () => {

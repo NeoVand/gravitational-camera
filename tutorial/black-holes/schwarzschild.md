@@ -20,7 +20,7 @@ Chapter [5.5](/tutorial/waves/radiance/)'s lenses help in [the lens
 section](#a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring).
 
 The paper's [Section VII](/paper/#sec:no-lens) puts the camera beside a black hole and uses the hole as its lens,
-because no lens of ordinary matter is compact enough to focus the field. Beside a hole of $1.36\times10^{23}$ kg
+because no lens of ordinary matter is compact enough to focus the field. Beside a hole of $1.356\times10^{23}$ kg
 the tide is severe: "at a metre … the tide is $2\times10^{13}\,\mathrm{s^{-2}}$, enough to tear the camera apart".
 
 [Section XI](/paper/#sec:vistas)'s [*A primordial graviton
@@ -116,7 +116,7 @@ with $\dd\Omega^2 = \dd\vartheta^2 + \sin^2\vartheta\,\dd\varphi^2$.
 **Limit.** The time entry is $-(1 + 2\field\Phi/c^2)$ with $\field\Phi = -G\matter M/r$, chapter
 [7.1](/tutorial/geometry/metric/#free-fall-is-the-path-along-which-a-clock-ages-most)'s weak-field entry, and for $r
 \gg r_s$ every entry tends to flat spacetime's. **Numbers.** The Schwarzschild radius is 2.95 km for the Sun, whose
-radius is 696,000 km, 8.87 mm for the Earth, 0.202 mm for Section VII's hole of $1.36\times10^{23}$ kg and
+radius is 696,000 km, 8.87 mm for the Earth, 0.201 mm for Section VII's hole of $1.356\times10^{23}$ kg and
 $1.0\times10^{-25}$ m for the 70 kg person. Outside ordinary bodies, far larger than their $r_s$, chapter
 [7.4](/tutorial/geometry/linearized-gravity/#a-weak-field-is-a-small-table-laid-on-flat-spacetime)'s linear theory,
 which needs $r_s/r \ll 1$, serves. Near a black hole's horizon $\field g_{rr} = 1/(1 - r_s/r)$ is nowhere near flat,
@@ -421,7 +421,8 @@ $$\boxed{\;\sym{einstein-radius}{b_E} = \sqrt{2r_sd}\;} ,$$
 and sees them as the **Einstein ring** round the mass, at the angle $b_E/d = \sqrt{2r_s/d}$. A ring, because the
 source, the mass and the camera lie on one line, so every ray at $b_E$, whatever its direction round the axis, reaches
 the camera (Figure [](#fig:schw-ring)). **Numbers** for Section VII's hole: at 1 m the ring is $1.15°$ in radius, the
-paper's "$1.2^\circ$"; at 26.3 km, $b_E = 3.26$ m and the ring is $25.6''$.[^rounding]
+paper's "$1.2^\circ$"; at 26.3 km, $b_E = 3.25$ m and the ring is $25.5''$, the paper's "$3.25\,\mathrm{m}$" and
+"$26''$".
 
 **The exact ring.** Figure [](/paper/#fig:black-hole)'s dashed ring, seen from $40\,G\matter M/c^2$, is where the sky
 straight behind the hole appears. Its rays come in from far away to their nearest point $r_0$, where $1/b^2 = \field
@@ -450,7 +451,7 @@ Section XI's transparent Sun (Figure [](/paper/#fig:sun-lens)).
 far away, $19.7\,\mu$s for the Sun: this is the **Shapiro delay** (stated; the GR course's section 16.5). A lens
 focuses only if the delay spans a radian of the wave's phase, $2\pi f\times4G\matter M/c^3 > 1$, that is for
 frequencies $f > c^3/8\pi G\matter M$, or wavelengths $c/f$ shorter than $4\pi r_s$.[^freq] This **wave-optics
-cut-off** is 8.1 kHz for the Sun, and for Section VII's hole it is $4\pi r_s = 2.54$ mm, or 118 GHz, the paper's
+cut-off** is 8.1 kHz for the Sun, and for Section VII's hole it is $4\pi r_s = 2.53$ mm, or 118 GHz, the paper's
 "2.5 mm" and "120 GHz". Below it, diffraction erases the focus. How strongly a point lens still focuses above it, the
 paper's gain of 800 at $10\,\mu$m, is chapter
 [R11](/tutorial/black-holes/reading-section-vii/#the-camera-must-orbit-26-km-away-where-the-hole-gathers-130-times-its-area)'s
@@ -499,7 +500,7 @@ A camera 1 m from Section VII's hole: what is the stretch along the line to it?
 
 ### A
 
-The stretch is $2G\matter M/r^3 = 2\times6.674\times10^{-11}\times1.36\times10^{23} =
+The stretch is $2G\matter M/r^3 = 2\times6.674\times10^{-11}\times1.356\times10^{23} =
 1.8\times10^{13}\unit{s^{-2}}$ at $r = 1$ m.
 
 ### Q
@@ -545,13 +546,13 @@ In units of $G\matter M/c^2$ the derivative vanishes where $r^2 - \ell^2r + 3\el
 
 ### The paper
 
-Check Section VII's [*A black hole as the lens*](/paper/#par:a-black-hole-as-the-lens) from $1.36\times10^{23}$ kg:
+Check Section VII's [*A black hole as the lens*](/paper/#par:a-black-hole-as-the-lens) from $1.356\times10^{23}$ kg:
 $r_s$, the ring at 1 m, the tide there, the distance where the tide is $1\unit{s^{-2}}$, and the ring and $b_E$ there.
 
 ::: solution
-The Schwarzschild radius is $2G\matter M/c^2 = 0.202$ mm. At 1 m the ring is $\sqrt{2r_s/d} = 0.0201$ rad, $1.15°$,
+The Schwarzschild radius is $2G\matter M/c^2 = 0.201$ mm. At 1 m the ring is $\sqrt{2r_s/d} = 0.0201$ rad, $1.15°$,
 and the stretch $1.8\times10^{13}\unit{s^{-2}}$. The stretch is $1\unit{s^{-2}}$ at $(2G\matter M)^{1/3} = 26.3$ km,
-where the ring is $25.6''$ and $b_E = 3.26$ m.
+where the ring is $25.5''$ and $b_E = 3.25$ m.
 :::
 :::
 
@@ -601,8 +602,5 @@ where the ring is $25.6''$ and $b_E = 3.26$ m.
 
 [^iso]: Isotropic coordinates label the radius differently from the circumference radius $r$, so that the space part
     is the same in every direction. The field is the same, and so is every angle a camera measures.
-
-[^rounding]: The paper's "$25''$" and "$3.25\,\mathrm m$" at its 26 km should read $26''$ and 3.26 m: at $d = 26.28$ km,
-    where the tide is exactly $1\unit{s^{-2}}$, the ring is $\sqrt{2r_s/d} = 25.6''$ and $b_E = \sqrt{2r_sd} = 3.258$ m.
 
 [^freq]: Here $f$ is a frequency in hertz, not the metric's entry, and $c/f$ is the wavelength.

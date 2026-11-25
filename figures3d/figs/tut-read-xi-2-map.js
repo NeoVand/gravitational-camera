@@ -1,5 +1,5 @@
 // The tutorial, reading chapter R12b (tutorial/sky/reading-section-xi-2.md), its first diagram: the second half of
-// Section XI as a map of what Parts 2 to 12 have derived. The sibling of R12's, R11's and R10's maps
+// Section XI as a map of what Parts 2 to 13 have derived. The sibling of R12's, R11's and R10's maps
 // (figs/tut-read-x-xi-map.js, figs/tut-read-vii-map.js, figs/tut-read-vi-map.js): the same box, type, fill, outline,
 // dotted box and grey arrows, in ink and the page's greys only (the outline in ink, the fill the neutral tint of the
 // page, the chapters and the dotted boxes in grey), since orange and blue mean a stretch and a squeeze. Eight boxes, one
@@ -15,8 +15,8 @@
 // capstone, outlined a little heavier, with grey arrows into it along a bus outside the column's left side from the
 // four boxes whose results its table uses: A primordial graviton background (the 0.905 K of (a), the far count and
 // wavelength of (b)), The hole against the glow (the 0.929 K of (a), the Hawking temperature of (c), the 7.27 degrees
-// of (d), the ring of (e), the thermometer of (h)), The bookkeeping and spin ((f)'s depths, (g)'s 9.7 times at
-// 42.7 GHz) and The falling camera ((d)'s 5.80 degrees, (i)'s 2 per mode).
+// of (d), the ring of (e), the thermometer of (h)), The bookkeeping and spin ((f)'s depths, (g)'s 10.3 times at
+// 43.6 GHz) and The falling camera ((d)'s 5.80 degrees, (i)'s 2 per mode).
 // Departures from the diagram's comment, where the chapter's text decides: the boxes are the chapter's sections, as in
 // every reading map, in one column read down, not nine columns; the plain words have no box, since the chapter reads
 // them where they return; the solid boxes are the sections, not one box per chapter, and the chapters stand in grey in
@@ -30,8 +30,8 @@
 // spinning hole's temperature as in 11.3, the Shapiro delay in 11.1, the factor as in R11) rest on chapters the box
 // already lists, and the standard solar model's density is a side remark, so they have none (the comment's Shapiro
 // delay among them); the capstone uses four boxes, not three, since its (a) and (b) take the glow's 0.905 K, count
-// and wavelength, so the caption says four; the chapters cited reach back to 2.8 and 5.3, so the caption says Parts 2
-// to 12, not 6 to 12.
+// and wavelength, so the caption says four; the chapters cited reach back to 2.8 and 5.3, and forward to 13.5 (the
+// shock's profile), so the caption says Parts 2 to 13, not 6 to 12.
 // Every name, number and chapter is checked against the chapter's text (its headings in order, the paragraphs each
 // section links, the chapters each section cites, the equations and figures it shows or links, the results it marks
 // as stated or derived here, the ledger's equation, the capstone's table) and against the paper (main.aux, Section
@@ -67,7 +67,7 @@ export const SECTIONS = [
 	['A falling camera sees a smaller shadow, and a fast pixel sees every scene as a wave', 'A falling camera, a fast pixel|and counting coincidences',
 		['[*A freely falling camera*](/paper/#par:a-freely-falling-camera)',
 			'[*Through a room at nearly the speed of light*](/paper/#par:through-a-room-at-nearly-the-speed-of-light)',
-			'[*Counting coincidences*](/paper/#par:counting-coincidences)'], 'R8, 6.3, 8.5, 9.3, 9.4, 11.1', [
+			'[*Counting coincidences*](/paper/#par:counting-coincidences)'], 'R8, 6.3, 8.5, 9.3, 9.4, 11.1, 13.5', [
 			['unbounded $\\mathcal{E}$ and $\\mathcal{B}$', 'both grow without limit is *stated in the paper*'],
 			['Aichelburg and Sexl\'s shock', '[@AichelburgSexl1971]']
 		], true],
@@ -112,11 +112,11 @@ const USES = [
 	['The hole against the glow', '| (e) the ring | the ray that turns through 180° | $20.2°$', 'arrives $20.2°$ from the hole'],
 	['The hole against the glow', '| (h) how deep | (a) read backwards', 'the camera\'s thermometer reads how deep it sits'],
 	['The bookkeeping and spin', '| 93%; 82% | 11.3, here |', 'and counted in gravitons 82%'],
-	['The bookkeeping and spin', '$x = 0.90$: 42.7 GHz | 9.7 times the sky |', '$x = 0.90$ is 42.7 GHz'],
+	['The bookkeeping and spin', '$x = 0.92$: 43.6 GHz | 10.3 times the sky |', '$x = 0.92$ is 43.6 GHz'],
 	['A falling camera, a fast pixel|and counting coincidences', 'falling, 6.3\'s aberration | $7.27°$; $5.80°$ falling', '$5.80°$ instead of $7.27°$'],
 	['A falling camera, a fast pixel|and counting coincidences', '| (i) counting | (a)\'s thermal sky: $g^{(2)}$ per mode', 'a thermal sky gives 2 per mode']
 ];
-const CAPTION = 'Look first at the solid boxes: every stretch of the second half of Section XI rests on chapters of Parts 2 to 12, with its stated results in dotted insets. The last box follows one hole through four of them.';
+const CAPTION = 'Look first at the solid boxes: every stretch of the second half of Section XI rests on chapters of Parts 2 to 13, with its stated results in dotted insets. The last box follows one hole through four of them.';
 const POINTER = 'this chapter reads the rest in order, with the [plain words](/paper/#sec:vistas)\' claims where they return (Figure [](#fig:read-xi-2-map)).';
 // the reading chapters cited, and their files, for their parts
 const READING = { R8: 'quantum/reading-the-quantum-limits', R10b: 'glow/reading-section-ix', R11: 'black-holes/reading-section-vii' };
@@ -164,7 +164,8 @@ export default async function () {
 	const ledger = sectionText(9);
 	const capstone = sectionText(8);
 	// the chapters a section cites: every way the chapter names one
-	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const citesOf = (sec) => {
 		const out = new Set();
 		for (const re of [`\\[${C}\\]\\(/tutorial/`, `[Cc]hapters? \\[?${C}`, `\\(${C}\\)`, `(?<![\\d.\\w$])${C}'s\\b`, `(?:by|from|as in|with|and) \\[?${C}`])
@@ -224,7 +225,7 @@ export default async function () {
 	check(feederNames.length === 4 && CAPTION.includes('four of them'), 'the capstone does not use four boxes');
 	check(refsOf(capstone, 'eq').length === 0 && refsOf(capstone, 'fig').length === 0, 'the capstone links an equation or a figure');
 	check(/requires: \['6\.3', '8\.5', '11\.1', '11\.2', '11\.3', '12\.1', '12\.2'\]/.test(md), 'the chapter\'s requirements');
-	// the parts the cited chapters belong to: 2 to 12
+	// the parts the cited chapters belong to: 2 to 13 (13.5, the shock's profile)
 	const cited = new Set(SECTIONS.flatMap((s) => s[3].split(', ')));
 	const parts = new Set();
 	for (const c of cited) {
@@ -233,7 +234,7 @@ export default async function () {
 		check(front.includes(`\nid: ${c}\n`), `${READING[c]} is not ${c}`);
 		parts.add(Number(front.match(/\npart: '(\d+)'/)[1]));
 	}
-	check(Math.min(...parts) === 2 && Math.max(...parts) === 12 && CAPTION.includes('Parts 2 to 12'), `the parts cited ${[...parts]}`);
+	check(Math.min(...parts) === 2 && Math.max(...parts) === 13 && CAPTION.includes('Parts 2 to 13'), `the parts cited ${[...parts]}`);
 	// the caption and the pointer, once drawn
 	const drawn = flat.includes(`](${name}){#fig:read-xi-2-map}`);
 	const planned = md.includes(`<!-- diagram: ${name} `);

@@ -409,7 +409,7 @@ The unit of $G\Delta\matter\mu(\kB T)^3/\hbar^2c^5$ is $\mathrm{W\,m^{-3}}$.[^un
 for the count (Figure [](#fig:glow-bound)). **Near equality:** silicon's line at $x = 2.55$ reaches 98.5% of its own
 weight's bound, the paper's 98%. **Far from it:** diamond's line at $x = 6.55$ reaches 28%; the paper's 16% adds the
 pairs' 4.16 GPa to the weight, and they glow little for it (stated). Silica's flat band gives 69.2%, the paper's 69%;
-copper's electrons alone 37.5%, the paper's 39% with the pairs; water 40% (stated).[^shares]
+copper's electrons alone 37.5%, and 38.2% with the pairs, the paper's 38%; water 39% (stated).[^shares]
 
 **Numbers.** At room temperature 30 GPa radiates at most $5.6\times10^{-35}\unit{W\,m^{-3}}$. The hot iron of the
 closed furnace, 122 GPa at 1500 K, can glow at most $3.1\times10^{-32}\unit{W\,m^{-3}}$. To glow as brightly as the
@@ -634,7 +634,7 @@ second bound gives 1.70 TPa at 5500 K.
 [^akhiezer]: The paper also names Akhiezer's damping, the relaxation of the thermal phonons themselves, whose tail at
     the frequencies of heat lies far below the pair band (stated).
 
-[^twentyfive]: The paper's "nearer 25" for the hot iron is this 26.2.
+[^twentyfive]: The paper's "nearer 26" for the hot iron is this 26.2.
 
 [^units]: $G\Delta\matter\mu$ is $\mathrm{m^3\,kg^{-1}\,s^{-2}\cdot kg\,m^{-1}\,s^{-2}}$, and $(\kB T)^3/\hbar^2c^5$
     is $\mathrm{J^3/(J^2\,s^2\,m^5\,s^{-5})} = \mathrm{J\,m^{-5}\,s^3}$; their product is $\mathrm{J\,m^{-3}\,s^{-1}}$.
@@ -645,5 +645,5 @@ second bound gives 1.70 TPa at 5500 K.
 [^thirty]: The paper's 30 nm is diamond's crossing, 28 nm with the sound speeds of its own elastic constants, $c_T =
     12.35$ and $c_L = 18.15\unit{km\,s^{-1}}$. Every other material of its table crosses below 1 nm.
 
-[^shares]: The paper's 39 and 40 per cent for copper and water integrate the weight only up to $x = 60$, which drops
-    1.1% of copper's tail and 3.2% of water's; with the whole weight they are 38.2% and 39.1%.
+[^shares]: These take the whole weight; water's is 39.1%. A weight stopped at $x = 60$ would drop 1.1% of copper's
+    tail and 3.2% of water's, and the shares would read 39% and 40%.

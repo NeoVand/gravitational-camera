@@ -1,7 +1,7 @@
 ---
 id: '9.4'
 title: 'Principal null directions and the Petrov classification'
-question: 'Section VIII says that "every reading has four directions of its own": for one plane wave "all four coincide on its direction of travel", for one body at rest "they fall in two pairs, on the line to the body and opposite it", and "where two or more bodies pull, they are four distinct points". What are these four directions, and how do they tell one wave, one body and many bodies apart?'
+question: 'Section VIII says that "every reading has four directions of its own": for one plane wave "all four coincide on its direction of travel", for one body at rest "they fall in two pairs, on the line to the body and opposite it", and "where two or more bodies pull, they are generally four distinct points". What are these four directions, and how do they tell one wave, one body and many bodies apart?'
 part: '9'
 requires: ['1.4', '1.5', '1.5b', '6.1', '6.3', '6.6', '8.4', '9.1', '9.2', '9.3']
 paper: [sec:one-pixel, eq:stars, eq:star-velocity, eq:moving-state, eq:contact, fig:stars, app:proofs, eq:proof-stars, eq:proof-midpoint, sec:vistas]
@@ -526,8 +526,9 @@ M/\obs\gamma^3$. Then $\dot{\curv\tE}_\parallel = -3K\dot r/r^4$ and $\ddot{\cur
   [@BengtssonZyczkowski2017; @Kam2026].
 :::
 
-[^four]: The paper's "where two or more bodies pull, they are four distinct points" holds in general. "Generally four"
-    would be exact, since equal pulls at right angles give $1 - 6J^2/I^3 = 0$.
+[^four]: Hence the paper's "where two or more bodies pull, they are generally four distinct points": equal pulls at
+    right angles give $1 - 6J^2/I^3 = 0$.
 
-[^contact]: The paper states the second ratio without this condition, which is exact only while $\obs\gamma$ stays
-    fixed. For the person below, $\obs\gamma^2r|\ddot r|/c^2 = 5 \times 0.05/(3.00\times10^8)^2 = 2.8\times10^{-18}$.
+[^contact]: The paper states the same condition, "while $\gamma^2 r|\ddot r| \ll c^2$". The $r^{-3}$ law is exact only
+    while $\obs\gamma$ stays fixed. For the person below, $\obs\gamma^2r|\ddot r|/c^2 = 5 \times
+    0.05/(3.00\times10^8)^2 = 2.8\times10^{-18}$.

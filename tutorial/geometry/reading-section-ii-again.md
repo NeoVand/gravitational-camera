@@ -48,10 +48,10 @@ The [plain words](/paper/#sec:pixel) make these claims, in this order.
   tensor**, the curvature of spacetime
   ([7.2](/tutorial/geometry/curvature-and-tides/#curvature-is-what-no-change-of-coordinates-removes); *checked here*,
   as a sketch).
-- "The tide is the only effect of gravity that any detector can measure." For a detector that falls freely and reads
-  at one place this follows, because at one point a relabelling of events can change everything except the curvature
-  (7.1, and [7.4](/tutorial/geometry/linearized-gravity/#relabelling-the-coordinates-changes-the-table-not-the-curvature)
-  for weak fields; *checked here* for such a detector).[^clocks]
+- "The tide is the only effect of gravity that a freely falling detector can measure at one place." This follows,
+  because at one point a relabelling of events can change everything except the curvature (7.1, and
+  [7.4](/tutorial/geometry/linearized-gravity/#relabelling-the-coordinates-changes-the-table-not-the-curvature) for
+  weak fields; *checked here*).[^clocks]
 - The stretch "exactly twice the squeeze" beside a single mass holds outside any round body in Einstein's theory too,
   from the vacuum equation and the symmetry alone
   ([7.3](/tutorial/geometry/einstein-equation/#a-single-mass-stretches-twice-as-hard-as-it-squeezes-in-einsteins-theory-too),
@@ -81,8 +81,8 @@ The [plain words](/paper/#sec:pixel) make these claims, in this order.
 
 ## Equations (1) and (2) are the curvature along the observer's time
 
-The body of [Section II](/paper/#sec:pixel) defines the tide for an observer at rest, "with proper time $t$…". The
-**proper time** is the time on the observer's own clock
+The body of [Section II](/paper/#sec:pixel) defines the tide for an observer "at rest relative to the masses, with
+proper time $t$…". The **proper time** is the time on the observer's own clock
 ([7.1](/tutorial/geometry/metric/#a-clocks-own-time-is-set-by-the-metric)):
 
 {{paper eq:tidal}}
@@ -136,10 +136,10 @@ to $-\tfrac12\partial_0^2h^{\rm TT}_{ij}$, and $c^2$ times it, with $\partial_0 
 ([7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain),
 *checked here*).
 
-"An interferometer such as LIGO reads one component of $\curv\tE_{ij}$, integrated twice in time, as the fractional
-change $h$ in the length of its arms." Chapter 7.6 found that this one component is $\curv\tE_{11} - \curv\tE_{22}$
-for arms along $\vect e_1$ and $\vect e_2$, and that each arm changes by half of $h$, so $h$ is the difference of the
-two arms' fractional changes (*checked here*).
+"An interferometer such as LIGO reads one component of $\curv\tE_{ij}$, integrated twice in time, as the difference
+$h$ of the fractional changes in the lengths of its two arms." Chapter 7.6 found that this one component is
+$\curv\tE_{11} - \curv\tE_{22}$ for arms along $\vect e_1$ and $\vect e_2$, and that in a wave each arm changes by
+half of $h$, one getting longer while the other gets shorter (*checked here*).
 
 {{paper fig:tidal-field}}
 
@@ -162,11 +162,18 @@ its volume.
 ## The swaying person's strain is counted as a wave's
 
 The person who sways by 5 cm once a second changes the tide by "about $1.4\times10^{-9}\unit{s^{-2}}$, which a detector
-reads as a strain $h = 2\,\delta\curv\tE/\omega^2 \approx 7\times10^{-11}$…" R1 found $\delta\curv\tE = 0.15 \times
-9.34\times10^{-9} = 1.40\times10^{-9}\unit{s^{-2}}$, which changes a small detector's free arm along the line to the
-person by $\delta\curv\tE/\omega^2 = 3.55\times10^{-11}$ of its length ($\omega^2 = 39.5\unit{s^{-2}}$). A wave of
-strain $h$ moves each arm by $h/2$ (7.6), so a wave that moved the arm as much has $h = 7.1\times10^{-11}$, the
-paper's number (*checked here*).
+small compared with that distance reads as a strain $h = 2\,\delta\curv\tE/\omega^2 \approx 7\times10^{-11}$". R1 found
+$\delta\curv\tE = 0.15 \times 9.34\times10^{-9} = 1.40\times10^{-9}\unit{s^{-2}}$, which changes a small detector's
+free arm along the line to the person by $\delta\curv\tE/\omega^2 = 3.55\times10^{-11}$ of its length ($\omega^2 =
+39.5\unit{s^{-2}}$). A wave of strain $h$ moves each arm by $h/2$ (7.6), so a wave that moved the arm as much has $h =
+7.1\times10^{-11}$, the paper's number (*checked here*).
+
+"Beside one of LIGO's mirrors, which alone feels the sway, the strain over its four-kilometre arm is about
+$3\times10^{-15}$." A real arm is far longer than the metre to the person, so the tide is not uniform along it, and
+only the near mirror moves. The sway of $\delta r = 0.05$ m changes the pull on that mirror by $2G\matter M\,\delta
+r/r^3 = 2 \times 6.674\times10^{-11} \times 70 \times 0.05\unit{m\,s^{-2}} = 4.7\times10^{-10}\unit{m\,s^{-2}}$, which
+moves it by $4.7\times10^{-10}/39.5 = 1.2\times10^{-11}$ m. Over 4000 m that is a strain of $3.0\times10^{-15}$, three
+million times the $10^{-21}$ of the waves LIGO detects (*checked here*).
 
 ## In empty space a pixel reads ten numbers, and inside matter two more pieces
 
@@ -217,12 +224,12 @@ reading chapter R7b reads, and the thermal glow is Section IX's, for reading cha
 In [*The Earth's own tide*](/paper/#par:the-earths-own-tide), a pixel at rest on the equator moves with the ground at
 $\Omega R = 465\unit{m\,s^{-1}}$, where $\Omega$ is the Earth's rate of turning and $R$ its equatorial radius. "The two
 together (Eq. [](/paper/#eq:magnetic-point) and the spin dipole …)" give it a magnetic part
-$(3G\matter M\Omega/cR^2)(1 - I/\matter MR^2)$, with $\matter M$ the Earth's mass and $I$ its moment of inertia, as
+$(3G\matter M\Omega/cR^2)(1 - C/\matter MR^2)$, with $\matter M$ the Earth's mass and $C$ its moment of inertia, as
 chapter [7.5](/tutorial/geometry/gravitomagnetism/#the-earths-magnetic-part-weighs-its-core) derived. With $G\matter M =
 3.986\times10^{14}\unit{m^3\,s^{-2}}$, $\Omega = 7.292\times10^{-5}\unit{s^{-1}}$, $R = 6.378\times10^6$ m and the
-Earth's measured $I/\matter MR^2 = 0.3307$ (chapter 1.6),
+Earth's measured $C/\matter MR^2 = 0.3307$ (chapter 1.6, which writes $I$),
 
-$$\begin{aligned}&\frac{3G\matter M\Omega}{cR^2}\Bigl(1 - \frac{I}{\matter MR^2}\Bigr)\\
+$$\begin{aligned}&\frac{3G\matter M\Omega}{cR^2}\Bigl(1 - \frac{C}{\matter MR^2}\Bigr)\\
 &\quad= 7.150\times10^{-12} \times 0.6693\unit{s^{-2}}\\ &\quad= 4.785\times10^{-12}\unit{s^{-2}} ,\end{aligned}$$
 
 which rounds to $4.79\times10^{-12}\unit{s^{-2}}$, the paper's "$4.8\times10^{-12}$" (*checked here*).[^c-value] The
@@ -334,10 +341,10 @@ Derive the formula of *The Earth's own tide* from Section IV's equation [](/pape
 dipole, and reproduce the paper's $4.8\times10^{-12}\unit{s^{-2}}$.
 
 ::: solution
-Put the spin $\vect L = I\Omega\,\hat z$ along $z$ and the pixel on the $x$ axis, with $\hat n = -\hat x$ toward the
+Put the spin $\vect L = C\Omega\,\hat z$ along $z$ and the pixel on the $x$ axis, with $\hat n = -\hat x$ toward the
 centre. The pixel reads the Earth moving past at $-\Omega R\,\hat y$, and the paper's equation
 [](/paper/#eq:magnetic-point) gives $\curv\tB_{xz} = -3G\matter M\Omega/cR^2$. On the equator $\vect L\cdot\hat n = 0$,
-and the spin dipole gives $+3GI\Omega/cR^4$. The sum is $-(3G\matter M\Omega/cR^2)(1 - I/\matter MR^2)$, and with the
+and the spin dipole gives $+3GC\Omega/cR^4$. The sum is $-(3G\matter M\Omega/cR^2)(1 - C/\matter MR^2)$, and with the
 Earth's numbers of the last section its size is $4.785\times10^{-12}\unit{s^{-2}}$, the paper's 4.8.
 :::
 :::

@@ -61,7 +61,7 @@ export default async function () {
 	has('The person a metre away makes $9.34\\times10^{-9}\\unit{s^{-2}}$', 'the person\'s tide');
 	has('$2\\times10^{-11}\\unit{s^{-2}}$ in a second', 'the gradiometer');
 	has('$2\\sigma_{\\rm SQL}/\\xi\\tau^2 = 6.5\\times10^{-14}\\unit{s^{-2}}$', 'the pixel');
-	has('resolves $9.2\\times10^{-14}\\unit {s^{-2}}$ (8.6)', 'the distance of the two');
+	has('resolves $\\sqrt2$ times more, $9.2\\times10^{-14}\\unit{s^{-2}}$, the paper\'s figure', 'the distance of the two');
 	check(sig(person, 3) === '9.34e-9' && sig(grad, 1) === '2e-11' && sig(pix, 2) === '6.5e-14' && sig(pix2, 2) === '9.2e-14', 'the instruments\' tides');
 	// the averaged pixel: the person's tide over the ratio it reaches in 10^3 s stretches over the age of the universe,
 	// which end because the two grams fall together under their own pull in about an hour

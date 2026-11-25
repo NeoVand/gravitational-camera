@@ -57,7 +57,7 @@ export const SECTIONS = [
 		'3.1, 8.5, 10.1', [
 			['the primordial glow\'s 0.905 K', 'Section XI\'s primordial glow, at 0.905 K (*stated in the paper*)']
 		]],
-	['The budget runs from a second to ninety million years', 'The table', 'The paper\'s Table [](/paper/#tab:budget)',
+	['The budget runs from a second to a hundred and ten million years', 'The table', 'The paper\'s Table [](/paper/#tab:budget)',
 		'R10, 5.2, 5.4, 5.5, 7.7', []],
 	['One camera peels the layers, and the heights measure friction times temperature cubed', 'Recovering the layers',
 		'[*Recovering the layers*](/paper/#par:recovering-the-layers)', '5.5, 5.6, 10.1', []],
@@ -151,7 +151,8 @@ export default async function () {
 	const ledger = sectionText(13).split('[^')[0];
 	const capstone = sectionText(12);
 	// the chapters a section cites: every way the chapter names one, less the pointers that are not marks
-	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d)';
+	// a number followed by a unit, or set in math, is a quantity, not a chapter ("from 26.3 km")
+	const C = '(R\\d+b?|\\d+\\.\\d+)(?!\\d|\\s*(?:%|°|×|\'\'|\\\\|(?:km|kg|cm|mm|nm|m|s|K|per|GHz|MHz|kHz|Hz|eV|keV|MeV|GeV|pc|kpc|Mpc|ly|au|AU|J|W|yr|years?|days?|times|bits?)(?![A-Za-z])))';
 	const citesOf = (sec) => {
 		let s = sec;
 		for (const n of NOT_CITED) s = s.replace(n, ' ');

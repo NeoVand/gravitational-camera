@@ -278,13 +278,13 @@ $$\boxed{\begin{aligned}\kB T\chi_0 &\le \langle\delta\matter Q_h^2\rangle\\ &\l
 
 which is the paper's equation [](/paper/#eq:jitter-bounds).
 
-**When equality holds.** Jensen's inequality is an equality when the distribution sits at one value. One mode,
-$\chi = c^2/(\omega_0^2 - \omega^2 - i\Gamma\omega)$, has $\chi_0 = c^2/\omega_0^2$ and $A = c^2$, so
-$\sqrt{A/\chi_0} = \omega_0$, and the upper bound is $(\hbar c^2/2\omega_0)\coth(\hbar\omega_0/2\kB T)$: [](#eq:x2) for
-a unit mass, times the mode's weight. This is the paper's "upper bound reached by a single mode", and a damped mode,
-whose weight is spread across its line, falls a little short of it.[^damped] Far from equality, five modes an octave
-apart, each holding a fifth of $\chi_0$, reach at absolute zero 0.75 of the upper bound (Figure [](#fig:qfd-bounds)).
-When $\hbar\omega \ll \kB T$ wherever the friction lies, both bounds meet at $\kB T\chi_0$, R4's check.
+**When equality holds.** Jensen's inequality is an equality when the distribution sits at one value. One mode, $\chi =
+c^2/(\omega_0^2 - \omega^2 - i\Gamma\omega)$, has $\chi_0 = c^2/\omega_0^2$ and $A = c^2$, so $\sqrt{A/\chi_0} =
+\omega_0$, and the upper bound is $(\hbar c^2/2\omega_0)\coth(\hbar\omega_0/2\kB T)$: [](#eq:x2) for a unit mass, times
+the mode's weight. This is the paper's "upper bound reached by a single undamped mode", and a damped mode, whose weight
+is spread across its line, falls a little short of it.[^damped] Far from equality, five modes an octave apart, each
+holding a fifth of $\chi_0$, reach at absolute zero 0.75 of the upper bound (Figure [](#fig:qfd-bounds)). When
+$\hbar\omega \ll \kB T$ wherever the friction lies, both bounds meet at $\kB T\chi_0$, R4's check.
 
 **What it means.** At absolute zero the lower bound vanishes but the jitter does not: it is the zero point of every mode,
 at most $\tfrac12\hbar\sqrt{A\chi_0}$, set by the same compliance and sum that fix the classical jitter and the
@@ -453,5 +453,5 @@ low and 6% high. Their average, which the thermometer reads, is off only by $u^2
     \sum_{k\ge1}2u^2/(u^2 + k^2\pi^2)$. With $u^2 = s^2X$ each term is $2 - 2k^2\pi^2/(s^2X + k^2\pi^2)$, whose second
     derivative in $X$ is negative, so $F = (u\coth u)/s$ is concave.
 
-[^damped]: The paper's phrase holds exactly for a mode with no line width. At $\Gamma/\omega_0 = 0.01$, 0.1 and 0.5 a
-    mode reaches 0.997, 0.969 and 0.867 of the bound at absolute zero, and closer when warm.
+[^damped]: At $\Gamma/\omega_0 = 0.01$, 0.1 and 0.5 a mode reaches 0.997, 0.969 and 0.867 of the bound at absolute
+    zero, and closer when warm.

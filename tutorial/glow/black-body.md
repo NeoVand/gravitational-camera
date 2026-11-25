@@ -28,7 +28,7 @@ the glow, or far brighter? Drag the divider to the left, so that both furnaces a
 The answer depends on how the count of gravitons grows with temperature. Section VI says that if the friction
 "depended neither on frequency nor on temperature, the number of gravitons emitted would grow as $T^3$ and the hot
 block would outshine the cold one more than a hundredfold": $(1500/293)^3 = 134$. A metal's friction falls as $1/T$,
-so its count grows as $T^2$, and $(1500/293)^2 = 26$ is the paper's "nearer 25". That $T^3$ is the count of quanta
+so its count grows as $T^2$, and $(1500/293)^2 = 26$ is the paper's "nearer 26". That $T^3$ is the count of quanta
 of a black body, the glow that fills a closed box whose walls are at one temperature, and this chapter derives it.
 
 Part 10 builds the glow in three steps: this chapter finds the black body, chapter 10.2 (Kirchhoff's law and detailed

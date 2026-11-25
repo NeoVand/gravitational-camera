@@ -291,8 +291,8 @@ This is the paper's equation [](/paper/#eq:handheld). A pattern of degree $\ell$
 wide](/tutorial/outside/spherical-harmonics/#a-pattern-of-degree-ell-has-features-about-piell-wide) (chapter 2.2), so
 the blur $\Delta\theta$, the width of the finest detail, is about $\pi/\ell_{\max}$ radians. The locked safe's array is
 1 m across and 3.5 m from the gold, so $2r/D = 7$. At $\SNR = 10^3$ the array reaches $\ell_{\max} = 2 + 6.91/1.95 =
-5.55$, and its blur is $\pi/5.55 = 0.566$ radians, or 32.4°, about 2.0 m at the distance of the safes.[^33] A pixel
-alone, with $D \to 0$, reads degree two and nothing else.
+5.55$, and its blur is $\pi/5.55 = 0.566$ radians, or 32.4°, the paper's "about $32^\circ$", about 2.0 m at the distance
+of the safes. A pixel alone, with $D \to 0$, reads degree two and nothing else.
 
 ![On the left, a body lies inside the dashed sphere of radius $R$ about the origin $O$, the smallest that holds it,
 and the exterior expansion in the fading harmonics $Y_{\ell m}/r^{\ell+1}$ holds in the shaded region outside that
@@ -303,9 +303,10 @@ places of the bodies are chosen for the drawing.](tut-mul-regions){#fig:two-expa
 ## At the camera's own place, the tide stays finite while the tidal column grows without limit
 
 Chapter 1.5 derived the paper's sky integral, equation [](/paper/#eq:tidal-column), assuming that all matter lies
-farther from the pixel than a small distance $r_{\min}$. A real pixel sits in air, and the paper says that matter at
-the camera "would make $S$ diverge logarithmically, although not $\tE_{ij}$". We assume that **the density is smooth
-near the pixel**, and we split the matter round the pixel into a small ball of radius $r_{\min}$ and the rest.
+farther from the pixel than a small distance $r_{\min}$. A real pixel sits in air, and the paper says that matter at the
+camera "would make $S$ diverge logarithmically, although, for a smooth density, not $\tE_{ij}$". We assume that **the
+density is smooth near the pixel**, and we split the matter round the pixel into a small ball of radius $r_{\min}$ and
+the rest.
 
 Chapter 1.4 found [the tide inside a ball of
 dust](/tutorial/newton/tides/#in-empty-space-the-stretch-and-the-squeezes-balance) of uniform density:
@@ -478,8 +479,6 @@ left, and the field outside is $-G\matter M/r$ for both bodies.
 
 [^snr]: Of the monopole, as in Section XII. The paper's *A small camera*
     ([below](#round-the-camera-distant-matter-makes-a-sum-of-growing-harmonics)) uses the $\SNR$ of the uniform tide.
-
-[^33]: The paper says "about 33°". Its own inputs give 32.4°.
 
 [^shape]: This assumes that the region cut out round the pixel is a ball, or as symmetric as a cube. A flat or a
     needle-shaped hole would move part of the contact term into the integral.

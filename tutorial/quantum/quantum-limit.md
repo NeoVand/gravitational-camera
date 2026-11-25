@@ -1,7 +1,7 @@
 ---
 id: '8.6'
 title: 'Measurement, added noise and the standard quantum limit; detectors and strain'
-question: 'Section II says that two free masses of a gram, a centimetre apart and read for a second at the standard quantum limit, "would resolve $6\times10^{-14}\,\mathrm{s^{-2}}$", and Section IV that no camera could do better than a signal-to-noise ratio of about $10^{70}$ on a person, even watching for the age of the universe. Why does watching a free mass disturb it, and what limits does quantum mechanics set on reading a tide?'
+question: 'Section II says that two free masses of a gram, a centimetre apart and read for a second at the standard quantum limit, "would resolve $9\times10^{-14}\,\mathrm{s^{-2}}$", and Section IV that no camera could do better than a signal-to-noise ratio of about $10^{70}$ on a person, even watching for the age of the universe. Why does watching a free mass disturb it, and what limits does quantum mechanics set on reading a tide?'
 part: '8'
 requires: ['1.4', 'R1', '3.1', '3.2', '3.3', '3.7', '3.8', '8.1', '8.2', '8.3', '8.4']
 paper: [sec:pixel, sec:near-field, sec:first-image, sec:no-lens, sec:one-pixel]
@@ -12,7 +12,7 @@ depth: A
 
 The paper's paragraph [*What the premise asks*](/paper/#par:what-the-premise-asks), in its Section II, ends its list
 of instruments with an ideal one: "Two free masses of a gram, a centimetre apart and read for a second at the standard
-quantum limit, would resolve $6\times10^{-14}\,\mathrm{s^{-2}}$, a hundred thousand times less than the person's tide."
+quantum limit, would resolve $9\times10^{-14}\,\mathrm{s^{-2}}$, a hundred thousand times less than the person's tide."
 Chapter [R1](/tutorial/newton/reading-section-ii/#what-the-premise-asks-existing-instruments-nearly-supply) checked the
 arithmetic from an uncertainty of $3.25\times10^{-16}$ m and left two things to this chapter: where that uncertainty
 comes from, and "factors such as the $\sqrt2$ of two masses". Section IV's
@@ -114,24 +114,24 @@ $$\begin{aligned}
 &= 6.5\times10^{-14}\unit{s^{-2}} ,
 \end{aligned}$$
 
-the paper's "$6\times10^{-14}$". The person a metre away makes $9.34\times10^{-9}\unit{s^{-2}}$ (1.4), 144,000 times
-more, "a hundred thousand times less than the person's tide". On the person, this pixel reads a signal-to-noise ratio
-of $1.44\times10^5$ in a second.
+the one-mass estimate. The person a metre away makes $9.34\times10^{-9}\unit{s^{-2}}$ (1.4), 144,000 times more.
+On the person, this pixel reads a signal-to-noise ratio of $1.44\times10^5$ in a second.
 
 **The $\sqrt2$.** This estimate gives one mass the limit and treats the other as a perfect reference. What is read is
 the distance between them, and each has its own spread. The spreads of independent masses add in squares (chapter
 [3.1](/tutorial/noise/probability/#covariance-describes-noise-that-two-readings-share)), so the distance has the spread
 $\sqrt2\,\sigma_{\rm SQL} = \sqrt{2\hbar\tau/\matter m} = 4.6\times10^{-16}$ m,[^reduced] and the tide is
-$9.2\times10^{-14}\unit{s^{-2}}$. Both are "about $10^{-13}$": the paper's figure is the one-mass estimate, and the
-larger one is the distance between two equal masses.
+$9.2\times10^{-14}\unit{s^{-2}}$, the paper's "$9\times10^{-14}\,\mathrm{s^{-2}}$": 101,000 times below the person's,
+"a hundred thousand times less than the person's tide". The two differ only by $\sqrt2$. This chapter carries the
+one-mass estimate forward, so its ratios on the person are $\sqrt2$ larger than those of the distance.
 
 **Against real instruments.** The superconducting gradiometer of Section II reaches $0.02\unit{E}$ in a second,
 $2\times10^{-11}\unit{s^{-2}}$ (*stated in the paper*), and so gives the person R1's ratio of 467. On the paper's
 reading it is 300 times short of the ideal pixel (Figure [](#fig:sql-pixel)).[^grad]
 
-![Look first at the strip: the ideal pixel of Section II reads tides 144,000 times smaller than the person's. The
-bells are the position's spreads at the first and the second reading; their sizes and the person's distance are not
-to scale.](tut-sql-pixel){#fig:sql-pixel}
+![Look first at the strip: the ideal pixel of Section II, on the one-mass estimate, reads tides 144,000 times smaller
+than the person's. The bells are the position's spreads at the first and the second reading; their sizes and the
+person's distance are not to scale.](tut-sql-pixel){#fig:sql-pixel}
 
 ## The standard quantum limit belongs to one way of reading, and it can be beaten
 
@@ -236,7 +236,7 @@ added noise, referred to the input, is at least half a quantum times $1 - 1/G$, 
 :::
 
 **A number.** Section IX's [*Counting or recording*](/paper/#par:counting-or-recording) says that each mode of the
-thermal glow "holds of order $10^{-30}$ gravitons on average". Recorded quadrature by quadrature, its excess over the
+thermal glow "holds $10^{-30}$ gravitons or fewer on average". Recorded quadrature by quadrature, its excess over the
 noise is $10^{-30}$ of a quantum against at least one, the zero point's half and the device's half: "recorded pixel by
 pixel, a thermal gravitational image would be buried in that noise". A counter adds no noise, because an empty mode
 never clicks (chapter [8.5](/tutorial/quantum/counting-quanta/#counting-adds-no-noise-but-needs-quanta)), but it loses
@@ -430,9 +430,9 @@ as noise, which observatories model and subtract [@Harms2019].
 Two panels. In the first, two free masses are read once, left alone for a time $\tau$ and read again; the bells show
 each position's spread at the two readings, magnified, and the small plot beside them is Figure [](#fig:sql-compromise)
 with a dot at your first reading. You set the first reading's sharpness against its best value, the mass, the time and
-the separation, and read the tide the pair resolves: the paper's one-mass estimate beside the value for the distance
-of the two. The second panel has the axes of Figure [](#fig:sql-interferometer), the line $h_{\rm SQL}$ for mirrors of
-40 kg and arms of 4 km, and the quantum noise for a laser power you choose.
+the separation, and read the tide the pair resolves: the one-mass estimate beside the value for the distance of the
+two, which is the paper's. The second panel has the axes of Figure [](#fig:sql-interferometer), the line $h_{\rm SQL}$
+for mirrors of 40 kg and arms of 4 km, and the quantum noise for a laser power you choose.
 
 Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, set
 the mass to 10 kg, the time to 100 s and the separation to 10 cm, and check the Practice problem's two tides.
@@ -478,7 +478,7 @@ person at about $10^{70}$, a blur of 1.5°.**
 ### Practice
 
 Two 10 kg masses 10 cm apart are read for 100 s at the standard quantum limit. What tide do they resolve, with the
-paper's one-mass estimate and for the distance between the two?
+one-mass estimate and for the distance between the two?
 
 ::: solution
 $\sigma_{\rm SQL} = \sqrt{1.055\times10^{-34}\times100/10}\unit m = 3.2\times10^{-17}$ m, so $\Delta\curv{\tE} \approx
@@ -547,8 +547,8 @@ blur is $1.91°$.
 [^reduced]: The same spread follows from the motion of the distance itself, which is that of one body of the
     **reduced mass** $\matter m_1\matter m_2/(\matter m_1 + \matter m_2)$, here $\matter m/2$.
 
-[^grad]: The source's $0.02\unit{E\,Hz^{-1/2}}$ is a one-sided amplitude spectral density. Read strictly it gives
-    $0.014\unit{E}$ in a second (chapter 3.2's
+[^grad]: The source's $0.02\unit{E\,Hz^{-1/2}}$ is a one-sided amplitude spectral density, which the paper takes as
+    $0.02\unit{E}$ for one second of averaging. Read strictly it gives $0.014\unit{E}$ in a second (chapter 3.2's
     [note](/tutorial/noise/random-signals/#the-variance-of-white-noise-falls-as-one-over-the-observing-time)), a ratio
     of 660 on the person instead of 467, and a factor of 218 short of the ideal pixel instead of 308.
 
@@ -558,5 +558,6 @@ blur is $1.91°$.
 [^povm]: Any such measurement can be made by letting the system touch a second one and then making a measurement of
     chapter 8.1's kind on the two together (Naimark's theorem, stated).
 
-[^label]: A graviton from $\hat n_0$ travels along $-\hat n_0$; we label its state, and each click, by the direction
-    toward the source, as the paper's sentence does.
+[^label]: A graviton from $\hat n_0$ travels along $-\hat n_0$, and by Section VIII's convention its coherent state
+    points that way too. We label its state, and each click, by the opposite direction, toward the source, as the
+    paper labels its clicks.
