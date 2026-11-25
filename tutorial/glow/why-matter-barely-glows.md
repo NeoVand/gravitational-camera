@@ -10,8 +10,6 @@ live: [glow-bound]
 depth: A
 ---
 
-<!-- hero: Part 10's hero, the closed furnace cut open (P6a-DECISIONS item 6), is made after the part's chapters. -->
-
 **What you need:** chapters [10.1](/tutorial/glow/black-body/) (Planck's law) and
 [10.2](/tutorial/glow/kirchhoff/) (Kirchhoff's law), and chapters [4.4](/tutorial/response/viscosity/),
 [4.5](/tutorial/response/causality/), [4.1](/tutorial/response/oscillator/),

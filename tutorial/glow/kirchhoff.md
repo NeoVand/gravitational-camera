@@ -10,8 +10,6 @@ live: [detailed-balance]
 depth: A
 ---
 
-<!-- hero: Part 10's hero, the closed furnace cut open (P6a-DECISIONS item 6), is made after the part's chapters. -->
-
 **What you need:** chapter [10.1](/tutorial/glow/black-body/)'s Planck law and occupation $n_\omega$, chapter
 [5.5](/tutorial/waves/radiance/)'s equation of transfer, chapter [8.3](/tutorial/quantum/quanta/)'s ladder of quanta,
 chapter [8.7](/tutorial/quantum/quantum-fluctuation/)'s two orders of a correlation, and, for one section, chapters

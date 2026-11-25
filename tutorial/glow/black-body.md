@@ -10,8 +10,6 @@ live: [scene-closed-furnace, planck-spectrum]
 depth: A
 ---
 
-<!-- hero: Part 10's hero, the closed furnace cut open (P6a-DECISIONS item 6), is made after the part's chapters. -->
-
 **What you need:** chapter [4.2](/tutorial/response/temperature/)'s equipartition, chapter
 [5.5](/tutorial/waves/radiance/)'s radiance and enclosure radiation, chapter [8.3](/tutorial/quantum/quanta/)'s modes
 of a wave and their thermal quanta, and, for the last section, chapter [6.3](/tutorial/relativity/aberration/)'s
@@ -38,6 +36,12 @@ balance) shows that matter glows by its absorption times the black body, and cha
 finds that absorption. The paper's [*Emission*](/paper/#par:emission) gives the black body as "the Planck radiance
 $B_\omega(T) = \hbar\omega^3/[4\pi^3c^2(e^{\hbar\omega/k_BT} - 1)]$, summed over the two polarizations", which chapter
 5.5 stated without proof. So we ask where this formula comes from, and what its integrals give the camera.
+
+![Look first at the iron block: it glows in gravitons, and its lower part shows through the steel wall in front, where
+its hidden outline is dashed. The steel box is the paper's closed furnace, cut open by one slanting cut. Its inner
+walls carry one of the box's lowest standing waves, lighter where the wave is strong, with solid loops where it is
+positive, dashed loops where it is negative and a dotted line where it is zero. The glow's strength and the wave's
+pattern are computed; the view, the cut and the strength of the marks are schematic.](tut-glow-hero){#fig:glow-hero}
 
 ::: plain
 A closed box whose walls are at one temperature fills with a glow that depends only on that temperature, called

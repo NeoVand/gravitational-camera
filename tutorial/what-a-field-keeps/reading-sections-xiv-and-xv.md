@@ -155,7 +155,7 @@ $x = G\matter M\omega/c^3 = 0.002$, a pure number, and 1.070 times at 0.01, an e
 for long waves (11.4).
 
 For the 0.905 K hole (*checked here*), $\matter M = 1.356\times10^{23}$ kg, $r_s = 0.201$ mm,
-$\nu = 1.85\times10^{-23}\unit{J\,s^5}$ and $S_Q = 4.62\times10^{-46}\unit{kg^2\,m^4\,s}$.[^SQ] One entry,
+$\nu = 1.85\times10^{-23}\unit{J\,s^5}$ and $S_Q = 4.62\times10^{-46}\unit{kg^2\,m^4\,s}$. One entry,
 $\matter Q_{zz}$, takes the share $\Pi_{zzzz} = \tfrac12(1 + 1) - \tfrac13 = \tfrac23$ of the noise, and white noise
 of spectrum $S$ averaged over a time $\tau$ has the variance $S/\tau$
 ([3.2](/tutorial/noise/random-signals/#the-variance-of-white-noise-falls-as-one-over-the-observing-time)). So in one
@@ -561,8 +561,6 @@ $\sqrt{3\times(5/32\pi)\times6.938}\,r_s = 1.0175\,r_s$.
 - R. Penrose, "On gravity's role in quantum state reduction" (1996) [@Penrose1996]: the energy of Section XV and its
   time.
 :::
-
-[^SQ]: Chapter 11.4's $4.7\times10^{-46}$ is the value at the paper's rounded $1.36\times10^{23}$ kg.
 
 [^factor]: The paper's "each tide of degree $\ell$ gives $\int\rho\,r^{2\ell-2}\,\dd V$" leaves out a factor. Each
     tide $r^\ell Y_{\ell m}$ of the paper's [](/paper/#eq:thermal-multipole), which sums over the orders $m$, gives
