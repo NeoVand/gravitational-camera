@@ -457,7 +457,9 @@ $\tfrac25 \times 32.9 \times 0.1^2 = 0.13\unit{kg\,m^2}$. Even for $h$ and $g$ h
 $\nabla h\cdot\nabla g$ is in general not harmonic (here it is $x^2 + y^2$, whose Laplacian is 4), so the field at one
 time does not hold this integral. The paper shows that for well-chosen pairs of harmonic $h$ and $g$ the products
 $\nabla h\cdot\nabla g$ include every wave $e^{i\vect k\cdot\vect x}$, so these brackets give every Fourier component
-of the density (chapter 13.2). Readings at two times hold what a reading at one time cannot.
+of the density (chapter
+[13.2](/tutorial/what-a-field-keeps/calderon/#two-harmonic-exponentials-multiply-into-any-ripple)). Readings at
+two times hold what a reading at one time cannot.
 
 The same right-hand side appears twice more in the paper; we state both. In quantum mechanics the commutator
 $[A, B] = AB - BA$ of these two quantities is $i\hbar$ times their Poisson bracket, with

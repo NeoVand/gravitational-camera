@@ -355,7 +355,8 @@ $$\boxed{\;\mathrm{Im}\,\chi(\omega) = \frac{5c^5\,\Gamma_2(\omega)}{16\,G\omega
 the paper's step in *The weight of a black hole's response*. **Limit:** with Page's $\Gamma_2$ it is
 $(5c^5/16G\omega^5)(16G\nu\omega^6/5c^5) = \nu\omega$, the
 [friction found above](#the-holes-quadrupole-answers-a-tide-with-friction-alone) (Figure [](#fig:hole-imchi)). Chapter
-13.7 follows this response to every frequency and weighs it.[^split]
+[13.7](/tutorial/what-a-field-keeps/thermometer/#a-holes-response-has-the-weight-of-a-shell-a-little-outside-its-horizon)
+follows this response to every frequency and weighs it.[^split]
 
 ![Look first at the left, where the solid curve, $5c^5\Gamma_2/16G\omega^5$, meets the dashed friction law $\nu\omega$:
 that is the box's limit. To the right the law fails, because the waves are no longer long against the hole. Curves
@@ -378,14 +379,14 @@ $\mathrm{Im}\,\chi = \nu\omega$ its spectrum, the hole's **quadrupole noise**, i
 $$\boxed{\;\sym{quadrupole-noise}{S_Q} = 2\kB T_H\,\nu = \frac{\hbar r_s^5}{360\pi G}\;} ,$$
 
 since $2(\hbar c^3/8\pi G\matter M)(\matter Mr_s^5/90c^3) = \hbar r_s^5/360\pi G$. The paper writes it with
-$\sym{stf-projector}{\Pi_{ijkl}}$, chapter 1.5's projector, which says that the five entries tremble alike and
-independently:
+$\sym{stf-projector}{\Pi_{ijkl}}$, chapter 1.5's projector, which says that the five independent trace-free combinations
+of $\matter Q_{ij}$ tremble alike and independently:
 
 {{paper eq:hole-noise}}
 
 **Units:** $\hbar r_s^5/G$ is $\mathrm{J\,s\,m^5}$ over $\mathrm{m^3\,kg^{-1}\,s^{-2}}$, or $\mathrm{kg^2\,m^4\,s}$, a
 squared quadrupole per hertz. **Limit:** as $\hbar \to 0$ the noise vanishes, as it must for 11.1's classical hole,
-which is at absolute zero. **Number:** for Section VII's hole, $S_Q = 4.7\times10^{-46} \unit{kg^2\,m^4\,s}$.[^mass]
+which is at absolute zero. **Number:** for Section VII's hole, $S_Q = 4.6\times10^{-46} \unit{kg^2\,m^4\,s}$.[^mass]
 Averaged over one second, each entry trembles by $\sqrt{S_Q/1\unit s} = 2.2\times10^{-23} \unit{kg\,m^2}$, about
 $4\times10^{-39}$ of $\matter Mr_s^2$.
 
@@ -411,7 +412,9 @@ thermometer divides the noise by the friction and returns $T_H$, the paper's [](
 What it confirms is the [long-wave result](#the-same-friction-absorbs-long-gravitational-waves): the friction and the
 absorption are one number. In Section XIV's words, a camera beside the hole reads that temperature "without absorbing
 any quantum of the radiation". The tremor also carries nothing new: a stone's tremor carries its whole interior, and a
-hole's carries only $\matter M$ again. Chapter 13.7 reads this thermometer.
+hole's carries only $\matter M$ again. Chapter
+[13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)
+reads this thermometer.
 
 ::: history
 ### From the Earth's rock to the horizon
@@ -499,7 +502,9 @@ not belong to any body, and say what saves the hole.
 Chapter 4.5's fast-end sum $(2/\pi)\int_0^\infty\omega\,\mathrm{Im}\,\chi\,\dd\omega$ is finite for every body: it
 is the inertia that the push must move. With $\mathrm{Im}\,\chi = \nu\omega$ the integrand is $\nu\omega^2$, and
 the integral grows without limit. The hole's response follows the greybody factor instead, and above
-$G\matter M\omega/c^3 \approx 0.5$ it falls as $\omega^{-5}$, so the sum is finite. Chapter 13.7 computes it.
+$G\matter M\omega/c^3 \approx 0.5$ it falls as $\omega^{-5}$, so the sum is finite. Chapter
+[13.7](/tutorial/what-a-field-keeps/thermometer/#a-holes-response-has-the-weight-of-a-shell-a-little-outside-its-horizon)
+computes it.
 :::
 
 ### The paper
@@ -521,10 +526,12 @@ $\Gamma_2 = 16G\nu\omega^6/5c^5$, the paper's limit.
   [](/paper/#eq:horizon-friction), Section XIV's $Q_{ij}$ and $\mathrm{Im}\,\chi = \nu\omega$, and the limit
   $(16/5)G\nu\omega^6/c^5$ (the first four sections).
 - *The fluctuations of a black hole's quadrupole*: the paper's [](/paper/#eq:hole-noise) and the paper's
-  [](/paper/#eq:hole-thermometer) (the last section); 13.7 reads the thermometer.
+  [](/paper/#eq:hole-thermometer) (the last section);
+  [13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)
+  reads the thermometer.
 - *The weight of a black hole's response*: $\mathrm{Im}\,\chi = 5c^5\Gamma_2/16G\omega^5$ (the
   section on every frequency); the paper's [](/paper/#eq:hole-sum-rule) and Figure [](/paper/#fig:hole-response) are
-  13.7's.
+  [13.7](/tutorial/what-a-field-keeps/thermometer/#a-holes-response-has-the-weight-of-a-shell-a-little-outside-its-horizon)'s.
 - Table [](/paper/#tab:hair)'s hole column, [Section XI](/paper/#sec:vistas)'s Page limit, and [Section
   XV](/paper/#sec:holography)'s weight after a slow tide.
 :::
@@ -554,7 +561,8 @@ $\Gamma_2 = 16G\nu\omega^6/5c^5$, the paper's limit.
 
 [^x]: Not 10.1's $\hbar\omega/\kB T$, which is $8\pi x$ at the hole's temperature.
 
-[^split]: Chapter 4.5 promised these results to 11.4 and 13.7. Chapter 13.7 derives the sum
+[^split]: Chapter 4.5 promised these results to 11.4 and
+    [13.7](/tutorial/what-a-field-keeps/thermometer/). Chapter 13.7 derives the sum
     $0.345\,\matter Mr_s^2$, the shells, the failed positivity test and the Love number 1.35.
 
 [^mass]: The paper's $1.36\times10^{23}$ kg rounds 11.3's $1.356\times10^{23}$ kg, whose $T_H$ is the paper's 0.905 K.

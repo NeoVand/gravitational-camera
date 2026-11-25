@@ -571,7 +571,9 @@ $\omega r/c = 9.42\times10^4 \times 1/3.00\times10^8 = 3.1\times10^{-4}$. Both a
   friction of sound through its quality factor $Q$ (chapter 4.4).
 - [Section VII](/paper/#sec:no-lens) uses the $Q$ of a body's sound in [](/paper/#eq:optics-bound), and the free-mass
   limit of $\chi$ is the paper's [](/paper/#eq:dust) of Section XIII. In [Section XIV](/paper/#sec:hole) a black hole
-  answers a tide with $\mathrm{Im}\,\chi = \nu\omega$ and no stored part, a pure friction (chapters 11.4 and 13.7).
+  answers a tide with $\mathrm{Im}\,\chi = \nu\omega$ and no stored part, a pure friction (chapters
+  [11.4](/tutorial/black-holes/under-tides/#the-holes-quadrupole-answers-a-tide-with-friction-alone) and
+  [13.7](/tutorial/what-a-field-keeps/thermometer/)).
 :::
 
 ::: deeper

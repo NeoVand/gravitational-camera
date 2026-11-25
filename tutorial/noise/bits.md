@@ -503,7 +503,8 @@ $1.685\times10^6/1628 = 1035$.
 - [*The number of bits*](/paper/#par:the-number-of-bits) (Section XII) derives [](/paper/#eq:hair-bits), with the
   black hole's $7\log_2\SNR$ and Figure [](/paper/#fig:hair)(b).
 - [*The bits of a second reading*](/paper/#par:the-bits-of-a-second-reading) (Section XIII) states that a second
-  reading's bits grow as the fourth power of $\ln\SNR$ (chapter 13.2).
+  reading's bits grow as the fourth power of $\ln\SNR$ (chapter
+  [13.2](/tutorial/what-a-field-keeps/calderon/#the-bits-of-a-second-reading-grow-as-the-fourth-power-of-the-logarithm)).
 - [Section IX](/paper/#sec:first-image) gives the graviton counts behind the $N\log_2M$ bound (Part 10).
 :::
 

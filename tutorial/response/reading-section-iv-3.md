@@ -136,9 +136,10 @@ $\int\matter\rho\,r^{2\ell-2}\,\dd V$, from $r = 0$ to $R$, for every $\ell$. Ch
 moments fix a distribution (*checked here*, with the theorem for all moments stated there).
 
 "For any body, the products $\nabla h\cdot\nabla g$ of harmonic functions reach every Fourier component of the
-density, as Calderón showed" [@Calderon1980]: *read now, derived in Part 13* (chapter 13.2). "At a known temperature a
-warm body cannot hide its interior …, though … fine detail is reached only through exponentially small signals": a
-fine pattern fades on its way out as the exponential of its fineness times the distance
+density, as Calderón showed" [@Calderon1980]: *read now, derived in Part 13* (chapter
+[13.2](/tutorial/what-a-field-keeps/calderon/#two-harmonic-exponentials-multiply-into-any-ripple)). "At a known
+temperature a warm body cannot hide its interior …, though … fine detail is reached only through exponentially small
+signals": a fine pattern fades on its way out as the exponential of its fineness times the distance
 ([2.7](/tutorial/outside/evanescent/#in-empty-space-a-ripple-can-only-fade),
 [3.7](/tutorial/noise/blur-law/#what-the-law-means), *checked here*). That correlations of a field can show what its
 mean hides "is known for waves" [@Devaney1979; @WeaverLobkis2001]: *stated in the paper*.
@@ -407,7 +408,8 @@ integral, $\int\matter\rho\,\nabla h\cdot\nabla g\,\dd V$, is read in four ways.
 
 The integral is the inertia that a tide of profile $h$ must move, weighed against the profile $g$. It is not a
 harmonic moment, so it is not one of the numbers that the steady field outside holds. Interiors that pull alike, the
-null space of R2, can therefore differ in it. Section XIII builds on this with Calderón's argument, read in R13.
+null space of R2, can therefore differ in it. Section XIII builds on this with Calderón's argument, read in
+[R13](/tutorial/what-a-field-keeps/reading-sections-xii-and-xiii/#at-two-times-the-readings-hold-a-bracket-and-products-of-tides-build-every-ripple).
 
 ## The capstone: the steel ball, from its heat to a thermometer
 
@@ -597,7 +599,7 @@ $g_{\rm s} = G\matter M/R^2 = 2.2\times10^{-7}\unit{m\,s^{-2}}$, $19\matter\mu/2
 ::: deeper
 - The [GR course, section 22.7](https://neovand.github.io/general-relativity/chapter-22.html#22-7-a-horizon-gets-a-temperature)
   explains the temperature of a horizon, which the paper's thermometer reads from a black hole's near field (chapter
-  13.7).
+  [13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)).
 - P. R. Saulson, *Fundamentals of Interferometric Gravitational Wave Detectors* (2nd ed., World Scientific, 2017), in
   its chapters on thermal noise, applies the theorem and Levin's method to LIGO's mirrors.
 :::

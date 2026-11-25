@@ -253,11 +253,14 @@ About a million numbers against a billion cells, the square and the cube of a th
 
 [^nohair]: Stated, with its conditions, in 11.2.
 
-[^two]: Chapter 13.1 works out both orders.
+[^two]: Chapter
+    [13.1](/tutorial/what-a-field-keeps/push-and-pass/#a-probe-reads-the-field-at-first-order-and-the-bodys-reply-at-second)
+    works out both orders.
 
 [^kick]: Defined in chapter [1.7](/tutorial/newton/hamilton/#a-sudden-kick-changes-the-kinetic-energy-in-two-parts).
 
-[^push]: Derived in [1.7](/tutorial/newton/hamilton/#the-energy-of-an-impulsive-tide), interpreted in 13.1.
+[^push]: Derived in [1.7](/tutorial/newton/hamilton/#the-energy-of-an-impulsive-tide), interpreted in
+    [13.1](/tutorial/what-a-field-keeps/push-and-pass/#a-probe-reads-the-field-at-first-order-and-the-bodys-reply-at-second).
 
 [^ratio]: Derived in [1.7](/tutorial/newton/hamilton/#a-ball-and-a-shell-gain-in-the-ratio-three-to-five). The
     figure's shell is thicker, so its bar is lower.
@@ -267,14 +270,17 @@ About a million numbers against a billion cells, the square and the cube of a th
 
 [^pass]: The paper's equation [](/paper/#eq:pass), derived in chapter
     [1.8](/tutorial/newton/orbits-and-kicks/#what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass);
-    chapter 13.1 shows that the losses fix the density.
+    chapter
+    [13.1](/tutorial/what-a-field-keeps/push-and-pass/#passes-along-one-great-circle-of-directions-give-the-density)
+    shows that the losses fix the density.
 
 [^tonne]: All computed in chapter
     [1.8](/tutorial/newton/orbits-and-kicks/#a-fast-passing-mass-gives-every-part-of-a-body-a-sideways-kick).
 
 [^tremor]: Derived in chapter 4.6.
 
-[^ladder]: The paper's equation [](/paper/#eq:ladder), proved in chapter 13.3.
+[^ladder]: The paper's equation [](/paper/#eq:ladder), proved in chapter
+    [13.3](/tutorial/what-a-field-keeps/ladder/#no-tide-reaches-beyond-the-rungs-below-its-degree-whatever-is-read).
 
 [^friction]: The paper's equation [](/paper/#eq:horizon-friction), explained in chapter 11.4.
 
@@ -287,7 +293,10 @@ About a million numbers against a billion cells, the square and the cube of a th
     [11.4](/tutorial/black-holes/under-tides/#the-friction-trembles-at-the-holes-temperature)
     the trembling tide.
 
-[^holography]: Chapter 13.8.
+[^holography]: Chapter [13.8](/tutorial/what-a-field-keeps/holography/).
 
-[^sums]: The paper's equation [](/paper/#eq:hole-sum-rule). Chapter [4.5](/tutorial/response/causality/#a-blow-holds-every-frequency-and-the-energy-it-leaves-is-the-same-total) explains such sums, and chapter 13.7 the
-    test.
+[^sums]: The paper's equation [](/paper/#eq:hole-sum-rule). Chapter
+    [4.5](/tutorial/response/causality/#a-blow-holds-every-frequency-and-the-energy-it-leaves-is-the-same-total)
+    explains such sums, and chapter
+    [13.7](/tutorial/what-a-field-keeps/thermometer/#no-distribution-of-positive-mass-has-the-holes-first-three-sums)
+    the test.

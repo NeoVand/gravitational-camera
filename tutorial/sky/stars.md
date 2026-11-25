@@ -10,14 +10,6 @@ live: [inspiral]
 depth: A
 ---
 
-<!-- hero: Part 12's hero (P6b-DECISIONS item 11, decided: the new Galaxy figure), made after the part's chapters in
-the 3D stone pipeline, with image-model candidates in two runs as style references only. The Galaxy edge-on as a thin
-bright disc with its bulge, from this chapter's model density (thin disc 3.5e10 Msun, 2.6 kpc by 0.3 kpc; thick disc
-0.6e10, 2.0 by 0.9; bulge 1.5e10, 0.5 kpc, flattened 0.6); a few white-dwarf pairs as tiny orbiting dots with faint
-rings; the Sun 8.2 kpc from the centre and 20 pc above the mid-plane, with its camera; the line of sight to the centre
-crossing the dark dust lane (the model's dust, 3.2 kpc by 0.1 kpc, its opacity from code); behind it the uniform
-0.905 K glow of 12.2 with one black disc. Every mark from code. -->
-
 **What you need:** chapters [1.3](/tutorial/newton/gauss-and-poisson/#outside-a-round-body-only-its-mass-counts) (the
 shell theorem and $\matter m(r)$),
 [1.6](/tutorial/newton/motion/#force-changes-momentum-and-forces-inside-a-body-cancel) (equal and opposite forces),
@@ -34,6 +26,13 @@ uncertainty relation) and
 [11.1](/tutorial/black-holes/schwarzschild/#outside-a-round-body-einsteins-field-is-fixed-by-the-mass-alone)
 (Birkhoff's theorem and the bending of light). Chapters 7.3, 7.8, 9.5, 10.3 and R9b help, and are
 recalled where used.
+
+![Look first at the thin bright disc and the dark lane along its middle: this is the chapter's model of the Galaxy, seen
+edge-on from far away, and the lane is its dust. The pale line runs from the Sun to the centre inside that dust, through
+31 magnitudes of it. The inset, magnified 40 times, shows the Sun with its camera 20 parsecs above the mid-plane, too
+little to see at the Galaxy's scale. The disc's light and the dust's dimming are computed from the model; the pairs of
+white dwarfs, the camera, and the black disc in the uniform 0.905 K glow of gravitons of chapter
+[12.2](/tutorial/sky/universe/) are schematic.](tut-sky-hero){#fig:sky-hero}
 
 The paper's [Section XI](/paper/#sec:vistas) points the camera at the sky. Its two black holes, "each thirty times
 the mass of the Sun", are "ten seconds before they merge … 2200 kilometres apart". Its collapsing star sends out "a

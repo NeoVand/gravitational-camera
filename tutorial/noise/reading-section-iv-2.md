@@ -377,7 +377,7 @@ The second paragraph holds a mass $m$ behind a wall "in a superposition of two p
 state that holds both places at once (*read now, derived in Part 8*, chapter 8.1). "The two branches differ in their
 quadrupole, about $md^2$", because the centre of mass cannot move (2.3, *checked here*). How the puzzle resolves is
 *stated in the paper*, and that a perfect camera is "a perfect source of decoherence" is *read now, derived in Part
-13* (chapter 13.8).
+13* (chapter [13.8](/tutorial/what-a-field-keeps/holography/#gravity-cannot-decohere-a-ball-and-a-shell)).
 
 ## A near-field picture holds a few dozen bits for each patch of its scene
 
@@ -570,8 +570,10 @@ Which of Section IV's claims rest on physics that Part 3 does not derive?
 ### A
 
 The black-hole bound on the camera's mass (11.1), the quantum speed limit and the ceiling of $10^{70}$ (8.6), the
-quantum scene and its decoherence (8.1, 13.8), the wave camera's count of directions (5.3), the single pixel's 25
-numbers (Part 9) and the 450 gravitons (Part 10).
+quantum scene and its decoherence
+([8.1](/tutorial/quantum/states/#a-record-of-the-place-multiplies-the-interference-by-the-overlap-of-the-records),
+[13.8](/tutorial/what-a-field-keeps/holography/#gravity-cannot-decohere-a-ball-and-a-shell)), the wave camera's count
+of directions (5.3), the single pixel's 25 numbers (Part 9) and the 450 gravitons (Part 10).
 :::
 
 **The idea to keep: Section IV's second half follows from Part 3. A near-field picture blurs by an angle set by the

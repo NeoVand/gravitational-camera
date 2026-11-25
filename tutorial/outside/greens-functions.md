@@ -430,7 +430,9 @@ derives it for the paper's equation [](/paper/#eq:wave-zone). The transform of t
 [](/paper/#eq:scene-transform) weighs the scene against the continued ripples of [the flat
 camera](#above-a-flat-camera-a-mirror-image-gives-the-potential-at-every-height), written $e^{i\vect k\cdot\vect a -
 |\vect k|z}$, where $\vect k$ is a vector in the camera's plane that points across the crests and has the length $k$
-(chapter 13.2). The paper's equation [](/paper/#eq:abel), an Abel transform, adds up a round planet's glow along
+(chapter
+[13.2](/tutorial/what-a-field-keeps/calderon/#a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two)).
+The paper's equation [](/paper/#eq:abel), an Abel transform, adds up a round planet's glow along
 straight chords, with a weight fixed by geometry; chapter
 [5.6](/tutorial/waves/abel-transform/#the-transform-can-be-undone) inverts it.
 

@@ -56,7 +56,9 @@ $$\boxed{\;\kB T_H = \frac{\hbar c^3}{8\pi G\matter M}\;} . \label{eq:hawking}$$
 **Its conditions.** The result assumes that **the hole formed by the collapse of matter**, that **quantum fields move
 on the classical metric** of chapter 11.1, which is not itself treated by quantum mechanics, and that **the hole is far
 heavier than the Planck mass** $\sqrt{\hbar c/G} = 2.2\times10^{-8}$ kg, so that its glow changes it slowly. The
-paper's [](/paper/#eq:hole-thermometer) has the same right side, and chapter 13.7 reads it.
+paper's [](/paper/#eq:hole-thermometer) has the same right side, and chapter
+[13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)
+reads it.
 
 **Units.** $\hbar c^3/G\matter M$ is $\mathrm{J\,s}\times\mathrm{m^3\,s^{-3}}$ divided by $\mathrm{m^3\,kg^{-1}\,s^{-2}}
 \times\mathrm{kg}$, which is a joule, as an energy $\kB T_H$ must be. **Limit:** as $\hbar \to 0$, $T_H \to 0$. Without
@@ -263,7 +265,9 @@ $\kB T_H/\hbar\omega$, as Section XIV says. Here $\hbar\omega/\kB T_H = 8\pi G\m
 chapter [8.7](/tutorial/quantum/quantum-fluctuation/#a-cold-body-can-take-energy-from-a-push-but-has-none-to-give)'s
 paper problem. Section XIV uses this to make the hole's near field a thermometer: a camera beside the hole reads
 $T_H$ from it without catching a single graviton, as chapters
-[11.4](/tutorial/black-holes/under-tides/#the-friction-trembles-at-the-holes-temperature) and 13.7 show.
+[11.4](/tutorial/black-holes/under-tides/#the-friction-trembles-at-the-holes-temperature) and
+[13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)
+show.
 
 ![Look first at the two arrows that leave: what the hole scatters and what it emits of its own add up to what the
 camera receives. The arrow into the horizon is the net absorption, stimulated emission taken away. The arrows are

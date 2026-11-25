@@ -512,8 +512,9 @@ $\vect\zeta\cdot\vect\zeta = 0$. For the given vector,
 $$\vect\zeta\cdot\vect\zeta = \tfrac14\bigl(-\vect\xi\cdot\vect\xi + \vect\eta\cdot\vect\eta\bigr) + \tfrac{i}{2}\,\vect\xi\cdot\vect\eta ,$$
 
 and both parts vanish when $|\vect\eta| = |\vect\xi|$ and $\vect\eta\perp\vect\xi$. These are the paper's harmonic
-exponentials $h_\pm$ of equation [](/paper/#eq:calderon), with which chapter 13.2 reads the Fourier transform of a
-density from two readings of its field.
+exponentials $h_\pm$ of equation [](/paper/#eq:calderon), with which chapter
+[13.2](/tutorial/what-a-field-keeps/calderon/#two-harmonic-exponentials-multiply-into-any-ripple) reads the Fourier
+transform of a density from two readings of its field.
 :::
 
 ### The paper
@@ -594,4 +595,6 @@ Society*.
 
 [^ladder]: When $h$ and $g$ are quadratics, $\nabla h\cdot\nabla g$ is a quadratic, so two Laplacians make it zero.
     The paper's equation [](/paper/#eq:ladder) says which functions killed by several Laplacians a tide of a given
-    degree reaches, and chapter 13.3 derives it.
+    degree reaches, and chapter
+    [13.3](/tutorial/what-a-field-keeps/ladder/#no-tide-reaches-beyond-the-rungs-below-its-degree-whatever-is-read)
+    derives it.

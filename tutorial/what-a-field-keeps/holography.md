@@ -29,11 +29,11 @@ null space), [3.8](/tutorial/noise/bits/#a-bodys-field-at-one-time-holds-about-1
 [13.3](/tutorial/what-a-field-keeps/ladder/#a-mass-held-for-an-instant-is-a-tide-of-every-degree-so-it-climbs-the-whole-ladder)
 (the ladder); chapters 6.5, 11.2, 13.6 and 13.7 are recalled where used, and 5.2, 11.3 and 12.1 help.
 
-Put a stone of radius $a$, in metres, at the centre of a glass sphere of radius $R_c = 3a$ whose surface is covered
-with cameras. Section XV's plain words suppose that a camera reads the field on a sphere of radius $R$ "with detail
-down to a size $d$". Then the field "carries about $(R/d)^2$ such numbers", while the inside, "cut into cells of size
-$d$, holds about $(R/d)^3$ cells". With $R/d = 100$ that is ten thousand numbers against a million cells, which fill
-the reading sphere $R = R_c$. The stone holds about $1.6\times10^5$ of them.
+Put a stone of radius $a$, in metres, at the centre of a glass sphere of radius $R_c = 3a$ whose surface is covered with
+cameras. Section XV's plain words suppose that a camera reads the field on a sphere of radius $R$ "with detail down to a
+size $d$". Then the field "carries about $(R/d)^2$ such numbers", while the inside, "cut into cells of size $d$, holds
+about $(R/d)^3$ cells". With $R/d = 100$ that is ten thousand numbers against a million cells, which fill a cube of side
+$R = R_c$. The stone, a ball of radius $R_c/3$, holds about $1.6\times10^5$ cells of that size.
 
 So we ask how much of the stone's inside its field outside holds, once noise, the speed of light and quantum mechanics
 are counted, and why gravity cannot decohere a ball and a shell. A camera's **signal-to-noise ratio** $\SNR$ is its

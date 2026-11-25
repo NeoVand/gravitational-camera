@@ -38,6 +38,14 @@ inside, and how do the slowings along many paths become a map of the density? Th
 The pull on a mass outside is of first order in that mass, while "what the body does in reply, and so what the mass
 gains or loses, is of second order". Chapters 1.7 and 1.8 derived the two equations; this chapter reads them.
 
+![Look first at the bars on the right: a brief tide of degree three, not a passing mass, leaves twice as much energy
+in the right-hand body as in the left, though the two pull alike everywhere outside the dashed circle. The left body is
+a thin shell; the right holds half its mass in a small ball at its centre and half in a shell of the dashed circle's
+radius. Pale orange and blue mark where the tide pushes out and where it pushes in, and the small arrows on each cut
+ring are the kicks it gives. The kicks, the lobes and the ratio of the bars are computed, and chapter
+[13.3](/tutorial/what-a-field-keeps/ladder/) derives the ratio; the view and the arrows' scale are schematic, and the
+stone is pictorial.](tut-keeps-hero){#fig:keeps-hero}
+
 ::: plain
 A small mass that flies past a body is pulled toward it, so its path bends. If the small mass is doubled, the
 momentum it trades with the body doubles too. This is a first-order effect. The bending shows only what the body's

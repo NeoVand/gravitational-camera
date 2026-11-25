@@ -328,7 +328,9 @@ axis $q = 0$.](tut-momentum-lightcone){#fig:light-cone-components}
 
 We want the energy a body gains when its momentum across $z$ changes by $\Delta\vect p_\perp$, because that is what
 the paper's wave does. We assume that **the kick keeps $q$ and the rest mass $\matter m$**. That an impulsive plane
-wave moving along $+z$ does this to a free particle we state without proof; chapter 13.5 derives it.
+wave moving along $+z$ does this to a free particle we state without proof; chapter
+[13.5](/tutorial/what-a-field-keeps/impulsive-waves/#whatever-crosses-the-front-keeps-q-and-is-kicked-in-proportion-to-it)
+derives it.
 
 Adding $q$ to the other component, $(\matter m^2c^2 + p_\perp^2)/q$ by [](#eq:lc-product), gives $2E/c$, so
 
@@ -340,10 +342,11 @@ $$\boxed{\;\Delta E = \frac{c}{2q}\Bigl(\bigl|\vect p_\perp + \Delta\vect p_\per
 
 The unit is $\mathrm{m\,s^{-1}}$ times a momentum, a joule. Because $q$ is kept, $p_z$ grows by $\Delta E/c$ too.
 
-**The wave's kick.** We state a second result without proof, also derived in chapter 13.5: an impulsive plane wave of
-profile $\sym{wave-profile}{H}(\vect x_\perp)$ gives the particle at $\vect x_\perp$ the momentum $\Delta\vect p_\perp
-= \tfrac12q\nabla H$, where $\nabla H$, the gradient across the front, is a pure number. Put into [](#eq:kick), this
-gives the paper's equation of Appendix C,
+**The wave's kick.** We state a second result without proof, also derived in chapter
+[13.5](/tutorial/what-a-field-keeps/impulsive-waves/#whatever-crosses-the-front-keeps-q-and-is-kicked-in-proportion-to-it):
+an impulsive plane wave of profile $\sym{wave-profile}{H}(\vect x_\perp)$ gives the particle at $\vect x_\perp$ the
+momentum $\Delta\vect p_\perp = \tfrac12q\nabla H$, where $\nabla H$, the gradient across the front, is a pure
+number. Put into [](#eq:kick), this gives the paper's equation of Appendix C,
 
 {{paper eq:proof-shock}}
 

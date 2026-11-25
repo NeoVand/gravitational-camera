@@ -10,13 +10,6 @@ live: [shadow-and-ring]
 depth: A
 ---
 
-<!-- hero: Part 11's hero (P6b-DECISIONS item 11), made after the part's chapters in the 3D stone pipeline, with
-image-model candidates in two runs as style references only. A small dark sphere, the horizon, with its photon ring as
-a thin bright circle at 1.5 r_s; beside it a ring of free test masses at rest, squeezed 1 : 1 : −2 (orange stretch
-along the radius, blue squeeze across, the distortion from this chapter's exact tide); and a fan of rays from one
-side, from the orbit equation of the light section: those with b < b_c ending on the horizon, one winding once round
-the photon sphere, the outer ones bent by 2r_s/b. Every mark from code. -->
-
 **What you need:** chapter
 [1.3](/tutorial/newton/gauss-and-poisson/#outside-a-round-body-only-its-mass-counts)'s shell theorem,
 [1.4](/tutorial/newton/tides/#beside-one-mass-the-ring-stretches-along-the-line-and-squeezes-across-it)'s tide,
@@ -36,6 +29,14 @@ gravitons the camera sees a black disc, the shadow, $7.3°$ in radius, and in li
 ring $20°$ in radius. Other results of the paper rest on the same field: Section XI's falling camera and exploding
 star, Section IV's bound on the camera's mass and Section III's compactness of one half. So we ask what the field
 outside a round mass is in Einstein's theory, exactly, and what it does to clocks, to tides and to light.
+
+
+![Look first at the ray that winds once round the hole: it crosses its own path above the horizon, passes in front of
+it (the pale arc) and leaves along the line it came in on. The rays nearer the hole fall in, and those farther out are
+bent less and less, by an angle that approaches $2r_s/b$ far out. The circle round the black horizon is the photon
+sphere, at $1.5\,r_s$. The ring of free beads at the lower left is stretched along the line to the hole and squeezed
+across it by half as much. The rays, the photon sphere and the pattern of the tide are computed; the view and the
+ring's size, place and distortion are schematic.](tut-hole-hero){#fig:hole-hero}
 
 This chapter opens Part 11, which goes on with spin and the no-hair theorem (11.2), Hawking radiation (11.3), black
 holes under tides (11.4) and a reading of Section VII (R11).

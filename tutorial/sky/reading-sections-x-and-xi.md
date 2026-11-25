@@ -29,8 +29,9 @@ We read Section X, and Section XI as far as *The Milky Way* (Figure [](#fig:read
 *read now, derived in chapter N*, or *stated in the paper*.
 
 ![Look first at the solid boxes: Section X and every paragraph of Section XI read here rest on chapters of Parts 1 to
-12, with their stated results in dotted insets, hollow where chapters 13.1 and 13.4 will derive them. The hatched box
-rests on a sketch at depth B. The last box follows one collapsing star through three of
+12, with their stated results in dotted insets, hollow where chapters
+[13.1](/tutorial/what-a-field-keeps/push-and-pass/) and [13.4](/tutorial/what-a-field-keeps/flows-inside/) will derive
+them. The hatched box rests on a sketch at depth B. The last box follows one collapsing star through three of
 them.](tut-read-x-xi-map){#fig:read-x-xi-map}
 
 ::: plain
@@ -97,7 +98,9 @@ marked).
   ([2.5](/tutorial/outside/null-space/#the-nugget-the-flush-and-the-skin-differ-only-in-what-the-outside-cannot-read)).
   Spin breaks the tie through the moment of inertia
   ([1.6](/tutorial/newton/motion/#the-moment-of-inertia-tells-a-cored-planet-from-a-uniform-one)), and so do the
-  tremor (4.6), the glow (5.6), a passing mass (13.1) and a pixel inside, where
+  tremor (4.6), the glow (5.6), a passing mass
+  ([13.1](/tutorial/what-a-field-keeps/push-and-pass/#passes-along-one-great-circle-of-directions-give-the-density))
+  and a pixel inside, where
   $\mathrm{tr}\,\curv\tE = 4\pi G\matter\rho$
   ([7.3](/tutorial/geometry/einstein-equation/#the-trace-of-the-tide-is-the-ricci-curvature-along-the-observers-time)).
 - *In the near field's magnetic part*, a ball and a shell turning oppositely with no total spin look like rest, and
@@ -379,7 +382,7 @@ inside the shell is it the remnant's.
 | The paper's table or equation | Its mark here |
 |---|---|
 | Table [](/paper/#tab:affordances), the affordances | *read now*, the rows derived in 7.8 and 5.5; 2.5 and 3.9; 1.3 and 2.3; 6.4; R10 and 10.2; 4.4 and 10.3; 5.4 and R5; 2.8 and 7.5; 6.5; 4.6 and R4 |
-| Table [](/paper/#tab:null), the blind spots | *read now*, the rows derived in the chapters of the third section; the row of 13.1 *read now, derived in chapter 13.1*; that of 13.4 *read now, derived in chapter 13.4* |
+| Table [](/paper/#tab:null), the blind spots | *read now*, the rows derived in the chapters of the third section; the row of [13.1](/tutorial/what-a-field-keeps/push-and-pass/#passes-along-one-great-circle-of-directions-give-the-density) *read now, derived in chapter 13.1*; that of [13.4](/tutorial/what-a-field-keeps/flows-inside/#every-silent-flow-is-read-by-calderóns-pair) *read now, derived in chapter 13.4* |
 | [](/paper/#eq:multipole), the field in every zone | *stated in the paper* (Thorne's); checked, and its tide derived, in 7.7 |
 | [](/paper/#eq:memory), the memory | *stated in the paper*, and sketched in 7.8 at depth B |
 | [](/paper/#eq:merger-memory), a merger's memory | *read now, derived in chapter 7.8* |

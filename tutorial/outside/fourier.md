@@ -569,7 +569,8 @@ At $q_c = 10.4$ this is $108/12.6 = 8.6$, the paper's "about nine patterns". The
   with $\vect K$ a wavevector across the plane and $\kappa$ a rate of decay with depth, both in $\mathrm{m^{-1}}$. For
   $\kappa = |\vect K|$ this is the flat camera's harmonic function, a ripple that fades with depth (chapter 2.4). Its
   part across the plane is the plane's transform with the opposite sign, so it gives the complex conjugate. Its real
-  factor $e^{-\kappa z}$ is not a ripple and has no row in the table (chapter 13.2).
+  factor $e^{-\kappa z}$ is not a ripple and has no row in the table (chapter
+  [13.2](/tutorial/what-a-field-keeps/calderon/#a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two)).
 - [*What the passes of a mass determine*](/paper/#par:what-the-passes-of-a-mass-determine) (Appendix C): a density
   added up along $\hat n$ has the transform of the density on the wavevectors perpendicular to $\hat n$.
 :::

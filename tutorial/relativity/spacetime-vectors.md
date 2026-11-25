@@ -603,7 +603,8 @@ the paper's null space.
     through which gravity acts (chapter [7.1](/tutorial/geometry/metric/)). The rapidity $\obs\eta$ of chapter
     [6.1](/tutorial/relativity/lorentz/#rapidities-add-where-velocities-do-not) is the paper's letter, in the observer's
     colour. The viscosity of chapter [4.4](/tutorial/response/viscosity/) is $\matter\eta$, in the colour of matter, and
-    the paper's vector $\vect\eta$ of Section XIII returns in chapter 13.2.
+    the paper's vector $\vect\eta$ of Section XIII returns in chapter
+    [13.2](/tutorial/what-a-field-keeps/calderon/#two-harmonic-exponentials-multiply-into-any-ripple).
 
 [^lambda]: The $4\times4$ table $\Lambda^\mu{}_\nu$ always carries its indices. The paper's $\Lambda = \exp(-i\eta\,\hat
     u\cdot\mathbf L)$ in [*One complex matrix*](/paper/#par:one-complex-matrix) is a $3\times3$ complex table that

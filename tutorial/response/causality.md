@@ -374,7 +374,8 @@ in for the hole under one tide, but nothing can under three. A body's Love numbe
 that a steady tide raises on it, as a pure number (chapter
 [4.6](/tutorial/response/fluctuation-dissipation/#the-static-end-of-the-response-is-the-love-number) derives it). Put
 into the slow end's relation [](#eq:static-sum), the hole's friction would give a Love number of 1.35, and the hole's is
-zero. Chapters 11.4 and 13.7 derive these results.[^greybody]
+zero. Chapters [11.4](/tutorial/black-holes/under-tides/) and [13.7](/tutorial/what-a-field-keeps/thermometer/)
+derive these results.[^greybody]
 
 {{paper fig:hole-response}}
 

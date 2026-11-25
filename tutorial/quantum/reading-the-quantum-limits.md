@@ -26,7 +26,8 @@ IX and XI follow, then the capstone. The map below draws the stretches in order 
 
 ![Look first at the filled boxes: every quantum statement of Sections II and IV and Appendix A is now derived in Part
 8, except the camera's mass bound (11.1), the resolution of the which-way puzzle, which is stated in the paper, and
-decoherence by gravity (13.8). A half-filled box also holds a claim read now, in its dotted box, or stated in the paper.
+decoherence by gravity ([13.8](/tutorial/what-a-field-keeps/holography/#gravity-cannot-decohere-a-ball-and-a-shell)).
+A half-filled box also holds a claim read now, in its dotted box, or stated in the paper.
 The dashed strip holds two optional stretches of Sections IX and XI, with one sentence of Section VII, that need only
 Part 8.](tut-read-quantum-map){#fig:read-quantum-map}
 
@@ -175,7 +176,8 @@ information away".
 "A perfect camera is therefore a perfect source of decoherence." Chapter 8.1 derived the rule behind it: a record of
 the place multiplies the interference term by the overlap $\langle e_R|e_L\rangle$ of the record's two states, and a
 record that tells the places apart leaves no interference. This loss is **decoherence** (*checked here* in Part 8's
-model; for gravity, *read now, derived in Part 13*, chapter 13.8).
+model; for gravity, *read now, derived in Part 13*, chapter
+[13.8](/tutorial/what-a-field-keeps/holography/#gravity-cannot-decohere-a-ball-and-a-shell)).
 
 ## Appendix A's quantum jitter lies between the classical value and one mode
 
@@ -324,13 +326,15 @@ growth of step (b).
 R7 found all five of Section II's equations and all twenty of Section IV's derived. The quantum statements read here
 add one more, the paper's [](/paper/#eq:jitter-bounds), derived in chapter 8.7. Part 8 also derived three equations that
 no stretch read here uses: the paper's [](/paper/#eq:hair-commutator) and [](/paper/#eq:push) for operators in 8.2, which
-R13 will read, and the paper's [](/paper/#eq:one-spin), the state of one of a reading's four spins one half, in 8.4,
-which R9 will read.
+[R13](/tutorial/what-a-field-keeps/reading-sections-xii-and-xiii/) will read, and the paper's
+[](/paper/#eq:one-spin), the state of one of a reading's four spins one half, in 8.4, which R9 will read.
 
 Every statement of Section II is now derived or stated. In Section IV the quantum statements are derived in Part 8,
 except the camera's mass bound (chapter 11.1), the resolution of the which-way puzzle (stated in the paper) and
-decoherence by gravity (chapter 13.8). The $10^{-30}$ gravitons per mode come in Part 10 and R10b, and the $0.905\unit
-K$ glow in chapter [12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat) and R12b.
+decoherence by gravity (chapter
+[13.8](/tutorial/what-a-field-keeps/holography/#gravity-cannot-decohere-a-ball-and-a-shell)). The $10^{-30}$ gravitons
+per mode come in Part 10 and R10b, and the $0.905\unit K$ glow in chapter
+[12.2](/tutorial/sky/universe/#gravitons-parted-first-and-kept-a-colder-share-of-the-heat) and R12b.
 
 ::: check
 ### Q

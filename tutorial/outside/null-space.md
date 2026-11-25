@@ -581,7 +581,8 @@ a little below zero.
   [13.2](/tutorial/what-a-field-keeps/calderon/#the-null-space-belongs-to-one-reading-not-to-gravity) and
   [13.3](/tutorial/what-a-field-keeps/ladder/#two-bodies-that-no-quadrupolar-tide-tells-apart));
   *What gravity cannot decohere*, in
-  [the holography section](/paper/#sec:holography) (chapter 13.8).
+  [the holography section](/paper/#sec:holography) (chapter
+  [13.8](/tutorial/what-a-field-keeps/holography/#gravity-cannot-decohere-a-ball-and-a-shell)).
 - Table [](/paper/#tab:null) lists what the camera cannot see.
 :::
 

@@ -185,7 +185,7 @@ parts:
       - { id: '13.7', slug: what-a-field-keeps/thermometer, title: 'The hole as a thermometer; sums that belong to no body', short: The hole as a thermometer, size: M, status: published }
       - { id: '13.8', slug: what-a-field-keeps/holography, title: 'Holography and decoherence', short: Holography, size: L, status: published }
       - { id: R13, slug: what-a-field-keeps/reading-sections-xii-and-xiii, title: 'Reading Sections XII and XIII', short: Reading Sections XII and XIII, size: L, status: published, reads: [sec:hair, sec:second-order] }
-      - { id: R13b, slug: what-a-field-keeps/reading-sections-xiv-and-xv, title: 'Reading Sections XIV and XV', short: Reading Sections XIV and XV, size: M, status: planned, reads: [sec:hole, sec:holography] }
+      - { id: R13b, slug: what-a-field-keeps/reading-sections-xiv-and-xv, title: 'Reading Sections XIV and XV', short: Reading Sections XIV and XV, size: L, status: published, reads: [sec:hole, sec:holography, sec:conclusion, sec:status] }
 
 # Named routes (PLAN.md section 3): the chapters to read, in order, to reach a part of the paper. A first draft
 # for Neo to correct; a test checks that every route holds every chapter its chapters require.

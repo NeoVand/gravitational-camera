@@ -519,7 +519,9 @@ twice the Moon's mass, is at 0.902 K. To the three figures of its mass, that is 
 [](/paper/#eq:graviton-temperature) predicts for gravitons left from the early universe: the hole is as warm as the sky
 round it. Chapter
 [4.5](/tutorial/response/causality/#a-blow-holds-every-frequency-and-the-energy-it-leaves-is-the-same-total) showed its
-response, Figure [](/paper/#fig:hole-response), and chapter 13.7 reads this paragraph.
+response, Figure [](/paper/#fig:hole-response), and chapter
+[13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)
+reads this paragraph.
 
 ::: check
 ### Q
@@ -619,7 +621,8 @@ classical to that precision.
   $\kB T\sum c_n^2$ and $\kB T\sum c_n^2/\omega_n^2$, and [](/paper/#eq:jitter-bounds).
 - [Section VI](/paper/#sec:thermal) uses the theorem in the form "$\mathrm{Re}\,\eta(\omega)$ is the spectrum of the
   material's stress" (Part 10), and [Section XIV](/paper/#sec:hole) applies the thermometer to a black hole,
-  [](/paper/#eq:hole-thermometer) (chapter 13.7).
+  [](/paper/#eq:hole-thermometer) (chapter
+  [13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)).
 :::
 
 ::: deeper

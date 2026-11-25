@@ -600,7 +600,7 @@ wR_*^3/G$ is the paper's last line. Directly across the path $\obs v_\perp = \ob
 [^eta]: The rapidity $\obs\eta$ is the paper's letter and carries the observer's colour. The viscosity of chapter
     [4.4](/tutorial/response/viscosity/) is also $\eta$, but in the colour of matter, $\matter\eta$. Neither is the
     $\eta_{\mu\nu}$ of chapter 6.2, which always carries its two indices, nor the paper's vector $\vect\eta$ of chapter
-    13.2.
+    [13.2](/tutorial/what-a-field-keeps/calderon/#two-harmonic-exponentials-multiply-into-any-ripple).
 
 [^exp]: Write the table as $1\cosh\obs\eta - K\sinh\obs\eta$, with $K$ the table with 0 on the diagonal and 1 off it.
     Since $K^2 = 1$, the series of $e^{-\obs\eta K}$ splits into even powers, which give $\cosh\obs\eta$, and odd

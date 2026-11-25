@@ -277,7 +277,8 @@ a patch as wide as the mass is deep.
 
 [^mean]: Derived in chapter 10.1.
 
-[^ladder]: The hole: Sections [XIV](/paper/#sec:hole) and [VII](/paper/#sec:no-lens) (chapters 13.7 and R11). The
+[^ladder]: The hole: Sections [XIV](/paper/#sec:hole) and [VII](/paper/#sec:no-lens) (chapters
+    [13.7](/tutorial/what-a-field-keeps/thermometer/) and [R11](/tutorial/black-holes/reading-section-vii/)). The
     quantum limit of two masses of a gram each: [Section II](/paper/#sec:pixel) and chapter 8.6.
 
 [^sky]: The light-year is in [Section VI](/paper/#sec:thermal), the AU in [VII](/paper/#sec:no-lens) and

@@ -25,11 +25,11 @@ and
 read a body at two times and by even powers of the radius. What we use from 1.5, 2.1, 2.3, 4.1, 7.7 and 8.7 is
 recalled.
 
-The paper's Figure [](/paper/#fig:hole-response) has three panels. The first shows how much a black hole absorbs from
-a changing tide at each rate of change. The second shows its running total, which ends between those of a thin shell
-and a uniform ball of the hole's mass. The third turns the totals for finer tides into radii, from 1.02 to 1.73 times
-the horizon's, rising toward 1.91. Chapter 4.5 weighed the steel ball by the same total, $0.13\unit{kg\,m^2}$,
-three fifths of a shell's.
+The paper's Figure [](/paper/#fig:hole-response) has three panels. The first shows how much a black hole absorbs from a
+changing tide at each rate of change. The second shows its running total, which ends a little above that of a thin shell
+of the hole's mass at its horizon, and well above a uniform ball of that radius. The third turns the totals for finer
+tides into radii, from 1.02 to 1.73 times the horizon's, rising toward 1.91. Chapter 4.5 weighed the steel ball by the
+same total, $0.13\unit{kg\,m^2}$, three fifths of a shell's.
 
 From them Section XIV concludes that a camera beside the hole "reads that temperature from the field
 that does not radiate, without absorbing any quantum of the radiation", and that "the absorption of a black hole is
@@ -78,16 +78,17 @@ Putting in $S_Q$ and dividing by $(\matter Mr_s^2)^2$ leaves $(2/1080\pi^2)(m_P/
 
 $$\boxed{\;\frac{\sqrt{\langle\matter Q_{zz}^2\rangle}}{\matter Mr_s^2} \propto \frac{m_P}{\matter M}\;} ,$$
 
-with $\sym{planck-mass}{m_P} = \sqrt{\hbar c/G} = 2.18\times10^{-8}$ kg the **Planck mass** (chapter 11.3), since
-$\hbar c/G$ is in $\mathrm{J\,s\,m\,s^{-1}}/\mathrm{m^3\,kg^{-1}\,s^{-2}} = \mathrm{kg^2}$. The flat band gives the
-factor $\sqrt{2/1080\pi^2} = 0.014$, but at its edge, $x = \tfrac12$, $\hbar\omega/\kB T_H = 8\pi x \approx 13$ and the
+with $\sym{planck-mass}{m_P} = \sqrt{\hbar c/G} = 2.18\times10^{-8}$ kg the **Planck mass** (chapter 11.3), since $\hbar
+c/G$ is in $\mathrm{J\,s\,m\,s^{-1}}/\mathrm{m^3\,kg^{-1}\,s^{-2}} = \mathrm{kg^2}$. The flat band gives the factor
+$\sqrt{2/1080\pi^2} = 0.014$, but at its edge, $x = \tfrac12$, $\hbar\omega/\kB T_H = 8\pi x \approx 13$ and the
 classical theorem fails. With 8.7's quantum theorem and the exact greybody factor, the thermal part gives 0.008, and the
-zero-point part, which a body keeps even when cold, gives 0.25 and dominates. **Number:** Section VII's hole, at
-0.905 K, has $\matter M = 1.356\times10^{23}$ kg and $r_s = 0.20$ mm, so its shape trembles by about
+zero-point part, which a body keeps even when cold, gives 0.25 and dominates. **Number:** Section VII's hole, at 0.905
+K, has $\matter M = 1.356\times10^{23}$ kg and $r_s = 0.20$ mm, so its shape trembles by about
 $2\times10^{-16}\unit{kg\,m^2}$ in the time light takes to travel $r_s$, 0.67 ps. Chapter 11.4's one-second average is
 ten million times smaller: averaging over a time $t$ keeps only frequencies below about $1/t$, where the flat thermal
 part shrinks as $1/\sqrt t$ and the zero-point part is nearly absent. **Meaning:** the tremor's square is of order
-$\hbar$, as Section XV says, and only a hole near the Planck mass would tremble by a fair part of its size.
+$\hbar$ (Section XV says "the tremor", loosely), and only a hole near the Planck mass would tremble by a fair part of
+its size.
 
 **What it carries.** The mass fixes $T_H$, so the tremor "carries $M$ again" (Table [](/paper/#tab:hair), row *Its
 tremor*), where a stone's carries its whole interior (4.6). A spectrum compares readings at two times (13.2), so

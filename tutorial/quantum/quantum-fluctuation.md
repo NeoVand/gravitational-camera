@@ -427,7 +427,8 @@ low and 6% high. Their average, which the thermometer reads, is off only by $u^2
 - Section XIII's [*The algebra of the moments and the energy*](/paper/#par:the-algebra-of-the-moments-and-the-energy):
   the commutators in a quantum state's correlations.
 - Section XIV's [*The fluctuations of a black hole's quadrupole*](/paper/#par:the-fluctuations-of-a-black-holes-quadrupole):
-  the paper's [](/paper/#eq:hole-noise) and [](/paper/#eq:hole-thermometer) (chapter 13.7).
+  the paper's [](/paper/#eq:hole-noise) and [](/paper/#eq:hole-thermometer) (chapter
+  [13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)).
 - [Section VI](/paper/#sec:thermal): the theorem behind the emission and absorption of the thermal glow (Part 10).
 :::
 

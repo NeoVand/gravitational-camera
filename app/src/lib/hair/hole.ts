@@ -16,8 +16,9 @@
 
 /**
  * R_l / r_s for l = 2 to 8, from the reference implementation (holeresponse.degree_shell_radius, the sums of
- * Gamma_l / x^(2l) found from the Regge-Wheeler equation). Four places are needed for the test below: the paper's two
- * places move R_4^6 by a tenth of itself.
+ * Gamma_l / x^(2l) found from the Regge-Wheeler equation). Four places are needed for the test below: its minimum is
+ * M (R_4^6 - R_3^8 / R_2^2), and the paper's two places move R_3^8 by two and a half per cent, which takes the minimum
+ * from -2.04 to -2.43 M r_s^6.
  */
 export const HOLE_RADII: Record<number, number> = {
 	2: 1.0174643409453468,

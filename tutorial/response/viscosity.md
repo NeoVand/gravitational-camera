@@ -537,10 +537,11 @@ law for highly viscous fluids in their *Theory of Elasticity*.
 :::
 
 [^letters]: Several letters return with new meanings. The viscosity $\matter\eta$ is not the rapidity or the
-    $\eta_{\mu\nu}$ of Parts 6 and 7, nor the paper's vector $\boldsymbol\eta$ of chapter 13.2. The relaxation time
-    $\tau$ is not chapter 3.2's averaging time, the optical depth of chapter 5.5 or the proper time of Part 6; it is a
-    time of the material, so it stays uncoloured. The pressure $p$ is not a momentum, and the electron density $\matter
-    n$ is not chapter 3.2's noise or chapter 5.1's refractive index. The shear's phasor $U_{ij}$ is not 4.3's
+    $\eta_{\mu\nu}$ of Parts 6 and 7, nor the paper's vector $\boldsymbol\eta$ of chapter
+    [13.2](/tutorial/what-a-field-keeps/calderon/#two-harmonic-exponentials-multiply-into-any-ripple). The relaxation
+    time $\tau$ is not chapter 3.2's averaging time, the optical depth of chapter 5.5 or the proper time of Part 6; it
+    is a time of the material, so it stays uncoloured. The pressure $p$ is not a momentum, and the electron density
+    $\matter n$ is not chapter 3.2's noise or chapter 5.1's refractive index. The shear's phasor $U_{ij}$ is not 4.3's
     parameter $s$ or the ratio $s$ of the paper's Section IV.
 
 [^modulus]: The stress per shear, $\tilde{\matter T} = 2\sym{complex-modulus}{\matter\mu(\omega)}\,U$, is the

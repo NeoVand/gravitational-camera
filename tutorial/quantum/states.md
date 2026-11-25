@@ -381,8 +381,9 @@ camera that read the quadrupole before light from the recombination could reach 
 sooner than **causality** allows, causality being the rule that no effect travels faster than light. Its sources answer
 it, and we state the answer without proof [@Belenchia2018; @DanielsonSatishchandranWald2022]. The quantum jitter of the
 field in empty space limits what a camera can learn in the time available. Whenever a camera could learn enough,
-recombining the mass radiates the record away, so the fringes are lost whether or not it looks.[^slow] Chapter 13.8
-returns to decoherence by gravity.
+recombining the mass radiates the record away, so the fringes are lost whether or not it looks.[^slow] Chapter
+[13.8](/tutorial/what-a-field-keeps/holography/#gravity-cannot-decohere-a-ball-and-a-shell) returns to decoherence by
+gravity.
 
 ::: try {#two-paths}
 The interferometer of Figure [](#fig:mach-zehnder), with the delay on path $L$ and a bar at each exit for its
