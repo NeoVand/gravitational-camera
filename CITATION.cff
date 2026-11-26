@@ -8,6 +8,7 @@ authors:
     alias: Neo
     affiliation: "MIT Media Lab, Massachusetts Institute of Technology"
 repository-code: "https://github.com/NeoVand/gravitational-camera"
+doi: 10.5281/zenodo.24572829
 url: "https://neovand.github.io/gravitational-camera/"
 license:
   - MIT
