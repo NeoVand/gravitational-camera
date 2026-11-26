@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the paper."
+title: "Gravitational Camera: A Thought Experiment (paper, reference implementation and site)"
+type: software
+authors:
+  - family-names: Mohsenvand
+    given-names: Mostafa
+    alias: Neo
+    affiliation: "MIT Media Lab, Massachusetts Institute of Technology"
+repository-code: "https://github.com/NeoVand/gravitational-camera"
+url: "https://neovand.github.io/gravitational-camera/"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - gravitation
+  - tidal tensor
+  - gravitational waves
+  - gravity gradiometry
+  - inverse problems
+preferred-citation:
+  type: unpublished
+  title: "Gravitational Camera: A Thought Experiment"
+  authors:
+    - family-names: Mohsenvand
+      given-names: Mostafa
+      alias: Neo
+      affiliation: "MIT Media Lab, Massachusetts Institute of Technology"
+  year: 2026
+  url: "https://neovand.github.io/gravitational-camera/gravitational-camera.pdf"

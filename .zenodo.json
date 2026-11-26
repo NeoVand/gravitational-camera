@@ -1,0 +1,27 @@
+{
+  "title": "Gravitational Camera: A Thought Experiment (paper, reference implementation and site)",
+  "upload_type": "software",
+  "description": "<p>The source of the paper \"Gravitational Camera: A Thought Experiment\", the Python reference implementation that produces and tests every number in it (<code>reference/gravcam</code>; the paper's Appendix B lists the module and the test for each result), the code that draws its figures, and the interactive site.</p><p>The code is under the MIT licence; the paper's text and figures are under CC BY 4.0.</p>",
+  "creators": [
+    {
+      "name": "Mohsenvand, Mostafa",
+      "affiliation": "MIT Media Lab, Massachusetts Institute of Technology"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "gravitation",
+    "tidal tensor",
+    "gravitational waves",
+    "gravity gradiometry",
+    "inverse problems"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/NeoVand/gravitational-camera",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

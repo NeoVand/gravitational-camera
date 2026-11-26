@@ -201,6 +201,13 @@ The end-to-end tests run the shaders on a software WebGPU adapter and compare th
 comparison runs in any browser at `/dev/selftest/`. Every push to `main` runs the tests, builds the PDF and the site,
 and deploys them to GitHub Pages.
 
+## Licence
+
+The code (the reference implementation, the site, and the scripts that draw the figures) is under the MIT licence,
+[LICENSE](LICENSE). The paper's text and figures are under Creative Commons Attribution 4.0,
+[paper/LICENSE.md](paper/LICENSE.md). The tutorial and the book (`tutorial/`, `book/`) are not yet licensed: all
+rights are reserved. Material from others keeps its own terms.
+
 ## Author and credits
 
 Mostafa ‘Neo’ Mohsenvand, with Claude.
