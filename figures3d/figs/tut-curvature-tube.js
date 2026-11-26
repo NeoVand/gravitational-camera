@@ -1,37 +1,43 @@
 // The tutorial, section 7.2 (tutorial/geometry/curvature-and-tides.md), its opening figure and the hero of Part 7: a
 // ring of twelve free balls beside a mass, followed up the time axis. Spacetime with two directions of space, x across
-// (the line to the mass, the mass on the left) and y away from the viewer, and time upward, seen obliquely from above
-// (turned TURN degrees about the upright, TILT_VIEW degrees above the horizon). The mass a stone sphere of radius RM at
-// (-D, 0) on the slice t = 0; its history a stone column of the sphere's own radius (RC = RM, the body's world tube)
-// rising from it to the top of the scene, so that the sphere's lower half is the column's rounded foot. The
-// ring's twelve balls, stone beads, start at rest on a circle of radius RHO about the origin (a dashed ink circle);
-// their worldlines rise as thin strokes in the observer's colour, the two across the line to the mass (which close in)
-// in the second accent (blue), the two along it (which spread) in the first (orange), and they make a tube, a glass
-// surface tinted in the observer's colour, ray traced. At the top, the tube's cross-section, an ellipse through the
-// beads there, in thin ink, and the dashed circle of radius RHO about the same centre for comparison. The central
-// worldline, the reference ball's, in faint ink; a small cube in faint ink on it at the bottom, and the same cube at
-// the top, its upright edges along the central worldline. A time axis, an ink arrow at the left. Labels: "time",
-// "free balls", "mass", "falling frame".
+// (the line to the mass, the mass on the left) and y away from the viewer, and time upward, drawn in an oblique
+// parallel projection: x straight across the page, t straight up it, and a step in y drawn OBL[0] to the right and
+// OBL[1] up per unit. So every slice t = const is drawn at one level of the page: the mass and the ring share one time
+// axis, their histories starting at one level (t = 0) and ending at another (t = H). The mass's history a stone column
+// of radius RC about (-D, 0), from t = 0 to t = H, its two ends cut flat: its outline, down its left side, round the
+// front half of its foot's rim and up its right side, and its top's rim, whole, in the stone's ink. The ring's twelve
+// balls, stone beads, start at rest on a circle of radius RHO about the origin (a dashed ink circle); their worldlines
+// rise as thin strokes in the observer's colour, the two across the line to the mass (which close in) in the second
+// accent (blue), the two along it (which spread) in the first (orange), and they make a tube, a glass surface tinted in
+// the observer's colour, ray traced. At the top, the tube's cross-section, an ellipse through the beads there, in thin
+// ink, and the dashed circle of radius RHO about the same centre for comparison. The central worldline, the reference
+// ball's, in faint ink; a small cube in faint ink on it at the bottom, and the same cube at the top, its upright edges
+// along the central worldline. A time axis, an ink arrow at the left from t = 0 to t = H, level with the two bodies'
+// ends. Labels: "time", "free balls", "mass", "falling frame".
 // Departures from the diagram's comment: the drawing is one picture at every width, about 340 points wide (the site
 // shows a drawing at most 1.9 pixels to the point), not cropped to a square on a phone. The comment's "the ring
 // undisturbed" is not set as a label, since the comment allows no other text than its four labels; the caption names
 // the dashed circles. The cube, the falling frame, is drawn twice, at the bottom and at the top: it rises with the
 // central worldline, so at the top its upright edges lean with that worldline, and its slices stay the same square.
 // Beads mark the balls at the bottom and at the top. The tube's outline is not drawn as a line: the glass darkens
-// toward it, and a line there would double the worldlines that run along it near the top.
+// toward it. With the line to the mass across the page, the two orange worldlines run along the outline, one on each
+// side (asserted, within a point): they are drawn at full strength there, the outline's own line, where the glass's
+// darkening would otherwise veil them. The view (OBL), the column's place D and the cube's side are chosen so that no
+// two worldlines run together on the page and no cube's edge comes near a bead (asserted, 2 points).
 // Exact, for the tide of a mass to second order about the ring's centre (section 1.4's table, (GM/D^3) diag(-2, 1)
 // along and across the line, and the pull GM/D^2 at the centre): every ball's worldline, x = x_c(t) + RHO cos(a)
 // cosh(sqrt 2 k t), y = RHO sin(a) cos(k t), with x_c(t) = -(D/2)(cosh(sqrt 2 k t) - 1) (asserted against a Runge-Kutta
-// integration of the acceleration -GM/D^2 - E x, x from the ring's starting centre); so every cross-section is an ellipse with semi-axes RHO cosh(sqrt 2
-// k t) along the line and RHO cos(k t) across it (asserted: each bead on it, its long axis along the line to the mass),
-// its centre falling toward the mass. The glass and the stone are ray traced together, each surface veiling exactly
+// integration of the acceleration -GM/D^2 - E x, x from the ring's starting centre); so every cross-section is an
+// ellipse with semi-axes RHO cosh(sqrt 2 k t) along the line and RHO cos(k t) across it (asserted: each bead on it, its
+// long axis along the line to the mass), its centre falling toward the mass. The projection's one rule, equal times at
+// equal heights, is asserted for the mass's centre and the ring's at t = 0 and t = H, and for the time axis's ends.
+// The glass and the stone are ray traced together along the projection's rays of sight, each surface veiling exactly
 // what lies behind it; each line is drawn as strongly as the glass in front of it lets it show, and hidden behind a
-// bead or the stone. Schematic: k t at the top (KAPPA, the distortion exaggerated), RHO, D, the mass's size and the
-// column's, the beads' size and the view. Pictorial: the stone of the mass, the column and the beads, the picture of
-// the paper's figures (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, ball-face.png), lit by the
-// studio of lib.js (as section 6.1's hero, figs/tut-lorentz-hero.js); the glass's tint, opacity and sheen.
+// bead or the stone. Schematic: k t at the top (KAPPA, the distortion exaggerated), RHO, D, the mass's size, the beads'
+// size and the view. Pictorial: the stone of the column and the beads, the picture of the paper's figures
+// (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, ball-face.png), lit by the studio of lib.js (as
+// section 6.1's hero, figs/tut-lorentz-hero.js); the glass's tint, opacity and sheen.
 import { ORIGIN, Sheet, finish, checker, near, n2, placed, LABEL_GAP, AXIS, AXIS_HEAD } from './tut-pot-lib.js';
-import { View } from './tut-noise-lib.js';
 import { sprite, INK, DIM, FAINT } from '../lib.js';
 import { SPRITES, MARGIN } from '../stone.js';
 import { STONE_INK } from './tut-orb-lib.js';
@@ -42,15 +48,16 @@ const check = checker(name);
 
 // ---- the scene, world units (x, y, height); the height H is the time drawn ---------------------------------------
 const RHO = 0.36;                          // the ring's radius
-const D = 1.3;                             // the mass's distance from the ring's centre
+const D = 1.15;                            // the mass's distance from the ring's centre
 const H = 1.2;                             // the top of the scene
 const KAPPA = 0.62;                        // k t at the top: cos 0.62 = 0.814, cosh(0.877) = 1.410
-const RM = 0.23;                           // the mass's radius
-const RC = RM;                             // the column's radius: the body's own, its world tube
-const CUBE = 0.12;                         // the falling frame's side
+const RC = 0.23;                           // the column's radius: the mass's own, its world tube
+const CUBE = 0.07;                         // the falling frame's side
 const N = 12;                              // the balls
 // ---- the view ------------------------------------------------------------------------------------------------------
-const TURN = 38, TILT_VIEW = 22, SCALE = 168;
+// an oblique parallel projection: x across the page, the time t straight up it, and a step away from the viewer (+y)
+// drawn OBL[0] across and OBL[1] up per unit; so every slice t = const is drawn at one level, the mass's and the ring's
+const OBL = [0.14, 0.3], SCALE = 160;
 // ---- the marks, points -------------------------------------------------------------------------------------------------
 const BEAD = 2.5, BEAD_RIM = 0.3;          // a bead's radius and rim
 const WORLD = 0.6;                         // a worldline's stroke
@@ -59,13 +66,14 @@ const SIL = 0.4;                           // the tube's outline, as a mark that
 const CUBE_LINE = 0.4;                     // the cube's edges
 const CENTRE_LINE = 0.45;                  // the central worldline
 const STONE_RIM = 0.35;                    // the stone's edges
+const AXIS_AIR = 9;                        // the time axis's air left of the column
 const DASH = [2.4, 1.8];                   // the dashed circles (tidal.js)
 const MASK = 0.12;                         // each bead's mask lies this far inside it
 // ---- the glass and the stone -----------------------------------------------------------------------------------------
 const K = 4, SS = 3;                       // pixels per point of the raster, samples per pixel along each side
 const TUBE_GLASS = { tint: '#9b2d7f', a0: 0.07, a1: 0.36 };   // the observer's colour of the light theme (app.css)
 const SHEEN = 0.45, SHINE = 40;
-const TEX_PER_UNIT = 760;                  // the stone picture's pixels per world unit on the column, as on the sphere
+const TEX_PER_UNIT = 760;                  // the stone picture's pixels per world unit on the column
 
 const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
 const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
@@ -87,14 +95,22 @@ export default async function () {
 	await palette(check);
 	physics();
 	const S = new Sheet(name);
-	const V = new View({ turn: TURN, tilt: TILT_VIEW, scale: SCALE, o: [ORIGIN, ORIGIN + 60] });
-	const Rv = [V.c, -V.s, 0], Uv = [V.s * V.sf, V.c * V.sf, V.cf], Dv = [-V.s * V.cf, -V.c * V.cf, V.sf];
-	check(near(dot(Rv, Uv), 0, 1e-15) && near(dot(Rv, Dv), 0, 1e-15) && near(dot(Uv, Dv), 0, 1e-15), 'the camera\'s frame');
-	const cam = (n) => [dot(n, Rv), dot(n, Uv), dot(n, Dv)];
-	const P = (p) => V.at(p);
-	const depth = (p) => V.depth(p);
-	const world = (X, Y, d) => { const a = (X - V.o[0]) / SCALE, b = (V.o[1] - Y) / SCALE; return [0, 1, 2].map((i) => a * Rv[i] + b * Uv[i] + d * Dv[i]); };
+	// the oblique view: the page point of (x, y, t) is O + SCALE (x + OBL[0] y, -(t + OBL[1] y)); every ray of sight
+	// runs along Dv (toward the viewer), the one direction drawn as a point; the depth is the distance along it
+	const O = [ORIGIN, ORIGIN + 60], [OA, OB] = OBL, nD = Math.hypot(OA, 1, OB);
+	const Dv = [OA / nD, -1 / nD, OB / nD];
+	const P = ([x, y, z]) => [O[0] + SCALE * (x + OA * y), O[1] - SCALE * (z + OB * y)];
+	const depth = (p) => -nD * p[1];
+	const world = (X, Y, d) => [(X - O[0]) / SCALE + d * Dv[0], d * Dv[1], (O[1] - Y) / SCALE + d * Dv[2]];
+	check(near(Math.hypot(...P(Dv).map((v, i) => v - O[i])), 0, 1e-12), 'a ray of sight is not drawn as a point');
 	{ const p = [0.3, -0.7, 0.4], [X, Y] = P(p), q = world(X, Y, depth(p)); check(q.every((v, i) => near(v, p[i], 1e-12)), 'the view does not invert'); }
+	// the light's frame: Dv toward the viewer, Rv across the page as near as it can be, Uv up
+	const Rv = unit([1 - Dv[0] * Dv[0], -Dv[0] * Dv[1], -Dv[0] * Dv[2]]);
+	const Uv = [Dv[1] * Rv[2] - Dv[2] * Rv[1], Dv[2] * Rv[0] - Dv[0] * Rv[2], Dv[0] * Rv[1] - Dv[1] * Rv[0]];
+	check(near(dot(Rv, Uv), 0, 1e-15) && near(dot(Rv, Dv), 0, 1e-15) && near(dot(Uv, Dv), 0, 1e-15) && Uv[2] > 0, 'the camera\'s frame');
+	const cam = (n) => [dot(n, Rv), dot(n, Uv), dot(n, Dv)];
+	// one time, one level: the mass's centre and the ring's at the same t are drawn at the same height on the page
+	for (const z of [0, H]) check(near(P([-D, 0, z])[1], P([centreX(z), 0, z])[1], 1e-12), `the mass and the ring at t = ${z} are drawn at different levels`);
 	const MASS = [-D, 0, 0];
 
 	// ---- the stone: the picture, its pixels, and its colour at a normal (camera frame) and a picture point
@@ -155,15 +171,7 @@ export default async function () {
 				}
 			}
 		}
-		// the sphere
-		{
-			const q = o.map((v, i) => v - MASS[i]), b = dot(q, Dv), c = dot(q, q) - RM * RM, disc = b * b - c;
-			if (disc >= 0) {
-				const d = -b + Math.sqrt(disc), p = at(d), m = cam(p.map((v, i) => (v - MASS[i]) / RM));
-				out.push({ d, stone: lit(m, texel(0.97 * r0 * m[0], -0.97 * r0 * m[1])) });
-			}
-		}
-		// the column: its side and its top
+		// the column: its side and its top (its foot, facing down, is never seen)
 		{
 			const qx = o[0] + D, qy = o[1], a = Dv[0] ** 2 + Dv[1] ** 2, b = 2 * (qx * Dv[0] + qy * Dv[1]), c = qx * qx + qy * qy - RC * RC, disc = b * b - 4 * a * c;
 			if (disc >= 0) {
@@ -217,7 +225,7 @@ export default async function () {
 	// ---- the raster of the glass and the stone, over the box of the scene
 	const box = [];
 	for (const z of [0, H]) for (let k = 0; k < 72; k++) { const t = (2 * Math.PI * k) / 72; box.push(P([centreX(z) + RHO * 1.5 * Math.cos(t), RHO * 1.1 * Math.sin(t), z])); }
-	for (const z of [-RM, 0, RM, H]) for (let k = 0; k < 36; k++) { const t = (2 * Math.PI * k) / 36; box.push(P([-D + RM * Math.cos(t), RM * Math.sin(t), z])); }
+	for (const z of [0, H]) for (let k = 0; k < 36; k++) { const t = (2 * Math.PI * k) / 36; box.push(P([-D + RC * Math.cos(t), RC * Math.sin(t), z])); }
 	const x0 = Math.floor(Math.min(...box.map((p) => p[0]))) - 2, x1 = Math.ceil(Math.max(...box.map((p) => p[0]))) + 2;
 	const y0 = Math.floor(Math.min(...box.map((p) => p[1]))) - 2, y1 = Math.ceil(Math.max(...box.map((p) => p[1]))) + 2;
 	{
@@ -258,12 +266,12 @@ export default async function () {
 
 	// ---- the lines, over the raster: each piece as strong as what lies in front of it lets it show, hidden behind a
 	// bead or the stone
-	const edge = (pts3, color, width, what, { dash = null, layer = 6, beadsHide = true } = {}) => {
+	const edge = (pts3, color, width, what, { dash = null, layer = 6, beadsHide = true, outline = false } = {}) => {
 		const state = (p) => {
 			const [X, Y] = P(p), d = depth(p);
 			const f = front(X, Y, d, 1e-5);
 			const hidden = f.stone || (beadsHide && underBead(p, -0.05));
-			return { X, Y, hidden, op: hidden ? 0 : Math.round((1 - f.A) * 50) / 50 };
+			return { X, Y, hidden, op: hidden ? 0 : outline ? 1 : Math.round((1 - f.A) * 50) / 50 };
 		};
 		// where a line passes behind a bead or the stone, the place is found by bisection, so that it ends at the rim
 		const pts = [];
@@ -303,7 +311,9 @@ export default async function () {
 	for (const a of angles) {
 		const k = Math.round((a / (2 * Math.PI)) * N);
 		const color = k === 0 || k === 6 ? ACCENT : k === 3 || k === 9 ? ACCENT2 : OBS;
-		edge(sampled((t) => ball(a, t * H), 600), color, WORLD, `the worldline ${k}`);
+		// the two along the line to the mass run along the tube's outline (asserted below): drawn as the outline, at
+		// full strength, not veiled by the glass that darkens toward it
+		edge(sampled((t) => ball(a, t * H), 600), color, WORLD, `the worldline ${k}`, { outline: k === 0 || k === 6 });
 	}
 	// the central worldline and the cubes
 	edge(sampled((t) => [centreX(t * H), 0, t * H], 600), FAINT, CENTRE_LINE, 'the central worldline', { beadsHide: false });
@@ -313,6 +323,15 @@ export default async function () {
 		const lines = [];
 		for (const top of [0, 1]) for (const [a, b] of [[[-1, -1], [1, -1]], [[1, -1], [1, 1]], [[1, 1], [-1, 1]], [[-1, 1], [-1, -1]]]) lines.push([corner(...a, top), corner(...b, top)]);
 		for (const sx of [-1, 1]) for (const sy of [-1, 1]) lines.push([corner(sx, sy, 0), corner(sx, sy, 1)]);
+		// every edge clears every bead on the page
+		for (const [a, b] of lines) {
+			const p = P(a), q = P(b), dx = q[0] - p[0], dy = q[1] - p[1];
+			for (const m of beads) {
+				const u = Math.max(0, Math.min(1, ((m.X - p[0]) * dx + (m.Y - p[1]) * dy) / (dx * dx + dy * dy)));
+				const gap = Math.hypot(p[0] + u * dx - m.X, p[1] + u * dy - m.Y) - BEAD;
+				check(gap >= 2, `${what}: an edge comes within ${gap.toFixed(2)} pt of a bead`);
+			}
+		}
 		for (const [i, [a, b]] of lines.entries()) edge(sampled((t) => a.map((v, j) => v + t * (b[j] - v)), 60), FAINT, CUBE_LINE, `${what}, edge ${i}`, { beadsHide: false });
 		// its two squares centred on the central worldline
 		check(near(c0, centreX(zb), 1e-15) && near(c1, centreX(zb + CUBE), 1e-15) && c1 <= c0, `${what} does not follow the central worldline`);
@@ -337,48 +356,50 @@ export default async function () {
 		roots.sort((p, q) => P(p)[0] - P(q)[0]);
 		outline[0].push(roots[0]); outline[1].push(roots[1]);
 	}
+	// the two worldlines along the line to the mass lie on the outline to a fraction of a point
+	for (const [j, a] of [[0, Math.PI], [1, 0]]) {
+		const off = Math.max(...outline[j].map((p) => Math.abs(P(p)[0] - P(ball(a, p[2]))[0])));
+		check(off < 1.2, `the worldline along the line to the mass, on side ${j}, lies ${off.toFixed(2)} pt from the outline`);
+		window[name + '-outline-off-' + j] = off;
+	}
 	// the outline is left to the glass, which darkens toward it: drawn as a line it would double the worldlines that
 	// run along it near the top; it is remembered, so that no label touches it
 	for (const [k, o] of outline.entries()) S.mark(o.map(P), SIL / 2, `the tube's outline ${k}`);
-	// the stone's edges, each hidden where the stone lies in front of it: the sphere's rim on the page (its upper half
-	// lies inside the column), the column's two outline generators, which leave the rim at its widest, and its top's
-	// rim. The sphere and the column meet smoothly at the sphere's equator, so no line is drawn there: one body
+	// the stone's edges: the column's outline, one stroke down its left side where the side turns away from the view,
+	// round the front half of its foot's rim (the cut end at t = 0; the back half lies behind the stone) and up its
+	// right side, and its top's rim (the cut end at t = H), whole. Nothing lies in front of the column, so they are
+	// drawn as they are
+	const ring = (z) => sampled((t) => [-D + RC * Math.cos(2 * Math.PI * t), RC * Math.sin(2 * Math.PI * t), z], 240);
 	{
-		const out = 1 + 1e-6;                  // a hair outside the surface, so that it does not hide its own edge
-		const rim = sampled((t) => { const a = 2 * Math.PI * t; return MASS.map((v, i) => v + RM * out * (Math.cos(a) * Rv[i] + Math.sin(a) * Uv[i])); }, 720);
-		edge(rim, STONE_INK, STONE_RIM, 'the mass', { beadsHide: false });
-		const base = Math.sqrt(RM * RM - RC * RC);
-		for (const sg of [-1, 1]) {
-			const l = Math.hypot(Rv[0], Rv[1]), n = [(sg * Rv[0]) / l, (sg * Rv[1]) / l, 0];
-			check(near(dot(cam(n), [0, 0, 1]), 0, 1e-12), 'the column\'s outline is not where it turns away');
-			edge(sampled((t) => [-D + RC * out * n[0], RC * out * n[1], base + t * (H - base)], 400), STONE_INK, STONE_RIM, `the column's side ${sg}`, { beadsHide: false });
-		}
-		check(base === 0, 'the column is not as wide as the sphere');
-		const ring = (z) => sampled((t) => [-D + RC * out * Math.cos(2 * Math.PI * t), RC * out * Math.sin(2 * Math.PI * t), z], 240);
-		edge(ring(H), STONE_INK, STONE_RIM, 'the column\'s top', { beadsHide: false });
+		const mid = Math.atan2(Dv[1], Dv[0]), fL = mid - Math.PI / 2, fR = mid + Math.PI / 2;
+		const at = (f, z) => [-D + RC * Math.cos(f), RC * Math.sin(f), z];
+		for (const f of [fL, fR]) check(near(Math.cos(f) * Dv[0] + Math.sin(f) * Dv[1], 0, 1e-12), 'the column\'s outline is not where it turns away');
+		check(P(at(fL, 0))[0] < P(at(fR, 0))[0], 'the column\'s outline is not left to right');
+		const pts = [...sampled((t) => at(fL, H * (1 - t)), 1), ...sampled((t) => at(fL + t * (fR - fL), 0), 240).slice(1), ...sampled((t) => at(fR, H * t), 1).slice(1)];
+		S.path(pts.map(P), { color: STONE_INK, width: STONE_RIM, layer: 6, what: 'the column\'s outline' });
+		S.path(ring(H).slice(0, -1).map(P), { color: STONE_INK, width: STONE_RIM, layer: 6, closed: true, what: 'the column\'s top' });
 		// the column stays clear of the free balls' tube on the page
-		const colRight = Math.max(...ring(H).map((p) => P(p)[0]), P([-D + RC, 0, 0])[0], P(MASS)[0] + RM * SCALE);
+		const colRight = Math.max(...ring(H).map((p) => P(p)[0]), ...ring(0).map((p) => P(p)[0]));
 		const tubeLeft = Math.min(...outline[0].map((p) => P(p)[0]), ...beads.map((b) => b.X - BEAD));
 		check(tubeLeft - colRight >= 12, `the column comes within ${(tubeLeft - colRight).toFixed(1)} pt of the tube`);
 	}
 
-	// ---- the time axis, an ink arrow at the left
+	// ---- the time axis, an ink arrow at the left, AXIS_AIR left of the column, from t = 0 to the top t = H: the time
+	// drawn, the mass's and the ring's alike
 	const L = [];
-	// its foot level with the mass's centre on the page, AXIS_AIR left of the sphere
-	const AXIS_AIR = 9;
-	const axisFoot = world(P(MASS)[0] - RM * SCALE - AXIS_AIR, P(MASS)[1] + RM * SCALE * 0.6, 0);
-	axisFoot[2] = 0;
-	{ const [X] = P(axisFoot); check(near(X, P(MASS)[0] - RM * SCALE - AXIS_AIR, 1e-9), 'the time axis is not beside the mass'); }
-	const axisTop = [axisFoot[0], axisFoot[1], 0.8 * H];
+	const colLeft = Math.min(...ring(H).map((p) => P(p)[0]), ...ring(0).map((p) => P(p)[0]));
+	const axisFoot = [(colLeft - AXIS_AIR - O[0]) / SCALE, 0, 0], axisTop = [axisFoot[0], 0, H];
+	check(near(P(axisFoot)[1], P(MASS)[1], 1e-12) && near(P(axisTop)[1], P([centreX(H), 0, H])[1], 1e-12), 'the time axis does not span the time drawn');
 	S.arrow(P(axisFoot), P(axisTop), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 6, what: 'the time axis' });
 	{
 		const [X, Y] = P(axisTop);
-		L.push(await placed('\\text{time}', X, Y - LABEL_GAP - 0.6, 0.5, 1, INK));
+		// beside the arrow's head, on its left, its top level with the tip (above it, it would crowd the column's top)
+		L.push(await placed('\\text{time}', X - AXIS_HEAD / 2 - LABEL_GAP - 0.4, Y, 1, 0, INK));
 	}
 	// ---- the names
 	{
-		const [X, Y] = P(MASS);
-		L.push(await S.clear('\\text{mass}', X, Y + RM * SCALE + LABEL_GAP + 0.4, 0.5, 0, [0, 1]));
+		const X = P(MASS)[0], Y = Math.max(...ring(0).map((p) => P(p)[1]));
+		L.push(await S.clear('\\text{mass}', X, Y + STONE_RIM / 2 + LABEL_GAP + 0.4, 0.5, 0, [0, 1]));
 	}
 	{
 		// beside the tube's outline on the right, at two thirds of the height
