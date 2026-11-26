@@ -176,7 +176,14 @@ const texDir = ensureDir(path.join(BUILD, 'tex'));
 ensureDir(path.join(texDir, 'sec'));
 ensureDir(path.join(texDir, 'ch'));
 
-const openers = new Set(parts.flatMap((p) => p.chapters.map((c) => String(c.sections[0].id))));
+// no chapter openers: a chapter starts with its text (a copy of its first drawing repeated it; the hero drawings
+// decorate the site, and the book drops those the text never refers to)
+const openers = new Set();
+const referencedFigures = new Set();
+for (const id of sections) {
+	const src = readFileSync(path.join(TUTORIAL, `${entries.get(id).slug}.md`), 'utf8');
+	for (const m of src.matchAll(/\(#(fig:[a-z0-9-]+)\)/g)) referencedFigures.add(m[1]);
+}
 const converted = new Map();
 const counts = { exercises: 0, figures: 0 };
 await pool(sections, JOBS, async (id) => {
@@ -196,6 +203,7 @@ await pool(sections, JOBS, async (id) => {
 		anchors: (sid) => anchors.get(sid) ?? { headers: new Map(), all: new Set() },
 		paperFigureLabel: labelFor,
 		figurePdf: (name) => figurePdfs.get(name),
+		figureReferenced: (fid) => referencedFigures.has(fid),
 		glossary: termsBySection.get(id) ?? [],
 		warn
 	});
@@ -286,7 +294,7 @@ for (const p of parts) {
 		const opener = converted.get(ids[0]).OPENER;
 		const art = ids.map((id) => converted.get(id).firstDrawing).find(Boolean);
 		if (opener) lines.push(opener);
-		else if (art) lines.push(`\\gcopenerart{${art}}`);
+		void art;
 		for (const id of ids) lines.push(sectionTex(id));
 		const deeper = ids.filter((id) => converted.get(id).DEEPER);
 		if (deeper.length) {
@@ -295,7 +303,7 @@ for (const p of parts) {
 			lines.push('\\normalsize');
 		}
 		const ex = ids.map((id) => converted.get(id).EXERCISES).filter(Boolean);
-		if (ex.length) lines.push('\\exercisesheading', ...ex);
+		if (ex.length) lines.push('\\exercisesheading', ...ex, '\\normalsize');
 		const sol = ids.map((id) => converted.get(id).SOLUTIONS).filter(Boolean);
 		if (sol.length)
 			solutions.push(`\\solutionsfor{${isPrologue ? 'Prologue' : `Chapter~\\ref{${label}}`}}{${title}}`, ...sol);
@@ -310,7 +318,7 @@ for (const id of appendices) {
 	const c = converted.get(id);
 	const lines = [`% Appendix: ${id}`, sectionTex(id)];
 	if (c.DEEPER) lines.push('\\furtherreading', c.DEEPER, '\\normalsize');
-	if (c.EXERCISES) lines.push('\\exercisesheading', c.EXERCISES);
+	if (c.EXERCISES) lines.push('\\exercisesheading', c.EXERCISES, '\\normalsize');
 	if (c.SOLUTIONS) solutions.push(`\\solutionsfor{Appendix~\\ref{sec:${id}}}{${texEscape(c.titleText)}}`, c.SOLUTIONS);
 	const file = `ch/app-${id.replace(/\W/g, '-')}`;
 	writeFileSync(path.join(texDir, `${file}.tex`), lines.join('\n\n') + '\n');
@@ -351,7 +359,9 @@ ${main.join('\n')}
 \bookendparts
 ${appendixInputs.length ? `\\bookappendices\n${appendixInputs.join('\n')}\n` : ''}\backmatter
 \bookunnumbered{Selected solutions}{solutions}{Selected solutions}
+\begin{gcsolutions}
 \input{solutions}
+\end{gcsolutions}
 \gcbibliography
 \printindex
 \end{document}

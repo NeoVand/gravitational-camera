@@ -539,6 +539,8 @@ export function convertSection(ctx) {
 			return [];
 		}
 		const name = String(image.c[2][0]);
+		// a hero drawing (the site's banner for a part) appears only if the text refers to it
+		if (/-hero$/.test(name) && !ctx.figureReferenced?.(fid)) return [];
 		const pdf = ctx.figurePdf(name);
 		if (!pdf) {
 			warn(`figure ${fid}: no drawing ${name}`);

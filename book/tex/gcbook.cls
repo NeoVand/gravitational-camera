@@ -22,14 +22,15 @@
 }
 \ProcessKeyOptions[gcbook]
 
-\LoadClass[10pt,twoside,openright]{book}
+\LoadClass[10pt,twoside,openany]{book}
 
 % ---- page -----------------------------------------------------------------------------------------------------------
-% 189 x 246 mm (crown quarto). A text block of 108 mm (about 66 characters) and a margin column of 46 mm.
+% 189 x 246 mm (crown quarto). A text block of 122 mm (about 80 characters at 9.5 pt) and a margin column of 34 mm,
+% 11 mm from the outer edge; 210 mm of text height. Chapters start on the next page, right or left.
 \RequirePackage[
   paperwidth=189mm, paperheight=246mm,
-  inner=18mm, textwidth=108mm, marginparsep=6mm, marginparwidth=46mm,
-  top=22mm, headheight=12pt, headsep=8mm, textheight=196mm, footskip=10mm,
+  inner=17mm, textwidth=122mm, marginparsep=5mm, marginparwidth=34mm,
+  top=19mm, headheight=11pt, headsep=6mm, textheight=212mm, footskip=8mm,
 ]{geometry}
 \newlength\gc@fullwidth
 \setlength\gc@fullwidth{\dimexpr\textwidth+\marginparsep+\marginparwidth\relax}
@@ -151,16 +152,16 @@
   {0mm}
   {\gc@chapterlabel\fontsize{23}{28}\selectfont}
   [{\vspace{4mm}\makebox[\linewidth][l]{\color{gc-rule}\rule{\gc@fullwidth}{0.4pt}}}]
-\titlespacing*{\chapter}{0pt}{16mm}{12mm}
+\titlespacing*{\chapter}{0pt}{6mm}{8mm}
 
 \titleformat{\section}
   {\normalfont\fontsize{15}{19}\selectfont\raggedright}
   {\thesection}{0.75em}{}
-\titlespacing*{\section}{0pt}{8ex plus 2ex minus 1ex}{2.6ex plus .4ex}
+\titlespacing*{\section}{0pt}{5ex plus 1.5ex minus 1ex}{2ex plus .3ex}
 \titleformat{\subsection}
   {\normalfont\large\itshape\raggedright}
   {\upshape\thesubsection}{0.7em}{}
-\titlespacing*{\subsection}{0pt}{4.2ex plus 1ex minus .5ex}{1.6ex plus .3ex}
+\titlespacing*{\subsection}{0pt}{3.2ex plus 1ex minus .5ex}{1.2ex plus .3ex}
 \titleformat{\subsubsection}
   {\normalfont\normalsize\bfseries\raggedright}
   {}{0pt}{}
@@ -283,8 +284,19 @@
   \hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 % ---- text -------------------------------------------------------------------------------------------------------------
+% the type: 9.5 on 11.8 pt, the size of a Cambridge or Oxford physics text
+\renewcommand\normalsize{\@setfontsize\normalsize{9.5}{11.8}%
+  \abovedisplayskip 6pt plus 2pt minus 3pt\belowdisplayskip\abovedisplayskip
+  \abovedisplayshortskip 2pt plus 2pt\belowdisplayshortskip 4pt plus 2pt minus 2pt\let\@listi\@listI}
+\renewcommand\small{\@setfontsize\small{8.6}{10.6}%
+  \abovedisplayskip 5pt plus 2pt minus 2pt\belowdisplayskip\abovedisplayskip
+  \abovedisplayshortskip 1pt plus 1pt\belowdisplayshortskip 3pt plus 1pt minus 1pt}
+\renewcommand\footnotesize{\@setfontsize\footnotesize{7.8}{9.4}%
+  \abovedisplayskip 4pt plus 2pt minus 2pt\belowdisplayskip\abovedisplayskip}
+\renewcommand\scriptsize{\@setfontsize\scriptsize{6.8}{8}}
+\normalsize
 \setlength\parindent{1.1em}
-\linespread{1.04}
+\linespread{1.0}
 \widowpenalty=4000
 \clubpenalty=4000
 \displaywidowpenalty=2000
@@ -292,8 +304,6 @@
 \numberwithin{equation}{chapter}
 \numberwithin{figure}{chapter}
 \numberwithin{table}{chapter}
-\setlength\abovedisplayskip{7pt plus 2pt minus 3pt}
-\setlength\belowdisplayskip{7pt plus 2pt minus 3pt}
 \allowdisplaybreaks[1]
 
 % ---- the margin -------------------------------------------------------------------------------------------------------
@@ -322,7 +332,7 @@
 \newcommand\papertag[1]{\text{\footnotesize\scshape paper\,(#1)}}
 
 % ---- figures ----------------------------------------------------------------------------------------------------------
-\RequirePackage[font=small, labelfont=sc, labelsep=period, justification=RaggedRight,
+\RequirePackage[font=footnotesize, labelfont=sc, labelsep=period, justification=RaggedRight,
   singlelinecheck=false, skip=5pt, position=below]{caption}
 \renewcommand\topfraction{0.85}
 \renewcommand\bottomfraction{0.6}
@@ -330,13 +340,13 @@
 \renewcommand\floatpagefraction{0.75}
 \setcounter{topnumber}{3}
 \setcounter{totalnumber}{4}
-\setlength\textfloatsep{14pt plus 4pt minus 4pt}
-\setlength\floatsep{12pt plus 4pt minus 2pt}
+\setlength\textfloatsep{11pt plus 3pt minus 3pt}
+\setlength\floatsep{9pt plus 3pt minus 2pt}
 \newsavebox\gc@figbox
-% \gcgraphic{file}: the drawing at its own size, shrunk to the line if it is wider and to 60% of the page if taller
-\newcommand\gc@figheight{0.6}
+% \gcgraphic{file}: the drawing at 85% of its own size, shrunk to the line if it is wider and to 45% of the page if taller
+\newcommand\gc@figheight{0.45}
 \newcommand\gcgraphic[1]{%
-  \sbox\gc@figbox{\includegraphics{#1}}%
+  \sbox\gc@figbox{\includegraphics[scale=0.85]{#1}}%
   \ifdim\wd\gc@figbox>\linewidth
     \sbox\gc@figbox{\includegraphics[width=\linewidth]{#1}}\fi
   \ifdim\ht\gc@figbox>\gc@figheight\textheight
@@ -383,27 +393,30 @@
 % ---- the end of a chapter: further reading and exercises ----------------------------------------------------------
 \newcommand\gc@endheading[1]{%
   \section*{#1}\markright{#1}}
-\newcommand\furtherreading{\gc@endheading{Further reading}\small}
+\newcommand\furtherreading{\gc@endheading{Further reading}\footnotesize}
 \newcommand\furtherreadingfor[1]{\par\addvspace{1ex}\noindent{\footnotesize\scshape section \ref{#1}}\par\nobreak}
 \newcounter{exercise}[chapter]
 \renewcommand\theexercise{\thechapter.\arabic{exercise}}
-\newcommand\exercisesheading{\gc@endheading{Exercises}}
+\newcommand\exercisesheading{\gc@endheading{Exercises}\small}
 % \begin{exercise}{label}{kind}{section label}: the exercise's number (linked to its solution), its kind and section
 \newenvironment{exercise}[3]
-  {\par\addvspace{1.0\baselineskip}\refstepcounter{exercise}\label{#1}%
+  {\par\addvspace{0.6\baselineskip}\refstepcounter{exercise}\label{#1}%
    \noindent\hyperref[sol:#1]{\textbf{\theexercise}}\enspace
    {\footnotesize\scshape #2\enspace\S\,\ref{#3}}\enspace\ignorespaces}
   {\par}
-\newcommand\solutionsfor[2]{\par\addvspace{2.5ex}\noindent{\normalsize\itshape #1\enspace #2}\par\nobreak\vspace{0.5ex}}
+\newcommand\solutionsfor[2]{\par\addvspace{2ex}\noindent{\small\itshape #1\enspace #2}\par\nobreak\vspace{0.4ex}}
+% the solutions at the back: two columns of small type
+\RequirePackage{multicol}
+\newenvironment{gcsolutions}{\footnotesize\setlength\columnsep{6mm}\begin{multicols}{2}\raggedcolumns}{\end{multicols}}
 \newenvironment{solution}[1]
-  {\par\addvspace{0.8\baselineskip}\phantomsection\label{sol:#1}%
+  {\par\addvspace{0.5\baselineskip}\phantomsection\label{sol:#1}%
    \noindent\hyperref[#1]{\textbf{\ref{#1}}}\enspace\ignorespaces}
   {\par}
 
 % ---- index and bibliography -------------------------------------------------------------------------------------------
 \RequirePackage[noautomatic]{imakeidx}
-\makeindex[intoc, columns=2, columnsep=6mm, title=Index]
-\indexsetup{level=\chapter*, toclevel=chapter, othercode=\small}
+\makeindex[intoc, columns=3, columnsep=5mm, title=Index]
+\indexsetup{level=\chapter*, toclevel=chapter, othercode=\footnotesize}
 \RequirePackage[backend=biber, style=authoryear-comp, maxcitenames=2, maxbibnames=8, minbibnames=3,
   uniquelist=false, uniquename=false, dashed=false, giveninits=true, doi=false, url=false, isbn=false,
   eprint=true, sorting=nyt]{biblatex}
