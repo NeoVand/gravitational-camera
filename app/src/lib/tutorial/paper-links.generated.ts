@@ -234,6 +234,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Derivation',
 		section: 'in-empty-space-a-ripple-can-only-fade'
 	},
+	{ anchor: 'fig:blur', chapter: '3.7', label: 'Background' },
 	{
 		anchor: 'eq:array-data',
 		chapter: '2.7',
@@ -609,6 +610,7 @@ export const paperLinks: PaperLink[] = [
 		section: 'one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector'
 	},
 	{ anchor: 'fig:stars', chapter: '9.4', label: 'Live' },
+	{ anchor: 'fig:petrov-types', chapter: '9.4', label: 'Background' },
 	{ anchor: 'par:shape', chapter: 'R9', label: 'Reading' },
 	{ anchor: 'par:the-magnetic-part', chapter: 'R9', label: 'Reading' },
 	{
@@ -956,6 +958,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Derivation',
 		section: 'gravitons-parted-first-and-kept-a-colder-share-of-the-heat'
 	},
+	{ anchor: 'fig:graviton-sky', chapter: '12.2', label: 'Background' },
 	{ anchor: 'fig:black-hole', chapter: '11.1', label: 'Background' },
 	{
 		anchor: 'par:a-freely-falling-camera',
@@ -1187,6 +1190,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Derivation',
 		section: 'a-changing-tide-loses-energy-through-the-horizon'
 	},
+	{ anchor: 'fig:hole-tide', chapter: '11.4', label: 'Background' },
 	{
 		anchor: 'par:the-fluctuations-of-a-black-holes-quadrupole',
 		chapter: 'R13b',
@@ -1206,6 +1210,12 @@ export const paperLinks: PaperLink[] = [
 		section: 'the-friction-trembles-at-the-holes-temperature'
 	},
 	{
+		anchor: 'fig:hole-response',
+		chapter: '13.7',
+		label: 'Live',
+		section: 'the-friction-would-make-the-hole-yield-like-a-liquid-yet-its-love-number-is-zero'
+	},
+	{
 		anchor: 'par:the-weight-of-a-black-holes-response',
 		chapter: 'R13b',
 		label: 'Reading',
@@ -1217,12 +1227,6 @@ export const paperLinks: PaperLink[] = [
 		chapter: '13.7',
 		label: 'Derivation',
 		section: 'a-holes-response-has-the-weight-of-a-shell-a-little-outside-its-horizon'
-	},
-	{
-		anchor: 'fig:hole-response',
-		chapter: '13.7',
-		label: 'Live',
-		section: 'the-friction-would-make-the-hole-yield-like-a-liquid-yet-its-love-number-is-zero'
 	},
 	{ anchor: 'tab:hair', chapter: 'R13b', label: 'Background' },
 	{ anchor: 'sec:holography', chapter: 'R13b', label: 'Reading' },

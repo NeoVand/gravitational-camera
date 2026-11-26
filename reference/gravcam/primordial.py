@@ -44,6 +44,46 @@ def graviton_temperature(g_then: float = G_STANDARD_MODEL, t_cmb: float = T_CMB)
     return (G_NOW / g_then) ** (1.0 / 3.0) * t_cmb
 
 
+# The thermal history behind that temperature: the entropy's count of states, g, falls from the Standard Model's
+# 106.75 to today's 43/11 as species annihilate and heat the photons. Each row: what goes, the rest energy at which
+# it goes (GeV; 0.15 for the confinement of the quarks; one value between the W and the Higgs for those three), and
+# the count afterwards: bosons count their states and fermions 7/8 of theirs; confinement takes the gluons (16) and
+# the light quarks (36) and leaves the pions (3); after the electrons the neutrinos, already parted, count at 4/11
+# of the photons' cube. The counts are exact; an annihilation is gradual, and the one energy given for each places it.
+GEV = 1.602176634e-10             # J
+THERMAL_HISTORY = (
+    ("top", 172.7, 96.25),
+    ("W, Z, Higgs", 100.0, 86.25),
+    ("bottom", 4.18, 75.75),
+    ("tau", 1.777, 72.25),
+    ("charm", 1.27, 61.75),
+    ("quarks confined", 0.15, 17.25),
+    ("muons, pions", 0.1057, 10.75),
+    ("electrons", 0.000511, G_NOW),
+)
+NEUTRINOS_PART = 1.0e-3 * GEV / kB    # K: the neutrinos stop interacting near 1 MeV, before the electrons go
+
+
+def entropy_states(T):
+    """The count g of the photons' bath at temperature T (K), each species gone below k_B T = its rest energy."""
+    T = np.asarray(T, dtype=float)
+    g = np.full(T.shape, G_STANDARD_MODEL)
+    for _, energy, after in THERMAL_HISTORY:
+        g = np.where(T < energy * GEV / kB, after, g)
+    return g
+
+
+def comoving_temperatures(T):
+    """T a for the photons, the neutrinos and the gravitons, in units of today's photons', when the photons are at
+    T (K): entropy conserved, g (T a)^3 fixed for whatever shares the photons' bath. The neutrinos share it until
+    NEUTRINOS_PART, the gravitons never (they parted at the start, when g was the Standard Model's)."""
+    T = np.asarray(T, dtype=float)
+    photons = (G_NOW / entropy_states(T)) ** (1.0 / 3.0)
+    neutrinos = np.where(T > NEUTRINOS_PART, photons, (4.0 / 11.0) ** (1.0 / 3.0))
+    gravitons = np.full(T.shape, (G_NOW / G_STANDARD_MODEL) ** (1.0 / 3.0))
+    return photons, neutrinos, gravitons
+
+
 def number_radiance(T: float) -> float:
     """Gravitons (or photons) per second per square metre per steradian from a
     black body of two polarizations at temperature T."""

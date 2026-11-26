@@ -12,7 +12,10 @@ bodies of the hole's mass, (1/3) M <r^2>: a thin shell at r_s, 1/3, and a unifor
 curves are drawn from zero frequency (below the grid by Page's law, which is all but zero there) to the right edge
 of the axes, where the sum is still 0.004 short of its limit. (c) The same weight for the tide of each degree l, as
 the radius R_l of the thin shell of the hole's mass that has it (holeresponse.degree_shell_radius), with the limit
-3 sqrt 3 / e of large l (holeresponse.SHARP_LIMIT).
+3 sqrt 3 / e of large l (holeresponse.SHARP_LIMIT). (d) The test of positive mass on the sums of degree 2, 3 and 4:
+m_3 - 2 a m_2 + a^2 m_1, with m_k the sum of degree k + 1 over the mass (holeresponse.hole_moments), which is
+int rho r^2 (r^2 - a)^2 dV / M for a body and so never negative. The hole's falls to -2.04 at a = 4.34
+(holeresponse.three_tide_minimum); a uniform ball with the hole's m_1 is drawn beside it and stays above zero.
 """
 from __future__ import annotations
 
@@ -56,7 +59,25 @@ def response():
 
 C_HEIGHT = 0.80                          # inches: the height of panel (c)
 C_BOTTOM = 0.38                          # inches: its bottom, room for its x label
-C_DROP = C_BOTTOM + C_HEIGHT + 0.183     # inches: how far (a) and (b) are raised to make room for (c)
+D_HEIGHT = 0.86                          # inches: the height of panel (d)
+D_BOTTOM = 0.38                          # inches: its bottom, room for its x label
+D_DROP = D_BOTTOM + D_HEIGHT + 0.183     # inches: how far (a), (b) and (c) are raised to make room for (d)
+C_DROP = D_DROP + C_BOTTOM + C_HEIGHT + 0.183     # inches: how far (a) and (b) are raised to make room for (c) and (d)
+A_MAX = 9.0                              # the right edge of panel (d), in r_s^2
+
+
+def positivity():
+    """a, the test for the hole and for the uniform ball that has the hole's first sum, the hole's least value and
+    where it is. m_k = <r^(2k)>: for a uniform ball of radius R, 3 R^(2k) / (2k + 3)."""
+    m = hr.hole_moments()
+    least, at = hr.three_tide_minimum(m)
+    R2 = 5.0 * m[1] / 3.0
+    ball = [1.0, 3 * R2 / 5, 3 * R2**2 / 7, 3 * R2**3 / 9]
+    a = np.linspace(0.0, A_MAX, 400)
+    test = lambda q: q[3] - 2 * a * q[2] + a**2 * q[1]
+    assert abs(ball[1] - m[1]) < 1e-12 and (test(ball) > 0).all()
+    assert abs(test(m).min() - least) < 1e-3
+    return a, test(m), test(ball), least, at
 
 
 def hole_response_figure():
@@ -80,7 +101,8 @@ def hole_response_figure():
     fig = plt.figure(figsize=(mf.COL, H))
     a = fig.add_axes(box(C_DROP + 0.635 * 2.62, 0.275 * 2.62))
     b = fig.add_axes(box(C_DROP + 0.145 * 2.62, 0.385 * 2.62), sharex=a)
-    c = fig.add_axes(box(C_BOTTOM, C_HEIGHT))
+    c = fig.add_axes(box(D_DROP + C_BOTTOM, C_HEIGHT))
+    d = fig.add_axes(box(D_BOTTOM, D_HEIGHT))
     assert x[0] == 0.0 and abs(x[-1] - X_SHOWN) < 1e-12
     a.fill_between(x, 0, integrand, color=mf.ACCENT, alpha=0.16, lw=0)
     a.plot(x, integrand, color=mf.ACCENT, lw=mf.CURVE, solid_capstyle="butt", clip_on=False)
@@ -114,12 +136,35 @@ def hole_response_figure():
     c.set_yticks([1.0, 1.5])                 # no tick at the top, under the panel's letter
     c.set_xlabel("degree of the tide")
     c.set_ylabel(r"radius ($r_s$)")
-    for ax in (a, b, c):
+    av, hole, ball, least, at = positivity()
+    assert f"{least:.2f}" == "-2.04" and f"{at:.2f}" == "4.34"           # the text's numbers
+    TOP = 6.6
+    d.axhline(0.0, color=mf.RULE, lw=0.6, zorder=0)
+    d.fill_between(av, 0, hole, where=hole < 0, color=mf.ACCENT, alpha=0.16, lw=0)
+    shown = ball <= TOP
+    d.plot(av[shown], ball[shown], color=mf.FAINT, lw=mf.CURVE2, solid_capstyle="butt", zorder=2)
+    shown = hole <= TOP
+    d.plot(av[shown], hole[shown], color=mf.ACCENT, lw=mf.CURVE, solid_capstyle="butt", zorder=3)
+    d.plot([at], [least], "o", color=mf.ACCENT, ms=2.6, mew=0, zorder=4)
+    d.text(at, least - 0.35, rf"${least:.2f}$".replace("-", "{-}"), fontsize=7, color=mf.ACCENT, ha="center", va="top")
+    # each name to the right of its curve's right branch, at one height
+    NAMES = 4.4
+    for curve, name, colour in ((hole, "a black hole", mf.ACCENT), (ball, "a uniform ball", mf.DIM)):
+        branch = av[(curve <= NAMES) & (av > av[curve.argmin()])][-1]
+        d.text(branch + 0.3, NAMES, name, fontsize=7, color=colour, ha="left", va="center")
+    d.set_xlim(0, A_MAX)
+    d.set_ylim(-3.6, TOP + 0.7)       # the curves stop clear of the panel's letter
+    d.set_xticks(range(0, 10))
+    d.set_yticks([-2, 0, 2, 4])               # no tick at the top, under the panel's letter
+    d.set_xlabel(r"$a$ ($r_s^2$)")
+    d.set_ylabel(r"test ($Mr_s^6$)")
+    for ax in (a, b, c, d):
         for side in ("top", "right"):
             ax.spines[side].set_visible(False)
     mf.letter(a, r"(a) the weight of the response, by frequency")
     mf.letter(b, "(b) the weight below each frequency")
     mf.letter(c, "(c) the same, for the tide of each degree")
+    mf.letter(d, "(d) three tides against the positivity of mass")
     mf.centre(fig)
     mf.trim(fig)
     mf.save(fig, "hole-response", web=True)

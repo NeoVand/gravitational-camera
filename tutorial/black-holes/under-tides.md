@@ -4,8 +4,8 @@ title: 'Black holes under tides: Love numbers, absorption, the friction of the h
 question: 'A black hole''s Love numbers are zero, yet a changing tide loses energy through its horizon at the rate $\nu(\dot{\mathcal E}_{ij}\dot{\mathcal E}_{ij} + \dot{\mathcal B}_{ij}\dot{\mathcal B}_{ij})$. Why does a steady tide raise no bulge on a hole, what is the friction of a horizon, and why are that friction, the absorption of gravitational waves and the trembling of the hole''s shape one number?'
 part: '11'
 requires: ['2.3', '4.5', '4.6', '7.6', '11.1', '11.3']
-paper: [sec:hole, eq:horizon-friction, eq:hole-noise, eq:hole-thermometer, eq:hole-sum-rule, fig:hole-response, tab:hair, sec:vistas, sec:holography, sec:near-field]
-figures: []
+paper: [sec:hole, eq:horizon-friction, eq:hole-noise, eq:hole-thermometer, eq:hole-sum-rule, fig:hole-response, fig:hole-tide, tab:hair, sec:vistas, sec:holography, sec:near-field]
+figures: [fig:hole-tide]
 live: ['tidal-friction']
 depth: A
 ---

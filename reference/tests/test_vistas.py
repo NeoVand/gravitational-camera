@@ -58,6 +58,27 @@ def test_far_from_the_hole_the_sky_is_where_it_is():
 
 # ---- primordial gravitons ---------------------------------------------------
 
+def test_thermal_history_ends_at_the_three_temperatures():
+    # the counts, species by species: fermions 7/8 of their states
+    f = 7 / 8
+    counts = [106.75]
+    for gone in (12 * f, 9 + 1, 12 * f, 4 * f, 12 * f, 16 + 36 * f - 3, 4 * f + 3):
+        counts.append(counts[-1] - gone)
+    assert [row[2] for row in primordial.THERMAL_HISTORY[:-1]] == pytest.approx(counts[1:])
+    assert primordial.THERMAL_HISTORY[-1][2] == pytest.approx(43 / 11) and counts[-1] == 10.75
+    energies = [row[1] for row in primordial.THERMAL_HISTORY]
+    assert energies == sorted(energies, reverse=True)
+    # hot, all three share one temperature; today the photons are at 1, the neutrinos at 1.945 K, the gravitons 0.905 K
+    hot = primordial.comoving_temperatures(1e20)
+    assert hot[0] == pytest.approx(hot[1]) and hot[0] == pytest.approx(hot[2])
+    photons, neutrinos, gravitons = (float(v) for v in primordial.comoving_temperatures(primordial.T_CMB))
+    assert photons == pytest.approx(1.0)
+    assert neutrinos * primordial.T_CMB == pytest.approx(1.945, abs=0.001)
+    assert gravitons * primordial.T_CMB == pytest.approx(primordial.graviton_temperature())
+    # the neutrinos part before the electrons go, and so miss their heat
+    assert primordial.NEUTRINOS_PART > primordial.THERMAL_HISTORY[-1][1] * primordial.GEV / kB
+
+
 def test_graviton_temperature_and_brightness():
     T = primordial.graviton_temperature()
     assert T == pytest.approx(0.905, abs=0.001)

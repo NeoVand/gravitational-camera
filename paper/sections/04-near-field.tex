@@ -448,10 +448,24 @@ sensor. Laplace's equation forces it to fade with height as
 \Phi \propto \cos(kx)\,e^{-kz} :
 \end{equation}
 fine detail dies away before it reaches the camera, and coarse detail
-survives. To reconstruct the scene the camera must multiply each pattern by
+survives (Fig.~\ref{fig:blur}). To reconstruct the scene the camera must multiply each pattern by
 $e^{kz}$, and its noise with it. If the largest features are recorded with
 signal-to-noise ratio $\SNR$, patterns with $e^{kz} > \SNR$ are lost in the
 noise, and detail finer than about $\pi z/\ln\SNR$ cannot be recovered.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/blur.pdf}
+\caption{The near-field blur, height by height. Two equal masses a distance
+$z/2$ apart lie at depth $z$ below a flat array of pixels, the geometry of
+Fig.~\ref{fig:nearfield}. The three sheets, at heights $z/8$, $z/4$ and $z/2$
+above the masses, carry the field $-\tE_{zz}$ that an array there would
+record, as relief and as colour: orange where it is positive, a stretch, and
+blue where it is negative, a squeeze. The two peaks merge into one at a height
+of $0.64\,z$, and the pixels at $z$ record a single bump, drawn here with noise
+of a tenth of its peak. Each sheet is drawn to its own scale; the spacing of
+the sheets and the depth and size of the masses are not to scale.}\label{fig:blur}
+\end{figure}
 
 The estimate can be made exact. Let a flat array at distance $z$ from a sheet
 of sources with surface density $\sigma$ record the tidal field along its

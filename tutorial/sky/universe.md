@@ -4,8 +4,8 @@ title: 'The expanding universe, its thermal history, and a graviton background'
 question: 'If gravitons stopped interacting near the Planck temperature and kept a black-body spectrum ever since, then every species that later annihilated heated the photons but not them, and their sky today is at 0.905 K. Why does an expanding universe keep a black body black, why does the graviton glow end colder than the microwave sky, and what would its sky look like?'
 part: '12'
 requires: ['1.3', '1.8', '5.5', '6.3', '7.1', '8.3', '10.1', '10.2']
-paper: [sec:vistas, eq:graviton-temperature, fig:black-hole, sec:affordances, tab:null, sec:no-lens, sec:first-image]
-figures: [fig:black-hole]
+paper: [sec:vistas, eq:graviton-temperature, fig:graviton-sky, fig:black-hole, sec:affordances, tab:null, sec:no-lens, sec:first-image]
+figures: [fig:black-hole, fig:graviton-sky]
 live: [thermal-history]
 depth: B
 ---

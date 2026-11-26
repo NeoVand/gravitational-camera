@@ -4,8 +4,8 @@ title: 'Principal null directions and the Petrov classification'
 question: 'Every reading of one pixel picks out four directions on the sky around it. For one plane wave all four coincide on its direction of travel, for one body at rest they fall in two pairs, on the line to the body and opposite it, and where two or more bodies pull they are generally four distinct directions. What are these four directions, and how do they tell one wave, one body and many bodies apart?'
 part: '9'
 requires: ['1.4', '1.5', '1.5b', '6.1', '6.3', '6.6', '8.4', '9.1', '9.2', '9.3']
-paper: [sec:one-pixel, eq:stars, eq:star-velocity, eq:moving-state, eq:contact, fig:stars, app:proofs, eq:proof-stars, eq:proof-midpoint, sec:vistas]
-figures: [fig:stars]
+paper: [sec:one-pixel, eq:stars, eq:star-velocity, eq:moving-state, eq:contact, fig:stars, fig:petrov-types, app:proofs, eq:proof-stars, eq:proof-midpoint, sec:vistas]
+figures: [fig:stars, fig:petrov-types]
 live: [stars]
 depth: A
 ---

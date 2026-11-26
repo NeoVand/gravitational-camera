@@ -4,8 +4,8 @@ title: 'The blur law: the cut-off, the logarithm, the Lambert W function, the wi
 question: 'Why does making the camera $10^{27}$ times more sensitive sharpen its picture only from 24 degrees to 3.4?'
 part: '3'
 requires: ['1.4', '2.1', '2.6', '2.7', '3.1', '3.2', '3.5', '3.6']
-paper: [sec:near-field, eq:evanescent, eq:array-data, eq:wiener, eq:cutoff, eq:resolution, tab:resolution, fig:resolution-law, fig:nearfield, eq:handheld, fig:near-field-geometry]
-figures: [fig:resolution-law]
+paper: [sec:near-field, eq:evanescent, eq:array-data, eq:wiener, eq:cutoff, eq:resolution, tab:resolution, fig:resolution-law, fig:nearfield, eq:handheld, fig:near-field-geometry, fig:blur]
+figures: [fig:resolution-law, fig:blur]
 live: [blur-law, near-field-blur]
 depth: A
 ---
