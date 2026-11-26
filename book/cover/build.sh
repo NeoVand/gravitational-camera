@@ -1,7 +1,7 @@
 #!/bin/bash
 # Builds the book's cover: book/cover/cover.pdf (209.2 x 260 mm: 8 x 10 in trim and 3 mm bleed) and cover.jpg (the
-# trimmed page, 1600 px wide, for preview). The picture is painting.jpg (drawn by an image model, GPT Image, at 2048 x 2560, from
-# painting-prompt.txt; the second of two draws); it is cut to the page's proportions here and the type
+# trimmed page, 1600 px wide, for preview). The picture is painting.jpg (drawn by an image model, GPT Image, from
+# painting-prompt.txt, then re-rendered at 2560 x 3200, about 310 dpi with the bleed); it is cut to the page's proportions here and the type
 # is set over it by cover.tex.
 set -euo pipefail
 export PATH="/Library/TeX/texbin:/opt/homebrew/bin:$PATH"

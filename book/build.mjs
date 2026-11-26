@@ -421,7 +421,7 @@ const doc = String.raw`% The Gravitational Camera, written by book/build.mjs. Do
 \documentclass[colour=${COLOUR},font=${FONT}]{gcbook}
 \addbibresource{${path.join(PAPER, 'refs.bib')}}
 \addbibresource{${path.join(BOOK, 'book.bib')}}
-\hypersetup{pdftitle={The Gravitational Camera}, pdfauthor={Mostafa Mohsenvand}}
+\hypersetup{pdftitle={The Gravitational Camera}, pdfauthor={Mostafa ‘Neo’ Mohsenvand}}
 ${withCover ? '\\usepackage{pdfpages}' : ''}
 \begin{document}
 ${cover}\frontmatter

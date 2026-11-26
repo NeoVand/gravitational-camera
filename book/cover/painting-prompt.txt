@@ -2,3 +2,10 @@ Cover art for a beautiful, inviting popular-science-meets-textbook physics book 
 
 Style: Subject: a lone figure stands on a quiet snowy field at night under a deep blue starry sky, holding a small camera up to the eye, aiming it down at the ground at their feet. Through the dark ground, as if the planet were made of smoked glass, the Sun glows below the horizon, a round warm golden light seen through layers of rock, lighting the underside of the snowfield from beneath. Look: a luminous screen-printed travel-poster style, limited palette of midnight blue, ice white and molten gold, crisp silhouettes, gentle grain, poetic and quiet.
  The narrow cone of the camera's view runs from the lens down through the snow and through every layer of rock, unbroken, all the way to the Sun, widening as it goes, glowing faintly where it crosses the rock and meeting the Sun's upper edge; the Sun is a large round disc at the bottom centre.
+---
+Re-rendered at 2560 x 3200 (the model's largest 4:5 size: at most 3840 px a side and a pixel budget of about 8.3
+million) through the image-edit endpoint, with the 2048 x 2560 draw above as input and this prompt:
+Repaint this exact picture at full resolution: the same composition, the same figure, pose, camera, cone, rock
+layers, snowfield, mountains, stars and Sun, in exactly the same places and colours. Change nothing; add fine, crisp
+painterly detail and texture everywhere so that it prints sharply at large size. No text.
+The first of two re-renders (the second's sky had brush streaks).

@@ -10,14 +10,14 @@
 \usepackage{tikz}
 \definecolor{type}{HTML}{EFE6D8}   % the title and the author's name: a warm pale ivory
 \definecolor{quiet}{HTML}{DCCFBC}  % the subtitle
-\definecolor{ember}{HTML}{3A1604}  % the author's name, over the Sun
 \pagestyle{empty}
 \begin{document}
 \begin{tikzpicture}[remember picture, overlay, x=1mm, y=1mm, shift={(current page.north west)}]
   \node[anchor=north west, inner sep=0] at (0,0) {\includegraphics[width=209.2mm, height=260mm]{build/art.jpg}};
-  % y counts up from the bleed's top edge, so points down the page are negative. The title, its baseline 38 mm below the bleed's top edge; the subtitle beneath; the author's name near the foot
-  \node[anchor=base, inner sep=0, text=type] at (104.6, -38) {\display\fontsize{40}{46}\selectfont The Gravitational Camera};
-  \node[anchor=base, inner sep=0, text=quiet] at (104.6, -49) {\display\fontsize{16}{19}\selectfont\itshape What gravity can see};
-  \node[anchor=base, inner sep=0, text=ember] at (104.6, -243) {\display\fontsize{19}{22}\selectfont Mostafa Mohsenvand};
+  % y counts up from the bleed's top edge, so points down the page are negative. In the night sky, clear of the
+  % figure (whose head is about 66 mm down): the author's name, the title, the subtitle
+  \node[anchor=base, inner sep=0, text=type] at (104.6, -21) {\display\fontsize{21}{25}\selectfont Mostafa \textquoteleft Neo\textquoteright{} Mohsenvand};
+  \node[anchor=base, inner sep=0, text=type] at (104.6, -40) {\display\fontsize{40}{46}\selectfont The Gravitational Camera};
+  \node[anchor=base, inner sep=0, text=quiet] at (104.6, -51) {\display\fontsize{16}{19}\selectfont\itshape A thought experiment};
 \end{tikzpicture}
 \end{document}
