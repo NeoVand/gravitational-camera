@@ -25,12 +25,12 @@
 \LoadClass[10pt,twoside,openany]{book}
 
 % ---- page -----------------------------------------------------------------------------------------------------------
-% 189 x 246 mm (crown quarto). A text block of 122 mm (about 80 characters at 9.5 pt) and a margin column of 34 mm,
-% 11 mm from the outer edge; 210 mm of text height. Chapters start on the next page, right or left.
+% 8 x 10 in (203 x 254 mm). A text block of 134 mm (about 88 characters at 9.5 pt) and a margin column of 36 mm,
+% 10 mm from the outer edge; 220 mm of text height. Chapters start on the next page, right or left.
 \RequirePackage[
-  paperwidth=189mm, paperheight=246mm,
-  inner=17mm, textwidth=122mm, marginparsep=5mm, marginparwidth=34mm,
-  top=19mm, headheight=11pt, headsep=6mm, textheight=212mm, footskip=8mm,
+  paperwidth=8in, paperheight=10in,
+  inner=18mm, textwidth=134mm, marginparsep=5mm, marginparwidth=36mm,
+  top=19mm, headheight=11pt, headsep=6mm, textheight=220mm, footskip=8mm,
 ]{geometry}
 \newlength\gc@fullwidth
 \setlength\gc@fullwidth{\dimexpr\textwidth+\marginparsep+\marginparwidth\relax}

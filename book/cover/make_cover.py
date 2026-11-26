@@ -2,7 +2,7 @@
 
     .venv/bin/python book/cover/make_cover.py         writes book/cover/build/art.png (then book/cover/build.sh)
 
-The page is 189 x 246 mm with 3 mm of bleed on every side (195 x 252 mm), drawn at PX pixels per millimetre.
+The page is 8 x 10 in (203.2 x 254 mm) with 3 mm of bleed on every side (209.2 x 260 mm), drawn at PX pixels per millimetre.
 Left of the seam the Earth is seen in light: its night side, dark, with no light but a thin ring of sunlight bent
 round the limb by the air (the ring of a lunar eclipse), under stars. Right of the seam it is seen in gravity, as
 the gravitational camera sees it: every pixel is the thermal number radiance N along its line of sight, computed by
@@ -35,10 +35,10 @@ from gravcam.scene import load_scene  # noqa: E402
 
 PX = 12                                   # pixels per mm (304.8 dpi)
 BLEED = 3.0
-W_MM, H_MM = 189 + 2 * BLEED, 246 + 2 * BLEED
+W_MM, H_MM = 203.2 + 2 * BLEED, 254 + 2 * BLEED
 W, H = round(W_MM * PX), round(H_MM * PX)
 # the Earth on the page (mm, from the bleed's top left corner): centred across, its centre CY down, radius RE
-CX, CY, RE = W_MM / 2, BLEED + 145.0, 58.0
+CX, CY, RE = W_MM / 2, BLEED + 150.0, 62.0
 SEAM = CX                                  # the seam runs down the page through the Earth's centre
 # where the Sun's core is to appear, in units of the Earth's radius on the page: right and down from its centre
 SUN_AT = (0.40, 0.24)

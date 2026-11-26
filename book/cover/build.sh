@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builds the book's cover: book/cover/cover.pdf (195 x 252 mm: 189 x 246 trim and 3 mm bleed), cover.svg (the same
+# Builds the book's cover: book/cover/cover.pdf (209.2 x 260 mm: 8 x 10 in trim and 3 mm bleed), cover.svg (the same
 # page, its type as outlines), cover.png (the trimmed page, 1600 px wide, for preview).
 #   book/cover/build.sh          the picture is redrawn only if build/art.png is missing
 #   book/cover/build.sh --art    redraw it (make_cover.py, about 20 s)
@@ -14,7 +14,10 @@ if [[ "${1:-}" == "--art" || ! -f build/art.png ]]; then "$py" make_cover.py; fi
 from PIL import Image
 Image.open("build/art.png").convert("RGB").save("build/art.jpg", quality=94, subsampling=0, dpi=(304.8, 304.8))
 PY
-lualatex -interaction=nonstopmode -halt-on-error -output-directory=build cover.tex > build/lualatex.out || { tail -30 build/lualatex.out; exit 1; }
+# twice: the picture is placed against the page's corner, which tikz learns from the previous run
+for run in 1 2; do
+  lualatex -interaction=nonstopmode -halt-on-error -output-directory=build cover.tex > build/lualatex.out || { tail -30 build/lualatex.out; exit 1; }
+done
 command cp -f build/cover.pdf cover.pdf
 pdftocairo -svg cover.pdf cover.svg
 # the preview: the page trimmed of its bleed, 1600 px wide
