@@ -11,7 +11,7 @@ depth: A
 ---
 
 A ring of free balls in a gravitational wave that travels toward the reader is stretched along one axis and
-squeezed along the other, as in panel (b) of the figure below. In panel (c) the same pattern has its axes on the
+squeezed along the other, as in panel (b) of Figure [](/paper/#fig:tidal). In panel (c) the same pattern has its axes on the
 diagonals. These are the wave's two **polarizations**, its two independent patterns of stretch and squeeze, and they
 differ by a turn of 45°. The polarization of light is the direction of its electric field across the beam, and light's
 two polarizations are two such directions, 90° apart. Why do the two polarizations of a gravitational wave differ by a

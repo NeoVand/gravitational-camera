@@ -494,7 +494,7 @@ derivatives, and falling removes it.
 The 20 numbers that no frame removes are the curvature of section
 [7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor),
 the Riemann tensor $R$, and the tide $\curv{\tE}_{ij} = c^2R_{0i0j}$, a symmetric table of three rows, is six of them.
-Panel (a) of the figure below shows the tide: a ring of free test masses beside a mass is stretched along the line to
+Panel (a) of Figure [](/paper/#fig:tidal) shows the tide: a ring of free test masses beside a mass is stretched along the line to
 the mass and squeezed across it, and no falling keeps it round. Panels (b) and (c) show the ring in a gravitational
 wave.
 

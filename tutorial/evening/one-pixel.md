@@ -50,7 +50,7 @@ a wave comes from. Its picture is the best estimate of the sky that ten numbers 
 ## Ten numbers are more than one wave needs
 
 A single wave arriving at a point is described by four numbers: two for its direction of travel, and two for the
-strengths of its two polarizations. Panels (b) and (c) show them: the plus pattern stretches a ring of free masses
+strengths of its two polarizations. Panels (b) and (c) of Figure [](/paper/#fig:tidal) show them: the plus pattern stretches a ring of free masses
 along one line and squeezes it across, and the cross pattern is the same turned by 45°.[^four]
 
 {{paper fig:tidal}}

@@ -611,7 +611,7 @@ If a passing tonne makes the second reading of the steel ball, its ratio is $4.6
 
 {{paper fig:hair}}
 
-Panel (b) of the figure shows the first reading's 169 beads at $10^6$, up to degree twelve. The second reading has 455
+Panel (b) of Figure [](/paper/#fig:hair) shows the first reading's 169 beads at $10^6$, up to degree twelve. The second reading has 455
 moments up to the same degree, the sum of $(n + 1)(n + 2)/2$ from $n = 0$ to 12.
 
 ::: try {#two-readings}

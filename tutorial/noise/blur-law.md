@@ -249,7 +249,7 @@ half at $q_c$. The **cut-off** $\sym{cutoff}{q_c}$ is the larger root of $s = 1$
 
 $$\boxed{q_c\,e^{-q_c} = \frac{1}{\pi\,\SNR}}. \label{eq:cutoff-here}$$
 
-The figure draws $H$ in its panel (a) for four sensitivities, with a dot at each cut-off; panel (b) is the blur that
+Figure [](/paper/#fig:resolution-law) draws $H$ in its panel (a) for four sensitivities, with a dot at each cut-off; panel (b) is the blur that
 steps 5 to 7 derive from it.[^cutoff]
 
 {{paper fig:resolution-law}}

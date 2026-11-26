@@ -461,7 +461,7 @@ phase. So the figure's Airy spots need an array focused at the shelf's distance,
 
 {{paper fig:which-way}}
 
-In panel (b), each turning pair of balls is a spot of the width that the second section computes, 3.9°, and the still
+In panel (b) of Figure [](/paper/#fig:which-way), each turning pair of balls is a spot of the width that the second section computes, 3.9°, and the still
 pair is dark.
 
 **A source larger than its wave.** An aperture wide enough to resolve a source of radius $L$ larger than its wave lies

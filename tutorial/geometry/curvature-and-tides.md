@@ -17,7 +17,7 @@ combinations of the metric's second derivatives survive every choice of coordina
 to a pair of free balls? For an observer at rest relative to the masses, with proper time $t$, the tide that remains is
 $\curv\tE_{ij} = c^2R_{0i0j}$, where $R$ is the Riemann curvature tensor, and two free particles a small vector $\xi^i$
 apart accelerate relative to each other by $\ddot\xi^i = -\curv\tE_{ij}\xi^j$.[^pa] The ring of free balls in panel (a)
-of the figure below is stretched along the line to a mass and squeezed across it.
+of Figure [](/paper/#fig:tidal) is stretched along the line to a mass and squeezed across it.
 
 {{paper fig:tidal}}
 
@@ -410,7 +410,7 @@ M/r^3)(\delta_{ij} - 3\hat n_i\hat n_j)$, with $\hat n$ the unit vector toward t
 along the line and squeezes of $+G\matter M/r^3$ across it, the ratio $-2 : 1 : 1$ of 1.4. That it holds in Einstein's
 theory too, outside matter, is the result of section
 [7.3](/tutorial/geometry/einstein-equation/#a-single-mass-stretches-twice-as-hard-as-it-squeezes-in-einsteins-theory-too).
-The figure below maps this tide around one mass, with every ring stretched toward it.
+Figure [](/paper/#fig:tidal-field) maps this tide around one mass, with every ring stretched toward it.
 
 {{paper fig:tidal-field}}
 

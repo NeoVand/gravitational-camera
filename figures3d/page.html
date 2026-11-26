@@ -19,6 +19,8 @@
 <script type="module">
   const params = new URLSearchParams(location.search);
   const name = params.get('fig');
+  // 'book' for the printed book's layout (render.mjs --book), else the site's
+  globalThis.figureLayout = params.get('layout') ?? 'site';
   window.figureReady = (async () => {
     await window.MathJax.startup.promise;
     const mod = await import(`/figures3d/figs/${name}.js`);

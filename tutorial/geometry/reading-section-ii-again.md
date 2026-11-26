@@ -82,12 +82,12 @@ the same.
 
 {{paper fig:tidal}}
 
-Panel (a) is the ring beside a mass and panels (b) and (c) are the two polarizations of a wave. The stretch and the
+Panel (a) of Figure [](/paper/#fig:tidal) is the ring beside a mass and panels (b) and (c) are the two polarizations of a wave. The stretch and the
 squeeze change places every half cycle, because a strain $h\cos\omega t$ gives the tide $\tfrac12\omega^2h\cos\omega t$.
 
 {{paper fig:tidal-field}}
 
-In panel (c) nothing happens along the direction of travel $\hat k$, because $\hat k_i\curv\tE_{ij} = 0$.
+In panel (c) of Figure [](/paper/#fig:tidal-field) nothing happens along the direction of travel $\hat k$, because $\hat k_i\curv\tE_{ij} = 0$.
 
 ::: try {#tidal-rings}
 The three rings move here, drawn far more distorted than a real tide could make them: a mass drifts nearer to its

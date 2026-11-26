@@ -202,7 +202,7 @@ exact.](tut-ret-crossing){#fig:ret-crossing}
 
 {{paper fig:regimes}}
 
-The diagonal line of the map is [](#eq:boundary), drawn on axes of frequency and distance in powers of ten; every
+The diagonal line of the map in Figure [](/paper/#fig:regimes) is [](#eq:boundary), drawn on axes of frequency and distance in powers of ten; every
 source that moves as a whole lies below it, in its near zone.
 
 **The gravitational source.** A mass cannot oscillate as a single point. Its total $\matter M$ does not change, so the

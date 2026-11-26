@@ -13,7 +13,7 @@ depth: A
 The pixel of the gravitational camera is a ring of twelve small balls that float freely in space. Beside a mass,
 gravity pulls each ball a little differently, so each ball drifts in its own direction relative to the ring's centre.
 The balls on the line to the mass drift outward, those at the two sides inward, and those between partly outward
-and partly sideways. Panel (a) of the figure below draws the drifts as arrows.
+and partly sideways. Panel (a) of Figure [](/paper/#fig:tidal) draws the drifts as arrows.
 
 {{paper fig:tidal}}
 
@@ -170,7 +170,7 @@ centre toward the north-east, at $\vect\xi = (0.707, 0.707, 0)\unit{cm}$. The ta
 so each equation keeps one term. The first gives
 $\ddot\xi_1 = -\curv{\tE}_{11}\,\xi_1 = 2 \times 4.67\times10^{-9} \times 0.00707\unit{m\,s^{-2}} = +6.6\times10^{-11}\unit{m\,s^{-2}}$,
 toward the east. The others give $\ddot\xi_2 = -3.3\times10^{-11}\unit{m\,s^{-2}}$, toward the south, and
-$\ddot\xi_3 = 0$. So this ball drifts outward along the line to the person and inward across it, as in panel (a).
+$\ddot\xi_3 = 0$. So this ball drifts outward along the line to the person and inward across it, as in panel (a) of Figure [](/paper/#fig:tidal).
 Its acceleration, $7.4\times10^{-11}\unit{m\,s^{-2}}$ in all, is $7.5\times10^{-12}$ times the
 $9.8\unit{m\,s^{-2}}$ of a falling apple.
 

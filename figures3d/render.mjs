@@ -2,6 +2,9 @@
 //   node figures3d/render.mjs tidal [more names]   writes paper/figures/staging/<name>.svg and .pdf
 //   ... --final                                    writes into paper/figures/
 //   ... --tutorial [--final]                       the tutorial's own figures: tutorial/figures/staging/ (or tutorial/figures/)
+//   ... --tutorial --book [--final]                the printed book's layout of a tutorial figure (the figure reads
+//                                                  globalThis.figureLayout === 'book'): tutorial/figures/book/staging/
+//                                                  (or tutorial/figures/book/), which the book prefers to the site's
 import { createRequire } from 'node:module';
 import http from 'node:http';
 import fs from 'node:fs';
@@ -15,7 +18,8 @@ const args = process.argv.slice(2);
 const final = args.includes('--final');
 const names = args.filter((a) => !a.startsWith('--'));
 const root = path.join(here, '..');
-const out = path.join(root, args.includes('--tutorial') ? 'tutorial' : 'paper', 'figures', final ? '' : 'staging');
+const book = args.includes('--book');
+const out = path.join(root, args.includes('--tutorial') ? 'tutorial' : 'paper', 'figures', book ? 'book' : '', final ? '' : 'staging');
 fs.mkdirSync(out, { recursive: true });
 
 const types = { '.svg': 'image/svg+xml', '.js': 'text/javascript', '.mjs': 'text/javascript', '.html': 'text/html', '.json': 'application/json' };
@@ -35,7 +39,7 @@ try {
 		const page = await browser.newPage();
 		page.on('pageerror', (e) => console.error(name, 'page error:', e.message));
 		page.on('console', (m) => m.type() === 'error' && console.error(name, m.text()));
-		await page.goto(`http://localhost:${port}/figures3d/page.html?fig=${name}`);
+		await page.goto(`http://localhost:${port}/figures3d/page.html?fig=${name}${book ? '&layout=book' : ''}`);
 		let svg = await page.evaluate(() => window.figureReady);
 		// ids unique to the figure, since the site inlines several figures on one page
 		svg = svg.replace(/id="(p\d+[^"]*)"/g, `id="${name}-$1"`).replace(/url\(#(p\d+[^)]*)\)/g, `url(#${name}-$1)`);

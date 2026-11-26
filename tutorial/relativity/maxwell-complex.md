@@ -13,7 +13,7 @@ depth: A
 An observer who moves past an electric charge measures a magnetic field as well as an electric one, and how the field is
 shared between the two depends on how the observer moves. For light the exact statement is that a change of velocity is
 a rotation by an imaginary angle, and that light's field is one complex vector. Light also has two special directions at
-every point, drawn in the bottom row of the figure.
+every point, drawn in the bottom row of Figure [](/paper/#fig:stars).
 
 {{paper fig:stars}}
 
@@ -529,7 +529,7 @@ promised.[^p-ten]
 The count shows why. Of light's six numbers, two are the invariant $\light{\vect F}\cdot\light{\vect F}$, which fixes
 $w$ up to its sign, two are the direction of the axis $\hat n$, and two are the velocity across it: $6 = 2 + 2 + 2$. A
 pixel's ten numbers split as $10 = 4 + 3 + 3$, four invariants, three angles and a whole velocity, when the curvature's
-complex table has three different eigenvalues, as in a room of four masses (section 9.3); then the pixel of the figure below reads all three parts of its own velocity. A single round body gives two
+complex table has three different eigenvalues, as in a room of four masses (section 9.3); then the pixel of Figure [](/paper/#fig:speedometer) reads all three parts of its own velocity. A single round body gives two
 equal eigenvalues, and then the pixel has light's blind spot.
 
 ![Look first at the two moves in the observer colour along and about the axis $\hat n$: in the frame where the

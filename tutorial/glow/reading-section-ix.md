@@ -149,7 +149,7 @@ straight down will the Sun appear, and will the Moon stand out? Then drag the di
 
 {{paper fig:earth-glow}}
 
-In panel (a) the lines that graze the lower mantle, the core and the inner core leave $\arcsin(r/R)$ from straight
+In panel (a) of Figure [](/paper/#fig:earth-glow) the lines that graze the lower mantle, the core and the inner core leave $\arcsin(r/R)$ from straight
 down, with $R = 6371$ km the Earth's radius: $\arcsin(5701/6371) = 63.5°$, $\arcsin(3480/6371) = 33.1°$ and
 $\arcsin(1221.5/6371) = 11.05°$, that is 63°, 33° and 11°
 ([section 5.6](/tutorial/waves/abel-transform/#a-boundary-shows-as-a-kink-at-an-angle-that-only-geometry-sets)). The
@@ -180,7 +180,7 @@ with 220 GPa. Its central line reads $1.41\times10^{-7}$, so the ground underfoo
 
 A square metre that collects from every direction receives $N\,\dd\Omega$ gravitons a second from each patch $\dd\Omega$
 of sky, with $\dd\Omega = 2\pi\sin\theta\,\dd\theta$ and $\sym{nadir-angle}{\theta}$ the angle from straight down, so
-the curve of the figure gives the rate
+the curve of Figure [](/paper/#fig:earth-glow) gives the rate
 
 $$\sym{detector-rate}{\dot N_{\rm det}} = \int_0^{90°} N(\theta)\,2\pi\sin\theta\,\dd\theta =
 1.42\times10^{-5}\unit{s^{-1}} :$$
@@ -301,7 +301,7 @@ Choose the Earth and answer the figure's three predictions. Then predict which s
 
 {{paper fig:earth-inverted}}
 
-The figure's 35,619 is one simulated draw; its mean, 35,776, rounds to the 35,800 above, and it lies $(35{,}619 -
+The 35,619 of Figure [](/paper/#fig:earth-inverted) is one simulated draw; its mean, 35,776, rounds to the 35,800 above, and it lies $(35{,}619 -
 35{,}776)/\sqrt{35{,}776} = -0.8$ standard deviations from it.
 
 The errors come from the Fisher information of the model

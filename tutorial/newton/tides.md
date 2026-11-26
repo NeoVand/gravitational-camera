@@ -75,7 +75,7 @@ distance to the nearest mass.**
 
 {{paper fig:tidal}}
 
-In panel (a) of the figure above, twelve free balls float in a ring beside a mass, and each arrow shows how one ball
+In panel (a) of Figure [](/paper/#fig:tidal), twelve free balls float in a ring beside a mass, and each arrow shows how one ball
 moves relative to the ring's centre; we now compute those arrows. Panels (b) and (c) show the ring in a gravitational
 wave ([section 7.6](/tutorial/geometry/gravitational-waves/)).
 
@@ -235,7 +235,7 @@ weaker and the tide eight times.
 
 {{paper fig:tidal-field}}
 
-Panel (a) of the figure above draws a small ring at many points around one mass, and every ring is stretched toward
+Panel (a) of Figure [](/paper/#fig:tidal-field) draws a small ring at many points around one mass, and every ring is stretched toward
 the mass. Its $z$, up the page, is our $x$. The rings are drawn with their strength compressed so that weak regions
 stay visible, so the true fall with distance is much steeper than it looks. In panel (b), midway between two masses, the pulls cancel
 but the ring is still stretched along the line joining them. Panel (c) is a gravitational wave

@@ -12,8 +12,8 @@ depth: A
 
 Two line masses lie half a depth apart, and a row of pixels above them records their tides at a signal-to-noise ratio of
 a million. The record is one smooth bump, because the fine ripples that tell the two masses apart have faded on their
-way up (section [2.7](/tutorial/outside/evanescent/#undoing-the-fade-multiplies-the-noise)). The best picture that can be rebuilt from it, in the figure
-below, shows two peaks a little closer together than the masses, at 0.236 depths on each side of the centre instead of
+way up (section [2.7](/tutorial/outside/evanescent/#undoing-the-fade-multiplies-the-noise)). The best picture that can be rebuilt from it, in Figure [](/paper/#fig:nearfield),
+shows two peaks a little closer together than the masses, at 0.236 depths on each side of the centre instead of
 0.25. Between the peaks it falls below zero, to $-0.40$ of the peak's height at the midpoint, and beyond them it dips
 again, to $-0.16$ at 0.49 depths from the centre.
 
@@ -277,7 +277,7 @@ factor $e^{-2kz}$ in $s^2$ drives $H$ to zero.
 
 Section [3.7](/tutorial/noise/blur-law/#step-2-each-ripple-stands-above-its-noise-by-a-factor-that-depends-on-two-numbers)
 puts in the gain and the prior of randomly placed point masses and finds $s = \pi\SNR\,q\,e^{-q}$, where $q = kz$ is the
-wavenumber in units of one over the depth.[^from-blur-law] At the figure's sensitivity, $\SNR = 10^6$, the weight stays
+wavenumber in units of one over the depth.[^from-blur-law] At the sensitivity of Figure [](/paper/#fig:nearfield), $\SNR = 10^6$, the weight stays
 within $10^{-5}$ of one for every $q$ from $10^{-4}$, a ripple with crests 63,000 depths apart, up to 11.7. It falls to
 one half at the two values of $q$ where $s = 1$: at $q = 3.2\times10^{-7}$ and at the cut-off $q_c = 17.8$, the larger
 of the two.
@@ -296,7 +296,7 @@ A point mass $\matter m$ has $\tilde{\matter\sigma} = \matter m$ for every rippl
 [2.6](/tutorial/outside/fourier/#a-ripple-in-space-is-a-turning-number-as-an-oscillation-in-time-is)), so its mean image is $\matter m\,h$. The kernel
 $h$ is therefore the **point-spread function**, the picture that the reconstruction draws of one point.
 
-**From the plane to a line.** The line masses of the figure do not change along their length, so the scene holds only
+**From the plane to a line.** The line masses of Figure [](/paper/#fig:nearfield) do not change along their length, so the scene holds only
 ripples whose wavevector points along the row of pixels. These are numbered by one wavenumber $k$, positive or negative
 according to direction, and the transforms become those on a line
 ([section 2.6](/tutorial/outside/fourier/)), with $\dd k/2\pi$ in place
@@ -342,10 +342,10 @@ vanishes, at $\tan u = u$, which is $u = 4.493$, and there it is $-0.217$ of the
 flanked by dips of negative mass a fifth as deep as its peak, 4.49 cut-off lengths $1/k_c$ to each side, with weaker
 dips beyond. This **ringing** is the [Gibbs
 phenomenon](/tutorial/outside/fourier/#a-repeating-pattern-is-a-sum-of-ripples) of section 2.6 in another form: a
-sharp edge in $k$ gives an oscillation in $a$ that dies away only as $1/a$. The Wiener filter's edge is soft, so it rings a little less: at the figure's
-sensitivity its first dip is $-0.211$ of the peak, 0.251 depths from the mass.
+sharp edge in $k$ gives an oscillation in $a$ that dies away only as $1/a$. The Wiener filter's edge is soft, so it rings a little less: at the sensitivity of
+Figure [](/paper/#fig:nearfield) its first dip is $-0.211$ of the peak, 0.251 depths from the mass.
 
-That distance explains the figure. The masses lie 0.5 depths apart, so the inner dip of each falls at the midpoint,
+That distance explains Figure [](/paper/#fig:nearfield). The masses lie 0.5 depths apart, so the inner dip of each falls at the midpoint,
 where the two dips add to $-0.40$ of the peak. The outer dips, at 0.49 depths from the centre, reach $-0.16$, and each
 mass's image pulls the other's peak inward, to 0.236 depths from the centre.
 

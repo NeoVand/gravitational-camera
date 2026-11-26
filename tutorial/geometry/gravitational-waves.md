@@ -11,7 +11,7 @@ depth: A
 ---
 
 A ring of free balls in a gravitational wave is stretched and squeezed equally along two perpendicular directions, which
-change places every half cycle (panels (b) and (c) of Figure [](/paper/#fig:tidal), below). The tide of such a wave is
+change places every half cycle (panels (b) and (c) of Figure [](/paper/#fig:tidal)). The tide of such a wave is
 minus half the second time derivative of its strain, and its magnetic part is equal in size, with the tide's pattern
 turned by $45^\circ$ about the direction of travel.[^wave]
 
@@ -238,7 +238,7 @@ $\tfrac12\omega^2\field h = 2.0\times10^{-16}\unit{s^{-2}}$: free balls a metre 
 $2.0\times10^{-16}\unit{m\,s^{-2}}$ at the peak, 47 million times less than beside the 70 kg person a metre away
 ($9.34\times10^{-9}\unit{s^{-2}}$, section 1.4).
 
-Panel (c) of Figure [](/paper/#fig:tidal-field), below, is this tide for a plus wave travelling up the page: bands of
+Panel (c) of Figure [](/paper/#fig:tidal-field) is this tide for a plus wave travelling up the page: bands of
 stretch and squeeze alternate every half wavelength, and nothing happens along the direction of travel, because
 $\hat k_i\curv\tE_{ij} = 0$.
 

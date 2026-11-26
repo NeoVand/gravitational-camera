@@ -394,7 +394,7 @@ the safes, and far wider than the bar, which spans 4.4° from the array's centre
 ::: derivation
 ### How the pictures of the safe are drawn
 
-Panels (b) to (d) of the figure at the head of this section draw the tidal column
+Panels (b) to (d) of Figure [](/paper/#fig:locked-safe) draw the tidal column
 $S(\hat n) = \int\matter\rho\,\dd r/r$, in $\mathrm{kg\,m^{-3}}$, along each line of sight from the camera
 ([section R2](/tutorial/outside/reading-section-iv-1/#the-image-is-the-tidal-column-and-a-pixel-reads-only-five-of-its-numbers)),
 and panel (e) draws the tide itself.

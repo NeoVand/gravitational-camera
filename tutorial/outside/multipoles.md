@@ -169,7 +169,7 @@ potential's share.
 camera reads the monopole with a signal-to-noise ratio $\SNR$, the signal divided by the typical size of the noise
 (section 0.2).[^snr] Degree $\ell$ can stand above the noise only while $3^\ell < \SNR$, that is, while
 $\ell < \ln\SNR/\ln 3$. For $\SNR = 10^6$ this is $13.8/1.10 = 12.6$, so at most degrees 0 to 12 stand above the noise
-(Figure [](#fig:ceilings)), and they hold $1 + 3 + \dots + 25 = 13^2 = 169$ numbers, the rows of the figure below.
+(Figure [](#fig:ceilings)), and they hold $1 + 3 + \dots + 25 = 13^2 = 169$ numbers, the rows of Figure [](/paper/#fig:hair).
 This is a ceiling on what the camera reads, which section 3.8 turns into about 1200 bits. At $\SNR = 10^{70}$, the
 rough quantum limit of [section 0.2](/tutorial/evening/through-walls/#the-blur-shrinks-only-with-the-number-of-digits-of-the-sensitivity),
 the same rule reaches degree 146. A count made on the tide, with its factor $\tfrac12(\ell + 1)(\ell + 2)$, runs a few

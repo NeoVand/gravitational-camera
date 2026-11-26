@@ -87,7 +87,7 @@ infrared light that the skin emits.
 
 {{paper fig:line-integral}}
 
-In the figure each body $k$ adds its **number emissivity** $\sym{number-emissivity}{j_N}$, in gravitons per second, per
+In Figure [](/paper/#fig:line-integral) each body $k$ adds its **number emissivity** $\sym{number-emissivity}{j_N}$, in gravitons per second, per
 cubic metre and per steradian, times the length $\ell_k$ of the line inside it; the values are illustrative.[^column]
 
 ## The friction at the wave's frequency counts, and causality fixes its total
@@ -181,7 +181,7 @@ place ([section 10.3](/tutorial/glow/why-matter-barely-glows/#each-material-of-t
 
 {{paper fig:materials}}
 
-In panel (a) the shaded band, where $B_\omega$ exceeds a tenth of its peak, is $0.420 < x < 8.30$, or 2.57 to 50.7 THz,
+In panel (a) of Figure [](/paper/#fig:materials) the shaded band, where $B_\omega$ exceeds a tenth of its peak, is $0.420 < x < 8.30$, or 2.57 to 50.7 THz,
 and the steps are where pair bands end, at twice the Debye frequency. Panel (b) draws each $4\pi\alpha B_\omega$.
 
 Metals and water glow redder than a constant friction: their mean graviton energies, 1.4, 1.5 and $1.7\,\kB T$, lie

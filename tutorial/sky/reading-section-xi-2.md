@@ -73,7 +73,7 @@ cast shadows on it*, since nothing else absorbs across a broad band (section 11.
 
 {{paper fig:black-hole}}
 
-The figure draws one hole twice, by the exact orbits of light of section
+Figure [](/paper/#fig:black-hole) draws one hole twice, by the exact orbits of light of section
 [11.1](/tutorial/black-holes/schwarzschild/#light-can-circle-a-hole-and-the-hole-casts-a-shadow). The camera is at rest
 at $r = 40\,G\matter M/c^2$, with $r$ the circumference radius. The shadow's angular radius
 $\sym{shadow-radius}{\alpha_h}$, from the hole's centre to its edge, is

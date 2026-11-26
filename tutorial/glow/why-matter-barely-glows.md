@@ -10,7 +10,7 @@ live: [glow-bound]
 depth: A
 ---
 
-Panel (a) of the figure below draws how six materials resist a shear that is the same everywhere: a broad shoulder for
+Panel (a) of Figure [](/paper/#fig:materials) draws how six materials resist a shear that is the same everywhere: a broad shoulder for
 copper, a spike for silicon, a plateau for glass, bumps for water. Panel (b) draws their glow. Added up, at room
 temperature copper sends 2.8, silicon 3.4 and diamond 0.25, in units of $10^{-35}\unit{W\,m^{-3}}$, against 21 for a
 **placeholder friction**, a constant $10^{-3}\unit{Pa\,s}$ used for comparison.[^p]
@@ -519,7 +519,7 @@ $1.7\,\kB T$. Its glow is redder than a constant friction's: the stretch of the 
 the energy's peak at 17.2 THz, and the rocking's friction is flat only up to 29 THz, so half of its 9.45 GPa lies
 above, where Planck's radiance is falling.
 
-So real materials glow at 1.2% (diamond) to 59% (iron's ceiling) of the placeholder's power. The figure's shaded band is
+So real materials glow at 1.2% (diamond) to 59% (iron's ceiling) of the placeholder's power. The shaded band of Figure [](/paper/#fig:materials) is
 where $B_\omega$ exceeds a tenth of its peak, $0.420 < x < 8.30$, or 2.57 to 50.7 THz at 293 K. The small steps are
 where pair bands end, at $2\omega_D$: 14.3 THz for copper, 19.6 THz for iron (with the Debye temperature of steel,
 470 K [@Duthil2014]) and 27.1 THz for silicon. Quartz, with nine atoms in its cell, has many optical vibrations that a

@@ -21,7 +21,7 @@ the whole pull. Section 1.4 differentiates it once more, and that second derivat
 
 {{paper fig:locked-safe}}
 
-Panel (a) shows the room in ordinary light; the other panels use the tide (section 1.4) and the blur (section 3.7),
+Panel (a) of Figure [](/paper/#fig:locked-safe) shows the room in ordinary light; the other panels use the tide (section 1.4) and the blur (section 3.7),
 and rest on the rule that the pulls of separate bodies add.
 
 ::: plain
@@ -119,7 +119,7 @@ This is how the room of the locked safe is added up. We put the origin on the fl
 pointing to the right, $x_2$ straight ahead and $x_3$ up. The camera is at $(0, 0, 1.5)\unit{m}$. The safes are hollow
 steel boxes, 0.8 m wide, 0.8 m deep and 1.0 m tall, with their middles at $(\pm 1.1, 3.5, 0.5)\unit{m}$. The 3.5 m is
 therefore measured straight ahead. The middle of each safe is
-$\sqrt{1.1^2 + 3.5^2 + 1.0^2}\unit{m} = 3.8\unit{m}$ from the camera, which is the radius of the sphere in panel (e).
+$\sqrt{1.1^2 + 3.5^2 + 1.0^2}\unit{m} = 3.8\unit{m}$ from the camera, which is the radius of the sphere in panel (e) of Figure [](/paper/#fig:locked-safe).
 The gold is a bar 0.30 m wide, 0.40 m deep and 0.14 m tall on the floor of the right-hand safe, with its middle at
 $(1.1, 3.5, 0.13)\unit{m}$. The floor and the walls are described in the margin.[^room] Figure [](#fig:room) draws
 the whole room to scale.

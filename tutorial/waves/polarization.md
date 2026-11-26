@@ -438,7 +438,7 @@ enters the wave weaker than the quadrupole by about the square of the speed of t
 of light. So a camera far away records the same data to about one part in $10^{13}$, and no aperture can resolve a body
 millions of times smaller than its wavelength (section
 [5.3](/tutorial/waves/diffraction/#delaying-and-adding-the-records-of-many-pixels-points-the-array)). Only the near
-field, where the separate tides of the masses can be read, tells the two apart. In the figure below, drawn with the speed
+field, where the separate tides of the masses can be read, tells the two apart. In Figure [](/paper/#fig:which-way), drawn with the speed
 of light slowed so that the waves are 10 cm long, each turning pair is the diffraction spot of section 5.3, and the
 colour of the spot is the $V/I$ that a compact rotor would have.
 
@@ -448,7 +448,7 @@ colour of the spot is the $V/I$ that a compact rotor would have.
 On the left, the rotor and the camera; drag the knob on the arc, or use the slider, to tilt the rotor's spin by the
 inclination $\iota$, from face on, 0°, past edge on, 90°, to pointing away, 180°. On the right, the ring of free balls as the camera sees it, moved by the rotor's wave (orange outward, blue inward),
 with an inset that traces the point $(\field h_+(t), \field h_\times(t))$ round its ellipse, and a spot coloured as in
-the figure above. A second knob turns the camera's own axes by $\theta$. The readouts fall in two groups: those that
+Figure [](/paper/#fig:which-way). A second knob turns the camera's own axes by $\theta$. The readouts fall in two groups: those that
 change when the axes turn, the two amplitudes and $Q$ and $U$, and those that do not, $I$, $V$, $V/I$ and the power
 relative to face on.
 

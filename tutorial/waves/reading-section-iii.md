@@ -16,7 +16,7 @@ still read about a source it cannot open, such as which way a sealed rotor turns
 
 {{paper fig:regimes}}
 
-The map has frequency across and distance up, in powers of ten; its diagonal line is the edge of the near zone,
+The map of Figure [](/paper/#fig:regimes) has frequency across and distance up, in powers of ten; its diagonal line is the edge of the near zone,
 derived below. Mechanical sources lie far below it, thermal sources far above.
 
 ::: plain

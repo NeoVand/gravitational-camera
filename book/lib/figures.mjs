@@ -100,7 +100,10 @@ export async function convertFigures(names, { jobs = 4, log }) {
 	const out = new Map();
 	let converted = 0;
 	await pool([...new Set(names)], jobs, async (name) => {
-		const svgFile = path.join(TUTORIAL, 'figures', `${name}.svg`);
+		// a drawing may have a layout for the printed page (tutorial/figures/book/, rendered with figures3d/render.mjs --book):
+		// panels side by side where the site stacks them for a phone
+		const bookFile = path.join(TUTORIAL, 'figures', 'book', `${name}.svg`);
+		const svgFile = existsSync(bookFile) ? bookFile : path.join(TUTORIAL, 'figures', `${name}.svg`);
 		const pdf = path.join(dir, `${name}.pdf`);
 		const stamp = path.join(dir, `${name}.stamp`);
 		const svg = readFileSync(svgFile, 'utf8');

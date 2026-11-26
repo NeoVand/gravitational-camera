@@ -70,7 +70,7 @@ over its distance, in $\mathrm{kg\,m^{-3}}$, so that $GS$ is in $\mathrm{s^{-2}}
 
 {{paper fig:sky-integral}}
 
-In panel (a) the matter in a thin cone between $r$ and $r + \dd r$ has the volume $r^2\,\dd r\,\dd\Omega$ and a tide
+In panel (a) of Figure [](/paper/#fig:sky-integral) the matter in a thin cone between $r$ and $r + \dd r$ has the volume $r^2\,\dd r\,\dd\Omega$ and a tide
 that falls as $1/r^3$, so the $r^2$ cancels two of the three powers and leaves $\dd r/r$. Panel (b) colours the sky by
 the weight $1 - 3\cos^2\vartheta$ of $\curv{\tE}_{zz}$, with $\vartheta$ the angle from the $z$ axis. It vanishes at
 $\vartheta = 54.74°$ and averages to zero over the sky, so a uniform shell of matter around the camera is invisible.
@@ -197,7 +197,7 @@ so the layered Earth, seen from outside in this way, has $5513\unit{kg\,m^{-3}}$
 
 {{paper fig:same-outside}}
 
-The figure shows three bodies with the same field outside. A steel ball of radius $R$ holds a gold nugget of mass
+Figure [](/paper/#fig:same-outside) shows three bodies with the same field outside. A steel ball of radius $R$ holds a gold nugget of mass
 $\matter m$ at the distance $s$ from its centre, and the nugget's harmonic projection is
 
 $$\matter\rho_h = \frac{\matter m}{4\pi R^3}\sum_{\ell=0}^{\infty}(2\ell+1)(2\ell+3)\,

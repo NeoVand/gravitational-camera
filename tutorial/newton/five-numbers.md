@@ -362,7 +362,7 @@ basic patterns of stretch and squeeze across its direction.[^lambda]
 
 {{paper fig:tidal}}
 
-Panels (b) and (c) of the figure draw the two patterns on a ring.[^strain] The eigen-axes of the cross table are the
+Panels (b) and (c) of Figure [](/paper/#fig:tidal) draw the two patterns on a ring.[^strain] The eigen-axes of the cross table are the
 diagonals, so the cross pattern looks like the plus pattern turned by 45°. To see how the two numbers change when the
 axes turn, we turn the axes about $z$ by the angle $\theta$, anticlockwise as seen from the side toward which $z$
 points. By section 1.1, the rows of $R$ are the new axes, so in the plane $R = \begin{pmatrix}\cos\theta & \sin\theta\\ -\sin\theta & \cos\theta\end{pmatrix}$, and the new table is
@@ -549,7 +549,7 @@ moments of $S$. Patterns of degree 3 and higher give zero ([section 2.2](/tutori
     ([section 7.6](/tutorial/geometry/gravitational-waves/#one-projector-keeps-what-a-wave-can-carry)). First shown in
     *The gravitational camera* (Mohsenvand 2026), as its equation [](/paper/#eq:wave-zone).
 
-[^strain]: The strains $h_+$ and $h_\times$ in the figure's caption are pure numbers, proportional to the tides in a
+[^strain]: The strains $h_+$ and $h_\times$ in the caption of Figure [](/paper/#fig:tidal) are pure numbers, proportional to the tides in a
     steady wave ([section 7.6](/tutorial/geometry/gravitational-waves/#the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain)).
 
 [^spin]: Section 9.1 returns to spin. First shown in *The gravitational camera* (Mohsenvand 2026),

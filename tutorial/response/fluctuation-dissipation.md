@@ -297,7 +297,7 @@ $c_n$ is the component, along the unit shape $\vect e_n$, of the list $\sqrt{\ma
 the unit shapes are the columns of an orthogonal matrix, which keeps a list's length. So $\sum_nc_n^2 =
 \sum_p\matter m_p|\nabla h(\vect x_p)|^2$, the integral of section 4.2 once more, for any stiffnesses.
 
-The next figure adds up the $\kB Tc_n^2$ in order of frequency for a lattice ball of 924 masses and a lattice shell of
+Figure [](/paper/#fig:tremor) adds up the $\kB Tc_n^2$ in order of frequency for a lattice ball of 924 masses and a lattice shell of
 668, for the quadrupole $h = z^2 - \tfrac12(x^2 + y^2)$. The totals stand in the ratio
 1.220 of the lattices' $\sum_p\matter m_pr_p^2$, close to the continuum's 1.234. The ball keeps most of its tremor in
 one mode: its strongest mode holds 85% of it, and 99% lies below twice that mode's frequency. The shell is softer: its
@@ -308,7 +308,7 @@ mass sets how much there is.[^p3]
 {{paper fig:tremor}}
 
 ::: try {#tremor}
-The live version of the figure above, for the quadrupole along one axis. On the left, each body's tremor added up in
+The live version of Figure [](/paper/#fig:tremor), for the quadrupole along one axis. On the left, each body's tremor added up in
 order of frequency, the ball in blue and the shell in orange; on the right, the spectrum of the quadrupole's rate, each
 line drawn at its width. The sliders make every spring stiffer or softer and set one quality factor for every mode; the
 buttons choose the ratio of the diagonal springs to the straight ones. The switch *Static jitter* adds up
@@ -729,7 +729,7 @@ $\omega_0 = 7.9\times10^4\unit{s^{-1}}$ and $x = 1.0\times10^{-9}$, so the exces
 [^p2]: First shown in *The gravitational camera* (Mohsenvand 2026), Sec. IV, as its equation
     [](/paper/#eq:thermal-multipole).
 
-[^p3]: The lattices and the figure are those of the paper's Appendix A.
+[^p3]: The lattices and Figure [](/paper/#fig:tremor) are those of the paper's Appendix A.
 
 [^p4]: The paper's [](/paper/#eq:jitter-bounds), Appendix A.
 

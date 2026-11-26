@@ -410,7 +410,7 @@ weighing after a kick tells them apart.
 
 {{paper fig:hair}}
 
-Panel (a) of the figure draws these kicks on a ball, a shell and a ball with a heavy core, with bars for the energies
+Panel (a) of Figure [](/paper/#fig:hair) draws these kicks on a ball, a shell and a ball with a heavy core, with bars for the energies
 gained; panel (b) belongs to Part 13.
 
 Section 1.8 works out a realistic kick in full; here we size it. A tonne passing at $44\unit{km\,s^{-1}}$ at

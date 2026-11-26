@@ -312,7 +312,7 @@ time longer than $1/\omega$ lowers the friction, because the electrons then answ
 $\matter\mu_\infty/2\omega$, reached at $\omega\tau = 1$. Copper's own electrons sit a little past the peak, at 65%
 of the ceiling. The curve is exact.](tut-visc-ceiling){#fig:ceiling}
 
-The next figure draws each material's friction against $\omega/2\pi$ in THz, so the glow's peak sits at 17 THz.
+Figure [](/paper/#fig:materials) draws each material's friction against $\omega/2\pi$ in THz, so the glow's peak sits at 17 THz.
 Copper's curve in panel (a) is flat at low frequencies and bends down near $\omega = 1/\tau$, at 6.4 THz. Iron's outer
 electrons are partly held by its atoms, so the free-electron formula does not fit them, and for iron the figure draws
 the ceiling, falling as $1/\omega$: an envelope over every collision time, not the spectrum of any one metal.

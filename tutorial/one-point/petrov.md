@@ -10,7 +10,7 @@ live: [stars]
 depth: A
 ---
 
-The figure marks the special directions on the sky around one pixel. For gravity, a single wave puts four marks together
+Figure [](/paper/#fig:stars) marks the special directions on the sky around one pixel. For gravity, a single wave puts four marks together
 on its direction of travel, and a mass at rest puts two on the line to it and two opposite. The same mass moving across
 that line at $0.9c$ folds both pairs toward its motion, and two masses scatter four marks over the sky. For light, every
 sky holds two.[^fig]
@@ -177,7 +177,7 @@ directions lie in the plane at right angles to the axis of the middle eigenvalue
 of the axis of the largest.** **Limit:** for one body $\curv\lambda_2 = \curv\lambda_3$, so $\vartheta = 90°$, and both lines close onto $\mathbf a_1$,
 the line to the body.
 
-**A number.** The two masses of the figure have the eigenvalues $-0.537$, $0.135$ and $0.402$ in the figure's units
+**A number.** The two masses of Figure [](/paper/#fig:stars) have the eigenvalues $-0.537$, $0.135$ and $0.402$ in the figure's units
 (section 9.2), so $\cos^2\vartheta = 0.267/0.939 = 0.284$ and $\vartheta = 57.8°$: two lines that cross at $180° - 2\vartheta
 = 64.4°$. Solving the quartic gives the figure's two lines of marks, $\pm(-0.797, 0.224, -0.561)$ and $\pm(0.887, 0.227,
 -0.401)$. The two directions quoted are $2\vartheta = 115.6°$ apart.
@@ -212,7 +212,7 @@ $\curv w = -J/I$ and the product $(\curv{\mathcal W} - \curv w)(\curv{\mathcal W
 | N | four together | $\curv{\mathcal W} \neq 0$, $\curv{\mathcal W}^2 = 0$ | one wave |
 | O | none singled out | $\curv{\mathcal W} = 0$ | no field |
 
-The figure's two masses give $1 - 6J^2/I^3 = 0.553$: type I, so not one body. Type D is not enough by itself. Equal masses
+The two masses of Figure [](/paper/#fig:stars) give $1 - 6J^2/I^3 = 0.553$: type I, so not one body. Type D is not enough by itself. Equal masses
 at unit distance along $\hat x$ and $\hat y$, with $G = 1$, give $\mathrm{diag}(-2, 1, 1) + \mathrm{diag}(1, -2, 1) =
 \mathrm{diag}(-1, -1, 2)$: type D, with two double directions along $\pm\hat z$ that point at neither body, and $\curv w =
 -J/I = -1$. One body has $\curv w = G\matter M/r^3 > 0$, so type D reads as one body only when $\curv w > 0$.[^four]
@@ -255,7 +255,7 @@ The new quartic is $\vect m(z)^{\mathsf T}\Lambda\curv{\mathcal W}\Lambda^{\math
 m(z))^{\mathsf T}\curv{\mathcal W}(\Lambda^{\mathsf T}\vect m(z))$. Here $\Lambda^{\mathsf T} = \Lambda^{-1}$ is the boost with
 $-\obs\eta$, so by [](#eq:boost-z) $\Lambda^{\mathsf T}\vect m(z) = e^{\obs\eta}\vect m(z e^{-\obs\eta})$, and the new quartic
 is $e^{2\obs\eta}$ times the old one at $z e^{-\obs\eta}$. **Its roots are the old roots times $e^{\obs\eta}$.** **Check:**
-for the figure's two masses at $\obs\eta = 0.7$, all four roots grow by $2.01375 = e^{0.7}$.
+for the two masses of Figure [](/paper/#fig:stars) at $\obs\eta = 0.7$, all four roots grow by $2.01375 = e^{0.7}$.
 
 **This is the aberration of light.** The azimuth $\arg z$ is kept and $|z| = \tan(\vartheta/2)$ grows, so every direction
 slides from $+\hat z$, the direction of motion, toward $-\hat z$. A mark shows where a wave would travel to, so the marks slide behind the pixel while the sources crowd ahead, as section
@@ -374,7 +374,7 @@ toward where the body is now,
 $$\boxed{\;\begin{gathered}\tfrac12(\hat p_+ + \hat p_-) = \frac{\obs{\vect v}_\perp}{c},\\ \tfrac12(\hat p_+ - \hat
 p_-) = \pm\Bigl(1 - \frac{\obs v_\perp^2}{c^2}\Bigr)^{1/2}\hat n ,\end{gathered}\;}$$
 
-both in pure numbers.[^velocity] **Limit:** at zero speed the half sum vanishes and the half difference is $\pm\hat n$. **A check.** A body as in the figure, at $1.5$ along $-\hat x$ and moving along $+\hat y$ at $0.9c$, has the
+both in pure numbers.[^velocity] **Limit:** at zero speed the half sum vanishes and the half difference is $\pm\hat n$. **A check.** A body as in Figure [](/paper/#fig:stars), at $1.5$ along $-\hat x$ and moving along $+\hat y$ at $0.9c$, has the
 directions $(\pm0.436, 0.9, 0)$, each twice: the half sum is $(0, 0.9, 0)$, and the half difference has the length $0.436 =
 (1 - 0.81)^{1/2}$ (Figure [](#fig:moving-pairs)).
 

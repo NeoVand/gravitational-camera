@@ -56,7 +56,7 @@ So a lorry driving past and a distant collision of black holes can give it the s
 
 {{paper fig:tidal-field}}
 
-In this figure the colour maps one entry only: in panels (a) and (b) the entry up the page, $\curv{\tE}_{zz}$, orange
+In Figure [](/paper/#fig:tidal-field) the colour maps one entry only: in panels (a) and (b) the entry up the page, $\curv{\tE}_{zz}$, orange
 where it is a stretch and blue where it is a squeeze. So in panel (a) every ring is stretched toward the mass, yet the
 map is blue to the left and right of the mass, where the stretch lies across the page. With $\vartheta$ the angle
 between the vertical and the line to the mass, $\curv{\tE}_{zz}$ is proportional to $1 - 3\cos^2\vartheta$, so orange
@@ -164,7 +164,7 @@ section 1.5.[^wave]
 
 {{paper fig:tidal}}
 
-In this figure each arrow is the displacement of one ball. Panel (a) is the ring beside a mass. Panels (b) and (c) are
+In Figure [](/paper/#fig:tidal) each arrow is the displacement of one ball. Panel (a) is the ring beside a mass. Panels (b) and (c) are
 the two **polarizations** of a gravitational wave, its two basic patterns of stretch and squeeze; the wave travels out
 of the page (⊙), and the pale ring is the ring half a cycle later. The two patterns differ by a turn of 45°, as any
 two such patterns across a direction do

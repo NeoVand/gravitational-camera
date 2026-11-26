@@ -11,7 +11,7 @@ depth: A
 ---
 
 A pixel crosses a room of four masses at $0.6c$. It has no map of the room, yet at every point of its path it reads its
-own velocity from one reading of the tide and the magnetic part. Under the path, the figure plots the largest imaginary
+own velocity from one reading of the tide and the magnetic part. Under the path, Figure [](/paper/#fig:speedometer) plots the largest imaginary
 part of the reading's eigenvalues over their largest size. The ratio is zero for a room at rest, however fast the pixel
 moves, and it is not zero once one of the masses crosses the room.[^speed]
 
@@ -351,7 +351,7 @@ We want a pixel's velocity through a room it does not know. We assume that **eve
 room's frame**. Then that frame reads no magnetic part (section 7.5), and its real symmetric reading has real eigenvalues
 along three axes at right angles. If the eigenvalues are different, the room's frame is the principal observer, and a
 pixel moving through the room finds, by [](#eq:velocity), its velocity relative to the room, at any speed and from one
-reading. This is the pixel of the figure above.
+reading. This is the pixel of Figure [](/paper/#fig:speedometer).
 
 **At first order.** We want the formula a slow pixel uses. In the room's principal axes, taken right-handed, the tide is
 $\curv\tE = \mathrm{diag}(\curv\lambda_1, \curv\lambda_2, \curv\lambda_3)$, with $\sym{tide-eigenvalue}{\curv\lambda_a}$

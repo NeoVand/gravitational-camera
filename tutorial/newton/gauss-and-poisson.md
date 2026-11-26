@@ -401,8 +401,8 @@ Inside they differ. At 3480 km from the centre the pull is $5.4\unit{m\,s^{-2}}$
 second Earth the core alone pulls at its surface with $\tfrac43\pi G\matter\rho_{\mathrm{core}} \times 3480\unit{km} =
 12.2\unit{m\,s^{-2}}$, more than at the ground.
 
-Bodies that are not round can also share one field outside, although the shell theorem cannot prove it. The figure
-below shows three steel balls of the same size, each holding the same extra mass of gold.
+Bodies that are not round can also share one field outside, although the shell theorem cannot prove it. Figure [](/paper/#fig:same-outside)
+shows three steel balls of the same size, each holding the same extra mass of gold.
 
 {{paper fig:same-outside}}
 

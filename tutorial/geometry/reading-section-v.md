@@ -99,7 +99,7 @@ a dip of a fifth as the test, they must be $1.43\,\lambda r/D$ apart, against $1
 The angle between the rotor's spin and the direction from the rotor to the camera is the **inclination**
 $\sym{inclination}{\iota}$. Section
 [5.4](/tutorial/waves/polarization/#the-rotor-shines-eight-times-less-edge-on) found the power sent toward $\iota$,
-relative to the power along the axis, to be $(1 + 6\cos^2\iota + \cos^4\iota)/8$, panel (a) below. Edge-on it is
+relative to the power along the axis, to be $(1 + 6\cos^2\iota + \cos^4\iota)/8$, panel (a) of Figure [](/paper/#fig:quadrupole). Edge-on it is
 $\tfrac18$: the amplitude is halved, which quarters the power, and one polarization is gone, which halves it
 again. Averaged over the sky the curve is $\tfrac25$, so the total power is $\tfrac85\pi r^2$ times the flux on the
 axis, which gives the dumbbell's power again. Panel (b) shows $\lambda/d$ against the speed of the moving parts.
@@ -165,7 +165,7 @@ The camera sees shear and lopsided motion, not pressure.[^silent]
 A pair turning once a second sends waves 150,000 km long, and a room is deep inside their near zone, which reaches
 $\lambda/2\pi = 23{,}900$ km
 ([5.2](/tutorial/waves/retarded-waves/#beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1)).
-Nothing is resolved, but the tide there still turns with each pair. To show each pair as a spot, the figure below sets
+Nothing is resolved, but the tide there still turns with each pair. To show each pair as a spot, Figure [](/paper/#fig:which-way) sets
 the speed of light, and of gravity with it, to $0.20\unit{m\,s^{-1}}$. A pair turning once a second then sends waves
 at 2 Hz, $0.20/2 = 0.10$ m long. The balls, 0.44 m apart, move at $\Omega d/2 = 1.38\unit{m\,s^{-1}}$, 6.9 times the
 slowed light, and each pair is 4.4 wavelengths across, so the dumbbell's power would not hold. The polarization does

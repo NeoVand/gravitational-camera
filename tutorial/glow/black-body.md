@@ -304,7 +304,7 @@ T/2\pi\hbar$:
 
 {{paper fig:regimes}}
 
-The figure above places a source at room temperature at $f = 2.82\,\kB T/2\pi\hbar$, which is 17.6 THz at 300 K.
+Figure [](/paper/#fig:regimes) places a source at room temperature at $f = 2.82\,\kB T/2\pi\hbar$, which is 17.6 THz at 300 K.
 Silicon's Raman line at 15.6 THz (section 8.3) sits at $x = 2.56$ at 293 K, close to the energy peak (section 10.3). At
 the energy peak the occupation is $\bar n = 1/(e^{2.821} - 1) = 0.063$, and at the count's peak 0.255: most modes are
 empty, so the glow is quantum, not classical.

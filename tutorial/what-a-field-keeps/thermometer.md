@@ -296,7 +296,7 @@ Solving for $R$ and putting in $N_\ell$ gives the boxed formula.
 :::
 
 The radii are $R_\ell/r_s = 1.0175$, $1.4555$,
-$1.6100$, $1.6868$ and $1.7324$ for $\ell = 2$ to 6, or 1.02, 1.46, 1.61, 1.69 and 1.73 (panel (c)).
+$1.6100$, $1.6868$ and $1.7324$ for $\ell = 2$ to 6, or 1.02, 1.46, 1.61, 1.69 and 1.73 (panel (c) of Figure [](/paper/#fig:hole-response)).
 Each $\Gamma_\ell$ comes from the integration of the last section with $V_\ell = (1 - 2/r)[\ell(\ell + 1)/r^2 -
 6/r^3]$ in place of $V_2$. At low frequency $\Gamma_\ell \propto x^{2\ell+2}$, so every integrand
 $\Gamma_\ell x^{-2\ell}$ rises from zero as $x^2$. The integrals are $\int_0^\infty\Gamma_\ell x^{-2\ell}\,\dd x =

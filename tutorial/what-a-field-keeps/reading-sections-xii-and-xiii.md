@@ -63,7 +63,7 @@ $7\log_2\SNR$ bits: 139.5 at $10^6$ and 1628 at $10^{70}$. The ratios are 8.4 an
 
 {{paper fig:hair}}
 
-Panel (a) shows the totals $\int\matter\rho\,r^2\,\dd V$ in units of $\sym{mass}{\matter M}R^2$. A uniform ball gives
+Panel (a) of Figure [](/paper/#fig:hair) shows the totals $\int\matter\rho\,r^2\,\dd V$ in units of $\sym{mass}{\matter M}R^2$. A uniform ball gives
 $\tfrac35 = 0.60$. A shell between $0.92R$ and $R$ gives $\tfrac35(1 - 0.92^5)/(1 - 0.92^3) = 0.924$. A rock whose core
 of $0.4R$ holds half the mass, both parts uniform, gives $\tfrac12\cdot\tfrac35\cdot0.4^2 +
 \tfrac12\cdot\tfrac35(1 - 0.4^5)/(1 - 0.4^3) = 0.365$. The impulses along $(x, -y)$ are the gradient of the profile

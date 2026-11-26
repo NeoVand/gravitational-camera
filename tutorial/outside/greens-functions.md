@@ -354,7 +354,7 @@ the nugget's own value to $10^{-14}$.
 
 {{paper fig:same-outside}}
 
-Panel (c) of the figure draws this skin. Section 2.5 uses it as the third of three bodies that a camera outside cannot
+Panel (c) of Figure [](/paper/#fig:same-outside) draws this skin. Section 2.5 uses it as the third of three bodies that a camera outside cannot
 tell apart.
 
 ::: try {#image-charge}

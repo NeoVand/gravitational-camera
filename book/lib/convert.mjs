@@ -241,7 +241,7 @@ export function convertSection(ctx) {
 		if (!paper.known(label)) warn(`link to an unknown paper label "${label}"`);
 		const number = paper.number(label);
 		// a paper figure shown in the book is referred to by its number in the book
-		const embed = label.startsWith('fig:') ? ctx.paperFigureLabel(label, id) : undefined;
+		const embed = label.startsWith('fig:') ? (ctx.paperFigureHome?.(label) ?? ctx.paperFigureLabel(label, id)) : undefined;
 		paperItem(label);
 		if (!text.length) return embed ? [Raw(`\\ref{${embed}}`)] : [Str(paperInText(label, number))];
 		return inlines(text);
@@ -259,7 +259,10 @@ export function convertSection(ctx) {
 				return inlines(text);
 			}
 			if (target.startsWith('eq:')) return text.length ? hyper(label, inlines(text)) : [Raw(`\\eqref{${label}}`)];
-			if (target.startsWith('fig:')) return text.length ? hyper(label, inlines(text)) : [Raw(`\\ref{${label}}`)];
+			if (target.startsWith('fig:')) {
+				const to = ctx.figureAlias?.(target) ?? label;
+				return text.length ? hyper(to, inlines(text)) : [Raw(`\\ref{${to}}`)];
+			}
 			if (text.length) return hyper(label, inlines(text));
 			const title = own.headers.get(target);
 			if (!title) {
@@ -541,6 +544,12 @@ export function convertSection(ctx) {
 		const name = String(image.c[2][0]);
 		// a hero drawing (the site's banner for a part) appears only if the text refers to it
 		if (/-hero$/.test(name) && !ctx.figureReferenced?.(fid)) return [];
+		// a drawing printed in an earlier section: a pointer in the margin
+		const home = ctx.ownFigureHome?.(name);
+		if (home && home.sid !== id) {
+			st.pending.push([Raw(`\\gcfigback{${lab(home.sid, home.fid)}}`)]);
+			return [];
+		}
 		const pdf = ctx.figurePdf(name);
 		if (!pdf) {
 			warn(`figure ${fid}: no drawing ${name}`);
@@ -570,10 +579,17 @@ export function convertSection(ctx) {
 			return [];
 		}
 		const label = ctx.paperFigureLabel(figLabel, id, true);
+		// printed in an earlier section: a pointer in the margin
+		const home = ctx.paperFigureHome?.(figLabel);
+		if (home && home !== label) {
+			st.pending.push([Raw(`\\gcfigback{${home}}`)]);
+			return [];
+		}
 		const opener = takeOpener(top) && !fig.wide;
 		st.firstDrawing ??= fig.files[0];
 		st.figures++;
-		const graphics = fig.files.map((f) => `\\gcgraphic{${f}}`).join('\n');
+		// the paper's figures are drawn at the size they are printed in the paper
+		const graphics = fig.files.map((f) => `\\gcgraphic[1]{${f}}`).join('\n');
 		// the book's own caption (book/paper-captions.yaml) if it has one, else the paper's, stripped of its references
 		const own = ctx.paperCaption(figLabel);
 		const caption = own

@@ -170,25 +170,30 @@
   {\normalfont\normalsize\itshape}{}{0pt}{}[.]
 \titlespacing*{\paragraph}{0pt}{1.5ex plus .5ex}{0.6em}
 
-% the contents
-\contentsmargin{2.4em}
+% the contents: every page number flush right in one column of 9 mm, whatever the size of its line; the labels in
+% fixed columns of 9 mm (parts, chapters) and 9 mm more (sections)
+\renewcommand\@pnumwidth{9mm}
+\renewcommand\@tocrmarg{12mm}
+\contentsmargin{9mm}
+\newcommand\gc@tocpage{\hfill\hbox to 9mm{\hfil\thecontentspage}\hspace*{-9mm}}
+\newcommand\gc@tocdots{\leaders\hbox to 0.65em{\hss.\hss}\hfill\hbox to 9mm{\hfil\thecontentspage}\hspace*{-9mm}}
 \titlecontents{part}[0pt]
-  {\addvspace{4.5ex}\normalfont\large}
-  {\makebox[2.4em][l]{\thecontentslabel}}{}
-  {\hfill\contentspage}[\addvspace{1ex}]
-\titlecontents{chapter}[2.4em]
-  {\addvspace{1.6ex}\normalfont\normalsize}
-  {\contentslabel{2.4em}}{\hspace*{-2.4em}}
-  {\hfill\contentspage}
-\titlecontents{section}[5.0em]
-  {\normalfont\small\color{black!80}}
-  {\contentslabel{2.6em}}{}
-  {\titlerule*[0.7pc]{.}\contentspage}
-% the chapters of a part, on its title page
-\titlecontents{pchapter}[2.4em]
+  {\addvspace{3.2ex}\normalfont\large}
+  {\makebox[9mm][l]{\thecontentslabel}}{}
+  {\gc@tocpage}[\addvspace{0.8ex}]
+\titlecontents{chapter}[9mm]
   {\addvspace{1.1ex}\normalfont\normalsize}
-  {\contentslabel{2.4em}}{}
-  {\hfill\contentspage}
+  {\contentslabel{9mm}}{\hspace*{-9mm}}
+  {\gc@tocpage}
+\titlecontents{section}[18mm]
+  {\normalfont\small\color{black!80}}
+  {\contentslabel{9mm}}{}
+  {\gc@tocdots}
+% the chapters of a part, on its title page
+\titlecontents{pchapter}[9mm]
+  {\addvspace{1.1ex}\normalfont\normalsize}
+  {\contentslabel{9mm}}{}
+  {\gc@tocpage}
 
 % \bookpart{I}{title}: a right-hand page with the part's number, its title and its chapters
 \renewcommand\thepart{\Roman{part}}
@@ -236,7 +241,9 @@
 \newcommand\bookappendices{%
   \appendix
   \cleardoublepage\phantomsection
-  \addcontentsline{toc}{part}{\protect\numberline{}Appendices}}
+  \addcontentsline{toc}{part}{\protect\numberline{}Appendices}%
+  % the appendices' sections are worked examples and checks, listed in their chapters, not here
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
 \newcommand\bookappendix[4]{%
   \chapter[\texorpdfstring{#1}{#4}]{#1}\label{#2}%
   \markboth{Appendix \thechapter\quad #3}{Appendix \thechapter\quad #3}%
@@ -343,28 +350,27 @@
 \setlength\textfloatsep{11pt plus 3pt minus 3pt}
 \setlength\floatsep{9pt plus 3pt minus 2pt}
 \newsavebox\gc@figbox
-% \gcgraphic{file}: the drawing at 85% of its own size, shrunk to the line if it is wider and to 45% of the page if taller
+% \gcgraphic[scale]{file}: the drawing at 85% of its own size (or the scale given), shrunk to the line if it is wider
+% and to 45% of the page if taller
 \newcommand\gc@figheight{0.45}
-\newcommand\gcgraphic[1]{%
-  \sbox\gc@figbox{\includegraphics[scale=0.85]{#1}}%
+\newcommand\gcgraphic[2][0.85]{%
+  \gc@graphic{#1}{#2}}
+\newcommand\gc@graphic[2]{%
+  \sbox\gc@figbox{\includegraphics[scale=#1]{#2}}%
   \ifdim\wd\gc@figbox>\linewidth
-    \sbox\gc@figbox{\includegraphics[width=\linewidth]{#1}}\fi
+    \sbox\gc@figbox{\includegraphics[width=\linewidth]{#2}}\fi
   \ifdim\ht\gc@figbox>\gc@figheight\textheight
-    \sbox\gc@figbox{\includegraphics[height=\gc@figheight\textheight]{#1}}\fi
+    \sbox\gc@figbox{\includegraphics[height=\gc@figheight\textheight]{#2}}\fi
   \usebox\gc@figbox}
-% a table at its natural width; one wider than the line reaches into the margin, and only one wider than that is
-% shrunk
-\newcommand\gcfittable[1]{%
+% \gcfittable{natural}{wrapped}: a table at its natural width, centred, if it fits the line; else its wrapped form (the
+% second argument, columns of paragraphs as wide as the line), or, if it has none, the natural one shrunk to the line
+\newcommand\gcfittable[2]{%
   \sbox\gc@figbox{#1}%
   \ifdim\wd\gc@figbox>\linewidth
-    \begin{adjustwidth*}{0pt}{-\dimexpr\marginparsep+\marginparwidth\relax}%
-    \noindent\ifdim\wd\gc@figbox>\linewidth\resizebox{\linewidth}{!}{\usebox\gc@figbox}\else\usebox\gc@figbox\fi
-    \end{adjustwidth*}%
+    \if\relax\detokenize{#2}\relax\resizebox{\linewidth}{!}{\usebox\gc@figbox}\else#2\fi
   \else\usebox\gc@figbox\fi}
-% a figure that spans the text and the margin (the paper's two-column figures)
-\newenvironment{gcwide}
-  {\begin{adjustwidth*}{0pt}{-\dimexpr\marginparsep+\marginparwidth\relax}}
-  {\end{adjustwidth*}}
+% the paper's two-column figures: in the text block like every other figure (shrunk to its width)
+\newenvironment{gcwide}{}{}
 % the figure that opens a chapter, under its title
 \newenvironment{gcopener}
   {\par\vspace*{-2mm}\noindent\begin{minipage}{\linewidth}\centering\captionsetup{type=figure}%
@@ -381,10 +387,24 @@
   \noindent{\small\scshape #1}%
   \if\relax\detokenize{#2}\relax\else{\small\scshape:}\enspace{\small\itshape #2}\fi\par\nobreak
   \vspace{0.25\baselineskip}\nobreak}
+% A box inside a box (a gap note in a derivation) has no rules of its own, which would stack on its parent's: it is
+% set in from the left under its title.
+\newcounter{gc@boxdepth}
 \newenvironment{gc@box}[3]
-  {\par\addvspace{1.1\baselineskip}\gc@boxrule\nobreak\vspace{0.3\baselineskip}\nobreak
-   \gc@boxtitle{#1}{#2}#3\@afterindentfalse\@afterheading}
-  {\par\nobreak\vspace{0.35\baselineskip}\gc@boxrule\addvspace{1.1\baselineskip}}
+  {\stepcounter{gc@boxdepth}%
+   \ifnum\value{gc@boxdepth}>1
+     \par\addvspace{0.8\baselineskip}\begin{adjustwidth}{1.4em}{0pt}%
+     \gc@boxtitle{#1}{#2}#3\@afterindentfalse\@afterheading
+   \else
+     \par\addvspace{1.1\baselineskip}\gc@boxrule\nobreak\vspace{0.3\baselineskip}\nobreak
+     \gc@boxtitle{#1}{#2}#3\@afterindentfalse\@afterheading
+   \fi}
+  {\ifnum\value{gc@boxdepth}>1
+     \par\end{adjustwidth}\addvspace{0.5\baselineskip}%
+   \else
+     \par\nobreak\vspace{0.35\baselineskip}\gc@boxrule\addvspace{1.1\baselineskip}%
+   \fi
+   \addtocounter{gc@boxdepth}{-1}}
 \newenvironment{gcderivation}[1]{\begin{gc@box}{Derivation}{#1}{}}{\end{gc@box}}
 \newenvironment{gcexample}[1]{\begin{gc@box}{Worked example}{#1}{}}{\end{gc@box}}
 \newenvironment{gcgap}{\begin{gc@box}{What this sketch leaves out}{}{\small}}{\end{gc@box}}
@@ -429,6 +449,8 @@
 \urlstyle{same}
 
 % added: cross-references into the front matter (no number), and the credit of a figure taken from the paper
+% where a figure printed earlier is meant: its number and page, in the margin
+\newcommand\gcfigback[1]{Figure~\ref{#1}\enspace$\to$\,p.\,\pageref{#1}}
 \newcommand\gcxrefp[2]{#1\enspace$\to$\,p.\,\pageref{#2}}
 \newcommand\gcpapercredit[1]{\unskip\enspace{\footnotesize[{\scshape paper}, Fig.~#1]}}
 

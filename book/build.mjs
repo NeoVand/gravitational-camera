@@ -184,6 +184,19 @@ for (const id of sections) {
 	const src = readFileSync(path.join(TUTORIAL, `${entries.get(id).slug}.md`), 'utf8');
 	for (const m of src.matchAll(/\(#(fig:[a-z0-9-]+)\)/g)) referencedFigures.add(m[1]);
 }
+// a drawing of the tutorial used in more than one section is printed once, where the book first reaches it
+const ownFigureHome = new Map();
+const ownFigureAlias = new Map();
+for (const id of sections) {
+	const src = readFileSync(path.join(TUTORIAL, `${entries.get(id).slug}.md`), 'utf8');
+	for (const m of src.matchAll(/\]\((tut-[a-z0-9-]+)\)\{#(fig:[a-z0-9-]+)\}/g)) {
+		const home = ownFigureHome.get(m[1]);
+		if (!home) ownFigureHome.set(m[1], { sid: id, fid: m[2] });
+		else if (home.sid !== id) ownFigureAlias.set(`${id}|${m[2]}`, `${home.sid}:${home.fid}`);
+	}
+}
+// a paper figure is printed once too, at its first place in the book
+const paperFigureHome = (fig) => paperFigs.get(fig)?.find((e) => included.has(e.sid))?.label;
 const converted = new Map();
 const counts = { exercises: 0, figures: 0 };
 await pool(sections, JOBS, async (id) => {
@@ -202,6 +215,9 @@ await pool(sections, JOBS, async (id) => {
 		bySlug,
 		anchors: (sid) => anchors.get(sid) ?? { headers: new Map(), all: new Set() },
 		paperFigureLabel: labelFor,
+		paperFigureHome,
+		ownFigureHome: (name) => ownFigureHome.get(name),
+		figureAlias: (fid) => ownFigureAlias.get(`${id}|${fid}`),
 		figurePdf: (name) => figurePdfs.get(name),
 		figureReferenced: (fid) => referencedFigures.has(fid),
 		glossary: termsBySection.get(id) ?? [],
@@ -257,7 +273,29 @@ function tabulars(tex) {
 		// a caption of a longtable (none in the tutorial) would be lost: keep its text above
 		const caption = head.match(/\\caption\{([\s\S]*?)\}\\tabularnewline/);
 		head = head.replace(/\\caption[\s\S]*?\\tabularnewline/, '');
-		return `${caption ? `{\\small ${caption[1]}}\\par\n` : ''}\\begin{center}\\small\n\\gcfittable{\\begin{tabular}{${spec}}\n${head.trim()}\n${rows.trim()}\n${foot.trim()}\n\\end{tabular}}\n\\end{center}`;
+		const inner = `${head.trim()}\n${rows.trim()}\n${foot.trim()}`;
+		const tab = (sp) => `\\begin{tabular}{${sp}}\n${inner}\n\\end{tabular}`;
+		// a table of wrapping columns is set at its natural width if that fits the line, and only otherwise wraps,
+		// with each column as wide as its longest entry asks
+		const cols = [...spec.matchAll(/>\{\\(raggedright|raggedleft|centering)\\arraybackslash\}p\{\(\\linewidth - (\d+)\\tabcolsep\) \* \\real\{([\d.]+)\}\}/g)];
+		let fit = `\\gcfittable{${tab(spec)}}{}`;
+		if (cols.length) {
+			const natural = spec.replace(/>\{\\(raggedright|raggedleft|centering)\\arraybackslash\}p\{[^{}]*\{[\d.]+\}\}/g, (m, a) => ({ raggedright: 'l', raggedleft: 'r', centering: 'c' })[a]);
+			const lengths = cols.map(() => 4);
+			for (const line of inner.split('\\\\')) {
+				const cells = line.replace(/\\(toprule|midrule|bottomrule)(\\noalign\{\})?/g, '').split(/(?<!\\)&/);
+				if (cells.length !== cols.length) continue;
+				cells.forEach((c, k) => {
+					const text = c.replace(/\\[a-zA-Z@]+/g, 'x').replace(/[{}$\\^_]/g, '').replace(/\s+/g, ' ').trim();
+					lengths[k] = Math.max(lengths[k], Math.min(text.length, 70));
+				});
+			}
+			const total = lengths.reduce((a, b) => a + b, 0);
+			let k = 0;
+			const wrapped = spec.replace(/\\real\{[\d.]+\}/g, () => `\\real{${(lengths[k++] / total).toFixed(4)}}`);
+			fit = `\\gcfittable{${tab(natural)}}{${tab(wrapped)}}`;
+		}
+		return `${caption ? `{\\small ${caption[1]}}\\par\n` : ''}\\begin{center}\\small\n${fit}\n\\end{center}`;
 	});
 }
 
