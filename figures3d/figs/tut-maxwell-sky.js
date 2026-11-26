@@ -1,23 +1,26 @@
 // The tutorial, section 6.6 (tutorial/relativity/maxwell-complex.md), its fourth diagram: light's two special
 // directions for a charge at rest and for the same charge moving at 0.9c, in the style of the bottom row of the paper's
-// Figure 'stars' (figs/stars.js). Two skies, one above the other, each the sky round the sensor seen from outside, a
-// little from above and turned (the paper's view, mirrored so that the charge, along +x, stands to the right and in
-// front): a circle for the sky, a veil of the page's neutral tint over everything behind it; a faint equator and a
-// faint meridian, solid in front and dashed behind; the sensor at the centre as a small ring. Above, "charge at rest":
-// the charge as a small ink disc along +x, outside the sky, and a thin dashed line from it through the centre; on it,
-// on the sky, the two directions +-x as dots in the light role's colour (the one at -x behind, seen through the
-// veil). Below, "moving at 0.9c": the charge, its dashed line to the centre, and an arrow along +y from it in the
-// observer's colour, named "0.9c"; open circles at the places at rest, +-x; the two directions (+-0.436, 0.9, 0) as dots
-// in the light role's colour, each with a thin path from its open circle (the directions at every speed from 0 to
-// 0.9c, along the great circle z = 0, dashed where it runs behind); a thin dashed line between the two dots, and an
-// arrow from the centre to its middle, (0, 0.9, 0), in the observer's colour, named "half sum = v_perp/c".
-// Departures from the diagram's comment: the skies are stacked at every width, not side by side at 1440 px (the site
-// shows one drawing at every width, as 6.2's tut-vectors-gradient). As in the paper's figure, the line through the
-// charge runs to the centre in the lower sky too, the two dots there are joined by a dashed line whose middle the
-// arrow from the centre reaches, and the paths run dashed and veiled where they pass behind. The arrow 0.9c is drawn
-// at the same scale as the half sum, 0.9 of the sky's radius, so that the two can be compared; the half sum's name is
-// set on two lines, to fit between the arrow and the meridian. The meridian is the one through the poles +-y and the
-// direction (-0.27, 0, 0.96), which keeps clear of the arrows and the dots.
+// Figure 'stars' (figs/stars.js). Two skies, one above the other (side by side in the book), each the sky round the
+// sensor seen from outside, a little from above and turned (the paper's view, mirrored so that the charge, along +x,
+// stands to the right and in front): a circle for the sky, a veil of the page's neutral tint over everything behind it;
+// a faint equator and a faint meridian, solid in front and dashed behind; the sensor at the centre as a small ring.
+// Above, "charge at rest": the charge as a small ink disc along +x, outside the sky, and a thin dashed line from it
+// through the centre; on it, on the sky, the two directions +-x as dots in the light role's colour (the one at -x
+// behind, seen through the veil). Below, "moving at 0.9c": the charge, its dashed line to the centre, and an arrow
+// along +y from it in the observer's colour, named "0.9c"; open circles at the places at rest, +-x; the two directions
+// (+-0.436, 0.9, 0) as dots in the light role's colour, each with a thin path from its open circle (the directions at
+// every speed from 0 to 0.9c, along the great circle z = 0, dashed where it runs behind); a thin dashed line between
+// the two dots, and an arrow from the centre to its middle, (0, 0.9, 0), in the observer's colour, named "half sum =
+// v_perp/c".
+// Departures from the diagram's comment: on the site the skies are stacked at every width, not side by side at 1440 px
+// (the site shows one drawing at every width, as 6.2's tut-vectors-gradient). In the printed book (figureLayout
+// 'book') they stand side by side as the comment asks, at rest at the left and moving at the right, level, the titles
+// on one line, each sky 80 points in radius (the site's 84) so that the pair fits the text width. As in the paper's
+// figure, the line through the charge runs to the centre in the lower sky too, the two dots there are joined by a
+// dashed line whose middle the arrow from the centre reaches, and the paths run dashed and veiled where they pass
+// behind. The arrow 0.9c is drawn at the same scale as the half sum, 0.9 of the sky's radius, so that the two can be
+// compared; the half sum's name is set on two lines, to fit between the arrow and the meridian. The meridian is the one
+// through the poles +-y and the direction (-0.27, 0, 0.96), which keeps clear of the arrows and the dots.
 // Exact: the directions (the roots z = 0.9i +- 0.436 of m(z).F = 0 for F = E (-1, 0, 0.9i), and +-1 at rest, mapped to
 // the sky by the stereographic coordinate), their paths (the roots at every speed, asserted on z = 0), the half sum
 // (0, 0.9, 0) and the arrow 0.9c (asserted in tut-maxwell-lib.js), all in one orthographic view. Schematic: the
@@ -30,7 +33,9 @@ import { chapter, palette, OBS, LIGHT, viewer, directions, SPEED } from './tut-m
 const name = 'tut-maxwell-sky';
 const check = checker(name);
 
-const R = 84;                              // the sky's radius, points
+const BOOK = globalThis.figureLayout === 'book';
+const R = BOOK ? 80 : 84;                  // the sky's radius, points (the book's two side by side within the text width)
+const BESIDE = 30;                         // the book's: the air between the charge at rest and the moving sky
 const TURN = -25, TILT = 14;               // the view: the paper's (figs/stars.js), turned the other way
 const SKY = '#eeebe5', VEIL = 0.72;        // the paper's veil (drawing.ts, THEME: a neutral tint of the page)
 const CIRCLE = 0.4, OUTLINE = 0.5;         // the great circles, the sky's outline
@@ -178,12 +183,16 @@ export default async function () {
 	L.push(t1);
 	const c1 = [left + 10 + R, t1.box.b + ROW + R];
 	L.push(...await sky(c1, false));
-	const t2 = await placed(`\\text{moving at } ${SPEED}c`, left, c1[1] + R + APART, 0, 0, INK);
+	// the moving sky: below on the site; in the book at the right, level, its title on the same line as the first
+	const right1 = Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[0] + m.r)));
+	const left2 = BOOK ? right1 + BESIDE - 10 : left;
+	const t2 = await placed(`\\text{moving at } ${SPEED}c`, left2, BOOK ? ORIGIN - 300 : c1[1] + R + APART, 0, 0, INK);
 	L.push(t2);
-	const c2 = [c1[0], t2.box.b + ROW + R];
+	const c2 = [left2 + 10 + R, BOOK ? c1[1] : t2.box.b + ROW + R];
+	check(!BOOK || near(t1.box.t, t2.box.t, 1e-9), 'the two titles are not on one line');
 	L.push(...await sky(c2, true));
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, radius: R };
-	return finish(S, L, [200, 340]);
+	return finish(S, L, BOOK ? [380, 460] : [200, 340]);
 }

@@ -1,30 +1,32 @@
 // The tutorial, section 6.3 (tutorial/relativity/aberration.md), its third diagram: the whole sky of a moving
-// observer. Two round panels, one above the other, each a disc showing the whole sky in the equal-area projection
-// centred on the direction of motion: the centre is straight ahead, the rim straight behind, and a point at the angle
-// alpha from the direction of motion lies sin(alpha/2) of the rim's radius out, so that equal areas of sky get equal
-// areas of disc. Above, "at rest": 400 stars, small ink dots, equally spaced in area (a Fibonacci lattice on the
-// sphere, which the projection turns into a sunflower), and the circle alpha = 90 degrees, the boundary of the forward
-// half, thin and dashed, named "90 degrees". Below, "at 0.9c": the same stars moved by cos alpha' = (cos alpha +
-// beta)/(1 + beta cos alpha), each keeping its azimuth, and each coloured by its Doppler factor
+// observer. Two round panels, one above the other (side by side in the book), each a disc showing the whole sky in
+// the equal-area projection centred on the direction of motion: the centre is straight ahead, the rim straight
+// behind, and a point at the angle alpha from the direction of motion lies sin(alpha/2) of the rim's radius out, so
+// that equal areas of sky get equal areas of disc. Above, "at rest": 400 stars, small ink dots, equally spaced in area
+// (a Fibonacci lattice on the sphere, which the projection turns into a sunflower), and the circle alpha = 90 degrees,
+// the boundary of the forward half, thin and dashed, named "90 degrees". Below, "at 0.9c": the same stars moved by cos
+// alpha' = (cos alpha + beta)/(1 + beta cos alpha), each keeping its azimuth, and each coloured by its Doppler factor
 // 1/[gamma(1 - beta cos alpha')] on the paper's diverging scale (tut-aberration-lib.js, `shift`), blue above 1 and
 // orange below, with a colour bar at its right from 0.23 to 4.36, the factors straight behind and straight ahead,
 // e^{-+eta}; the image of the circle alpha = 90 degrees, at alpha' = 25.8 degrees, thin and dashed, named "25.8
 // degrees".
-// Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (as
-// section 6.2's tut-vectors-gradient): side by side each disc would be about 150 points across and would be shrunk on a
-// phone, where the crowded stars ahead would merge. The colour bar is graded in proportion to the logarithm of the
-// factor, so that a factor and its inverse lie equally far from 1, and is ticked at 0.23, 0.5, 1, 2 and 4.36. The
-// middle of the scale, a factor of 1, is the neutral faint ink rather than the page's colour, which the paper's scale
-// uses, so that the stars there are still seen. The stars are too close for a name to sit among them, so each dashed
-// circle is named outside its disc, with a thin leader to the circle, at the azimuth where the leader passes farthest
-// from the stars.
+// Departures from the diagram's comment: on the site the panels are stacked at every width, not side by side at
+// 1440 px (as section 6.2's tut-vectors-gradient): side by side each disc would be about 150 points across and would be
+// shrunk on a phone, where the crowded stars ahead would merge. In the printed book (figureLayout 'book') they stand
+// side by side as the comment asks, "at rest" at the left and "at 0.9c" at the right with the colour bar at its right,
+// the discs at the site's size, on one level, 26 points of air between their rims, the titles on one baseline. The
+// colour bar is graded in proportion to the logarithm of the factor, so that a factor and its inverse lie equally far
+// from 1, and is ticked at 0.23, 0.5, 1, 2 and 4.36. The middle of the scale, a factor of 1, is the neutral faint ink
+// rather than the page's colour, which the paper's scale uses, so that the stars there are still seen. The stars are
+// too close for a name to sit among them, so each dashed circle is named outside its disc, with a thin leader to the
+// circle, at the azimuth where the leader passes farthest from the stars.
 // Exact: every star's place on both discs (the lattice, the projection and eq:source-angle, asserted star by star),
-// its colour (eq:doppler-seen, asserted against gamma(1 + beta cos alpha)), the two circles' radii, R sin 45 degrees and
-// R sin 12.9 degrees, and the bar's ticks. Schematic: the dots' size.
-import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, HAIR, TICK } from './tut-pot-lib.js';
+// its colour (eq:doppler-seen, asserted against gamma(1 + beta cos alpha)), the two circles' radii, R sin 45 degrees
+// and R sin 12.9 degrees, and the bar's ticks. Schematic: the dots' size.
+import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, HAIR, TICK, SIZE, boxOf } from './tut-pot-lib.js';
 import { DASH } from './tut-bessel-lib.js';
 import { THIN } from './tut-fourier-lib.js';
-import { INK, DIM } from '../lib.js';
+import { INK, DIM, tex } from '../lib.js';
 import { chapter, palette, STARS, N_STARS, BETA_SKY, GAMMA_SKY, ETA_SKY, seen, doppler, disc, shift, rad } from './tut-aberration-lib.js';
 
 const name = 'tut-aberration-sky';
@@ -32,7 +34,9 @@ const check = checker(name);
 
 const R = 92;                              // a disc's radius, points
 const STAR = 0.65;                         // a star's radius, points
-const APART = 18;                          // the air between the upper disc and the lower panel's title, points
+const APART = 18;                          // the site's: the air between the upper disc and the lower panel's title, points
+const BOOK = globalThis.figureLayout === 'book';
+const BESIDE = 26;                         // the book's: the air between the two discs' rims, points
 const BAR = { w: 5.5, h: 1.5 * R, gap: 16 }; // the colour bar: its width, its height, its air from the lower disc
 const STEPS = 90;                          // the bar's bands
 const TICKS = [[Math.exp(-ETA_SKY), '0.23'], [0.5, '0.5'], [1, '1'], [2, '2'], [Math.exp(ETA_SKY), '4.36']];
@@ -68,10 +72,18 @@ export default async function () {
 	}
 
 	/** One panel: its title at the top, its disc under it. Returns the disc's centre and its bottom. */
-	async function panel(top, title, stars, colour, ring, ringName, what) {
-		const t = await placed(title, x0, top, 0.5, 0, INK);
+	async function panel(top, title, stars, colour, ring, ringName, what, x = x0) {
+		// in the book the two titles stand side by side, on one baseline at `top`, the discs 7 points under it
+		let t, c;
+		if (BOOK) {
+			const g = await tex(title, [x, top], SIZE, 'cB', INK);
+			t = { src: title, svg: g, box: boxOf(g) };
+			c = [x, top + 7 + R];
+		} else {
+			t = await placed(title, x, top, 0.5, 0, INK);
+			c = [x, t.box.b + 7 + R];
+		}
 		L.push(t);
-		const c = [x0, t.box.b + 7 + R];
 		S.path(Array.from({ length: 241 }, (_, k) => [c[0] + R * Math.cos((2 * Math.PI * k) / 240), c[1] - R * Math.sin((2 * Math.PI * k) / 240)]), { color: DIM, width: HAIR, layer: 1, what: `${what}: the rim` });
 		const pts = stars.map((s) => [c[0] + R * disc(s.alpha) * Math.cos(s.phi), c[1] - R * disc(s.alpha) * Math.sin(s.phi)]);
 		pts.forEach((p, i) => {
@@ -101,13 +113,17 @@ export default async function () {
 	}
 
 	// ---- above, at rest: all ink; the circle alpha = 90 degrees
-	const up = await panel(ORIGIN - 2 * R - 40, '\\text{at rest}', STARS, () => INK, rad(90), '90^\\circ', 'at rest');
+	// (in the book: at the left, the moving sky at its right, the colour bar at the right of both)
+	const up = await panel(BOOK ? ORIGIN - R - 20 : ORIGIN - 2 * R - 40, '\\text{at rest}', STARS, () => INK, rad(90), '90^\\circ', 'at rest', BOOK ? ORIGIN - R - BESIDE / 2 - 20 : x0);
 	// ---- below, at 0.9c: coloured by the Doppler factor; the circle's image at alpha' = 25.8 degrees
 	const cone = seen(rad(90), BETA_SKY);
 	check((cone * 180 / Math.PI).toFixed(1) === '25.8' && near(cone * 180 / Math.PI, nums.cone, 1e-12), `the cone ${cone}`);
 	check(near(disc(cone), Math.sqrt((1 - BETA_SKY) / 2), 1e-15), 'the cone\'s circle does not hold a twentieth of the disc');
 	const factor = (s) => doppler(s.alpha, BETA_SKY);
-	const down = await panel(up.bottom + APART, '\\text{at } 0.9c', moved, (s) => shift(factor(s)), cone, '25.8^\\circ', 'at 0.9c');
+	const down = BOOK
+		? await panel(ORIGIN - R - 20, '\\text{at } 0.9c', moved, (s) => shift(factor(s)), cone, '25.8^\\circ', 'at 0.9c', up.c[0] + 2 * R + BESIDE)
+		: await panel(up.bottom + APART, '\\text{at } 0.9c', moved, (s) => shift(factor(s)), cone, '25.8^\\circ', 'at 0.9c');
+	if (BOOK) check(near(up.c[1], down.c[1], 1e-9), `the two discs are not on one level: ${up.c[1]}, ${down.c[1]}`);
 	moved.forEach((m, i) => check(near(factor(m), GAMMA_SKY * (1 + BETA_SKY * Math.cos(STARS[i].alpha)), 1e-12), `star ${i}'s factor`));
 	const factors = moved.map(factor);
 	check(Math.max(...factors) <= nums.ahead + 1e-12 && Math.min(...factors) >= nums.behind - 1e-12, 'a factor outside the bar');
@@ -139,5 +155,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums };
-	return finish(S, L, [200, 300]);
+	return finish(S, L, BOOK ? [400, 460] : [200, 300]);
 }

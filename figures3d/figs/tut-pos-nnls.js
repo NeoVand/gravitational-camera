@@ -6,14 +6,17 @@
 // The best positive scene (0.87, 0) lies on the edge m2 = 0 (filled dot, in matter's colour, the colour of the
 // positive image there), where the contour f = 0.066 touches the m1 axis (drawn darker than the others). From it a
 // short arrow points downhill, along minus the slopes (0, 0.28): straight down, out of the quarter, into negative m2. The
-// window runs from -0.55 to 1.8 across and -1.0 to 1.0 up, so that it holds the touching contour whole.
-// Exact: the contours f = 0.066 s^2 for s = 1, 2.4 and 3.8, each the closed form m* + sqrt(f) A^{-1}(cos t, sin t)
-// (A^T A = A^2), sampled every fifth of a point, cut only where it leaves the drawn window, where it passes behind the
+// window runs from -0.4 to 2.95 across and -2.12 to 1.2 up, so that it holds every contour whole, with air about it
+// (asserted): the bowl is shown entire, nothing is clipped by the frame.
+// Exact: the contours f = 0.066 s^2 for s = 1, 2.1 and 3.2, each the closed form m* + sqrt(f) A^{-1}(cos t, sin t)
+// (A^T A = A^2), sampled every fifth of a point, cut only where it passes behind the
 // label "best signed" (set beside its ring in the direction that cuts least) and where the touching contour runs within
 // 0.55 pt of the m1 axis (where the two strokes overlap); the two minima and the slopes, from the chapter's formulas
 // and asserted against its numbers (1.28, -0.47; 0.87; 2.72 m1 - 2.36; (-0.13, 0.22); +0.28;
 // 0.066); the touching contour's tangency at (0.87, 0) and the slope at right angles to the axis there. Schematic: the
-// arrow's length (it is drawn shorter than the slope, so that it stays inside the touching contour).
+// arrow's length (it is drawn shorter than the slope, so that it stays inside the touching contour), the choice of
+// the contours (f0 times 1, 2.1^2 and 3.2^2) and of the window, chosen so that every contour is whole and the label
+// "best positive" crosses none.
 import { INK, DIM, FAINT, ACCENT } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, AXIS, AXIS_HEAD, VEC, LABEL_GAP } from './tut-pot-lib.js';
 import { longest } from './tut-fourier-lib.js';
@@ -55,11 +58,12 @@ function mathematics() {
 }
 
 // ---- the drawing (points) -----------------------------------------------------------------------------------------
-const U = 100;                               // points per unit of mass, on both axes
-const WIN = { x: [-0.55, 1.8], y: [-1.0, 1.0] };  // the window the contours fill (it holds the touching contour whole)
+const U = 85;                                // points per unit of mass, on both axes
+const WIN = { x: [-0.4, 2.95], y: [-2.12, 1.2] };  // the window: it holds every contour whole, with air about it
 const REACH = 0.13;                          // the axes run this far past the window, units
+const AIR = 0.05;                            // the least room, units, between a contour and the window's edge
 const TINT = '#eeebe5';                      // the site's neutral tint of the page (drawing.ts THEME)
-const SCALES = [1, 2.4, 3.8];                  // the contours, f = f0 s^2
+const SCALES = [1, 2.1, 3.2];                // the contours, f = f0 s^2
 const LINE = 0.5, LINE_TOUCH = 0.6;          // the contours' strokes
 const NEAR = 0.55;                           // points: the touching contour is left out this near the axis
 const DOT = 2.1, RING = 2.3, RING_W = 0.6;   // the positive minimum's dot; the signed minimum's ring
@@ -102,7 +106,16 @@ export default async function () {
 		return at([n.signed[0] + d[0], n.signed[1] + d[1]]);
 	})).filter(inWin);
 	const air = (b) => Math.min(...coarse.map((p) => toBox(b, p) - LINE_TOUCH / 2), S.clearance(b).d);
-	L.push(await placed('\\text{best positive}', pp[0], pp[1] - DOT - LABEL_GAP - 0.6, 0.62, 1, MATTER));
+	// "best positive" above its dot, slid along the axis (its anchor from a third to nine tenths of its width) to where
+	// it stands clearest of the contours
+	let bp = null;
+	for (let ax = 0.3; ax <= 0.9 + 1e-9; ax += 0.02) {
+		const g = await placed('\\text{best positive}', pp[0], pp[1] - DOT - LABEL_GAP - 0.6, ax, 1, MATTER);
+		const a = air(g.box);
+		if (!bp || a > bp.a) bp = { a, g };
+	}
+	check(bp.a >= CUT, `"best positive" cuts a contour (${bp.a} pt)`);
+	L.push(bp.g);
 	const probe = await placed('\\text{best signed}', 0, 0, 0.5, 0.5, ACCENT);
 	const hw = (probe.box.r - probe.box.l) / 2, hh = (probe.box.b - probe.box.t) / 2;
 	let best = null;
@@ -143,6 +156,11 @@ export default async function () {
 			ts = next;
 		}
 		for (const t of ts) check(near(misfit(m(t)), f, 1e-12), `a point off the contour ${s}`);
+		// the whole ellipse lies inside the window, at least AIR units from its edges: nothing is cut by the frame
+		for (const t of ts) {
+			const [x, y] = m(t);
+			check(x > WIN.x[0] + AIR && x < WIN.x[1] - AIR && y > WIN.y[0] + AIR && y < WIN.y[1] - AIR, `the contour ${s} leaves the window at (${x}, ${y})`);
+		}
 		// runs of kept points; each end found by bisection on t
 		const edge = (a, b) => { let ka = keep(a); for (let i = 0; i < 50; i++) { const c = (a + b) / 2; if (keep(c) === ka) a = c; else b = c; } return ka ? a : b; };
 		const runs = [];

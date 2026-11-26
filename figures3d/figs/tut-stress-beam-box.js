@@ -1,26 +1,32 @@
 // The tutorial, section 6.5 (tutorial/relativity/stress-energy.md), its second diagram: what a beam and a box of light
-// pull with. Two panels, "a free beam" over "a box of light". Above: a thin horizontal beam in the light role's colour
-// from a small laser box at the left to an absorber at the right, both faint, joined by a faint bench far below the
-// beam, named "bench, far away". Above the beam, at the distance b marked by a thin dimension line named "b", a ring of
-// free beads drawn out by the beam's tide, with "(-1, 1, 0) x 4GP/c^3 b^2" beside it; below the bench a second,
-// identical ring the same distance above a thin line in matter's colour, named "line of 2P/c^3 per metre", drawn out
-// alike. Below: a closed rectangle with doubled (mirrored) walls, six short arrows in the light role's colour inside
-// pointing six ways, named "pressure U/3 each way"; small arrows in matter's colour along the walls, pointing inward,
-// named "tension"; beside the box a bar of height 1 named "E/c^2" and, in faint outline, a bar of height 2 named
-// "2E/c^2, the free beam's", crossed by a thin dotted line at 1.
-// Departures from the diagram's comment: the panels are stacked at every width, so that the figure stays narrow and
-// its text large on a phone, and so the bars stand beside the box, not under it. The rings are section 1.5's (and the
-// paper's) rings of twelve free steel beads over the dashed undisturbed circle, not eight beads in ink, and they lie in
-// the page; the dashed circle leaves out the dashes where it meets the ring, along the beam. In the page, which holds the line to the beam and the beam itself, the beam's tide has the eigenvalues -1
-// along the line to the beam and 0 along the beam: each ring is stretched toward the beam (the orange arrows) and not
-// changed along it; the squeeze, the eigenvalue 1, is at right angles to the page and is not drawn (the comment's
-// blue squeeze along the beam would be wrong). The tide's eigenvalues stand beside the upper ring, not under it,
-// where there is no room between the ring and the beam. The dimension line stands left of each ring, its top level
-// with the ring's centre, marked + and joined to it by a dotted extension (section 1.4's figure). The tension's
-// arrows lie along each wall, outside it, in pairs pointing toward the wall's middle, as the rod's arrows of the
-// chapter's first diagram point toward its cube: momentum along the wall flowing inward. The pressure is written
-// "U/3" for the comment's "(1/3)U", whose small fraction would be hard to read on a phone. The bar of 2E/c^2 is named
-// in three lines beside its top.
+// pull with. Two panels, "a free beam" over "a box of light" (beside it in the book). Above: a thin horizontal beam in
+// the light role's colour from a small laser box at the left to an absorber at the right, both faint, joined by a faint
+// bench far below the beam, named "bench, far away". Above the beam, at the distance b marked by a thin dimension line
+// named "b", a ring of free beads drawn out by the beam's tide, with "(-1, 1, 0) x 4GP/c^3 b^2" beside it; below the
+// bench a second, identical ring the same distance above a thin line in matter's colour, named "line of 2P/c^3 per
+// metre", drawn out alike. Below: a closed rectangle with doubled (mirrored) walls, six short arrows in the light
+// role's colour inside pointing six ways, named "pressure U/3 each way"; small arrows in matter's colour along the
+// walls, pointing inward, named "tension"; beside the box a bar of height 1 named "E/c^2" and, in faint outline, a bar
+// of height 2 named "2E/c^2, the free beam's", crossed by a thin dotted line at 1.
+// Departures from the diagram's comment: on the site the panels are stacked at every width, so that the figure stays
+// narrow and its text large on a phone, and so the bars stand beside the box, not under it. In the printed book
+// (figureLayout 'book') "a box of light" stands at the right of "a free beam", the titles on one line, the beam 170
+// points long (the site's 214) so that the two fit the text width, and the bars stand under the box, as the comment
+// asks, the pair and its name centred on the box, their baseline level with the line of matter; the box is drawn
+// as tall as that leaves room for, and the bars 34 points per unit (the site's 26), so that both columns are of one
+// height. (Three columns, the line of matter in one of its own, were tried: 490 points wide, and the box's column
+// stood 45 points below the others.) The rings are section 1.5's (and the paper's) rings of twelve free
+// steel beads over the dashed undisturbed circle, not eight beads in ink, and they lie in the page; the dashed circle
+// leaves out the dashes where it meets the ring, along the beam. In the page, which holds the line to the beam and the
+// beam itself, the beam's tide has the eigenvalues -1 along the line to the beam and 0 along the beam: each ring is
+// stretched toward the beam (the orange arrows) and not changed along it; the squeeze, the eigenvalue 1, is at right
+// angles to the page and is not drawn (the comment's blue squeeze along the beam would be wrong). The tide's
+// eigenvalues stand beside the upper ring, not under it, where there is no room between the ring and the beam. The
+// dimension line stands left of each ring, its top level with the ring's centre, marked + and joined to it by a dotted
+// extension (section 1.4's figure). The tension's arrows lie along each wall, outside it, in pairs pointing toward the
+// wall's middle, as the rod's arrows of the chapter's first diagram point toward its cube: momentum along the wall
+// flowing inward. The pressure is written "U/3" for the comment's "(1/3)U", whose small fraction would be hard to read
+// on a phone. The bar of 2E/c^2 is named in three lines beside its top.
 // Exact: the rings' table diag(0, -1) in (along the beam, toward it), from the line's Hessian (-1, 1, 0) x
 // 2 G lambda / b^2 found by differences in tut-stress-lib.js; each ring the image of its circle under 1 - eps T, one
 // eps for both, so that the two are alike (asserted bead by bead); the two distances b equal (asserted); the bars'
@@ -43,7 +49,9 @@ const REACH = 13;                          // an arrow's length per unit of |T x
 const B = 50;                              // b on the page, points
 const PLUS = 2.2;                          // half the arms of the + at a ring's centre
 const DIM_X = 16;                          // the dimension line, this far left of the ring's dashed circle
-const SPAN = 214;                          // the beam, from the laser's face to the absorber's, points
+const BOOK = globalThis.figureLayout === 'book';
+const SPAN = BOOK ? 170 : 214;             // the beam, from the laser's face to the absorber's, points
+const BESIDE = 30;                         // the book's: the air between the free beam's ink and the box's column
 const BOX = [15, 10];                      // the laser and the absorber, points
 const BEAM = 0.9;                          // the beam's stroke
 const DROP = 32;                           // the bench below the beam
@@ -51,11 +59,12 @@ const BREAK = 2.4;                         // half the break's marks
 const ROW = 6;                             // a title to its panel's ink
 const GAP = 18;                            // between the panels
 const WALL = 2.2;                          // the doubled wall: the two lines this far apart
-const BOX_W = 136, BOX_H = 86;             // the box of light, outer
+const BOX_W = 136, BOX_H0 = 86;            // the box of light, outer (the book's taller: see below)
 const RAY = 24;                            // the pressure arrows
 const TENSION = 13;                        // the tension arrows
 const TEN_OFF = 4.2;                       // the tension arrows, this far outside the wall
-const UNIT = 26;                           // a bar's height per unit of E/c^2
+const UNIT = BOOK ? 34 : 26;               // a bar's height per unit of E/c^2
+const UNDER = 16;                          // the book's: from the tension's arrows under the box to the taller bar's top
 const BAR = 13;                            // a bar's width
 
 export default async function () {
@@ -171,10 +180,18 @@ export default async function () {
 	L.push(await placed('\\text{line of } 2P/c^3 \\text{ per metre}', (x0 + x1) / 2, yLine + LINE / 2 + LABEL_GAP + 0.4, 0.5, 0, MATTER));
 
 	// ================= a box of light =================
+	// on the site below the free beam; in the book at its right, the titles on one line, the bars under the box with
+	// their baseline level with the line of matter
 	const bottom1 = Math.max(...L.map((l) => l.box.b));
-	const t2 = await placed('\\text{a box of light}', left, bottom1 + GAP, 0, 0, INK);
+	const right1 = Math.max(...L.map((l) => l.box.r), ...S.marks.flatMap((m) => m.pts.map((p) => p[0] + m.r)));
+	const left2 = BOOK ? right1 + BESIDE : left;
+	const t2 = await placed('\\text{a box of light}', left2, BOOK ? t1.box.t : bottom1 + GAP, 0, 0, INK);
 	L.push(t2);
-	const bx = left + TENSION + TEN_OFF + 4, by = t2.box.b + ROW + TEN_OFF + 8 + 10;     // the box's outer corner
+	const bx = left2 + TENSION + TEN_OFF + 4, by = t2.box.b + ROW + TEN_OFF + 8 + 10;     // the box's outer corner
+	// in the book the box is as tall as leaves the bars under it their baseline level with the line of matter, so
+	// that the box's column is as tall as the free beam's
+	const BOX_H = BOOK ? yLine - BEAM_BAR * UNIT - UNDER - TEN_OFF - by : BOX_H0;
+	check(BOX_H >= BOX_H0, `the box is ${BOX_H} points tall`);
 	const rect = (l, t, w, h, what) => S.path([[l, t], [l + w, t], [l + w, t + h], [l, t + h]], { color: INK, width: AXIS, closed: true, layer: 2, what });
 	rect(bx, by, BOX_W, BOX_H, 'the outer wall');
 	rect(bx + WALL, by + WALL, BOX_W - 2 * WALL, BOX_H - 2 * WALL, 'the inner wall');
@@ -198,8 +215,12 @@ export default async function () {
 		['right', [bx + BOX_W + TEN_OFF, by + BOX_H * 0.12], [bx + BOX_W + TEN_OFF, my - 5]], ['right', [bx + BOX_W + TEN_OFF, by + BOX_H * 0.88], [bx + BOX_W + TEN_OFF, my + 5]]
 	]) tens.push(S.arrow(a0, a1, { color: MATTER, width: VEC, head: VEC_HEAD - 0.6, layer: 3, what: `the ${wall} wall's tension` }));
 	L.push(await S.clear('\\text{tension}', bx + BOX_W * 0.8 + 2, by - TEN_OFF, 0, 0.5, [0, -1], { color: MATTER }));
-	// the bars, beside the box, on one baseline level with the box's bottom
-	const base = by + BOX_H, b1 = bx + BOX_W + TEN_OFF + 16, b2 = b1 + BAR + 9;
+	// the bars, beside the box, on one baseline level with the box's bottom (in the book: under the box, the pair
+	// and its name centred on the box, on a baseline level with the line of matter)
+	const BARS_W = 2 * BAR + 9, NAME_W = 36;      // the pair of bars; their name at the right, about
+	const base = BOOK ? by + BOX_H + TEN_OFF + UNDER + BEAM_BAR * UNIT : by + BOX_H;
+	check(!BOOK || near(base, yLine, 1e-9), 'the bars\' baseline is not level with the line of matter');
+	const b1 = BOOK ? mx - (BARS_W + LABEL_GAP + 1 + NAME_W) / 2 : bx + BOX_W + TEN_OFF + 16, b2 = b1 + BAR + 9;
 	S.fill(`M${b1},${base - BOX_BAR * UNIT}H${b1 + BAR}V${base}H${b1}Z`, { l: b1, r: b1 + BAR, t: base - BOX_BAR * UNIT, b: base }, { color: MATTER, layer: 2, what: 'the box\'s bar' });
 	S.path([[b2 + AXIS / 2, base], [b2 + AXIS / 2, base - BEAM_BAR * UNIT + AXIS / 2], [b2 + BAR - AXIS / 2, base - BEAM_BAR * UNIT + AXIS / 2], [b2 + BAR - AXIS / 2, base]], { color: FAINT, width: AXIS, cap: 'butt', layer: 2, what: 'the free beam\'s bar' });
 	S.path([[b1 - 3, base + AXIS / 2], [b2 + BAR + 3, base + AXIS / 2]], { color: DIM, width: AXIS, cap: 'butt', layer: 2, what: 'the bars\' baseline' });
@@ -211,5 +232,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, table: T };
-	return finish(S, L, [240, 320]);
+	return finish(S, L, BOOK ? [380, 460] : [240, 320]);
 }

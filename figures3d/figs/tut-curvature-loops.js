@@ -1,5 +1,6 @@
 // The tutorial, section 7.2 (tutorial/geometry/curvature-and-tides.md), its first diagram: an arrow carried without
-// turning round a loop, on a sphere and on a flat sheet labelled in polar coordinates. Two panels, one above the other.
+// turning round a loop, on a sphere and on a flat sheet labelled in polar coordinates. Two panels, one above the other
+// (side by side in the book).
 // Above, "sphere": a sphere of radius a seen obliquely, the North Pole tilted toward the reader by 28 degrees and
 // longitude 45 degrees east facing the reader; its thin ink outline, the equator and the meridians of 0 and 90 degrees
 // east (their visible parts); the octant loop, pole -> equator along 0 degrees -> along the equator to 90 degrees east
@@ -9,22 +10,25 @@
 // pole, the returning arrow (solid) from the same point as the starting one, and a small arc between them, "90°".
 // "area pi a^2/2" inside the loop. Below, "flat sheet, polar labels": thin grey circles r = 1, 2, 3 and rays every
 // 30 degrees; the loop r from 1 to 3 along theta = 0, the arc r = 3 to 90 degrees, back to r = 1 along theta = 90
-// degrees and the arc r = 1 home, in the curvature's colour; arrows at the same five kinds of place, all parallel to one
-// direction on the page; at the start the dashed and the solid arrow coincide, "0°". Under it, "Gamma^r_theta theta =
-// -r != 0".
-// Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (as the
-// section 6.6 and 7.1 diagrams), so that their text stays readable on a phone. The pole is tilted toward the reader by
-// 28 degrees, not 25, so that the arc of 90 degrees at the pole opens wide enough to carry its label. An arrow drawn
-// at a place on a leg of the loop would lie on the leg itself, since it points along it (south on a meridian; along
-// the first leg on the sheet): each such arrow, and the pair at the start, is drawn a hair (OFF) inside the loop,
-// parallel to the leg, so that the loop stays visible beside it; the arrow at the corner on the equator is moved the
-// same hair east of the meridian below it. On the sheet the fixed direction is that of the first leg, as on the
-// sphere the arrow starts pointing ahead.
+// degrees and the arc r = 1 home, in the curvature's colour; arrows at the same five kinds of place, all parallel to
+// one direction on the page; at the start the dashed and the solid arrow coincide, "0°". Under it, "Gamma^r_theta theta
+// = -r != 0".
+// Departures from the diagram's comment: on the site the panels are stacked at every width, not side by side at
+// 1440 px (as the section 6.6 and 7.1 diagrams), so that their text stays readable on a phone. In the printed book
+// (figureLayout 'book') they stand side by side, the sphere at the left and the sheet at the right, their centres
+// level and their titles on one line, both drawn 1.12 times larger (the sphere's radius and the sheet's points per
+// unit; strokes, heads, the hair and the labels unchanged) so that the pair fills the text width. The pole is tilted
+// toward the reader by 28 degrees, not 25, so that the arc of 90 degrees at the pole opens wide enough to carry its
+// label. An arrow drawn at a place on a leg of the loop would lie on the leg itself, since it points along it (south on
+// a meridian; along the first leg on the sheet): each such arrow, and the pair at the start, is drawn a hair (OFF)
+// inside the loop, parallel to the leg, so that the loop stays visible beside it; the arrow at the corner on the
+// equator is moved the same hair east of the meridian below it. On the sheet the fixed direction is that of the first
+// leg, as on the sphere the arrow starts pointing ahead.
 // Exact: the sphere's outline, equator and meridians (each point projected, the hidden parts left out where they turn
 // away), the octant, the arrows' directions (due south, the direction that carrying without turning gives, asserted in
 // tut-curvature-lib.js by integrating the transport equation round the octant: 90.0 degrees at home, the area pi a^2/2
-// over a^2), the sheet's grid and loop, and on it the arrow's unchanging direction (asserted the same by integrating the
-// transport with Gamma^r_thth = -r and Gamma^th_rth = 1/r). Schematic: the arrows' length and the hair OFF.
+// over a^2), the sheet's grid and loop, and on it the arrow's unchanging direction (asserted the same by integrating
+// the transport with Gamma^r_thth = -r and Gamma^th_rth = 1/r). Schematic: the arrows' length and the hair OFF.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, VEC, VEC_HEAD, HAIR } from './tut-pot-lib.js';
 import { INK, RULE } from '../lib.js';
 import { chapter, palette, OBS, CURV, south, onSphere } from './tut-curvature-lib.js';
@@ -33,7 +37,9 @@ const name = 'tut-curvature-loops';
 const check = checker(name);
 
 const DEG = Math.PI / 180;
-const A = 82;                              // the sphere's radius, points
+const BOOK = globalThis.figureLayout === 'book';
+const SCALE = BOOK ? 1.12 : 1;             // the book's panels, side by side, drawn a little larger to fill the text width
+const A = 82 * SCALE;                      // the sphere's radius, points
 const ELEV = 28;                           // the pole's tilt toward the reader, degrees
 const FACE = 45;                           // the longitude that faces the reader, degrees
 const LINE = 0.45;                         // the sphere's outline, equator and meridians; the sheet's grid
@@ -42,9 +48,10 @@ const ARROW = 0.3;                         // an arrow's length on the sphere, u
 const OFF = 5.0;                           // an arrow on a leg is drawn this far inside the loop, points
 const ARC = 0.13;                          // the arc at the pole, its radius in units of a
 const DASH = [1.6, 1.1];                   // the starting arrow's dashes
-const U = 26;                              // the sheet's points per unit of r
+const U = 26 * SCALE;                      // the sheet's points per unit of r
 const SHEET_ARROW = 0.66;                  // an arrow's length on the sheet, units of r
-const PANEL_GAP = 16;                      // between the sphere's panel and the sheet's
+const PANEL_GAP = 16;                      // the site's: between the sphere's panel and the sheet's
+const BESIDE = 34;                         // the book's: between the sphere's outline and the sheet's outer circle
 
 export default async function () {
 	const nums = chapter(check);
@@ -59,7 +66,7 @@ export default async function () {
 	const up = [-Math.sin(e) * Math.cos(f), -Math.sin(e) * Math.sin(f), Math.cos(e)];
 	const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 	check(near(dot(toward, right), 0, 1e-15) && near(dot(toward, up), 0, 1e-15) && near(dot(right, up), 0, 1e-15), 'the camera\'s frame');
-	const cx = ORIGIN, cy = ORIGIN - 90;
+	const cx = BOOK ? ORIGIN - 120 : ORIGIN, cy = ORIGIN - 90;
 	const P = (p) => [cx + A * dot(p, right), cy - A * dot(p, up)];
 	const seen = (p) => dot(p, toward) > 0;
 	const sph = (th, ph) => onSphere(th, ph);
@@ -155,7 +162,9 @@ export default async function () {
 
 	// ---- the labels of the sphere
 	const top = cy - A;
-	L.push(await placed('\\text{sphere}', cx - A, top - 6, 0, 1, INK));
+	// in the book the two titles stand on one line, above the taller of the two panels
+	const titleY = BOOK ? Math.min(top, cy - 3 * U) - 6 : top - 6;
+	L.push(await placed('\\text{sphere}', cx - A, titleY, 0, 1, INK));
 	{
 		const mid = arcPts[45], c = P(pole), u = [mid[0] - c[0], mid[1] - c[1]], l = Math.hypot(...u);
 		L.push(await S.clear(`${nums.turn.toFixed(0)}^\\circ`, mid[0] + (u[0] / l) * 2, mid[1] + (u[1] / l) * 2, 0.5, 0, [u[0] / l, u[1] / l]));
@@ -163,7 +172,8 @@ export default async function () {
 	L.push(await S.clear('\\text{area } \\pi a^2/2', ...P(sph(58 * DEG, 45 * DEG)), 0.5, 0.5, [0, 1]));
 
 	// ---- the sheet
-	const sx = ORIGIN, sy = cy + A + PANEL_GAP + 3 * U + 14;
+	// (in the book: at the right of the sphere, its centre level with the sphere's)
+	const sx = BOOK ? cx + A + BESIDE + 3 * U : ORIGIN, sy = BOOK ? cy : cy + A + PANEL_GAP + 3 * U + 14;
 	const Q = (r, th) => [sx + U * r * Math.cos(th), sy - U * r * Math.sin(th)];
 	for (const r of [1, 2, 3]) S.path(Array.from({ length: 361 }, (_, i) => Q(r, i * DEG)), { color: RULE, width: HAIR, layer: 1, what: `the circle ${r}` });
 	for (let k = 0; k < 12; k++) S.path([Q(0, 0), Q(3, k * 30 * DEG)], { color: RULE, width: HAIR, layer: 1, cap: 'butt', what: `the ray ${k * 30}` });
@@ -199,12 +209,12 @@ export default async function () {
 			if (Math.abs(q[0] - ar.A[0]) >= 4.5) check(least > 0.36 * VEC_HEAD + LOOP / 2 + 0.6, `a sheet arrow touches the loop, ${least.toFixed(2)} pt`);
 		}
 	}
-	L.push(await placed('\\text{flat sheet, polar labels}', cx - A, sy - 3 * U - 6, 0, 1, INK));
+	L.push(await placed('\\text{flat sheet, polar labels}', BOOK ? sx - 3 * U : cx - A, BOOK ? titleY : sy - 3 * U - 6, 0, 1, INK));
 	// the start's angle, inside the loop just above its arrows, between them and the ray of 30 degrees
 	L.push(await placed('0^\\circ', Q(1.45, 0)[0], a0[1] - 0.36 * VEC_HEAD - LABEL_GAP - 0.4, 0.5, 1, INK));
 	L.push(await placed('\\Gamma^r{}_{\\theta\\theta} = -r \\neq 0', sx, sy + 3 * U + LABEL_GAP + 4, 0.5, 0, INK));
 
 	S.checkAll(L);
 	window[name + '-numbers'] = nums;
-	return finish(S, L, [150, 260]);
+	return finish(S, L, BOOK ? [380, 460] : [150, 260]);
 }

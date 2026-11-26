@@ -4,6 +4,10 @@
 // mass below gives a positive reading. For one ball of mass m a height h below a point and a distance rho to the side,
 // d = G m (2 h^2 - rho^2) / (rho^2 + h^2)^(5/2): positive (orange, a vertical stretch) over the ball, negative (blue,
 // a squeeze) beyond rho = sqrt 2 h. The two balls' readings are summed.
+// The block lies under the sheets' whole footprint, so that every sheet stands exactly over it and their outlines
+// stack: its back half rises to the ground, sawn through the balls' centres, and its front half is cut down to a
+// ledge below the balls, which shows the section with the balls in it (a box sawn in half would put the sheets, which
+// are centred on the balls, half a sheet in front of it).
 // Exact: the pattern on each sheet, the sum of the two balls' readings at that sheet's height, drawn as a relief
 // whose height is the reading, each sheet to its own greatest value (the reading falls as 1/h^3); its colour, the
 // sign of the reading, saturated as the square root of its size against that greatest value, one rule for every
@@ -17,7 +21,7 @@
 // two balls from one is smaller than that noise: over the array, the reading of the best-fitting single ball (its
 // mass and depth fitted by least squares) differs from that of the two by at most 0.075 of the greatest value.
 // Schematic: the vertical spacing of the sheets (drawn evenly spaced) and the depth of the balls, the size of the
-// balls, the height of the relief, and the thickness of the glass.
+// balls, the height of the relief, the thickness of the glass, and the heights of the block and of its ledge.
 import { Panel, v3, sprite, THREE, INK, DIM, PAGE } from '../lib.js';
 import { IRON, text, n2 } from '../stone.js';
 
@@ -99,7 +103,8 @@ const GAP = 0.66, STEP = 0.6;                       // the lowest sheet above th
 const RELIEF = 0.32;                                // the relief's greatest height on the glass sheets (drawn)
 const GLASS = 0.026;                                // the glass's thickness (drawn)
 const DEPTH = 0.3, BALL = 0.085;                    // the balls' depth below the ground and their radius (drawn)
-const BASE = 0.6;                                   // the block's height
+const BASE = 0.72;                                  // the block's height
+const LEDGE = -0.46;                                // the top of the ledge in front, below the balls (drawn)
 const K = 3;                                        // pixels per point of the rendered reliefs
 const SS = 2;                                       // rendered at twice that, then halved
 const CUT = '#2b2418';                              // ink on the stone, which stays pale in both themes
@@ -152,8 +157,10 @@ async function build(scale) {
 	const path = (pts, close = false) => 'M' + pts.map(pt).join('L') + (close ? 'Z' : '');
 	const levels = HEIGHTS.map((h, i) => ({ h, y: GAP + i * STEP, array: i === HEIGHTS.length - 1 }));
 
-	// ---- the block, a plain box whose front is the section through the balls' centres; its faces textured with the
-	// slab at its own resolution (once, and reused), the whole slab across the front as in figs/near-field-geometry.js
+	// ---- the block, under the sheets' whole footprint, cut by a step: its back half stands to the ground, sawn
+	// through the balls' centres, and its front half is cut down to a ledge below the balls, so that the section through
+	// them shows while the block's outline is the sheets' own (each sheet lies exactly over it). Its faces textured with
+	// the slab at its own resolution (once, and reused), the whole slab across the front as in figs/near-field-geometry.js
 	const slab = await sprite('/figures3d/sprites/slab.jpg');
 	let defs = `<image id="tut-blur-slab" href="${slab.href}" width="${slab.w}" height="${slab.h}" preserveAspectRatio="none"/>`;
 	const TEX = (2 * HX) / slab.w;                   // world units per pixel of the slab
@@ -173,15 +180,21 @@ async function build(scale) {
 	const lightOf = (n) => 0.3 + 0.8 * Math.max(0, (n.dot(KEY) + 0.3) / 1.3) + 0.14 * Math.max(0, n.dot(FILL));
 	const shade = (nWorld) => lightOf(nWorld.clone().applyMatrix4(P.rot).normalize());
 	const veil = (n) => Math.max(0, Math.min(0.6, 1 - shade(n) / shade(v3(0, 1, 0))));
-	// the top, the front (the section through the balls) and the right side
-	const B = -HZ;
+	// the top (the back half), the section through the balls, the ledge's top and front, and the right side (stepped);
+	// the front faces share one texture origin, so that the slab's beds run on from the section to the ledge's front
+	const B = -HZ, F = HZ;
 	face([v3(-HX, 0, B), v3(HX, 0, B), v3(HX, 0, 0), v3(-HX, 0, 0)], v3(-HX, 0, B), X, Z, 0);
-	face([v3(-HX, 0, 0), v3(HX, 0, 0), v3(HX, -BASE, 0), v3(-HX, -BASE, 0)], v3(-HX, 0, 0), X, Y, veil(Z));
-	face([v3(HX, 0, 0), v3(HX, 0, B), v3(HX, -BASE, B), v3(HX, -BASE, 0)], v3(HX, 0, 0), mZ, Y, veil(X));
-	// its edges, each drawn once: the outline, and the two edges inside it
+	face([v3(-HX, 0, 0), v3(HX, 0, 0), v3(HX, LEDGE, 0), v3(-HX, LEDGE, 0)], v3(-HX, 0, 0), X, Y, veil(Z));
+	face([v3(-HX, LEDGE, 0), v3(HX, LEDGE, 0), v3(HX, LEDGE, F), v3(-HX, LEDGE, F)], v3(-HX, LEDGE, 0), X, Z, 0);
+	face([v3(-HX, LEDGE, F), v3(HX, LEDGE, F), v3(HX, -BASE, F), v3(-HX, -BASE, F)], v3(-HX, 0, F), X, Y, veil(Z));
+	face([v3(HX, 0, 0), v3(HX, 0, B), v3(HX, -BASE, B), v3(HX, -BASE, F), v3(HX, LEDGE, F), v3(HX, LEDGE, 0)], v3(HX, 0, F), mZ, Y, veil(X));
+	// its edges, each drawn once: the outline, and the edges inside it
 	const edge = (pts) => draw(`<path d="${path(pts)}" fill="none" stroke="${CUT}" stroke-width="0.4" stroke-linejoin="round"/>`, 0.5);
-	edge([v3(-HX, 0, 0), v3(-HX, 0, B), v3(HX, 0, B), v3(HX, -BASE, B), v3(HX, -BASE, 0), v3(-HX, -BASE, 0), v3(-HX, 0, 0), v3(HX, 0, 0), v3(HX, 0, B)]);
-	edge([v3(HX, 0, 0), v3(HX, -BASE, 0)]);
+	edge([v3(-HX, 0, 0), v3(-HX, 0, B), v3(HX, 0, B), v3(HX, -BASE, B), v3(HX, -BASE, F), v3(-HX, -BASE, F), v3(-HX, LEDGE, F), v3(-HX, LEDGE, 0), v3(-HX, 0, 0)]);
+	edge([v3(-HX, 0, 0), v3(HX, 0, 0), v3(HX, 0, B)]);
+	edge([v3(HX, 0, 0), v3(HX, LEDGE, 0), v3(-HX, LEDGE, 0)]);
+	edge([v3(HX, LEDGE, 0), v3(HX, LEDGE, F), v3(-HX, LEDGE, F)]);
+	edge([v3(HX, LEDGE, F), v3(HX, -BASE, F)]);
 
 	// ---- the balls, on the sawn face
 	for (const b of BALLS) P.sphere(v3(b, -DEPTH, 0), BALL, IRON, { spec: 0.45, shininess: 30, layer: 1 });

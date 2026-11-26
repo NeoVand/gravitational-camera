@@ -1,17 +1,21 @@
 // The tutorial, section 6.6 (tutorial/relativity/maxwell-complex.md), its second diagram: a turn of the axes and a
-// boost, side by side as one rule. Two panels, one above the other, at one scale and in one layout. Above, "a turn of
-// the axes by theta": the plane across u-hat, seen with u-hat pointing at the reader (a dot in a small circle at the
-// origin, named "u-hat"); the axes x and y, thin ink arrows, named; the unit circle x^2 + y^2 = 1, thin ink; the new
-// axes turned anticlockwise by theta = 35 degrees, arrows in the observer's colour, named x' and y'; the point
-// (cos theta, sin theta) on the circle, a dot in the observer's colour, with the arc of the circle from (1, 0) to it
-// heavier; its dashed shadows on the two axes, named "cos theta" and "sin theta". Below, "a boost by eta": the same axes;
-// the right-hand branch of the hyperbola x^2 - y^2 = 1 for y from -1.6 to 1.6, thin ink; the point (cosh eta, sinh eta)
-// for eta = ln 2, (1.25, 0.75), a dot in the observer's colour, with the arc of the hyperbola from (1, 0) to it heavier;
-// its dashed shadows, named "cosh eta = 1.25" and "sinh eta = 0.75". Under each panel the rule in the light role's
-// colour, "F'_perp = cos theta F_perp - sin theta u x F" and "F'_perp = cosh eta F_perp - i sinh eta u x F".
-// Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (the site
-// shows one drawing at every width, as 6.2's tut-vectors-gradient), so that the two rules stand one above the other
-// and can be read term by term. The axes are named x and y, and the turned axes x' and y'; the dot on the circle is in
+// boost, side by side as one rule. Two panels, one above the other (side by side in the book), at one scale and in
+// one layout. Above (left), "a turn of the axes by theta": the plane across u-hat, seen with u-hat pointing at the
+// reader (a dot in a small circle at the origin, named "u-hat"); the axes x and y, thin ink arrows, named; the unit
+// circle x^2 + y^2 = 1, thin ink; the new axes turned anticlockwise by theta = 35 degrees, arrows in the observer's
+// colour, named x' and y'; the point (cos theta, sin theta) on the circle, a dot in the observer's colour, with the arc
+// of the circle from (1, 0) to it heavier; its dashed shadows on the two axes, named "cos theta" and "sin theta". Below
+// (right), "a boost by eta": the same axes; the right-hand branch of the hyperbola x^2 - y^2 = 1 for y from -1.6 to
+// 1.6, thin ink; the point (cosh eta, sinh eta) for eta = ln 2, (1.25, 0.75), a dot in the observer's colour, with the
+// arc of the hyperbola from (1, 0) to it heavier; its dashed shadows, named "cosh eta = 1.25" and "sinh eta = 0.75".
+// Under each panel the rule in the light role's colour, "F'_perp = cos theta F_perp - sin theta u x F" and "F'_perp =
+// cosh eta F_perp - i sinh eta u x F".
+// Departures from the diagram's comment: on the site the panels are stacked at every width, not side by side at
+// 1440 px (the site shows one drawing at every width, as 6.2's tut-vectors-gradient), so that the two rules stand one
+// above the other and can be read term by term. In the printed book (figureLayout 'book') they stand side by side as
+// the comment asks, the turn at the left and the boost at the right, the two origins level, both y axes from -1.75 to
+// 1.75, the titles on one line above and the rules on one line below, at 55 points per unit (the site's 50) so that the
+// pair fills the text width. The axes are named x and y, and the turned axes x' and y'; the dot on the circle is in
 // the observer's colour, as the turned axis through it is.
 // Exact: the circle and the hyperbola (sampled finely, every point asserted on its curve), the angle of 35 degrees,
 // the point (1.25, 0.75) for eta = ln 2 (asserted in tut-maxwell-lib.js with cos(i eta) = cosh eta and
@@ -26,9 +30,10 @@ import { chapter, palette, OBS, LIGHT, ETA, THETA, Y_MAX } from './tut-maxwell-l
 const name = 'tut-maxwell-turn';
 const check = checker(name);
 
-const U = 50;                              // points per unit, both panels
+const BOOK = globalThis.figureLayout === 'book';
+const U = BOOK ? 55 : 50;                  // points per unit, both panels (the book's a little larger, to fill the text width)
 const XL = -1.25, XL_BOOST = -0.5, XR_TURN = 1.45, XR_BOOST = 2.45;   // the x axes
-const YR = 1.25, YR_BOOST = 1.75;          // the y axes run from -YR to YR
+const YR_BOOST = 1.75, YR = BOOK ? YR_BOOST : 1.25;   // the y axes run from -YR to YR (in the book, side by side, one length)
 const NEW = 1.3;                           // the turned axes' length
 const POINT = DOT + 0.55;                  // the dot, radius
 const HEAVY = 1.3;                         // the heavier arc
@@ -71,6 +76,8 @@ async function panel(S, O, { xl = XL, xr, yr, curve, arc, point, names, newAxes,
 	return L;
 }
 
+const BESIDE = 30;                         // the book's: the air between the left panel's ink and the right's
+
 export default async function () {
 	const nums = chapter(check);
 	await palette(check);
@@ -85,20 +92,18 @@ export default async function () {
 	const arcC = Array.from({ length: 141 }, (_, k) => [Math.cos((th * k) / 140), Math.sin((th * k) / 140)]);
 	for (const [x, y] of [...circle, ...arcC]) check(near(x * x + y * y, 1, 1e-12), 'a point is off the circle');
 	check(near(Math.atan2(cp[1], cp[0]) / rad, 35, 1e-12), 'the angle is not 35 degrees');
-	const t1 = await placed('\\text{a turn of the axes by } \\theta', left, ORIGIN - 300, 0, 0, INK);
-	L.push(t1);
-	const O1 = [x0, t1.box.b + ROW + 12 + YR * U];
-	L.push(...await panel(S, O1, { xr: XR_TURN, yr: YR, curve: circle, arc: arcC, point: cp, names: ['\\cos\\theta', '\\sin\\theta'], newAxes: true, footDir: [-1, 0], yAbove: true }));
-	// u-hat: a dot in a small circle at the origin, pointing at the reader, named in the open quarter below and left
-	S.raw(`<circle cx="${O1[0]}" cy="${O1[1]}" r="${U_RING}" fill="none" stroke="${INK}" stroke-width="${AXIS}"/><circle cx="${O1[0]}" cy="${O1[1]}" r="0.9" fill="${INK}"/>`, 3);
-	S.mark([O1], U_RING + AXIS / 2, 'u-hat');
-	{
+	const turnOpts = { xr: XR_TURN, yr: YR, curve: circle, arc: arcC, point: cp, names: ['\\cos\\theta', '\\sin\\theta'], newAxes: true, footDir: [-1, 0], yAbove: true };
+	/** The turn's panel at O, with u-hat: a dot in a small circle at the origin, pointing at the reader, named in the
+	 * open quarter below and left. */
+	async function turn(S, O) {
+		const L = await panel(S, O, turnOpts);
+		S.raw(`<circle cx="${O[0]}" cy="${O[1]}" r="${U_RING}" fill="none" stroke="${INK}" stroke-width="${AXIS}"/><circle cx="${O[0]}" cy="${O[1]}" r="0.9" fill="${INK}"/>`, 3);
+		S.mark([O], U_RING + AXIS / 2, 'u-hat');
 		const w = [-Math.SQRT1_2, Math.SQRT1_2];
-		L.push(await S.clear('\\hat u', O1[0] + w[0] * (U_RING + 3), O1[1] + w[1] * (U_RING + 3), 1, 0, w, { color: INK }));
+		L.push(await S.clear('\\hat u', O[0] + w[0] * (U_RING + 3), O[1] + w[1] * (U_RING + 3), 1, 0, w, { color: INK }));
+		return L;
 	}
-	const ymax1 = Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)), ...L.map((l) => l.box.b));
-	const rule1 = await placed("\\mathbf F'_\\perp = \\cos\\theta\\,\\mathbf F_\\perp - \\sin\\theta\\,\\hat u\\times\\mathbf F", left, ymax1 + ROW + 2, 0, 0, LIGHT);
-	L.push(rule1);
+	const ruleTurn = "\\mathbf F'_\\perp = \\cos\\theta\\,\\mathbf F_\\perp - \\sin\\theta\\,\\hat u\\times\\mathbf F";
 
 	// ---- the boost
 	const ch = Math.cosh(ETA), sh = Math.sinh(ETA);
@@ -107,18 +112,48 @@ export default async function () {
 	const arcH = Array.from({ length: 141 }, (_, k) => { const e = (ETA * k) / 140; return [Math.cosh(e), Math.sinh(e)]; });
 	for (const [x, y] of [...branch, ...arcH]) check(near(x * x - y * y, 1, 1e-12), 'a point is off the hyperbola');
 	check(branch[0][0] < XR_BOOST - 0.15, 'the hyperbola reaches past the x axis');
-	const t2 = await placed('\\text{a boost by } \\eta', left, rule1.box.b + APART, 0, 0, INK);
-	L.push(t2);
-	const O2 = [x0, t2.box.b + ROW + 12 + YR_BOOST * U];
-	L.push(...await panel(S, O2, { xl: XL_BOOST, xr: XR_BOOST, yr: YR_BOOST, curve: branch, arc: arcH, point: [ch, sh], names: [`\\cosh\\eta = ${fmt(ch)}`, `\\sinh\\eta = ${fmt(sh)}`], newAxes: false, footAnchor: 0 }));
-	{
-		// the hyperbola's ends lie beyond the y axis's: name nothing there; the u-hat of the panel above stands for both
-		const ymax2 = Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)), ...L.map((l) => l.box.b));
-		L.push(await placed("\\mathbf F'_\\perp = \\cosh\\eta\\,\\mathbf F_\\perp - i\\sinh\\eta\\,\\hat u\\times\\mathbf F", left, ymax2 + ROW + 2, 0, 0, LIGHT));
+	// the hyperbola's ends lie beyond the y axis's: name nothing there; the u-hat of the turn's panel stands for both
+	const boostOpts = { xl: XL_BOOST, xr: XR_BOOST, yr: YR_BOOST, curve: branch, arc: arcH, point: [ch, sh], names: [`\\cosh\\eta = ${fmt(ch)}`, `\\sinh\\eta = ${fmt(sh)}`], newAxes: false, footAnchor: 0 };
+	const ruleBoost = "\\mathbf F'_\\perp = \\cosh\\eta\\,\\mathbf F_\\perp - i\\sinh\\eta\\,\\hat u\\times\\mathbf F";
+	/** The lowest point of the ink so far. */
+	const bottom = () => Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)), ...L.map((l) => l.box.b));
+
+	if (!BOOK) {
+		const t1 = await placed('\\text{a turn of the axes by } \\theta', left, ORIGIN - 300, 0, 0, INK);
+		L.push(t1);
+		const O1 = [x0, t1.box.b + ROW + 12 + YR * U];
+		L.push(...await turn(S, O1));
+		const rule1 = await placed(ruleTurn, left, bottom() + ROW + 2, 0, 0, LIGHT);
+		L.push(rule1);
+		const t2 = await placed('\\text{a boost by } \\eta', left, rule1.box.b + APART, 0, 0, INK);
+		L.push(t2);
+		const O2 = [x0, t2.box.b + ROW + 12 + YR_BOOST * U];
+		L.push(...await panel(S, O2, boostOpts));
+		L.push(await placed(ruleBoost, left, bottom() + ROW + 2, 0, 0, LIGHT));
+		check(near(O1[0], O2[0]), 'the two origins are not one above the other');
+	} else {
+		// side by side: the two origins level, the titles on one line above, the rules on one line below; each title
+		// and rule from its panel's left edge (the turn's: the end of its x axis, as on the site; the boost's: its ink)
+		const TOP = ORIGIN - 200;
+		const t1 = await placed('\\text{a turn of the axes by } \\theta', left, TOP, 0, 0, INK);
+		const y0 = t1.box.b + ROW + 12 + YR_BOOST * U;
+		const O1 = [x0, y0];
+		L.push(t1, ...await turn(S, O1));
+		const probe = await placed(ruleTurn, left, 0, 0, 0, LIGHT);
+		const right1 = Math.max(probe.box.r, ...L.map((l) => l.box.r), ...S.marks.flatMap((m) => m.pts.map((p) => p[0] + m.r)));
+		// the boost's panel measured on a sheet that is thrown away, its origin at x = 0
+		const T = new Sheet(name), LT = await panel(T, [0, y0], boostOpts);
+		const left2 = Math.min(...LT.map((l) => l.box.l), ...T.marks.flatMap((m) => m.pts.map((p) => p[0] - m.r)));
+		const O2 = [right1 + BESIDE - left2, y0];
+		L.push(...await panel(S, O2, boostOpts));
+		L.push(await placed('\\text{a boost by } \\eta', O2[0] + left2, TOP, 0, 0, INK));
+		const yr = bottom() + ROW + 2;
+		L.push(await placed(ruleTurn, left, yr, 0, 0, LIGHT));
+		L.push(await placed(ruleBoost, O2[0] + left2, yr, 0, 0, LIGHT));
+		check(near(O1[1], O2[1]), 'the two origins are not level');
 	}
-	check(near(O1[0], O2[0]), 'the two origins are not one above the other');
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, scale: U };
-	return finish(S, L, [180, 340]);
+	return finish(S, L, BOOK ? [360, 460] : [180, 340]);
 }

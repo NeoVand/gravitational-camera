@@ -2,7 +2,11 @@
 // paper's which-way scene (scenes/which-way.scene.json, Figure fig:which-way) with Part 5's numbers. Two panels. One
 // drawing serves the desktop and the phone (as R4's capstone, figs/tut-read-iv3-capstone.js), so the two are stacked
 // and laid out to be read at 390 px; the diagram comment asked for them side by side on a wide screen, but the site
-// shows one drawing at every width, and R4 took its narrow layout for both.
+// shows one drawing at every width, and R4 took its narrow layout for both. The printed book (figureLayout 'book')
+// sets them side by side, (a) at the left and (b) at the right, their letters on one line, (a) at 40 points per metre
+// and (b) at 4.6 points per degree (the site's 44 and 6.4) so that the pair fits the text width; the name of the dark
+// ring is set in three lines to fit the narrower picture, and the line on the true speed of light stands under (a),
+// in two lines.
 //  (a) Side view, to scale (SCALE points per metre across and up), of the plane through the camera's axis: distance
 //      from the array across, from 0 to 5 m, an axis break, and one more tick at D^2/lambda = 22.5 m, where the
 //      Fresnel zone ends; height up, from 0 to 3.2 m. The array, a thick segment at distance 0 from 0.75 to 2.25 m. The
@@ -22,11 +26,12 @@
 //      degree, as level lines do in azimuth and elevation. The picture is the paper's: for each turning pair an Airy
 //      spot of intensity (2 J_1(x)/x)^2, x = pi (D/lambda) sin gamma, gamma the angle from the pair's direction, times
 //      the pair's I = a_+^2 + a_x^2, and the colour from V/I = 2 a_+ a_x / I on the paper's scale from green (-1)
-//      through #f2f2f2 to magenta (+1), its brightness the square root of the intensity, on the ground 0.043
-//      (make_figures.py, which_way), computed here pixel by pixel (kept as a JPEG of quality 0.92, three pixels to the
-//      point). The first dark ring, the angle 4.66 degrees from each centre where x = j_1,1, dashed; across the middle
-//      spot, a bracket between the points of half intensity, 3.93 degrees apart. Below the panel, one line on the true
-//      speed of light.
+//      through #f2f2f2 to magenta (+1) (the magenta the book's, the observer's: tut-pol-lib.js, MAGENTA, where the
+//      paper's is an ad hoc rose, #c2255c, none of the palette's roles), its brightness the square root of the
+//      intensity, on the ground 0.043 (make_figures.py, which_way), computed here pixel by pixel (kept as a JPEG of
+//      quality 0.92, three pixels to the point). The first dark ring, the angle 4.66 degrees from each centre where
+//      x = j_1,1, dashed; across the middle spot, a bracket between the points of half intensity, 3.93 degrees apart.
+//      Below the panel, one line on the true speed of light.
 // Departures from the diagram's comment: the gap of step (c) is labelled with its exact length, 6.2 cm (6.20 and
 // 6.21 cm at the two rims), not the chapter's 6.25 cm, which is the estimate D^2/8r; the phase, 3.9 rad, is the same
 // to two figures. The still pair's two dots are drawn one above the other, 0.44 m apart, as a pair turning in the
@@ -57,14 +62,16 @@ const J11 = 3.8317059702075125;            // the first zero of J_1
 
 // ---- the drawing (figure points, y down) --------------------------------------------------------------------------
 const SIZE = 8.5;
-const SCALE = 44;                          // (a): points per metre, across and up
+const BOOK = globalThis.figureLayout === 'book';
+const SCALE = BOOK ? 40 : 44;              // (a): points per metre, across and up
 const YL = 21;                             // from the column's left to the axes of both panels
 const OFF = 5;                             // (a): the height axis stands this far left of the array
 const ARRAY_W = 1.6;                       // the array's stroke
 const FRONT = 0.7, GAP_W = HAIR + 0.25;    // the front and the gap (figs/tut-das-fresnel.js)
 const EXAG = 10, MAG = 20;                 // the gap's exaggeration, the inset's magnification
 const RIN = 18;                            // the inset's radius, points
-const DEG = 6.4;                           // (b): points per degree
+const DEG = BOOK ? 4.6 : 6.4;              // (b): points per degree
+const BESIDE = 18;                         // the book's: the air between (a)'s ink and (b)'s column
 const PX = 3;                              // (b): the picture's pixels per point
 const ROW_GAP = 15;                        // from the lowest ink of (a) to the letter (b)
 const BELOW_LETTER = 5;
@@ -162,7 +169,7 @@ async function numbers() {
 	return N;
 }
 
-/** The paper's colour scale for V/I: green at -1, MID at 0, magenta at +1, straight between (rgb, 0 to 1). */
+/** The paper's colour scale for V/I: green at -1, MID at 0, magenta (the book's) at +1, straight between (rgb, 0 to 1). */
 const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
 const [G3, M0, M3] = [rgb(GREEN), rgb(MID), rgb(MAGENTA)];
 const scale = (vi) => { const t = (vi + 1) / 2; return t < 0.5 ? G3.map((g, i) => g + (M0[i] - g) * (t / 0.5)) : M0.map((m, i) => m + (M3[i] - m) * ((t - 0.5) / 0.5)); };
@@ -172,7 +179,7 @@ export default async function () {
 	const S = new Sheet(name);
 	const L = [];
 	const CW = 318;
-	const x0 = ORIGIN - CW / 2;
+	const x0 = BOOK ? 40 : ORIGIN - CW / 2;          // (the book's two columns need the provisional page's width)
 	const letter = async (l, x, y) => { const g = await placed(`\\text{(${l})}`, x, y, 0, 0, INK, LETTER); L.push(g); return g.box; };
 	const lowest = () => Math.max(...L.map((g) => g.box.b), ...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)));
 
@@ -306,7 +313,7 @@ export default async function () {
 		S.path([A, B], { color: DIM, width: HAIR, layer: 1.95, cap: 'butt', what: 'a line to the inset' });
 	}
 	const rz = N.zone * MAG * SCALE;
-	check(near(rz, 0.1 / (2 * Math.PI) * 20 * 44, 1e-9) && rz < RIN - 2, `the near zone in the inset, ${rz} pt`);
+	check(near(rz, 0.1 / (2 * Math.PI) * 20 * SCALE, 1e-9) && rz < RIN - 2, `the near zone in the inset, ${rz} pt`);
 	S.path(circle(cIn, rz), { color: ACCENT2, width: 0.6, layer: 2.2, what: 'the near zone' });
 	S.raw(`<circle cx="${n2(cIn[0])}" cy="${n2(cIn[1])}" r="0.9" fill="${INK}"/>`, 2.3);
 	S.mark([cIn], 0.9, 'the pair\'s centre');
@@ -318,11 +325,15 @@ export default async function () {
 	L.push(...zl);
 
 	// =============== (b) the camera's view ===============
-	const T2 = lowest() + ROW_GAP;
-	const lb = await letter('b', x0, T2);
+	// on the site under (a); in the book at its right, the two letters on one line
+	const rightA = Math.max(...L.map((g) => g.box.r), ...S.marks.flatMap((m) => m.pts.map((p) => p[0] + m.r)));
+	const bottomA = lowest();
+	const xb = BOOK ? rightA + BESIDE : x0;
+	const T2 = BOOK ? T1 : lowest() + ROW_GAP;
+	const lb = await letter('b', xb, T2);
 	L.push(await placed('\\text{elevation (degrees)}', lb.r + 6, (lb.t + lb.b) / 2, 0, 0.5, DIM, SIZE));
 	const AZ = [-20, 20], EL = [-22, 22];
-	const left = x0 + YL, top = lb.b + BELOW_LETTER + 2;
+	const left = xb + YL, top = lb.b + BELOW_LETTER + 2;
 	const PW = (AZ[1] - AZ[0]) * DEG, PH = (EL[1] - EL[0]) * DEG;
 	const XA = (a) => left + (a - AZ[0]) * DEG, YE = (e) => top + (EL[1] - e) * DEG;
 	const V = ([a, e]) => [XA(a), YE(e)];
@@ -425,22 +436,39 @@ export default async function () {
 		const v = s.vi < 0 ? `-${Math.abs(s.vi).toFixed(3)}` : `+${s.vi.toFixed(3)}`;
 		L.push(await placed(`V/I = ${v}`, XA(-6.19) - 4.5, YE(s.el), 1, 0.5, WHITE, SIZE));
 	}
-	const r1 = await placed(`\\text{first dark ring ${N.ring.toFixed(1)}}^\\circ`, edge + 4.5, YE(N.spots[0].el) - 1.5, 0, 1, WHITE, SIZE);
-	const r2 = await placed(`\\text{(${(4.5 * Math.tan(rad(N.ring))).toFixed(2)} m on the shelf)}`, edge + 4.5, r1.box.b + 3, 0, 0, WHITE, SIZE);
-	L.push(r1, r2);
+	if (!BOOK) {
+		const r1 = await placed(`\\text{first dark ring ${N.ring.toFixed(1)}}^\\circ`, edge + 4.5, YE(N.spots[0].el) - 1.5, 0, 1, WHITE, SIZE);
+		const r2 = await placed(`\\text{(${(4.5 * Math.tan(rad(N.ring))).toFixed(2)} m on the shelf)}`, edge + 4.5, r1.box.b + 3, 0, 0, WHITE, SIZE);
+		L.push(r1, r2);
+	} else {
+		// the book's picture is narrower: the same words in three lines, the middle one level with the spot's centre
+		const r2 = await placed(`${N.ring.toFixed(1)}^\\circ\\ \\text{(${(4.5 * Math.tan(rad(N.ring))).toFixed(2)} m}`, edge + 4.5, YE(N.spots[0].el), 0, 0.5, WHITE, SIZE);
+		const r1 = await placed('\\text{first dark ring}', edge + 4.5, r2.box.t - 3, 0, 1, WHITE, SIZE);
+		const r3 = await placed('\\text{on the shelf)}', edge + 4.5, r2.box.b + 3, 0, 0, WHITE, SIZE);
+		L.push(r1, r2, r3);
+	}
 	const sb = N.boxes[2];
 	const stillAt = N.view([0, sb.y, -sb.front]);
 	L.push(await placed('\\text{still: no wave}', XA(0), YE(stillAt[1]), 0.5, 0.5, WHITE, SIZE));
-	for (const g of L.slice(-6)) check(g.box.l > left + 1.5 && g.box.r < left + PW - 1.5 && g.box.t > top + 1.5, `the label ${g.src} leaves the picture`);
+	for (const g of L.slice(BOOK ? -7 : -6)) check(g.box.l > left + 1.5 && g.box.r < left + PW - 1.5 && g.box.t > top + 1.5, `the label ${g.src} leaves the picture`);
 
-	// below the panel: the true speed of light
-	const fl = await placed(`\\text{At }c = 3\\times10^{8}\\ \\mathrm{m\\,s^{-1}}\\text{: }\\lambda = ${N.lambdaTrue.toPrecision(2).split('e+')[0]}\\times10^{${N.lambdaTrue.toPrecision(2).split('e+')[1]}}\\ \\mathrm m\\text{, no spot, the same sense of turning}`, x0, azTitle.box.b + 6, 0, 0, INK, SIZE);
-	L.push(fl);
+	// below the panel: the true speed of light (in the book under (a), in two lines)
+	const lt = `${N.lambdaTrue.toPrecision(2).split('e+')[0]}\\times10^{${N.lambdaTrue.toPrecision(2).split('e+')[1]}}`;
+	if (!BOOK) {
+		const fl = await placed(`\\text{At }c = 3\\times10^{8}\\ \\mathrm{m\\,s^{-1}}\\text{: }\\lambda = ${lt}\\ \\mathrm m\\text{, no spot, the same sense of turning}`, x0, azTitle.box.b + 6, 0, 0, INK, SIZE);
+		L.push(fl);
+	} else {
+		const fl1 = await placed(`\\text{At }c = 3\\times10^{8}\\ \\mathrm{m\\,s^{-1}}\\text{: }\\lambda = ${lt}\\ \\mathrm m\\text{, no spot,}`, x0, bottomA + 14, 0, 0, INK, SIZE);
+		const fl2 = await placed('\\text{the same sense of turning}', x0, fl1.box.b + 3, 0, 0, INK, SIZE);
+		L.push(fl1, fl2);
+		check(fl1.box.r < xb - BESIDE / 2, 'the words under (a) reach (b)');
+	}
 
-	// ---- checks: the column, and nothing touches
-	for (const g of L) check(g.box.l >= x0 - 0.01 && g.box.r <= x0 + CW + 0.01, `the label ${g.src} leaves the column`);
+	// ---- checks: the column (in the book, the two columns), and nothing touches
+	const colR = BOOK ? xb + CW : x0 + CW;
+	for (const g of L) check(g.box.l >= x0 - 0.01 && g.box.r <= colR + 0.01, `the label ${g.src} leaves the column`);
 	for (const g of L) g.on = g.on ?? (g.box.t > top && g.box.b < top + PH && g.box.l > left && g.box.r < left + PW ? ['the picture'] : []);
 	S.checkAll(L, LABEL_GAP - 0.05);
 	window.tutReadIiiCapstone = { gap: [N.gapLow, N.gapHigh], phase: N.phase, ring: N.ring, fwhm: 2 * N.half, spots: N.spots.map(({ az, el, iota, vi, I }) => ({ az, el, iota, vi, I })), sag: N.sag, tilt: N.tilt };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, BOOK ? [380, 520] : [240, 340]);
 }

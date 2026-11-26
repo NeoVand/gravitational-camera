@@ -1,18 +1,22 @@
 // The tutorial, section 6.6 (tutorial/relativity/maxwell-complex.md), its first diagram: a light wave's two arrows at
-// one instant, and its one complex amplitude. Two panels, one above the other. Above, "one instant of a wave": the
-// axes e1 (across, to the right) and e2 (up), thin ink arrows, named; a short stretch of the z axis through their
-// origin, a thin ink line that runs into the picture up and to the left and comes out toward the reader down and to
-// the right, where its head is named k-hat; the arrow E in the light role's colour at 30 degrees above e1, length 1,
-// named "E"; the arrow cB in the light role's colour, dashed, the same length, a quarter turn anticlockwise from E
-// (k-hat toward the reader), named "cB = k x E"; a right-angle mark between them. Below, "the amplitude a in the
-// complex plane": axes Re a and Im a, thin ink, at one scale; the circularly polarized wave E1 + i E2 = E0 e^{-i wt}
-// has a = sqrt2 E0 e^{i wt}, drawn as a dot on the circle of radius sqrt2 E0 at the instant above (wt = -30 degrees,
-// a = sqrt2 (E1 - i E2) of the arrow E), named "a", with seven faint dots at the other steps of 45 degrees and an
-// arrowhead on the circle for its anticlockwise motion, named "circular"; and the linearly polarized wave along e1,
-// a = sqrt2 E0 cos wt, a thick segment of the real axis from -sqrt2 E0 to sqrt2 E0 with a head at each end, named
-// "linear", its ends named -sqrt2 E0 and sqrt2 E0, inside the circle, under the axis.
-// Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (the
-// site shows one drawing at every width, as 6.2's tut-vectors-gradient). The z axis's head points out of the page,
+// one instant, and its one complex amplitude. Two panels, one above the other (side by side in the book). Above
+// (left), "one instant of a wave": the axes e1 (across, to the right) and e2 (up), thin ink arrows, named; a short
+// stretch of the z axis through their origin, a thin ink line that runs into the picture up and to the left and comes
+// out toward the reader down and to the right, where its head is named k-hat; the arrow E in the light role's colour at
+// 30 degrees above e1, length 1, named "E"; the arrow cB in the light role's colour, dashed, the same length, a quarter
+// turn anticlockwise from E (k-hat toward the reader), named "cB = k x E"; a right-angle mark between them. Below, "the
+// amplitude a in the complex plane": axes Re a and Im a, thin ink, at one scale; the circularly polarized wave E1 + i
+// E2 = E0 e^{-i wt} has a = sqrt2 E0 e^{i wt}, drawn as a dot on the circle of radius sqrt2 E0 at the instant above (wt
+// = -30 degrees, a = sqrt2 (E1 - i E2) of the arrow E), named "a", with seven faint dots at the other steps of 45
+// degrees and an arrowhead on the circle for its anticlockwise motion, named "circular"; and the linearly polarized
+// wave along e1, a = sqrt2 E0 cos wt, a thick segment of the real axis from -sqrt2 E0 to sqrt2 E0 with a head at each
+// end, named "linear", its ends named -sqrt2 E0 and sqrt2 E0, inside the circle, under the axis.
+// Departures from the diagram's comment: on the site the panels are stacked at every width, not side by side at
+// 1440 px (the site shows one drawing at every width, as 6.2's tut-vectors-gradient). In the printed book
+// (figureLayout 'book') they stand side by side as the comment asks, the wave at the left and the amplitude at the
+// right, the real axis on one line with e1, the titles on one line, and the two scales chosen so that Im a reaches as
+// high above Re a as e2 above e1 (72 points per E0 in the wave and 46.6 in the amplitude; the site's 78 and 42).
+// The z axis's head points out of the page,
 // toward the reader, since k = e1 x e2 with e1 to the right and e2 up; the axis runs into the picture behind the
 // origin, up and to the left, the one side where it crosses neither the arrows nor the right-angle mark. The dot on
 // the circle is the instant of the upper panel (E at 30 degrees above e1 is wt = -30 degrees, a at 30 degrees below the
@@ -30,17 +34,21 @@ import { chapter, palette, LIGHT, dashedArrow, doubleArrow, amplitude, E_ANGLE, 
 const name = 'tut-maxwell-wave';
 const check = checker(name);
 
-const U = 78;                              // points per unit of E0, the upper panel
+const U = globalThis.figureLayout === 'book' ? 72 : 78;   // points per unit of E0, the upper panel (the book's: see A)
 const AX = 1.3;                            // the axes e1 and e2, units
 const Z_BACK = 0.42, Z_FRONT = 0.62;       // the z axis behind and in front of the origin, units
 const Z_ANGLE = 150;                       // the z axis's direction into the picture, degrees from e1
-const A = 42;                              // points per unit of E0, the lower panel: the circle's radius is sqrt2 A
 const REACH = 1.42;                        // the lower panel's axes, in units of the radius
+const BOOK = globalThis.figureLayout === 'book';
+// points per unit of E0, the lower panel: the circle's radius is sqrt2 A; in the book, where the panels stand side by
+// side, the axis Im a reaches as high above Re a as e2 above e1
+const A = BOOK ? (AX * U) / (REACH * Math.SQRT2) : 42;
 const POINT = DOT + 0.75;                  // the dot a, radius
 const FAINT_DOT = DOT + 0.3;               // the other instants
 const SEG = 1.6;                           // the segment's stroke
 const GAP = 14;                            // the air between the upper panel's ink and the lower panel's title, points
 const ROW = 6;                             // from a title to its panel's ink, points
+const BESIDE = 24;                         // the book's: the air between the left panel's ink and the right panel's axis
 
 const rad = Math.PI / 180;
 const dir = (deg) => [Math.cos(deg * rad), -Math.sin(deg * rad)];   // a direction on the page, y down
@@ -83,11 +91,16 @@ export default async function () {
 	L.push(await S.clear('c\\mathbf B = \\hat k\\times\\mathbf E', Ba.B[0] - 3, Ba.B[1], 1, 0.5, [-1, 0], { color: LIGHT }));
 
 	// ---- the lower panel: the amplitude a in the complex plane
+	// on the site below the upper panel; in the book at its right, the real axis level with e1 and the title on the
+	// same line as the upper panel's
 	const top = Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)), ...L.map((l) => l.box.b));
-	const t2 = await placed('\\text{the amplitude } a \\text{ in the complex plane}', left, top + GAP, 0, 0, INK);
-	L.push(t2);
+	const right1 = Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[0] + m.r)), ...L.map((l) => l.box.r));
 	const r = Math.SQRT2 * E0 * A;                     // the circle's radius, points
-	const Q = [ORIGIN - 20, t2.box.b + ROW + 12 + REACH * r];
+	const left2 = BOOK ? right1 + BESIDE : left;
+	const t2 = await placed('\\text{the amplitude } a \\text{ in the complex plane}', left2, BOOK ? t1.box.t : top + GAP, 0, 0, INK);
+	L.push(t2);
+	const Q = BOOK ? [left2 + REACH * r, O[1]] : [ORIGIN - 20, t2.box.b + ROW + 12 + REACH * r];
+	if (BOOK) check(Q[1] - REACH * r >= t2.box.b + ROW + 12, 'the lower panel\'s axis reaches its title');
 	const cp = ([re, im]) => [Q[0] + re * A, Q[1] - im * A];   // a complex number on the page
 	const re = S.arrow(cp([-REACH * Math.SQRT2, 0]), cp([REACH * Math.SQRT2, 0]), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the axis Re a' });
 	const im = S.arrow(cp([0, -REACH * Math.SQRT2]), cp([0, REACH * Math.SQRT2]), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the axis Im a' });
@@ -144,5 +157,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, scale: [U, A] };
-	return finish(S, L, [220, 340]);
+	return finish(S, L, BOOK ? [380, 460] : [220, 340]);
 }
