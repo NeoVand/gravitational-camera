@@ -361,9 +361,11 @@ def test_numbers_in_the_text():
     assert rows["copper"].shares["electrons"] > 0.95 and rows["iron"].shares["electrons"] > 0.95
     assert rows["silicon"].shares["Raman line"] > 0.95
     assert rows["diamond"].shares["phonon pairs"] == pytest.approx(1 / 8, abs=0.02)
-    # "in every solid larger than 30 nm the volume outshines the surface"
-    for name in ("copper", "iron", "silicon", "diamond", "silica glass"):
-        assert rows[name].crossover < 30e-9
+    # "in each of these solids larger than 170 nm, the size at which even diamond's volume wins, the volume outshines
+    # the surface"
+    for name in ("copper", "iron", "silicon", "silica glass"):
+        assert rows[name].crossover < 1e-9
+    assert 160e-9 < rows["diamond"].crossover < 170e-9
     # "a wave's wavenumber is about 1e-5 of that of a sound wave of the same frequency"
     for m in M.table().values():
         if m.c_shear:

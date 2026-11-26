@@ -262,7 +262,7 @@ $\omega_D\tau$ a thermal phonon's quality factor.
 At room temperature these materials glow at one to sixty per cent of the
 placeholder's power (Table~\ref{tab:materials}): $10^{-3}\,\mathrm{Pa\,s}$ is an
 upper estimate, and $10^{-4}\,\mathrm{Pa\,s}$ is typical. In each of these
-solids larger than $30\,\mathrm{nm}$, the size at which even diamond's volume
+solids larger than $170\,\mathrm{nm}$, the size at which even diamond's volume
 wins, the volume outshines the glow of a lossless surface,
 Eq.~\eqref{eq:surface-glow} below. Metals and water glow redder than a constant friction would; silicon glows in its line, and
 diamond, whose line lies in the Wien tail, glows bluer. The spectrum of the glow
@@ -370,28 +370,37 @@ for an elastic sphere without internal damping its strength was found to grow
 with the sphere's surface, not its volume. Which channel wins depends on how
 far a sound wave travels before it is damped. In an elastic body without
 loss a wave is absorbed only where the stiffness changes, at the surface, where
-it launches sound \cite{Dyson1969}; for a sphere below its Debye temperature
-the thermal glow that follows is \cite{DehnenRomeroSchaefer1984}
+it launches sound \cite{Dyson1969}. On a surface with normal $\mathbf n$ the
+wave acts as the traction $\mu h_{ij}n_j$, with $\mu = \rho c_T^2$, and a
+traction of amplitude $t$ sends the power $t^2/2\rho c_s$ through each unit of
+area as sound of speed $c_s$: shear sound, at $c_T$, for the part along the
+surface and compressional sound, at $c_L$, for the part along the normal.
+Averaged over the directions and polarizations of the wave, each element of
+the surface then has a cross-section of
+$(32\pi/5)(1 + 2c_T/3c_L)\,G\rho c_T^3/c^3\omega^2$ times its area, whichever
+way it faces, and by Kirchhoff's law a sphere below its Debye temperature glows
 \begin{equation}\label{eq:surface-glow}
-P_S = 4\pi R^2\,\frac{\pi^2}{24}\Bigl(1 + \frac{3c_T}{2c_L}\Bigr)
-\frac{G\rho\,c_T^3\,(k_BT)^2}{\hbar c^5} ,
+P_S = 4\pi R^2\,\frac{16\pi}{15}\Bigl(1 + \frac{2c_T}{3c_L}\Bigr)
+\frac{G\rho\,c_T^3\,(k_BT)^2}{\hbar c^5} .
 \end{equation}
-with $c_T$ and $c_L$ the speeds of shear and compressional sound. By
-Kirchhoff's law this is the glow of a surface that absorbs the fraction
-$\pi^2(1 + 3c_T/2c_L)\,G\rho c_T^3/c^3\omega^2$ of a wave, which is Dyson's
-absorption with its constant. Friction inside, $\mathrm{Re}\,\eta = \rho c_T^2/\omega Q$ for
+The same rule gives the cross-section of a resonant bar
+\cite{MisnerThorneWheeler1973}, and the sum over the quadrupole modes of a
+free sphere gives this coefficient (Appendix~\ref{app:checks}). Dehnen, Romero
+and Schäfer's sum over the modes has the same form with the coefficient
+$(\pi^2/24)(1 + 3c_T/2c_L)$, six times smaller for steel
+\cite{DehnenRomeroSchaefer1984}. Friction inside, $\mathrm{Re}\,\eta = \rho c_T^2/\omega Q$ for
 sound of quality factor $Q$, makes the volume glow by Eq.~\eqref{eq:kirchhoff};
 since this friction falls as $1/\omega$, the power grows as $T^3$ rather than
 $T^4$, with $P_V = V\,32\zeta(3)\,G\rho c_T^2 (k_BT)^3/\pi c^5 Q\hbar^2$, and
 \begin{equation}\label{eq:volume-surface}
-\frac{P_V}{P_S} =\frac{256\,\zeta(3)}{\pi^3\,(1 + 3c_T/2c_L)}\,
+\frac{P_V}{P_S} =\frac{10\,\zeta(3)}{\pi^2\,(1 + 2c_T/3c_L)}\,
 \frac{R}{\ell_s} ,
 \end{equation}
 where $\ell_s = Q\hbar c_T/k_BT$ is the distance a thermal phonon travels
-before it is damped; the prefactor is $5.5$ for steel. Thermal phonons in
+before it is damped; the prefactor is $0.89$ for steel. Thermal phonons in
 solids at room temperature travel nanometres, so ordinary bodies glow through
 their volume: a steel ball of radius $10\,\mathrm{cm}$ at room temperature
-glows $10^{-46}\,\mathrm{W}$ from its surface and, with $Q\approx10$ for its
-thermal phonons, $7\times10^{8}$ times more from its volume. A pure crystal cooled until
+glows $6\times10^{-46}\,\mathrm{W}$ from its surface and, with $Q\approx10$ for its
+thermal phonons, $10^{8}$ times more from its volume. A pure crystal cooled until
 its phonons cross it glows at its surface, in proportion to $T^2$ rather than
 $T^3$, as Dehnen, Romero and Schäfer found.

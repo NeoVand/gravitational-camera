@@ -109,7 +109,7 @@ export const notes: SideNote[] = [
 		text:
 			'A thermal phonon, one quantum of sound, travels only $\\ell_s = Q\\hbar c_T/k_BT$ before it is damped, ' +
 			'which is 0.83 nm for steel with $Q = 10$. A ball of radius 10 cm is a hundred million times that, so ' +
-			'its volume glows $6.6\\times10^8$ times more than its surface, which sends only $1.0\\times10^{-46}$ W.',
+			'its volume glows $1.1\\times10^8$ times more than its surface, which sends only $6.3\\times10^{-46}$ W.',
 		chapter: '10.3',
 		section: 'ordinary-bodies-glow-through-their-volume-not-their-surface'
 	}
