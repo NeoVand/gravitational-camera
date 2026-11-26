@@ -1,4 +1,4 @@
-// The tutorial's Part 11, its hero (tutorial/black-holes/schwarzschild.md, chapter 11.1, and the head of 11.2 to R11):
+// The tutorial's Part 11, its hero (tutorial/black-holes/schwarzschild.md, section 11.1, and the head of 11.2 to R11):
 // a black hole, what it does to light and what it does to free bodies beside it. A little right of centre a small
 // black sphere, the horizon, lit by the studio of lib.js; round it, as a thin circle (pale by day, bright at night),
 // the outline of the photon sphere at 1.5 r_s. A fan of eight rays of light comes in from the left, parallel, evenly

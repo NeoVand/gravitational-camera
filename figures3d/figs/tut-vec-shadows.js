@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.1 (tutorial/newton/vectors-and-indices.md), its first diagram: a vector's components are
+// The tutorial, section 1.1 (tutorial/newton/vectors-and-indices.md), its first diagram: a vector's components are
 // its shadows on three axes. One arrow a from the origin, with the axes east (1), north (2) and up (3) drawn in
 // true 3D (an orthographic view, turned and tilted as lib.js's Panel does); from the arrow's tip a dotted line
 // falls at right angles onto each axis, as light falling at right angles to that axis would, and marks the end of

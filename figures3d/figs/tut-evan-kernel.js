@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.7 (tutorial/outside/evanescent.md), the three sensors' factors. Against q = kz from 0 to 8,
+// The tutorial, section 2.7 (tutorial/outside/evanescent.md), the three sensors' factors. Against q = kz from 0 to 8,
 // the transforms of the three kernels up to constant factors: the tide's q e^{-q}, multiplied by e so that its peak, at
 // q = 1, is 1 (a dot there); the pull's e^{-q}, which starts at 1 and has no peak; and the potential's q^{-1} e^{-q},
 // which has no peak and grows without limit as q -> 0, on the same axes but clipped at 3.

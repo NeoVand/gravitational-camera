@@ -1,4 +1,4 @@
-// The tutorial, chapter 10.2 (tutorial/glow/kirchhoff.md), its first diagram: the three processes that join the matter's
+// The tutorial, section 10.2 (tutorial/glow/kirchhoff.md), its first diagram: the three processes that join the matter's
 // two levels to a mode's ladder. Three columns, one per process, each with the matter's two levels, l below and u above,
 // at the left, and three rungs of the mode's ladder, n_omega - 1, n_omega and n_omega + 1, at the right, all on one
 // scale of energy, the levels hbar omega apart like the rungs. Absorption: up on the matter, down on the ladder, solid.

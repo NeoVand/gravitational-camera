@@ -1,8 +1,8 @@
-// Shared tools for the four diagrams of the tutorial's chapter 2.8 (tutorial/outside/flows.md): tut-flow-box,
+// Shared tools for the four diagrams of the tutorial's section 2.8 (tutorial/outside/flows.md): tut-flow-box,
 // tut-flow-column, tut-flow-stream and tut-flow-hidden. Not a figure itself. The mathematics of the chapter, each
 // function checked here against the chapter's printed numbers, and the colours of marks drawn on the stone.
 //
-// The stone bodies are chapter 2.5's (figs/tut-null-lib.js: the sawn face of the steel ball, its rim in the stone's
+// The stone bodies are section 2.5's (figs/tut-null-lib.js: the sawn face of the steel ball, its rim in the stone's
 // fixed ink); marks on the stone keep fixed colours, which the site does not swap for its theme, so that they read
 // the same on the light stone in both themes: the stone's dark ink, matter's colour (its light one, for the mass flux)
 // and the palette's two accents written as rgb(), the form the site leaves alone (app/src/lib/paper/drawing.ts swaps

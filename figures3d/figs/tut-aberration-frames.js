@@ -1,7 +1,7 @@
-// The tutorial, chapter 6.3 (tutorial/relativity/aberration.md), its fourth diagram: Appendix C's two frames. Two
+// The tutorial, section 6.3 (tutorial/relativity/aberration.md), its fourth diagram: Appendix C's two frames. Two
 // panels, one above the other, at one scale, with beta = 0.6 along x and n0 at 60 degrees from x; the x axis is drawn
 // turned 8 degrees up from the horizontal, so that the velocities point "right and slightly up" and "left and slightly
-// down", as the comment asks. Above, "body's frame": the pixel as a small ring of twelve ink dots (chapter 6.1's) at
+// down", as the comment asks. Above, "body's frame": the pixel as a small ring of twelve ink dots (section 6.1's) at
 // the lower left, the body as a dot in matter's colour R* n0 from it, at the upper right; from the pixel an arrow in the
 // observer's colour along beta, named "c beta", two ink arrows along +-n0, named "+n0" and "-n0", and a thin dashed
 // ink line on to the body, named "R* n0". Below, "pixel's frame": the pixel at rest at the lower left, the body at its
@@ -10,7 +10,7 @@
 // position"; from the pixel the aberrated directions p+ and p- (eq:proof-stars), arrows in the observer's colour, both
 // leaning toward -beta, and their half sum, a short thick arrow named "v_perp/c", whose tip is the middle of a dotted
 // chord between the tips of p+ and p-.
-// Departures from the diagram's comment: the panels are stacked at every width (as chapter 6.2's
+// Departures from the diagram's comment: the panels are stacked at every width (as section 6.2's
 // tut-vectors-gradient), so that the drawing is not shrunk on a phone; the dotted chord between the tips of p+ and p-
 // is added, so that the half sum is seen to be one; the frame is turned by 8 degrees, as above.
 // Exact: every direction (n0, beta, p+, p-, the half sum, r) and every length in units of c or of R*: the arrows
@@ -30,7 +30,7 @@ const check = checker(name);
 const TURN = 8;                            // the x axis on the page, degrees above the horizontal
 const UNIT = 50;                           // points per unit of the arrows (a unit vector; c for a velocity)
 const RSTAR = 96;                          // points per R*
-const RING = 3.4, SPECK = 0.55;            // the pixel (chapter 6.1's)
+const RING = 3.4, SPECK = 0.55;            // the pixel (section 6.1's)
 const BODY = 3;                            // the body's dot, radius
 const CLEAR = 1.6;                         // the air between an arrow's foot and the pixel or the body
 const THICK = 1.2, THICK_HEAD = 5.2;       // the half sum's stroke and head

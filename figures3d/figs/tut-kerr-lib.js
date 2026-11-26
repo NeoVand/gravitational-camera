@@ -1,12 +1,12 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 11.2 (tutorial/black-holes/spin.md): tut-kerr-horizons,
+// Shared numbers for the three diagrams of the tutorial's section 11.2 (tutorial/black-holes/spin.md): tut-kerr-horizons,
 // tut-kerr-far-field and tut-kerr-superradiance. Not a figure itself. The sheet, strokes, labels and cropping are those of
-// chapters 1.2 to 11.1 (figs/tut-pot-lib.js), the plots and axes chapter 3.1's (figs/tut-prob-lib.js), 7.5's spin dipole
+// sections 1.2 to 11.1 (figs/tut-pot-lib.js), the plots and axes section 3.1's (figs/tut-prob-lib.js), 7.5's spin dipole
 // and its colour check (figs/tut-gravitomag-lib.js), all imported, not copied. Lengths are in GM/c^2 and rates in
 // c^3/GM, so that the spin is chi = a and r_s = 2.
 //
 // The colours: the far field's sign in the figures' orange (negative, a stretch) and blue (positive), as in 7.5's
 // tut-spin-dipole-sky; everything else in ink and the page's greys. The hole is a disc of a fixed near-black, which the
-// site does not swap, edged in ink, as in chapter 11.1's diagrams, so that it is dark in both themes. Superradiance's
+// site does not swap, edged in ink, as in section 11.1's diagrams, so that it is dark in both themes. Superradiance's
 // bars are ink (the hole gives energy) and the page's faint grey (the hole absorbs): orange and blue mean a stretch
 // and a squeeze, and are not used for the sign of an energy.
 //

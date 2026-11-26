@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.3 (tutorial/what-a-field-keeps/ladder.md), its second diagram: the paper's fig:ladder(b)
+// The tutorial, section 13.3 (tutorial/what-a-field-keeps/ladder.md), its second diagram: the paper's fig:ladder(b)
 // rebuilt as a grid. The degree l across, 0 to 6, one column each, headed "l = 0" to "l = 6"; the rung j upward, 0 to
 // 3, each row named "j = 0" to "j = 3" on the left. Each cell holds the 2l + 1 beads of its patterns, the paper's lit
 // steel beads (figs/ladder.js, stone.js's STEEL), in a short row of l + 1 with the other l nested on it, and is
@@ -43,7 +43,7 @@ const DASH = [2.0, 1.5], DIAG = 0.45;      // the diagonals
 const GOLD = (() => { const [a, b] = MATTER.match(/#[0-9a-f]{6}/g); return '#' + [1, 3, 5].map((i) => Math.round((parseInt(a.slice(i, i + 2), 16) + parseInt(b.slice(i, i + 2), 16)) / 2).toString(16).padStart(2, '0')).join(''); })();
 const BEYOND = 0.36;                       // how far a diagonal runs past (n, 0), in rows
 const LEAD = 0.13;                          // and before (0, n/2), so that it is seen to pass through that bead
-const caption = 'Look first at the bands: each degree of tide adds one floor, one more power of $r^2$, to every column of angular patterns. The bead in the colour of matter, $\\int\\matter\\rho\\,r^4$, is the first at which the two bodies of the paper\'s figure differ. The dashed diagonals collect the moments that a held mass reaches at one power of its distance. The number of beads in a cell is exact; the spacing is chosen for the drawing.';
+const caption = 'Look first at the bands: each degree of tide adds one floor, one more power of $r^2$, to every column of angular patterns. The bead in the colour of matter, $\\int\\matter\\rho\\,r^4$, is the first at which the two bodies of the opening differ. The dashed diagonals collect the moments that a held mass reaches at one power of its distance. The number of beads in a cell is exact; the spacing is chosen for the drawing.';
 
 /** A cell's label: int rho r^(l+2j) Y_l, the power left out when it is zero and written bare when it is one. */
 function moment(l, j) {

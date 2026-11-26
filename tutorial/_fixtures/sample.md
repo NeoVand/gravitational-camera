@@ -10,8 +10,8 @@ live: [tidal-rings]
 depth: A
 ---
 
-This chapter is a test of the tutorial's renderer and is never published. It uses every kind of block a chapter
-can hold, so that a test can check each one. Its physics is the Newtonian tide, as chapter 1.4 will teach it.
+This section is a test of the tutorial's renderer and is never published. It uses every kind of block a chapter
+can hold, so that a test can check each one. Its physics is the Newtonian tide, as section 1.4 will teach it.
 
 ::: plain
 A **tide** is the difference between the pull of gravity at two nearby places. A small ring of free balls near a
@@ -58,7 +58,7 @@ Along the line to the mass the tide is $\boxed{\curv{\mathcal{E}}_{rr} = -2G\mat
 
 ::: gap
 This sketch treats the mass as a point. A body of finite size has the same tide outside it only if it is
-spherical, which chapter 1.3 shows with the shell theorem.
+spherical, which section 1.3 shows with the shell theorem.
 :::
 
 ::: example
@@ -118,7 +118,7 @@ Show that the trace of the tidal tensor outside matter is zero.
 The trace is $\partial_i\partial_i\Phi = \nabla^2\Phi$, which is zero where there is no mass, by Poisson's equation.
 :::
 
-### The paper
+### The camera
 
 Derive the paper's equation [](/paper/#eq:newton) from equation [](#eq:hessian).
 

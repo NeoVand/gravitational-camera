@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.1 (tutorial/outside/laplace.md), its first diagram: the rule of the six neighbours. A point
+// The tutorial, section 2.1 (tutorial/outside/laplace.md), its first diagram: the rule of the six neighbours. A point
 // and its six neighbours at the distance b along the axes, the centres of the faces of a cube of side 2b about it,
 // drawn in true 3D (an orthographic view, turned and tilted as lib.js's Panel does; the three edges that meet at the
 // corner farthest from the viewer dashed), with the value of f = x^2 - y^2 written beside each point, in square

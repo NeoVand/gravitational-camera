@@ -1,4 +1,4 @@
-// The tutorial, chapter 10.1 (tutorial/glow/black-body.md), its fourth diagram: a moving observer still sees a black
+// The tutorial, section 10.1 (tutorial/glow/black-body.md), its fourth diagram: a moving observer still sees a black
 // body, hotter ahead. Two discs side by side, the sky of a black body at the temperature T in the plane of the motion,
 // the observer a small ink dot at each centre and the motion to the right. Each disc's rim is filled with the
 // temperature seen in that direction, T(alpha') = T / gamma (1 - beta cos alpha'), on a sequential scale from neutral
@@ -10,12 +10,12 @@
 // The scale: in each theme, in OKLab, from a neutral grey near the page (T/2) to a crimson (2T), light-dark(#960031,
 // #db2943), its lightness in equal steps and its chroma growing early (as s^0.6), so that its middle is rose, never
 // brown; graded in proportion to the logarithm of the temperature, so that T/2 and 2T lie equally far from T, as
-// chapter 6.3's bar of Doppler factors. Crimson, not orange: no colour of the scale
+// section 6.3's bar of Doppler factors. Crimson, not orange: no colour of the scale
 // lies within 0.08 in OKLab of the stretch's orange, the site's accent or the squeeze's blue (the limit that
 // lib/tutorial/colour.ts sets for the roles), nor within 0.08 of the observer's colour (asserted, in both themes).
 // Departures from the diagram's comment: the discs are named "at rest" and "moving" under them; the bar also carries
 // T (the left disc's colour) and 0.8T; the dot at each centre is the observer. The figure stays one drawing side by
-// side on a phone (about 330 points wide), as chapter 6.1's diagrams do.
+// side on a phone (about 330 points wide), as section 6.1's diagrams do.
 // Exact: each wedge's colour is T(alpha') at its middle (720 wedges, within 0.0024 of the scale's range of the exact
 // value along the rim), the three named values (asserted against the chapter's text), the bar's ticks. Schematic: the
 // discs' size and the rim's width; the colours are a scale, not the glow's colour.

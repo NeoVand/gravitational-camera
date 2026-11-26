@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.2 (tutorial/one-point/complex-symmetric.md), its first diagram: where the eigenvalues of a
+// The tutorial, section 9.2 (tutorial/one-point/complex-symmetric.md), its first diagram: where the eigenvalues of a
 // reading lie in the complex plane, Re w across and Im w up, for four readings, each on a strip of its own that shares
 // one scale across: one mass, two touching dots at 1 and a dot at -2 (in units of GM/r^3); the two masses of the
 // paper's fig:stars, dots at -0.537, 0.135 and 0.402 in that figure's units, drawn twice as far out so that they

@@ -1,6 +1,6 @@
-// The tutorial, chapter 4.5 (tutorial/response/causality.md), its first diagram: a response and a kernel that is not
+// The tutorial, section 4.5 (tutorial/response/causality.md), its first diagram: a response and a kernel that is not
 // one. Two charts side by side on the same axes, time t from -3 to 8 in units of 1/omega_0 and the kernel in units of
-// 1/m omega_0. Left, "causal": chapter 4.1's impulse response for Q = 5, e^{-Gamma t/2} sin(omega_d t) / m omega_d
+// 1/m omega_0. Left, "causal": section 4.1's impulse response for Q = 5, e^{-Gamma t/2} sin(omega_d t) / m omega_d
 // (Gamma = 0.2 omega_0, omega_d = 0.995 omega_0), in the colour of 4.1's swing, lying on the dotted zero line before
 // t = 0 and a decaying sine after. Right, "not a response": the even kernel e^{-|t|/tau} with tau = 1/omega_0, in the
 // second accent, rising before t = 0 and symmetric about it. In both the blow is a short upright arrow at t = 0, from

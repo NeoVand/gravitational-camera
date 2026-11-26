@@ -1,4 +1,4 @@
-// The tutorial, reading chapter R4 (tutorial/response/reading-section-iv-3.md), its second diagram: the capstone, the
+// The tutorial, reading section R4 (tutorial/response/reading-section-iv-3.md), its second diagram: the capstone, the
 // paper's steel ball followed through Part 4 in eight small panels, one for each step of the chapter. One drawing
 // serves the desktop and the phone (as R3's capstone, figs/tut-read-iv2-capstone.js), so the eight are laid out to be
 // read at 390 px: four rows of two, (a) beside (b) to (g) beside (h). The diagram comment asked for two rows of four on
@@ -74,7 +74,7 @@ function numbers() {
 	const K = (3 * mu * V) / R ** 2;
 	N.qrms = Math.sqrt(KT / K);
 	check((K / 1e10).toFixed(1) === '8.9' && (N.qrms * 1e16).toFixed(2) === '2.16' && N.qrms.toPrecision(2) === '2.2e-16', `q_rms = ${N.qrms}`);
-	// the same from the push (chapter 4.6): the trial shape's k_2, its static compliance 2 k_2 R^5 / 3G, the jitter
+	// the same from the push (section 4.6): the trial shape's k_2, its static compliance 2 k_2 R^5 / 3G, the jitter
 	// k_B T chi(0) of the moment Q_h for the axial U, and Q_h = 0.490 M R q
 	const gs = (G * M) / R ** 2;
 	const k2trial = (mu_) => (3 * RHO * gs * R) / (25 * mu_);

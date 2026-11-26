@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.5 (tutorial/one-point/separating-waves.md), its second diagram: two lensed images of one
+// The tutorial, section 9.5 (tutorial/one-point/separating-waves.md), its second diagram: two lensed images of one
 // chirp fall in different cells of time and frequency. A time-frequency plane: across, "time (s)" from -2 to 0.5;
 // up, "frequency (Hz)". A faint grid of cells 0.243 s wide and 4.11 Hz tall, drawn only in a band about the chirps:
 // in each column of cells, the rows from the lowest that a chirp crosses to the highest. Two chirps of a neutron-star

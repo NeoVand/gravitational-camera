@@ -1,17 +1,17 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 11.4 (tutorial/black-holes/under-tides.md):
+// Shared numbers for the three diagrams of the tutorial's section 11.4 (tutorial/black-holes/under-tides.md):
 // tut-tide-no-bulge, tut-friction-to-gamma and tut-hole-imchi. Not a figure itself. The sheet, strokes, labels and
-// cropping are chapters 1.2 to 11.2's (figs/tut-pot-lib.js), the plots and axes chapter 3.1's (figs/tut-prob-lib.js),
-// the colour roles chapter 7.4's (figs/tut-linear-lib.js: matter's and the field's, read from app.css), the hole's
-// fill chapter 11.1's (figs/tut-schw-lib.js), all imported, not copied.
+// cropping are sections 1.2 to 11.2's (figs/tut-pot-lib.js), the plots and axes section 3.1's (figs/tut-prob-lib.js),
+// the colour roles section 7.4's (figs/tut-linear-lib.js: matter's and the field's, read from app.css), the hole's
+// fill section 11.1's (figs/tut-schw-lib.js), all imported, not copied.
 //
-// The colours: the tide's stretch and squeeze in the figures' orange and blue (chapter 1.4's tut-tides, 11.1's
+// The colours: the tide's stretch and squeeze in the figures' orange and blue (section 1.4's tut-tides, 11.1's
 // tut-schw-falling-pair: orange out along the line to the Moon, blue in across it), and nowhere else; the stone's reply
 // in matter's colour; the wave's strain h in the field's, as the chapter colours it; everything else in ink and the
 // page's greys. A reference law (Page's line, the friction law) is dashed in the page's dim grey and an asymptote dotted
-// in it, as chapter 8.7's tut-qfd-factor draws its limits and as the chapter's interactive (TidalFriction.svelte) draws
+// in it, as section 8.7's tut-qfd-factor draws its limits and as the chapter's interactive (TidalFriction.svelte) draws
 // the same laws, neutral and dashed: orange and blue mean a stretch and a squeeze, and are not used for a law.
 //
-// Gamma_2: chapter 11.3's Regge-Wheeler table for degree two (app/src/lib/tutorial/live/hole-against-sky-data.ts, the
+// Gamma_2: section 11.3's Regge-Wheeler table for degree two (app/src/lib/tutorial/live/hole-against-sky-data.ts, the
 // row l = 2), read out below to six figures from x = 0.01 to 0.78, where it first holds Gamma_2 at 1, and read between
 // its points as a power of x (a straight line on log-log axes), 1 above, exactly as the interactive's tidal-friction.ts
 // (`gamma2`) reads it. `chapter(check)` fetches that data file as text and asserts that the numbers below are its own,
@@ -37,7 +37,7 @@ export { MATTER, FIELD, HOLE, G, C };
 export const near = (a, b, tol = 1e-12) => Math.abs(a - b) <= tol;
 export const palette = rolePalette;
 
-// ---- Gamma_2, chapter 11.3's table (the row l = 2, x = 0.01 to 0.78) --------------------------------------------------
+// ---- Gamma_2, section 11.3's table (the row l = 2, x = 0.01 to 0.78) --------------------------------------------------
 /** The table's x, 0.01 to 0.78 in hundredths. */
 export const X = Array.from({ length: 78 }, (_, i) => +((i + 1) / 100).toFixed(2));
 /** Gamma_2 at each X, six figures; the last, at 0.78, is the first the table holds at 1. */
@@ -86,7 +86,7 @@ export const LOW = (() => {
 })();
 
 // ---- the static tide, lengths in units of r_s (the hole) or R (the stone) ------------------------------------------------
-/** The Earth's Love number, chapter 4.6's. */
+/** The Earth's Love number, section 4.6's. */
 export const K2 = 0.3;
 /** The tide's part of the potential, (r/R)^2, and the stone's reply, k_2 (R/r)^3; the hole's whole H, r(r - r_s). */
 export const tide = (r) => r * r;
@@ -94,7 +94,7 @@ export const reply = (r) => K2 / r ** 3;
 export const holeH = (r) => r * (r - 1);
 /** The residual of Hinderer's equation at r (r_s = 1), times r^2 (r - 1)^2, for H with its derivatives h1, h2. */
 export const hinderer = (H, h1, h2, r) => r * r * (r - 1) ** 2 * h2(r) + r * (r - 1) * (2 * r - 1) * h1(r) - (6 * r * (r - 1) + 1) * H(r);
-/** The drawn bulge: chapter 11.4's interactive (tidal-friction.ts, bulgeAxes): semi-axes 1 + k_2/2 and its root's
+/** The drawn bulge: section 11.4's interactive (tidal-friction.ts, bulgeAxes): semi-axes 1 + k_2/2 and its root's
  * reciprocal, a prolate spheroid of the sphere's volume. */
 export const BULGE = (() => { const a = 1 + 0.5 * K2; return { a, b: 1 / Math.sqrt(a) }; })();
 

@@ -1,7 +1,7 @@
-// The tutorial, chapter 2.5 (tutorial/outside/null-space.md), its second diagram: the split of a density drawn as
+// The tutorial, section 2.5 (tutorial/outside/null-space.md), its second diagram: the split of a density drawn as
 // geometry. A horizontal plane, the null space N (the confined Laplacians), and a vertical line through its origin,
 // the harmonic densities H, at right angles to it, both drawn in true 3D (an orthographic view, turned and tilted as
-// lib.js's Panel does, as chapter 1.1's figs/tut-vec-projector.js). An arrow rho from the origin, its shadow rho_h on
+// lib.js's Panel does, as section 1.1's figs/tut-vec-projector.js). An arrow rho from the origin, its shadow rho_h on
 // the line, and the dashed segment from rho_h to rho, the part in N, parallel to the plane, with a right-angle mark at
 // rho_h. Through rho_h a second, lighter plane parallel to N, the set rho_h + N of densities with the same outside;
 // two more arrows from the origin to points of it, in grey, longer than rho_h, which is the shortest.

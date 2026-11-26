@@ -1,8 +1,8 @@
-// Shared numbers and marks for the three diagrams of the tutorial's chapter 7.8 (tutorial/geometry/wave-energy.md):
-// tut-viscous-slab, tut-memory-angles and tut-memory-step. Not a figure itself. The colour roles are chapter 7.4's
+// Shared numbers and marks for the three diagrams of the tutorial's section 7.8 (tutorial/geometry/wave-energy.md):
+// tut-viscous-slab, tut-memory-angles and tut-memory-step. Not a figure itself. The colour roles are section 7.4's
 // (figs/tut-linear-lib.js through figs/tut-quadrupole-lib.js: the observer's, the curvature's, matter's and the
 // field's, read from app.css by `palette(check)`); orange and blue, which mean a stretch and a squeeze, are not used.
-// The sheet, strokes, labels and cropping are those of chapters 6.1 to 7.7 (figs/tut-pot-lib.js), all imported, not
+// The sheet, strokes, labels and cropping are those of sections 6.1 to 7.7 (figs/tut-pot-lib.js), all imported, not
 // copied.
 //
 // `chapter(check)` asserts every number of the chapter that a figure draws or its caption prints, and the chapter's
@@ -34,7 +34,7 @@ export const UNIVERSE = 1e11;              // light-years, the visible universe 
 export const KPC = 3.0857e19;              // m
 export const LIGO = 1e-21;
 export const ARM = 4000;                   // m
-export const PROTON = 1.7e-15;             // m, its width as chapter 7.6 states it
+export const PROTON = 1.7e-15;             // m, its width as section 7.6 states it
 
 /** Hawking's damping rate Gamma = 16 pi G eta / c^2 (s^-1) and the absorption coefficient alpha = Gamma / c (m^-1). */
 export const gammaOf = (eta) => (16 * Math.PI * G * eta) / (C * C);

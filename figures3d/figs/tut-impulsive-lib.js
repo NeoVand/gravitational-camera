@@ -1,8 +1,8 @@
-// Shared numbers and tools for the three diagrams of the tutorial's chapter 13.5 (tutorial/what-a-field-keeps/
+// Shared numbers and tools for the three diagrams of the tutorial's section 13.5 (tutorial/what-a-field-keeps/
 // impulsive-waves.md): tut-impulsive-front, tut-light-ray-transform and tut-as-profile. Not a figure itself. The sheet,
-// strokes, labels and cropping are chapters 1.2 to 13.1's (figs/tut-pot-lib.js), the fitted dashes chapter 1.8's
-// (figs/tut-orb-lib.js), the stone bodies and their lit pictures chapter 13.1's (figs/tut-pass-lib.js), the colour roles
-// chapters 6.1 and 7.4's (figs/tut-lorentz-lib.js, figs/tut-linear-lib.js, read from app.css), all imported, not copied.
+// strokes, labels and cropping are sections 1.2 to 13.1's (figs/tut-pot-lib.js), the fitted dashes section 1.8's
+// (figs/tut-orb-lib.js), the stone bodies and their lit pictures section 13.1's (figs/tut-pass-lib.js), the colour roles
+// sections 6.1 and 7.4's (figs/tut-lorentz-lib.js, figs/tut-linear-lib.js, read from app.css), all imported, not copied.
 //
 // The colours: the wave's profile H and its front in the field's colour (H is an entry of the metric); the energy that
 // crosses a front, N = c^2 Sigma, in matter's colour; the rays of light in the light role's colour; everything else in
@@ -90,7 +90,7 @@ export async function chapter(check) {
 	has(r`$\nabla H$ points inward with the size $8Gp/c^3r$`, 'the gradient');
 	has(r`$$\boxed{\;\sym{flyby-constant}{C} = \frac{4Gp}{c^2}\;}$$`, 'the flyby constant');
 	has(r`Newton's $C = 2G\matter\mu/V$, for a mass $\matter\mu = p/c$ at $V = c$, is $2Gp/c^2$. The kick is twice Newton's`, 'Newton\'s constant');
-	has(r`"as for the bending of light"`, 'the bending of light');
+	has(r`as for the bending of light`, 'the bending of light');
 	has(r`\Delta\obs{\vect v} = \tfrac12c\nabla H = \frac{4Gp}{c^2}\,\frac{\vect b - \vect s}{|\vect b - \vect s|^2}`, 'the velocity toward the path');
 	for (const rr of [0.3, 1, 2.7]) {
 		let f = 0;

@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.5 (tutorial/quantum/counting-quanta.md), its third diagram: four states on chapter 8.3's
+// The tutorial, section 8.5 (tutorial/quantum/counting-quanta.md), its third diagram: four states on section 8.3's
 // phase plane, in the scaled axes x / x_zp across and p / m omega x_zp up (thin grey axes, a tick at each whole number),
 // each drawn as its one-standard-deviation contour: the zero point, a circle of radius 1 at the origin, filled light
 // grey, with a thin dashed edge, since the squeezed vacuum is drawn over it; a coherent state, the same filled circle
@@ -7,7 +7,7 @@
 // nbar = 1.5, a circle of radius sqrt(2 nbar + 1) = 2 at the origin, unfilled, with a dotted edge. Labels beside the
 // shapes, off them; "same area" once, by the ellipse. Ink and the page's greys only; no orange or blue (blue is the
 // tidal squeeze).
-// Departures from the diagram's comment: as in chapter 8.3's tut-phase-rings, the axes run along the drawing's left and
+// Departures from the diagram's comment: as in section 8.3's tut-phase-rings, the axes run along the drawing's left and
 // bottom edges, not through its centre, so that their numbers stay off the shapes (the ticks at +-2 would fall on the
 // thermal circle), and they span only the drawn shapes, -3 to 4.5 across and -2.5 to 3.5 up, with a tick at each whole
 // number (not 8.3's -4.6 to 4.6 with ticks at +-2 and +-4), so that the shapes are drawn larger on a phone. The ellipse
@@ -74,7 +74,7 @@ export default async function () {
 		check(rt - sw > 0.1, 'the ellipse touches the thermal circle');
 	}
 
-	// ---- the axes, along the left and bottom edges (chapter 8.3's)
+	// ---- the axes, along the left and bottom edges (section 8.3's)
 	const whole = (a, b) => Array.from({ length: Math.floor(b) - Math.ceil(a) + 1 }, (_, i) => Math.ceil(a) + i), fmt = (t) => (t < 0 ? `-${-t}` : `${t}`);
 	// the shapes inside the plane drawn: the thermal circle and the coherent state, with a quarter unit to spare
 	check(-rt - 0.25 >= U0 && -rt - 0.25 >= W0 && COHERENT[0] + 1 + 0.25 <= U1 && Math.max(COHERENT[1] + 1, sw) + 0.25 <= W1, 'a shape leaves the plane');

@@ -1,6 +1,6 @@
-// Shared tools for the five diagrams of the tutorial's chapter 3.4 (tutorial/noise/symmetric-matrices.md):
+// Shared tools for the five diagrams of the tutorial's section 3.4 (tutorial/noise/symmetric-matrices.md):
 // tut-svd-hero, tut-sym-ellipse, tut-sym-rayleigh, tut-svd-spaces and tut-svd-tsvd. Not a figure itself. The charts
-// take chapter 3.1's sheet, axes and colours (figs/tut-prob-lib.js) and chapter 2.6's curve sampler
+// take section 3.1's sheet, axes and colours (figs/tut-prob-lib.js) and section 2.6's curve sampler
 // (figs/tut-fourier-lib.js), both imported, not copied. The colours keep one meaning in all five: what the camera
 // sees, a gain above the noise and the patterns it keeps, in the first accent (orange); the noise, in the second
 // (blue); a stretch in orange and a squeeze in blue where a matrix acts on directions, as the paper colours a tide.

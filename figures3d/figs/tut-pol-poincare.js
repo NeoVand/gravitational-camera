@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.4 (tutorial/waves/polarization.md), its fifth diagram: Poincare's sphere. Left, a sphere of
+// The tutorial, section 5.4 (tutorial/waves/polarization.md), its fifth diagram: Poincare's sphere. Left, a sphere of
 // radius 1 in light perspective (a camera 9 radii away, 22 degrees above the equator, 35 degrees round from Q toward
 // -U): its outline, the equator and the vertical axis, thin and grey; the axes Q/I (toward the viewer and right),
 // U/I (right and back) and V/I (up), named at their tips. The north pole named "anticlockwise, circular", the south

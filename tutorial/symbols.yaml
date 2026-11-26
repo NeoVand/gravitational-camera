@@ -3371,7 +3371,7 @@ symbols:
     tex: 'P_S'
     role: none
     kind: A power; in W
-    meaning: 'The gravitational power a sphere without internal friction sends from its surface, where a wave launches sound: the paper''s $4\pi R^2(\pi^2/24)(1 + 3c_T/2c_L)G\rho c_T^3(k_BT)^2/\hbar c^5$, after Dehnen, Romero and Schäfer, growing as $T^2$. A steel ball of 10 cm sends $10^{-46}$ W.'
+    meaning: 'The gravitational power a sphere without internal friction sends from its surface, where a wave launches sound: $4\pi R^2(16\pi/15)(1 + 2c_T/3c_L)G\rho c_T^3(k_BT)^2/\hbar c^5$, growing as $T^2$. A steel ball of 10 cm sends $6\times10^{-46}$ W.'
     chapter: '10.3'
     anchor: ordinary-bodies-glow-through-their-volume-not-their-surface
   - key: count-friction
@@ -3885,7 +3885,7 @@ symbols:
     kind: A complex number turning with the orbit; in s⁻²
     meaning: 'The paper''s amplitude of the wave in $\mathcal W = (GM/r^3)\,\mathrm{diag}(1,1,-2) + h\,\mathbf m_0\mathbf m_0^{\mathsf T}$ for one pixel on a pair''s axis, with $\mathbf m_0 = (1, i, 0)$: a tide, not a strain. Two principal null directions sit at $z = \pm(3GM/r^3h)^{1/2}$ and cross the equator where $|h| = 3GM/r^3$.'
     chapter: R12
-    anchor: on-the-orbits-axis-one-pixel-sees-the-type-pass-from-d-through-ii-toward-n
+    anchor: near-the-pair-the-tide-turns-with-it-and-beyond-three-tenths-of-a-wavelength-it-is-a-wave
 
   - key: central-focus
     title: Central focus of a transparent lens

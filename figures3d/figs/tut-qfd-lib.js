@@ -1,8 +1,8 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 8.7 (tutorial/quantum/quantum-fluctuation.md):
-// tut-qfd-factor, tut-qfd-two-orders and tut-qfd-bounds. Not a figure itself. The palette is chapter 8.1's (read from
-// app.css by `palette(check)`), hbar, k_B, the steel ball's note and silicon's Raman line chapter 8.3's
-// (figs/tut-quanta-lib.js), the cart's complex response k chi(omega) chapter 4.1's (figs/tut-osc-lib.js, `kChi`), the
-// relative `near` chapter 8.2's, and the sheet, strokes, labels and cropping those of chapters 6.1
+// Shared numbers for the three diagrams of the tutorial's section 8.7 (tutorial/quantum/quantum-fluctuation.md):
+// tut-qfd-factor, tut-qfd-two-orders and tut-qfd-bounds. Not a figure itself. The palette is section 8.1's (read from
+// app.css by `palette(check)`), hbar, k_B, the steel ball's note and silicon's Raman line section 8.3's
+// (figs/tut-quanta-lib.js), the cart's complex response k chi(omega) section 4.1's (figs/tut-osc-lib.js, `kChi`), the
+// relative `near` section 8.2's, and the sheet, strokes, labels and cropping those of sections 6.1
 // to 8.6 (figs/tut-pot-lib.js), all imported, not copied. Ink and the page's greys only: orange and blue, which mean a
 // stretch and a squeeze, are not used.
 //
@@ -46,7 +46,7 @@ export const siliconX = () => (2 * Math.PI * HBAR * RAMAN) / (KB * TEMP);
 
 // ---- the two orders ------------------------------------------------------------------------------------------------
 export const Q_LINE = 12.5;
-/** Im chi(omega) / Im chi(omega_0) at x = omega / omega_0 (chapter 4.1's k chi, whose Im is Q at omega_0). */
+/** Im chi(omega) / Im chi(omega_0) at x = omega / omega_0 (section 4.1's k chi, whose Im is Q at omega_0). */
 export const line = (x) => kChi(x, Q_LINE)[1] / Q_LINE;
 /** In units of hbar Im chi(omega_0), at x = omega / omega_0 and t = k_B T / hbar omega_0: S(omega), S-bar, classical. */
 export const spec = (x, t) => (x === 0 ? 2 * t * (line(1e-9) / 1e-9) : (2 * line(x)) / -Math.expm1(-x / t));

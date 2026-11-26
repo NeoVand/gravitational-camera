@@ -1,6 +1,6 @@
-// The tutorial, chapter 9.4 (tutorial/one-point/petrov.md), its third diagram: a moving body's two pairs of principal
-// null directions, their half sum and their half difference. The sky around a small grey pixel, drawn as chapter 8.4
-// draws it (figs/tut-spin-lib.js, after chapter 6.6 and the paper's fig:stars): a thin outline, a veil over what lies
+// The tutorial, section 9.4 (tutorial/one-point/petrov.md), its third diagram: a moving body's two pairs of principal
+// null directions, their half sum and their half difference. The sky around a small grey pixel, drawn as section 8.4
+// draws it (figs/tut-spin-lib.js, after section 6.6 and the paper's fig:stars): a thin outline, a veil over what lies
 // behind, and the great circle z = 0, faint, solid in front and dashed behind. A stone body outside the sky along -x,
 // moving along +y, an arrow in the observer's colour, "v = 0.9c", drawn at the scale of the half sum. The two pairs at
 // rest, +-x, as open circles, two touching each; the aberrated pairs at (+-0.436, 0.9, 0) as filled dots in the
@@ -8,17 +8,17 @@
 // a thin dashed line between the two pairs. From the pixel, an arrow in the observer's colour to their midpoint,
 // (0, 0.9, 0), named "1/2(p+ + p-) = v_perp/c"; a thin ink arrow from the midpoint to the pair p+, named
 // "1/2(p+ - p-)", parallel to the dashed ink line from the pixel to the body's present position, named "n, now".
-// Departures from the diagram's comment: the dots are in the curvature's colour (as chapter 8.4's Majorana stars, the
+// Departures from the diagram's comment: the dots are in the curvature's colour (as section 8.4's Majorana stars, the
 // same directions), not the accent colour, which on this site is orange and means a stretch; the view is the paper's
 // turned by 35 degrees instead of 25 and seen from 45 degrees above the plane of the motion instead of 14, so that the
 // pairs and the places at rest, which lie in that plane, stand clear of the sky's outline (from the paper's view the
 // pair p- falls on it); the open circles and
-// the paths are as fig:stars and chapter 6.6 draw them, and, as there, a thin dashed line joins the two pairs, so that
+// the paths are as fig:stars and section 6.6 draw them, and, as there, a thin dashed line joins the two pairs, so that
 // their midpoint, where the arrow from the pixel ends, can be seen as the middle of the two; the great circle z = 0 on
 // which the paths lie is drawn faint; the half sum's name is set on two lines, to fit between the arrow and the sky's
 // edge; the sky's outline is the page's rule colour, as in every sky of the tutorial.
 // Exact: the four directions at 0.9c, the roots of the quartic of Lambda W Lambda^T for the body's reading at rest
-// W = w (1 - 3 n0 n0^T) (n0 = -x) and chapter 9.3's boost Lambda = exp(-i eta u.L) of the pixel through the body's
+// W = w (1 - 3 n0 n0^T) (n0 = -x) and section 9.3's boost Lambda = exp(-i eta u.L) of the pixel through the body's
 // frame (u = -y, tanh eta = 0.9), and the paths, the roots at every speed from 0 to 0.9c, all on z = 0 (asserted in
 // figs/tut-petrov-lib.js against the chapter's text, the paper's eq:proof-stars and its figure data); the half sum
 // (0, 0.9, 0), the half difference (-0.436, 0, 0) along the line to the body's present position, -x (the body

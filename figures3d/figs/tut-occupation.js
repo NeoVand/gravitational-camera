@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.3 (tutorial/quantum/quanta.md), its third diagram: how many quanta a mode holds. One panel
+// The tutorial, section 8.3 (tutorial/quantum/quanta.md), its third diagram: how many quanta a mode holds. One panel
 // on logarithmic axes: across, k_B T / hbar omega from 0.1 to 10^10 (a tick at each power of ten, every second one
 // numbered); up, from 10^-5 to 10^10 (the same). Three curves: nbar = 1/(e^{hbar omega / k_B T} - 1), solid ink;
 // nbar + 1/2 = <E> / hbar omega, dashed ink; the classical line k_B T / hbar omega, thin grey. Two marked points:
@@ -11,7 +11,7 @@
 // phone; "nbar + 1/2" is written with a slash rather than a built-up half for the same reason. The axis across is
 // named "k_B T / hbar omega".
 // Exact: every curve (the closed forms, asserted against the sum over the levels in tut-quanta-lib.js), the two
-// points (from the chapter's constants: chapter 4.3's ball at 300 K, 15.6 THz at 300 K), the axes' decades.
+// points (from the chapter's constants: section 4.3's ball at 300 K, 15.6 THz at 300 K), the axes' decades.
 import { Sheet, ORIGIN, finish, checker, placed, AXIS, HAIR, TICK, LABEL_GAP, n2 } from './tut-pot-lib.js';
 import { Plot, xAxis, yAxis } from './tut-prob-lib.js';
 import { graph, longest, CURVE } from './tut-fourier-lib.js';

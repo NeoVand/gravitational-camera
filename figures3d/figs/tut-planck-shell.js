@@ -1,5 +1,5 @@
-// The tutorial, chapter 10.1 (tutorial/glow/black-body.md), its first diagram: the waves that fit in a box, counted in
-// a shell. Two panels side by side. Left, the grid of chapters 2.6 and 8.3 in the plane (k_x, k_y): a square lattice
+// The tutorial, section 10.1 (tutorial/glow/black-body.md), its first diagram: the waves that fit in a box, counted in
+// a shell. Two panels side by side. Left, the grid of sections 2.6 and 8.3 in the plane (k_x, k_y): a square lattice
 // of small dots with the spacing 2 pi / D, marked once by a bracket under the lattice; the ring of radius k and width
 // dk shaded in the page's pale neutral, its dots in ink and the others faint; one cell of side 2 pi / D drawn round one
 // dot; the radius k. Right, the same in three dimensions, in true 3D (one orthographic view): the shell between the

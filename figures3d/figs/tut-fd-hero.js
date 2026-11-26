@@ -1,11 +1,11 @@
-// The tutorial, chapter 4.6 (tutorial/response/fluctuation-dissipation.md), its opening figure: nothing pushes the warm
+// The tutorial, section 4.6 (tutorial/response/fluctuation-dissipation.md), its opening figure: nothing pushes the warm
 // ball, and still its tide a metre away trembles. Seen from the side, the ball and the distance to one scale. Left: the
-// paper's steel ball of radius 10 cm (the body of chapter 4.1's tut-osc-hero), drawn at one end of the swing of its
+// paper's steel ball of radius 10 cm (the body of section 4.1's tut-osc-hero), drawn at one end of the swing of its
 // lowest quadrupole mode, longer along the horizontal axis: 4.3's trial shape u = (q/R)(-x/2, -y/2, z), z along the
 // axis, for q = q_rms = 2.2 x 10^-16 m, the warm ball's root-mean-square swing at 300 K, exaggerated 10^14 times to 2.2
 // cm, so that its semi-axes are 12.2 cm along the axis and 8.9 cm across it; the ball at rest as a thin dashed circle.
 // Round it a haze of 300 small grey dots within 20 cm of its surface, the warm air. Right, its centre a metre from the
-// ball's on the same axis: chapter 1.4's ring of twelve free steel beads, radius 10 cm, in the page's plane, drawn
+// ball's on the same axis: section 1.4's ring of twelve free steel beads, radius 10 cm, in the page's plane, drawn
 // three times faintly overlaid as it trembles: stretched along the axis (its beads on an orange ellipse, 15% longer
 // along the axis and, the tide being trace-free in the ring's plane as diag(-2, 1), 7.5% shorter across it), at rest
 // (on a thin dashed circle) and squeezed along the axis (on a blue ellipse, 15% shorter along it and 7.5% longer

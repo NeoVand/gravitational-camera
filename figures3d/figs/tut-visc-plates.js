@@ -1,5 +1,5 @@
-// The tutorial, chapter 4.4 (tutorial/response/viscosity.md), its first diagram: a liquid sheared between two plates,
-// seen from the side. The lower plate held still, hatched beneath as chapter 1.7's wall (figs/tut-ham-phase.js); the
+// The tutorial, section 4.4 (tutorial/response/viscosity.md), its first diagram: a liquid sheared between two plates,
+// seen from the side. The lower plate held still, hatched beneath as section 1.7's wall (figs/tut-ham-phase.js); the
 // upper plate sliding to the right at the speed v, its arrow above it. Between them, in the pale tint of the second
 // accent, the liquid, and in it five arrows at the heights d/6, 2d/6, ..., 5d/6 whose lengths are v y/d on the scale of
 // the plate's arrow, so that they rise evenly from zero at the still plate to v at the moving one; a thin straight line
@@ -44,7 +44,7 @@ export default async function () {
 		S.fill(d, { l: left, r: right, t, b: t + PLATE }, { color: SLAB, layer: 1, what });
 		S.path([[left, t], [right, t], [right, t + PLATE], [left, t + PLATE]], { color: DIM, width: HAIR, layer: 1.2, closed: true, what: `${what}'s edge` });
 	}
-	// the lower plate held still: hatched beneath, as chapter 1.7's wall
+	// the lower plate held still: hatched beneath, as section 1.7's wall
 	{
 		const yb = yLow + PLATE, step = 6.4, k = Math.floor((W - 3) / step) + 1;
 		for (let i = 0; i < k; i++) {

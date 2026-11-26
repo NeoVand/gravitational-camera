@@ -1,7 +1,7 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 9.2 (tutorial/one-point/complex-symmetric.md):
+// Shared numbers for the three diagrams of the tutorial's section 9.2 (tutorial/one-point/complex-symmetric.md):
 // tut-cx-eigen-plane, tut-cx-shape-tree and tut-cx-jordan-block. Not a figure itself. Complex numbers are chapter
-// 8.1's [re, im] (figs/tut-quantum-lib.js), the sheet, strokes, labels and cropping those of chapters 6.1 to 8.7
-// (figs/tut-pot-lib.js), the complex plane's thin axes, ticks and dots chapter 1.5b's (figs/tut-five-lib.js), all
+// 8.1's [re, im] (figs/tut-quantum-lib.js), the sheet, strokes, labels and cropping those of sections 6.1 to 8.7
+// (figs/tut-pot-lib.js), the complex plane's thin axes, ticks and dots section 1.5b's (figs/tut-five-lib.js), all
 // imported, not copied. Ink and the page's greys only: orange and blue mean a stretch and a squeeze, and are not used.
 //
 // `chapter(check)` asserts against the chapter's own text (fetched, outside its comments) every statement that a
@@ -175,8 +175,8 @@ export async function chapter(check) {
 	// ---- the pair of the paper's fig:stars
 	const fd = await (await fetch('/reference/gravcam/figure_data.py')).text();
 	check(fd.includes('pair = ([1e3, 0.45e3], [np.array([-1.5, 0.3, 0.0]), np.array([0.9, 1.1, 0.6])])'), 'the pair is not figure_data.py\'s');
-	has('has two masses in the ratio $1 : 0.45$, at $(-1.5, 0.3, 0)$ and $(0.9, 1.1, 0.6)$ in the figure\'s units, from the pixel', 'the pair');
-	has('They give the eigenvalues $-0.537$, $0.135$ and $0.402$ in the figure\'s units, $I = 0.468$ and $J = -0.0874$, so $1 - 6J^2/I^3 = 0.553$: the paper\'s 0.55', 'the pair\'s numbers');
+	has('Two masses in the ratio $1 : 0.45$, at $(-1.5, 0.3, 0)$ and $(0.9, 1.1, 0.6)$ in the scene\'s units, from the pixel', 'the pair');
+	has('give the eigenvalues $-0.537$, $0.135$ and $0.402$ in those units, $I = 0.468$ and $J = -0.0874$, so $1 - 6J^2/I^3 = 0.553$', 'the pair\'s numbers');
 	const pair = examples().I, pairInv = invariants(pair);
 	const pairW = roots(pairInv);
 	check(pairW.every((z) => Math.abs(z[1]) < 1e-12), 'the pair\'s eigenvalues are not real');
@@ -185,7 +185,6 @@ export async function chapter(check) {
 	const disc = pairW.reduce((p, z, i) => mul(p, mul(sub(z, pairW[(i + 1) % 3]), sub(z, pairW[(i + 1) % 3]))), cx(1));
 	const discInv = sub(scale(mul(mul(pairInv.I, pairInv.I), pairInv.I), 0.5), scale(mul(pairInv.J, pairInv.J), 3));
 	check(nearC(disc, discInv, 1e-14) && disc[0].toFixed(4) === '0.0284', `the pair's discriminant ${disc}`);
-	has('for the two masses below both are 0.0284', 'the discriminant');
 	// each root is an eigenvalue: det(W - w) = 0
 	for (const z of pairW) check(absC(det(minus(pair, z))) < 1e-12, 'a root of the cubic is not an eigenvalue of the pair');
 
@@ -229,10 +228,10 @@ export async function chapter(check) {
 	has('**$\\curv{\\mathcal W} \\neq 0$ and $\\curv{\\mathcal W}^2 = 0$** (N): one plane wave, of rank one', 'type N');
 	has('**$\\curv{\\mathcal W} = 0$** (O): no field', 'type O');
 	has('A real symmetric table, the reading of a scene at rest, always has the shape I, D or O', 'the shapes at rest');
-	has('**The paper\'s type III table**, with rows $(0, 0, 1)$, $(0, 0, i)$, $(1, i, 0)$', 'the type III rows');
+	has('**The type III table**, with rows $(0, 0, 1)$, $(0, 0, i)$, $(1, i, 0)$', 'the type III rows');
 	has('Both traces vanish, as for a wave, but the rank is two', 'type III\'s rank');
 	has('With $\\curv w = 0.125$ and $\\curv c_2 = 0.05$, in any unit of tide, the product has entries of size $0.0094$', 'the mass and wave');
-	has('each labelled here with the Petrov letter that chapter 9.4 explains', 'the Petrov letters');
+	has('each labelled here with the Petrov letter that section 9.4 explains', 'the Petrov letters');
 	const ex = examples();
 	const RANKS = { I: 3, D: 3, II: 3, III: 2, N: 1, O: 0 };
 	const MINIMAL = {};

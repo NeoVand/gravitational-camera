@@ -1,5 +1,5 @@
-// The tutorial, chapter 2.3 (tutorial/outside/multipoles.md), its second diagram: the person one metre from a ring
-// of free beads, drawn twice. Above, as chapter 1.4 drew it, a ball of water of 70 kg, of radius 0.256 m; below, as a
+// The tutorial, section 2.3 (tutorial/outside/multipoles.md), its second diagram: the person one metre from a ring
+// of free beads, drawn twice. Above, as section 1.4 drew it, a ball of water of 70 kg, of radius 0.256 m; below, as a
 // uniform thin rod of the same mass, 1.7 m long and upright. Each has its ring of eight beads one metre from its
 // centre, level with it, in the plane of the page, drawn out by its own tide; under each, an orange bar for the size
 // of the stretch along the line to the ring, 9.3 and 5.6 x 10^-9 s^-2, to one scale. About the rod's centre a dashed

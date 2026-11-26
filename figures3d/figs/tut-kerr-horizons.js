@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.2 (tutorial/black-holes/spin.md), its first diagram: the horizon, the ergosphere and the
+// The tutorial, section 11.2 (tutorial/black-holes/spin.md), its first diagram: the horizon, the ergosphere and the
 // horizon's rate against the spin. Two panels side by side, sharing their tops and bottoms, across chi = ac^2/GM from 0
 // to 1. Left, in GM/c^2 from 0 to 2.2: the outer horizon r_+ = 1 + sqrt(1 - chi^2), a solid ink curve falling from 2 to
 // 1, and the equatorial edge of the ergosphere, 2, a dashed line, with the band between them in the page's faint tint

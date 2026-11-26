@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.2 (tutorial/relativity/spacetime-vectors.md), its second diagram: two four-velocities on
+// The tutorial, section 6.2 (tutorial/relativity/spacetime-vectors.md), its second diagram: two four-velocities on
 // the hyperbola u.u = -c^2, and the pixel's "now" as the mirror image of its four-velocity across the light line. One
 // panel, units of c at one scale on both axes, so that light runs at 45 degrees: u^1 across from -0.4 to 2.0 and u^0
 // upward from 0 to 2.0, thin ink, named "u^1/c" and "u^0/c" at their ends, with the number 1 on each. The light line
@@ -9,7 +9,7 @@
 // observer's colour: along the u^1 axis for the observer at rest, and along (u^1, u^0) = (1.25, 0.75) for the pixel,
 // named "now at 0.6c". A faint dotted segment from (0.75, 1.25) to (1.25, 0.75), at right angles to the light line,
 // shows the mirror.
-// Departures from the diagram's comment: the axes carry the number 1, as chapter 6.1's hyperbola does, so that the
+// Departures from the diagram's comment: the axes carry the number 1, as section 6.1's hyperbola does, so that the
 // units of c can be read; at u^0 = 1 the number stands without its tick, since the arrow "at rest" ends there and its
 // point would hide a tick (6.1 does the same). The observer at rest's now runs along the u^1 axis and stops short of
 // the axis's head. The panel is drawn at 95 points to c (228 points for the 2.4 across, about the comment's 520 site

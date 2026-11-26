@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.4 (tutorial/relativity/energy-and-momentum.md), its second diagram: two lumps that stick.
+// The tutorial, section 6.4 (tutorial/relativity/energy-and-momentum.md), its second diagram: two lumps that stick.
 // Two panels, "before" over "after". Before: two small round lumps in matter's colour on a thin line, each with an
 // arrow in the observer's colour toward the centre, named "0.6c"; under them one bar for the pair, to scale, made of
 // two solid segments of one unit of mc^2 each in matter's colour, named "rest energy mc^2" once, and two hatched

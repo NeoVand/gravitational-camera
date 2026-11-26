@@ -1,8 +1,8 @@
-// The tutorial, chapter 2.7 (tutorial/outside/evanescent.md), its opening figure: a finer ripple fades faster. A slab
+// The tutorial, section 2.7 (tutorial/outside/evanescent.md), its opening figure: a finer ripple fades faster. A slab
 // of sandstone whose top carries three corrugations side by side, of crest spacings 4, 2 and 1 (the finest spacing is
 // the unit of length), each over a strip 4 units wide, so that the strips hold 1, 2 and 4 whole periods and every
 // strip meets its neighbour at the mean: orange where the density is above the mean and blue where it is below, as
-// chapter 2.6 colours its slabs (figs/tut-fourier-hero.js). Above it two translucent planes, at the heights z = 1/2
+// section 2.6 colours its slabs (figs/tut-fourier-hero.js). Above it two translucent planes, at the heights z = 1/2
 // and 2z = 1 (half and once the finest spacing), carry over each strip the ripple of the potential that its
 // corrugation makes, A sin(k (x - x0)) e^{-kh} with A < 0 (eq:sheet): the potential dips over the dense crests. Each
 // ripple is drawn as the fraction e^{-kh} of its own size at the slab, times one height E for both planes, so that

@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.6 (tutorial/response/fluctuation-dissipation.md), its third diagram: heat and causality reach
+// The tutorial, section 4.6 (tutorial/response/fluctuation-dissipation.md), its third diagram: heat and causality reach
 // the sum rule from opposite sides. Three boxes in a triangle, thin neutral strokes. Above, the sum rule, (2/pi)
 // int_0^inf omega Im chi_h d omega = int rho |grad h|^2 dV. Below left, a warm body, <Q_h'^2> = k_B T int rho |grad
 // h|^2 dV (4.2, equipartition), with an arrow up to the sum rule in the first accent, "fluctuation-dissipation theorem

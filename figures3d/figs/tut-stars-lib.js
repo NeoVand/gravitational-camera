@@ -1,10 +1,10 @@
-// Shared numbers for the five diagrams of the tutorial's chapter 12.1 (tutorial/sky/stars.md): tut-stars-shell,
+// Shared numbers for the five diagrams of the tutorial's section 12.1 (tutorial/sky/stars.md): tut-stars-shell,
 // tut-stars-lane-emden, tut-stars-ends, tut-stars-inspiral and tut-stars-columns. Not a figure itself. The sheet,
-// strokes, labels and cropping are chapters 1.2 to 11.4's (figs/tut-pot-lib.js), the plots and axes chapter 3.1's
-// (figs/tut-prob-lib.js), the stone and its shade chapter 2.5's (figs/tut-null-lib.js), the colour roles chapter
+// strokes, labels and cropping are sections 1.2 to 11.4's (figs/tut-pot-lib.js), the plots and axes section 3.1's
+// (figs/tut-prob-lib.js), the stone and its shade section 2.5's (figs/tut-null-lib.js), the colour roles chapter
 // 7.4's (figs/tut-linear-lib.js, through figs/tut-friction-lib.js: matter's and the field's, read from app.css), G
-// chapter 3.6's (figs/tut-measure-lib.js, the app's 6.6743 x 10^-11), hbar chapter 8.1's (figs/tut-quantum-lib.js),
-// c chapter 7.1's (figs/tut-metric-lib.js), the Sun's mass and the year chapter 9.2's (figs/tut-quadrupole-lib.js),
+// section 3.6's (figs/tut-measure-lib.js, the app's 6.6743 x 10^-11), hbar section 8.1's (figs/tut-quantum-lib.js),
+// c section 7.1's (figs/tut-metric-lib.js), the Sun's mass and the year section 9.2's (figs/tut-quadrupole-lib.js),
 // all imported, not copied. The electron's and the proton's masses are CODATA 2018's.
 //
 // The colours: stars, their densities and their branches in matter's colour; the pull and the line r = r_s in the
@@ -20,7 +20,7 @@
 //    omega)^{1/3} (5 C / 8 pi G) M^{-1/3} = 10,400 km at 0.6 M_sun; M_Ch = (sqrt(3 pi)/2) omega_3 (hbar c/G)^{3/2} /
 //    (2 m_p)^2 = 1.43 M_sun; r_s = 2GM/c^2;
 //  - the inspiral: tau = (5/256) c^5 d^4 / G^3 m1 m2 M, 8.8 s for 30 + 30 M_sun at 2200 km; the white-dwarf pair turning
-//    every ten minutes (chapter 1.8's) at d = (G M (600 s / 2 pi)^2)^{1/3} = 113,000 km, with 244,000 years left
+//    every ten minutes (section 1.8's) at d = (G M (600 s / 2 pi)^2)^{1/3} = 113,000 km, with 244,000 years left
 //    (7.7 x 10^12 s); lambda/2 pi = c / 2 Omega = 5500 km for the black holes; their cut-off 3 (r_s1 + r_s2) = 532 km;
 //  - the Galaxy: reference/gravcam/galaxy.py reproduced line by line (its densities, its dust and MAG = 2.5 / ln 10),
 //    each line of sight added up in the chapter's steps of 0.15 pc out to 60 kpc at the Sun's 20 pc: the column ratio
@@ -217,7 +217,7 @@ export async function chapter(check) {
 	check(near(wdRadius(8 * M_SUN) / wdRadius(M_SUN), 0.5, 1e-12), 'the radius is not as M^-1/3');
 
 	// ---- the inspiral
-	has(r`The formula gives $\tau = 8.8$ s, Section XI's "ten seconds before they merge"`, 'the black holes\' time');
+	has(r`The formula gives $\tau = 8.8$ s, about nine seconds before they merge.`, 'the black holes\' time');
 	has(r`The reduced wavelength, $\lambda/2\pi = 5500$ km, is 2.5 times the separation`, 'the reduced wavelength');
 	has(r`is 113,000 km apart and radiates at 3.3 mHz. It has 244,000 years left.`, 'the white dwarfs');
 	has(r`Halving the separation shortens it sixteen times`, 'the fourth power');

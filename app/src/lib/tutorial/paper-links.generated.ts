@@ -15,7 +15,12 @@ export const paperLinks: PaperLink[] = [
 	},
 	{ anchor: 'par:what-is-already-known', chapter: '0.1', label: 'Background' },
 	{ anchor: 'sec:pixel', chapter: 'R1', label: 'Reading' },
-	{ anchor: 'eq:tidal', chapter: '7.2', label: 'Derivation' },
+	{
+		anchor: 'eq:tidal',
+		chapter: '7.2',
+		label: 'Derivation',
+		section: 'for-an-observer-at-rest-the-drift-is-the-papers-tide'
+	},
 	{
 		anchor: 'eq:deviation',
 		chapter: '1.4',
@@ -65,14 +70,15 @@ export const paperLinks: PaperLink[] = [
 		section: 'the-earths-own-tide-is-subtracted-and-its-magnetic-part-weighs-the-core'
 	},
 	{ anchor: 'sec:regimes', chapter: 'R5', label: 'Reading' },
-	{ anchor: 'eq:nearzone', chapter: '5.2', label: 'Derivation' },
-	{ anchor: 'fig:regimes', chapter: '5.2', label: 'Background' },
 	{
-		anchor: 'par:spin-speed-and-compactness',
-		chapter: 'R5',
-		label: 'Reading',
-		section: 'one-property-of-gravity-and-two-small-numbers-of-matter-decide-what-the-camera-can-do'
+		anchor: 'eq:nearzone',
+		chapter: '5.2',
+		label: 'Derivation',
+		section:
+			'beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1'
 	},
+	{ anchor: 'fig:regimes', chapter: '5.2', label: 'Background' },
+	{ anchor: 'par:spin-speed-and-compactness', chapter: 'R5', label: 'Reading' },
 	{
 		anchor: 'tab:regimes',
 		chapter: '0.1',
@@ -173,12 +179,18 @@ export const paperLinks: PaperLink[] = [
 		label: 'Reading',
 		section: 'a-warm-bodys-moments-change-at-a-rate-set-by-its-temperature-and-its-density-alone'
 	},
-	{ anchor: 'eq:thermal-moment', chapter: '4.2', label: 'Derivation' },
+	{
+		anchor: 'eq:thermal-moment',
+		chapter: '4.2',
+		label: 'Derivation',
+		section:
+			'the-mean-square-rate-of-change-of-a-warm-bodys-moments-is-fixed-by-its-temperature-and-density'
+	},
 	{
 		anchor: 'eq:thermal-multipole',
-		chapter: '2.2',
+		chapter: '4.6',
 		label: 'Derivation',
-		section: 'patterns-of-different-degree-are-orthogonal-and-every-pattern-is-a-sum-of-them'
+		section: 'each-degree-of-the-tremor-holds-one-moment-of-the-density'
 	},
 	{
 		anchor: 'fig:tremor',
@@ -192,14 +204,24 @@ export const paperLinks: PaperLink[] = [
 		label: 'Reading',
 		section: 'a-push-measures-the-same-total-at-any-temperature'
 	},
-	{ anchor: 'eq:sum-rule', chapter: '4.5', label: 'Derivation' },
+	{
+		anchor: 'eq:sum-rule',
+		chapter: '4.5',
+		label: 'Derivation',
+		section: 'driven-faster-than-its-bonds-every-body-answers-as-dust'
+	},
 	{
 		anchor: 'par:a-model-independent-thermometer',
 		chapter: 'R4',
 		label: 'Reading',
 		section: 'a-push-shaped-like-the-reading-turns-the-pixel-into-a-thermometer'
 	},
-	{ anchor: 'eq:thermometer', chapter: '4.6', label: 'Derivation' },
+	{
+		anchor: 'eq:thermometer',
+		chapter: '4.6',
+		label: 'Derivation',
+		section: 'a-push-shaped-like-the-reading-makes-a-thermometer-that-needs-no-model-of-the-body'
+	},
 	{
 		anchor: 'par:how-sharp',
 		chapter: 'R2',
@@ -218,14 +240,24 @@ export const paperLinks: PaperLink[] = [
 		label: 'Derivation',
 		section: 'the-camera-records-a-tide-which-weights-each-ripple-by-k'
 	},
-	{ anchor: 'eq:wiener', chapter: '3.5', label: 'Derivation' },
+	{
+		anchor: 'eq:wiener',
+		chapter: '3.5',
+		label: 'Derivation',
+		section: 'independent-ripples-can-be-filtered-one-at-a-time'
+	},
 	{
 		anchor: 'eq:cutoff',
 		chapter: '3.7',
 		label: 'Derivation',
 		section: 'step-3-the-filter-keeps-a-ripple-while-it-stands-above-its-noise'
 	},
-	{ anchor: 'eq:resolution', chapter: '3.6', label: 'Derivation' },
+	{
+		anchor: 'eq:resolution',
+		chapter: '3.7',
+		label: 'Derivation',
+		section: 'step-6-the-blur-is-the-width-of-the-picture-at-half-its-height'
+	},
 	{
 		anchor: 'tab:resolution',
 		chapter: '2.7',
@@ -242,7 +274,7 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:a-flown-gradiometer',
 		chapter: 'R3',
 		label: 'Reading',
-		section: 'the-blur-is-a-fixed-angle-and-a-satellite-that-flew-sits-on-the-tables-first-row'
+		section: 'the-best-picture-of-a-point-is-the-pattern-of-a-round-pupil'
 	},
 	{
 		anchor: 'fig:nearfield',
@@ -250,42 +282,17 @@ export const paperLinks: PaperLink[] = [
 		label: 'Live',
 		section: 'the-same-fade-appears-for-every-field-that-obeys-laplaces-equation'
 	},
-	{
-		anchor: 'par:other-gravitational-sensors',
-		chapter: 'R3',
-		label: 'Reading',
-		section: 'clocks-and-accelerometers-meet-the-same-law-and-a-small-camera-does-worse'
-	},
-	{
-		anchor: 'par:a-small-camera',
-		chapter: 'R3',
-		label: 'Reading',
-		section: 'clocks-and-accelerometers-meet-the-same-law-and-a-small-camera-does-worse'
-	},
+	{ anchor: 'par:other-gravitational-sensors', chapter: 'R3', label: 'Reading' },
+	{ anchor: 'par:a-small-camera', chapter: 'R3', label: 'Reading' },
 	{
 		anchor: 'eq:handheld',
 		chapter: '2.3',
 		label: 'Derivation',
 		section: 'round-the-camera-distant-matter-makes-a-sum-of-growing-harmonics'
 	},
-	{
-		anchor: 'par:the-precision-of-a-simple-scene',
-		chapter: 'R3',
-		label: 'Reading',
-		section: 'one-mass-is-placed-to-a-millimetre-though-two-are-hard-to-tell-from-one'
-	},
-	{
-		anchor: 'par:a-worked-case',
-		chapter: 'R3',
-		label: 'Reading',
-		section: 'the-worked-case-finds-the-safe-quickly-but-a-cautious-image-cannot-weigh-it'
-	},
-	{
-		anchor: 'par:the-positivity-of-mass',
-		chapter: 'R3',
-		label: 'Reading',
-		section: 'positivity-alone-weighs-the-gold-to-315-pm-20-kg'
-	},
+	{ anchor: 'par:the-precision-of-a-simple-scene', chapter: 'R3', label: 'Reading' },
+	{ anchor: 'par:a-worked-case', chapter: 'R3', label: 'Reading' },
+	{ anchor: 'par:the-positivity-of-mass', chapter: 'R3', label: 'Reading' },
 	{
 		anchor: 'fig:locked-safe',
 		chapter: '0.2',
@@ -310,18 +317,8 @@ export const paperLinks: PaperLink[] = [
 		label: 'Background',
 		section: 'where-the-shear-vanishes-its-axes-make-half-a-turn-round-the-zero'
 	},
-	{
-		anchor: 'par:limits-on-sensitivity',
-		chapter: 'R3',
-		label: 'Reading',
-		section: 'physics-outside-part-3-caps-the-sensitivity-near-1070'
-	},
-	{
-		anchor: 'par:the-information-in-a-near-field-image',
-		chapter: 'R3',
-		label: 'Reading',
-		section: 'a-near-field-picture-holds-a-few-dozen-bits-for-each-patch-of-its-scene'
-	},
+	{ anchor: 'par:limits-on-sensitivity', chapter: 'R3', label: 'Reading' },
+	{ anchor: 'par:the-information-in-a-near-field-image', chapter: 'R3', label: 'Reading' },
 	{
 		anchor: 'eq:capacity-integral',
 		chapter: '3.8',
@@ -340,12 +337,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Background',
 		section: 'where-a-ripple-stands-well-above-its-noise-it-carries-log_2-s-bits'
 	},
-	{
-		anchor: 'par:the-geometry-of-the-near-field',
-		chapter: 'R3',
-		label: 'Reading',
-		section: 'the-space-below-a-flat-camera-is-hyperbolic'
-	},
+	{ anchor: 'par:the-geometry-of-the-near-field', chapter: 'R3', label: 'Reading' },
 	{
 		anchor: 'eq:hyperbolic',
 		chapter: '3.9',
@@ -359,8 +351,19 @@ export const paperLinks: PaperLink[] = [
 		section: 'the-space-below-a-flat-camera-is-hyperbolic'
 	},
 	{ anchor: 'sec:waves', chapter: 'R7b', label: 'Reading' },
-	{ anchor: 'eq:quadrupole', chapter: '7.7', label: 'Derivation' },
-	{ anchor: 'eq:dumbbell', chapter: '7.7', label: 'Derivation' },
+	{
+		anchor: 'eq:quadrupole',
+		chapter: '7.7',
+		label: 'Derivation',
+		section:
+			'a-compact-source-is-read-at-zero-wavevector-where-its-stress-is-half-the-acceleration-of-its-quadrupole'
+	},
+	{
+		anchor: 'eq:dumbbell',
+		chapter: '7.7',
+		label: 'Derivation',
+		section: 'the-power-is-set-by-the-third-derivative-of-the-quadrupole'
+	},
 	{
 		anchor: 'par:a-compact-body-is-a-point',
 		chapter: 'R7b',
@@ -379,13 +382,13 @@ export const paperLinks: PaperLink[] = [
 		label: 'Reading',
 		section: 'only-a-source-larger-than-its-wave-shows-a-form'
 	},
-	{ anchor: 'eq:wave-zone', chapter: '5.2', label: 'Derivation' },
 	{
-		anchor: 'par:the-polarization-of-an-unresolved-source',
-		chapter: 'R7b',
-		label: 'Reading',
-		section: 'the-polarization-of-an-unresolved-rotor-gives-its-sense-of-turning-and-its-tilt'
+		anchor: 'eq:wave-zone',
+		chapter: '5.2',
+		label: 'Derivation',
+		section: 'far-away-each-direction-carries-one-ripple-of-the-source'
 	},
+	{ anchor: 'par:the-polarization-of-an-unresolved-source', chapter: 'R7b', label: 'Reading' },
 	{
 		anchor: 'fig:quadrupole',
 		chapter: '7.7',
@@ -398,8 +401,18 @@ export const paperLinks: PaperLink[] = [
 		label: 'Reading',
 		section: 'the-polarization-of-an-unresolved-rotor-gives-its-sense-of-turning-and-its-tilt'
 	},
-	{ anchor: 'eq:rotor-amplitudes', chapter: '5.4', label: 'Derivation' },
-	{ anchor: 'eq:circular', chapter: '5.4', label: 'Derivation' },
+	{
+		anchor: 'eq:rotor-amplitudes',
+		chapter: '5.4',
+		label: 'Derivation',
+		section: 'projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor'
+	},
+	{
+		anchor: 'eq:circular',
+		chapter: '5.4',
+		label: 'Derivation',
+		section: 'four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes'
+	},
 	{
 		anchor: 'fig:polarization',
 		chapter: '5.4',
@@ -423,9 +436,14 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:absorption',
 		chapter: 'R10',
 		label: 'Reading',
-		section: 'heat-is-fast-enough-and-a-wave-crossing-matter-fades-at-hawkings-rate'
+		section: 'a-wave-crossing-matter-fades-at-hawkings-rate'
 	},
-	{ anchor: 'eq:damped', chapter: '7.8', label: 'Derivation' },
+	{
+		anchor: 'eq:damped',
+		chapter: '7.8',
+		label: 'Derivation',
+		section: 'viscosity-fades-a-wave-at-hawkings-rate'
+	},
 	{
 		anchor: 'eq:alpha',
 		chapter: '7.8',
@@ -436,7 +454,7 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:emission',
 		chapter: 'R10',
 		label: 'Reading',
-		section: 'a-medium-that-absorbs-must-glow-by-the-same-friction'
+		section: 'a-wave-crossing-matter-fades-at-hawkings-rate'
 	},
 	{
 		anchor: 'eq:kirchhoff',
@@ -458,20 +476,19 @@ export const paperLinks: PaperLink[] = [
 		label: 'Reading',
 		section: 'the-friction-at-the-waves-frequency-counts-and-causality-fixes-its-total'
 	},
-	{ anchor: 'eq:maxwell', chapter: '4.4', label: 'Derivation' },
+	{
+		anchor: 'eq:maxwell',
+		chapter: '4.4',
+		label: 'Derivation',
+		section: 'maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast'
+	},
 	{
 		anchor: 'eq:friction-sum',
 		chapter: '4.5',
 		label: 'Derivation',
 		section: 'causality-fixes-a-materials-total-friction'
 	},
-	{
-		anchor: 'tab:materials',
-		chapter: '4.4',
-		label: 'Background',
-		section:
-			'at-fixed-stiffness-the-more-viscous-liquid-has-less-friction-at-the-frequencies-of-heat'
-	},
+	{ anchor: 'tab:materials', chapter: '4.4', label: 'Background' },
 	{
 		anchor: 'fig:materials',
 		chapter: '4.1',
@@ -498,8 +515,8 @@ export const paperLinks: PaperLink[] = [
 	},
 	{
 		anchor: 'eq:surface-glow',
-		chapter: 'R10',
-		label: 'Background',
+		chapter: '10.3',
+		label: 'Derivation',
 		section: 'ordinary-bodies-glow-through-their-volume-not-their-surface'
 	},
 	{
@@ -509,17 +526,13 @@ export const paperLinks: PaperLink[] = [
 		section: 'ordinary-bodies-glow-through-their-volume-not-their-surface'
 	},
 	{ anchor: 'sec:no-lens', chapter: 'R11', label: 'Reading' },
-	{
-		anchor: 'par:the-optical-constants-of-matter',
-		chapter: 'R11',
-		label: 'Reading',
-		section: 'matter-barely-slows-a-wave-and-reflects-less-still'
-	},
+	{ anchor: 'par:the-optical-constants-of-matter', chapter: '5.1', label: 'Background' },
 	{
 		anchor: 'eq:index',
-		chapter: 'R11',
-		label: 'Background',
-		section: 'matter-barely-slows-a-wave-and-reflects-less-still'
+		chapter: '7.8',
+		label: 'Derivation',
+		section:
+			'the-pull-of-matter-slows-a-wave-very-slightly-and-its-stiffness-reflects-almost-nothing'
 	},
 	{
 		anchor: 'eq:optics-bound',
@@ -527,12 +540,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Derivation',
 		section: 'every-optical-constant-of-a-body-is-its-compactness-times-factors-below-one'
 	},
-	{
-		anchor: 'par:a-black-hole-as-the-lens',
-		chapter: 'R11',
-		label: 'Reading',
-		section: 'only-a-black-hole-is-compact-enough-and-it-focuses-only-the-glow-of-warm-matter'
-	},
+	{ anchor: 'par:a-black-hole-as-the-lens', chapter: '5.5', label: 'Background' },
 	{
 		anchor: 'eq:lens-compactness',
 		chapter: '5.5',
@@ -540,29 +548,19 @@ export const paperLinks: PaperLink[] = [
 		section:
 			'matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact'
 	},
-	{
-		anchor: 'par:what-a-lens-would-add',
-		chapter: 'R11',
-		label: 'Reading',
-		section: 'a-lens-adds-nothing-classical-and-no-lens-sharpens-the-near-field'
-	},
+	{ anchor: 'par:what-a-lens-would-add', chapter: 'R8', label: 'Reading' },
 	{
 		anchor: 'fig:black-hole-camera',
 		chapter: '11.1',
 		label: 'Background',
 		section: 'the-tide-outside-a-round-mass-is-exactly-newtons'
 	},
-	{
-		anchor: 'par:the-computed-image',
-		chapter: 'R11',
-		label: 'Reading',
-		section: 'delaying-and-adding-the-records-is-the-cameras-lens'
-	},
+	{ anchor: 'par:the-computed-image', chapter: '3.6', label: 'Background' },
 	{
 		anchor: 'eq:beam',
 		chapter: 'R11',
 		label: 'Derivation',
-		section: 'a-lens-adds-nothing-classical-and-no-lens-sharpens-the-near-field'
+		section: 'delaying-and-adding-the-records-is-the-cameras-lens'
 	},
 	{
 		anchor: 'eq:diffraction',
@@ -572,19 +570,19 @@ export const paperLinks: PaperLink[] = [
 	},
 	{ anchor: 'fig:array', chapter: '5.3', label: 'Live' },
 	{ anchor: 'sec:one-pixel', chapter: 'R9', label: 'Reading' },
-	{
-		anchor: 'par:one-complex-matrix',
-		chapter: 'R9',
-		label: 'Reading',
-		section: 'the-ten-numbers-are-one-complex-table-and-a-waves-is-a-square'
-	},
+	{ anchor: 'par:one-complex-matrix', chapter: 'R9', label: 'Reading' },
 	{
 		anchor: 'eq:W',
 		chapter: '1.5b',
 		label: 'Derivation',
 		section: 'complex-vectors-a-direction-whose-square-is-zero'
 	},
-	{ anchor: 'eq:invariants', chapter: '9.2', label: 'Derivation' },
+	{
+		anchor: 'eq:invariants',
+		chapter: '9.2',
+		label: 'Derivation',
+		section: 'two-complex-numbers-fix-the-eigenvalues-of-a-trace-free-three-by-three-table'
+	},
 	{
 		anchor: 'eq:square',
 		chapter: '7.6',
@@ -597,32 +595,22 @@ export const paperLinks: PaperLink[] = [
 		label: 'Derivation',
 		section: 'the-square-holds-four-numbers-a-direction-and-one-complex-amplitude'
 	},
-	{
-		anchor: 'par:principal-null-directions',
-		chapter: 'R9',
-		label: 'Reading',
-		section: 'four-directions-on-the-sky-sort-every-reading'
-	},
+	{ anchor: 'par:principal-null-directions', chapter: 'R9', label: 'Reading' },
 	{
 		anchor: 'eq:stars',
 		chapter: '9.4',
 		label: 'Derivation',
 		section: 'four-directions-solve-one-quartic'
 	},
-	{ anchor: 'eq:one-spin', chapter: '8.4', label: 'Derivation' },
+	{
+		anchor: 'eq:one-spin',
+		chapter: '8.4',
+		label: 'Derivation',
+		section: 'one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector'
+	},
 	{ anchor: 'fig:stars', chapter: '9.4', label: 'Live' },
-	{
-		anchor: 'par:shape',
-		chapter: 'R9',
-		label: 'Reading',
-		section: 'the-shape-of-the-tide-tells-an-isolated-wave-from-an-isolated-mass'
-	},
-	{
-		anchor: 'par:the-magnetic-part',
-		chapter: 'R9',
-		label: 'Reading',
-		section: 'the-magnetic-part-equals-the-tide-in-a-wave-and-is-small-near-slow-matter'
-	},
+	{ anchor: 'par:shape', chapter: 'R9', label: 'Reading' },
+	{ anchor: 'par:the-magnetic-part', chapter: 'R9', label: 'Reading' },
 	{
 		anchor: 'eq:magnetic-ratio',
 		chapter: '7.5',
@@ -632,8 +620,7 @@ export const paperLinks: PaperLink[] = [
 	{
 		anchor: 'par:ten-numbers-four-invariants-an-orientation-a-velocity',
 		chapter: 'R9',
-		label: 'Reading',
-		section: 'ten-numbers-are-four-invariants-an-orientation-and-a-velocity'
+		label: 'Reading'
 	},
 	{
 		anchor: 'eq:polar',
@@ -653,18 +640,12 @@ export const paperLinks: PaperLink[] = [
 		label: 'Live',
 		section: 'in-a-room-at-rest-a-pixel-reads-its-own-velocity'
 	},
-	{
-		anchor: 'par:the-state-of-a-moving-body',
-		chapter: 'R9',
-		label: 'Reading',
-		section: 'one-pixel-reads-the-position-velocity-and-mass-of-a-moving-body'
-	},
+	{ anchor: 'par:the-state-of-a-moving-body', chapter: 'R9', label: 'Reading' },
 	{
 		anchor: 'eq:star-velocity',
-		chapter: '6.3',
+		chapter: '9.4',
 		label: 'Derivation',
-		section:
-			'one-step-of-appendix-c-the-directions-of-a-moving-body-are-its-directions-at-rest-aberrated'
+		section: 'one-pixel-reads-the-whole-state-of-a-moving-body'
 	},
 	{
 		anchor: 'eq:moving-state',
@@ -678,12 +659,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Derivation',
 		section: 'one-pixel-reads-the-whole-state-of-a-moving-body'
 	},
-	{
-		anchor: 'par:separating-waves-at-one-point',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'one-pixel-separates-up-to-four-waves-and-light-two'
-	},
+	{ anchor: 'par:separating-waves-at-one-point', chapter: 'R9b', label: 'Reading' },
 	{
 		anchor: 'eq:pencil',
 		chapter: '9.2',
@@ -708,18 +684,8 @@ export const paperLinks: PaperLink[] = [
 		label: 'Live',
 		section: 'all-three-cases-are-pronys-problem-and-counting-gives-the-limit'
 	},
-	{
-		anchor: 'par:lensed-images-at-one-point',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'lensed-images-need-a-ratio-of-two-hundred-thousand'
-	},
-	{
-		anchor: 'par:what-one-pixel-sees-of-the-sky',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'one-pixel-reads-68-numbers-of-a-sky-of-independent-sources'
-	},
+	{ anchor: 'par:lensed-images-at-one-point', chapter: '9.5', label: 'Background' },
+	{ anchor: 'par:what-one-pixel-sees-of-the-sky', chapter: '9.1', label: 'Background' },
 	{
 		anchor: 'eq:pixel-kernel',
 		chapter: '9.6',
@@ -744,12 +710,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Live',
 		section: 'twelve-sources-look-to-the-pixel-like-a-uniform-sky'
 	},
-	{
-		anchor: 'par:ranging-a-wave-source',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'a-near-source-is-ranged-by-the-tilt-between-its-helicities'
-	},
+	{ anchor: 'par:ranging-a-wave-source', chapter: '9.1', label: 'Background' },
 	{
 		anchor: 'eq:ranging-instant',
 		chapter: '9.7',
@@ -774,12 +735,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Live',
 		section: 'the-two-frequency-parts-tilt-apart-and-the-angle-between-them-ranges-the-source'
 	},
-	{
-		anchor: 'par:the-absence-of-gravitational-aberration',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'the-field-of-a-moving-body-points-at-where-the-body-is-now'
-	},
+	{ anchor: 'par:the-absence-of-gravitational-aberration', chapter: '5.2', label: 'Background' },
 	{
 		anchor: 'fig:present',
 		chapter: '6.3',
@@ -788,9 +744,8 @@ export const paperLinks: PaperLink[] = [
 	},
 	{
 		anchor: 'par:tests-of-general-relativity-from-one-reading',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'one-reading-gives-a-waves-speed-and-all-six-polarizations'
+		chapter: '9.7',
+		label: 'Background'
 	},
 	{
 		anchor: 'eq:bianchi-wave',
@@ -812,39 +767,19 @@ export const paperLinks: PaperLink[] = [
 	},
 	{
 		anchor: 'par:matter-at-the-pixel',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'inside-matter-the-trace-of-the-tide-reads-the-density-there'
-	},
-	{
-		anchor: 'par:what-no-reading-can-tell',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'two-masses-and-two-waves-can-give-the-same-ten-numbers'
-	},
-	{
-		anchor: 'par:one-pixel-and-many',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'the-spin-two-weight-removes-an-arrays-false-fringes'
-	},
-	{
-		anchor: 'fig:two-pixels',
-		chapter: '9.7',
+		chapter: '6.5',
 		label: 'Background',
-		section: 'many-pixels-separate-more-sources-and-remove-false-fringes'
+		section: 'what-gravitates-is-the-energy-plus-the-sum-of-the-stresses'
 	},
-	{
-		anchor: 'par:variation-across-the-array',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'across-one-metre-a-wave-is-uniform-and-a-person-is-not'
-	},
+	{ anchor: 'par:what-no-reading-can-tell', chapter: 'R9b', label: 'Reading' },
+	{ anchor: 'par:one-pixel-and-many', chapter: 'R9b', label: 'Reading' },
+	{ anchor: 'fig:two-pixels', chapter: '9.7', label: 'Background' },
+	{ anchor: 'par:variation-across-the-array', chapter: '8.6', label: 'Background' },
 	{
 		anchor: 'par:depth',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'neighbours-give-depth-and-the-magnetic-part-ranges-a-moving-mass'
+		chapter: '5.3',
+		label: 'Background',
+		section: 'a-near-source-needs-the-delays-from-a-point'
 	},
 	{
 		anchor: 'eq:one-pixel-range',
@@ -852,36 +787,11 @@ export const paperLinks: PaperLink[] = [
 		label: 'Derivation',
 		section: 'neighbours-give-depth-and-the-magnetic-part-ranges-a-moving-mass'
 	},
-	{
-		anchor: 'par:front-and-back',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'the-full-table-tells-front-from-back'
-	},
-	{
-		anchor: 'par:three-dimensions',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'the-full-table-tells-front-from-back'
-	},
-	{
-		anchor: 'par:precision',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'the-table-sums-up-the-section'
-	},
-	{
-		anchor: 'par:separation-with-noise',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'a-near-field-costs-2-and-the-shape-test-rarely-errs'
-	},
-	{
-		anchor: 'par:precision-of-depth',
-		chapter: 'R9b',
-		label: 'Reading',
-		section: 'the-neighbours-range-a-mass-to-a-part-in-a-million-and-masses-on-one-line-read-as-one'
-	},
+	{ anchor: 'par:front-and-back', chapter: 'R9', label: 'Reading' },
+	{ anchor: 'par:three-dimensions', chapter: '5.6', label: 'Background' },
+	{ anchor: 'par:precision', chapter: '9.7', label: 'Background' },
+	{ anchor: 'par:separation-with-noise', chapter: '9.7', label: 'Background' },
+	{ anchor: 'par:precision-of-depth', chapter: 'R9b', label: 'Reading' },
 	{
 		anchor: 'eq:depth-bound',
 		chapter: 'R9b',
@@ -898,11 +808,16 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'fig:separation-noise',
 		chapter: 'R9b',
 		label: 'Background',
-		section: 'a-near-field-costs-2-and-the-shape-test-rarely-errs'
+		section: 'the-second-derivatives-tell-two-bodies-on-one-line-from-one'
 	},
 	{ anchor: 'tab:one-pixel', chapter: '9.7', label: 'Background' },
 	{ anchor: 'sec:first-image', chapter: 'R10b', label: 'Reading' },
-	{ anchor: 'eq:column', chapter: '5.5', label: 'Derivation' },
+	{
+		anchor: 'eq:column',
+		chapter: '5.5',
+		label: 'Derivation',
+		section: 'when-nothing-absorbs-a-pixel-adds-the-glow-along-its-line'
+	},
 	{
 		anchor: 'fig:earth-glow',
 		chapter: '5.6',
@@ -913,9 +828,14 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:the-graviton-budget',
 		chapter: 'R10b',
 		label: 'Reading',
-		section: 'the-earth-below-sends-a-square-metre-one-graviton-every-twenty-hours'
+		section: 'the-budget-runs-from-a-second-to-a-hundred-and-ten-million-years'
 	},
-	{ anchor: 'tab:budget', chapter: '3.1', label: 'Background' },
+	{
+		anchor: 'tab:budget',
+		chapter: 'R10b',
+		label: 'Background',
+		section: 'the-budget-runs-from-a-second-to-a-hundred-and-ten-million-years'
+	},
 	{
 		anchor: 'fig:budget',
 		chapter: 'R10b',
@@ -928,7 +848,12 @@ export const paperLinks: PaperLink[] = [
 		label: 'Reading',
 		section: 'one-camera-peels-the-layers-and-the-heights-measure-friction-times-temperature-cubed'
 	},
-	{ anchor: 'eq:abel', chapter: '5.6', label: 'Derivation' },
+	{
+		anchor: 'eq:abel',
+		chapter: '5.6',
+		label: 'Derivation',
+		section: 'from-the-surface-of-a-round-planet-each-line-of-sight-is-a-chord'
+	},
 	{
 		anchor: 'eq:abel-inverse',
 		chapter: '5.6',
@@ -945,7 +870,7 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:what-the-earths-materials-allow',
 		chapter: 'R10b',
 		label: 'Reading',
-		section: 'real-materials-may-hide-the-core-in-counts-but-not-in-colour'
+		section: 'the-moon-is-faint-and-every-brightness-of-the-earth-is-an-upper-bound'
 	},
 	{
 		anchor: 'fig:earth-inverted',
@@ -971,10 +896,8 @@ export const paperLinks: PaperLink[] = [
 	{ anchor: 'sec:vistas', chapter: 'R12', label: 'Reading' },
 	{
 		anchor: 'par:a-pair-of-black-holes-from-the-near-zone-to-the-wave-zone',
-		chapter: 'R12',
-		label: 'Reading',
-		section:
-			'near-the-pair-the-tide-turns-with-it-and-beyond-three-tenths-of-a-wavelength-it-is-a-wave'
+		chapter: '12.1',
+		label: 'Background'
 	},
 	{
 		anchor: 'eq:multipole',
@@ -988,17 +911,12 @@ export const paperLinks: PaperLink[] = [
 		label: 'Background',
 		section: 'one-solution-runs-from-newtons-pull-near-the-source-to-the-wave-far-away'
 	},
-	{
-		anchor: 'par:memory',
-		chapter: 'R12',
-		label: 'Reading',
-		section: 'a-burst-leaves-a-memory-largest-where-the-oscillating-wave-is-weakest'
-	},
+	{ anchor: 'par:memory', chapter: '7.8', label: 'Background' },
 	{
 		anchor: 'eq:memory',
-		chapter: 'R12',
-		label: 'Background',
-		section: 'a-burst-leaves-a-memory-largest-where-the-oscillating-wave-is-weakest'
+		chapter: '7.8',
+		label: 'Derivation',
+		section: 'a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good'
 	},
 	{
 		anchor: 'eq:merger-memory',
@@ -1008,9 +926,9 @@ export const paperLinks: PaperLink[] = [
 	},
 	{
 		anchor: 'par:an-exploding-star',
-		chapter: 'R12',
-		label: 'Reading',
-		section: 'a-round-collapse-sends-no-waves-but-the-camera-weighs-its-neutrinos-as-they-pass'
+		chapter: '6.4',
+		label: 'Background',
+		section: 'a-bodys-mass-is-its-total-energy-so-heat-has-weight'
 	},
 	{
 		anchor: 'eq:burst-memory',
@@ -1024,14 +942,14 @@ export const paperLinks: PaperLink[] = [
 		label: 'Background',
 		section: 'the-waves-own-energy-leaves-a-memory-too'
 	},
-	{
-		anchor: 'par:the-milky-way',
-		chapter: 'R12',
-		label: 'Reading',
-		section: 'in-waves-the-galaxys-centre-is-a-hundred-times-brighter-than-the-opposite-sky'
-	},
+	{ anchor: 'par:the-milky-way', chapter: '12.1', label: 'Background' },
 	{ anchor: 'fig:milky-way', chapter: '12.1', label: 'Background' },
-	{ anchor: 'par:a-primordial-graviton-background', chapter: 'R12b', label: 'Reading' },
+	{
+		anchor: 'par:a-primordial-graviton-background',
+		chapter: '6.3',
+		label: 'Background',
+		section: 'a-moving-black-body-is-still-a-black-body-hotter-ahead'
+	},
 	{
 		anchor: 'eq:graviton-temperature',
 		chapter: '12.2',
@@ -1041,33 +959,22 @@ export const paperLinks: PaperLink[] = [
 	{ anchor: 'fig:black-hole', chapter: '11.1', label: 'Background' },
 	{
 		anchor: 'par:a-freely-falling-camera',
-		chapter: 'R12b',
-		label: 'Reading',
-		section: 'a-falling-camera-sees-a-smaller-shadow-and-a-fast-pixel-sees-every-scene-as-a-wave'
+		chapter: '6.3',
+		label: 'Background',
+		section: 'a-moving-observers-sky-crowds-toward-the-direction-of-motion'
 	},
 	{
 		anchor: 'par:through-a-room-at-nearly-the-speed-of-light',
-		chapter: 'R12b',
-		label: 'Reading',
-		section: 'a-falling-camera-sees-a-smaller-shadow-and-a-fast-pixel-sees-every-scene-as-a-wave'
+		chapter: '6.1',
+		label: 'Background'
 	},
-	{
-		anchor: 'par:counting-coincidences',
-		chapter: 'R12b',
-		label: 'Reading',
-		section: 'a-falling-camera-sees-a-smaller-shadow-and-a-fast-pixel-sees-every-scene-as-a-wave'
-	},
-	{
-		anchor: 'par:a-cosmic-string',
-		chapter: 'R12b',
-		label: 'Reading',
-		section: 'a-cosmic-string-is-invisible-to-every-pixel-and-shows-only-against-what-lies-behind'
-	},
+	{ anchor: 'par:counting-coincidences', chapter: 'R8', label: 'Reading' },
+	{ anchor: 'par:a-cosmic-string', chapter: '6.1', label: 'Background' },
 	{
 		anchor: 'par:the-transparent-sun-as-a-lens',
-		chapter: 'R12b',
-		label: 'Reading',
-		section: 'the-transparent-sun-focuses-only-waves-above-8-khz'
+		chapter: '5.3',
+		label: 'Background',
+		section: 'behind-a-point-mass-a-wave-is-brightened-on-the-axis-by-a-factor-set-by-one-number'
 	},
 	{
 		anchor: 'fig:sun-lens',
@@ -1077,18 +984,12 @@ export const paperLinks: PaperLink[] = [
 	},
 	{
 		anchor: 'par:scattering-earthquakes-and-tails',
-		chapter: 'R12b',
-		label: 'Reading',
-		section: 'matter-scatters-almost-nothing-so-every-picture-is-emitted-pulled-or-yielded'
+		chapter: '5.2',
+		label: 'Background',
+		section: 'in-the-field-of-a-mass-a-burst-arrives-followed-by-a-tail'
 	},
 	{ anchor: 'sec:hair', chapter: 'R13', label: 'Reading' },
-	{
-		anchor: 'par:the-field-at-one-time',
-		chapter: 'R13',
-		label: 'Reading',
-		section:
-			'at-one-time-the-field-holds-the-harmonic-moments-and-einsteins-theory-fixes-still-less'
-	},
+	{ anchor: 'par:the-field-at-one-time', chapter: 'R13', label: 'Reading' },
 	{
 		anchor: 'par:the-number-of-bits',
 		chapter: 'R13',
@@ -1114,7 +1015,12 @@ export const paperLinks: PaperLink[] = [
 		label: 'Reading',
 		section: 'at-two-times-the-readings-hold-a-bracket-and-products-of-tides-build-every-ripple'
 	},
-	{ anchor: 'eq:hair-commutator', chapter: '8.2', label: 'Derivation' },
+	{
+		anchor: 'eq:hair-commutator',
+		chapter: '8.2',
+		label: 'Derivation',
+		section: 'two-moments-of-a-body-do-not-commute'
+	},
 	{
 		anchor: 'eq:dust',
 		chapter: '4.5',
@@ -1131,7 +1037,7 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:the-two-readings-as-one-transform',
 		chapter: 'R13',
 		label: 'Reading',
-		section: 'a-flat-camera-reads-the-scenes-transform-on-a-cone-at-one-time-and-inside-it-at-two'
+		section: 'at-two-times-the-readings-hold-a-bracket-and-products-of-tides-build-every-ripple'
 	},
 	{
 		anchor: 'eq:scene-transform',
@@ -1143,7 +1049,7 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'eq:cone',
 		chapter: '13.2',
 		label: 'Derivation',
-		section: 'two-harmonic-exponentials-multiply-into-any-ripple'
+		section: 'a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two'
 	},
 	{
 		anchor: 'fig:two-readings',
@@ -1155,7 +1061,7 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:stability',
 		chapter: 'R13',
 		label: 'Reading',
-		section: 'fine-detail-still-costs-exponentially-the-ambiguity-goes-and-the-blur-stays'
+		section: 'at-two-times-the-readings-hold-a-bracket-and-products-of-tides-build-every-ripple'
 	},
 	{
 		anchor: 'par:an-impulsive-tide-and-a-weighing',
@@ -1163,7 +1069,12 @@ export const paperLinks: PaperLink[] = [
 		label: 'Reading',
 		section: 'sixteen-weighings-read-one-ripple-and-the-weight-changes-by-five-parts-in-10⁴¹'
 	},
-	{ anchor: 'eq:push', chapter: '1.7', label: 'Derivation' },
+	{
+		anchor: 'eq:push',
+		chapter: '1.7',
+		label: 'Derivation',
+		section: 'an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass'
+	},
 	{
 		anchor: 'par:a-mass-that-passes',
 		chapter: 'R13',
@@ -1231,7 +1142,7 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:the-flow',
 		chapter: 'R13',
 		label: 'Reading',
-		section: 'two-tides-in-either-order-read-the-flow-even-a-flow-that-shows-nothing-outside'
+		section: 'the-moments-and-the-weight-generate-everything-but-watching-alone-cannot-read-it'
 	},
 	{
 		anchor: 'eq:flow-bracket',
@@ -1319,8 +1230,7 @@ export const paperLinks: PaperLink[] = [
 		anchor: 'par:black-holes-and-the-classical-limit',
 		chapter: 'R13b',
 		label: 'Reading',
-		section:
-			'a-hole-gives-seven-numbers-a-temperature-and-its-mass-again-and-without-quantum-physics-no-temperature'
+		section: 'looking-gives-a-surfaces-worth-and-pushing-gives-the-inside-slowly'
 	},
 	{
 		anchor: 'par:what-gravity-cannot-decohere',
@@ -1337,56 +1247,45 @@ export const paperLinks: PaperLink[] = [
 	{ anchor: 'sec:conclusion', chapter: 'R13b', label: 'Reading' },
 	{ anchor: 'sec:status', chapter: 'R13b', label: 'Reading' },
 	{ anchor: 'app:benchmarks', chapter: '3.1', label: 'Background' },
+	{ anchor: 'par:separation-with-noise-2', chapter: '9.7', label: 'Background' },
 	{
-		anchor: 'par:separation-with-noise-2',
-		chapter: 'R9b',
+		anchor: 'par:depth-with-noise',
+		chapter: 'A.1',
 		label: 'Background',
-		section: 'a-near-field-costs-2-and-the-shape-test-rarely-errs'
+		section: 'field-and-gradient-range-one-mass'
 	},
-	{ anchor: 'par:depth-with-noise', chapter: '3.3', label: 'Background' },
-	{
-		anchor: 'par:the-worked-inversion',
-		chapter: '3.3',
-		label: 'Background',
-		section: 'choosing-between-two-scenes-comes-down-to-one-gaussian-number'
-	},
-	{
-		anchor: 'par:the-trembling-lattice',
-		chapter: '3.4',
-		label: 'Background',
-		section: 'the-rayleigh-quotient-finds-the-strongest-and-weakest-directions'
-	},
+	{ anchor: 'par:the-worked-inversion', chapter: '3.3', label: 'Background' },
+	{ anchor: 'par:the-trembling-lattice', chapter: '3.4', label: 'Background' },
 	{
 		anchor: 'eq:jitter-bounds',
-		chapter: '4.6',
-		label: 'Background',
-		section: 'the-static-end-of-the-response-is-the-love-number'
+		chapter: '8.7',
+		label: 'Derivation',
+		section: 'the-static-jitter-lies-between-two-bounds'
 	},
 	{ anchor: 'app:proofs', chapter: '1.7', label: 'Background' },
 	{
 		anchor: 'par:the-principal-null-directions-of-a-moving-body',
 		chapter: '6.1',
-		label: 'Background',
-		section: 'a-boost-can-point-in-any-direction'
+		label: 'Background'
 	},
 	{
 		anchor: 'eq:proof-stars',
 		chapter: '6.3',
-		label: 'Background',
+		label: 'Derivation',
 		section:
 			'one-step-of-appendix-c-the-directions-of-a-moving-body-are-its-directions-at-rest-aberrated'
 	},
 	{
 		anchor: 'eq:proof-midpoint',
 		chapter: '9.4',
-		label: 'Background',
+		label: 'Derivation',
 		section: 'one-pixel-reads-the-whole-state-of-a-moving-body'
 	},
 	{ anchor: 'par:the-count-of-waves', chapter: '9.5', label: 'Background' },
 	{
 		anchor: 'eq:proof-prony',
 		chapter: '9.5',
-		label: 'Background',
+		label: 'Derivation',
 		section: 'all-three-cases-are-pronys-problem-and-counting-gives-the-limit'
 	},
 	{
@@ -1395,11 +1294,16 @@ export const paperLinks: PaperLink[] = [
 		label: 'Background',
 		section: 'the-moments-and-the-energy-generate-everything-that-can-be-known-of-a-body'
 	},
-	{ anchor: 'par:the-reach-of-a-tide-of-given-degree', chapter: '13.3', label: 'Background' },
+	{
+		anchor: 'par:the-reach-of-a-tide-of-given-degree',
+		chapter: '2.2',
+		label: 'Background',
+		section: 'there-are-2ell-1-patterns-of-each-degree'
+	},
 	{
 		anchor: 'eq:proof-ladder',
 		chapter: '13.3',
-		label: 'Background',
+		label: 'Derivation',
 		section: 'every-polynomial-on-the-ladder-is-reached'
 	},
 	{ anchor: 'par:what-the-passes-of-a-mass-determine', chapter: '2.6', label: 'Background' },
@@ -1407,13 +1311,13 @@ export const paperLinks: PaperLink[] = [
 	{
 		anchor: 'eq:proof-shock',
 		chapter: '6.4',
-		label: 'Background',
+		label: 'Derivation',
 		section: 'a-sideways-kick-that-keeps-q-fixes-the-energy-gained'
 	},
 	{
 		anchor: 'eq:proof-mass',
 		chapter: '6.4',
-		label: 'Background',
+		label: 'Derivation',
 		section: 'a-bodys-rest-mass-in-light-cone-form-is-a-sum-and-a-weighted-variance'
 	}
 ];

@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.2 (tutorial/what-a-field-keeps/calderon.md), its third diagram: the ellipse of pairs of
+// The tutorial, section 13.2 (tutorial/what-a-field-keeps/calderon.md), its third diagram: the ellipse of pairs of
 // tides and the point they reach. Two panels on one scale, their horizontal axes on one line. Left, the plane of
 // wavevectors across the camera, axes k_x and k_y in m^-1: the foci 0 and K = (1.1, 1.3) as dots, the ellipse
 // |k| + |K - k| = 2.28 drawn exactly (semi-axes 1.141 and 0.760, the long axis along K), the text's pair as two arrows,

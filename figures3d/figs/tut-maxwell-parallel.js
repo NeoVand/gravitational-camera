@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.6 (tutorial/relativity/maxwell-complex.md), its third diagram: the frame where the electric
+// The tutorial, section 6.6 (tutorial/relativity/maxwell-complex.md), its third diagram: the frame where the electric
 // and magnetic fields are parallel, and the two moves that leave it as it is. One panel. A thin ink axis across the
 // middle, named "n-hat" at its right end. On it, from one point, two arrows in the light role's colour: E, length 1,
 // solid, and cB, length 0.6, dashed, drawn a little above the axis (cB above E) so that both show, named "E" and

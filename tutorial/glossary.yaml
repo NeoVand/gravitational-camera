@@ -812,11 +812,11 @@ terms:
   - term: route
     definition: 'One of the tutorial''s named paths: the chapters to read, in order, to reach one part of the paper. The routes are listed on the tutorial''s home page.'
     chapter: '0.6'
-    anchor: routes-lead-through-the-tutorial-to-each-part-of-the-paper
+    anchor: paths-through-the-book
   - term: depth
     definition: 'How fully a chapter treats a result. Depth A: derived in full. Depth B: sketched, with what the sketch skips named. Depth C: stated and explained, without proof.'
     chapter: '0.6'
-    anchor: routes-lead-through-the-tutorial-to-each-part-of-the-paper
+    anchor: paths-through-the-book
   - term: gravitational lens
     definition: 'A mass that bends passing light, or passing gravitational waves, by its gravity, used to bring them to a focus. Only a body as compact as a black hole bends strongly enough to make a useful one.'
     chapter: '0.4'
@@ -4092,7 +4092,7 @@ terms:
     chapter: '10.3'
     anchor: no-material-can-glow-brighter-than-its-weight-allows
   - term: surface glow and volume glow
-    definition: 'A body without internal friction absorbs, and so glows, only at its surface, where a wave launches sound, in proportion to $R^2T^2$. Friction inside makes its volume glow, in proportion to $R^3T^3$; ordinary bodies larger than about 30 nm (28 nm for diamond, the faintest) glow mostly through their volume.'
+    definition: 'A body without internal friction absorbs, and so glows, only at its surface, where a wave launches sound, in proportion to $R^2T^2$. Friction inside makes its volume glow, in proportion to $R^3T^3$; ordinary bodies larger than about 170 nm (165 nm for diamond, the faintest) glow mostly through their volume.'
     chapter: '10.3'
     anchor: ordinary-bodies-glow-through-their-volume-not-their-surface
   - term: phonon path
@@ -4693,9 +4693,9 @@ terms:
     anchor: a-cosmic-string-removes-a-wedge-of-space-invisible-to-every-pixel-but-not-to-what-lies-behind
 
   - term: affordance
-    definition: 'What a tool lets the person holding it do. The paper''s Table tab:affordances lists ten things a gravitational camera affords that light does not, from seeing through walls to seeing a beam of light from the side.'
+    definition: 'What a tool lets the person holding it do. A gravitational camera affords ten things that light does not, from seeing through walls to seeing a beam of light from the side.'
     chapter: R12
-    anchor: most-of-section-xs-list-rests-on-two-facts-that-earlier-chapters-derived
+    anchor: gravity-passes-through-everything-and-all-energy-gravitates-so-the-camera-sees-through-walls-and-weighs-light
   - term: reduced wavelength
     definition: 'The wavelength over $2\pi$, $\lambda/2\pi = c/\omega$. Within about one reduced wavelength of a source its field is the near field; well beyond it, the wave.'
     chapter: R12

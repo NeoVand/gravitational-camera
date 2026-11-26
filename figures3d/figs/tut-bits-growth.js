@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.8 (tutorial/noise/bits.md), its third diagram: how the bits grow with the number of digits
+// The tutorial, section 3.8 (tutorial/noise/bits.md), its third diagram: how the bits grow with the number of digits
 // of the sensitivity. Against log10 SNR from 1 to 70, on a logarithmic axis (so that a power of the number of digits
 // is a straight line), the bits per area z^2 on a logarithmic axis from 1 to 10^5.5: the near field's C from the
 // paper's eq:capacity-integral (first accent, orange), and a wave camera with a fixed number of patterns, whose bits

@@ -1,4 +1,4 @@
-// The tutorial, chapter 12.2 (tutorial/sky/universe.md), its second diagram: the effective number of species counted as
+// The tutorial, section 12.2 (tutorial/sky/universe.md), its second diagram: the effective number of species counted as
 // lengths. One horizontal bar per row of the chapter's table of the hot Standard Model, its length the row's states g on
 // one scale for every bar: the bosons solid in a neutral grey; the fermions drawn their full length in matter's colour,
 // the first seven eighths solid and the last eighth hatched, with a tick marked 7/8 over the quarks' bar. Each group

@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.1 (tutorial/outside/laplace.md), its third diagram: what Laplace's equation allows and what
+// The tutorial, section 2.1 (tutorial/outside/laplace.md), its third diagram: what Laplace's equation allows and what
 // it forbids, drawn as two membranes stretched over the unit disc, side by side, in true 3D (one orthographic view,
 // turned and tilted as lib.js's Panel does, each surface lit by the studio of the paper's figures, with a net of the
 // lines of constant x and of constant y drawn on it). Left, the saddle u = x^2 - y^2, harmonic: its largest value, 1,

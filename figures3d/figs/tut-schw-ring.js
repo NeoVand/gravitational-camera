@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.1 (tutorial/black-holes/schwarzschild.md), its fifth diagram: a mass is a lens with a line
+// The tutorial, section 11.1 (tutorial/black-holes/schwarzschild.md), its fifth diagram: a mass is a lens with a line
 // of foci, and its Einstein ring. Two panels side by side. Left, not to scale: a far source at the left (an open ink
 // circle on the axis, "source"), the mass M at the centre (an ink dot), the camera (a small ink square) on the axis at
 // the distance d to the right; parallel rays from the left at +-b_E, +-1.2 b_E and +-1.4 b_E, each turned toward the

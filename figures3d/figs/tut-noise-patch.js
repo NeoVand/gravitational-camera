@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.2 (tutorial/noise/random-signals.md), its third diagram: the variance of the noise averaged
+// The tutorial, section 3.2 (tutorial/noise/random-signals.md), its third diagram: the variance of the noise averaged
 // over a patch of the array falls as one over the patch's area. The array of 11 x 11 pixels a distance b = 10 cm
 // apart, seen from above at a slant as the paper's figures draw it (figs/tut-blur.js), each pixel a tile shaded by its
 // own noise on the diverging scale (orange above zero, blue below). Three squares outlined on it: one pixel at the

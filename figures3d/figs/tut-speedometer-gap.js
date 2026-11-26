@@ -1,6 +1,6 @@
-// The tutorial, chapter 9.3 (tutorial/one-point/the-matrix-w.md), its third diagram: how well a pixel reads its speed,
+// The tutorial, section 9.3 (tutorial/one-point/the-matrix-w.md), its third diagram: how well a pixel reads its speed,
 // and where it is blind. Left: the error sigma_v of one component of the velocity read, against the gap between the two
-// eigenvalues that component faces, both axes logarithmic (Part 3's log axes, figs/tut-prob-lib.js, with chapter 3.8's
+// eigenvalues that component faces, both axes logarithmic (Part 3's log axes, figs/tut-prob-lib.js, with section 3.8's
 // decade numbers): the gap from 10^-10 to 10^-6 s^-2, sigma_v from 10^-2 to 10^3 m/s, one thin ink line
 // sigma_v = c sigma_n / (sqrt 2 gap) for sigma_n = 10^-16 s^-2, and two ink dots, a gap of 10^-8 (2.1 m/s) and the
 // person's 3GM/r^3 = 1.40 x 10^-8 (1.5 m/s). Right: the person's three eigenvalues on an axis of tide in 10^-9 s^-2, an

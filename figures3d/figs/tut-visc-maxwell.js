@@ -1,6 +1,6 @@
-// The tutorial, chapter 4.4 (tutorial/response/viscosity.md), its second diagram: Maxwell's model and a held shear.
+// The tutorial, section 4.4 (tutorial/response/viscosity.md), its second diagram: Maxwell's model and a held shear.
 // Left: the Maxwell element drawn across the page, a zigzag spring (mu_inf) joined end to end with a dashpot (eta_0),
-// an open cylinder of oil with a piston and its rod; the left end on a hatched wall, as chapter 1.7's cart
+// an open cylinder of oil with a piston and its rod; the left end on a hatched wall, as section 1.7's cart
 // (figs/tut-ham-phase.js), the right end carrying a small arrow, the shear. Right: two charts on one axis of t/tau
 // from -0.5 to 4. Above, the shear u/u_0, thin and grey, stepping from 0 to 1 at t = 0 and staying there; below, the
 // stress T/T(0), solid in the first accent, jumping to 1 at t = 0 and falling as e^{-t/tau}, with a short tick
@@ -88,7 +88,7 @@ export default async function () {
 	const xPiston = xRod - ROD;
 	const potR = xPiston + 0.3 * POT[0], potL = potR - POT[0];
 	const xWall = potL - SPRING_L;
-	// the wall and its hatching (chapter 1.7's)
+	// the wall and its hatching (section 1.7's)
 	S.path([[xWall, y - WALL_H / 2], [xWall, y + WALL_H / 2]], { color: DIM, width: LINE, layer: 1, cap: 'butt', what: 'the wall' });
 	{
 		const k = 6, step = (WALL_H - 3) / (k - 1);

@@ -1,8 +1,8 @@
-// Shared numbers for the five diagrams of the tutorial's chapter 12.2 (tutorial/sky/universe.md): tut-universe-crests,
+// Shared numbers for the five diagrams of the tutorial's section 12.2 (tutorial/sky/universe.md): tut-universe-crests,
 // tut-universe-gstar, tut-universe-temperatures, tut-universe-surfaces and tut-universe-string. Not a figure itself.
-// The sheet, strokes, labels and cropping are chapters 1.2 to 12.1's (figs/tut-pot-lib.js), the plots and axes chapter
-// 3.1's (figs/tut-prob-lib.js), the sampling of curves chapter 2.6's (figs/tut-fourier-lib.js), the names of several
-// lines chapter 6.4's (figs/tut-curvature-lib.js, stack), the colour roles chapters 6.1's and 7.4's
+// The sheet, strokes, labels and cropping are sections 1.2 to 12.1's (figs/tut-pot-lib.js), the plots and axes chapter
+// 3.1's (figs/tut-prob-lib.js), the sampling of curves section 2.6's (figs/tut-fourier-lib.js), the names of several
+// lines section 6.4's (figs/tut-curvature-lib.js, stack), the colour roles sections 6.1's and 7.4's
 // (figs/tut-lorentz-lib.js: the observer's, the light role's and matter's; figs/tut-linear-lib.js: the field's), all
 // imported, not copied, and asserted against app.css by `palette(check)`.
 //

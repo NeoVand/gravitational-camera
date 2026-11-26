@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.3 (tutorial/noise/measuring-a-number.md), its third diagram: the Fisher ellipse of the depth
+// The tutorial, section 3.3 (tutorial/noise/measuring-a-number.md), its third diagram: the Fisher ellipse of the depth
 // and the mass of one mass. In the units R delta z / z and R delta m / m the chapter's block of the Fisher matrix is
 // [[5, -2], [-2, 1]], and the ellipse is the set of steps (delta theta)^T F (delta theta) = 1: the steps that move the
 // predicted data by one standard deviation of the noise. Its inverse is [[1, 2], [2, 5]], so the ellipse leans along

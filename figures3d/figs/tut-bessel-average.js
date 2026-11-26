@@ -1,7 +1,7 @@
-// The tutorial, chapter 3.6 (tutorial/noise/bessel-and-airy.md), its first diagram: the circular ripple is the
+// The tutorial, section 3.6 (tutorial/noise/bessel-and-airy.md), its first diagram: the circular ripple is the
 // average of a plane ripple over its directions. Left, the plane ripple cos(k . a) as a map on a square, ka_1 and ka_2
 // from -7 to 7, with its wavevector k as an arrow across the crests: orange where the ripple is above zero and blue
-// where it is below (chapter 3.2's scale, the opacity in proportion to the value, up to DEEP at one), its zero lines as
+// where it is below (section 3.2's scale, the opacity in proportion to the value, up to DEEP at one), its zero lines as
 // hairlines. Beside it, six faint copies of the same ripple turned through 0, 30, 60, 90, 120 and 150 degrees, each with
 // its own arrow (turning on through 180 to 330 degrees repeats them, because the cosine is even). Right, their
 // average J0(ka) on the same square and the same colour scale: orange inside the first zero at ka = 2.405, blue out to

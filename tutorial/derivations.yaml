@@ -1,0 +1,142 @@
+# Where the book derives each of the paper's numbered equations, in the paper's order. The paper's margin map
+# (app/src/lib/tutorial/paper-map.ts) reads it: each equation's note sends the reader to the chapter and heading named
+# here, labelled Derivation.
+#
+#   eq:x: { chapter: '7.2', section: <anchor> }     the chapter (its id in parts.yaml) derives the equation, under
+#                                                  the level-two heading with that anchor (section is optional)
+#   eq:x: { chapter: ..., section: ..., stated: true }
+#                                                  the book states the equation without deriving it, and the
+#                                                  chapter shows it there; its note is labelled Background
+#
+# A chapter named here must be published and derive or show the equation where it is named: with {{paper eq:x}}, a
+# display written out, or a margin note linking /paper/#eq:x. A paper equation missing from this file gets a
+# Background note at the first chapter that shows or links it. The unit tests check that every chapter and anchor
+# exists and that every entry is a paper equation.
+#
+# First written from the ledger tables of the reading chapters, which the book's rewrite removed (commit c9df34e),
+# then checked against the chapters; when an equation is newly derived, add it here.
+
+equations:
+  # Section II, what a pixel measures
+  eq:tidal: { chapter: '7.2', section: for-an-observer-at-rest-the-drift-is-the-papers-tide }
+  eq:deviation: { chapter: '1.4', section: the-difference-in-gravity-is-a-table-of-second-derivatives }
+  eq:newton: { chapter: '1.4', section: the-difference-in-gravity-is-a-table-of-second-derivatives }
+  eq:wave: { chapter: '7.6', section: the-tide-of-a-wave-is-minus-half-the-acceleration-of-its-strain }
+  eq:magnetic: { chapter: '7.5', section: the-magnetic-part-is-the-curvature-with-one-time-index }
+  # Section III, three regimes
+  eq:nearzone: { chapter: '5.2', section: beside-an-oscillating-source-the-slope-of-the-field-has-a-near-part-and-a-wave-part-equal-at-kr-1 }
+  # Section IV, the near field
+  eq:tidal-brightness: { chapter: '1.4', section: tidal-brightness-is-density-times-the-cube-of-angular-size }
+  eq:tidal-column: { chapter: '1.5', section: averaged-over-the-sky-the-tidal-weight-vanishes }
+  eq:magnetic-point: { chapter: '7.5', section: a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight }
+  eq:current-column: { chapter: '2.8', section: the-current-column-is-the-flow-along-a-line-of-sight-weighted-by-inverse-distance }
+  eq:split: { chapter: '2.5', section: every-density-splits-into-a-harmonic-part-and-a-part-the-outside-cannot-see }
+  eq:harmonic-point: { chapter: '2.5', section: the-harmonic-part-of-a-nugget-is-a-flush-on-the-near-wall }
+  eq:thermal-moment: { chapter: '4.2', section: the-mean-square-rate-of-change-of-a-warm-bodys-moments-is-fixed-by-its-temperature-and-density }
+  eq:thermal-multipole: { chapter: '4.6', section: each-degree-of-the-tremor-holds-one-moment-of-the-density }
+  eq:sum-rule: { chapter: '4.5', section: driven-faster-than-its-bonds-every-body-answers-as-dust }
+  eq:thermometer: { chapter: '4.6', section: a-push-shaped-like-the-reading-makes-a-thermometer-that-needs-no-model-of-the-body }
+  eq:evanescent: { chapter: '2.7', section: in-empty-space-a-ripple-can-only-fade }
+  eq:array-data: { chapter: '2.7', section: the-camera-records-a-tide-which-weights-each-ripple-by-k }
+  eq:wiener: { chapter: '3.5', section: independent-ripples-can-be-filtered-one-at-a-time }
+  eq:cutoff: { chapter: '3.7', section: step-3-the-filter-keeps-a-ripple-while-it-stands-above-its-noise }
+  eq:resolution: { chapter: '3.7', section: step-6-the-blur-is-the-width-of-the-picture-at-half-its-height }
+  eq:handheld: { chapter: '2.3', section: round-the-camera-distant-matter-makes-a-sum-of-growing-harmonics }
+  eq:shear-zeros: { chapter: '1.5b', section: where-the-shear-vanishes-its-axes-make-half-a-turn-round-the-zero }
+  eq:capacity-integral: { chapter: '3.8', section: a-picture-is-many-ripples-with-independent-noise-and-their-bits-add }
+  eq:capacity: { chapter: '3.8', section: where-a-ripple-stands-well-above-its-noise-it-carries-log_2-s-bits }
+  eq:hyperbolic: { chapter: '3.9', section: the-space-below-a-flat-camera-is-hyperbolic }
+  # Section V, waves from moving bodies
+  eq:quadrupole: { chapter: '7.7', section: a-compact-source-is-read-at-zero-wavevector-where-its-stress-is-half-the-acceleration-of-its-quadrupole }
+  eq:dumbbell: { chapter: '7.7', section: the-power-is-set-by-the-third-derivative-of-the-quadrupole }
+  eq:unresolved: { chapter: '7.7', section: a-compact-slow-body-is-a-point-in-its-own-waves }
+  eq:wave-zone: { chapter: '5.2', section: far-away-each-direction-carries-one-ripple-of-the-source }
+  eq:rotor-amplitudes: { chapter: '5.4', section: projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor }
+  eq:circular: { chapter: '5.4', section: four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes }
+  # Section VI, the thermal glow
+  eq:damped: { chapter: '7.8', section: viscosity-fades-a-wave-at-hawkings-rate }
+  eq:alpha: { chapter: '7.8', section: viscosity-fades-a-wave-at-hawkings-rate }
+  eq:kirchhoff: { chapter: '10.2', section: matter-absorbs-in-proportion-to-the-quanta-present-and-emits-in-proportion-to-one-more }
+  eq:maxwell: { chapter: '4.4', section: maxwells-model-is-a-liquid-when-slow-and-a-solid-when-fast }
+  eq:friction-sum: { chapter: '4.5', section: causality-fixes-a-materials-total-friction }
+  eq:glow-bound: { chapter: '10.3', section: no-material-can-glow-brighter-than-its-weight-allows }
+  eq:surface-glow: { chapter: '10.3', section: ordinary-bodies-glow-through-their-volume-not-their-surface }
+  eq:volume-surface: { chapter: '10.3', section: ordinary-bodies-glow-through-their-volume-not-their-surface }
+  # Section VII, a camera without a lens
+  eq:index: { chapter: '7.8', section: the-pull-of-matter-slows-a-wave-very-slightly-and-its-stiffness-reflects-almost-nothing }
+  eq:optics-bound: { chapter: 'R11', section: every-optical-constant-of-a-body-is-its-compactness-times-factors-below-one }
+  eq:lens-compactness: { chapter: '5.5', section: matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact }
+  eq:beam: { chapter: 'R11', section: delaying-and-adding-the-records-is-the-cameras-lens }
+  eq:diffraction: { chapter: '5.3', section: delaying-and-adding-the-records-of-many-pixels-points-the-array }
+  # Section VIII, one pixel
+  eq:W: { chapter: '1.5b', section: complex-vectors-a-direction-whose-square-is-zero }
+  eq:invariants: { chapter: '9.2', section: two-complex-numbers-fix-the-eigenvalues-of-a-trace-free-three-by-three-table }
+  eq:square: { chapter: '7.6', section: the-magnetic-part-of-a-wave-is-its-tide-turned-by-45 }
+  eq:one-wave: { chapter: '9.1', section: the-square-holds-four-numbers-a-direction-and-one-complex-amplitude }
+  eq:stars: { chapter: '9.4', section: four-directions-solve-one-quartic }
+  eq:one-spin: { chapter: '8.4', section: one-of-the-four-spins-of-a-reading-points-along-its-super-poynting-vector }
+  eq:magnetic-ratio: { chapter: '7.5', section: a-moving-mass-makes-a-magnetic-part-only-by-moving-across-the-line-of-sight }
+  eq:polar: { chapter: '9.2', section: every-complex-rotation-is-a-boost-followed-by-a-turn }
+  eq:speedometer: { chapter: '9.3', section: in-a-room-at-rest-a-pixel-reads-its-own-velocity }
+  eq:star-velocity: { chapter: '9.4', section: one-pixel-reads-the-whole-state-of-a-moving-body }
+  eq:moving-state: { chapter: '9.4', section: one-pixel-reads-the-whole-state-of-a-moving-body }
+  eq:contact: { chapter: '9.4', section: one-pixel-reads-the-whole-state-of-a-moving-body }
+  eq:pencil: { chapter: '9.2', section: a-pencil-of-two-tables-has-generalized-eigenvalues }
+  eq:four-waves: { chapter: '9.5', section: four-waves-over-time-leave-one-combination-of-the-readings-empty }
+  eq:wave-count: { chapter: '9.5', section: all-three-cases-are-pronys-problem-and-counting-gives-the-limit }
+  eq:pixel-kernel: { chapter: '9.6', section: the-pixel-sees-the-sky-only-up-to-degree-four-68-numbers }
+  eq:sky-count: { chapter: '9.6', section: the-pixel-sees-the-sky-only-up-to-degree-four-68-numbers }
+  eq:sky-witness: { chapter: '9.6', section: a-sky-obeys-an-inequality-that-a-standing-wave-breaks }
+  eq:ranging-instant: { chapter: '9.7', section: a-nearby-source-spoils-the-square-only-at-second-order }
+  eq:ranging-C: { chapter: '9.7', section: a-nearby-source-spoils-the-square-only-at-second-order }
+  eq:helicity-split: { chapter: '9.7', section: the-two-frequency-parts-tilt-apart-and-the-angle-between-them-ranges-the-source }
+  eq:bianchi-wave: { chapter: '9.7', section: the-second-bianchi-identity-ties-a-metric-waves-magnetic-part-to-its-tide }
+  eq:wave-vector: { chapter: '9.7', section: summing-cross-products-of-the-columns-gives-the-waves-direction-and-speed }
+  eq:one-pixel-range: { chapter: 'R9b', section: neighbours-give-depth-and-the-magnetic-part-ranges-a-moving-mass }
+  eq:depth-bound: { chapter: 'R9b', section: the-neighbours-range-a-mass-to-a-part-in-a-million-and-masses-on-one-line-read-as-one }
+  eq:magnetic-range: { chapter: 'R9b', section: the-neighbours-range-a-mass-to-a-part-in-a-million-and-masses-on-one-line-read-as-one }
+  # Section IX, a first image
+  eq:column: { chapter: '5.5', section: when-nothing-absorbs-a-pixel-adds-the-glow-along-its-line }
+  eq:abel: { chapter: '5.6', section: from-the-surface-of-a-round-planet-each-line-of-sight-is-a-chord }
+  eq:abel-inverse: { chapter: '5.6', section: the-transform-can-be-undone }
+  eq:jN-friction: { chapter: '5.5', section: a-materials-brightness-is-its-friction-times-a-power-of-its-temperature }
+  # Section XI, scenes
+  eq:multipole: { chapter: '7.7', section: one-solution-runs-from-newtons-pull-near-the-source-to-the-wave-far-away }
+  eq:memory: { chapter: '7.8', section: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good }
+  eq:merger-memory: { chapter: '7.8', section: the-waves-own-energy-leaves-a-memory-too }
+  eq:burst-memory: { chapter: '7.8', section: a-burst-that-carries-energy-away-leaves-the-strain-changed-for-good }
+  eq:graviton-temperature: { chapter: '12.2', section: gravitons-parted-first-and-kept-a-colder-share-of-the-heat }
+  # Section XII, the exterior field and the interior
+  eq:hair-bits: { chapter: '3.8', section: a-bodys-field-at-one-time-holds-about-1200-bits-from-three-radii-away }
+  # Section XIII, Newton's theorem at second order
+  eq:hair-commutator: { chapter: '8.2', section: two-moments-of-a-body-do-not-commute }
+  eq:dust: { chapter: '4.5', section: driven-faster-than-its-bonds-every-body-answers-as-dust }
+  eq:calderon: { chapter: '13.2', section: two-harmonic-exponentials-multiply-into-any-ripple }
+  eq:scene-transform: { chapter: '13.2', section: a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two }
+  eq:cone: { chapter: '13.2', section: a-flat-camera-reads-the-transform-on-a-cone-at-one-time-and-inside-it-at-two }
+  eq:push: { chapter: '1.7', section: an-impulsive-tide-is-the-motion-generated-by-a-moment-of-the-mass }
+  eq:pass: { chapter: '1.8', section: what-a-pass-leaves-inside-a-body-is-a-weighted-sum-of-its-projected-mass }
+  eq:shock: { chapter: '6.4', section: a-sideways-kick-that-keeps-q-fixes-the-energy-gained }
+  eq:shock-even: { chapter: '13.5', section: a-wave-and-its-reverse-together-always-give-energy }
+  eq:massless-pass: { chapter: '13.5', section: a-particle-without-mass-reads-the-interior-as-newtons-passing-tonne-does-with-twice-the-kick }
+  eq:ladder: { chapter: '13.3', section: polynomials-killed-by-repeated-laplacians-are-harmonic-ones-times-even-powers-of-the-radius }
+  eq:ladder-identity: { chapter: '13.3', section: no-tide-reaches-beyond-the-rungs-below-its-degree-whatever-is-read }
+  eq:flow-bracket: { chapter: '13.4', section: the-bracket-of-two-rates-is-an-integral-of-the-flow }
+  eq:hidden-spin: { chapter: '13.4', section: octupolar-tides-read-the-hidden-swirl }
+  eq:moment-bracket: { chapter: '13.6', section: to-order-1c²-the-moments-of-the-energy-do-not-commute }
+  # Section XIV, a black hole under a tide
+  eq:horizon-friction: { chapter: '11.4', section: a-changing-tide-loses-energy-through-the-horizon }
+  eq:hole-noise: { chapter: '11.4', section: the-friction-trembles-at-the-holes-temperature }
+  eq:hole-thermometer: { chapter: '11.4', section: the-friction-trembles-at-the-holes-temperature }
+  eq:hole-sum-rule: { chapter: '13.7', section: a-holes-response-has-the-weight-of-a-shell-a-little-outside-its-horizon }
+  # Section XV, what remains of holography
+  eq:dp-energy: { chapter: '13.8', section: gravity-cannot-decohere-a-ball-and-a-shell }
+  # Appendix A, the numerical examples
+  eq:jitter-bounds: { chapter: '8.7', section: the-static-jitter-lies-between-two-bounds }
+  # Appendix C, six short proofs
+  eq:proof-stars: { chapter: '6.3', section: one-step-of-appendix-c-the-directions-of-a-moving-body-are-its-directions-at-rest-aberrated }
+  eq:proof-midpoint: { chapter: '9.4', section: one-pixel-reads-the-whole-state-of-a-moving-body }
+  eq:proof-prony: { chapter: '9.5', section: all-three-cases-are-pronys-problem-and-counting-gives-the-limit }
+  eq:proof-ladder: { chapter: '13.3', section: every-polynomial-on-the-ladder-is-reached }
+  eq:proof-shock: { chapter: '6.4', section: a-sideways-kick-that-keeps-q-fixes-the-energy-gained }
+  eq:proof-mass: { chapter: '6.4', section: a-bodys-rest-mass-in-light-cone-form-is-a-sum-and-a-weighted-variance }

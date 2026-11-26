@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.3 (tutorial/newton/gauss-and-poisson.md), its first diagram: the solid angle of a small
+// The tutorial, section 1.3 (tutorial/newton/gauss-and-poisson.md), its first diagram: the solid angle of a small
 // tilted patch is its shadow on the unit sphere. A point O, the sphere of radius 1 about it (a pale disc, its rim,
 // and its equator), and a flat square patch dA at the distance r along the line of sight x-hat, its normal tilted
 // by the angle alpha from x-hat. The patch's cross-section that faces O, cos(alpha) dA, is dashed (blue); the thin

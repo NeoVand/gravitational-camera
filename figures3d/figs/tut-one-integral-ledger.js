@@ -1,18 +1,18 @@
-// The tutorial, chapter 8.2 (tutorial/quantum/operators.md), its third diagram: one integral in four places. A box in
+// The tutorial, section 8.2 (tutorial/quantum/operators.md), its third diagram: one integral in four places. A box in
 // the centre holds int rho grad h . grad g dV (rho in matter's colour). Four thin ink arrows leave it for four boxes at
-// the corners: the bracket {Q_h, Q-dot_g} (chapter 1.7), the commutator [Q_h, Q-dot_g] (chapter 8.2), the tremor
-// <Q-dot_h Q-dot_g> (chapter 4.2) and the weight of the response to a tide (chapter 4.5). Beside each arrow its
+// the corners: the bracket {Q_h, Q-dot_g} (section 1.7), the commutator [Q_h, Q-dot_g] (section 8.2), the tremor
+// <Q-dot_h Q-dot_g> (section 4.2) and the weight of the response to a tide (section 4.5). Beside each arrow its
 // factor: "x 1", "x i hbar", "x k_B T" and "the sum rule". The moments Q in matter's colour, as the chapter sets them;
 // everything else ink, the chapters' numbers grey. No orange or blue.
 // Departures from the diagram's comment: each corner box holds its name on one line and its chapter, in grey, on the
-// next ("chapter 1.7"); the fourth name, which has no formula, takes two lines ("the weight of the response" / "to a
+// next ("section 1.7"); the fourth name, which has no formula, takes two lines ("the weight of the response" / "to a
 // tide"). The four boxes share one size, fitted to the largest. Each factor stands level with the middle of its arrow,
 // on the side toward the figure's edge.
 // Exact: the four entries, each computed and asserted against the integral (tut-operators-lib.js, `ledger`): the
 // bracket by finite differences on a body of twelve particles; the commutator on a grid for one particle, both orders
 // of the symmetrized rate; the tremor from equipartition's covariance of the momenta; the sum rule's energy-weighted
 // integral for bound, damped particles; and, for h = g = (x^2 - y^2)/2, the moment of inertia, 0.13 kg m^2 for
-// chapter 1.7's ball. The layout is schematic.
+// section 1.7's ball. The layout is schematic.
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, n2, LABEL_GAP, SIZE } from './tut-pot-lib.js';
 import { INK, DIM, tex } from '../lib.js';
 import { chapter, palette, MATTER } from './tut-operators-lib.js';

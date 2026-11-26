@@ -1,5 +1,5 @@
-// Shared mathematics for the four diagrams of the tutorial's chapter 4.1 (tutorial/response/oscillator.md):
-// tut-osc-hero, tut-osc-ringdown, tut-osc-response and tut-osc-phasors. Not a figure itself. The cart of chapter 1.7
+// Shared mathematics for the four diagrams of the tutorial's section 4.1 (tutorial/response/oscillator.md):
+// tut-osc-hero, tut-osc-ringdown, tut-osc-response and tut-osc-phasors. Not a figure itself. The cart of section 1.7
 // with friction, in the chapter's letters: m q'' + m Gamma q' + k q = F, the response chi(omega) =
 // 1 / m (omega0^2 - omega^2 - i Gamma omega) (eq:chi), its ring-down and its line; and the steel ball of Appendix A,
 // its trial shape u = (q/R)(-x/2, -y/2, z), its stiffness 3 mu V / R^2, its thermal swing and the tide of its
@@ -100,7 +100,7 @@ export const G = 6.674e-11;
 export const KB = 1.380649e-23;
 export const R_BALL = 0.1;                // m
 export const RHO = 7850;                  // kg m^-3
-export const MU = 7.0e10;                 // Pa, steel's shear modulus (chapter 4.3)
+export const MU = 7.0e10;                 // Pa, steel's shear modulus (section 4.3)
 export const TEMP = 300;                  // K
 export const V_BALL = (4 / 3) * Math.PI * R_BALL ** 3;
 export const M_BALL = RHO * V_BALL;

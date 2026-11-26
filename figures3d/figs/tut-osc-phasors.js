@@ -1,5 +1,5 @@
-// The tutorial, chapter 4.1 (tutorial/response/oscillator.md), its fourth diagram: three small complex planes side by
-// side, for chapter 1.7's cart with Q = 10 pushed at omega = 3, 5 and 8 s^-1. In each, the push's phasor F~ = 1 N along
+// The tutorial, section 4.1 (tutorial/response/oscillator.md), its fourth diagram: three small complex planes side by
+// side, for section 1.7's cart with Q = 10 pushed at omega = 3, 5 and 8 s^-1. In each, the push's phasor F~ = 1 N along
 // the positive real axis, in neutral ink, and the swing's phasor q~ = chi F~ in the swing's colour (the chapter's live
 // figure, driven-cart), in metres on its own scale, the same in all three, shown by a bar of 0.1 m: at 3 s^-1,
 // 0.0311 m at 5.4 degrees; at 5 s^-1, 0.200 m at 90 degrees; at 8 s^-1, 0.0128 m at 174.1 degrees. The lag phi marked in

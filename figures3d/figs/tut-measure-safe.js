@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.3 (tutorial/noise/measuring-a-number.md), its first diagram: the locked safe as a choice
+// The tutorial, section 3.3 (tutorial/noise/measuring-a-number.md), its first diagram: the locked safe as a choice
 // between two scenes. Top row: the array's expected readings of one component, E_xz in the chapter's frame (x to the
 // right, y up, z toward the scene), with the gold in the left safe (hypothesis A) and in the right (B), and their
 // difference, each an 11 x 11 plate of pixels on one diverging scale: orange for a positive reading and blue for a
@@ -20,7 +20,7 @@ const name = 'tut-measure-safe';
 const check = checker(name);
 
 export const VMAX = 0.2;                     // sigma_n: the tint is deepest at a fifth of the noise
-const TURN = -22, TILT = 40, SCALE = 74;     // the plates' view (chapter 3.2's) and their side, points
+const TURN = -22, TILT = 40, SCALE = 74;     // the plates' view (section 3.2's) and their side, points
 const PITCH = 112;                           // from one plate's centre to the next
 const W = 300, H = 84, YMAX = 0.5;           // the bells' chart: t from -4 to 4, density from 0 to 0.5
 const TMAX = 4;

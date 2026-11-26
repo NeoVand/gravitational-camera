@@ -1,9 +1,9 @@
-// Shared numbers for the six diagrams of the tutorial's chapter 10.3 (tutorial/glow/why-matter-barely-glows.md):
+// Shared numbers for the six diagrams of the tutorial's section 10.3 (tutorial/glow/why-matter-barely-glows.md):
 // tut-glow-dispersion, tut-glow-fermi, tut-glow-two-atoms, tut-glow-shears, tut-glow-bound and tut-glow-surface. Not
-// a figure itself. hbar is chapter 8.1's (figs/tut-quantum-lib.js), k_B and G chapter 4.1's (figs/tut-osc-lib.js), c
-// chapter 7.1's (figs/tut-metric-lib.js), the role check chapter 6.1's (figs/tut-lorentz-lib.js), matter's colour
-// chapter 2.5's (figs/tut-null-lib.js), Simpson's rule chapter 8.2's (figs/tut-operators-lib.js), the curve
-// x^3 / (e^x - 1) and its peak chapter 10.1's (figs/tut-planck-lib.js), and the five basis tables chapter 1.5's
+// a figure itself. hbar is section 8.1's (figs/tut-quantum-lib.js), k_B and G section 4.1's (figs/tut-osc-lib.js), c
+// section 7.1's (figs/tut-metric-lib.js), the role check section 6.1's (figs/tut-lorentz-lib.js), matter's colour
+// section 2.5's (figs/tut-null-lib.js), Simpson's rule section 8.2's (figs/tut-operators-lib.js), the curve
+// x^3 / (e^x - 1) and its peak section 10.1's (figs/tut-planck-lib.js), and the five basis tables section 1.5's
 // (figs/tut-five-basis.js), all imported, not copied. The frictions, the Fermi sea and the ball are in matter's colour,
 // as the chapter writes eta, n and Delta mu in it; everything else is neutral (ink and the page's greys). Orange and
 // blue, which mean a stretch and a squeeze, appear only on the shears of tut-glow-two-atoms and tut-glow-shears.
@@ -19,11 +19,13 @@
 //  - the bound: x^3 / (e^x - 1) peaks at 2.821 with 1.4214; silicon's line (520 cm^-1, x = 2.553, Q = 173) reaches
 //    98.5% of its bound, diamond's (1333 cm^-1, x = 6.546) 28%, and copper's electrons (Drude, tau = 2.5 x 10^-14 s,
 //    omega tau = 2.7 at the energy peak) 37.5%;
-//  - the surface: P_V / P_S = 256 zeta(3) / pi^3 (1 + 3 c_T / 2 c_L) R / l_s, 5.47 for the steel ball (c_T = 3200,
-//    c_L = 5900 m/s), l_s = Q hbar c_T / k_B T = 0.83 nm at Q = 10, 6.6 x 10^8 at R = 10 cm and P_S = 1.0 x 10^-46 W;
-//    diamond's volume and surface meet at R = 3 (P_S / 4 pi R^2) / (P/V) = 28 nm, with c_T = 12.35, c_L = 18.15 km/s,
+//  - the surface: P_S = 4 pi R^2 (16 pi / 15) (1 + 2 c_T / 3 c_L) G rho c_T^3 (k_B T)^2 / hbar c^5, the chapter's
+//    derivation (it corrects the paper's eq:surface-glow, which has pi^2 / 24 and 3 c_T / 2 c_L), so
+//    P_V / P_S = 10 zeta(3) / pi^2 (1 + 2 c_T / 3 c_L) R / l_s, 0.89 for the steel ball (c_T = 3200,
+//    c_L = 5900 m/s), l_s = Q hbar c_T / k_B T = 0.83 nm at Q = 10, 1.1 x 10^8 at R = 10 cm and P_S = 6.3 x 10^-46 W;
+//    diamond's volume and surface meet at R = 3 (P_S / 4 pi R^2) / (P/V) = 165 nm, with c_T = 12.35, c_L = 18.15 km/s,
 //    the density of its lattice (eight atoms of carbon in a cube of 0.3567 nm, as the paper's table compiles) and the
-//    table's P/V = 0.25 x 10^-35 W m^-3.
+//    P/V = 0.251 x 10^-35 W m^-3 of line and pairs together.
 import { HBAR, KB, C, palette, simpson, bose, ENERGY } from './tut-planck-lib.js';
 import { G } from './tut-osc-lib.js';
 import { MATTER } from './tut-null-lib.js';
@@ -50,19 +52,19 @@ export const DRUDE = TAU_CU * ROOM;                   // omega tau = DRUDE x
 export function fraction(w, X, n = 400000) {
 	return simpson((x) => w(x) * F(x), 0, X, n) / (TOP * simpson(w, 0, X, n));
 }
-/** A damped oscillator's friction at x (chapter 4.1), up to its weight: x0^2 g / [(x0^2 - x^2)^2 + g^2 x^2], g = x0/Q. */
+/** A damped oscillator's friction at x (section 4.1), up to its weight: x0^2 g / [(x0^2 - x^2)^2 + g^2 x^2], g = x0/Q. */
 export const oscillator = (x0, Q) => { const g = x0 / Q; return (x) => (x0 * x0 * g) / ((x0 * x0 - x * x) ** 2 + g * g * x * x); };
 
 // ---- the surface ----------------------------------------------------------------------------------------------------
 export const ZETA3 = 1.2020569031595942;
 export const STEEL = { cT: 3200, cL: 5900, rho: 7800, Q: 10 };
-export const DIA = { cT: 12350, cL: 18150, rho: (8 * 12.011 * AMU) / 0.3567e-9 ** 3, PV: 0.25e-35 };
-/** The prefactor 256 zeta(3) / pi^3 (1 + 3 c_T / 2 c_L). */
-export const prefactor = ({ cT, cL }) => (256 * ZETA3) / (Math.PI ** 3 * (1 + (1.5 * cT) / cL));
+export const DIA = { cT: 12350, cL: 18150, rho: (8 * 12.011 * AMU) / 0.3567e-9 ** 3, PV: 0.251e-35 };
+/** The prefactor 10 zeta(3) / pi^2 (1 + 2 c_T / 3 c_L). */
+export const prefactor = ({ cT, cL }) => (10 * ZETA3) / (Math.PI ** 2 * (1 + (2 * cT) / (3 * cL)));
 /** l_s = Q hbar c_T / k_B T, m. */
 export const phononPath = ({ cT, Q }) => (Q * HBAR * cT) / (KB * T);
-/** The surface's glow per square metre, the paper's eq:surface-glow over 4 pi R^2, W m^-2. */
-export const surfacePerArea = ({ cT, cL, rho }) => (Math.PI ** 2 / 24) * (1 + (1.5 * cT) / cL) * (G * rho * cT ** 3 * (KB * T) ** 2) / (HBAR * C ** 5);
+/** The surface's glow per square metre, the chapter's P_S over 4 pi R^2, W m^-2. */
+export const surfacePerArea = ({ cT, cL, rho }) => ((16 * Math.PI) / 15) * (1 + (2 * cT) / (3 * cL)) * (G * rho * cT ** 3 * (KB * T) ** 2) / (HBAR * C ** 5);
 /** P_V / P_S of the steel ball of radius R (m). */
 export const steelRatio = (R) => (prefactor(STEEL) * R) / phononPath(STEEL);
 /** Where diamond's volume and surface meet, R = 3 (P_S / 4 pi R^2) / (P/V), m; its ratio is R over this. */
@@ -145,7 +147,7 @@ export async function chapter(check) {
 	has('here $Q = 173$', 'silicon\'s Q');
 	has('Its line, at 1333 cm⁻¹ or 40.0 THz, lies at $x = 6.546$ in the Wien tail', 'diamond\'s x');
 	has('Copper\'s $\\tau = 2.5\\times10^{-14}$ s', 'copper\'s tau');
-	has('gives $\\omega\\tau = 2.7$ at 10.1\'s energy peak', 'omega tau at the peak');
+	has('gives $\\omega\\tau = 2.7$ at the energy peak of section 10.1', 'omega tau at the peak');
 	has('$$\\mathrm{Re}\\,\\matter\\eta = \\frac{\\tfrac15\\,\\matter nmv_F^2\\,\\tau}{1 + \\omega^2\\tau^2} ,$$', 'the Drude friction');
 	const x = { silicon: lineX(SILICON.nu), diamond: lineX(DIAMOND.nu) };
 	check(ENERGY.toFixed(3) === '2.821' && TOP.toFixed(4) === '1.4214' && TOP.toFixed(3) === '1.421', `the peak ${ENERGY}, ${TOP}`);
@@ -165,26 +167,28 @@ export async function chapter(check) {
 	check(near(simpson(oscillator(x.silicon, SILICON.Q), 0, 30 * x.silicon, 3000000), Math.PI / 2, 1e-5), 'the oscillator\'s area');
 
 	// ---- the surface
-	has('with $c_T = 3200$ and $c_L = 5900\\unit{m\\,s^{-1}}$ and $\\matter\\rho = 7800\\unit{kg\\,m^{-3}}$, the prefactor is 5.47 (the paper\'s 5.5), and at $Q = 10$, $\\ell_s = 0.83$ nm', 'the steel ball');
-	has('A ball of radius 10 cm glows $1.0\\times10^{-46}$ W from its surface and $6.6\\times10^8$ times more from its volume', 'the steel ball\'s glow');
-	has('the two meet at $R = 3(P_S/4\\pi R^2)/(P/V)$: 28 nm for diamond, the faintest', 'diamond\'s crossing');
-	has('28 nm with the sound speeds of its own elastic constants, $c_T = 12.35$ and $c_L = 18.15\\unit{km\\,s^{-1}}$', 'diamond\'s sound speeds');
+	has('with $c_T = 3200$ and $c_L = 5900\\unit{m\\,s^{-1}}$ and $\\matter\\rho = 7800\\unit{kg\\,m^{-3}}$, the prefactor is 0.89, and at $Q = 10$, $\\ell_s = 0.83$ nm', 'the steel ball');
+	has('A ball of radius 10 cm glows $6.3\\times10^{-46}$ W from its surface and $1.1\\times10^8$ times more from its volume', 'the steel ball\'s glow');
+	has('the two meet at $R = 3(P_S/4\\pi R^2)/(P/V)$: 165 nm for diamond, the faintest', 'diamond\'s crossing');
+	has('165 nm with the sound speeds of its own elastic constants, $c_T = 12.35$ and $c_L = 18.15\\unit{km\\,s^{-1}}$', 'diamond\'s sound speeds');
 	has('**Diamond.** Its line, at 1333 cm⁻¹ or 40.0 THz, lies at $x = 6.546$ in the Wien tail, so it is faint and blue: 0.12, 0.25, $6.4\\,\\kB T$ (stated)', 'diamond\'s P/V');
-	has('the surface wins only once $\\ell_s$ passes about $5.5R$', 'the limit');
-	has('Every other material of its table crosses below 1 nm', 'the other crossings');
+	has('the surface wins only once $\\ell_s$ passes about $0.9R$', 'the limit');
+	has('\\frac{16\\pi}{15}\\Bigl(1 + \\frac{2c_T}{3c_L}\\Bigr)\\frac{G\\matter\\rho\\,c_T^3\\,(\\kB T)^2}{\\hbar c^5}} .$$', 'the surface\'s glow');
+	has('\\frac{10\\,\\zeta(3)}{\\pi^2(1 + 2c_T/3c_L)}', 'the boxed ratio');
+	has('Every other material of the table crosses below 1 nm', 'the other crossings');
 	const steel = {
 		prefactor: prefactor(STEEL), ls: phononPath(STEEL), ratio: steelRatio(0.1),
 		PS: 4 * Math.PI * 0.1 ** 2 * surfacePerArea(STEEL), cross: phononPath(STEEL) / prefactor(STEEL)
 	};
-	check(steel.prefactor.toFixed(2) === '5.47' && (steel.ls * 1e9).toFixed(2) === '0.83', `the steel ball ${steel.prefactor}, ${steel.ls}`);
-	check((steel.ratio / 1e8).toFixed(1) === '6.6' && (steel.PS / 1e-46).toFixed(1) === '1.0', `the steel ball's ratio ${steel.ratio}, ${steel.PS}`);
+	check(steel.prefactor.toFixed(2) === '0.89' && (steel.ls * 1e9).toFixed(2) === '0.83', `the steel ball ${steel.prefactor}, ${steel.ls}`);
+	check((steel.ratio / 1e8).toFixed(1) === '1.1' && (steel.PS / 1e-46).toFixed(1) === '6.3', `the steel ball's ratio ${steel.ratio}, ${steel.PS}`);
 	check(steel.cross < 1e-9 && near(steelRatio(steel.cross), 1, 1e-12), `steel crosses at ${steel.cross}`);
-	// the ratio is the paper's: P_V / P_S with P_V = V 32 zeta(3) G rho c_T^2 (k_B T)^3 / pi c^5 Q hbar^2
+	// the ratio is the chapter's: P_V / P_S with P_V = V 32 zeta(3) G rho c_T^2 (k_B T)^3 / pi c^5 Q hbar^2
 	for (const R of [1e-9, 1e-3, 0.1]) {
 		const PV = (4 / 3) * Math.PI * R ** 3 * (32 * ZETA3 * G * STEEL.rho * STEEL.cT ** 2 * (KB * T) ** 3) / (Math.PI * C ** 5 * STEEL.Q * HBAR ** 2);
 		check(near(PV / (4 * Math.PI * R * R * surfacePerArea(STEEL)), steelRatio(R), 1e-9 * steelRatio(R)), `the ratio at ${R} m`);
 	}
-	check(DIA.rho.toFixed(0) === '3516' && (DIAMOND_CROSS * 1e9).toFixed(0) === '28', `diamond's crossing ${DIAMOND_CROSS}, rho ${DIA.rho}`);
+	check(DIA.rho.toFixed(0) === '3516' && (DIAMOND_CROSS * 1e9).toFixed(0) === '165', `diamond's crossing ${DIAMOND_CROSS}, rho ${DIA.rho}`);
 
 	/** Whether the diagram `name` is drawn (its figure line, with the caption `caption`) or still planned (its comment). */
 	const state = (name, id, caption) => {

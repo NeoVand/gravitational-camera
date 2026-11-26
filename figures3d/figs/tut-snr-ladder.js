@@ -1,11 +1,11 @@
-// The tutorial, chapter 8.6 (tutorial/quantum/quantum-limit.md), its fourth diagram: a ladder of signal-to-noise
+// The tutorial, section 8.6 (tutorial/quantum/quantum-limit.md), its fourth diagram: a ladder of signal-to-noise
 // ratios on the person a metre away. One horizontal axis of log10 SNR from 0 to 72, thin grey, ticked every 10. Four
 // ink dots, named above the axis: the superconducting gradiometer in 1 s (467), the SQL pixel in 1 s (1.44 x 10^5),
 // the SQL pixel in stretches of 10^3 s averaged over the age of the universe (9.5 x 10^16) and the ceiling over the age
 // of the universe (2.6 x 10^70). Two open circles, named below it: the SQL pixel's tau^3/2 carried to the age of the
 // universe (4.1 x 10^31, formal) and the ceiling of a camera no heavier in pull than the Earth (1.7 x 10^55). A thin
 // dashed bracket from the SQL pixel in 1 s to the formal circle, "grows as tau^3/2". Each name ends with its blur by
-// chapter 3.7's exact calculation (step 7), in grey. Ink and greys only.
+// section 3.7's exact calculation (step 7), in grey. Ink and greys only.
 // Departures from the diagram's comment: each blur is written in grey as the last line of its point's name, not under
 // the dot, since the gradiometer's and the pixel's dots stand 11 pt apart and the axis's numbers lie under the axis;
 // the names hang from thin leaders, those above the axis stepped so that each clears the leaders to its right, and the
@@ -13,8 +13,8 @@
 // and ends on the formal circle's leader. The one drawing serves the phone: its names are short lines, at the size of every
 // other label.
 // Exact: every point's place (tut-sql-lib.js computes each ratio from the chapter's numbers and asserts it, and its
-// log10, against the chapter's text and the comment), and every blur, chapter 3.7's exact full width at half maximum
-// under a plane of sensors (step 7, as the site's BlurLaw interactive computes it, checked against chapter 3.7's table
+// log10, against the chapter's text and the comment), and every blur, section 3.7's exact full width at half maximum
+// under a plane of sensors (step 7, as the site's BlurLaw interactive computes it, checked against section 3.7's table
 // and by a second route), asserted against the chapter's 1.51, 1.91, 3.2 and 5.8 degrees and the comment's 26 and 16.
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, AXIS, HAIR, TICK, LABEL_GAP, SIZE, n2 } from './tut-pot-lib.js';
 import { Plot, xAxis } from './tut-prob-lib.js';

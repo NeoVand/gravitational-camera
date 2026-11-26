@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.2 (tutorial/noise/random-signals.md), its second diagram: white noise averages down and
+// The tutorial, section 3.2 (tutorial/noise/random-signals.md), its second diagram: white noise averages down and
 // red noise does not. Two records over 100 s, sampled twice a second: white noise, and red noise (a random walk with
 // a small white part added). Under each, its averages over successive blocks of 1 s (thin steps) and of 10 s (thick
 // steps), on the same scale. The two records are scaled so that their averages over one second scatter equally

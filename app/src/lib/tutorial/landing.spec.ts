@@ -93,7 +93,7 @@ describe('the wall of equations', () => {
 describe('pictures', () => {
 	it('gives every part a picture and a sentence', () => {
 		const cat = catalogue();
-		expect(cat.parts).toHaveLength(14);
+		expect(cat.parts).toHaveLength(15);
 		expect(partsLacking(cat)).toEqual([]);
 		expect(Object.keys(PART_PICTURES).sort()).toEqual(cat.parts.map((p) => p.id).sort());
 		expect(Object.keys(PART_LINES).sort()).toEqual(cat.parts.map((p) => p.id).sort());

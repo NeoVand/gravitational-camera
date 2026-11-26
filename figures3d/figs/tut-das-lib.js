@@ -1,9 +1,9 @@
-// Shared numbers and marks for the four diagrams of the tutorial's chapter 5.3 (tutorial/waves/diffraction.md):
+// Shared numbers and marks for the four diagrams of the tutorial's section 5.3 (tutorial/waves/diffraction.md):
 // tut-das-delays, tut-das-lobes, tut-das-fresnel and tut-das-pair. Not a figure itself. The sheet, the strokes, the
-// labels and the cropping are chapter 1.2's (figs/tut-pot-lib.js), the axes chapter 3.1's (figs/tut-prob-lib.js), the
-// sampling of curves chapter 2.6's (figs/tut-fourier-lib.js), the dashes chapter 3.6's (figs/tut-bessel-lib.js, DASH)
-// and the slit's sin x / x chapter 3.6's (figs/tut-bessel-lib.js, sinc), all imported, not copied. The colours keep
-// chapter 5.2's meanings (figs/tut-ret-lib.js): the wave and a difference of path, there n.y, here n.x_p and the gap
+// labels and the cropping are section 1.2's (figs/tut-pot-lib.js), the axes section 3.1's (figs/tut-prob-lib.js), the
+// sampling of curves section 2.6's (figs/tut-fourier-lib.js), the dashes section 3.6's (figs/tut-bessel-lib.js, DASH)
+// and the slit's sin x / x section 3.6's (figs/tut-bessel-lib.js, sinc), all imported, not copied. The colours keep
+// section 5.2's meanings (figs/tut-ret-lib.js): the wave and a difference of path, there n.y, here n.x_p and the gap
 // between a curved front and a flat one, in the first accent (orange); pixels, records and images in neutral ink; a
 // second curve or a reference in the dim grey; crests of a plane wave in the faint rule.
 //

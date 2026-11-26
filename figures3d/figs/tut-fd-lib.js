@@ -1,7 +1,7 @@
-// Shared numbers for the five figures of the tutorial's chapter 4.6 (tutorial/response/fluctuation-dissipation.md):
+// Shared numbers for the five figures of the tutorial's section 4.6 (tutorial/response/fluctuation-dissipation.md):
 // tut-fd-hero, tut-fd-grain, tut-fd-lines, tut-fd-meeting and tut-fd-thermometer. Not a figure itself. The sheet,
-// strokes and labels are chapter 1.2's (figs/tut-pot-lib.js), the axes and the seeded random numbers chapter 3.1's
-// (figs/tut-prob-lib.js), the sampling of curves chapter 2.6's (figs/tut-fourier-lib.js), all imported, not copied; the
+// strokes and labels are section 1.2's (figs/tut-pot-lib.js), the axes and the seeded random numbers section 3.1's
+// (figs/tut-prob-lib.js), the sampling of curves section 2.6's (figs/tut-fourier-lib.js), all imported, not copied; the
 // ball, its trial shape and its thermal swing are 4.1's (figs/tut-osc-lib.js).
 //
 // `chapter(check)` asserts every number that a figure draws or that the chapter prints beside it: the bead's friction,
@@ -10,7 +10,7 @@
 // -1/2, 1), its values, its zeros at 54.7 degrees, its degree two and the drive energy -f D:E.
 import { normals } from './tut-prob-lib.js';
 
-// ---- the bead in water (chapter 4.6, "A number") -----------------------------------------------------------------
+// ---- the bead in water (section 4.6, "A number") -----------------------------------------------------------------
 export const KB = 1.380649e-23;           // J/K
 export const T_WATER = 293;               // K
 export const ETA = 1.0e-3;                // Pa s, water

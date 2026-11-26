@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.1 (tutorial/quantum/states.md), its second diagram: the two terms of the amplitude at exit R
+// The tutorial, section 8.1 (tutorial/quantum/states.md), its second diagram: the two terms of the amplitude at exit R
 // added as arrows in the complex plane. Two panels side by side, each a complex plane with thin grey axes, the same
 // scale and the same origin height. Left, "phi = 0": two equal ink arrows of length 1/2, both pointing straight up
 // (each is i/2), head to tail, reaching i; a thicker arrow from the origin to i, "sum, length 1". Right, "phi = pi": the

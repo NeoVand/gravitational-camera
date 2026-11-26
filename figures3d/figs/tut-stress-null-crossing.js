@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.5 (tutorial/relativity/stress-energy.md), its third diagram: a ray meets a particle. One
+// The tutorial, section 6.5 (tutorial/relativity/stress-energy.md), its third diagram: a ray meets a particle. One
 // panel, a spacetime diagram with z across and ct upward at one scale, thin faint axes named "z" and "ct". The null
 // ray ct = z + u0 at 45 degrees, in ink, named "ray, u = u0", and the rays u = u0 +- 0.3 thin, dotted and faint on
 // either side of it. The worldline of a particle moving along +z at 0.4c, the straight line of slope 1/0.4 in

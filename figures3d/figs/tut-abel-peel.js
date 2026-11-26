@@ -1,14 +1,14 @@
-// The tutorial, chapter 5.6 (tutorial/waves/abel-transform.md), its fourth diagram: errors grow inward as the shells
+// The tutorial, section 5.6 (tutorial/waves/abel-transform.md), its fourth diagram: errors grow inward as the shells
 // are peeled. One chart: across, r/R from 0 (the centre, left) to 1 (the surface, right); up, the glow in units of the
 // true glow. Five shells of equal width R/5, all of glow 1: a thin dashed grey line at 1 across the axis, named "true";
 // the recovered glows, five short ink bars at 1, one across the middle of each shell; through each, a vertical error
-// bar in chapter 3.1's colour of the noise, of half-height 1.0, 1.6, 2.2, 3.1 and 5.8% from the surface inward, drawn
+// bar in section 3.1's colour of the noise, of half-height 1.0, 1.6, 2.2, 3.1 and 5.8% from the surface inward, drawn
 // ten times their size ("error bars x 10" in the lower right corner). Numerals 1 to 5 over the error bars, from the
 // right, the order in which the shells are read, and over them a thin arrow from right to left named "peeling order".
 // Departures from the diagram's comment: the vertical axis runs to 1.6, not 1.3, since the innermost error bar, 5.8%
 // drawn ten times, reaches 1.58; the axis has numbers only at 0 and 1, the glows' zero and true value. The bars span
 // the middle seven tenths of each shell, so that the dashed true line shows between them. The error bars are drawn in
-// the second accent (blue), chapter 3.1's colour for the noise (figs/tut-prob-lib.js, NOISE), and "error bars x 10"
+// the second accent (blue), section 3.1's colour for the noise (figs/tut-prob-lib.js, NOISE), and "error bars x 10"
 // with them. The chart is drawn at half a point per site pixel, 282 by 102 points for the data.
 // Exact: the recovered glows, 1 (the peeling of exact readings, asserted in tut-abel-lib.js), and the error bars'
 // half-heights, each reading's 1% carried exactly through the peeling (asserted there: 1.0, 1.6, 2.2, 3.1 and 5.8%,

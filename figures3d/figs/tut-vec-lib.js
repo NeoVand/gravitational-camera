@@ -1,4 +1,4 @@
-// Shared tools for the four diagrams of the tutorial's chapter 1.1 (tutorial/newton/vectors-and-indices.md):
+// Shared tools for the four diagrams of the tutorial's section 1.1 (tutorial/newton/vectors-and-indices.md):
 // tut-vec-shadows, tut-vec-turn, tut-vec-cyclic and tut-vec-projector. Not a figure itself.
 //
 // A Sheet draws through a Panel (its projection, tilt and turn) and remembers every mark it makes, in figure

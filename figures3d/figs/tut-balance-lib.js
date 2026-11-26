@@ -1,8 +1,8 @@
-// Shared numbers for the four diagrams of the tutorial's chapter 10.2 (tutorial/glow/kirchhoff.md): tut-balance-rates,
-// tut-balance-ray, tut-balance-orders and tut-heat-capacity. Not a figure itself. hbar is chapter 8.1's
-// (figs/tut-quantum-lib.js), k_B and G chapter 4.1's (figs/tut-osc-lib.js), c chapter 7.1's (figs/tut-metric-lib.js),
-// the role check chapter 6.1's (figs/tut-lorentz-lib.js), Simpson's rule chapter 8.2's (figs/tut-operators-lib.js), and
-// the sheet, strokes, labels and cropping those of chapters 6.1 to 10.1 (figs/tut-pot-lib.js), all imported, not
+// Shared numbers for the four diagrams of the tutorial's section 10.2 (tutorial/glow/kirchhoff.md): tut-balance-rates,
+// tut-balance-ray, tut-balance-orders and tut-heat-capacity. Not a figure itself. hbar is section 8.1's
+// (figs/tut-quantum-lib.js), k_B and G section 4.1's (figs/tut-osc-lib.js), c section 7.1's (figs/tut-metric-lib.js),
+// the role check section 6.1's (figs/tut-lorentz-lib.js), Simpson's rule section 8.2's (figs/tut-operators-lib.js), and
+// the sheet, strokes, labels and cropping those of sections 6.1 to 10.1 (figs/tut-pot-lib.js), all imported, not
 // copied. The levels, the occupations, the spectra and the heat capacities are neutral (ink and the page's greys), as
 // the chapter writes P_l, P_u, n_omega and C without a colour role; orange and blue, which mean a stretch and a
 // squeeze, are not used.
@@ -34,7 +34,7 @@ export const near = (a, b, tol = 1e-12) => Math.abs(a - b) <= tol;
 // ---- one mode --------------------------------------------------------------------------------------------------
 /** Planck's occupation 1 / (e^x - 1). */
 export const nbar = (x) => 1 / Math.expm1(x);
-/** The energy peak of chapter 10.1: the root of x = 3 (1 - e^{-x}). */
+/** The energy peak of section 10.1: the root of x = 3 (1 - e^{-x}). */
 export const PEAK = (() => { let x = 3; for (let i = 0; i < 500; i++) x = -3 * Math.expm1(-x); return x; })();
 /** The text's rounded x of the energy peak, at which every number of the chapter is quoted. */
 export const X_PEAK = 2.821;
@@ -113,10 +113,10 @@ export async function chapter(check) {
 
 	// ---- the two orders
 	has('$$S_{ij,kl}(-\\omega) = 2\\hbar\\omega\\,\\bar n\\,\\mathrm{Re}\\,\\matter\\eta\\;\\Delta_{ijkl} ,$$', 'the emission order');
-	has('which tends to 4.6\'s $2\\kB T\\,\\mathrm{Re}\\,\\matter\\eta\\,\\Delta_{ijkl}$ when $\\hbar\\omega \\ll \\kB T$', 'the classical limit');
-	has('A classical record shows 8.7\'s symmetrized spectrum, $\\hbar\\omega(2\\bar n + 1)\\, \\mathrm{Re}\\,\\matter\\eta\\,\\Delta_{ijkl}$', 'the symmetrized order');
+	has('which tends to $2\\kB T\\,\\mathrm{Re}\\,\\matter\\eta\\,\\Delta_{ijkl}$ when $\\hbar\\omega \\ll \\kB T$', 'the classical limit');
+	has('A classical record shows the symmetrized spectrum of section 8.7, $\\hbar\\omega(2\\bar n + 1)\\, \\mathrm{Re}\\,\\matter\\eta\\,\\Delta_{ijkl}$', 'the symmetrized order');
 	has('the symmetrized order would overstate the glow by $(\\bar n + \\tfrac12)/\\bar n = 1.15$ at $\\omega = 10^{13}\\unit{s^{-1}}$ (1.6 THz), and 8.9 times at the energy peak', 'the ratios');
-	has('the paper takes the stress in the "unsymmetrized (Wightman) order", the emission order', 'the emission order\'s name');
+	has('The stress must be taken in the unsymmetrized (Wightman) order, the emission order.', 'the emission order\'s name');
 	for (const x of [1e-3, 0.5, 1, X_PEAK, 5]) {
 		check(near(emission(x), 2 * x * nbar(x), 1e-12), `the emission order at ${x}`);
 		check(near(symmetrized(x), x * (2 * nbar(x) + 1), 1e-12 * symmetrized(x)), `x coth(x/2) is not x (2 nbar + 1) at ${x}`);
@@ -147,7 +147,7 @@ export async function chapter(check) {
 
 	// ---- Debye's solid
 	has('$$\\frac{C}{3N\\kB} = \\frac{3}{x_D^3}\\int_0^{x_D}\\frac{x^4e^x\\,\\dd x}{(e^x - 1)^2} .$$', 'Debye\'s formula');
-	has('At 293 K diamond, with the paper\'s Debye temperature of 2200 K, holds only 0.16 of its classical heat capacity, while copper, whose Debye temperature is 343 K, holds 0.93', 'diamond and copper');
+	has('At 293 K diamond, with a Debye temperature of 2200 K, holds only 0.16 of its classical heat capacity, while copper, whose Debye temperature is 343 K, holds 0.93', 'diamond and copper');
 	const dots = {
 		diamond: { t: DIAMOND.T / DIAMOND.theta, c: debye(DIAMOND.T / DIAMOND.theta) },
 		copper: { t: COPPER.T / COPPER.theta, c: debye(COPPER.T / COPPER.theta) }
@@ -164,7 +164,7 @@ export async function chapter(check) {
 	// ---- the hole
 	has('$$\\boxed{C = \\frac{\\dd(\\matter Mc^2)}{\\dd T_H} = -\\frac{\\matter Mc^2}{T_H}} .$$', 'the hole\'s heat capacity');
 	has('its Hawking temperature $T_H = \\hbar c^3/8\\pi G\\matter M\\kB$', 'the Hawking temperature');
-	has('Section VII\'s hole of $1.356\\times10^{23}$ kg is at 0.905 K, with $C = -1.35\\times10^{40}\\unit{J\\,K^{-1}}$', 'the hole\'s numbers');
+	has('A hole of $1.356\\times10^{23}$ kg is at 0.905 K, with $C = -1.35\\times10^{40}\\unit{J\\,K^{-1}}$', 'the hole\'s numbers');
 	const hole = { T: hawking(HOLE), C: (-HOLE * C * C) / hawking(HOLE) };
 	check(hole.T.toFixed(3) === '0.905', `the hole's temperature ${hole.T}`);
 	check(near(holeC(hole.T), hole.C, 1e-12 * Math.abs(hole.C)), 'C = -M c^2 / T_H is not -hbar c^5 / 8 pi G k_B T^2');

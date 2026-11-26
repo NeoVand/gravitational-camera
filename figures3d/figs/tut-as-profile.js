@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.5 (tutorial/what-a-field-keeps/impulsive-waves.md), its third diagram: Aichelburg and Sexl's
+// The tutorial, section 13.5 (tutorial/what-a-field-keeps/impulsive-waves.md), its third diagram: Aichelburg and Sexl's
 // profile on the plane of the front. The plane from -3R to 3R, a pale tint of the page; the body, a disc of radius R at
 // the origin, the paper's stone (sprites/hair/ball.png, the steel ball seen along the path); the profile
 // H = -k ln|x_perp - b| for b = (1.5 R, 0), drawn as its contours at equal steps of k/3 (circles about b, thin, in the

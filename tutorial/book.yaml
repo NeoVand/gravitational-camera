@@ -1,0 +1,221 @@
+# The book: The Gravitational Camera. The tutorial's chapter files are the book's sections, grouped here into
+# book chapters and parts (design/book/BOOK-PLAN.md). words and target are counted by design/book/wc.py (text, boxes,
+# footnotes and problems; maths and comments excluded). Targets: 75% of the original for teaching sections, 55% for
+# reading chapters (the pilots showed this is the honest cut without losing a derivation step).
+# 0.6 (how to read) becomes front matter. Read by the PDF build.
+title: The Gravitational Camera
+parts:
+  - id: 'Prologue'
+    chapters:
+      - title: "An evening with the camera"
+        sections:
+          - { id: '0.1', words: 2626, target: 2000 }
+          - { id: '0.2', words: 2700, target: 2000 }
+          - { id: '0.3', words: 2697, target: 2000 }
+          - { id: '0.4', words: 2803, target: 2100 }
+          - { id: '0.5', words: 3034, target: 2300 }
+  - id: 'I'
+    title: The field of a body
+    chapters:
+      - title: "Vectors, fields and potentials"
+        sections:
+          - { id: '1.1', words: 6137, target: 4600 }
+          - { id: '1.2', words: 5231, target: 3900 }
+      - title: "Gauss's law and the tide"
+        sections:
+          - { id: '1.3', words: 6761, target: 5100 }
+          - { id: '1.4', words: 6333, target: 4700 }
+      - title: "Five numbers"
+        sections:
+          - { id: '1.5', words: 5359, target: 4000 }
+          - { id: '1.5b', words: 5248, target: 3900 }
+      - title: "Motion, brackets and kicks"
+        sections:
+          - { id: '1.6', words: 5275, target: 4000 }
+          - { id: '1.7', words: 5147, target: 3900 }
+          - { id: '1.8', words: 5129, target: 3800 }
+      - title: "What one pixel measures"
+        sections:
+          - { id: 'R1', words: 6103, target: 3400 }
+      - title: "Harmonic functions and multipoles"
+        sections:
+          - { id: '2.1', words: 5357, target: 4000 }
+          - { id: '2.2', words: 4570, target: 3400 }
+          - { id: '2.3', words: 4494, target: 3400 }
+          - { id: '2.4', words: 4957, target: 3700 }
+      - title: "What the outside cannot see"
+        sections:
+          - { id: '2.5', words: 5742, target: 4300 }
+          - { id: '2.6', words: 5300, target: 4000 }
+          - { id: '2.7', words: 5486, target: 4100 }
+          - { id: '2.8', words: 5826, target: 4400 }
+      - title: "The near-field image"
+        sections:
+          - { id: 'R2', words: 6672, target: 3700 }
+  - id: 'II'
+    title: Measurement
+    chapters:
+      - title: "Noise and estimation"
+        sections:
+          - { id: '3.1', words: 3831, target: 2900 }
+          - { id: '3.2', words: 4671, target: 3500 }
+          - { id: '3.3', words: 5245, target: 3900 }
+          - { id: '3.4', words: 5115, target: 3800 }
+      - title: "The best picture"
+        sections:
+          - { id: '3.5', words: 5555, target: 4200 }
+          - { id: '3.6', words: 5745, target: 4300 }
+          - { id: '3.7', words: 7316, target: 5500 }
+          - { id: '3.8', words: 5129, target: 3800 }
+          - { id: '3.9', words: 6072, target: 4600 }
+      - title: "Imaging the locked safe"
+        sections:
+          - { id: 'R3', words: 7290, target: 4000 }
+      - title: "Oscillation, heat and stiffness"
+        sections:
+          - { id: '4.1', words: 5652, target: 4200 }
+          - { id: '4.2', words: 4881, target: 3700 }
+          - { id: '4.3', words: 5659, target: 4200 }
+      - title: "Friction, causality and fluctuation"
+        sections:
+          - { id: '4.4', words: 4892, target: 3700 }
+          - { id: '4.5', words: 5464, target: 4100 }
+          - { id: '4.6', words: 6008, target: 4500 }
+      - title: "What heat and a tide reveal"
+        sections:
+          - { id: 'R4', words: 6772, target: 3700 }
+  - id: 'III'
+    title: Waves, relativity and geometry
+    chapters:
+      - title: "Waves, sources and arrays"
+        sections:
+          - { id: '5.1', words: 4474, target: 3400 }
+          - { id: '5.2', words: 5992, target: 4500 }
+          - { id: '5.3', words: 6833, target: 5100 }
+      - title: "Polarization, glow and pictures from lines"
+        sections:
+          - { id: '5.4', words: 5875, target: 4400 }
+          - { id: '5.5', words: 5974, target: 4500 }
+          - { id: '5.6', words: 4494, target: 3400 }
+      - title: "Which way it turns"
+        sections:
+          - { id: 'R5', words: 5083, target: 2800 }
+      - title: "Clocks, light and spacetime"
+        sections:
+          - { id: '6.1', words: 5668, target: 4300 }
+          - { id: '6.2', words: 5584, target: 4200 }
+          - { id: '6.3', words: 5377, target: 4000 }
+      - title: "Energy, stress and the light field"
+        sections:
+          - { id: '6.4', words: 4902, target: 3700 }
+          - { id: '6.5', words: 4607, target: 3500 }
+          - { id: '6.6', words: 7292, target: 5500 }
+      - title: "Gravity as geometry"
+        sections:
+          - { id: '7.1', words: 6407, target: 4800 }
+          - { id: '7.2', words: 5510, target: 4100 }
+          - { id: '7.3', words: 4253, target: 3200 }
+          - { id: '7.4', words: 4088, target: 3100 }
+      - title: "Gravity's two parts and its waves"
+        sections:
+          - { id: '7.5', words: 4491, target: 3400 }
+          - { id: '7.6', words: 4028, target: 3000 }
+      - title: "The tide as curvature"
+        sections:
+          - { id: 'R7', words: 3476, target: 1900 }
+      - title: "Radiation and its energy"
+        sections:
+          - { id: '7.7', words: 4911, target: 3700 }
+          - { id: '7.8', words: 4664, target: 3500 }
+      - title: "Waves from moving bodies"
+        sections:
+          - { id: 'R7b', words: 4459, target: 2500 }
+  - id: 'IV'
+    title: Quanta and the single point
+    chapters:
+      - title: "States, operators and quanta"
+        sections:
+          - { id: '8.1', words: 4464, target: 3300 }
+          - { id: '8.2', words: 3633, target: 2700 }
+          - { id: '8.3', words: 3814, target: 2900 }
+          - { id: '8.4', words: 4258, target: 3200 }
+      - title: "Counting, measuring and the quantum limit"
+        sections:
+          - { id: '8.5', words: 3195, target: 2400 }
+          - { id: '8.6', words: 5023, target: 3800 }
+          - { id: '8.7', words: 3409, target: 2600 }
+      - title: "From two grams to the ceiling"
+        sections:
+          - { id: 'R8', words: 4736, target: 2600 }
+      - title: "One point of the field"
+        sections:
+          - { id: '9.1', words: 3658, target: 2700 }
+          - { id: '9.2', words: 3769, target: 2800 }
+          - { id: '9.3', words: 4674, target: 3500 }
+          - { id: '9.4', words: 4030, target: 3000 }
+      - title: "One table, four directions"
+        sections:
+          - { id: 'R9', words: 4681, target: 2600 }
+      - title: "Separating waves and the sky at a point"
+        sections:
+          - { id: '9.5', words: 3710, target: 2800 }
+          - { id: '9.6', words: 3944, target: 3000 }
+          - { id: '9.7', words: 3986, target: 3000 }
+      - title: "One pixel on a desk"
+        sections:
+          - { id: 'R9b', words: 4682, target: 2600 }
+  - id: 'V'
+    title: Heat, holes and the sky
+    chapters:
+      - title: "The thermal glow"
+        sections:
+          - { id: '10.1', words: 4349, target: 3300 }
+          - { id: '10.2', words: 4457, target: 3300 }
+          - { id: '10.3', words: 5290, target: 4000 }
+      - title: "The glow of matter and a first image"
+        sections:
+          - { id: 'R10', words: 4444, target: 2400 }
+          - { id: 'R10b', words: 4541, target: 2500 }
+      - title: "Black holes"
+        sections:
+          - { id: '11.1', words: 5469, target: 4100 }
+          - { id: '11.2', words: 4220, target: 3200 }
+          - { id: '11.3', words: 4272, target: 3200 }
+          - { id: '11.4', words: 4396, target: 3300 }
+      - title: "A camera without a lens"
+        sections:
+          - { id: 'R11', words: 3255, target: 1800 }
+      - title: "The sky"
+        sections:
+          - { id: '12.1', words: 5913, target: 4400 }
+          - { id: '12.2', words: 5037, target: 3800 }
+      - title: "What the camera can do, and the sky in gravity"
+        sections:
+          - { id: 'R12', words: 4634, target: 2500 }
+          - { id: 'R12b', words: 4591, target: 2500 }
+  - id: 'VI'
+    title: What a field keeps
+    chapters:
+      - title: "The push and the pass"
+        sections:
+          - { id: '13.1', words: 4772, target: 3600 }
+          - { id: '13.2', words: 5187, target: 3900 }
+      - title: "The ladder of tides and flows within"
+        sections:
+          - { id: '13.3', words: 4324, target: 3200 }
+          - { id: '13.4', words: 4360, target: 3300 }
+          - { id: '13.5', words: 4277, target: 3200 }
+      - title: "Moments, a thermometer and holography"
+        sections:
+          - { id: '13.6', words: 5110, target: 3800 }
+          - { id: '13.7', words: 4199, target: 3100 }
+          - { id: '13.8', words: 5194, target: 3900 }
+      - title: "A black hole and a moon"
+        sections:
+          - { id: 'R13', words: 5858, target: 3200 }
+          - { id: 'R13b', words: 5485, target: 3000 }
+frontmatter:
+  - { id: '0.6', role: how-to-read }
+appendices:
+  - { id: 'A.1', role: appendix }
+  - { id: 'A.2', role: appendix }

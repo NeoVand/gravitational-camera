@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.7 (tutorial/outside/evanescent.md), the fade on a logarithmic axis. The factor e^{-kh} by
+// The tutorial, section 2.7 (tutorial/outside/evanescent.md), the fade on a logarithmic axis. The factor e^{-kh} by
 // which a ripple of the potential fades between the scene and the height h, against h from 0 to 0.3 m, for crests
 // 1 m, 30 cm and 10 cm apart (k = 2 pi over the spacing), on a logarithmic vertical axis from 1 down to 10^-9. On such
 // an axis each fade is a straight line through 1 at h = 0, of slope -k / ln 10 decades per metre, so the three slopes

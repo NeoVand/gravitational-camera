@@ -1,6 +1,6 @@
-// Shared tools for the four diagrams of the tutorial's chapter 3.1 (tutorial/noise/probability.md):
+// Shared tools for the four diagrams of the tutorial's section 3.1 (tutorial/noise/probability.md):
 // tut-prob-average, tut-prob-tails, tut-prob-shared and tut-prob-poisson. Not a figure itself. These are data
-// figures, so this file adds to chapter 1.2's sheet (figs/tut-pot-lib.js, imported, not copied) what a chart needs: a
+// figures, so this file adds to section 1.2's sheet (figs/tut-pot-lib.js, imported, not copied) what a chart needs: a
 // seeded source of random numbers, the sample statistics, a plot that maps data to the page, thin axes with few
 // ticks, and a dimension line. The colours are fixed for all four: the signal in the first accent (orange), the noise
 // in the second (blue), the readings themselves in neutral ink and its pale tint.

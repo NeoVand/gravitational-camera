@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.1 (tutorial/quantum/states.md), its first diagram: the Mach-Zehnder interferometer and its
+// The tutorial, section 8.1 (tutorial/quantum/states.md), its first diagram: the Mach-Zehnder interferometer and its
 // two exits. Left, the instrument seen from above: a thin ink arrow enters from the left along a horizontal line, "L in",
 // and meets the first half-silvered mirror (a short thick grey plate at 45 degrees). Path L goes straight on, along the
 // bottom, through a light-grey plate, "delay phi", and is turned up by a full mirror (an ink plate, hatched on its

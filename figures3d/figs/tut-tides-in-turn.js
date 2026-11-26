@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.4 (tutorial/what-a-field-keeps/flows-inside.md), its first diagram: two tides in turn. Left,
+// The tutorial, section 13.4 (tutorial/what-a-field-keeps/flows-inside.md), its first diagram: two tides in turn. Left,
 // two timelines stacked, each a short arrow of time from t = 0 to tau: above, a kick (an impulse, drawn as a spike)
 // "kick g" at t = 0 and an eye "read h" at tau; below, "kick h" and "read g". Right, the response delta Q / eps against
 // tau from 0 to 0.02 (the twelve parts' units): the two responses of the boxed series for the twelve parts of the

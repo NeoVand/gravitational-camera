@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.4 (tutorial/what-a-field-keeps/flows-inside.md), its third diagram: the shares of the
+// The tutorial, section 13.4 (tutorial/what-a-field-keeps/flows-inside.md), its third diagram: the shares of the
 // radii, by degree. Three small plots stacked, for the pairs (x + iy)^n / n of degree n = 2, 3 and 4, on one radial axis
 // r/R from 0 to 1, each drawn to its own greatest value, as the paper's fig:hidden-flow(b) (figs/hidden-flow.js) and
 // its live figure (app/src/lib/hair/flow.ts, HiddenFlowDrawing.svelte) draw them. In each, the share of each radius in

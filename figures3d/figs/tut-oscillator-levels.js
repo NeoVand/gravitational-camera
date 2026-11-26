@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.3 (tutorial/quantum/quanta.md), its first diagram: the oscillator's levels in its well.
+// The tutorial, section 8.3 (tutorial/quantum/quanta.md), its first diagram: the oscillator's levels in its well.
 // One panel: the parabola V = (1/2) m omega^2 x^2 as a thin ink curve, x across in units of x_zp (ticks at -4, -2, 0,
 // 2, 4) and the energy up in units of hbar omega (ticks at 0 to 5). The levels E_n = (n + 1/2) hbar omega, n = 0 to 4,
 // as horizontal ink segments, each between the two points where it meets the parabola, labelled "n = 0", "n = 1", ...

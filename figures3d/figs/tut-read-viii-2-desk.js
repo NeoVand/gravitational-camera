@@ -1,4 +1,4 @@
-// The tutorial, reading chapter R9b (tutorial/one-point/reading-section-viii-2.md), its second diagram: the capstone's
+// The tutorial, reading section R9b (tutorial/one-point/reading-section-viii-2.md), its second diagram: the capstone's
 // desk, seen from above. A desk, a rounded rectangle in the page's neutral tint; at its centre the pixel, a ring, with
 // its six neighbours b = 10 cm away: four as dots in the page, and the pair along the vertical, out of and into the
 // page, as the dot in the pixel's ring; a bracket "b = 10 cm". To the left, 3 m away on a thin dimension line along
@@ -89,14 +89,14 @@ function rotor(deg, waveSize) {
 }
 
 // ---- the chapter's text -----------------------------------------------------------------------------------------------
-const CAPTION = 'Look first at the two objects 3 m from the pixel. With its six neighbours the pixel weighs the person to about a quarter of a gram and finds the distance to 3.9 µm, but alone, at $\\rho_B = 0.034$, it cannot find the distance at all; on a cart it reads its own velocity across the line to 41 m/s and not at all along it. It reads the wave beneath a rotor 99 times stronger at a price of $\\sqrt2$: the amplitude to 12% instead of 8.3%, and the direction to 6.8° instead of 4.8°. Distances not to scale; numbers exact for the chosen noise.';
+const CAPTION = 'Look first at the two objects 3 m from the pixel. With its six neighbours the pixel weighs the person to a quarter of a gram and finds the distance to 3.9 µm; alone it cannot find the distance at all. It reads the wave beneath a rotor 99 times stronger at a price of $\\sqrt2$: the amplitude to 12% instead of 8.3%, and the direction to 6.8° instead of 4.8°. Distances not to scale.';
 
 async function chapter(n) {
 	await palette(check);
 	const md = await (await fetch('/tutorial/one-point/reading-section-viii-2.md')).text();
 	const flat = md.replace(/<!--[\s\S]*?-->/g, ' ').replace(/\s+/g, ' ');
 	const has = (s, what) => check(flat.includes(s), `the chapter does not say ${what}: ${s}`);
-	has('A pixel on a desk has six neighbours 10 cm away. A person of 70 kg stands 3 m away, the paper\'s rotor turns 3 m away with the pixel in its plane, and a wave at 100 Hz of strain $10^{-21}$ passes', 'the scene');
+	has('A pixel on a desk has six neighbours 10 cm away. A person of 70 kg stands 3 m away, a rotor turns 3 m away with the pixel in its plane, and a wave at 100 Hz of strain $10^{-21}$ passes', 'the scene');
 	has('$\\sigma_n = 10^{-16}\\unit{s^{-2}}$ on each coefficient', 'the noise');
 	has('whole reading has $\\rho = |\\curv{\\mathcal W}|/\\sigma_n = 12$', 'the wave\'s rho');
 	has('two 1 kg masses 12 cm apart turning fifty times a second', 'the rotor');

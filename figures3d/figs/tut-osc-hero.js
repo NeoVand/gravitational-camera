@@ -1,6 +1,6 @@
-// The tutorial, chapter 4.1 (tutorial/response/oscillator.md), its opening figure and the hero of Part 4: the
+// The tutorial, section 4.1 (tutorial/response/oscillator.md), its opening figure and the hero of Part 4: the
 // paper's steel ball of radius 10 cm, ringing in its lowest quadrupole mode, drawn at the two extremes of its swing,
-// one above the other; a metre away on its axis, the ring of twelve free steel beads of chapter 1.4's figure
+// one above the other; a metre away on its axis, the ring of twelve free steel beads of section 1.4's figure
 // (figs/tut-tides.js), drawn out by the part of the ball's tide that rises and falls with the swing.
 // Exact: the ball's outline, the image of its circle under the trial shape u = (q/R)(-x/2, -y/2, z) of Appendix A
 // with z along the axis (here across the page, toward the ring): semi-axes R(1 + q/R) along the axis and
@@ -11,7 +11,7 @@
 // diag(-2, 1) for q > 0, so that a ball longer along its axis stretches the ring along it); the ball and the metre
 // drawn to one scale; the picture of the stone mapped by the same linear map as the outline (an orthographic view
 // of a linear deformation is the same linear map of the view), and clipped to the exact ellipse; the ring as in
-// chapter 1.4, from that table (figs/tut-five-lib.js, `ring`). Schematic: the ring's size against the metre, and its
+// section 1.4, from that table (figs/tut-five-lib.js, `ring`). Schematic: the ring's size against the metre, and its
 // strain (exaggerated far more than the ball's). Pictorial: the stone, a picture from an image model
 // (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, as in figs/hair.js). Marks on the stone are
 // drawn in a fixed dark ink, and change colour exactly where they cross the stone's edge.

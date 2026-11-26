@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.3 (tutorial/newton/gauss-and-poisson.md), its second diagram: why the flux out of a
+// The tutorial, section 1.3 (tutorial/newton/gauss-and-poisson.md), its second diagram: why the flux out of a
 // closed surface counts only the mass inside. A closed surface S with a fold (a horseshoe, drawn in section, the
 // region it encloses tinted), a point mass m1 inside one arm and a point mass m2 outside, in the notch between the
 // arms. A thin cone from m1 crosses S three times: out, back in, and out again; a thin cone from m2 enters the

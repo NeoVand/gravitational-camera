@@ -1,7 +1,7 @@
-// The tutorial, reading chapter R12 (tutorial/sky/reading-sections-x-and-xi.md), its second diagram: the capstone, a
+// The tutorial, reading section R12 (tutorial/sky/reading-sections-x-and-xi.md), its second diagram: the capstone, a
 // core collapse ten kiloparsecs away as the camera reads it. At the left the star, a disc in matter's colour, with
 // an arc of the shell of neutrinos leaving it; to its right four panels in a row, each a ring of free test masses as
-// chapter 7.3's (figs/tut-einstein-three-balls.js): a dashed circle (the start), the ring's outline in ink with eight
+// section 7.3's (figs/tut-einstein-three-balls.js): a dashed circle (the start), the ring's outline in ink with eight
 // dots on it, the images of eight places equally spaced round the circle, and the crescents between them, orange
 // where the outline reaches outside the circle (a stretch) and blue where it falls inside (a squeeze). The line to
 // the star runs across the page, to the left.
@@ -13,7 +13,7 @@
 //  (c) after: the tide of the remnant, the same shape but weaker, the ring less long along the line; the outline of
 //      (a) dotted in grey at the ends, where it stands outside the new one (across the line it lies within a point and
 //      a half inside it, and is left out).
-//  (d) uneven burst: two free balls (the stone of chapter 7.8's memory figure) across the line, 4 km apart, left
+//  (d) uneven burst: two free balls (the stone of section 7.8's memory figure) across the line, 4 km apart, left
 //      farther apart for good, their old places dashed.
 // Under each panel its numbers, exactly the capstone table's; under the panels the time line at the camera, from the
 // collapse (under the star, -32,600 years) through a break to t = 0, the shell's arrival, and 10 s, its passing (a
@@ -31,7 +31,7 @@
 // E the tide's table in the page's two directions (along and across the line); the dots the images of their places.
 // Schematic: EPS = 0.3 (the exaggeration), the fraction of the mass lost in (c) (a third, not a percent), the balls'
 // step in (d), the sizes of the star, the rings and the balls, and the time line, which is not to scale.
-// Pictorial: the balls, the stone of chapter 7.7's rotor (sprites/hair/ball-face.png, embedded once).
+// Pictorial: the balls, the stone of section 7.7's rotor (sprites/hair/ball-face.png, embedded once).
 import { tex, INK, DIM, ACCENT2 } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, near, n2, AXIS, AXIS_HEAD, HAIR, TICK, LABEL_GAP } from './tut-pot-lib.js';
 import { circle as circlePath } from '../stone.js';

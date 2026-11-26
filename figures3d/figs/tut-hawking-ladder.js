@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.3 (tutorial/black-holes/hawking.md), its first diagram: the Hawking temperature along the
+// The tutorial, section 11.3 (tutorial/black-holes/hawking.md), its first diagram: the Hawking temperature along the
 // masses of holes. One panel: two logarithmic axes, one above the other, which are one scale read two ways, since
 // k_B T_H = hbar c^3 / 8 pi G M: below, the hole's mass from 10^11 kg to 10^10 solar masses (2 x 10^40 kg), ticked at
 // every decade and numbered at every fourth, named "hole mass M (kg)"; above, its Hawking temperature, ticked at every

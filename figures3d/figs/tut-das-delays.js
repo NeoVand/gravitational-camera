@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.3 (tutorial/waves/diffraction.md), its first diagram: delaying and adding the records of
+// The tutorial, section 5.3 (tutorial/waves/diffraction.md), its first diagram: delaying and adding the records of
 // many pixels points the array. Two panels. Left: a row of six pixels (small squares, ink) b = lambda/3 apart along a
 // horizontal line, the origin at the left-hand pixel, p = 0 to 5; the straight crests of a plane wave (five of them,
 // faint), arriving at 30 degrees from the normal; the unit vector n from the middle of the row toward the source, along

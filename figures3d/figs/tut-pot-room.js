@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.2 (tutorial/newton/field-and-potential.md), its first diagram: the room of the locked safe
+// The tutorial, section 1.2 (tutorial/newton/field-and-potential.md), its first diagram: the room of the locked safe
 // (the paper's fig:locked-safe), drawn from the scene file itself, scenes/locked-safe.scene.json. Above, the plan:
 // the room seen from above and cut level with the gold, with the chapter's axes x1 (right) and x2 (ahead) from the
 // origin on the floor below the camera; the floor (concrete), the three walls (plaster), the two hollow steel safes

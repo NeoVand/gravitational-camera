@@ -1,4 +1,4 @@
-// The tutorial, chapter 12.1 (tutorial/sky/stars.md), its fifth diagram: the Galaxy's columns of stars and of dust.
+// The tutorial, section 12.1 (tutorial/sky/stars.md), its fifth diagram: the Galaxy's columns of stars and of dust.
 // At the top, a view from above of the paper's model Galaxy (reference/gravcam/galaxy.py, reproduced in
 // tut-stars-lib.js): its stellar density in the mid-plane as a soft glow in matter's colour, on a logarithmic scale; the
 // Sun 8.2 kpc from the centre; the two lines of sight from the Sun, to the centre and to the anticentre, each 25 kpc
@@ -44,7 +44,7 @@ const EXT = { h: 52, y1: 70 };               // magnitudes
 const MAIN = 0.75, SIGHT = 0.6, HALO = 0.7;
 const SUN = 2.1;                             // the Sun's mark, its radius
 const INSIDE = 5;                            // a strip's name, in from its axis at its top
-const caption = 'Look first at the density strip: along the line toward the centre the density of stars rises into the bulge, and its column is 102 times the anticentre\'s. Below it, the dust\'s extinction climbs to 31 magnitudes along the same line, which hides that centre from light. Curves from the paper\'s model.';
+const caption = 'Look first at the density strip: along the line toward the centre the density of stars rises into the bulge, and its column is 102 times the anticentre\'s. Below it, the dust\'s extinction climbs to 31 magnitudes along the same line, which hides that centre from light. Curves from the model.';
 
 export default async function () {
 	const { state, toward, away, ratio, centre } = await chapter(check);

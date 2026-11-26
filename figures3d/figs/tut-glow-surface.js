@@ -1,19 +1,19 @@
-// The tutorial, chapter 10.3 (tutorial/glow/why-matter-barely-glows.md), its sixth diagram: a body glows through its
-// volume, not its surface. Two parts side by side. Left: a ball in section, chapter 2.5's sawn steel ball in matter's
+// The tutorial, section 10.3 (tutorial/glow/why-matter-barely-glows.md), its sixth diagram: a body glows through its
+// volume, not its surface. Two parts side by side. Left: a ball in section, section 2.5's sawn steel ball in matter's
 // colour (figs/tut-null-lib.js), its inside strewn with short wavy arrows, the friction inside, and at its rim three
 // sets of ripples running in from the edge, the sound launched where a wave meets the surface; named over and under it,
 // "surface: sound launched at the edge, proportional to R^2" and "volume: friction inside, proportional to R^3 / l_s".
 // Right: P_V / P_S against the radius R on logarithmic axes, R from 0.1 nm to 1 m and the ratio from 10^-3 to 10^10,
-// both straight lines of slope one: the steel ball's 5.47 R / l_s (l_s = 0.83 nm), and diamond's R / 28 nm; the ratio 1
-// dotted; a dot where diamond's line passes 1, "diamond, 28 nm", and a dot on the steel line at R = 10 cm, "steel
-// ball: 6.6 x 10^8". Lines neutral; no orange or blue.
+// both straight lines of slope one: the steel ball's 0.89 R / l_s (l_s = 0.83 nm), and diamond's R / 165 nm; the ratio 1
+// dotted; a dot where diamond's line passes 1, "diamond, 165 nm", and a dot on the steel line at R = 10 cm, "steel
+// ball: 1.1 x 10^8". Lines neutral; no orange or blue.
 // Departures from the diagram's comment: the two parts stay side by side on a phone, the figure being one drawing;
 // each of the ball's labels stands on two lines; the axes are numbered at 1 nm, 1 µm, 1 mm and 1 m across and at 1,
 // 10^4 and 10^8 up, every decade ticked; the two lines are named at their upper ends, "steel" and "diamond".
-// Exact: the two lines (tut-glow-lib.js: the paper's eq:volume-surface for the steel ball, asserted against P_V and P_S
+// Exact: the two lines (tut-glow-lib.js: the chapter's P_V / P_S for the steel ball, asserted against P_V and P_S
 // themselves; diamond's from R = 3 (P_S / 4 pi R^2) / (P/V) with the paper's sound speeds, its lattice's density and
 // the table's P/V), the two dots and their numbers. Schematic, as the caption says: the arrows and the ripples.
-// Pictorial: the stone, as in chapter 2.5.
+// Pictorial: the stone, as in section 2.5.
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, LABEL_GAP, SIZE, AXIS, HAIR, TICK, n2 } from './tut-pot-lib.js';
 import { Plot, NUM } from './tut-prob-lib.js';
 import { tex, INK, DIM } from '../lib.js';
@@ -34,7 +34,7 @@ const DOTTED = [0, 1.6], DOTTED_W = 0.6;
 const WAVE = { n: 9, len: 12, amp: 0.95, period: 3.6, width: 0.5, head: 2.6 };  // the arrows inside
 const RIPPLE = { at: [118, 62, 205], radii: [4.5, 8.5, 12.5], width: 0.45 };       // the ripples: their places (deg), radii
 const LEAD = 10.5;
-const caption = 'Look first at the dots on the right: even diamond, the faintest of the paper\'s materials, glows more through its volume than through its surface once it is larger than 28 nm, and a steel ball of 10 cm glows hundreds of millions of times more through its volume. The ripples on the left are schematic; the lines are exact for the paper\'s formulas.';
+const caption = 'Look first at the dots on the right: even diamond, the faintest of the materials, glows more through its volume than through its surface once it is larger than 165 nm, and a steel ball of 10 cm glows about a hundred million times more through its volume. The ripples on the left are schematic; the lines are exact.';
 
 /** Two lines of text, centred on x, the first baseline at y. */
 async function twoLines(a, b, x, y, color = INK) {

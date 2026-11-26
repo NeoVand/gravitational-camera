@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.6 (tutorial/outside/fourier.md), a row of points and a single point, with their transforms.
+// The tutorial, section 2.6 (tutorial/outside/fourier.md), a row of points and a single point, with their transforms.
 // Left, a row of equal point masses m a distance b apart, f(x) = sum_j m delta(x - jb), drawn as upward arrows of
 // equal height; under it its transform, f~(k) = (2 pi m / b) sum_n delta(k - 2 pi n / b), a row of equal arrows
 // 2 pi / b apart in k (the chapter's stretch problem). Right, a single point mass m, f = m delta(x), and its transform,

@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.1 (tutorial/waves/wave-equation.md), its first diagram: a sheared block and the forces on
+// The tutorial, section 5.1 (tutorial/waves/wave-equation.md), its first diagram: a sheared block and the forces on
 // one slice. A long block of solid seen from the side, x to the right and y up, its outline at rest dashed. Thin
 // vertical lines mark slices a fixed distance apart; each is shifted up by u(x), a Gaussian hump, and short upright
 // arrows from the outline at rest to the shifted lower edge show u where it is large enough to carry an arrow. One

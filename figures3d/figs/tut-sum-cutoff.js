@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.7 (tutorial/what-a-field-keeps/thermometer.md), its first diagram: where the hole's sum
+// The tutorial, section 13.7 (tutorial/what-a-field-keeps/thermometer.md), its first diagram: where the hole's sum
 // comes from. One panel on logarithmic axes: across, x = GM omega / c^3 from 0.01 to 3; up, the integrand of the sum,
 // (5/32 pi) Gamma_2 / x^4, in units of M r_s^2, from 10^-6 to 3 (the axis starts a little below 10^-6, so that its
 // numbers clear those across). The integrand from the Regge-Wheeler Gamma_2, thin solid ink, its peak, 1.34 at
@@ -7,13 +7,13 @@
 // a pale neutral tint, its share printed in it. At x = 1/8 pi a tick on the axis, numbered, and a faint dotted rule up
 // to the words "friction law and classical tremor hold to the left". Each line is named beside it.
 // Departures from the diagram's comment: the band is the page's neutral tint, not the paper's pale orange, which in
-// the tutorial's figures means a stretch; the laws are dashed and dotted in the page's dim grey, as chapter 11.4's
+// the tutorial's figures means a stretch; the laws are dashed and dotted in the page's dim grey, as section 11.4's
 // tut-hole-imchi draws them; the mark at 1/8 pi is a tick numbered on the axis and a faint dotted rule up to its words
 // in the empty upper left, since the lower left, under the curve, has no room for them; the lines are named by short
 // formulas ("Page's limit, ∝ x^2", "Gamma_2 = 1, ∝ x^-4"), their factors being the curve's own 5/32 pi; the peak is
 // labelled "1.34 at x = 0.40", as the chapter gives x to two places; a tick at 3 closes the axis, as in
 // tut-hole-imchi.
-// Exact: the curve (tut-thermo-lib.js: the solver's Gamma_2 on 241 points, asserted against chapter 11.3's table, ln
+// Exact: the curve (tut-thermo-lib.js: the solver's Gamma_2 on 241 points, asserted against section 11.3's table, ln
 // Gamma_2 a cubic spline in ln x between them), the two laws, the peak (from the solver, asserted against the spline),
 // the band's share (the integral, asserted against the chapter's 6.938 and "three quarters"), and x = 1/8 pi.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, TICK, n2 } from './tut-pot-lib.js';

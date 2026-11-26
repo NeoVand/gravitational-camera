@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.8 (tutorial/geometry/wave-energy.md), its third diagram: the memory as the camera reads it.
+// The tutorial, section 7.8 (tutorial/geometry/wave-energy.md), its third diagram: the memory as the camera reads it.
 // Two panels sharing a time axis. Above, the strain h+ at the camera against time, a thin line in the field's colour:
 // flat at zero, then a burst of a few cycles whose mean rises, ending flat at a new level, larger by Delta h+; a bracket
 // between the two levels at the right, "Delta h+, the memory", and a faint dashed line continuing zero to the right.
@@ -6,7 +6,7 @@
 // axis with t_1 marked before it and t_2 after it. Under the axis, two free balls before the burst, xi apart, and the
 // same two after it, the second moved away by (1/2) Delta h+ xi from its old place (dashed). No orange or blue.
 // Departures from the diagram's comment: the bracket's name, "Delta h+, the memory", names the plus strain, as the
-// upper line does, and the balls' change is "(1/2) Delta h+ xi", for balls along e_1 (chapter 7.6's
+// upper line does, and the balls' change is "(1/2) Delta h+ xi", for balls along e_1 (section 7.6's
 // delta xi_i = (1/2) h_ij xi_j with h_11 = h+); the balls stand under the time axis, the pair "before" under the times
 // before t_1 and the pair "after" under those after t_2.
 // Exact: the tide is -(1/2) times the second derivative of the drawn strain (computed in closed form and asserted
@@ -15,7 +15,7 @@
 // is the energy radiated so far, as the nonlinear memory's is: the step follows the running integral of the burst's
 // squared envelope. Schematic: the burst's shape and length, the two panels' vertical scales, the balls' size and the
 // exaggerated step (1/2) Delta h+ xi (a real one, the supernova's, moves balls 4 km apart by 8 x 10^-18 m).
-// Pictorial: the balls, the stone of chapter 7.7's rotor (sprites/hair/ball-face.png, embedded once), clipped to their
+// Pictorial: the balls, the stone of section 7.7's rotor (sprites/hair/ball-face.png, embedded once), clipped to their
 // exact circles.
 import { Sheet, ORIGIN, finish, checker, placed, near, n2, AXIS, AXIS_HEAD, HAIR, TICK } from './tut-pot-lib.js';
 import { Plot, LABEL_GAP } from './tut-prob-lib.js';

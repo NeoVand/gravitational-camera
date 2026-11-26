@@ -1,9 +1,9 @@
-// The tutorial, chapter 11.2 (tutorial/black-holes/spin.md), its second diagram: far away, a spinning hole's magnetic
-// part along the line to it is a spinning ball's. Two spheres of pixels side by side, drawn as chapter 7.5's
+// The tutorial, section 11.2 (tutorial/black-holes/spin.md), its second diagram: far away, a spinning hole's magnetic
+// part along the line to it is a spinning ball's. Two spheres of pixels side by side, drawn as section 7.5's
 // tut-spin-dipole-sky draws its right one (the paper's veiled sky, seen from a little above the equator), each tinted by
 // the sign of the component along the line to the body: orange where it is negative, blue where positive, the tint
 // fading to the page at the equator, where an ink contour marks the zero. Left, "spinning hole, B_nn = -6GJ cos theta /
-// cr^4" (the chapter's boxed diagonal): a small near-black disc at the centre, edged in ink as in chapter 11.1's
+// cr^4" (the chapter's boxed diagonal): a small near-black disc at the centre, edged in ink as in section 11.1's
 // diagrams, with its spin axis, an ink arrow labelled J. Right, "spinning ball, B_nn = 6G(L.n)/cr^4" (7.5's spin
 // dipole, n from the pixel toward the body): 7.5's lit stone ball with the same arrow, labelled L as 7.5 writes it. A
 // key to the two tints stands under both.

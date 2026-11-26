@@ -1,4 +1,4 @@
-// The tutorial's Part 8, its hero (tutorial/quantum/states.md, chapter 8.1, and the head of 8.2 to 8.7): the camera's
+// The tutorial's Part 8, its hero (tutorial/quantum/states.md, section 8.1, and the head of 8.2 to 8.7): the camera's
 // objects are quantum, and nearly always behave classically. Left, the paper's steel ball of radius 10 cm (chapter
 // 4.1's, tut-osc-hero), in polished stone, at room temperature; right, the same ball cold and frosted. Right of each
 // ball, its lowest quadrupole mode as a ladder of evenly spaced thin levels, a quantum hbar omega apart, broken (a

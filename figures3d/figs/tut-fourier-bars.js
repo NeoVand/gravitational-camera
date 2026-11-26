@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.6 (tutorial/outside/fourier.md), the slab of bars: f = +1 on the first half of each period L
+// The tutorial, section 2.6 (tutorial/outside/fourier.md), the slab of bars: f = +1 on the first half of each period L
 // and -1 on the second, measured from the mean in units of the step, drawn over two periods (from the middle of one
 // low bar to the middle of the next but one) in thin ink; over it the partial sums of its Fourier series,
 // (4/pi)(sin k1 x + sin 3k1 x / 3 + ...), with 1, 3 and 10 odd terms, in three tints of the ripples' colour, the palest

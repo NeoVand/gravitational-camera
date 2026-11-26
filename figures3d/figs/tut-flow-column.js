@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.8 (tutorial/outside/flows.md), its second diagram: the current column of a turning ball. A
+// The tutorial, section 2.8 (tutorial/outside/flows.md), its second diagram: the current column of a turning ball. A
 // uniform ball cut through the plane that holds the pixel, its centre and one line of sight, seen along the axis about
 // which it turns (at right angles to the page, out of it: anticlockwise). The pixel, a small steel bead at the left,
 // sends the line of sight along n^; it enters the ball at the distance a and leaves at b, both marked by dimension
@@ -11,7 +11,7 @@
 // on the stone (asserted with room to spare). Chosen for the drawing: the ball's size and distance, the line's place,
 // the five points and the arrows' common scale; the chapter's steel ball, with a = 0.912 m and b = 1.085 m, turns about
 // the line from the pixel to its centre instead, so that on it every velocity lies across the line.
-// Pictorial: the sawn face of the steel ball (sprites/hair/ball-face.png, as in chapter 2.5's figures), clipped to the
+// Pictorial: the sawn face of the steel ball (sprites/hair/ball-face.png, as in section 2.5's figures), clipped to the
 // exact circle. Marks on it keep fixed colours (figs/tut-flow-lib.js).
 import { INK, DIM } from '../lib.js';
 import { STEEL } from '../stone.js';

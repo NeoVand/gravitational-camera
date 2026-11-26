@@ -1,11 +1,11 @@
-// The tutorial, chapter 11.1 (tutorial/black-holes/schwarzschild.md), its second diagram: two pairs of free balls
+// The tutorial, section 11.1 (tutorial/black-holes/schwarzschild.md), its second diagram: two pairs of free balls
 // falling into a hole, the exact tide of a round mass. The hole, a dark disc of radius r_s, at the left, and three thin
 // radial lines fanning from it. On two neighbouring radii, delta phi apart, a pair at one r, drawn at two moments of
 // their fall, faint at the earlier and solid at the later: closer together at the later one, the gap marked by a short
 // arc of a circle round the hole, named "r delta phi", and squeezed together by two blue arrows, named "squeeze,
 // GM/r^3". On the third radius a pair one beyond the other, drawn at the same two moments, farther apart at the later
 // one and pulled apart along the radius by two orange arrows, named "stretch, 2GM/r^3". The balls and the arrows are
-// chapter 1.4's (tut-tides): steel beads, orange out along the line, blue in across it, each orange arrow twice each
+// section 1.4's (tut-tides): steel beads, orange out along the line, blue in across it, each orange arrow twice each
 // blue one; everything else in ink and the page's greys.
 // Departures from the diagram's comment: the hole is drawn smaller than to scale (12 points against the 20 of r_s at
 // the drawing's scale), so that it stays small beside the fan; the arc that marks the gap r delta phi stands a little

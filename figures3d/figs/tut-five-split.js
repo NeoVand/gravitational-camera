@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.5 (tutorial/newton/five-numbers.md), its first diagram: what each part of a symmetric
+// The tutorial, section 1.5 (tutorial/newton/five-numbers.md), its first diagram: what each part of a symmetric
 // table does to a small ball of free dust at rest. Left, the trace part alone, the table delta_ij (in some unit of
 // tide), which squeezes every direction alike: the ball shrinks and stays a ball. Right, a trace-free part, the
 // person's diag(-2, 1, 1) in the same unit, with x along the line to the person: the ball becomes a cigar along x,
@@ -73,7 +73,7 @@ export default async function () {
 			const d = q.clone().sub(c);
 			check(near((d.dot(right) / a) ** 2 + (d.dot(up) / b) ** 2, 1, 1e-9) && near(d.dot(toward), 0, 1e-12), 'the outline is not the spheroid\'s');
 		}
-		// the equator, the image of the undisturbed one, drawn whole as chapter 1.3's sphere draws its equator
+		// the equator, the image of the undisturbed one, drawn whole as section 1.3's sphere draws its equator
 		const eq = Array.from({ length: 481 }, (_, i) => { const t = (2 * Math.PI * i) / 480; return c.clone().add(v3(a * Math.cos(t), 0, b * Math.sin(t))); });
 		for (const p of eq) check(near(((p.x - c.x) / a) ** 2 + ((p.z - c.z) / b) ** 2, 1, 1e-12) && near(p.y, c.y, 1e-15), 'the equator is not the image of the undisturbed one');
 		ink.curve(eq, { color: DIM, width: HAIR, layer: 1, what: `ball ${k + 1}'s equator` });

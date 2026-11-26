@@ -1,7 +1,7 @@
-// Shared tools for the four diagrams of the tutorial's chapter 3.6 (tutorial/noise/bessel-and-airy.md):
+// Shared tools for the four diagrams of the tutorial's section 3.6 (tutorial/noise/bessel-and-airy.md):
 // tut-bessel-average, tut-bessel-j0-j1, tut-bessel-disc-slit and tut-bessel-airy. Not a figure itself. The charts
-// take chapter 3.1's sheet, axes and labels (figs/tut-pot-lib.js, figs/tut-prob-lib.js) and chapter 2.6's sampling
-// of curves (figs/tut-fourier-lib.js), imported, not copied. The maps take chapter 3.2's diverging scale
+// take section 3.1's sheet, axes and labels (figs/tut-pot-lib.js, figs/tut-prob-lib.js) and section 2.6's sampling
+// of curves (figs/tut-fourier-lib.js), imported, not copied. The maps take section 3.2's diverging scale
 // (figs/tut-noise-lib.js): orange where a value is above zero and blue where it is below, the colour's opacity on the
 // page in proportion to the size of the value, up to DEEP at one.
 //
@@ -23,9 +23,9 @@ export { INK, DIM, FAINT, ACCENT, ACCENT2, PAGE, n2, near };
 
 export const DEEP = 0.85;          // a map's strongest opacity, at a value of one (figs/tut-noise-lib.js, DEEP)
 export const TOL = 0.0015;         // the largest error of a gradient's straight interpolation, in opacity
-export const DASH = [2.2, 1.4];    // a dashed curve, as chapter 3.5's sin u / u
-export const DOT = 1.05;           // a marked point, as chapter 3.5's
-export const ZERO_LINE = 0.3;      // the dotted line at zero, as chapter 3.5's
+export const DASH = [2.2, 1.4];    // a dashed curve, as section 3.5's sin u / u
+export const DOT = 1.05;           // a marked point, as section 3.5's
+export const ZERO_LINE = 0.3;      // the dotted line at zero, as section 3.5's
 export const ZERO_DASH = [1.2, 1.6];
 
 // ---- the Bessel functions --------------------------------------------------------------------------------------

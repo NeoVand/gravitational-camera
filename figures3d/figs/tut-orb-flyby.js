@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.8 (tutorial/newton/orbits-and-kicks.md), its third diagram: the geometry of a flyby, and
+// The tutorial, section 1.8 (tutorial/newton/orbits-and-kicks.md), its third diagram: the geometry of a flyby, and
 // the pull it gives one part of the body. Left, in true 3D (an orthographic view, turned and tilted as lib.js's Panel
 // does): the passing mass, a small stone ball, on its straight path at the speed V; the plane at right angles to the
 // path through the body's centre, tinted, with the body's outline and its section by the plane; the point b where the

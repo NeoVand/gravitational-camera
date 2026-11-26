@@ -1,15 +1,15 @@
-// The tutorial, chapter 1.8 (tutorial/newton/orbits-and-kicks.md), its second diagram: one ring of free beads carried
+// The tutorial, section 1.8 (tutorial/newton/orbits-and-kicks.md), its second diagram: one ring of free beads carried
 // round a circular orbit, drawn at four places a quarter of a turn apart. At each place the tide of the central mass
 // stretches the ring along the line to the mass and squeezes it across, so its long axis points at the mass and turns
 // once in each orbit, keeping pace with it. The orbit is seen face on, the ring lies in the plane of the orbit, and the
 // central mass is a stone ball cut through that plane. Exact: the tide in the plane of the orbit, (GM/r^3)(delta_ij -
 // 3 n_i n_j) with n the unit vector from the mass to the ring's centre, the table diag(-2, 1) along and across the
-// line (chapter 1.4); each ring the image of its circle under 1 - eps E / (GM/r^3), with one eps for all four (the
+// line (section 1.4); each ring the image of its circle under 1 - eps E / (GM/r^3), with one eps for all four (the
 // ellipse with semi-axes 1 + 2 eps along the line and 1 - eps across it, asserted turned to the line); the beads, the
 // images of twelve equally spaced places, two on each axis; the arrows, -E xi at the beads on the axes, at one scale,
 // each orange (the stretch, pointing out along the line) twice each blue (the squeeze, pointing in across it); the
 // rings' centres on the orbit, equally spaced. Schematic: the rings' size against the orbit (a real ring must be far
-// smaller than its distance from the mass for the table to hold), eps (exaggerated, as in chapter 1.4's figure), and
+// smaller than its distance from the mass for the table to hold), eps (exaggerated, as in section 1.4's figure), and
 // the mass's size. Pictorial: the stone, a picture from an image model (design/prompts/hair-sprites.json, cut out by
 // design/hair_sprites.py, as in figs/hair.js), clipped here to the exact circle.
 import { Panel, v3, INK, DIM, sprite } from '../lib.js';
@@ -23,7 +23,7 @@ const check = checker(name);
 // ---- the physics ----------------------------------------------------------------------------------------------
 /** The tide in the plane of the orbit, in units of GM/r^3, at the place in the direction n (a unit vector). */
 export const tide = ([nx, ny]) => [[1 - 3 * nx * nx, -3 * nx * ny], [-3 * ny * nx, 1 - 3 * ny * ny]];
-export const EPS = 0.25;                  // the rings' strain, exaggerated for the eye (chapter 1.4's figure)
+export const EPS = 0.25;                  // the rings' strain, exaggerated for the eye (section 1.4's figure)
 export const PLACES = 4;                  // places round the orbit, a quarter of a turn apart
 
 // ---- the drawing (points: the panel's scale is one point per unit) --------------------------------------------

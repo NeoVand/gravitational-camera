@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.5 (tutorial/outside/null-space.md), its third diagram: the flush along the diameter through
+// The tutorial, section 2.5 (tutorial/outside/null-space.md), its third diagram: the flush along the diameter through
 // the nugget. The harmonic part rho_h of a nugget at s = 0.25 R, 0.5 R and 0.75 R, in units of m / 4 pi R^3, along the
 // diameter from the far wall (-R) through the centre to the near wall (+R), on an axis that is logarithmic from 1 to
 // 1000 and nearly linear about zero, down to -0.5: the height is asinh(v / 2a) / ln 10 decades with a = 0.1 (within

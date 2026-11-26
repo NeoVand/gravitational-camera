@@ -1,7 +1,7 @@
 ---
 id: '8.7'
 title: 'Fluctuation and dissipation in quantum mechanics'
-question: 'Appendix A says that "for a quantum system the jitter is no longer $k_BT\chi_0$", and that the quantum fluctuation–dissipation theorem "gives the jitter as its average of $\tfrac12\hbar\chi_0\,\omega\coth(\hbar\omega/2k_BT)$". What does quantum mechanics change in the link between trembling and friction, and why does a body still tremble at absolute zero?'
+question: 'What does quantum mechanics change in the link between a body''s trembling and its friction, and why does a body still tremble at absolute zero?'
 part: '8'
 requires: ['3.1', '3.2', '4.1', '4.5', '4.6', '8.2', '8.3']
 paper: [app:benchmarks, eq:jitter-bounds, sec:near-field, sec:second-order, eq:hair-commutator, sec:hole, eq:hole-noise, eq:hole-thermometer, sec:thermal]
@@ -10,26 +10,21 @@ live: [quantum-tremor]
 depth: A
 ---
 
-Chapter [4.6](/tutorial/response/fluctuation-dissipation/#the-static-end-of-the-response-is-the-love-number) closed
-its account of a body's static jitter with an inequality from the paper's Appendix A,
-[*The trembling lattice*](/paper/#par:the-trembling-lattice):
-
-{{paper eq:jitter-bounds}}
-
-The inequality rests on 4.6's remark that in quantum mechanics the classical factor $2\kB T/\omega$ "becomes
-$\hbar\coth(\hbar\omega/2\kB T)$, stated here and derived in chapter 8.7".
-
-So we ask what quantum mechanics changes in the link between trembling and friction, and why a body still trembles at
-absolute zero. We answer with the commutators of [chapter 8.2](/tutorial/quantum/operators/) and the oscillator of
-[chapter 8.3](/tutorial/quantum/quanta/), applied to the response of chapters 4.1 and 4.5.[^letters]
+A warm body trembles by itself, and it resists a push with friction. Classically the two are linked: the trembling at
+each frequency is $2\kB T/\omega$ times the friction there
+([section 4.6](/tutorial/response/fluctuation-dissipation/#the-static-end-of-the-response-is-the-love-number)), and at
+absolute zero a body would not tremble at all. What does quantum mechanics change in this link, and why does a body
+still tremble at absolute zero? We answer with the commutators of [section 8.2](/tutorial/quantum/operators/) and the
+oscillator of [section 8.3](/tutorial/quantum/quanta/), applied to the response of sections 4.1 and 4.5.[^letters]
+The classical factor $2\kB T/\omega$ becomes $\hbar\coth(\hbar\omega/2\kB T)$, and we derive it here.
 
 ![Look first at the cold ball's ladder: only its lowest level is filled, and that level, the zero point at
 $\hbar\omega/2$, is the tremor left at absolute zero. The levels are schematic.](tut-quantum-hero){#fig:quantum-hero}
 
 ::: plain
-A warm body trembles by itself, and it resists a push with friction. Chapter 4.6 showed that at each frequency the
-trembling is the temperature times the friction there, divided by the frequency. That rule
-is classical, and it says that a body at absolute zero would not tremble at all.
+A warm body trembles by itself, and it resists a push with friction. At each frequency the trembling is the
+temperature times the friction there, divided by the frequency. That rule is classical, and it says that a body at
+absolute zero would not tremble at all.
 
 Quantum mechanics keeps this link and changes its factor. A body's motion is made of oscillators, and an oscillator
 never comes fully to rest: with no heat at all it keeps its zero-point motion. So where one quantum carries more energy
@@ -43,7 +38,7 @@ and it is exactly the body's answer to a push. So even a cold body's trembling t
 ## A cold oscillator still trembles
 
 We want the mean square swing of an oscillator at any temperature, because for one mode it is 4.6's static
-jitter, the spread of a reading about its mean. Chapter 8.3 found it for 4.1's cart of mass $\matter m$ and angular
+jitter, the spread of a reading about its mean. Section 8.3 found it for 4.1's cart of mass $\matter m$ and angular
 frequency $\omega$, in thermal equilibrium at the temperature $T$, from the
 [occupation](/tutorial/quantum/quanta/#a-warm-mode-holds-about-k_bthbaromega-quanta)
 $\bar n = 1/(e^{\hbar\omega/\kB T} - 1)$ and the zero-point width $x_{\rm zp} = \sqrt{\hbar/2\matter m\omega}$
@@ -52,22 +47,21 @@ $\bar n = 1/(e^{\hbar\omega/\kB T} - 1)$ and the zero-point width $x_{\rm zp} = 
 $$\boxed{\begin{aligned}\langle x^2\rangle &= x_{\rm zp}^2\,(2\bar n + 1)\\ &= \frac{\hbar}{2\matter m\omega}
 \coth\frac{\hbar\omega}{2\kB T}\end{aligned}} \label{eq:x2}$$
 
-Here $\coth u = \cosh u/\sinh u$, and in $2\bar n + 1$ the $2\bar n$ is the share of heat and the 1 the share of the
-commutator $[x, p] = i\hbar$.
+Here $\coth u = \cosh u/\sinh u$; in $2\bar n + 1$ the $2\bar n$ is heat's share and the 1 the commutator's.
 
 **Two limits.** When $\hbar\omega \ll \kB T$, $\coth u \approx 1/u$, and [](#eq:x2) becomes $\kB T/\matter m\omega^2 =
-\kB T/k$, chapter 4.2's equipartition for a spring of stiffness $k$. As $T \to 0$, $\coth \to 1$ and $\langle
+\kB T/k$, section 4.2's equipartition for a spring of stiffness $k$. As $T \to 0$, $\coth \to 1$ and $\langle
 x^2\rangle \to x_{\rm zp}^2$. This floor is the **zero-point tremor**, the trembling that no cooling removes.
 
-**A number.** Appendix A's steel ball, in chapter 4.3's trial shape, rings at 15.1 kHz as an oscillator whose swing $q$
+**A number.** A steel ball of radius 10 cm, in the trial shape of section 4.3, rings at 15.1 kHz as an oscillator whose swing $q$
 at the poles takes the place of $x$, with $\hbar\omega = 1.0\times10^{-29}$ J. At 300 K its swing is $q_{\rm rms} =
 2.2\times10^{-16}\unit m$; at absolute zero it is $x_{\rm zp} = 7.5\times10^{-21}\unit m$, a hundred-thousandth of a
 proton's radius. Their squares are in the ratio $\coth(\hbar\omega/2\kB T) \approx 2\kB T/\hbar\omega = 8.3\times10^8$.
 
 ## The response to a push is a commutator
 
-We want a body's answer to a push in quantum mechanics. Chapter 4.6's **conjugate push** $f(t)$ on a reading $y$ adds
-$-f(t)\,y$ to $H$, the body's own energy operator (chapter 8.2).
+We want a body's answer to a push in quantum mechanics. Section 4.6's **conjugate push** $f(t)$ on a reading $y$ adds
+$-f(t)\,y$ to $H$, the body's own energy operator (section 8.2).
 
 A **blow** is a push so brief, lasting $\dd t'$, that the body's own motion during it can be neglected. The energy
 during the blow is then $-fy$ alone, so by 8.2's [generator
@@ -88,8 +82,8 @@ y(0)]\rangle} , \label{eq:kubo}$$
 
 where the **step function** $\theta(t)$ is 1 for $t > 0$ and 0 for $t < 0$, and the mean is taken in the state before
 the blow: for a body in equilibrium, its thermal state. This is the **Kubo formula** (R. Kubo, 1957). A push is a
-sequence of blows whose answers add, so [](#eq:kubo) fixes chapter
-[4.5](/tutorial/response/causality/#a-linear-response-adds-up-the-answers-to-every-earlier-push)'s whole **linear
+sequence of blows whose answers add, so [](#eq:kubo) fixes
+[section 4.5](/tutorial/response/causality/#a-linear-response-adds-up-the-answers-to-every-earlier-push)'s whole **linear
 response**, the sum of the answers to every earlier part of a push.
 
 **A check.** For 4.1's cart without friction, $H = p^2/2\matter m + \tfrac12\matter m\omega_0^2x^2$. The
@@ -104,8 +98,8 @@ a number, the same in every state. So [](#eq:kubo) gives $\theta(t)\sin\omega_0t
 an oscillator answers a push exactly as in Newton's mechanics.
 
 ::: gap
-This sketch drops the terms of order $\epsilon^2$, which "linear" leaves out, and the body's own motion during a blow,
-which vanishes with $\dd t'$. Kubo's review of 1966 derives [](#eq:kubo) for a push of any shape.
+This sketch drops the terms of order $\epsilon^2$ and the body's own motion during a blow. Kubo's review of 1966 derives
+[](#eq:kubo) for a push of any shape.
 :::
 
 **What it means.** Any correlation of two readings splits into a symmetric part and a commutator,
@@ -121,18 +115,18 @@ tremor, and the whole of the response.
 ## The tremor at each frequency is $\hbar\coth(\hbar\omega/2\kB T)$ times the friction there
 
 We want the link between the two parts at each frequency. A classical record shows the average of the two orders, so we
-define the **symmetrized spectrum** as chapter
-[3.2](/tutorial/noise/random-signals/#the-spectrum-says-how-the-noise-is-shared-among-frequencies)'s transform of that
-average,
+define the **symmetrized spectrum** as the
+[transform](/tutorial/noise/random-signals/#the-spectrum-says-how-the-noise-is-shared-among-frequencies) of section 3.2
+of that average,
 
 $$\sym{symmetrized-spectrum}{\bar S_{yy}}(\omega) = \int\tfrac12\langle y(t)\,y(0) + y(0)\,y(t)\rangle\,e^{i\omega t}\,
 \dd t .$$
 
 It is two-sided, as in 3.2, so that $\langle y^2\rangle = \int\bar S_{yy}\,\dd\omega/2\pi$, in the square of the unit of
-$y$ times a second.[^means]
+$y$ times a second.
 
 **The oscillator.** We take 4.1's cart of mass $\matter m$ on a spring of angular frequency $\omega_0$, with its damping
-rate $\Gamma$ shrunk to zero. Chapter 8.3 wrote $x = x_{\rm zp}(a + a^\dagger)$ and found $[H, a] = -\hbar\omega_0a$, so
+rate $\Gamma$ shrunk to zero. Section 8.3 wrote $x = x_{\rm zp}(a + a^\dagger)$ and found $[H, a] = -\hbar\omega_0a$, so
 the Heisenberg equation gives $a(t) = a\,e^{-i\omega_0t}$. In a thermal state $\langle a^2\rangle = \langle
 a^{\dagger2}\rangle = 0$, $\langle a^\dagger a\rangle = \bar n$ and $\langle aa^\dagger\rangle = \bar n + 1$, so
 
@@ -147,7 +141,7 @@ $$\begin{aligned}\bar S_{xx}(\omega) = \pi x_{\rm zp}^2\coth\frac{\hbar\omega_0}
 \omega_0)\\ &+ \delta(\omega + \omega_0)\bigr] .\end{aligned}$$
 
 The friction becomes two lines too, because 4.1's peak of $\mathrm{Im}\,\chi$ at $\omega_0$ has the width
-$\Gamma$, now zero. Chapter 4.5's
+$\Gamma$, now zero. Section 4.5's
 [slow-end sum](/tutorial/response/causality/#at-the-two-ends-of-the-spectrum-the-relation-becomes-two-sums), $1/k =
 (2/\pi)\int_0^\infty\mathrm{Im}\,\chi\,\dd\omega/\omega$, with $1/\omega \approx 1/\omega_0$ across the peak, fixes its
 area at $\pi\omega_0/2k = \pi/2\matter m\omega_0$. Since $\mathrm{Im}\,\chi$ is odd,
@@ -172,7 +166,7 @@ their spectra add as in
 **The classical limit.** When $\hbar\omega \ll \kB T$, $\hbar\coth(\hbar\omega/2\kB T) \to 2\kB T/\omega$, and
 [](#eq:qfdt) is 4.6's theorem. The quantum factor is the classical one times $u\coth u \approx 1 + u^2/3$, with $u =
 \hbar\omega/2\kB T$. For the steel ball's trial mode at 15.1 kHz and 300 K, $u = 1.2\times10^{-9}$ and the correction is
-$4.9\times10^{-19}$ ($3.4\times10^{-19}$ at Lamb's exact note of 12.6 kHz, which 4.6 uses). For silicon's 15.6 THz
+$4.9\times10^{-19}$. For silicon's 15.6 THz
 Raman line (8.3) at 300 K, $u = 1.25$ and the quantum tremor is 1.47 times the classical one (Figure
 [](#fig:qfd-factor)). As $T \to 0$, $\coth \to 1$ at positive frequencies, and there a body keeps the tremor
 $\hbar\,\mathrm{Im}\,\chi_{yy}$ wherever it has friction.
@@ -224,7 +218,7 @@ with $\bar n$ taken at the frequency $\omega$. Their average, $\hbar(2\bar n + 1
 
 ::: gap
 This sketch assumes separate levels; a large body's lines merge into smooth friction, for which the theorem holds as a
-limit. It also assumes that the thermal state is 4.2's Boltzmann mixture of levels, which does not change in time.
+limit.
 :::
 
 **What the signs mean.** A line at a positive $\omega$ carries the chance $P_m$ of the lower of its two levels, and a
@@ -240,7 +234,7 @@ absorption. Curves exact for a cart with $Q = 12.5$.](tut-qfd-two-orders){#fig:q
 
 ## The static jitter lies between two bounds
 
-We want the paper's bounds on the **quantum jitter** $\langle\delta y^2\rangle$, the mean square departure of a
+We want bounds on the **quantum jitter** $\langle\delta y^2\rangle$, the mean square departure of a
 reading from its mean. We assume that **the static compliance $\chi_0 = \chi_{yy}(0)$ and
 4.5's fast-end sum $\sym{response-sum}{A}$ are finite**. By 3.2's rule and [](#eq:qfdt), folding the negative
 frequencies onto the positive ones,
@@ -253,12 +247,11 @@ weight
 
 $$\sym{frequency-weight}{\mu(\dd\omega)} = \frac{2}{\pi\chi_0}\,\mathrm{Im}\,\chi_{yy}(\omega)\,\frac{\dd\omega}{\omega}$$
 
-is positive. Chapter 4.5's paper problem showed from its
-[two sums](/tutorial/response/causality/#at-the-two-ends-of-the-spectrum-the-relation-becomes-two-sums) that this weight
-adds up to one over $0 < \omega < \infty$, and that its mean of $\omega^2$ is $A/\chi_0$, the paper's "mean square
-frequency". So $\mu$ is a probability distribution of frequency (3.1): the share of the static compliance held
+is positive. The [two sums](/tutorial/response/causality/#at-the-two-ends-of-the-spectrum-the-relation-becomes-two-sums) of section
+4.5 show that this weight adds up to one over $0 < \omega < \infty$, and that its mean of $\omega^2$ is $A/\chi_0$, the
+mean square frequency. So $\mu$ is a probability distribution of frequency (3.1): the share of the static compliance held
 near each frequency. Putting $\mathrm{Im}\,\chi_{yy}\,\dd\omega = \tfrac12\pi\chi_0\,\omega\,\mu(\dd\omega)$ into the
-jitter gives Appendix A's average,
+jitter gives the average
 
 $$\langle\delta y^2\rangle = \int\tfrac12\hbar\chi_0\,\omega\coth\frac{\hbar\omega}{2\kB T}\,\mu(\dd\omega) .$$
 
@@ -269,22 +262,64 @@ the average is at least $\kB T\chi_0$, 4.6's classical jitter.
 F(\bar X) + F'(\bar X)(X - \bar X)$ for every $X$ and $\bar X$, as $\sqrt X$ does. Averaging over a distribution of $X$
 whose mean is $\bar X$ removes the second term, since $X - \bar X$ averages to zero, so $\langle F(X)\rangle \le
 F(\langle X\rangle)$, which is **Jensen's inequality**. We take $X = \omega^2$ and $s = \hbar/2\kB T$, in seconds, so
-that $\omega\coth(s\omega) = F(X) = \sqrt X\coth(s\sqrt X)$, which is concave for every $s > 0$.[^concave] Its average
+that $\omega\coth(s\omega) = F(X) = \sqrt X\coth(s\sqrt X)$, which is concave for every $s > 0$, as the box below shows.[^concave] Its average
 over $\mu$ is at most its value at the mean, $X = A/\chi_0$. For the moment $\matter Q_h$, with $\chi_0 = \chi_h(0)$
 and $A = \int\matter\rho|\nabla h|^2\,\dd V$,
 
 $$\boxed{\begin{aligned}\kB T\chi_0 &\le \langle\delta\matter Q_h^2\rangle\\ &\le \frac\hbar2\sqrt{A\chi_0}\,
 \coth\Bigl(\frac{\hbar}{2\kB T}\sqrt{\frac{A}{\chi_0}}\Bigr) ,\end{aligned}}$$
 
-which is the paper's equation [](/paper/#eq:jitter-bounds).
+which holds for any body whose compliance and sum are finite.[^bounds]
+
+::: derivation
+### The second derivative of $\sqrt X\coth(s\sqrt X)$
+
+We want the sign of $F''(X)$ directly, without Euler's expansion. We write $u = s\sqrt X$, a pure number, and $G(u) =
+u\coth u$, so that $F = G(u)/s$. Since $\dd u/\dd X = s/2\sqrt X = s^2/2u$, the chain rule gives
+
+$$F'(X) = \frac1s\,G'(u)\,\frac{s^2}{2u} = \frac{s\,G'(u)}{2u} .$$
+
+We differentiate again with respect to $X$, using the quotient rule in $u$ and the same $\dd u/\dd X$:
+
+$$F''(X) = \frac s2\cdot\frac{s^2}{2u}\cdot\frac{uG''(u) - G'(u)}{u^2} = \frac{s^3\bigl(uG'' - G'\bigr)}{4u^3} .$$
+
+So $F$ is concave when $uG'' - G' < 0$ for every $u > 0$. With $\dd\coth u/\dd u = -1/\sinh^2u$ and
+$\dd(1/\sinh^2u)/\dd u = -2\cosh u/\sinh^3u$,
+
+$$G' = \coth u - \frac{u}{\sinh^2u}, \qquad G'' = -\frac{2}{\sinh^2u} + \frac{2u\cosh u}{\sinh^3u} .$$
+
+We form $uG'' - G'$ and multiply by $\sinh^3u$, which is positive:
+
+$$\sinh^3u\,\bigl(uG'' - G'\bigr) = k(u) = 2u^2\cosh u - u\sinh u - \cosh u\,\sinh^2u .$$
+
+From $\cosh3u = 4\cosh^3u - 3\cosh u$, the last term is $\cosh^3u - \cosh u = \tfrac14(\cosh3u - \cosh u)$. Each piece
+of $k$ is now a power series in $u^2$: $\cosh u = \sum_nu^{2n}/(2n)!$, $\cosh3u = \sum_n9^nu^{2n}/(2n)!$,
+$u\sinh u = \sum_n2n\,u^{2n}/(2n)!$ and $u^2\cosh u = \sum_n2n(2n - 1)\,u^{2n}/(2n)!$. Collecting the terms in
+$u^{2n}$,
+
+$$k(u) = \sum_{n\ge1}c_n\frac{u^{2n}}{(2n)!}, \qquad c_n = 8n^2 - 6n - \tfrac14\bigl(9^n - 1\bigr) .$$
+
+The first two coefficients vanish, $c_1 = 8 - 6 - 2 = 0$ and $c_2 = 32 - 12 - 20 = 0$, and $c_3 = 72 - 18 - 182 =
+-128$. From there on $c_n$ stays negative, because $\tfrac14(9^n - 1)$ grows ninefold at each step while $8n^2 - 6n$
+less than doubles. So every term of $k$ is zero or negative, $k(u) < 0$ for $u > 0$, and
+
+$$\boxed{F''(X) = \frac{s^3\,k(u)}{4u^3\sinh^3u} < 0} .$$
+
+**Two limits.** For small $u$, $k \approx -128u^6/720 = -\tfrac{8}{45}u^6$ and $\sinh u \approx u$, so $F'' \to
+-2s^3/45$, a finite curvature at the lowest frequencies. For large $u$, $\coth u \to 1$ and $F \to \sqrt X$, whose
+second derivative is $-1/4X^{3/2}$. **A number.** At $s = 1$ s and $X = 1\unit{s^{-2}}$, $u = 1$ and $F'' =
+-0.0339\unit{s^3}$, against $-2/45 = -0.0444\unit{s^3}$ at $X \to 0$ and $-\tfrac14\unit{s^3}$ for $\sqrt X$ alone at
+the same $X$: the factor $\coth$ softens the curvature of $\sqrt X$ but never reverses it. The units are those of $F$,
+$\mathrm{s^{-1}}$, over $X^2$, $\mathrm{s^{-4}}$.
+:::
 
 **When equality holds.** Jensen's inequality is an equality when the distribution sits at one value. One mode, $\chi =
 c^2/(\omega_0^2 - \omega^2 - i\Gamma\omega)$, has $\chi_0 = c^2/\omega_0^2$ and $A = c^2$, so $\sqrt{A/\chi_0} =
 \omega_0$, and the upper bound is $(\hbar c^2/2\omega_0)\coth(\hbar\omega_0/2\kB T)$: [](#eq:x2) for a unit mass, times
-the mode's weight. This is the paper's "upper bound reached by a single undamped mode", and a damped mode, whose weight
+the mode's weight. The upper bound is reached by a single undamped mode, and a damped mode, whose weight
 is spread across its line, falls a little short of it.[^damped] Far from equality, five modes an octave apart, each
 holding a fifth of $\chi_0$, reach at absolute zero 0.75 of the upper bound (Figure [](#fig:qfd-bounds)). When
-$\hbar\omega \ll \kB T$ wherever the friction lies, both bounds meet at $\kB T\chi_0$, R4's check.
+$\hbar\omega \ll \kB T$ wherever the friction lies, both bounds meet at $\kB T\chi_0$.
 
 **What it means.** At absolute zero the lower bound vanishes but the jitter does not: it is the zero point of every mode,
 at most $\tfrac12\hbar\sqrt{A\chi_0}$, set by the same compliance and sum that fix the classical jitter and the
@@ -296,7 +331,7 @@ classical value falls to nothing. At high temperature all three meet. Curves exa
 
 ## The thermometer still needs no model
 
-We want chapter 4.6's thermometer with the quantum factor. Solving [](#eq:qfdt) for the temperature, with
+We want section 4.6's thermometer with the quantum factor. Solving [](#eq:qfdt) for the temperature, with
 $\sym{artanh}{\mathrm{artanh}}$ the inverse of $\tanh$, gives
 
 $$\boxed{T = \frac{\hbar\omega}{2\kB\,\mathrm{artanh}\bigl(\hbar\,\mathrm{Im}\,\chi_{yy}/\bar S_{yy}\bigr)}} .$$
@@ -305,66 +340,36 @@ The body's modes, shapes and weights still cancel between $\bar S_{yy}$ and $\ma
 of
 [4.6](/tutorial/response/fluctuation-dissipation/#a-push-shaped-like-the-reading-makes-a-thermometer-that-needs-no-model-of-the-body)
 is conjugate to the reading for operators too, so this **quantum thermometer** needs no model of the body either. **A
-limit:** $\mathrm{artanh}\,z \approx z$ for small $z$, which gives $\omega\bar S_{yy}/2\kB\,\mathrm{Im}\,\chi_{yy}$, the
-paper's [](/paper/#eq:thermometer). **A number:** at silicon's Raman line at 300 K, $\hbar\,\mathrm{Im}\,\chi/\bar S =
+limit:** $\mathrm{artanh}\,z \approx z$ for small $z$, which gives $\omega\bar S_{yy}/2\kB\,\mathrm{Im}\,\chi_{yy}$, the classical thermometer of section 4.6.
+**A number:** at silicon's Raman line at 300 K, $\hbar\,\mathrm{Im}\,\chi/\bar S =
 \tanh u = 0.848$, and the formula returns 300 K, where the classical one would read 442 K.
 
 ## A cold body's correlations still contain its commutators
 
-Section XIII's paragraph
-[*The algebra of the moments and the energy*](/paper/#par:the-algebra-of-the-moments-and-the-energy) makes
-[the split](#the-response-to-a-push-is-a-commutator) for the moments of a body. There
-$\matter Q_h = \sum_a\matter m_a h(\vect x_a)$ is 8.2's moment, the masses weighted by a harmonic function $h$. Mode
-$n$, an oscillator of unit mass (4.6), moves $\matter Q_h$ by $c_n$ times its swing, and each swing fails to commute
-with its own rate by $i\hbar$. So the paper's [](/paper/#eq:hair-commutator) with $g = h$ is $[\matter Q_h,
-\matter{\dot Q}_h] = i\hbar A$, with $A = \sum_nc_n^2$. Classically, equipartition gives each rate the mean square
-$\kB T$, so the rate $\matter{\dot Q}_h$ trembles with $\langle\matter{\dot Q}_h^2\rangle = \kB TA$: the same sum,
-and, in the paper's words, "the temperature stands where $\hbar$ stands".
+We want the split of [the first-order response](#the-response-to-a-push-is-a-commutator) for the moments of a body.
+There $\matter Q_h = \sum_a\matter m_a h(\vect x_a)$ is the moment of section 8.2, the masses weighted by a harmonic
+function $h$. Mode $n$, an oscillator of unit mass (section 4.6), moves $\matter Q_h$ by $c_n$ times its swing, and each
+swing fails to commute with its own rate by $i\hbar$. So $[\matter Q_h, \matter{\dot Q}_h] = i\hbar A$, with $A =
+\sum_nc_n^2$.[^hair] Classically, equipartition gives each rate the mean square $\kB T$, so the rate $\matter{\dot Q}_h$
+trembles with $\langle\matter{\dot Q}_h^2\rangle = \kB TA$: the same sum, with the temperature standing where $\hbar$
+stands.
 
-In quantum mechanics 8.3's $\langle p^2\rangle$ for unit mass gives instead $\langle\matter{\dot Q}_h^2\rangle =
+In quantum mechanics the $\langle p^2\rangle$ of section 8.3 for unit mass gives instead $\langle\matter{\dot Q}_h^2\rangle =
 \sum_nc_n^2\,\tfrac12\hbar\omega_n\coth(\hbar\omega_n/2\kB T)$, which keeps the zero point $\sum_nc_n^2\hbar\omega_n/2$
 at absolute zero. In equilibrium the symmetric part of $\langle\matter Q_h\matter{\dot Q}_h\rangle$ is half the rate of
 change of $\langle\matter Q_h^2\rangle$, which is zero, so what is left of it is the commutator's part $\tfrac12i\hbar
-A$ at every temperature. In a cold classical body both vanish. The paragraph ends: "the
-correlations of a quantum state contain its commutators, and a cold classical body's do not".
+A$ at every temperature. In a cold classical body both vanish: the correlations of a quantum state contain its
+commutators, and a cold classical body's do not.
 
 ::: try {#quantum-tremor}
-A body of up to five modes, each with a narrow line of friction, chosen from five presets: the steel ball, one mode,
-4.1's two coupled carts, five modes an octave apart and five random ones. You set the temperature, down to absolute
-zero. The left panel draws the symmetrized tremor against the classical one, and a switch shows the two orders apart,
-absorption and emission. The right panel draws the static jitter between the paper's two bounds, against temperature;
-the readouts give the jitter over each bound and what the quantum and the classical thermometers read from the
-strongest line.
+A body of up to five modes, each with a narrow line of friction, from five presets: the steel ball, one mode, the two
+coupled carts of section 4.1, five modes an octave apart and five random ones. You set the temperature, down to
+absolute zero. The left panel draws the symmetrized tremor against the classical one, with a switch for the two orders
+apart; the right panel draws the static jitter between its two bounds, with the readouts of the quantum and classical
+thermometers.
 
 Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, choose
 the two carts, set $\kB T = \hbar\times5\unit{s^{-1}}$, and say why the jitter lies so close to the upper bound.
-:::
-
-::: check
-### Q
-
-What is $\langle x^2\rangle$ of an oscillator at $\kB T = \hbar\omega$, in units of its zero point $x_{\rm zp}^2$?
-
-### A
-
-By [](#eq:x2) it is $\coth\tfrac12 = 2.16$ times $x_{\rm zp}^2$, against the classical 2.
-
-### Q
-
-At absolute zero, which of $S_{yy}(\omega)$ and $S_{yy}(-\omega)$ vanishes for $\omega > 0$, and what does that mean?
-
-### A
-
-The emission, $S_{yy}(-\omega)$, vanishes. A body in its ground state can take energy from a push but has none to give.
-
-### Q
-
-When is the upper bound of the paper's [](/paper/#eq:jitter-bounds) reached?
-
-### A
-
-For a body of a single undamped mode, whose weight $\mu$ sits at one frequency. A single mode with a narrow line comes
-close.
 :::
 
 **The idea to keep: a body's response is the commutator of its readings, and its tremor their symmetric product. The
@@ -375,8 +380,21 @@ that of one mode, and is never zero.**
 ::: problems
 ### Practice
 
-A mode at 1 THz sits in a body at 4 K. Find $u = \hbar\omega/2\kB T$ and the ratio $u\coth u$ of the mode's jitter
-to the classical $\kB T\chi_0$.
+**[8.7]** What is $\langle x^2\rangle$ of an oscillator at $\kB T = \hbar\omega$, in units of its zero point $x_{\rm zp}^2$?
+
+::: solution
+By [](#eq:x2) it is $\coth\tfrac12 = 2.16$ times $x_{\rm zp}^2$, against the classical 2.
+:::
+
+**[8.7]** At absolute zero, which of $S_{yy}(\omega)$ and $S_{yy}(-\omega)$ vanishes for $\omega > 0$, and what does
+that mean?
+
+::: solution
+The emission, $S_{yy}(-\omega)$, vanishes: a body in its ground state can take energy from a push but has none to give.
+:::
+
+**[8.7]** A mode at 1 THz sits in a body at 4 K. Find $u = \hbar\omega/2\kB T$ and the ratio $u\coth u$ of the mode's
+jitter to the classical $\kB T\chi_0$.
 
 ::: solution
 Here $\hbar\omega = hf = 6.63\times10^{-22}$ J and $2\kB T = 1.10\times10^{-22}$ J, so $u = 6.0$. Since $\coth 6 =
@@ -384,13 +402,24 @@ Here $\hbar\omega = hf = 6.63\times10^{-22}$ J and $2\kB T = 1.10\times10^{-22}$
 zero point.
 :::
 
+**[8.7]** Euler's expansion gives $u\coth u = 1 + \sum_{k\ge1}2u^2/(u^2 + k^2\pi^2)$. Expand each term in powers of
+$u^2$ and use $\sum_k1/k^4 = \pi^4/90$ to find the coefficient of $u^4$ in $u\coth u$, then check it against the
+series of $F''$ at small $u$ in the box above.
+
+::: solution
+Each term is $2u^2/k^2\pi^2 - 2u^4/k^4\pi^4 + \dots$, so the coefficient of $u^4$ is $-2(\pi^4/90)/\pi^4 = -\tfrac1{45}$,
+and $u\coth u = 1 + \tfrac13u^2 - \tfrac1{45}u^4 + \dots$ (the $\tfrac13$ from $\sum_k1/k^2 = \pi^2/6$). With $u^2 =
+s^2X$, $F = (u\coth u)/s = 1/s + \tfrac13sX - \tfrac1{45}s^3X^2 + \dots$, whose second derivative at $X = 0$ is
+$-\tfrac2{45}s^3$, the limit in the box.
+:::
+
 ### Stretch
 
-Combine [the first section](#a-cold-oscillator-still-trembles) with chapter 4.3's
-[tide of the steel ball](/tutorial/response/elastic-bodies/#a-ringing-quadrupole-makes-a-tide), $36G\matter MRq/5r^5$
-on its axis ($\matter M = 32.9$ kg, $R = 0.1$ m). Find the tide a metre away at absolute zero, against 4.3's
-$3.4\times10^{-25}\unit{s^{-2}}$ at 300 K, and the temperature below which the classical rule would put the swing under
-its zero point.
+**[8.7]** Combine [the first section](#a-cold-oscillator-still-trembles) with the
+[tide of the steel ball](/tutorial/response/elastic-bodies/#a-ringing-quadrupole-makes-a-tide) of section 4.3,
+$36G\matter MRq/5r^5$ on its axis ($\matter M = 32.9$ kg, $R = 0.1$ m). Find the tide a metre away at absolute zero,
+against the $3.4\times10^{-25}\unit{s^{-2}}$ of section 4.3 at 300 K, and the temperature below which the classical
+rule would put the swing under its zero point.
 
 ::: solution
 At absolute zero the swing is $x_{\rm zp} = 7.5\times10^{-21}\unit m$, so the tide is $1.2\times10^{-29}\unit{s^{-2}}$,
@@ -398,24 +427,23 @@ smaller than at 300 K by $q_{\rm rms}/x_{\rm zp} = 2.9\times10^4$. The classical
 mean square $\kB T/\matter m\omega^2$ equals $x_{\rm zp}^2$ when $\kB T = \hbar\omega/2$, at $T = 3.6\times10^{-7}$ K.
 :::
 
-### The paper
+### The camera
 
-The paper's paragraph
-[*The fluctuations of a black hole's quadrupole*](/paper/#par:the-fluctuations-of-a-black-holes-quadrupole) says that
-"at these frequencies the chance of emitting a quantum and the chance of absorbing one are both the classical absorption
-times $k_BT/\hbar\omega$", where its classical absorption is our
-[net absorption](#a-cold-body-can-take-energy-from-a-push-but-has-none-to-give) $2\hbar\,\mathrm{Im}\,\chi$. Show
-that this holds when $\hbar\omega \ll \kB T$. With the Hawking temperature $\kB T_H = \hbar
-c^3/8\pi G\matter M$ and $r_s = 2G\matter M/c^2$, write $\hbar\omega/\kB T_H$ in terms of $\omega r_s/c$, and find how
-far each chance and their average are from the paper's form at $\omega = 0.01\,c/r_s$.
+**[8.7]** A quadrupole near a black hole emits and absorbs quanta at frequencies $\omega$ far below $c/r_s$, and the
+chance of emitting a quantum and the chance of absorbing one are both taken to be the classical absorption times
+$\kB T/\hbar\omega$, where the classical absorption is our
+[net absorption](#a-cold-body-can-take-energy-from-a-push-but-has-none-to-give) $2\hbar\,\mathrm{Im}\,\chi$. Show that
+this holds when $\hbar\omega \ll \kB T$. With the Hawking temperature $\kB T_H = \hbar c^3/8\pi G\matter M$ and $r_s =
+2G\matter M/c^2$, write $\hbar\omega/\kB T_H$ in terms of $\omega r_s/c$, and find how far each chance and their
+average are from that form at $\omega = 0.01\,c/r_s$.
 
 ::: solution
 The absorption is $2\hbar\,\mathrm{Im}\,\chi\,(\bar n + 1)$ and the emission $2\hbar\,\mathrm{Im}\,\chi\,\bar n$. When
 $\hbar\omega \ll \kB T$, $\bar n \approx \kB T/\hbar\omega \gg 1$, so both are $2\hbar\,\mathrm{Im}\,\chi$ times $\kB
-T/\hbar\omega$, 4.6's classical spectrum. Since $\kB T_H = \hbar c/4\pi r_s$, $\hbar\omega/\kB T_H = 4\pi\omega r_s/c$,
-which is 0.126 at $\omega = 0.01\,c/r_s$. There the emission is 0.938 of the paper's form and the absorption 1.064, 6%
-low and 6% high. Their average, which the thermometer reads, is off only by $u^2/3 = 1.3\times10^{-3}$, with $u =
-0.063$, so the paper's [](/paper/#eq:hole-thermometer) holds far below $c/r_s$.
+T/\hbar\omega$, the classical spectrum of section 4.6. Since $\kB T_H = \hbar c/4\pi r_s$, $\hbar\omega/\kB T_H =
+4\pi\omega r_s/c$, which is 0.126 at $\omega = 0.01\,c/r_s$. There the emission is 0.938 of the classical form and the
+absorption 1.064, 6% low and 6% high. Their average, which the thermometer reads, is off only by $u^2/3 =
+1.3\times10^{-3}$, with $u = 0.063$, so the classical form holds far below $c/r_s$.
 :::
 :::
 
@@ -427,7 +455,7 @@ low and 6% high. Their average, which the thermometer reads, is off only by $u^2
 - Section XIII's [*The algebra of the moments and the energy*](/paper/#par:the-algebra-of-the-moments-and-the-energy):
   the commutators in a quantum state's correlations.
 - Section XIV's [*The fluctuations of a black hole's quadrupole*](/paper/#par:the-fluctuations-of-a-black-holes-quadrupole):
-  the paper's [](/paper/#eq:hole-noise) and [](/paper/#eq:hole-thermometer) (chapter
+  the paper's [](/paper/#eq:hole-noise) and [](/paper/#eq:hole-thermometer) (section
   [13.7](/tutorial/what-a-field-keeps/thermometer/#beside-a-hole-a-camera-can-read-its-temperature-without-catching-a-graviton)).
 - [Section VI](/paper/#sec:thermal): the theorem behind the emission and absorption of the thermal glow (Part 10).
 :::
@@ -436,22 +464,22 @@ low and 6% high. Their average, which the thermometer reads, is off only by $u^2
 - The GR course's lesson
   [*Temperature and quantum input*](https://neovand.github.io/general-relativity/chapter-22.html#temperature-and-quantum-input)
   separates what geometry fixes of a black hole's temperature from what needs $\hbar$.
-- H. B. Callen and T. A. Welton, "Irreversibility and generalized noise", *Physical Review* 83, 34 (1951), first proved
-  the quantum theorem; R. Kubo, "The fluctuation–dissipation theorem", *Reports on Progress in Physics* 29, 255 (1966),
-  gives the response as a commutator and the general proofs.
+- H. B. Callen and T. A. Welton, *Physical Review* 83, 34 (1951), first proved the quantum theorem; R. Kubo, *Reports on
+  Progress in Physics* 29, 255 (1966), gives the response as a commutator and the general proofs.
 :::
 
-[^letters]: Here $\mu(\dd\omega)$ is a weight of frequencies, not the
-    shear modulus $\matter\mu$; $c_n$ is a mode's weight in a reading, as in
-    4.6, not 8.5's amplitudes. Local letters: $s$, $u$, $X$, $F$.
+[^letters]: Here $\mu(\dd\omega)$ is a weight of frequencies, not the shear modulus $\matter\mu$, and $c_n$ is a mode's
+    weight in a reading, as in section 4.6, not an amplitude of section 8.5.
 
-[^means]: Chapter 3.2 averaged over many records, and 8.3's thermal mean is a sum over levels weighted by their
-    Boltzmann chances. For a symmetrized product the two agree when the record is classical, so $\bar S_{yy}$ becomes
-    4.6's $S_{yy}$.
-
-[^concave]: Euler's expansion of $\coth$ in simple fractions (stated without proof) gives $u\coth u = 1 +
-    \sum_{k\ge1}2u^2/(u^2 + k^2\pi^2)$. With $u^2 = s^2X$ each term is $2 - 2k^2\pi^2/(s^2X + k^2\pi^2)$, whose second
-    derivative in $X$ is negative, so $F = (u\coth u)/s$ is concave.
+[^concave]: Euler's expansion of $\coth$ in simple fractions gives $u\coth u = 1 + \sum_{k\ge1}2u^2/(u^2 + k^2\pi^2)$.
+    With $u^2 = s^2X$ each term is $2 - 2k^2\pi^2/(s^2X + k^2\pi^2)$, whose second derivative in $X$ is negative, so $F
+    = (u\coth u)/s$ is concave.
 
 [^damped]: At $\Gamma/\omega_0 = 0.01$, 0.1 and 0.5 a mode reaches 0.997, 0.969 and 0.867 of the bound at absolute
     zero, and closer when warm.
+
+[^bounds]: First shown in *The gravitational camera* (Mohsenvand 2026), Appendix A, as its equation
+    [](/paper/#eq:jitter-bounds).
+
+[^hair]: First shown in *The gravitational camera* (Mohsenvand 2026), Sec. XIII, as its equation
+    [](/paper/#eq:hair-commutator) with $g = h$.

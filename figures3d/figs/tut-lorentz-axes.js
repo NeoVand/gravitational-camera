@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.1 (tutorial/relativity/lorentz.md), its first diagram: the room's axes and the pixel's, and
+// The tutorial, section 6.1 (tutorial/relativity/lorentz.md), its first diagram: the room's axes and the pixel's, and
 // two flashes that are simultaneous for the room and not for the pixel. One square panel, units of light-seconds at
 // one scale on both axes, so that light runs at 45 degrees: the room's axes in thin ink, x across from -1.2 to 1.8 and
 // ct upward from -1.2 to 1.8, named at their ends; the two light lines x = +-ct, thin and dashed in the light role's

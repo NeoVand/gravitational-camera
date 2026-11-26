@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.5 (tutorial/waves/radiance.md), its first diagram: radiance does not fade along a ray. Two
+// The tutorial, section 5.5 (tutorial/waves/radiance.md), its first diagram: radiance does not fade along a ray. Two
 // small square patches, dA_1 at the left and dA_2 at the right, a distance r apart, facing each other across a
 // horizontal axis (dim, finely dashed) through their centres; each is drawn in light perspective as a thin parallelogram,
 // its upright edges the square's side and its slanted edges the side seen obliquely. Between them the cone in which

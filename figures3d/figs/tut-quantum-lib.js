@@ -1,9 +1,9 @@
-// Shared numbers and colours for the four diagrams of the tutorial's chapter 8.1 (tutorial/quantum/states.md):
+// Shared numbers and colours for the four diagrams of the tutorial's section 8.1 (tutorial/quantum/states.md):
 // tut-quantum-hero (the hero of Part 8), tut-mach-zehnder, tut-amplitude-arrows and tut-mass-two-places. Not a figure
-// itself. The colour roles are chapter 7.8's (figs/tut-memory-lib.js: the observer's, the curvature's, matter's and the
+// itself. The colour roles are section 7.8's (figs/tut-memory-lib.js: the observer's, the curvature's, matter's and the
 // field's, read from app.css by `palette(check)`); orange and blue, which mean a stretch and a squeeze, are not used.
-// The sheet, strokes, labels and cropping are those of chapters 6.1 to 7.8 (figs/tut-pot-lib.js), all imported, not
-// copied; the ball, its stiffness and its note are chapter 4.1's (figs/tut-osc-lib.js).
+// The sheet, strokes, labels and cropping are those of sections 6.1 to 7.8 (figs/tut-pot-lib.js), all imported, not
+// copied; the ball, its stiffness and its note are section 4.1's (figs/tut-osc-lib.js).
 //
 // `chapter(check)` asserts every number of the chapter that a figure draws or its caption prints (pure numbers, and SI
 // for the ball):
@@ -20,7 +20,7 @@
 //    amplitudes (1/2) i (e^{i phi} + cos theta) and (1/2) i sin theta, so P_R = (1/2)(1 + cos theta cos phi) =
 //    (1/2)[1 + Re(<e_R|e_L> e^{i phi})]; overlap 1: from 0 to 1; overlap 0.5 (theta = 60 degrees): from 0.25 to 0.75;
 //    overlap 0 (90 degrees): 1/2 at every phi;
-//  - the ball of chapter 4.1 at 300 K: k_B T / hbar omega at 15 kHz = 4.14 x 10^-21 J / 9.94 x 10^-30 J = 4.2 x 10^8,
+//  - the ball of section 4.1 at 300 K: k_B T / hbar omega at 15 kHz = 4.14 x 10^-21 J / 9.94 x 10^-30 J = 4.2 x 10^8,
 //    and the same, 4.2 x 10^8, at the note computed from the ball's stiffness and effective mass (tut-osc-lib.js); the
 //    thermal mean occupation 1/(e^x - 1), x = hbar omega / k_B T, differs from k_B T / hbar omega by less than one
 //    quantum; hbar omega / k_B = 0.72 microkelvin, so a ball at 0.1 microkelvin holds on average 7 x 10^-4 quanta: almost none.
@@ -76,7 +76,7 @@ export const OVERLAPS = [1, 0.5, 0];
 
 // ---- the ball ----------------------------------------------------------------------------------------------------
 export const HBAR = 1.054571817e-34;       // J s
-export const NOTE = 15e3;                  // Hz, the ball's note as the paper and chapter 4.1 give it
+export const NOTE = 15e3;                  // Hz, the ball's note as the paper and section 4.1 give it
 export const omegaOf = (f) => 2 * Math.PI * f;
 /** The mean number of quanta of a mode of angular frequency w at the temperature T: 1/(e^x - 1), x = hbar w / k_B T. */
 export const occupation = (w, T) => 1 / Math.expm1((HBAR * w) / (KB * T));

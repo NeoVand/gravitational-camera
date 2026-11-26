@@ -1,7 +1,7 @@
-// Shared numbers for the four diagrams of the tutorial's chapter 6.6 (tutorial/relativity/maxwell-complex.md):
+// Shared numbers for the four diagrams of the tutorial's section 6.6 (tutorial/relativity/maxwell-complex.md):
 // tut-maxwell-wave, tut-maxwell-turn, tut-maxwell-parallel and tut-maxwell-sky. Not a figure itself. The colours (the
 // observer's and the light role's, read from app.css's --q-obs and --q-light), the pixel's speed and its rapidity are
-// chapter 6.1's (figs/tut-lorentz-lib.js), and the sheet, strokes, labels and cropping those of 6.1's and 6.2's
+// section 6.1's (figs/tut-lorentz-lib.js), and the sheet, strokes, labels and cropping those of 6.1's and 6.2's
 // diagrams, all imported, not copied. This file adds complex arithmetic on three-component vectors, the boost of the
 // complex field (eq:boost-F), a dashed arrow, and the paper's view of the sky (figs/stars.js: an orthographic view
 // turned about the vertical and tilted, as lib.js's Panel turns it).

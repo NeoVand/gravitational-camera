@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.3 (tutorial/newton/gauss-and-poisson.md), its third diagram: the flux out of a small box,
+// The tutorial, section 1.3 (tutorial/newton/gauss-and-poisson.md), its third diagram: the flux out of a small box,
 // one pair of faces at a time. A box with one corner at (x, y, z) and edges Delta x, Delta y, Delta z along the axes,
 // drawn in true 3D (an orthographic view, turned and tilted as lib.js's Panel does; the hidden edges dashed). Its two
 // faces at right angles to the x axis are shaded: the face at x (blue), where the field arrow g_x(x) enters, and the

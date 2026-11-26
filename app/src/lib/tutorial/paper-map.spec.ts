@@ -2,8 +2,8 @@
 import { execFileSync } from 'node:child_process';
 import { describe, expect, it } from 'vitest';
 import { normalizeFences } from './render';
-import { LABELS, linksModule, mapPaper } from './paper-map';
-import type { MapAnchor, MapChapter } from './paper-map';
+import { LABELS, linksModule, mapPaper, parseDerivations } from './paper-map';
+import type { Derivation, MapAnchor, MapChapter } from './paper-map';
 
 const chapter = (id: string, markdown: string, reads: string[] = []): MapChapter => ({
 	id,
@@ -90,13 +90,9 @@ const reading = chapter(
 
 The paragraph [*The Earth's own tide*](/paper/#par:the-earths-own-tide) starts with Table [](/paper/#tab:regimes).
 
-## The ledger: two are derived
+## The record
 
-| Equation | What it says | Where it is derived |
-|---|---|---|
-| [](/paper/#eq:tidal) | the tide, $c^2 R_{0i0j}$, see 9.9 | [1.4](/tutorial/newton/tides/#the-tide-is-a-table); 7.6 in relativity |
-| [](/paper/#eq:wave) | the wave | 7.6 |
-| [](/paper/#eq:stated) | the record | *stated in the paper* |
+The paper's record is [](/paper/#eq:stated), taken from outside it.
 `,
 	['sec:pixel']
 );
@@ -170,9 +166,16 @@ Text first.
 );
 
 const chapters = [evening, tides, waves, reading, broad, skyAtOnePoint, sky, ladder];
+/** As tutorial/derivations.yaml gives them; eq:lonely is not there. */
+const derivations = new Map<string, Derivation>([
+	['eq:tidal', { chapter: '1.4' }],
+	['eq:wave', { chapter: '7.6' }],
+	['eq:stated', { chapter: 'R1', section: 'the-earths-own-tide-is-subtracted', stated: true }]
+]);
 const result = mapPaper({
 	anchors,
 	chapters,
+	derivations,
 	liveFigures: new Map([
 		['tidal-ring', 'fig:tidal'],
 		['sky-live', 'fig:sky']
@@ -213,7 +216,7 @@ describe('the margin map, generated', () => {
 		});
 	});
 
-	it('gives an equation to the first chapter its ledger row names, where that chapter first shows it', () => {
+	it('gives an equation to the chapter derivations.yaml names, where that chapter first shows it', () => {
 		expect(byAnchor.get('eq:tidal')).toEqual({
 			anchor: 'eq:tidal',
 			chapter: '1.4',
@@ -227,18 +230,45 @@ describe('the margin map, generated', () => {
 		});
 	});
 
-	it('marks an equation the paper states, or no ledger holds, as background', () => {
+	it('marks a stated equation, or one derivations.yaml lacks, as background', () => {
+		// at the heading the entry names, though the chapter links it under another
 		expect(byAnchor.get('eq:stated')).toEqual({
 			anchor: 'eq:stated',
 			chapter: 'R1',
 			label: 'Background',
-			section: 'the-ledger-two-are-derived'
+			section: 'the-earths-own-tide-is-subtracted'
 		});
 		expect(byAnchor.get('eq:lonely')).toMatchObject({
 			chapter: '1.4',
 			label: 'Background',
 			section: 'the-lonely-equation'
 		});
+	});
+
+	it('notes an entry whose chapter, heading or equation does not exist, and falls back', () => {
+		const odd = mapPaper({
+			anchors,
+			chapters,
+			derivations: new Map<string, Derivation>([
+				['eq:tidal', { chapter: '9.9' }],
+				['eq:wave', { chapter: '7.6', section: 'no-such-heading' }],
+				['eq:gone', { chapter: '1.4' }]
+			])
+		});
+		const get = (a: string) => odd.links.find((l) => l.anchor === a);
+		expect(get('eq:tidal')).toMatchObject({ chapter: '1.4', label: 'Background' });
+		expect(get('eq:wave')).toMatchObject({
+			chapter: '7.6',
+			label: 'Derivation',
+			section: 'the-tide-of-a-wave'
+		});
+		expect(odd.notes).toEqual(
+			expect.arrayContaining([
+				'eq:tidal: derivations.yaml names 9.9, which is not a published chapter',
+				'eq:wave: 7.6 has no heading #no-such-heading (derivations.yaml)',
+				'eq:gone: derivations.yaml names it, but the paper has no such equation'
+			])
+		);
 	});
 
 	it('gives a figure to the first chapter that shows it, live when a try block mounts it', () => {
@@ -301,5 +331,36 @@ describe('the margin map, generated', () => {
 		expect(text).toContain(`export const paperLinks: PaperLink[] = [`);
 		expect(text).toContain(`{ anchor: 'sec:pixel', chapter: 'R1', label: 'Reading' },`);
 		expect(text.indexOf('sec:pixel')).toBeLessThan(text.indexOf('eq:tidal'));
+	});
+});
+
+describe('derivations.yaml, parsed', () => {
+	it('reads each equation with its chapter, heading and whether it is stated', () => {
+		const parsed = parseDerivations({
+			equations: {
+				'eq:tidal': { chapter: '7.2', section: 'the-tide' },
+				'eq:index': { chapter: '7.8' },
+				'eq:record': { chapter: 'R1', section: 'the-record', stated: true }
+			}
+		});
+		expect([...parsed]).toEqual([
+			['eq:tidal', { chapter: '7.2', section: 'the-tide' }],
+			['eq:index', { chapter: '7.8' }],
+			['eq:record', { chapter: 'R1', section: 'the-record', stated: true }]
+		]);
+	});
+
+	it('fails on an entry of any other shape', () => {
+		expect(() => parseDerivations({})).toThrow(/equations:/);
+		expect(() => parseDerivations({ equations: { 'fig:tidal': { chapter: '1.4' } } })).toThrow(
+			/not an equation/
+		);
+		// an unquoted 7.2 is a number in YAML
+		expect(() => parseDerivations({ equations: { 'eq:tidal': { chapter: 7.2 } } })).toThrow(
+			/quoted id/
+		);
+		expect(() =>
+			parseDerivations({ equations: { 'eq:tidal': { chapter: '7.2', where: 'x' } } })
+		).toThrow(/unknown key where/);
 	});
 });

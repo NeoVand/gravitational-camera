@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.4 (tutorial/geometry/linearized-gravity.md), its second diagram: the four steps from the
+// The tutorial, section 7.4 (tutorial/geometry/linearized-gravity.md), its second diagram: the four steps from the
 // curvature of a weak field to the linearized field equation, four boxes joined by thin ink arrows. Each box, outlined
 // in thin ink, holds a short name and under it one equation: 1, "7.2's curvature, contracted", eq:ricci; 2, "harmonic
 // gauge, d^mu hbar_mu nu = 0", R_mu nu = -(1/2) box h_mu nu; 3, "the Einstein tensor", G_mu nu = -(1/2) box hbar_mu nu;

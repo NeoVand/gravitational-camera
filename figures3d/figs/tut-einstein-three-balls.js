@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.3 (tutorial/geometry/einstein-equation.md), its third diagram: three balls of free dust, each
+// The tutorial, section 7.3 (tutorial/geometry/einstein-equation.md), its third diagram: three balls of free dust, each
 // drawn as a dashed circle (the start) and a solid ink outline a little later, with eight dots on the outline, the
 // images of eight places equally spaced round the circle. Inside water far from other masses (a faint blue-grey wash
 // fills the panel): the outline a smaller circle, with eight equal arrows in the curvature's colour from the start to
@@ -8,7 +8,7 @@
 // light role's colour crossing the panel behind the ball, the top one with an arrowhead and the name "beam"): the outline an ellipse
 // narrower across the beam (blue) and unchanged along it; "squeezed across the beam only: Ricci, from stress".
 // Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (as the
-// chapter 6.5 and 7.2 diagrams), so that their text stays readable on a phone. The ellipse beside the mass does not
+// section 6.5 and 7.2 diagrams), so that their text stays readable on a phone. The ellipse beside the mass does not
 // have the dashed circle's area: the tide there is -2 : 1 : 1, and its squeeze also acts at right angles to the page,
 // so the ball keeps its volume (to first order, the trace -2 + 1 + 1 = 0) while its section in the page, which holds
 // the line to the mass, grows by the factor (1 + 2e)(1 - e), here 1.105. The tints are the crescents between the
@@ -20,7 +20,7 @@
 // E = (4 pi G F / c^3)(delta - n n), so 0.7 across and 1 along (each tide asserted from eq:ricci-tide in the library);
 // the dots the images of their places (asserted on the outline); the arrows equal (asserted). Schematic: EPS (the
 // exaggeration), the balls' size, the sphere's size and distance, the beam's three lines. Pictorial: the stone, a
-// picture from an image model (sprites/hair/ball.png, as chapter 4.1's hero), clipped to its exact circle.
+// picture from an image model (sprites/hair/ball.png, as section 4.1's hero), clipped to its exact circle.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP } from './tut-pot-lib.js';
 import { INK, DIM, sprite } from '../lib.js';
 import { picture, circle as circlePath } from '../stone.js';

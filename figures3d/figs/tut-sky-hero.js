@@ -1,4 +1,4 @@
-// The tutorial's Part 12, "The sky", its hero (chapter 12.1, tutorial/sky/stars.md, and the head of 12.2 to R12b):
+// The tutorial's Part 12, "The sky", its hero (section 12.1, tutorial/sky/stars.md, and the head of 12.2 to R12b):
 // the Galaxy edge-on, in front of the uniform graviton glow. Across the middle, the paper's model Galaxy
 // (reference/gravcam/galaxy.py, reproduced in tut-stars-lib.js) seen exactly edge-on from far outside, to one scale in
 // both directions: a thin bright disc with its bulge, split along its mid-plane by the dark lane of the model's dust.
@@ -9,7 +9,7 @@
 // two hairlines tangent to both, shows the Sun (a small stone ball) at its height above the mid-plane (a dashed
 // hairline), inside the dust layer, with the paper's camera beside it, its lens on the line of sight. In the disc,
 // five pairs of white dwarfs: two stone beads at opposite ends of a faint ring, their orbit. Behind everything, the
-// uniform 0.905 K glow of chapter 12.2, a flat neutral field with rounded corners, and in it one black disc, a hole's
+// uniform 0.905 K glow of section 12.2, a flat neutral field with rounded corners, and in it one black disc, a hole's
 // shadow. No text. No orange or blue: neutrals, the stone, and matter's colour (its dark theme's pale gold, asserted
 // against tut-stars-lib's MATTER) for the stars' light. The picture's colours are fixed (a picture, like the stone):
 // the same in both themes.

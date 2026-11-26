@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.5 (tutorial/what-a-field-keeps/impulsive-waves.md), its first diagram: what crosses the
+// The tutorial, section 13.5 (tutorial/what-a-field-keeps/impulsive-waves.md), its first diagram: what crosses the
 // front. Two spacetime diagrams side by side that share the height ct, each at one scale on both axes, so that light
 // runs at 45 degrees in the first. Left, z across: the front u = 0, the line ct = z, thick in the field's colour; three
 // paths in ink, each straight before and after the front: (1) slow matter at rest, (2) light along +z, a 45-degree line

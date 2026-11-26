@@ -1,6 +1,6 @@
-// The tutorial, chapter 5.4 (tutorial/waves/polarization.md), its fourth diagram: a rotor seen from three directions,
+// The tutorial, section 5.4 (tutorial/waves/polarization.md), its fourth diagram: a rotor seen from three directions,
 // iota = 0, 60 and 90 degrees, one column each, titled with its angle. Upper row: the rotor as the camera sees it, e_1
-// to the right and e_2 up: the two masses (the nugget of chapter 2.5, lit in matter's two colours) on their rod at the
+// to the right and e_2 up: the two masses (the nugget of section 2.5, lit in matter's two colours) on their rod at the
 // instant 2 Omega u = 30 degrees, and their dashed orbit, a circle of radius 1 seen as an ellipse with semi-axes
 // |cos iota| along e_1 and 1 along e_2 (a circle, an ellipse of semi-axis 0.5, a line); an arrowhead on the orbit
 // showing the sense of turning as seen (anticlockwise at 0 and 60 degrees; at 90 degrees a double arrow beside the

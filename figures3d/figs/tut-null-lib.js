@@ -1,7 +1,7 @@
-// Shared tools for the four diagrams of the tutorial's chapter 2.5 (tutorial/outside/null-space.md): tut-null-hero,
+// Shared tools for the four diagrams of the tutorial's section 2.5 (tutorial/outside/null-space.md): tut-null-hero,
 // tut-null-split, tut-null-flush and tut-null-moments. Not a figure itself. The mathematics of the chapter, each
 // function checked against the chapter's printed numbers by the figures that use it, and the stone bodies drawn as
-// chapter 2.4's figs/tut-grn-kelvin.js draws them: the sawn face of the steel ball (sprites/hair/ball-face.png),
+// section 2.4's figs/tut-grn-kelvin.js draws them: the sawn face of the steel ball (sprites/hair/ball-face.png),
 // shaded in matter's colour (its light one, fixed on the stone), the nugget lit in matter's two colours, the skin a
 // band shaded in steps that double.
 import { sprite } from '../lib.js';
@@ -68,7 +68,7 @@ export const SHADE = '#533f03';           // matter's colour (app.css, --q-matte
 export const GOLD_LIGHT = '#f1dc86';      // matter's dark-theme colour: the nugget's highlight
 export const MATTER = 'light-dark(#533f03, #f1dc86)';   // matter's colour of each theme, for marks off the stone
 export const RIM = 0.35;                  // a body's edge (figs/hair.js, figs/tut-grn-kelvin.js)
-export const DEEPEST = 0.77;              // the darkest shade, as chapter 2.4's skin (0.12 + 0.13 k, k = 5)
+export const DEEPEST = 0.77;              // the darkest shade, as section 2.4's skin (0.12 + 0.13 k, k = 5)
 
 /** The sawn face of the steel ball, once, for every body of a figure. */
 export const ballFace = () => sprite('/figures3d/sprites/hair/ball-face.png');
@@ -109,7 +109,7 @@ export function nugget(id, cx, cy, r) {
 }
 
 /** Nested regions, each holding the next, shaded so that the k-th band shows at 0.12 + 0.13 k (as the paper's
- * fig:same-outside and chapter 2.4's skin): `shapes` the regions' path data, outermost first. */
+ * fig:same-outside and section 2.4's skin): `shapes` the regions' path data, outermost first. */
 export function steps(shapes) {
 	let shown = 0;
 	return shapes.map((d, k) => {

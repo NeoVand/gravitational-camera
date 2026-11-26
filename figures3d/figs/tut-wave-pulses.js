@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.1 (tutorial/waves/wave-equation.md), its second diagram: two equal and opposite pulses pass
+// The tutorial, section 5.1 (tutorial/waves/wave-equation.md), its second diagram: two equal and opposite pulses pass
 // through each other. Five copies of the line, stacked from the top at the instants t = -2, -1, 0, 1, 2 in units of
 // w/c, w the pulses' width, over one shared x axis. A Gaussian hump u_R(x - ct) = A e^{-(x - ct)^2 / 2w^2} starts at
 // the left and moves right (orange, dashed), and the equal dip -u_R(x + ct) starts at the right and moves left (blue,

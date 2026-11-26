@@ -1,9 +1,9 @@
-// Shared numbers for the five diagrams of the tutorial's chapter 11.1 (tutorial/black-holes/schwarzschild.md):
+// Shared numbers for the five diagrams of the tutorial's section 11.1 (tutorial/black-holes/schwarzschild.md):
 // tut-schw-clocks, tut-schw-falling-pair, tut-schw-barrier, tut-schw-shadow-angle and tut-schw-ring. Not a figure
-// itself. The sheet, strokes, labels and cropping are chapters 1.2 to 10.3's (figs/tut-pot-lib.js), the observer's and
-// light's colours and their check against app.css chapter 6.1's (figs/tut-lorentz-lib.js), all imported, not copied.
+// itself. The sheet, strokes, labels and cropping are sections 1.2 to 10.3's (figs/tut-pot-lib.js), the observer's and
+// light's colours and their check against app.css section 6.1's (figs/tut-lorentz-lib.js), all imported, not copied.
 // The colours: the clock rate in the observer's colour (the chapter colours tau so); every ray and the Einstein rings
-// in the light role's colour; the falling pair's stretch and squeeze in the figures' orange and blue (chapter 1.4's
+// in the light role's colour; the falling pair's stretch and squeeze in the figures' orange and blue (section 1.4's
 // tut-tides: ACCENT out along the line, ACCENT2 in across it); everything else in ink and the page's greys. The hole
 // is a disc of a fixed near-black, which the site does not swap, edged in ink, so that it is dark in both themes.
 //

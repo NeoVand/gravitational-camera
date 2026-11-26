@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.4 (tutorial/noise/symmetric-matrices.md), its last diagram: the truncated singular value
+// The tutorial, section 3.4 (tutorial/noise/symmetric-matrices.md), its last diagram: the truncated singular value
 // decomposition of the locked safe. Top, the 231 whitened gains of the safe's camera (605 readings, 231 cells, SNR =
 // 10^3, each cell counted in units of 324 kg) on a log scale against their rank, one dot each: the 17 above one, which
 // the cut keeps, in the first accent; the rest in neutral ink, and those below numpy's rank tolerance (s_1 x 605 x the

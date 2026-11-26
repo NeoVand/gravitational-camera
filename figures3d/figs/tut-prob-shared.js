@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.1 (tutorial/noise/probability.md), its third diagram: a gradiometer removes what its two
+// The tutorial, section 3.1 (tutorial/noise/probability.md), its third diagram: a gradiometer removes what its two
 // halves share. Two accelerometers on one shaking table read a1 = g1 + u + n1 and a2 = g2 + u + n2: the same large
 // shaking u in both, and each its own small noise. Left, over four seconds, the two traces one above the other and,
 // under them on the same scale, their difference a1 - a2 = (g1 - g2) + n1 - n2: a quiet trace about the steady

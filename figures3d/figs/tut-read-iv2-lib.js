@@ -1,4 +1,4 @@
-// Shared numbers for the tutorial's reading chapter R3 (tutorial/noise/reading-section-iv-2.md), its capstone figure
+// Shared numbers for the tutorial's reading section R3 (tutorial/noise/reading-section-iv-2.md), its capstone figure
 // tut-read-iv2-capstone. Not a figure itself. What the figure cannot cheaply recompute in the page comes from the paper's
 // reference code (reference/gravcam/inversion.py, run with the repository's .venv), and the figure asserts its own
 // numbers against these:

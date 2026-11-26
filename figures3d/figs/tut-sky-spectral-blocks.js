@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.6 (tutorial/one-point/the-sky-at-one-point.md), its first diagram: which of the hundred real
+// The tutorial, section 9.6 (tutorial/one-point/the-sky-at-one-point.md), its first diagram: which of the hundred real
 // numbers of one pixel's spectral matrix a sky of independent waves can fill. The 10 x 10 spectral matrix in the
 // helicity coordinates, rows w+ and w-*, columns their conjugate transposes, drawn as a square of four 5 x 5 blocks,
 // with a tick at every row and column on the square's top and left edges. Upper left C+, tinted in the sky's colour,
@@ -28,7 +28,7 @@ const check = checker(name);
 const CELL = 23;                           // a cell's side
 const GRID = 0.45;                         // the blocks' outlines and the staircase
 const TINT = 0.32;                         // the sky's colour at this opacity
-const GREY = 0.3;                          // faint ink at this opacity (as chapters 7.2 and 7.6's counts)
+const GREY = 0.3;                          // faint ink at this opacity (as sections 7.2 and 7.6's counts)
 const PAD = 4;                             // a block's text in from its edges
 const HEAD_AIR = 3;                        // the names of the rows and columns from the ticks
 const BAR_AIR = 9, BAR_H = 9, BAR_GAP = 1.4;   // the bar under the square: its air, height, and the air between pieces

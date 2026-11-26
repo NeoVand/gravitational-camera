@@ -35,16 +35,16 @@ test('tutorial: the front page shows the parts, the routes and the equations', a
 		/tutorial\/evening\/a-camera-for-gravity\/$/
 	);
 
-	// fourteen parts, each a picture that links to its first chapter, its chapters folded away
+	// fourteen parts and the appendices, each a picture that links to its first chapter, its chapters folded away
 	const parts = page.locator('li.part');
-	await expect(parts).toHaveCount(14);
+	await expect(parts).toHaveCount(15);
 	const newton = page.locator('#part-1');
 	await expect(newton.locator('h3')).toHaveText("Newton's gravity");
 	await expect(newton.locator('a.opening')).toHaveAttribute(
 		'href',
 		/newton\/vectors-and-indices\/$/
 	);
-	const tides = newton.getByRole('link', { name: 'Tides: the difference in gravity; the Hessian' });
+	const tides = newton.getByRole('link', { name: 'Tides: the difference in gravity', exact: true });
 	await expect(tides).toBeHidden();
 	await newton.locator('summary').click();
 	await expect(tides).toBeVisible();
@@ -74,7 +74,7 @@ test('tutorial: the front page shows the parts, the routes and the equations', a
 	await dots.first().focus();
 	await expect(toII.locator('.tip')).toContainText('A camera for gravity');
 	await page.keyboard.press('ArrowRight');
-	await expect(toII.locator('.tip')).toContainText('How to read the rest');
+	await expect(toII.locator('.tip')).toContainText('How to read this book');
 
 	// every numbered equation, as many tiles as the sentence counts
 	const sentence = await page.locator('section.equations .head p').textContent();

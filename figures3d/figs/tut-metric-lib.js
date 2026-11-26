@@ -1,7 +1,7 @@
-// Shared numbers and colours for the three diagrams of the tutorial's chapter 7.1 (tutorial/geometry/metric.md):
+// Shared numbers and colours for the three diagrams of the tutorial's section 7.1 (tutorial/geometry/metric.md):
 // tut-metric-tossed, tut-metric-clocks and tut-metric-count. Not a figure itself. The observer's colour and the light
-// role's are chapter 6.1's (figs/tut-lorentz-lib.js, read from app.css's --q-obs and --q-light), and the sheet,
-// strokes, labels and cropping are those of chapters 6.1 to 6.4, all imported, not copied. This file adds the
+// role's are section 6.1's (figs/tut-lorentz-lib.js, read from app.css's --q-obs and --q-light), and the sheet,
+// strokes, labels and cropping are those of sections 6.1 to 6.4, all imported, not copied. This file adds the
 // curvature's colour, app.css's --q-curv, which `palette(check)` asserts with the other roles.
 //
 // `chapter(check)` asserts every number of the chapter that a figure draws or its caption prints:
@@ -19,7 +19,7 @@ export { OBS, LIGHT };
 const CURV_ROLE = ['#4d1c7b', '#968ff7'];
 export const CURV = `light-dark(${CURV_ROLE[0]}, ${CURV_ROLE[1]})`;
 
-/** The role colours against app.css, both themes: chapter 6.1's three and the curvature's. */
+/** The role colours against app.css, both themes: section 6.1's three and the curvature's. */
 export async function palette(check) {
 	await roles(check);
 	const css = await (await fetch('/app/src/app.css')).text();

@@ -1,6 +1,6 @@
-// The tutorial, chapter 7.5 (tutorial/geometry/gravitomagnetism.md), its second diagram: the sign of the tide along the
+// The tutorial, section 7.5 (tutorial/geometry/gravitomagnetism.md), its second diagram: the sign of the tide along the
 // line to a body, over a sphere of pixels round it. Two spheres side by side, each round a central stone body, seen from
-// the side and a little from above (the paper's veiled sky, as chapter 6.6's tut-maxwell-sky), tinted by the sign of
+// the side and a little from above (the paper's veiled sky, as section 6.6's tut-maxwell-sky), tinted by the sign of
 // the component along the line to the body: orange where it is negative, blue where positive, the tint fading to the
 // page where it is zero, with a thin ink contour at zero. Left, "point mass, E_nn = -2GM/r^3": orange all over. Right,
 // "spin dipole, B_nn = 6G(L.n)/cr^4", n from the sphere toward the body: orange over the northern hemisphere, blue over

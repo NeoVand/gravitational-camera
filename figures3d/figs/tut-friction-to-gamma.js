@@ -1,9 +1,9 @@
-// The tutorial, chapter 11.4 (tutorial/black-holes/under-tides.md), its second diagram: the friction becomes the
+// The tutorial, section 11.4 (tutorial/black-holes/under-tides.md), its second diagram: the friction becomes the
 // greybody factor. Two rows. Above, four boxes in a chain joined by thin ink arrows, the boxes outlined in the page's
 // faint grey (the last one heavier, in ink: the result), each with a short name over its quantity: "friction" nu;
 // "power" (1/2) nu omega^6 h^2; "cross-section" 16 pi G nu omega^4 / c^3; "Page's limit" Gamma_2 = (256/225) x^6. Under
 // each arrow, what it does: "x (1/2) omega^6 h^2", "/ F", "/ 5 pi c^2 / omega^2". Below, on logarithmic axes, x = GM
-// omega / c^3 from 10^-3 to 1 and Gamma_2 from 10^-18 to 1: Page's line (256/225) x^6 dashed, and chapter 11.3's
+// omega / c^3 from 10^-3 to 1 and Gamma_2 from 10^-18 to 1: Page's line (256/225) x^6 dashed, and section 11.3's
 // Regge-Wheeler Gamma_2 thin solid ink from the table, on the line at its left end and bending up to 1 near x = 0.5; a
 // dotted mark from the axis up to x = 0.01, named "x 1.07". The wave's strain h in the field's colour, as the chapter
 // colours it; everything else in ink and the page's greys.

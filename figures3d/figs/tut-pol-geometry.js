@@ -1,8 +1,8 @@
-// The tutorial, chapter 5.4 (tutorial/waves/polarization.md), its third diagram: where the camera stands. A sketch in
+// The tutorial, section 5.4 (tutorial/waves/polarization.md), its third diagram: where the camera stands. A sketch in
 // light perspective, seen from the direction (5, -3.5, 1.5) toward the origin, z up, from 12 units away (so that the
 // nearest and farthest marks differ in scale by less than a quarter). Thin grey axes x, y and z from the origin, 1.6 long,
 // named at their tips. At the origin the rotor: two masses of radius 0.12 at +-0.5 (-sin 30, cos 30, 0), the nugget
-// of chapter 2.5 lit in matter's two colours (figs/tut-null-lib.js), on a thin rod; their dashed orbit, a circle of
+// of section 2.5 lit in matter's two colours (figs/tut-null-lib.js), on a thin rod; their dashed orbit, a circle of
 // radius 0.5 in the xy plane, with an arrowhead on its near side pointing anticlockwise as seen from +z. The spin, an
 // ink arrow along +z, 1.3 long. The line of sight n at iota = 50 degrees from z in the xz plane, (0.766, 0, 0.643),
 // an ink arrow 1.3 long, with a thin grey arc of radius 0.6 from the spin to it, named iota. At n's tip, the sky as

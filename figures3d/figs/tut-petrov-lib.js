@@ -1,8 +1,8 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 9.4 (tutorial/one-point/petrov.md):
+// Shared numbers for the three diagrams of the tutorial's section 9.4 (tutorial/one-point/petrov.md):
 // tut-stereographic, tut-petrov-skies and tut-moving-pairs. Not a figure itself. A reading's quartic and its stars are
-// chapter 8.4's (figs/tut-spin-lib.js: the roots of the paper's eq:stars, m(z)^T W m(z) = 0, mapped to the sky by
+// section 8.4's (figs/tut-spin-lib.js: the roots of the paper's eq:stars, m(z)^T W m(z) = 0, mapped to the sky by
 // k(z) = (2 Re z, 2 Im z, 1 - |z|^2)/(1 + |z|^2), a root lost from the top a star at -z); the six readings are
-// chapter 9.2's (figs/tut-cxsym-lib.js, its examples and its algebraic sort of the shapes); the boost is chapter 9.3's,
+// section 9.2's (figs/tut-cxsym-lib.js, its examples and its algebraic sort of the shapes); the boost is section 9.3's,
 // Lambda = exp(-i eta u.L) with (L_k)_ij = -eps_kij (figs/tut-matrix-w-lib.js; 9.2's boostX has the opposite sign and
 // is not used); all imported, not copied. Orange and blue mean a stretch and a squeeze only, and are not used.
 //
@@ -62,7 +62,7 @@ export const OPPOSITE = scale(cdiv(cx(1), conj(Z)), -1);   // -1/conj z
 
 // ---- the six readings -----------------------------------------------------------------------------------------------
 export const TYPES = ['I', 'II', 'D', 'III', 'N', 'O'];
-export const EXAMPLES = { I: 'two masses', II: 'a mass and a wave along its line', D: 'one mass', III: 'the paper\'s table', N: 'one wave', O: 'no field' };
+export const EXAMPLES = { I: 'two masses', II: 'a mass and a wave along its line', D: 'one mass', III: 'the type III table', N: 'one wave', O: 'no field' };
 
 // ---- the moving body -------------------------------------------------------------------------------------------------
 export const BODY = { mass: 1, at: [-1.5, 0, 0], speed: 0.9, moves: [0, 1, 0] };   // for the pixel
@@ -143,13 +143,13 @@ export async function chapter(check) {
 	if (c1) check(COMMENT.stereo.every((s) => c1.includes(s)), 'the first comment\'s numbers');
 
 	// ---- the six readings and their types
-	has(String.raw`Solving the quartic gives the figure's two lines of dots, $\pm(-0.797, 0.224, -0.561)$ and $\pm(0.887, 0.227, -0.401)$.`, 'the pair\'s directions');
+	has(String.raw`Solving the quartic gives the figure's two lines of marks, $\pm(-0.797, 0.224, -0.561)$ and $\pm(0.887, 0.227, -0.401)$.`, 'the pair\'s directions');
 	has(String.raw`has the quartic $2z^2(\curv c_2z^2 - 6\curv w)$: two roots at $z = 0$, and two that split from $-\hat z$ to $z = \pm(6\curv w/\curv c_2)^{1/2} = \pm3.87$, the directions $(\pm0.484, 0, -0.875)$, for 9.2's $\curv w = 0.125$ and $\curv c_2 = 0.05$.`, 'type II');
 	has(String.raw`gives $2m_3(m_1 + im_2) = 2(-2z)(-2z^2) = 8z^3$, with $m_k$ the components of $\vect m(z)$: three roots at $z = 0$ and one at infinity.`, 'type III');
 	has(String.raw`On the $z$ axis the bracket is $-2z$ and the quartic $-12\curv wz^2$: a double root at $z = 0$, and two roots at infinity, $-\hat z$.`, 'type D');
 	has('One root four times: all four directions lie on the wave\'s direction of travel.', 'type N');
 	has(String.raw`**type O**, no field, where the quartic vanishes for every $z$ and singles out nothing`, 'type O');
-	for (const [t, pattern, example] of [['I', 'four separate', 'two masses'], ['II', 'two together, two apart', 'a mass and a wave along its line'], ['D', 'two pairs', String.raw`one mass, if $\curv w > 0$`], ['III', 'three together, one apart', 'the paper\'s table'], ['N', 'four together', 'one wave'], ['O', 'none singled out', 'no field']]) {
+	for (const [t, pattern, example] of [['I', 'four separate', 'two masses'], ['II', 'two together, two apart', 'a mass and a wave along its line'], ['D', 'two pairs', String.raw`one mass, if $\curv w > 0$`], ['III', 'three together, one apart', 'the type III table'], ['N', 'four together', 'one wave'], ['O', 'none singled out', 'no field']]) {
 		has(`| ${t} | ${pattern} |`, `the table's row ${t}`);
 		has(`| ${example} |`, `the table's example of ${t}`);
 		check(EXAMPLES[t] === example.replace(String.raw`, if $\curv w > 0$`, ''), `the example of ${t}`);
@@ -204,8 +204,8 @@ export async function chapter(check) {
 	has(String.raw`it reads $\Lambda\curv{\mathcal W}\Lambda^{\mathsf T}$ with $\sym{complex-boost}{\Lambda} = \exp(-i\obs\eta\,\hat z\cdot\mathbf L)$`, 'the boost');
 	has(String.raw`$$\boxed{\;\Lambda\,\vect m(z) = e^{-\obs\eta}\,\vect m\bigl(z\,e^{\obs\eta}\bigr) .\;} \label{eq:boost-z}$$`, 'eq:boost-z');
 	has(String.raw`**Its roots are the old roots times $e^{\obs\eta}$.**`, 'the roots times e^eta');
-	has(String.raw`**Check:** for the figure's two masses at $\obs\eta = 0.7$, all four computed roots grow by the factor $2.01375 = e^{0.7}$.`, 'the check at eta = 0.7');
-	has('A dot marks where a wave would travel to, not where it comes from', 'the convention of the dots');
+	has(String.raw`**Check:** for the figure's two masses at $\obs\eta = 0.7$, all four roots grow by $2.01375 = e^{0.7}$.`, 'the check at eta = 0.7');
+	has('A mark shows where a wave would travel to, so the marks slide behind the pixel', 'the convention of the marks');
 	for (const eta of [0.3, 0.7, 1.4]) {
 		const L = boost([0, 0, 1], eta);
 		for (const z of [cx(0.3, -0.7), cx(-1.2, 0.4), Z]) {
@@ -220,7 +220,7 @@ export async function chapter(check) {
 	}
 
 	// ---- the moving body
-	has(String.raw`A body as in the paper's Figure [](/paper/#fig:stars), at $1.5$ along $-\hat x$ and moving along $+\hat y$ at $0.9c$, has the directions $(\pm0.436, 0.9, 0)$, each twice: the half sum is $(0, 0.9, 0)$, the figure's $0.9$, and the half difference has the length $0.436 = (1 - 0.81)^{1/2}$`, 'the moving body');
+	has(String.raw`A body as in the figure, at $1.5$ along $-\hat x$ and moving along $+\hat y$ at $0.9c$, has the directions $(\pm0.436, 0.9, 0)$, each twice: the half sum is $(0, 0.9, 0)$, and the half difference has the length $0.436 = (1 - 0.81)^{1/2}$`, 'the moving body');
 	has(String.raw`\tfrac12(\hat p_+ + \hat p_-) = \frac{\obs{\vect v}_\perp}{c},\\ \tfrac12(\hat p_+ - \hat p_-) = \pm\Bigl(1 - \frac{\obs v_\perp^2}{c^2}\Bigr)^{1/2}\hat n ,`, 'the half sum and the half difference');
 	has(String.raw`For the pixel the body moves with $\obs{\vect v} = -c\obs{\vect\beta}$`, 'v = -c beta');
 	has(String.raw`with the upper signs for $\sym{pnd-pairs}{\hat p_+}$ and the lower for $\hat p_-$`, 'p+ and p-');

@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.8 (tutorial/newton/orbits-and-kicks.md), its first diagram: a circular orbit as a sequence
+// The tutorial, section 1.8 (tutorial/newton/orbits-and-kicks.md), its first diagram: a circular orbit as a sequence
 // of falls that miss. The space station's orbit round the Earth, seen face on, with the Earth cut through the plane of
 // the orbit. From a point on the orbit the station moves one second along its velocity, on the straight line
 // tangent to the circle (dashed); in that second it falls toward the centre, and the fall brings it back onto the

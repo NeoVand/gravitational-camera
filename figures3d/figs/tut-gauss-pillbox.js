@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.3 (tutorial/newton/gauss-and-poisson.md), its fifth diagram: the pillbox across a uniform
+// The tutorial, section 1.3 (tutorial/newton/gauss-and-poisson.md), its fifth diagram: the pillbox across a uniform
 // sheet. A flat sheet (a pale band: its top face, seen nearly edge-on), and a pillbox standing across it: a short
 // upright cylinder with flat ends of area A at the heights z and -z, drawn in true 3D (an orthographic view tilted as
 // lib.js's Panel does; the half of the lower end hidden by the cylinder dashed). The disc of the sheet inside the

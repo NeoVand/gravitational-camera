@@ -1,6 +1,7 @@
 /**
  * The inputs of the margin map's generator (lib/tutorial/paper-map.ts), read from the sources: the paper's anchors in
- * order, the published chapters' trees, and which `::: try` blocks mount a paper figure's live version. Used by
+ * order, the published chapters' trees, where the book derives each equation (tutorial/derivations.yaml), and which
+ * `::: try` blocks mount a paper figure's live version. Used by
  * scripts/paper-links.mjs, which writes lib/tutorial/paper-links.generated.ts, and by the test that checks that file
  * against a regeneration.
  */
@@ -10,7 +11,7 @@ import { liveFigures } from '#lib/paper/figures.js';
 import { tutorialLive } from '#lib/tutorial/live.js';
 import { linksModule, mapPaper } from '#lib/tutorial/paper-map.js';
 import type { MapAnchor, MapResult } from '#lib/tutorial/paper-map.js';
-import { chapterTree, paperContext, paperRendered, published } from './sources';
+import { chapterTree, derivations, paperContext, paperRendered, published } from './sources';
 
 /** Where the generated map is, from the app's folder. */
 export const GENERATED = path.join('src', 'lib', 'tutorial', 'paper-links.generated.ts');
@@ -57,6 +58,7 @@ export function generatePaperMap(): MapResult {
 			reads: c.reads,
 			tree: chapterTree(`${c.slug}.md`)
 		})),
+		derivations: derivations(),
 		liveFigures: live
 	});
 }

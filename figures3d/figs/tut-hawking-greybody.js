@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.3 (tutorial/black-holes/hawking.md), its third diagram: the greybody factors and the
+// The tutorial, section 11.3 (tutorial/black-holes/hawking.md), its third diagram: the greybody factors and the
 // absorption cross-section of a Schwarzschild hole, from the Regge-Wheeler equation. Two panels side by side, sharing
 // their tops and bottoms. Left, on logarithmic axes: Gamma_l against x = GM omega / c^3 from 0.05 to 2.5, for
 // l = 2, 3, 4, 6 and 10, each named at its rise; Page's long-wave limit (256/225) x^6, dashed, beside the curve l = 2 up

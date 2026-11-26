@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.8 (tutorial/what-a-field-keeps/holography.md), its first diagram: a stone that turns from a
+// The tutorial, section 13.8 (tutorial/what-a-field-keeps/holography.md), its first diagram: a stone that turns from a
 // ball into a shell and back, and what its monopole outside shows. Left, the stone in section at three times along a
 // short time axis running down: t = 0, a uniform ball; T/4, a thick shell; T/2, a thin shell; each cut away and tinted
 // in matter's colour by its density, the thin shell a solid ring; outward arrows in the thick shell's hollow for the

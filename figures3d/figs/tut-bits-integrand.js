@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.8 (tutorial/noise/bits.md), its second diagram: the integrand of the paper's
+// The tutorial, section 3.8 (tutorial/noise/bits.md), its second diagram: the integrand of the paper's
 // eq:capacity-integral, q log2(1 + s^2) with s = pi SNR q e^{-q}, against q = kz from 0 to 25, at SNR = 10^3 and at
 // SNR = 10^6, each curve in the first accent (orange) with the area under it shaded in the accent's pale tint (the
 // 10^6 area paler, behind). Over each, dashed in the second accent (blue), the approximation 2q log2 s kept up to the

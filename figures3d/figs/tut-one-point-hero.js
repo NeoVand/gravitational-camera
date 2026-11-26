@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.1 (tutorial/one-point/spin-two.md), its opening figure and the hero of Part 9 (chapter 9.4
+// The tutorial, section 9.1 (tutorial/one-point/spin-two.md), its opening figure and the hero of Part 9 (section 9.4
 // reuses it): the sky around one point, and the two kinds of stars on it. A clear glass sphere, the sky around one
 // pixel; at its centre the pixel, a ring of twelve free stone beads with a small stone gyroscope at its centre. Outside
 // the glass, the two stone masses of the paper's fig:stars. On the glass, as ink dots with a faint glow, the four

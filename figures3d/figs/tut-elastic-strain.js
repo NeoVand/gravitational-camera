@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.3 (tutorial/response/elastic-bodies.md), its first diagram: three small squares of material
+// The tutorial, section 4.3 (tutorial/response/elastic-bodies.md), its first diagram: three small squares of material
 // side by side, each with its outline at rest dashed and its deformed outline solid over a pale tint, the deformation
 // exaggerated. Left, a shear with the strain table (0, s; s, 0): stretched along the diagonal x = y (orange arrows,
 // out at its two corners) and squeezed along the other (blue arrows, in at its corners), at the same area. Middle, a

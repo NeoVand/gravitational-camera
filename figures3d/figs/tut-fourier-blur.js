@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.6 (tutorial/outside/fourier.md), a blur multiplies each ripple by a number. Top, three rows
+// The tutorial, section 2.6 (tutorial/outside/fourier.md), a blur multiplies each ripple by a number. Top, three rows
 // on one x axis: a pattern f made of a coarse ripple and a fine one of equal size, (cos k1 x + cos k2 x) / 2 with
 // k2 = 4 k1; the kernel g, a Gaussian of width eps, drawn at three places along it; and the blurred pattern g * f, in
 // which the coarse ripple keeps e^{-eps^2 k1^2 / 2} = 0.88 of its size and the fine one e^{-eps^2 k2^2 / 2} = 0.14.

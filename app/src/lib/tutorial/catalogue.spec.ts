@@ -10,7 +10,7 @@ const raw = () => parse(readFileSync('../tutorial/parts.yaml', 'utf8'));
 describe('parts.yaml', () => {
 	it('parses, with every reading chapter reading a section the paper has', () => {
 		const c = parseCatalogue(raw(), new Set(paperContext().index.labels.keys()));
-		expect(c.parts).toHaveLength(14);
+		expect(c.parts).toHaveLength(15);
 		expect(allChapters(c).find((ch) => ch.id === '1.4')).toMatchObject({
 			slug: 'newton/tides',
 			short: 'Tides'

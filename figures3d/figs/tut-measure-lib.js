@@ -1,6 +1,6 @@
-// Shared tools for the four diagrams of the tutorial's chapter 3.3 (tutorial/noise/measuring-a-number.md):
+// Shared tools for the four diagrams of the tutorial's section 3.3 (tutorial/noise/measuring-a-number.md):
 // tut-measure-safe, tut-measure-peak, tut-measure-ellipse and tut-measure-pair. Not a figure itself. The charts take
-// chapter 3.1's sheet, axes and colours (figs/tut-prob-lib.js) and the array's plates from chapter 3.2
+// section 3.1's sheet, axes and colours (figs/tut-prob-lib.js) and the array's plates from section 3.2
 // (figs/tut-noise-lib.js), both imported, not copied. What this file adds:
 //  - the locked safe's predicted readings, from the repository's own model: a port of reference/gravcam/inversion.py
 //    (array_pixels, read_box, noise_for_snr) and of the prism formulas of reference/gravcam/tidal.py

@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.1 (tutorial/newton/vectors-and-indices.md), its third diagram: the cyclic orders of 1, 2
+// The tutorial, section 1.1 (tutorial/newton/vectors-and-indices.md), its third diagram: the cyclic orders of 1, 2
 // and 3. The three numbers stand round a circle, 1 at the top and 2 and 3 a third of a turn on either side, the
 // same in both drawings. On the left, arrows go round from 1 to 2 to 3 and back to 1 (anticlockwise), and the
 // three orders read off that way, starting at each number in turn, are 1, 2, 3 and 2, 3, 1 and 3, 1, 2: the

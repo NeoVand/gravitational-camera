@@ -1,6 +1,6 @@
-// Shared mathematics for the three diagrams of the tutorial's chapter 3.8 (tutorial/noise/bits.md): tut-bits-questions,
-// tut-bits-integrand and tut-bits-growth. Not a figure itself. The charts take chapter 3.1's sheet, axes and labels
-// (figs/tut-pot-lib.js, figs/tut-prob-lib.js) and chapter 2.6's curve sampling (figs/tut-fourier-lib.js), imported, not
+// Shared mathematics for the three diagrams of the tutorial's section 3.8 (tutorial/noise/bits.md): tut-bits-questions,
+// tut-bits-integrand and tut-bits-growth. Not a figure itself. The charts take section 3.1's sheet, axes and labels
+// (figs/tut-pot-lib.js, figs/tut-prob-lib.js) and section 2.6's curve sampling (figs/tut-fourier-lib.js), imported, not
 // copied.
 //
 // The near field, in the chapter's letters: q = kz; a ripple stands above its noise by s = pi SNR q e^{-q}; the cut-off

@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.4 (tutorial/relativity/energy-and-momentum.md), its third diagram: light-cone components.
+// The tutorial, section 6.4 (tutorial/relativity/energy-and-momentum.md), its third diagram: light-cone components.
 // One panel, units of mc at one scale on both axes. The ordinary axes, p_z across from -2.4 to 2.4 and E/c upward
 // from 0 to 2.6, thin and faint, named "p_z" and "E/c". Over them the light-cone axes, two thick ink arrows at 45
 // degrees from the origin: along (p_z, E/c) ~ (-1, 1), named "q = E/c - p_z", and along (1, 1), named "E/c + p_z";
@@ -39,7 +39,7 @@ const check = checker(name);
 const U = 54;                              // points per unit of mc
 const X = 2.4, TOP = 2.6;                  // p_z from -X to X, E/c from 0 to TOP
 const REACH = 3.2;                         // the light-cone axes' heads, in their own values (mc)
-const POINT = DOT + 0.35;                  // a dot, radius (chapter 6.1's)
+const POINT = DOT + 0.35;                  // a dot, radius (section 6.1's)
 const CLEAR = 2.2;                         // the dotted lines start this far from the dot
 const OFF = 4.5;                           // the boost's arrow, outside the hyperbola
 const OUT_TICK = 3.6;                      // a tick on a light-cone axis, outward from it

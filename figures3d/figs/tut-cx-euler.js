@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.5b (tutorial/newton/complex-numbers.md), its second diagram: Euler's formula as motion
+// The tutorial, section 1.5b (tutorial/newton/complex-numbers.md), its second diagram: Euler's formula as motion
 // round the unit circle. The complex plane, its axes Re and Im, the circle of radius 1 (its crossings 1, i, -1, -i labelled),
 // the point e^{i theta} at theta = 40 degrees drawn as an arrow from 0, and from its tip its derivative i e^{i theta}
 // (orange), the same length, at right angles to it and so tangent to the circle; the arc of the circle from 1 to

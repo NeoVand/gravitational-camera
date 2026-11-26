@@ -1,8 +1,8 @@
-// Shared numbers, colours and marks for the three diagrams of the tutorial's chapter 7.6
+// Shared numbers, colours and marks for the three diagrams of the tutorial's section 7.6
 // (tutorial/geometry/gravitational-waves.md): tut-gw-count, tut-gw-arms and tut-gw-turned. Not a figure itself. The
-// colour roles are chapter 7.4's (figs/tut-linear-lib.js: the observer's, the curvature's and the field's, read from
+// colour roles are section 7.4's (figs/tut-linear-lib.js: the observer's, the curvature's and the field's, read from
 // app.css), orange for a stretch and blue for a squeeze as in Part 1's rings (figs/tut-tides.js, figs/tut-five-lib.js);
-// the sheet, strokes, labels and cropping are those of chapters 6.1 to 7.4 (figs/tut-pot-lib.js), all imported, not
+// the sheet, strokes, labels and cropping are those of sections 6.1 to 7.4 (figs/tut-pot-lib.js), all imported, not
 // copied. The ring of twelve free steel beads is the paper's figure 2, panels (b) and (c) (figs/tidal.js): the ring
 // drawn at the push's largest, an arrow at every bead, the pale ring of half a cycle later and the dashed circle
 // undisturbed; here each arrow is orange where its bead is pushed outward and blue where inward.
@@ -141,7 +141,7 @@ export const ARM = 4000;                   // m
 export const PROTON = 1.7e-15;             // m, its width as the chapter states it
 export const MPC = 3.09e22;                // m
 export const YEAR = 3.156e7;               // s
-export const PERSON_TIDE = 9.34e-9;        // s^-2, chapter 1.4
+export const PERSON_TIDE = 9.34e-9;        // s^-2, section 1.4
 
 const fig = (v, n = 1) => Math.abs(v).toExponential(n);
 

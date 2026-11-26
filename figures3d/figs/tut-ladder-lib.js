@@ -1,8 +1,8 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 13.3 (tutorial/what-a-field-keeps/ladder.md):
+// Shared numbers for the three diagrams of the tutorial's section 13.3 (tutorial/what-a-field-keeps/ladder.md):
 // tut-ladder-laplacians, tut-ladder-rungs and tut-ladder-pair-profiles. Not a figure itself. The sheet, strokes,
-// labels and cropping are chapters 1.2 to 13.2's (figs/tut-pot-lib.js), the plots and axes chapter 3.1's
+// labels and cropping are sections 1.2 to 13.2's (figs/tut-pot-lib.js), the plots and axes section 3.1's
 // (figs/tut-prob-lib.js), the beads the paper's (figs/ladder.js, stone.js's STEEL), matter's and the field's
-// colours chapter 7.4's (figs/tut-linear-lib.js, asserted against app.css by `palette(check)`), all imported, not
+// colours section 7.4's (figs/tut-linear-lib.js, asserted against app.css by `palette(check)`), all imported, not
 // copied.
 //
 // The colours: the density and its moments (rho, delta rho, the arrows of the pair's masses, the bead of int rho r^4)
@@ -160,7 +160,7 @@ export async function chapter(check) {
 	has(r`$\int\matter\rho\,r^4\,\dd V$ is $\tfrac14\matter MR^4$ for A and
 		$\tfrac12\matter MR^4$ for B`, 'the fourth moments');
 	has(r`The opening's bodies both have $\int\matter\rho\,r^2\,\dd V = \tfrac12\matter MR^2$`, 'the second moments');
-	has(r`the difference $\matter{\delta\rho} = \matter\rho_B - \matter\rho_A$ of the paper's pair is
+	has(r`the difference $\matter{\delta\rho} = \matter\rho_B - \matter\rho_A$ of the pair of the opening is
 		$\nabla^4\field\psi_2/4\pi G$ with $\field\psi_2$ zero outside the ball of radius $R$.`, 'the stretch problem');
 	has(r`The solution of $\nabla^2\field\psi_1 = 4\pi G\matter{\delta\rho}$ vanishes outside $R$`, 'psi_1');
 	has(r`Then $\nabla^2\field\psi_2 = \field\psi_1$ has a solution that vanishes outside $R$

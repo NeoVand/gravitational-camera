@@ -1,9 +1,9 @@
-// Shared numbers for the four diagrams of the tutorial's chapter 8.6 (tutorial/quantum/quantum-limit.md):
+// Shared numbers for the four diagrams of the tutorial's section 8.6 (tutorial/quantum/quantum-limit.md):
 // tut-sql-compromise, tut-sql-pixel, tut-sql-interferometer and tut-snr-ladder. Not a figure itself. The palette is
-// chapter 8.1's (read from app.css by `palette(check)`, with matter's and the curvature's colours), the relative `near`
-// chapter 8.2's, G and c chapter 7.1's (figs/tut-einstein-lib.js), the blur law's cut-off chapter 3.8's Newton solver
+// section 8.1's (read from app.css by `palette(check)`, with matter's and the curvature's colours), the relative `near`
+// section 8.2's, G and c section 7.1's (figs/tut-einstein-lib.js), the blur law's cut-off section 3.8's Newton solver
 // (figs/tut-bits-lib.js, `cutoff`, a port of the site's engine), and the sheet, strokes, labels and cropping those of
-// chapters 6.1 to 8.5 (figs/tut-pot-lib.js), all imported, not copied. Ink and the page's greys only; orange, which
+// sections 6.1 to 8.5 (figs/tut-pot-lib.js), all imported, not copied. Ink and the page's greys only; orange, which
 // means a stretch, appears only in tut-sql-pixel's two arrows, and blue (a squeeze) nowhere.
 //
 // Every number is computed here with hbar = 1.0546 x 10^-34 J s, G = 6.674 x 10^-11 and the chapters' masses, times
@@ -21,10 +21,10 @@
 //  - the ladder: the ratios on the person of 467, 1.44 x 10^5, 9.5 x 10^16 (stretches of 10^3 s, shorter than the hour in which the pair falls together, averaged over
 //    4.35 x 10^17 s), 4.1 x 10^31 (tau^3/2 carried to the age of the universe), 1.7 x 10^55 (the ceiling over the
 //    1.5 x 10^15 by which a camera of mass z c^2 / 2G at 3 m outpulls the Earth) and 2.6 x 10^70 (M_s c^2 tau / hbar);
-//    their blurs by chapter 3.7's exact calculation (step 7, the one that reproduces the paper's table): the full
+//    their blurs by section 3.7's exact calculation (step 7, the one that reproduces the paper's table): the full
 //    width at half maximum of the picture of a point under a plane of sensors, int H(q) J0(q r) q dq with the Wiener
 //    filter H, found by bisection, ported line by line from the site's BlurLaw interactive
-//    (app/src/lib/tutorial/live/blur-law.ts, planePointSpread) and asserted against chapter 3.7's table:
+//    (app/src/lib/tutorial/live/blur-law.ts, planePointSpread) and asserted against section 3.7's table:
 //    26.0, 16.0, 5.47, 3.24, 1.91 and 1.51 degrees (4.43 / q_c, the law of step 6, gives 26.6 and 16.1 for the first two).
 import { palette, MATTER, CURV } from './tut-memory-lib.js';
 import { near } from './tut-operators-lib.js';
@@ -88,11 +88,11 @@ export const ladder = () => {
 		camera
 	};
 };
-/** Chapter 3.7's law of step 6, 4.43 / q_c, in degrees, for SNR = 10^d: only the estimate. */
+/** Section 3.7's law of step 6, 4.43 / q_c, in degrees, for SNR = 10^d: only the estimate. */
 export const LAW = 4.43;
 export const lawBlur = (d) => ((LAW / cutoff(d)) * 180) / Math.PI;
 
-// ---- chapter 3.7's exact blur (step 7): ported from app/src/lib/tutorial/live/blur-law.ts --------------------------
+// ---- section 3.7's exact blur (step 7): ported from app/src/lib/tutorial/live/blur-law.ts --------------------------
 /** H(q) for SNR = 10^d (app/src/lib/engine/resolution.ts, transfer). */
 export function transfer(q, d) {
 	if (q <= 0) return 0;
@@ -141,7 +141,7 @@ export function exactWidth(d) {
 	const f = (r) => evaluate(nodes, weights, r) / peak;
 	return 2 * halfPoint(f, (0.5 * 4.4302) / (2 * qc), (2 * 4.4302) / (2 * qc));
 }
-/** Chapter 3.7's blur, exact, in degrees. */
+/** Section 3.7's blur, exact, in degrees. */
 export const blur = (d) => (exactWidth(d) * 180) / Math.PI;
 /** A check by a second route: the same picture without the integration by parts, (1 / 2 pi) int H J0(q r) q dq by
  * Simpson's rule (as figs/tut-read-iv2-capstone.js computes it), its half maximum by bisection. */
@@ -194,7 +194,7 @@ export async function chapter(check) {
 	has('this pixel reads a signal-to-noise ratio of $1.44\\times10^5$ in a second', 'the pixel\'s ratio');
 	has('$\\sqrt2\\,\\sigma_{\\rm SQL} = \\sqrt{2\\hbar\\tau/\\matter m} = 4.6\\times10^{-16}$ m', 'the spread of the distance');
 	has('and the tide is $9.2\\times10^{-14}\\unit{s^{-2}}$', 'the tide of the distance');
-	has('reaches $0.02\\unit{E}$ in a second, $2\\times10^{-11}\\unit{s^{-2}}$ (*stated in the paper*), and so gives the person R1\'s ratio of 467', 'the gradiometer');
+	has('reaches $0.02\\unit{E}$ in a second, $2\\times10^{-11}\\unit{s^{-2}}$ (section [R1](/tutorial/newton/reading-section-ii/#what-the-premise-asks-existing-instruments-nearly-supply)), and so reads the person at a ratio of 467', 'the gradiometer');
 	has('are moved relative to each other by $\\tfrac12\\curv{\\tE}\\xi\\tau^2$ in the time $\\tau$', 'the stretch');
 	check(sig(pixelTide(), 2) === '6.5e-14' && sig(pixelTide(true), 2) === '9.2e-14' && sig(Math.SQRT2 * sql, 2) === '4.6e-16', `the pixel's tides ${pixelTide()}, ${pixelTide(true)}`);
 	check(sig(personTide(), 3) === '9.34e-9' && (Math.round(personTide() / pixelTide() / 1000) * 1000).toLocaleString('en') === '144,000', `the person's ${personTide()}`);
@@ -228,7 +228,7 @@ export async function chapter(check) {
 	has('For the person of 70 kg watched for the age of the universe, $4.35\\times10^{17}$ s, the ceiling is $2.6\\times10^{70}$', 'the ceiling');
 	has('blur law gives $1.51°$', 'the ceiling\'s blur');
 	has('pulls at 3 m with $1.5\\times10^{15}$ times the Earth\'s gravity $g$', 'the camera\'s pull');
-	has('the paper\'s ceiling falls by the same factor to $1.7\\times10^{55}$, a blur of $1.91°$', 'the Earth-bound ceiling');
+	has('the ceiling falls by the same factor to $1.7\\times10^{55}$, a blur of $1.91°$', 'the Earth-bound ceiling');
 	has('$$\\SNR \\lesssim \\frac{\\matter M_sc^2\\tau}{\\hbar} .$$', 'the ceiling\'s form');
 	has('Its ratio on the person grows as $\\tau^{3/2}$, from $1.44\\times10^5$ in a second', 'the growth');
 	has('would part them only after $\\sqrt{2/\\curv{\\tE}} = 1.5\\times10^4$ s', 'the tide\'s parting time');
@@ -243,15 +243,15 @@ export async function chapter(check) {
 	const logs = { grad: '2.67', pix: '5.16', avg: '17.0', formal: '31.6', earth: '55.2', ceiling: '70.4' };
 	for (const [k, s] of Object.entries(logs)) check(Math.log10(R[k]).toFixed(s.length - s.indexOf('.') - 1) === s, `log10 of ${k} is ${Math.log10(R[k])}, not ${s}`);
 
-	// ---- the blur, by chapter 3.7's exact calculation (step 7), checked against its table and its law
+	// ---- the blur, by section 3.7's exact calculation (step 7), checked against its table and its law
 	const law = await (await fetch('/tutorial/noise/blur-law.md')).text();
 	const lawFlat = law.replace(/<!--[\s\S]*?-->/g, ' ').replace(/\s+/g, ' ');
-	const said = (t, what) => check(lawFlat.includes(t), `chapter 3.7 does not say ${what}: ${t}`);
+	const said = (t, what) => check(lawFlat.includes(t), `section 3.7 does not say ${what}: ${t}`);
 	said('$$\\boxed{q_c\\,e^{-q_c} = \\frac{1}{\\pi\\,\\SNR}}. \\label{eq:cutoff-here}$$', 'the cut-off');
 	said('The **cut-off** $\\sym{cutoff}{q_c}$ is the larger root of', 'the larger root');
-	said('## Step 7: an exact calculation reproduces the paper\'s table', 'step 7');
-	said('to compute the picture of a point by numerical integration of $\\int_0^\\infty H(q)\\,J_0(qa/z)\\,q\\,\\dd q$ on the plane', 'the exact picture');
-	said('and to find its half maximum by bisection', 'the half maximum');
+	said('## Step 7: an exact calculation of the blur table', 'step 7');
+	said('integrate the picture of a point numerically, $\\int_0^\\infty H(q)\\,J_0(qa/z)\\,q\\,\\dd q$ on the plane', 'the exact picture');
+	said('find its half maximum by root-finding', 'the half maximum');
 	// the table's Plane column, and its 4.43 / q_c column, at every row
 	for (const [d, plane, est] of [[3, '24.0', '24.4'], [6, '14.1', '14.2'], [10, '9.2', '9.2'], [20, '5.0', '5.0'], [30, '3.4', '3.4'], [60, '1.8', '1.8']]) {
 		said(`| $10^{${d}}$ | ${cutoff(d).toFixed(1)} | ${plane}° |`, `the table's row at 10^${d}`);

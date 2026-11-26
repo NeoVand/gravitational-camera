@@ -1,4 +1,4 @@
-// The singular values of the paired-tides model of the tutorial's chapter 13.8 (tutorial/what-a-field-keeps/holography.md),
+// The singular values of the paired-tides model of the tutorial's section 13.8 (tutorial/what-a-field-keeps/holography.md),
 // for tut-cells-vs-snr through tut-holo-lib.js; not a figure. Row l is sector l: the thresholds t = ln(sigma_top / sigma),
 // to three places, of the sector's singular values sigma with t < 300.5, in increasing order; sigma_top is the largest,
 // sector 0's first (t = 0). Each counts 2l + 1 times once ln SNR passes its threshold. Computed by the multiple-precision

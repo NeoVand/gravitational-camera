@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.2 (tutorial/outside/spherical-harmonics.md), its third diagram: the real parts of the
+// The tutorial, section 2.2 (tutorial/outside/spherical-harmonics.md), its third diagram: the real parts of the
 // spherical harmonics Y_lm for l = 0, 1, 2, 3, each drawn on a sphere, orange where it is positive and blue where it
 // is negative, in a triangle: one row for each degree l and one column for each order m from -3 to 3, so that the
 // rows hold 1, 3, 5 and 7 spheres. Every sphere is seen from the same direction: the z axis up and leaning TILT

@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.8 (tutorial/outside/flows.md), its third diagram: the two kinds of steady flow round an axis,
+// The tutorial, section 2.8 (tutorial/outside/flows.md), its third diagram: the two kinds of steady flow round an axis,
 // in a ball cut in half through its axis and seen a little from above, so that the meridian section faces the reader
 // and the back half of the ball shows as a crescent above it. Left, rolls: the contours of the chapter's example
 // stream function chi = 4 K varpi^2 (1 - r^2 / R^2) / R^2 at 0.35, 0.65 and 0.9 of its greatest value K, one closed roll
@@ -13,7 +13,7 @@
 // stretch problem's, checked in figs/tut-flow-lib.js); P on its contour; the circle through P and the section's
 // outline, the axis and the crescent from the view (a turn of TILT degrees about the horizontal); the sense of the
 // swirl's marks for Omega along +z. Chosen for the drawing: the three levels, the place of P, the swirl's marks and
-// the view. Pictorial: the sawn face of the steel ball (sprites/hair/ball-face.png, as in chapter 2.5's figures),
+// the view. Pictorial: the sawn face of the steel ball (sprites/hair/ball-face.png, as in section 2.5's figures),
 // clipped to the section's exact outline, and the back half lit as the paper's balls are, in the stone's mean colour.
 import { Panel, v3, INK, DIM } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, HAIR, DASH, n2 } from './tut-vec-lib.js';

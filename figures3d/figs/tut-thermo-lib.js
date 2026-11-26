@@ -1,11 +1,11 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 13.7 (tutorial/what-a-field-keeps/thermometer.md):
+// Shared numbers for the three diagrams of the tutorial's section 13.7 (tutorial/what-a-field-keeps/thermometer.md):
 // tut-sum-cutoff, tut-hole-shells and tut-hankel-test. Not a figure itself. The sheet, strokes, labels and cropping are
-// chapters 1.2 to 13.4's (figs/tut-pot-lib.js), the plots and axes chapter 3.1's (figs/tut-prob-lib.js), matter's
-// colour chapter 7.4's (figs/tut-linear-lib.js, asserted against app.css by `palette(check)`), the hole's fill chapter
+// sections 1.2 to 13.4's (figs/tut-pot-lib.js), the plots and axes section 3.1's (figs/tut-prob-lib.js), matter's
+// colour section 7.4's (figs/tut-linear-lib.js, asserted against app.css by `palette(check)`), the hole's fill chapter
 // 11.1's (figs/tut-schw-lib.js), all imported, not copied.
 //
 // The colours: the hole's would-be shells and the region where no positive mass can go in matter's colour, since
-// they stand for mass; the horizon a disc of the fixed near-black of chapter 11.1; everything else in ink and the
+// they stand for mass; the horizon a disc of the fixed near-black of section 11.1; everything else in ink and the
 // page's greys, told apart by stroke (solid, dashed, dotted) and named beside the lines. The diagram comments' orange
 // and blue (the band of the sum, the rings and the hole's parabola, the region below zero) are not used: in the
 // tutorial's figures orange and blue mean a stretch and a squeeze.
@@ -14,7 +14,7 @@
 // equally spaced in ln x from 0.01 to 3 (x_i = 0.01 * 300^(i/240)), six figures, from the paper's Regge-Wheeler solver
 // (reference/gravcam/bhmodes.py, transmission(2, x), flux conserved to 10^-9), the solver behind the paper's
 // fig:hole-response and reference/gravcam/holeresponse.py; values that exceed 1 by rounding are held at 1. Between its
-// points ln Gamma_2 is a natural cubic spline in ln x. `chapter(check)` asserts it against chapter 11.3's table
+// points ln Gamma_2 is a natural cubic spline in ln x. `chapter(check)` asserts it against section 11.3's table
 // (app/src/lib/tutorial/live/hole-against-sky-data.ts, the row l = 2, x = 0.01 to 0.78) to a part in 10^3, the integral int Gamma_2 x^-4 dx (Page's law below 0.01, 1 above 3) against the chapter's 6.938, the shares
 // below 0.2 and between 0.3 and 0.6 against its 0.3% and three quarters, and the peak against its 0.40.
 //
@@ -154,7 +154,7 @@ export async function chapter(check) {
 	const has = (s, what) => check(flat.includes(s.replace(/\s+/g, ' ')), `the chapter does not say ${what}: ${s}`);
 	const r = String.raw;
 
-	// ---- Gamma_2 against chapter 11.3's table, and its integrals against the chapter
+	// ---- Gamma_2 against section 11.3's table, and its integrals against the chapter
 	{
 		const ts = await (await fetch('/app/src/lib/tutorial/live/hole-against-sky-data.ts')).text();
 		const xs = ts.match(/export const X[^=]*=\s*\[([\s\S]*?)\]/)[1].split(',').map(Number);
@@ -163,7 +163,7 @@ export async function chapter(check) {
 		const vs = row[2].split(',').map(Number);
 		let worst = 0;
 		for (let i = 0; i < vs.length && xs[i] <= 0.78 + 1e-9; i++) worst = Math.max(worst, Math.abs(gamma2(xs[i]) / vs[i] - 1));
-		check(worst < 1e-3, `Gamma_2 differs from chapter 11.3's table by ${worst}`);
+		check(worst < 1e-3, `Gamma_2 differs from section 11.3's table by ${worst}`);
 	}
 	check(X.length === GAMMA2.length && near(X.at(-1), X1, 1e-12), 'the grid');
 	for (let i = 1; i <= STEPS; i++) check(GAMMA2[i] >= GAMMA2[i - 1] && GAMMA2[i] <= 1, `Gamma_2 does not rise to 1 at ${X[i]}`);

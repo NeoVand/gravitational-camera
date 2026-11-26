@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.1 (tutorial/what-a-field-keeps/push-and-pass.md), its second diagram: the terms of the
+// The tutorial, section 13.1 (tutorial/what-a-field-keeps/push-and-pass.md), its second diagram: the terms of the
 // loss pulled apart by radius and by turn. Left, the lopsided body of the chapter's interactive seen along the path: two
 // stone lumps, 0.7 M at (0.27 - 0.09i) R and 0.3 M at (-0.63 + 0.21i) R, their centre of mass the origin (a small ink
 // dot), inside the faint dotted circle |w| = R that holds the body; round it, impact points as steel beads on three

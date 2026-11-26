@@ -1,5 +1,5 @@
-// The tutorial, reading chapter R11 (tutorial/black-holes/reading-section-vii.md), its second diagram: the capstone,
-// one hole of chapter 11.3's equilibrium mass followed as the camera's lens in seven small panels, (a) to (g), the
+// The tutorial, reading section R11 (tutorial/black-holes/reading-section-vii.md), its second diagram: the capstone,
+// one hole of section 11.3's equilibrium mass followed as the camera's lens in seven small panels, (a) to (g), the
 // rows of the chapter's capstone table, in two rows, four and three, joined in reading order by thin grey arrows (the
 // fourth to the fifth by a return arrow out at the right, back along the gap between the rows), each panel with its
 // numbers beneath it.
@@ -7,7 +7,7 @@
 //      "1.356 x 10^23 kg, 0.905 K".
 //  (b) lens: a logarithmic wavelength scale, 5 um to 20 cm, ticked at the decades; the energy per unit frequency of
 //      the glow of matter at 293 K and of the graviton sky at 0.905 K, x^3 / (e^x - 1) with x = hc / lambda k_B T, each
-//      scaled to its own peak (so peaking at 17.4 um and 5.6 mm, chapters 10.1's and 11.3's peaks at 2.82 k_B T); the
+//      scaled to its own peak (so peaking at 17.4 um and 5.6 mm, sections 10.1's and 11.3's peaks at 2.82 k_B T); the
 //      waves shorter than 4 pi r_s = 2.53 mm, which the hole focuses, shaded in the page's tint, the cut-off an ink
 //      line. "r_s = 0.201 mm; above 118 GHz".
 //  (c) orbit: the camera (a small ink square, as 11.1's) on a circle round the hole, a curved arrow for its motion and
@@ -24,7 +24,7 @@
 //      the two are equal. "10^8 x the person's tide, out to 12,470 km".
 //  (g) adds: five pixels, their records led into one sum, the computed lens. "classically nothing; a quantum image
 //      from counts".
-// The colours, as chapters 11.1's and 11.3's figures (figs/tut-schw-*.js, figs/tut-hawking-*.js): the hole's fill
+// The colours, as sections 11.1's and 11.3's figures (figs/tut-schw-*.js, figs/tut-hawking-*.js): the hole's fill
 // fixed near black with an ink edge, the Moon in matter's colour, the rays and the annulus in the light role's colour;
 // everything else in ink and the page's greys. Orange and blue, which mean a stretch and a squeeze, are not used.
 // Departures from the diagram's comment, where the chapter's text decides: r_s is printed as the chapter's 0.201 mm,
@@ -52,7 +52,7 @@ const M = 1.356e23;                         // kg, the chapter's equilibrium mas
 const PERSON = 70;                          // kg, at 1 m
 const A = 0.05;                             // m, the detector's radius
 const BE_ANNULUS = 3.25;                    // m, b_E as the chapter prints it, for the annulus's radii
-const ROOM = 293;                           // K, chapter 10.1's room temperature
+const ROOM = 293;                           // K, section 10.1's room temperature
 const DEG = Math.PI / 180;
 
 // ---- the drawing (figure points, y down) ------------------------------------------------------------------------
@@ -97,20 +97,20 @@ async function numbers() {
 	const sci = (x) => { const e = Math.floor(Math.log10(x)); return [(x / 10 ** e).toFixed(3), e]; };
 	// (a) the mass, the hole as warm as the graviton sky
 	check(massAt(GRAVITON_SKY).toPrecision(4) === '1.356e+23' && sci(M).join() === '1.356,23', 'the equilibrium mass is not 1.356 x 10^23 kg');
-	has('For the hole we use chapter 11.3\'s equilibrium mass, $1.356\\times10^{23}$ kg, throughout.', 'the mass used');
+	has('The capstone follows one hole, of the equilibrium mass $1.356\\times10^{23}$ kg, through Part 11', 'the mass used');
 	has('| (a) mass | $\\matter M = \\hbar c^3/8\\pi G\\kB T$, $T = 0.905$ K | $1.356\\times10^{23}$ kg; unstable | 11.3 |', '(a)');
 	// (b) the lens: r_s, the cut-off 4 pi r_s and its frequency
 	const rs = (2 * G * M) / C ** 2, cut = 4 * Math.PI * rs, ghz = C / cut / 1e9;
 	check((rs * 1e3).toFixed(3) === '0.201' && (cut * 1e3).toFixed(2) === '2.53' && ghz.toFixed(0) === '118', `r_s ${rs}, 4 pi r_s ${cut}, ${ghz} GHz`);
-	has('Its $r_s$ is 0.201 mm. By 11.1\'s **wave-optics cut-off**, a mass focuses only waves shorter than $4\\pi r_s$: 2.53 mm, or frequencies above 118 GHz', 'the cut-off');
+	has('Its $r_s$ is 0.201 mm. By the **wave-optics cut-off** of section 11.1, a mass focuses only waves shorter than $4\\pi r_s$: 2.53 mm, or frequencies above 118 GHz', 'the cut-off');
 	has('| (b) lens | $r_s = 2G\\matter M/c^2$; focuses $\\lambda < 4\\pi r_s$ | 0.201 mm; above 118 GHz, the warm glow | 11.1 |', '(b)');
 	// the two spectra's peaks: the energy per unit frequency peaks at 2.82 k_B T
 	const peak = (T) => (H * C) / (ENERGY * KB * T);
 	check(ENERGY.toFixed(2) === '2.82' && (peak(ROOM) * 1e6).toFixed(1) === '17.4' && (peak(GRAVITON_SKY) * 1e3).toFixed(1) === '5.6', `the peaks ${peak(ROOM)} ${peak(GRAVITON_SKY)}`);
 	check(((ENERGY * KB * GRAVITON_SKY) / H / 1e9).toFixed(0) === '53', 'the graviton sky does not peak at 53 GHz');
 	check(peak(ROOM) < cut && peak(GRAVITON_SKY) > cut, 'the glow and the sky are not on either side of the cut-off');
-	has('So the hole focuses the glow of matter at room temperature, at tens of micrometres', 'the warm glow');
-	has('the 0.905 K graviton sky peaks near 53 GHz, below the cut-off (chapter 11.3)', 'the graviton sky');
+	has('So the hole focuses the glow of room-temperature matter, which peaks at tens of micrometres', 'the warm glow');
+	has('the 0.905 K graviton sky peaks near 53 GHz, below the cut-off.', 'the graviton sky');
 	// (c) the orbit: where the hole's tide is 1 s^-2, and the period there
 	const r = Math.cbrt(2 * G * M), T = 2 * Math.PI * Math.sqrt(r ** 3 / (G * M));
 	check((r / 1e3).toFixed(1) === '26.3' && T.toFixed(1) === '8.9' && near(T, 2 * Math.PI * Math.SQRT2, 1e-9), `the orbit ${r} m, ${T} s`);
@@ -131,24 +131,24 @@ async function numbers() {
 	check(near(Math.PI * (bp * bp - bm * bm), Math.PI * A * Math.sqrt(A * A + 4 * BE_ANNULUS ** 2), 1e-12) && (Math.PI * (bp * bp - bm * bm)).toFixed(2) === '1.02', 'the annulus\'s area');
 	has('between $b_\\pm = \\tfrac12[\\sqrt{a^2 + 4b_E^2} \\pm a]$', 'the annulus\'s radii');
 	has('For $a = 5$ cm it is 1.02 m², 130 times $\\pi a^2$', 'the area gathered');
-	has('| (e) gathers | $\\pi a\\sqrt{a^2 + 4b_E^2}$, $a = 5$ cm; peak $\\pi w$ | 1.02 m², 130 times; 795 | here; Section XI |', '(e)');
+	has('| (e) gathers | $\\pi a\\sqrt{a^2 + 4b_E^2}$, $a = 5$ cm; peak $\\pi w$ | 1.02 m², 130 times; 795 | here |', '(e)');
 	// (f) the cost: the person's tide, the factor at 26.3 km, and where the two tides are equal
 	const person = (2 * G * PERSON) / 1 ** 3, ratio = 1 / person, equal = Math.cbrt(M / PERSON);
 	check(person.toPrecision(2) === '9.3e-9' && ratio.toPrecision(3) === '1.07e+8' && Math.round(Math.log10(ratio)) === 8, `the person ${person}, ${ratio}`);
 	check((Math.round(equal / 1e4) * 10).toLocaleString('en-US') === '12,470', `the tides are equal at ${equal} m`);
-	has('A person of 70 kg a metre away has chapter', 'the person');
-	has('$9.3\\times10^{-9}\\unit{s^{-2}}$. At 26.3 km the hole\'s is $1.07\\times10^8$ times larger, the caption\'s "$10^8$"', 'the factor');
-	has('at 12,470 km, "12,500 km"', 'where the tides are equal');
+	has('A person of 70 kg a metre away raises the tide $9.3\\times10^{-9}\\unit{s^{-2}}$', 'the person');
+	has('at 26.3 km the hole\'s is $1.07\\times10^8$ times larger', 'the factor');
+	has('at 12,470 km.', 'where the tides are equal');
 	has('| (f) costs | $r^3 = (\\matter M/70\\unit{kg})\\,\\mathrm{m^3}$ | the person\'s tide wins beyond 12,470 km | 1.4, here |', '(f)');
 	// (g) what a lens adds
 	has('| (g) adds | an image from counted gravitons | classically nothing | R8 |', '(g)');
-	has('classically nothing, because the array of the paper\'s [](/paper/#eq:beam) does the lens\'s sum by computation', 'the computed lens');
+	has('Classically a lens adds nothing, because an array does its sum by computation (below).', 'the computed lens');
 	// the caption, once drawn
 	const drawn = flat.includes(`](${name}){#fig:read-vii-capstone}`);
 	const planned = md.includes(`<!-- diagram: ${name} `);
 	check(drawn !== planned, `the diagram is ${drawn ? 'both drawn and planned' : 'neither drawn nor planned'}`);
 	if (drawn) has(`![${CAPTION}](${name}){#fig:read-vii-capstone}`, 'the caption');
-	if (drawn) has('The capstone follows one hole through Part 11 (Figure [](#fig:read-vii-capstone)).', 'the pointer');
+	if (drawn) has('through Part 11 (Figure [](#fig:read-vii-capstone)).', 'the pointer');
 	return { rs, cut, r, T, th, be, area, gain, person, ratio, equal, peak };
 }
 

@@ -1,6 +1,6 @@
-// The tutorial, chapter 2.6 (tutorial/outside/fourier.md), its opening figure: a patchy pattern is a sum of ripples.
+// The tutorial, section 2.6 (tutorial/outside/fourier.md), its opening figure: a patchy pattern is a sum of ripples.
 // Left, a slab of sandstone whose top carries a patchy relief of density, measured from the mean: orange where the
-// density is above the mean and blue where it is below, as chapter 3.2 colours its maps. To its right, an equals sign
+// density is above the mean and blue where it is below, as section 3.2 colours its maps. To its right, an equals sign
 // and three thinner slabs, each corrugated by one ripple F cos(k . a + alpha): a coarse one whose crests run along a
 // diagonal, a medium one whose crests run across, and a fine one whose crests run along. On each, its wavevector k is
 // an arrow across the crests, of length in proportion to |k| = 2 pi over the spacing of the crests; beside each, a

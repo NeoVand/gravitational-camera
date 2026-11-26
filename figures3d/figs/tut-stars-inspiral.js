@@ -1,7 +1,7 @@
-// The tutorial, chapter 12.1 (tutorial/sky/stars.md), its fourth diagram: the time to merger. Separation d (km,
+// The tutorial, section 12.1 (tutorial/sky/stars.md), its fourth diagram: the time to merger. Separation d (km,
 // logarithmic, 10 to 10^6) against the time left tau (s, logarithmic, 10^-3 to 10^14), from eq:inspiral,
 // d = (256 G^3 m1 m2 M tau / 5 c^5)^{1/4}: a solid line for two black holes of 30 solar masses, with a dot at the paper's
-// 2200 km and 8.8 s, and a dashed line for two white dwarfs of 0.6, with a dot at chapter 1.8's pair turning every ten
+// 2200 km and 8.8 s, and a dashed line for two white dwarfs of 0.6, with a dot at section 1.8's pair turning every ten
 // minutes, 113,000 km apart with 244,000 years (7.7 x 10^12 s) left; both of slope 1/4. Each line is grey where the
 // formula is out of its range: the black holes' below 3 (r_s1 + r_s2) = 532 km, the interactive figure's lower end; the
 // white dwarfs' below 20,800 km, where two dwarfs of the chapter's 10,400 km touch. At the black holes' dot, a thin
@@ -32,7 +32,7 @@ const END = 2.2;                                 // half the near zone's end tic
 const NEAR_REACH = 18;                           // how far right of it the words "near zone ends" reach
 const NAME = 7;
 const LEADING = 2.6;                             // between two lines of one label
-const caption = 'Look first at the dot at 2200 km: the paper\'s pair has 8.8 seconds left, and each halving of the separation cuts the time sixteen times. The white-dwarf pair on the dashed line has 244,000 years. Lines from the quadrupole formula, exact for Newton\'s orbit; the grey ends are outside its range.';
+const caption = 'Look first at the dot at 2200 km: the pair of black holes has 8.8 seconds left, and each halving of the separation cuts the time sixteen times. The white-dwarf pair on the dashed line has 244,000 years. Lines from the quadrupole formula, exact for Newton\'s orbit; the grey ends are outside its range.';
 
 export default async function () {
 	const { state } = await chapter(check);

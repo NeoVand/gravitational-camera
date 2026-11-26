@@ -1,5 +1,5 @@
-// The tutorial, chapter 8.2 (tutorial/quantum/operators.md), its second diagram: a shift and a kick in either order.
-// Chapter 1.7's phase plane, x to the right and p upward, thin grey axes. A start point (an open circle) at
+// The tutorial, section 8.2 (tutorial/quantum/operators.md), its second diagram: a shift and a kick in either order.
+// Section 1.7's phase plane, x to the right and p upward, thin grey axes. A start point (an open circle) at
 // (x_0, p_0). Route 1, solid ink: a horizontal arrow of length s, the shift e^{-isp/hbar}, then a vertical arrow of
 // length b, the kick e^{ibx/hbar}. Route 2, dashed ink: the kick first, then the shift. Both end at the same dot,
 // (x_0 + s, p_0 + b), "same end point". The rectangle between the routes is lightly shaded and labelled "area sb".

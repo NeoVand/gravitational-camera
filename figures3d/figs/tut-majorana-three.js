@@ -1,5 +1,5 @@
-// The tutorial, chapter 8.4 (tutorial/quantum/spin.md), its second diagram: three readings and their four stars. Three
-// small spheres side by side, each drawn as chapter 6.6 draws the sky (figs/tut-spin-lib.js): a thin outline, a veil
+// The tutorial, section 8.4 (tutorial/quantum/spin.md), its second diagram: three readings and their four stars. Three
+// small spheres side by side, each drawn as section 6.6 draws the sky (figs/tut-spin-lib.js): a thin outline, a veil
 // over what lies behind, the equator solid and faint in front and dashed behind, and a faint z axis. On each, the
 // reading's four Majorana stars in the curvature's colour, coincident ones as touching dots (the paper's figure
 // 'stars'), and from the centre the Bloch vector of one of its four spins, b = P/u, in ink. Left, "one wave": four

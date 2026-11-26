@@ -1,5 +1,5 @@
-// The tutorial, chapter 4.6 (tutorial/response/fluctuation-dissipation.md), its fourth diagram: Levin's push for a
-// pixel. A section through the shell in the x-z plane, z up. At the centre, the pixel, chapter 1.4's ring of twelve
+// The tutorial, section 4.6 (tutorial/response/fluctuation-dissipation.md), its fourth diagram: Levin's push for a
+// pixel. A section through the shell in the x-z plane, z up. At the centre, the pixel, section 1.4's ring of twelve
 // free balls, a tenth of the shell's radius a. The shell, a circle of radius a, its stroke coloured by its change of
 // surface density, delta sigma proportional to -n.D.n for D = diag(-1/2, -1/2, 1), in this section -(cos^2 theta -
 // sin^2 theta / 2) with theta from z: the first accent (orange) where mass is added, around the equator (+1/2 there),

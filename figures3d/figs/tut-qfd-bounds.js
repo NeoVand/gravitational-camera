@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.7 (tutorial/quantum/quantum-fluctuation.md), its third diagram: the static jitter between
+// The tutorial, section 8.7 (tutorial/quantum/quantum-fluctuation.md), its third diagram: the static jitter between
 // its two bounds. A body of five undamped modes at omega_1, 2, 4, 8 and 16 omega_1, each holding a fifth of chi_0
 // (c_n^2 = 0.2 chi_0 omega_n^2), so that sqrt(A / chi_0) = 8.26 omega_1. One panel on logarithmic axes: across,
 // k_B T / hbar omega_1 from 0.1 to 100; up, the jitter in units of hbar omega_1 chi_0 from 0.1 to 200. The lower bound

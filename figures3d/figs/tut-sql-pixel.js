@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.6 (tutorial/quantum/quantum-limit.md), its second diagram: Section II's ideal pixel. Two
+// The tutorial, section 8.6 (tutorial/quantum/quantum-limit.md), its second diagram: Section II's ideal pixel. Two
 // panels side by side. Left: two small grey balls of 1 g, a centimetre apart on a horizontal line, drawn twice, at
 // t = 0 (above) and t = 1 s (below); above each ball an ink bell for its position's spread, of standard deviation
 // sigma_0 = 2.30 x 10^-16 m above and sigma_SQL = 3.25 x 10^-16 m below, magnified; at the right the person, the stone
@@ -10,7 +10,7 @@
 // Departures from the diagram's comment: the spreads are magnified 4 x 10^12 times against the drawn centimetre, not
 // 10^13, since at 10^13 each bell (three standard deviations either side) would be wider than the centimetre between
 // the balls; "1 g" is written under the balls of the first row only; the stretch is written E xi tau^2 / 2, with a
-// slash, since a built-up half is too small to read on a phone (as in chapter 8.3's tut-occupation); the one person,
+// slash, since a built-up half is too small to read on a phone (as in section 8.3's tut-occupation); the one person,
 // standing between the two rows, serves both.
 // Exact: sigma_0, sigma_SQL and the three tides (tut-sql-lib.js, asserted against the chapter's text); the bells'
 // widths in proportion, sigma_SQL / sigma_0 = sqrt 2, at the stated magnification of the drawn centimetre; the strip's

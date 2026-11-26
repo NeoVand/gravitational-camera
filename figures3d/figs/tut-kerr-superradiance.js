@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.2 (tutorial/black-holes/spin.md), its third diagram: the sign of the energy a spinning hole
+// The tutorial, section 11.2 (tutorial/black-holes/spin.md), its third diagram: the sign of the energy a spinning hole
 // takes from a wave, against the wave's frequency. One panel: across, omega / m Omega_H from 0 to 2; up, the energy the
 // hole takes for one fixed growth of its area, delta E = (kappa c^2 / 8 pi G) delta A / (1 - m Omega_H / omega), drawn
 // as eight thin bars at omega / m Omega_H = 0.25, 0.5, 0.75, 0.9, 1.1, 1.25, 1.5 and 2 from a hairline at zero: down

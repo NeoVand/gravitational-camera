@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.2 (tutorial/newton/field-and-potential.md), its second diagram: the contour map of
+// The tutorial, section 1.2 (tutorial/newton/field-and-potential.md), its second diagram: the contour map of
 // f = x^2 + y^2 and its gradient. Exact: the contours f = 1, 4, 9, 16 and 25, circles of radii 1 to 5 about the
 // origin, each one continuous path sampled every few hundredths of a point and broken only for its label; the
 // gradient arrows, grad f = (2x, 2y) at points on the circles, drawn at a tenth of their length in the units of the

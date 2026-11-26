@@ -1,8 +1,8 @@
-// The tutorial, chapter 5.5 (tutorial/waves/radiance.md), its second diagram: the radiance along a ray through a
+// The tutorial, section 5.5 (tutorial/waves/radiance.md), its second diagram: the radiance along a ray through a
 // uniform slab, from the equation of transfer. Two charts side by side on the same axes: across, the depth s/L from
 // -0.2 to 1.2, the slab (the neutral tint) from 0 to 1; up, the radiance in units of j/alpha from 0 to 1.1, with a
 // dotted line at 1 named j_omega/alpha. Radiation of the radiance I_bg = 0.3 j/alpha arrives from the left, a head on
-// the flat line before the slab named I_bg, and leaves at the right into a pixel (chapter 5.3's small square, a head on
+// the flat line before the slab named I_bg, and leaves at the right into a pixel (section 5.3's small square, a head on
 // the line before it). The radiance is drawn as two stacked areas: the background's share I_bg e^{-tau s/L}, in the
 // second accent's tint under a line in the second accent (the paper's blue, light's colour in Figure
 // fig:line-integral), and the slab's own glow (j/alpha)(1 - e^{-tau s/L}) stacked on it, in the first accent's tint

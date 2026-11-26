@@ -1,9 +1,9 @@
-// The tutorial, chapter 10.3 (tutorial/glow/why-matter-barely-glows.md), its third diagram: internal strain. Two
+// The tutorial, section 10.3 (tutorial/glow/why-matter-barely-glows.md), its third diagram: internal strain. Two
 // halves side by side, each a square patch of a flat picture of silicon's two interleaved lattices: open circles for
 // one copy at the corners of a square grid, filled circles for the other, each at the centre of four open ones, joined
 // to them by thin bonds. Left, "at rest". Right, "sheared": the open lattice carried by a pure shear into a rhombus,
 // orange stretch arrows outward along one diagonal and blue squeeze arrows inward along the other (the paper's sign
-// colours, with chapter 1.5's strokes and heads, figs/tut-five-lib.js); the filled circles shown twice, faint where a
+// colours, with section 1.5's strokes and heads, figs/tut-five-lib.js); the filled circles shown twice, faint where a
 // shift with the lattice would put them and solid where they sit, shifted by one vector against the open copy, with a
 // small arrow from each faint circle to its solid one, the bonds drawn to the solid ones; "internal strain,
 // proportional to zeta_K" under the patch. Atoms and bonds neutral.

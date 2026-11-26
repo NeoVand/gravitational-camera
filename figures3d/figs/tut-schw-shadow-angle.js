@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.1 (tutorial/black-holes/schwarzschild.md), its fourth diagram: the cone of the shadow at a
+// The tutorial, section 11.1 (tutorial/black-holes/schwarzschild.md), its fourth diagram: the cone of the shadow at a
 // camera at rest at r = 8 r_s. The plane of the orbit on one scale in r_s, the hole at the left (a dark disc of radius
 // r_s, the photon sphere dashed), the camera at the right, a small ink square. From the camera, a dotted line through
 // the hole's centre, the direction of the hole, on to the left; the cone of the shadow, two straight lines at +-alpha_h

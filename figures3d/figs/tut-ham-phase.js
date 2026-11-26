@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.7 (tutorial/newton/hamilton.md), its first diagram: the phase space of the cart. A cart of
+// The tutorial, section 1.7 (tutorial/newton/hamilton.md), its first diagram: the phase space of the cart. A cart of
 // 2 kg on a spring of 50 N/m, its distance q from the spring's relaxed place to the right and its momentum p up.
 // Three nested ellipses, the curves H = p^2/2m + k q^2/2 = E for E = 0.0625, 0.25 and 0.5625 J, of half-axes
 // sqrt(2E/k) = 0.05, 0.1, 0.15 m along q and sqrt(2mE) = 0.5, 1, 1.5 kg m/s along p. On a grid of 36 points, steps of

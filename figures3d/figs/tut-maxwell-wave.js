@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.6 (tutorial/relativity/maxwell-complex.md), its first diagram: a light wave's two arrows at
+// The tutorial, section 6.6 (tutorial/relativity/maxwell-complex.md), its first diagram: a light wave's two arrows at
 // one instant, and its one complex amplitude. Two panels, one above the other. Above, "one instant of a wave": the
 // axes e1 (across, to the right) and e2 (up), thin ink arrows, named; a short stretch of the z axis through their
 // origin, a thin ink line that runs into the picture up and to the left and comes out toward the reader down and to

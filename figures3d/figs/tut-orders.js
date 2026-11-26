@@ -1,4 +1,4 @@
-// The tutorial, chapter 0.5 (tutorial/evening/what-the-outside-keeps.md), its diagram: first order and second order.
+// The tutorial, section 0.5 (tutorial/evening/what-the-outside-keeps.md), its diagram: first order and second order.
 // A round body, cut away to show its inside, with a small mass beside it, drawn twice, one row above the other: on
 // top the small mass m, below the small mass 2m, its centre at the same distance from the body's centre. In each row
 // the arrow from the small mass toward the body is the pull on it, G M m / d^2, so the lower arrow is exactly twice

@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.3 (tutorial/quantum/quanta.md), its second diagram: one state per area 2 pi hbar. Chapter
+// The tutorial, section 8.3 (tutorial/quantum/quanta.md), its second diagram: one state per area 2 pi hbar. Chapter
 // 1.7's phase plane in the scaled axes x / x_zp across and p / m omega x_zp up, so that the ellipses are circles: thin
 // grey axes with ticks at 0, +-2 and +-4. The bands owned by the levels n = 0, 1, 2, 3, between the circles of radius
 // 2 sqrt n and 2 sqrt(n + 1) in these units (the central disc of radius 2 for n = 0), shaded alternately lighter and

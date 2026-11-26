@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.3 (tutorial/what-a-field-keeps/ladder.md), its third diagram: the paper's pair as four
+// The tutorial, section 13.3 (tutorial/what-a-field-keeps/ladder.md), its third diagram: the paper's pair as four
 // derivatives of a confined function. Three stacked panels on one radial axis r from 0 to 1.15 R, marked at 0, R/sqrt 2
 // and R under the lowest, with the radius R dotted up through all three. Top: the difference delta rho = rho_B -
 // rho_A, as arrows on the axis in matter's colour, their lengths in proportion to the masses: up at r = 0 (M/2, B's

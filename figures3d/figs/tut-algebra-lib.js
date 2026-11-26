@@ -1,7 +1,7 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md):
+// Shared numbers for the three diagrams of the tutorial's section 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md):
 // tut-bracket-response, tut-moment-algebra and tut-analytic-pulse. Not a figure itself. The sheet, strokes, labels and
-// cropping are chapters 1.2 to 13.4's (figs/tut-pot-lib.js), the plots chapter 3.1's (figs/tut-prob-lib.js), matter's
-// and the observer's colours chapter 6.1's (figs/tut-lorentz-lib.js, asserted against app.css by `palette(check)`), the
+// cropping are sections 1.2 to 13.4's (figs/tut-pot-lib.js), the plots section 3.1's (figs/tut-prob-lib.js), matter's
+// and the observer's colours section 6.1's (figs/tut-lorentz-lib.js, asserted against app.css by `palette(check)`), the
 // steel of the tops the paper's (stone.js), all imported, not copied.
 //
 // The colours: orange and blue mean a stretch and a squeeze in the tutorial's figures and are not used here. The
@@ -150,12 +150,12 @@ export async function chapter(check) {
 		bracket zero.`, 'Newton\'s moments commute');
 	has(r`$$\boxed{\;\{\matter{Q_h}, \matter{Q_g}\} = \frac{1}{c^2}\sum_a\vect p_a\cdot(g\nabla h - h\nabla g)(\vect x_a) .\;}$$`, 'the bracket of the moments of the energy');
 	has(r`As $c$ grows the bracket falls as $1/c^2$, and Newton's moments commute again.`, 'the order of the bracket');
-	has(r`{{paper eq:moment-bracket}}`, 'the paper\'s moment bracket');
-	has(r`the paper's [](/paper/#eq:hair-commutator) divided by $i\hbar$, $\int\matter\rho\,\nabla h\cdot\nabla g\,\dd V$`, 'the hair commutator over i hbar');
+	has(r`$$\{\matter{Q_h}, \matter{Q_g}\} = \frac{1}{c^2}\int\matter{\vect J}\cdot(g\,\nabla h - h\,\nabla g)\,\dd V .\label{eq:moment-bracket}$$`, 'the moment bracket as a displayed integral');
+	has(r`the commutator of section 8.2 divided by $i\hbar$, $\int\matter\rho\,\nabla h\cdot\nabla g\,\dd V$`, 'the hair commutator over i hbar');
 	has(r`13.4's integrand $\matter{\vect J}\cdot[(\nabla\nabla h)\nabla g - (\nabla\nabla g)\nabla h]$`, 'the bracket of two rates');
-	has(r`Chapter 1.7 read the Poisson bracket two ways. As a rate, $\dot F = \{F, H\}$.`, 'the rate as a bracket with the energy');
+	has(r`Section 1.7 read the Poisson bracket two ways. As a rate, $\dot F = \{F, H\}$.`, 'the rate as a bracket with the energy');
 	has(r`[^order]: $\{F, G\} = \sum_a(\partial F/\partial\vect x_a\cdot\partial G/\partial\vect p_a - \partial F/\partial\vect
-		p_a\cdot\partial G/\partial\vect x_a)$, the order of the paper's Appendix C.`, 'the order of the bracket');
+		p_a\cdot\partial G/\partial\vect x_a)$. Books that use the other order flip every sign below.`, 'the order of the bracket');
 	paper(r`\{Q_h, Q_g\} = \frac{1}{c^2}\int\mathbf J\cdot(g\,\nabla h - h\,\nabla g)\,\dd V .`, 'eq:moment-bracket');
 	paper(r`[\,Q_h,\,\dot Q_g\,] = i\hbar\int\rho\,\nabla h\cdot\nabla g\,\dd V ,`, 'eq:hair-commutator');
 	paper(r`\{\dot Q_h, \dot Q_g\} = \int\mathbf J\cdot\bigl[(\nabla\nabla h)\,\nabla g - (\nabla\nabla g)\,\nabla h\bigr]\,\dd V ,`, 'eq:flow-bracket');

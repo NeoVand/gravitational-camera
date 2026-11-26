@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.8 (tutorial/noise/bits.md), its first diagram: four yes-or-no questions find one of sixteen
+// The tutorial, section 3.8 (tutorial/noise/bits.md), its first diagram: four yes-or-no questions find one of sixteen
 // places. Each row is one question, "in the left half?", asked of the list of places that remain, drawn as numbered
 // squares: the half the answer keeps in the first accent (its pale tint, an orange outline, the number in ink), the
 // half it discards faint (a pale hairline outline, the number in the faint ink). The list goes 16, 8, 4, 2, and the
@@ -35,7 +35,7 @@ function mathematics() {
 const SIDE = 13.5;                  // a square
 const PITCH = 16.5;                 // square to square along a row
 const ROW = 19.5;                   // row to row
-const STROKE = 0.55;                // a kept square's outline (as tut-read-iv-map's boxes)
+const STROKE = 0.55;                // a kept square's outline (as the reading maps' boxes were)
 const LABEL_TO_ROW = 7;             // from the question's ink to the first square
 const PALE = '#f3dfcb';             // drawing.ts, THEME: the pale tint of the first accent
 

@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.2 (tutorial/what-a-field-keeps/calderon.md), its first diagram: Calderón's pair. One plane
+// The tutorial, section 13.2 (tutorial/what-a-field-keeps/calderon.md), its first diagram: Calderón's pair. One plane
 // containing xi and eta, eta to the right and xi up: a body's disc of radius R, drawn faint. Above and below it, across
 // exactly the disc's width, the two real growths |h_+| = e^{eta.x/2} and |h_-| = e^{-eta.x/2} as two grey ramps of
 // shading that rise in opposite directions along eta, each from e^{-|xi|R/2} to e^{|xi|R/2} across the disc, on one

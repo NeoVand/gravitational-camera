@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.1 (tutorial/newton/vectors-and-indices.md), its second diagram: turning the axes changes
+// The tutorial, section 1.1 (tutorial/newton/vectors-and-indices.md), its second diagram: turning the axes changes
 // the components, not the arrow. A step of one unit due east, drawn once, seen from straight above, under two sets
 // of axes in the horizontal plane: east and north (blue), and the same axes turned by 45 degrees to north-east and
 // north-west (orange). On the first set the arrow lies along the east axis, so its shadows are 1 and 0; on the

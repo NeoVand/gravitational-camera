@@ -1,7 +1,7 @@
 ---
 id: '11.1'
 title: 'Schwarzschild and Birkhoff; the horizon, light, the shadow, lensing'
-question: 'Sections VII and XI put a camera beside a black hole: at a metre "the tide is $2\times10^{13}\,\mathrm{s^{-2}}$", a camera at rest $40\,GM/c^2$ away sees a shadow of angular radius "$7.3^\circ$", and the hole bends the sky into a ring $20^\circ$ in radius. What is the field outside a round mass in Einstein''s theory, exactly, and what does it do to clocks, to tides and to light?'
+question: 'A camera one metre from a black hole of $1.356\times10^{23}$ kg meets a tide of $2\times10^{13}\,\mathrm{s^{-2}}$, and a camera at rest $40\,GM/c^2$ from a hole sees a shadow $7.3^\circ$ in radius and a sky bent into a ring $20^\circ$ in radius. What is the field outside a round mass in Einstein''s theory, exactly, and what does it do to clocks, to tides and to light?'
 part: '11'
 requires: ['1.3', '1.4', '1.6', '1.8', '6.3', '7.1', '7.2', '7.3', '7.4']
 paper: [sec:no-lens, eq:lens-compactness, fig:black-hole-camera, sec:vistas, fig:black-hole, fig:sun-lens, sec:near-field, sec:regimes, sec:hole]
@@ -10,26 +10,12 @@ live: [shadow-and-ring]
 depth: A
 ---
 
-**What you need:** chapter
-[1.3](/tutorial/newton/gauss-and-poisson/#outside-a-round-body-only-its-mass-counts)'s shell theorem,
-[1.4](/tutorial/newton/tides/#beside-one-mass-the-ring-stretches-along-the-line-and-squeezes-across-it)'s tide,
-[1.8](/tutorial/newton/orbits-and-kicks/#energy-and-angular-momentum-fix-the-size-and-shape-of-an-orbit)'s escape
-speed, [6.3](/tutorial/relativity/aberration/)'s aberration, and chapters [7.1](/tutorial/geometry/metric/) to
-[7.4](/tutorial/geometry/linearized-gravity/): the metric, geodesic deviation, Einstein's equation and the weak field.
-Chapter [5.5](/tutorial/waves/radiance/)'s lenses help in [the lens
-section](#a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring).
-
-The paper's [Section VII](/paper/#sec:no-lens) puts the camera beside a black hole and uses the hole as its lens,
-because no lens of ordinary matter is compact enough to focus the field. Beside a hole of $1.356\times10^{23}$ kg
-the tide is severe: "at a metre … the tide is $2\times10^{13}\,\mathrm{s^{-2}}$, enough to tear the camera apart".
-
-[Section XI](/paper/#sec:vistas)'s [*A primordial graviton
-background*](/paper/#par:a-primordial-graviton-background) puts a camera at rest $40\,G\matter M/c^2$ from a hole. In
-gravitons the camera sees a black disc, the shadow, $7.3°$ in radius, and in light it sees the Milky Way drawn into a
-ring $20°$ in radius. Other results of the paper rest on the same field: Section XI's falling camera and exploding
-star, Section IV's bound on the camera's mass and Section III's compactness of one half. So we ask what the field
-outside a round mass is in Einstein's theory, exactly, and what it does to clocks, to tides and to light.
-
+A camera one metre from a black hole of $1.356\times10^{23}$ kg, nearly twice the Moon's mass, meets a tide of
+$2\times10^{13}\unit{s^{-2}}$, enough to tear it apart. No lens of ordinary matter is compact enough to focus gravity's
+field, but such a hole is, so the camera can use the hole as its lens ([section 5.5](/tutorial/waves/radiance/)).[^lens]
+At rest $40\,G\matter M/c^2$ from a hole, the camera sees in gravitons a black disc, the shadow, $7.3°$ in radius, and in
+light it sees the Milky Way drawn into a ring $20°$ in radius. All of this follows from the field outside a round mass.
+What is that field in Einstein's theory, exactly, and what does it do to clocks, to tides and to light?
 
 ![Look first at the ray that winds once round the hole: it crosses its own path above the horizon, passes in front of
 it (the pale arc) and leaves along the line it came in on. The rays nearer the hole fall in, and those farther out are
@@ -38,13 +24,10 @@ sphere, at $1.5\,r_s$. The ring of free beads at the lower left is stretched alo
 across it by half as much. The rays, the photon sphere and the pattern of the tide are computed; the view and the
 ring's size, place and distortion are schematic.](tut-hole-hero){#fig:hole-hero}
 
-This chapter opens Part 11, which goes on with spin and the no-hair theorem (11.2), Hawking radiation (11.3), black
-holes under tides (11.4) and a reading of Section VII (R11).
-
 {{paper fig:black-hole}}
 
-By the end of the chapter we can compute the size of this figure's shadow, the size of its ring and the warmth of its
-sky.
+Figure [](/paper/#fig:black-hole) shows the view; by the end of this section we can compute the size of its shadow, the
+size of its ring and the warmth of its sky.
 
 ::: plain
 Outside a round body, Einstein's theory allows only one field, and it depends only on the body's mass. This stays
@@ -62,12 +45,11 @@ into a ring.
 
 ## Outside a round body, Einstein's field is fixed by the mass alone
 
-We want the field outside a round body in Einstein's theory, because every black hole of the paper that does not
-spin is such a field. We make two assumptions. **The field is static**: in suitable coordinates the metric does not
-change in time, and it is unchanged if time is run backward, which forbids entries mixing $\dd t$ with a step in
-space. **The field is round**, or spherically symmetric (chapter 1.3's word): every rotation about the centre leaves
-it unchanged. We only sketch the metric itself, stating two components of Einstein's equation (the gap box names
-what is skipped); everything the paper takes from it is derived in full.
+We want the field outside a round body in Einstein's theory, because every black hole that does not spin has it. We
+make two assumptions. **The field is static**: in suitable coordinates the metric does not change in time, and it is
+unchanged if time is run backward, which forbids entries mixing $\dd t$ with a step in space. **The field is round**,
+or spherically symmetric (section 1.3's word): every rotation about the centre leaves it unchanged. We state two
+components of Einstein's equation without computing them (the gap box says what is skipped) and derive the rest.
 
 Roundness gives a radius without a ruler from the centre. Through each point passes one sphere that the rotations
 carry into itself, and we define $\sym{circumference-radius}{r}$ by its area, $4\pi r^2$. This is the **circumference
@@ -81,7 +63,7 @@ $$\dd s^2 = -\field f(r)\,c^2\dd t^2 + \frac{\dd r^2}{\field h(r)} + r^2\bigl(\d
 with two unknown functions $\sym{metric-function}{\field f}$ and $\field h$, pure numbers.[^f] A term in
 $\dd r\,\dd\vartheta$ would pick out a direction on the sphere, so roundness forbids it.
 
-**The mass inside.** Einstein's equation, chapter
+**The mass inside.** Einstein's equation, section
 [7.3](/tutorial/geometry/einstein-equation/#einsteins-equation-ties-the-curvature-to-the-energy-and-stress-at-each-point)'s
 $\curv G_{\mu\nu} = (8\pi G/c^4)\matter T_{\mu\nu}$, has a time–time component, the first of 7.3's constraints. Matter
 of density $\matter\rho$ at rest has $\obs u_0 = \field g_{00}\obs u^0 = -c\sqrt{\field f}$, so $\matter T_{00} =
@@ -92,7 +74,7 @@ $$\frac{\dd}{\dd r}\Bigl[r\bigl(1 - \field h\bigr)\Bigr] = \frac{8\pi G\matter\r
 
 Both sides are pure numbers, since $G\matter\rho$ is in $\mathrm{s^{-2}}$. We write $r(1 - \field h) = 2G\matter
 m(r)/c^2$, which defines $\sym{mass-inside}{\matter m}(r)$ in kilograms. Then [](#eq:tt) becomes $\matter m' = 4\pi
-r^2\matter\rho$: $\matter m(r)$ is **the mass inside** the sphere $r$, added shell by shell as in chapter 1.3's shell
+r^2\matter\rho$: $\matter m(r)$ is **the mass inside** the sphere $r$, added shell by shell as in section 1.3's shell
 theorem.[^binding] Outside the body $\matter\rho = 0$, so $\matter m = \matter M$, the body's mass. We write the
 **Schwarzschild radius** of the mass as
 
@@ -113,11 +95,11 @@ $$\boxed{\;\dd s^2 = -\Bigl(1 - \frac{r_s}{r}\Bigr)c^2\dd t^2 + \frac{\dd r^2}{1
 
 with $\dd\Omega^2 = \dd\vartheta^2 + \sin^2\vartheta\,\dd\varphi^2$.
 
-**Limit.** The time entry is $-(1 + 2\field\Phi/c^2)$ with $\field\Phi = -G\matter M/r$, chapter
+**Limit.** The time entry is $-(1 + 2\field\Phi/c^2)$ with $\field\Phi = -G\matter M/r$, section
 [7.1](/tutorial/geometry/metric/#free-fall-is-the-path-along-which-a-clock-ages-most)'s weak-field entry, and for $r
 \gg r_s$ every entry tends to flat spacetime's. **Numbers.** The Schwarzschild radius is 2.95 km for the Sun, whose
-radius is 696,000 km, 8.87 mm for the Earth, 0.201 mm for Section VII's hole of $1.356\times10^{23}$ kg and
-$1.0\times10^{-25}$ m for the 70 kg person. Outside ordinary bodies, far larger than their $r_s$, chapter
+radius is 696,000 km, 8.87 mm for the Earth, 0.201 mm for the hole of $1.356\times10^{23}$ kg and
+$1.0\times10^{-25}$ m for the 70 kg person. Outside ordinary bodies, far larger than their $r_s$, section
 [7.4](/tutorial/geometry/linearized-gravity/#a-weak-field-is-a-small-table-laid-on-flat-spacetime)'s linear theory,
 which needs $r_s/r \ll 1$, serves. Near a black hole's horizon $\field g_{rr} = 1/(1 - r_s/r)$ is nowhere near flat,
 and only the exact metric will do.
@@ -138,12 +120,20 @@ on $t$ too, and one more component appears, time–radial. In empty space it say
 (stated), so the mass inside never changes and stays $\matter M$. The radial–radial component then fixes $\field f$
 up to a factor that depends on $t$ alone, and relabelling $t$ removes it. So outside any round body, whether it
 pulsates, collapses or explodes, the field is [](#eq:schwarzschild): this is **Birkhoff's theorem**, proved in the GR
-course's section 17.1. Chapter
+course's section 17.1. Section
 [7.7](/tutorial/geometry/quadrupole-formula/#a-swelling-sphere-and-a-smooth-wheel-send-nothing)'s swelling sphere
-sends no wave, now in Einstein's full theory. Section XI's [*An exploding star*](/paper/#par:an-exploding-star)
-changes the field outside only as its shell of neutrinos passes, because inside the shell the mass is the remnant's
-(chapter R12). **What it means:** a camera outside a round body learns its mass and nothing else, however the inside
-moves.
+sends no wave, now in Einstein's full theory. A star that explodes in a shell of neutrinos changes the field outside only as the shell passes (section R12).
+**What it means:** a camera outside a round body learns its mass and nothing else, however the inside moves.
+
+**A shell of neutrinos.** A core collapse sends out about $3\times10^{46}$ J in neutrinos, a sixth of a solar mass, as
+a thin round shell moving outward at nearly $c$. Birkhoff's theorem holds in each empty region separately. Outside the
+shell, the space has been empty since before the collapse, so its mass inside is the star's mass before it, $\matter
+M$. Between the remnant and the shell the space is empty too, and its mass inside is the remnant's. At the shell
+itself the mass inside jumps by the energy the shell carries, $E/c^2$, as [](#eq:tt) integrated across the shell's
+thickness says, since the constraint counts every energy inside the sphere (stated for a shell moving at $c$; Vaidya
+[@Vaidya1951] found the field of such a radiating star). So the remnant has $\matter M - E/c^2$, and a camera at $r$
+reads the tide $2G\matter M/r^3$ until the shell reaches it and $2G(\matter M - E/c^2)/r^3$ after: it weighs the burst
+as the burst arrives, and not before.
 
 ## At the Schwarzschild radius clocks stop, nothing can hover and nothing gets out
 
@@ -155,9 +145,9 @@ of the far clock's rate, which tends to 1 far away. At the Earth's surface it lo
 year. The rate falls to zero at $r = r_s$: seen from far away, a clock held there would stop, and its light would
 arrive redshifted without limit (Figure [](#fig:schw-clocks)). The sphere $r = r_s$ is the **horizon**, the surface from
 inside which nothing escapes (stated below). A body of radius $R$ that fills it has the **compactness**
-$\mathcal C = G\matter M/Rc^2$ (chapter
+$\mathcal C = G\matter M/Rc^2$ (section
 [0.4](/tutorial/evening/one-pixel/#no-lens-can-be-made-so-the-camera-computes-its-pictures)) at $R = r_s$, exactly
-$\tfrac12$: Section III's "about one half for a black hole".
+$\tfrac12$.
 
 **Hovering.** To **hover** is to stay at rest at a fixed $r$, which takes a rocket. A camera at rest has $\obs u^\mu =
 (c/\sqrt{\field f}, 0, 0, 0)$. A free body there would start to fall with $\dd^2r/\dd\obs\tau^2 =
@@ -168,8 +158,7 @@ so its accelerometer reads, in $\mathrm{m\,s^{-2}}$,
 
 $$\boxed{\;a = \frac{G\matter M}{r^2\sqrt{1 - r_s/r}}\;} .$$
 
-**Limit:** far away it is Newton's $G\matter M/r^2$. As $r \to r_s$ it grows without limit, Section XI's thrust that
-"grows without limit as it nears the horizon". Beside a hole of 30 solar masses ($r_s = 88.6$ km), at $1.01\,r_s$, a
+**Limit:** far away it is Newton's $G\matter M/r^2$. As $r \to r_s$ it grows without limit. Beside a hole of 30 solar masses ($r_s = 88.6$ km), at $1.01\,r_s$, a
 hovering camera needs $5.0\times10^{12}\unit{m\,s^{-2}}$, half a million million times the Earth's gravity.
 
 ![Look first at the horizon line: there a clock at rest stops, as seen from far away, and the push needed to hold it
@@ -184,21 +173,24 @@ g_{rr}$ at $r_s$ is a fault of the coordinates, not of spacetime: the tide there
 **What it means:** the horizon is a surface at which nothing can hover and from which nothing can leave, though a
 falling body crosses it without noticing.
 
-**The camera's mass bound.** Section IV's [*Limits on sensitivity*](/paper/#par:limits-on-sensitivity) bounds the mass
-of a camera at the distance $z$ from its scene, in metres. Its estimate takes the camera's mass $\matter M$ to lie
-within a sphere of radius $z$. If $r_s$ were $z$ or more, that whole sphere would lie inside its own Schwarzschild
+**The camera's mass bound.** A camera at the distance $z$ from its scene, in metres, has a bounded mass if we take its
+mass $\matter M$ to lie within a sphere of radius $z$.[^mass] If $r_s$ were $z$ or more, that whole sphere would lie inside its own Schwarzschild
 radius, and the camera would be a black hole. A camera that is not one therefore has $r_s < z$, or
 
 $$\boxed{\;\matter M < \frac{zc^2}{2G}\;} .$$
 
 This is an estimate, not a strict bound, because a camera of another shape need not fit in such a sphere.[^buchdahl]
+For a camera of any shape the bound rests on Kip Thorne's **hoop conjecture** (1972), which is unproved: a body becomes
+a black hole when a hoop of circumference $2\pi r_s$ can be passed round it in every direction. A camera that fits in a
+sphere of radius $z$ fits inside hoops of circumference $2\pi z$, so if it is not a hole, the conjecture gives $r_s <
+z$ again.
 For $z = 1$ m it is $6.7\times10^{26}$ kg, 113 Earth masses.
 
 ## The tide outside a round mass is exactly Newton's
 
-We want the exact tide that chapter
+We want the exact tide that section
 [7.3](/tutorial/geometry/einstein-equation/#a-single-mass-stretches-twice-as-hard-as-it-squeezes-in-einsteins-theory-too)
-promised. **The energy of a fall.** Chapter
+only sketched. **The energy of a fall.** Section
 [7.1](/tutorial/geometry/metric/#free-bodies-follow-geodesics-and-the-christoffel-symbols-hold-newtons-pull)'s box
 found $\dd(\field g_{\alpha\nu}\obs u^\nu)/\dd\obs\tau = \tfrac12(\partial_\alpha\field g_{\mu\nu})\obs u^\mu\obs
 u^\nu$. The metric [](#eq:schwarzschild) does not depend on $t$, so for $\alpha = 0$ the right side vanishes, and
@@ -206,7 +198,7 @@ $\field g_{00}\obs u^0 = -\field f\,c\,\dd t/\dd\obs\tau$ stays constant along e
 
 $$E = \field f\,\frac{\dd t}{\dd\obs\tau} ,$$
 
-a pure number, the body's energy per unit of its rest energy (local to this chapter; 1 for a body at rest far away).
+a pure number, the body's energy per unit of its rest energy (local to this section; 1 for a body at rest far away).
 For a fall along a radius, 7.1's $\field g_{\mu\nu}\obs u^\mu\obs u^\nu = -c^2$ reads $-\field f c^2(\dd t/\dd\obs
 \tau)^2 + (\dd r/\dd\obs\tau)^2/\field f = -c^2$. Multiplying by $\field f$ and using $E$,
 
@@ -221,13 +213,13 @@ $$\frac{\dd^2r}{\dd\obs\tau^2} = -\frac{G\matter M}{r^2}\quad\text{exactly.} \la
 with the same $E$ (Figure [](#fig:schw-falling-pair)). By symmetry they stay at one $r$ at each $\obs\tau$, and
 $\delta\varphi$ stays fixed. On the sphere through them the metric's $r^2\dd\varphi^2$ makes their separation
 $\xi = r\,\delta\varphi$. This is also the separation that the falling bodies measure with their own rulers, because
-motion shortens a ruler only along the motion (chapter
+motion shortens a ruler only along the motion (section
 [6.1](/tutorial/relativity/lorentz/#a-moving-ruler-is-shorter-along-its-motion-and-distances-in-a-bodys-own-frame-are-longer)),
 and the separation lies across it. So by [](#eq:fall)
 
 $$\frac{\dd^2\xi}{\dd\obs\tau^2} = \delta\varphi\,\frac{\dd^2r}{\dd\obs\tau^2} = -\frac{G\matter M}{r^3}\,\xi ,$$
 
-which by chapter [7.2](/tutorial/geometry/curvature-and-tides/#for-an-observer-at-rest-the-drift-is-the-papers-tide)'s
+which by section [7.2](/tutorial/geometry/curvature-and-tides/#for-an-observer-at-rest-the-drift-is-the-papers-tide)'s
 $\dd^2\xi^i/\dd\obs\tau^2 = -\curv\tE_{ij}\xi^j$ is a squeeze $\curv\tE_{xx} = \curv\tE_{yy} = G\matter M/r^3$, with
 the axes $x$ and $y$ across the line to the hole. **Along.** In empty space the tide has no trace (7.3), so its entry
 along the third axis, the line to the hole, is $-2G\matter M/r^3$: a stretch of $2G\matter M/r^3$. So
@@ -241,17 +233,16 @@ shrinks with $r$, a squeeze $G\matter M/r^3$ across. Empty space has no trace of
 is twice as large. Distances are not to scale.](tut-schw-falling-pair){#fig:schw-falling-pair}
 
 **Two cameras.** A camera at rest at $r$ has, at each instant, the four-velocity of a body released from rest there,
-and the tide depends only on the place and the four-velocity (chapter 7.2), so the hovering camera reads
-[](#eq:exact-tide). A camera falling from far away ($E = 1$) reads it too: Section XI's [*A freely falling
-camera*](/paper/#par:a-freely-falling-camera) "reads the same tide as one at rest at the same radius". Chapter
+and the tide depends only on the place and the four-velocity (section 7.2), so the hovering camera reads
+[](#eq:exact-tide). A camera falling from far away ($E = 1$) reads it too, the same tide as one at rest at the same radius. Section
 [9.4](/tutorial/one-point/petrov/#moving-the-pixel-moves-the-four-directions-as-rays-of-light) gives the reason in one
-line: a boost along the line to the hole leaves a type D field unchanged. **Limit:** this is chapter 1.4's Newtonian
+line: a boost along the line to the hole leaves a type D field unchanged. **Limit:** this is section 1.4's Newtonian
 tide, now exact at every $r$ outside the horizon. The exactness rests on $r$ being the circumference radius: with a
 ruler's distance from the centre the formula would change near the hole. **What it means:** close to a hole a camera
 reads the same pattern as beside a pebble, a stretch twice the squeeze, and only its size tells them apart.
 
-**Numbers.** For Section VII's hole the stretch $2G\matter M/r^3$ is $1.8\times10^{13}\unit{s^{-2}}$ at 1 m, the
-paper's "$2\times10^{13}$", and falls to $1\unit{s^{-2}}$ at 26.3 km, chapter 1.8's orbit. At the horizon the stretch
+**Numbers.** For the hole of $1.356\times10^{23}$ kg the stretch $2G\matter M/r^3$ is $1.8\times10^{13}\unit{s^{-2}}$ at 1 m,
+and falls to $1\unit{s^{-2}}$ at 26.3 km, section 1.8's orbit. At the horizon the stretch
 is $2G\matter M/r_s^3$: $1.1\times10^7\unit{s^{-2}}$ for 30 solar masses, enough to pull two balls a metre apart away
 from each other at a million times the Earth's gravity, but $1.0\times10^{-8}\unit{s^{-2}}$ for $10^9$ solar masses,
 about the $9.3\times10^{-9}$ of a person a metre away. A large hole's horizon is not where it tears.
@@ -266,7 +257,7 @@ A body dropped from rest far away has $E = 1$. A camera at rest at $r$ measures 
 
 $$\obs v = \frac{1}{E}\,\Bigl|\frac{\dd r}{\dd\obs\tau}\Bigr| = \sqrt{\frac{2G\matter M}{r}} ,$$
 
-chapter 1.8's escape speed, now exact. It is $0.224c$ at $40\,G\matter M/c^2$, the speed behind chapter
+section 1.8's escape speed, now exact. It is $0.224c$ at $40\,G\matter M/c^2$, the speed behind section
 [6.3](/tutorial/relativity/aberration/#a-moving-observers-sky-crowds-toward-the-direction-of-motion)'s falling camera
 and its $5.8°$ shadow. It is $0.816c$ at $3\,G\matter M/c^2$, and it reaches $c$ at the horizon. With $E = 1$,
 [](#eq:radial) also gives $\dd r/\dd\obs\tau = -c\sqrt{r_s/r}$, which integrates to a finite proper time,
@@ -277,8 +268,8 @@ Newton would compute is the fall the body's own clock records; only distant obse
 ## Light can circle a hole, and the hole casts a shadow
 
 **The barrier.** We follow a flash in the plane $\vartheta = 90°$, which roundness allows. Light has no proper time,
-so we mark the points of the ray by a label $\lambda$, in metres, for which 7.1's geodesic equation keeps its form:
-an **affine parameter**, in 7.1's words. It is not a time. Chapter
+so we mark the points of the ray by an **affine parameter** $\lambda$, in metres, a label for which 7.1's geodesic
+equation keeps its form. It is not a time. Section
 [7.1](/tutorial/geometry/metric/#free-bodies-follow-geodesics-and-the-christoffel-symbols-hold-newtons-pull)'s box
 found $\field g_{\alpha\nu}\,\dd x^\nu/\dd\obs\tau$ fixed along a free path when the metric does not depend on
 $x^\alpha$, and this holds for any such label, not only for proper time. The metric depends on neither $t$ nor
@@ -291,8 +282,8 @@ $$\Bigl(\frac{\dd r}{\dd\lambda}\Bigr)^2 = E^2\Bigl[1 - b^2\,\frac{\field f(r)}{
 \label{eq:light}$$
 
 Far away $\field f \to 1$, and the ray is a straight line, travelled at $c$, that would miss the centre by its
-**impact parameter** $\sym{ray-impact-parameter}{b}$ (chapter 1.8's $B$). Such a line has $r^2\,\dd\varphi/\dd t =
-bc$ (chapter 1.6's angular momentum per unit mass), so $L/E = (r^2\,\dd\varphi/\dd\lambda)/(c\,\dd t/\dd\lambda) =
+**impact parameter** $\sym{ray-impact-parameter}{b}$ (section 1.8's $B$). Such a line has $r^2\,\dd\varphi/\dd t =
+bc$ (section 1.6's angular momentum per unit mass), so $L/E = (r^2\,\dd\varphi/\dd\lambda)/(c\,\dd t/\dd\lambda) =
 b$. Rescaling the label changes $E$ and $L$ together, so for light only their ratio means anything. Dividing
 $\dd\varphi/\dd\lambda = L/r^2$ by the square root of [](#eq:light) gives the **orbit equation**, the shape of every
 ray in the plane:
@@ -316,8 +307,8 @@ $b_c$, the **capture cross-section**
 
 $$\boxed{\;\pi b_c^2 = \frac{27\pi G^2\matter M^2}{c^4}\;} ,$$
 
-Section XI's geometric cross-section: $1.85\times10^8\unit{m^2}$ for the Sun's mass. For Section VII's hole the disc
-is 0.52 mm in radius, about a grain of sand, and waves much longer than that pass it almost unabsorbed (chapter 11.3).
+the hole's geometric cross-section: $1.85\times10^8\unit{m^2}$ for the Sun's mass. For the hole of $1.356\times10^{23}$ kg the disc
+is 0.52 mm in radius, about a grain of sand, and waves much longer than that pass it almost unabsorbed (section 11.3).
 
 ![Look first at the peak: a ray whose level $1/b^2$ clears it falls into the hole, and one that meets it turns back. The
 rays are exact Schwarzschild rays.](tut-schw-barrier){#fig:schw-barrier}
@@ -334,11 +325,11 @@ $$\sin\psi = \frac{b}{r}\sqrt{1 - \frac{r_s}{r}} .$$
 from the hole ($\psi > 90°$), traced back, moves outward and comes from far away. A ray seen toward the hole, traced
 back, moves inward: the barrier turns it out to far away if $b > b_c$, and it ends on the horizon if $b < b_c$. At a
 fixed $r$, $\sin\psi$ grows with $b$, so the dark directions are those within the angle $\sym{shadow-radius}{\alpha_h}$
-of the hole (chapter 6.3's letter), the value of $\psi$ at $b = b_c$:
+of the hole (section 6.3's letter), the value of $\psi$ at $b = b_c$:
 
 $$\boxed{\;\sin\alpha_h = \sqrt{27}\,\frac{G\matter M}{c^2r}\sqrt{1 - \frac{2G\matter M}{c^2r}}\;} ,$$
 
-the paper's arcsine. At $40\,G\matter M/c^2$ it is $7.27°$, the paper's "$7.3^\circ$" and the black disc of Figure
+the radius of the shadow. At $40\,G\matter M/c^2$ it is $7.27°$, the black disc of Figure
 [](/paper/#fig:black-hole)(b). It is $27.7°$ at $10\,G\matter M/c^2$, and $90°$, half the sky, at the photon sphere.
 Inside the photon sphere the barrier rises outward, so light from far away arrives only from the outward side, along
 rays with $b < b_c$. The sky is then bright only within the angle $\arcsin[(b_c/r)\sqrt{\field f}]$ of the outward
@@ -354,12 +345,12 @@ the camera's size is not to scale.](tut-schw-shadow-angle){#fig:schw-shadow-angl
 
 ## Far from a mass, light bends by twice Newton's angle
 
-We want the bending of a ray that passes far from a mass, which chapters 5.5 and 7.1 stated. Chapter
+We want the bending of a ray that passes far from a mass, which sections 5.5 and 7.1 stated. Section
 [7.4](/tutorial/geometry/linearized-gravity/#a-static-source-gives-newtons-potential-in-time-and-in-space)'s
 isotropic coordinates have, to first order, $\field g_{00} = -(1 + 2\field\Phi/c^2)$ and $\field g_{ij} = (1 -
 2\field\Phi/c^2)\delta_{ij}$.[^iso] **The field is weak**: $|\field\Phi|/c^2 \ll 1$. A null step has $(1 +
 2\field\Phi/c^2)c^2\dd t^2 = (1 - 2\field\Phi/c^2)|\dd\vect x|^2$, so light moves at $c(1 + 2\field\Phi/c^2)$ in
-these coordinates, as in a medium of chapter
+these coordinates, as in a medium of section
 [5.1](/tutorial/waves/wave-equation/#a-medium-can-slow-a-wave-and-its-refractive-index-measures-how-much)'s
 **refractive index**
 
@@ -383,36 +374,33 @@ $$\boxed{\;\sym{deflection-angle}{\alpha} = \int\partial_\perp n\,\dd l = \frac{
 
 in radians, since $G\matter M/c^2$ and $b$ are both lengths. **Limit:** far away, $b \to \infty$, the ray goes
 straight. Half the angle comes from $\field g_{00}$, which alone gives Newton's angle for a body moving at $c$, and
-half from $\field g_{ij}$. Light crosses a metre of space while $ct$ advances a metre (chapter 7.1), so for light the
+half from $\field g_{ij}$. Light crosses a metre of space while $ct$ advances a metre (section 7.1), so for light the
 space entries weigh as much as the time entry. A slow body crosses far less space in that time, so it feels the time
 entry alone, which is Newton's pull.
 
 **Numbers.** A ray grazing the Sun turns by $1.75''$, against Newton's $0.88''$; one grazing the Earth by
-$2.8\times10^{-9}$ rad, chapter 5.5's figure. This is the angle that chapter
-[5.5](/tutorial/waves/radiance/#matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact)
-turned into the paper's [](/paper/#eq:lens-compactness), and with it the pocket lens's eleven Moon masses.
+$2.8\times10^{-9}$ rad, section 5.5's figure. [Section 5.5](/tutorial/waves/radiance/#matter-makes-no-useful-lens-or-mirror-and-gravity-focuses-well-only-when-it-is-very-compact)
+turned this angle into the compactness that a lens needs.
 
 **The size of the error.** The small parameter is $G\matter M/c^2b$, $2.1\times10^{-6}$ at the Sun's limb. The next
 term of the deflection, $\tfrac{15\pi}4(G\matter M/c^2b)^2$ (stated), adds 6 parts in a million there. **Where it
 fails.** The exact deflection is the angle that [](#eq:orbit) sweeps from far away in to the turning point and out
 again, less the $\pi$ of a straight line. At $b = 1000$, 100 and $20\,G\matter M/c^2$ it is 1.003, 1.031 and 1.18
-times $4G\matter M/bc^2$. The second-order term accounts for most of the difference: at $b = 20\,G\matter M/c^2$ it
-raises 0.200 rad to 0.229, against 0.236 exactly. As $b \to b_c$ the bending grows without limit, and the rays wind
+times $4G\matter M/bc^2$. As $b \to b_c$ the bending grows without limit, and the rays wind
 round the photon sphere. **What it means:** a mass bends its near rays more than its far ones, as a lens must, but by
 the wrong law for one focus, which is the next section's subject.
 
 ::: history
 ### Schwarzschild, Birkhoff and Eddington
 
-Karl Schwarzschild found the metric in 1916, weeks after Einstein's equation appeared. J. T. Jebsen (1921) and G. D.
-Birkhoff (1923) proved that it is the only round vacuum field. In 1919 F. W. Dyson, A. S. Eddington and C. Davidson
-measured starlight bent at the Sun's limb during an eclipse and found about Einstein's $1.75''$ ($1.98''$ at Sobral
-and $1.61''$ at Príncipe), not Newton's half of it.
+Karl Schwarzschild found the metric in 1916, weeks after Einstein's equation appeared; J. T. Jebsen (1921) and G. D.
+Birkhoff (1923) proved it the only round vacuum field. In 1919 F. W. Dyson, A. S. Eddington and C. Davidson measured
+starlight bent at the Sun's limb, by about Einstein's $1.75''$ and not Newton's half of it.
 :::
 
 ## A mass is a lens with a line of foci and an Einstein ring
 
-Chapter 5.5 found the line of foci: a ray at $b$, turned toward the axis by $2r_s/b$, crosses it at the distance
+Section 5.5 found the line of foci: a ray at $b$, turned toward the axis by $2r_s/b$, crosses it at the distance
 $b^2/2r_s$, so rays farther out cross farther away. A camera on the axis at the distance $d$ behind the mass, looking
 at a source far behind it, collects the rays that cross at $d$, at the **Einstein radius**
 
@@ -420,9 +408,8 @@ $$\boxed{\;\sym{einstein-radius}{b_E} = \sqrt{2r_sd}\;} ,$$
 
 and sees them as the **Einstein ring** round the mass, at the angle $b_E/d = \sqrt{2r_s/d}$. A ring, because the
 source, the mass and the camera lie on one line, so every ray at $b_E$, whatever its direction round the axis, reaches
-the camera (Figure [](#fig:schw-ring)). **Numbers** for Section VII's hole: at 1 m the ring is $1.15°$ in radius, the
-paper's "$1.2^\circ$"; at 26.3 km, $b_E = 3.25$ m and the ring is $25.5''$, the paper's "$3.25\,\mathrm{m}$" and
-"$26''$".
+the camera (Figure [](#fig:schw-ring)). **Numbers** for the hole of $1.356\times10^{23}$ kg: at 1 m the ring is
+$1.15°$ in radius; at 26.3 km, $b_E = 3.25$ m and the ring is $25.5''$.
 
 **The exact ring.** Figure [](/paper/#fig:black-hole)'s dashed ring, seen from $40\,G\matter M/c^2$, is where the sky
 straight behind the hole appears. Its rays come in from far away to their nearest point $r_0$, where $1/b^2 = \field
@@ -434,7 +421,7 @@ $$\begin{aligned}
 \end{aligned}$$
 
 which a computer evaluates and solves for $b$. It gives $b = 14.2\,G\matter M/c^2$, and $\sin\psi = (b/r)\sqrt{\field
-f}$ gives $20.2°$, the figure's "$20^\circ$". The weak formula, with $d = 40\,G\matter M/c^2$, gives $18.1°$, 10%
+f}$ gives $20.2°$. The weak formula, with $d = 40\,G\matter M/c^2$, gives $18.1°$, 10%
 short: near a hole the exact rays matter. Rays seen between the shadow and the ring swing through more than $180°$ and
 bring light from the opposite side of the sky, so the figure shows the Milky Way's band below the hole a second time,
 as an arc above it.
@@ -444,33 +431,53 @@ at that distance, so the source appears as a ring. Near a hole (right) the exact
 The left panel is not to scale.](tut-schw-ring){#fig:schw-ring}
 
 A transparent body, an **extended lens**, bends a ray that crosses it only by the mass inside the cylinder of radius $b$
-along the ray, as chapter [12.1](/tutorial/sky/stars/#eddingtons-model-ties-the-pressure-to-the-density) shows for
-Section XI's transparent Sun (Figure [](/paper/#fig:sun-lens)).
+along the ray, as section [12.1](/tutorial/sky/stars/#eddingtons-model-ties-the-pressure-to-the-density) shows for
+the transparent Sun (Figure [](/paper/#fig:sun-lens)).
+
+**The delay.** A ray also arrives late, because in the weak field it moves at $c/n$, with section 5.1's index $n = 1 +
+r_s/r$ found above. We want the extra time along the straight line at the distance $b$ from the mass, from the distance
+$L_1$ before its nearest point to $L_2$ beyond it; the bending changes the path only at second order, because a ray's
+travel time is stationary. The extra time is $\int(n - 1)\,\dd l/c$, and with $l = b\tan\theta$ as in the bending
+integral,
+
+$$\Delta t = \frac{r_s}{c}\int_{-L_1}^{L_2}\frac{\dd l}{\sqrt{b^2 + l^2}} = \frac{r_s}{c}\Bigl[\ln\Bigl(\frac{1 +
+\sin\theta}{\cos\theta}\Bigr)\Bigr]_{\theta_1}^{\theta_2} ,$$
+
+with $\tan\theta_2 = L_2/b$ and $\tan\theta_1 = -L_1/b$. For $L_1, L_2 \gg b$, $(1 + \sin\theta_2)/\cos\theta_2 \approx
+2L_2/b$ and $(1 + \sin\theta_1)/\cos\theta_1 \approx b/2L_1$, so
+
+$$\boxed{\;\Delta t = \frac{2G\matter M}{c^3}\,\ln\frac{4L_1L_2}{b^2}\;} .$$
+
+**Units:** $G\matter M/c^3$ is $\mathrm{m^3\,s^{-2}}$ over $\mathrm{m^3\,s^{-3}}$, a second. **Limit:** as $\matter
+M \to 0$ there is no delay. The delay depends on $b$ only through $\ln b$: a ray at $b$ arrives later than one at
+$e\,b$ by exactly $4G\matter M/c^3$, which is $19.7\,\mu$s for the Sun. **Number:** a radar pulse from the Earth that
+grazes the Sun on its way to Venus and back, with $L_1 = 1.50\times10^{11}$ m, $L_2 = 1.08\times10^{11}$ m and $b =
+6.96\times10^8$ m, has $\ln(4L_1L_2/b^2) = 11.8$, so it returns $2\times116 = 233\,\mu$s late. Irwin Shapiro proposed
+this test in 1964, and radar echoes from Venus and Mercury confirmed it (the GR course's section 16.5).
 
 **When geometric optics holds.** A mass delays the waves that pass near it by about $4G\matter M/c^3$ more than those
-far away, $19.7\,\mu$s for the Sun: this is the **Shapiro delay** (stated; the GR course's section 16.5). A lens
+far away, $19.7\,\mu$s for the Sun: this is the **Shapiro delay**. A lens
 focuses only if the delay spans a radian of the wave's phase, $2\pi f\times4G\matter M/c^3 > 1$, that is for
 frequencies $f > c^3/8\pi G\matter M$, or wavelengths $c/f$ shorter than $4\pi r_s$.[^freq] This **wave-optics
-cut-off** is 8.1 kHz for the Sun, and for Section VII's hole it is $4\pi r_s = 2.53$ mm, or 118 GHz, the paper's
-"2.5 mm" and "120 GHz". Below it, diffraction erases the focus. How strongly a point lens still focuses above it, the
-paper's gain of 800 at $10\,\mu$m, is chapter
-[R11](/tutorial/black-holes/reading-section-vii/#the-camera-must-orbit-26-km-away-where-the-hole-gathers-130-times-its-area)'s
-subject.
+cut-off** is 8.1 kHz for the Sun, and for the hole of $1.356\times10^{23}$ kg it is $4\pi r_s = 2.53$ mm, or 118 GHz.
+Below it, diffraction erases the focus. How strongly a point lens still focuses above it, with a gain of 800 at
+$10\,\mu$m, is the subject of [section R11](/tutorial/black-holes/reading-section-vii/#the-camera-must-orbit-26-km-away-where-the-hole-gathers-130-times-its-area),
+on the camera without a lens.
 
 ## Seen from rest near a hole, the whole sky is warmer
 
 Light falling from far away to a camera at rest at $r$ keeps its number of crests per unit of $t$, because the field
-is static (chapter [7.1](/tutorial/geometry/metric/#clocks-higher-up-run-faster-clocks-read-the-potential)'s flashes).
+is static (section [7.1](/tutorial/geometry/metric/#clocks-higher-up-run-faster-clocks-read-the-potential)'s flashes).
 The camera's clock runs at $\sqrt{1 - r_s/r}$, so it measures every frequency raised by $1/\sqrt{1 - r_s/r}$, the
 **gravitational blueshift**. Every ray that reaches the camera started far away, so every direction outside the shadow
 gets the same factor. Every mode rises by it and keeps its occupation, so a black-body sky stays a black body, at
 
 $$T_{\rm seen} = \frac{T}{\sqrt{1 - r_s/r}} ,$$
 
-as chapter [10.1](/tutorial/glow/black-body/#a-moving-observer-still-sees-a-black-body-hotter-ahead) found for a
+as section [10.1](/tutorial/glow/black-body/#a-moving-observer-still-sees-a-black-body-hotter-ahead) found for a
 moving observer. At $40\,G\matter M/c^2$ the factor is $1/\sqrt{0.95} = 1.026$: the 0.905 K graviton sky reads 0.929 K,
-Figure [](/paper/#fig:black-hole)(b)'s value and the paper's "$2.6\%$ warmer". **Limit:** far away the factor
-is 1. The camera's thermometer reads how deep it sits.
+the value in Figure [](/paper/#fig:black-hole)(b). **Limit:** far away the factor
+is 1.
 
 ::: try {#shadow-and-ring}
 Two panels: the plane of the orbit, with the hole, the photon sphere and a fan of exact rays ending on the camera, and
@@ -484,35 +491,6 @@ at the end? Drag the distance down and find where the shadow covers half the sky
 ring catches up with the exact one far away, drag the distance out to 200, and compare the two readouts.
 :::
 
-::: check
-### Q
-
-Why does the outside of a round star that collapses stay exactly the same?
-
-### A
-
-By Birkhoff's theorem: in empty space the equations leave no room for a round field that changes, and the only number
-in it is the mass.
-
-### Q
-
-A camera 1 m from Section VII's hole: what is the stretch along the line to it?
-
-### A
-
-The stretch is $2G\matter M/r^3 = 2\times6.674\times10^{-11}\times1.356\times10^{23} =
-1.8\times10^{13}\unit{s^{-2}}$ at $r = 1$ m.
-
-### Q
-
-Why does light bend by twice Newton's angle?
-
-### A
-
-The time entry and the space entries of the metric each change by $2\field\Phi/c^2$, and for light both count equally;
-Newton's theory has only the first.
-:::
-
 **The idea to keep: outside any round body Einstein's field is fixed by its mass alone, $\dd s^2 = -(1 -
 r_s/r)c^2\dd t^2 + \dd r^2/(1 - r_s/r) + r^2\dd\Omega^2$. Its tide is exactly $(G\matter M/r^3)\,\mathrm{diag}(1, 1,
 -2)$. At $r_s$ clocks stop and nothing can hover; light circles at $\tfrac32r_s$, so a hole removes a disc of radius
@@ -522,8 +500,8 @@ an Einstein ring.**
 ::: problems
 ### Practice
 
-For a neutron star of 1.4 solar masses and radius 12 km, find $r_s$, the compactness, the rate of a clock on its
-surface, the impact parameter of a ray that grazes it, and that ray's bending by $4G\matter M/bc^2$.
+**[11.1]** For a neutron star of 1.4 solar masses and radius 12 km, find $r_s$, the compactness, the rate of a clock on
+its surface, the impact parameter of a ray that grazes it, and that ray's bending by $4G\matter M/bc^2$.
 
 ::: solution
 The Schwarzschild radius is 4.13 km and the compactness $\mathcal C = 0.172$; the clock runs at $\sqrt{1 - 4.13/12} =
@@ -532,11 +510,33 @@ The weak formula gives $4/7.17 = 0.56$ rad; the exact rays give 1.07 rad, so nea
 half the answer.
 :::
 
+**[11.1]** Why does the outside of a round star that collapses stay exactly the same?
+
+::: solution
+By Birkhoff's theorem: in empty space the equations leave no room for a round field that changes, and the only number
+in it is the mass.
+:::
+
+**[11.1]** Why does light bend by twice Newton's angle?
+
+::: solution
+The time entry and the space entries of the metric each change by $2\field\Phi/c^2$, and for light both count equally;
+Newton's theory has only the first.
+:::
+
+**[11.1]** A radio pulse from a spacecraft at Saturn, $1.43\times10^{12}$ m from the Sun, grazes the Sun on its way
+to the Earth, $1.50\times10^{11}$ m away on the far side. How late does it arrive?
+
+::: solution
+Here $\ln(4L_1L_2/b^2) = \ln[4\times1.43\times10^{12}\times1.50\times10^{11}/(6.96\times10^8)^2] = 14.4$, and
+$2G\matter M/c^3 = 9.85\,\mu$s, so the pulse is $142\,\mu$s late.
+:::
+
 ### Stretch
 
-With chapter 1.6's angular momentum, a body's radial equation in [](#eq:schwarzschild) has the barrier $(1 -
-r_s/r)(1 + \ell^2/r^2)$, with $\ell$ the angular momentum per unit mass over $c$, a length. Show that circular orbits
-exist only outside $3G\matter M/c^2$ and are stable only outside $6G\matter M/c^2$.
+**[11.1]** With section 1.6's angular momentum, a body's radial equation in [](#eq:schwarzschild) has the barrier
+$(1 - r_s/r)(1 + \ell^2/r^2)$, with $\ell$ the angular momentum per unit mass over $c$, a length. Show that circular
+orbits exist only outside $3G\matter M/c^2$ and are stable only outside $6G\matter M/c^2$.
 
 ::: solution
 In units of $G\matter M/c^2$ the derivative vanishes where $r^2 - \ell^2r + 3\ell^2 = 0$, so $r = \tfrac12[\ell^2 \pm
@@ -544,63 +544,63 @@ In units of $G\matter M/c^2$ the derivative vanishes where $r^2 - \ell^2r + 3\el
 12$ and merge at $r = 6$; as $\ell \to \infty$ the inner root falls to 3.
 :::
 
-### The paper
+### The camera
 
-Check Section VII's [*A black hole as the lens*](/paper/#par:a-black-hole-as-the-lens) from $1.356\times10^{23}$ kg:
-$r_s$, the ring at 1 m, the tide there, the distance where the tide is $1\unit{s^{-2}}$, and the ring and $b_E$ there.
+**[11.1]** For a hole of $1.356\times10^{23}$ kg find $r_s$, the Einstein ring at 1 m, the tide there, the distance
+where the tide is $1\unit{s^{-2}}$, and the ring and $b_E$ there.
 
 ::: solution
 The Schwarzschild radius is $2G\matter M/c^2 = 0.201$ mm. At 1 m the ring is $\sqrt{2r_s/d} = 0.0201$ rad, $1.15°$,
-and the stretch $1.8\times10^{13}\unit{s^{-2}}$. The stretch is $1\unit{s^{-2}}$ at $(2G\matter M)^{1/3} = 26.3$ km,
-where the ring is $25.5''$ and $b_E = 3.25$ m.
+and the stretch $2G\matter M/r^3 = 1.8\times10^{13}\unit{s^{-2}}$. The stretch is $1\unit{s^{-2}}$ at $(2G\matter
+M)^{1/3} = 26.3$ km, where the ring is $25.5''$ and $b_E = 3.25$ m.
 :::
 :::
 
 ::: paper
-- [Section VII](/paper/#sec:no-lens), [*A black hole as the lens*](/paper/#par:a-black-hole-as-the-lens): $r_s$, the
-  line of foci $b^2/2r_s$, the Einstein radius, $4\pi r_s$, the paper's [](/paper/#eq:lens-compactness), and Figure
-  [](/paper/#fig:black-hole-camera).
-- [Section XI](/paper/#sec:vistas): the shadow, the $20^\circ$ ring and $27\pi G^2M^2/c^4$ of Figure
-  [](/paper/#fig:black-hole); the falling camera's speed and tide; Birkhoff for the exploding star; the delay
-  $4GM/c^3$ and the extended lens for the transparent Sun.
-- [Section IV](/paper/#sec:near-field), [*Limits on sensitivity*](/paper/#par:limits-on-sensitivity): the mass bound
-  $zc^2/2G$.
-- [Section III](/paper/#sec:regimes): the compactness of one half; [Section XIV](/paper/#sec:hole): the hole's $r_s$.
+- [Section VII](/paper/#sec:no-lens): the hole as the lens, $r_s$, the line of foci, the Einstein radius, $4\pi r_s$
+  and Figure [](/paper/#fig:black-hole-camera).
+- [Section XI](/paper/#sec:vistas): the shadow, the ring and the cross-section of Figure [](/paper/#fig:black-hole);
+  the falling camera; Birkhoff for the exploding star; the delay $4GM/c^3$ and the extended lens.
+- [Section IV](/paper/#sec:near-field): the mass bound $zc^2/2G$. [Section III](/paper/#sec:regimes): compactness
+  one half. [Section XIV](/paper/#sec:hole): the hole's $r_s$.
 :::
 
 ::: deeper
-- The GR course derives the metric and Birkhoff's theorem in full in section
+- The GR course derives the metric and Birkhoff's theorem in section
   [17.1](https://neovand.github.io/general-relativity/chapter-17.html#17-1-solving-spherical-vacuum-where-schwarzschild-comes-from),
-  shows that $r_s$ is no true singularity in
+  the horizon in
   [17.2](https://neovand.github.io/general-relativity/chapter-17.html#17-2-two-alarming-radii-two-very-different-problems)
   and
   [17.3](https://neovand.github.io/general-relativity/chapter-17.html#17-3-repairing-the-horizon-with-eddington-finkelstein-coordinates),
-  compares falling with hovering in
-  [17.4](https://neovand.github.io/general-relativity/chapter-17.html#17-4-falling-is-easy-hovering-is-the-expensive-activity)
-  and the photon sphere with the last stable orbit in
+  falling and hovering in
+  [17.4](https://neovand.github.io/general-relativity/chapter-17.html#17-4-falling-is-easy-hovering-is-the-expensive-activity),
+  the photon sphere in
   [17.5](https://neovand.github.io/general-relativity/chapter-17.html#17-5-the-photon-sphere-and-isco-three-radii-you-should-never-merge),
-  and derives the factor of two and the delay in
+  and the factor of two and the delay in
   [16.4](https://neovand.github.io/general-relativity/chapter-16.html#16-4-bending-light-finding-the-famous-factor-of-two)
   and
   [16.5](https://neovand.github.io/general-relativity/chapter-16.html#16-5-shapiro-delay-the-other-consequence-of-the-same-optical-geometry).
 - Misner, Thorne and Wheeler's *Gravitation* (1973) treats orbits, the horizon and Birkhoff's theorem in chapters 25,
-  31 and 32 [@MisnerThorneWheeler1973]. The paper's sources on the shadow are [@Darwin1959; @Synge1966; @Luminet1979],
+  31 and 32 [@MisnerThorneWheeler1973]. Sources on the shadow are [@Darwin1959; @Synge1966; @Luminet1979],
   and Schneider, Ehlers and Falco's *Gravitational Lenses* (1992) treats a point lens's waves in chapter 7.
 :::
 
-[^f]: In this chapter only, $\field f(r)$ is this entry of the metric. Chapter 5.5's focal length appears here only as
-    $b^2/2r_s$, and a frequency $f$ only in the last paragraph of [the lens
-    section](#a-mass-is-a-lens-with-a-line-of-foci-and-an-einstein-ring).
+[^lens]: First shown in *The gravitational camera* (Mohsenvand 2026), [Sec. VII](/paper/#sec:no-lens), where the hole's
+    compactness is its equation [](/paper/#eq:lens-compactness), and [Sec. XI](/paper/#sec:vistas), which puts the camera
+    at rest $40\,G\matter M/c^2$ from the hole and adds the falling camera and the exploding star below.
 
-[^binding]: A shell's own volume is $4\pi r^2\dd r/\sqrt{\field h}$, a little more than $4\pi r^2\dd r$. So the masses
-    of a star's parts, each weighed where it sits with its heat and compression included, add up to more than $\matter
-    M$. The difference is the energy that binds them.
+[^mass]: First shown in *The gravitational camera* (Mohsenvand 2026), [Sec. IV](/paper/#sec:near-field).
 
-[^buchdahl]: Stronger bounds are known (stated). A static round star whose density does not grow outward has $R >
+[^f]: In this section only, $\field f(r)$ is this entry of the metric, not a focal length or a frequency.
+
+[^binding]: A shell's own volume is $4\pi r^2\dd r/\sqrt{\field h}$, a little more than $4\pi r^2\dd r$, so the parts of a
+    star, weighed where they sit, add up to more than $\matter M$; the difference is the energy that binds them.
+
+[^buchdahl]: A static round star whose density does not grow outward has $R >
     \tfrac98r_s$, Buchdahl's bound (the GR course's section 17.8). For any shape, Thorne's hoop conjecture says a mass
     becomes a black hole when a hoop of circumference $2\pi r_s$ fits round it in every direction.
 
 [^iso]: Isotropic coordinates label the radius differently from the circumference radius $r$, so that the space part
-    is the same in every direction. The field is the same, and so is every angle a camera measures.
+    is the same in every direction.
 
-[^freq]: Here $f$ is a frequency in hertz, not the metric's entry, and $c/f$ is the wavelength.
+[^freq]: Here $f$ is a frequency in hertz and $c/f$ the wavelength, not the metric's entry.

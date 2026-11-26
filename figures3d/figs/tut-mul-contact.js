@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.3 (tutorial/outside/multipoles.md), its fourth diagram: the matter round a pixel, split as
+// The tutorial, section 2.3 (tutorial/outside/multipoles.md), its fourth diagram: the matter round a pixel, split as
 // the chapter splits it. A sphere round the pixel, coloured by the sign of the sky weight 1 - 3 cos^2 theta with which
 // E_zz takes the matter in each direction (theta from the z axis): orange where it is negative, in the two caps
 // within 54.7 degrees of the axis, blue where it is positive, in the band between. A quarter of it is cut away, so

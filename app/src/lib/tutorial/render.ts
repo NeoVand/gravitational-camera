@@ -105,7 +105,7 @@ export const BOXES = [
 	'try'
 ] as const;
 
-const TIERS = ['Practice', 'Stretch', 'The paper'] as const;
+const TIERS = ['Practice', 'Stretch', 'The camera'] as const;
 
 /** KaTeX for the tutorial: colour roles and symbol keys through \htmlClass only, and MathML for screen readers. */
 export function tutorialMath(

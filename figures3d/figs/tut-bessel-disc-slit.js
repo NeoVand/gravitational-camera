@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.6 (tutorial/noise/bessel-and-airy.md), its third diagram: a round opening transforms to a
+// The tutorial, section 3.6 (tutorial/noise/bessel-and-airy.md), its third diagram: a round opening transforms to a
 // wider pattern than a slit. Left, a disc of radius R (first accent, orange) and a slit of half-width R (second
 // accent, blue; a strip across the plane, its ends faded because it runs on), each with its shadow on the first axis
 // a_1 drawn beneath it, at the drawing's scale: the disc's chord, 2 sqrt(R^2 - a_1^2), a half-ellipse of height 2R; and
@@ -129,7 +129,7 @@ export default async function () {
 	L.push(await S.clear('1.895', hS[0] - 0.8, hS[1] + g, 1, 0, [-1, 0], { color: ACCENT2 }));
 	L.push(await S.clear('3.832', zD[0] + 0.8, zD[1] - g, 0, 1, [1, 0], { color: ACCENT }));
 	L.push(await S.clear('\\pi', zS[0] - 0.8, zS[1] + g, 1, 0, [-1, 0], { color: ACCENT2 }));
-	// the dips' depths, side by side under the deeper one, far enough apart not to read as a range, as chapter 3.5's
+	// the dips' depths, side by side under the deeper one, far enough apart not to read as a range, as section 3.5's
 	L.push(await S.clear('-0.217', dS[0] + 1.5, dS[1] + DOT + LABEL_GAP, 1, 0, [0, 1], { color: ACCENT2 }));
 	L.push(await S.clear('-0.132', dS[0] + 7.5, dS[1] + DOT + LABEL_GAP, 0, 0, [0, 1], { color: ACCENT }));
 

@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.6 (tutorial/response/fluctuation-dissipation.md), its first diagram: a bead in water wanders
+// The tutorial, section 4.6 (tutorial/response/fluctuation-dissipation.md), its first diagram: a bead in water wanders
 // about its own diameter in a second, kicked by the water and slowed by it. Two panels side by side (one drawing serves
 // the desktop and the phone, so the two are laid out to be read at 390 px, as R3's figures are). Left: one simulated
 // Langevin path of the bead of the chapter's number (radius 0.5 um, water at 293 K, D = 4.29 x 10^-13 m^2/s) projected

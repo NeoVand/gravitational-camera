@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.1 (tutorial/black-holes/schwarzschild.md), its first diagram: at the horizon a clock at rest
+// The tutorial, section 11.1 (tutorial/black-holes/schwarzschild.md), its first diagram: at the horizon a clock at rest
 // stops and the push that holds it grows without limit. One panel on linear axes: across, r/r_s, ticked from 1 to 6;
 // up, one shared scale from 0 to 2. The clock rate sqrt(1 - r_s/r), from 0 at the horizon toward 1, in the observer's
 // colour (the chapter colours tau so), named "clock rate"; the hovering acceleration over Newton's value,

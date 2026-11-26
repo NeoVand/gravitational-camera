@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.2 (tutorial/geometry/curvature-and-tides.md), its first diagram: an arrow carried without
+// The tutorial, section 7.2 (tutorial/geometry/curvature-and-tides.md), its first diagram: an arrow carried without
 // turning round a loop, on a sphere and on a flat sheet labelled in polar coordinates. Two panels, one above the other.
 // Above, "sphere": a sphere of radius a seen obliquely, the North Pole tilted toward the reader by 28 degrees and
 // longitude 45 degrees east facing the reader; its thin ink outline, the equator and the meridians of 0 and 90 degrees
@@ -13,7 +13,7 @@
 // direction on the page; at the start the dashed and the solid arrow coincide, "0°". Under it, "Gamma^r_theta theta =
 // -r != 0".
 // Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (as the
-// chapter 6.6 and 7.1 diagrams), so that their text stays readable on a phone. The pole is tilted toward the reader by
+// section 6.6 and 7.1 diagrams), so that their text stays readable on a phone. The pole is tilted toward the reader by
 // 28 degrees, not 25, so that the arc of 90 degrees at the pole opens wide enough to carry its label. An arrow drawn
 // at a place on a leg of the loop would lie on the leg itself, since it points along it (south on a meridian; along
 // the first leg on the sheet): each such arrow, and the pair at the start, is drawn a hair (OFF) inside the loop,

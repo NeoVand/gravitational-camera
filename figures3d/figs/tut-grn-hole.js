@@ -1,9 +1,9 @@
-// The tutorial, chapter 2.4 (tutorial/outside/greens-functions.md), its first diagram: the region V of the proof that
+// The tutorial, section 2.4 (tutorial/outside/greens-functions.md), its first diagram: the region V of the proof that
 // the Laplacian of 1/r is -4 pi times the delta function. In section: the shell between a small sphere of radius
 // epsilon round the origin and a large sphere of radius L, tinted, with the small ball cut out of it; on the small
 // sphere, six area elements dA, each pointing out of V, which there is toward the origin; the two radii, epsilon and
 // L, drawn from the origin; the region named by the condition r > epsilon that the chapter's integral carries. In one
-// neutral colour, the dA thin arrows (as the normals of chapter 2.1's figs/tut-lap-green.js).
+// neutral colour, the dA thin arrows (as the normals of section 2.1's figs/tut-lap-green.js).
 // Exact: each dA stands on the small sphere and points along -x/r, toward the origin, which is out of V (asserted:
 // a step along it leaves the tinted shell and enters the hole); the radii run from the origin to their spheres
 // (asserted). Schematic: the ratio of the two radii (epsilon is drawn far from small, L far from large) and the

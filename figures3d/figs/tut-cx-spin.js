@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.5b (tutorial/newton/complex-numbers.md), its third diagram: when the axes turn by theta,
+// The tutorial, section 1.5b (tutorial/newton/complex-numbers.md), its third diagram: when the axes turn by theta,
 // an arrow's number turns back by theta and the shear by 2 theta. Left, a ring of twelve free steel beads under the
 // shear s = 2 (in some unit of tide): the trace-free table diag(1, -1), a squeeze along x (blue) and a stretch along
 // y (orange), with its axes x and y drawn small at its lower left. Middle, the same ring, unchanged, with the axes

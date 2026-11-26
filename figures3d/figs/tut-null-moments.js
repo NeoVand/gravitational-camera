@@ -1,16 +1,16 @@
-// The tutorial, chapter 2.5 (tutorial/outside/null-space.md), its fourth diagram: the gold's share of the moment of
+// The tutorial, section 2.5 (tutorial/outside/null-space.md), its fourth diagram: the gold's share of the moment of
 // inertia, I_x = (2/3) int rho r^2 dV + int rho (r^2/3 - x^2) dV, for a nugget at s = R/2, its flush and its skin, in
 // units of m R^2. One bar for each body, in matter's colour, its height I_x: 0.25, 0.483 and 0.75. Each bar is two
 // segments: a darker lower one of the same height in all three, 0.083, the harmonic part of I_x, which the three
 // share; and above it (2/3) int rho r^2 dV, with int rho r^2 dV = 0.25, 0.6 and 1, the part the outside cannot read.
-// Under each bar a small picture of its body, the steel ball cut open as in chapter 2.4's figs/tut-grn-kelvin.js: the
+// Under each bar a small picture of its body, the steel ball cut open as in section 2.4's figs/tut-grn-kelvin.js: the
 // nugget, the flush shaded in steps that double (1, 2, 4, 8, 16 and 32 m / 4 pi R^3, as the paper's fig:same-outside)
-// and the skin shaded in steps that double (0.125 to 4 m / 4 pi R^2, as chapter 2.4's).
+// and the skin shaded in steps that double (0.125 to 4 m / 4 pi R^2, as section 2.4's).
 // Exact: int rho r^2 dV for the three (s^2, (3/5) R^2 and R^2, the flush's by numerical integration of its closed form
 // over the ball, asserted), the shared part s^2/3 (asserted, and for the flush by numerical integration of
 // rho (r^2/3 - x^2)), the bars' heights to one scale (asserted in points), the printed values (asserted), the flush's
 // and the skin's steps (the flush's from its closed form, each region bounded along rays from the near pole, along
-// which the flush is asserted to fall). Schematic: the nugget's size and the skin's band, as in chapter 2.4.
+// which the flush is asserted to fall). Schematic: the nugget's size and the skin's band, as in section 2.4.
 // Pictorial: the stone, as there.
 import { INK, DIM } from '../lib.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, AXIS, LABEL_GAP, n2 } from './tut-pot-lib.js';
@@ -35,7 +35,7 @@ const ICON = 19;                                  // an icon's radius
 const UPPER = 0.42;                               // the upper segment's opacity; the lower one is the full colour
 const FLUSH_LEVELS = [1, 2, 4, 8, 16, 32];        // m / 4 pi R^3
 const SKIN_LEVELS = [0.125, 0.25, 0.5, 1, 2, 4];  // m / 4 pi R^2
-const BAND = 0.1, NUGGET = 0.15;                  // in R, as chapter 2.4
+const BAND = 0.1, NUGGET = 0.15;                  // in R, as section 2.4
 
 /** int over the ball of f(r, mu) dV, in units of R^3, by the midpoint rule in r and mu (the integrand round the axis). */
 function overBall(f, nr = 400, nm = 400) {

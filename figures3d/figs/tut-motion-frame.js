@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.6 (tutorial/newton/motion.md), its fourth diagram: a turning frame, seen from outside and
+// The tutorial, section 1.6 (tutorial/newton/motion.md), its fourth diagram: a turning frame, seen from outside and
 // from inside. A table (a disc, drawn in true 3D, an orthographic view tilted and turned as lib.js's Panel does)
 // turns about its vertical axis at the steady rate Omega; a mark painted on it (a radius, with a small head) shows
 // how far it has turned. Four free balls are let go at rest in the table's frame: a pair on the table, at the

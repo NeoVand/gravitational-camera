@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.3 (tutorial/newton/gauss-and-poisson.md), its fourth diagram: arrows that converge can
+// The tutorial, section 1.3 (tutorial/newton/gauss-and-poisson.md), its fourth diagram: arrows that converge can
 // have no divergence. A point mass (a small stone ball) and, some way from it, a box cut from a cone of directions of
 // solid angle Delta Omega: its inner face, of area r^2 Delta Omega, at the distance r, and its outer face, of area
 // (r + Delta r)^2 Delta Omega, at r + Delta r, both at right angles to the cone's axis; its four side faces are

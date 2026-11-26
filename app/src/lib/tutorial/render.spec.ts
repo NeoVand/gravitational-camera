@@ -173,10 +173,10 @@ describe('boxes', () => {
 
 	it('problems: three tiers, each problem with a hidden solution', () => {
 		const tier = (name: string) => `### ${name}\nDo it.\n\n::: solution\nDone.\n:::\n`;
-		const out = html(`::: problems\n${tier('Practice')}${tier('Stretch')}${tier('The paper')}:::`);
+		const out = html(`::: problems\n${tier('Practice')}${tier('Stretch')}${tier('The camera')}:::`);
 		expect(out.match(/<details class="solution">/g)).toHaveLength(3);
-		expect(out).toContain('<h4 class="tier-title">The paper</h4>');
-		expect(() => html(`::: problems\n${tier('Practice')}${tier('The paper')}:::`)).toThrow(
+		expect(out).toContain('<h4 class="tier-title">The camera</h4>');
+		expect(() => html(`::: problems\n${tier('Practice')}${tier('The camera')}:::`)).toThrow(
 			/expected the tier "### Stretch"/
 		);
 		expect(() => html('::: problems\n### Practice\nDo it.\n:::')).toThrow(

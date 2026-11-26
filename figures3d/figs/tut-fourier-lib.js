@@ -1,6 +1,6 @@
-// Shared tools for the five diagrams of the tutorial's chapter 2.6 (tutorial/outside/fourier.md): tut-fourier-hero,
+// Shared tools for the five diagrams of the tutorial's section 2.6 (tutorial/outside/fourier.md): tut-fourier-hero,
 // tut-fourier-bars, tut-fourier-gauss, tut-fourier-comb and tut-fourier-blur. Not a figure itself. The charts take
-// chapter 3.1's sheet, axes and labels (figs/tut-prob-lib.js and figs/tut-pot-lib.js, imported, not copied). The
+// section 3.1's sheet, axes and labels (figs/tut-prob-lib.js and figs/tut-pot-lib.js, imported, not copied). The
 // colours keep one meaning in all five: a pattern along the line (bars, a bump, a row of points) in neutral ink; its
 // ripples and their amounts (a partial sum, a transform, a spike in wavenumber) in the first accent (orange); a blur's
 // kernel and its transform in the second (blue).

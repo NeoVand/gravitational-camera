@@ -10,88 +10,82 @@ live: [ricci-weyl]
 depth: B
 ---
 
-The paper's [Section II](/paper/#sec:pixel) says: "Inside matter the Ricci part of the curvature adds local
-information that a pixel in vacuum does not see: the trace $\mathrm{tr}\,\tE = c^2R_{00} = 4\pi G\rho$ in the
-Newtonian limit". In water, as chapter
-[R1](/tutorial/newton/reading-section-ii/#an-ideal-pixel-reads-ten-numbers-and-must-not-turn) found, the trace is
-$8.4\times10^{-7}\unit{s^{-2}}$, ninety times the stretch a metre from the paper's person; in empty space it is zero.
-Section VIII's [*Matter at the pixel*](/paper/#par:matter-at-the-pixel) adds that "the pixel reads the density
-locally, whatever the matter is".
+Inside water, a pixel reads a trace of the tide of $8.4\times10^{-7}\unit{s^{-2}}$, ninety times the stretch a metre
+from a person of 70 kg; in empty space the trace is zero. Inside matter the Ricci part of the curvature adds local
+information that a pixel in vacuum does not see: the trace $\mathrm{tr}\,\tE = c^2R_{00}$ is $4\pi G\rho$ in the
+Newtonian limit.[^pa]
 
-So we ask what ties the curvature at a point to the matter there, and which part of the curvature reaches across empty
-space. Einstein's equation fixes ten of the curvature's twenty numbers at each event from the energy and stress there,
-and leaves the other ten, the Weyl curvature, to matter elsewhere. Those ten are what the pixel reads in empty space.
+What ties the curvature at a point to the matter there, and which part of the curvature reaches across empty space?
+Einstein's equation fixes ten of the curvature's twenty numbers at each event from the energy and stress there, and
+leaves the other ten, the Weyl curvature, to matter elsewhere. Those ten are what the pixel reads in empty space.
 
 ::: plain
-Imagine a small ball of dust whose grains the water does not push, inside a large ball of water far from other masses.
-The ball shrinks evenly and stays round, because the water's mass pulls every grain inward. A ball of dust in empty
-space beside a heavy body keeps its volume and changes its shape: it is stretched toward the body and squeezed across.
-The part of the curvature of spacetime that changes the volume is called the Ricci curvature, and the part that changes
-only the shape is called the Weyl curvature.
+Imagine a small ball of dust inside a large ball of water far from other masses. The ball shrinks evenly and stays
+round, because the water's mass pulls every grain inward. A ball of dust in empty space beside a heavy body keeps its
+volume and changes its shape: it is stretched toward the body and squeezed across. The part of the curvature of
+spacetime that changes the volume is called the Ricci curvature, and the part that changes only the shape the Weyl
+curvature.
 
 Einstein's equation says that the Ricci curvature at each place is set by the energy and the pressures at that same
 place. So a pixel inside matter reads the local density of energy, with the pressures added, whatever the matter is.
 Where there is no matter only the Weyl curvature is left. It is made by matter elsewhere, reaches across empty space,
-and holds the ten numbers that the paper's pixel records.
+and holds the ten numbers that an ideal pixel records.
 :::
 
 ## The trace of the tide is the Ricci curvature along the observer's time
 
-We want the part of the curvature that changes the volume of a ball of free dust. By chapter
+We want the part of the curvature that changes the volume of a ball of free dust. By section
 [1.5](/tutorial/newton/five-numbers/#every-symmetric-table-splits-into-a-part-that-changes-size-and-a-part-that-changes-shape),
 a ball of free grains at rest relative to one another changes its volume $V$ at the rate $\ddot V/V =
 -\mathrm{tr}\,\curv\tE$, where $\curv\tE_{ij}$ is the tide in $\mathrm{s^{-2}}$ and $\mathrm{tr}\,\curv\tE =
-\curv\tE_{kk}$ its trace; the trace-free part changes only the shape. By chapter
-[7.2](/tutorial/geometry/curvature-and-tides/#for-an-observer-at-rest-the-drift-is-the-papers-tide), for an observer at rest $\curv\tE_{ij} = c^2\curv R_{0i0j}$, with
-$\sym{riemann-lowered}{\curv R}_{\alpha\beta\gamma\delta}$ the Riemann tensor in $\mathrm{m^{-2}}$ and $x^0 = ct$.
+\curv\tE_{kk}$ its trace; the trace-free part changes only the shape. By section
+[7.2](/tutorial/geometry/curvature-and-tides/#for-an-observer-at-rest-the-drift-is-the-papers-tide), for an observer at
+rest $\curv\tE_{ij} = c^2\curv R_{0i0j}$, with $\sym{riemann-lowered}{\curv R}_{\alpha\beta\gamma\delta}$ the Riemann
+tensor in $\mathrm{m^{-2}}$ and $x^0 = ct$.
 
 Summing the Riemann tensor over its first and third indices leaves a table with two. The **Ricci tensor** is
 
 $$\sym{ricci-tensor}{\curv R}_{\mu\nu} = \curv R^\alpha{}_{\mu\alpha\nu} ,$$
 
-with $\alpha$ summed over its four values, in $\mathrm{m^{-2}}$. By
-[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)'s
-pair symmetry $\curv R_{\mu\nu} = \curv R_{\nu\mu}$, so it holds ten numbers.
+with $\alpha$ summed over its four values, in $\mathrm{m^{-2}}$. By the pair symmetry of
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor),
+$\curv R_{\mu\nu} = \curv R_{\nu\mu}$, so it holds ten numbers.
 
-**The derivation.** We work at the observer's event in
-[7.2](/tutorial/geometry/curvature-and-tides/#two-free-balls-drift-apart-by-the-curvature-between-them)'s falling frame,
-where the metric is $\field\eta_{\mu\nu}$. In $\curv R_{00} = \curv R^\alpha{}_{0\alpha0}$ the term $\alpha = 0$ is
-zero, because the Riemann tensor vanishes when its last two indices are equal. Raising a spatial index changes no sign
-(chapter [6.2](/tutorial/relativity/spacetime-vectors/#lowering-an-index-changes-only-the-sign-of-time)), so $\curv
-R^i{}_{0i0} = \curv R_{i0i0}$, and the two antisymmetries, a swap within each pair of indices, give $\curv R_{i0i0} =
-\curv R_{0i0i}$. So $\curv R_{00} = \curv R_{0i0i}$, summed over $i$, and
+We work at the observer's event in the falling frame of
+[7.2](/tutorial/geometry/curvature-and-tides/#two-free-balls-drift-apart-by-the-curvature-between-them), where the
+metric is $\field\eta_{\mu\nu}$. In $\curv R_{00} = \curv R^\alpha{}_{0\alpha0}$ the term $\alpha = 0$ is zero, because
+the Riemann tensor vanishes when its last two indices are equal. Raising a spatial index changes no sign (section
+[6.2](/tutorial/relativity/spacetime-vectors/#lowering-an-index-changes-only-the-sign-of-time)), so $\curv R^i{}_{0i0} =
+\curv R_{i0i0}$, and the two antisymmetries, a swap within each pair of indices, give $\curv R_{i0i0} = \curv R_{0i0i}$.
+So $\curv R_{00} = \curv R_{0i0i}$, summed over $i$, and
 
 $$\boxed{\;\mathrm{tr}\,\curv\tE = c^2\curv R_{00}\;} \label{eq:trace-ricci}$$
 
-It uses only definitions and holds in any field. By chapter
-[1.5](/tutorial/newton/five-numbers/#what-each-part-does-to-a-ball-of-dust), then, $c^2\curv R_{00}$ is the part of the
-tide that changes a ball's volume. Beside the person, in empty space, it is zero, though the Riemann tensor is not.
+It uses only definitions and holds in any field. Beside the person, in empty space, it is zero, though the Riemann tensor is not.
 
 **Newton's law as curvature.** In a static weak field
-[7.2](/tutorial/geometry/curvature-and-tides/#near-slow-matter-the-curvature-is-newtons-tide) found $\curv\tE_{ij} = \partial_i\partial_j\field\Phi$, with
-$\field\Phi$ the potential in $\mathrm{J\,kg^{-1}}$. Its trace is $\nabla^2\field\Phi = 4\pi G\matter\rho$ by chapter
-[1.3](/tutorial/newton/gauss-and-poisson/#poissons-equation-is-gausss-law-at-every-point)'s Poisson equation, with
+[7.2](/tutorial/geometry/curvature-and-tides/#near-slow-matter-the-curvature-is-newtons-tide) found $\curv\tE_{ij} =
+\partial_i\partial_j\field\Phi$, with $\field\Phi$ the potential in $\mathrm{J\,kg^{-1}}$. Its trace is
+$\nabla^2\field\Phi = 4\pi G\matter\rho$ by Poisson's equation of section
+[1.3](/tutorial/newton/gauss-and-poisson/#poissons-equation-is-gausss-law-at-every-point), with
 $\sym{density}{\matter\rho}$ the density in $\mathrm{kg\,m^{-3}}$. So Newton's law of gravity says
 
 $$c^2\curv R_{00} = 4\pi G\matter\rho . \label{eq:newton-ricci}$$
 
-Both sides are in $\mathrm{s^{-2}}$. In water $4\pi G\matter\rho = 8.4\times10^{-7}\unit{s^{-2}}$, so $\curv R_{00} =
+In water $4\pi G\matter\rho = 8.4\times10^{-7}\unit{s^{-2}}$, so $\curv R_{00} =
 9.3\times10^{-24}\unit{m^{-2}}$. At the Earth's mean density, $5513\unit{kg\,m^{-3}}$, the trace is
 $4.6\times10^{-6}\unit{s^{-2}}$.
 
-**What it means.** The trace of the tide is the Ricci curvature along the observer's time, and Newton's law ties it to
-the density at the same point.
-
 ## Einstein's equation ties the curvature to the energy and stress at each point
 
-We want a law for every observer that gives [](#eq:newton-ricci) when the field is weak and the matter slow. Einstein's
-equation is that law. We state it without proof (the GR course's chapter 14 derives it from an action, a number built
-from the metric over a region of spacetime that the true field leaves unchanged when varied a little), but we show why
-it has its form and derive its factor. Three requirements fix it.
+We want a law for every observer that gives [](#eq:newton-ricci) when the field is weak and the matter slow. We state
+Einstein's equation without proof (the GR course's chapter 14 derives it from an action, a number built from the metric
+over a region of spacetime that the true field leaves unchanged when varied a little), but we show why it has its form
+and derive its factor. Three requirements fix it.
 
-**A tensor equation.** The density in [](#eq:newton-ricci) is $\matter T^{00}/c^2$, one entry of chapter 6.5's
-stress–energy tensor $\sym{stress-energy-tensor}{\matter T}^{\mu\nu}$, in $\mathrm{J\,m^{-3}}$. A moving observer mixes
-the entries, so to hold in every frame (chapter
+**A tensor equation.** The density in [](#eq:newton-ricci) is $\matter T^{00}/c^2$, one entry of the stress–energy
+tensor $\sym{stress-energy-tensor}{\matter T}^{\mu\nu}$ of section 6.5, in $\mathrm{J\,m^{-3}}$. A moving observer mixes
+the entries, so to hold in every frame (section
 [6.2](/tutorial/relativity/spacetime-vectors/#a-tensor-is-a-table-whose-every-index-changes-with-the-boost)) the law
 must link a whole curvature table with two indices to the whole of $\matter T_{\mu\nu}$. Here $\matter T_{\mu\nu}$ has
 both indices lowered by the metric $\field g_{\mu\nu}$, so at the observer's event $\matter T_{00} = \matter T^{00}$,
@@ -99,10 +93,11 @@ $\matter T_{0i} = -\matter T^{0i}$ and $\matter T_{ij} = \matter T^{ij}$, the mo
 ([6.5](/tutorial/relativity/stress-energy/#in-the-stresses-the-sign-is-that-of-a-flow-of-momentum)'s sign: a pressure is
 positive).
 
-**Energy and momentum conserved.** In curved spacetime 6.5's law becomes $\nabla_\mu\matter T^{\mu\nu} = 0$, with
-[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)'s
-covariant derivative (one Christoffel term for each index). So the left side must have zero divergence for every metric,
-as an identity, or the equation would add a condition on the matter's motion beyond its own law.
+**Energy and momentum conserved.** In curved spacetime the conservation law of section 6.5 becomes
+$\nabla_\mu\matter T^{\mu\nu} = 0$, with the covariant derivative of
+[7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)
+(one Christoffel term for each index). So the left side must have zero divergence for every metric, as an identity, or
+the equation would add a condition on the matter's motion beyond its own law.
 
 **Newton's law in the limit**, [](#eq:newton-ricci).
 
@@ -112,9 +107,10 @@ curvature obeys the **contracted Bianchi identity** (the box below),
 $$\nabla^\mu\curv R_{\mu\nu} = \tfrac12\,\partial_\nu\curv R ,$$
 
 where $\nabla^\mu = \field g^{\mu\alpha}\nabla_\alpha$ and the **Ricci scalar** $\sym{ricci-scalar}{\curv R} = \field
-g^{\mu\nu}\curv R_{\mu\nu}$, in $\mathrm{m^{-2}}$, is the trace of the Ricci tensor. The guess would need $\partial_\nu\curv R = 0$, and since $\curv R = k\matter T$, the
-trace $\sym{stress-energy-trace}{\matter T} = \field g_{\mu\nu}\matter T^{\mu\nu}$ of the stress–energy tensor[^T]
-would be the same everywhere. It is not: $\matter T = -\matter\rho c^2$ inside a ball of dust and zero outside.
+g^{\mu\nu}\curv R_{\mu\nu}$, in $\mathrm{m^{-2}}$, is the trace of the Ricci tensor. The guess would need
+$\partial_\nu\curv R = 0$, and since $\curv R = k\matter T$, the trace $\sym{stress-energy-trace}{\matter T} = \field
+g_{\mu\nu}\matter T^{\mu\nu}$ of the stress–energy tensor[^T] would be the same everywhere. It is not: $\matter T =
+-\matter\rho c^2$ inside a ball of dust and zero outside.
 
 Every other sum of the Riemann tensor over two of its indices is zero or $\pm\curv R_{\mu\nu}$, so the tables with two
 indices that are linear in the curvature, as [](#eq:newton-ricci) is, are $\curv R_{\mu\nu}$ and $\curv R\,\field
@@ -132,7 +128,7 @@ $$\boxed{\;\curv G_{\mu\nu} = \frac{8\pi G}{c^4}\,\matter T_{\mu\nu}\;} \label{e
 Both sides are symmetric, so these are ten equations.
 
 ::: gap
-**The contracted Bianchi identity.** Chapter
+**The contracted Bianchi identity.** Section
 [7.2](/tutorial/geometry/curvature-and-tides/#the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more)
 stated the second Bianchi identity in a falling frame, with partial derivatives. In any coordinates they become
 covariant ones (stated), $\nabla_\sigma\curv R_{\alpha\beta\gamma\delta} + \nabla_\gamma\curv
@@ -156,8 +152,8 @@ $\curv R_{\mu\nu} = \curv G_{\mu\nu} + \tfrac12\curv R\,\field g_{\mu\nu}$:
 $$\boxed{\;\curv R_{\mu\nu} = \frac{8\pi G}{c^4}\Bigl(\matter T_{\mu\nu} - \tfrac12\matter T\,\field
 g_{\mu\nu}\Bigr)\;} \label{eq:trace-reversed}$$
 
-This is **trace reversal**: the same ten equations, solved for the Ricci tensor. The bracket is $\matter T_{\mu\nu}$
-with its trace reversed, since its trace is $\matter T - 2\matter T = -\matter T$.
+This is **trace reversal**: the same ten equations, solved for the Ricci tensor; the bracket has the trace $\matter T -
+2\matter T = -\matter T$, the reverse of $\matter T_{\mu\nu}$'s.
 
 **The factor.** Suppose the constant were an unknown $k$. For dust at rest, $\matter T_{00} = \matter\rho c^2$, $\matter
 T = -\matter\rho c^2$ (6.5's trace of a fluid, with no pressure) and $\field g_{00} = -1$ to lowest order, so
@@ -174,8 +170,7 @@ Gauss's law times the 2 that undoes the half.
 $$\begin{aligned}\curv R_{00} &= \frac{8\pi G}{c^4}\bigl(\matter T_{00} - \tfrac12\field g_{00}\matter T\bigr)\\
 &= \frac12\,\frac{8\pi G}{c^4}\,\matter\rho c^2 = 9.3\times10^{-24}\unit{m^{-2}} ,\end{aligned}$$
 
-half the product of the two numbers, and the last section's value. **A limit:** with no energy or stress, $\curv
-R_{\mu\nu} = 0$, the vacuum equation.
+the value of the last section. **A limit:** with no energy or stress, $\curv R_{\mu\nu} = 0$, the vacuum equation.
 
 ::: history
 ### November 1915
@@ -187,16 +182,16 @@ before it was printed on 31 March 1916. Einstein added the cosmological constant
 
 ## Pressure and stress gravitate
 
-We want the trace of the tide for any matter, because the paper's *Matter at the pixel* gives it "in full". We work at
-the pixel's event in its frame, where the metric is $\field\eta_{\mu\nu}$, and assume nothing about the strength of the
-field. As in Section II, **the pixel's frame does not turn**. Then $\field g_{00} = -1$ and $\matter T = -\matter
-T^{00} + \matter T^{11} + \matter T^{22} + \matter T^{33}$, so [](#eq:trace-reversed) gives
+We work at the pixel's event in its frame, where the metric is $\field\eta_{\mu\nu}$, and assume nothing about the
+strength of the field. We take **the pixel's frame not to turn**.
+Then $\field g_{00} = -1$ and $\matter T = -\matter T^{00} + \matter T^{11} + \matter T^{22} + \matter T^{33}$, so
+[](#eq:trace-reversed) gives
 
 $$\begin{aligned}\curv R_{00} &= \frac{8\pi G}{c^4}\Bigl(\matter T^{00} + \tfrac12\matter T\Bigr)\\
 &= \frac{4\pi G}{c^4}\bigl(\matter T^{00} + \matter T^{11} + \matter T^{22} + \matter T^{33}\bigr) .\end{aligned}$$
 
 We write the energy density as $\matter T^{00} = \matter\rho c^2$, so that $\matter\rho$ is the mass density that the
-pixel measures (chapter [6.4](/tutorial/relativity/energy-and-momentum/#a-bodys-mass-is-its-total-energy-so-heat-has-weight)).
+pixel measures (section [6.4](/tutorial/relativity/energy-and-momentum/#a-bodys-mass-is-its-total-energy-so-heat-has-weight)).
 For matter at rest relative to the pixel, the diagonal of the momentum flux adds up to the sum of its eigenvalues, the
 **principal stresses** $\sym{principal-stresses}{\matter p_a}$, positive for a pressure and negative for a tension. With
 [](#eq:trace-ricci),
@@ -204,35 +199,33 @@ For matter at rest relative to the pixel, the diagonal of the momentum flux adds
 $$\boxed{\;\mathrm{tr}\,\curv\tE = 4\pi G\Bigl(\matter\rho + \frac{\matter p_1 + \matter p_2 + \matter
 p_3}{c^2}\Bigr)\;} \label{eq:active}$$
 
-the paper's formula, with $3\matter p$ for a fluid. The paper adds "less $2\Omega^2$ if the pixel's frame turns" at the
-angular rate $\Omega$, in $\mathrm{rad\,s^{-1}}$. We call $\matter\rho + \Sigma\matter p/c^2$ the **active density**,
-the density that a pixel inside the matter reads. For dust it is [](#eq:newton-ricci).
+with $3\matter p$ for a fluid. If the pixel's frame turns at the angular rate $\Omega$, in $\mathrm{rad\,s^{-1}}$, the
+trace is less by $2\Omega^2$. We call $\matter\rho + \Sigma\matter p/c^2$ the **active density**, the density that a
+pixel inside the matter reads. For dust it is [](#eq:newton-ricci).
 
-**Chapter 6.5's source, derived.** In a static weak field the first section gives $c^2\curv R_{00} =
-\mathrm{tr}\,\curv\tE = \nabla^2\field\Phi$, so the display above becomes 6.5's
-[source](/tutorial/relativity/stress-energy/#what-gravitates-is-the-energy-plus-the-sum-of-the-stresses),
+**The source of section 6.5, derived.** In a static weak field $c^2\curv R_{00} = \nabla^2\field\Phi$, so the display
+above becomes the [source](/tutorial/relativity/stress-energy/#what-gravitates-is-the-energy-plus-the-sum-of-the-stresses) of 6.5,
 $\nabla^2\field\Phi = (4\pi G/c^2)(\matter T^{00} + \matter T^{11} + \matter T^{22} + \matter T^{33})$. The trace
 [](#eq:active) itself holds in any field.
 
 **Numbers.** The pressure raises the active density by $3\matter p/\matter\rho c^2 = 3.4\times10^{-15}$ in water at
 one atmosphere, $9.3\times10^{-10}$ at the Earth's centre ($\matter p = 364\unit{GPa}$, $\matter\rho =
-13\,100\unit{kg\,m^{-3}}$) and $5.6\times10^{-6}$ at the Sun's, as in 6.5. A gas of light of energy density
-$\matter{\mathcal U}$ has $\Sigma\matter p = \matter{\mathcal U}$, so $\mathrm{tr}\,\curv\tE = 8\pi G\matter{\mathcal
-U}/c^2$, twice what its energy alone gives. A beam of energy flux $F$, in $\mathrm{W\,m^{-2}}$, is 6.5's **null
-dust**, with $\matter T^{00} = \matter T^{zz} = F/c$ along $z$, so it gives $8\pi GF/c^3$, the paper's trace "where
-radiation streams through": $8.5\times10^{-32}\unit{s^{-2}}$ in sunlight at the Earth, $1361\unit{W\,m^{-2}}$.
+13\,100\unit{kg\,m^{-3}}$) and $5.6\times10^{-6}$ at the Sun's. A gas of light of energy density $\matter{\mathcal U}$
+has $\Sigma\matter p = \matter{\mathcal U}$, so $\mathrm{tr}\,\curv\tE = 8\pi G\matter{\mathcal U}/c^2$, twice what its
+energy alone gives. A beam of energy flux $F$, in $\mathrm{W\,m^{-2}}$, is the **null dust** of 6.5, with $\matter T^{00}
+= \matter T^{zz} = F/c$ along $z$, so it gives $8\pi GF/c^3$: $8.5\times10^{-32}\unit{s^{-2}}$ in sunlight at the Earth,
+$1361\unit{W\,m^{-2}}$.
 
 Yet a sealed hot box, seen from far away, weighs only its energy over $c^2$, because its walls' tension cancels the
-gas's pressure over the whole box (chapter
-[6.5](/tutorial/relativity/stress-energy/#the-stresses-of-a-body-at-rest-add-up-to-zero)'s von Laue theorem).
+gas's pressure over the whole box (von Laue's theorem, section
+[6.5](/tutorial/relativity/stress-energy/#the-stresses-of-a-body-at-rest-add-up-to-zero)).
 
 **Dark matter and the Casimir gap.** The dark matter round the Sun, $0.4\unit{GeV\,cm^{-3}} =
 6.4\times10^{-5}\unit{J\,m^{-3}}$, is a mass density of $7.1\times10^{-22}\unit{kg\,m^{-3}}$ with negligible pressure,
-so $\mathrm{tr}\,\curv\tE = 6.0\times10^{-31}\unit{s^{-2}}$, "by its mass alone". Between plates a micrometre apart,
-6.5's Casimir energy density is $\sym{casimir-energy-density}{u} = -4.3\times10^{-4}\unit{J\,m^{-3}}$, with the
-momentum flux $3u$ across the plates and $-u$ along each of the other two directions. So $\Sigma\matter p = u$, and
-$\mathrm{tr}\,\curv\tE = 8\pi Gu/c^2 = -8.1\times10^{-30}\unit{s^{-2}}$: negative, so a ball of free dust there would
-swell.
+so $\mathrm{tr}\,\curv\tE = 6.0\times10^{-31}\unit{s^{-2}}$. Between plates a micrometre apart, the Casimir energy
+density of 6.5 is $\sym{casimir-energy-density}{u} = -4.3\times10^{-4}\unit{J\,m^{-3}}$, with the momentum flux $3u$
+across the plates and $-u$ along each of the other two directions. So $\Sigma\matter p = u$, and $\mathrm{tr}\,\curv\tE =
+8\pi Gu/c^2 = -8.1\times10^{-30}\unit{s^{-2}}$: negative, so a ball of free dust there would swell.[^matter]
 
 **The cosmological constant.** Since $\nabla\field g = 0$, adding $\Lambda\field g_{\mu\nu}$ to the left side keeps
 the first two requirements, and the third while $\Lambda$ is small:
@@ -242,7 +235,7 @@ $$\curv G_{\mu\nu} + \Lambda\field g_{\mu\nu} = \frac{8\pi G}{c^4}\matter T_{\mu
 Here $\sym{cosmological-constant}{\Lambda}$ is the **cosmological constant**, about $1.1\times10^{-52}\unit{m^{-2}}$
 from the expansion of the universe (stated).[^Lambda] The trace now gives $\curv R = 4\Lambda - (8\pi G/c^4)\matter T$,
 so the trace-reversed form gains $+\Lambda\field g_{\mu\nu}$, and with $\field g_{00} = -1$ the trace of the tide gains
-$-\Lambda c^2 = -9.9\times10^{-36}\unit{s^{-2}}$ everywhere, the paper's $-1\times10^{-35}$ (Figure [](#fig:traces)).
+$-\Lambda c^2 = -9.9\times10^{-36}\unit{s^{-2}}$ everywhere (Figure [](#fig:traces)).
 
 ![Look first at the two outlined bars: the negative energy between the Casimir plates and the cosmological constant
 make the trace of the tide negative. Every bar is $\mathrm{tr}\,\curv\tE = 4\pi G(\matter\rho + \Sigma\matter
@@ -251,8 +244,8 @@ magnitude.](tut-einstein-traces){#fig:traces}
 
 ## Inside matter the tide has a part fixed by the matter at that point
 
-We want the whole tide inside matter, because the paper's neutrinos squeeze the camera across their direction only,
-which changes its shape as well as its volume.
+A beam of neutrinos squeezes across its direction only, which changes shape as well as volume, so we want the whole
+tide inside matter.
 
 The Riemann tensor splits in one way into the **Ricci part** of the curvature, built from the Ricci tensor and the
 metric, and a remainder, the **Weyl tensor** $\sym{weyl-tensor}{\curv C}_{\alpha\beta\gamma\delta}$, in
@@ -285,7 +278,7 @@ R_{00} - \curv R_{ij}\bigr) + \tfrac16\curv R\,\delta_{ij}\Bigr] .\end{aligned}$
 The second line is the Ricci part, $\curv\tE^{\rm Ricci}_{ij}$. The Weyl part has no trace, for the reason of the first
 section: its sum over $i$ is $c^2\curv C^\alpha{}_{0\alpha0}$, because the term $\alpha = 0$ is zero, and every such sum
 of the Weyl tensor vanishes. So the Ricci part carries the whole trace, $c^2\curv R_{00}$. We put in $\curv R_{00}$,
-$\curv R_{ij}$ and $\curv R$ from [](#eq:trace-reversed) (the *Derivation in full* below) and find
+$\curv R_{ij}$ and $\curv R$ from [](#eq:trace-reversed) (the derivation below) and find
 
 $$\boxed{\;\begin{aligned}\curv\tE^{\rm Ricci}_{ij} &= \frac{4\pi G}{3}\Bigl(\matter\rho + \frac{\Sigma\matter
 p}{c^2}\Bigr)\delta_{ij}\\ &\quad - \frac{4\pi G}{c^2}\Bigl(\matter T_{ij} - \tfrac13\delta_{ij}\matter
@@ -317,9 +310,9 @@ $\tfrac13(\matter\rho c^2 + \matter T_{kk})$. Multiplying by $c^2$ gives [](#eq:
 :::
 
 **A check: a uniform ball.** For dust $\matter T_{ij} = 0$, so $\curv\tE^{\rm Ricci}_{ij} = \tfrac{4\pi
-G}3\matter\rho\,\delta_{ij}$. That is the whole tide inside a uniform ball, the second derivatives of chapter
-[1.3](/tutorial/newton/gauss-and-poisson/#outside-a-round-body-only-its-mass-counts)'s interior potential
-$\tfrac{2\pi}3G\matter\rho\,r^2$, so there the Weyl part is zero.
+G}3\matter\rho\,\delta_{ij}$. That is the whole tide inside a uniform ball, the second derivatives of the interior
+potential $\tfrac{2\pi}3G\matter\rho\,r^2$ of section
+[1.3](/tutorial/newton/gauss-and-poisson/#outside-a-round-body-only-its-mass-counts), so there the Weyl part is zero.
 
 **A check: a beam.** Null dust along $\hat n$ with the energy flux $F$ has, in the pixel's frame, $\matter\rho c^2 =
 \matter T_{kk} = F/c$ and $\matter T_{ij} = (F/c)\hat n_i\hat n_j$. Then [](#eq:ricci-tide) gives
@@ -328,15 +321,13 @@ $$\begin{aligned}\curv\tE^{\rm Ricci}_{ij} &= \frac{4\pi GF}{c^3}\Bigl[\tfrac23\
 \tfrac13\delta_{ij}\bigr)\Bigr]\\ &= \frac{4\pi GF}{c^3}\bigl(\delta_{ij} - \hat n_i\hat n_j\bigr) ,\end{aligned}$$
 
 an even squeeze across the beam and none along it. Neutrinos from a star of luminosity $L$, in watts, at the distance
-$r$ have $F = L/4\pi r^2$, so $\curv\tE^{\rm Ricci}_{ij} = (GL/c^3r^2)(\delta_{ij} - \hat n_i\hat n_j)$, the tide of
-the paper's [*An exploding star*](/paper/#par:an-exploding-star) that chapter 6.5 promised. A core collapse sending
-$3\times10^{46}\unit{J}$ over about ten seconds has $L = 3\times10^{45}\unit{W}$. From ten kiloparsecs
+$r$ have $F = L/4\pi r^2$, so $\curv\tE^{\rm Ricci}_{ij} = (GL/c^3r^2)(\delta_{ij} - \hat n_i\hat n_j)$.[^star] A core
+collapse sending $3\times10^{46}\unit{J}$ over about ten seconds has $L = 3\times10^{45}\unit{W}$. From ten kiloparsecs
 ($3.09\times10^{20}\unit{m}$) its flux, $2500\unit{W\,m^{-2}}$, is about twice sunlight's, and its squeeze is
 $7.8\times10^{-32}\unit{s^{-2}}$.
 
-**What it means.** Through the Ricci part, a pixel inside matter reads the energy and stress at its own place: the
-"local information that a pixel in vacuum does not see". In the words of the paper's [*What breaks the
-tie*](/paper/#par:what-breaks-the-tie), it "reads the density where the pixel is".
+**What it means.** Through the Ricci part, a pixel inside matter reads the energy and stress at its own place: local
+information that a pixel in vacuum does not see.
 
 ## In empty space only the Weyl curvature is left, and it holds ten numbers
 
@@ -344,38 +335,37 @@ Where there is no energy or stress, $\curv R_{\mu\nu} = 0$ and $\curv R = 0$, so
 tensor. We read these ten equations for the observer at rest, sorted by time indices as in
 [7.2](/tutorial/geometry/curvature-and-tides/#the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more).
 
-- The condition $\curv R_{00} = 0$ is $\mathrm{tr}\,\curv\tE = 0$, by [](#eq:trace-ricci): the tide is trace-free, as R1 read in
-  Section II's "In vacuum both are symmetric and trace-free". One condition.
+- The condition $\curv R_{00} = 0$ is $\mathrm{tr}\,\curv\tE = 0$, by [](#eq:trace-ricci): in vacuum the tide is
+  trace-free. One condition.
 - The conditions $\curv R_{0k} = 0$ are three. With $\epsilon_{ijk}\epsilon_{ipq} = \delta_{jp}\delta_{kq} -
-  \delta_{jq}\delta_{kp}$ and the pair symmetry, the paper's [](/paper/#eq:magnetic) gives
-  $\epsilon_{kij}\curv\tB_{ij} = c^2\curv R_{0k}$. The left side holds the antisymmetric part of $\curv\tB$, so in
-  vacuum $\curv\tB$ is symmetric. Its trace is zero in any case, by
-  [7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor)'s
-  cyclic identity.
+  \delta_{jq}\delta_{kp}$ and the pair symmetry, the definition $\curv\tB_{ij} = \tfrac12c^2\epsilon_{ipq}\curv
+  R_{pqj0}$ of the magnetic part gives $\epsilon_{kij}\curv\tB_{ij} = c^2\curv R_{0k}$. The left side holds the
+  antisymmetric part of $\curv\tB$, so in vacuum $\curv\tB$ is symmetric. Its trace is zero in any case, by the cyclic
+  identity of
+  [7.2](/tutorial/geometry/curvature-and-tides/#the-riemann-tensor-is-built-from-the-christoffel-symbols-yet-it-is-a-tensor).
 - The conditions $\curv R_{ij} = 0$ are six. Since $\curv R_{ij} = -\curv R_{0i0j} + \curv R_{kikj}$, they fix
   $\curv R_{kikj} = \curv\tE_{ij}/c^2$. The six numbers $\curv R_{ijkl}$ have the symmetries of a curvature in three
   dimensions, and there such a table is fixed by its six sums $\curv R_{kikj}$ (stated: in three dimensions a Weyl
   tensor has $6 - 6 = 0$ numbers). So the tide sets the curvature of space.
 
-Of
-[7.2](/tutorial/geometry/curvature-and-tides/#the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more)'s
-$6 + 8 + 6 = 20$ numbers these remove $1 + 3 + 6$, and $5 + 5 + 0 = 10$ remain, the Weyl tensor's: the five of a
-symmetric trace-free $\curv\tE$ and the five of a symmetric trace-free $\curv\tB$, each one of chapter 1.5's tables of
-five. They are Section II's "ten numbers" (Figure [](#fig:twenty-split)).
+Of the $6 + 8 + 6 = 20$ numbers of
+[7.2](/tutorial/geometry/curvature-and-tides/#the-pixel-reads-six-of-the-twenty-numbers-and-the-magnetic-part-eight-more)
+these remove $1 + 3 + 6$, and $5 + 5 + 0 = 10$ remain, the Weyl tensor's: the five of a symmetric trace-free $\curv\tE$
+and the five of a symmetric trace-free $\curv\tB$, each one of section 1.5's tables of five (Figure
+[](#fig:twenty-split)).
 
 ![Look first at the colours: Einstein's equation fixes ten of the twenty curvature numbers from the energy and stress
 at the point (the trace of the tide, the antisymmetric part of the magnetic part, and the six of the curvature of
 space), and leaves the Weyl tensor's ten, five in $\curv\tE$ and five in $\curv\tB$.](tut-einstein-twenty){#fig:twenty-split}
 
-**What it means.** The Ricci part changes the volume of a ball of free dust and is set by the matter at that point, as
-chapter 1.5's margin promised. The Weyl part changes the shape and not the volume (Figure [](#fig:three-balls)). Nothing
-at the point sets it: it comes from matter elsewhere, and from gravitational waves (chapter
-[7.6](/tutorial/geometry/gravitational-waves/)).
+**What it means.** The Ricci part changes the volume of a ball of free dust and is set by the matter at that point. The
+Weyl part changes the shape and not the volume (Figure [](#fig:three-balls)). Nothing at the point sets it: it comes
+from matter elsewhere, and from gravitational waves (section [7.6](/tutorial/geometry/gravitational-waves/)).
 
 So a pixel in empty space images the matter around it through the Weyl part. In a weak static field that part sums
-distant matter with the weight of the paper's Figure [](/paper/#fig:sky-integral), which averages to zero over the sky
+distant matter with a weight that averages to zero over the sky
 ([1.5](/tutorial/newton/five-numbers/#averaged-over-the-sky-the-tidal-weight-vanishes)), so a uniform shell round the
-pixel gives none.
+pixel gives none.[^sky]
 
 ![Look first at the outlines against the dashed circles: inside water far from other masses the ball shrinks and stays
 round, beside a mass it keeps its volume and changes shape, and inside a beam it is squeezed across the beam alone. The
@@ -384,21 +374,18 @@ elsewhere. The deformations are exaggerated.](tut-einstein-three-balls){#fig:thr
 
 ## A single mass stretches twice as hard as it squeezes, in Einstein's theory too
 
-We want the tide of one round mass from Einstein's equation, as chapters R1 and
-[7.2](/tutorial/geometry/curvature-and-tides/#near-slow-matter-the-curvature-is-newtons-tide) promised.
-
 **The ratio, exactly.** For an observer at rest outside a round body that does not turn, the tide is trace-free by the
 last section, and the same in every direction across the line to the body. So its eigenvalues are $-2a$ along the line
 and $a$ twice across it, for some $a$: the ratio $-2 : 1 : 1$ follows from the vacuum equation and the symmetry alone,
 in any field.
 
 **The size, to first order.** In a weak static field $\nabla^2\field\Phi = c^2\curv R_{00} = 0$ outside the mass, and
-the round solution that vanishes far away is chapter 1.3's $\field\Phi = -G\matter M/r$, so $a = G\matter M/r^3$
+the round solution that vanishes far away is the $\field\Phi = -G\matter M/r$ of section 1.3, so $a = G\matter M/r^3$
 ([1.4](/tutorial/newton/tides/#beside-one-mass-the-ring-stretches-along-the-line-and-squeezes-across-it)). A metre
-from the paper's 70 kg person the eigenvalues are $-9.3\times10^{-9}\unit{s^{-2}}$ along the line and
+from a person of 70 kg the eigenvalues are $-9.3\times10^{-9}\unit{s^{-2}}$ along the line and
 $4.7\times10^{-9}\unit{s^{-2}}$ twice across it.
 
-**The size, exactly (stated).** Schwarzschild's exact solution of 1916 (chapter 11.1) gives an observer at rest $a =
+**The size, exactly (stated).** Schwarzschild's exact solution of 1916 (section 11.1) gives an observer at rest $a =
 G\matter M/r^3$ exactly, with $r$ the circumference of the circle through the observer, centred on the body, over
 $2\pi$.
 
@@ -406,55 +393,18 @@ $2\pi$.
 
 The ten equations do not each move the field forward in time. Four of them, $\curv G^{0\nu} = (8\pi G/c^4)\matter
 T^{0\nu}$, hold no second derivative of the metric in time; they are **constraints**, which tie the field at one time to
-the energy and momentum then, as Gauss's law does for the mass (stated without proof). Chapter
+the energy and momentum then, as Gauss's law does for the mass (stated without proof). Section
 [7.4](/tutorial/geometry/linearized-gravity/#in-harmonic-gauge-einsteins-equation-is-a-wave-equation-for-each-component)
 takes up the rest of the equation for a weak field, where it becomes a wave equation.
 
 ::: try {#ricci-weyl}
-A slice through a ball of free dust, released at rest and drawn a second later, with its starting circle dashed and
-its principal axes marked, orange for a stretch and blue for a squeeze. The sliders set the density of the matter
-around it, its pressure, a mass beside it and a beam of light or neutrinos through it, with the beam's direction on a
-dial. The readouts give the trace of the tide, the ball's rate of change of volume $\ddot V/V = -\mathrm{tr}\,\curv\tE$,
-and the trace-free part split into its Weyl and Ricci shares. The drawing's magnification is stated beside it, because
-the tides span many powers of ten. It opens in water with a tonne two metres away.
+A slice through a ball of free dust, released at rest and drawn a second later, with its starting circle dashed.
+The sliders set the density and pressure of the matter around it, a mass beside it and a beam of light or neutrinos
+through it. The readouts give the trace of the tide, the rate of change of volume $\ddot V/V = -\mathrm{tr}\,\curv\tE$,
+and the trace-free part split into its Weyl and Ricci shares. It opens in water with a tonne two metres away.
 
 Before you touch anything, answer the predictions at the top of the figure, then do what each asks. Afterwards, raise
 the pressure and watch which readouts change and which stay.
-:::
-
-::: check
-### Q
-
-What trace of the tide does a pixel read inside water, and how does it compare with the person's stretch a metre away?
-
-### A
-
-The trace is $4\pi G\matter\rho = 8.4\times10^{-7}\unit{s^{-2}}$, ninety times the person's $9.3\times10^{-9}\unit{s^{-2}}$.
-
-### Q
-
-Why can a pixel in empty space not read, in its trace, the density of the matter around it?
-
-### A
-
-The trace is the Ricci part, which is set by the energy and stress at the pixel's own place, and there they are zero.
-The matter around the pixel still reaches it through the Weyl part, which has no trace and changes only the shape.
-
-### Q
-
-By what fraction does the pressure at the Sun's centre raise its active density?
-
-### A
-
-By $3\matter p/\matter\rho c^2 = 7.5\times10^{16}/(1.35\times10^{22}) = 5.6\times10^{-6}$.
-
-### Q
-
-A sealed box of hot gas has a pressure inside. Why does it not weigh more than its energy over $c^2$?
-
-### A
-
-Its walls' tension, a negative momentum flux, cancels the gas's pressure over the whole box (von Laue's theorem).
 :::
 
 **The idea to keep: Einstein's equation ties the Ricci curvature at each point to the energy and stress there, so a
@@ -464,8 +414,34 @@ space only the Weyl curvature is left: the five numbers of $\curv\tE$ and the fi
 ::: problems
 ### Practice
 
-The neutrinos of a core collapse leave as a shell with a luminosity of $3\times10^{45}\unit{W}$. The supernova of
-1987 was 50 kiloparsecs away, in the Large Magellanic Cloud. Find the Ricci part of $\curv\tE_{ij}$ inside the shell
+**[7.3]** What trace of the tide does a pixel read inside water, and how does it compare with the person's stretch a
+metre away?
+
+::: solution
+The trace is $4\pi G\matter\rho = 8.4\times10^{-7}\unit{s^{-2}}$, ninety times the person's $9.3\times10^{-9}\unit{s^{-2}}$.
+:::
+
+**[7.3]** Why can a pixel in empty space not read, in its trace, the density of the matter around it?
+
+::: solution
+The trace is the Ricci part, which is set by the energy and stress at the pixel's own place, and there they are zero.
+The matter around the pixel still reaches it through the Weyl part, which has no trace and changes only the shape.
+:::
+
+**[7.3]** By what fraction does the pressure at the Sun's centre raise its active density?
+
+::: solution
+By $3\matter p/\matter\rho c^2 = 7.5\times10^{16}/(1.35\times10^{22}) = 5.6\times10^{-6}$.
+:::
+
+**[7.3]** A sealed box of hot gas has a pressure inside. Why does it not weigh more than its energy over $c^2$?
+
+::: solution
+Its walls' tension cancels the gas's pressure over the whole box (von Laue's theorem).
+:::
+
+**[7.3]** The neutrinos of a core collapse leave as a shell with a luminosity of $3\times10^{45}\unit{W}$. The supernova
+of 1987 was 50 kiloparsecs away, in the Large Magellanic Cloud. Find the Ricci part of $\curv\tE_{ij}$ inside the shell
 there, its trace, and the direction of the squeeze.
 
 ::: solution
@@ -477,9 +453,8 @@ directions across the line to the star, and none along it. The trace is twice th
 
 ### Stretch
 
-Combine this chapter with chapters 1.3 and 1.4. A uniform ball of radius $R$ and density $\matter\rho$ has a tide
-that is Ricci only inside (the uniform-ball check). Show that it is Weyl only outside, and find what jumps at the
-surface.
+**[7.3]** A uniform ball of radius $R$ and density $\matter\rho$ has a tide that is Ricci only inside (the uniform-ball
+check). Show that it is Weyl only outside, and find what jumps at the surface.
 
 ::: solution
 Outside, the Ricci part is zero and $(G\matter M/r^3)(\delta_{ij} - 3\hat n_i\hat n_j)$ is all Weyl. At $r = R$,
@@ -488,19 +463,19 @@ goes from $\tfrac{4\pi G}3\matter\rho$ to $-\tfrac{8\pi G}3\matter\rho$. The jum
 the trace, the part set by the matter.
 :::
 
-### The paper
+### The camera
 
-In the paper's *Matter at the pixel*, radiation with energy flux $\mathbf F$ gives $\curv\tB$ the antisymmetric part
-$-(4\pi G/c^3)\epsilon_{ijk}F_k$, so that "one reading inside the passing shell points back to the star". Derive it from
-trace reversal and $\epsilon_{kij}\curv\tB_{ij} = c^2\curv R_{0k}$ (the section on empty space), and find its size and
+**[7.3]** Radiation with energy flux $\mathbf F$ gives $\curv\tB$ the antisymmetric part $-(4\pi
+G/c^3)\epsilon_{ijk}F_k$, so that one reading inside the passing shell points back to the star. Derive it from trace
+reversal and $\epsilon_{kij}\curv\tB_{ij} = c^2\curv R_{0k}$ (the section on empty space), and find its size and
 direction for the beam check's burst at ten kiloparsecs.
 
 ::: solution
 Null dust has $\matter T^{0k} = F_k/c$, so $\matter T_{0k} = -F_k/c$, and since $\field g_{0k} = 0$ trace reversal gives
 $c^2\curv R_{0k} = -8\pi GF_k/c^3$. We write the antisymmetric part of $\curv\tB_{ij}$ as $\epsilon_{ijm}w_m$. Then
 $\epsilon_{kij}\curv\tB_{ij} = \epsilon_{kij}\epsilon_{ijm}w_m = 2w_k$, so $w_k = \tfrac12c^2\curv R_{0k} = -(4\pi
-G/c^3)F_k$, the paper's. The vector $\mathbf w$ points against the flux, back to the star. At ten kiloparsecs, where $F
-= 2.5\times10^3\unit{W\,m^{-2}}$, its size $4\pi GF/c^3 = 7.8\times10^{-32}\unit{s^{-2}}$ equals the squeeze.
+G/c^3)F_k$. The vector $\mathbf w$ points against the flux, back to the star. At ten kiloparsecs, where $F =
+2.5\times10^3\unit{W\,m^{-2}}$, its size $4\pi GF/c^3 = 7.8\times10^{-32}\unit{s^{-2}}$ equals the squeeze.
 :::
 :::
 
@@ -521,15 +496,27 @@ G/c^3)F_k$, the paper's. The vector $\mathbf w$ points against the flux, back to
 - The GR course reads the Ricci tensor as an average of tides in
   [section 9.2](https://neovand.github.io/general-relativity/chapter-9.html#9-2-ricci-curvature-as-a-directional-average-of-tidal-effects),
   takes out the Weyl tensor in
-  [section 9.3](https://neovand.github.io/general-relativity/chapter-9.html#9-3-extracting-the-trace-free-remainder-the-weyl-tensor)
-  with its [cloud explorer](https://neovand.github.io/general-relativity/chapter-9.html#curvature-cloud-explorer), and
-  derives the Newtonian limit with its factor of two in
+  [section 9.3](https://neovand.github.io/general-relativity/chapter-9.html#9-3-extracting-the-trace-free-remainder-the-weyl-tensor),
+  and derives the Newtonian limit with its factor of two in
   [section 12.4](https://neovand.github.io/general-relativity/chapter-12.html#12-4-deriving-the-newtonian-limit-including-the-factor-of-two).
 - S. Carroll, *Spacetime and Geometry* (Addison-Wesley, 2004), chapter 4: Einstein's equation from the same
   requirements and from an action.
 :::
 
-[^T]: A bare $\matter T$ in this chapter is the trace of the stress–energy tensor, in $\mathrm{J\,m^{-3}}$; in chapter
+[^pa]: First shown in *The gravitational camera* (Mohsenvand 2026), Sec. II, where the trace is written $\mathrm{tr}\,\tE
+    = c^2R_{00} = 4\pi G\rho$; Sec. VIII, *Matter at the pixel*, adds that the pixel reads the density locally,
+    whatever the matter is.
+
+[^matter]: First shown in *The gravitational camera* (Mohsenvand 2026), Sec. VIII, *Matter at the pixel*, with the
+    formula for the trace and its pressure term, the term in $2\Omega^2$ for a turning frame, and these numbers.
+
+[^star]: First shown in *The gravitational camera* (Mohsenvand 2026), Sec. XI, *An exploding star*; section 6.5 stated
+    the source of this tide.
+
+[^sky]: First shown in *The gravitational camera* (Mohsenvand 2026), Sec. IV, whose [](/paper/#fig:sky-integral) draws
+    the weight over the sky.
+
+[^T]: A bare $\matter T$ in this section is the trace of the stress–energy tensor, in $\mathrm{J\,m^{-3}}$; in section
     4.2 a bare $T$ is a temperature.
 
 [^G]: With two indices, $\curv G_{\mu\nu}$ is the Einstein tensor; a bare $G$ is Newton's constant.
@@ -537,10 +524,9 @@ G/c^3)F_k$, the paper's. The vector $\mathbf w$ points against the flux, back to
 [^stiff]: The inverse factor, $c^4/G = 1.2\times10^{44}\unit{N}$, is a force: the stiffness of spacetime, in the GR
     course's [section 12.7](https://neovand.github.io/general-relativity/chapter-12.html#12-7-why-the-coupling-has-units-of-inverse-force).
 
-[^Lambda]: A bare $\Lambda$ is the cosmological constant, in $\mathrm{m^{-2}}$. With indices the letter is chapter
-    5.2's projector $\Lambda_{ij,kl}$ or a boost $\Lambda^\mu{}_\nu$. The constant acts as an energy density
+[^Lambda]: A bare $\Lambda$ is the cosmological constant, in $\mathrm{m^{-2}}$; with indices it is the projector
+    $\Lambda_{ij,kl}$ of section 5.2 or a boost $\Lambda^\mu{}_\nu$. The constant acts as an energy density
     $\Lambda c^4/8\pi G$ with an equal tension in every direction, for which $\matter\rho + 3\matter p/c^2$ is minus
     twice the density.
 
-[^C]: Not the paper's $\curv{\mathcal W} = \curv\tE + i\curv\tB$, though in empty space $\curv{\mathcal W}$ is built from
-    it (chapter 9.3).
+[^C]: In empty space this Weyl tensor builds the complex combination $\curv\tE + i\curv\tB$ of section 9.3.

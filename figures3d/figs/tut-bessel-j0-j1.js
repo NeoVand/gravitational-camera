@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.6 (tutorial/noise/bessel-and-airy.md), its second diagram: the two Bessel functions and
+// The tutorial, section 3.6 (tutorial/noise/bessel-and-airy.md), its second diagram: the two Bessel functions and
 // their zeros. J0 (first accent, orange) and J1 (second accent, blue) against u from 0 to 15, with the dotted line at
 // zero; their zeros marked by dots on it and labelled in their colours, J0's at 2.405, 5.520, 8.654 and 11.79 and J1's
 // at 3.832, 7.016, 10.173 and 13.32, so that the two sets alternate; the deepest trough of J0, (3.832, -0.403), by a dot

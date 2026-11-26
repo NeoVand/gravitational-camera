@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.1 (tutorial/black-holes/schwarzschild.md), its third diagram: light's barrier and three
+// The tutorial, section 11.1 (tutorial/black-holes/schwarzschild.md), its third diagram: light's barrier and three
 // exact rays. Two panels side by side. Left, on linear axes: across, r/r_s from 1 to 8; up, the barrier (1 - r_s/r)/r^2
 // in units of 1/r_s^2, named at the top of its axis, its one tick at the peak's height 4/27r_s^2. The barrier in ink,
 // zero at the horizon and peaking at r = 1.5 r_s (a dashed line, "photon sphere"); three levels 1/b^2 in the page's

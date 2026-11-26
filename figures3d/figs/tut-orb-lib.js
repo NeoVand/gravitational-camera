@@ -1,4 +1,4 @@
-// Shared tools for the three diagrams of the tutorial's chapter 1.8 (tutorial/newton/orbits-and-kicks.md):
+// Shared tools for the three diagrams of the tutorial's section 1.8 (tutorial/newton/orbits-and-kicks.md):
 // tut-orb-falls, tut-orb-ring and tut-orb-flyby. Not a figure itself. The strokes, heads, dots, labels and the
 // cropping are those of the earlier chapters' diagrams (figs/tut-pot-lib.js, figs/tut-vec-lib.js), imported, not
 // copied; this file adds a fitted dashed line that leaves out the dashes that would touch another mark.

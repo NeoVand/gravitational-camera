@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.8 (tutorial/outside/flows.md), its fourth diagram: the hidden swirl. A uniform sphere in
+// The tutorial, section 2.8 (tutorial/outside/flows.md), its fourth diagram: the hidden swirl. A uniform sphere in
 // section through its equator, seen along the axis about which it turns (out of the page): the inner ball, out to
 // a = 2^(-1/5) R = 0.871 R, turns anticlockwise (orange) and the shell from a to R clockwise (blue), at the same rate.
 // Each curved arrow is the path of a part in one interval of time, as in the paper's fig:hidden-flow (figs/hidden-flow.js,

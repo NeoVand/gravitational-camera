@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.1 (tutorial/one-point/spin-two.md), its fourth diagram: two squares overlap less than two
+// The tutorial, section 9.1 (tutorial/one-point/spin-two.md), its fourth diagram: two squares overlap less than two
 // vectors. Across, the angle theta between two waves' directions of travel, 0 to 180 degrees, ticks every 30; up, the
 // overlap, 0 to 1, ticks at 0, 0.25, 0.5, 0.75 and 1. Light's cos^4(theta/2), dashed ink, "light, spin one"; gravity's
 // cos^8(theta/2), solid ink, "gravity, spin two", the narrower curve. Small ink dots at 30, 60 and 90 degrees on both,

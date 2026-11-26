@@ -1,8 +1,8 @@
-// Shared numbers for the four diagrams of the tutorial's chapter 5.1 (tutorial/waves/wave-equation.md):
+// Shared numbers for the four diagrams of the tutorial's section 5.1 (tutorial/waves/wave-equation.md):
 // tut-wave-slab, tut-wave-pulses, tut-wave-evanescent and tut-wave-damped. Not a figure itself. The sheet, the strokes,
-// the labels and the cropping are chapter 1.2's (figs/tut-pot-lib.js), the axes chapter 3.1's (figs/tut-prob-lib.js),
-// the sampling of curves chapter 2.6's (figs/tut-fourier-lib.js), the dashed outline at rest chapter 4.3's
-// (figs/tut-vec-lib.js, DASH), and matter's colour chapter 2.4's (figs/tut-null-lib.js, MATTER), all imported, not
+// the labels and the cropping are section 1.2's (figs/tut-pot-lib.js), the axes section 3.1's (figs/tut-prob-lib.js),
+// the sampling of curves section 2.6's (figs/tut-fourier-lib.js), the dashed outline at rest section 4.3's
+// (figs/tut-vec-lib.js, DASH), and matter's colour section 2.4's (figs/tut-null-lib.js, MATTER), all imported, not
 // copied.
 //
 // `chapter(check)` asserts every number of the chapter that a diagram draws or its caption prints: the two ratios

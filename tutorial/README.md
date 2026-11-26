@@ -72,7 +72,7 @@ Fenced divs (`::: name` … `:::`):
 - `gap`: "What this sketch skips".
 - `example`: "Worked example: <title>" (title as for `derivation`).
 - `check`: `### Q` then the question, `### A` then the answer, repeated; or a definition list (term = question).
-- `problems`: `### Practice`, `### Stretch`, `### The paper`, in that order; each problem is followed by a
+- `problems`: `### Practice`, `### Stretch`, `### The camera`, in that order; each problem is followed by a
   `::: solution` div.
 - `paper`: "Where the paper uses this". `deeper`: "Go deeper". `history`: "A little history[: title]", closed.
 - `try {#live-id}`: the interactive figure registered under that id in `app/src/lib/tutorial/live.ts`, after the

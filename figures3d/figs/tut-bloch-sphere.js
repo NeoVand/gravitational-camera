@@ -1,5 +1,5 @@
-// The tutorial, chapter 8.4 (tutorial/quantum/spin.md), its first diagram: the Bloch sphere. One sphere, drawn as
-// chapter 6.6 draws the sky (figs/tut-spin-lib.js, after figs/tut-maxwell-sky.js): a thin outline, a veil of the
+// The tutorial, section 8.4 (tutorial/quantum/spin.md), its first diagram: the Bloch sphere. One sphere, drawn as
+// section 6.6 draws the sky (figs/tut-spin-lib.js, after figs/tut-maxwell-sky.js): a thin outline, a veil of the
 // page's neutral tint over everything behind it, the equator solid and faint in front and dashed behind; thin grey axes
 // x, y, z from its centre (z up). Two ink arrows from the centre to the sphere, |n1> at theta = 40 degrees and |n2> 60
 // degrees further down in the same vertical plane, with a thin arc between them named "60 degrees" and, beside it,

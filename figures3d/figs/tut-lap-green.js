@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.1 (tutorial/outside/laplace.md), its fourth diagram: Green's second identity, drawn on a
+// The tutorial, section 2.1 (tutorial/outside/laplace.md), its fourth diagram: Green's second identity, drawn on a
 // region. A bounded region V (drawn in section, tinted) and its boundary, the closed surface dV, with outward
 // normals dA at six places along it; inside the region, the integrand u lap v - v lap u of the identity's left side;
 // beside the boundary, the integrand (u grad v - v grad u) . dA of its right side. In one neutral colour, the normals

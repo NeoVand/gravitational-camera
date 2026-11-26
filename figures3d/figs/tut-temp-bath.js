@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.2 (tutorial/response/temperature.md), its first diagram: why the chance of a state falls
+// The tutorial, section 4.2 (tutorial/response/temperature.md), its first diagram: why the chance of a state falls
 // exponentially with its energy. Left, a small box (the small system, holding the energy E) inside a large one (the
 // bath, holding E_tot - E), with two thin arrows across the small box's wall, one each way, labelled "energy".
 // Middle, the logarithm of the bath's count of states, ln Omega, against the bath's energy: a smooth rising concave

@@ -1,7 +1,7 @@
-// The tutorial, chapter 3.4 (tutorial/noise/symmetric-matrices.md), its opening figure: an endless flat camera splits a
+// The tutorial, section 3.4 (tutorial/noise/symmetric-matrices.md), its opening figure: an endless flat camera splits a
 // scene into ripples, each with its own gain. A row of seven slabs of sandstone, each corrugated by one ripple of surface
 // density sin(k x), measured from the mean (orange where the density is above it and blue where it is below, as
-// chapter 2.6's slabs, figs/tut-fourier-hero.js): from a broad swell on the left to fine crests on the right, q = kz =
+// section 2.6's slabs, figs/tut-fourier-hero.js): from a broad swell on the left to fine crests on the right, q = kz =
 // 1, 2, 4, 6, 8, 10 and 12, z the camera's height. Above each slab a bar whose height is its gain against the best
 // ripple's, q e^{1 - q}, on a log scale, from 1 at q = 1 down to 2.0 x 10^-4 at q = 12. A line across the bars marks
 // the noise at SNR = 10^3: the whitened gain pi SNR q e^{-q} is one there, at q e^{1 - q} = e / (pi SNR) = 8.7 x 10^-4,

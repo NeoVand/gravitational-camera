@@ -1,8 +1,8 @@
-// Shared numbers for the two diagrams of the tutorial's chapter 9.6 (tutorial/one-point/the-sky-at-one-point.md):
-// tut-sky-spectral-blocks and tut-single-pixel-picture. Not a figure itself. Complex numbers are chapter 8.1's
-// [re, im] (figs/tut-quantum-lib.js), a wave's unit null vector chapter 9.1's (figs/tut-spin-two-lib.js), the five
-// orthonormal coordinates the paper's (reference/gravcam/pixel.py, STF), Legendre's polynomials chapter 2.2's
-// recurrence (figs/tut-sph-legendre.js), and the colours chapter 9.5's (figs/tut-separating-lib.js: the curvature's
+// Shared numbers for the two diagrams of the tutorial's section 9.6 (tutorial/one-point/the-sky-at-one-point.md):
+// tut-sky-spectral-blocks and tut-single-pixel-picture. Not a figure itself. Complex numbers are section 8.1's
+// [re, im] (figs/tut-quantum-lib.js), a wave's unit null vector section 9.1's (figs/tut-spin-two-lib.js), the five
+// orthonormal coordinates the paper's (reference/gravcam/pixel.py, STF), Legendre's polynomials section 2.2's
+// recurrence (figs/tut-sph-legendre.js), and the colours section 9.5's (figs/tut-separating-lib.js: the curvature's
 // for the sky, the light role's for light), all imported, not copied. Orange and blue mean a stretch and a squeeze
 // only, and are not used.
 //
@@ -167,17 +167,17 @@ export async function chapter(check) {
 
 	// ---- the count
 	has(String.raw`So its ten diagonal entries are real, and the 45 entries above them are complex and fix those below: $10 + 2\times45 = 100$ real numbers.`, 'the hundred numbers');
-	has('These are the paper\'s **helicity blocks**: 25 real numbers in each Hermitian block and 50 in the complex $C_{+-}$.', 'the blocks\' sizes');
+	has('These are its **helicity blocks**: 25 real numbers in each Hermitian block and 50 in the complex $C_{+-}$.', 'the blocks\' sizes');
 	has(String.raw`The spectral matrix of the column $(\mathbf w_+, \mathbf w_-^*)$ has $C_+$ at its upper left, $C_-^*$ at its lower right, $C_{+-}$ at its upper right and the conjugate transpose of $C_{+-}$ at its lower left.`, 'where the blocks stand');
 	has(String.raw`C_\pm &= \oint\tfrac12(I \pm V)\,\mathbf q\mathbf q^\dagger\,\dd\Omega ,\\ C_{+-} &= \oint\tfrac12(Q - iU)\,\mathbf q\mathbf q^{\mathsf T}\,\dd\Omega .`, 'the blocks');
 	has('which makes $1 + 3 + 5 + 7 + 9 = 25$, as many as $C_+$ holds', 'the 25');
 	has('25 numbers each of $I$ and $V$', 'the 25 and 25');
-	has(String.raw`Such a table has $2\times4 + 1 = 9$ complex components (chapter 2.2's count with $\ell = 4$), so $C_{+-}$ holds at most 18 real numbers of the sky.`, 'the 18');
+	has(String.raw`Such a table has $2\times4 + 1 = 9$ complex components (section 2.2's count with $\ell = 4$), so $C_{+-}$ holds at most 18 real numbers of the sky.`, 'the 18');
 	has(String.raw`The antisymmetric part of $C_{+-}$, ten complex entries, is zero for every sky, since $\mathbf q\mathbf q^{\mathsf T}$ is symmetric. Of the fifteen complex entries of its symmetric part, the sky reaches only nine combinations. That leaves $20 + 12 = 32$ real numbers that vanish for any sky of waves`, 'the 32');
-	has('span 25 real dimensions of $C$ for the brightness, 25 for the circular polarization and 18 for the linear polarization', 'the numerical count');
+	has('span 25, 25 and 18 real dimensions of $C$ for the brightness, the circular and the linear polarization', 'the numerical count');
 	has('single waves from 500 random directions, in four states of polarization each', 'the sample');
 	has('That makes 25 + 25 + 18 = 68. The other 32 averages are zero for every sky of waves, so they test the instrument.', 'the plain count');
-	has('Sixty-eight carry the sky: 25 of the brightness, 25 of the circular polarization and 18 of the linear polarization.', 'the check\'s answer');
+	has('$$25 + 25 + 18 = 68$$', 'the check\'s answer');
 	const n = count();
 	check(n.unit, 'a steering vector is not of length one');
 	for (let a = 0; a < 5; a++) for (let b = 0; b < 5; b++) {
@@ -206,7 +206,7 @@ export async function chapter(check) {
 	has('It crosses zero at $43.9°$ and dips to $-0.152$ at $59.5°$', 'the zero and the dip');
 	has('Behind the source it rises to $K(180°) = (1 - 3 + 5 - 7 + 9)/25 = 0.2$', 'the value behind');
 	has(String.raw`its picture, $\sum_{\ell\le2}(2\ell + 1)P_\ell/9$, is $88.5°$ wide`, 'light\'s width');
-	has('Its full width at half height is 51.6°.', 'the check\'s width');
+	has('is $51.6°$ wide at half height', 'the check\'s width');
 	const m = marks();
 	check(near(K(0), 1, 1e-14) && near(m.back, (1 - 3 + 5 - 7 + 9) / 25, 1e-14) && near(lightK(0), 1, 1e-14), 'K at the source and behind it');
 	check(m.half.toFixed(1) === '25.8' && m.full.toFixed(1) === '51.6', `the half height at ${m.half}`);

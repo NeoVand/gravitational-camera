@@ -1,6 +1,6 @@
-// The tutorial, chapter 4.3 (tutorial/response/elastic-bodies.md), its second diagram: the stress on a small cube.
+// The tutorial, section 4.3 (tutorial/response/elastic-bodies.md), its second diagram: the stress on a small cube.
 // A cube with its edges along the axes x (toward the viewer, to the left), y (to the right) and z (up), drawn in true
-// 3D as chapter 1.3's box (figs/tut-gauss-box.js: an orthographic view, turned and tilted as lib.js's Panel does), but
+// 3D as section 1.3's box (figs/tut-gauss-box.js: an orthographic view, turned and tilted as lib.js's Panel does), but
 // opaque: the three edges that meet at the corner farthest from the viewer are hidden. On its face normal to x, tinted, three arrows
 // from the face's centre: T_xx along x, out of the face (orange, a tension), and T_yx along y and T_zx along z, lying
 // in the face. On the face normal to y, the arrow T_xy along x, as long as T_yx; a small tick across each of the two

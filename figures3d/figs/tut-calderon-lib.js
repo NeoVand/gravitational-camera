@@ -1,7 +1,7 @@
-// Shared numbers for the four diagrams of the tutorial's chapter 13.2 (tutorial/what-a-field-keeps/calderon.md):
+// Shared numbers for the four diagrams of the tutorial's section 13.2 (tutorial/what-a-field-keeps/calderon.md):
 // tut-calderon-pair, tut-sixteen-weighings, tut-cone-ellipse and tut-detail-cost. Not a figure itself. The sheet,
-// strokes, labels and cropping are chapters 1.2 to 13.1's (figs/tut-pot-lib.js), the plots and axes chapter 3.1's
-// (figs/tut-prob-lib.js), matter's colour chapter 7.4's (figs/tut-linear-lib.js, asserted against app.css by
+// strokes, labels and cropping are sections 1.2 to 13.1's (figs/tut-pot-lib.js), the plots and axes section 3.1's
+// (figs/tut-prob-lib.js), matter's colour section 7.4's (figs/tut-linear-lib.js, asserted against app.css by
 // `palette(check)`), all imported, not copied.
 //
 // The colours: the density rho, where a label names it, in matter's colour; everything else in ink and the page's
@@ -162,11 +162,10 @@ export async function chapter(check) {
 	}
 
 	// ---- the cost
-	has(r`For the steel ball one metre across, of chapter 13.1, $R = 0.5\unit m$. Detail of 20 cm, 10 cm and 5 cm needs spans of
+	has(r`For the steel ball one metre across, of section 13.1, $R = 0.5\unit m$. Detail of 20 cm, 10 cm and 5 cm needs spans of
 		$6.6 \times 10^6$, $4.4 \times 10^{13}$ and $1.9 \times 10^{27}$`, 'the spans');
 	has(r`The best clocks compare frequencies to about one part in $10^{18}$, so detail finer than about 8 cm is out of reach`, 'the clocks');
-	has(r`A check is in the numbers, since $6.6 \times 10^6$ squared is $4.4 \times 10^{13}$: squaring the precision halves the
-		finest detail, from 20 to 10 cm.`, 'the squaring');
+	has(r`Since $6.6 \times 10^6$ squared is $4.4 \times 10^{13}$, squaring the precision halves the finest detail, from 20 to 10 cm.`, 'the squaring');
 	has(r`We estimate the precision that a detail of size $2\pi/|\vect\xi|$ needs.`, 'the detail');
 	const spans = DETAILS.map((d) => sci(log10Span(d)));
 	check(spans.map(([m, e]) => `${m}e${e}`).join() === '6.6e6,4.4e13,1.9e27', `the spans ${spans}`);

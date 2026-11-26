@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.3 (tutorial/outside/multipoles.md), its first diagram: the ceiling of each degree for a
+// The tutorial, section 2.3 (tutorial/outside/multipoles.md), its first diagram: the ceiling of each degree for a
 // camera three of a stone's radii away. A bar for each degree l from 0 to 16, its top at (1/3)^l on a logarithmic
 // axis from 1 down to 10^-8, in matter's colour; a dashed line at 10^-6, the noise when the monopole is read with
 // SNR = 10^6, which passes between the bars of degrees 12 and 13; the bars below it faded. Under each bar the number

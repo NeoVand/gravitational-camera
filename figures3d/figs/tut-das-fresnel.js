@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.3 (tutorial/waves/diffraction.md), its third diagram: a near source needs the delays from a
+// The tutorial, section 5.3 (tutorial/waves/diffraction.md), its third diagram: a near source needs the delays from a
 // point. Two panels, one above the other, on one scale, 150 points to the metre. In each, the array, sixteen small
 // squares (ink) 0.1 m apart, 1.5 m from the first to the last, along a horizontal line, centred on its axis (dotted,
 // dim), which runs up to an arrow toward the source, named with its distance. Top, "near": the source 4.5 m away; one

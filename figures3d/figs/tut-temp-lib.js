@@ -1,15 +1,15 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 4.2 (tutorial/response/temperature.md):
-// tut-temp-bath, tut-temp-phase and tut-temp-moment. Not a figure itself. The charts take chapter 3.1's sheet, axes
-// and labels (figs/tut-pot-lib.js, figs/tut-prob-lib.js) and chapter 2.6's sampling of curves
+// Shared numbers for the three diagrams of the tutorial's section 4.2 (tutorial/response/temperature.md):
+// tut-temp-bath, tut-temp-phase and tut-temp-moment. Not a figure itself. The charts take section 3.1's sheet, axes
+// and labels (figs/tut-pot-lib.js, figs/tut-prob-lib.js) and section 2.6's sampling of curves
 // (figs/tut-fourier-lib.js), imported, not copied. `chapter(check)` asserts every number of the chapter that a diagram
-// draws or that its caption prints: k_B T at 300 K, the factors e and e^10, and the thermal spreads of chapter 1.7's
+// draws or that its caption prints: k_B T at 300 K, the factors e and e^10, and the thermal spreads of section 1.7's
 // cart, sigma_q = sqrt(k_B T / k) and sigma_p = sqrt(m k_B T).
 
 export const KB = 1.380649e-23;           // J/K, exact since 2019
 export const TEMP = 300;                  // K
 export const KT = KB * TEMP;              // J
 export const EV = 1.602176634e-19;        // J
-export const MASS = 2;                    // kg, the cart of chapter 1.7
+export const MASS = 2;                    // kg, the cart of section 1.7
 export const STIFF = 50;                  // N/m
 export const SIGMA_Q = Math.sqrt(KT / STIFF);   // m
 export const SIGMA_P = Math.sqrt(MASS * KT);    // kg m/s

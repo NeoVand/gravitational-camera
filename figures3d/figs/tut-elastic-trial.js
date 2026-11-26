@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.3 (tutorial/response/elastic-bodies.md), its third diagram: Appendix A's trial shape and
+// The tutorial, section 4.3 (tutorial/response/elastic-bodies.md), its third diagram: Appendix A's trial shape and
 // the notes it bounds. Left, a meridian section of the steel ball (the circle of radius R over a pale tint, z up),
 // with short arrows of the displacement u = (q/R)(-x/2, z) in that section, from the points of a square grid
 // inside it: orange where the arrow has an outward part (the bit moves away from the centre), blue where it has an

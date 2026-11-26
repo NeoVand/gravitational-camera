@@ -1,4 +1,4 @@
-// The tutorial, chapter 10.2 (tutorial/glow/kirchhoff.md), its second diagram: the occupation along a ray through a
+// The tutorial, section 10.2 (tutorial/glow/kirchhoff.md), its second diagram: the occupation along a ray through a
 // slab. One panel on linear axes: across, the optical depth tau from 0 to 5; up, n_omega / nbar(T) from 0 to 2. The
 // occupation n = nbar + (n_0 - nbar) e^{-tau} for the three entering occupations n_0 = 2 nbar, nbar and 0: the first
 // and last as solid ink curves falling and rising to nbar, the second the thin dashed line at 1, "nbar(T)". An inset,

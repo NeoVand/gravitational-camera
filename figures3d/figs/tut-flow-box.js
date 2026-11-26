@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.8 (tutorial/outside/flows.md), its first diagram: mass flowing through chapter 1.3's small
+// The tutorial, section 2.8 (tutorial/outside/flows.md), its first diagram: mass flowing through section 1.3's small
 // box (figs/tut-gauss-box.js, whose box, view and strokes this is). A box with one corner at (x, y, z) and edges
 // Delta x, Delta y, Delta z along the axes, drawn in true 3D (the hidden edges dashed), filled with a pale veil of
 // matter's colour, the density inside. Its two faces at right angles to the x axis are tinted: the face at x (blue),

@@ -1,5 +1,5 @@
-// The tutorial, chapter 9.4 (tutorial/one-point/petrov.md), its first diagram: a direction on the sky is a complex
-// number. The sky around a small grey pixel, drawn as chapter 8.4 draws it (figs/tut-spin-lib.js, after chapter 6.6
+// The tutorial, section 9.4 (tutorial/one-point/petrov.md), its first diagram: a direction on the sky is a complex
+// number. The sky around a small grey pixel, drawn as section 8.4 draws it (figs/tut-spin-lib.js, after section 6.6
 // and the paper's fig:stars): a thin outline, a veil over what lies behind, the equator solid in front and dashed
 // behind; seen a little from above, with the axes x, y, z as faint ink arrows from the pixel. Through the equator, the
 // horizontal complex plane: a faint grid, its axes named "Re z" and "Im z" (the axes x and y of the sky). One

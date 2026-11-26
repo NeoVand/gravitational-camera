@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.2 (tutorial/relativity/spacetime-vectors.md), its first diagram: the three kinds of
+// The tutorial, section 6.2 (tutorial/relativity/spacetime-vectors.md), its first diagram: the three kinds of
 // four-vector, sorted by the sign of a.a. One square panel, units of light-seconds at one scale on both axes, so that
 // light runs at 45 degrees: the room's axes in thin ink, x across and ct upward, each from -1.6 to 1.6, named at their
 // ends; the light cone of the origin, the two lines x = +-ct, thin and dashed in the light role's colour, the upper
@@ -7,7 +7,7 @@
 // worldline of a clock at 0.6c, named "time-like, a.a = -1"; in the light role's colour to (1.25, 1.25), on the cone,
 // named "null, a.a = 0"; in ink to (1, 0), ending at a small ink dot, the flash B, named "space-like, a.a = +1". The
 // values of a.a are in light-seconds squared.
-// The panel is drawn at 68 points to the light-second, chapter 6.1's scale (218 points for its 3.2 light-seconds,
+// The panel is drawn at 68 points to the light-second, section 6.1's scale (218 points for its 3.2 light-seconds,
 // about the comment's 520 site pixels at 1.9 pixels to the point, less the room the names take).
 // Exact: every line (the light lines at 45 degrees on the page, asserted), the three arrows' ends (asserted in
 // tut-vectors-lib.js with their a.a), the flashes. Nothing is schematic.
@@ -24,7 +24,7 @@ const check = checker(name);
 
 const U = 68;                              // points per light-second
 const R = 1.6;                             // the axes run from -R to R
-const EVENT = DOT + 0.25;                  // a flash's dot, radius (chapter 6.1's)
+const EVENT = DOT + 0.25;                  // a flash's dot, radius (section 6.1's)
 const FILL = 0.65;                         // the inside of the cone: the opacity of the page's tint
 
 /** The distance from the point q to the segment ab. */

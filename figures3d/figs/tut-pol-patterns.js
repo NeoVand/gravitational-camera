@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.4 (tutorial/waves/polarization.md), its first diagram: the two patterns of a gravitational
+// The tutorial, section 5.4 (tutorial/waves/polarization.md), its first diagram: the two patterns of a gravitational
 // wave on a ring of twelve free steel beads, the wave travelling out of the page toward the reader. Two rings side by
 // side at one scale, each drawn displaced by delta xi = (1/2) h xi with the strain exaggerated to h = 0.36, so that
 // each is an ellipse of semi-axes 1.18 and 0.82 (in units of the undisturbed radius); at each bead an arrow from its

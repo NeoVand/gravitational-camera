@@ -1,8 +1,8 @@
-// Shared numbers and colours for the three diagrams of the tutorial's chapter 7.3 (tutorial/geometry/einstein-equation.md):
+// Shared numbers and colours for the three diagrams of the tutorial's section 7.3 (tutorial/geometry/einstein-equation.md):
 // tut-einstein-traces, tut-einstein-twenty and tut-einstein-three-balls. Not a figure itself. The colour roles are
-// chapter 7.2's (figs/tut-curvature-lib.js: the observer's and the curvature's) and chapter 6.1's (figs/tut-lorentz-lib.js:
+// section 7.2's (figs/tut-curvature-lib.js: the observer's and the curvature's) and section 6.1's (figs/tut-lorentz-lib.js:
 // the light role's and matter's), read from app.css by `palette(check)`; the sheet, strokes, labels and cropping are
-// those of chapters 6.1 to 7.2, all imported, not copied.
+// those of sections 6.1 to 7.2, all imported, not copied.
 //
 // `chapter(check)` asserts every number of the chapter that a figure draws or its caption prints, and the chapter's
 // other numbers on the way (SI throughout):
@@ -22,7 +22,7 @@
 //    neutrinos of a core collapse, 3 x 10^46 J over 10 s from 10 kpc = 3.09 x 10^20 m: L = 3 x 10^45 W, F = 2500 W m^-2,
 //    about twice sunlight's, and the squeeze G L / c^3 r^2 = 7.8 x 10^-32 s^-2; beside one mass the tide
 //    (G M / r^3) diag(-2, 1, 1), trace-free;
-//  - the count: chapter 7.2's 20 = 6 + 8 + 6 (tut-curvature-lib.js, by the rank of the symmetries' conditions), of
+//  - the count: section 7.2's 20 = 6 + 8 + 6 (tut-curvature-lib.js, by the rank of the symmetries' conditions), of
 //    which the ten Ricci conditions fix 1 + 3 + 6 = 10 (20 less the 10 left free in empty space, by the same rank)
 //    and leave 5 + 5 + 0 = 10, the Weyl tensor's.
 import { OBS, CURV, palette as curvaturePalette, chapter as curvatureChapter, stack } from './tut-curvature-lib.js';
@@ -46,7 +46,7 @@ export const KPC = 3.0857e19;              // m
 export const trace = ({ rho = 0, sumP = 0, Lambda = 0 }) => 4 * Math.PI * G * (rho + sumP / (C * C)) - Lambda * C * C;
 
 // ---- the matter of the bars --------------------------------------------------------------------------------------
-export const RHO_EARTH = 5513;             // kg m^-3, the Earth's mean density (chapter R1)
+export const RHO_EARTH = 5513;             // kg m^-3, the Earth's mean density (section R1)
 export const RHO_WATER = 1000;             // kg m^-3
 export const SUN_FLUX = 1361;              // W m^-2, sunlight at the Earth
 export const DARK = 0.4 * 1e9 * EV / 1e-6; // J m^-3: 0.4 GeV cm^-3
@@ -101,7 +101,7 @@ export function ricciTideFromR(rho, T) {
 }
 /** The momentum flux of null dust of energy flux F (W m^-2) along the unit vector n: (F/c) n_i n_j. */
 export const beamFlux = (F, n) => n.map((a) => n.map((b) => (F / C) * a * b));
-/** The tide beside one mass, along the line and twice across it, in units of G M / r^3 (chapter 1.4). */
+/** The tide beside one mass, along the line and twice across it, in units of G M / r^3 (section 1.4). */
 export const BESIDE = [-2, 1, 1];
 
 // ---- the deformed balls of tut-einstein-three-balls ----------------------------------------------------------------

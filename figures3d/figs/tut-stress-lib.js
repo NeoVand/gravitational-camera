@@ -1,14 +1,14 @@
-// Shared numbers and tools for the three diagrams of the tutorial's chapter 6.5 (tutorial/relativity/stress-energy.md):
+// Shared numbers and tools for the three diagrams of the tutorial's section 6.5 (tutorial/relativity/stress-energy.md):
 // tut-stress-flow-sign, tut-stress-beam-box and tut-stress-null-crossing. Not a figure itself. The colours are the
-// chapter's colour roles, read from app.css by chapter 7.1's palette (figs/tut-metric-lib.js: --q-obs, --q-light,
-// --q-matter and --q-curv), and the sheet, strokes, labels and cropping are those of chapters 6.1 to 6.4
+// chapter's colour roles, read from app.css by section 7.1's palette (figs/tut-metric-lib.js: --q-obs, --q-light,
+// --q-matter and --q-curv), and the sheet, strokes, labels and cropping are those of sections 6.1 to 6.4
 // (figs/tut-pot-lib.js and the libraries they import); the rings of free beads, with their orange stretch and blue
-// squeeze arrows, are chapter 1.5's (figs/tut-five-lib.js, after the paper's figs/tidal.js), all imported, not copied.
+// squeeze arrows, are section 1.5's (figs/tut-five-lib.js, after the paper's figs/tidal.js), all imported, not copied.
 // This file adds a light oblique projection, for the small cubes of the first diagram, and a name of several lines.
 //
 // `chapter(check)` asserts every number of the chapter that a figure draws or its caption prints:
 //  - the sign: a gas at the pressure p hands the momentum p along +x each second across a square metre of a face whose
-//    normal is +x, toward +x, so T^xx = +p; a rod in tension tau along x hands -tau, so T^xx = -tau; chapter 4.3's
+//    normal is +x, toward +x, so T^xx = +p; a rod in tension tau along x hands -tau, so T^xx = -tau; section 4.3's
 //    stress, the force per area of the far side on the near side, is the negative of each (-p and +tau); a squeeze
 //    of 10^8 Pa gives T^xx = +10^8 Pa (the check);
 //  - the beam: T^00 + T^zz = 2F/c, so a beam of power P is a line of 2P/c^3 kilograms per metre; the potential
@@ -72,16 +72,16 @@ export async function lines(S, srcs, x, y, ax, ay, dir, color, others = [], skip
  * per area along +x that the matter on the -x side exerts on the matter on the +x side. `push` is that force per area
  * along the normal, positive for a push (a pressure), negative for a pull (a tension). */
 export const flux = (push) => push;
-/** Chapter 4.3's stress on the same face: the force per area that the far (+x) side exerts on the near (-x) side,
+/** Section 4.3's stress on the same face: the force per area that the far (+x) side exerts on the near (-x) side,
  * the other half of the pair of Newton's third law. */
 export const stress43 = (push) => -push;
 
 // ---- the beam -------------------------------------------------------------------------------------------------------------
 export const POWER = 1e5;                  // W, the paper's infrared beam
-export const PERSON_TIDE = 9.3e-9;         // s^-2, a person a metre away (chapter 1.4)
+export const PERSON_TIDE = 9.3e-9;         // s^-2, a person a metre away (section 1.4)
 /** The beam's line density, kg/m: (T^00 + T^zz) A / c^2 = 2 (F/c) A / c^2 = 2P/c^3. */
 export const lineDensity = (P) => (2 * P) / C ** 3;
-/** The potential of a long straight line of lambda kilograms per metre along z at the distance rho (chapter 2.4). */
+/** The potential of a long straight line of lambda kilograms per metre along z at the distance rho (section 2.4). */
 export const linePotential = (lambda, [x, y]) => 2 * G * lambda * Math.log(Math.hypot(x, y));
 /** The Hessian of a function of (x, y, z) at p, by central differences of the step h. */
 export function hessian(f, p, h) {

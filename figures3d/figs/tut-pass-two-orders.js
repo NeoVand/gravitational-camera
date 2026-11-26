@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.1 (tutorial/what-a-field-keeps/push-and-pass.md), its first diagram: the two orders of one
+// The tutorial, section 13.1 (tutorial/what-a-field-keeps/push-and-pass.md), its first diagram: the two orders of one
 // pass. The pair of the paper's fig:passing side by side, as the paper's figs/ladder.js draws them cut open (the stone of
 // sprites/hair/shell.png, an octant removed): left, a thin shell of mass M and radius R/sqrt 2, inside the faint dotted
 // circle of radius R; right, M/2 at the centre of a shell of radius R that holds the other half, the iron point seen in

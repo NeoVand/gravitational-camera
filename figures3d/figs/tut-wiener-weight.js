@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.5 (tutorial/noise/wiener-filter.md), its first diagram: the best guess's weight and its
+// The tutorial, section 3.5 (tutorial/noise/wiener-filter.md), its first diagram: the best guess's weight and its
 // error. Against the ratio s on a logarithmic axis from 0.01 to 100: the weight H = s^2 / (1 + s^2) with which the best
 // linear guess keeps the reading (neutral ink); the error it leaves, 1/(1 + s^2) (first accent, orange); and the error
 // of the naive guess y/T, 1/s^2 (second accent, blue, dashed), both in units of the prior's variance and on the same

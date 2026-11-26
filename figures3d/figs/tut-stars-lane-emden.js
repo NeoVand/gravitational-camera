@@ -1,4 +1,4 @@
-// The tutorial, chapter 12.1 (tutorial/sky/stars.md), its second diagram: the Lane-Emden solutions and Eddington's
+// The tutorial, section 12.1 (tutorial/sky/stars.md), its second diagram: the Lane-Emden solutions and Eddington's
 // Sun. Two panels side by side, sharing their tops and bottoms. Left, on linear axes: theta(xi) for n = 3/2 (dashed)
 // and n = 3 (solid) from the centre to each first zero, xi from 0 to 7, the zeros xi_1 = 3.654 and 6.897 marked by
 // small ticks up from the axis and numbered beside them. Right: Eddington's Sun, rho/rho_bar = (xi_1^3/3 omega) theta^3
@@ -32,7 +32,7 @@ const MINOR = 1.5;
 const NAME = 7;                                  // the axes' names over the panels
 const ZERO_TICK = 3.2;                           // the zeros' ticks, up from the axis
 const DOT = 0.6, DOT_STEP = 1.6;
-const caption = 'Look first at the right panel\'s curve against the flat line of the uniform ball: Eddington\'s Sun is 54 times denser than its mean at the centre and holds 41% of its mass inside a quarter of its radius. The left panel shows the two solutions of the Lane–Emden equation that the chapter uses. Curves exact.';
+const caption = 'Look first at the right panel\'s curve against the flat line of the uniform ball: Eddington\'s Sun is 54 times denser than its mean at the centre and holds 41% of its mass inside a quarter of its radius. The left panel shows the two solutions of the Lane–Emden equation that the section uses. Curves exact.';
 
 export default async function () {
 	const { state, half, three, contrast, inner } = await chapter(check);

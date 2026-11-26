@@ -1,7 +1,7 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 13.4 (tutorial/what-a-field-keeps/flows-inside.md):
+// Shared numbers for the three diagrams of the tutorial's section 13.4 (tutorial/what-a-field-keeps/flows-inside.md):
 // tut-tides-in-turn, tut-flow-transverse and tut-shares-by-degree. Not a figure itself. The sheet, strokes, labels
-// and cropping are chapters 1.2 to 13.3's (figs/tut-pot-lib.js, and chapter 1.1's figs/tut-vec-lib.js for the
-// drawing in 3D), the plots chapter 3.1's (figs/tut-prob-lib.js), matter's colour chapter 7.4's (figs/tut-linear-lib.js,
+// and cropping are sections 1.2 to 13.3's (figs/tut-pot-lib.js, and section 1.1's figs/tut-vec-lib.js for the
+// drawing in 3D), the plots section 3.1's (figs/tut-prob-lib.js), matter's colour section 7.4's (figs/tut-linear-lib.js,
 // asserted against app.css by `palette(check)`), the shares the paper's live figure's (app/src/lib/hair/flow.ts, whose
 // formulas are restated here and asserted against the chapter), all imported or restated, not copied.
 //
@@ -110,7 +110,7 @@ export function exact(tau) {
 export { hOf, gOf };
 
 // ---- the shares ------------------------------------------------------------------------------------------------------
-export const HIDDEN = 2 ** (-1 / 5);                           // chapter 2.8's inner radius, in R
+export const HIDDEN = 2 ** (-1 / 5);                           // section 2.8's inner radius, in R
 export const DEGREES = [2, 3, 4];
 /** <sin^(2k) theta> over directions, 1.8's average: (2k)!! / (2k + 1)!!. */
 export const sinAverage = (k) => { let s = 1; for (let j = 1; j <= k; j++) s *= (2 * j) / (2 * j + 1); return s; };
@@ -170,8 +170,8 @@ export async function chapter(check) {
 	has(r`The bracket gives the component of $\matter{\tilde{\vect J}}$ along $\vect\eta$, and
 		$\vect\eta$ may be any vector at right angles to $\vect\xi$ and as long. Turning it a right angle about $\vect\xi$
 		gives a second component, and the two make the **transverse part** of the transform`, 'the transverse part');
-	has(r`The part along $\vect\xi$, the **longitudinal part**, comes from chapter 2.8's continuity
-		equation`, 'the longitudinal part');
+	has(r`The part along $\vect\xi$, the **longitudinal part**, comes from the continuity equation of
+		section 2.8`, 'the longitudinal part');
 	has(r`$$\frac{\dd\matter{\tilde\rho}}{\dd t} = i\vect\xi\cdot\matter{\tilde{\vect J}}(\vect\xi)`, 'the rate of the density');
 	has(r`h_\pm = e^{\vect\zeta_\pm\cdot\vect x} ,$$`, 'the pair');
 
@@ -187,7 +187,7 @@ export async function chapter(check) {
 		swirl`, 'the sum of degree four');
 	has(r`For $n = 2$ the factor is $2a^5/R^5 - 1$, zero at the same radius, so the two areas of panel (b) are
 		equal.`, 'the sum of degree two');
-	has(r`At chapter 2.8's $a = 2^{-1/5}R$, where $\vect L = 0$, the factor $2a^7/R^7$ is $2^{-2/5}$`, 'the octupolar sum');
+	has(r`At the radius $a = 2^{-1/5}R$ of section 2.8, where $\vect L = 0$, the factor $2a^7/R^7$ is $2^{-2/5}$`, 'the octupolar sum');
 	check(near(bracket(3), (32 / 35) * (1 - 2 ** (-2 / 5)), 1e-15) && near(bracket(4), (32 / 35) * (1 - 2 ** (-4 / 5)), 1e-15), 'the sums\' closed forms');
 	check(near(HIDDEN, 0.8705505632961241, 1e-15) && HIDDEN.toFixed(3) === '0.871', 'the inner radius');
 	check(near(rigid(2), 4 / 5) && near(rigid(3), 32 / 35) && near(rigid(4), 32 / 35), 'the rigid values');

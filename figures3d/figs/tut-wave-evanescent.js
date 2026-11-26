@@ -1,5 +1,5 @@
-// The tutorial, chapter 5.1 (tutorial/waves/wave-equation.md), its third diagram: which ripples across a plane leave
-// as waves. Two panels side by side in the style of chapter 2.7's opening figure (figs/tut-evan-hero.js: its stone
+// The tutorial, section 5.1 (tutorial/waves/wave-equation.md), its third diagram: which ripples across a plane leave
+// as waves. Two panels side by side in the style of section 2.7's opening figure (figs/tut-evan-hero.js: its stone
 // slab, its view and its glass): in each, the same slab whose top, the plane z = 0, carries the same ripple of the
 // field, u = sin(k x) at z = 0 with crests a unit d apart, orange where u is above zero and blue where it is below, as
 // 2.7 colours its slab; on the slab's back edge an upright pane of 2.7's glass shows the field above the plane at one

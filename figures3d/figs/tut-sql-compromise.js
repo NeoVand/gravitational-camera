@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.6 (tutorial/quantum/quantum-limit.md), its first diagram: the compromise of the standard
+// The tutorial, section 8.6 (tutorial/quantum/quantum-limit.md), its first diagram: the compromise of the standard
 // quantum limit. One panel on logarithmic axes, one decade as long across as up, so that the two terms are lines at
 // 45 degrees: across, sigma_0 / sigma_SQL from 0.03 to 30; up, sigma_x(tau) / sigma_SQL from 0.5 to 30. The first
 // reading's own term sigma_0 (slope +1) and the back-action's hbar tau / 2 m sigma_0 (slope -1), dashed grey; their

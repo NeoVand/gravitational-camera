@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.3 (tutorial/relativity/aberration.md), its third diagram: the whole sky of a moving
+// The tutorial, section 6.3 (tutorial/relativity/aberration.md), its third diagram: the whole sky of a moving
 // observer. Two round panels, one above the other, each a disc showing the whole sky in the equal-area projection
 // centred on the direction of motion: the centre is straight ahead, the rim straight behind, and a point at the angle
 // alpha from the direction of motion lies sin(alpha/2) of the rim's radius out, so that equal areas of sky get equal
@@ -11,7 +11,7 @@
 // e^{-+eta}; the image of the circle alpha = 90 degrees, at alpha' = 25.8 degrees, thin and dashed, named "25.8
 // degrees".
 // Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (as
-// chapter 6.2's tut-vectors-gradient): side by side each disc would be about 150 points across and would be shrunk on a
+// section 6.2's tut-vectors-gradient): side by side each disc would be about 150 points across and would be shrunk on a
 // phone, where the crowded stars ahead would merge. The colour bar is graded in proportion to the logarithm of the
 // factor, so that a factor and its inverse lie equally far from 1, and is ticked at 0.23, 0.5, 1, 2 and 4.36. The
 // middle of the scale, a factor of 1, is the neutral faint ink rather than the page's colour, which the paper's scale

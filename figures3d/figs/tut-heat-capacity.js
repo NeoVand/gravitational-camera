@@ -1,4 +1,4 @@
-// The tutorial, chapter 10.2 (tutorial/glow/kirchhoff.md), its fourth diagram: heat capacities. Two panels side by
+// The tutorial, section 10.2 (tutorial/glow/kirchhoff.md), its fourth diagram: heat capacities. Two panels side by
 // side, sharing their tops and bottoms. Left: one mode's C_mode / k_B against k_B T / hbar omega from 0 to 3 (solid),
 // rising from 0 towards the dotted line at 1, and Debye's C / 3 N k_B against T / Theta_D on the same axes (dashed),
 // with two dots on it, "diamond, 293 K" at T / Theta_D = 0.133 (0.16) and "copper, 293 K" at 0.854 (0.93). Right, on

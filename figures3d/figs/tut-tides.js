@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.4 (tutorial/newton/tides.md), its opening figure: a person of stone and, one metre
+// The tutorial, section 1.4 (tutorial/newton/tides.md), its opening figure: a person of stone and, one metre
 // from the person's centre of mass, a ring of twelve free steel beads drawn out by the person's tide. Exact:
 // the tide's table, (GM/r^3) diag(-2, 1, 1) with x along the line to the person, printed as it is used; the
 // ring's shape (a ring of radius 1 is moved by e times -E xi / (GM/r^3), so it becomes the ellipse with

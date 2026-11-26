@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.1 (tutorial/outside/laplace.md), its second diagram: the potential of two people of mass M
+// The tutorial, section 2.1 (tutorial/outside/laplace.md), its second diagram: the potential of two people of mass M
 // standing at x = -a and x = +a, a = 1 m, along the line through them and across it. On one pair of axes, in units
 // of GM/a: along the line, Phi(x, 0, 0) = -GM/|a - x| - GM/|a + x| = -2GM a/(a^2 - x^2) for |x| < a, drawn for x
 // from -0.8 m to 0.8 m; across it, through the midpoint, Phi(0, y, 0) = -2GM/sqrt(a^2 + y^2), drawn for y from
@@ -8,7 +8,7 @@
 // -2 at the midpoint and the signs of their second derivatives there, -4 and +2 in units of GM/a^3, which with the
 // +2 across in z add up to zero (asserted, with the chapter's numbers -1.87 x 10^-8 and 9.3 x 10^-9 s^-2 for 70 kg).
 // Chosen for the drawing: the two scales and the people's size (a person 1.75 m tall would be far taller than the
-// plot); pictorial: the people, the stone figure of chapter 1.4 (sprites/tut-person.png).
+// plot); pictorial: the people, the stone figure of section 1.4 (sprites/tut-person.png).
 import { INK, DIM, FAINT, sprite, tex } from '../lib.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, boxOf, AXIS, HAIR, TICK, SIZE, n2 } from './tut-pot-lib.js';
 import { FIELD } from './tut-orb-lib.js';

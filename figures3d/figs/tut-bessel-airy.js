@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.6 (tutorial/noise/bessel-and-airy.md), its fourth diagram: a lens draws a star as the
+// The tutorial, section 3.6 (tutorial/noise/bessel-and-airy.md), its fourth diagram: a lens draws a star as the
 // square of the round opening's pattern. Left, against x from -12 to 12, the amplitude 2 J1(x) / x (first accent,
 // orange) and the intensity (2 J1(x) / x)^2 (neutral ink), with the dotted lines at zero and at one half: the first
 // dark ring at x = +-3.832, where both vanish, by dots on the zero line; the half maxima, +-2.215 for the amplitude and

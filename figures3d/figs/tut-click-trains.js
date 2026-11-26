@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.5 (tutorial/quantum/counting-quanta.md), its second diagram: how the clicks of three sources
+// The tutorial, section 8.5 (tutorial/quantum/counting-quanta.md), its second diagram: how the clicks of three sources
 // arrive. Four horizontal time axes stacked, each carrying 40 clicks as thin vertical ink ticks over the same length,
 // at the same mean rate. Row 1, "steady (coherent)": a Poisson process of steady rate, so independent uniform times.
 // Row 2, "thermal": a Poisson process whose rate is a thermal intensity, I = |E|^2 of a complex Gaussian field (so I is

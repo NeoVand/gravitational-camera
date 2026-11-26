@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.4 (tutorial/response/viscosity.md), its fourth diagram: the ceiling of a metal's friction.
+// The tutorial, section 4.4 (tutorial/response/viscosity.md), its fourth diagram: the ceiling of a metal's friction.
 // Re eta = mu tau / (1 + omega^2 tau^2) against the collision time tau on a logarithmic axis from 10^-16 to 10^-12 s,
 // at the glow's peak at 293 K, omega = 1.082 x 10^14 s^-1, for copper's free electrons, mu = 2 n E_F / 5 with
 // n = 8.47 x 10^28 m^-3 and E_F = 7.03 eV (38.15 GPa; the diagram's comment printed 38.1), on a linear axis from 0

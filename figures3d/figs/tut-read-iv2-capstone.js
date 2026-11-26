@@ -1,4 +1,4 @@
-// The tutorial, reading chapter R3 (tutorial/noise/reading-section-iv-2.md), its second diagram: the capstone, the
+// The tutorial, reading section R3 (tutorial/noise/reading-section-iv-2.md), its second diagram: the capstone, the
 // locked safe imaged from start to finish, in six small panels, one for each step of the chapter. One drawing serves
 // the desktop and the phone, so the six are laid out to be read at 390 px: (a) beside (b), (c) beside (d), then (e) and
 // (f) each across the whole width.
@@ -6,7 +6,7 @@
 //      at the camera), in 10^-10 s^-2 against x from -1.75 to 1.75 m (orange), peaking at 4.1 at x = 1.1 m; around
 //      zero the noise sigma_n of one reading at SNR 10^3, +-0.35 (blue), and at SNR 10, +-35 (the blue tint); the
 //      vertical axis runs from -40 to 40 so that the wide band fits. Below: the two safes' scores as two unit Gaussians
-//      (chapter 3.3's colours: blue for the left safe, orange for the right), their centres D = 1.81 apart, the
+//      (section 3.3's colours: blue for the left safe, orange for the right), their centres D = 1.81 apart, the
 //      midline dashed and the tail of each beyond it in its tint, 18.3% each.
 //  (b) See the blur. A plan from above, to scale: the camera's array as a bar 1 m wide at the left; the two safes,
 //      squares 0.8 m wide centred 2.2 m apart, their centres 3.5 m from it (scenes/locked-safe.scene.json); from the
@@ -14,7 +14,7 @@
 //      full width at half maximum of the Wiener point spread, two grey hairlines) and of this array (pi / l_max =
 //      32.4 degrees, eq:handheld with 2r/D = 7, orange, its wedge in the orange tint), and that blur's arc of 1.98 m at
 //      3.5 m, marked by a dimension arc; both are wider than the 1.4 m gap between the safes.
-//  (c) Fail to weigh it. The whitened gains of chapter 3.4 (the locked safe's design matrix over the noise at
+//  (c) Fail to weigh it. The whitened gains of section 3.4 (the locked safe's design matrix over the noise at
 //      SNR 10^3, times the gold's mass) on a logarithmic scale, largest first; the 17 above one in orange, the rest
 //      pale; the line at one in the noise's blue. Only the 118 above 10^-10 are drawn: the other 113 of the 231 lie
 //      below it, where double precision cannot resolve them.
@@ -23,7 +23,7 @@
 //      every draw is held, counted on a logarithmic scale so that the single draws of the long tail show; their mean,
 //      315 kg (orange), and the true 324 kg (dashed). Above it, on small axes of its own, the Cramer-Rao ellipse of a
 //      point of gold at SNR 10^3: the error in mass across (kg) and in depth up (cm), one standard deviation, ticked at
-//      +-25 kg and +-9.1 cm, leaning along "farther and heavier" (correlation 0.996), in chapter 3.3's blue.
+//      +-25 kg and +-9.1 cm, leaning along "farther and heavier" (correlation 0.996), in section 3.3's blue.
 //  (e) Count the bits. A bar of 38 cells, one per bit of a patch at SNR 10^3 (eq:capacity-integral, 37.9): the first
 //      cell, the safe (one bit), in ink; the next four, the mass (log2(324/20) = 4.0 bits), in orange; the rest pale.
 //  (f) The quantum ceiling. The bar's face, 30 cm by 14 cm as the camera sees it, drawn twice: blurred by the Wiener

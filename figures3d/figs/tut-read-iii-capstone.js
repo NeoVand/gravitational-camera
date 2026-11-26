@@ -1,4 +1,4 @@
-// The tutorial, reading chapter R5 (tutorial/waves/reading-section-iii.md), its second diagram: the capstone, the
+// The tutorial, reading section R5 (tutorial/waves/reading-section-iii.md), its second diagram: the capstone, the
 // paper's which-way scene (scenes/which-way.scene.json, Figure fig:which-way) with Part 5's numbers. Two panels. One
 // drawing serves the desktop and the phone (as R4's capstone, figs/tut-read-iv3-capstone.js), so the two are stacked
 // and laid out to be read at 390 px; the diagram comment asked for them side by side on a wide screen, but the site

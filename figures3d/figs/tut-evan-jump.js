@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.7 (tutorial/outside/evanescent.md), the corner at the sheet. The transformed potential of
+// The tutorial, section 2.7 (tutorial/outside/evanescent.md), the corner at the sheet. The transformed potential of
 // one ripple of a thin sheet, Phi~ = C e^{-k|h|} with C = -2 pi G sigma~ / k (negative for a sheet of positive mass),
 // against the height h, drawn upward, for h from -2/k to 2/k: a curve with a sharp corner at the sheet, h = 0, where it
 // reaches C. Through the corner, the two tangents, one to each branch: above the sheet the slope dPhi~/dh is -kC, below

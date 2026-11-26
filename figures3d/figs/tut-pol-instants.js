@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.4 (tutorial/waves/polarization.md), its second diagram: eight instants of one cycle of a
+// The tutorial, section 5.4 (tutorial/waves/polarization.md), its second diagram: eight instants of one cycle of a
 // wave travelling toward the reader, omega t = 0, 45, ..., 315 degrees from left to right. Each instant is a ring of
 // twelve free steel beads displaced by delta xi = (1/2) h xi (tut-pol-patterns), the strain exaggerated to the
 // amplitude 0.36: the deformed ring a thin ink ellipse over the dashed undisturbed circle, an orange bar through the

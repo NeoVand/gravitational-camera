@@ -1,4 +1,4 @@
-// The tutorial, chapter 10.2 (tutorial/glow/kirchhoff.md), its third diagram: the two orders of the stress spectrum.
+// The tutorial, section 10.2 (tutorial/glow/kirchhoff.md), its third diagram: the two orders of the stress spectrum.
 // One panel: across, x = hbar omega / k_B T from 0 to 6, linear; up, the spectrum per Re eta Delta_ijkl in units of
 // k_B T, on a logarithmic scale from 10^-2 to 10. The emission order 2 x nbar(x), solid ink, falling from 2 at x = 0;
 // the symmetrized order x (2 nbar + 1) = x coth(x / 2), dashed ink, rising from 2 and growing as x; the classical 2 k_B T,

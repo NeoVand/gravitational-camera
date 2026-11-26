@@ -1,4 +1,4 @@
-// The tutorial, chapter 12.2 (tutorial/sky/universe.md), its third diagram: the thermal history as Ta, which a free
+// The tutorial, section 12.2 (tutorial/sky/universe.md), its third diagram: the thermal history as Ta, which a free
 // species keeps. Horizontal axis: log10 of the photons' temperature from the Planck temperature, 1.42 x 10^32 K (left),
 // to today's 2.7255 K (right); vertical axis: Ta over today's photons' value, 0 to 1.1. Three lines: the gravitons flat
 // at (3.909/106.75)^{1/3} = 0.3321 across the whole axis, in the field's colour; the neutrinos, neutral, following the

@@ -1,6 +1,6 @@
-// Shared tools for the five diagrams of the tutorial's chapter 1.3 (tutorial/newton/gauss-and-poisson.md):
+// Shared tools for the five diagrams of the tutorial's section 1.3 (tutorial/newton/gauss-and-poisson.md):
 // tut-gauss-solid-angle, tut-gauss-crossings, tut-gauss-box, tut-gauss-cone-box and tut-gauss-pillbox. Not a figure
-// itself. The strokes, heads, dots, labels and the cropping are those of chapter 1.1's diagrams (figs/tut-vec-lib.js,
+// itself. The strokes, heads, dots, labels and the cropping are those of section 1.1's diagrams (figs/tut-vec-lib.js,
 // imported, not copied), so that the three chapters look alike; this file adds what a solid body drawn in true 3D
 // needs: a flat face filled with a tint, a polygon's edges with the hidden ones dashed, a small stone ball for a
 // point mass, the arc of an angle, and a closed curve sampled finely.

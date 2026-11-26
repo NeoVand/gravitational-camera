@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.3 (tutorial/relativity/aberration.md), its first diagram: one ray of light in two frames.
+// The tutorial, section 6.3 (tutorial/relativity/aberration.md), its first diagram: one ray of light in two frames.
 // One panel, 110 points to the unit of omega/c, x across and y up. From the centre O, a small ink dot: the observer's
 // velocity, a thick arrow in the observer's colour pointing right, beta = 0.6 units long, named "beta = 0.6" under
 // it; the wave's direction of travel in the source's frame, k = (0, -1), for light coming straight down from a source
@@ -22,7 +22,7 @@ const name = 'tut-aberration-ray';
 const check = checker(name);
 
 const U = 110;                             // points per unit of omega/c
-const EVENT = DOT + 0.25;                  // O's dot, radius (chapter 6.1's events)
+const EVENT = DOT + 0.25;                  // O's dot, radius (section 6.1's events)
 const CLEAR = 1.2;                         // the air between O's dot and the lines from it
 const THICK = 1.2, THICK_HEAD = 5.2;       // the velocity's stroke and head
 const SIGHT = 1.0;                         // the dashed lines of view, units

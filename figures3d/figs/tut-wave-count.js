@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.5 (tutorial/one-point/separating-waves.md), its first diagram: counting unknowns against
+// The tutorial, section 9.5 (tutorial/one-point/separating-waves.md), its first diagram: counting unknowns against
 // recorded numbers gives the largest number of waves one point can separate. Three small panels side by side, "one
 // instant (L = 1)", "one frequency (L = 2)" and "long record (L large)", each with a horizontal axis "number of waves
 // N" from 1 to 6. In each, a dot in ink at every N for its unknowns N(L + 1), rising in steps, and two flat lines for

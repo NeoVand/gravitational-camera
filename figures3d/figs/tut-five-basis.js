@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.5 (tutorial/newton/five-numbers.md), its second diagram: the five basis tables b^1 ... b^5
+// The tutorial, section 1.5 (tutorial/newton/five-numbers.md), its second diagram: the five basis tables b^1 ... b^5
 // of the symmetric trace-free tables, each drawn as a ring of twelve free steel beads pushed by that one table. b^1,
 // b^2 and b^3 each fill one pair of places off the diagonal, so each acts in one plane (xy, yz, zx) and its axes are
 // that plane's diagonals; b^4 sets x against y; b^5 sets z against x and y together, drawn in the plane of x and z

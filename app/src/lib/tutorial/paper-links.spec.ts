@@ -6,7 +6,7 @@ import { fixturePaperLinks, marginNotes, paperLinks } from './paper-links';
 import type { MarginChapter } from './paper-links';
 import { FIGURE_OVERRIDES, LABELS, SKIP } from './paper-map';
 import { GENERATED, orderedAnchors, paperLinksSource } from '#lib/server/paper-map.js';
-import { TUTORIAL_DIR, chapterById, loadChapter } from '#lib/server/sources.js';
+import { TUTORIAL_DIR, chapterById, derivations, loadChapter } from '#lib/server/sources.js';
 
 const sample: MarginChapter = {
 	id: 'X.1',
@@ -22,7 +22,7 @@ describe('the margin', () => {
 	it('names each place in the paper once, and only chapters of the plan', () => {
 		const anchors = paperLinks.map((l) => l.anchor);
 		expect(new Set(anchors).size).toBe(anchors.length);
-		for (const l of paperLinks) expect(l.chapter).toMatch(/^(R\d+b?|\d+\.\d+b?)$/);
+		for (const l of paperLinks) expect(l.chapter).toMatch(/^(R\d+b?|\d+\.\d+b?|A\.\d+)$/);
 	});
 
 	it('shows a note for each link to a published chapter, labelled as the plan writes it', () => {
@@ -65,6 +65,26 @@ describe('the production map', () => {
 			.filter((id) => !SKIP.has(id));
 		expect(paperLinks.map((l) => l.anchor)).toEqual(places);
 		for (const l of paperLinks) expect(LABELS).toContain(l.label);
+	});
+
+	it('sends each equation of derivations.yaml to its chapter and heading', () => {
+		const equations = new Set(
+			orderedAnchors()
+				.map((a) => a.id)
+				.filter((id) => id.startsWith('eq:'))
+		);
+		const entries = derivations();
+		expect(entries.size).toBeGreaterThan(0);
+		for (const [label, entry] of entries) {
+			expect(equations.has(label), `${label} is a paper equation`).toBe(true);
+			expect(chapterById(entry.chapter)?.status, `${label} → ${entry.chapter}`).toBe('published');
+			expect(paperLinks.find((l) => l.anchor === label)).toEqual({
+				anchor: label,
+				chapter: entry.chapter,
+				label: entry.stated ? 'Background' : 'Derivation',
+				...(entry.section ? { section: entry.section } : {})
+			});
+		}
 	});
 
 	it('takes each figure override, whose chapter is published and uses the figure', () => {

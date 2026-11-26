@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.5b (tutorial/newton/complex-numbers.md), its first diagram: multiplying two complex numbers
+// The tutorial, section 1.5b (tutorial/newton/complex-numbers.md), its first diagram: multiplying two complex numbers
 // multiplies their lengths and adds their angles. The complex plane, its axes Re and Im with ticks at whole numbers,
 // and three arrows from 0: u1 = 2 e^{i 20 deg}, u2 = 1.5 e^{i 50 deg} and their product u1 u2 = 3 e^{i 70 deg}, each
 // with its length printed beside it and its angle from the real axis marked by an arc. Exact: the three numbers (the

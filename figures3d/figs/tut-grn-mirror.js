@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.4 (tutorial/outside/greens-functions.md), its third diagram: the half-space above a plane
+// The tutorial, section 2.4 (tutorial/outside/greens-functions.md), its third diagram: the half-space above a plane
 // and its Poisson kernel. Left: the plane, edge-on, as a horizontal line; a point x at the height z above it and its
 // mirror image x* at the depth z below, joined by a dashed vertical line; a point y on the plane, joined to both by
 // two lines of one length, each crossed by one tick, the mark of equal lengths. Right: the kernel

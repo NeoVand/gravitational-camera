@@ -1,8 +1,8 @@
-// The tutorial, chapter 2.5 (tutorial/outside/null-space.md), its first diagram: three steel balls that pull alike
+// The tutorial, section 2.5 (tutorial/outside/null-space.md), its first diagram: three steel balls that pull alike
 // outside. Three balls of radius R = 0.1 m cut through their centres, side by side: rho0 + delta rho = (5/3) rho0
 // r^2 / R^2, empty at the centre and 1.67 rho0 at the surface; the uniform ball, rho0; and rho0 - delta rho =
 // rho0 (2 - (5/3) r^2 / R^2), 2 rho0 at the centre and rho0 / 3 at the surface. Each is shaded by its density in
-// matter's colour, on one scale for all three (opacity 0.385 rho / rho0, so that 2 rho0 has chapter 2.4's darkest
+// matter's colour, on one scale for all three (opacity 0.385 rho / rho0, so that 2 rho0 has section 2.4's darkest
 // shade), with a key of that scale beside the third. Above each, the pull at 1.5 R and at 2 R along three directions,
 // thin grey arrows pointing at the centre, the same list for all three. Under each, its density and its moment of
 // inertia: 0.157, 0.132 and 0.106 kg m^2.
@@ -12,7 +12,7 @@
 // factors 100/84 and 68/84); A = pi G R^2 rho0 / 3 = 5.5 x 10^-9 J/kg (asserted); the shading, a radial gradient of 64
 // stops following rho(r) (asserted at the stops). Schematic: the arrows' common scale. Pictorial: the sawn face of the
 // steel ball, a picture from an image model (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, as
-// in chapter 2.4's figs/tut-grn-kelvin.js), clipped to the exact circles; the shading over it is in a fixed colour.
+// in section 2.4's figs/tut-grn-kelvin.js), clipped to the exact circles; the shading over it is in a fixed colour.
 import { INK, DIM, FAINT } from '../lib.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, LABEL_GAP, n2 } from './tut-pot-lib.js';
 import { BALLS, MASS, G, R_BALL, RHO0, massOf, inertiaOf, pullOf, ballFace, stoneDefs, stone, rim, radialVeil, SHADE, MATTER, DEEPEST, STONE_INK } from './tut-null-lib.js';

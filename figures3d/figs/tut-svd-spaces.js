@@ -1,10 +1,10 @@
-// The tutorial, chapter 3.4 (tutorial/noise/symmetric-matrices.md), its fourth diagram: the four spaces of the
+// The tutorial, section 3.4 (tutorial/noise/symmetric-matrices.md), its fourth diagram: the four spaces of the
 // singular value decomposition. Left, the space of scenes, split into the plane of the patterns v_1 and v_2 that have
 // gains (s_i > 0) and, at right angles to it, the null space, the scenes that give no reading. Right, the space of
 // readings, split into the plane of the reading patterns u_1 and u_2, where every signal lands, and, at right angles
 // to it, the rest, which only noise reaches. Across the middle, thin arrows carry v_1 to s_1 u_1 and v_2 to s_2 u_2,
 // labelled with the gains, and a scene of the null space to the dot at zero. Each space is drawn in true 3D (an
-// orthographic view, turned and tilted as lib.js's Panel does, as chapter 2.5's figs/tut-null-split.js), the right one
+// orthographic view, turned and tilted as lib.js's Panel does, as section 2.5's figs/tut-null-split.js), the right one
 // seen as the mirror image of the left, so that the two face each other across the gap.
 // Exact: a camera of three cells and three readings, A = s_1 u_1 v_1^T + s_2 u_2 v_2^T with s_1 = 1.5 and s_2 = 0.6, each
 // space in its own coordinates: A v_i = s_i u_i and A v_3 = 0 (asserted), the v_i and the u_i perpendicular unit vectors

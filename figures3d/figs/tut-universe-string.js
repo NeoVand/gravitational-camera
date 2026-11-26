@@ -1,4 +1,4 @@
-// The tutorial, chapter 12.2 (tutorial/sky/universe.md), its fifth diagram: a straight cosmic string, at rest and
+// The tutorial, section 12.2 (tutorial/sky/universe.md), its fifth diagram: a straight cosmic string, at rest and
 // moving. Left, the plane at right angles to the string (a dot), drawn flat as a tinted patch with a wedge of angle Delta
 // cut out above the string, its two edges glued: matching tick marks, one and two, on each edge at equal distances from
 // the string. The source behind lies on the cut, so it is drawn on both edges, at one distance from the string; two

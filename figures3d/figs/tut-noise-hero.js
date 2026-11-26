@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.2 (tutorial/noise/random-signals.md), its first diagram: white noise in time and across a
+// The tutorial, section 3.2 (tutorial/noise/random-signals.md), its first diagram: white noise in time and across a
 // plane. Top row, three panels for white noise in time: a record n(t) over two seconds; its spectrum S(omega), the same
 // at every frequency, negative and positive, with the band from -omega to omega shaded; and its autocorrelation C(t),
 // a single spike at zero lag of area S(0), drawn as an arrow (a delta function has no height). Bottom row: the noise
@@ -19,7 +19,7 @@ import { View, Regions, plate, slab, diverging, meanPower } from './tut-noise-li
 
 const name = 'tut-noise-hero';
 const check = checker(name);
-const BAND_OPACITY = 0.2;                    // the band's fill: the noise's colour, as chapter 3.1's band of the noise
+const BAND_OPACITY = 0.2;                    // the band's fill: the noise's colour, as section 3.1's band of the noise
 
 // ---- the simulations ------------------------------------------------------------------------------------------
 export const RATE = 50, T = 2;               // the record: samples a second, seconds

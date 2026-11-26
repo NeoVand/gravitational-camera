@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.2 (tutorial/waves/retarded-waves.md), its third diagram: far away, each direction reads one
+// The tutorial, section 5.2 (tutorial/waves/retarded-waves.md), its third diagram: far away, each direction reads one
 // ripple of the source. Two panels. Left: a small source, an irregular blob in the neutral tint, round an origin O,
 // and far to the upper right, beyond a break in the lines, the field point x = r n. From O and from a point y of the
 // source, two parallel lines toward it, along the unit vector n, drawn from O; from y a perpendicular dropped onto the

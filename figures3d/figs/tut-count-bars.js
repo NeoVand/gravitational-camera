@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.5 (tutorial/quantum/counting-quanta.md), its first diagram: the counts of a coherent and of
+// The tutorial, section 8.5 (tutorial/quantum/counting-quanta.md), its first diagram: the counts of a coherent and of
 // a thermal mode with the same mean. One panel: bars of P(n) for n = 0 to 14 at nbar = 4, side by side at each n, the
 // coherent (Poisson) state's e^{-4} 4^n / n! as ink outlines on the left of each pair and the thermal state's
 // 4^n / 5^{n+1} as light grey filled bars on the right. Across, the count n (ticks every 2); up, the probability, 0 to

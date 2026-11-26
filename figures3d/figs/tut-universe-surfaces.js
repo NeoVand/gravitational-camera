@@ -1,4 +1,4 @@
-// The tutorial, chapter 12.2 (tutorial/sky/universe.md), its fourth diagram: the two surfaces we see, and which spots
+// The tutorial, section 12.2 (tutorial/sky/universe.md), its fourth diagram: the two surfaces we see, and which spots
 // they share. A half-disc slice of space with us at the centre of its straight edge; two concentric arcs, the light's
 // last-scattering surface at 13.86 Gpc in the light role's colour and the gravitons' surface at 14.14 Gpc in the
 // field's, the 0.28 Gpc between them drawn ten times too wide and dimensioned so. Upper left, one crest of a long wave

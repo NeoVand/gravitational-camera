@@ -1,4 +1,4 @@
-// The tutorial, chapter 11.3 (tutorial/black-holes/hawking.md), its second diagram: one mode's bookkeeping at a hole.
+// The tutorial, section 11.3 (tutorial/black-holes/hawking.md), its second diagram: one mode's bookkeeping at a hole.
 // The hole at the right, a dark disc edged by its horizon. From the left a band, the sky's quanta in the mode, comes in
 // ("sky: n_bg"); short of the hole it splits: its upper part runs on into the horizon and ends there in a point
 // ("Gamma_l n_bg absorbed, net"), its lower part turns back below itself ("(1 - Gamma_l) n_bg scattered"). A thin band
@@ -23,7 +23,7 @@ const check = checker(name);
 const U = 20;                                    // a band's width for one quantum
 const RI = 11;                                   // the turn's inner radius
 const R = 33;                                    // the hole's radius
-const EDGE = 0.45;                               // the horizon's stroke (chapter 11.1's)
+const EDGE = 0.45;                               // the horizon's stroke (section 11.1's)
 const CLEAR = 8;                                 // from the turn to the hole
 const RUN = 100;                                 // the bands' straight run left of the turn
 const HEAD = 0.75;                               // a point's length, over its band's width

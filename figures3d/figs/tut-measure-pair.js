@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.3 (tutorial/noise/measuring-a-number.md), its fourth diagram: two masses are hard to tell
+// The tutorial, section 3.3 (tutorial/noise/measuring-a-number.md), its fourth diagram: two masses are hard to tell
 // from one. Left: the datum d = -E_zz of the chapter's model camera along the line across the plane through the
 // masses, for one mass m at depth z under x = 0 (orange) and for two masses m/2 at x = +-delta/2, delta = 0.3 z
 // (blue, dashed), in units of G m / z^3: d(a) = G m (2 z^2 - a^2) / (z^2 + a^2)^(5/2), the pair's the average of the

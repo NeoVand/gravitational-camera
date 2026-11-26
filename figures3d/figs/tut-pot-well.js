@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.2 (tutorial/newton/field-and-potential.md), its third diagram: the potential of the person
+// The tutorial, section 1.2 (tutorial/newton/field-and-potential.md), its third diagram: the potential of the person
 // of 70 kg at the origin along the x axis, Phi(x) = -GM/|x|, a well that rises toward zero on both sides. Exact: the
 // curve (sampled every quarter of a point along its length), on a labelled axis in 10^-9 J/kg; the point x = 1 m,
 // where Phi = -GM = -4.67 x 10^-9 J/kg; the tangent there, of slope d Phi/dx = GM/x^2 = +4.67 x 10^-9 per metre,

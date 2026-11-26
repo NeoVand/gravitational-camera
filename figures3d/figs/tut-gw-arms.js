@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.6 (tutorial/geometry/gravitational-waves.md), its second diagram: LIGO's two arms in a plus
+// The tutorial, section 7.6 (tutorial/geometry/gravitational-waves.md), its second diagram: LIGO's two arms in a plus
 // wave, seen from above. An L of two arms of length L from a corner mass, along e_1 (right) and e_2 (up): thin ink lines
 // ending in small filled squares, the end mirrors, in the observer's colour. Each undisturbed end is a dashed square;
 // each disturbed end is moved by delta xi = (1/2) h xi (exaggerated): the e_1 arm longer by (1/2) h+ L (an orange

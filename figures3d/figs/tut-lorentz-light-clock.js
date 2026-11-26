@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.1 (tutorial/relativity/lorentz.md), its second diagram: a clock made of light, at rest and
+// The tutorial, section 6.1 (tutorial/relativity/lorentz.md), its second diagram: a clock made of light, at rest and
 // moving at 0.6c. Two panels side by side at one scale, half a point to the comment's site pixel. Left, "at rest": two
 // short level mirrors (thin ink, 60 site pixels wide) 160 apart, one above the other; the flash, in the light role's
 // colour, straight up and straight down as two slightly separated upright arrows; the gap named L beside a thin

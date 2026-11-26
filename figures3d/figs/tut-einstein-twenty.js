@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.3 (tutorial/geometry/einstein-equation.md), its second diagram: chapter 7.2's row of twenty
+// The tutorial, section 7.3 (tutorial/geometry/einstein-equation.md), its second diagram: section 7.2's row of twenty
 // curvature numbers (figs/tut-curvature-count.js, the same squares, air and blocks of 6, 8 and 6), recoloured into
 // Ricci and Weyl. In the first block 5 squares in the curvature's colour and 1 in matter's; in the second 5 and 3; in
 // the third all 6 in matter's. Above the row two brackets: one in the curvature's colour over the ten Weyl squares,
@@ -7,7 +7,7 @@
 // block a small name, "tr E", "the antisymmetric part of B", "fixed by E in vacuum"; under them each block's name,
 // "R_0i0j: E (6)", "R_0ijk: B (8)", "R_ijkl (6)"; at the foot "empty space: the Ricci squares are zero, and
 // 5 + 5 = 10 are left".
-// Departures from the diagram's comment: the Weyl squares are the first five of each block, where chapter 7.2's figure
+// Departures from the diagram's comment: the Weyl squares are the first five of each block, where section 7.2's figure
 // ticks the squares free in empty space, so that the two rows read alike (which five is a choice of basis). The Ricci
 // bracket is solid over the matter squares and dotted where it jumps the Weyl squares, and it stands below the Weyl
 // bracket, whose hooks over the second block cross its dotted jump through a gap; the two brackets cannot both be

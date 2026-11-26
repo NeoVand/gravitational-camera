@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.2 (tutorial/relativity/spacetime-vectors.md), its third diagram: a step and the level
+// The tutorial, section 6.2 (tutorial/relativity/spacetime-vectors.md), its third diagram: a step and the level
 // lines of a function, for the room and for the pixel at 0.6c. Two panels at one scale, units of light-seconds at one
 // scale on both axes. Above, "room": axes x across and ct upward, thin ink; the level lines of f = 2x - ct for
 // f = -1, 0, 1, 2, 3 and 4, thin parallel straight lines, those of f = 0 to 3 a little darker than the other two, each

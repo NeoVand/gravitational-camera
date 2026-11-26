@@ -1,6 +1,6 @@
-// Shared numbers and colours for the four diagrams of the tutorial's chapter 6.3 (tutorial/relativity/aberration.md):
+// Shared numbers and colours for the four diagrams of the tutorial's section 6.3 (tutorial/relativity/aberration.md):
 // tut-aberration-ray, tut-aberration-retarded, tut-aberration-sky and tut-aberration-frames. Not a figure itself. The
-// colours, the speed 0.6c and its gamma are chapter 6.1's (figs/tut-lorentz-lib.js: the observer's colour, the light
+// colours, the speed 0.6c and its gamma are section 6.1's (figs/tut-lorentz-lib.js: the observer's colour, the light
 // role's and matter's, read from app.css), and the sheet, strokes, labels and cropping those of 6.1's and 6.2's
 // diagrams, all imported, not copied.
 //

@@ -4,8 +4,8 @@
  * that serves it best, found in the tutorial's own records rather than written by hand. It reads, for each published
  * chapter in the order of parts.yaml: the sections a reading chapter reads (`reads:` in parts.yaml), the chapter's
  * front matter (`paper:` and `figures:`), its links into the paper (`[](/paper/#eq:x)`), its displays of the
- * paper's equations and figures (`{{paper eq:x}}`), its `::: try` blocks, and the ledger table of each reading
- * chapter.
+ * paper's equations and figures (`{{paper eq:x}}`), its headings and its `::: try` blocks; and, for the equations,
+ * tutorial/derivations.yaml, which names the chapter and heading that derive each (see parseDerivations).
  *
  * The rules, by kind of place, and the label each note gets:
  *
@@ -14,11 +14,11 @@
  *   par:x   the reading chapter of its section that links the paragraph, at the heading of the stretch that
  *           opens with the link (or, failing that, that first contains it)                                Reading
  *           (no reading chapter of its section links it: the first other chapter that does              Background)
- *   eq:x    the chapter its ledger row names first as deriving it, at the heading where that chapter
- *           first links or shows the equation; "derived here" names the reading chapter itself          Derivation
- *           (a row that says "stated", when no other ledger names a derivation, and an equation in no
- *           ledger: the first chapter that both lists it in `paper:` and shows it with {{paper eq:x}},
- *           else the first that shows it, else the first that links it, at that heading                  Background)
+ *   eq:x    the chapter derivations.yaml names, at the heading it names (none named: where that chapter
+ *           first links or shows the equation)                                                            Derivation
+ *           (an entry marked `stated: true`, at the same place; and an equation the file does not hold:
+ *           the first chapter that both lists it in `paper:` and shows it with {{paper eq:x}}, else the
+ *           first that shows it, else the first that links it, at that heading                           Background)
  *   fig:x,  in this order of preference: a chapter with a `::: try` block that mounts the figure's live
  *   tab:x   version, at that block's heading                                                               Live
  *           else a chapter whose front matter `figures:` lists it, as the chapter is about it; else one that
@@ -70,10 +70,57 @@ export interface MapInput {
 	aliases?: ReadonlyMap<string, string>;
 	/** the published chapters, in the order of parts.yaml */
 	chapters: readonly MapChapter[];
+	/** equation → where the book derives it (tutorial/derivations.yaml, read by parseDerivations) */
+	derivations?: ReadonlyMap<string, Derivation>;
 	/** a `::: try` id → the paper figure whose live version it mounts */
 	liveFigures?: ReadonlyMap<string, string>;
 	/** figure or table → the chapter to choose over the rule (FIGURE_OVERRIDES by default) */
 	overrides?: Readonly<Record<string, string>>;
+}
+
+/** One entry of tutorial/derivations.yaml: the chapter that derives an equation, and where. */
+export interface Derivation {
+	/** the chapter's id in parts.yaml */
+	chapter: string;
+	/** the anchor of the level-two heading under which it is derived; none: where the chapter first shows it */
+	section?: string;
+	/** the book states the equation without deriving it, and the chapter shows it there */
+	stated?: boolean;
+}
+
+/**
+ * tutorial/derivations.yaml, parsed: `equations:` maps each paper equation to `{ chapter, section?, stated? }`.
+ * Throws on an entry of any other shape, so that a typing slip fails the build instead of dropping a note.
+ */
+export function parseDerivations(raw: unknown): Map<string, Derivation> {
+	const fail = (why: string): never => {
+		throw new Error(`tutorial/derivations.yaml: ${why}`);
+	};
+	const root = raw as { equations?: unknown } | null;
+	const equations = root?.equations;
+	if (!equations || typeof equations !== 'object' || Array.isArray(equations))
+		fail('expected a map under `equations:`');
+	const out = new Map<string, Derivation>();
+	for (const [label, value] of Object.entries(equations as Record<string, unknown>)) {
+		if (!label.startsWith('eq:')) fail(`${label} is not an equation label`);
+		const v = value as Record<string, unknown> | null;
+		if (!v || typeof v !== 'object' || Array.isArray(v))
+			fail(`${label}: expected { chapter, section }`);
+		for (const key of Object.keys(v!))
+			if (!['chapter', 'section', 'stated'].includes(key)) fail(`${label}: unknown key ${key}`);
+		const { chapter, section, stated } = v!;
+		if (typeof chapter !== 'string') fail(`${label}: chapter must be a quoted id, as '7.2'`);
+		if (section !== undefined && (typeof section !== 'string' || !section))
+			fail(`${label}: section must be a heading's anchor`);
+		if (stated !== undefined && typeof stated !== 'boolean')
+			fail(`${label}: stated must be true or false`);
+		out.set(label, {
+			chapter: chapter as string,
+			...(section ? { section: section as string } : {}),
+			...(stated ? { stated: true } : {})
+		});
+	}
+	return out;
 }
 
 export interface MapResult {
@@ -106,15 +153,6 @@ const isReading = (id: string) => /^R\d/.test(id);
 /** Part 0, the evening tour, which shows many of the paper's figures at a glance */
 const isOverview = (id: string) => id.startsWith('0.');
 const PAPER_URL = /^\/paper\/?#(.+)$/;
-const CHAPTER_ID = /(?<![\w.])(R\d+b?|\d+\.\d+b?)(?![\w.]*\d)/g;
-
-/** The text of some blocks, for a table cell: words, links' words, emphasis; no mathematics. */
-const blockWords = (blocks: Node[]): string =>
-	blocks
-		.map((b) => (b.t === 'Plain' || b.t === 'Para' ? wordsOf(b.c) : ''))
-		.join(' ')
-		.replace(/\s+/g, ' ')
-		.trim();
 
 /** Every link into the paper inside a node, in order, as the anchor it points to. */
 function paperLinksIn(x: any, out: string[] = []): string[] {
@@ -129,32 +167,6 @@ function paperLinksIn(x: any, out: string[] = []): string[] {
 	}
 	for (const v of Object.values(x)) paperLinksIn(v, out);
 	return out;
-}
-
-/** Chapter links inside a node, as [chapter id, anchor] from "/tutorial/<slug>/#anchor". */
-function tutorialLinksIn(x: any, out: { text: string; anchor: string }[] = []) {
-	if (Array.isArray(x)) {
-		for (const y of x) tutorialLinksIn(y, out);
-		return out;
-	}
-	if (!x || typeof x !== 'object') return out;
-	if (x.t === 'Link') {
-		const m = String(x.c[2][0]).match(/^\/tutorial\/[^#]+\/#(.+)$/);
-		if (m) out.push({ text: wordsOf(x.c[1]).trim(), anchor: m[1] });
-	}
-	for (const v of Object.values(x)) tutorialLinksIn(v, out);
-	return out;
-}
-
-interface LedgerRow {
-	/** chapter ids named in the row's last cell, in order */
-	chapters: string[];
-	/** the anchor a chapter id in the cell links to, if it does */
-	anchors: Map<string, string>;
-	/** the cell begins "stated": the paper takes it from outside */
-	stated: boolean;
-	/** the reading chapter derives it itself ("derived here", "assembled here", or "checked here" with no chapter) */
-	here: boolean;
 }
 
 /** What one chapter says about the paper. */
@@ -174,18 +186,13 @@ interface Scan {
 	shown: Map<string, string>;
 	/** par anchor → the first heading whose opening paragraph links it */
 	opens: Map<string, string>;
-	/** equation → its row in the chapter's ledger */
-	ledger: Map<string, LedgerRow>;
+	/** the anchors of the chapter's level-two headings */
+	sections: Set<string>;
 	/** the chapter's try blocks, with the heading each stands under */
 	tries: { id: string; section: string }[];
 }
 
-function scanChapter(
-	chapter: MapChapter,
-	order: number,
-	known: ReadonlySet<string>,
-	alias: (label: string) => string
-): Scan {
+function scanChapter(chapter: MapChapter, order: number, alias: (label: string) => string): Scan {
 	const scan: Scan = {
 		id: chapter.id,
 		order,
@@ -196,7 +203,7 @@ function scanChapter(
 		mentions: new Set(),
 		shown: new Map(),
 		opens: new Map(),
-		ledger: new Map(),
+		sections: new Set(),
 		tries: []
 	};
 	const metaList = (key: string): string[] => {
@@ -210,7 +217,6 @@ function scanChapter(
 	for (const label of metaList('figures')) scan.figures.add(label);
 
 	let section = '';
-	let inLedger = false;
 	/** inside the closing list of the paper's places or the problems, whose links say nothing of the heading */
 	let aside = 0;
 	const note = (map: Map<string, string>, anchor: string) => {
@@ -223,7 +229,7 @@ function scanChapter(
 		const n = x as Node;
 		if (n.t === 'Header' && n.c[0] === 2) {
 			section = String(n.c[1][0]);
-			inLedger = /^The ledger\b/.test(wordsOf(n.c[2]).trim());
+			scan.sections.add(section);
 			return;
 		}
 		if (n.t === 'Para') {
@@ -247,41 +253,11 @@ function scanChapter(
 				return;
 			}
 		}
-		if (n.t === 'Table' && inLedger) readLedger(n);
 		if (n.t === 'Link') {
 			const m = String(n.c[2][0]).match(PAPER_URL);
 			if (m) note(scan.first, alias(decodeURIComponent(m[1])));
 		}
 		for (const v of Object.values(n)) visit(v);
-	};
-
-	/** A ledger: each row's first cell holds the paper's equations, its last cell where they are derived. */
-	const readLedger = (table: Node) => {
-		const bodies = table.c[4] as any[];
-		for (const body of bodies)
-			for (const row of body[3] as any[]) {
-				const cells = (row[1] as any[]).map((cell) => cell[4] as Node[]);
-				if (cells.length < 2) continue;
-				const equations = paperLinksIn(cells[0])
-					.map(alias)
-					.filter((a) => a.startsWith('eq:'));
-				if (!equations.length) continue;
-				const last = cells[cells.length - 1];
-				const text = blockWords(last);
-				const chapters = [...text.matchAll(CHAPTER_ID)]
-					.map((m) => m[1])
-					.filter((id) => known.has(id));
-				const anchors = new Map<string, string>();
-				for (const l of tutorialLinksIn(last))
-					if (known.has(l.text) && !anchors.has(l.text)) anchors.set(l.text, l.anchor);
-				const here =
-					/\b(derived|assembled) here\b/.test(text) ||
-					(!chapters.length && /\bchecked here\b/.test(text));
-				const stated = /^stated\b/i.test(text);
-				for (const eq of equations)
-					if (!scan.ledger.has(eq))
-						scan.ledger.set(eq, { chapters: [...new Set(chapters)], anchors, stated, here });
-			}
 	};
 
 	// the top level, where each heading's opening paragraph is known
@@ -306,8 +282,10 @@ export function mapPaper(input: MapInput): MapResult {
 	const aliases = input.aliases ?? new Map<string, string>();
 	const overrides = input.overrides ?? FIGURE_OVERRIDES;
 	const alias = (label: string) => aliases.get(label) ?? label;
-	const known = new Set(input.chapters.map((c) => c.id));
-	const scans = input.chapters.map((c, i) => scanChapter(c, i, known, alias));
+	const derivations = new Map(
+		[...(input.derivations ?? [])].map(([label, entry]) => [alias(label), entry] as const)
+	);
+	const scans = input.chapters.map((c, i) => scanChapter(c, i, alias));
 	const byId = new Map(scans.map((s) => [s.id, s]));
 	const notes: string[] = [];
 
@@ -356,25 +334,19 @@ export function mapPaper(input: MapInput): MapResult {
 				);
 			}
 		} else if (kind === 'eq') {
-			// the ledger of a reading chapter of the equation's section first, then the others
-			const ledgers = [...readers, ...scans.filter((s) => !readers.includes(s))].filter((s) =>
-				s.ledger.has(anchor)
-			);
-			const derived = ledgers.find((s) => !s.ledger.get(anchor)!.stated);
-			const row = derived?.ledger.get(anchor);
-			const by = row && (row.here ? derived : byId.get(row.chapters[0]));
-			if (derived && row && by) {
-				const where = at(by, anchor) ?? (by === derived ? undefined : row.anchors.get(by.id));
-				if (!by.mentions.has(anchor))
-					notes.push(
-						`${anchor}: ${by.id} derives it (the ledger of ${derived.id}) but never links or shows it`
-					);
-				link(anchor, by, 'Derivation', where);
+			const entry = derivations.get(anchor);
+			const by = entry && byId.get(entry.chapter);
+			if (entry && !by)
+				notes.push(
+					`${anchor}: derivations.yaml names ${entry.chapter}, which is not a published chapter`
+				);
+			if (entry && by) {
+				const named = entry.section && by.sections.has(entry.section) ? entry.section : undefined;
+				if (entry.section && !named)
+					notes.push(`${anchor}: ${by.id} has no heading #${entry.section} (derivations.yaml)`);
+				link(anchor, by, entry.stated ? 'Background' : 'Derivation', named ?? at(by, anchor));
 			} else {
-				if (derived) notes.push(`${anchor}: the ledger of ${derived.id} names no chapter for it`);
-				const stated = ledgers.find((s) => s.ledger.get(anchor)!.stated);
 				const background =
-					stated ??
 					scans.find((s) => s.listed.has(anchor) && s.shown.has(anchor)) ??
 					scans.find((s) => s.shown.has(anchor)) ??
 					mentioning(anchor);
@@ -419,6 +391,11 @@ export function mapPaper(input: MapInput): MapResult {
 			notes.push(`${anchor}: no chapter links it; it takes the note of its section, ${section}`);
 		}
 	}
+
+	const places = new Set(input.anchors.map((a) => a.id));
+	for (const label of derivations.keys())
+		if (!places.has(label))
+			notes.push(`${label}: derivations.yaml names it, but the paper has no such equation`);
 
 	const links: PaperLink[] = [];
 	for (const { id } of input.anchors) {

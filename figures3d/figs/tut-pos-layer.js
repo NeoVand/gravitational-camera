@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.9 (tutorial/noise/positivity.md), its third diagram: the zeros of the shear above a thin
+// The tutorial, section 3.9 (tutorial/noise/positivity.md), its third diagram: the zeros of the shear above a thin
 // layer, seen from above. The chapter's layer of three masses, 1.0, 0.7 and 1.4 units at 0.2 + 0.1i, -0.3 + 0.05i and
 // 0.05 - 0.25i (dots in matter's colour, their areas in proportion to the masses); its centre of mass
 // w_cm = 0.019 - 0.069i (a small cross); its long axis through the centre (dashed), at half the angle of the complex

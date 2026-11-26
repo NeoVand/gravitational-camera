@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md), its second diagram: the table of
+// The tutorial, section 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md), its second diagram: the table of
 // brackets. Three rows and three columns, the rows Q_h, Qdot_h and H (the energy), the columns Q_g, Qdot_g and H; the
 // cell of a row A and a column B holds {A, B}, in the order of the chapter's [^order] footnote, which the corner names
 // "{row, column}". Each cell is one formula in ink: {Q_h, Q_g} = 0 for Newton's moments and the paper's

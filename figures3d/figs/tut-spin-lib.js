@@ -1,9 +1,9 @@
-// Shared numbers and marks for the two diagrams of the tutorial's chapter 8.4 (tutorial/quantum/spin.md):
-// tut-bloch-sphere and tut-majorana-three. Not a figure itself. The colour roles are chapter 7.8's, read from app.css
+// Shared numbers and marks for the two diagrams of the tutorial's section 8.4 (tutorial/quantum/spin.md):
+// tut-bloch-sphere and tut-majorana-three. Not a figure itself. The colour roles are section 7.8's, read from app.css
 // by `palette(check)` (figs/tut-quantum-lib.js, 8.1's): the curvature's for a reading's stars, ink and the page's
 // greys for everything else; orange and blue, which mean a stretch and a squeeze, are not used. The complex numbers
-// are 8.1's, the sheet, strokes, labels and cropping those of chapters 6.1 to 8.3 (figs/tut-pot-lib.js), and the sky
-// is drawn as chapter 6.6's figure of light's two directions draws it (figs/tut-maxwell-sky.js, after the paper's
+// are 8.1's, the sheet, strokes, labels and cropping those of sections 6.1 to 8.3 (figs/tut-pot-lib.js), and the sky
+// is drawn as section 6.6's figure of light's two directions draws it (figs/tut-maxwell-sky.js, after the paper's
 // figs/stars.js): an outline, a veil of the page's neutral tint over everything behind it, great circles solid in
 // front and dashed behind, coincident stars as touching dots. All imported or followed, not copied, except the sky's
 // few constants, which are 6.6's.
@@ -71,7 +71,7 @@ const pmul = (p, q) => {
 	return r;
 };
 const pscale = (p, c) => p.map((a) => mul(a, c));
-/** Chapter 6.6's null vector m(z) = (1 - z^2, i(1 + z^2), -2z), as three polynomials. */
+/** Section 6.6's null vector m(z) = (1 - z^2, i(1 + z^2), -2z), as three polynomials. */
 export const M_OF_Z = [[cx(1), cx(0), cx(-1)], [cx(0, 1), cx(0), cx(0, 1)], [cx(0), cx(-2)]];
 /** The complex reading W = E + iB from two real symmetric tables. */
 export const reading = (E, B) => E.map((row, i) => row.map((e, j) => cx(e, B[i][j])));
@@ -102,7 +102,7 @@ function rootsOf(p) {
 	}
 	return roots.concat(z);
 }
-/** Chapter 6.6's stereographic map from z to the sky. */
+/** Section 6.6's stereographic map from z to the sky. */
 export const nOf = (z) => { const q = abs2(z); return [(2 * z[0]) / (1 + q), (2 * z[1]) / (1 + q), (1 - q) / (1 + q)]; };
 const SOUTH = [0, 0, -1];
 /** The four stars of a reading: the roots of its quartic, mapped, and a star at the south pole for each root lost
@@ -168,7 +168,7 @@ export const READINGS = [
 	{ key: 'both', E: sum(BODY_E, WAVE_E), B: WAVE_B }
 ];
 
-// ---- the sky, as chapter 6.6 draws it ---------------------------------------------------------------------------
+// ---- the sky, as section 6.6 draws it ---------------------------------------------------------------------------
 export const SKY = '#eeebe5', VEIL = 0.72;   // the paper's veil (drawing.ts, THEME: a neutral tint of the page)
 export const OUTLINE = 0.5, CIRCLE = 0.4;   // the sky's outline, its great circles
 export const FAINT_CIRCLE = 0.6;            // the great circles in front: their opacity

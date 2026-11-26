@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.5 (tutorial/waves/radiance.md), its fourth diagram: a thin lens and a mass as lenses. Two
+// The tutorial, section 5.5 (tutorial/waves/radiance.md), its fourth diagram: a thin lens and a mass as lenses. Two
 // panels side by side, each with its axis (dim, finely dashed) at mid-height; x runs right and y up from the axis, in
 // the comment's site pixels. Left, "a thin lens": a lens (the neutral tint, an ink outline) with a flat face at x = 60
 // from y = -80 to 80 and a curved face x = 60 + 24 (1 - y^2/6400), so that R = 80 and h = 24 (exaggerated). Five rays

@@ -1,12 +1,12 @@
-// The tutorial, chapter 7.2 (tutorial/geometry/curvature-and-tides.md), its third diagram: the twenty numbers of the
+// The tutorial, section 7.2 (tutorial/geometry/curvature-and-tides.md), its third diagram: the twenty numbers of the
 // curvature at an event, sorted by their time indices. Twenty small squares in a row, outlined in thin ink, in three
 // blocks: 6 filled in the curvature's colour, R_0i0j, the tide E; 8 in a lighter tint of it, R_0ijk, the magnetic part
 // B; 6 in faint ink, R_ijkl, no time index. A bracket over all twenty, "20 independent numbers at an event". Under each
 // block its name. Under the names, a thin rule across all twenty columns, with a small tick under each square that
 // stays free in empty space, 5 of the first block and 5 of the second, and the note "empty space: 5 + 5 = 10, the
-// pixel's ten numbers (chapter 7.3)" under it.
+// pixel's ten numbers (section 7.3)" under it.
 // Departures from the diagram's comment: each block's name is set on two or three lines ("R_0i0j" over "the tide E
-// (6)"; "R_0ijk" over "the magnetic part B (8)" over "chapter 7.5"; "R_ijkl" over "no time index (6)"), since on one
+// (6)"; "R_0ijk" over "the magnetic part B (8)" over "section 7.5"; "R_ijkl" over "no time index (6)"), since on one
 // line each is wider than its block; the drawing is about 250 points wide, so that its text stays readable on a phone.
 // The ticked squares are the first five of each of the two blocks: which five is a choice of basis, not drawn.
 // Exact: the counts, computed in tut-curvature-lib.js as the free components of R_abcd under its symmetries (the rank
@@ -41,7 +41,7 @@ export default async function () {
 	const L = [];
 	const blocks = [
 		{ n: tide, fill: CURV, op: 1, lines: ['R_{0i0j}', '\\text{the tide }\\mathcal{E}\\text{ (' + tide + ')}'], free: vacE },
-		{ n: magnetic, fill: CURV, op: TINT_B, lines: ['R_{0ijk}', '\\text{the magnetic part }\\mathcal{B}\\text{ (' + magnetic + ')}', '\\text{chapter 7.5}'], free: vacB },
+		{ n: magnetic, fill: CURV, op: TINT_B, lines: ['R_{0ijk}', '\\text{the magnetic part }\\mathcal{B}\\text{ (' + magnetic + ')}', '\\text{section 7.5}'], free: vacB },
 		{ n: space, fill: FAINT, op: TINT_S, lines: ['R_{ijkl}', '\\text{no time index (' + space + ')}'], free: 0 }
 	];
 	const width = blocks.reduce((s, b) => s + b.n * SQ + (b.n - 1) * IN, 0) + 2 * BLOCK;
@@ -92,7 +92,7 @@ export default async function () {
 			ticks++;
 		}
 		check(ticks === 10 && ticks === vacE + vacB && vacE === 5 && vacB === 5, `${ticks} ticks`);
-		L.push(await placed(`\\text{empty space: }${vacE} + ${vacB} = ${vacE + vacB}\\text{, the pixel's ten numbers (chapter 7.3)}`, (left + right) / 2, y + LABEL_GAP + 1, 0.5, 0, INK));
+		L.push(await placed(`\\text{empty space: }${vacE} + ${vacB} = ${vacE + vacB}\\text{, the pixel's ten numbers (section 7.3)}`, (left + right) / 2, y + LABEL_GAP + 1, 0.5, 0, INK));
 	}
 
 	S.checkAll(L);

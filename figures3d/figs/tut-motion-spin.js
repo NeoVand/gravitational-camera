@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.6 (tutorial/newton/motion.md), its second diagram: a rigid body turning about a fixed
+// The tutorial, section 1.6 (tutorial/newton/motion.md), its second diagram: a rigid body turning about a fixed
 // axis. A round slab (a short upright cylinder, drawn in true 3D, an orthographic view tilted as lib.js's Panel
 // does) turns about the vertical axis through its centre with the angular velocity Omega, drawn as an arrow along
 // the axis (plain ink: the spin of a body, not of a frame). Four points of the slab lie on its top face along the

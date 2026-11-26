@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.6 (tutorial/waves/abel-transform.md), its third diagram: a boundary shows as a kink at the
+// The tutorial, section 5.6 (tutorial/waves/abel-transform.md), its third diagram: a boundary shows as a kink at the
 // line that grazes it. One chart: across, b/R from 0 to 1; up, N in units of jR (j the outer glow) from 0 to 4.5. The
 // brightness of the two-shell planet of the inversion section, glow 3 inside 0.6 R and 1 outside, exactly:
 // N = 2 sqrt(1 - b^2) + 4 sqrt(0.36 - b^2) for b < 0.6 and 2 sqrt(1 - b^2) beyond (a thin ink line), with

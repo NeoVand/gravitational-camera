@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.2 (tutorial/response/temperature.md), its third diagram: which velocities count in the
+// The tutorial, section 4.2 (tutorial/response/temperature.md), its third diagram: which velocities count in the
 // rate of change of the moment Q_xy = sum m_a x_a y_a. In the plane (x, y), behind everything, a faint field of
 // short grey arrows for the weight grad(xy) = (y, x), each centred on a point of a grid offset by half a step from the
 // axes, its length in proportion to |grad(xy)| = r: outward along the diagonal y = x, inward along y = -x, longer

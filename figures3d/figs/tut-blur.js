@@ -1,4 +1,4 @@
-// The tutorial's chapter 3.7, the blur law: its opening figure. Two small iron balls at one depth in a block of
+// The tutorial's section 3.7, the blur law: its opening figure. Two small iron balls at one depth in a block of
 // sandstone cut open, and above them, on level sheets at four heights, what a plane of sensors at that height
 // records of them: the reading d = -E_zz of the chapter (step 1), the vertical tide with its sign chosen so that a
 // mass below gives a positive reading. For one ball of mass m a height h below a point and a distance rho to the side,
@@ -11,7 +11,7 @@
 // lines and of the peaks over them; and the heights, in units of the balls' separation: 0.25, 0.55 and 1 for the
 // sheets and 2 for the pixels. The two peaks merge into one, with no dip between them, at the height 1 / (2 t) =
 // 1.2844 separations, where t^2 = (27 - sqrt 665) / 8 makes the second derivative of one ball's reading along a line
-// zero (Sparrow's criterion, chapter 3.7, step 7). The pixels are a flat plate of 24 by 16, each tile coloured by the
+// zero (Sparrow's criterion, section 3.7, step 7). The pixels are a flat plate of 24 by 16, each tile coloured by the
 // same rule by its own reading: the bump at the tile's centre and that pixel's noise, white, of spread exactly a
 // tenth of the bump's greatest value (one draw, seed 1, set to mean 0 and spread 1 over the 384 pixels). What tells
 // two balls from one is smaller than that noise: over the array, the reading of the best-fitting single ball (its

@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.7 (tutorial/quantum/quantum-fluctuation.md), its second diagram: the two orders of a
+// The tutorial, section 8.7 (tutorial/quantum/quantum-fluctuation.md), its second diagram: the two orders of a
 // correlation. One panel: across, omega / omega_0 from -2 to 2; up, spectral density in units of hbar Im chi(omega_0),
 // from 0 to 3.4. One cart with a narrow line, chi = c^2 / (omega_0^2 - omega^2 - i Gamma omega) with Gamma = 0.08
 // omega_0 (Q = 12.5), at k_B T = hbar omega_0. Three thin curves: S(omega) = 2 hbar (nbar + 1) Im chi, solid ink, 3.164

@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.1 (tutorial/noise/probability.md), its fourth diagram: a large count is nearly Gaussian.
+// The tutorial, section 3.1 (tutorial/noise/probability.md), its fourth diagram: a large count is nearly Gaussian.
 // The Poisson probabilities P(N) = lambda^N e^-lambda / N! as bars, for the mean counts lambda = 2 (left) and
 // lambda = 50 (right), each with the Gaussian of mean lambda and standard deviation sqrt(lambda) drawn over it as a
 // thin curve: far off for lambda = 2, whose bars are lopsided because a count cannot be negative, and nearly on the

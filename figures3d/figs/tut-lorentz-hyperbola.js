@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.1 (tutorial/relativity/lorentz.md), its fourth diagram: one tick of a clock for observers
+// The tutorial, section 6.1 (tutorial/relativity/lorentz.md), its fourth diagram: one tick of a clock for observers
 // at three speeds, on the hyperbola of one interval. One panel, units of c tau at one scale on both axes: x across and
 // ct upward, each from 0 to 2.4, named at their ends, with ticks at 1 and 2. The light line x = ct, thin and dashed in
 // the light role's colour. The upper branch of the hyperbola -c^2 t^2 + x^2 = -c^2 tau^2 for c tau = 1, ct =

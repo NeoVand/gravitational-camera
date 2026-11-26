@@ -1,8 +1,8 @@
-// Shared numbers and colours for the three diagrams of the tutorial's chapter 7.4 (tutorial/geometry/linearized-gravity.md):
-// tut-gauge-or-wave, tut-linear-steps and tut-linear-hierarchy. Not a figure itself. The colour roles are chapter 7.3's
+// Shared numbers and colours for the three diagrams of the tutorial's section 7.4 (tutorial/geometry/linearized-gravity.md):
+// tut-gauge-or-wave, tut-linear-steps and tut-linear-hierarchy. Not a figure itself. The colour roles are section 7.3's
 // (figs/tut-einstein-lib.js: the observer's, the curvature's and matter's, read from app.css) and the field's, app.css's
-// --q-field, which chapter 1.8 first drew (figs/tut-orb-lib.js, FIELD) and which `palette(check)` here asserts with the
-// others; the sheet, strokes, labels and cropping are those of chapters 6.1 to 7.3, all imported, not copied.
+// --q-field, which section 1.8 first drew (figs/tut-orb-lib.js, FIELD) and which `palette(check)` here asserts with the
+// others; the sheet, strokes, labels and cropping are those of sections 6.1 to 7.3, all imported, not copied.
 //
 // `chapter(check)` asserts every number of the chapter that a figure draws or its caption prints, and the chapter's
 // other numbers on the way (SI throughout):
@@ -29,7 +29,7 @@ export { OBS, CURV, MATTER, FIELD, ACCENT, ACCENT2, stack, G, C };
 // ---- the field's colour role (app.css, --q-field), light and dark -------------------------------------------------
 const FIELD_ROLE = ['#0b5a59', '#04becd'];
 
-/** The role colours against app.css, both themes: chapter 7.3's four and the field's. */
+/** The role colours against app.css, both themes: section 7.3's four and the field's. */
 export async function palette(check) {
 	await einsteinPalette(check);
 	const css = await (await fetch('/app/src/app.css')).text();

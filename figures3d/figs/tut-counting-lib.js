@@ -1,7 +1,7 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 8.5 (tutorial/quantum/counting-quanta.md):
-// tut-count-bars, tut-click-trains and tut-phase-blobs. Not a figure itself. The palette is chapter 8.1's (read from
-// app.css by `palette(check)`), the relative `near` chapter 8.2's, the seeded random numbers chapter 3.1's
-// (figs/tut-prob-lib.js), and the sheet, strokes, labels and cropping those of chapters 6.1 to 8.3 (figs/tut-pot-lib.js),
+// Shared numbers for the three diagrams of the tutorial's section 8.5 (tutorial/quantum/counting-quanta.md):
+// tut-count-bars, tut-click-trains and tut-phase-blobs. Not a figure itself. The palette is section 8.1's (read from
+// app.css by `palette(check)`), the relative `near` section 8.2's, the seeded random numbers section 3.1's
+// (figs/tut-prob-lib.js), and the sheet, strokes, labels and cropping those of sections 6.1 to 8.3 (figs/tut-pot-lib.js),
 // all imported, not copied. Ink and the page's neutral greys only; orange and blue, which mean a stretch and a
 // squeeze, are not used.
 //
@@ -17,7 +17,7 @@
 //    the coherence time tau_c = integral of |g1(tau)|^2 d tau; the pair source's the thermal source's, given to both
 //    detectors at once. A long run of each, counted in windows short against tau_c, gives g2 = 1, g2 = 2 and
 //    g2_12 = 2 + 1/nbar (the chapter's boxed results) within their statistical errors;
-//  - the phase plane, in chapter 8.3's units u = x / x_zp and w = p / m omega x_zp: the ground state's spread 1 in
+//  - the phase plane, in section 8.3's units u = x / x_zp and w = p / m omega x_zp: the ground state's spread 1 in
 //    both; the squeezed vacuum S|0> at r = 0.6, built in the levels from the series of S = e^{rK}, K = (a^2 -
 //    a^dagger^2)/2, with spreads e^{-0.6} = 0.55 along u and e^{0.6} = 1.82 along w, product 1, nbar = sinh^2 0.6 =
 //    0.405 and only even counts; the thermal state of nbar = 1.5, whose spread along u and along w is

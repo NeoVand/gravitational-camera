@@ -1,8 +1,8 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 4.3 (tutorial/response/elastic-bodies.md):
+// Shared numbers for the three diagrams of the tutorial's section 4.3 (tutorial/response/elastic-bodies.md):
 // tut-elastic-strain, tut-elastic-stress and tut-elastic-trial. Not a figure itself. The strokes, heads, labels and
-// the cropping are those of chapter 1.1's diagrams (figs/tut-vec-lib.js), the dashed outline at rest and the orange
-// stretch and blue squeeze arrows those of chapter 1.5's rings (figs/tut-five-lib.js), the tinted faces of a box those
-// of chapter 1.3 (figs/tut-gauss-lib.js), all imported, not copied.
+// the cropping are those of section 1.1's diagrams (figs/tut-vec-lib.js), the dashed outline at rest and the orange
+// stretch and blue squeeze arrows those of section 1.5's rings (figs/tut-five-lib.js), the tinted faces of a box those
+// of section 1.3 (figs/tut-gauss-lib.js), all imported, not copied.
 //
 // `chapter(check)` asserts every number of the chapter that a diagram draws or its caption prints: Appendix A's trial
 // shape u = (q/R)(-x/2, -y/2, z), its strain diag(-1/2, -1/2, 1) q/R with no trace, its surface r = R + q P2(cos theta);

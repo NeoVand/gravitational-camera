@@ -1,4 +1,4 @@
-// The tutorial, chapter 10.1 (tutorial/glow/black-body.md), its second diagram: Planck's law at three temperatures.
+// The tutorial, section 10.1 (tutorial/glow/black-body.md), its second diagram: Planck's law at three temperatures.
 // One panel on linear axes: across, the frequency f = omega / 2 pi from 0 to 250 THz; up, B_omega, with no numbers
 // (shape only), in units of the 1500 K curve's top. B_omega at 700 K and 1500 K in two neutral inks, the paler for
 // the cooler; on each a filled dot at the energy peak, f = 2.821 k_B T / h (41.2 and 88.2 THz), and an open dot on the

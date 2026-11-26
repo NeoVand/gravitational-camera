@@ -1,7 +1,7 @@
 <script lang="ts">
 	/**
 	 * The tutorial's front page. A banner in the landing page's manner, one scene cut by a seam into light and
-	 * gravity; the fourteen parts as a gallery; the routes, each the shortest path to one part of the paper; and
+	 * gravity; the fourteen parts and the appendices as a gallery; the routes, each the shortest path to one part of the paper; and
 	 * every numbered equation of the paper with the chapter that derives it.
 	 */
 	import { resolve } from '$app/paths';
@@ -149,7 +149,7 @@
 	<!-- the parts -->
 	<section class="parts" aria-labelledby="parts">
 		<header class="head">
-			<h2 id="parts">Fourteen parts</h2>
+			<h2 id="parts">Fourteen parts and the appendices</h2>
 			<p>
 				Each part answers the questions that a scene of the paper raises, and most end by reading
 				that section of the paper with what the part has built.
@@ -157,7 +157,11 @@
 		</header>
 		<ol class="gallery">
 			{#each data.parts as part (part.id)}
-				<li class="part" id="part-{part.id}" style:--k={Number(part.id) / 13}>
+				<li
+					class="part"
+					id="part-{part.id}"
+					style:--k={/^\d+$/.test(part.id) ? Number(part.id) / 13 : 1}
+				>
 					<a class="opening" href={href(part.href)}>
 						<span class={['picture', part.picture.kind]}>
 							{#if part.picture.kind === 'drawing'}

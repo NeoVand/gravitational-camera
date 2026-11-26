@@ -1,7 +1,7 @@
-// The tutorial, chapter 12.1 (tutorial/sky/stars.md), its first diagram: a slab of a star held up by its pressure. A
+// The tutorial, section 12.1 (tutorial/sky/stars.md), its first diagram: a slab of a star held up by its pressure. A
 // quarter of a round star in section, the quarter about the upright radius (from 45 to 135 degrees), on the sawn stone
-// of chapter 2.5's bodies; the inner ball out to the slab, of mass m(r), shaded in matter's colour and darkening toward
-// the centre; the shell outside the slab left as bare stone and marked "pulls nothing" (chapter 1.3's shell theorem).
+// of section 2.5's bodies; the inner ball out to the slab, of mass m(r), shaded in matter's colour and darkening toward
+// the centre; the shell outside the slab left as bare stone and marked "pulls nothing" (section 1.3's shell theorem).
 // On the upright radius, one thin slab between r and r + dr, a small curved box of area A; three arrows on it: the
 // push from below, p(r) A, outward, and the push from above, p(r + dr) A, inward, both in matter's colour, the lower
 // slightly longer, on one radius a little to the left; the pull of the mass inside, G m(r) rho A dr / r^2, toward the
@@ -12,7 +12,7 @@
 // Departures from the diagram's comment: none.
 // Exact: nothing; the figure is schematic, as its caption says. The inner ball's shade follows Eddington's density,
 // theta^3 of the polytrope of index 3 (tut-stars-lib.js), over a floor that marks the ball: shade = 0.2 + (0.77 - 0.2)
-// theta^3(xi_1 r/R), DEEPEST being chapter 2.5's darkest shade. Pictorial: the stone (sprites/hair/ball-face.png).
+// theta^3(xi_1 r/R), DEEPEST being section 2.5's darkest shade. Pictorial: the stone (sprites/hair/ball-face.png).
 import { INK, DIM } from '../lib.js';
 import { text, circle as circlePath } from '../stone.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, n2, LABEL_GAP, HAIR, VEC, VEC_HEAD } from './tut-pot-lib.js';

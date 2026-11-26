@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.4 (tutorial/what-a-field-keeps/flows-inside.md), its second diagram: what the bracket reads
+// The tutorial, section 13.4 (tutorial/what-a-field-keeps/flows-inside.md), its second diagram: what the bracket reads
 // of the flow's transform. Drawn in true 3D (an orthographic view, turned and tilted as lib.js's Panel does, as chapter
 // 1.1's projector, figs/tut-vec-projector.js, and turned in the picture's plane): one wavevector xi, a long arrow from
 // a point, upward and to the right; the plane at right angles to it through the same point, a faint parallelogram. In
@@ -8,7 +8,7 @@
 // longitudinal part, a dashed segment parallel to xi from the transverse part's tip to J~'s, "read by d rho~/dt"; a
 // thin dotted line drops from J~'s tip, parallel to the plane, to the foot of the longitudinal part on xi. A
 // right-angle mark at the point, between xi and eta. Labels never on the arrows.
-// Departures from the diagram's comment: the longitudinal part is drawn from the transverse part's tip, as chapter 1.1's
+// Departures from the diagram's comment: the longitudinal part is drawn from the transverse part's tip, as section 1.1's
 // projector draws n (n . xi), not from the point along xi, where it would lie under the arrow xi; the dotted line to
 // its foot on xi shows it as the projection onto xi. It carries no head of its own, since its tip is J~'s.
 // Exact, for the drawn vectors: xi-hat x eta is the cross product (asserted at right angles to both and as long as

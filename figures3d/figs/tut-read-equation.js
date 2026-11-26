@@ -1,4 +1,4 @@
-// The tutorial, chapter 0.6 (tutorial/evening/how-to-read.md), its one diagram: reading an equation before deriving
+// The tutorial, section 0.6 (tutorial/evening/how-to-read.md), its one diagram: reading an equation before deriving
 // it. The paper's tidal brightness, eq:tidal-brightness (paper/sections/04-near-field.tex), set large in the text's
 // ink, letter for letter and in the paper's layout (the two fractions in display style, the quad space before
 // theta = R/r; the sentence's comma and full stop, which belong to the paper's prose, left out). Each symbol is

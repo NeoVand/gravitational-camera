@@ -20,7 +20,7 @@ parts:
       - { id: '0.3', slug: evening/waves-and-heat, title: 'Waves too long to see, and the glow of heat', short: Waves and heat, size: S, status: published }
       - { id: '0.4', slug: evening/one-pixel, title: "One pixel does a camera's work", short: One pixel, size: S, status: published }
       - { id: '0.5', slug: evening/what-the-outside-keeps, title: 'What the outside of a body keeps', short: What the outside keeps, size: S, status: published }
-      - { id: '0.6', slug: evening/how-to-read, title: 'How to read the rest: units, scales, notation, routes, how to read an equation', short: How to read, size: S, status: published }
+      - { id: '0.6', slug: evening/how-to-read, title: 'How to read this book', short: How to read, size: S, status: published }
 
   - id: '1'
     slug: newton
@@ -29,13 +29,13 @@ parts:
       - { id: '1.1', slug: newton/vectors-and-indices, title: 'Vectors and index notation; the Levi-Civita symbol', short: Vectors and indices, size: M, status: published }
       - { id: '1.2', slug: newton/field-and-potential, title: 'Force, field and potential; the gradient', short: Field and potential, size: M, status: published }
       - { id: '1.3', slug: newton/gauss-and-poisson, title: "Gauss's law: what the outside of a ball can tell", short: Gauss and Poisson, size: L, status: published }
-      - { id: '1.4', slug: newton/tides, title: 'Tides: the difference in gravity; the Hessian', short: Tides, size: M, status: published }
+      - { id: '1.4', slug: newton/tides, title: 'Tides: the difference in gravity', short: Tides, size: M, status: published }
       - { id: '1.5', slug: newton/five-numbers, title: 'Five numbers: symmetric trace-free tables', short: Five numbers, size: M, status: published }
       - { id: '1.5b', slug: newton/complex-numbers, title: "Complex numbers: the shear as one number, rotations you can multiply, Euler's formula", short: Complex numbers, size: M, status: published }
       - { id: '1.6', slug: newton/motion, title: 'Motion: energy, momentum, rigid bodies, rotating frames', short: Motion, size: L, status: published }
       - { id: '1.7', slug: newton/hamilton, title: "Hamilton's mechanics: phase space, brackets, generators", short: "Hamilton's mechanics", size: M, status: published }
       - { id: '1.8', slug: newton/orbits-and-kicks, title: 'Orbits, flybys and kicks', short: Orbits and kicks, size: M, status: published }
-      - { id: R1, slug: newton/reading-section-ii, title: 'Reading Section II, the Newtonian half', short: Reading Section II, size: M, status: published, reads: [sec:pixel] }
+      - { id: R1, slug: newton/reading-section-ii, title: "What the camera sees: one pixel in Newton's gravity", short: "One pixel in Newton's gravity", size: M, status: published, reads: [sec:pixel] }
 
   - id: '2'
     slug: outside
@@ -49,7 +49,7 @@ parts:
       - { id: '2.6', slug: outside/fourier, title: 'Fourier analysis, with the delta function as a sum of waves', short: Fourier analysis, size: L, status: published }
       - { id: '2.7', slug: outside/evanescent, title: 'Fading detail: evanescent fields', short: Evanescent fields, size: M, status: published }
       - { id: '2.8', slug: outside/flows, title: 'Flows of mass: continuity, currents, toroidal and poloidal flows', short: Flows of mass, size: M, status: published }
-      - { id: R2, slug: outside/reading-section-iv-1, title: 'Reading Section IV, part 1: what the image is and what it cannot show', short: Reading Section IV (1), size: M, status: published, reads: [sec:near-field] }
+      - { id: R2, slug: outside/reading-section-iv-1, title: 'The near-field image', short: The near-field image, size: M, status: published, reads: [sec:near-field] }
 
   - id: '3'
     slug: noise
@@ -64,7 +64,7 @@ parts:
       - { id: '3.7', slug: noise/blur-law, title: 'The blur law: the cut-off, the logarithm, the Lambert W function, the width of a blur', short: The blur law, size: L, status: published }
       - { id: '3.8', slug: noise/bits, title: 'Bits: entropy, capacity, and how much an image holds', short: Bits, size: M, status: published }
       - { id: '3.9', slug: noise/positivity, title: 'Positivity, super-resolution, and the geometry of the near field', short: Positivity, size: L, status: published }
-      - { id: R3, slug: noise/reading-section-iv-2, title: 'Reading Section IV, part 2, with the capstone: imaging the locked safe', short: Reading Section IV (2), size: L, status: published, reads: [sec:near-field] }
+      - { id: R3, slug: noise/reading-section-iv-2, title: 'Imaging the locked safe', short: Imaging the locked safe, size: L, status: published, reads: [sec:near-field] }
 
   - id: '4'
     slug: response
@@ -76,7 +76,7 @@ parts:
       - { id: '4.4', slug: response/viscosity, title: 'Viscosity and relaxation; the Maxwell model', short: Viscosity, size: M, status: published }
       - { id: '4.5', slug: response/causality, title: 'Response, causality and sum rules', short: Response and causality, size: M, status: published }
       - { id: '4.6', slug: response/fluctuation-dissipation, title: 'Fluctuation and dissipation; Brownian motion; the Love number', short: Fluctuation and dissipation, size: L, status: published }
-      - { id: R4, slug: response/reading-section-iv-3, title: 'Reading Section IV, part 3: what heat and an applied tide reveal', short: Reading Section IV (3), size: M, status: published, reads: [sec:near-field] }
+      - { id: R4, slug: response/reading-section-iv-3, title: 'What heat and a tide reveal', short: What heat and a tide reveal, size: M, status: published, reads: [sec:near-field] }
 
   - id: '5'
     slug: waves
@@ -88,7 +88,7 @@ parts:
       - { id: '5.4', slug: waves/polarization, title: 'Polarization and the Stokes parameters', short: Polarization, size: M, status: published }
       - { id: '5.5', slug: waves/radiance, title: 'Radiance, emission and absorption; lenses and mirrors in brief', short: Radiance, size: M, status: published }
       - { id: '5.6', slug: waves/abel-transform, title: 'Pictures from line integrals: the Abel transform', short: The Abel transform, size: S, status: published }
-      - { id: R5, slug: waves/reading-section-iii, title: 'Reading Section III, with the capstone: which way it turns', short: Reading Section III, size: M, status: published, reads: [sec:regimes] }
+      - { id: R5, slug: waves/reading-section-iii, title: 'Which way it turns', short: Which way it turns, size: M, status: published, reads: [sec:regimes] }
 
   - id: '6'
     slug: relativity
@@ -111,10 +111,10 @@ parts:
       - { id: '7.4', slug: geometry/linearized-gravity, title: 'Linearized gravity and gauge', short: Linearized gravity, size: L, status: published }
       - { id: '7.5', slug: geometry/gravitomagnetism, title: "Gravity's electric and magnetic parts; gravitomagnetism", short: Gravitomagnetism, size: L, status: published }
       - { id: '7.6', slug: geometry/gravitational-waves, title: 'Gravitational waves and their two polarizations', short: Gravitational waves, size: M, status: published }
-      - { id: R7, slug: geometry/reading-section-ii-again, title: 'Reading Section II again, the relativistic half', short: Reading Section II again, size: S, status: published, reads: [sec:pixel] }
+      - { id: R7, slug: geometry/reading-section-ii-again, title: "What the camera sees: one pixel in Einstein's gravity", short: "One pixel in Einstein's gravity", size: S, status: published, reads: [sec:pixel] }
       - { id: '7.7', slug: geometry/quadrupole-formula, title: 'The quadrupole formula, from the near zone to the wave zone', short: The quadrupole formula, size: L, status: published }
       - { id: '7.8', slug: geometry/wave-energy, title: 'Wave energy, damping by viscosity, and memory', short: Wave energy, size: M, status: published }
-      - { id: R7b, slug: geometry/reading-section-v, title: 'Reading Section V, with the capstone: the sealed rotor', short: Reading Section V, size: M, status: published, reads: [sec:waves] }
+      - { id: R7b, slug: geometry/reading-section-v, title: 'Waves from moving bodies', short: Waves from moving bodies, size: M, status: published, reads: [sec:waves] }
 
   - id: '8'
     slug: quantum
@@ -127,7 +127,7 @@ parts:
       - { id: '8.5', slug: quantum/counting-quanta, title: 'Counting quanta: Poisson, thermal and squeezed', short: Counting quanta, size: M, status: published }
       - { id: '8.6', slug: quantum/quantum-limit, title: 'Measurement, added noise and the standard quantum limit; detectors and strain', short: The quantum limit, size: L, status: published }
       - { id: '8.7', slug: quantum/quantum-fluctuation, title: 'Fluctuation and dissipation in quantum mechanics', short: Quantum fluctuation, size: M, status: published }
-      - { id: R8, slug: quantum/reading-the-quantum-limits, title: 'Reading the quantum limits, with the capstone: from two grams to the ceiling', short: Reading the quantum limits, size: L, status: published, reads: [sec:pixel, sec:near-field, sec:no-lens, sec:first-image, sec:vistas] }
+      - { id: R8, slug: quantum/reading-the-quantum-limits, title: 'From two grams to the ceiling', short: From two grams to the ceiling, size: L, status: published, reads: [sec:pixel, sec:near-field, sec:no-lens, sec:first-image, sec:vistas] }
 
   - id: '9'
     slug: one-point
@@ -137,11 +137,11 @@ parts:
       - { id: '9.2', slug: one-point/complex-symmetric, title: 'Complex symmetric matrices: invariants and Jordan forms', short: Complex symmetric matrices, size: M, status: published }
       - { id: '9.3', slug: one-point/the-matrix-w, title: 'The matrix 𝒲: four invariants, an orientation, a velocity', short: The matrix W, size: L, status: published }
       - { id: '9.4', slug: one-point/petrov, title: 'Principal null directions and the Petrov classification', short: Principal null directions, size: M, status: published }
-      - { id: R9, slug: one-point/reading-section-viii, title: 'Reading Section VIII, part 1: one table, four directions and a moving body', short: Reading Section VIII (1), size: M, status: published, reads: [sec:one-pixel] }
+      - { id: R9, slug: one-point/reading-section-viii, title: 'One table, four directions: what one pixel reads, from its ten numbers to a moving body', short: 'One table, four directions', size: M, status: published, reads: [sec:one-pixel] }
       - { id: '9.5', slug: one-point/separating-waves, title: 'Separating waves at one point', short: Separating waves, size: M, status: published }
       - { id: '9.6', slug: one-point/the-sky-at-one-point, title: 'The sky at one point', short: The sky at one point, size: M, status: published }
       - { id: '9.7', slug: one-point/beyond-one-plane-wave, title: 'Beyond one plane wave: ranging, other theories and what noise costs', short: Beyond one plane wave, size: M, status: published }
-      - { id: R9b, slug: one-point/reading-section-viii-2, title: 'Reading Section VIII, part 2, with the capstone: one pixel on a desk', short: Reading Section VIII (2), size: M, status: published, reads: [sec:one-pixel] }
+      - { id: R9b, slug: one-point/reading-section-viii-2, title: 'One pixel on a desk', short: One pixel on a desk, size: M, status: published, reads: [sec:one-pixel] }
 
   - id: '10'
     slug: glow
@@ -150,8 +150,8 @@ parts:
       - { id: '10.1', slug: glow/black-body, title: "The black body and Planck's law; Bose integrals", short: The black body, size: M, status: published }
       - { id: '10.2', slug: glow/kirchhoff, title: "Kirchhoff's law and detailed balance; entropy and heat capacity", short: "Kirchhoff's law", size: M, status: published }
       - { id: '10.3', slug: glow/why-matter-barely-glows, title: 'Why matter barely glows: phonons, electrons, Raman lines, and the bound on every glow', short: Why matter barely glows, size: L, status: published }
-      - { id: R10, slug: glow/reading-section-vi, title: 'Reading Section VI', short: Reading Section VI, size: M, status: published, reads: [sec:thermal] }
-      - { id: R10b, slug: glow/reading-section-ix, title: 'Reading Section IX, with the capstone: the Sun at midnight', short: Reading Section IX, size: M, status: published, reads: [sec:first-image] }
+      - { id: R10, slug: glow/reading-section-vi, title: 'The glow of matter', short: The glow of matter, size: M, status: published, reads: [sec:thermal] }
+      - { id: R10b, slug: glow/reading-section-ix, title: 'A first image: the Earth at midnight', short: The Earth at midnight, size: M, status: published, reads: [sec:first-image] }
 
   - id: '11'
     slug: black-holes
@@ -161,7 +161,7 @@ parts:
       - { id: '11.2', slug: black-holes/spin, title: 'Spin, no hair, superradiance', short: Spin and no hair, size: M, status: published }
       - { id: '11.3', slug: black-holes/hawking, title: 'Hawking radiation', short: Hawking radiation, size: M, status: published }
       - { id: '11.4', slug: black-holes/under-tides, title: 'Black holes under tides: Love numbers, absorption, the friction of the horizon', short: Black holes under tides, size: M, status: published }
-      - { id: R11, slug: black-holes/reading-section-vii, title: 'Reading Section VII', short: Reading Section VII, size: S, status: published, reads: [sec:no-lens] }
+      - { id: R11, slug: black-holes/reading-section-vii, title: 'A camera without a lens', short: A camera without a lens, size: S, status: published, reads: [sec:no-lens] }
 
   - id: '12'
     slug: sky
@@ -169,8 +169,8 @@ parts:
     chapters:
       - { id: '12.1', slug: sky/stars, title: 'Stars, compact objects, supernovae and the Galaxy', short: Stars, size: L, status: published }
       - { id: '12.2', slug: sky/universe, title: 'The expanding universe, its thermal history, and a graviton background', short: The universe, size: L, status: published }
-      - { id: R12, slug: sky/reading-sections-x-and-xi, title: 'Reading Sections X and XI', short: Reading Sections X and XI, size: M, status: published, reads: [sec:affordances, sec:vistas] }
-      - { id: R12b, slug: sky/reading-section-xi-2, title: 'Reading Section XI, part 2', short: Reading Section XI, part 2, size: L, status: published, reads: [sec:vistas] }
+      - { id: R12, slug: sky/reading-sections-x-and-xi, title: 'What the camera can do that light cannot', short: What the camera can do, size: M, status: published, reads: [sec:affordances, sec:vistas] }
+      - { id: R12b, slug: sky/reading-section-xi-2, title: 'The sky in gravity', short: The sky in gravity, part 2, size: L, status: published, reads: [sec:vistas] }
 
   - id: '13'
     slug: what-a-field-keeps
@@ -184,8 +184,15 @@ parts:
       - { id: '13.6', slug: what-a-field-keeps/algebra-of-moments, title: "The algebra of moments to order 1/c², and Marolf's argument", short: The algebra of moments, size: L, status: published }
       - { id: '13.7', slug: what-a-field-keeps/thermometer, title: 'The hole as a thermometer; sums that belong to no body', short: The hole as a thermometer, size: M, status: published }
       - { id: '13.8', slug: what-a-field-keeps/holography, title: 'Holography and decoherence', short: Holography, size: L, status: published }
-      - { id: R13, slug: what-a-field-keeps/reading-sections-xii-and-xiii, title: 'Reading Sections XII and XIII', short: Reading Sections XII and XIII, size: L, status: published, reads: [sec:hair, sec:second-order] }
-      - { id: R13b, slug: what-a-field-keeps/reading-sections-xiv-and-xv, title: 'Reading Sections XIV and XV', short: Reading Sections XIV and XV, size: L, status: published, reads: [sec:hole, sec:holography, sec:conclusion, sec:status] }
+      - { id: R13, slug: what-a-field-keeps/reading-sections-xii-and-xiii, title: 'What one reading keeps and what a push reads: a ball and a shell', short: A ball and a shell, size: L, status: published, reads: [sec:hair, sec:second-order] }
+      - { id: R13b, slug: what-a-field-keeps/reading-sections-xiv-and-xv, title: 'A black hole and a moon: what the camera can and cannot see', short: A black hole and a moon, size: L, status: published, reads: [sec:hole, sec:holography, sec:conclusion, sec:status] }
+
+  - id: 'A'
+    slug: appendices
+    title: Appendices
+    chapters:
+      - { id: 'A.1', slug: appendices/numerical-methods, title: 'Numerical methods and the worked examples', short: Numerical methods, size: M, status: published }
+      - { id: 'A.2', slug: appendices/how-results-are-checked, title: 'How the results are checked', short: How results are checked, size: M, status: published }
 
 # Named routes (PLAN.md section 3): the chapters to read, in order, to reach a part of the paper. A first draft
 # for Neo to correct; a test checks that every route holds every chapter its chapters require.

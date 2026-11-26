@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.3 (tutorial/what-a-field-keeps/ladder.md), its first diagram: two columns of steps, read
+// The tutorial, section 13.3 (tutorial/what-a-field-keeps/ladder.md), its first diagram: two columns of steps, read
 // downward, on the page's ground. Left: r^4 H_2, an arrow "grad^2, x 36" down to r^2 H_2, an arrow "grad^2, x 14" down to
 // H_2, an arrow "grad^2, x 0" down to 0: the factors 2j(2l + 2j + 1) for l = 2 and j = 2, 1, 0. Right: grad h . grad g
 // = d_i h d_i g, an arrow "grad^2, x 2" down to d_i d_k h d_i d_k g, an arrow "grad^2, x 2" down to d_i d_k d_l h

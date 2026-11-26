@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.3 (tutorial/noise/measuring-a-number.md), its second diagram: the likelihood peaks with a
+// The tutorial, section 3.3 (tutorial/noise/measuring-a-number.md), its second diagram: the likelihood peaks with a
 // width 1/sqrt F. The log-likelihood of one mass's depth, averaged over the noise and with its mass known,
 // <ln L> = -F (theta - theta_0)^2 / 2 up to a constant, with F = F_zz = 5 R^2 / z^2 (the chapter's Fisher matrix of one
 // mass), drawn against (theta - theta_0) / z for the strengths of the whole pattern R = 3, 10 and 30. A dotted line at

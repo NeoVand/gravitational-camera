@@ -1,4 +1,4 @@
-// The tutorial, reading chapter R13b (tutorial/what-a-field-keeps/reading-sections-xiv-and-xv.md), its second diagram:
+// The tutorial, reading section R13b (tutorial/what-a-field-keeps/reading-sections-xiv-and-xv.md), its second diagram:
 // the capstone, the paper's Table VIII (tab:hair) redrawn for two bodies of one mass, the 0.905 K black hole and a
 // uniform rocky moon of 3000 kg m^-3, down the seven rows (a) to (g) of the chapter's capstone table.
 //  At the top, the two bodies, not to scale: the hole a near-black disc (11.1's fill) with a thin grey ring for its
@@ -81,7 +81,7 @@ async function numbers() {
 	// the tide: a bell of standard deviation one second whose time integral is epsilon; slow for the hole, fast for the moon
 	const e0 = EPS / (SIGMA * Math.sqrt(2 * Math.PI)), x1 = (G * M * 1) / C ** 3;
 	check(sci(e0, 1) === '4.0e-11' && sci(x1, 1) === '3.4e-13', `the tide ${e0} ${x1}`);
-	has('whose strength rises and falls as a bell curve with a standard deviation of one second. It peaks at $4.0\\times10^{-11}\\unit{s^{-2}}$, and its time integral, R13\'s impulse strength $\\epsilon$, is $10^{-10}\\unit{s^{-1}}$. The tide is slow for the hole, with $x = 3.4\\times10^{-13}$ at $\\omega = 1\\unit{s^{-1}}$, and fast for the moon', 'the tide');
+	has('whose strength rises and falls as a bell curve with a standard deviation of one second. It peaks at $4.0\\times10^{-11}\\unit{s^{-2}}$, and its time integral, the impulse strength $\\epsilon$ of the ball and shell above, is $10^{-10}\\unit{s^{-1}}$. The tide is slow for the hole, with $x = 3.4\\times10^{-13}$ at $\\omega = 1\\unit{s^{-1}}$, and fast for the moon', 'the tide');
 	// (a) one time at 10^6: the hole's seven numbers, the moon's bits from 3 R_m (the paper's eq:hair-bits, as R13's)
 	const bitsHole = 7 * Math.log2(SNR1);
 	const L = Math.log(SNR1), Lam = Math.log(3), H = (L ** 3 / (3 * Lam * Lam) + (L * L) / (2 * Lam)) / Math.LN2;

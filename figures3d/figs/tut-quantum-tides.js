@@ -1,5 +1,5 @@
-// The tutorial, reading chapter R8 (tutorial/quantum/reading-the-quantum-limits.md), its second diagram: the
-// capstone's tides a metre away, a different story from chapter 8.6's tut-snr-ladder (which draws signal-to-noise
+// The tutorial, reading section R8 (tutorial/quantum/reading-the-quantum-limits.md), its second diagram: the
+// capstone's tides a metre away, a different story from section 8.6's tut-snr-ladder (which draws signal-to-noise
 // ratios and blurs). One panel: a vertical logarithmic axis of tides in s^-2, from 10^-8 at the top to 10^-30 at the
 // bottom, thin grey, ticked every two decades with its numbers on the left. Left of the axis, the instruments' smallest
 // resolved steady tides as short ink bars named on the left: the superconducting gradiometer in one second (2 x 10^-11),
@@ -16,11 +16,11 @@
 // hang from leaders, the first above and the second below. The one drawing serves the phone: every label is at the
 // size of every other label.
 // Exact: every place on the axis. The pixel's tides, the person's, the gradiometer's, the ratio 9.5 x 10^16 and the
-// pair's fall in 3.9 x 10^3 s are chapter 8.6's (figs/tut-sql-lib.js, computed and asserted against 8.6's text); the
-// ball's thermal tide is chapter 4.1's (figs/tut-osc-lib.js, `ball`, the quadrupole integrated over the ball) and its
-// zero-point tide the same with the thermal swing replaced by chapter 8.3's x_zp = sqrt(hbar / 2 m omega)
-// (figs/tut-quanta-lib.js, chapter 4.3's steel); the split gram's tide is the quadrupole m d^2 of chapter 8.1 put
-// through chapter 4.1's `quadrupoleTide`. Every number printed is asserted against R8's text (outside its comments)
+// pair's fall in 3.9 x 10^3 s are section 8.6's (figs/tut-sql-lib.js, computed and asserted against 8.6's text); the
+// ball's thermal tide is section 4.1's (figs/tut-osc-lib.js, `ball`, the quadrupole integrated over the ball) and its
+// zero-point tide the same with the thermal swing replaced by section 8.3's x_zp = sqrt(hbar / 2 m omega)
+// (figs/tut-quanta-lib.js, section 4.3's steel); the split gram's tide is the quadrupole m d^2 of section 8.1 put
+// through section 4.1's `quadrupoleTide`. Every number printed is asserted against R8's text (outside its comments)
 // or, for the two that only this figure prints, 9.8 x 10^-26 and 1.2 x 10^-29, against the text's own ingredients.
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, AXIS, HAIR, LABEL_GAP, SIZE, n2 } from './tut-pot-lib.js';
 import { Plot, yAxis } from './tut-prob-lib.js';
@@ -61,7 +61,7 @@ export default async function () {
 	has('The person a metre away makes $9.34\\times10^{-9}\\unit{s^{-2}}$', 'the person\'s tide');
 	has('$2\\times10^{-11}\\unit{s^{-2}}$ in a second', 'the gradiometer');
 	has('$2\\sigma_{\\rm SQL}/\\xi\\tau^2 = 6.5\\times10^{-14}\\unit{s^{-2}}$', 'the pixel');
-	has('resolves $\\sqrt2$ times more, $9.2\\times10^{-14}\\unit{s^{-2}}$, the paper\'s figure', 'the distance of the two');
+	has('resolves $\\sqrt2$ times more, $9.2\\times10^{-14}\\unit{s^{-2}}$.', 'the distance of the two');
 	check(sig(person, 3) === '9.34e-9' && sig(grad, 1) === '2e-11' && sig(pix, 2) === '6.5e-14' && sig(pix2, 2) === '9.2e-14', 'the instruments\' tides');
 	// the averaged pixel: the person's tide over the ratio it reaches in 10^3 s stretches over the age of the universe,
 	// which end because the two grams fall together under their own pull in about an hour
@@ -81,9 +81,9 @@ export default async function () {
 	const split = Math.abs(E[2][2]);
 	check(near(split, 12 * G * md2, 1e-5) && sig(split, 2) === '8.0e-25', `the split gram's tide ${split}`);
 	check(sig(split / pix, 2) === '1.2e-11', 'the split gram over the pixel');
-	has('That is $1.2\\times10^{-11}$ of what the gram pixel of Section II resolves in a second', 'the ratio of the split gram');
-	// the steel ball: its thermal tide (chapter 4.1's), and its zero-point tide, the same quadrupole with the thermal
-	// swing sqrt(k_B T / K) replaced by the zero-point swing sqrt(hbar / 2 m omega) (chapter 8.3's)
+	has('That is $1.2\\times10^{-11}$ of what the gram pixel resolves in a second', 'the ratio of the split gram');
+	// the steel ball: its thermal tide (section 4.1's), and its zero-point tide, the same quadrupole with the thermal
+	// swing sqrt(k_B T / K) replaced by the zero-point swing sqrt(hbar / 2 m omega) (section 8.3's)
 	has('Its thermal tremor makes $3.4\\times10^{-25}\\unit{s^{-2}}$ a metre away', 'the ball\'s tide');
 	has('$5.3\\times10^{-12}$ of what the gram pixel resolves in a second', 'the ball over the pixel');
 	has('**zero-point motion**, the swing that it keeps with no heat at all: $7.5\\times10^{-21}$ m at the poles, $2.9\\times10^4$ times less than the thermal swing of $2.2\\times10^{-16}$ m', 'the zero-point swing');

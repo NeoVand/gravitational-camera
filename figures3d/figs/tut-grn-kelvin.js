@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.4 (tutorial/outside/greens-functions.md), its fourth diagram: Kelvin's image and the skin of
+// The tutorial, section 2.4 (tutorial/outside/greens-functions.md), its fourth diagram: Kelvin's image and the skin of
 // balayage. A ball of radius R cut through its centre, with a nugget at s = R/2 on the vertical axis and the nugget's
 // Kelvin image s* = R^2 s / s^2 at 2R above the centre, on the same ray (dotted), marked with its weight R/s = 2; the
 // skin of balayage drawn as a band just inside the sphere, shaded by the ball's Poisson kernel

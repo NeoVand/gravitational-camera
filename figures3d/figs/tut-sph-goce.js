@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.2 (tutorial/outside/spherical-harmonics.md), its fourth diagram: how fine degree 280 is.
+// The tutorial, section 2.2 (tutorial/outside/spherical-harmonics.md), its fourth diagram: how fine degree 280 is.
 // The Earth cut through a great circle, with the pattern of degree 280 along that circle drawn as a ripple of its
 // rim, cos(280 alpha), 280 crests round it; GOCE's orbit, 254 km up, as a dashed circle; and an enlarged inset of the
 // short arc at the top, inside the small window drawn there: the ground with the ripple, one wavelength between two

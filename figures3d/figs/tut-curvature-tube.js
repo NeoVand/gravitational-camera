@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.2 (tutorial/geometry/curvature-and-tides.md), its opening figure and the hero of Part 7: a
+// The tutorial, section 7.2 (tutorial/geometry/curvature-and-tides.md), its opening figure and the hero of Part 7: a
 // ring of twelve free balls beside a mass, followed up the time axis. Spacetime with two directions of space, x across
 // (the line to the mass, the mass on the left) and y away from the viewer, and time upward, seen obliquely from above
 // (turned TURN degrees about the upright, TILT_VIEW degrees above the horizon). The mass a stone sphere of radius RM at
@@ -19,7 +19,7 @@
 // central worldline, so at the top its upright edges lean with that worldline, and its slices stay the same square.
 // Beads mark the balls at the bottom and at the top. The tube's outline is not drawn as a line: the glass darkens
 // toward it, and a line there would double the worldlines that run along it near the top.
-// Exact, for the tide of a mass to second order about the ring's centre (chapter 1.4's table, (GM/D^3) diag(-2, 1)
+// Exact, for the tide of a mass to second order about the ring's centre (section 1.4's table, (GM/D^3) diag(-2, 1)
 // along and across the line, and the pull GM/D^2 at the centre): every ball's worldline, x = x_c(t) + RHO cos(a)
 // cosh(sqrt 2 k t), y = RHO sin(a) cos(k t), with x_c(t) = -(D/2)(cosh(sqrt 2 k t) - 1) (asserted against a Runge-Kutta
 // integration of the acceleration -GM/D^2 - E x, x from the ring's starting centre); so every cross-section is an ellipse with semi-axes RHO cosh(sqrt 2
@@ -29,7 +29,7 @@
 // bead or the stone. Schematic: k t at the top (KAPPA, the distortion exaggerated), RHO, D, the mass's size and the
 // column's, the beads' size and the view. Pictorial: the stone of the mass, the column and the beads, the picture of
 // the paper's figures (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, ball-face.png), lit by the
-// studio of lib.js (as chapter 6.1's hero, figs/tut-lorentz-hero.js); the glass's tint, opacity and sheen.
+// studio of lib.js (as section 6.1's hero, figs/tut-lorentz-hero.js); the glass's tint, opacity and sheen.
 import { ORIGIN, Sheet, finish, checker, near, n2, placed, LABEL_GAP, AXIS, AXIS_HEAD } from './tut-pot-lib.js';
 import { View } from './tut-noise-lib.js';
 import { sprite, INK, DIM, FAINT } from '../lib.js';
@@ -450,7 +450,7 @@ function physics() {
 }
 
 /** A stone ball lit by the studio: the picture `face` as the albedo, seen face on, lit by `lit`; a PNG 200 pixels
- * across (chapter 6.1's hero, figs/tut-lorentz-hero.js, litBall). */
+ * across (section 6.1's hero, figs/tut-lorentz-hero.js, litBall). */
 async function litBall(face, lit) {
 	const img = new Image(); img.src = face.href; await img.decode();
 	const Np = 200, src = document.createElement('canvas');

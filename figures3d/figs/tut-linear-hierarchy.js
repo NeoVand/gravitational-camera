@@ -1,11 +1,11 @@
-// The tutorial, chapter 7.4 (tutorial/geometry/linearized-gravity.md), its third diagram: the sizes of the entries of the
+// The tutorial, section 7.4 (tutorial/geometry/linearized-gravity.md), its third diagram: the sizes of the entries of the
 // field a metre from the 70 kg person walking at 1.4 m s^-1, three bars on a logarithmic axis from 10^-44 to 10^-24:
 // "h_00, from the energy" 1.0 x 10^-25; "hbar_0i, from the momentum" 9.7 x 10^-34; "hbar_ij, its motion part
 // rho v_i v_j" 4.5 x 10^-42. The bars solid in the field's colour, the longest darkest. Under the third bar a small
 // hollow tick at the stress of standing on a floor, about 2 x 10^-41. Between consecutive bars a small bracket from the
 // right end of one to the right end of the next, named "x 2v/c" and "x v/c"; v/c = 4.7 x 10^-9 printed once below the
 // axis. Each bar's value right of its end, never on a bar.
-// Departures from the diagram's comment: each bar's name stands above its bar, not left of it (as chapter 7.3's
+// Departures from the diagram's comment: each bar's name stands above its bar, not left of it (as section 7.3's
 // tut-einstein-traces), so that one drawing about 280 points wide gives the twenty decades the whole width and keeps
 // its text readable on a phone. The hollow tick stands on a line of its own just under the third bar, not on the bar's
 // line, because the third bar's value, printed right of its end, would cover it there (the tick is less than a decade

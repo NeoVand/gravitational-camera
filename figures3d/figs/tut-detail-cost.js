@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.2 (tutorial/what-a-field-keeps/calderon.md), its fourth diagram: what fine detail costs a
+// The tutorial, section 13.2 (tutorial/what-a-field-keeps/calderon.md), its fourth diagram: what fine detail costs a
 // second reading. Log-log axes: across, the detail 2 pi/|xi| from 2 cm to 1 m, increasing to the right; up, the span
 // e^{|xi|R} of the two exponentials across the steel ball of radius R = 0.5 m, from 1 to 10^40, drawn as one exact
 // curve, log10 span = 2 pi R / (d ln 10), which leaves the top of the plot at d = 3.4 cm. Three marked points at 20, 10

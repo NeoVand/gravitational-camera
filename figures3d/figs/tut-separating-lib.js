@@ -1,6 +1,6 @@
-// Shared numbers for the two diagrams of the tutorial's chapter 9.5 (tutorial/one-point/separating-waves.md):
+// Shared numbers for the two diagrams of the tutorial's section 9.5 (tutorial/one-point/separating-waves.md):
 // tut-wave-count and tut-lens-cells. Not a figure itself. The colours are the chapter's colour roles, the curvature's
-// for gravity and the light role's for light (app.css's --q-curv and --q-light, read by chapter 7.1's palette,
+// for gravity and the light role's for light (app.css's --q-curv and --q-light, read by section 7.1's palette,
 // figs/tut-metric-lib.js), imported, not copied. Orange and blue mean a stretch and a squeeze only, and are not used.
 //
 // `chapter(check)` asserts against the chapter's own text (fetched, outside its comments) every statement that a

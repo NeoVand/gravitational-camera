@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.1 (tutorial/response/oscillator.md), its second diagram: the ring-down of chapter 1.7's
+// The tutorial, section 4.1 (tutorial/response/oscillator.md), its second diagram: the ring-down of section 1.7's
 // cart with Q = 10 (m = 2 kg, k = 50 N/m, Gamma = 0.5 s^-1, omega_d = 4.994 s^-1), released from rest at q = 0.1 m:
 // q(t) = 0.1 e^{-t/4} [cos omega_d t + (Gamma/2 omega_d) sin omega_d t] m for t from 0 to 8 s, one thin curve in the
 // colour of the swing (the chapter's live figure, driven-cart); its envelope +-A e^{-t/4}, dashed, with
@@ -22,7 +22,7 @@ const check = checker(name);
 const TMAX = 8;
 const PW = 290, UNIT = 560;                // t from 0 to 8 s; points per metre of q
 const TOP = 0.108, BOTTOM = -0.108;        // room for the envelope, +-0.100125 at t = 0, 3 pt clear of the axis
-const ENV_DASH = [1.8, 1.4];               // the envelope, as chapter 3.6's far form (figs/tut-bessel-j0-j1.js)
+const ENV_DASH = [1.8, 1.4];               // the envelope, as section 3.6's far form (figs/tut-bessel-j0-j1.js)
 const ENV = 0.45;
 const MARK = 2.6;                          // half the length of a time's tick across the envelope
 

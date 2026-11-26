@@ -1,4 +1,4 @@
-// The tutorial, chapter 10.1 (tutorial/glow/black-body.md), its third diagram: the three Bose integrals. One panel:
+// The tutorial, section 10.1 (tutorial/glow/black-body.md), its third diagram: the three Bose integrals. One panel:
 // across, x = hbar omega / k_B T from 0 to 12; up, from 0 to 1.5. The three curves x^n / (e^x - 1) for n = 1, 2, 3 in
 // ink of three weights (thin, medium, thick), each over its area shaded very faintly in ink. The two peaks marked by a
 // dot, with a dotted line down to the axis and its x under the axis, 1.594 (n = 2) and 2.821 (n = 3), and its height

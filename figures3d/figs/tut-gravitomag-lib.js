@@ -1,7 +1,7 @@
-// Shared numbers and colours for the three diagrams of the tutorial's chapter 7.5 (tutorial/geometry/gravitomagnetism.md):
+// Shared numbers and colours for the three diagrams of the tutorial's section 7.5 (tutorial/geometry/gravitomagnetism.md):
 // tut-magnetic-crossing, tut-spin-dipole-sky and tut-earth-two-bars. Not a figure itself. The colour roles are chapter
 // 7.4's (figs/tut-linear-lib.js: the observer's, the curvature's, matter's and the field's, read from app.css by
-// `palette(check)`); the sheet, strokes, labels and cropping are those of chapters 6.1 to 7.4, all imported, not copied.
+// `palette(check)`); the sheet, strokes, labels and cropping are those of sections 6.1 to 7.4, all imported, not copied.
 //
 // `chapter(check)` asserts every number of the chapter that a figure draws or its caption prints, and the chapter's
 // other numbers on the way (SI throughout):

@@ -1,5 +1,5 @@
-// The tutorial, chapter 9.4 (tutorial/one-point/petrov.md), its second diagram: the six Petrov types as six small
-// skies. Each sky is drawn as chapter 8.4 draws it (figs/tut-spin-lib.js, after chapter 6.6 and the paper's fig:stars),
+// The tutorial, section 9.4 (tutorial/one-point/petrov.md), its second diagram: the six Petrov types as six small
+// skies. Each sky is drawn as section 8.4 draws it (figs/tut-spin-lib.js, after section 6.6 and the paper's fig:stars),
 // without its equator: a thin outline, a veil over what lies behind, and a small grey pixel at the centre. On it, the
 // reading's four principal null directions as dots in the curvature's colour, coincident ones as touching dots, so that
 // each sky holds four (those on the far side under the veil, faint), and a thin dashed line from the pixel to each
@@ -8,7 +8,7 @@
 // touching dots at +z and two single dots at (+-0.484, 0, -0.875); D, one mass along z, two at +z and two at -z; III,
 // the paper's table, three at +z and one at -z; N, one wave along +z, four at +z and a small ink arrow k from the
 // pixel; O, an empty sky. No orange or blue.
-// Departures from the diagram's comment: the dots are in the curvature's colour (as chapter 8.4's Majorana stars, the
+// Departures from the diagram's comment: the dots are in the curvature's colour (as section 8.4's Majorana stars, the
 // same directions), not the accent colour, which on this site is orange and means a stretch; the six skies stand in two
 // rows of three at every width (the site shows one drawing at every width, and six in a row would be too small on a
 // phone); every sky, not only type I's, has a thin dashed line from the pixel to each of its distinct directions, so
@@ -18,7 +18,7 @@
 // example "a mass and a wave along its line" is set on two lines; in type N the arrow k from the pixel replaces the
 // dashed line.
 // Exact: every direction, a root of the quartic m(z)^T W m(z) of its reading mapped to the sky by k(z) (a root lost
-// from the top a dot at -z), each reading sorted into its type both by chapter 9.2's algebraic test and by the pattern
+// from the top a dot at -z), each reading sorted into its type both by section 9.2's algebraic test and by the pattern
 // of its roots, asserted in figs/tut-petrov-lib.js against the chapter's text; the view, orthographic, the same for the
 // six. Schematic: the sizes of the dots, the pixel and the skies.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP } from './tut-pot-lib.js';

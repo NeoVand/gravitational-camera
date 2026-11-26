@@ -1,6 +1,6 @@
-// The tutorial, chapter 5.5 (tutorial/waves/radiance.md), its third diagram: what one pixel reports along one line of
+// The tutorial, section 5.5 (tutorial/waves/radiance.md), its third diagram: what one pixel reports along one line of
 // sight, in light, in a thick glow and in the gravitational glow. Three panels stacked, the same scene in each: a pixel
-// (chapter 5.3's small square) at the left and a horizontal line of sight from it to the right edge, which crosses a
+// (section 5.3's small square) at the left and a horizontal line of sight from it to the right edge, which crosses a
 // door (a thin upright slab), a steel furnace (a box with thick walls, in section) holding a small block, and a person
 // (a rounded rectangle). The bodies are outlines over the neutral tint. Under the bodies, on a common baseline, bars
 // give each body's part in the pixel's reading. (a) "light": the line is solid from the pixel to the door's face, a dot

@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.6 (tutorial/waves/abel-transform.md), its second diagram: gold in a steel ball glows as a
+// The tutorial, section 5.6 (tutorial/waves/abel-transform.md), its second diagram: gold in a steel ball glows as a
 // spot, a dome or a ring. Three columns. At the top of each, a steel ball of radius R cut through its centre, chapter
 // 2.5's three bodies in their round case: the nugget, a ball of gold of radius 0.2 R at the centre; the flush, the gold
 // spread evenly through the ball; the skin, a band of gold from 0.95 R to R (t = 0.05 R). Under each, aligned with it,
@@ -7,7 +7,7 @@
 // 2 sqrt(0.04 R^2 - b^2) for |b| < 0.2 R; the dome 2 sqrt(R^2 - b^2); the ring 2 [sqrt(R^2 - b^2) - sqrt((R - t)^2 - b^2)]
 // for |b| < R - t and 2 sqrt(R^2 - b^2) beyond, whose peaks at |b| = 0.95 R are sqrt(2R/t - 1) = 6.24 times its middle.
 // Named "spot", "dome" and "ring" under the curves.
-// Departures from the diagram's comment: the bodies are drawn as chapter 2.5 draws these balls (figs/tut-null-lib.js),
+// Departures from the diagram's comment: the bodies are drawn as section 2.5 draws these balls (figs/tut-null-lib.js),
 // the sawn face of its steel ball with the gold in matter's colour over it (the nugget lit, the flush and the skin a
 // shade), rather than in flat grey and gold, so that they are recognizably the same three bodies; each is named over
 // it ("nugget", "flush", "skin"). Each chart's axes stand a little outside -R and R (at 1.12 R), with ticks at -R, 0
@@ -18,7 +18,7 @@
 // each scaled to its own largest value (asserted, and the ring's middle at 1/6.24 of its height, asserted in points),
 // sampled so that no two neighbouring points are more than a quarter of a point apart; the nugget's radius and the
 // skin's band to scale. Schematic: the strength of the gold's shade, which does not follow its density. Pictorial: the
-// stone, as in chapter 2.5.
+// stone, as in section 2.5.
 import { Sheet, ORIGIN, finish, checker, placed, near, n2, AXIS, HAIR, TICK, LABEL_GAP } from './tut-pot-lib.js';
 import { Plot, pathOf } from './tut-prob-lib.js';
 import { graph, longest, CURVE } from './tut-fourier-lib.js';
@@ -39,7 +39,7 @@ const REACH = 1.12;                        // the axes' reach, in R
 // the pale fill under a curve: matter's dark-theme colour, its light gold (figs/tut-null-lib.js, GOLD_LIGHT), mixed
 // with the page, more of it in the light theme than in the dark
 const FILL = 'light-dark(color-mix(in srgb, #f1dc86 72%, #fffffe), color-mix(in srgb, #f1dc86 20%, #fffffe))';
-const FLUSH = DEEPEST / 2;                 // the flush's shade, chapter 2.5's uniform ball
+const FLUSH = DEEPEST / 2;                 // the flush's shade, section 2.5's uniform ball
 const BAND = DEEPEST;                      // the skin's shade
 
 export default async function () {

@@ -1,6 +1,6 @@
-// The tutorial, chapter 6.3 (tutorial/relativity/aberration.md), its second diagram: where a moving body is now, and
+// The tutorial, section 6.3 (tutorial/relativity/aberration.md), its second diagram: where a moving body is now, and
 // where its light left it. One panel, 112 points to the closest distance b, the pixel's frame, x across and y up. The
-// pixel P as a small ring of twelve ink dots (chapter 6.1's pixel) at the origin, named "pixel" under it. The body's
+// pixel P as a small ring of twelve ink dots (section 6.1's pixel) at the origin, named "pixel" under it. The body's
 // straight path, a thin ink line at the height b, ending in a short arrow in the observer's colour named "v = 0.6c".
 // The present position, a filled dot in matter's colour at (0, b), named "now"; the retarded position, an open circle
 // in matter's colour at (-0.75 b, b), named "where the light left". The light, an arrow in the light role's colour
@@ -26,7 +26,7 @@ const name = 'tut-aberration-retarded';
 const check = checker(name);
 
 const B = 112;                             // points per b
-const RING = 3.4, SPECK = 0.55;            // the pixel: its ring's radius and its dots' (chapter 6.1's)
+const RING = 3.4, SPECK = 0.55;            // the pixel: its ring's radius and its dots' (section 6.1's)
 const BODY = 3;                            // the body's dots, radius
 const OPEN = 0.7;                          // the open circle's stroke
 const CLEAR = 1.6;                         // the air between a line's end and the pixel or a body

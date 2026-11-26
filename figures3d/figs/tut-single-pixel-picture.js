@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.6 (tutorial/one-point/the-sky-at-one-point.md), its second diagram: a single pixel's picture
+// The tutorial, section 9.6 (tutorial/one-point/the-sky-at-one-point.md), its second diagram: a single pixel's picture
 // of one point source, K(theta) of eq:picture, against the angle theta from the source, 0 to 180 degrees. One solid
 // curve in the sky's colour (the curvature's, as in all of Part 9) and a thin pale line at zero. Marked: the half
 // height at 25.8 degrees, by a short dimension line at K = 1/2 from the source to the curve, "51.6 degrees full width"

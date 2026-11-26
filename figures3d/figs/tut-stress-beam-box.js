@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.5 (tutorial/relativity/stress-energy.md), its second diagram: what a beam and a box of light
+// The tutorial, section 6.5 (tutorial/relativity/stress-energy.md), its second diagram: what a beam and a box of light
 // pull with. Two panels, "a free beam" over "a box of light". Above: a thin horizontal beam in the light role's colour
 // from a small laser box at the left to an absorber at the right, both faint, joined by a faint bench far below the
 // beam, named "bench, far away". Above the beam, at the distance b marked by a thin dimension line named "b", a ring of
@@ -9,14 +9,14 @@
 // named "tension"; beside the box a bar of height 1 named "E/c^2" and, in faint outline, a bar of height 2 named
 // "2E/c^2, the free beam's", crossed by a thin dotted line at 1.
 // Departures from the diagram's comment: the panels are stacked at every width, so that the figure stays narrow and
-// its text large on a phone, and so the bars stand beside the box, not under it. The rings are chapter 1.5's (and the
+// its text large on a phone, and so the bars stand beside the box, not under it. The rings are section 1.5's (and the
 // paper's) rings of twelve free steel beads over the dashed undisturbed circle, not eight beads in ink, and they lie in
 // the page; the dashed circle leaves out the dashes where it meets the ring, along the beam. In the page, which holds the line to the beam and the beam itself, the beam's tide has the eigenvalues -1
 // along the line to the beam and 0 along the beam: each ring is stretched toward the beam (the orange arrows) and not
 // changed along it; the squeeze, the eigenvalue 1, is at right angles to the page and is not drawn (the comment's
 // blue squeeze along the beam would be wrong). The tide's eigenvalues stand beside the upper ring, not under it,
 // where there is no room between the ring and the beam. The dimension line stands left of each ring, its top level
-// with the ring's centre, marked + and joined to it by a dotted extension (chapter 1.4's figure). The tension's
+// with the ring's centre, marked + and joined to it by a dotted extension (section 1.4's figure). The tension's
 // arrows lie along each wall, outside it, in pairs pointing toward the wall's middle, as the rod's arrows of the
 // chapter's first diagram point toward its cube: momentum along the wall flowing inward. The pressure is written
 // "U/3" for the comment's "(1/3)U", whose small fraction would be hard to read on a phone. The bar of 2E/c^2 is named
@@ -37,7 +37,7 @@ const name = 'tut-stress-beam-box';
 const check = checker(name);
 
 const R = 21;                              // the undisturbed ring's radius, points (schematic)
-const EPS = 0.25;                          // the rings' strain (exaggerated, as chapter 1.4's figure)
+const EPS = 0.25;                          // the rings' strain (exaggerated, as section 1.4's figure)
 const BEAD = 2.2;                          // a bead's radius
 const REACH = 13;                          // an arrow's length per unit of |T xi|, points
 const B = 50;                              // b on the page, points
@@ -86,7 +86,7 @@ export default async function () {
 	async function tideRing(c, what) {
 		const r = ring(ink, { c: world(c), eh: v3(1, 0, 0), ev: v3(0, 1, 0), R, T, eps: EPS, phase: 0, bead: BEAD, reach: REACH, layer: 1, what, dashedStart: false });
 		drawn.push(r);
-		// the undisturbed circle, dashed as chapter 1.5's (a whole number of dashes), but with no dash where it runs
+		// the undisturbed circle, dashed as section 1.5's (a whole number of dashes), but with no dash where it runs
 		// within a hair of the ring itself: along the beam the ring is not moved, and there the two coincide
 		{
 			const total = 2 * Math.PI * R, [on, off] = UNDISTURBED, n = Math.round(total / (on + off)), period = total / n, dash = (on * period) / (on + off);

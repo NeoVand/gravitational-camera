@@ -1,6 +1,6 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 9.3 (tutorial/one-point/the-matrix-w.md):
+// Shared numbers for the three diagrams of the tutorial's section 9.3 (tutorial/one-point/the-matrix-w.md):
 // tut-same-eigenvalues, tut-ten-regroup and tut-speedometer-gap. Not a figure itself. Complex numbers and 3 x 3 tables
-// are chapter 9.2's (figs/tut-cxsym-lib.js, itself on chapter 8.1's [re, im]); the fig:stars pair, its reading and its
+// are section 9.2's (figs/tut-cxsym-lib.js, itself on section 8.1's [re, im]); the fig:stars pair, its reading and its
 // eigenvalues are 9.2's too, all imported, not copied. Orange and blue mean a stretch and a squeeze only.
 //
 // `chapter(check)` asserts against the chapter's own text (fetched, outside its comments) every statement that a
@@ -161,7 +161,7 @@ export async function chapter(check) {
 	}
 
 	// ---- the room at rest and the moving pixel
-	has('The two masses of Figure [](/paper/#fig:stars) have the eigenvalues $-0.537$, $0.135$ and $0.402$ in the figure\'s units', 'the pair\'s eigenvalues');
+	has('Two masses in the ratio $1 : 0.45$ have the eigenvalues $-0.537$, $0.135$ and $0.402$ in the scene\'s units', 'the pair\'s eigenvalues');
 	has('A pixel moving through them at $0.6c$ along the unit vector of $(0.30, 0.80, -0.52)$ reads a table with complex entries and the same three real eigenvalues', 'the moving pixel');
 	has('returns the pixel\'s own velocity, $(0.180, 0.480, -0.312)\\,c$', 'the velocity');
 	has('Its $|\\curv\\tE|^2 + |\\curv\\tB|^2$ is $2.27$, and the principal observer\'s is $0.468 = \\sum_a\\curv w_a^2$, the least value', 'the sizes');

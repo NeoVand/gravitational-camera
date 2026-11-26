@@ -1,4 +1,4 @@
-// The tutorial, chapter 12.1 (tutorial/sky/stars.md), its third diagram: where dead stars end. Mass (solar masses,
+// The tutorial, section 12.1 (tutorial/sky/stars.md), its third diagram: where dead stars end. Mass (solar masses,
 // linear, 0 to 2.5) against radius (km, logarithmic, 1 to 30,000). The white-dwarf branch, the polytrope of index 3/2,
 // R = xi_1 (4 pi omega)^{1/3} (5 C / 8 pi G) M^{-1/3}, solid from where it enters the panel up to 1 solar mass, then
 // bending over, dashed, toward R = 0 at the Chandrasekhar mass, M_Ch = 1.43, a thin line; a band for neutron stars at

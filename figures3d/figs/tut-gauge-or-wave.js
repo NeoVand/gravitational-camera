@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.4 (tutorial/geometry/linearized-gravity.md), its first diagram: two panels side by side, each a
+// The tutorial, section 7.4 (tutorial/geometry/linearized-gravity.md), its first diagram: two panels side by side, each a
 // square grid of 7 x 7 free balls (small dots in the observer's colour) over thin grey coordinate lines, drawn in what
 // rulers read (proper distance). Left, "pure gauge": the vertical coordinate lines are the lines x' = x + eps cos(kx + phase)
 // = const of the relabelling, bunched and spread along x, while every ball keeps its place on an even square lattice

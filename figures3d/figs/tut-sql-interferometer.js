@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.6 (tutorial/quantum/quantum-limit.md), its third diagram: an interferometer's standard
+// The tutorial, section 8.6 (tutorial/quantum/quantum-limit.md), its third diagram: an interferometer's standard
 // quantum limit. One panel on logarithmic axes: across, the frequency from 10 to 1000 Hz; up, the strain noise from
 // 10^-25 to 10^-22 Hz^-1/2. The line h_SQL(f) = sqrt(8 hbar / m omega^2 L^2) for m = 40 kg and L = 4 km, falling as 1/f
 // (3.65, 1.83 and 0.914 x 10^-24 at 50, 100 and 200 Hz), thick ink; for P0/10, P0 and 10 P0, with P0 chosen to touch

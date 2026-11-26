@@ -1,10 +1,10 @@
-// The tutorial, chapter 8.2 (tutorial/quantum/operators.md), its first diagram: three Gaussian packets and their
+// The tutorial, section 8.2 (tutorial/quantum/operators.md), its first diagram: three Gaussian packets and their
 // momenta. Three columns side by side, one per packet, of widths sigma_x = 2 l, l and l/2 for an arbitrary length l.
 // In each column two thin plots, one above the other: above, |psi(x)|^2 against x; below, the momentum density
-// |psi~(k)|^2 / 2 pi hbar against p = hbar k (chapter 2.6's transform, as the chapter has it), whose spreads are
+// |psi~(k)|^2 / 2 pi hbar against p = hbar k (section 2.6's transform, as the chapter has it), whose spreads are
 // sigma_p = hbar/4l, hbar/2l and hbar/l. The rows keep one scale across the three columns, in both directions, so the
 // narrow packet stands four times as tall as the wide one and has the wide distribution of momenta. Each curve's
-// standard deviation is marked as chapter 2.6's tut-fourier-gauss marks it: a short horizontal bracket at e^{-1/2} of
+// standard deviation is marked as section 2.6's tut-fourier-gauss marks it: a short horizontal bracket at e^{-1/2} of
 // the curve's height, from the centre to where the curve crosses that level, which for a Gaussian is exactly one
 // standard deviation out. Under each column, "sigma_x sigma_p = hbar/2". Ink only; no orange or blue.
 // Departures from the diagram's comment: the brackets' labels carry their values ("sigma_x = 2l", "sigma_p = hbar/4l"),

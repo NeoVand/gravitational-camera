@@ -1,7 +1,7 @@
-// The tutorial's chapter 3.7, the blur law: the companion of its opening figure, in section. Over a block of
+// The tutorial's section 3.7, the blur law: the companion of its opening figure, in section. Over a block of
 // sandstone with two iron balls, two ripples of the picture, each drawn at six evenly spaced heights: a coarse one
 // (wavelength LAMBDA) on the left and a fine one (a third of it) on the right. Above the sheet that holds the
-// sources a ripple of wavenumber k = 2 pi / wavelength fades with the height h as e^(-k h) (chapter 3.7, step 2,
+// sources a ripple of wavenumber k = 2 pi / wavelength fades with the height h as e^(-k h) (section 3.7, step 2,
 // the paper's eq:evanescent), so at each height each ripple is drawn exactly with the amplitude A e^(-k h), h
 // measured from the lowest line, where both are given the same amplitude A. The six heights are 0, 1, ..., 5 times
 // a fifth of RISE = LAMBDA ln 2 / (2 pi): over the climb the coarse ripple keeps exactly a half, and the fine one,

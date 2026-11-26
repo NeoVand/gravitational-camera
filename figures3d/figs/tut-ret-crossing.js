@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.2 (tutorial/waves/retarded-waves.md), its second diagram: where the near part and the wave
+// The tutorial, section 5.2 (tutorial/waves/retarded-waves.md), its second diagram: where the near part and the wave
 // part of the slope cross. Log-log axes: kr from 0.01 to 100 across, with a second scale above in units of the
 // wavelength, r/lambda = kr/2pi; and the size of each part relative to k^2 up, from 10^-2 to 10^4. The near part
 // 1/(kr)^2, in the second accent as the paper's fig:regimes colours the near field, and the wave part 1/kr, in the

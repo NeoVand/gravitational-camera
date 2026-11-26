@@ -1,4 +1,4 @@
-// The tutorial, chapter 10.3 (tutorial/glow/why-matter-barely-glows.md), its first diagram: a gravitational wave meets
+// The tutorial, section 10.3 (tutorial/glow/why-matter-barely-glows.md), its first diagram: a gravitational wave meets
 // no acoustic phonon. One panel: across, the wavenumber k from 0 to the edge of the crystal's cell, pi / a; up, omega
 // from 0 to 1.3 omega_0. The two branches of a chain of two atoms in its cell (masses m and 2m, one spring): the
 // acoustic branch, rising as c_T k from the origin (a dashed tangent, "c_T k") and flattening towards the edge; the
@@ -7,7 +7,7 @@
 // k = 0, where a dot is marked "a wave can drive this". On the acoustic branch at the right, a dot with two arrows of
 // equal length from it pointing to +k and -k, under a bracket "a pair: total momentum 0". Ink and the page's greys
 // only: no colour roles.
-// Departures from the diagram's comment: the bracket is chapter 10.2's square bracket (figs/tut-balance-rates.js), and
+// Departures from the diagram's comment: the bracket is section 10.2's square bracket (figs/tut-balance-rates.js), and
 // the two arrows hang just under the branch, their tips named "-k" and "+k", so that they do not run along it.
 // Exact: the branches are the chain's (omega^2 = K (1/m1 + 1/m2) +- K sqrt((1/m1 + 1/m2)^2 - 4 sin^2(ka/2) / m1 m2),
 // asserted against its equation of motion), the tangent their slope at the origin, and the dot where the steep line

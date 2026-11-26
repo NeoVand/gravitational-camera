@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.1 (tutorial/geometry/metric.md), its first diagram: the tossed clock. One panel, a spacetime
+// The tutorial, section 7.1 (tutorial/geometry/metric.md), its first diagram: the tossed clock. One panel, a spacetime
 // diagram of height against coordinate time: t across from 0 to 2 s and height upward from 0 to 8 m, thin ink axes
 // named "t (s)" and "height (m)", ticks at 1 s and at 2, 4, 6 and 8 m. Two filled ink dots on the time axis, the
 // throw at t = 0 and the catch at t = 2 s. Four worldlines between them: the ground clock along the axis z = 0, named
@@ -29,7 +29,7 @@ const check = checker(name);
 const UT = 104;                            // points per second
 const UZ = 16;                             // points per metre
 const TOP = 8;                             // the height axis, metres
-const EVENT = DOT + 0.25;                  // the throw's and the catch's dots, radius (chapter 6.1's)
+const EVENT = DOT + 0.25;                  // the throw's and the catch's dots, radius (section 6.1's)
 const FREE = VEC;                          // the free fall's stroke, heavier than the dashed paths' THIN
 const RAISE = 2.6;                         // a name's air above its path's peak
 

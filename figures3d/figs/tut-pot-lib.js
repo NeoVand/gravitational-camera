@@ -1,6 +1,6 @@
-// Shared tools for the three diagrams of the tutorial's chapter 1.2 (tutorial/newton/field-and-potential.md):
+// Shared tools for the three diagrams of the tutorial's section 1.2 (tutorial/newton/field-and-potential.md):
 // tut-pot-room, tut-pot-contours and tut-pot-well. Not a figure itself. The strokes, heads, dots and labels are those
-// of chapter 1.1's diagrams (figs/tut-vec-lib.js), so that the two chapters look alike.
+// of section 1.1's diagrams (figs/tut-vec-lib.js), so that the two chapters look alike.
 //
 // A Sheet draws in figure points (y down) and remembers every mark it makes as polylines with a half-width (or as
 // filled boxes), so that each label can be checked against the marks themselves. The finished figure is cropped to

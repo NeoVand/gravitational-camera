@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.3 (tutorial/waves/diffraction.md), its second diagram: gaps between pixels make copies of
+// The tutorial, section 5.3 (tutorial/waves/diffraction.md), its second diagram: gaps between pixels make copies of
 // the image. One chart: across, sin theta from -1 to 1, ticks every 0.25, with the matching angles -90, -30, 0, 30 and
 // 90 degrees on a second scale along the top; up, the beam pattern |A|^2/N^2 from 0 to 1. Two curves for a row of
 // eight pixels steered straight ahead: pixels lambda/2 apart (solid, ink), its main lobe's first zeros at +-0.25 and

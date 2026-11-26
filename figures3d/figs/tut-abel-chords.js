@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.6 (tutorial/waves/abel-transform.md), its first diagram: from the surface of a round planet
+// The tutorial, section 5.6 (tutorial/waves/abel-transform.md), its first diagram: from the surface of a round planet
 // each line of sight is a chord. The planet in section, a circle of radius R, with three filled discs inside it drawn
 // to the paper's Earth: the inner core (1222 km), the core (3480 km) and the lower mantle (5701 km) of R = 6371 km, in
 // the paper's fig:earth-glow shell colours mixed with the page; the ring between 5701 km and R, the upper mantle and

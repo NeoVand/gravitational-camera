@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.6 (tutorial/newton/motion.md), its first diagram: forces inside a body cancel in pairs,
+// The tutorial, section 1.6 (tutorial/newton/motion.md), its first diagram: forces inside a body cancel in pairs,
 // so they cannot move its centre of mass. A body of five parts (small stone balls of unequal mass, each drawn with a
 // radius in proportion to the cube root of its mass) joined in a ring by five springs and braced by two more across
 // it from the top part, seen at three equal intervals of time as it drifts to the right and jostles. At the first

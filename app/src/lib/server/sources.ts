@@ -21,6 +21,8 @@ import type { RenderedChapter } from '#lib/tutorial/render.js';
 import { tutorialLive } from '#lib/tutorial/live.js';
 import { ROLES } from '#lib/tutorial/colour.js';
 import { marginNotes } from '#lib/tutorial/paper-links.js';
+import { parseDerivations } from '#lib/tutorial/paper-map.js';
+import type { Derivation } from '#lib/tutorial/paper-map.js';
 import { plainLinks } from '#lib/tutorial/plain-links.js';
 import type { PlainLink } from '#lib/tutorial/plain-links.js';
 import type { MarginChapter, MarginNote, PaperLink } from '#lib/tutorial/paper-links.js';
@@ -144,6 +146,10 @@ export const catalogue = (): Catalogue =>
 	once('tutorial:catalogue', () =>
 		parseCatalogue(readYaml('parts.yaml'), new Set(paperIndex().labels.keys()))
 	);
+
+/** tutorial/derivations.yaml: where the book derives each of the paper's equations (read by the margin map). */
+export const derivations = (): Map<string, Derivation> =>
+	once('tutorial:derivations', () => parseDerivations(readYaml('derivations.yaml')));
 
 export const chapterById = (id: string): Chapter | undefined =>
 	allChapters(catalogue()).find((c) => c.id === id);

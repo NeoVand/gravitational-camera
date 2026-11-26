@@ -1,9 +1,9 @@
-// Shared numbers and colours for the five figures of the tutorial's chapter 6.1 (tutorial/relativity/lorentz.md):
+// Shared numbers and colours for the five figures of the tutorial's section 6.1 (tutorial/relativity/lorentz.md):
 // the hero tut-lorentz-hero and the diagrams tut-lorentz-axes, tut-lorentz-light-clock, tut-lorentz-rstar and
-// tut-lorentz-hyperbola. Not a figure itself. The sheet, the strokes, the labels and the cropping are chapter 1.2's
-// (figs/tut-pot-lib.js), the axes chapter 3.1's (figs/tut-prob-lib.js), the sampling of curves chapter 2.6's
-// (figs/tut-fourier-lib.js), the fitted dashed line chapter 1.8's (figs/tut-orb-lib.js), the dimension line chapter
-// 5.5's (figs/tut-rad-lib.js) and matter's colour chapter 2.4's (figs/tut-null-lib.js), all imported, not copied.
+// tut-lorentz-hyperbola. Not a figure itself. The sheet, the strokes, the labels and the cropping are section 1.2's
+// (figs/tut-pot-lib.js), the axes section 3.1's (figs/tut-prob-lib.js), the sampling of curves section 2.6's
+// (figs/tut-fourier-lib.js), the fitted dashed line section 1.8's (figs/tut-orb-lib.js), the dimension line chapter
+// 5.5's (figs/tut-rad-lib.js) and matter's colour section 2.4's (figs/tut-null-lib.js), all imported, not copied.
 //
 // The colours are the chapter's own colour roles (app.css, --q-obs and --q-light; app/src/lib/tutorial/colour.ts,
 // palette A), light and dark: the moving observer, the pixel, its axes, its velocity and its rapidity in the

@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.5 (tutorial/response/causality.md), its second diagram: the loop of the box that derives the
+// The tutorial, section 4.5 (tutorial/response/causality.md), its second diagram: the loop of the box that derives the
 // Kramers-Kronig relation. The complex omega' plane on one scale in both directions, the real axis from -2.8 to 2.8
 // ("Re omega") and the imaginary axis from -0.5 to 2.8 ("Im omega"), frequencies in units of omega_0. The upper half
 // plane lightly shaded and named "chi holomorphic". The cart's two poles for Q = 3 (Gamma = omega_0/3,

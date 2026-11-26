@@ -90,6 +90,12 @@ export const PART_PICTURES: Readonly<Record<string, Picture>> = {
 		kind: 'drawing',
 		name: 'tut-keeps-hero',
 		alt: 'Two cut-open shells pushed by the same tide, one with a ball at its centre; two bars compare what each takes up.'
+	},
+	// the appendices: section 3.9's positive fit, which the numerical appendix's worked inversion completes
+	A: {
+		kind: 'drawing',
+		name: 'tut-pos-nnls',
+		alt: 'Contours of misfit around the best signed scene, and the best positive scene where a contour touches the edge of positive masses.'
 	}
 };
 
@@ -108,7 +114,8 @@ export const PART_LINES: Readonly<Record<string, string>> = {
 	'10': 'Planck’s law, and why matter barely glows in gravity.',
 	'11': 'The horizon and its shadow, Hawking’s temperature, and a hole under tides.',
 	'12': 'Stars and their remnants, the Galaxy, and the glow left from the beginning.',
-	'13': 'A push, a pass and a weighing: how a tide reaches the inside, and what remains of holography without quantum mechanics.'
+	'13': 'A push, a pass and a weighing: how a tide reaches the inside, and what remains of holography without quantum mechanics.',
+	A: 'The numerical methods behind the worked examples, and how every result in the book is checked.'
 };
 
 /**

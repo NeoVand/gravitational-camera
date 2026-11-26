@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.7 (tutorial/quantum/quantum-fluctuation.md), its first diagram: the quantum factor of the
+// The tutorial, section 8.7 (tutorial/quantum/quantum-fluctuation.md), its first diagram: the quantum factor of the
 // fluctuation-dissipation theorem. One panel on logarithmic axes: across, hbar omega / k_B T from 10^-2 to 10^2; up,
 // the quantum tremor over the classical, u coth u with u = hbar omega / 2 k_B T. One thick ink curve, flat at 1 on
 // the left (1.000008 at 10^-2, 1.0008 at 0.1, 1.082 at 1), turning near 2, where the classical line 1 and the zero

@@ -1,7 +1,7 @@
-// Shared numbers for the four diagrams of the tutorial's chapter 4.4 (tutorial/response/viscosity.md):
+// Shared numbers for the four diagrams of the tutorial's section 4.4 (tutorial/response/viscosity.md):
 // tut-visc-plates, tut-visc-maxwell, tut-visc-tails and tut-visc-ceiling. Not a figure itself. The charts take
-// chapter 3.1's sheet, axes and labels (figs/tut-pot-lib.js, figs/tut-prob-lib.js) and chapter 2.6's sampling of
-// curves (figs/tut-fourier-lib.js), imported, not copied; the wall and the spring are drawn as chapter 1.7's
+// section 3.1's sheet, axes and labels (figs/tut-pot-lib.js, figs/tut-prob-lib.js) and section 2.6's sampling of
+// curves (figs/tut-fourier-lib.js), imported, not copied; the wall and the spring are drawn as section 1.7's
 // (figs/tut-ham-phase.js). The colours follow the paper's Figure fig:materials: water in the first accent (orange),
 // copper in the second (blue); honey, which the paper does not draw, takes the second accent beside water.
 //

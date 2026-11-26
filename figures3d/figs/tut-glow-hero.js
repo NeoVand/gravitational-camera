@@ -1,4 +1,4 @@
-// The tutorial's Part 10, its hero (tutorial/glow/black-body.md, chapter 10.1, and the heads of 10.2 and 10.3): the
+// The tutorial's Part 10, its hero (tutorial/glow/black-body.md, section 10.1, and the heads of 10.2 and 10.3): the
 // paper's closed furnace, cut open. The hot furnace of the paper's fig:closed-furnace and of the scene-closed-furnace
 // interactive (scenes/closed-furnace.scene.json, its sizes read and asserted here): a steel box 0.9 m wide, 1.0 m tall
 // and 0.9 m deep with walls 5 cm thick, holding a block of iron 0.5 by 0.4 by 0.5 m at 1500 K. One flat cut, a plane

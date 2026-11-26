@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.6 (tutorial/newton/motion.md), its third diagram: two Earths that pull alike outside and
+// The tutorial, section 1.6 (tutorial/newton/motion.md), its third diagram: two Earths that pull alike outside and
 // turn differently. Left, the Earth of two layers, cut open: a core of radius 3480 km and density 12,500 kg m^-3
 // inside a mantle of 4150 kg m^-3 out to 6371 km; right, the uniform Earth of 5513 kg m^-3, cut open the same way.
 // Around each, the same ring of arrows: the pull outside, which the two share. Exact: the two sections to scale (the

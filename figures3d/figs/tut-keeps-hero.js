@@ -1,5 +1,5 @@
-// The tutorial's Part 13, "What a field keeps", its hero (it opens chapter 13.1, tutorial/what-a-field-keeps/
-// push-and-pass.md, and is the picture of chapter 13.3, ladder.md): the paper's fig:ladder's two bodies, side by side
+// The tutorial's Part 13, "What a field keeps", its hero (it opens section 13.1, tutorial/what-a-field-keeps/
+// push-and-pass.md, and is the picture of section 13.3, ladder.md): the paper's fig:ladder's two bodies, side by side
 // and cut open, under one brief octupolar tide. Left, body A: a thin shell of mass M and radius R/sqrt 2. Right, body
 // B: half of M at its centre (a small iron ball) and half on a thin shell of radius R. Both have the mass M and
 // int rho r^2 dV = M R^2 / 2, so the field keeps them alike outside R (the dashed circle round A). Each is cut at its

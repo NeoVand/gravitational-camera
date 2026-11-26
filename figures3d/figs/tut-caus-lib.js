@@ -1,7 +1,7 @@
-// Shared numbers and marks for the two diagrams of the tutorial's chapter 4.5 (tutorial/response/causality.md):
-// tut-caus-kernels and tut-caus-contour. Not a figure itself. The sheet, the strokes and the labels are chapter 1.2's
-// (figs/tut-pot-lib.js), the axes chapter 3.1's (figs/tut-prob-lib.js), the sampling of curves chapter 2.6's
-// (figs/tut-fourier-lib.js), the dotted zero line chapter 3.6's (figs/tut-bessel-lib.js) and the push's arrow chapter
+// Shared numbers and marks for the two diagrams of the tutorial's section 4.5 (tutorial/response/causality.md):
+// tut-caus-kernels and tut-caus-contour. Not a figure itself. The sheet, the strokes and the labels are section 1.2's
+// (figs/tut-pot-lib.js), the axes section 3.1's (figs/tut-prob-lib.js), the sampling of curves section 2.6's
+// (figs/tut-fourier-lib.js), the dotted zero line section 3.6's (figs/tut-bessel-lib.js) and the push's arrow chapter
 // 1.5's (figs/tut-five-lib.js), all imported, not copied. The cart's response keeps the colour of its swing in chapter
 // 4.1 (figs/tut-osc-ringdown.js), the first accent (orange): its impulse response and its poles.
 //

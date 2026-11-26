@@ -1,5 +1,5 @@
-// The tutorial, chapter 9.1 (tutorial/one-point/spin-two.md), its third diagram: half a turn gives gravity's pattern
-// back and reverses light's arrow. After chapter 1.5b's tut-cx-spin. Two rows, three columns: the field turned by
+// The tutorial, section 9.1 (tutorial/one-point/spin-two.md), its third diagram: half a turn gives gravity's pattern
+// back and reverses light's arrow. After section 1.5b's tut-cx-spin. Two rows, three columns: the field turned by
 // psi = 0, 90 and 180 degrees about its direction of travel k, which points out of the page, toward the reader (a small
 // circled dot at each cell's centre), so that a turn by psi is anticlockwise on the page. Top row, gravity: a ring of
 // twelve free beads under the tide Re(e^{-2 i psi} (e1 + i e2)(e1 + i e2)^T), twice the plus pattern Re(m m^T): at 0 a

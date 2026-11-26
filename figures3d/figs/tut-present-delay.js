@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.7 (tutorial/geometry/quadrupole-formula.md), its second diagram: near a slow source the
+// The tutorial, section 7.7 (tutorial/geometry/quadrupole-formula.md), its second diagram: near a slow source the
 // tide points at where the masses are now. A pair of stone masses on their orbit round a small cross, drawn solid at
 // their present places; the same pair drawn hollow and pale at their retarded places, turned back by the angle
 // Omega r / c (exaggerated to 25 degrees), "retarded positions". To the right, at the distance r, the pixel: the paper's

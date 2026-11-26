@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.1 (tutorial/waves/wave-equation.md), its fourth diagram: a wave train fading in a damped
+// The tutorial, section 5.1 (tutorial/waves/wave-equation.md), its fourth diagram: a wave train fading in a damped
 // medium. A wave of one frequency at one instant, entering a medium from the left at x = 0 (the medium lightly shaded
 // from x = 0 on): before x = 0 it is sin(omega x / c) of constant amplitude, and in the medium it is the solution of
 // the damped wave equation driven at the real frequency omega, Re[e^{i(k x - omega t)}] with the exact complex
@@ -66,7 +66,7 @@ function mathematics(UNIT_Y) {
 const UNIT = 31;                          // points per wavelength
 const AMP = 26;                           // points per unit of u
 const TOP = 1.3, BOTTOM = -1.12;          // the plot's range of u: room for the bar above
-const ENV = 0.45, ENV_DASH = [1.8, 1.4];  // the envelope, as chapter 4.1's ring-down (figs/tut-osc-ringdown.js)
+const ENV = 0.45, ENV_DASH = [1.8, 1.4];  // the envelope, as section 4.1's ring-down (figs/tut-osc-ringdown.js)
 const BAR = 1.17;                         // the bar's height, units of u
 
 export default async function () {

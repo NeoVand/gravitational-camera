@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.9 (tutorial/noise/positivity.md), its second diagram: two masses on a line from four
+// The tutorial, section 3.9 (tutorial/noise/positivity.md), its second diagram: two masses on a line from four
 // moments. Above, the line from -1 to 1 m with two upright bars in matter's colour, 2 kg at 0.3 m and 1 kg at -0.5 m,
 // their heights in proportion to their masses. Beneath, on the same horizontal scale, the parabola
 // p(x) = x^2 + 0.2x - 0.15 = (x - 0.3)(x + 0.5) over its zero line; thin dotted guides run from the foot of each bar

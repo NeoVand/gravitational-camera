@@ -1,6 +1,6 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 6.2 (tutorial/relativity/spacetime-vectors.md):
+// Shared numbers for the three diagrams of the tutorial's section 6.2 (tutorial/relativity/spacetime-vectors.md):
 // tut-vectors-kinds, tut-vectors-hyperbola and tut-vectors-gradient. Not a figure itself. The colours, the pixel's
-// speed and the boost are chapter 6.1's (figs/tut-lorentz-lib.js: the observer's colour and the light role's, read from
+// speed and the boost are section 6.1's (figs/tut-lorentz-lib.js: the observer's colour and the light role's, read from
 // app.css's --q-obs and --q-light), and the sheet, strokes, labels and cropping are those of 6.1's diagrams, all
 // imported, not copied.
 //
@@ -27,7 +27,7 @@ export const dot = ([a0, a1], [b0, b1]) => -a0 * b0 + a1 * b1;
 export const KINDS = {
 	time: [GAMMA * BETA, GAMMA],          // a step along the worldline of a clock at 0.6c, one second of its time
 	null: [GAMMA, GAMMA],                 // on the cone
-	space: [1, 0]                          // chapter 6.1's flash B, from A at the origin
+	space: [1, 0]                          // section 6.1's flash B, from A at the origin
 };
 /** a.a of a step drawn at (x, ct). */
 export const square = ([x, ct]) => dot([ct, x], [ct, x]);

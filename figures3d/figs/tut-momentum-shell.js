@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.4 (tutorial/relativity/energy-and-momentum.md), its first diagram: the mass shell. One
+// The tutorial, section 6.4 (tutorial/relativity/energy-and-momentum.md), its first diagram: the mass shell. One
 // panel, units of mc^2 at one scale on both axes: |p|c across from -2.0 to 2.0 and E upward from 0 to 2.4, thin ink,
 // named "pc/mc^2" (p in bold: the momentum along one line, negative for the other direction) and "E/mc^2". The two
 // light lines E = +-pc, thin and dashed in the light role's colour, named "light, E = |p|c" once, beside the upper
@@ -6,7 +6,7 @@
 // matter's colour, named "m > 0" near its upper right end, off the curve. Two dots on it in matter's colour: at
 // (0, 1), named "at rest, E = mc^2", and at (0.75, 1.25), named "0.6c"; from the second, thin dotted segments across
 // to the E axis and down to the pc axis, with the values 1.25 and 0.75 at their ends.
-// Departures from the diagram's comment: the axes carry numbers, as chapter 6.1's and 6.2's do, so that the units of
+// Departures from the diagram's comment: the axes carry numbers, as section 6.1's and 6.2's do, so that the units of
 // mc^2 can be read: -2, -1, 0, 1 and 2 across and 2 upward. At E = 1 there is neither tick nor number, since the dot
 // "at rest" sits on the axis there and its label says E = mc^2. The name of the dot at rest stands in two lines in
 // the bowl under the hyperbola's vertex, left of the E axis, the one place near the dot that no line crosses. The
@@ -29,7 +29,7 @@ const check = checker(name);
 const U = 62;                              // points per unit of mc^2
 const X = 2, TOP = 2.4;                    // the axes: pc from -X to X, E from 0 to TOP
 const END = 1.9;                           // the hyperbola runs from -END to END
-const POINT = DOT + 0.35;                  // a dot, radius (chapter 6.1's)
+const POINT = DOT + 0.35;                  // a dot, radius (section 6.1's)
 const CLEAR = 2.2;                         // the dotted segments start this far from the dot
 const LINE_SKIP = 1.6;                     // between the two lines of a name
 

@@ -1,11 +1,11 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 11.3 (tutorial/black-holes/hawking.md):
+// Shared numbers for the three diagrams of the tutorial's section 11.3 (tutorial/black-holes/hawking.md):
 // tut-hawking-ladder, tut-hawking-mode and tut-hawking-greybody. Not a figure itself. The sheet, strokes, labels and
-// cropping are chapters 1.2 to 11.2's (figs/tut-pot-lib.js), the plots and axes chapter 3.1's (figs/tut-prob-lib.js),
-// hbar, k_B and c chapter 10.1's (figs/tut-planck-lib.js), G chapter 3.6's (figs/tut-measure-lib.js, the app's
-// 6.6743 x 10^-11), the Sun's mass chapter 9.2's (figs/tut-quadrupole-lib.js), and the hole's fill, the light role's
-// colour and the role check chapter 11.1's (figs/tut-schw-lib.js), all imported, not copied.
+// cropping are sections 1.2 to 11.2's (figs/tut-pot-lib.js), the plots and axes section 3.1's (figs/tut-prob-lib.js),
+// hbar, k_B and c section 10.1's (figs/tut-planck-lib.js), G section 3.6's (figs/tut-measure-lib.js, the app's
+// 6.6743 x 10^-11), the Sun's mass section 9.2's (figs/tut-quadrupole-lib.js), and the hole's fill, the light role's
+// colour and the role check section 11.1's (figs/tut-schw-lib.js), all imported, not copied.
 //
-// The colours: the hole's own emission in the light role's colour, as chapter 11.1's rays; the masses of holes and
+// The colours: the hole's own emission in the light role's colour, as section 11.1's rays; the masses of holes and
 // bodies (M_eq, the Moon, the Earth, the Sun, Sgr A*) in matter's, as the chapter writes M; the curve l = 2 and Page's
 // limit in ink, the other degrees in the page's grey, since the greybody factor is neutral in the chapter's equations
 // and the figures' one accent, orange, means a stretch; everything else in ink and the page's greys. Orange and blue,

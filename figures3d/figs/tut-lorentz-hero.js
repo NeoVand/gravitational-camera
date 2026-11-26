@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.1 (tutorial/relativity/lorentz.md), its opening figure and the hero of Part 6: two rings
+// The tutorial, section 6.1 (tutorial/relativity/lorentz.md), its opening figure and the hero of Part 6: two rings
 // that pass through one event, and the two slices of "now" through it. Spacetime with two directions of space, x
 // across and y away from the viewer, and ct upward, at one scale, seen obliquely from above (turned 14 degrees about
 // the upright, 26 degrees above the horizon). One event at the origin, a small bright point; its light cone, a thin

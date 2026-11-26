@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.6 (tutorial/response/fluctuation-dissipation.md), its second diagram: the trembling of a warm
+// The tutorial, section 4.6 (tutorial/response/fluctuation-dissipation.md), its second diagram: the trembling of a warm
 // cart and its friction over the frequency are one curve. One chart: omega / omega_0 from 0 to 2.5 (linear), and the
 // spectrum S_q in units of 2 k_B T / k omega_0 from 10^-3 to 40 (logarithmic). For Q = 3 (thin) and Q = 30 (thicker),
 // the exact S_q = 2 k_B T m Gamma |chi|^2 with Gamma = omega_0 / Q, (1/Q) / ((1 - x^2)^2 + x^2/Q^2) in these units,

@@ -1,6 +1,6 @@
-// The tutorial, chapter 7.5 (tutorial/geometry/gravitomagnetism.md), its first diagram: a mass moving across the line
+// The tutorial, section 7.5 (tutorial/geometry/gravitomagnetism.md), its first diagram: a mass moving across the line
 // of sight and the same mass moving at the pixel. Two panels, (a) "moving across" and (b) "moving toward the pixel".
-// Each shows the pixel at the left, chapter 7.3's ball beside a mass (a dashed circle, the solid ellipse stretched
+// Each shows the pixel at the left, section 7.3's ball beside a mass (a dashed circle, the solid ellipse stretched
 // along the line to the mass and squeezed across it, orange crescents at its two ends and blue ones at its top and
 // bottom, twelve free balls as ink dots on it), the stone mass to the right on the same line with its velocity arrow
 // in ink, and above the ring two small gyroscopes (discs with an axle, axles parallel, seen a little from above). In
@@ -8,7 +8,7 @@
 // opposite senses: "turn relative to one another, B != 0". In (b) it points left, at the pixel; no curved arrows,
 // "B = 0". Under each panel |B|/|E| = sqrt 3 v_perp / c, with v_perp = v and v_perp = 0.
 // Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (as the
-// chapter 7.3 and 7.4 diagrams), so that their text stays readable on a phone. The two gyroscopes stand side by side
+// section 7.3 and 7.4 diagrams), so that their text stays readable on a phone. The two gyroscopes stand side by side
 // along the line to the mass, 1 m apart (a dimension line names it), not one above and one below the ring: by
 // eq:gyro-pair, delta Omega = B xi / c, and for this mass (n = x, v = y) B has only its xz and zx entries, so a pair
 // separated up the page, along v, does not turn at all (asserted in tut-gravitomag-lib.js); a pair along the line to
@@ -16,7 +16,7 @@
 // that axis, not about the line joining them (the right one anticlockwise, asserted from the sign of B_zx). The
 // exaggeration is stated under the panels, as in tut-einstein-three-balls.
 // Exact: the outline the image of the circle under 1 - EPS E / |E| with E = (G M / r^3) diag(-2, 1) along and across
-// the line, EPS = 0.3 (chapter 7.3's), the same in both panels because E does not depend on the velocity; the senses of
+// the line, EPS = 0.3 (section 7.3's), the same in both panels because E does not depend on the velocity; the senses of
 // the curved arrows, from B xi / c; B = 0 in (b), and the ratio sqrt 3 v_perp / c (asserted in the library for every
 // direction of v). Schematic: the sizes and distances, the arrows' lengths, the angle each curved arrow sweeps.
 // Pictorial: the stone, a picture from an image model (sprites/hair/ball.png, as tut-einstein-three-balls), clipped to

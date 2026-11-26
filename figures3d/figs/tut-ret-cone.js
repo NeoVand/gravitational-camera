@@ -1,4 +1,4 @@
-// The tutorial, chapter 5.2 (tutorial/waves/retarded-waves.md), its first diagram: the backward light cone of a field
+// The tutorial, section 5.2 (tutorial/waves/retarded-waves.md), its first diagram: the backward light cone of a field
 // point, and the pieces of a source that make the field there now. A spacetime sketch in units where c = 1: time t
 // upward and one space direction x across, both at one scale, so that light in the plane of the page runs at 45
 // degrees; a second space direction y, toward the viewer, is suggested by an oblique view in which a step y away from

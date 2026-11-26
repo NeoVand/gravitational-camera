@@ -1,6 +1,6 @@
-// Shared tools for the four diagrams of the tutorial's chapter 3.2 (tutorial/noise/random-signals.md):
+// Shared tools for the four diagrams of the tutorial's section 3.2 (tutorial/noise/random-signals.md):
 // tut-noise-hero, tut-noise-red-white, tut-noise-patch and tut-noise-points. Not a figure itself. The charts take
-// chapter 3.1's sheet, axes and colours (figs/tut-prob-lib.js, imported, not copied): the noise in the second accent
+// section 3.1's sheet, axes and colours (figs/tut-prob-lib.js, imported, not copied): the noise in the second accent
 // (blue), the signal in the first (orange), a trace in neutral ink. What this file adds is the array, drawn as the
 // paper's figures draw it (figs/tut-blur.js): a plate of square pixels seen from above at a slant, with its thickness
 // along the near edges, each pixel a tile; and the same plate raised into columns, one per ripple, for a spectrum.
@@ -8,7 +8,7 @@
 // A view maps the plate's world (x to the right, y away from the viewer, z up; one unit is the plate's side) to the
 // sheet's figure points by an orthographic projection: a turn about the vertical, then a tilt toward the viewer.
 // Everything a plate draws is remembered on the sheet (its outline as a mark, its face as a region that no label may
-// enter), so that chapter 1.2's checks of the labels hold for it too.
+// enter), so that section 1.2's checks of the labels hold for it too.
 import { PAGE } from '../lib.js';
 import { n2, checker } from './tut-pot-lib.js';
 import { INK, DIM, ACCENT, ACCENT2, pathOf } from './tut-prob-lib.js';

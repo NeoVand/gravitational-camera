@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.6 (tutorial/geometry/gravitational-waves.md), its first diagram: of the ten amplitudes a_mu nu
+// The tutorial, section 7.6 (tutorial/geometry/gravitational-waves.md), its first diagram: of the ten amplitudes a_mu nu
 // of a plane wave travelling along z, harmonic gauge fixes the four with a time index, the leftover gauge removes the
 // four along z and the trace across it, and two remain. A 4 x 4 grid of square cells, rows and columns 0, 1, 2, 3 (3
 // along z, the direction of travel), each cell holding its amplitude a_mu nu in the field's colour. The seven cells of
@@ -26,7 +26,7 @@ const check = checker(name);
 const CELL = 36;                           // a cell's side
 const GRID = 0.45;                         // the grid's lines
 const HEAVY = 1.5;                         // the outline of what is left
-const GREY = 0.3;                          // the pale grey: faint ink at this opacity (as chapter 7.2's count)
+const GREY = 0.3;                          // the pale grey: faint ink at this opacity (as section 7.2's count)
 const TINT = 0.24;                         // the field's colour at this opacity: removed
 const HEAD_AIR = 3;                        // the indices to the grid
 const NOTE_AIR = 4;                        // the note to the column indices

@@ -1,13 +1,13 @@
-// Shared numbers and marks for the three diagrams of the tutorial's chapter 8.2 (tutorial/quantum/operators.md):
+// Shared numbers and marks for the three diagrams of the tutorial's section 8.2 (tutorial/quantum/operators.md):
 // tut-uncertainty-widths, tut-shift-kick-orders and tut-one-integral-ledger. Not a figure itself. The colour roles are
-// chapter 7.8's (figs/tut-memory-lib.js, read from app.css by `palette(check)`): matter's for the density and the
+// section 7.8's (figs/tut-memory-lib.js, read from app.css by `palette(check)`): matter's for the density and the
 // moments, ink for everything else; orange and blue, which mean a stretch and a squeeze, are not used. The sheet,
-// strokes, labels and cropping are those of chapters 6.1 to 7.8 (figs/tut-pot-lib.js), all imported, not copied.
+// strokes, labels and cropping are those of sections 6.1 to 7.8 (figs/tut-pot-lib.js), all imported, not copied.
 //
 // `chapter(check)` asserts the chapter's statements that a figure draws or its caption prints, against the chapter's
 // own text (fetched), and computes the numbers behind them:
 //  - the Gaussian packet psi = (2 pi s^2)^(-1/4) e^{-x^2/4 s^2}: |psi|^2 has area 1 and standard deviation s; its
-//    transform (chapter 2.6's convention, psi~(k) = int psi e^{-ikx} dx, by quadrature) is (8 pi s^2)^(1/4) e^{-s^2 k^2};
+//    transform (section 2.6's convention, psi~(k) = int psi e^{-ikx} dx, by quadrature) is (8 pi s^2)^(1/4) e^{-s^2 k^2};
 //    the momentum density |psi~(p/hbar)|^2 / 2 pi hbar has area 1 and standard deviation hbar / 2 s, so that for
 //    s = 2 l, l, l/2 the spreads are hbar/4l, hbar/2l, hbar/l and every product is hbar/2;
 //  - the shift and the kick, on a wave function on a grid of 1024 points: e^{-isp/hbar} (applied through the discrete
@@ -17,7 +17,7 @@
 //    random body of twelve particles in three dimensions), i hbar times it the commutator [Q_h, Q-dot_g] (on a grid,
 //    for one particle on a line), k_B T times it the thermal mean <Q-dot_h Q-dot_g> (from equipartition's covariance
 //    of the momenta), and the energy-weighted sum (2/pi) int omega Im chi_h d omega of a body of bound particles, for
-//    h = g; for h = g = (x^2 - y^2)/2 it is the moment of inertia about z, 0.13 kg m^2 for chapter 1.7's steel ball.
+//    h = g; for h = g = (x^2 - y^2)/2 it is the moment of inertia about z, 0.13 kg m^2 for section 1.7's steel ball.
 import { MATTER, palette } from './tut-memory-lib.js';
 import { HBAR } from './tut-einstein-lib.js';
 import { KB } from './tut-osc-lib.js';
@@ -195,7 +195,7 @@ export async function chapter(check) {
 
 	// ---- the widths
 	has('so $\\sigma_p = \\hbar/2\\sigma_x$', 'sigma_p = hbar / 2 sigma_x');
-	has('its transform is chapter 2.6\'s bell $e^{-\\sigma_x^2k^2}$', 'the transform');
+	has('the bell $e^{-\\sigma_x^2k^2}$ of section 2.6', 'the transform');
 	has('the density $|\\tilde\\psi(k)|^2/2\\pi$', 'the density of k');
 	has('$\\boxed{\\sigma_x\\sigma_p \\ge \\frac{\\hbar}{2}}', 'the bound');
 	for (const s of WIDTHS) {
@@ -237,12 +237,12 @@ export async function chapter(check) {
 
 	// ---- the ledger
 	has('$\\boxed{\\begin{aligned}[\\matter Q_h, \\matter{\\dot Q}_g] &= i\\hbar\\sum_a\\matter m_a\\,\\nabla h\\cdot\\nabla g\\,(\\vect x_a)\\\\ &= i\\hbar\\int\\matter\\rho\\,\\nabla h\\cdot\\nabla g\\,\\dd V ,\\end{aligned}}$', 'the commutator');
-	has('$i\\hbar$ times chapter 1.7\'s bracket', 'the bracket');
+	has('$i\\hbar$ times the bracket of section 1.7', 'the bracket');
 	has('The same integral, times $\\kB T$, is the mean of $\\matter{\\dot Q}_h\\matter{\\dot Q}_g$ in a warm body', 'the tremor');
-	has('and the whole weight of the response to an applied tide (chapter [4.5]', 'the sum rule');
+	has('and the whole weight of the response to an applied tide ([section 4.5]', 'the sum rule');
 	has('$h = g = \\tfrac12(x^2 - y^2)$, the integral is the moment of inertia, $0.13\\unit{kg\\,m^2}$', 'the moment of inertia');
 	const L = ledger(check);
-	// chapter 1.7's steel ball: 32.9 kg, radius 10 cm, (2/5) M R^2
+	// section 1.7's steel ball: 32.9 kg, radius 10 cm, (2/5) M R^2
 	const I = 0.4 * 32.9 * 0.1 ** 2;
 	check(I.toFixed(2) === '0.13', `the ball's moment of inertia ${I}`);
 	check(((HBAR / 2) * Number(I.toFixed(2))).toExponential(1) === '6.9e-36', 'the bound on the ball');

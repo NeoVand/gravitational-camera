@@ -1,5 +1,5 @@
-// The tutorial, chapter 10.3 (tutorial/glow/why-matter-barely-glows.md), its fourth diagram: three of the five shears
-// drive the Raman line. Chapter 1.5's five basis shears, drawn as its figure tut-five-basis draws them (figs/tut-five-
+// The tutorial, section 10.3 (tutorial/glow/why-matter-barely-glows.md), its fourth diagram: three of the five shears
+// drive the Raman line. Section 1.5's five basis shears, drawn as its figure tut-five-basis draws them (figs/tut-five-
 // basis.js and figs/tut-five-lib.js: a ring of twelve free steel beads under each table, its dashed undisturbed circle,
 // orange stretch and blue squeeze arrows, its plane's two axes at its lower left), in two rows. Top row, the two on the
 // diagonal, b^4 and b^5, under "stretch along the cube's axes", each with "s = 0" beside it. Bottom row, the three off
@@ -14,7 +14,7 @@
 // of the circle under 1 - eps T), and which shift each drives: s_i = |eps_ijk| u_jk, the only coupling the crystal's
 // half turns keep (asserted in tut-glow-lib.js), gives s along z for b^1, along x for b^2, along y for b^3, and 0 for
 // b^4 and b^5, each shift along the axis at right angles to its ring's plane. Schematic, as the caption says: the
-// rings' strain (eps, as in chapter 1.5), the atoms' places in the cell and the size of the shift.
+// rings' strain (eps, as in section 1.5), the atoms' places in the cell and the size of the shift.
 import { Panel, v3, INK, DIM, RULE, PAGE } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, LABEL_GAP, AXIS, AXIS_HEAD, HAIR } from './tut-vec-lib.js';
 import { ring, gnomon } from './tut-five-lib.js';
@@ -24,7 +24,7 @@ import { chapter, palette, shiftOf } from './tut-glow-lib.js';
 const name = 'tut-glow-shears';
 const check = checker(name);
 
-// each ring's plane, as chapter 1.5 draws it: the axis to the right, the axis up, and its beads' phase (degrees)
+// each ring's plane, as section 1.5 draws it: the axis to the right, the axis up, and its beads' phase (degrees)
 const PLANES = [
 	{ h: 0, v: 1, phase: 15 },
 	{ h: 1, v: 2, phase: 15 },
@@ -35,7 +35,7 @@ const PLANES = [
 const LETTERS = ['x', 'y', 'z'];
 
 // ---- the drawing (points, y up) ------------------------------------------------------------------------------------
-const R = 24, BEAD = 1.9, REACH = 14.5;         // chapter 1.5's ring at four fifths of its size
+const R = 24, BEAD = 1.9, REACH = 14.5;         // section 1.5's ring at four fifths of its size
 const STEP = 104, TOP_STEP = 128;               // between the rings of the bottom row and of the top row
 const ROW = 98;                                 // between the rows' centres
 const GN = [-32, -32], GN_LEN = 11;             // the small axes: their corner from the ring's centre, their length

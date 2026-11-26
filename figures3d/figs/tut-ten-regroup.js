@@ -1,15 +1,15 @@
-// The tutorial, chapter 9.3 (tutorial/one-point/the-matrix-w.md), its second diagram: a pixel's ten numbers regrouped
-// by what an observer can change, after chapter 0.4's tut-ten-numbers (its cells, brackets, strokes and labels). Above,
+// The tutorial, section 9.3 (tutorial/one-point/the-matrix-w.md), its second diagram: a pixel's ten numbers regrouped
+// by what an observer can change, after section 0.4's tut-ten-numbers (its cells, brackets, strokes and labels). Above,
 // ten cells in two rows of five, in the curvature's colour: the stretch, E (a tiny ring), and the twist, B (a tiny
 // gyroscope), joined by a bracket, "W = E + iB, five complex numbers". Thin ink arrows lead from the whole upper block
 // down to three groups: four cells, the eigenvalues, the same for every observer (with tr W^2 and tr W^3); three cells,
 // R0, the field's own axes, three angles; three cells in the observer's colour, eta u, the velocity of the principal
 // observer, v = c tanh eta R0 u. Under the groups, 10 = 4 + 3 + 3, and to the right, faint, light's 6 = 2 + 2 + 2
-// (chapter 6.6). No orange or blue.
+// (section 6.6). No orange or blue.
 // Departures from the diagram's comment: the comment's "(Σ = 0)" is written sum w_a = 0, and "tr W^2, tr W^3" stands
 // as the last line under the eigenvalues' cells, in the page's dim ink, not beside the cells, so that the drawing stays
 // about 300 points wide and readable on a phone; each arrow starts from one point under the whole upper block, not from
-// particular cells, because every lower number depends on all ten upper ones (chapter 0.4's reason for its one broad
+// particular cells, because every lower number depends on all ten upper ones (section 0.4's reason for its one broad
 // arrow; the paper's eq:polar); one tiny ring and one tiny gyroscope name the rows, beside their labels, not one per
 // cell.
 // Exact: the counts, from the dimension of the orbit of the complex rotations through a reading (figs/tut-matrix-w-lib.js:
@@ -77,7 +77,7 @@ export default async function () {
 			S.raw(`<circle cx="${n2(X + ICON * Math.cos(t))}" cy="${n2(Y + ICON * 0.68 * Math.sin(t))}" r="0.95" fill="${INK}"/>`, 3);
 		}
 		S.mark(Array.from({ length: 73 }, (_, i) => [X + ICON * Math.cos((i * Math.PI) / 36), Y + ICON * 0.68 * Math.sin((i * Math.PI) / 36)]), 1, 'the tiny ring');
-		// a tiny gyroscope (the twist row): a disc on an axle, chapter 7.5's
+		// a tiny gyroscope (the twist row): a disc on an axle, section 7.5's
 		const [Xg, Yg] = [iconX, rows[1].t + H / 2], a = ICON * 0.85, b = 1.5, ax = 5.2;
 		S.path([[Xg, Yg], [Xg, Yg + ax]], { color: INK, width: 0.5, layer: 2, what: 'the tiny gyroscope\'s axle' });
 		S.raw(`<ellipse cx="${n2(Xg)}" cy="${n2(Yg)}" rx="${n2(a)}" ry="${b}" fill="${FAINT}" stroke="${INK}" stroke-width="0.35"/>`, 3);

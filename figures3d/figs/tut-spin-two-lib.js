@@ -1,7 +1,7 @@
-// Shared numbers for the four diagrams of the tutorial's chapter 9.1 (tutorial/one-point/spin-two.md):
-// tut-one-point-hero (the hero of Part 9, which chapter 9.4 reuses), tut-spin-weight-bars, tut-half-turn and
-// tut-two-overlaps. Not a figure itself. Complex numbers are chapter 8.1's [re, im] (figs/tut-quantum-lib.js), a
-// reading's stars chapter 8.4's (figs/tut-spin-lib.js: the roots of the paper's eq:stars, m(z)^T W m(z) = 0, mapped to
+// Shared numbers for the four diagrams of the tutorial's section 9.1 (tutorial/one-point/spin-two.md):
+// tut-one-point-hero (the hero of Part 9, which section 9.4 reuses), tut-spin-weight-bars, tut-half-turn and
+// tut-two-overlaps. Not a figure itself. Complex numbers are section 8.1's [re, im] (figs/tut-quantum-lib.js), a
+// reading's stars section 8.4's (figs/tut-spin-lib.js: the roots of the paper's eq:stars, m(z)^T W m(z) = 0, mapped to
 // the sky), all imported, not copied. Orange and blue mean a stretch and a squeeze only.
 //
 // `chapter(check)` asserts the chapter's statements that a figure draws or its caption prints, against the chapter's own
@@ -156,7 +156,7 @@ export async function chapter(check) {
 	has(String.raw`So $R\vect m = e^{-i\psi}\vect m$ and $R\vect m^* = e^{i\psi}\vect m^*$.`, 'the turn of m');
 	has(String.raw`$$\boxed{\;\begin{gathered}RT_mR^{\mathsf T} = e^{-im\psi}\,T_m,\\ m = 2, 1, 0, -1, -2 .\end{gathered}\;}`, 'the weights');
 	has('with the squared lengths 1, 2, 6, 2 and 1', 'the squared lengths');
-	has(String.raw`| the field, in fixed axes (this chapter and 8.4) | $e^{-im\psi}$ |`, 'the sign convention');
+	has(String.raw`| the field, in fixed axes (this section and 8.4) | $e^{-im\psi}$ |`, 'the sign convention');
 	const axes = [frame([0, 0, 1]), frame([0.3, -0.5, 0.81], [0.2, 1, 0.4]), frame([-0.7, 0.1, -0.2], [0, 0, 1])];
 	for (const f of axes) {
 		check(near(dot(cross(f.e1, f.e2), f.k), 1, 1e-12) && near(dot(f.e1, f.k), 0, 1e-12), 'a frame is not right-handed');

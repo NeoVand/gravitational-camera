@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.2 (tutorial/what-a-field-keeps/calderon.md), its second diagram: the sixteen weighings of
+// The tutorial, section 13.2 (tutorial/what-a-field-keeps/calderon.md), its second diagram: the sixteen weighings of
 // one Fourier component, as a tree drawn left to right. The root, "one Fourier component", with the complex number
 // int rho grad h_+ . grad h_- under its name; two branches, its real and its imaginary part; four nodes, the real
 // integrals int rho grad u_+ . grad u_- and int rho grad v_+ . grad v_- under the real part, int rho grad u_+ . grad v_-

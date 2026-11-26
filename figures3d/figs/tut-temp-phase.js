@@ -1,5 +1,5 @@
-// The tutorial, chapter 4.2 (tutorial/response/temperature.md), its second diagram: the weight on phase space of
-// chapter 1.7's cart (m = 2 kg, k = 50 N/m) at 300 K, exp(-p^2/2mk_BT - kq^2/2k_BT), drawn as a hill over the plane
+// The tutorial, section 4.2 (tutorial/response/temperature.md), its second diagram: the weight on phase space of
+// section 1.7's cart (m = 2 kg, k = 50 N/m) at 300 K, exp(-p^2/2mk_BT - kq^2/2k_BT), drawn as a hill over the plane
 // (q, p), with q in units of sigma_q = sqrt(k_BT/k) = 9.1 x 10^-12 m and p in units of sigma_p = sqrt(m k_BT) =
 // 9.1 x 10^-11 kg m/s (the chapter's diagram comment printed 9.1 x 10^-11 too, and it is right: sigma_p/sigma_q =
 // sqrt(mk) = 10 kg/s), each from -3 to 3. The hill is a net of the lines of constant q and of constant p on the

@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md), its third diagram: a history that
+// The tutorial, section 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md), its third diagram: a history that
 // is not analytic. One plot, t from -1 to 3 across and A from 0 to 1 up: the exact curve A(t) = e^{-1/t^2} for t > 0
 // and 0 before, a thin solid stroke in ink; its Taylor series at t = 0, the flat line A = 0, dashed in a grey along the
 // whole range; a small dot at t = 0, "every derivative zero", set in the empty part of the plot above and to the left

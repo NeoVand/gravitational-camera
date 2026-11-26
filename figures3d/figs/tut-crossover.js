@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.7 (tutorial/geometry/quadrupole-formula.md), its third diagram: in the plane of the orbit,
+// The tutorial, section 7.7 (tutorial/geometry/quadrupole-formula.md), its third diagram: in the plane of the orbit,
 // Newton's tide and the wave's cross at 0.313 of a wavelength. Log-log axes: r / lambda from 0.02 to 10 across, and
 // r |E_zz| in units of G Delta I Omega^4 / c^4 up, from 10^-0.5 to 10^6. Two thin straight asymptotes in ink at half
 // weight: the near law (15/4) G Delta I / r^5, slope -4 on these axes, "Newton's tide, r^-5", and the far law

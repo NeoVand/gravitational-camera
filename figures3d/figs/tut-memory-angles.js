@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.8 (tutorial/geometry/wave-energy.md), its second diagram: the directions and angles of the
+// The tutorial, section 7.8 (tutorial/geometry/wave-energy.md), its second diagram: the directions and angles of the
 // memory. Drawn in true 3D, in orthographic projection, from the direction (0.45, 0.20, 0.87) in the camera's frame
 // (N-hat, e_1, e_2), the view turned about its own axis so that N-hat runs straight to the right. A small filled dot,
 // the source, in matter's colour. From it two thin ink arrows of one length in space: N-hat, "N-hat, to the camera",

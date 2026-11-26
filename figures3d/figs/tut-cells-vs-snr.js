@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.8 (tutorial/what-a-field-keeps/holography.md), its third diagram: what looking and pushing
+// The tutorial, section 13.8 (tutorial/what-a-field-keeps/holography.md), its third diagram: what looking and pushing
 // count as the sensitivity grows. One panel on logarithmic axes: across, ln SNR from 6.6 to 300, ticks at the ln of
 // 10^3, 10^6, 10^12, 10^30, 10^70 and 10^120, numbered by the SNR; up, the count from 10 to 10^7 (decade ticks). Both
 // counts from three radii, R_c = 3a: the looking count N_1 = (floor(L/Lambda) + 1)^2 as its staircase in the field's
@@ -33,7 +33,7 @@ const CURVE = 0.8, LAW = 0.55, DASH = [3, 2], RULE_W = 0.4, TOL = 0.02;
 const DISC = 13;                                // the discs' radius, points
 const EDGE = 0.45;                              // the discs' outline
 const SMALL = 7.2;
-const caption = 'Look first at how close the two curves stay: pushing passes looking between $10^3$ and $10^6$ and beats it by a factor of about twelve only at the paper\'s ceiling. Dashed: the law $0.073(L/\\Lambda)^3$ that pushing approaches. The curves are counted; the discs are drawn to scale.';
+const caption = 'Look first at how close the two curves stay: pushing passes looking between $10^3$ and $10^6$ and beats it by a factor of about twelve only at the ceiling. Dashed: the law $0.073(L/\\Lambda)^3$ that pushing approaches. The curves are counted; the discs are drawn to scale.';
 
 /** Ramer-Douglas-Peucker on page points, iteratively: the polyline within `tol` points of the original. */
 function simplify(pts, tol) {

@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.4 (tutorial/noise/symmetric-matrices.md), its second diagram: what a symmetric matrix and a
+// The tutorial, section 3.4 (tutorial/noise/symmetric-matrices.md), its second diagram: what a symmetric matrix and a
 // shear do to the unit circle. Left, the circle (dashed) and its image under T = [[2, 1], [1, 2]], an ellipse with the
 // semi-axes 3 along (1, 1) and 1 along (1, -1). The two unit eigenvectors are drawn as thin arrows on the circle and
 // their images as heavier arrows on the ellipse: each image lies on the line of its arrow, the first three times as

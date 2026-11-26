@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.5 (tutorial/geometry/gravitomagnetism.md), its third diagram: the two parts of the magnetic
+// The tutorial, section 7.5 (tutorial/geometry/gravitomagnetism.md), its third diagram: the two parts of the magnetic
 // part on the equator. Above, the Earth as a stone disc seen from above the north pole, its spin L as a ring arrow, the
 // pixel as a small ring on the equator at the right with its velocity u (465 m s^-1) in the observer's colour up the
 // page. Below, three bars on one axis in units of 10^-12 s^-2, from zero, in the curvature's colour: "the pixel's

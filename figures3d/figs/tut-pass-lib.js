@@ -1,8 +1,8 @@
-// Shared numbers and tools for the three diagrams of the tutorial's chapter 13.1 (tutorial/what-a-field-keeps/
+// Shared numbers and tools for the three diagrams of the tutorial's section 13.1 (tutorial/what-a-field-keeps/
 // push-and-pass.md): tut-pass-two-orders, tut-pass-annulus and tut-pass-slice. Not a figure itself. The sheet, strokes,
-// labels and cropping are chapters 1.2 to 12.2's (figs/tut-pot-lib.js), the fitted dashes chapter 1.8's
+// labels and cropping are sections 1.2 to 12.2's (figs/tut-pot-lib.js), the fitted dashes section 1.8's
 // (figs/tut-orb-lib.js), the paper's cutaway bodies figs/ladder.js's (sprites/hair/shell.png, the iron point), the
-// stone's ink chapter 1.8's and matter's colour chapter 7.3's (figs/tut-linear-lib.js, read from app.css), all
+// stone's ink section 1.8's and matter's colour section 7.3's (figs/tut-linear-lib.js, read from app.css), all
 // imported, not copied.
 //
 // The colours: the mass (the bars of energy, the projected mass Sigma) in matter's colour; everything else in ink, the

@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.3 (tutorial/geometry/einstein-equation.md), its first diagram: the trace of the tide for
+// The tutorial, section 7.3 (tutorial/geometry/einstein-equation.md), its first diagram: the trace of the tide for
 // six kinds of matter, a bar each on a logarithmic axis of |tr E| from 10^-36 to 10^-5 s^-2, in the comment's order:
 // the Earth's mean density, water, the Casimir gap of 1 micrometre, the dark matter round the Sun, sunlight at the
 // Earth and the cosmological constant. Positive traces solid, in matter's colour (sunlight in the light role's); the

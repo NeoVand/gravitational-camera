@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.2 (tutorial/one-point/complex-symmetric.md), its second diagram: a tree of questions that
+// The tutorial, section 9.2 (tutorial/one-point/complex-symmetric.md), its second diagram: a tree of questions that
 // sorts a trace-free complex symmetric reading W into its six shapes. From the root, "a reading W, trace-free":
 // "I^3 = 6J^2?" -- no: three different eigenvalues, type I (two masses); yes: "I = J = 0?" -- no: "(W - w)(W + 2w) = 0,
 // with w = -J/I?", yes: type D (one mass), no: type II (a mass with a wave along its line); yes: "W^2 = 0?" -- no:

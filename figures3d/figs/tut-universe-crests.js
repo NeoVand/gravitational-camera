@@ -1,4 +1,4 @@
-// The tutorial, chapter 12.2 (tutorial/sky/universe.md), its first diagram: two crests crossing an expanding universe.
+// The tutorial, section 12.2 (tutorial/sky/universe.md), its first diagram: two crests crossing an expanding universe.
 // Time t runs to the right, from the first crest's emission t_e to the second crest's arrival; upward, distance in
 // metres between galaxies (proper distance). The grid behind: five galaxies at rest among the expansion, at equal
 // comoving distances from the source, so their lines fan out as a(t), and upright lines at equal times. The source is

@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.5 (tutorial/relativity/stress-energy.md), its first diagram: the sign of the momentum flux.
+// The tutorial, section 6.5 (tutorial/relativity/stress-energy.md), its first diagram: the sign of the momentum flux.
 // Two panels, "gas at rest" over "stretched rod". Above, a small cube in a light oblique projection, faint, inside a
 // field of faint dots (the gas); on each of its three visible faces a short thick arrow in matter's colour points out
 // along the face's normal, one named "momentum out", and "T^xx = +p" stands under the panel. Below, a horizontal rod
@@ -18,7 +18,7 @@
 // Exact: the cube's edges (a cabinet projection, the receding edges at 30 degrees and half length; the same cube in
 // both panels, asserted), each arrow along its face's outward normal and starting at its centre (gas), or ending at
 // it and pointing inward (rod) (asserted), no arrow on the rod's side faces; the signs +p and -tau (asserted in
-// tut-stress-lib.js against chapter 4.3's stress). Schematic: the arrows' lengths, the dots.
+// tut-stress-lib.js against section 4.3's stress). Schematic: the arrows' lengths, the dots.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, VEC, VEC_HEAD, HAIR } from './tut-pot-lib.js';
 import { INK, DIM, FAINT, RULE } from '../lib.js';
 import { TINT } from './tut-gauss-lib.js';

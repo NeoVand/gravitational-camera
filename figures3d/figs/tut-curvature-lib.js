@@ -1,7 +1,7 @@
-// Shared numbers and colours for the four figures of the tutorial's chapter 7.2 (tutorial/geometry/curvature-and-tides.md):
+// Shared numbers and colours for the four figures of the tutorial's section 7.2 (tutorial/geometry/curvature-and-tides.md):
 // the hero tut-curvature-tube and the diagrams tut-curvature-loops, tut-curvature-deviation and tut-curvature-count.
-// Not a figure itself. The colour roles are chapter 7.1's (figs/tut-metric-lib.js: the observer's and the curvature's,
-// read from app.css's --q-obs and --q-curv), and the sheet, strokes, labels and cropping are those of chapters 6.1 to
+// Not a figure itself. The colour roles are section 7.1's (figs/tut-metric-lib.js: the observer's and the curvature's,
+// read from app.css's --q-obs and --q-curv), and the sheet, strokes, labels and cropping are those of sections 6.1 to
 // 7.1, all imported, not copied.
 //
 // `chapter(check)` asserts every number of the chapter that a figure draws or its caption prints:
@@ -28,7 +28,7 @@ import { placed } from './tut-pot-lib.js';
 export { OBS, CURV, palette, ACCENT, ACCENT2 };
 
 /** The lines `srcs` of one name as one label, each line's point (ax, 0) on x, the first line's top at y and each next
- * one `skip` under the last (chapter 6.4's names of two lines, tut-momentum-lightcone.js). */
+ * one `skip` under the last (section 6.4's names of two lines, tut-momentum-lightcone.js). */
 export async function stack(srcs, x, y, ax = 0.5, color = INK, skip = 1.6) {
 	const parts = [];
 	let t = y;
@@ -167,7 +167,7 @@ export function deviationRK(K, xi0, tau, n = 2000) {
 	}
 	return x;
 }
-/** The tide beside a mass, in units of GM/r^3, along and across the line to it (chapter 1.4): (-2, 1). */
+/** The tide beside a mass, in units of GM/r^3, along and across the line to it (section 1.4): (-2, 1). */
 export const TIDE = [-2, 1];
 
 // ---- the count ---------------------------------------------------------------------------------------------------

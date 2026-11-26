@@ -1,5 +1,5 @@
-// The tutorial, chapter 7.7 (tutorial/geometry/quadrupole-formula.md), its first diagram: the rotor's total stress is
-// half the acceleration of its second moment. Above, chapter 5.4's rotor seen from above, the z axis out of the page
+// The tutorial, section 7.7 (tutorial/geometry/quadrupole-formula.md), its first diagram: the rotor's total stress is
+// half the acceleration of its second moment. Above, section 5.4's rotor seen from above, the z axis out of the page
 // at the corner of small axes x and y: two stone masses at the ends of a rod along u-hat, drawn at 60 degrees from the
 // x axis, a curved arrow for the anticlockwise turning, Omega. At each mass a short ink arrow, its velocity, along
 // +w-hat and -w-hat, at right angles to the rod, named "masses"; the rod a heavier ink bar with an inward head at each

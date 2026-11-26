@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.4 (tutorial/response/viscosity.md), its third diagram: the friction Re eta =
+// The tutorial, section 4.4 (tutorial/response/viscosity.md), its third diagram: the friction Re eta =
 // eta0 / (1 + omega^2 tau^2) of two Maxwell liquids of the same illustrative stiffness mu = 1 GPa, on log-log axes,
 // omega from 10^4 to 10^15 s^-1 and Re eta from 10^-14 to 10^2 Pa s. Honey (eta0 = 10 Pa s, tau = 10 ns), in the
 // second accent, flat at 10 and bending near 10^8 s^-1; a Maxwell liquid with water's viscosity (10^-3 Pa s, 1 ps), in
@@ -24,7 +24,7 @@ const check = checker(name);
 
 const X = [4, 15], Y = [-14, 2];           // log10 omega (s^-1), log10 Re eta (Pa s)
 const DX = 20, DY = 10.5;                  // points per decade
-const ASYM = 0.45, ASYM_DASH = [1.8, 1.4]; // the asymptotes, as chapter 4.1's free mass (figs/tut-osc-response.js)
+const ASYM = 0.45, ASYM_DASH = [1.8, 1.4]; // the asymptotes, as section 4.1's free mass (figs/tut-osc-response.js)
 const AIR = 1.4;                           // a line is drawn only where it stands this far clear of the curve it continues
 const lg = Math.log10;
 

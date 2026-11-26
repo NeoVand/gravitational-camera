@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.4 (tutorial/outside/greens-functions.md), its second diagram: the potential of a long rail,
+// The tutorial, section 2.4 (tutorial/outside/greens-functions.md), its second diagram: the potential of a long rail,
 // in a plane across it. The rail seen end-on at the centre, and its equipotentials, circles about it at the radii 0.25,
 // 0.5, 1, 2 and 4 m: equal steps in ln r, so equal steps of the potential Phi = 2 G lambda ln r + a constant. Each
 // circle is labelled, just above its top, by its potential less that of the 1 m circle, in units of 2 G lambda:

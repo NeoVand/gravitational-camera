@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md), its first diagram: looking gives
+// The tutorial, section 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md), its first diagram: looking gives
 // values, pushing gives brackets. Two panels side by side, in one oblique projection (x to the right, y into the page
 // at 30 degrees and drawn at half its length, z up), one unit of angular momentum SCALE points long. Left, "watched":
 // a camera in the observer's colour before a wall (a vertical grey band), its two sight lines dotted to the wall, a

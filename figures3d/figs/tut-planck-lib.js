@@ -1,8 +1,8 @@
-// Shared numbers for the four diagrams of the tutorial's chapter 10.1 (tutorial/glow/black-body.md): tut-planck-shell,
-// tut-planck-curves, tut-planck-integrals and tut-planck-moving. Not a figure itself. hbar is chapter 8.1's
-// (figs/tut-quantum-lib.js), k_B chapter 4.1's (figs/tut-osc-lib.js), c chapter 7.1's (figs/tut-metric-lib.js), the
-// observer's colour and the role check chapter 6.1's (figs/tut-lorentz-lib.js), Simpson's rule chapter 8.2's
-// (figs/tut-operators-lib.js), and the sheet, strokes, labels and cropping those of chapters 6.1 to 9.7
+// Shared numbers for the four diagrams of the tutorial's section 10.1 (tutorial/glow/black-body.md): tut-planck-shell,
+// tut-planck-curves, tut-planck-integrals and tut-planck-moving. Not a figure itself. hbar is section 8.1's
+// (figs/tut-quantum-lib.js), k_B section 4.1's (figs/tut-osc-lib.js), c section 7.1's (figs/tut-metric-lib.js), the
+// observer's colour and the role check section 6.1's (figs/tut-lorentz-lib.js), Simpson's rule section 8.2's
+// (figs/tut-operators-lib.js), and the sheet, strokes, labels and cropping those of sections 6.1 to 9.7
 // (figs/tut-pot-lib.js), all imported, not copied. Temperatures and radiances are neutral (ink and the page's greys);
 // orange and blue, which mean a stretch and a squeeze, are not used.
 //
@@ -34,7 +34,7 @@ export const near = (a, b, tol = 1e-12) => Math.abs(a - b) <= tol;
 // ---- the curves, in the variable x = hbar omega / k_B T ------------------------------------------------------------
 /** x^n / (e^x - 1), its limit at x = 0 included (1 for n = 1, 0 above). */
 export const bose = (n, x) => (x === 0 ? (n === 1 ? 1 : 0) : x ** n / Math.expm1(x));
-/** The root of x = n (1 - e^{-x}) other than 0: where x^n / (e^x - 1) peaks, by chapter 3.7's fixed-point iteration. */
+/** The root of x = n (1 - e^{-x}) other than 0: where x^n / (e^x - 1) peaks, by section 3.7's fixed-point iteration. */
 export function peakX(n) {
 	let x = n;
 	for (let i = 0; i < 500; i++) x = -n * Math.expm1(-x);

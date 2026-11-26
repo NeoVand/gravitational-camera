@@ -1,4 +1,4 @@
-// The tutorial, chapter 8.1 (tutorial/quantum/states.md), its fourth diagram: a mass in two places behind a wall, a
+// The tutorial, section 8.1 (tutorial/quantum/states.md), its fourth diagram: a mass in two places behind a wall, a
 // pixel outside that records where it is, and the fringes that the record leaves. Above, left: two thin rings, the
 // traps, a distance d apart on a horizontal line, each holding a small ball of matter's colour, solid in L and outlined
 // in R, with a bracket "d" and beneath it "(|L> + |R>)/sqrt 2". Middle: a grey wall, lightly hatched. Right, outside
@@ -13,7 +13,7 @@
 // state through the second mirror at every drawn point (tut-quantum-lib.js, `recordPR`), and their extremes 0 and 1,
 // 0.25 and 0.75, and 1/2; the rings, the images of a circle under 1 - eps T, T = diag(-2, 1) (the tide of a point mass
 // on the line, trace-free in the ring's plane), the ring for R stretched more along the line, since the mass at R is
-// nearer (chapter 8.1's derivation: the difference of the tides is -12 G m d^2 / r^5 along the line). Schematic: every
+// nearer (section 8.1's derivation: the difference of the tides is -12 G m d^2 / r^5 along the line). Schematic: every
 // size and distance, and the rings' strains, hugely exaggerated (the caption says so).
 import { Sheet, ORIGIN, finish, checker, placed, near, n2, AXIS, HAIR, TICK, LABEL_GAP } from './tut-pot-lib.js';
 import { Plot } from './tut-prob-lib.js';

@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.2 (tutorial/noise/random-signals.md), its fourth diagram: masses dropped at random places
+// The tutorial, section 3.2 (tutorial/noise/random-signals.md), its fourth diagram: masses dropped at random places
 // are a white noise too. Top row, left: a square region with masses m dropped at independent, evenly spread places,
 // their number a Poisson count of mean 400 (nu = 1 per unit area on a region of side 20), each a dot whose area is in
 // proportion to its mass. Right: the mean of |sigma~(k)|^2 / A over many such drawings on the 11 x 11 wavevectors

@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.3 (tutorial/one-point/the-matrix-w.md), its first diagram: a pixel at rest and a pixel moving
+// The tutorial, section 9.3 (tutorial/one-point/the-matrix-w.md), its first diagram: a pixel at rest and a pixel moving
 // at 0.6c read the same three eigenvalues. Two panels side by side, the same room seen from above: the two stone masses
 // of the paper's fig:stars, faint, and the pixel at the origin. Left, "pixel at rest": a ring of twelve free stone balls
 // deformed by the tide Re W of the room, orange arrows for its stretch and blue for its squeeze, and at its centre one
@@ -7,7 +7,7 @@
 // Im(Lambda W Lambda^T), thin curved ink arrows. Under each panel the size |E|^2 + |B|^2 of the reading, the three
 // eigenvalues in the curvature's colour, and I and J. Orange and blue only for the stretch and the squeeze.
 // Departures from the diagram's comment: the two gyroscopes stand side by side, along x, not one above the other: by
-// chapter 7.5's eq:gyro-pair, delta Omega = B xi / c, and for this reading a pair separated up the page (along y)
+// section 7.5's eq:gyro-pair, delta Omega = B xi / c, and for this reading a pair separated up the page (along y)
 // turns relative to one another almost only about x, a turn that tilts the axles out of the page and that a view from
 // above cannot show ((B y)_z / |B y| = 0.06), while a pair along x turns mostly about the axis out of the page
 // ((B x)_z / |B x| = 0.88, asserted above 0.85), which turns the axles in the page; the panels stay side by side at
@@ -46,7 +46,7 @@ const BEAD = 1.7;                          // a ball's radius
 const REACH = 28;                          // an arrow's length per unit of |T xi|
 const RING_W = 0.4;                        // the ring's outline (tut-one-point-hero)
 const PUSH = 0.55, PUSH_HEAD = 3, TAIL = 0.9;   // the ring's arrows (tut-one-point-hero)
-// ---- the gyroscopes (chapter 7.5's, tut-magnetic-crossing, a little smaller) ------------------------------------------
+// ---- the gyroscopes (section 7.5's, tut-magnetic-crossing, a little smaller) ------------------------------------------
 const AXLE = 7.5, AXLE_W = 0.6, DISC = [5.4, 1.7], DISC_LINE = 0.4;
 const GX = 12;                             // the moving pixel's gyroscopes, left and right of the centre
 const TURN_R = AXLE + 2.8, TURN_SWEEP = 80, TURN_W = 0.5, TURN_HEAD = 3.2;
@@ -89,7 +89,7 @@ export default async function () {
 	const B = nums.moving.map((r) => r.map((z) => z[1]));
 	const Bx = [B[0][0], B[1][0], B[2][0]], By = [B[0][1], B[1][1], B[2][1]];
 	check(Math.abs(Bx[2]) / Math.hypot(...Bx) > 0.85 && Math.abs(By[2]) / Math.hypot(...By) < 0.1, `the pair's turn: B x = ${Bx}, B y = ${By}`);
-	// delta Omega = B xi / c (chapter 7.5's eq:gyro-pair): the right gyroscope relative to the left one turns about z by
+	// delta Omega = B xi / c (section 7.5's eq:gyro-pair): the right gyroscope relative to the left one turns about z by
 	// (B x)_z; relative to the pixel each turns by half of it, the right one with its sign, the left one against it
 	const rightSense = Math.sign(Bx[2]);
 	check(rightSense < 0, 'the right gyroscope does not turn clockwise');

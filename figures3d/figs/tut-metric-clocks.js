@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.1 (tutorial/geometry/metric.md), its second diagram: two clocks at rest, one above the other,
+// The tutorial, section 7.1 (tutorial/geometry/metric.md), its second diagram: two clocks at rest, one above the other,
 // and two flashes of light between them. One panel: coordinate time t across and height upward, thin ink axes named
 // "t" and "height". Two horizontal worldlines in the observer's colour, the lower clock's at height 0 and the upper
 // clock's at height h, named "lower clock" and "upper clock". Two flashes rise from the lower to the upper one, two
@@ -37,7 +37,7 @@ const RUN = 236;                           // the worldlines' length from the he
 const AXIS_RUN = 252;                      // the time axis's length, to the point of its head
 const UP = 120;                            // the height axis's length
 const WORLD = 0.75;                        // a worldline's stroke
-const EVENT = DOT + 0.25;                  // a dot, radius (chapter 6.1's)
+const EVENT = DOT + 0.25;                  // a dot, radius (section 6.1's)
 const BRACKET = HAIR + 0.15;               // a bracket's stroke
 const ARM = 3;                             // a bracket's ends, toward its worldline
 const DOT_AIR = 1.1;                       // the air between a bracket's ends and the dots they point at

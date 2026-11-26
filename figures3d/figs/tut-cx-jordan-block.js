@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.2 (tutorial/one-point/complex-symmetric.md), its third diagram: two 3 x 3 tables side by
+// The tutorial, section 9.2 (tutorial/one-point/complex-symmetric.md), its third diagram: two 3 x 3 tables side by
 // side, each a grid of nine thin ink cells. Left, "diagonalizable (type D)": w, w, -2w on the diagonal, the zeros in
 // the faint ink; under it an arrow under each column, all three eigenvectors. Right, "a Jordan block (type II)": the
 // same diagonal with a 1 in the first row, second column, the upper-left 2 x 2 block outlined in heavier ink; under

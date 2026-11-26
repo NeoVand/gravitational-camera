@@ -1,6 +1,6 @@
-// Shared numbers and marks for the five diagrams of the tutorial's chapter 5.4 (tutorial/waves/polarization.md):
+// Shared numbers and marks for the five diagrams of the tutorial's section 5.4 (tutorial/waves/polarization.md):
 // tut-pol-patterns, tut-pol-instants, tut-pol-geometry, tut-pol-rotor-views and tut-pol-poincare. Not a figure itself.
-// The sheet, strokes, heads, labels and the cropping are chapter 1.1's (figs/tut-vec-lib.js); the ring of twelve free
+// The sheet, strokes, heads, labels and the cropping are section 1.1's (figs/tut-vec-lib.js); the ring of twelve free
 // steel beads, its dashed undisturbed circle and ink ellipse, and the orange of a stretch and the blue of a squeeze are
 // Part 1's (figs/tut-five-lib.js, figs/tut-tides.js), all imported, not copied. The sense of turning is the paper's
 // magenta (figs/quadrupole.js and make_figures.py, which_way: '#c2255c' for V/I = +1, a fill of opacity

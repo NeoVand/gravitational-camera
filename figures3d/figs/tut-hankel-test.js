@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.7 (tutorial/what-a-field-keeps/thermometer.md), its third diagram: the positivity test. One
+// The tutorial, section 13.7 (tutorial/what-a-field-keeps/thermometer.md), its third diagram: the positivity test. One
 // panel: across, a from 0 to 9 r_s^2 (ticks every 1); up, the test m_3 - 2a m_2 + a^2 m_1 in r_s^6 from -3 to 14 (ticks
 // -2, 0, 2, ..., 14). The region below zero a pale tint of matter's colour, named "no positive mass" at its lower left,
 // its edge a thin line at zero. Three exact parabolas: the hole's, from its sums (m_1, m_2, m_3 = R_2^2, R_3^4, R_4^6
@@ -29,7 +29,7 @@ const A0 = 0, A1 = 9, Y0 = -3.4, Y1 = 14;
 const DX = 25, DY = 13;                         // points per unit
 const HEAVY = 0.75, CURVE = 0.55, DASH = [3, 2], DOT_R = 1.45;
 const VEIL = 0.16;                              // the region's opacity
-const caption = 'Look first at the two dips into the shaded region: the hole\'s sums and the step absorber\'s fall below zero, which no positive mass can do; the ball\'s curve stays above. Curves exact, from the unrounded radii of panel (c) of the paper\'s figure.';
+const caption = 'Look first at the two dips into the shaded region: the hole\'s sums and the step absorber\'s fall below zero, which no positive mass can do; the ball\'s curve stays above. Curves exact, from the unrounded radii of panel (c) of Figure [](/paper/#fig:hole-response).';
 
 export default async function () {
 	const { state } = await chapter(check);

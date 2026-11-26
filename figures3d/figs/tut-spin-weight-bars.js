@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.1 (tutorial/one-point/spin-two.md), its first diagram: a reading's shares among the five
+// The tutorial, section 9.1 (tutorial/one-point/spin-two.md), its first diagram: a reading's shares among the five
 // spin weights about the axis z. Three small panels side by side, each a row of five bars at m = -2 ... 2, the bar of m
 // as high as the share |c_m| sqrt<T_m|T_m> / |W| (so that the squares of the five add to one), on one scale from 0 to
 // 1, thin ink outlines filled with ink at 30 per cent. Above each panel its name and a small sketch of the axis z (a
@@ -7,7 +7,7 @@
 // 60 degrees", its direction of travel k 60 degrees from z with its crests across it: 0.0625, 0.2165, 0.4593, 0.6495
 // and 0.5625 (the last cos^4 30); "rank 1". Under the three, "spin weight m about z". No orange or blue.
 // Departures from the diagram's comment: the panels stand side by side at every width (the site shows one drawing; at
-// 390 px each panel is still about 110 px across), as chapter 8.4's three spheres do; the axis's name is written once,
+// 390 px each panel is still about 110 px across), as section 8.4's three spheres do; the axis's name is written once,
 // under the three panels, and the scale's 0, 0.5 and 1 once, on the left of the first; the third panel's name is set
 // in two lines.
 // Exact: every bar, from the reading itself (a mass's tide on the axis; a plane wave's E + iB along z, and along the

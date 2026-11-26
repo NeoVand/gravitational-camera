@@ -1,9 +1,9 @@
-// Shared tools for the diagrams of the tutorial's chapters 1.5 (tutorial/newton/five-numbers.md: tut-five-split,
+// Shared tools for the diagrams of the tutorial's sections 1.5 (tutorial/newton/five-numbers.md: tut-five-split,
 // tut-five-basis, tut-five-turn) and 1.5b (tutorial/newton/complex-numbers.md: tut-cx-product, tut-cx-euler,
-// tut-cx-spin). Not a figure itself. The strokes, heads, dots, labels and the cropping are those of chapter 1.1's
+// tut-cx-spin). Not a figure itself. The strokes, heads, dots, labels and the cropping are those of section 1.1's
 // diagrams (figs/tut-vec-lib.js, imported, not copied); the ring of twelve free steel beads, its dashed undisturbed
 // circle and its orange stretch and blue squeeze arrows are those of the paper's figure 2 (figs/tidal.js) and of
-// chapter 1.4's opening figure (figs/tut-tides.js), so that the five chapters look alike.
+// section 1.4's opening figure (figs/tut-tides.js), so that the five chapters look alike.
 //
 // A ring is drawn from its table: the bead whose undisturbed place is the unit vector xi (in the ring's plane) is
 // drawn at (1 - eps T) xi, so that the ring is the image of the circle under that map, an exact ellipse; the arrows
@@ -127,7 +127,7 @@ function dashedCircle(ink, world, arrows, layer) {
 }
 
 /** A pair of short axes from the world point O along the unit vectors of `axes` ([{ d, color, tex }]), each `len`
- * world units, thin with a small head (chapter 1.1's axes). Returns their tips, for the labels. */
+ * world units, thin with a small head (section 1.1's axes). Returns their tips, for the labels. */
 export function gnomon(ink, O, axes, len, { layer = 1, what = 'the axes' } = {}) {
 	return axes.map((x) => {
 		const tip = O.clone().addScaledVector(x.d, len);

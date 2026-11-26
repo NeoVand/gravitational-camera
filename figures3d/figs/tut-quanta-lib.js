@@ -1,8 +1,8 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 8.3 (tutorial/quantum/quanta.md):
-// tut-oscillator-levels, tut-phase-rings and tut-occupation. Not a figure itself. The palette is chapter 8.1's
+// Shared numbers for the three diagrams of the tutorial's section 8.3 (tutorial/quantum/quanta.md):
+// tut-oscillator-levels, tut-phase-rings and tut-occupation. Not a figure itself. The palette is section 8.1's
 // (figs/tut-quantum-lib.js, read from app.css by `palette(check)`), the Gaussian, Simpson's rule and the relative
-// `near` chapter 8.2's (figs/tut-operators-lib.js), the double arrow chapter 6.6's (figs/tut-maxwell-lib.js), and the
-// sheet, strokes, labels and cropping those of chapters 6.1 to 8.2 (figs/tut-pot-lib.js), all imported, not copied.
+// `near` section 8.2's (figs/tut-operators-lib.js), the double arrow section 6.6's (figs/tut-maxwell-lib.js), and the
+// sheet, strokes, labels and cropping those of sections 6.1 to 8.2 (figs/tut-pot-lib.js), all imported, not copied.
 // Ink and the page's neutral tints only; orange and blue, which mean a stretch and a squeeze, are not used.
 //
 // The oscillator is drawn in its natural units: x in x_zp = sqrt(hbar / 2 m omega), p in m omega x_zp, energy in
@@ -15,7 +15,7 @@
 //    level E_n = (n + 1/2) hbar omega meets it at u = +-sqrt(4n + 2); the ground state psi_0 = (2 pi x_zp^2)^(-1/4)
 //    e^{-x^2/4 x_zp^2} solves m omega x psi + hbar psi' = 0 and a psi_0 = 0, has length one, and |psi_0|^2, which is
 //    e^{-u^2/2} up to a constant, has the standard deviation x_zp and falls to e^{-1/2} of its top at +-x_zp;
-//  - the ball: chapter 4.3's effective mass 3M/10 = 9.86 kg and stiffness 3 mu V / R^2 = 8.9 x 10^10 N/m give
+//  - the ball: section 4.3's effective mass 3M/10 = 9.86 kg and stiffness 3 mu V / R^2 = 8.9 x 10^10 N/m give
 //    omega = 9.49 x 10^4 s^-1 (15.1 kHz), hbar omega = 1.0 x 10^-29 J, x_zp = 7.5 x 10^-21 m, k_B T / hbar omega =
 //    4.1 x 10^8 and nbar = 4.1 x 10^8 at 300 K, hbar omega / k_B T = 2.4 x 10^-9, sqrt(2 nbar + 1) = 2.9 x 10^4;
 //  - the bands: the ellipse of energy E encloses 2 pi E / omega (by quadrature, in SI); in the scaled plane the orbit
@@ -62,7 +62,7 @@ export const nbar = (t) => 1 / Math.expm1(1 / t);
 /** <E> / hbar omega = nbar + 1/2. */
 export const energy = (t) => nbar(t) + 0.5;
 
-// ---- the ball (chapter 4.3) and silicon's Raman line (chapter 4.1) ------------------------------------------------
+// ---- the ball (section 4.3) and silicon's Raman line (section 4.1) ------------------------------------------------
 export const V_BALL = (4 / 3) * Math.PI * R_BALL ** 3;
 export const M_BALL = RHO * V_BALL;
 export const M_EFF = 0.3 * M_BALL;
@@ -126,7 +126,7 @@ export async function chapter(check) {
 	has('Each level therefore owns a band of area $2\\pi\\hbar$, between the ellipses that enclose $2\\pi\\hbar n$ and $2\\pi\\hbar(n + 1)$, with its own ellipse down the middle', 'the bands');
 	has('The ground state\'s band is the central disc', 'the central disc');
 	{
-		// the ellipse H = E encloses 2 pi E / omega: its area by quadrature, for chapter 1.7's cart and another
+		// the ellipse H = E encloses 2 pi E / omega: its area by quadrature, for section 1.7's cart and another
 		for (const [m, k, E] of [[2, 50, 0.25], [9.86, 8.9e10, 3e-29]]) {
 			const w = Math.sqrt(k / m), X = Math.sqrt((2 * E) / k);
 			const area = 2 * simpson((x) => Math.sqrt(Math.max(0, 2 * m * (E - 0.5 * k * x * x))), -X, X, 200000);
@@ -157,7 +157,7 @@ export async function chapter(check) {
 	has('$\\langle E\\rangle = \\hbar\\omega(\\bar n + \\tfrac12)$', 'the mean energy');
 	has('When $\\hbar\\omega \\ll \\kB T$, $z$ is small, and $e^z - 1 \\approx z + \\tfrac12z^2$ gives $\\bar n \\approx 1/z - \\tfrac12 = \\kB T/\\hbar\\omega - \\tfrac12$', 'the classical limit');
 	has('When $\\hbar\\omega \\gg \\kB T$, $\\bar n \\approx e^{-\\hbar\\omega/\\kB T}$ and $\\langle E\\rangle \\to \\tfrac12\\hbar\\omega$', 'the frozen limit');
-	has('Silicon\'s Raman line (chapter 4.1) has the frequency $f = 15.6$ THz', 'the Raman line');
+	has('Silicon\'s Raman line (section 4.1) has the frequency $f = 15.6$ THz', 'the Raman line');
 	has('its quantum is $\\hbar\\omega = hf = 1.03\\times10^{-20}$ J. Then $\\hbar\\omega/\\kB T = 2.5$ and $\\bar n = 0.090$', 'silicon\'s nbar');
 	has('at $\\kB T = \\hbar\\omega$, the ground state holds $1 - 1/e = 63\\%$ of the probability', 'the ground state\'s share');
 	for (const z of [0.01, 0.3, 1, 2.5, 7]) {

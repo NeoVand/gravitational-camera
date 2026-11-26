@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.5 (tutorial/what-a-field-keeps/impulsive-waves.md), its second diagram: the light-ray
+// The tutorial, section 13.5 (tutorial/what-a-field-keeps/impulsive-waves.md), its second diagram: the light-ray
 // transform. Both panels in one orthographic view (turned and tilted alike), the axis nu across the page in both.
 // Left: a lumpy body at rest, three Gaussian lumps of density, drawn as the stone (lit by the studio over the sawn
 // stone's colours, tut-pass-lib.js) out to one surface of equal density; a bundle of parallel null rays along one

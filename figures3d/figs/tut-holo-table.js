@@ -1,15 +1,15 @@
-// The tutorial, chapter 13.8 (tutorial/what-a-field-keeps/holography.md), its second diagram: the four entries.
+// The tutorial, section 13.8 (tutorial/what-a-field-keeps/holography.md), its second diagram: the four entries.
 // A two-by-two table: columns "watching" and "pushing", rows "c -> infinity" and "finite c". Each cell has a small
 // icon in ink, a line drawing (an eye; an eye with a clock; a hand; a hand with a wave), what the data give, the null
 // space or the stability, and its sources in grey: watching, c -> infinity: the harmonic part only, the null space
-// nabla^2 psi (chapter 2.5); watching, finite c: the light-cone transform only, the null space c^-2 psiddot -
+// nabla^2 psi (section 2.5); watching, finite c: the light-cone transform only, the null space c^-2 psiddot -
 // nabla^2 psi (Birkhoff; Devaney-Wolf; Bleistein-Cohen); pushing, c -> infinity: all of rho, logarithmic stability
 // (13.2; Alessandrini, Mandache); pushing, finite c: waves through the body, |q| <= 2 omega / c, Hoelder to lambda/2,
 // logarithmic beyond (Stefanov-Uhlmann). The two watching cells share the page's pale neutral tint, the pushing cells
 // are white. Under the table a thin arrow from the watching column to the pushing column, "acting removes the null
 // space"; right of the pushing column a thin arrow down it, "a short wave removes the logarithm to lambda/2".
 // Departures from the diagram's comment: the text wins over the comment in two places: the null space of a field that
-// travels is written as the text writes its source, c^-2 psiddot - nabla^2 psi, not as a box, which this chapter does
+// travels is written as the text writes its source, c^-2 psiddot - nabla^2 psi, not as a box, which this section does
 // not define; and the watching, finite-c cell names Bleistein and Cohen, whom the text cites for its being the whole
 // null space. The sources of the cell pushing, c -> infinity are the text's: 13.2 for the logarithm, and Alessandrini
 // and Mandache for its proof and its optimality. "Logarithmic beyond" is the comment's, the converse of the text's
@@ -77,7 +77,7 @@ export default async function () {
 
 	// ---- the cells: [row, column, lines], each line [TeX, colour, size]
 	const cells = [
-		[0, 0, [['\\text{harmonic part only}', INK, BODY], ['\\text{null space }\\nabla^2\\psi', INK, BODY], ['\\text{chapter 2.5}', DIM, SRC]]],
+		[0, 0, [['\\text{harmonic part only}', INK, BODY], ['\\text{null space }\\nabla^2\\psi', INK, BODY], ['\\text{section 2.5}', DIM, SRC]]],
 		[1, 0, [['\\text{light-cone transform only}', INK, BODY], ['\\text{null space }c^{-2}\\ddot\\psi - \\nabla^2\\psi', INK, BODY],
 			['\\text{Birkhoff; Devaney–Wolf;}', DIM, SRC], ['\\text{Bleistein–Cohen}', DIM, SRC]]],
 		[0, 1, [['\\text{all of }\\rho', INK, BODY], ['\\text{logarithmic stability}', INK, BODY], ['\\text{13.2; Alessandrini, Mandache}', DIM, SRC]]],

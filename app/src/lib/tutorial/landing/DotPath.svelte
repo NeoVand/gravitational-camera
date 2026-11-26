@@ -36,7 +36,8 @@
 
 	let active = $state<number | undefined>(undefined);
 
-	const tone = (part: string) => Number(part) / 13;
+	/** 0 for Part 0 to 1 for Part 13; the appendices (part A) take the last part's tone */
+	const tone = (part: string) => (/^\d+$/.test(part) ? Number(part) / 13 : 1);
 	const name = (c: LandingChapter) => `${c.id} ${c.title}${c.reading ? ' (reading)' : ''}`;
 </script>
 

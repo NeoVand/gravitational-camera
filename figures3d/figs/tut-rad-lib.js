@@ -1,9 +1,9 @@
-// Shared numbers and marks for the four diagrams of the tutorial's chapter 5.5 (tutorial/waves/radiance.md):
+// Shared numbers and marks for the four diagrams of the tutorial's section 5.5 (tutorial/waves/radiance.md):
 // tut-rad-patches, tut-rad-slab, tut-rad-columns and tut-rad-lenses. Not a figure itself. The sheet, the strokes, the
-// labels and the cropping are chapter 1.2's (figs/tut-pot-lib.js), the axes and the dimension lines chapter 3.1's
-// (figs/tut-prob-lib.js), the sampling of curves chapter 2.6's (figs/tut-fourier-lib.js), the dashes chapter 3.6's
-// (figs/tut-bessel-lib.js, DASH), the tints chapter 1.3's (figs/tut-gauss-lib.js) and matter's colour chapter 2.4's
-// (figs/tut-null-lib.js, MATTER), all imported, not copied. A pixel is chapter 5.3's small ink square. The colours
+// labels and the cropping are section 1.2's (figs/tut-pot-lib.js), the axes and the dimension lines section 3.1's
+// (figs/tut-prob-lib.js), the sampling of curves section 2.6's (figs/tut-fourier-lib.js), the dashes section 3.6's
+// (figs/tut-bessel-lib.js, DASH), the tints section 1.3's (figs/tut-gauss-lib.js) and matter's colour section 2.4's
+// (figs/tut-null-lib.js, MATTER), all imported, not copied. A pixel is section 5.3's small ink square. The colours
 // follow the paper's Figure fig:line-integral (figs/line-integral.js): what light shows, here the background that a
 // slab lets through, in the second accent (blue); the glow, and the hot block that glows most, in the first (orange).
 // Everything else is neutral, as the comments ask.
@@ -26,7 +26,7 @@ import { INK } from '../lib.js';
 
 export { DASH, TINT, TINT_ACCENT, TINT_ACCENT2, MATTER };
 
-export const SQ = 2.8;                     // a pixel's side, as chapter 5.3's
+export const SQ = 2.8;                     // a pixel's side, as section 5.3's
 
 /** A pixel: a small filled square (ink) centred at q. */
 export function pixel(S, q, what = 'the pixel') {

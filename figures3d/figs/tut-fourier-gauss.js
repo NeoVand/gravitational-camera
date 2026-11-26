@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.6 (tutorial/outside/fourier.md), the Gaussian and its transform. Two rows: a wide Gaussian,
+// The tutorial, section 2.6 (tutorial/outside/fourier.md), the Gaussian and its transform. Two rows: a wide Gaussian,
 // eps = 2, above a narrow one, eps = 0.5. Left, the bumps delta_eps(x) = exp(-x^2 / 2 eps^2) / (sqrt(2 pi) eps), each of
 // area 1, on one x axis and one vertical scale, so that the narrow one stands four times as tall. Right, their
 // transforms exp(-eps^2 k^2 / 2) on one k axis, both rising to 1: the first narrow, of width 1/eps = 0.5, and the second

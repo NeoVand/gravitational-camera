@@ -1,4 +1,4 @@
-// The tutorial, chapter 9.7 (tutorial/one-point/beyond-one-plane-wave.md), its one diagram: what an unknown near field
+// The tutorial, section 9.7 (tutorial/one-point/beyond-one-plane-wave.md), its one diagram: what an unknown near field
 // costs the wave's amplitude. A bar of ten equal cells, the ten numbers of one reading, split by a thin gap into two
 // halves of five: the tide, E, and the magnetic part, B, named under the bar. Over the tide's half a bracket in
 // matter's colour, "taken by the near field, any size", and the half tinted in matter's colour; over the magnetic

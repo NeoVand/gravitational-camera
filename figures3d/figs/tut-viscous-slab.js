@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.8 (tutorial/geometry/wave-energy.md), its first diagram: a gravitational wave fading in a
+// The tutorial, section 7.8 (tutorial/geometry/wave-energy.md), its first diagram: a gravitational wave fading in a
 // slab of viscous medium. A plane wave travels left to right through a slab, lightly shaded, that fills the middle half
 // of the drawing: its strain h at one instant, a thin curve in the field's colour, and its envelope, dashed, flat before
 // the slab, falling inside it to 60 per cent and flat again after it. Inside the slab, under the wave, the medium seen
@@ -14,7 +14,7 @@
 // per volume, in W m^-3, not an energy per volume. The caption's exaggeration is about 10^37 (8 x 10^36, asserted),
 // not 10^36: water's amplitude falls by alpha / 2 = 6 x 10^-38 across a metre, the drawn one by ln(1/0.6) = 0.51.
 // Exact: the wave in the slab, the solution of the damped wave equation driven at a real frequency with the exact
-// complex wavenumber (as chapter 5.1's tut-wave-damped), its damping chosen so that the envelope falls to 0.6 across
+// complex wavenumber (as section 5.1's tut-wave-damped), its damping chosen so that the envelope falls to 0.6 across
 // the slab (asserted, and the wave asserted to solve the equation and never to leave its envelope); the number under
 // the slab (tut-memory-lib.js, `chapter`). Schematic: the damping, about 10^37 times water's for a slab a metre thick;
 // the joins at the slab's faces, where a real face would also reflect a little of the wave; the strips and their
@@ -75,7 +75,7 @@ function mathematics() {
 const UNIT = 34;                          // points per wavelength
 const AMP = 19;                           // points per unit of h
 const TOP = 1.95, BOTTOM = -1.05;         // the plot's range of h: room above for the arrow of travel
-const ENV = 0.45, ENV_DASH = [1.8, 1.4];  // the envelope, as chapter 5.1's
+const ENV = 0.45, ENV_DASH = [1.8, 1.4];  // the envelope, as section 5.1's
 const SLAB_TOP = 1.32;                    // the slab's top, units of h
 const STRIP = { n: 4, len: 30, w: 0.9, gap: 4.6, shift: 3.2, from: 0.32 };   // the strips: count, length, stroke,
 // spacing, the displacement of each from the one below, and the stack's left end (wavelengths into the slab)

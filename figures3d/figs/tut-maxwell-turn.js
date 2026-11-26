@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.6 (tutorial/relativity/maxwell-complex.md), its second diagram: a turn of the axes and a
+// The tutorial, section 6.6 (tutorial/relativity/maxwell-complex.md), its second diagram: a turn of the axes and a
 // boost, side by side as one rule. Two panels, one above the other, at one scale and in one layout. Above, "a turn of
 // the axes by theta": the plane across u-hat, seen with u-hat pointing at the reader (a dot in a small circle at the
 // origin, named "u-hat"); the axes x and y, thin ink arrows, named; the unit circle x^2 + y^2 = 1, thin ink; the new

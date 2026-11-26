@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.1 (tutorial/what-a-field-keeps/push-and-pass.md), its third diagram: passes along one
+// The tutorial, section 13.1 (tutorial/what-a-field-keeps/push-and-pass.md), its third diagram: passes along one
 // great circle of directions give the density. Both panels in one orthographic view (turned and tilted alike), the
 // axis nu up the page in both.
 // Left: a lumpy stone body of uniform density (its surface r(u) = 1 plus two low harmonics and a few smooth knobs, lit

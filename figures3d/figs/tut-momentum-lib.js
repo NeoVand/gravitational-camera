@@ -1,6 +1,6 @@
-// Shared numbers for the three diagrams of the tutorial's chapter 6.4 (tutorial/relativity/energy-and-momentum.md):
+// Shared numbers for the three diagrams of the tutorial's section 6.4 (tutorial/relativity/energy-and-momentum.md):
 // tut-momentum-shell, tut-momentum-lumps and tut-momentum-lightcone. Not a figure itself. The colours, the speed 0.6c
-// and its rapidity are chapter 6.1's (figs/tut-lorentz-lib.js: the observer's colour and the light role's, read from
+// and its rapidity are section 6.1's (figs/tut-lorentz-lib.js: the observer's colour and the light role's, read from
 // app.css's --q-obs and --q-light, and matter's, --q-matter, through figs/tut-null-lib.js), and the sheet, strokes,
 // labels and cropping are those of 6.1's and 6.2's diagrams, all imported, not copied.
 //

@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.3 (tutorial/outside/multipoles.md), its third diagram: where each expansion holds. Left,
+// The tutorial, section 2.3 (tutorial/outside/multipoles.md), its third diagram: where each expansion holds. Left,
 // the exterior expansion: an irregular body about the origin O, inside the dashed circle of radius R about O, the
 // smallest that holds it, which touches the body at its farthest point; outside that circle, the region where the
 // potential is a sum of the fading harmonics Y_lm / r^(l+1), shaded and fading out. Right, the interior expansion: a

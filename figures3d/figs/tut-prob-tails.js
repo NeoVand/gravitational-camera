@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.1 (tutorial/noise/probability.md), its second diagram: the tails of the Gaussian. The
+// The tutorial, section 3.1 (tutorial/noise/probability.md), its second diagram: the tails of the Gaussian. The
 // standard Gaussian density p(Z) = exp(-Z^2/2) / sqrt(2 pi), with the bands within one, two and three standard
 // deviations of the mean shaded in the noise's colour (blue), one over another, and named under the axis by their
 // probabilities, 68.3%, 95.4% and 99.73%; and the one-sided tail beyond Z = 3 filled in full blue under the true

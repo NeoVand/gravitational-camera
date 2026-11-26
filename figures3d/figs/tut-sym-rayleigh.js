@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.4 (tutorial/noise/symmetric-matrices.md), its third diagram: the Rayleigh quotient of a
+// The tutorial, section 3.4 (tutorial/noise/symmetric-matrices.md), its third diagram: the Rayleigh quotient of a
 // symmetric matrix as a probe turns. Top, the unit circle and the matrix T = Q diag(-2, 1) Q^T, Q a turn by 30
 // degrees: its eigen-axes, the line at 30 degrees with the eigenvalue -2 (orange, as the paper colours a stretch) and
 // the line at 120 degrees with the eigenvalue 1 (blue, a squeeze), and a unit probe x at the angle theta = 100

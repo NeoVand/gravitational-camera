@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.6 (tutorial/geometry/gravitational-waves.md), its third diagram: in a plane wave the magnetic
+// The tutorial, section 7.6 (tutorial/geometry/gravitational-waves.md), its third diagram: in a plane wave the magnetic
 // part is the tide's own pattern turned by 45 degrees. Two panels side by side, each the paper's ring of twelve free
 // steel beads (figure 2, panels (b) and (c); figs/tidal.js) with an arrow at every bead, the pale ring of half a cycle
 // later and the dashed circle undisturbed. Left, "E, plus": the tide E = E+ diag(1, -1) with E+ < 0, stretched along
@@ -9,7 +9,7 @@
 // convention". E and B in the curvature's colour.
 // Departures from the diagram's comment: the principal axes are a small cross at each ring's centre, inside the inward
 // arrows, not lines through the whole ring, where they would run along the arrows on the axes; the direction of travel
-// stands at the corner of the small axes e_1 and e_2 (as in chapter 5.4's rings), so that the two panels show the same
+// stands at the corner of the small axes e_1 and e_2 (as in section 5.4's rings), so that the two panels show the same
 // fixed axes and the pattern turned in them; the pale ring of half a cycle later is drawn, as in the paper's panels;
 // each arrow is orange where its bead is pushed outward and blue where inward (Part 1's colours), where the paper's
 // are ink; the note under the right panel is set on three lines, so that it stays under its panel. The curved arrow

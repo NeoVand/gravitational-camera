@@ -1,11 +1,11 @@
-// Shared numbers and marks for the four diagrams of the tutorial's chapter 5.6 (tutorial/waves/abel-transform.md):
+// Shared numbers and marks for the four diagrams of the tutorial's section 5.6 (tutorial/waves/abel-transform.md):
 // tut-abel-chords, tut-abel-three-glows, tut-abel-kink and tut-abel-peel. Not a figure itself. The sheet, the strokes,
-// the labels and the cropping are chapter 1.2's (figs/tut-pot-lib.js), the axes chapter 3.1's (figs/tut-prob-lib.js),
-// the sampling of curves chapter 2.6's (figs/tut-fourier-lib.js), the dashes chapter 3.6's (figs/tut-bessel-lib.js,
-// DASH), the steel ball and its gold chapter 2.5's (figs/tut-null-lib.js), all imported, not copied. The colours: the
+// the labels and the cropping are section 1.2's (figs/tut-pot-lib.js), the axes section 3.1's (figs/tut-prob-lib.js),
+// the sampling of curves section 2.6's (figs/tut-fourier-lib.js), the dashes section 3.6's (figs/tut-bessel-lib.js,
+// DASH), the steel ball and its gold section 2.5's (figs/tut-null-lib.js), all imported, not copied. The colours: the
 // Earth's shells are the paper's Figure fig:earth-glow's (figs/earth-glow.js, SHELLS), mixed with the page so that
 // they stay pale in the light theme and dark in the dark one, under ink that the site swaps for its theme's; the
-// gold, matter's colour of chapter 2.5; the errors of the peeling, chapter 3.1's colour of the noise (the second
+// gold, matter's colour of section 2.5; the errors of the peeling, section 3.1's colour of the noise (the second
 // accent, blue). Everything else is neutral, as the comments ask.
 //
 // `chapter(check)` asserts every number of the chapter that a diagram draws or its caption prints: the grazing angles

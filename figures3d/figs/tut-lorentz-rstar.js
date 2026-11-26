@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.1 (tutorial/relativity/lorentz.md), its third diagram: the distance to a moving body in
+// The tutorial, section 6.1 (tutorial/relativity/lorentz.md), its third diagram: the distance to a moving body in
 // the body's own frame. Two panels side by side at one scale, 100 site pixels (50 points) to the metre, x across and y
 // up. Left, "pixel's frame, at the pixel's now": the pixel as a small ring of twelve ink dots at (0, 0); the body as a
 // dot in matter's colour at (1.2, 1.6) m, with an arrow in the observer's colour from it along +x, named v = 0.6c; the

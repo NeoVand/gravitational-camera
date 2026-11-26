@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.2 (tutorial/outside/spherical-harmonics.md), its second diagram: the Legendre polynomials
+// The tutorial, section 2.2 (tutorial/outside/spherical-harmonics.md), its second diagram: the Legendre polynomials
 // P_0 to P_4 against mu from -1 to 1 on one pair of axes, each labelled near its right end, where all equal 1; the
 // zero of P_2 at mu = 1/sqrt 3 marked with a tick on the mu axis, a dot on the line P = 0, and the angle 54.7 degrees.
 // Exact: every curve, from Bonnet's recurrence l P_l = (2l - 1) mu P_(l-1) - (l - 1) P_(l-2) (the recurrence of the

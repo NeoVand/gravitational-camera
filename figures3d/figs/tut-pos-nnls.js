@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.9 (tutorial/noise/positivity.md), its first diagram: non-negative least squares with two
+// The tutorial, section 3.9 (tutorial/noise/positivity.md), its first diagram: non-negative least squares with two
 // cells. The plane of the two cell masses m1 (across) and m2 (up), drawn to one scale on both axes; the quarter where
 // both are positive in the site's neutral tint. The misfit f(m) = |y - A m|^2 of the chapter's example,
 // A = [[1, 0.6], [0.6, 1]] and y = (1, 0.3), has elliptic contours about the best signed scene (1.28, -0.47), outside

@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.1 (tutorial/newton/vectors-and-indices.md), its fourth diagram: the projector
+// The tutorial, section 1.1 (tutorial/newton/vectors-and-indices.md), its fourth diagram: the projector
 // P_ij = delta_ij - n_i n_j flattens an arrow onto the plane at right angles to n. A plane drawn in true 3D (an
 // orthographic view, turned and tilted as lib.js's Panel does), the unit vector n standing at right angles to it
 // (blue), an arrow xi leaning out of the plane (ink), its part along n, n (n . xi), dashed (blue), and its

@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.2 (tutorial/geometry/curvature-and-tides.md), its second diagram: geodesic deviation in the
+// The tutorial, section 7.2 (tutorial/geometry/curvature-and-tides.md), its second diagram: geodesic deviation in the
 // frame that falls with the reference ball. Time upward. Two worldlines of free balls rising from their starting
 // events (small dots), thin, in the observer's colour: the reference ball's, straight and upright, named "reference
 // ball" above its top; its neighbour's, starting parallel to it a short distance to the right and curving slowly away,
@@ -30,7 +30,7 @@ const AT = [0.27, 0.57, 0.88];             // the arrows' heights, fractions of 
 const BOX = 8.4;                           // a square's side
 const BOX_LINE = 0.45;                     // its outline
 const U_LEN = 22;                          // the four-velocity's arrow
-const START = DOT + 0.25;                  // the starting events' dots (chapter 7.1's)
+const START = DOT + 0.25;                  // the starting events' dots (section 7.1's)
 
 export default async function () {
 	const nums = chapter(check);

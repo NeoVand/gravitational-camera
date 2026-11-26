@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.7 (tutorial/newton/hamilton.md), its second diagram: an impulsive tide in phase space.
+// The tutorial, section 1.7 (tutorial/newton/hamilton.md), its second diagram: an impulsive tide in phase space.
 // The plane (x, p_x) of three parts of a body, of equal mass m, at x = -0.5, 0.1 and 0.6 (arbitrary units). Each
 // part's state before the kick is an open circle; the tide g = x^2/2, whose gradient is g'(x) = x, gives each part
 // the impulse eps m g'(x) = eps m x along x, so that its state jumps straight up or down by that much, to the filled

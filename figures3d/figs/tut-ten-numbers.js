@@ -1,4 +1,4 @@
-// The tutorial, chapter 0.4 (tutorial/evening/one-pixel.md), its one diagram: the ten numbers of one reading,
+// The tutorial, section 0.4 (tutorial/evening/one-pixel.md), its one diagram: the ten numbers of one reading,
 // regrouped. Above, a bar of ten equal cells split 5 | 5: the five numbers of the tide (its stretch and squeeze) and
 // the five of its magnetic part (the twist). Below, a bar of ten cells of the same width, split 4 | 3 | 3: the four
 // invariants, the three angles of the field's own axes, and the three numbers of the velocity of its rest frame. The
@@ -6,7 +6,7 @@
 // as wide as the bars, runs from the whole upper bar to the whole lower one, because each lower number depends on all
 // ten upper ones (the paper's equation eq:polar). The cells hold no values: the diagram counts, it does not compute.
 // Neutral ink and the page's neutral tint only (Part 0 has no role colours). The strokes, labels and cropping are
-// those of chapter 1.2's diagrams (figs/tut-pot-lib.js, imported).
+// those of section 1.2's diagrams (figs/tut-pot-lib.js, imported).
 import { tex, INK, DIM, RULE } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, boxOf, n2, LINE, HAIR, TICK, SIZE } from './tut-pot-lib.js';
 

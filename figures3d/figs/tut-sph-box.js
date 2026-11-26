@@ -1,4 +1,4 @@
-// The tutorial, chapter 2.2 (tutorial/outside/spherical-harmonics.md), its first diagram: the small spherical box
+// The tutorial, section 2.2 (tutorial/outside/spherical-harmonics.md), its first diagram: the small spherical box
 // between r and r + dr, theta and theta + d theta, phi and phi + d phi. A sphere of radius r about the origin O (its
 // rim; on its near side its equator, the circle of latitude at theta, and the line of longitude at phi below the box,
 // each stopped short of the rim), the z axis and the x axis (dotted inside the sphere), the radius r to the box's

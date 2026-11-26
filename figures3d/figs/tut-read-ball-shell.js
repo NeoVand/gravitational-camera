@@ -1,5 +1,5 @@
-// The tutorial, reading chapter R13 (tutorial/what-a-field-keeps/reading-sections-xii-and-xiii.md), its second diagram:
-// the capstone, chapter 13.1's steel ball (radius 0.5 m, 4110 kg) and a thin shell of the same mass and radius
+// The tutorial, reading section R13 (tutorial/what-a-field-keeps/reading-sections-xii-and-xiii.md), its second diagram:
+// the capstone, section 13.1's steel ball (radius 0.5 m, 4110 kg) and a thin shell of the same mass and radius
 // followed through Part 13's readings in seven small panels, (a) to (g), the rows of the chapter's capstone table, in
 // two rows, four and three (as R11's capstone, figs/tut-read-vii-capstone.js), each panel with the ball above and the
 // shell below, drawn alike at one radius, and its numbers beneath it, the ball's before the shell's.
@@ -44,7 +44,7 @@ const check = checker(name);
 
 // ---- the scene (SI) -------------------------------------------------------------------------------------------------
 const R = 0.5;                              // m, the radius of both
-const STEEL = 7850;                         // kg m^-3, chapter 1.8's steel
+const STEEL = 7850;                         // kg m^-3, section 1.8's steel
 const M = (4 / 3) * Math.PI * R ** 3 * STEEL;   // kg, 4110
 const SNR = 1e6, RC = 3;                    // (a): the signal-to-noise ratio, the camera's distance in radii
 const EPS = 1e-10;                          // s^-1, (c)'s strength
@@ -93,13 +93,13 @@ async function numbers() {
 	const sci = (x, d) => { const e = Math.floor(Math.log10(Math.abs(x))); return `${(x / 10 ** e).toFixed(d)}e${e}`; };
 	// the bodies
 	check(M.toFixed(0) === '4110', `the ball's mass ${M}`);
-	has('The capstone follows chapter 13.1\'s steel ball, 1 m across and 4110 kg, and a thin shell of the same mass and radius, $R = 0.5$ m', 'the bodies');
+	has('The capstone follows section 13.1\'s steel ball, 1 m across and 4110 kg, and a thin shell of the same mass and radius, $R = 0.5$ m', 'the bodies');
 	const ch18 = (await (await fetch('/tutorial/newton/orbits-and-kicks.md')).text()).replace(/\s+/g, ' ');
-	check(ch18.includes('The ball is steel, of density $7850\\unit{kg\\,m^{-3}}$, radius 0.5 m and mass 4110 kg'), 'chapter 1.8\'s steel ball');
+	check(ch18.includes('The ball is steel, of density $7850\\unit{kg\\,m^{-3}}$, radius 0.5 m and mass 4110 kg'), 'section 1.8\'s steel ball');
 	// (a) the bits of one reading from 3R at 10^6
 	const L = Math.log(SNR), Lam = Math.log(RC), H = (L ** 3 / (3 * Lam * Lam) + (L * L) / (2 * Lam)) / Math.LN2;
 	check(H.toFixed(0) === '1176', `H = ${H}`);
-	has('| (a) one time | the paper\'s [](/paper/#eq:hair-bits) from $3R$ at $10^6$ | 1176 bits | the same | 2.5, 3.8 |', '(a)');
+	has('| (a) one time | the bits of one reading from $3R$ at $10^6$ | 1176 bits | the same | 2.5, 3.8 |', '(a)');
 	has('(a) At one time the two bodies are one scene, to every bit.', '(a)\'s note');
 	// (b) the tremor over k_B T: the integral of rho |grad g|^2 = rho (x^2 + y^2), two thirds of the integral of rho r^2
 	const IB = (2 / 3) * (3 / 5) * M * R * R, IS = (2 / 3) * M * R * R;
@@ -112,7 +112,7 @@ async function numbers() {
 	check(sci(EB / LIGHTSPEED ** 2, 2) === '2.29e-35' && sci(ES / LIGHTSPEED ** 2, 2) === '3.81e-35', 'the weights');
 	has('| (c) a push | $\\tfrac12\\epsilon^2\\int\\matter\\rho\\,\\lvert\\nabla g\\rvert^2\\,\\dd V$, $\\epsilon = 10^{-10}\\unit{s^{-1}}$; over $c^2$ | $2.06 \\times 10^{-18}$ J, $2.29 \\times 10^{-35}$ kg | $3.43 \\times 10^{-18}$ J, $3.81 \\times 10^{-35}$ kg | 1.7, 6.4 |', '(c)');
 	has('This profile stretches along $x$ as much as it squeezes along $y$', 'the profile\'s stretch and squeeze');
-	has('The impulses along $(x, -y)$ are the gradient of the profile $\\tfrac12(x^2 - y^2)$ (1.7)', 'the impulses\' direction');
+	has('The impulses along $(x, -y)$ are the gradient of the profile $\\tfrac12(x^2 - y^2)$ (section 1.7)', 'the impulses\' direction');
 	// (d) one ripple at |xi| R = pi: the ball's transform 3M/pi^2, the shell's M sin(pi)/pi = 0, crests 1 m apart
 	const x = Math.PI, TB = (3 * M * (Math.sin(x) - x * Math.cos(x))) / x ** 3, TS = (M * Math.sin(x)) / x;
 	check(near(TB, (3 * M) / (Math.PI ** 2), 1e-9) && TB.toPrecision(3) === '1.25e+3' && Math.abs(TS) < 1e-9, `the transforms ${TB} ${TS}`);
@@ -145,7 +145,7 @@ async function numbers() {
 	check(k.toFixed(3) === '0.111' && sci(Q, 1) === '3.2e-14', `the bracket ${k} ${Q}`);
 	has('| (g) the $1/c^2$ bracket | $\\{\\matter{Q_{x^2-y^2}}, \\matter{Q_{2xy}}\\}$, swirl at $\\Omega = 100\\unit{s^{-1}}$ against rest | $3.2 \\times 10^{-14}\\unit{kg\\,m^2\\,s}$ | 0 | 13.4, 13.6 |', '(g)');
 	has('(g) The ball\'s two parts turn against each other and show no flow outside, yet its bracket is $0.111\\,\\matter M\\Omega R^4/c^2$.', '(g)\'s note');
-	has('chapter 2.8\'s sphere, whose inner ball out to $2^{-1/5}R$ turns one way and the rest the other', 'the inner ball\'s radius');
+	has('the sphere of section 2.8, whose inner ball out to $2^{-1/5}R$ turns one way and the rest the other', 'the inner ball\'s radius');
 	// the steps' names, the table's first column
 	const steps = [...text.matchAll(/^\| \(([a-g])\) ([^|]*?) \|/gm)].map((m) => `${m[1]} ${m[2]}`);
 	check(steps.join() === 'a one time,b heat,c a push,d one ripple,e the tonne\'s pass,f light,g the $1/c^2$ bracket', `the steps ${steps}`);

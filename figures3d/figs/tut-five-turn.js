@@ -1,4 +1,4 @@
-// The tutorial, chapter 1.5 (tutorial/newton/five-numbers.md), its third diagram: a pattern of stretch and squeeze
+// The tutorial, section 1.5 (tutorial/newton/five-numbers.md), its third diagram: a pattern of stretch and squeeze
 // across a wave is a point (E+, Ex) of a plane, and turning the axes by theta moves the point by 2 theta the other
 // way. Left, a ring of twelve free steel beads under the plus table diag(E+, -E+), E+ > 0 (a squeeze along x, blue,
 // and a stretch along y, orange), with its axes x and y drawn small at its lower left and the same axes turned

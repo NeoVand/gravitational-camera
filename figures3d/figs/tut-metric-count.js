@@ -1,4 +1,4 @@
-// The tutorial, chapter 7.1 (tutorial/geometry/metric.md), its third diagram: the count of what falling can remove.
+// The tutorial, section 7.1 (tutorial/geometry/metric.md), its third diagram: the count of what falling can remove.
 // Bars to one scale, 2.1 points (4 site pixels at 1440) to the number: what the metric has at an event, 10 values, 40
 // first derivatives and 100 second derivatives, thin ink outlines with a faint ink fill; under each, what a change of
 // coordinates can set, 10 (of 16; 6 are turns and boosts), 40 and 80, in the observer's colour; the 20 second

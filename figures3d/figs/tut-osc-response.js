@@ -1,4 +1,4 @@
-// The tutorial, chapter 4.1 (tutorial/response/oscillator.md), its third diagram: the response function of an
+// The tutorial, section 4.1 (tutorial/response/oscillator.md), its third diagram: the response function of an
 // oscillator in three panels that share the axis omega / omega0 from 0 to 2, each with three curves for Q = 3, 10
 // and 30, in the swing's colour (the chapter's live figure, driven-cart), one weight for each Q. Top: k |chi| on a
 // logarithmic scale from 0.1 to 40, which starts at 1, peaks just below omega0 at 3.04 (0.972), 10.01 (0.9975) and
@@ -30,7 +30,7 @@ const DECADE = 34;                               // points per decade
 const PHASE_H = 56;                              // the middle panel: 0 to 180 degrees
 const LINE_H = 66, LINE_TOP = 1.1;               // the bottom panel: 0 to 1.1
 const GAP = 12;                                  // between panels
-const ENV_DASH = [1.8, 1.4], ENV = 0.45;         // the free mass's asymptote, as chapter 3.6's envelope
+const ENV_DASH = [1.8, 1.4], ENV = 0.45;         // the free mass's asymptote, as section 3.6's envelope
 const DOT_R = 1.05;
 const FIRST = 9, ROW = 10.5;                     // the widths' rows under the axis (figs/tut-measure-peak.js)
 const AIR = 1.4;                                 // a curve stops where less than this, points, would part it from an axis

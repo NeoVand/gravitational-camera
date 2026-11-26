@@ -1,8 +1,8 @@
-// The tutorial, chapter 11.4 (tutorial/black-holes/under-tides.md), its first diagram: a steady tide raises a bulge on a
+// The tutorial, section 11.4 (tutorial/black-holes/under-tides.md), its first diagram: a steady tide raises a bulge on a
 // stone and none on a hole. Two panels side by side, each under its name. Left, "the Earth, k_2 = 0.30": the Earth as
-// a lit stone body (sprites/hair/ball-face.png, as chapter 7.5 draws it), drawn bulged along the tide's axis; an ink
+// a lit stone body (sprites/hair/ball-face.png, as section 7.5 draws it), drawn bulged along the tide's axis; an ink
 // arrow beside it points along that axis to the Moon, off the panel; on the other side a ring of four free steel beads,
-// chapter 1.4's tut-tides and 11.1's tut-schw-falling-pair: the two on the axis pulled out by orange arrows (the
+// section 1.4's tut-tides and 11.1's tut-schw-falling-pair: the two on the axis pulled out by orange arrows (the
 // stretch), the two across pushed in by blue arrows half as long (the squeeze), the tide diag(1, 1, -2) along the line
 // to the Moon. Right, "a black hole, k_2 = 0": a near-black disc of radius r_s, edged in ink, perfectly round, with the
 // same arrow and the same ring. Under each panel a strip on logarithmic axes along the tide's axis, from 2 to 8 radii:

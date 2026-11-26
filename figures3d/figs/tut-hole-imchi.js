@@ -1,6 +1,6 @@
-// The tutorial, chapter 11.4 (tutorial/black-holes/under-tides.md), its third diagram: the hole's response at every
+// The tutorial, section 11.4 (tutorial/black-holes/under-tides.md), its third diagram: the hole's response at every
 // frequency. One panel on logarithmic axes: across, x = GM omega / c^3 from 10^-2 to 3; up, Im chi in units of
-// M r_s^2 (GM/c^3)^2 from 10^-4 to 10. The response (5/64) Gamma_2 / x^5 from chapter 11.3's greybody table, thin solid
+// M r_s^2 (GM/c^3)^2 from 10^-4 to 10. The response (5/64) Gamma_2 / x^5 from section 11.3's greybody table, thin solid
 // ink, rising, peaking at x = 0.39 (an ink dot, "x = 0.39"), then falling; the friction law (4/45) x dashed; the
 // asymptote (5/64)/x^5 dotted, meeting the curve at the right. Each line is named beside it.
 // Departures from the diagram's comment: the axis up starts at 10^-4, not 10^-3, so that the friction law, 8.9 x 10^-4

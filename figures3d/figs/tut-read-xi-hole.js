@@ -1,4 +1,4 @@
-// The tutorial, reading chapter R12b (tutorial/sky/reading-section-xi-2.md), its second diagram: the capstone, one hole
+// The tutorial, reading section R12b (tutorial/sky/reading-section-xi-2.md), its second diagram: the capstone, one hole
 // of ten equilibrium masses against the 0.905 K graviton glow, seen by a camera at rest at r = 40 GM/c^2, in nine
 // small panels, (a) to (i), the rows of the chapter's capstone table, in three rows of three (R11's capstone,
 // figs/tut-read-vii-capstone.js, has two rows of a strip of seven; nine panels in one strip would not read on a phone),
@@ -32,7 +32,7 @@
 // Exact: every number (computed here and asserted against the chapter's text: the glow's temperature from 3.91 and
 // 106.75, the seen sky's, the count and the mean wavelength, the hole's mass, temperature and capture disc, the shadow
 // by 11.1's arcsine and by 6.3's aberration, the ring by 11.1's rays integrated (figs/tut-schw-lib.js), the depths by
-// chapter 11.3's greybody factors (figs/tut-hawking-lib.js, the capture area above x = 3), the spinning hole's
+// section 11.3's greybody factors (figs/tut-hawking-lib.js, the capture area above x = 3), the spinning hole's
 // threshold, temperature and gain, the distance read from 2.6%); the angles of (d) and (e), at one scale; the wavelength
 // of (b) and the disc and horizon of (c), at one scale. Schematic: the glow's extent and wash, the thermometers and
 // their reading, the discs of (f) (their darkness only follows the depths), the arrows of (g), the distance of (h),
@@ -105,7 +105,7 @@ glow, and the camera is at rest at $r = 40\,G\matter M/c^2$, 4.03 cm away in cir
 	const T = GRAVITON_SKY, push = 1 / Math.sqrt(1 - 2 / R), seen = T * push;
 	check(push.toFixed(3) === '1.026' && ((push - 1) * 100).toFixed(2) === '2.60' && seen.toFixed(4) === '0.9285' && seen.toFixed(3) === '0.929', `the seen sky ${seen}`);
 	has('So $T_g = 0.3321\\times2.7255 = 0.905$ K', 'the glow');
-	has('So the sky is 2.60% warmer, at 0.9285 K, the caption\'s "$0.929\\,\\mathrm K$"', 'the seen sky');
+	has('So the sky is 2.60% warmer, at 0.9285 K', 'the seen sky');
 	has(r`| (a) the sky | $T_g = (3.91/106.75)^{1/3}T_\gamma$; seen, $T_g/\sqrt{1 - 2G\matter M/c^2r}$ | 0.905 K; 0.929 K | 12.2, 11.1 |`, '(a)');
 
 	// (b) its gravitons: the count and the mean wavelength, far and seen
@@ -131,7 +131,7 @@ wavelength falls as $1/T$, 2.5% below the far 5.89 mm.`, 'the line under the tab
 	const fall = Math.acos((Math.cos(rest) + beta) / (1 + beta * Math.cos(rest)));
 	check((rest / DEG).toFixed(2) === '7.27' && (fall / DEG).toFixed(2) === '5.80' && beta.toFixed(3) === '0.224', `the shadows ${rest / DEG} ${fall / DEG}`);
 	check(near(Math.sin(rest), (Math.sqrt(27) / R) * Math.sqrt(1 - 2 / R), 1e-15), 'the shadow is not 11.1\'s arcsine');
-	has(r`$7.27°$ at $r = 40\,G\matter M/c^2$, the paper's "$7.3^\circ$"`, 'the shadow');
+	has(r`$7.27°$ at $r = 40\,G\matter M/c^2$.`, 'the shadow');
 	has(r`$5.80°$ instead
 of $7.27°$ at $40\,G\matter M/c^2$, where $\obs v = 0.224c$`, 'the falling shadow');
 	has(r`| (d) the shadow | at (a)'s $r$, 11.1's arcsine; falling, 6.3's aberration | $7.27°$; $5.80°$ falling | 11.1, 6.3 |`, '(d)');

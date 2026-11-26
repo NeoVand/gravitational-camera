@@ -1,5 +1,5 @@
-// The tutorial, chapter 13.7 (tutorial/what-a-field-keeps/thermometer.md), its second diagram: the hole's shells.
-// One square panel, the hole seen from above, to scale. The horizon, a disc of radius r_s in chapter 11.1's fixed
+// The tutorial, section 13.7 (tutorial/what-a-field-keeps/thermometer.md), its second diagram: the hole's shells.
+// One square panel, the hole seen from above, to scale. The horizon, a disc of radius r_s in section 11.1's fixed
 // near-black, edged in ink; thin grey circles at the photon sphere, 1.5 r_s, and at the critical impact parameter,
 // b_c = 2.598 r_s; a dashed circle at the limit (3 sqrt 3 / e) r_s = 1.9116 r_s. Between them seven thin rings in
 // matter's colour at the exact radii R_2 to R_8, 1.0175 to 1.7841 r_s, each tied by a hairline leader, along its own

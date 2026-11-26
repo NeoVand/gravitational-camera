@@ -1,4 +1,4 @@
-// The tutorial, chapter 6.6 (tutorial/relativity/maxwell-complex.md), its fourth diagram: light's two special
+// The tutorial, section 6.6 (tutorial/relativity/maxwell-complex.md), its fourth diagram: light's two special
 // directions for a charge at rest and for the same charge moving at 0.9c, in the style of the bottom row of the paper's
 // Figure 'stars' (figs/stars.js). Two skies, one above the other, each the sky round the sensor seen from outside, a
 // little from above and turned (the paper's view, mirrored so that the charge, along +x, stands to the right and in

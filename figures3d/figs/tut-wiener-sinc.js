@@ -1,7 +1,7 @@
-// The tutorial, chapter 3.5 (tutorial/noise/wiener-filter.md), its second diagram: a sharp cut in wavenumber rings in
+// The tutorial, section 3.5 (tutorial/noise/wiener-filter.md), its second diagram: a sharp cut in wavenumber rings in
 // space. Left, the weights against q = kz from 0 to 25: the ideal low-pass filter, H = 1 for q < q_c and 0 beyond,
 // a box drawn with a dashed blue edge; and the Wiener filter of SNR = 10^6, H = s^2 / (1 + s^2) with
-// s = pi SNR q e^{-q} (chapter 3.7), in neutral ink, which falls through 1/2 at the box's edge q_c = 17.8. Right,
+// s = pi SNR q e^{-q} (section 3.7), in neutral ink, which falls through 1/2 at the box's edge q_c = 17.8. Right,
 // their point-spread functions on a row, each divided by its peak, against u = k_c a = q_c a / z from -12 to 12: the
 // ideal filter's sin u / u (blue, dashed) and the Wiener filter's (ink). A dimension line at the half maximum spans
 // the full width 2 x 1.8955 = 3.79; the first negative lobe is marked at u = 4.49 with its depth, -0.217 for sin u / u

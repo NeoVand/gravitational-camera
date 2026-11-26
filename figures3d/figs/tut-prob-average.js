@@ -1,4 +1,4 @@
-// The tutorial, chapter 3.1 (tutorial/noise/probability.md), its first diagram: averaging four readings halves the
+// The tutorial, section 3.1 (tutorial/noise/probability.md), its first diagram: averaging four readings halves the
 // spread. Histograms of 10,000 simulated readings of the person's tide by the superconducting gradiometer, on one
 // axis in eotvos: one-second readings x = x0 + n with x0 = 9.34 E and the noise n Gaussian of standard deviation
 // sigma_n = 0.02 E, and four-second averages, each the mean of four fresh one-second readings (40,000 draws in all).
@@ -18,7 +18,7 @@ const name = 'tut-prob-average';
 const check = checker(name);
 
 // ---- the simulation ------------------------------------------------------------------------------------------
-export const X0 = 9.34;                 // E, the person's tide one metre away (chapter 1.4)
+export const X0 = 9.34;                 // E, the person's tide one metre away (section 1.4)
 export const SIGMA = 0.02;              // E, the gradiometer's noise in one second
 export const N = 10000;                 // readings in each histogram
 export const FOUR = 4;                  // one-second readings in each average

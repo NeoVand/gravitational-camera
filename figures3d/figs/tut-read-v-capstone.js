@@ -1,4 +1,4 @@
-// The tutorial, reading chapter R7b (tutorial/geometry/reading-section-v.md), its second diagram: the capstone, one
+// The tutorial, reading section R7b (tutorial/geometry/reading-section-v.md), its second diagram: the capstone, one
 // sealed rotor (two 1 kg masses 1 m apart, sixteen turns a second, anticlockwise seen from above) followed outward in
 // eight small panels, (a) to (h), in two rows of four, each with its one number beneath it.
 //  (a) The rotor seen from above (x right, y up): two stones on a rod at the instant Omega t = -60 degrees (the rod at
@@ -11,13 +11,13 @@
 //      (the pale ring). "E_zz = 1.25 x 10^-15 s^-2".
 //  (c) Two gyroscopes 1 m apart along the line to the rotor, their axles along the spin, seen a little from above, a
 //      tick on each disc; the right one's tick turned a little about its axle. "|B| = 9.8 x 10^-21 s^-2".
-//  (d) Chapter 7.7's crossover plot (tut-crossover) in miniature: r |E_zz| against r on log-log axes, the near law
+//  (d) Section 7.7's crossover plot (tut-crossover) in miniature: r |E_zz| against r on log-log axes, the near law
 //      r^-5 and the wave's law r^-1 in ink at half weight, the all-zone curve in the curvature's colour, an open circle
 //      where the laws cross. "2930 km, in the plane".
 //  (e) The camera 10^4 km away on the axis, looking down: its ring face on (x right, y up), filled magenta, drawn at
 //      Omega (t - r/c) = 60 degrees; its stretch axis, an orange bar, at 0, 30 and 60 degrees (the earlier two paler);
 //      a curved arrow anticlockwise. "A = 1.7 x 10^-47, V/I = +1".
-//  (f) Chapter 5.4's power pattern, (1 + 6 cos^2 iota + cos^4 iota)/8, a polar curve about the dashed spin axis, and a
+//  (f) Section 5.4's power pattern, (1 + 6 cos^2 iota + cos^4 iota)/8, a polar curve about the dashed spin axis, and a
 //      small square of wave front with the flux's arrows through it. "9.1 x 10^-56 W m^-2".
 //  (g) A counter reading 1 beside a clock face. "14.8 years".
 //  (h) The camera at the same distance in the rotor's plane: its ring (freeRing) stretched along its first axis, the
@@ -144,7 +144,7 @@ const size = (T) => Math.sqrt(T.flat().reduce((s, v) => s + v * v, 0));
 
 /** Every number the figure shows, computed, and checked against the chapter. */
 async function numbers() {
-	const n7 = chapter(check);                 // chapter 7.7's numbers: the power, the graviton, A r, the crossing
+	const n7 = chapter(check);                 // section 7.7's numbers: the power, the graviton, A r, the crossing
 	const md = await (await fetch('/tutorial/geometry/reading-section-v.md')).text();
 	const has = (s, what) => check(md.includes(s), `the chapter does not say ${what}: ${s}`);
 

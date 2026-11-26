@@ -1,7 +1,7 @@
-// The tutorial, reading chapter R10b (tutorial/glow/reading-section-ix.md), its second diagram: the capstone's Earth.
+// The tutorial, reading section R10b (tutorial/glow/reading-section-ix.md), its second diagram: the capstone's Earth.
 // The cut-away globe of the paper's Figure fig:earth-glow (figs/earth-glow.js) redrawn flat as a half disc, its five
 // shells to scale (the scene's radii: 6371, 6346, 5701, 3480 and 1221.5 km, scenes/sun-at-midnight.scene.json) in the
-// paper's shell colours (figs/earth-glow.js SHELLS, through chapter 5.6's PAPER_SHELLS and shellFill,
+// paper's shell colours (figs/earth-glow.js SHELLS, through section 5.6's PAPER_SHELLS and shellFill,
 // figs/tut-abel-lib.js, mixed with the page as 5.6 mixes them), the camera at the top of the cut, as in 5.6's
 // tut-abel-chords. Three lines of sight from the camera graze the lower mantle, the core and the inner core, at
 // arcsin(r/R), each named by its angle at the end of a dotted leader that carries it beyond the surface, as the
@@ -55,7 +55,7 @@ const CAPTION = 'Look first at the bar: a lifetime\'s 35,800 gravitons, mostly f
 // ---- the drawing (figure points, y down) ------------------------------------------------------------------------
 const R = 96;                     // the Earth's radius
 const SIZE = 8.5;
-const CAM = { h: 6.2, w: 6.4 };    // the camera: chapter 5.6's triangle, its apex on the surface
+const CAM = { h: 6.2, w: 6.4 };    // the camera: section 5.6's triangle, its apex on the surface
 const MARK = 1.05;                 // the dot where the Sun's line leaves the Earth
 const SUN = { r: 6, dot: 1.15, s: 2.82, air: 1.4 };   // the Sun's sign: its radius, its dot, its distance from the camera
 // (Earth radii), and the dashed line's air before it
@@ -124,7 +124,7 @@ export default async function () {
 	check(((2 * rc) / AU * 180 / Math.PI).toFixed(3) === '0.107' && ((3 * Ndot) / (8 * Math.PI ** 2 * rc ** 2)).toExponential(1) === '4.0e+5', 'the Sun\'s core');
 	says('$= 0.107°$ across'); says('N_{\\rm centre} = \\frac{3\\dot N}{8\\pi^2r_{\\rm c}^2} = 4.0\\times10^5');
 	says('places the top of the lower mantle to 5.2 km and the core\'s boundary to 28.9 km');
-	says('At 33° the colour steps by $0.91/0.172 = 5.3$ to $1.04/0.089 = 11.7$, "five to twelve"');
+	says('At 33° the colour steps by $0.91/0.172 = 5.3$ to $1.04/0.089 = 11.7$: a factor of five to twelve.');
 	check((0.91 / 0.172).toFixed(1) === '5.3' && (1.04 / 0.089).toFixed(1) === '11.7', 'the colour\'s step');
 	// the caption, once drawn, and the sentence that points to it
 	const drawn = flat.includes(`](${name}){#fig:read-ix-capstone}`);

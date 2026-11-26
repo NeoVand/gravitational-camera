@@ -1,4 +1,4 @@
-// The tutorial, chapter 13.8 (tutorial/what-a-field-keeps/holography.md), its fourth diagram: the fields of a ball and
+// The tutorial, section 13.8 (tutorial/what-a-field-keeps/holography.md), its fourth diagram: the fields of a ball and
 // a shell of one mass and radius. One panel: across, r/R from 0 to 2.5 (ticks every 0.5); up, the field g in units of
 // G M / R^2 (ticks 0, 0.5, 1). The ball's field, solid in matter's colour, rises linearly to 1 at r = R and then falls
 // as 1/r^2; the shell's, dashed in matter's colour, is zero inside and jumps to 1 at R; outside the two are one curve,

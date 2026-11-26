@@ -2,7 +2,7 @@
 /**
  * Writes the paper's margin map, src/lib/tutorial/paper-links.generated.ts, from the tutorial's records (the rules
  * are in src/lib/tutorial/paper-map.ts), and lists what the sources made the rules work around. Run it after a
- * chapter, a ledger or parts.yaml changes; the unit tests fail while the file differs from what this writes.
+ * chapter, derivations.yaml or parts.yaml changes; the unit tests fail while the file differs from what this writes.
  *
  * Usage, from app/: node scripts/paper-links.mjs [--check]   (--check: write nothing, exit 1 if the file is stale)
  *
