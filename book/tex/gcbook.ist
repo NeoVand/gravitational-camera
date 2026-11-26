@@ -1,0 +1,7 @@
+% makeindex style for The Gravitational Camera: a letter above each group, page numbers after an en space
+headings_flag 1
+heading_prefix "\\par\\addvspace{2ex}\\noindent{\\normalsize\\scshape "
+heading_suffix "}\\par\\nopagebreak\\vspace{0.5ex}\n"
+delim_0 "\\enspace "
+delim_1 "\\enspace "
+delim_2 "\\enspace "

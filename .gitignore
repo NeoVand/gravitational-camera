@@ -27,3 +27,7 @@ tutorial/figures/staging/
 
 # scratch files that agents leave at the root
 /scratchpad/
+
+# the book PDF: build/ is the cache and intermediate files, out/ the finished book
+book/build/
+book/out/
