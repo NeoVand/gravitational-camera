@@ -26,7 +26,7 @@ Results, each tested in tests/test_pixel.py:
    own axis.
 2. A moving body's sideways velocity, exactly at any speed: the midpoint of its two double stars is v_perp / c
    (`body_velocity`). Coming straight on it cannot be ranged, but its time to contact is 3 E_par / (dE_par/dt),
-   since E grows as r^-3 whatever its sign (Carbon's -3 E / Edot has the sign wrong).
+   since E grows as r^-3 whatever its sign (the form -3 E / Edot has the sign wrong).
 3. Separating plane waves at one pixel: two at one instant (W has rank two; `two_waves`), three at one frequency (a
    pencil of the positive- and negative-frequency parts; `three_waves`), four over time with any waveforms (the
    readings span a hyperplane whose annihilating conic meets the null conic at the four directions; `four_waves`).
@@ -40,8 +40,7 @@ Results, each tested in tests/test_pixel.py:
 6. Cramer-Rao bounds with white noise sigma on each of the ten components: one wave's direction to 1/rho per axis,
    rho = |W| / sigma (light: sqrt 2 / rho); the speedometer to sigma / (sqrt 2 |lambda_b - lambda_c|) per component.
 
-Sources: our own derivations and checks (design/TEN_NUMBERS.md), and Carbon's suite (design/sources), whose results
-used here were confirmed independently in the tests.
+Every result used here is confirmed independently in the tests.
 """
 from __future__ import annotations
 
@@ -365,7 +364,7 @@ def five_sources(S_I, S_V):
 
 def ranging_constant(iota: float, theta: float) -> float:
     """C(i, theta) in s2/s1 = C/(kr)^2 for the oscillating part of W of a rotating mass quadrupole seen at inclination
-    i, at wave phase theta = omega (t - r/c) (Carbon's closed form; checked in the tests against the binary model)."""
+    i, at wave phase theta = omega (t - r/c) (a closed form; checked in the tests against the binary model)."""
     ci2, ct, st = math.cos(iota) ** 2, math.cos(theta), math.sin(theta)
     num = 2 * math.sin(iota) ** 2 * math.sqrt(((1 - 3 * ci2) * ct * ct - 4 * ci2 * st * st) ** 2
                                               + 4 * ci2 * st * st * ct * ct)

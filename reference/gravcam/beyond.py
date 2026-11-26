@@ -14,7 +14,7 @@ Two massive alternatives differ in sign: for the helicity-0 mode of a Fierz-Paul
 E_l / E_b = -2 (1 - n^2); for a massive scalar (h = phi eta) E_l / E_b = +(1 - n^2), with E_b the breathing and E_l
 the longitudinal amplitude.
 
-Tested in tests/test_beyond.py (from Carbon's answer, design/sources; confirmed independently).
+Tested in tests/test_beyond.py.
 """
 from __future__ import annotations
 

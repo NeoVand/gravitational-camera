@@ -53,7 +53,7 @@ view, decide everything.
   polarizations of any metric wave. For a sky of many sources it sees only the spherical harmonics of degree four and
   below: twelve sources at the corners of an icosahedron look to it exactly like a uniform sky.
 - **In astrophysical and cosmological scenes**, the field of a pair of black holes changes from Newton's pull to
-  waves at a sixth of their wavelength; the Galaxy's centre, hidden from light by thirty magnitudes of dust, is the
+  waves at about a third of their wavelength; the Galaxy's centre, hidden from light by thirty magnitudes of dust, is the
   brightest part of the millihertz sky; if the early universe was ever hot enough, the whole sky glows at
   $0.905\,\mathrm{K}$, and the only shadows on it are black holes; the transparent Sun focuses gravitational waves
   only above about $8\,\mathrm{kHz}$.
@@ -105,18 +105,31 @@ to it in the online paper). "A ring of marked particles" is not in
 the paper: a ring of free particles in an exact gravitational plane wave, whose marks turn against a gyroscope by
 half the area that the ring's shape sweeps in the hyperbolic plane.
 
+## Checking the paper
+
+Every number in the paper is produced by the reference implementation, `reference/gravcam`, and is tested there.
+Appendix B of the paper lists, result by result, the module that computes it and the test that checks it. To run
+them all (about a thousand tests, three minutes):
+
+```bash
+cd reference
+python -m pip install -e '.[test]'
+python -m pytest
+```
+
+The figures are drawn from the same code (`paper/figures/`, `figures3d/`), and `make paper` builds the PDF.
+
 ## The repository
 
-| Path                          | What it is                                                                                                                               |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `app/`                        | The website: SvelteKit, TypeScript, WebGPU. The engine is in `app/src/lib/engine/`, the paper's page in `app/src/routes/paper/`.         |
-| `paper/`                      | The paper in REVTeX 4.2 (Physical Review D, two columns). The site renders the same LaTeX with pandoc.                                   |
-| `paper/figures/`              | The figures, as PDF for print and SVG for the site. `make_figures.py` draws the charts and renders from the reference implementation.    |
-| `figures3d/`                  | The figures modelled in 3D: three.js for the geometry, a small renderer of our own that writes vector SVG, labels set in TeX by MathJax. |
-| `reference/`                  | An independent Python implementation of the physics, with its tests. It exports the fixtures the engine is checked against.              |
-| `scenes/`                     | Scene files shared by the engine and the reference; the format is in `scenes/README.md`.                                                 |
-| `design/`                     | How figures are made (`FIGURE_WORKFLOW.md`, `FIGURE_PLAN.md`) and the image-model tools used for style references and illustrations.     |
-| `reports/`, `research_notes/` | The survey of prior work and its notes.                                                                                                  |
+| Path             | What it is                                                                                                                               |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `app/`           | The website: SvelteKit, TypeScript, WebGPU. The engine is in `app/src/lib/engine/`, the paper's page in `app/src/routes/paper/`.         |
+| `paper/`         | The paper in REVTeX 4.2 (Physical Review D, two columns). The site renders the same LaTeX with pandoc.                                   |
+| `paper/figures/` | The figures, as PDF for print and SVG for the site. `make_figures.py` draws the charts and renders from the reference implementation.    |
+| `figures3d/`     | The figures modelled in 3D: three.js for the geometry, a small renderer of our own that writes vector SVG, labels set in TeX by MathJax. |
+| `reference/`     | An independent Python implementation of the physics, with its tests. It exports the fixtures the engine is checked against.              |
+| `scenes/`        | Scene files shared by the engine and the reference; the format is in `scenes/README.md`.                                                 |
+| `design/`        | How figures are made (`FIGURE_WORKFLOW.md`, `FIGURE_PLAN.md`) and the image-model tools used for style references and illustrations.     |
 
 ## Building it
 
@@ -164,7 +177,14 @@ modelled in 3D take their charts from the first step:
 python3 paper/figures/make_figures.py
 python3 paper/figures/charts.py
 cd figures3d && npm install && node render.mjs --final tidal sky-integral quadrupole line-integral earth-glow \
-  ladder two-readings hidden-flow near-field-geometry passing
+  ladder two-readings hidden-flow near-field-geometry passing blur rotor-views petrov-skies tide-no-bulge
+```
+
+**The source as a journal or arXiv compiles it**, one file with its figures beside it, built and checked against the
+PDF above:
+
+```bash
+make submission            # paper/submission/ and paper/submission.tar.gz
 ```
 
 ## Checks
@@ -186,5 +206,7 @@ and deploys them to GitHub Pages.
 Mostafa ‘Neo’ Mohsenvand, with Claude.
 
 The Earth's surface in the paper's figures is NASA's Blue Marble, by way of the three.js examples. The site is set in
-Newsreader, Inter and JetBrains Mono, with icons from Hugeicons. The illustrated objects in one figure were drawn with
-an image model and are marked as illustrations in its caption; every mark that carries a number is drawn by code.
+Newsreader, Inter and JetBrains Mono, with icons from Hugeicons. The pictured objects in eight of the paper's figures (a person, a door, a furnace, a camera, and the stone of the
+blocks and bodies) were drawn with an image model and are marked as illustrations or pictures in their captions;
+every mark that carries a number is drawn by code. The paper's section "Use of AI" says what was done with which
+model.

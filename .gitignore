@@ -40,3 +40,12 @@ book/out/
 paper/submission/
 paper/submission.tar.gz
 paper/submission.pdf
+
+# working notes, kept on the author's machine and not part of the repository
+design/sources/
+design/BRIEF_FOR_CARBON.md
+design/ROADMAP.md
+design/PLAN_SPIN2.md
+design/TEN_NUMBERS.md
+research_notes/
+reports/

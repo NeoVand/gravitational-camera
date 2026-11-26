@@ -259,7 +259,7 @@ def scene_potential(scene: Scene, point, roots=None) -> np.ndarray:
 # Above two equal masses at (+-d/2, 0) buried at depth z, the in-plane shear (E_xx - E_yy) + 2i E_xy vanishes on the
 # perpendicular bisector exactly at y = +-d/2, whatever the depth (for z > sqrt(3) d / 2): on x = 0, E_xy = 0 by
 # symmetry and E_xx - E_yy = 6 G M (y^2 - d^2/4) / [(d/2)^2 + y^2 + z^2]^(5/2). The two zeros are d apart. For unequal
-# masses they drift with depth. (Carbon's note, design/sources; tests/test_silent_flows.py.)
+# masses they drift with depth. (tests/test_silent_flows.py.)
 
 
 def planar_shear(x, y, z: float, masses):

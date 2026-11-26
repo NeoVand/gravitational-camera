@@ -155,7 +155,7 @@ def two_layer(M: float, I: float, R: float, rc: float) -> tuple[float, float]:
 # curl curl V with V vanishing, with its derivatives, on the surface, then A = grad(int div V / |x - x'|) outside, a
 # gradient, and B = 0 there. Every confined flow that turns in meridian planes (convection rolls, poloidal flow) is of
 # this form; only the swirl about the axis (toroidal flow) shows outside, and only through its harmonic part.
-# (Carbon's suite, design/sources; checked independently in tests/test_silent_flows.py.)
+# (Checked in tests/test_silent_flows.py.)
 
 
 def ball_flows(n: int = 64, power: int = 5):
