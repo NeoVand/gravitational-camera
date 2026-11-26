@@ -521,7 +521,7 @@ Raising one time index changes the sign, so $\field{\bar h}^{0i} = 2G(\vect L\ti
   [section 16.4](https://neovand.github.io/general-relativity/chapter-16.html#16-4-bending-light-finding-the-famous-factor-of-two)
   finds the factor of two in the bending of light.
 - M. Maggiore, *Gravitational Waves*, vol. 1 (Oxford, 2008), chapter 1: the linearized theory and its gauges, in the
-  paper's conventions.
+  conventions used here.
 :::
 
 [^pa]: First shown in *The gravitational camera* (Mohsenvand 2026), Sec. I, which says that gravity is simple where it

@@ -31,7 +31,7 @@ export const MARK = (name) => RawB(`%%@@PART:${name}@@`);
 
 const DROPPED = new Set(['plain', 'paper']);
 const SKIP_FOR_INDEX = new Set(['plain', 'paper', 'check', 'problems', 'try', 'deeper', 'solution']);
-const TIERS = { Practice: 'practice', Stretch: 'stretch', 'The camera': 'paper' };
+const TIERS = { Practice: 'practice', Stretch: 'stretch', 'The camera': 'camera' };
 
 /** A tutorial number (1.4, R7b, 0.6) at the start of a word. */
 const numberIn = (s, id) => {
@@ -128,7 +128,9 @@ export function convertSection(ctx) {
 		if (st.mode === 'text') st.margin.push(inlines);
 		else if (st.mode === 'hoist') st.pending.push(inlines);
 	};
+	// the book names no paper: no margin pointers into it
 	const paperItem = (label) => {
+		if (!ctx.paperMargin) return;
 		const place = paperPlace(label, paper.number(label), paper);
 		if (st.mode === 'text') st.paper.push(place);
 		else if (st.mode === 'hoist') st.pending.push([Raw(`\\gcpaper{${place}}`)]);
@@ -512,7 +514,7 @@ export function convertSection(ctx) {
 		st.paper = [];
 		const content = inlines(list);
 		const places = [...new Set(st.paper)];
-		if (places.length) st.pending.push([Raw(`\\gcpaper{${places.join('; ')}}`)]);
+		if (places.length && ctx.paperMargin) st.pending.push([Raw(`\\gcpaper{${places.join('; ')}}`)]);
 		st.pending.push(...st.margin);
 		[st.margin, st.paper] = saved;
 		return { t: kind, c: [...flushMargin(), ...content] };
@@ -593,8 +595,8 @@ export function convertSection(ctx) {
 		// the book's own caption (book/paper-captions.yaml) if it has one, else the paper's, stripped of its references
 		const own = ctx.paperCaption(figLabel);
 		const caption = own
-			? Plain([Raw('\\caption{'), ...withMode('hoist', () => inlines(own)), Raw(`\\gcpapercredit{${fig.number}}}\\label{${label}}`)])
-			: RawB(`\\caption{${fig.caption}\\gcpapercredit{${fig.number}}}\\label{${label}}`);
+			? Plain([Raw('\\caption{'), ...withMode('hoist', () => inlines(own)), Raw(`}\\label{${label}}`)])
+			: RawB(`\\caption{${fig.caption}}\\label{${label}}`);
 		const out = opener
 			? [RawB(`\\begin{gcopener}\n${graphics}`), caption, RawB('\\end{gcopener}')]
 			: [RawB(`\\begin{figure}[tbp]${fig.wide ? '\n\\begin{gcwide}' : ''}\n\\centering\n${graphics}`), caption, RawB(`${fig.wide ? '\\end{gcwide}\n' : ''}\\end{figure}`)];

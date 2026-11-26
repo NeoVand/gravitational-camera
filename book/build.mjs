@@ -21,6 +21,7 @@ import { BOOK, BUILD, OUT, PAPER, ROOT, TUTORIAL, ensureDir, hash, siteInput, po
 import { loadPaper } from './lib/paper.mjs';
 import { convertFigures } from './lib/figures.mjs';
 import { anchorsOf, convertSection, paperFiguresOf } from './lib/convert.mjs';
+import { unpaper } from './lib/unpaper.mjs';
 
 const t0 = performance.now();
 const args = process.argv.slice(2);
@@ -197,6 +198,23 @@ for (const id of sections) {
 }
 // a paper figure is printed once too, at its first place in the book
 const paperFigureHome = (fig) => paperFigs.get(fig)?.find((e) => included.has(e.sid))?.label;
+// the book names no paper: every sentence that does is taken out (book/lib/unpaper.mjs), and those taken from the
+// text proper are listed in book/build/unpaper.txt
+{
+	const removed = [];
+	let notes = 0;
+	for (const id of sections) {
+		trees.set(
+			id,
+			unpaper(trees.get(id), {
+				figureShown: (label) => Boolean(paperFigureHome(label)),
+				report: (kind, t) => (kind === 'note' ? notes++ : removed.push(`${id}\t${kind}\t${t}`))
+			})
+		);
+	}
+	writeFileSync(path.join(BUILD, 'unpaper.txt'), removed.join('\n') + '\n');
+	log(`no paper: ${notes} notes and ${removed.length} sentences, headings or readings removed (book/build/unpaper.txt)`);
+}
 // the size a drawing is printed at, where the default (85% of its own) is too large for what it shows
 const figureScales = existsSync(path.join(BOOK, 'figure-scales.yaml')) ? (readYaml(path.join(BOOK, 'figure-scales.yaml')) ?? {}) : {};
 const converted = new Map();

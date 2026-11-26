@@ -104,7 +104,8 @@ export function loadPaper(warn) {
 		if (!labels.length) continue;
 		// every labelled line keeps the paper's number; the book's counter is not touched
 		const body = m[2]
-			.replace(/\\label\{([^}]+)\}/g, (_, l) => `\\tag*{\\papertag{${number(l)}}}`)
+			// the book names no paper: its equation, where the book shows one, carries no number
+			.replace(/\\label\{([^}]+)\}/g, '')
 			.replace(/\\eqref\{([^}]+)\}/g, (_, l) => `(${number(l)})`)
 			.trim();
 		for (const l of labels) equations.set(l, { env: m[1], body, number: number(l) });
