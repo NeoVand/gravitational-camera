@@ -649,9 +649,9 @@ We want to know whether a body glows through its volume, as we have assumed, or 
 
 **The surface.** A body without friction cannot absorb inside it (the first section above), but at its surface
 the stiffness jumps, the momenta need not match, and a wave launches sound [@Dyson1969]. Dehnen, Romero and Schäfer
-worked out the glow this gives a sphere colder than its Debye temperature [@DehnenRomeroSchaefer1984]. For a sphere of
-radius $R$ and density $\sym{density}{\matter\rho}$ it grows as $R^2T^2$, and its coefficient follows from the pull of
-the wave at the surface and Kirchhoff's law.
+found that for a sphere colder than its Debye temperature this glow grows as $R^2T^2$, with $R$ its radius
+[@DehnenRomeroSchaefer1984]. Its coefficient follows from the pull of the wave at the surface and Kirchhoff's law, and we
+derive it here for a sphere of density $\sym{density}{\matter\rho}$.[^drs]
 
 **The pull at the surface.** We derive the surface's absorption ourselves, assuming that **the body has no friction
 inside**, that **it is many sound wavelengths across**, and that **it is colder than its Debye temperature**, so that its
@@ -1000,3 +1000,7 @@ second bound gives 1.70 TPa at 5500 K.
     rounder sound speeds give about 175 nm. *The gravitational camera* (Mohsenvand 2026) first gave this crossing, as
     30 nm, from the coefficient corrected above.
     Every other material of the table crosses below 1 nm.
+
+[^drs]: Their coefficient, $\tfrac{\pi^2}{24}(1 + 3c_T/2c_L)$ in place of $\tfrac{16\pi}{15}(1 + 2c_T/3c_L)$, is
+    smaller by a factor of 6.1 for steel: their power in each quadrupole mode is four times too small, and their
+    thermal sum turns $2c_T/3c_L$ into $3c_T/2c_L$.

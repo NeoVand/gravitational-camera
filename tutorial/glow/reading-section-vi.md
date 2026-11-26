@@ -272,8 +272,9 @@ line at 15.6 THz, where a narrow line reaches its bound, and find it with the sl
 
 ## Ordinary bodies glow through their volume, not their surface
 
-A body without friction absorbs only at its surface, where a wave launches sound [@Dyson1969], and for a sphere below its
-Debye temperature [@DehnenRomeroSchaefer1984] the glow that follows is
+A body without friction absorbs only at its surface, where a wave launches sound [@Dyson1969]. For a sphere below its
+Debye temperature the glow grows as $R^2T^2$ [@DehnenRomeroSchaefer1984], and with the coefficient derived in section
+[10.3](/tutorial/glow/why-matter-barely-glows/) it is
 
 $$P_S = 4\pi R^2\,\frac{16\pi}{15}\Bigl(1 + \frac{2c_T}{3c_L}\Bigr)
 \frac{G\matter\rho\,c_T^3\,(\kB T)^2}{\hbar c^5} ,$$
