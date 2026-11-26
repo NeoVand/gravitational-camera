@@ -1,25 +1,28 @@
 #!/bin/bash
-# Builds the book's cover: book/cover/cover.pdf (209.2 x 260 mm: 8 x 10 in trim and 3 mm bleed), cover.svg (the same
-# page, its type as outlines), cover.png (the trimmed page, 1600 px wide, for preview).
-#   book/cover/build.sh          the picture is redrawn only if build/art.png is missing
-#   book/cover/build.sh --art    redraw it (make_cover.py, about 20 s)
+# Builds the book's cover: book/cover/cover.pdf (209.2 x 260 mm: 8 x 10 in trim and 3 mm bleed) and cover.jpg (the
+# trimmed page, 1600 px wide, for preview). The picture is painting.jpg (drawn by an image model, GPT Image, at 2048 x 2560, from
+# painting-prompt.txt; the second of two draws); it is cut to the page's proportions here and the type
+# is set over it by cover.tex.
 set -euo pipefail
 export PATH="/Library/TeX/texbin:/opt/homebrew/bin:$PATH"
 here="$(cd "$(dirname "$0")" && pwd)"
 root="$(cd "$here/../.." && pwd)"
 py="$root/.venv/bin/python"
 cd "$here"
-if [[ "${1:-}" == "--art" || ! -f build/art.png ]]; then "$py" make_cover.py; fi
+mkdir -p build
 "$py" - <<'PY'
 from PIL import Image
-Image.open("build/art.png").convert("RGB").save("build/art.jpg", quality=94, subsampling=0, dpi=(304.8, 304.8))
+im = Image.open("painting.jpg").convert("RGB")
+# the page with its bleed is 209.2 x 260 mm: keep the full width, trim the height evenly
+h = round(im.width * 260 / 209.2)
+top = (im.height - h) // 2
+im.crop((0, top, im.width, top + h)).save("build/art.jpg", quality=95, subsampling=0, dpi=(im.width / (209.2 / 25.4),) * 2)
 PY
 # twice: the picture is placed against the page's corner, which tikz learns from the previous run
 for run in 1 2; do
   lualatex -interaction=nonstopmode -halt-on-error -output-directory=build cover.tex > build/lualatex.out || { tail -30 build/lualatex.out; exit 1; }
 done
 command cp -f build/cover.pdf cover.pdf
-pdftocairo -svg cover.pdf cover.svg
 # the preview: the page trimmed of its bleed, 1600 px wide
 pdftoppm -r 430.053 -png -singlefile cover.pdf build/full
 "$py" - <<'PY'
@@ -28,8 +31,8 @@ im = Image.open("build/full.png")
 b = round(3 / 25.4 * 430.053)
 t = im.crop((b, b, im.width - b, im.height - b))
 t = t.resize((1600, round(1600 * t.height / t.width)), Image.LANCZOS)
-t.save("cover.png")
-print(f"cover.png {t.width} x {t.height}")
+t.save("cover.jpg", quality=88)
+print(f"cover.jpg {t.width} x {t.height}")
 PY
 pdfinfo cover.pdf | command grep -E "Page size|Pages"
-/bin/ls -la cover.pdf cover.svg cover.png
+/bin/ls -la cover.pdf cover.jpg
