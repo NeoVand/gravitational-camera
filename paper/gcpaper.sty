@@ -26,3 +26,10 @@
 \renewcommand{\dbltopfraction}{0.85}
 \renewcommand{\dblfloatpagefraction}{0.8}
 \setcounter{dbltopnumber}{2}
+%
+% The summaries in plain words that open the sections are quote environments, which only the website shows. Here
+% each is read as one argument and dropped, so that nothing of it reaches the page: the heading before it still
+% keeps its first two lines of text with it (the comment package, which read the summary line by line, let a
+% heading stand over a single line at the foot of a column).
+\RequirePackage{environ}
+\RenewEnviron{quote}{}

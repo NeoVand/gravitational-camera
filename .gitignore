@@ -35,3 +35,8 @@ tutorial/figures/book/*.pdf
 # the book PDF: build/ is the cache and intermediate files, out/ the finished book
 book/build/
 book/out/
+
+# the paper as it is sent to a journal or arXiv (paper/make_submission.py)
+paper/submission/
+paper/submission.tar.gz
+paper/submission.pdf

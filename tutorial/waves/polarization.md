@@ -4,8 +4,8 @@ title: 'Polarization and the Stokes parameters'
 question: 'A rotor sealed in a box is a single point in its own waves. How can one unresolved wave carry the sense in which its source turns, and the tilt of its axis?'
 part: '5'
 requires: ['1.4', '1.5', '1.5b', 'R1', '2.3', '5.1', '5.2']
-paper: [sec:waves, eq:quadrupole, eq:rotor-amplitudes, eq:circular, eq:dumbbell, eq:wave, fig:quadrupole, fig:polarization, fig:which-way, sec:thermal, sec:one-pixel]
-figures: [fig:quadrupole, fig:polarization, fig:which-way]
+paper: [sec:waves, eq:quadrupole, eq:rotor-amplitudes, eq:circular, eq:dumbbell, eq:wave, fig:quadrupole, fig:polarization, fig:rotor-views, fig:which-way, sec:thermal, sec:one-pixel]
+figures: [fig:quadrupole, fig:polarization, fig:which-way, fig:rotor-views]
 live: [rotor-polarization]
 depth: A
 ---

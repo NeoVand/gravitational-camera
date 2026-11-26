@@ -126,10 +126,13 @@ figures: ## Redraw the paper's charts and renders from the reference implementat
 	$(PY) paper/figures/charts.py
 	@for f in paper/figures/fig_*.py; do echo "$(PY) $$f"; $(PY) $$f || exit 1; done
 
+submission: paper ## The paper's source as one file with its figures, for a journal or arXiv (paper/submission/)
+	$(PY) paper/make_submission.py
+
 figures-3d: ## Render the figures modelled in 3D (after make figures and make setup-3d)
 	cd figures3d && node render.mjs --final tidal sky-integral quadrupole line-integral earth-glow \
 		ladder two-readings hidden-flow near-field-geometry passing \
-		blur petrov-skies tide-no-bulge
+		blur rotor-views petrov-skies tide-no-bulge
 
 # --- cleaning -----------------------------------------------------------------------------------------------------
 

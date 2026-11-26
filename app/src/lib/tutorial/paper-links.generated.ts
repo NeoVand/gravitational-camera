@@ -420,6 +420,7 @@ export const paperLinks: PaperLink[] = [
 		label: 'Background',
 		section: 'four-numbers-describe-a-polarization-and-two-of-them-do-not-depend-on-the-axes'
 	},
+	{ anchor: 'fig:rotor-views', chapter: '5.4', label: 'Background' },
 	{
 		anchor: 'par:what-does-not-radiate',
 		chapter: 'R7b',
