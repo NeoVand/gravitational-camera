@@ -208,6 +208,8 @@ The code (the reference implementation, the site, and the scripts that draw the 
 [paper/LICENSE.md](paper/LICENSE.md). The tutorial and the book (`tutorial/`, `book/`) are not yet licensed: all
 rights are reserved. Material from others keeps its own terms.
 
+Releases are archived on Zenodo. The archived copy holds everything here but the text of the tutorial and of the book.
+
 ## Author and credits
 
 Mostafa ‘Neo’ Mohsenvand, with Claude.

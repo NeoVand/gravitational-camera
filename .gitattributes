@@ -1,0 +1,4 @@
+# Left out of release archives (the zip that GitHub makes of a tag, which Zenodo stores): the text of the tutorial and
+# of the book, which the paper does not cite and which are not yet licensed. The repository itself is unchanged.
+/tutorial/ export-ignore
+/book/ export-ignore
