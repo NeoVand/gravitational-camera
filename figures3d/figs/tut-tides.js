@@ -12,6 +12,8 @@
 // a picture from an image model (design/prompts/tut-person-sprite.json, cut out by
 // design/tut_person_sprite.py). The dimension runs below the ring from the centre of mass, marked on the body
 // with the quartered circle, to the ring's centre, marked +; marks on the stone are drawn in a fixed dark ink.
+// Layout: one row, the person (90 pt to the metre, so 157.5 pt tall), the ring, and the table on the ring's long
+// axis to its right, centred in height on the line to the person; the figure is as wide as these need.
 import { Panel, v3, figure, sprite, tex, ellipsePoints, INK, DIM, FAINT, ACCENT, ACCENT2, PAGE } from '../lib.js';
 
 // ---- the physics --------------------------------------------------------------------------------------
@@ -26,23 +28,23 @@ export const COM = 0.56;            // the centre of mass's height above the sol
 export const accel = ([x, y]) => [-(TIDE[0][0] * x + TIDE[0][1] * y), -(TIDE[1][0] * x + TIDE[1][1] * y)];
 
 // ---- the drawing --------------------------------------------------------------------------------------
-const W = 360;
 const M = 1.5;                      // the ink's margin on every side
-const K = 172;                      // points per metre: the person and the distance
-const R0 = 56;                      // the undisturbed ring's radius, points (schematic)
-const BEAD = 3.2;                   // a bead's radius
-const REACH = 13;                   // an arrow's length per unit of -E xi / (GM/r^3), points
+const K = 90;                       // points per metre: the person and the distance
+const R0 = 36;                      // the undisturbed ring's radius, points (schematic)
+const BEAD = 2.7;                   // a bead's radius
+const STEEL = '#868b92';            // the beads: the steel of tidal.js and the other bead figures, a fixed grey
+const REACH = 7.5;                  // an arrow's length per unit of -E xi / (GM/r^3), points
 const HEAD = 3.2;                   // an arrow's head, or two fifths of the arrow if that is less
-const TAIL = 1.35;                  // each arrow starts this far clear of its bead
+const TAIL = 1.2;                   // each arrow starts this far clear of its bead
 const HAIR = 0.4;                   // the dimension's line, ticks and marks
-const DIM_GAP = 7;                  // the dimension line runs this far below the dashed circle
+const DIM_GAP = 6;                  // the dimension line runs this far below the dashed circle
 const TICK = 2.5;                   // half the length of a tick
 const PLUS = 2.2;                   // half the arms of the + at the ring's centre
 const COM_R = 2.5;                  // the radius of the centre of mass's mark
 const DOT = 0.55, DOT_STEP = 1.5;   // the extensions' dots: their size and spacing
 const HAIRSPACE = 0.8;              // the least air between a dot and anything else
 const STONE_INK = '#3b3024';        // marks on the stone: fixed, not a palette colour, so the site does not swap it
-const TABLE = 'low';                // where the table stands: 'low' (right, level with the soles) or 'top'
+const TABLE_GAP = 14;               // between the right-hand orange arrow's tip and the table's ink
 const SIZE = 8.5;                   // labels
 const LABEL_GAP = 2.4;              // between the dimension line and the bottom of its label's ink, above it
 const UNDISTURBED = [2.4, 2];       // the dashes of the undisturbed circle
@@ -120,12 +122,21 @@ export default async function () {
 	// ---- the ring, one metre from the centre of mass, level with it
 	const cx = comX + DISTANCE * K, cy = axisY;
 	check(near(cx - comX, K), 'the distance is not one metre');
-	const page = new Panel({ x: 0, y: 0, w: W, h: H, scale: 1 });     // figure coordinates
-	const fp = (X, Y) => v3(X - W / 2, H / 2 - Y, 0);
-	const draw = (svg, layer) => page.items.push({ kind: 'raw', layer, depth: 0, svg });
 	// the ring is moved by e times -E xi: semi-axes 1 + 2e along the line, 1 - e across it
 	const [ax, ay] = [1 + E * accel([1, 0])[0], 1 + E * accel([0, 1])[1]];
 	check(near(ax, 1 + 2 * E) && near(ay, 1 - E), 'the ellipse is not 1 + 2e by 1 - e');
+
+	// ---- the table, right of the ring on its long axis: its ink TABLE_GAP clear of the far orange arrow's tip and
+	// centred in height on the line to the person; the figure ends at its right
+	const z = (v) => (v === 0 ? `\\color{${FAINT}}{0}` : `\\color{${v < 0 ? ACCENT : ACCENT2}}{${v}}`);
+	const tableSrc = `GM/r^3\\,\\begin{pmatrix}${TIDE.map((r) => r.map(z).join('&')).join('\\\\')}\\end{pmatrix}`;
+	const farTip = cx + ax * R0 + BEAD + TAIL + Math.hypot(...accel([1, 0])) * REACH;
+	const table = await placed(tableSrc, farTip + TABLE_GAP, cy, 0, 0.5);
+	const W = +(table.box.r + M).toFixed(2);
+
+	const page = new Panel({ x: 0, y: 0, w: W, h: H, scale: 1 });     // figure coordinates
+	const fp = (X, Y) => v3(X - W / 2, H / 2 - Y, 0);
+	const draw = (svg, layer) => page.items.push({ kind: 'raw', layer, depth: 0, svg });
 	// x on the page points away from the person, y up; the figure's y runs down
 	const at = (x, y) => [cx + R0 * x, cy - R0 * y];
 	page.curve(ellipsePoints(0, 0, 0, ax, ay).map((p) => fp(...at(p.x, p.y))), { color: INK, width: 0.65, layer: 2 });
@@ -137,7 +148,7 @@ export default async function () {
 		check(near((bead[0] / ax) ** 2 + (bead[1] / ay) ** 2, 1), `bead ${k} is off the ellipse`);
 		const a = accel(xi), moved = [xi[0] + E * a[0], xi[1] + E * a[1]];
 		check(near(moved[0], bead[0]) && near(moved[1], bead[1]), `bead ${k} is not the image of its place on the circle`);
-		page.sphere(fp(...at(...bead)), BEAD, '#868b92', { spec: 0.6, shininess: 36, layer: 3 });
+		page.sphere(fp(...at(...bead)), BEAD, STEEL, { spec: 0.6, shininess: 36, layer: 3 });
 		if (k % 3) continue;
 		// an arrow at each bead on the axes: -E xi, from TAIL clear of the bead
 		const L = Math.hypot(...a) * REACH, u = [a[0] / Math.hypot(...a), a[1] / Math.hypot(...a)];
@@ -229,12 +240,6 @@ export default async function () {
 	const one = await placed('\\text{1 m}', (comX + cx) / 2, dimY - HAIR / 2 - LABEL_GAP, 0.5, 1);
 	check(ringDots.length > 0 && comDots.length > 0, 'an extension has no dots');
 
-	// ---- the table, at the right margin: TABLE 'low', its ink's bottom level with the soles; 'top', its top level
-	// with the head's
-	const z = (v) => (v === 0 ? `\\color{${FAINT}}{0}` : `\\color{${v < 0 ? ACCENT : ACCENT2}}{${v}}`);
-	const body = TIDE.map((r) => r.map(z).join('&')).join('\\\\');
-	const table = await placed(`GM/r^3\\,\\begin{pmatrix}${body}\\end{pmatrix}`, W - M, TABLE === 'low' ? H - M : M, 1, TABLE === 'low' ? 1 : 0);
-
 	// ---- nothing overlaps; the ink's margins
 	const nearTip = Math.min(...orange.map((a) => a.to[0]));
 	const ringBox = {
@@ -257,7 +262,9 @@ export default async function () {
 	check(clearOfRing(one.box, 3), 'the label touches the ring');
 	check(one.box.l > across(one.box.b)[1] + 3 && one.box.l > across(one.box.t)[1] + 3, 'the label touches the body');
 	check(ringBox.r <= W - M, 'the ring reaches past the margin');
-	check(near(table.box.r, W - M, 0.02) && near(TABLE === 'low' ? table.box.b : table.box.t, TABLE === 'low' ? H - M : M, 0.02), 'the table is not at the margins');
+	check(near(table.box.r, W - M, 0.02) && near((table.box.t + table.box.b) / 2, cy, 0.02), 'the table is not at the right margin, on the axis');
+	check(near(table.box.l - Math.max(...orange.map((a) => a.to[0])), TABLE_GAP, 1e-6), 'the table is not TABLE_GAP clear of the arrow');
+	check(table.box.t >= M && table.box.b <= H - M, 'the table reaches past the margins');
 	window.tutTides = ({ H: +H.toFixed(2), comX: +comX.toFixed(2), cx: +cx.toFixed(2), cy: +cy.toFixed(2), dimY: +dimY.toFixed(2), ring: ringBox, table: table.box, label: one.box,
 		arrows: arrows.map((a) => ({ k: a.k, L: +len(a).toFixed(3), head: a.head })) });
 

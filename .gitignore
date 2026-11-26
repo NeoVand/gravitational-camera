@@ -24,6 +24,10 @@ app/static/gravitational-camera.pdf
 
 # drafts of the tutorial's figures (figures3d/render.mjs --tutorial)
 tutorial/figures/staging/
+tutorial/figures/book/staging/
+# render.mjs writes a PDF beside each drawing; the site and the book read the SVG
+tutorial/figures/*.pdf
+tutorial/figures/book/*.pdf
 
 # scratch files that agents leave at the root
 /scratchpad/

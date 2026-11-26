@@ -14,7 +14,10 @@
 // separated up the page, along v, does not turn at all (asserted in tut-gravitomag-lib.js); a pair along the line to
 // the mass turns relative to one another about the axis out of the page, so each curved arrow turns in the page, about
 // that axis, not about the line joining them (the right one anticlockwise, asserted from the sign of B_zx). The
-// exaggeration is stated under the panels, as in tut-einstein-three-balls.
+// exaggeration is stated under the panels, as in tut-einstein-three-balls. The printed book (figureLayout 'book') sets
+// the two panels side by side, (a) left and (b) right, with the same drawing in each, and the note under both on one
+// line, a hairline in the rule's colour between them so that (a)'s stone is not read as (b)'s; the site keeps them
+// stacked.
 // Exact: the outline the image of the circle under 1 - EPS E / |E| with E = (G M / r^3) diag(-2, 1) along and across
 // the line, EPS = 0.3 (section 7.3's), the same in both panels because E does not depend on the velocity; the senses of
 // the curved arrows, from B xi / c; B = 0 in (b), and the ratio sqrt 3 v_perp / c (asserted in the library for every
@@ -22,7 +25,7 @@
 // Pictorial: the stone, a picture from an image model (sprites/hair/ball.png, as tut-einstein-three-balls), clipped to
 // its exact circle.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, VEC, VEC_HEAD, HAIR, TICK } from './tut-pot-lib.js';
-import { INK, DIM, FAINT, sprite } from '../lib.js';
+import { INK, DIM, FAINT, RULE, sprite } from '../lib.js';
 import { picture, circle as circlePath } from '../stone.js';
 import { STONE_INK } from './tut-orb-lib.js';
 import { RING, UNDISTURBED, UNDISTURBED_W } from './tut-five-lib.js';
@@ -51,6 +54,8 @@ const TURN_W = 0.7, TURN_HEAD = 3.6;
 const DIM_Y = 4.2;                         // the dimension line under the axles' feet
 const ROW = 7;                             // a title to its drawing
 const GAP = 16;                            // between the panels
+const STEP = 236;                          // the book: panel (b)'s left edge right of panel (a)'s
+const BOOK = globalThis.figureLayout === 'book';
 const ORANGE = '#f3dfcb', BLUE = '#dce7f3';    // the accents' faint tints: the stretch and the squeeze (7.3's)
 
 export default async function () {
@@ -72,11 +77,13 @@ export default async function () {
 		{ key: 'across', title: '\\text{(a) moving across}', v: [0, 1, 0], vperp: 'v' },
 		{ key: 'toward', title: '\\text{(b) moving toward the pixel}', v: [-1, 0, 0], vperp: '0' }
 	];
-	const xl = ORIGIN - 110;
-	let y = ORIGIN - 200;
+	const x0 = ORIGIN - (BOOK ? 220 : 110), y0 = ORIGIN - 200;
+	let y = y0, bottom = 0, right = 0;
 	const drawn = [];
 	for (const [k, p] of panels.entries()) {
 		const what = `panel ${p.key}`;
+		const xl = x0 + (BOOK ? k * STEP : 0);
+		if (BOOK) y = y0;
 		const title = await placed(p.title, xl, y, 0, 0, INK);
 		L.push(title);
 		const cx = xl + R * sx + 2, cy = title.box.b + ROW + GY + AXLE + 7 + R;
@@ -167,12 +174,19 @@ export default async function () {
 		const under = await placed(`|\\mathcal B|/|\\mathcal E| = \\sqrt3\\,v_\\perp/c\\text{, with }v_\\perp = ${p.vperp}`, xl, Math.max(cy + R + UNDISTURBED_W / 2, my + RS) + 8, 0, 0, INK);
 		L.push(under);
 		y = under.box.b + GAP;
+		bottom = Math.max(bottom, under.box.b);
+		right = Math.max(right, mx + RS);
+	}
+	if (BOOK) {
+		const xs = (right - STEP + x0 + STEP) / 2;     // halfway between (a)'s stone and (b)'s left edge
+		S.path([[xs, y0], [xs, bottom]], { color: RULE, width: HAIR, cap: 'butt', layer: 0.5, what: 'the panels\' divider' });
 	}
 	check(drawn.length === 2 && drawn[0].sense === -drawn[1].sense, 'the curved arrows do not turn in opposite senses');
-	L.push(await stack([`\\text{outlines: the largest change drawn as ${Math.round(EPS * 100)} per cent}`, '\\text{of the radius; the turning not to scale}'], xl, y - GAP + 8, 0, DIM));
+	const note = [`\\text{outlines: the largest change drawn as ${Math.round(EPS * 100)} per cent}`, '\\text{of the radius; the turning not to scale}'];
+	L.push(await stack(BOOK ? [`${note[0].slice(0, -1)} of the radius; the turning not to scale}`] : note, x0, bottom + 8, 0, DIM));
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, drawn };
-	return finish(S, L, [190, 300]);
+	return finish(S, L, BOOK ? [400, 450] : [190, 300]);
 }
 

@@ -13,7 +13,9 @@
 // lengths in proportion to the two stretches. Schematic: the rings' size (0.09 m, to sit outside the dashed circle),
 // eps (exaggerated), and the rod's thickness. Pictorial: the stone, a picture from an image model
 // (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, as in figs/hair.js), clipped here to the exact
-// circle and to the rod's exact outline.
+// circle and to the rod's exact outline. The printed book (figureLayout 'book') sets the two side by side, the ball
+// left and the rod right, at the same scale, the two centres and the two rings level, the ball's name, dimension and
+// bar about it as on the site; the site keeps them stacked.
 import { INK, DIM, ACCENT, sprite } from '../lib.js';
 import { MARGIN, circle, outline, STEEL, SPRITES } from '../stone.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, HAIR, TICK, LINE, n2 } from './tut-pot-lib.js';
@@ -60,6 +62,8 @@ const BAR = 3.6;                    // a bar's height
 const PER = 11.2;                   // a bar's length per 10^-9 s^-2
 const RING_W = 0.5;                 // the rings' stroke
 const GAP_ROWS = 30;                // from the ball's bar to the top of the dashed circle
+const BOOK = globalThis.figureLayout === 'book';
+const GAP_SIDE = 16;                // the book: from the ball's bar's value to the dashed circle's left
 
 
 /** The stone, embedded once: an <image> of unit size in the figure's defs, and each body a <use> of it, scaled and
@@ -87,7 +91,7 @@ export default async function () {
 	check((-rodTide(2)[0] / ((2 * G * MASS) / 8)).toFixed(2) === '0.85' && (-rodTide(4)[0] / ((2 * G * MASS) / 64)).toFixed(3) === '0.957', 'the exact fractions at 2 m and 4 m are not 0.85 and 0.957');
 
 	const S = new Sheet(name);
-	const xc = ORIGIN - 50;                                      // the bodies' centres
+	const xA = ORIGIN - (BOOK ? 160 : 50);                       // the ball's centre, and on the site the rod's
 	const face = await sprite(SPRITES + 'ball-face.png');
 	const STONE = 'tut-mul-rod-stone';
 	S.raw(stoneDefs(STONE, face), -5);
@@ -108,16 +112,18 @@ export default async function () {
 		}
 		return { l: cx - R * ax - BEAD, r: cx + R * ax + BEAD, t: cy - R * az - BEAD, b: cy + R * az + BEAD };
 	};
-	/** An orange bar from x0, its top at y, for the stretch s (s^-2), and its value at its right. */
-	const bar = async (y, s, what) => {
+	/** An orange bar from xc, its top at y, for the stretch s (s^-2), and its value at its right. */
+	const bar = async (xc, y, s, what) => {
 		const w = (s / UNIT) * PER;
 		S.fill(`M${n2(xc)},${n2(y)}h${n2(w)}v${BAR}h${n2(-w)}Z`, { l: xc, r: xc + w, t: y, b: y + BAR }, { color: ACCENT, layer: 2, what });
-		L.push(await placed(`${(s / UNIT).toFixed(1)}\\times10^{-9}\\,\\mathrm{s^{-2}}`, xc + w + 4, y + BAR / 2, 0, 0.5, INK));
-		return w;
+		const value = await placed(`${(s / UNIT).toFixed(1)}\\times10^{-9}\\,\\mathrm{s^{-2}}`, xc + w + 4, y + BAR / 2, 0, 0.5, INK);
+		L.push(value);
+		return { w, r: value.box.r };
 	};
 
-	// ---- above: the ball, its ring, the distance, its bar
-	const yA = ORIGIN - 150, rb = RADIUS * K;
+	// ---- above (the book: at the left): the ball, its ring, the distance, its bar
+	const yA = ORIGIN - (BOOK ? 50 : 150), rb = RADIUS * K;
+	let xc = xA;
 	S.raw(stoneUse(STONE, 'tut-mul-rod-ball', face, xc, yA, rb, circle(xc, yA, rb)) + outline(xc, yA, rb, 0.35, STONE_INK), 0);
 	S.mark([[xc, yA]], rb, 'the ball');
 	const ringA = ring(xc + DISTANCE * K, yA, -ball / UNIT, ball / 2 / UNIT, 'the ball\'s ring');
@@ -130,10 +136,14 @@ export default async function () {
 	for (const [x, c, w] of [[xc, STONE_INK, 'the ball\'s centre'], [xc + DISTANCE * K, DIM, 'the ring\'s centre']])
 		S.path([[x - 2, yA], [x + 2, yA], [x, yA], [x, yA - 2], [x, yA + 2]], { color: c, width: HAIR, layer: 4, cap: 'butt', what: w });
 	L.push(await placed('1\\,\\mathrm m', xc + (DISTANCE * K) / 2, yd - 2.6, 0.5, 1, DIM));
-	const wA = await bar(yd + 10, ball, 'the ball\'s bar');
+	const { w: wA, r: rA } = await bar(xc, yd + 10, ball, 'the ball\'s bar');
+	// its name at the top left of the row (the book: above the ball, over its left edge)
+	const nameA = BOOK ? await placed('\\text{a ball of water}', xc - rb, yA - rb - 7, 0, 1, INK) : await placed('\\text{a ball of water}', xc - 0.85 * K, yA - rb, 0, 0, INK);
 
-	// ---- below: the rod, its smallest sphere, its ring, its bar
-	const yB = yd + 10 + BAR + GAP_ROWS + 0.85 * K, h = (LENGTH / 2) * K;
+	// ---- below (the book: at the right, its centre level with the ball's): the rod, its smallest sphere, its ring,
+	// its bar
+	if (BOOK) xc = Math.max(rA, xc + DISTANCE * K + RING * K + 10) + GAP_SIDE + 0.85 * K;
+	const yB = BOOK ? yA : yd + 10 + BAR + GAP_ROWS + 0.85 * K, h = (LENGTH / 2) * K;
 	const rodPath = `M${n2(xc - ROD / 2)},${n2(yB - h)}H${n2(xc + ROD / 2)}V${n2(yB + h)}H${n2(xc - ROD / 2)}Z`;
 	S.raw(stoneUse(STONE, 'tut-mul-rod-rod', face, xc, yB, 1.08 * h, rodPath) + `<path d="${rodPath}" fill="none" stroke="${STONE_INK}" stroke-width="0.35"/>`, 1);
 	S.boxes.push({ box: { l: xc - ROD / 2, r: xc + ROD / 2, t: yB - h, b: yB + h }, what: 'the rod' });
@@ -161,13 +171,13 @@ export default async function () {
 	const a = (215 * Math.PI) / 180, tip = [xc + Rs * Math.cos(a), yB - Rs * Math.sin(a)];
 	S.path([[xc + (ROD / 2 + 1.2) / Math.abs(Math.cos(a)) * Math.cos(a), yB - (ROD / 2 + 1.2) / Math.abs(Math.cos(a)) * Math.sin(a)], tip], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: 'the radius' });
 	L.push(await S.clear('0.85\\,\\mathrm m', xc + 0.55 * Rs * Math.cos(a), yB - 0.55 * Rs * Math.sin(a), 0.5, 0.5, [Math.sin(a), Math.cos(a)].map((v) => -v), { color: DIM }));
-	const wB = await bar(yB + Rs + 9, -rod[0], 'the rod\'s bar');
+	const { w: wB } = await bar(xc, yB + Rs + 9, -rod[0], 'the rod\'s bar');
 	check(near(wB / wA, -rod[0] / ball, 1e-12), 'the bars are not to one scale');
 
 	// ---- the names of the two bodies, at the top left of each row
-	L.push(await placed('\\text{a ball of water}', xc - Rs, yA - rb, 0, 0, INK));
+	L.push(nameA);
 	L.push(await placed('\\text{a rod}', xc - Rs, yB - Rs, 0, 0, INK));
 
 	S.checkAll(L);
-	return finish(S, L, [240, 340]);
+	return finish(S, L, BOOK ? [400, 450] : [240, 340]);
 }

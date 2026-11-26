@@ -14,7 +14,10 @@
 // figs/tut-read-iii-capstone.js, takes the narrow layout for the same reason). Stacked, the two origins stand one
 // above the other at the same scale, so that the two steps and the two sets of lines can be compared directly. The
 // scale is 62 points to the light-second (118 site pixels, the comment's 100 a little enlarged for the phone). The
-// step in the pixel's panel is named "a'", as in its readout, so that the two arrows are told apart.
+// step in the pixel's panel is named "a'", as in its readout, so that the two arrows are told apart. The printed book
+// (figureLayout 'book') has the width the site lacks: there the panels stand side by side, the room left, at 48 points
+// to the light-second, with both x axes from -1.3 and the room's level lines run down to ct = -1.4 as the pixel's are,
+// so that the two panels have one frame, their origins on one line and their readouts on one line.
 // Exact: the level lines (each line's points asserted at its value of f), the steps' ends (asserted on f = 3, and
 // against the boost in tut-vectors-lib.js), the readouts (formatted from the computed components and asserted against
 // the chapter's). Nothing is schematic.
@@ -25,8 +28,10 @@ import { chapter, palette, OBS, f, fPixel, GRAD, STEP, GRAD_PIXEL, STEP_PIXEL, L
 const name = 'tut-vectors-gradient';
 const check = checker(name);
 
-const U = 62;                              // points per light-second, both panels
-const XL = -1.0, XR = 2.75;                // the x axes, light-seconds
+const BOOK = globalThis.figureLayout === 'book';
+const U = BOOK ? 48 : 62;                  // points per light-second, both panels
+const XL = BOOK ? -1.3 : -1.0, XR = 2.75;  // the x axes, light-seconds
+const BESIDE = 20;                         // the book: the air between the room's x axis's name and the pixel's panel
 const ABOVE = 0.25;                        // the ct axes run this far above the level lines' tops
 const ROW = 5;                             // the air between a panel's title, its plot and its readout, points
 const APART = 16;                          // the air between the room's readout and the pixel's title, points
@@ -86,24 +91,30 @@ export default async function () {
 	let y = ORIGIN - 200;
 	const title1 = await placed('\\text{room}', x0 + XL * U, y, 0, 0, INK);
 	L.push(title1);
-	const c1room = 0.8, c0room = -0.8;
+	const c1room = 0.8, c0room = BOOK ? -1.4 : -0.8;
 	// the origin: under the title, then the level lines' names, then their tops
-	const oy1 = title1.box.b + ROW + HEAD_ROOM + c1room * U;
+	// (in the book, under the lower of the two titles, which stand on one line)
+	const under1 = BOOK ? Math.max(title1.box.b, (await placed('\\text{pixel at } 0.6c', 0, y, 0, 0, INK)).box.b) : title1.box.b;
+	const oy1 = under1 + ROW + HEAD_ROOM + c1room * U;
 	const p1 = await panel(S, { ox: x0, oy: oy1, c0: c0room, c1: c1room, g: GRAD, step: STEP, value: f, axes: ['x', 'ct'], arrowName: 'a', side: 1 });
 	L.push(...p1.L);
 	const read1 = await placed(room, x0 + XL * U, p1.bottom + ROW + 2, 0, 0, INK);
 	L.push(read1);
 
 	// ---- the pixel at 0.6c, below
-	const title2 = await placed('\\text{pixel at } 0.6c', x0 + XL * U, read1.box.b + APART, 0, 0, INK);
+	const x2 = BOOK ? Math.max(...p1.L.map((l) => l.box.r)) + BESIDE - XL * U : x0;
+	const title2 = await placed('\\text{pixel at } 0.6c', x2 + XL * U, BOOK ? y : read1.box.b + APART, 0, 0, INK);
 	L.push(title2);
 	const c1pix = 0.8, c0pix = -1.4;
 	const oy2 = title2.box.b + ROW + HEAD_ROOM + c1pix * U;
-	const p2 = await panel(S, { ox: x0, oy: oy2, c0: c0pix, c1: c1pix, g: GRAD_PIXEL, step: STEP_PIXEL, value: fPixel, axes: ["x'", "ct'"], arrowName: "a'", side: -1 });
+	if (BOOK) check(near(oy2, oy1, 1e-9), 'the two origins are not on one line');
+	const p2 = await panel(S, { ox: x2, oy: oy2, c0: c0pix, c1: c1pix, g: GRAD_PIXEL, step: STEP_PIXEL, value: fPixel, axes: ["x'", "ct'"], arrowName: "a'", side: -1 });
 	L.push(...p2.L);
-	L.push(await placed(pix, x0 + XL * U, p2.bottom + ROW + 2, 0, 0, INK));
+	const read2 = await placed(pix, x2 + XL * U, p2.bottom + ROW + 2, 0, 0, INK);
+	L.push(read2);
+	if (BOOK) check(read1.box.r + 12 < read2.box.l && near(p1.bottom, p2.bottom, 1e-9), 'the readouts run together, or are not on one line');
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, scale: U };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, BOOK ? [400, 450] : [240, 340]);
 }

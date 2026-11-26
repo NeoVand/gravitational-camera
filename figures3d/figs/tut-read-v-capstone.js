@@ -31,7 +31,8 @@
 // same sign, so that ring would be squeezed (or stretched) both ways at once, never stretched along the spin and
 // squeezed across it; in the plane through the line, E_xx = -(12/5) E_zz, and the ring does what the comment says. The
 // masses are the stone of 7.7's rotor (sprites/hair/ball-face.png, as tut-rotor-stress), not a flat fill of matter's
-// colour. (e)'s magenta is a fill of opacity 0.22, paler than 5.4's 0.12 + 0.4 V/I, so that the orange bars read on it.
+// colour. (e)'s magenta (5.4's, the observer's: tut-pol-lib.js, MAGENTA) is a fill of opacity 0.22, paler than 5.4's
+// 0.12 + 0.4 V/I, so that the orange bars read on it.
 // The gyroscopes of (c) stand in a panel of their own, beside the ring of (b). The ring of (b) carries arrows at its
 // four beads on the axes only: at the others the near tide (E_xx = 2.4 |E_zz|) pushes nearly along the ring, and
 // their short arrows crowd the beads; (h), whose pushes are all clearly out or in, keeps all twelve. The number of
@@ -57,7 +58,7 @@ import { graph, longest, CURVE } from './tut-fourier-lib.js';
 import { chapter, palette, CURV, FIELD, ACCENT, ACCENT2, G, C, exact, nearLaw, farLaw, X_CROSS, secondMoment, uHat, YEAR } from './tut-quadrupole-lib.js';
 import { HBAR } from './tut-einstein-lib.js';
 import { riemann } from './tut-linear-lib.js';
-import { circularShare, amplitudes, cameraAxes, MAGENTA, dashes, drawDashes } from './tut-pol-lib.js';
+import { circularShare, amplitudes, cameraAxes, MAGENTA_PAINT as MAGENTA, dashes, drawDashes } from './tut-pol-lib.js';
 import { UNDISTURBED_W } from './tut-five-lib.js';
 
 const name = 'tut-read-v-capstone';

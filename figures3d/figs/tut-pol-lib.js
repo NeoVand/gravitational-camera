@@ -2,9 +2,11 @@
 // tut-pol-patterns, tut-pol-instants, tut-pol-geometry, tut-pol-rotor-views and tut-pol-poincare. Not a figure itself.
 // The sheet, strokes, heads, labels and the cropping are section 1.1's (figs/tut-vec-lib.js); the ring of twelve free
 // steel beads, its dashed undisturbed circle and ink ellipse, and the orange of a stretch and the blue of a squeeze are
-// Part 1's (figs/tut-five-lib.js, figs/tut-tides.js), all imported, not copied. The sense of turning is the paper's
-// magenta (figs/quadrupole.js and make_figures.py, which_way: '#c2255c' for V/I = +1, a fill of opacity
-// 0.12 + 0.4 V/I); the rotor's masses are the tutorial's nugget, lit in matter's two colours (figs/tut-null-lib.js).
+// Part 1's (figs/tut-five-lib.js, figs/tut-tides.js), all imported, not copied. The sense of turning is drawn as the
+// paper draws it (figs/quadrupole.js and make_figures.py, which_way: magenta for V/I = +1, a fill of opacity
+// 0.12 + 0.4 V/I), but in the book's own magenta, the observer's (app.css --q-obs: #9b2d7f by day, #e26c8c at night;
+// the handedness is the one seen from the camera), not the paper's ad hoc #c2255c, which is none of the palette's
+// roles; the rotor's masses are the tutorial's nugget, lit in matter's two colours (figs/tut-null-lib.js).
 //
 // A ring here is moved by the wave itself: the bead whose undisturbed place is R xi is drawn at R (xi + delta xi),
 // delta xi = (1/2) h xi with h = h_+ e^+ + h_x e^x in the plane of e_1 (right) and e_2 (up), so that the ring is the
@@ -30,7 +32,9 @@ import { STONE_INK } from './tut-orb-lib.js';
 export { STEEL, STONE_INK, nugget };
 
 export const H = 0.36;                    // the drawn strain, exaggerated
-export const MAGENTA = '#c2255c';         // anticlockwise as seen, V/I > 0 (figs/quadrupole.js, TURNS_ANTICLOCKWISE)
+export const MAGENTA = '#9b2d7f';         // anticlockwise as seen, V/I > 0: the observer's magenta (app.css --q-obs, day)
+export const MAGENTA_NIGHT = '#e26c8c';   // the same at night (app.css --q-obs, dark)
+export const MAGENTA_PAINT = `light-dark(${MAGENTA}, ${MAGENTA_NIGHT})`;   // a stroke or fill in a drawing the site shows in both themes
 /** The fill's opacity for a circular share V/I (figs/quadrupole.js). */
 export const depth = (vi) => 0.12 + 0.4 * vi;
 export const rad = (d) => (d * Math.PI) / 180;

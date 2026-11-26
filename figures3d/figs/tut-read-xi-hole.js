@@ -29,6 +29,10 @@
 // table's, 3.87 x 10^14 and 5.74 mm in (b), not 3.9 x 10^14 and 5.7 mm; (b) draws the wavelength and not a square
 // metre, since a square metre cannot stand at the wavelength's scale; (i) prints the table's second entry, 2 + 1/n
 // only if born in inflation; three rows of three, not one strip; the caption writes GM/c^2 as the chapter does.
+// The printed book (figureLayout 'book') keeps the three rows of three but makes each panel 128 points wide, not 104,
+// so that the grid spans the text, and lower: each drawing's room 62 points high, not 72 (the glow of (a) 58 high, the
+// angles of (d) and (e) at 1.3 points to the degree, not 1.5), 16 points between the rows, not 20, and the numbers of
+// (b), (d), (f) and (i) set in fewer, wider lines, the same words.
 // Exact: every number (computed here and asserted against the chapter's text: the glow's temperature from 3.91 and
 // 106.75, the seen sky's, the count and the mean wavelength, the hole's mass, temperature and capture disc, the shadow
 // by 11.1's arcsine and by 6.3's aberration, the ring by 11.1's rays integrated (figs/tut-schw-lib.js), the depths by
@@ -56,18 +60,19 @@ const CHI = 0.998, GAIN = 0.91, XSPIN = 0.92;  // (g): the spin, the stated peak
 
 // ---- the drawing (figure points, y down) ------------------------------------------------------------------------
 const SIZE = 9.6;                           // every label and number: R11's capstone's
-const PW = 104;                             // a panel's width
+const BOOK = globalThis.figureLayout === 'book';
+const PW = BOOK ? 128 : 104;                // a panel's width
 const GUT = 14;                             // between the panels: an arrow with a whole head
 const ROWS = [
 	[['a', 'the sky'], ['b', 'its gravitons'], ['c', 'the hole']],
 	[['d', 'the shadow'], ['e', 'the ring'], ['f', 'how dark']],
 	[['g', 'with spin'], ['h', 'how deep'], ['i', 'counting']]
 ];
-const DH = 72;                              // a panel's drawing, its height under the letter
+const DH = BOOK ? 62 : 72;                  // a panel's drawing, its height under the letter
 const LETTER_AIR = 3;                       // the letter's foot to the drawing's room
 const NUM_AIR = 5;                          // the lowest mark of a row to its numbers' caps
 const NUM_PITCH = 12;                       // baseline to baseline within a number
-const ROW_AIR = 20;                         // the lowest number of a row to the next row's letters
+const ROW_AIR = BOOK ? 16 : 20;             // the lowest number of a row to the next row's letters
 const HEAD = 3.6;                           // the grey arrows' heads
 const END_AIR = 1.2;                        // an arrow stops this far short of a panel
 const OUT = 7;                              // the return arrows run this far right of a row's last panel
@@ -75,7 +80,7 @@ const DROP_X = 11;                          // and come down this far left of th
 const LINE = 0.55, EDGE = 0.45, WAVE = 0.6; // a drawn outline, the hole's ink edge, a graviton's line
 const GLOW = 0.2;                           // the glow: the field's colour washed over the page
 const MM = 4;                               // (b), (c): points per millimetre
-const DEG_PT = 1.5;                         // (d), (e): points per degree
+const DEG_PT = BOOK ? 1.3 : 1.5;            // (d), (e): points per degree
 const SKY = 23;                             // (d), (e): the disc of directions, degrees from the hole's direction
 const PALE = '#ddd8cd';                     // the falling shadow's dashes on the near-black: fixed, not swapped
 const CAMERA = 4.2;                         // the camera's square, as 11.1's
@@ -353,12 +358,12 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name] = { N, W, panels: panels.map((p) => ({ key: p.key, px: p.px, w: p.w })) };
-	return finish(S, L, [350, 372]);
+	return finish(S, L, BOOK ? [400, 450] : [350, 372]);
 
 	// ======================================================================================================================
 	// the nine drawings, each in its panel's room (p.px to p.px + p.w, p.top to p.bot), about p.cy
 	async function drawA(p) {
-		const gw = 76, gh = 66;
+		const gw = 76, gh = BOOK ? 58 : 66;
 		glowRect(p.cx - gw / 2, p.cy - gh / 2, gw, gh);
 		thermometer([p.cx, p.cy + 20], p.cy - 24, p.cy - 4, '(a)\'s thermometer');
 	}
@@ -459,7 +464,7 @@ export default async function () {
 }
 
 // ---- the numbers under the panels: exactly the table's (asserted in numbers()) --------------------------------------
-const NUMS = {
+const NUMS_SITE = {
 	a: ['0.905\\ \\mathrm{K};', '0.929\\ \\mathrm{K}\\text{ seen}'],
 	b: ['3.87\\times10^{14}', '\\text{per s, m}^2\\text{, sr;}', '\\lambda = 5.74\\ \\mathrm{mm}'],
 	c: ['T_H = 0.0905\\ \\mathrm{K};', '\\text{disc }1.05\\ \\mathrm{cm}\\text{ across}'],
@@ -469,4 +474,12 @@ const NUMS = {
 	g: ['10.3\\text{ times the sky}', '\\text{at }43.6\\ \\mathrm{GHz}'],
 	h: ['r = 40\\,GM/c^2', '\\text{from }2.6\\%'],
 	i: ['g^{(2)} = 2;', '2 + 1/\\bar n\\text{ only if}', '\\text{born in inflation}']
+};
+// the book's wider panels: the same words in fewer lines
+const NUMS = !BOOK ? NUMS_SITE : {
+	...NUMS_SITE,
+	b: ['3.87\\times10^{14}', '\\text{per s, m}^2\\text{, sr; }\\lambda = 5.74\\ \\mathrm{mm}'],
+	d: ['7.27^\\circ\\text{; }5.80^\\circ\\text{ falling}'],
+	f: ['93\\%\\text{ by energy; }82\\%\\text{ by count}'],
+	i: ['g^{(2)} = 2\\text{; }2 + 1/\\bar n', '\\text{only if born in inflation}']
 };

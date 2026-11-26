@@ -1,18 +1,23 @@
 // The tutorial, section 1.2 (tutorial/newton/field-and-potential.md), its first diagram: the room of the locked safe
-// (the paper's fig:locked-safe), drawn from the scene file itself, scenes/locked-safe.scene.json. Above, the plan:
-// the room seen from above and cut level with the gold, with the chapter's axes x1 (right) and x2 (ahead) from the
-// origin on the floor below the camera; the floor (concrete), the three walls (plaster), the two hollow steel safes
-// and, in the right-hand one, the gold. Below, the safes and the camera seen from behind the camera and cut through
-// the safes' middles, at twice the plan's scale, with the heights. Exact, and to scale: every position and size (the
-// scene's frame has y up and the camera looking along -z, so x1 = x, x2 = -z, x3 = y); the safes' steel, 5 cm; the
-// line from the camera to each safe's middle, whose length in space, sqrt(1.1^2 + 3.5^2 + 1.0^2) = 3.80 m, is
-// printed (from above it is seen shortened to 3.67 m, since it also falls 1.0 m); the straight-ahead 3.5 m. The
-// camera is marked by a small ring at its place.
+// (the paper's fig:locked-safe), drawn from the scene file itself, scenes/locked-safe.scene.json. Two views side by
+// side. On the left, the plan: the room seen from above and cut level with the gold, with the chapter's axes x1
+// (right) and x2 (ahead) from the origin on the floor below the camera; the three walls (plaster), the two hollow
+// steel safes and, in the right-hand one, the gold. On the right, the safes and the camera seen from behind the
+// camera and cut through the safes' middles, at three times the plan's scale, with the heights. Exact, and to scale:
+// every position and size (the scene's frame has y up and the camera looking along -z, so x1 = x, x2 = -z, x3 = y);
+// the safes' steel, 5 cm; the line from the camera to each safe's middle, whose length in space,
+// sqrt(1.1^2 + 3.5^2 + 1.0^2) = 3.80 m, is printed (from above it is seen shortened to 3.67 m, since it also falls
+// 1.0 m); the straight-ahead 3.5 m. The camera is marked by a small ring at its place.
+// The plan is a cutaway of the room alone: the floor is drawn where the room is, between the walls' inner faces
+// (x1 = -6.0 m to 6.0 m) and from the room's open side, x2 = 0, where the side walls end, to the back wall's inner
+// face, x2 = 8.0 m; the three walls are one U of plaster around it, their outer faces 0.3 m out. (The scene's floor
+// slab runs on 3 m past the back wall and 3 m behind the camera, out of sight; the plan stops it at the room.) In the
+// view from behind, the floor slab is cut 2.05 m either side of the middle.
 import { INK, DIM, FAINT, RULE, ACCENT, PAGE } from '../lib.js';
 import { Sheet, ORIGIN, placed, beside, finish, checker, near, AXIS, AXIS_HEAD, HAIR, TICK, LABEL_GAP, n2 } from './tut-pot-lib.js';
 
-const SP = 18;                                  // the plan: points per metre
-const SE = 2 * SP;                              // the view from behind: twice as large
+const SP = 16;                                  // the plan: points per metre
+const SE = 3 * SP;                              // the view from behind: three times as large
 const FLOOR = '#eeebe5';                        // the floor, a neutral tint of the page
 const WALL = RULE;                              // the walls, in section
 const STEEL = DIM;                              // the safes' steel, in section
@@ -21,7 +26,7 @@ const LINE_W = 0.5;                             // the lines from the camera to 
 const RING = 2.1;                               // the camera's ring, radius
 const AXIS_LEN = 1.45;                          // m, the plan's axes
 const DIM_X = -4.0;                             // m, the 3.5 m dimension's place across
-const GAP_VIEWS = 16;                           // between the plan's floor and the top of the camera's ring below
+const GAP_VIEWS = 16;                           // between the plan's right-hand wall and the view from behind's ink
 const name = 'tut-pot-room';
 const check = checker(name);
 
@@ -65,22 +70,28 @@ export default async function () {
 	const S = new Sheet(name);
 	const labels = [];
 	// the plan: the origin (below the camera) at (X0, Y0), x1 to the right, x2 up the page
-	const X0 = ORIGIN, Y0 = ORIGIN + 70;
+	const X0 = ORIGIN - 130, Y0 = ORIGIN + 70;
 	const pl = (x1, x2) => [X0 + SP * x1, Y0 - SP * x2];
 	const rect = (f, x1a, x1b, x2a, x2b) => { const [a, b] = [f(x1a, x2a), f(x1b, x2b)]; return { l: Math.min(a[0], b[0]), r: Math.max(a[0], b[0]), t: Math.min(a[1], b[1]), b: Math.max(a[1], b[1]) }; };
 	const rd = (r) => `M${n2(r.l)},${n2(r.t)}H${n2(r.r)}V${n2(r.b)}H${n2(r.l)}Z`;
 	/** A box's footprint in the plan (axes 0 and 1) or its face from behind (axes 0 and 2). */
 	const foot = (b, f, j) => rect(f, lo(b, 0), hi(b, 0), lo(b, j), hi(b, j));
 
-	// ---- the plan
-	const floorBox = foot(floor, pl, 1);
-	S.fill(rd(floorBox), floorBox, { color: FLOOR, layer: 0, what: 'the floor', solid: false });
-	for (const [w, id] of [[back, 'the back wall'], [left, 'the left wall'], [rightW, 'the right wall']]) {
-		const r = foot(w, pl, 1);
-		// beneath the wall's tint, the page, so that the wall is one colour over the floor and beyond it
-		S.raw(`<path d="${rd(r)}" fill="${PAGE}"/>`, 0.5);
-		S.fill(rd(r), r, { color: WALL, layer: 0.6, what: id });
-	}
+	// ---- the plan: the room alone, its floor between the walls' inner faces and from the open side (x2 = 0, where
+	// the side walls end) to the back wall; the walls one U around it
+	const OPEN = 0;                                       // m, the room's open side
+	eq(lo(left, 1), OPEN, 'the left wall\'s near end'); eq(lo(rightW, 1), OPEN, 'the right wall\'s near end');
+	eq(hi(left, 1), lo(back, 1), 'the left wall\'s far end'); eq(hi(rightW, 1), lo(back, 1), 'the right wall\'s far end');
+	eq(lo(back, 0), lo(left, 0), 'the back wall\'s left end'); eq(hi(back, 0), hi(rightW, 0), 'the back wall\'s right end');
+	check(lo(floor, 1) <= OPEN && hi(floor, 1) >= lo(back, 1) && near(lo(floor, 0), hi(left, 0)) && near(hi(floor, 0), lo(rightW, 0)),
+		'the floor does not fill the room');
+	const room = rect(pl, hi(left, 0), lo(rightW, 0), OPEN, lo(back, 1));        // the floor inside the room
+	const outer = rect(pl, lo(left, 0), hi(rightW, 0), OPEN, hi(back, 1));       // the walls' outer faces
+	S.fill(rd(room), room, { color: FLOOR, layer: 0, what: 'the floor', solid: false });
+	const wallsD = `M${n2(outer.l)},${n2(outer.b)}V${n2(outer.t)}H${n2(outer.r)}V${n2(outer.b)}H${n2(room.r)}V${n2(room.t)}H${n2(room.l)}V${n2(room.b)}Z`;
+	S.fill(wallsD, outer, { color: WALL, layer: 0.6, what: 'the walls', solid: false });
+	for (const [r, what] of [[{ ...outer, r: room.l }, 'the left wall'], [{ ...outer, l: room.r }, 'the right wall'], [{ ...outer, b: room.t }, 'the back wall']])
+		S.boxes.push({ box: r, what });
 	for (const id of ['safe-left', 'safe-right']) {
 		const o = foot(B[id], pl, 1), i = foot(B[id + '-cavity'], pl, 1);
 		S.fill(rd(o) + rd(i), o, { color: STEEL, layer: 1, rule: 'evenodd', what: 'the ' + id });
@@ -125,17 +136,24 @@ export default async function () {
 		labels.push(await placed('3.5\\,\\mathrm{m}', x - 3, (y0 + y1) / 2, 1, 0.5, INK));
 	}
 
-	// the walls' places, inside the room beside each
-	labels.push(await placed('x_2 = 8.0\\,\\mathrm{m}', X0, foot(back, pl, 1).b + 3, 0.5, 0, DIM));
-	labels.push(await placed('x_1 = -6.0\\,\\mathrm{m}', foot(left, pl, 1).r + 3.2, pl(0, 6)[1], 0, 0.5, DIM));
-	labels.push(await placed('x_1 = 6.0\\,\\mathrm{m}', foot(rightW, pl, 1).l - 3.2, pl(0, 6)[1], 1, 0.5, DIM));
-	labels.push(await placed('\\text{floor}', X0, pl(0, (8.3 + hi(floor, 1)) / 2)[1], 0.5, 0.5, DIM));
-	labels.push(await placed('\\text{from above}', floorBox.l + 3.2, pl(0, lo(floor, 1) + 0.75)[1], 0, 0.5, DIM));
+	// the walls' places, inside the room beside each; the view's name and the floor's, in the room's near corners
+	labels.push(await placed('x_2 = 8.0\\,\\mathrm{m}', X0, room.t + 3, 0.5, 0, DIM));
+	labels.push(await placed('x_1 = -6.0\\,\\mathrm{m}', room.l + 3.2, pl(0, 6)[1], 0, 0.5, DIM));
+	labels.push(await placed('x_1 = 6.0\\,\\mathrm{m}', room.r - 3.2, pl(0, 6)[1], 1, 0.5, DIM));
+	labels.push(await placed('\\text{from above}', room.l + 3.2, room.t + 3, 0, 0, DIM));
+	labels.push(await placed('\\text{floor}', room.r - 3.2, room.b - 3, 1, 1, DIM));
 	for (const l of labels) l.on = ['the floor'];
 
-	// ---- below: the camera and the safes seen from behind the camera, cut through the safes' middles, twice as large
-	const top = floorBox.b + GAP_VIEWS + RING;            // the camera's ring's top
-	const E0 = [X0, top + SE * cam[2]];                   // the origin, on the floor's top
+	// ---- on the right: the camera and the safes seen from behind the camera, cut through the safes' middles, three
+	// times as large; its ink begins GAP_VIEWS right of the plan's walls (its leftmost ink is the 0.5 m label); its name
+	// is level with the plan's, along the top, and the drawing (from the camera's ring's top to the slab's foot) is
+	// centred in height between that name and the plan's open side
+	const sx = lo(B['safe-left'], 0) - 0.3, gx = hi(B['safe-right'], 0) + 0.3;   // m, the side dimensions' places
+	const halfLabel = await placed('0.5\\,\\mathrm{m}', 0, 0, 0, 0, INK);
+	const leftReach = -sx * SE + 3.2 + (halfLabel.box.r - halfLabel.box.l);      // from the view's middle to its leftmost ink
+	const viewTop = SE * cam[2] + RING, viewFoot = -SE * lo(floor, 2);           // above and below the floor's top
+	const viewName = await placed('\\text{from behind the camera}', 0, room.t + 3, 0, 0, DIM);
+	const E0 = [outer.r + GAP_VIEWS + leftReach, (viewName.box.b + outer.b + viewTop - viewFoot) / 2];   // the origin, on the floor's top
 	const el = (x1, x3) => [E0[0] + SE * x1, E0[1] - SE * x3];
 	const CUT = 2.05;                                     // m, the floor's slab is shown this far either way
 	const slab = rect(el, -CUT, CUT, lo(floor, 2), hi(floor, 2));
@@ -160,16 +178,14 @@ export default async function () {
 	const cDim = dimV(0.3, cam[2], 'the camera\'s height');
 	S.dots([C2[0] + RING + 1.2, cDim.y1], [cDim.x - TICK - 0.8, cDim.y1], { color: FAINT, what: 'the camera\'s extension line' });
 	labels.push(await placed('1.5\\,\\mathrm{m}', cDim.x + 3.2, el(0, 1.25)[1], 0, 0.5, INK));
-	const sx = lo(B['safe-left'], 0) - 0.3;
 	const sDim = dimV(sx, B['safe-left'].c[2], 'the safes\' middles\' height');
 	S.dots([foot(B['safe-left'], el, 2).l - 1.2, sDim.y1], [sDim.x + TICK + 0.8, sDim.y1], { color: FAINT, what: 'the safe\'s extension line' });
 	labels.push(await placed('0.5\\,\\mathrm{m}', sDim.x - 3.2, (sDim.y0 + sDim.y1) / 2, 1, 0.5, INK));
-	const gx = hi(B['safe-right'], 0) + 0.3;
 	const gDim = dimV(gx, gold.c[2], 'the gold\'s middle\'s height');
 	S.dots([foot(B['safe-right'], el, 2).r + 1.2, gDim.y1], [gDim.x - TICK - 0.8, gDim.y1], { color: FAINT, what: 'the gold\'s extension line' });
-	labels.push(await placed('0.13\\,\\mathrm{m}', gDim.x + TICK + 2.5, gDim.y1 - 1, 0, 1, INK));
-	// the view's name, in the room above the left-hand safe
-	labels.push(await placed('\\text{from behind the camera}', floorBox.l + 3.2, el(0, 1.25)[1], 0, 0.5, DIM));
+	labels.push(await placed('0.13\\,\\mathrm{m}', gDim.x + TICK + HAIR / 2 + LABEL_GAP + 0.2, (gDim.y0 + gDim.y1) / 2, 0, 0.5, INK));
+	// the view's name, from the slab's left end, level with the plan's (the two names on one line along the top)
+	labels.push(await placed('\\text{from behind the camera}', slab.l, room.t + 3, 0, 0, DIM));
 	// the middles: a small + at each safe's middle and the gold's
 	for (const [p, what] of [[el(-1.1, 0.5), 'the left middle'], [el(1.1, 0.5), 'the right middle']]) {
 		S.path([[p[0] - 2, p[1]], [p[0] + 2, p[1]]], { color: INK, width: HAIR, layer: 2, cap: 'butt', what });
@@ -180,5 +196,5 @@ export default async function () {
 	check(g.l > foot(B['safe-right'], pl, 1).l && g.r < foot(B['safe-right'], pl, 1).r && g.l > X0, 'the gold is not in the right-hand safe');
 
 	S.checkAll(labels);
-	return finish(S, labels, [200, 340]);
+	return finish(S, labels, [400, 470]);
 }

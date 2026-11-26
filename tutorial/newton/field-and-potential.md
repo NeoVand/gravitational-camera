@@ -124,8 +124,8 @@ The gold is a bar 0.30 m wide, 0.40 m deep and 0.14 m tall on the floor of the r
 $(1.1, 3.5, 0.13)\unit{m}$. The floor and the walls are described in the margin.[^room] Figure [](#fig:room) draws
 the whole room to scale.
 
-![The room of the locked safe, to scale. Above, seen from above: the floor (tinted), the three walls, the two steel
-safes and, in the right-hand one, the gold (orange). Below, the camera and safes seen from behind, twice as large;
+![The room of the locked safe, to scale. Left, seen from above: the floor (tinted), the three walls, the two steel
+safes and, in the right-hand one, the gold (orange). Right, the camera and safes seen from behind, three times as large;
 each line from the camera to a safe's middle is 3.8 m long.](tut-pot-room){#fig:room}
 
 The table gives the size of each part's pull at the camera.[^cubes] The floor is the largest, being heavy and close.

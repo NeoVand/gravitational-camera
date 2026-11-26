@@ -11,7 +11,9 @@
 // ripple's height, chosen for each view (its true height is not a length: the pattern is one of gravity), and the
 // size of the satellite. Pictorial: the stone, a picture from an image model (design/prompts/hair-sprites.json, cut
 // out by design/hair_sprites.py, as in the paper's figure on gravitational hair, figs/hair.js), clipped here to the
-// rippled rim and to the inset's ground.
+// rippled rim and to the inset's ground. The book's layout: the same drawing with the Earth's radius 88 points, not
+// 110, and the inset 410 points wide, not 246, so that the two lines from the window fan out to an inset that spans the
+// text; the inset's scale, K, is the same, so it shows more crests, each to the same scale.
 import { INK, DIM, FAINT, sprite } from '../lib.js';
 import { picture, STEEL } from '../stone.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, HAIR, TICK, n2 } from './tut-pot-lib.js';
@@ -26,11 +28,14 @@ export const DEGREE = 280;
 export const WAVE = (2 * Math.PI * EARTH) / DEGREE;   // km, between crests
 
 // ---- the drawing (points) -------------------------------------------------------------------------------------
-const A = 110;                           // points per Earth radius
+// the printed book (figureLayout 'book') draws a smaller Earth under a wider inset, to fill the text's width at a
+// height that is not shrunk; the site keeps the Earth as wide as the inset
+const BOOK = globalThis.figureLayout === 'book';
+const A = BOOK ? 88 : 110;               // points per Earth radius
 const SM = A / EARTH;                    // points per km, the Earth
 const K = 0.25;                          // points per km, the inset
 const MAG = K / SM;                      // the inset's enlargement
-const IW = 246, IH = 106;                // the inset, points: a little wider than the orbit
+const IW = BOOK ? 410 : 246, IH = 106;   // the inset, points: a little wider than the orbit (the site), or the text (the book)
 const GROUND = 20;                       // the ground's mean level above the inset's bottom, points
 const AMP_MAIN = 0.7, AMP_INSET = 3.2;   // the ripple's height in each view, points (schematic)
 const RIM = 0.4;                         // the rippled rim's stroke
@@ -165,5 +170,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window.tutSphGoce = { WAVE, MAG, lam, h, crests };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, BOOK ? [400, 450] : [240, 340]);
 }

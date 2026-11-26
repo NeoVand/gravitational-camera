@@ -8,7 +8,8 @@
 // sin iota (absent at 0 degrees), named in the last column. Lower row: the plane of the two amplitudes, h_+ across
 // and h_x up, in units of A, ticks at +-0.5 and +-1 (numbered in the last column), and the ellipse traced by the point
 // (h_+(t), h_x(t)) over one cycle, semi-axes (1 + cos^2 iota)/2 and cos iota: 1 and 1, 0.625 and 0.5, 0.5 and 0;
-// filled in the paper's magenta (figs/quadrupole.js) with the paper's opacity 0.12 + 0.4 V/I for V/I = 1 and 0.976,
+// filled in the observer's magenta (tut-pol-lib.js, MAGENTA: the role the paper's ad hoc rose of figs/quadrupole.js
+// becomes in the book's palette) with the paper's opacity 0.12 + 0.4 V/I for V/I = 1 and 0.976,
 // with an arrowhead showing that the point goes anticlockwise; edge-on the segment from -0.5 to 0.5 in ink, with a
 // double arrow over it. Under each, its V/I.
 // Departures from the diagram's comment: the fill's opacity is the paper's affine 0.12 + 0.4 V/I, as the caption's
@@ -18,20 +19,21 @@
 // Exact: the orbit as seen and the masses on it at 2 Omega u = 30 degrees (asserted against the projection of their
 // places on e_1 and e_2); the sense of turning (asserted from the projected motion); the shadow's length sin iota;
 // each ellipse from the boxed amplitudes, which tut-pol-lib.js asserts against the turning table projected on the
-// camera's axes; V/I. Schematic: the masses' size.
+// camera's axes; V/I. Schematic: the masses' size; the orbit's radius, drawn as long as the unit of A below it.
 import { Panel, v3, INK, DIM } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, n2, AXIS, AXIS_HEAD, HAIR, DASH } from './tut-vec-lib.js';
 import { planeAxes } from './tut-five-lib.js';
-import { chapter, cameraAxes, rad, nugget, depth, MAGENTA, dashes, drawDashes, INSTANT_2OMEGA_U } from './tut-pol-lib.js';
+import { chapter, cameraAxes, rad, nugget, depth, MAGENTA_PAINT as MAGENTA, dashes, drawDashes, INSTANT_2OMEGA_U } from './tut-pol-lib.js';
 
 const name = 'tut-pol-rotor-views';
 const check = checker(name);
 
 const PITCH = 112;                        // points between the columns' centres
-const RT = 29;                            // the orbit's radius, points (upper row)
+const RT = 31;                            // the orbit's radius, points (upper row): the lower row's unit, so that the
+                                          // face-on orbit and the face-on circle below it are one size
 const MASS = 4.6;                         // a mass's radius, points
 const ROD = 0.7;
-const SB = 31;                            // points per unit of A (lower row)
+const SB = RT;                            // points per unit of A (lower row)
 const REACH = 1.28;                       // the amplitude axes run to +-REACH
 const UPPER = 47, LOWER = -52;            // the rows' centres
 const EDGE = 0.6;                         // the ellipse's edge
