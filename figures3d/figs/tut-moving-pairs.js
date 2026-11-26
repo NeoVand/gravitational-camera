@@ -17,6 +17,9 @@
 // their midpoint, where the arrow from the pixel ends, can be seen as the middle of the two; the great circle z = 0 on
 // which the paths lie is drawn faint; the half sum's name is set on two lines, to fit between the arrow and the sky's
 // edge; the sky's outline is the page's rule colour, as in every sky of the tutorial.
+// In the printed book (figureLayout 'book') the sky's radius is 92 points instead of 104, which keeps every pair at
+// least 3 points inside the outline (asserted), so that the drawing is not printed larger than it needs; the labels
+// keep their size.
 // Exact: the four directions at 0.9c, the roots of the quartic of Lambda W Lambda^T for the body's reading at rest
 // W = w (1 - 3 n0 n0^T) (n0 = -x) and section 9.3's boost Lambda = exp(-i eta u.L) of the pixel through the body's
 // frame (u = -y, tanh eta = 0.9), and the paths, the roots at every speed from 0 to 0.9c, all on z = 0 (asserted in
@@ -39,7 +42,8 @@ import { chapter, BODY, dot, cross, len } from './tut-petrov-lib.js';
 const name = 'tut-moving-pairs';
 const check = checker(name);
 
-const R = 104;                             // the sky's radius, points
+const BOOK = globalThis.figureLayout === 'book';
+const R = BOOK ? 92 : 104;                 // the sky's radius, points (smaller in the printed book)
 const TURN = 35, TILT = 45;                // the view: the paper's turn about the vertical, then a tilt about the horizontal
 const PIXEL = 2.6;                         // the pixel's radius
 const BODY_R = 9;                          // the body's radius, points
@@ -165,7 +169,7 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { pairs: pairs.map((g) => g.n), half, diff: nums.diff, view: { TURN, TILT } };
-	return finish(S, L, [240, 340], defs);
+	return finish(S, L, BOOK ? [200, 300] : [240, 340], defs);
 }
 
 

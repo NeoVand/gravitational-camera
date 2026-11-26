@@ -2,18 +2,18 @@
 // wave, seen from above. An L of two arms of length L from a corner mass, along e_1 (right) and e_2 (up): thin ink lines
 // ending in small filled squares, the end mirrors, in the observer's colour. Each undisturbed end is a dashed square;
 // each disturbed end is moved by delta xi = (1/2) h xi (exaggerated): the e_1 arm longer by (1/2) h+ L (an orange
-// bracket, a stretch), the e_2 arm shorter by the same (a blue bracket, a squeeze). In the empty corner of the L the two
-// brackets set end to end under an ink bracket, "difference h+ L, so the strain is h+". A pale copy of the two ends,
-// "half a cycle later", with the signs reversed. The direction of travel, out of the page, at the top right, "wave
-// along z".
-// Departures from the diagram's comment: the bracket that sums the two stands in the empty corner of the L, inside the
-// figure's right edge rather than beyond it, so that the drawing stays about 220 points wide and readable on a phone;
-// it repeats the orange and the blue bracket end to end under the ink one, so that the sum can be read off. The arms'
-// names L stand beside their middles, and the e_1 and e_2 at their far ends. The labels of the brackets are in ink,
-// with h+ in the field's colour (the chapter's), and the brackets carry the orange and the blue.
+// bracket, a stretch), the e_2 arm shorter by the same (a blue bracket, a squeeze). Under the e_1 end the two brackets
+// set end to end over an ink bracket, "difference h+ L, so the strain is h+". A pale copy of the two ends, "half a cycle
+// later", with the signs reversed. The direction of travel, out of the page, in the corner of the L, "wave along z".
+// Departures from the diagram's comment: the bracket that sums the two hangs under the e_1 end, its orange part
+// directly under the e_1 bracket (which stands above the arm, inside the L, its words over it), so that the sum is
+// built where the arms' changes are and the drawing stays about 200 by 110 points; it repeats the orange and the blue
+// bracket end to end under the ink one, so that the sum can be read off, its words to the right. The arms' names L
+// stand beside their middles, and the e_1 and e_2 at their far ends. The labels of the brackets are in ink, with h+ in
+// the field's colour (the chapter's), and the brackets carry the orange and the blue.
 // Exact: every end, the image of its place under delta xi_i = (1/2) h_ij xi_j (tut-gw-lib.js) for the drawn strain
 // h+ = 2 delta and, half a cycle later, -h+; the brackets, (1/2) h+ L long, and their sum h+ L, measured on the page;
-// the exaggeration, the drawn strain over LIGO's 10^-21, asserted to round to 10^20 (1.6 x 10^20). Schematic: the
+// the exaggeration, the drawn strain over LIGO's 10^-21, asserted to round to 10^20 (2.2 x 10^20). Schematic: the
 // mirrors' size; the arms' length on the page.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, HAIR } from './tut-pot-lib.js';
 import { INK, DIM, PAGE } from '../lib.js';
@@ -22,15 +22,17 @@ import { chapter, palette, stack, OBS, FIELD, ACCENT, ACCENT2, move, odot, ODOT,
 const name = 'tut-gw-arms';
 const check = checker(name);
 
-const ARM = 140;                           // an arm's length on the page, points (schematic)
-const DELTA = 0.08;                        // each arm's drawn change over its length: (1/2) h+, exaggerated
-const MIRROR = 5.5;                          // a mirror's side
+const ARM = 72;                            // an arm's length on the page, points (schematic)
+const DELTA = 0.11;                        // each arm's drawn change over its length: (1/2) h+, exaggerated
+const MIRROR = 5.5;                        // a mirror's side
 const CORNER = 6;                          // the corner mass's side
 const LINE = 0.6;                          // the arms
 const DASH = [1.3, 0.9];                   // the undisturbed ends' outline
 const PALE = 0.4;                          // the pale copy's opacity
 const BR = { width: 0.75, hook: 2.6, off: 4.2 };   // the brackets: stroke, hooks, and their air from a mirror's edge
-const SUM_AT = [0.5, 0.42];                // the summing bracket's left end, in units of the arm, from the corner (right, up)
+const ROW = 3.4;                           // from the summed brackets' line down to the summing bracket's
+const DROP = 2.6;                          // the summed brackets' extra air under the e_1 end, so that their hooks clear the name e_1
+const WAVE_AT = [0.3, 0.42];               // the direction of travel, in units of the arm, from the corner (right, up)
 
 export default async function () {
 	chapter(check);
@@ -39,7 +41,7 @@ export default async function () {
 	const L = [];
 	const hp = 2 * DELTA;
 	const factor = hp / LIGO_H;
-	check(Math.round(Math.log10(factor)) === 20 && factor.toExponential(1) === '1.6e+20', `the exaggeration ${factor}`);
+	check(Math.round(Math.log10(factor)) === 20 && factor.toExponential(1) === '2.2e+20', `the exaggeration ${factor}`);
 
 	const O = [ORIGIN - ARM / 2, ORIGIN + ARM / 2];          // the corner, figure points (y down)
 	const at = ([x, y]) => [O[0] + x, O[1] - y];               // the plane (e_1 right, e_2 up) to figure points
@@ -85,20 +87,21 @@ export default async function () {
 		return Math.hypot(B[0] - A[0], B[1] - A[1]);
 	};
 	const h = `{\\color{${FIELD}}h_+}`;
-	// the e_1 arm: below it, from the undisturbed end to the end now, hooks up
+	const half = (hp / 2) * ARM;
+	// the e_1 arm: above it, inside the L, from the undisturbed end to the end now, hooks down
 	{
-		const y = O[1] + MIRROR / 2 + BR.off;
+		const y = O[1] - MIRROR / 2 - BR.off;
 		const A = [at(ends.e1.rest)[0], y], B = [at(ends.e1.now)[0], y];
-		const len = bracket(A, B, [0, -1], ACCENT, 'the e_1 bracket');
-		check(near(len, (hp / 2) * ARM, 1e-9), 'the e_1 bracket is not (1/2) h+ L');
-		L.push(await placed(`+\\tfrac12${h}L`, (A[0] + B[0]) / 2, y + LABEL_GAP + 0.6, 0.5, 0, INK));
+		const len = bracket(A, B, [0, 1], ACCENT, 'the e_1 bracket');
+		check(near(len, half, 1e-9), 'the e_1 bracket is not (1/2) h+ L');
+		L.push(await placed(`+\\tfrac12${h}L`, (A[0] + B[0]) / 2, y - LABEL_GAP - 0.6, 0.5, 1, INK));
 	}
 	// the e_2 arm: left of it, hooks right
 	{
 		const x = O[0] - MIRROR / 2 - BR.off;
 		const A = [x, at(ends.e2.rest)[1]], B = [x, at(ends.e2.now)[1]];
 		const len = bracket(A, B, [1, 0], ACCENT2, 'the e_2 bracket');
-		check(near(len, (hp / 2) * ARM, 1e-9), 'the e_2 bracket is not (1/2) h+ L');
+		check(near(len, half, 1e-9), 'the e_2 bracket is not (1/2) h+ L');
 		L.push(await placed(`-\\tfrac12${h}L`, x - LABEL_GAP - 0.6, (A[1] + B[1]) / 2, 1, 0.5, INK));
 	}
 	// the arms' names
@@ -110,26 +113,29 @@ export default async function () {
 		L.push(await placed('\\text{half a cycle later}', O[0] + MIRROR / 2 + LABEL_GAP + 1, at(ends.e2.later)[1], 0, 0.5, DIM));
 	}
 
-	// ---- the sum: the two brackets end to end, an ink bracket over both
+	// ---- the sum, under the e_1 end: the e_1 bracket again, from the undisturbed end to the end now, the e_2 bracket
+	// end to end with it, and an ink bracket under both; its words to the right
 	{
-		const half = (hp / 2) * ARM;
-		const [x0, y0] = at([SUM_AT[0] * ARM, SUM_AT[1] * ARM]);
+		const y0 = O[1] + MIRROR / 2 + BR.off + DROP;
+		const x0 = at(ends.e1.rest)[0];
 		const a = bracket([x0, y0], [x0 + half, y0], [0, -1], ACCENT, 'the summed e_1 bracket');
 		const b = bracket([x0 + half, y0], [x0 + 2 * half, y0], [0, -1], ACCENT2, 'the summed e_2 bracket');
-		const yi = y0 + BR.hook + 3.2;
+		const yi = y0 + ROW;
 		const sum = bracket([x0, yi], [x0 + 2 * half, yi], [0, -1], INK, 'the summing bracket');
 		check(near(a + b, hp * ARM, 1e-9) && near(sum, hp * ARM, 1e-9), 'the sum is not h+ L');
-		L.push(await stack([`\\text{difference }${h}L\\text{,}`, `\\text{so the strain is }${h}`], x0 + half, yi + LABEL_GAP + 0.6, 0.5, INK));
+		check(near(x0 + half, at(ends.e1.now)[0], 1e-9), 'the summed e_1 bracket does not stand under the e_1 bracket');
+		const w = await stack([`\\text{difference }${h}L\\text{,}`, `\\text{so the strain is }${h}`], x0 + 2 * half + LABEL_GAP + 2.4, y0 - BR.hook, 0, INK);
+		L.push(w);
 	}
 
-	// ---- the direction of travel, out of the page, at the top right
+	// ---- the direction of travel, out of the page, in the corner of the L
 	{
-		const q = [at(ends.e1.now)[0], at(ends.e2.later)[1]];
+		const q = at([WAVE_AT[0] * ARM, WAVE_AT[1] * ARM]);
 		odot(S, q, 'the direction of travel');
-		L.push(await placed('\\text{wave along }z', q[0], q[1] + ODOT.r + LABEL_GAP + 0.6, 0.5, 0, INK));
+		L.push(await placed('\\text{wave along }z', q[0] + ODOT.r + LABEL_GAP + 0.6, q[1], 0, 0.5, INK));
 	}
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { factor, half: (hp / 2) * ARM, sum: hp * ARM };
-	return finish(S, L, [200, 260]);
+	return finish(S, L, [180, 260]);
 }

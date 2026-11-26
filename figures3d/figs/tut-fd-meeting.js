@@ -3,7 +3,9 @@
 // int_0^inf omega Im chi_h d omega = int rho |grad h|^2 dV. Below left, a warm body, <Q_h'^2> = k_B T int rho |grad
 // h|^2 dV (4.2, equipartition), with an arrow up to the sum rule in the first accent, "fluctuation-dissipation theorem
 // (4.6)"; below right, a pushed body, chi_h -> -int rho |grad h|^2 dV / omega^2 far above its modes (4.5, dust), with
-// an arrow up to it in the second accent, "causality (4.5)". Nothing is computed: the boxes, their places and the
+// an arrow up to it in the second accent, "causality (4.5)". In the drawing the section numbers are left out (the
+// book and the site number the sections differently): "(equipartition)", "(dust)", "fluctuation-dissipation theorem",
+// "causality". Nothing is computed: the boxes, their places and the
 // arrows are schematic.
 import { Sheet, ORIGIN, finish, checker, placed, n2, LABEL_GAP } from './tut-pot-lib.js';
 import { INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
@@ -37,8 +39,8 @@ export default async function () {
 	const rho = '\\rho\\,|\\nabla h|^2\\,dV';
 	const texts = {
 		top: ['\\text{the sum rule}', `(2/\\pi)\\int_0^\\infty \\omega\\,\\mathrm{Im}\\,\\chi_h\\,d\\omega = \\int ${rho}`],
-		left: ['\\text{a warm body:}', `\\langle \\dot Q_h^2\\rangle = k_BT\\int ${rho}`, '\\text{(4.2, equipartition)}'],
-		right: ['\\text{a pushed body:}', `\\chi_h \\to -\\int ${rho}/\\omega^2`, '\\text{far above its modes}', '\\text{(4.5, dust)}']
+		left: ['\\text{a warm body:}', `\\langle \\dot Q_h^2\\rangle = k_BT\\int ${rho}`, '\\text{(equipartition)}'],
+		right: ['\\text{a pushed body:}', `\\chi_h \\to -\\int ${rho}/\\omega^2`, '\\text{far above its modes}', '\\text{(dust)}']
 	};
 	// measure each box's text, then size the boxes: the two lower ones of one width and height
 	const probe = {};
@@ -73,8 +75,8 @@ export default async function () {
 	const mid = (a) => [(a.A[0] + a.B[0]) / 2, (a.A[1] + a.B[1]) / 2];
 	const [mlx, mly] = mid(arrows.left), [mrx, mry] = mid(arrows.right);
 	const fd1 = await S.clear('\\text{fluctuation–dissipation}', mlx - 6, mly - LEAD / 2 - 0.5, 1, 1, [-1, 0], { color: ACCENT });
-	const fd2 = await S.clear('\\text{theorem (4.6)}', fd1.box.r, mly + LEAD / 2 + 0.5, 1, 0, [-1, 0], { color: ACCENT });
-	const ca = await S.clear('\\text{causality (4.5)}', mrx + 6, mry, 0, 0.5, [1, 0], { color: ACCENT2 });
+	const fd2 = await S.clear('\\text{theorem}', fd1.box.r, mly + LEAD / 2 + 0.5, 1, 0, [-1, 0], { color: ACCENT });
+	const ca = await S.clear('\\text{causality}', mrx + 6, mry, 0, 0.5, [1, 0], { color: ACCENT2 });
 	L.push(fd1, fd2, ca);
 	for (const l of [fd1, fd2, ca]) for (const b of Object.values(boxes)) check(l.box.b < b.t - LABEL_GAP || l.box.t > b.b + LABEL_GAP || l.box.r < b.l - LABEL_GAP || l.box.l > b.r + LABEL_GAP, `${l.src} is on a box`);
 

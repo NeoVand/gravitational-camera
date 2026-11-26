@@ -7,8 +7,10 @@
 // the southern, the zero contour on the equator, and the spin axis L as an ink arrow through the body. Under the right
 // sphere: "B_nn vanishes on the equator, where the pixel reads B_xz"; under the left one, the key to the two tints.
 // Departures from the diagram's comment: the spheres are seen a little from above (12 degrees), not exactly from the
-// side, so that the equator shows as an ellipse and the zero contour as the front half of it; the tints are
-// translucent, so that the body shows through. A key to the tints stands under the left sphere.
+// side, so that the equator shows as an ellipse and the zero contour as the front half of it; the body is drawn over
+// the tints, as if seen through them, so that the tints can be strong (at most 0.75 opaque, so that they read as the
+// paper's orange ACCENT and blue ACCENT2 and not as the stone's tan) and the body still shows. A key to the tints
+// stands under the left sphere, its swatches at the tints' full strength.
 // Exact: the tint's sign at every place on the sphere and the zero contour, the equator, from B_nn = 6G(L.n)/cr^4
 // (asserted against eq:spin-dipole in tut-gravitomag-lib.js); the bands of tint are the zones between the latitudes
 // 0, 4.5, 9, ... 90 degrees, each in its exact projection (asserted on the sphere), and each zone's tint is the same
@@ -31,7 +33,7 @@ const SKY = '#eeebe5', VEIL = 0.55;        // the paper's veil (tut-maxwell-sky)
 const OUTLINE = 0.5;
 const CONTOUR = 0.5;                       // the zero contour, ink
 const ZONE = 4.5;                          // degrees of latitude per band of tint
-const TINT = 0.45;                         // the strongest tint's opacity
+const TINT = 0.75;                         // the strongest tint's opacity: strong enough to read as the paper's orange and blue, not the stone's tan
 const RB = 11;                             // the body's radius
 const AXIS_BELOW = 0.42, AXIS_ABOVE = 0.66;    // the spin axis's ends, in sphere radii from the centre
 const APART = 22;                          // between the spheres
@@ -91,8 +93,8 @@ export default async function () {
 	async function sphere(c, spin) {
 		const what = spin ? 'the spin dipole' : 'the point mass';
 		const labels = [];
-		// ---- the body, behind the sky's near half
-		S.raw(picture(`${name}-stone${spin ? 1 : 0}`, art, c[0], c[1], RB, circlePath(c[0], c[1], RB)) + `<path d="${circlePath(c[0], c[1], RB)}" fill="none" stroke="${STONE_INK}" stroke-width="0.35"/>`, 1);
+		// ---- the body, over the veil and the tints (as if seen through the sky's near half), under the contour and the axis
+		S.raw(picture(`${name}-stone${spin ? 1 : 0}`, art, c[0], c[1], RB, circlePath(c[0], c[1], RB)) + `<path d="${circlePath(c[0], c[1], RB)}" fill="none" stroke="${STONE_INK}" stroke-width="0.35"/>`, 2.5);
 		S.mark([c], RB, `${what}'s body`);
 		// ---- the veil, then the tints, then the outline
 		S.raw(`<circle cx="${c[0].toFixed(2)}" cy="${c[1].toFixed(2)}" r="${R}" fill="${SKY}" fill-opacity="${VEIL}"/>`, 2);

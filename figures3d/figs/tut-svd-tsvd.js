@@ -5,7 +5,8 @@
 // machine epsilon, 2.8 x 10^-10), lost in the computer's rounding, in its pale tint. The line at one is the noise.
 // Beneath, on the same horizontal axis, the noise in the mass found in the right-hand safe when the first k patterns
 // are kept, one dot for each k up to 111, the last gain above the rounding: 1.1 kg at k = 5, 243 kg at k = 17 and
-// 1.1 x 10^11 kg at k = 111. A dotted line between the 17th and 18th ranks marks the cut through both.
+// 1.1 x 10^11 kg at k = 111; right of that last dot, level with it, a note says why the dots stop there: beyond it
+// the gains are lost in rounding. A dotted line between the 17th and 18th ranks marks the cut through both.
 // Exact: every gain and every noise, computed here from the repository's model (tut-svd-lib.js: the design matrix of
 // reference/gravcam/inversion.py, its singular values by Jacobi rotations) and asserted against the reference's numpy
 // run and the chapter's numbers (2080, 1480, 960, 440, 330; 17 above one, 12 above ten; 0.08 at 25 and 9 x 10^-4 at
@@ -108,6 +109,11 @@ export default async function () {
 	L.push(await S.clear('\\text{noise}', P.X(231), P.Y(0) - LABEL_GAP - 0.3, 1, 1, [0, -1], { color: ACCENT2 }));
 	const at17 = [Q.X(kept), Q.Y(Math.log10(noise[kept - 1]))];
 	L.push(await S.clear(`${Math.round(noise[kept - 1])}\\ \\text{kg}`, at17[0] + 4, at17[1] + 2, 0, 0, [1, 0], { color: ACCENT2 }));
+	// ---- why the noise stops at k = 111: right of its last dot, level with it
+	const atLast = [Q.X(last), Q.Y(Math.log10(noise[last - 1]))];
+	const why = await S.clear(`\\text{gains past ${last}: lost in rounding}`, atLast[0] + DOTR + LABEL_GAP + 0.3, atLast[1], 0, 0.5, [1, 0], { color: DIM });
+	check(why.box.r <= Q.right, 'the note runs past the chart');
+	L.push(why);
 
 	S.checkAll(L);
 	window.tutSvdTsvd = { s17: s[16], s18: s[17], n17: noise[16], n25: noise[24], n40: noise[39], n111: noise[110], tol, sweeps: g.sweeps, ms: performance.now() - t0, smallest: s[230] };

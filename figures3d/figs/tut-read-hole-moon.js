@@ -1,35 +1,33 @@
 // The tutorial, reading section R13b (tutorial/what-a-field-keeps/reading-sections-xiv-and-xv.md), its second diagram:
 // the capstone, the paper's Table VIII (tab:hair) redrawn for two bodies of one mass, the 0.905 K black hole and a
-// uniform rocky moon of 3000 kg m^-3, down the seven rows (a) to (g) of the chapter's capstone table.
+// uniform rocky moon of 3000 kg m^-3. The chapter's table of seven rows (a) to (g) stands directly under the figure, so
+// the figure draws only what the table cannot: the two bodies and the tide, and row (d) as two rulers.
 //  At the top, the two bodies, not to scale: the hole a near-black disc (11.1's fill) with a thin grey ring for its
 //  horizon, tagged "0.905 K" and "r_s = 0.201 mm"; the moon a disc in matter's pale fill with an edge of matter's colour
 //  (R13's ball, figs/tut-read-ball-shell.js), tagged "3000 kg m^-3" and "R_m = 2210 km". Between them the one tide, a
 //  small bell curve of its strength against time, "one tide, about a second" (the chapter's standard deviation of one
-//  second), with a grey arrow to each body, "slow" to the hole and "fast" to the moon.
-//  Below, the seven rows, each under a thin rule, the row's name at the left (as the chapter's first column) and the
-//  hole's and the moon's entries in two columns under their discs:
-//   (a) "7 numbers, 139.5 bits" | "1176 bits";  (b) "k_2 = 0" | "k_2 = 0.031";
-//   (c) "friction, 1.85 x 10^-23 kg m^2 s^2" | "dust, -1.32 x 10^35 kg m^2 s^2";
-//   (d) a short line for each body with a tick at each degree's shell radius: the hole's five, 1.0175, 1.4555, 1.6100,
-//       1.6868 and 1.7324 r_s, on a line from r_s to 2 r_s, with the limit (3 sqrt3 / e) r_s = 1.9116 r_s dashed; the
-//       moon's three, R_m [3/(2l + 1)]^(1/(2l - 2)) for l = 2, 3, 4, on a line from R_m/2 to R_m, with its surface
-//       dashed; the first tick and the dashed one numbered; "fails the test" | "passes the test" above;
-//   (e) "0.905 K: its mass" | "the whole interior";  (f) "5.2 x 10^-44 J: its mass" | "1.32 x 10^15 J: its density";
-//   (g) "1450 bits" | "2.8 x 10^5 cells of 55 km".
+//  second), with a grey arrow to each body, "slow" to the hole and "fast" to the moon. "not to scale" at the left,
+//  level with the discs.
+//  Below, "(d) the sums" at the left, and under each body a short line with a tick at each degree's shell radius: the
+//  hole's five, 1.0175, 1.4555, 1.6100, 1.6868 and 1.7324 r_s, on a line from r_s to 2 r_s, with the limit
+//  (3 sqrt3 / e) r_s = 1.9116 r_s dashed; the moon's three, R_m [3/(2l + 1)]^(1/(2l - 2)) for l = 2, 3, 4, on a line
+//  from R_m/2 to R_m, with its surface dashed; the first tick and the dashed one numbered; "fails the test" |
+//  "passes the test" above.
 // The colours: matter's colour for the moon's disc only (the moon's side); the hole's fill fixed dark, as 11.1's;
 // everything else in ink and the page's greys. Orange and blue, a stretch and a squeeze, are not used: nothing here is
 // stretched or squeezed.
-// Departures from the diagram's comment, where the chapter's text decides: (c) gives the hole's unit too, since both
-// numbers are kg m^2 s^2 in the table; (d)'s tags are "fails the test" and "passes the test", and the dashed lines are
-// numbered "1.91 r_s" and "R_m"; each body's line has its own scale, given by its two numbers, and the ticks are to
-// scale along it, so the caption says so instead of calling them schematic; the caption's "too slowly at the third
-// step", which the chapter does not say, becomes "fail it".
-// Exact: every number, computed here from G, c, hbar, k_B (the tutorial's, figs/tut-hawking-lib.js), the hole's 0.905
-// K, the moon's 3000 kg m^-3, 61 GPa and the tide's impulse 10^-10 s^-1 over a standard deviation of one second, and
-// asserted against the chapter's text, except the hole's shell radii beyond the first (13.7's numerical integrals),
-// 13.8's count of 2.8 x 10^5 cells and 1176 bits' model, which are asserted against the chapter and checked where a
-// formula allows; the ticks' places. Schematic: the discs, the bell's size and the arrows.
-import { tex, INK, DIM, RULE } from '../lib.js';
+// Departures from the diagram's comment, where the chapter's text decides: rows (a) to (c) and (e) to (g) are left to
+// the chapter's table, which the figure repeated word for word; (d)'s tags are "fails the test" and "passes the test",
+// and the dashed lines are numbered "1.91 r_s" and "R_m"; each body's line has its own scale, given by its two numbers,
+// and the ticks are to scale along it, so the caption says so instead of calling them schematic; the caption's "too
+// slowly at the third step", which the chapter does not say, becomes "fail it".
+// Exact: every number, the table's included (the figure checks the chapter's table though it draws only (d)), computed
+// here from G, c, hbar, k_B (the tutorial's, figs/tut-hawking-lib.js), the hole's 0.905 K, the moon's 3000 kg m^-3, 61
+// GPa and the tide's impulse 10^-10 s^-1 over a standard deviation of one second, and asserted against the chapter's
+// text, except the hole's shell radii beyond the first (13.7's numerical integrals), 13.8's count of 2.8 x 10^5 cells
+// and 1176 bits' model, which are asserted against the chapter and checked where a formula allows; the ticks' places.
+// Schematic: the discs, the bell's size and the arrows.
+import { tex, INK, DIM } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, n2, near, HAIR, LABEL_GAP } from './tut-pot-lib.js';
 import { G, C, HBAR, KB, HOLE, MATTER, palette, massAt } from './tut-hawking-lib.js';
 
@@ -50,12 +48,11 @@ const CELLS = 2.8e5;                      // (g): 13.8's count for the moon
 
 // ---- the drawing (figure points, y down) ------------------------------------------------------------------------
 const SIZE = 9.6;                         // every label: R11's and R13's capstones
-const NW = 104;                           // the rows' names
+const NW = 62;                            // the names' column: "not to scale" and (d)'s name
 const CW = 128;                           // each body's column
 const GUT = 10;                           // between the columns
-const LEAD = 12;                          // baseline to baseline within an entry
-const ROW_PAD = 4.6;                      // a rule to the ink of its row, and the row's ink to the next rule
-const RULE_W = 0.5;                       // the rules between the rows
+const LEAD = 12;                          // baseline to baseline within a tag
+const D_GAP = 13;                         // the head's ink to (d)'s
 const R_HOLE = 8.5, R_MOON = 14;          // the discs' radii (not to scale)
 const RING = 0.6, EDGE = 0.6;             // the horizon's ring, the moon's edge
 const BELL = { w: 30, h: 15, width: 0.6 };// the tide's bell: its width (six standard deviations) and height
@@ -144,16 +141,16 @@ async function numbers() {
 	return { M, rs, Rm, moonRadii, limit };
 }
 
-// ---- the rows: [the name (a '|' breaks it; the second line stands under the first's words), the hole's entry, the
-// moon's entry]; an entry is its lines, or 'ruler' for (d). Exactly the chapter's numbers (asserted in numbers()).
+// ---- the table's rows' names, (a) to (g), checked against the chapter's first column; the drawing shows (d) only, the
+// one row that is a picture (the others are the chapter's table).
 const ROWS = [
-	['(a) one time,|$\\mathrm{SNR} = 10^6$', ['7 numbers, 139.5 bits'], ['1176 bits']],
-	['(b) a steady tide', ['$k_2 = 0$'], ['$k_2 = 0.031$']],
-	['(c) the tide, at|$\\omega = 1\\ \\mathrm{s^{-1}}$', ['friction,', '$1.85\\times10^{-23}\\ \\mathrm{kg\\,m^2\\,s^2}$'], ['dust,', '$-1.32\\times10^{35}\\ \\mathrm{kg\\,m^2\\,s^2}$']],
-	['(d) the sums', 'ruler', 'ruler'],
-	['(e) the tremor', ['0.905 K: its mass'], ['the whole interior']],
-	['(f) a weighing|after the tide', ['$5.2\\times10^{-44}$ J: its mass'], ['$1.32\\times10^{15}$ J: its density']],
-	['(g) the most any|camera could read', ['1450 bits'], ['$2.8\\times10^5$ cells of 55 km']]
+	['(a) one time,|$\\mathrm{SNR} = 10^6$'],
+	['(b) a steady tide'],
+	['(c) the tide, at|$\\omega = 1\\ \\mathrm{s^{-1}}$'],
+	['(d) the sums'],
+	['(e) the tremor'],
+	['(f) a weighing|after the tide'],
+	['(g) the most any|camera could read']
 ];
 
 /** A label's TeX: text, with any $...$ set in maths. */
@@ -242,42 +239,16 @@ export default async function () {
 	L.push(await lbl('\\text{not to scale}', X0, cy, 0, 0.5, DIM));
 	headB = Math.max(...L.map((g) => g.box.b));
 
-	// ---- the rows -----------------------------------------------------------------------------------------------------
+	// ---- (d), the one row of the table that is a picture: under each body, its line of shells ----------------------
 	const cap = await atBase('\\text{(a)}', 0, 0);
-	const rules = [];
-	let y = headB + ROW_PAD + 2;
-	const rowsDone = [];
-	for (const [row, [nm, hole, moon]] of ROWS.entries()) {
-		S.path([[X0, y], [X1, y]], { color: RULE, width: RULE_W, cap: 'butt', layer: 1, what: `the rule above row ${row}` });
-		rules.push(y);
-		const base = y + RULE_W / 2 + ROW_PAD - cap.box.t;
-		let lowest = base;
-		// the name: flush left, a second line under the first's words
-		const [l1, l2] = nm.split('|');
-		const names = [await atBase(textOf(l1), X0, base, INK, true)];
-		if (l2) {
-			const indent = (await widthOf(textOf(l1.slice(0, 4)))) + 2.6;
-			names.push((await stack([textOf(l1), textOf(l2)], X0 + indent, base, INK, true))[1]);
-		}
-		L.push(...names);
-		lowest = Math.max(lowest, ...names.map((g) => g.box.b));
-		check(Math.max(...names.map((g) => g.box.r)) <= X0 + NW + 0.01, `row ${row}'s name is wider than its column`);
-		for (const [cx, entry, who] of [[HX, hole, 'hole'], [MX, moon, 'moon']]) {
-			if (entry === 'ruler') { lowest = Math.max(lowest, await ruler(cx, base, who)); continue; }
-			for (const g of await stack(entry.map(textOf), cx, base)) {
-				L.push(g); inColumn(g, cx, `the ${who}'s entry ${g.src}`);
-				lowest = Math.max(lowest, g.box.b);
-			}
-		}
-		rowsDone.push({ row, y, base, lowest });
-		y = lowest + ROW_PAD + RULE_W / 2;
-	}
-	S.path([[X0, y], [X1, y]], { color: RULE, width: RULE_W, cap: 'butt', layer: 1, what: 'the last rule' });
-	rules.push(y);
-	check(rules.every((r, j) => j === 0 || r - rules[j - 1] > 14), 'two rules too close');
-
+	const base = headB + D_GAP - cap.box.t;
+	const nm = await atBase(textOf(ROWS[3][0]), X0, base, INK, true);
+	L.push(nm);
+	check(nm.box.r <= X0 + NW + 0.01, '(d)\'s name is wider than its column');
+	const low = Math.max(await ruler(HX, base, 'hole'), await ruler(MX, base, 'moon'));
+	check(low > base, '(d) is empty');
 	S.checkAll(L);
-	window[name] = { N, W, rules: rules.map(n2), HX, MX };
+	window[name] = { N, W, HX, MX };
 	return finish(S, L, [330, 390]);
 
 	// ---- (d): each body's line, its ticks at the shells' radii, the limit dashed, two numbers, and the test --------

@@ -1,6 +1,6 @@
 // The tutorial, section 10.3 (tutorial/glow/why-matter-barely-glows.md), its second diagram: a sheared Fermi sea and its
 // relaxation. Three small panels in a row, each in the plane (k_x, k_y) with its two axes through the centre. Left,
-// "at rest": the filled Fermi disc of radius k_F in matter's pale gold, the dashed circle of the lowest states on its
+// "at rest": the filled Fermi disc of radius k_F in a pale tint of matter's colour (tut-glow-lib.js FILL), the dashed circle of the lowest states on its
 // edge. Middle, "just after a sudden shear": the same electrons, the image of the disc under 1 - u for the strain u_xy,
 // an ellipse squeezed along k_x = k_y and stretched along k_x = -k_y, outlined in matter's colour, with the dashed
 // circle still drawn; the bulge along k_x = -k_y marked "delta E > 0", the hollow along k_x = k_y "delta E < 0".

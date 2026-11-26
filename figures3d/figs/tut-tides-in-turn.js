@@ -1,14 +1,19 @@
-// The tutorial, section 13.4 (tutorial/what-a-field-keeps/flows-inside.md), its first diagram: two tides in turn. Left,
-// two timelines stacked, each a short arrow of time from t = 0 to tau: above, a kick (an impulse, drawn as a spike)
-// "kick g" at t = 0 and an eye "read h" at tau; below, "kick h" and "read g". Right, the response delta Q / eps against
-// tau from 0 to 0.02 (the twelve parts' units): the two responses of the boxed series for the twelve parts of the
-// margin note, tau S + tau^2 (dS/dt / 2 +- bracket / 2), with S = -5.80, dS/dt / 2 = 0.80 and the bracket 5.323, thin
-// single strokes in ink, "kick g, read h" solid and "kick h, read g" dotted, each timeline drawn in its curve's
-// stroke; the gap between them shaded. Above, at the true scale, where the two run as one straight line, labelled
-// with the first term of the series; below, the same less that first term, forty times higher: the two parabolas, their
-// half sum dashed, the shaded gap and, at tau = 0.02, a bar across it labelled tau^2 {Q_h, Q_g}, off the curves.
+// The tutorial, section 13.4 (tutorial/what-a-field-keeps/flows-inside.md), its first diagram: two tides in turn. At the
+// top, the key, centred over the plots: two timelines one above the other, each a short arrow of time from t = 0 to
+// tau with a kick (an impulse, drawn as a spike) at t = 0 and an eye at tau, "kick g" left of its start and "read h"
+// right of its end; below it "kick h" and "read g". Under the key, the response delta Q / eps against tau from 0 to
+// 0.02 (the twelve parts' units): the two responses of the boxed series for the twelve parts of the margin note,
+// tau S + tau^2 (dS/dt / 2 +- bracket / 2), with S = -5.80, dS/dt / 2 = 0.80 and the bracket 5.323, thin single
+// strokes in ink, "kick g, read h" solid and "kick h, read g" dotted, each timeline of the key drawn in its curve's
+// stroke; the gap between them shaded. Above, at the true scale, where the two run as one straight line, labelled with
+// the first term of the series, its tau axis along its top at zero response; below, the same less that first term,
+// forty times higher: the two parabolas, their half sum dashed, the shaded gap and, at tau = 0.02, a bar across it
+// labelled tau^2 {Q_h, Q_g}, off the curves; its own tau axis numbered along its bottom, its height numbered 0 and
+// 0.001 in the upper panel's units, its quantity "delta Q / eps - tau int rho grad g . grad h dV" and "x40" inside at
+// its top left.
 // Departures from the diagram's comment: the two orders are told apart by their strokes and by direct labels in ink,
-// not by orange and blue, which mean a stretch and a squeeze; the timelines in the same two strokes serve as the key.
+// not by orange and blue, which mean a stretch and a squeeze; the timelines in the same two strokes serve as the key,
+// set above the plots as their title rather than beside them, where they left the figure lopsided.
 // At the true scale the gap is 2 per cent of the response at tau = 0.02 and cannot be seen, so the lower panel draws
 // the curves less their common first term, forty times higher (the caption says so).
 // Exact: S, dS/dt and the bracket, computed from the twelve parts (tut-brackets-lib.js, which also asserts the text's
@@ -37,7 +42,9 @@ const SHADE = 0.5;                         // the gap's tint: the rule's colour,
 const HALF = 0.45, HALF_DASH = [2.2, 1.6]; // the half sum
 const MATCH = 0.45;                        // the most the exact responses may stray from the drawn curves, points
 const LINE_T = 58;                         // a timeline's length, t = 0 to tau
-const ROW = 46;                            // between the two timelines
+const ROW = 17;                            // between the key's two timelines
+const KEY_AIR = 9;                         // the key's lower line to the upper tau numbers' ink
+const LO_TICKS = [0, 0.001];               // the lower plot's numbered heights
 const SPIKE = [2.6, 9.5];                  // the kick: base and height
 const EYE = [10, 5.2];                     // the eye: width and height
 const caption = 'Look first at the shaded gap: the two orders start along the same straight line, which weighs the density, and part as the square of the time, by the bracket of the two rates, which weighs the flow. The lower panel is the upper one less that straight line, drawn forty times higher. The curves are the series of the text for the twelve parts of the margin note, without its higher terms.';
@@ -106,14 +113,27 @@ export default async function () {
 		L.push(await Sh.clear(first, p[0], p[1], 0, 1, [-u[1] / l, u[0] / l]));
 	}
 
-	// ---- below: the rest, forty times higher, from the first term as its zero line
-	Sh.path([[Bp.X(0), Bp.Y(0)], [Bp.X(T1), Bp.Y(0)]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: 'the lower zero line' });
-	for (const t of [0.01, 0.02]) Sh.path([[Bp.X(t), Bp.Y(0)], [Bp.X(t), Bp.Y(0) + TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the lower tick at ${t}` });
+	// ---- below: the rest, forty times higher, from the first term as its zero line; its own tau axis along its
+	// bottom, numbered, and its height numbered on the left, in the upper panel's units
+	Sh.path([[Bp.X(0), Bp.Y(0)], [Bp.X(T1), Bp.Y(0)]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: 'the lower zero line' });
+	Sh.path([[Bp.X(0), Bp.bottom], [Bp.X(T1), Bp.bottom]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: 'the lower tau axis' });
+	for (const t of [0, 0.01, 0.02]) {
+		Sh.path([[Bp.X(t), Bp.bottom], [Bp.X(t), Bp.bottom + TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the lower tick at ${t}` });
+		L.push(await placed(t === 0 ? '0' : t.toFixed(2), Bp.X(t), Bp.bottom + TICK + 2.6, 0.5, 0, DIM));
+	}
+	L.push(await placed('\\tau', Bp.X(T1) + LABEL_GAP + 5.5, Bp.bottom, 0, 0.5, INK));
 	Sh.path([[left, Bp.top], [left, Bp.bottom]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: 'the lower axis' });
+	for (const q of LO_TICKS) {
+		Sh.path([[left, Bp.Y(q)], [left - TICK, Bp.Y(q)]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the lower tick at ${q}` });
+		L.push(await placed(q === 0 ? '0' : q.toFixed(3), left - TICK - 2.6, Bp.Y(q), 1, 0.5, DIM));
+	}
+	check(LO_TICKS.every((q) => q > LO[0] && q < LO[1]), 'a lower tick is outside its plot');
 	Sh.path(ts.map((t) => Bp.at(t, half(t))), { color: DIM, width: HALF, dash: HALF_DASH, cap: 'butt', layer: 1.5, what: 'the half sum' });
 	pair(Bp, () => 0, 'below');
-	L.push(await placed(`{-}\\,${first}`, left - TICK - 2.6, Bp.Y(0), 1, 0.5, DIM));
-	L.push(await placed(`{\\times}${ZOOM}`, left + 4, Bp.bottom, 0, 1, DIM));
+	// its quantity, inside at the top left, as the upper panel's is inside at its bottom left; forty times higher
+	const titleB = await placed(`\\delta ${Q('Q')}/\\epsilon\\;{-}\\;${first}`, left + 4, Bp.top + 1, 0, 0, INK);
+	L.push(titleB);
+	L.push(await placed(`{\\times}${ZOOM}`, left + 4, titleB.box.b + LABEL_GAP + 1.2, 0, 0, DIM));
 	// the gap's width at tau = 0.02: a bar just past the curves' ends, the bracket's label beside it
 	{
 		const x = Bp.X(T1) + 3.4, a = Bp.Y(up(T1)), b = Bp.Y(down(T1));
@@ -124,40 +144,47 @@ export default async function () {
 	}
 	// direct labels: each order beside its curve, on its own side
 	{
-		const t = 0.0128;
+		const t = 0.0128, T_LOW = 0.0095;
 		L.push(await Sh.clear('\\text{kick }g\\text{, read }h', Bp.X(t), Bp.Y(up(t)), 1, 1, [-0.5, -0.866]));
-		L.push(await Sh.clear('\\text{kick }h\\text{, read }g', Bp.X(t), Bp.Y(down(t)), 0, 0, [0.5, 0.866]));
+		L.push(await Sh.clear('\\text{kick }h\\text{, read }g', Bp.X(T_LOW), Bp.Y(down(T_LOW)), 0, 0, [0.5, 0.866]));
 	}
 
-	// ---- the two timelines, left of the plots, each drawn in its curve's stroke
-	const right = left - 52;                                    // tau's end of the timelines
-	const mid = (A.top + Bp.bottom) / 2;
-	const rows = [[mid - ROW / 2, 'g', 'h', null], [mid + ROW / 2, 'h', 'g', DOTS]];
-	for (const [y, kick, read, dash] of rows) {
-		const x0 = right - LINE_T, x1 = right;
-		// the arrow of time: a shaft (solid or dotted) and a filled head at tau
-		const neck = x1 - VEC_HEAD * 0.8;
-		Sh.path([[x0, y], [neck, y]], { color: INK, width: CURVE, dash, layer: 2, cap: dash ? 'round' : 'butt', what: `the time line ${kick}` });
-		Sh.fill(`M${n2(x1)},${n2(y)}L${n2(x1 - VEC_HEAD)},${n2(y - 0.36 * VEC_HEAD)}L${n2(x1 - VEC_HEAD)},${n2(y + 0.36 * VEC_HEAD)}Z`,
-			{ l: x1 - VEC_HEAD, r: x1, t: y - 0.36 * VEC_HEAD, b: y + 0.36 * VEC_HEAD }, { color: INK, layer: 2, what: `the time line's head ${kick}` });
-		// the kick: a spike standing on the line at t = 0
-		Sh.fill(`M${n2(x0 - SPIKE[0] / 2)},${n2(y)}L${n2(x0)},${n2(y - SPIKE[1])}L${n2(x0 + SPIKE[0] / 2)},${n2(y)}Z`,
-			{ l: x0 - SPIKE[0] / 2, r: x0 + SPIKE[0] / 2, t: y - SPIKE[1], b: y }, { color: INK, layer: 2, what: `the kick ${kick}` });
-		// the eye, above the line at tau: two arcs and the iris
-		{
-			const cx = x1 - VEC_HEAD / 2, cy = y - 3.2 - EYE[1] / 2, [w, h] = EYE;
-			const rr = (w * w / 4 + h * h / 4) / h;           // the radius of an arc through the corners and the top
-			Sh.raw(`<path d="M${n2(cx - w / 2)},${n2(cy)}A${n2(rr)},${n2(rr)} 0 0,1 ${n2(cx + w / 2)},${n2(cy)}A${n2(rr)},${n2(rr)} 0 0,1 ${n2(cx - w / 2)},${n2(cy)}Z" fill="none" stroke="${INK}" stroke-width="0.5" stroke-linejoin="round"/>` +
-				`<circle cx="${n2(cx)}" cy="${n2(cy)}" r="${n2(h * 0.32)}" fill="${INK}"/>`, 2);
-			Sh.boxes.push({ box: { l: cx - w / 2 - 0.25, r: cx + w / 2 + 0.25, t: cy - h / 2 - 0.25, b: cy + h / 2 + 0.25 }, what: `the eye ${read}` });
+	// ---- the key, centred above the plots: the two orders, each a timeline in its curve's stroke, one above the other:
+	// "kick g", a spike at t = 0, the arrow of time to tau, an eye at tau, "read h"
+	{
+		const numTop = Math.min(...L.filter((g) => g.box.b < A.top).map((g) => g.box.t));   // the upper tau numbers' ink
+		// the row centred on the plots: the words' widths, a word's air, the spike's half base, the line
+		const wd = async (src) => { const b = (await placed(src, 0, 0, 0, 0, INK)).box; return b.r - b.l; };
+		const [wK, wR] = [await wd('\\text{kick }g'), await wd('\\text{read }h')];
+		const over = Math.max(0, EYE[0] / 2 + 0.25 - VEC_HEAD / 2);     // the eye's overhang past the arrow's tip
+		const x0 = (A.X(0) + A.X(T1)) / 2 - (LINE_T + SPIKE[0] / 2 + over + 2 * (LABEL_GAP + 1.2) + wK + wR) / 2 + wK + LABEL_GAP + 1.2 + SPIKE[0] / 2;
+		const x1 = x0 + LINE_T;
+		const y2 = numTop - KEY_AIR - 0.36 * VEC_HEAD, y1 = y2 - ROW;
+		for (const [y, kick, read, dash] of [[y1, 'g', 'h', null], [y2, 'h', 'g', DOTS]]) {
+			// the arrow of time: a shaft (solid or dotted) and a filled head at tau
+			const neck = x1 - VEC_HEAD * 0.8;
+			Sh.path([[x0, y], [neck, y]], { color: INK, width: CURVE, dash, layer: 2, cap: dash ? 'round' : 'butt', what: `the time line ${kick}` });
+			Sh.fill(`M${n2(x1)},${n2(y)}L${n2(x1 - VEC_HEAD)},${n2(y - 0.36 * VEC_HEAD)}L${n2(x1 - VEC_HEAD)},${n2(y + 0.36 * VEC_HEAD)}Z`,
+				{ l: x1 - VEC_HEAD, r: x1, t: y - 0.36 * VEC_HEAD, b: y + 0.36 * VEC_HEAD }, { color: INK, layer: 2, what: `the time line's head ${kick}` });
+			// the kick: a spike standing on the line at t = 0
+			Sh.fill(`M${n2(x0 - SPIKE[0] / 2)},${n2(y)}L${n2(x0)},${n2(y - SPIKE[1])}L${n2(x0 + SPIKE[0] / 2)},${n2(y)}Z`,
+				{ l: x0 - SPIKE[0] / 2, r: x0 + SPIKE[0] / 2, t: y - SPIKE[1], b: y }, { color: INK, layer: 2, what: `the kick ${kick}` });
+			// the eye, above the line at tau: two arcs and the iris
+			{
+				const cx = x1 - VEC_HEAD / 2, cy = y - 3.2 - EYE[1] / 2, [w, h] = EYE;
+				const rr = (w * w / 4 + h * h / 4) / h;           // the radius of an arc through the corners and the top
+				Sh.raw(`<path d="M${n2(cx - w / 2)},${n2(cy)}A${n2(rr)},${n2(rr)} 0 0,1 ${n2(cx + w / 2)},${n2(cy)}A${n2(rr)},${n2(rr)} 0 0,1 ${n2(cx - w / 2)},${n2(cy)}Z" fill="none" stroke="${INK}" stroke-width="0.5" stroke-linejoin="round"/>` +
+					`<circle cx="${n2(cx)}" cy="${n2(cy)}" r="${n2(h * 0.32)}" fill="${INK}"/>`, 2);
+				Sh.boxes.push({ box: { l: cx - w / 2 - 0.25, r: cx + w / 2 + 0.25, t: cy - h / 2 - 0.25, b: cy + h / 2 + 0.25 }, what: `the eye ${read}` });
+			}
+			// the words on the line's level, outside its ends
+			L.push(await placed(`\\text{kick }${kick}`, x0 - SPIKE[0] / 2 - LABEL_GAP - 1.2, y, 1, 0.5, INK));
+			L.push(await placed(`\\text{read }${read}`, x1 + over + LABEL_GAP + 1.2, y, 0, 0.5, INK));
+			L.push(await placed('\\tau', (x0 + x1) / 2, y - LABEL_GAP - 0.4, 0.5, 1, DIM));
 		}
-		const below = y + 0.36 * VEC_HEAD + LABEL_GAP + 0.3;
-		L.push(await placed(`\\text{kick }${kick}`, x0, below, 0.5, 0, INK));
-		L.push(await placed(`\\text{read }${read}`, x1 - VEC_HEAD / 2, below, 0.5, 0, INK));
-		L.push(await placed('\\tau', (x0 + x1) / 2, y - LABEL_GAP - 1.4, 0.5, 1, DIM));
 	}
 
 	Sh.checkAll(L);
 	window[name + '-numbers'] = { S, halfRate: Sdot / 2, bracket: B, gap: T1 * T1 * B };
-	return finish(Sh, L, [280, 370]);
+	return finish(Sh, L, [240, 300]);
 }

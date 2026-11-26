@@ -204,7 +204,7 @@ export async function chapter(check) {
 	has(String.raw`it reads $\Lambda\curv{\mathcal W}\Lambda^{\mathsf T}$ with $\sym{complex-boost}{\Lambda} = \exp(-i\obs\eta\,\hat z\cdot\mathbf L)$`, 'the boost');
 	has(String.raw`$$\boxed{\;\Lambda\,\vect m(z) = e^{-\obs\eta}\,\vect m\bigl(z\,e^{\obs\eta}\bigr) .\;} \label{eq:boost-z}$$`, 'eq:boost-z');
 	has(String.raw`**Its roots are the old roots times $e^{\obs\eta}$.**`, 'the roots times e^eta');
-	has(String.raw`**Check:** for the figure's two masses at $\obs\eta = 0.7$, all four roots grow by $2.01375 = e^{0.7}$.`, 'the check at eta = 0.7');
+	has(String.raw`**Check:** for the two masses of Figure [](/paper/#fig:stars) at $\obs\eta = 0.7$, all four roots grow by $2.01375 = e^{0.7}$.`, 'the check at eta = 0.7');
 	has('A mark shows where a wave would travel to, so the marks slide behind the pixel', 'the convention of the marks');
 	for (const eta of [0.3, 0.7, 1.4]) {
 		const L = boost([0, 0, 1], eta);
@@ -220,7 +220,7 @@ export async function chapter(check) {
 	}
 
 	// ---- the moving body
-	has(String.raw`A body as in the figure, at $1.5$ along $-\hat x$ and moving along $+\hat y$ at $0.9c$, has the directions $(\pm0.436, 0.9, 0)$, each twice: the half sum is $(0, 0.9, 0)$, and the half difference has the length $0.436 = (1 - 0.81)^{1/2}$`, 'the moving body');
+	has(String.raw`A body as in Figure [](/paper/#fig:stars), at $1.5$ along $-\hat x$ and moving along $+\hat y$ at $0.9c$, has the directions $(\pm0.436, 0.9, 0)$, each twice: the half sum is $(0, 0.9, 0)$, and the half difference has the length $0.436 = (1 - 0.81)^{1/2}$`, 'the moving body');
 	has(String.raw`\tfrac12(\hat p_+ + \hat p_-) = \frac{\obs{\vect v}_\perp}{c},\\ \tfrac12(\hat p_+ - \hat p_-) = \pm\Bigl(1 - \frac{\obs v_\perp^2}{c^2}\Bigr)^{1/2}\hat n ,`, 'the half sum and the half difference');
 	has(String.raw`For the pixel the body moves with $\obs{\vect v} = -c\obs{\vect\beta}$`, 'v = -c beta');
 	has(String.raw`with the upper signs for $\sym{pnd-pairs}{\hat p_+}$ and the lower for $\hat p_-$`, 'p+ and p-');

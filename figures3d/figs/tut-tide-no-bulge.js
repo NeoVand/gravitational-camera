@@ -16,7 +16,7 @@
 // is shown in orange on the ring of beads, where the tide acts on free bodies; the bodies carry no colour of their own,
 // the stone being stone and the hole dark. The strips' axes are logarithmic, so that r^2 and r^-3 are straight lines
 // of slopes 2 and -3 and the reply, a hundredth of the tide at 2R, shows; both strips share one scale up, the tide's
-// r^2 part being 1 at r = R (or r_s), and only the left one numbers it. Each panel has a short name with its k_2. The
+// r^2 part being 1 at r = R (or r_s), and both number it. Each panel has a short name with its k_2. The
 // two panels stay side by side on a phone, the figure being one drawing.
 // Exact: the strips' curves (tut-friction-lib.js: r^2 and r^-3 solve Laplace's equation for degree two, H = r(r - r_s)
 // solves Hinderer's, and the reply is k_2 = 0.30 times the tide at r = R); the hole's disc is round and of radius r_s
@@ -121,7 +121,7 @@ export default async function () {
 		const P = new Plot({ left: cx + BODY - (STRIP_W + 4) / 2 + STRIP_IN, top: yb + R + STRIPS, w: STRIP_W, h: STRIP_H, x0: SX0, x1: SX1, y0: SY0, y1: SY1 });
 		const xl = await xAxis(S, P, { ticks: [2, 4, 8].map(lg), fmt: (t) => String(Math.round(10 ** t)), what: `${what}'s strip across` });
 		L.push(...xl);
-		const yl = await yAxis(S, P, { ticks: [-4, -3, -2, -1, 0, 1, 2], fmt: (t) => (isHole || t % 2 ? null : t === 0 ? '1' : `10^{${t}}`), what: `${what}'s strip up` });
+		const yl = await yAxis(S, P, { ticks: [-4, -3, -2, -1, 0, 1, 2], fmt: (t) => (t % 2 ? null : t === 0 ? '1' : `10^{${t}}`), what: `${what}'s strip up` });
 		L.push(...yl);
 		const below = Math.max(...xl.map((l) => l.box.b));
 		L.push(await placed(isHole ? 'r/r_s' : 'r/R', P.X((SX0 + SX1) / 2), below + 3, 0.5, 0, DIM));

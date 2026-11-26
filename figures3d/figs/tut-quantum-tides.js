@@ -9,12 +9,14 @@
 // (9.34 x 10^-9), a gram in two places a micrometre apart (12 G m d^2 / r^5 = 8.0 x 10^-25), the steel ball's thermal
 // tremor (3.4 x 10^-25) and its zero-point tremor (1.2 x 10^-29). A thin dashed grey line runs from the one-second gram
 // pixel's bar across to the right, "one second at the SQL". Ink and greys only.
-// Departures from the diagram's comment: the distance of the two lies only 0.15 decades (1.3 pt) above the one-mass
-// limit, so its bar is a grey hairline 1.3 pt above the ink bar, joined to it at its outer end by a bracket of that
-// height, and both numbers are named in the one label, which hangs from a leader below the bars; the gram in two
-// places and the ball's thermal tremor lie 0.37 decades (3 pt) apart, so their dots stand side by side and their names
-// hang from leaders, the first above and the second below. The one drawing serves the phone: every label is at the
-// size of every other label.
+// Departures from the diagram's comment: the axis runs 10.5 points to the decade, so that the names have room. The
+// distance of the two lies only 0.15 decades (1.6 pt) above the one-mass limit, so its bar is a grey hairline 1.6 pt
+// above the ink bar, joined to it at its outer end by a bracket of that height, and both numbers are named in the one
+// label, which hangs from a leader below the bars; the gradiometer's name stands on a leader above its bar, so that no
+// name runs into a bar or the axis's numbers, and every leader starts at its bar's outer end, the names of the left
+// side right-aligned in one column. The gram in two places and the ball's thermal tremor lie 0.37 decades (3.9 pt)
+// apart, so their dots stand side by side and their names hang from leaders, the first above and the second below.
+// The one drawing serves the phone and the book: every label is at the size of every other label.
 // Exact: every place on the axis. The pixel's tides, the person's, the gradiometer's, the ratio 9.5 x 10^16 and the
 // pair's fall in 3.9 x 10^3 s are section 8.6's (figs/tut-sql-lib.js, computed and asserted against 8.6's text); the
 // ball's thermal tide is section 4.1's (figs/tut-osc-lib.js, `ball`, the quadrupole integrated over the ball) and its
@@ -34,18 +36,19 @@ const name = 'tut-quantum-tides';
 const check = checker(name);
 
 // ---- the drawing (points, y down) --------------------------------------------------------------------------------
-const K = 8.6;                     // points per decade
+const K = 10.5;                    // points per decade
 const D_TOP = -8, D_BOTTOM = -30;  // the axis, log10 of the tide in s^-2
 const TICKS = [-8, -10, -12, -14, -16, -18, -20, -22, -24, -26, -28, -30];
 const BAR = 16;                    // an instrument's bar
 const BAR_W = 0.75;                // its stroke
 const BAR_DOT = 1.0, BAR_DOT_STEP = 2.2;   // the dotted bar's dots and their spacing
-const BAR_AIR = 3.5;               // from the axis's numbers to a bar's inner end
+const BAR_AIR = 5;                 // from the axis's numbers to a bar's inner end
 const DOT = 1.9;                   // a scene's dot
 const DOT_IN = 7;                  // from the axis to a dot
 const SIDE = 8;                    // the second of two dots side by side, further right
 const PITCH = 10.4;                // baseline to baseline within a name
 const FLAG = 2.6;                  // from a leader to its name
+const NAME_AIR = FLAG + HAIR / 2;    // from a bar's outer end to a name beside it, as from a leader to its name
 const XH = 2.6;                    // from a baseline up to the middle of the small letters
 const DASH = [2.2, 1.6];
 
@@ -115,7 +118,7 @@ export default async function () {
 		L.push(g);
 	}
 
-	// ---- the instruments: bars left of the axis, their inner ends BAR_OUT from it
+	// ---- the instruments: bars left of the axis, their inner ends BAR_AIR from its numbers
 	const xIn = numLeft - BAR_AIR, xOut = xIn - BAR;
 	const bar = (v, what, o = {}) => S.path([[xOut, y(v)], [xIn, y(v)]], { color: INK, width: BAR_W, cap: 'butt', layer: 2, what, ...o });
 	bar(grad, 'the gradiometer\'s bar');
@@ -169,15 +172,15 @@ export default async function () {
 		check(sig(v, digits) === sig(p, digits), `${k}: printed ${NUM_TEX[k]}, computed ${v}`);
 	}
 
-	const xL = xOut - LABEL_GAP - 0.6;
-	L.push(...(await centred([['\\text{superconducting}', INK], ['\\text{gradiometer, one}', INK], [`\\text{second, }${NUM_TEX.grad}`, INK]], xL, y(grad), -1)));
+	const xL = xOut - NAME_AIR;
+	L.push(...(await hung([['\\text{superconducting}', INK], ['\\text{gradiometer, one}', INK], [`\\text{second, }${NUM_TEX.grad}`, INK]], xOut + HAIR / 2, y(grad) - BAR_W / 2 - 0.8, 9, -1, -1, 'the gradiometer\'s leader')));
 	L.push(...(await hung([
 		['\\text{the gram pixel at the}', INK],
 		['\\text{standard quantum limit,}', INK],
 		[`\\text{one second, }${NUM_TEX.pix}\\text{;}`, INK],
 		[`${NUM_TEX.pix2}\\text{ for the}`, DIM],
 		['\\text{distance of the two}', DIM]
-	], (xOut + xIn) / 2, y(pix) + BAR_W / 2 + 0.8, 14, 1, -1, 'the pixel\'s leader')));
+	], xOut + HAIR / 2, y(pix) + BAR_W / 2 + 0.8, 16, 1, -1, 'the pixel\'s leader')));
 	L.push(...(await centred([['\\text{the gram pixel in}', INK], ['10^3\\text{ s stretches over}', INK], ['\\text{the age of the universe,}', INK], [NUM_TEX.avg, INK]], xL, y(avg), -1)));
 
 	// ---- the scenes: dots right of the axis
@@ -193,8 +196,8 @@ export default async function () {
 	check(y(thermal) - y(split) < 2 * DOT + 0.5 && x2 - x1 >= 2 * DOT + 3, 'the two close dots');
 	const xR = x1 + DOT + LABEL_GAP + 0.6;
 	L.push(...(await centred([[`\\text{the person, }${NUM_TEX.person}`, INK]], xR, y(person), 1)));
-	L.push(...(await hung([['\\text{a gram in two places}', INK], ['\\text{a micrometre apart,}', INK], [NUM_TEX.split, INK]], x1, y(split) - DOT - 0.8, 7.5, -1, 1, 'the split gram\'s leader')));
-	L.push(...(await hung([['\\text{the steel ball\'s thermal}', INK], [`\\text{tremor, }${NUM_TEX.thermal}`, INK]], x2, y(thermal) + DOT + 0.8, 9.5, 1, 1, 'the ball\'s leader')));
+	L.push(...(await hung([['\\text{a gram in two places}', INK], ['\\text{a micrometre apart,}', INK], [NUM_TEX.split, INK]], x1, y(split) - DOT - 0.8, 14, -1, 1, 'the split gram\'s leader')));
+	L.push(...(await hung([['\\text{the steel ball\'s thermal}', INK], [`\\text{tremor, }${NUM_TEX.thermal}`, INK]], x2, y(thermal) + DOT + 0.8, 14, 1, 1, 'the ball\'s leader')));
 	L.push(...(await centred([['\\text{its zero-point tremor,}', INK], [NUM_TEX.zero, INK]], xR, y(zero), 1)));
 
 	// ---- the dashed line from the one-second pixel's bar across to the right, and its name above it at the right

@@ -18,6 +18,10 @@
 // length, which leaves room under N-hat, beyond the circle, for N-hat's name. Where a line passes in front of another
 // it is cut clear of it by a halo of the page's colour: N-hat in front of the circle at one crossing and behind it at
 // the other, n' in front of the circle where it leaves it and in front of the arc of theta (each decided by depth).
+// In the printed book (figureLayout 'book') the drawing is smaller, 118 points per unit length instead of 150, so that
+// it is not printed larger than it needs; there e_1 and e_2 are 0.34 long instead of 0.28, the arc of beta has the
+// radius 0.24 instead of 0.29 and the arc of psi 0.27 instead of 0.2, and e_2's name stands below its tip, so that the
+// names, which keep their size, stay clear of the circle and of one another.
 // Exact: every point is the orthographic image of the chapter's vectors (tut-memory-lib.js, `chapter`, asserts
 // e_1 x e_2 = N-hat, n' = cos(beta) N-hat + sin(beta)(cos(psi) e_1 + sin(psi) e_2), z-hat = cos(theta) N-hat +
 // sin(theta) e_1, cos(theta') = cos(theta) cos(beta) + sin(theta) sin(beta) cos(psi), psi the turn from e_1 toward
@@ -35,13 +39,16 @@ import { chapter, palette, OBS, MATTER, FRAME, DRAWN, emission, axisZ, dot, cros
 const name = 'tut-memory-angles';
 const check = checker(name);
 
-const SCALE = 150;                         // points per unit length in space
+const BOOK = globalThis.figureLayout === 'book';
+const SCALE = BOOK ? 118 : 150;            // points per unit length in space (smaller in the printed book)
 const LN = 1.35;                           // N-hat's and n's arrows, one length in space
 const VIEW = [0.45, 0.2];                  // the view's direction toward the reader: its N-hat and e_1 parts
 const PLANE = 0.6;                         // the circle's plane, along N-hat
-const AX = 0.28;                           // e_1 and e_2, in space
+const AX = BOOK ? 0.34 : 0.28;             // e_1 and e_2, in space (longer in the book, so that e_2's name clears N-hat)
 const Z_REACH = [-0.3, 0.86];              // the axis z-hat, from and to, in space
-const ARC = { theta: 0.15, beta: 0.29, thetaP: 0.41, psi: 0.2 };   // the arcs' radii, in space
+const ARC = { theta: 0.15, beta: BOOK ? 0.24 : 0.29, thetaP: 0.41, psi: BOOK ? 0.27 : 0.2 };   // the arcs' radii, in
+// space (in the book beta's smaller, so that its name stays outside the circle, and psi's larger, so that its name
+// fits between e_1 and the dashed radius)
 const SOURCE = 2.2;                        // the source's dot, points
 const CAM = { w: 12, h: 8, round: 1.7, lens: 3, glass: 1.5, bump: [4.4, 1.9, 0.7], gap: 2.2, room: 4 };   // the
 // camera: its body (width, height, corner radius), the lens's radius and the glass's within it, the viewfinder (width,
@@ -213,7 +220,7 @@ export default async function () {
 		const m = P(psiArc.mid), dp = unit2([m[0] - cP[0], m[1] - cP[1]]); await name2('\\psi', m, dp);
 	}
 	await name2('\\boldsymbol e_1', a1.B, [0.6, -0.8]);
-	await name2('\\boldsymbol e_2', a2.B, unit2(pg(e2)));
+	await name2('\\boldsymbol e_2', a2.B, BOOK ? [0, 1] : unit2(pg(e2)));    // in the book, below its tip, inside the circle
 	await name2("\\hat n'\\text{, emission}", aP.B, [1, 0], INK, 0, 0.5);
 	await name2('\\hat z\\text{, the burst’s axis}', zB, unit2(pg(z)), INK, 0.5, 1);
 	{
@@ -224,5 +231,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { thetaP: deg(thetaP), rho, D, right: Rt, up: Up };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, BOOK ? [200, 300] : [240, 340]);
 }

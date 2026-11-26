@@ -14,6 +14,8 @@
 // narrow for it; the bracket is labelled below itself, inside the bell; the two axes are named, "x / x_zp" and
 // "E / hbar omega"; the first step is labelled "hbar omega / 2" rather than with a built-up half, whose small figures
 // would be the smallest type in the drawing on a phone.
+// In the printed book (figureLayout 'book') the panel is drawn smaller, 20 points per x_zp and 30 per hbar omega
+// instead of 24 and 36, so that it and the next figure do not fill a page; the labels keep their size.
 // Exact: the parabola (u^2 / 4 in these units), the levels and their ends (u = +-sqrt(4n + 2)), the bell's shape
 // (e^{-u^2/2}, standard deviation one, asserted against |psi_0|^2 by quadrature), the bracket's height and length, the
 // two arrows' lengths (1/2 and 1 on the energy scale). Schematic, as the caption says: the bell's height.
@@ -27,8 +29,9 @@ const name = 'tut-oscillator-levels';
 const check = checker(name);
 
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
-const UX = 24;                           // points per x_zp
-const UE = 36;                           // points per hbar omega
+const BOOK = globalThis.figureLayout === 'book';
+const UX = BOOK ? 20 : 24;               // points per x_zp (narrower in the printed book)
+const UE = BOOK ? 30 : 36;               // points per hbar omega (lower in the printed book)
 const XR = 5;                            // x from -5 to 5 x_zp
 const ETOP = 5;                          // the parabola and the energy axis up to 5 hbar omega
 const LEVEL_W = 0.6;                     // a level's stroke
@@ -106,5 +109,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { levels: LEVELS.map(level), ends: LEVELS.map(turning), reach };
-	return finish(S, L, [250, 320]);
+	return finish(S, L, BOOK ? [200, 280] : [250, 320]);
 }

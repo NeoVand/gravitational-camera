@@ -4,13 +4,17 @@
 // decade numbers): the gap from 10^-10 to 10^-6 s^-2, sigma_v from 10^-2 to 10^3 m/s, one thin ink line
 // sigma_v = c sigma_n / (sqrt 2 gap) for sigma_n = 10^-16 s^-2, and two ink dots, a gap of 10^-8 (2.1 m/s) and the
 // person's 3GM/r^3 = 1.40 x 10^-8 (1.5 m/s). Right: the person's three eigenvalues on an axis of tide in 10^-9 s^-2, an
-// orange tick at -9.34 (the stretch, along the line) and two touching blue ticks at +4.67 (two squeezes); a thin bracket
+// orange bar at -9.34 (the stretch, along the line) and two blue bars at +4.67 (two squeezes); a thin bracket
 // over the gap 14.0 between the stretch and the squeezes, "across: read", and a dashed bracket over the zero gap between
 // the two squeezes, "along the line: blind". Orange and blue only for the stretch and the squeezes.
-// Departures from the diagram's comment: the panels stay side by side at every width, one drawing about 320 points
-// wide, so that a phone shows the same figure; the axes' names stand under them, on one baseline; the two equal
-// squeezes are two ticks end to end on the line of their value, a hair apart so that they read as two; the dashed
-// bracket is a low dashed arch over the two ticks, its words above it; the person's label is set on two lines.
+// Departures from the diagram's comment: the panels stay side by side at every width, one drawing about 336 points
+// wide, so that a phone shows the same figure; the axes' names stand under them, on one baseline. The right panel is a
+// level diagram: each eigenvalue is a short bar in a column of its own, the two equal squeezes side by side at their
+// value and the stretch in a third column at its own; the solid bracket stands right of the stretch, a dotted line
+// carrying the squeezes' level to its top; the dashed bracket joins the middles of the two squeezes' bars over them,
+// "gap 0, along the line: blind" above it, as the solid one's words read "gap 14.0, across: read". The person's label
+// is set on three lines. The printed book (figureLayout 'book') draws the left plot wider (220 by 128 points) and the
+// whole about 440 points wide, to fill the text width.
 // Exact: the line (eq:precision), sampled every half point; the dots at their computed places; the eigenvalues
 // -2GM/r^3 and GM/r^3 for 70 kg at 1 m, and the gap 3GM/r^3, at their values on the axis (figs/tut-matrix-w-lib.js,
 // asserted against the chapter's text and the comment's numbers). Schematic: nothing.
@@ -23,16 +27,17 @@ const name = 'tut-speedometer-gap';
 const check = checker(name);
 const lg = Math.log10;
 
-const PW = 140, PH = 120;                     // the left plot
-const GAP = 46;                               // from the left plot's right edge to the right panel's axis
+const BOOK = globalThis.figureLayout === 'book';
+const PW = BOOK ? 220 : 140, PH = BOOK ? 128 : 120;   // the left plot (the book's wider, to fill the text width)
+const GAP = BOOK ? 52 : 46;                              // from the left plot's right edge to the right panel's axis
 const LINE_W = 0.6;                           // the line
 const DOT = 1.6;                              // a dot's radius
 const T0 = -11.5, T1 = 9;                     // the right axis, 10^-9 s^-2
-const BAR = 1.3, BAR_LEN = 10, BAR_IN = 2.5;  // an eigenvalue's tick: stroke, length, air from the axis
-const PAIR_GAP = 0.7;                         // the hair between the two equal squeezes' ticks
-const BRACKET = 7;                            // from the ticks' right end to the bracket
-const ARCH = 6;                               // the dashed arch's height over the ticks
-const DASH = [1.6, 1.1], ARCH_W = 0.6;   // the dashed arch: its dashes and stroke, heavier than a hairline because the caption starts there
+const BAR = 1.6, BAR_LEN = BOOK ? 18 : 16, BAR_IN = 4;  // an eigenvalue's bar: stroke, length, air from the axis
+const COL_GAP = 6;                            // between the bars' columns
+const BRACKET = 6;                            // from the stretch's bar to the bracket
+const ARCH = 7;                               // the dashed bracket's height over the squeezes' bars
+const DASH = [1.6, 1.1], ARCH_W = 0.6;   // the dashed bracket: its dashes and stroke, heavier than a hairline because the caption starts there
 const OFF = 4;                                // the left plot's axes, off its edges
 const NAME_DROP = 7;                          // from the lowest axis number to the axes' names
 
@@ -43,7 +48,7 @@ export default async function () {
 	const L = [];
 
 	// ---- the left plot: sigma_v against the gap, log-log
-	const P = new Plot({ left: ORIGIN - 165, top: ORIGIN - PH / 2, w: PW, h: PH, x0: lg(GAP_RANGE[0]), x1: lg(GAP_RANGE[1]), y0: lg(SIGMA_RANGE[0]), y1: lg(SIGMA_RANGE[1]) });
+	const P = new Plot({ left: ORIGIN - 220, top: ORIGIN - PH / 2, w: PW, h: PH, x0: lg(GAP_RANGE[0]), x1: lg(GAP_RANGE[1]), y0: lg(SIGMA_RANGE[0]), y1: lg(SIGMA_RANGE[1]) });
 	check(P.x0 === -10 && P.x1 === -6 && P.y0 === -2 && P.y1 === 3, 'the axes\' ranges');
 	const pow = (t) => (t === 0 ? '1' : t === 1 ? '10' : `10^{${t}}`);
 	// the axes stand a little off the plot, so that the numbers at their meeting corner keep apart
@@ -101,14 +106,16 @@ export default async function () {
 	check(stretch.toFixed(2) === '-9.34' && squeeze.toFixed(2) === '4.67' && (person.gap / u).toFixed(1) === '14.0', 'the person\'s eigenvalues');
 	check(near(squeeze - stretch, person.gap / u, 1e-9), 'the gap is not the squeeze less the stretch');
 	const ys = Q.Y(stretch), yq = Q.Y(squeeze);
-	const x0 = Xa + BAR_IN;
-	S.path([[x0, ys], [x0 + BAR_LEN, ys]], { color: ACCENT, width: BAR, cap: 'butt', layer: 2, what: 'the stretch' });
-	const half = (BAR_LEN - PAIR_GAP) / 2;
-	S.path([[x0, yq], [x0 + half, yq]], { color: ACCENT2, width: BAR, cap: 'butt', layer: 2, what: 'a squeeze' });
-	S.path([[x0 + half + PAIR_GAP, yq], [x0 + BAR_LEN, yq]], { color: ACCENT2, width: BAR, cap: 'butt', layer: 2, what: 'a squeeze' });
-	// the bracket over the gap between the stretch and the squeezes, with ticks toward the ticks
-	const xb = x0 + BAR_LEN + BRACKET;
+	// three columns, one eigenvalue in each: the two squeezes, side by side, then the stretch
+	const col = [0, 1, 2].map((k) => Xa + BAR_IN + k * (BAR_LEN + COL_GAP));
+	S.path([[col[0], yq], [col[0] + BAR_LEN, yq]], { color: ACCENT2, width: BAR, cap: 'butt', layer: 2, what: 'a squeeze' });
+	S.path([[col[1], yq], [col[1] + BAR_LEN, yq]], { color: ACCENT2, width: BAR, cap: 'butt', layer: 2, what: 'a squeeze' });
+	S.path([[col[2], ys], [col[2] + BAR_LEN, ys]], { color: ACCENT, width: BAR, cap: 'butt', layer: 2, what: 'the stretch' });
+	// the bracket over the gap between the stretch and the squeezes, right of the stretch, its ticks toward the bars; a
+	// dotted line carries the squeezes' level across the stretch's column to it
+	const xb = col[2] + BAR_LEN + BRACKET;
 	S.path([[xb - TICK, ys], [xb, ys], [xb, yq], [xb - TICK, yq]], { color: INK, width: HAIR, cap: 'butt', layer: 1, what: 'the bracket' });
+	S.dots([col[1] + BAR_LEN, yq], [xb - TICK, yq], { color: DIM, clear0: 1.6, clear1: 1.2, what: 'the squeezes\' level' });
 	const lx = xb + LABEL_GAP + 1.2;
 	{
 		const a = await placed('\\text{gap }14.0', lx, (ys + yq) / 2 - 1.2, 0, 1);
@@ -122,12 +129,12 @@ export default async function () {
 		const b = await placed('\\text{the line}', lx, ys + 1.2, 0, 0);
 		L.push(a, b);
 	}
-	// the dashed arch over the two squeezes' ticks: the zero gap
+	// the dashed bracket over the two squeezes, from the middle of one to the middle of the other: the zero gap
 	{
-		const xa = x0 + 0.8, xc = x0 + BAR_LEN - 0.8, top = yq - BAR / 2 - ARCH;
-		S.path([[xa, yq - BAR / 2 - 0.9], [xa, top], [xc, top], [xc, yq - BAR / 2 - 0.9]], { color: INK, width: ARCH_W, dash: DASH, cap: 'butt', layer: 1, what: 'the dashed bracket' });
-		const b = await placed('\\text{blind}', xa, top - LABEL_GAP - 0.4, 0, 1);
-		const a = await placed('\\text{along the line:}', xa, b.box.t - 2.2, 0, 1);
+		const xa = col[0] + BAR_LEN / 2, xc = col[1] + BAR_LEN / 2, top = yq - BAR / 2 - ARCH;
+		S.path([[xa, yq - BAR / 2 - 1], [xa, top], [xc, top], [xc, yq - BAR / 2 - 1]], { color: INK, width: ARCH_W, dash: DASH, cap: 'butt', layer: 1, what: 'the dashed bracket' });
+		const b = await placed('\\text{along the line: blind}', col[0], top - LABEL_GAP - 0.4, 0, 1);
+		const a = await placed('\\text{gap }0', col[0], b.box.t - 2.2, 0, 1);
 		L.push(a, b);
 		check(person.along === 0 && near(person.stretch + 2 * person.squeeze, 0, 1e-24), 'the two squeezes are not equal');
 	}
@@ -140,5 +147,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { sigmaAt: nums.sigmaAt, person };
-	return finish(S, L, [280, 340]);
+	return finish(S, L, BOOK ? [400, 460] : [300, 340]);
 }

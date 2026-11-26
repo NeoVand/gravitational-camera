@@ -160,7 +160,7 @@ a product that ordinary functions do not define. A front of small but finite len
 ![Look first at the two kinks on the right: slow matter and light running against the front turn, while light riding
 with it does not. Left, the paths against $z$: they cross the front where the profile is zero, and where it is not, the
 dashed path shows the far part shifted along the front. Right, the same paths against the place $x$ across the front,
-taken along $\nabla H$, and under them $\nabla H$ and the kicks $\tfrac12q\nabla H$ to one scale. Kinks drawn for one
+taken along $\nabla H$, each kick $\tfrac12q\nabla H$ drawn at its kink and $\nabla H$ under the axis, to one scale. Kinks drawn for one
 value of $\nabla H$, exaggerated.](tut-impulsive-front){#fig:impulsive-front}
 
 **A number.** For slow matter $q \approx \matter mc$, so every part gets the velocity $\Delta\obs{\vect v} = \tfrac12c

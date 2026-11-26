@@ -5,14 +5,16 @@
 // e^{i theta}, of length theta, drawn heavier. Exact: the point (cos theta, sin theta), on the circle; the derivative
 // (-sin theta, cos theta), asserted to be i times the point (by the chapter's product rule), of length 1 and at
 // right angles to it on the page; the arc, the circle's own points from 0 to theta, of length theta on the plane's
-// scale. Nothing is schematic.
+// scale. Nothing is schematic. The printed book (figureLayout 'book') draws the same plane smaller, 60 points to the
+// unit, not 92, with its labels at their usual size, so that the figure is not larger than what it shows.
 import { Panel, v3, INK, DIM, ACCENT } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, VEC, VEC_HEAD, HAIR } from './tut-vec-lib.js';
 import { arc, planeAxes } from './tut-five-lib.js';
 import { times } from './tut-cx-product.js';
 
 export const THETA = 40;                  // degrees
-const S = 92;                             // points per unit: the circle's radius
+const BOOK = globalThis.figureLayout === 'book';
+const S = BOOK ? 60 : 92;                 // points per unit: the circle's radius
 const ARC = 0.75;                         // the arc from 1 to e^{i theta}: its stroke (VEC)
 const name = 'tut-cx-euler';
 const check = checker(name);
@@ -65,5 +67,5 @@ export default async function () {
 	L.push(await ink.label('\\mathrm{Im}', ink.at(ax.v.tip), [0, -1], 2.2, DIM));
 
 	ink.checkAll(L);
-	return finish(name, P, L, [240, 340]);
+	return finish(name, P, L, BOOK ? [150, 240] : [240, 340]);
 }

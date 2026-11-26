@@ -13,6 +13,9 @@
 // inside the ground orbit, which is the area it names. The caption's "each halfway across its band" is said as "each
 // dividing its band's area in half": the orbit of radius sqrt(4n + 2) halves the band's area (r^2 is the mean of 4n
 // and 4n + 4), not its width (the ground orbit, sqrt 2, is 71% of the way out to the disc's edge, 2).
+// In the printed book (figureLayout 'book') the drawing is smaller, 18 points per unit instead of 22, so that it and
+// the levels' figure do not fill a page; the labels keep their size, and "encloses pi hbar" still fits inside the
+// ground orbit.
 // Exact: every circle (radius 2 sqrt n, 2 sqrt(n + 1) and sqrt(2(2n + 1)) on one scale, sampled every quarter of a
 // point), and with them the areas the caption names (asserted in tut-quanta-lib.js: each band 2 pi hbar, the ground
 // orbit pi hbar, each orbit halving its band). Chosen for the drawing: the scale, the leaders' heights.
@@ -26,7 +29,8 @@ const name = 'tut-phase-rings';
 const check = checker(name);
 
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
-const U = 22;                            // points per scaled unit, on both axes
+const BOOK = globalThis.figureLayout === 'book';
+const U = BOOK ? 18 : 22;                // points per scaled unit, on both axes (smaller in the printed book)
 const FRAME = 4.6;                       // the axes at u = -4.6 and w = -4.6
 const ORBIT_W = 0.55;                    // an orbit's stroke
 const SHADE = [0.2, 0.42];               // the bands' opacities of the rule's grey: lighter (n even), light (n odd)
@@ -100,5 +104,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { edges: BANDS.map(edges), orbits: BANDS.map(orbit) };
-	return finish(S, L, [220, 290]);
+	return finish(S, L, BOOK ? [180, 290] : [220, 290]);
 }

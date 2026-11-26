@@ -4,13 +4,16 @@
 // with its length printed beside it and its angle from the real axis marked by an arc. Exact: the three numbers (the
 // product computed by the rule of the chapter, (x1 x2 - y1 y2) + i (x1 y2 + y1 x2), and asserted to be 3 e^{i 70 deg}),
 // each arrow drawn at its true value on the plane's scale, the ticks, and the arcs (radius chosen for room; their
-// angles exact). Nothing is schematic.
+// angles exact). Nothing is schematic. The real axis runs only a little past u1's tip (to 2.45), so that no empty
+// quarter is left beside the arrows. The printed book (figureLayout 'book') draws the same plane smaller, 56 points to
+// the unit, not 72, its labels at their usual size.
 import { Panel, v3, INK, DIM } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, VEC, VEC_HEAD } from './tut-vec-lib.js';
 import { arc, planeAxes } from './tut-five-lib.js';
 
 export const U1 = { r: 2, deg: 20 }, U2 = { r: 1.5, deg: 50 };
-const S = 72;                             // points per unit
+const BOOK = globalThis.figureLayout === 'book';
+const S = BOOK ? 56 : 72;                 // points per unit
 const ARCS = { u1: 0.62, u2: 1.12, p: 1.78 };  // the angles' arcs, radius in units (u2's clear of the tick at 1)
 const name = 'tut-cx-product';
 const check = checker(name);
@@ -31,7 +34,7 @@ export default async function () {
 	const O = v3(-1.4 * S, -1.3 * S, 0);
 	const W = ([x, y]) => O.clone().add(v3(S * x, S * y, 0));
 
-	const ax = planeAxes(ink, O, S, { h: { lo: -0.22, hi: 3.3, ticks: [1, 2, 3] }, v: { lo: -0.22, hi: 3.05, ticks: [1, 2] } });
+	const ax = planeAxes(ink, O, S, { h: { lo: -0.22, hi: 2.45, ticks: [1, 2] }, v: { lo: -0.22, hi: 3.05, ticks: [1, 2] } });
 	// the arrows, at their true values
 	const arrows = [
 		{ z: u1, color: DIM, name: 'u_1', len: '2', deg: U1.deg, rho: ARCS.u1 },
@@ -52,7 +55,8 @@ export default async function () {
 		const t = rad(a.deg);
 		// the name beyond the tip, the length beside the shaft, the angle beside its arc in the free sector
 		L.push(await ink.label(a.name, ink.at(W(a.z)), page(t + [0.0, 0.25, 0][i]), 2.2, a.color));
-		const mid = W(a.z.map((x) => x * [0.68, 0.5, 0.5][i]));     // u1's at two thirds, clear of u2's arc
+		// u1's at two thirds, clear of u2's arc; u2's (in the book's smaller plane) further out, where the gap to u1u2 is wide
+		const mid = W(a.z.map((x) => x * [0.68, BOOK ? 0.65 : 0.5, 0.5][i]));
 		L.push(await ink.label(a.len, ink.at(mid), page(t + [-1, 1, 1][i] * Math.PI / 2), 2.2, a.color));
 		const sector = rad([10, 35, 60][i]);                  // between this arrow and the one below it
 		const q = O.clone().add(v3(a.rho * S * Math.cos(sector), a.rho * S * Math.sin(sector), 0));
@@ -66,5 +70,5 @@ export default async function () {
 	L.push(await ink.label('\\mathrm{Im}', ink.at(ax.v.tip), [0, -1], 2.2, DIM));
 
 	ink.checkAll(L);
-	return finish(name, P, L, [240, 340]);
+	return finish(name, P, L, BOOK ? [150, 240] : [180, 340]);
 }

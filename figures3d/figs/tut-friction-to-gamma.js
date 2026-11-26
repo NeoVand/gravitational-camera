@@ -7,6 +7,8 @@
 // Regge-Wheeler Gamma_2 thin solid ink from the table, on the line at its left end and bending up to 1 near x = 0.5; a
 // dotted mark from the axis up to x = 0.01, named "x 1.07". The wave's strain h in the field's colour, as the chapter
 // colours it; everything else in ink and the page's greys.
+// The computed curve is named "scattered wave, Gamma_2", not by its section number (the book and the site number the
+// sections differently).
 // Departures from the diagram's comment: each box carries a name over its quantity, and the last is named "Page's
 // limit", as the chapter names it, so that the bottom panel's dashed line is the same thing; every arrow, not only the
 // third, says what it does (the chapter's three steps, the flux F included), in small type under it; the dashed line is
@@ -138,7 +140,7 @@ export default async function () {
 	{
 		const y = 1e-3, x = 0.15;
 		check(gamma2(x) < y / 10, 'the curve\'s name is not left of its rise');
-		L.push(await S.clear('\\text{scattered wave, 11.3}', P.X(lg(x)), P.Y(lg(y)), 1, 0.5, [-1, 0]));
+		L.push(await S.clear('\\text{scattered wave, }\\Gamma_2', P.X(lg(x)), P.Y(lg(y)), 1, 0.5, [-1, 0]));
 	}
 	{
 		const q = at(0.1, page(0.1)), u = [DY * 6, DX].map((v) => v / Math.hypot(DX, DY * 6));   // down and to the right

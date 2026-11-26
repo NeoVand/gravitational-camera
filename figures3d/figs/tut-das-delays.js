@@ -1,6 +1,6 @@
 // The tutorial, section 5.3 (tutorial/waves/diffraction.md), its first diagram: delaying and adding the records of
 // many pixels points the array. Two panels. Left: a row of six pixels (small squares, ink) b = lambda/3 apart along a
-// horizontal line, the origin at the left-hand pixel, p = 0 to 5; the straight crests of a plane wave (five of them,
+// horizontal line, the origin at the left-hand pixel, p = 0 to 5; the straight crests of a plane wave (two of them,
 // faint), arriving at 30 degrees from the normal; the unit vector n from the middle of the row toward the source, along
 // the normal to the crests, named "n (toward the source)", with the normal (dotted) and the angle of 30 degrees; from
 // each pixel a dashed segment (first accent) at right angles to the crests back to the crest that passes the origin,
@@ -15,7 +15,11 @@
 // requires for theta = 30 degrees, and each pixel is nearer to the source by n.x_p, as the text says. The segments
 // are named n.x_1 and n.x_5, their own indices, since the first pixel's segment has no length. The normal, the
 // angle, the records' first and last indices, a time arrow, the name "recorded" and the upright line through the
-// lined-up crests are added, so that the angle and the direction of time can be read.
+// lined-up crests are added, so that the angle and the direction of time can be read. Only the two crests that cross
+// the row's band are drawn (n.x = 0, through the first pixel and the segments' feet, and n.x = lambda, just beyond the
+// last pixel), whole and of one length, 60 points, each spanning the band of the row (47.6 points across) and 6 more
+// either side; the comment's five would put three of them well off the row. Every label keeps clear of them. The
+// angle's arc has radius 15 points, so that its end on n stays clear of the crest n.x = lambda crossing n.
 // Exact: the pixels' places, the crests (lines n.x = m lambda, asserted), n's direction, the segments (asserted at
 // right angles to the crests, from each pixel to the crest through the origin, p b sin 30 degrees long, a sixth of a
 // wavelength per pixel), and on the right the delays of the records, n.x_p/c = p T/6 for the period T (asserted
@@ -36,12 +40,13 @@ const check = checker(name);
 const LAMBDA = 33;                        // a wavelength, points
 const B = LAMBDA * SPACING;               // the pixels' spacing, 11 points
 const SQ = 2.8;                           // a pixel's side
-const CRESTS = [-1, 0, 1, 2, 3];         // the crests n.x = m lambda drawn
+const CRESTS = [0, 1];                   // the crests n.x = m lambda drawn
 const HALF_CREST = 30;                    // each crest runs this far either side of the line along n through the row's middle
+                                          // (the row spans 23.8 either side of it: each crest crosses the row's band and 6 more)
 const CREST_W = 0.5;
 const N_LEN = 30;                         // n's arrow
 const NORMAL = 30;                        // the normal, dotted, this long
-const ARC = 20;                           // the angle's radius
+const ARC = 15;                           // the angle's radius: its end on n stays 4 points short of the crest n.x = lambda
 const SEG_W = HAIR + 0.2;                 // the segments and the lines through the crests
 const SEG_DASH = [1.6, 1.1];              // their dashes
 const BREAK = LABEL_GAP + 0.3;            // a crest stops this far from a label set over the wave
@@ -103,7 +108,7 @@ export default async function () {
 					start = null;
 				}
 			}
-			check(m !== 0 || pieces === 1, 'the crest through the origin is broken');
+			check(pieces === 1, `the crest ${m} is broken`);
 		}
 	};
 	// the segments n.x_p: from each pixel along -n to the crest through the origin
@@ -154,7 +159,7 @@ export default async function () {
 	// the first pixel's index, over it, clear of the crest through the origin
 	{
 		const o = P([0, 0]);
-		L.push(await S.clear('p = 0', o[0], o[1] - SQ / 2 - LABEL_GAP - 0.4, 0.5, 1, [0, -1], { color: DIM }));
+		L.push(await S.clear('p = 0', o[0] + 2, o[1] - SQ / 2 - LABEL_GAP - 0.4, 1, 1, [0, -1], { color: DIM }));
 	}
 
 	drawCrests();

@@ -1,25 +1,27 @@
 // The tutorial, section 11.1 (tutorial/black-holes/schwarzschild.md), its fourth diagram: the cone of the shadow at a
 // camera at rest at r = 8 r_s. The plane of the orbit on one scale in r_s, the hole at the left (a dark disc of radius
 // r_s, the photon sphere dashed), the camera at the right, a small ink square. From the camera, a dotted line through
-// the hole's centre, the direction of the hole, on to the left; the cone of the shadow, two straight lines at +-alpha_h
-// from it, out to the circle round the camera through the hole's centre, filled with the page's faint tint; arcs at
-// the camera named "alpha_h" (below) and "psi" (above). One exact ray in the light role's colour, arriving at the
-// camera from above just outside the cone: traced back, it winds once round the photon sphere and leaves to the left,
-// where its straight asymptote is parallel to the line to the hole; there its impact parameter is marked by a
-// perpendicular from that line to the asymptote, named "b".
+// the hole's centre, the direction of the hole, on to the left; the cone of the shadow, bounded by its one edge, the
+// ray with b = b_c: it leaves the camera at +-alpha_h from that line and, traced back, runs over (and under) the hole
+// to the axis on the far side, which it reaches at 1.577 r_s, just outside the photon sphere, where its two halves
+// meet; the cone is filled with the page's faint tint and its edge drawn whole from the camera (the upper half lies
+// under the drawn ray, which leaves the camera beside it); arcs at the camera named "alpha_h" (below) and "psi"
+// (above). One exact ray in the light role's colour, arriving at the camera from above just outside the cone: traced
+// back, it winds once round the photon sphere and leaves to the left, where its straight asymptote is parallel to the
+// line to the hole; there its impact parameter is marked by a perpendicular from that line to the asymptote, named "b".
 // The ray: b = 1.00090 b_c, chosen so that, traced back from the camera, it sweeps exactly 540 degrees and its
 // asymptote is parallel to the line to the hole (asserted); then psi = 17.70 degrees against alpha_h = 17.69 degrees:
 // any ray bent round the photon sphere is seen within a degree or two of the cone's edge from 8 r_s.
 // The angles: the drawing is the plane (r cos phi, r sin phi), in which a camera's radial ruler is stretched by
 // 1/sqrt(1 - r_s/r), so a direction at psi on the camera's sky is drawn at arctan(tan psi / sqrt(1 - r_s/r)); the
-// cone's edges and the arcs are drawn so (18.82 degrees for alpha_h), and the edges are the tangents of the b_c rays
-// at the camera (asserted), so that the drawn ray leaves the camera beside the cone's edge, as it does.
-// Departures from the diagram's comment: the cone's lines run from the camera to the circle through the hole's centre
-// and not on, so that the straight part of the ray, far to the left, does not lie inside the shaded cone (the cone is
-// a set of directions at the camera, not a region of space); the photon sphere's dashes are cut where the ray runs
-// over them, and so are the pieces of the cone's upper edge that the ray runs along as it leaves the camera; the
-// direction of the hole is drawn as a dotted line; the camera is not named.
-// Exact: the ray (the chapter's orbit equation, by the port in tut-schw-lib.js), alpha_h (the chapter's arcsine, and
+// arcs are drawn so (18.82 degrees for alpha_h), which is the drawn direction of the b_c ray at the camera (asserted),
+// so the arcs end on the cone's edge.
+// Departures from the diagram's comment: the cone is drawn as the region its directions sweep, bounded by the b_c rays
+// themselves rather than by their straight tangents, so that it has one edge from the camera to the far side of the
+// hole (straight edges beside the curved ray read as a broken edge); the photon sphere's dashes are cut where the ray
+// runs over them; the direction of the hole is drawn as a dotted line; the camera is not named.
+// Exact: the ray and the cone's edge (the chapter's orbit equation, by the port in tut-schw-lib.js; the edge stays
+// outside the photon sphere and crosses the far axis at 1.577 r_s, asserted), alpha_h (the chapter's arcsine, and
 // the edge between rays that end on the horizon and rays that escape, asserted), b (the perpendicular from the hole's
 // centre to the asymptote, the ray within 0.3 points of it at the mark), the hole, the photon sphere and the camera's
 // distance. Schematic: the camera's size.
@@ -100,24 +102,20 @@ export default async function () {
 	const circle = (rr, n = 720) => Array.from({ length: n + 1 }, (_, i) => at([rr * Math.cos((2 * Math.PI * i) / n), rr * Math.sin((2 * Math.PI * i) / n)]));
 
 	const page = thin(drawnRay.map(at));
-	// the cone: a sector at the camera, out to the circle through the hole's centre, with its two edges
+	// the cone: the region between the two b_c rays, traced back from the camera to the far side of the hole, where
+	// they meet on the axis just outside the photon sphere; shaded, its edge drawn whole (the upper half under the ray)
 	{
-		const R = R_CAM * K;
-		const arc = Array.from({ length: 181 }, (_, i) => { const t = Math.PI - theta + ((2 * theta) * i) / 180; return [cam[0] + R * Math.cos(t), cam[1] - R * Math.sin(t)]; });
-		S.raw(`<path d="${pathOf([cam, ...arc])}" fill="${TINT}"/>`, 0.5);
-		// the edges, each in short pieces, of which those the ray runs over are left out: the ray leaves the camera
-		// beside the upper edge
-		const near2 = (q) => page.some((p) => Math.hypot(p[0] - q[0], p[1] - q[1]) < RAY / 2 + LINE / 2 + 0.9);
-		for (const s of [1, -1]) {
-			const e = [cam[0] - R * Math.cos(theta), cam[1] - s * R * Math.sin(theta)];
-			const n = 400, run = [];
-			const flush = () => { if (run.length > 1) S.path([...run], { color: DIM, width: LINE, layer: 1, cap: 'butt', what: `the cone's edge ${s}` }); run.length = 0; };
-			for (let i = 0; i <= n; i++) {
-				const q = [cam[0] + ((e[0] - cam[0]) * i) / n, cam[1] + ((e[1] - cam[1]) * i) / n];
-				if (near2(q)) flush(); else run.push(q);
-			}
-			flush();
-		}
+		// traced past the far side of the axis, then cut where it crosses it
+		const all = rayFrom(r, alpha, { step: 1e-4, keep: true, maxPhi: Math.PI + 0.01 }).points.map(([x, y]) => [x / RS, y / RS]);
+		const iCut = all.findIndex(([x, y], i) => i > 10 && y < 0);
+		const [pa, pb] = [all[iCut - 1], all[iCut]];
+		const edge = [...all.slice(0, iCut), [pa[0] + (pa[1] / (pa[1] - pb[1])) * (pb[0] - pa[0]), 0]];
+		const last = edge[edge.length - 1];
+		check(edge.slice(1).every(([x, y]) => y >= 0 && Math.hypot(x, y) > 1.5 && Math.hypot(x, y) < R_CAM + 1e-9), 'the b_c ray crosses the photon sphere or the axis');
+		check(last[0] < -1.5 && (-last[0]).toFixed(3) === '1.577', `the b_c ray reaches the far side of the axis at r = ${-last[0]} r_s`);
+		const upper = edge.map(at), lower = edge.map(([x, y]) => at([x, -y]));
+		S.raw(`<path d="${pathOf([...thin(upper), ...thin(lower).reverse()])}" fill="${TINT}"/>`, 0.5);
+		for (const [s, e] of [[1, upper], [-1, lower]]) S.path(thin(e), { color: DIM, width: LINE, layer: 1, cap: 'butt', what: `the cone's edge ${s}` });
 	}
 	// the line to the hole, dotted, from the camera on through the hole to X_LEFT
 	{

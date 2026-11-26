@@ -4,9 +4,13 @@
 // circle is labelled, just above its top, by its potential less that of the 1 m circle, in units of 2 G lambda:
 // ln(r / 1 m) = -1.39, -0.69, 0, 0.69 and 1.39. The pull, 2 G lambda / r toward the rail, drawn as arrows in the
 // field's colour, on the ring at 3 m along the four diagonals. The middle of the view, inside a square window, is
-// enlarged in an inset to the right, where the rail's profile can be seen and the two inner circles are labelled.
+// enlarged in an inset to the right, where the rail's profile can be seen and the two inner circles are labelled; two
+// thin lines join the window's right corners to the inset's left ones, and the inset's lower right corner gives the
+// enlargement (x6 on the site, x4 in the book). The printed book (figureLayout 'book') draws the whole view larger,
+// 32 points per metre, not 21, so that the rail and the two inner circles can be made out there too, and fills the
+// text's width.
 // Exact: the circles' radii, to one scale (asserted in points), and their labels (asserted from ln r); the arrows
-// point at the rail's centre of mass (asserted); the inset is the window enlarged (asserted at its corners); the rail's profile,
+// point at the rail's centre of mass (asserted); the inset is the window enlarged by the printed factor (asserted); the rail's profile,
 // drawn to the same scale, is that of a standard flat-bottomed rail of about 60 kg per metre (UIC 60: 172 mm tall,
 // its foot 150 mm wide, its head 72 mm, its web 16.5 mm), simplified to straight edges joined by round fillets (the
 // crown of its head flat), whose area times the density of steel, 7850 kg m^-3, is 60.6 kg per metre (asserted within
@@ -15,7 +19,7 @@
 // Pictorial: the rail's sawn face, the metal of the paper's figure on gravitational hair (figs/hair.js, the core's
 // patch, sprites/hair/core-metal.png, from an image model, cut out by design/hair_sprites.py), clipped to the exact
 // profile and edged in a fixed dark ink (the site does not swap it).
-import { INK, FAINT, sprite } from '../lib.js';
+import { INK, DIM, sprite } from '../lib.js';
 import { picture } from '../stone.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, LINE, LABEL_GAP, n2 } from './tut-pot-lib.js';
 import { FIELD, STONE_INK } from './tut-orb-lib.js';
@@ -58,15 +62,17 @@ function rounded(pts, radii, n = 24) {
 }
 
 // ---- the drawing (points) ---------------------------------------------------------------------------------------
-const S_M = 21;                      // points per metre, the whole view
+const BOOK = globalThis.figureLayout === 'book';
+const S_M = BOOK ? 32 : 21;          // points per metre, the whole view
 const WIN = 0.6;                     // the window at the middle: a square 2 WIN metres wide, inside the 1 m circle
-const INSET = 151.2;                 // the inset, the window enlarged six times: a square INSET points wide, to the right
+const ZOOM = BOOK ? 4 : 6;           // the inset's enlargement, as printed in its corner
+const INSET = 2 * WIN * S_M * ZOOM;  // the inset, the window enlarged: a square INSET points wide, to the right
 const GAP = 16;                      // from the 4 m circle to the inset
 const RING = 3;                      // where the arrows are centred, m: midway, in ln r, between the 2 m and 4 m circles
-const ARROW = 16;                    // an arrow's length, points (schematic)
+const ARROW = BOOK ? 20 : 16;        // an arrow's length, points (schematic)
 const DIRS = [45, 135, 225, 315];    // the arrows' directions from the rail, degrees
 const ARROW_W = 0.65, ARROW_HEAD = 4;    // as tut-pot-contours's gradient arrows
-const FRAME = 0.4;                   // the window and the inset's frame (as tut-sph-goce)
+const FRAME = 0.4;                   // the window, the inset's frame and the lines that join them (as tut-sph-goce)
 const RIM = 0.3;                     // the rail's edge
 const STEP = 0.25;                   // the circles' sampling, points along the curve
 
@@ -126,9 +132,13 @@ export default async function () {
 	}
 
 	// ---- the window and the inset's frame
-	S.path(box(C, WIN * S_M), { color: FAINT, width: FRAME, layer: 3, closed: true, cap: 'butt', what: 'the window' });
-	S.path(box(CI, INSET / 2), { color: FAINT, width: FRAME, layer: 3, closed: true, cap: 'butt', what: 'the inset\'s frame' });
-	check(near(MAG * WIN * S_M, INSET / 2, 1e-9), 'the inset is not the window enlarged');
+	const win = box(C, WIN * S_M), ins = box(CI, INSET / 2);
+	S.path(win, { color: DIM, width: FRAME, layer: 3, closed: true, cap: 'butt', what: 'the window' });
+	S.path(ins, { color: DIM, width: FRAME, layer: 3, closed: true, cap: 'butt', what: 'the inset\'s frame' });
+	check(near(MAG, ZOOM, 1e-12) && near(MAG * WIN * S_M, INSET / 2, 1e-9), 'the inset is not the window enlarged by the printed factor');
+	// the lines from the window's right corners to the inset's left ones
+	S.path([win[1], ins[0]], { color: DIM, width: FRAME, layer: 3, cap: 'butt', what: 'the upper join' });
+	S.path([win[2], ins[3]], { color: DIM, width: FRAME, layer: 3, cap: 'butt', what: 'the lower join' });
 
 	// ---- the rail, its centre of mass on the circles' centre, in both views (mm to points, y down)
 	const metal = await sprite('/figures3d/sprites/hair/core-metal.png');
@@ -162,6 +172,9 @@ export default async function () {
 		L.push(await placed(PRINTED[i], top[0], top[1] - LINE / 2 - LABEL_GAP - 0.15, 0.5, 1, INK));
 	}
 
+	// the enlargement, in the inset's lower right corner
+	L.push(await placed(`\\times ${ZOOM}`, CI[0] + INSET / 2 - 4, CI[1] + INSET / 2 - 3.5, 1, 1, INK));
+
 	S.checkAll(L);
-	return finish(S, L, [240, 340]);
+	return finish(S, L, BOOK ? [400, 450] : [240, 340]);
 }

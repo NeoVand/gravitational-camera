@@ -172,8 +172,9 @@ short enough for the array to resolve the boxes.
 (magnified twenty times in the inset), and the curvature of the fronts across the array, exaggerated tenfold. (b) What
 the focused array sees: an Airy spot for each turning pair, 3.9° wide at half height with its first dark ring 4.7° from
 its centre, green where the pattern turns clockwise as the camera sees it and magenta where it turns anticlockwise;
-the still pair is dark. The arrows and the still pair's dots are schematic; the spots, the rings and the geometry are
-exact.](tut-read-iii-capstone){#fig:read-iii-capstone}
+the still pair's box is empty. At the true speed of light, $3\times10^8\unit{m\,s^{-1}}$, the wavelength would be
+$1.5\times10^8$ m: no spot, though the same sense of turning. The arrows and the still pair's dots are schematic; the
+spots, the rings and the geometry are exact.](tut-read-iii-capstone){#fig:read-iii-capstone}
 
 **(a) The wavelength.** A turning pair looks the same after half a turn
 ([section 1.5b](/tutorial/newton/complex-numbers/#a-steady-oscillation-is-a-turning-complex-number)), so its wave has $f = 2$ Hz ([section 5.4](/tutorial/waves/polarization/#projecting-a-turning-quadrupole-onto-the-sky-gives-the-two-amplitudes-of-a-rotor)).

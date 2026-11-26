@@ -10,10 +10,12 @@
 // ends on the circle. Exaggerated: the steps, drawn STRETCH times longer than one second's travel, which makes each
 // drawn fall (the same construction, exact for the drawn step) about 330,000 times deeper than 4.3 m. Pictorial: the
 // Earth's stone, a picture from an image model (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py,
-// as in the paper's figure on gravitational hair, figs/hair.js), clipped here to the exact circle.
+// as in the paper's figure on gravitational hair, figs/hair.js), clipped here to the exact circle. Only the top of the
+// Earth and of the orbit is drawn, where the steps are: both fade out downward, over a band below the lowest station,
+// so that the room goes to the steps and their numbers.
 import { INK, DIM, ACCENT, sprite } from '../lib.js';
 import { picture, circle, outline, STEEL } from '../stone.js';
-import { Sheet, ORIGIN, finish, checker, near, VEC } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, near, n2, VEC } from './tut-pot-lib.js';
 import { dashed, STONE_INK } from './tut-orb-lib.js';
 
 const name = 'tut-orb-falls';
@@ -27,7 +29,9 @@ export const STEP_TIME = 1;              // s
 export const STRETCH = 600;              // the drawn step against the true one
 
 // ---- the drawing (figure points, y down) ----------------------------------------------------------------------
-const R_ORBIT = 120;                     // points: the orbit's radius
+const R_ORBIT = 175;                     // points: the orbit's radius
+const FADE_TOP = 0.55, FADE_BOTTOM = 0.41;  // the Earth and the orbit fade out between these heights above the centre,
+                                         // in units of the orbit's radius
 const STEPS = 3;
 const BEAD = 2.6;                        // the station, a small steel bead, radius in points
 const FALL_GAP = 0.9;                    // air between a fall's head and the bead it reaches
@@ -61,16 +65,25 @@ export default async function () {
 	const C = [ORIGIN, ORIGIN + 40];                                 // the Earth's centre on the provisional page
 	const at = (r, th) => [C[0] + r * Math.cos(th), C[1] - r * Math.sin(th)];
 
+	// ---- the fade: the Earth and the orbit are drawn down to FADE_BOTTOM r above the centre, fading out below FADE_TOP r
+	const yTop = C[1] - FADE_TOP * R_ORBIT, yBot = C[1] - FADE_BOTTOM * R_ORBIT;
+	const fade = `<linearGradient id="tut-orb-fade-g" gradientUnits="userSpaceOnUse" x1="0" y1="${n2(yTop)}" x2="0" y2="${n2(yBot)}">` +
+		`<stop offset="0" stop-color="#fff"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.45"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>` +
+		`<mask id="tut-orb-fade" maskUnits="userSpaceOnUse" x="0" y="0" width="700" height="700">` +
+		`<rect x="0" y="0" width="700" height="${n2(yBot)}" fill="url(#tut-orb-fade-g)"/></mask>`;
+	const faded = (svg) => `<g mask="url(#tut-orb-fade)">${svg}</g>`;
+
 	// ---- the Earth, cut through the plane of the orbit: the stone clipped to its exact circle, and its rim
 	const face = await sprite(SPRITES + 'ball-face.png');
-	S.raw(picture('tut-orb-earth', face, C[0], C[1], R_EARTH, circle(C[0], C[1], R_EARTH)), 0);
-	S.raw(outline(C[0], C[1], R_EARTH, 0.35, STONE_INK), 1);
-	S.boxes.push({ box: { l: C[0] - R_EARTH, r: C[0] + R_EARTH, t: C[1] - R_EARTH, b: C[1] + R_EARTH }, what: 'the Earth' });
+	S.raw(faded(picture('tut-orb-earth', face, C[0], C[1], R_EARTH, circle(C[0], C[1], R_EARTH))), 0);
+	S.raw(faded(outline(C[0], C[1], R_EARTH, 0.35, STONE_INK)), 1);
+	S.boxes.push({ box: { l: C[0] - R_EARTH, r: C[0] + R_EARTH, t: C[1] - R_EARTH, b: yBot }, what: 'the Earth' });
 
-	// ---- the orbit, whole, sampled every quarter of a point
-	const N = Math.ceil((2 * Math.PI * R_ORBIT) / 0.25);
-	const ring = Array.from({ length: N }, (_, i) => at(R_ORBIT, (2 * Math.PI * i) / N));
-	S.path(ring, { color: DIM, width: ORBIT_LINE, layer: 1, closed: true, what: 'the orbit' });
+	// ---- the orbit, its upper part, sampled every quarter of a point
+	const th1 = Math.asin(FADE_BOTTOM), N = Math.ceil(((Math.PI - 2 * th1) * R_ORBIT) / 0.25);
+	const ring = Array.from({ length: N + 1 }, (_, i) => at(R_ORBIT, th1 + ((Math.PI - 2 * th1) * i) / N));
+	S.raw(faded(`<path d="M${ring.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}" fill="none" stroke="${DIM}" stroke-width="${ORBIT_LINE}"/>`), 1);
+	S.mark(ring, ORBIT_LINE / 2, 'the orbit');
 
 	// ---- the steps, clockwise over the top, symmetric about the vertical
 	const th0 = Math.PI / 2 + (STEPS / 2) * alpha;
@@ -99,7 +112,8 @@ export default async function () {
 		const arrow = S.arrow(Q, tip, { color: ACCENT, width: VEC, head: FALL_HEAD, layer: 3, what: `fall ${j}` });
 		steps.push({ P, Q, end, arrow, t, u });
 	}
-	// the station at the start of each step and at the end
+	// the station at the start of each step and at the end, every one above the fade
+	check(Math.min(...places.map((th) => Math.sin(th))) * R_ORBIT - BEAD > FADE_TOP * R_ORBIT + 8, 'a station sits in the fade');
 	places.forEach((th, j) => S.sphere(at(R_ORBIT, th), BEAD, STEEL, { spec: 0.6, shininess: 36, layer: 4 }, `the station ${j}`));
 
 	// ---- the numbers: the middle step's length above it, the middle fall's beside it, on the side it moves toward
@@ -114,5 +128,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window.tutOrbFalls = { v, d, fall, free, D, alpha: (alpha * 180) / Math.PI, fallDrawn, deeper, R_EARTH };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, [240, 340], fade);
 }

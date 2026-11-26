@@ -5,7 +5,8 @@
 // metres. The centre is at (0.3, 0.2, 0) m and b = 0.1 m, as in the chapter. Under the cube, one line: the average
 // of the six is 0.05, the value at the centre. Exact: the seven values, computed here from f and asserted against
 // the printed ones; their average, equal to the centre's value (f is harmonic and has no fourth derivatives); the
-// points at the face centres, a distance b from the centre along x, y and z. Chosen for the drawing: the view.
+// points at the face centres, a distance b from the centre along x, y and z. Chosen for the drawing: the view. The
+// printed book (figureLayout 'book') draws the same cube smaller, 72 points to b, not 87, its labels at their usual size.
 import { Panel, v3, INK, DIM, FAINT } from '../lib.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, AXIS, AXIS_HEAD, HAIR, DASH } from './tut-vec-lib.js';
 import { cameraAxes } from './tut-gauss-lib.js';
@@ -27,7 +28,8 @@ export const NEIGHBOURS = [0, 1, 2].flatMap((k) => [1, -1].map((s) => {
 const PRINTED = { centre: '0.05', '0+': '0.12', '0-': '0.00', '1+': '0.00', '1-': '0.08', '2+': '0.05', '2-': '0.05' };
 
 // ---- the drawing --------------------------------------------------------------------------------------------------
-const S = 87;                       // points per b
+const BOOK = globalThis.figureLayout === 'book';
+const S = BOOK ? 72 : 87;           // points per b
 const TILT = 19, TURN = 33;         // the view, degrees
 const EDGE = 0.45;                  // the cube's edges (a guide, so lighter than a body's)
 const SPOKE = 0.5;                  // centre to neighbour
@@ -99,10 +101,12 @@ export default async function () {
 		const u = unit(Q[0] - C[0], Q[1] - C[1]);
 		L.push(await ink.label(PRINTED[`${n.k}${n.s > 0 ? '+' : '-'}`], Q, u, 2.2, INK));
 	}
-	// the centre's value, in the widest gap between the spokes on the page
+	// the centre's value, in the widest gap between the spokes on the page (the view makes the gaps above right and
+	// below left equal: the first, above right, wins, whatever the rounding)
 	const dirs = pts.map((n) => { const Q = sc(n.q); return Math.atan2(Q[1] - C[1], Q[0] - C[0]); }).sort((a, b) => a - b);
 	let gap = 0, mid = 0;
-	dirs.forEach((a, i) => { const b = i + 1 < dirs.length ? dirs[i + 1] : dirs[0] + 2 * Math.PI; if (b - a > gap) { gap = b - a; mid = (a + b) / 2; } });
+	dirs.forEach((a, i) => { const b = i + 1 < dirs.length ? dirs[i + 1] : dirs[0] + 2 * Math.PI; if (b - a > gap + 1e-6) { gap = b - a; mid = (a + b) / 2; } });
+	check(Math.sin(mid) < 0, 'the centre\'s value is not above the centre');
 	L.push(await ink.label(PRINTED.centre, C, [Math.cos(mid), Math.sin(mid)], 2.4, INK));
 	// b, along the spoke to x + b
 	const half = sc(pt(0.5, 0, 0));
@@ -120,6 +124,6 @@ export default async function () {
 	L.push(line);
 
 	ink.checkAll(L);
-	return finish(name, P, L, [240, 300]);
+	return finish(name, P, L, BOOK ? [180, 260] : [240, 300]);
 }
 

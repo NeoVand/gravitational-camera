@@ -216,9 +216,9 @@ Penrose's kind is not, though an experiment has ruled out the proposal's simples
 
 ## The capstone: a black hole and a moon of one mass
 
-![Look first at row (d): the moon's shell radii climb toward its surface and pass the test of positive mass, while the
-hole's climb toward $1.91\,r_s$ and fail it. The numbers are exact and the ticks are to scale along each line; the
-discs are not to scale.](tut-read-hole-moon){#fig:read-hole-moon}
+![The hole and the moon under one tide of about a second, and row (d) of the table below as two rulers of shell radii:
+the moon's climb toward its surface and pass the test of positive mass, while the hole's climb toward $1.91\,r_s$ and
+fail it. The numbers are exact and the ticks are to scale along each line; the discs are not to scale.](tut-read-hole-moon){#fig:read-hole-moon}
 
 The capstone sets the 0.905 K hole beside a rocky moon of the same mass, $\matter M = 1.356\times10^{23}$ kg, uniform at
 3000 kg m⁻³, of radius $R_{\rm m} = (3\matter M/4\pi\matter\rho)^{1/3} = 2210$ km. Both meet one tide of profile $g =

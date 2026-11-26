@@ -4,9 +4,10 @@
 // and laid out to be read at 390 px; the diagram comment asked for them side by side on a wide screen, but the site
 // shows one drawing at every width, and R4 took its narrow layout for both. The printed book (figureLayout 'book')
 // sets them side by side, (a) at the left and (b) at the right, their letters on one line, (a) at 40 points per metre
-// and (b) at 4.6 points per degree (the site's 44 and 6.4) so that the pair fits the text width; the name of the dark
-// ring is set in three lines to fit the narrower picture, and the line on the true speed of light stands under (a),
-// in two lines.
+// and (b) at 4.4 points per degree, its elevation from -21 to 21 degrees (the site's 44, 6.4 and -22 to 22) so that
+// the pair fits the text width and (b) stands little lower than (a); the name of the dark ring is set in three lines to
+// fit the narrower picture. The line on the true speed of light (at c = 3e8 m/s, lambda = 1.5e8 m: no spot, the same
+// sense of turning) is the caption's, not the drawing's.
 //  (a) Side view, to scale (SCALE points per metre across and up), of the plane through the camera's axis: distance
 //      from the array across, from 0 to 5 m, an axis break, and one more tick at D^2/lambda = 22.5 m, where the
 //      Fresnel zone ends; height up, from 0 to 3.2 m. The array, a thick segment at distance 0 from 0.75 to 2.25 m. The
@@ -19,8 +20,9 @@
 //      of the array the difference of path |p - s| - (r - (p - c).u) is drawn ten times larger, along the ray from the
 //      array's point p to the pair s; at the lower rim it is drawn as a thicker segment, the gap, and named.
 //  (b) The camera's view: azimuth (about the vertical, positive to the right) from -20 to 20 degrees across and
-//      elevation (above the horizontal plane through the camera) from -22 to 22 degrees up, on the dark ground of the
-//      paper's panel (b). The front faces of the boxes as thin white outlines, as the paper's: their upright edges at
+//      elevation (above the horizontal plane through the camera) from -22 to 22 degrees up, on a pale ground (the
+//      page's neutral tint, #eeebe5) in a thin frame, where the paper's panel (b) is dark. The front faces of the boxes
+//      as thin dark grey outlines: their upright edges at
 //      azimuth +-6.19 degrees and their level edges at the elevations the comment gives on the centre line (7.96 to
 //      20.24, -6.33 to 6.73 and -19.87 to -7.55 degrees), which sag towards the horizon at the corners by up to 0.11
 //      degree, as level lines do in azimuth and elevation. The picture is the paper's: for each turning pair an Airy
@@ -28,10 +30,12 @@
 //      the pair's I = a_+^2 + a_x^2, and the colour from V/I = 2 a_+ a_x / I on the paper's scale from green (-1)
 //      through #f2f2f2 to magenta (+1) (the magenta the book's, the observer's: tut-pol-lib.js, MAGENTA, where the
 //      paper's is an ad hoc rose, #c2255c, none of the palette's roles), its brightness the square root of the
-//      intensity, on the ground 0.043 (make_figures.py, which_way), computed here pixel by pixel (kept as a JPEG of
-//      quality 0.92, three pixels to the point). The first dark ring, the angle 4.66 degrees from each centre where
+//      intensity, mixed with the pale ground as the paper's is with its dark one (make_figures.py, which_way), computed
+//      here pixel by pixel (kept as a JPEG of quality 0.92, three pixels to the point). The picture is fixed, pale in
+//      both of the site's themes, so the marks and words on it are in an ink and a grey one step off the palette's,
+//      which the site does not swap; the bracket and its value, on the magenta spot, in white.
+//      The first dark ring, the angle 4.66 degrees from each centre where
 //      x = j_1,1, dashed; across the middle spot, a bracket between the points of half intensity, 3.93 degrees apart.
-//      Below the panel, one line on the true speed of light.
 // Departures from the diagram's comment: the gap of step (c) is labelled with its exact length, 6.2 cm (6.20 and
 // 6.21 cm at the two rims), not the chapter's 6.25 cm, which is the estimate D^2/8r; the phase, 3.9 rad, is the same
 // to two figures. The still pair's two dots are drawn one above the other, 0.44 m apart, as a pair turning in the
@@ -41,7 +45,7 @@
 // Exact: every length in (a) but the arrows' and dots' shapes, the gap's ten times and the inset's twenty times (both
 // to scale at that magnification); every angle and the whole picture in (b). Schematic: the turning arrows (their
 // sense on the page follows the camera's: clockwise for the top pair, anticlockwise for the middle one) and the dots.
-import { INK, DIM, ACCENT, ACCENT2, LETTER } from '../lib.js';
+import { INK, DIM, RULE, ACCENT, ACCENT2, LETTER } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, n2, HAIR, AXIS, TICK, LABEL_GAP } from './tut-pot-lib.js';
 import { NUM } from './tut-prob-lib.js';
 import { longest } from './tut-fourier-lib.js';
@@ -54,8 +58,12 @@ const check = checker(name);
 
 const GREEN = '#2f9e44';                   // clockwise as seen, V/I < 0 (figs/quadrupole.js, TURNS_CLOCKWISE)
 const MID = '#f2f2f2';                     // the paper's scale at V/I = 0
-const GROUND = 0.043;                      // the paper's dark ground (make_figures.py, which_way)
-const WHITE = '#ffffff';                   // lines and words on the picture, as the paper's (not swapped by the site)
+const TINT = '#eeebe5';                    // the picture's ground: the neutral tint of the page (drawing.ts, THEME)
+// The picture is a fixed image (a JPEG), pale in both of the site's themes, so the marks and words on it are drawn in
+// colours the site does not swap for its dark theme (drawing.ts swaps only the palette's exact hexes): the ink and the
+// dim grey, each one step off the palette's.
+const ON_INK = '#1c1a17', ON_DIM = '#5d5a53';
+const WHITE = '#ffffff';                   // the bracket and its value, on the magenta spot (not swapped by the site)
 const C_SLOW = 0.2, C_TRUE = 2.998e8;      // m/s
 const D = 1.5;                             // m, the array
 const J11 = 3.8317059702075125;            // the first zero of J_1
@@ -70,12 +78,13 @@ const ARRAY_W = 1.6;                       // the array's stroke
 const FRONT = 0.7, GAP_W = HAIR + 0.25;    // the front and the gap (figs/tut-das-fresnel.js)
 const EXAG = 10, MAG = 20;                 // the gap's exaggeration, the inset's magnification
 const RIN = 18;                            // the inset's radius, points
-const DEG = BOOK ? 4.6 : 6.4;              // (b): points per degree
+const DEG = BOOK ? 4.4 : 6.4;              // (b): points per degree
 const BESIDE = 18;                         // the book's: the air between (a)'s ink and (b)'s column
 const PX = 3;                              // (b): the picture's pixels per point
 const ROW_GAP = 15;                        // from the lowest ink of (a) to the letter (b)
 const BELOW_LETTER = 5;
-const OUTLINE = 0.55, OUTLINE_OP = 0.75;   // the paper's outlines on the picture
+const OUTLINE = 0.55;                       // the boxes' outlines on the picture
+const FRAME = 0.5;                         // the picture's frame
 const RING_W = 0.5, RING_DASH = [2, 1.6];
 
 const rad = (d) => (d * Math.PI) / 180, deg = (r) => (r * 180) / Math.PI;
@@ -171,7 +180,7 @@ async function numbers() {
 
 /** The paper's colour scale for V/I: green at -1, MID at 0, magenta (the book's) at +1, straight between (rgb, 0 to 1). */
 const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
-const [G3, M0, M3] = [rgb(GREEN), rgb(MID), rgb(MAGENTA)];
+const [G3, M0, M3, T3] = [rgb(GREEN), rgb(MID), rgb(MAGENTA), rgb(TINT)];
 const scale = (vi) => { const t = (vi + 1) / 2; return t < 0.5 ? G3.map((g, i) => g + (M0[i] - g) * (t / 0.5)) : M0.map((m, i) => m + (M3[i] - m) * ((t - 0.5) / 0.5)); };
 
 export default async function () {
@@ -327,12 +336,11 @@ export default async function () {
 	// =============== (b) the camera's view ===============
 	// on the site under (a); in the book at its right, the two letters on one line
 	const rightA = Math.max(...L.map((g) => g.box.r), ...S.marks.flatMap((m) => m.pts.map((p) => p[0] + m.r)));
-	const bottomA = lowest();
 	const xb = BOOK ? rightA + BESIDE : x0;
 	const T2 = BOOK ? T1 : lowest() + ROW_GAP;
 	const lb = await letter('b', xb, T2);
 	L.push(await placed('\\text{elevation (degrees)}', lb.r + 6, (lb.t + lb.b) / 2, 0, 0.5, DIM, SIZE));
-	const AZ = [-20, 20], EL = [-22, 22];
+	const AZ = [-20, 20], EL = BOOK ? [-21, 21] : [-22, 22];
 	const left = xb + YL, top = lb.b + BELOW_LETTER + 2;
 	const PW = (AZ[1] - AZ[0]) * DEG, PH = (EL[1] - EL[0]) * DEG;
 	const XA = (a) => left + (a - AZ[0]) * DEG, YE = (e) => top + (EL[1] - e) * DEG;
@@ -363,17 +371,20 @@ export default async function () {
 	for (let q = 0; q < w * h; q++) {
 		const shade = Math.sqrt(Math.min(1, Math.max(0, Imap[q] / Imax)));
 		const col = scale(Vmap[q] / Math.max(Imap[q], 1e-300));
-		for (let k = 0; k < 3; k++) img.data[4 * q + k] = Math.round(255 * (GROUND * (1 - shade) + col[k] * shade));
+		for (let k = 0; k < 3; k++) img.data[4 * q + k] = Math.round(255 * (T3[k] * (1 - shade) + col[k] * shade));
 		img.data[4 * q + 3] = 255;
 	}
 	ctx.putImageData(img, 0, 0);
-	// the colours at the two centres are the scale's ends
+	// the colours at the two centres are the scale's ends, at their brightness; the still pair's box is the bare ground
 	const at = (az, el) => { const i = Math.floor(((az - AZ[0]) / (AZ[1] - AZ[0])) * w), j = Math.floor(((EL[1] - el) / (EL[1] - EL[0])) * h); return Array.from(img.data.slice(4 * (j * w + i), 4 * (j * w + i) + 3)); };
 	const nearCol = (got, want, tol) => got.every((v, k) => Math.abs(v - want[k] * 255) <= tol);
+	const over = (c, a) => c.map((v, k) => T3[k] + (v - T3[k]) * a);
 	check(nearCol(at(0, N.spots[1].el), M3, 6), `the middle spot is not magenta: ${at(0, N.spots[1].el)}`);
-	check(nearCol(at(0, N.spots[0].el), G3.map((g) => GROUND + (g - GROUND) * Math.sqrt(N.spots[0].I / Imax)), 6), `the top spot is not green: ${at(0, N.spots[0].el)}`);
-	check(nearCol(at(0, -13.7), [GROUND, GROUND, GROUND], 12), 'the still pair\'s box is not dark');
+	check(nearCol(at(0, N.spots[0].el), over(G3, Math.sqrt(N.spots[0].I / Imax)), 6), `the top spot is not green: ${at(0, N.spots[0].el)}`);
+	check(nearCol(at(0, -13.7), T3, 12), 'the still pair\'s box is not the bare ground');
+	// the picture, and a thin frame round it
 	S.raw(`<image class="art" href="${cv.toDataURL('image/jpeg', 0.92)}" x="${n2(left)}" y="${n2(top)}" width="${n2(PW)}" height="${n2(PH)}" preserveAspectRatio="none"/>`, 0);
+	S.raw(`<rect x="${n2(left)}" y="${n2(top)}" width="${n2(PW)}" height="${n2(PH)}" fill="none" stroke="${RULE}" stroke-width="${FRAME}"/>`, 0.1);
 	S.mark([[left, top], [left + PW, top], [left + PW, top + PH], [left, top + PH], [left, top]], 0, 'the picture');
 
 	// the axes, outside the picture
@@ -400,7 +411,7 @@ export default async function () {
 		for (let i = 0; i <= n; i++) ring.push(N.view([b.w - (2 * b.w * i) / n, y0, z]));
 		for (let i = 0; i <= n; i++) ring.push(N.view([-b.w, y0 + ((y1 - y0) * i) / n, z]));
 		const pts = ring.map(V);
-		S.raw(`<path d="M${pts.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}Z" fill="none" stroke="${WHITE}" stroke-opacity="${OUTLINE_OP}" stroke-width="${OUTLINE}" stroke-linejoin="round"/>`, 2);
+		S.raw(`<path d="M${pts.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}Z" fill="none" stroke="${ON_DIM}" stroke-width="${OUTLINE}" stroke-linejoin="round"/>`, 2);
 		S.mark(pts, OUTLINE / 2, `the ${b.k} box's outline`);
 		check(near(Math.abs(ring[n + 1][0]), 6.189, 5e-4), 'an upright edge is not at 6.19 degrees');
 	}
@@ -417,7 +428,7 @@ export default async function () {
 		for (const q of pts) { const d = N.dir(...q); check(near(deg(Math.acos(Math.min(1, dot(d, s.c)))), N.ring, 1e-9), 'a point of the ring is off it'); }
 		check(near(around(s, N.ring, 0)[0], -around(s, N.ring, Math.PI)[0], 1e-9) && around(s, N.ring, 0)[0] > 0, 'the ring is not symmetric, or e1 does not point right');
 		const page = pts.map(V);
-		S.raw(`<path d="M${page.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}" fill="none" stroke="${WHITE}" stroke-opacity="${OUTLINE_OP}" stroke-width="${RING_W}" stroke-dasharray="${RING_DASH.join(' ')}"/>`, 2.1);
+		S.raw(`<path d="M${page.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}" fill="none" stroke="${ON_INK}" stroke-width="${RING_W}" stroke-dasharray="${RING_DASH.join(' ')}"/>`, 2.1);
 		S.mark(page, RING_W / 2, `the ring of the spot at ${s.el.toFixed(2)}`);
 	}
 	const mid = N.spots[1];
@@ -434,35 +445,26 @@ export default async function () {
 	const edge = XA(6.19);
 	for (const s of N.spots) {
 		const v = s.vi < 0 ? `-${Math.abs(s.vi).toFixed(3)}` : `+${s.vi.toFixed(3)}`;
-		L.push(await placed(`V/I = ${v}`, XA(-6.19) - 4.5, YE(s.el), 1, 0.5, WHITE, SIZE));
+		L.push(await placed(`V/I = ${v}`, XA(-6.19) - 4.5, YE(s.el), 1, 0.5, ON_INK, SIZE));
 	}
 	if (!BOOK) {
-		const r1 = await placed(`\\text{first dark ring ${N.ring.toFixed(1)}}^\\circ`, edge + 4.5, YE(N.spots[0].el) - 1.5, 0, 1, WHITE, SIZE);
-		const r2 = await placed(`\\text{(${(4.5 * Math.tan(rad(N.ring))).toFixed(2)} m on the shelf)}`, edge + 4.5, r1.box.b + 3, 0, 0, WHITE, SIZE);
+		const r1 = await placed(`\\text{first dark ring ${N.ring.toFixed(1)}}^\\circ`, edge + 4.5, YE(N.spots[0].el) - 1.5, 0, 1, ON_INK, SIZE);
+		const r2 = await placed(`\\text{(${(4.5 * Math.tan(rad(N.ring))).toFixed(2)} m on the shelf)}`, edge + 4.5, r1.box.b + 3, 0, 0, ON_INK, SIZE);
 		L.push(r1, r2);
 	} else {
 		// the book's picture is narrower: the same words in three lines, the middle one level with the spot's centre
-		const r2 = await placed(`${N.ring.toFixed(1)}^\\circ\\ \\text{(${(4.5 * Math.tan(rad(N.ring))).toFixed(2)} m}`, edge + 4.5, YE(N.spots[0].el), 0, 0.5, WHITE, SIZE);
-		const r1 = await placed('\\text{first dark ring}', edge + 4.5, r2.box.t - 3, 0, 1, WHITE, SIZE);
-		const r3 = await placed('\\text{on the shelf)}', edge + 4.5, r2.box.b + 3, 0, 0, WHITE, SIZE);
+		const r2 = await placed(`${N.ring.toFixed(1)}^\\circ\\ \\text{(${(4.5 * Math.tan(rad(N.ring))).toFixed(2)} m}`, edge + 4.5, YE(N.spots[0].el), 0, 0.5, ON_INK, SIZE);
+		const r1 = await placed('\\text{first dark ring}', edge + 4.5, r2.box.t - 3, 0, 1, ON_INK, SIZE);
+		const r3 = await placed('\\text{on the shelf)}', edge + 4.5, r2.box.b + 3, 0, 0, ON_INK, SIZE);
 		L.push(r1, r2, r3);
 	}
 	const sb = N.boxes[2];
 	const stillAt = N.view([0, sb.y, -sb.front]);
-	L.push(await placed('\\text{still: no wave}', XA(0), YE(stillAt[1]), 0.5, 0.5, WHITE, SIZE));
+	L.push(await placed('\\text{still: no wave}', XA(0), YE(stillAt[1]), 0.5, 0.5, ON_INK, SIZE));
 	for (const g of L.slice(BOOK ? -7 : -6)) check(g.box.l > left + 1.5 && g.box.r < left + PW - 1.5 && g.box.t > top + 1.5, `the label ${g.src} leaves the picture`);
 
-	// below the panel: the true speed of light (in the book under (a), in two lines)
-	const lt = `${N.lambdaTrue.toPrecision(2).split('e+')[0]}\\times10^{${N.lambdaTrue.toPrecision(2).split('e+')[1]}}`;
-	if (!BOOK) {
-		const fl = await placed(`\\text{At }c = 3\\times10^{8}\\ \\mathrm{m\\,s^{-1}}\\text{: }\\lambda = ${lt}\\ \\mathrm m\\text{, no spot, the same sense of turning}`, x0, azTitle.box.b + 6, 0, 0, INK, SIZE);
-		L.push(fl);
-	} else {
-		const fl1 = await placed(`\\text{At }c = 3\\times10^{8}\\ \\mathrm{m\\,s^{-1}}\\text{: }\\lambda = ${lt}\\ \\mathrm m\\text{, no spot,}`, x0, bottomA + 14, 0, 0, INK, SIZE);
-		const fl2 = await placed('\\text{the same sense of turning}', x0, fl1.box.b + 3, 0, 0, INK, SIZE);
-		L.push(fl1, fl2);
-		check(fl1.box.r < xb - BESIDE / 2, 'the words under (a) reach (b)');
-	}
+	// the true speed of light (lambda = 1.5e8 m at c = 3e8 m/s, no spot) is the caption's, not the drawing's
+	void N.lambdaTrue;
 
 	// ---- checks: the column (in the book, the two columns), and nothing touches
 	const colR = BOOK ? xb + CW : x0 + CW;

@@ -9,6 +9,8 @@
 // only: no colour roles.
 // Departures from the diagram's comment: the bracket is section 10.2's square bracket (figs/tut-balance-rates.js), and
 // the two arrows hang just under the branch, their tips named "-k" and "+k", so that they do not run along it.
+// In the printed book (figureLayout 'book') the panel is drawn smaller, 230 points per pi / a and 84 per omega_0
+// instead of 266 and 118, so that a plot with little in it is not printed large; the labels keep their size.
 // Exact: the branches are the chain's (omega^2 = K (1/m1 + 1/m2) +- K sqrt((1/m1 + 1/m2)^2 - 4 sin^2(ka/2) / m1 m2),
 // asserted against its equation of motion), the tangent their slope at the origin, and the dot where the steep line
 // meets the optical branch. Schematic, as the caption says: the branches (a chain, not silicon) and the steep line's
@@ -32,7 +34,8 @@ const SLOPE = (Math.PI * Math.sqrt(K / (2 * (M1 + M2)))) / W0;   // d(omega / om
 
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
 const Y1 = 1.3;
-const DX = 266, DY = 118;                        // points per unit of k (pi / a) and of omega_0
+const BOOK = globalThis.figureLayout === 'book';
+const DX = BOOK ? 230 : 266, DY = BOOK ? 84 : 118;   // points per unit of k (pi / a) and of omega_0: lower in the book
 const CURVE = 0.75, TANGENT = 0.55, DASH = [3, 2];
 const STEEP = 0.03;                              // the steep line leaves the top at k = STEEP pi / a
 const TAN_TO = 0.74;                             // the tangent's reach, in pi / a
@@ -120,5 +123,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { qx, slope: SLOPE, edge: [acoustic(1), optical(1)] };
-	return finish(S, L, [285, 345]);
+	return finish(S, L, BOOK ? [240, 300] : [285, 345]);
 }

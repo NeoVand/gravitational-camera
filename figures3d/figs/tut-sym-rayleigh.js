@@ -9,6 +9,8 @@
 // Exact: the matrix and its eigen-axes (asserted), T x and its shadow (asserted to be x^T T x), the curve (sampled
 // every quarter of a point and asserted against x^T T x at every sample), its extremes (asserted at 30 and 120 degrees,
 // -2 and 1). The chart's two axes have different scales, chosen for the drawing; nothing else is schematic.
+// The printed book (figureLayout 'book') sets the circle on the left and the chart on its right, their middles level
+// (the circle a little larger, 42 points, and the chart 246 by 100), to fill the text's width.
 import { Sheet, ORIGIN, finish, checker, near, placed, AXIS, HAIR, VEC, VEC_HEAD, RIGHT } from './tut-pot-lib.js';
 import { Plot, xAxis, yAxis, INK, DIM, ACCENT, ACCENT2, LABEL_GAP } from './tut-prob-lib.js';
 import { graph, longest } from './tut-fourier-lib.js';
@@ -19,12 +21,14 @@ const check = checker(name);
 export const TURN = 30;          // degrees: Q
 export const EIG = [-2, 1];      // the eigenvalues along Q's first and second columns
 export const PROBE = 100;        // degrees: the probe drawn
-const R = 38;                    // the circle's radius, points
+const BOOK = globalThis.figureLayout === 'book';
+const R = BOOK ? 42 : 38;        // the circle's radius, points
 const REACH = 1.32;              // the eigen-axes' half-length, units of R
 const ARC = 0.3;                 // the arc of theta, units of R
-const W = 250, H = 84;           // the chart
+const W = BOOK ? 246 : 250, H = BOOK ? 100 : 84;   // the chart
 const Y = [-2.35, 1.35];         // the chart's values
-const GAP = 26;                  // from the circle's drawing to the chart's top
+const GAP = 26;                  // from the circle's drawing to the chart's top (the site)
+const GAP_SIDE = 26;             // from the circle's drawing to the chart's left edge (the book)
 const DASH = [2.2, 1.6];
 const DOTR = 1.25;
 
@@ -52,7 +56,7 @@ export default async function () {
 
 	const S = new Sheet(name);
 	const L = [];
-	const C = [ORIGIN, ORIGIN - (R * REACH + GAP + H) / 2];
+	const C = BOOK ? [ORIGIN - 140, ORIGIN] : [ORIGIN, ORIGIN - (R * REACH + GAP + H) / 2];
 	const at = ([x, y], c = C) => [c[0] + R * x, c[1] - R * y];
 
 	// ---- the circle, the eigen-axes and the horizontal from which theta is counted
@@ -88,8 +92,10 @@ export default async function () {
 	}
 
 	// ---- the chart
-	const top = Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)), ...L.map((l) => l.box.b)) + GAP;
-	const P = new Plot({ left: ORIGIN - W / 2, top, w: W, h: H, x0: 0, x1: 180, y0: Y[0], y1: Y[1] });
+	// below the circle's drawing (the site), or right of it with its middle level with the circle's centre (the book)
+	const top = BOOK ? C[1] - H / 2 : Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)), ...L.map((l) => l.box.b)) + GAP;
+	const left = BOOK ? Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[0] + m.r)), ...L.map((l) => l.box.r)) + GAP_SIDE : ORIGIN - W / 2;
+	const P = new Plot({ left, top, w: W, h: H, x0: 0, x1: 180, y0: Y[0], y1: Y[1] });
 	// the dashed lines at the eigenvalues, broken where the curve comes within GAP_LINE points of them
 	const near2 = 1.4;
 	for (const [i, e] of EIG.entries()) {
@@ -119,5 +125,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window.tutSymRayleigh = { T, value, lo, hi };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, BOOK ? [400, 450] : [240, 340]);
 }

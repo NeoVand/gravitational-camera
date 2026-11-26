@@ -4,13 +4,16 @@
 // lib.js's Panel does, as section 1.1's figs/tut-vec-projector.js). An arrow rho from the origin, its shadow rho_h on
 // the line, and the dashed segment from rho_h to rho, the part in N, parallel to the plane, with a right-angle mark at
 // rho_h. Through rho_h a second, lighter plane parallel to N, the set rho_h + N of densities with the same outside;
-// two more arrows from the origin to points of it, in grey, longer than rho_h, which is the shortest.
+// two more arrows from the origin to points of it, in grey, longer than rho_h, which is the shortest. The two planes
+// have one extent, the upper the lower lifted straight up (so they read as parallel, one above the other), centred on
+// the line H; N in the page's pale tint edged in the rule's colour, rho_h + N in a darker tint edged in the faint ink,
+// so that it holds in print.
 // Exact: rho_h is rho's projection onto the line (asserted: rho - rho_h is at right angles to it and lies in a plane
 // parallel to N); every point of the upper plane differs from rho_h by a member of N (asserted for the drawn ones),
 // and rho_h is the shortest arrow to it (asserted for the drawn arrows, and by Pythagoras for every point);
 // the right-angle mark is a square in the drawing's 3D. Schematic: the particular arrows, in units of the drawing,
 // and the planes' extent: the families are spaces of infinitely many dimensions, drawn as a plane and a line.
-import { Panel, v3, INK, DIM, FAINT } from '../lib.js';
+import { Panel, v3, INK, DIM, FAINT, RULE } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, VEC, VEC_HEAD, DASH } from './tut-vec-lib.js';
 import { MATTER } from './tut-null-lib.js';
 
@@ -21,11 +24,14 @@ export const RHO = [0.95, 0.78, 0.42];        // the density, world units (x rig
 export const OTHERS = [[-1.0, 0.78, 0.62], [1.15, 0.78, -0.62]];   // two more points of rho_h + N
 const TILT = 22, TURN = -30;                  // the view, degrees
 const S = 94;                                // points per unit
-const LOWER = { x: [-0.95, 1.4], z: [-0.95, 0.9] };   // the plane N
-const UPPER = { x: [-1.3, 1.5], z: [-0.95, 0.85] };   // the plane rho_h + N
+const PLANE = { x: [-1.42, 1.42], z: [-0.92, 0.92] };   // both planes, N and rho_h + N, centred on H
+const LOWER = PLANE, UPPER = PLANE;
 const H_SPAN = [-0.42, 1.5];                 // the line H, world y
 const TINT = '#eeebe5';                       // the site's neutral tint of the page (drawing.ts THEME)
-const UPPER_OPACITY = 0.55;                   // the second plane, lighter
+const UPPER_TINT = `color-mix(in srgb, ${INK} 12%, ${TINT})`;   // the second plane, the same tint darkened (the site's
+                                              // ink and tint, so that it follows the theme)
+const UPPER_OPACITY = 0.72;
+const EDGE = 0.45;                            // the planes' edges
 
 export default async function () {
 	const P = new Panel({ x: ORIGIN, y: ORIGIN, w: 0, h: 0, scale: S, tilt: TILT, turn: TURN });
@@ -44,11 +50,14 @@ export default async function () {
 		check(near(q.lengthSq(), rhoH.lengthSq() + q.clone().sub(rhoH).lengthSq(), 1e-12), 'Pythagoras fails');
 	}
 
-	// ---- the planes: N a pale tint, rho_h + N the same tint, lighter; no edges
+	// ---- the planes: N the page's pale tint, rho_h + N a darker one over it, each with its edge
 	const square = ({ x, z }, y) => [[x[0], z[0]], [x[1], z[0]], [x[1], z[1]], [x[0], z[1]]].map(([a, c]) => v3(a, y, c));
 	const lower = square(LOWER, 0), upper = square(UPPER, rhoH.y);
-	P.polygon(lower, { fill: TINT, layer: -3 });
-	P.polygon(upper, { fill: TINT, opacity: UPPER_OPACITY, layer: -2 });
+	P.polygon(lower, { fill: TINT, stroke: RULE, width: EDGE, layer: -3 });
+	P.polygon(upper, { fill: UPPER_TINT, opacity: UPPER_OPACITY, layer: -2 });
+	P.polygon(upper, { fill: 'none', stroke: FAINT, width: EDGE, layer: -1.9 });
+	// the upper plane is the lower lifted straight up: one extent, corner over corner
+	lower.forEach((p, i) => check(near(upper[i].x, p.x, 1e-12) && near(upper[i].z, p.z, 1e-12), 'the planes are not one above the other'));
 	ink.mark([...lower, lower[0]].map((p) => ink.at(p)), 0, 'the plane N\'s edge');
 	ink.mark([...upper, upper[0]].map((p) => ink.at(p)), 0, 'the upper plane\'s edge');
 	for (const q of [rho, ...others, rhoH]) check(q.x > UPPER.x[0] + 0.2 && q.x < UPPER.x[1] - 0.2 && q.z > UPPER.z[0] + 0.2 && q.z < UPPER.z[1] - 0.2, 'the upper plane does not hold the points with room');

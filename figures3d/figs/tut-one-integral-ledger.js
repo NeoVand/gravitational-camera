@@ -3,9 +3,10 @@
 // the corners: the bracket {Q_h, Q-dot_g} (section 1.7), the commutator [Q_h, Q-dot_g] (section 8.2), the tremor
 // <Q-dot_h Q-dot_g> (section 4.2) and the weight of the response to a tide (section 4.5). Beside each arrow its
 // factor: "x 1", "x i hbar", "x k_B T" and "the sum rule". The moments Q in matter's colour, as the chapter sets them;
-// everything else ink, the chapters' numbers grey. No orange or blue.
-// Departures from the diagram's comment: each corner box holds its name on one line and its chapter, in grey, on the
-// next ("section 1.7"); the fourth name, which has no formula, takes two lines ("the weight of the response" / "to a
+// everything else ink, the sources' names grey. No orange or blue.
+// Departures from the diagram's comment: each corner box holds its name on one line and, in grey on the next, the
+// topic it comes from, by name and not by number ("Hamilton's mechanics", "quantum mechanics", "equipartition",
+// "response and causality"), since the book and the site number the sections differently; the fourth name, which has no formula, takes two lines ("the weight of the response" / "to a
 // tide"). The four boxes share one size, fitted to the largest. Each factor stands level with the middle of its arrow,
 // on the side toward the figure's edge.
 // Exact: the four entries, each computed and asserted against the integral (tut-operators-lib.js, `ledger`): the
@@ -34,10 +35,10 @@ const END_AIR = 1.6;                     // air between an arrow's ends and the 
 const M = (s) => `{\\color{${MATTER}}${s}}`;
 const Q = (sub, dot = false) => `${M(dot ? '\\dot Q' : 'Q')}_${sub}`;
 const BOXES = [
-	{ at: 'tl', lines: [`\\text{the bracket }\\{${Q('h')}, ${Q('g', true)}\\}`], ch: '1.7', factor: '\\times 1' },
-	{ at: 'tr', lines: [`\\text{the commutator }[${Q('h')}, ${Q('g', true)}]`], ch: '8.2', factor: '\\times i\\hbar' },
-	{ at: 'bl', lines: [`\\text{the tremor }\\langle${Q('h', true)}${Q('g', true)}\\rangle`], ch: '4.2', factor: '\\times k_BT' },
-	{ at: 'br', lines: ['\\text{the weight of the response}', '\\text{to a tide}'], ch: '4.5', factor: '\\text{the sum rule}' }
+	{ at: 'tl', lines: [`\\text{the bracket }\\{${Q('h')}, ${Q('g', true)}\\}`], from: "Hamilton's mechanics", factor: '\\times 1' },
+	{ at: 'tr', lines: [`\\text{the commutator }[${Q('h')}, ${Q('g', true)}]`], from: 'quantum mechanics', factor: '\\times i\\hbar' },
+	{ at: 'bl', lines: [`\\text{the tremor }\\langle${Q('h', true)}${Q('g', true)}\\rangle`], from: 'equipartition', factor: '\\times k_BT' },
+	{ at: 'br', lines: ['\\text{the weight of the response}', '\\text{to a tide}'], from: 'response and causality', factor: '\\text{the sum rule}' }
 ];
 
 /** A line of type centred on x with its baseline at y, as a label. */
@@ -64,7 +65,7 @@ export default async function () {
 	// ---- the corner boxes' contents, measured, and one size for all four
 	const sets = [];
 	for (const B of BOXES) {
-		const rows = [...B.lines.map((src) => ({ src, color: INK })), { src: `\\text{chapter ${B.ch}}`, color: DIM }];
+		const rows = [...B.lines.map((src) => ({ src, color: INK })), { src: `\\text{${B.from}}`, color: DIM }];
 		const trial = await Promise.all(rows.map((r, i) => lineAt(r.src, 0, i * PITCH, r.color)));
 		const up = Math.min(...trial.map((p) => p.box.t)), dn = Math.max(...trial.map((p) => p.box.b));
 		sets.push({ B, rows, up, h: dn - up, w: Math.max(...trial.map((p) => p.box.r - p.box.l)) });

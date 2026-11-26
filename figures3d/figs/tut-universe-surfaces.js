@@ -2,14 +2,15 @@
 // they share. A half-disc slice of space with us at the centre of its straight edge; two concentric arcs, the light's
 // last-scattering surface at 13.86 Gpc in the light role's colour and the gravitons' surface at 14.14 Gpc in the
 // field's, the 0.28 Gpc between them drawn ten times too wide and dimensioned so. Upper left, one crest of a long wave
-// (wavelength 8 Gpc, its crest lines running toward us) as a shaded band across both arcs: each arc is drawn heavier where
-// the band crosses it, the same warm patch on both. Upper right, a short wave (wavelength 0.187 Gpc, drawn ten times
-// longer with the gap) running toward us, its crests shaded in a strip across both arcs: the light's arc lies on a crest,
-// the gravitons' arc a wavelength and a half farther out in a trough, so only the light's arc is drawn heavier there.
-// The shading of each wave is its crests, cos(2 pi s / lambda) where positive, at most 0.2 of the ink; each arc's weight
-// rises with the wave's value on it.
+// (wavelength 8 Gpc, its crest lines running toward us) as a band across both arcs, the region where the wave is
+// positive: each arc is drawn heavier where the band crosses it, the same warm patch on both. Upper right, a short wave
+// (wavelength 0.187 Gpc, drawn ten times longer with the gap) running toward us, its crests as bands across a strip: the
+// light's arc lies on a crest, the gravitons' arc a wavelength and a half farther out in a trough, so only the light's
+// arc is drawn heavier there. The crests are crisp bands in the page's neutral tint, from 0.7 to 1.4 times the light's
+// radius (the short wave's whole crests only); each arc's weight rises with the wave's value, cos(2 pi s / lambda), on it.
 // Departures from the diagram's comment: the short wave is drawn ten times longer, with the gap, so that its crests
-// show; the caption says so. Each wave is shaded only near the two surfaces, fading in and out over a few points.
+// show; the caption says so. The waves are drawn only near the two surfaces, and their crests flat and crisp-edged
+// rather than graded, so that they read as bands and not as smudges.
 // Exact: the two radii (13.86 and 13.86 + 10 x 0.28 Gpc on one scale, from tut-universe-lib.js's integral), the waves'
 // phases on the arcs (crest on the light's arc and trough on the gravitons' for the short wave; the patches where the
 // long wave's crest crosses each arc). Schematic: the waves' directions, the long wave's wavelength, the half-disc.
@@ -24,14 +25,12 @@ const check = checker(name);
 const K = 9.2;                          // points per Gpc
 const STRETCH = 10;                     // the gap's exaggeration
 const ARC = 0.75, HEAVY = 2.6;          // an arc's stroke, and its weight on a warm patch's crest
-const SHADE = 0.2;                      // a crest's strongest shading
+const TINT = '#eeebe5';                 // a crest's tint: the page's neutral tint (drawing.ts)
 const LONG = { deg: 132, lambda: 8 };   // the long wave: its crest's direction from us, its wavelength (Gpc)
 const SHORT = { deg: 50, lambda: 0.187 * STRETCH, half: 1.25 };   // the short wave: direction, drawn wavelength, half-width (Gpc)
-const FADE = 1.6;                       // Gpc over which a wave's shading fades in and out
-const REACH = [0.7, 1.4];               // a wave's shading from this times the light's radius to this times it
+const REACH = [0.7, 1.4];               // a wave's crests from this times the light's radius to this times it
 const DIM_DROP = 4.5;                   // the gap's dimension, under the straight edge
 const END = 2;                          // half a dimension line's end
-const STEPS = 64;                       // gradient stops across a band
 const caption = 'Look first at the large spot: it lies across both surfaces, so both skies show it. A wave shorter than the gap prints different patterns on the two surfaces. The gap, and the short wave with it, are drawn ten times too wide.';
 
 export default async function () {
@@ -47,37 +46,31 @@ export default async function () {
 	const rad = (d) => (d * Math.PI) / 180;
 	const P = (r, d) => [C[0] + r * Math.cos(rad(d)), C[1] - r * Math.sin(rad(d))];
 	const arcPts = (r, d0, d1) => { const n = Math.max(2, Math.ceil((r * rad(Math.abs(d1 - d0))) / 0.25)); return Array.from({ length: n + 1 }, (_, i) => P(r, d0 + ((d1 - d0) * i) / n)); };
-	let defs = '';
 
-	// ---- a wave's shading: a band along the direction deg (from us), across which the value is f(u) (u in Gpc, across
-	// for the long wave's crest, along for the short wave's), faded in and out along its length
-	const band = (key, deg, half, valueAt) => {
-		const r0 = REACH[0] * Rl, r1 = REACH[1] * Rl, f = FADE * K;
-		const a = P(r0, deg), b = P(r1, deg);
+	// ---- a wave's crests: crisp bands in the page's neutral tint, each a rectangle along the direction deg (from us),
+	// from s0 to s1 (Gpc from us) along it and `half` (Gpc) to each side of it
+	const crest = (deg, s0, s1, half, what) => {
 		const n = [Math.cos(rad(deg + 90)), -Math.sin(rad(deg + 90))];        // across the band, on the page
-		const corners = [[-1, 0], [1, 0], [1, 1], [-1, 1]].map(([s, t]) => { const p = t ? b : a; return [p[0] + s * n[0] * half * K, p[1] + s * n[1] * half * K]; });
-		const id = `${name}-${key}`;
-		// the value: a gradient across (long) or along (short) the band
-		const stops = Array.from({ length: STEPS + 1 }, (_, k) => k / STEPS);
-		const across = valueAt.across;
-		const [g0, g1] = across ? [[a[0] - n[0] * half * K, a[1] - n[1] * half * K], [a[0] + n[0] * half * K, a[1] + n[1] * half * K]] : [a, b];
-		const grad = `<linearGradient id="${id}-v" gradientUnits="userSpaceOnUse" x1="${n2(g0[0])}" y1="${n2(g0[1])}" x2="${n2(g1[0])}" y2="${n2(g1[1])}">` +
-			stops.map((t) => `<stop offset="${t.toFixed(4)}" stop-color="${INK}" stop-opacity="${(SHADE * Math.max(0, valueAt(across ? (t - 0.5) * 2 * half : (r0 + t * (r1 - r0)) / K))).toFixed(4)}"/>`).join('') + '</linearGradient>';
-		// the fade along the band, as a mask
-		const fade = `<linearGradient id="${id}-f" gradientUnits="userSpaceOnUse" x1="${n2(a[0])}" y1="${n2(a[1])}" x2="${n2(b[0])}" y2="${n2(b[1])}">` +
-			[[0, 0], [f / (r1 - r0), 1], [1 - f / (r1 - r0), 1], [1, 0]].map(([o, v]) => `<stop offset="${o.toFixed(4)}" stop-color="#fff" stop-opacity="${v}"/>`).join('') + '</linearGradient>';
-		const d = 'M' + corners.map((p) => `${n2(p[0])},${n2(p[1])}`).join('L') + 'Z';
-		defs += grad + fade + `<mask id="${id}-m" maskUnits="userSpaceOnUse" x="0" y="0" width="700" height="700"><path d="${d}" fill="url(#${id}-f)"/></mask>`;
-		S.raw(`<path d="${d}" fill="url(#${id}-v)" mask="url(#${id}-m)"/>`, 0.5);
-		return { a, b, n, corners };
+		const a = P(s0 * K, deg), b = P(s1 * K, deg);
+		const corners = [[-1, a], [1, a], [1, b], [-1, b]].map(([sg, p]) => [p[0] + sg * n[0] * half * K, p[1] + sg * n[1] * half * K]);
+		S.raw(`<path d="M${corners.map((p) => `${n2(p[0])},${n2(p[1])}`).join('L')}Z" fill="${TINT}"/>`, 0.5);
+		S.mark([...corners, corners[0]], 0, what);
+		return corners;
 	};
+	const [s0, s1] = [REACH[0] * light, REACH[1] * light];
 
-	// ---- the long wave: one crest across the band, cos(2 pi u / lambda) for |u| < lambda / 4
-	const longValue = Object.assign((u) => Math.cos((2 * Math.PI * u) / LONG.lambda), { across: true });
-	const longBand = band('long', LONG.deg, LONG.lambda / 4, longValue);
-	// ---- the short wave: crests across the strip, cos(2 pi (s - light) / lambda), s the distance from us along it
-	const shortValue = Object.assign((s) => Math.cos((2 * Math.PI * (s - light)) / SHORT.lambda), { across: false });
-	const shortBand = band('short', SHORT.deg, SHORT.half, shortValue);
+	// ---- the long wave: one crest across its band, where cos(2 pi u / lambda) > 0, |u| < lambda / 4
+	const longValue = (u) => Math.cos((2 * Math.PI * u) / LONG.lambda);
+	crest(LONG.deg, s0, s1, LONG.lambda / 4, 'the long wave\'s crest');
+	// ---- the short wave: its crests across the strip, where cos(2 pi (s - light) / lambda) > 0, s the distance from
+	// us along it; only the whole crests between s0 and s1
+	const shortValue = (s) => Math.cos((2 * Math.PI * (s - light)) / SHORT.lambda);
+	const crests = [];
+	for (let k = -20; k <= 20; k++) {
+		const [c0, c1] = [light + (k - 0.25) * SHORT.lambda, light + (k + 0.25) * SHORT.lambda];
+		if (c0 >= s0 && c1 <= s1) { crests.push([c0, c1]); crest(SHORT.deg, c0, c1, SHORT.half, `the short wave's crest ${k}`); }
+	}
+	check(crests.length >= 4 && crests.every(([c0, c1]) => shortValue(c0) < 1e-9 && shortValue(c1) < 1e-9 && shortValue((c0 + c1) / 2) > 1 - 1e-9), 'the short wave\'s crests');
 	check(near(shortValue(light), 1, 1e-12), 'the light\'s arc is not on a crest of the short wave');
 	const outer = light + STRETCH * gap;
 	check(shortValue(outer) < -0.99, `the gravitons' arc is not in a trough of the short wave: ${shortValue(outer)}`);
@@ -142,9 +135,8 @@ export default async function () {
 		const f = P(REACH[1] * Rl + 2, SHORT.deg);
 		L.push(await S.clear('\\text{short wave}', f[0], f[1], 0, 1, [Math.SQRT1_2, -Math.SQRT1_2], { color: INK }));
 	}
-	void longBand; void shortBand;
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { light, gravitons, Rl, Rg };
-	return finish(S, L, [290, 345], defs);
+	return finish(S, L, [290, 345]);
 }

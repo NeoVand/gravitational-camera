@@ -3,11 +3,12 @@
 // overlap, 0 to 1, ticks at 0, 0.25, 0.5, 0.75 and 1. Light's cos^4(theta/2), dashed ink, "light, spin one"; gravity's
 // cos^8(theta/2), solid ink, "gravity, spin two", the narrower curve. Small ink dots at 30, 60 and 90 degrees on both,
 // with their values beside them: 0.87 and 0.76, 0.56 and 0.32, 0.25 and 0.063. The half heights: a dotted grey line
-// at 0.5 and dotted drops from where each curve crosses it to thin grey ticks on the axis, 47.0 and 65.5 degrees. No
-// orange or blue.
+// at 0.5 and dotted grey drops from where each curve crosses it, 47.0 and 65.5 degrees. No orange or blue.
 // Departures from the diagram's comment: the widths at half height are marked by a dotted line at half height and
-// dotted drops to the axis as well as by the ticks, so that the reader sees which crossing each tick marks; their
-// numbers stand just above the axis, inside the plot, since 65.5 lies too near the tick 60 for both to stand below it.
+// dotted drops through the axis, which run on past the row of the axis's numbers to a second row under it, where
+// 47.0 and 65.5 stand, each centred on its drop: 65.5 lies too near the tick 60 for both to share one row, and inside
+// the plot they crowded the axis and gravity's 0.063. The plot is a little wider than the site's other plots of the
+// chapter (300 points) so that the drop at 65.5 clears the number 60 beside it.
 // Exact: both curves (sampled every quarter of a point along their length), the dots, the crossings at one half and
 // every printed number, computed in figs/tut-spin-two-lib.js (the overlaps from the null vectors themselves, at every
 // 7.5 degrees, and the half widths by bisection and in closed form) and asserted against the chapter's text. Nothing
@@ -23,7 +24,7 @@ import { chapter, light, gravity, rad, OVERLAPS, WIDTHS } from './tut-spin-two-l
 const name = 'tut-two-overlaps';
 const check = checker(name);
 
-const PW = 252, PH = 132;                 // the plot, points
+const PW = 300, PH = 132;                 // the plot, points
 const GUIDE = 0.35;                       // the dotted half-height guides
 
 export default async function () {
@@ -36,17 +37,23 @@ export default async function () {
 	// ---- the axes
 	L.push(...(await xAxis(S, P, { ticks: [0, 30, 60, 90, 120, 150, 180], fmt: (t) => `${t}^\\circ`, what: 'the angle axis' })));
 	L.push(...(await yAxis(S, P, { ticks: [0, 0.25, 0.5, 0.75, 1], fmt: (t) => (t === 0 ? null : `${t}`), what: 'the overlap axis' })));
+	// the half widths' numbers, a row under the axis's own, each centred on its drop
 	const under = Math.max(...L.map((l) => l.box.b));
-	L.push(await placed('\\text{angle between the two waves, }\\vartheta', P.X(90), under + 4.5, 0.5, 0, INK));
+	const half = { gravity: nums.widths.gravity, light: nums.widths.light };
+	const widths = [];
+	for (const k of ['gravity', 'light']) widths.push(await placed(`${WIDTHS[k]}^\\circ`, P.X(half[k]), under + 4.2, 0.5, 0, DIM));
+	L.push(...widths);
+	const below = Math.max(...widths.map((l) => l.box.b));
+	L.push(await placed('\\text{angle between the two waves, }\\vartheta', P.X(90), below + 4.5, 0.5, 0, INK));
 	L.push(await placed('\\text{overlap}', P.left - TICK - NUM, P.top - 7, 0, 1, INK));
 
-	// ---- the half heights: a dotted line at one half, to light's crossing; thin ticks on the axis under the crossings
-	const half = { gravity: nums.widths.gravity, light: nums.widths.light };
+	// ---- the half heights: a dotted line at one half, to light's crossing; dotted drops from the crossings, through the
+	// axis and between its numbers, to the half widths' numbers
 	for (const k of ['gravity', 'light']) check(near(f[k](half[k]), 0.5, 1e-9) && half[k].toFixed(1) === WIDTHS[k], `the half width of ${k}`);
 	S.path([P.at(0, 0.5), P.at(half.light, 0.5)], { color: DIM, width: GUIDE, layer: 0.5, cap: 'butt', dash: ZERO_DASH, what: 'the half height' });
-	for (const k of ['gravity', 'light']) {
+	for (const [i, k] of ['gravity', 'light'].entries()) {
 		const x = P.X(half[k]);
-		S.path([[x, P.bottom], [x, P.bottom - 2 * TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the tick at ${k}'s half width` });
+		S.path([[x, P.Y(0.5)], [x, widths[i].box.t - LABEL_GAP - GUIDE / 2 - 0.2]], { color: DIM, width: GUIDE, layer: 0.5, cap: 'butt', dash: ZERO_DASH, what: `the drop at ${k}'s half width` });
 	}
 
 	// ---- the curves: light dashed, gravity solid
@@ -74,15 +81,11 @@ export default async function () {
 	for (const [d, g, l] of OVERLAPS) {
 		const [xl, yl] = P.at(d, f.light(d)), [xg, yg] = P.at(d, f.gravity(d));
 		L.push(await S.clear(l, xl + DOT + LABEL_GAP + 0.4, yl - DOT - LABEL_GAP - 0.4, 0, 1, [0.6, -0.8]));
-		// at 90 degrees gravity's value stands left of its dot, just above the axis
-		L.push(d === 60 ? await S.clear(g, xg, yg + DOT + LABEL_GAP + 0.4, 0.5, 0, [0, 1])
-			: d === 90 ? await S.clear(g, xg - DOT - LABEL_GAP - 0.4, P.bottom - 2.8, 1, 1, [-1, 0])
+		// at 90 degrees gravity's value stands left of its dot, just above the axis; at 30 and 60, below and left of it (at 60,
+		// between its curve and the drop at its half width)
+		L.push(d === 90 ? await S.clear(g, xg - DOT - LABEL_GAP - 0.4, P.bottom - 2.8, 1, 1, [-1, 0])
 				: await S.clear(g, xg - DOT - LABEL_GAP - 0.4, yg + DOT + LABEL_GAP + 0.4, 1, 0, [-0.6, 0.8]));
 	}
-
-	// ---- the half widths' numbers, just above the axis, each left of its tick
-	L.push(await S.clear(`${WIDTHS.gravity}^\\circ`, P.X(half.gravity) - LABEL_GAP - 0.6, P.bottom - 2.8, 1, 1, [-1, 0], { color: DIM }));
-	L.push(await S.clear(`${WIDTHS.light}^\\circ`, P.X(half.light) - LABEL_GAP - 0.6, P.bottom - 2.8, 1, 1, [-1, 0], { color: DIM }));
 
 	// ---- the curves' names, beside their right halves: light above its curve, gravity under its own
 	L.push(await S.clear('\\text{light, spin one}', P.X(122), P.Y(f.light(122)) - LABEL_GAP, 0, 1, [0.6, -0.8]));

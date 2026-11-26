@@ -33,8 +33,10 @@ import { MATTER } from './tut-null-lib.js';
 export { HBAR, KB, C, G, palette, simpson, bose, ENERGY, MATTER };
 export const near = (a, b, tol = 1e-12) => Math.abs(a - b) <= tol;
 
-// ---- the frictions' pale fill: matter's light gold mixed with the page (figs/tut-abel-three-glows.js) -----------
-export const FILL = 'light-dark(color-mix(in srgb, #f1dc86 72%, #fffffe), color-mix(in srgb, #f1dc86 20%, #fffffe))';
+// ---- the frictions' pale fill: each theme's own matter colour mixed with the page, so that on the printed (day) page
+// it is a pale tint of matter's brown #533f03, the colour of its outlines, and on the night page a pale tint of matter's
+// gold #f1dc86 (until 2026-11 the day page also took the gold, a pale yellow outside the palette) ------------------
+export const FILL = 'light-dark(color-mix(in srgb, #533f03 20%, #fffffe), color-mix(in srgb, #f1dc86 20%, #fffffe))';
 
 // ---- the temperature and the bound ----------------------------------------------------------------------------------
 export const T = 293;

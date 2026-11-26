@@ -10,6 +10,9 @@
 // quanta", its formula being the chapter's box just above, so that no script inside a script is too small on a
 // phone; "nbar + 1/2" is written with a slash rather than a built-up half for the same reason. The axis across is
 // named "k_B T / hbar omega".
+// In the printed book (figureLayout 'book') the panel is drawn smaller, 21 and 10 points per decade instead of 23 and
+// 14, with the key's lines 12 points apart and its first line at 10^3.6 across and 10^-0.4 up, so that a plot of three
+// near-straight lines is not printed large; the labels keep their size.
 // Exact: every curve (the closed forms, asserted against the sum over the levels in tut-quanta-lib.js), the two
 // points (from the chapter's constants: section 4.3's ball at 300 K, 15.6 THz at 300 K), the axes' decades.
 import { Sheet, ORIGIN, finish, checker, placed, AXIS, HAIR, TICK, LABEL_GAP, n2 } from './tut-pot-lib.js';
@@ -24,12 +27,13 @@ const check = checker(name);
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
 const X0 = -1, X1 = 10;                  // log10 of k_B T / hbar omega
 const Y0 = -5, Y1 = 10;                  // log10 of the vertical axis
-const DX = 23, DY = 14;                  // points per decade
+const BOOK = globalThis.figureLayout === 'book';
+const DX = BOOK ? 21 : 23, DY = BOOK ? 10 : 14;   // points per decade (lower in the printed book)
 const DASH = [3, 2];
 const CLASSICAL_W = 0.5;
 const DOT = 1.7;
-const KEY_LINE = 18, PITCH = 14;         // the key's sample lines, and baseline to baseline
-const KEY_AT = [4.6, -1.6];              // the key's first line, in decades
+const KEY_LINE = 18, PITCH = BOOK ? 12 : 14;   // the key's sample lines, and baseline to baseline
+const KEY_AT = BOOK ? [3.6, -0.4] : [4.6, -1.6];   // the key's first line, in decades
 
 const pow = (k) => (k === 0 ? '1' : `10^{${k}}`);
 
@@ -95,5 +99,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { silicon, ball };
-	return finish(S, L, [260, 320]);
+	return finish(S, L, BOOK ? [220, 300] : [260, 320]);
 }

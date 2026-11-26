@@ -7,6 +7,9 @@
 // The jumps are orange, the colour of a stretch in the paper's figures: every kick points away from x = 0.
 // Exact: each jump, centre to centre, is eps m x on the one scale of p_x (asserted), and vertical (asserted); the
 // places on the x axis. Chosen for the drawing: the momenta before the kick, the value eps m = 1, and the two scales.
+// The tide's name, g = x^2/2, stands in the upper left corner, at the left end of the x axis and level with the name
+// of the p_x axis. The printed book (figureLayout 'book') draws the same plane narrower (120 points per unit of x,
+// not 165), its labels at their usual size.
 import { INK, DIM, FAINT, ACCENT } from '../lib.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, AXIS, AXIS_HEAD, HAIR, TICK, DOT, DOT_STEP, n2 } from './tut-pot-lib.js';
 
@@ -22,8 +25,10 @@ export const kick = (x) => EPS_M * gradG(x);    // the jump in p_x
 export const P1 = X.map((x, i) => P0[i] + kick(x));
 
 // ---- the drawing (points) ---------------------------------------------------------------------------------------
-const SX = 165;                                 // points per unit of x
-const SP = 118;                                 // points per unit of p_x: the one scale of every jump
+const BOOK = globalThis.figureLayout === 'book';
+const SX = BOOK ? 120 : 165;                    // points per unit of x
+const SP = 118;                                 // points per unit of p_x: the one scale of every jump (the book's too,
+                                                // so that the small jump keeps its head)
 const X_AXIS = [-0.7, 0.82], P_AXIS = [-0.76, 0.87];
 const BEFORE = 1.7, BEFORE_W = 0.5;            // the open circle: radius, stroke
 const AFTER = 1.3;                              // the filled dot
@@ -47,7 +52,8 @@ export default async function () {
 	S.arrow(at(0, P_AXIS[0]), at(0, P_AXIS[1]), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 0, what: 'the p axis' });
 	const xTip = at(X_AXIS[1], 0), pTip = at(0, P_AXIS[1]);
 	labels.push(await placed('x', xTip[0] + GAP, xTip[1], 0, 0.5, DIM));
-	labels.push(await placed('p_x', pTip[0], pTip[1] - GAP, 0.5, 1, DIM));
+	const pName = await placed('p_x', pTip[0], pTip[1] - GAP, 0.5, 1, DIM);
+	labels.push(pName);
 
 	// ---- each part: its place on the axis, its two states, the jump between them
 	for (const [i, x] of X.entries()) {
@@ -81,10 +87,11 @@ export default async function () {
 		if (i === 2) labels.push(await S.clear('\\epsilon m x', to[0] + GAP + 0.6, (from[1] + to[1]) / 2, 0, 0.5, [1, 0], { color: ACCENT }));
 	}
 
-	// the tide's name, in the empty quarter above the part that is kicked down
-	labels.push(await placed('g = \\tfrac12 x^2', ...at(-0.36, 0.5), 0.5, 0.5, DIM));
+	// the tide's name, in the upper left corner: from the x axis's left end, level with the name of the p_x axis
+	// (their centres at one height)
+	labels.push(await placed('g = \\tfrac12 x^2', at(X_AXIS[0], 0)[0], (pName.box.t + pName.box.b) / 2, 0, 0.5, DIM));
 
 	S.checkAll(labels);
 	window.tutHamKick = { jumps: X.map(kick), before: P0, after: P1 };
-	return finish(S, labels, [240, 340]);
+	return finish(S, labels, BOOK ? [190, 260] : [240, 340]);
 }

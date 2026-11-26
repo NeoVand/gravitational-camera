@@ -178,7 +178,7 @@ picture).[^row]
 
 ![A rail seen end-on, with the circles of constant potential at 0.25, 0.5, 1, 2 and 4 m, labelled by the potential less
 that of the 1 m circle, in units of $2G\matter\lambda$: doubling the radius gives equal steps. The arrows show the pull
-toward the rail.](tut-grn-rail){#fig:grn-rail}
+toward the rail; the small square at the centre is shown enlarged at the right.](tut-grn-rail){#fig:grn-rail}
 
 ## Inside an empty region, the values on its boundary write the potential
 

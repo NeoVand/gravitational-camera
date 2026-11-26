@@ -6,9 +6,12 @@
 // colour point inward, toward the cube, named "momentum along +x flows toward -x" once, and small grey arrows at the
 // rod's two far ends pull outward, named "tension tau"; "T^xx = -tau" stands under the panel. The faces along the
 // rod's sides carry no arrows.
-// Departures from the diagram's comment: the panels are stacked at every width, so that the figure stays narrow and
-// its text large on a phone (a drawing is shown at most 1.9 site pixels to the point and shrinks with a narrower
-// column). The arrows at the rod's end faces stand outside the cube, on the rod's axis, their heads at the faces'
+// Departures from the diagram's comment: on the site the panels are stacked at every width, so that the figure stays
+// narrow and its text large on a phone (a drawing is shown at most 1.9 site pixels to the point and shrinks with a
+// narrower column); the printed book (figureLayout 'book') sets them side by side, the gas at the left, the two titles
+// on one line, the two cubes level and the two laws on one line, the rod 112 points long rather than 132 so that the
+// pair fits the text width. The gas's dots fade out over 20 points at the edges of their field (an opacity falling
+// smoothly to nothing, in six steps), so that the gas has no hard border. The arrows at the rod's end faces stand outside the cube, on the rod's axis, their heads at the faces'
 // centres, so that they read as momentum crossing each face inward, as the gas's arrows start at its faces' centres
 // and leave them. The arrow on the gas cube's front face points at the reader, along the projection's receding
 // edges; all three of the gas's arrows have one length on the page, so that the front one clears its face. The rod's
@@ -32,13 +35,17 @@ const ANGLE = 30, K = 0.5;                 // the receding edges' angle and shor
 const OUT = 32;                            // the gas's arrows, page length
 const IN = 30;                             // the rod's inward arrows, page length
 const THICK = 1.05, THICK_HEAD = 5;        // "a short thick arrow"
-const ROD = 66;                            // the rod's half length, points along x
+const ROD = globalThis.figureLayout === 'book' ? 56 : 66;   // the rod's half length, points along x (the book's shorter)
 const PULL = 20;                           // the tension's arrows
 const AIR = 1.6;                           // between the rod's outline and a tension's arrow
 const EDGE = 0.45;                         // the cube's edges
 const DOT_R = 0.55, DOT_STEP = 8.2;        // the gas's dots: radius and spacing
 const ROW = 6;                             // a title to its panel's ink
 const GAP = 16;                            // the upper panel's ink to the lower panel's title
+const BOOK = globalThis.figureLayout === 'book';
+const BESIDE = 22;                         // the book's: the gas panel's ink to the rod panel's title
+const FADE = 20;                           // the gas's dots fade out over this width at the field's edges, points
+const LEVELS = 6;                          // the fade's steps of opacity
 
 /** A pseudo-random number in [0, 1) from two integers (fixed, so the dots do not move between renders). */
 const hash = (i, j) => { const s = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -59,7 +66,7 @@ export default async function () {
 	await palette(check);
 	const S = new Sheet(name);
 	const L = [];
-	const left = ORIGIN - 120;
+	const left = BOOK ? 40 : ORIGIN - 120;              // (the book's two panels need the provisional page's width)
 	const c = Math.cos((ANGLE * Math.PI) / 180) * K, s = Math.sin((ANGLE * Math.PI) / 180) * K;
 	const toward = [-c / K, s / K];                    // the page direction of the normal toward the reader (unit)
 
@@ -67,7 +74,7 @@ export default async function () {
 	const t1 = await placed('\\text{gas at rest}', left, ORIGIN - 200, 0, 0, INK);
 	L.push(t1);
 	// the cube [0, A]^3, its front face's lower left corner at o1
-	const o1 = [ORIGIN - 40, t1.box.b + ROW + OUT + A * (1 + s) + 6];
+	const o1 = [left + (BOOK ? 62 : 80), t1.box.b + ROW + OUT + A * (1 + s) + 6];
 	const g = oblique(o1, 1, ANGLE, K);
 	const cube1 = boxEdges(g, [0, A], [0, A], [0, A]);
 	cube1.forEach(([a, b], k) => S.path([a, b], { color: DIM, width: EDGE, layer: 1, cap: 'round', what: `the gas cube's edge ${k}` }));
@@ -101,10 +108,13 @@ export default async function () {
 	L.push(law1);
 
 	// ================= stretched rod =================
-	const t2 = await placed('\\text{stretched rod}', left, law1.box.b + GAP, 0, 0, INK);
+	// on the site under the gas; in the book at its right, the two titles on one line and the two cubes level
+	const gasRight = Math.max(...L.map((l) => l.box.r), ...S.marks.flatMap((m) => m.pts.map((p) => p[0] + m.r)));
+	const left2 = BOOK ? gasRight + BESIDE : left;
+	const t2 = await placed('\\text{stretched rod}', left2, BOOK ? t1.box.t : law1.box.b + GAP, 0, 0, INK);
 	L.push(t2);
 	// the rod [-ROD, ROD] x [0, A] x [0, A], the cube its segment [-A/2, A/2]
-	const o2 = [ORIGIN - 10, t2.box.b + ROW + A * (1 + s) + 10];
+	const o2 = BOOK ? [left2 + ROD + PULL + AIR + 2, o1[1]] : [ORIGIN - 10, t2.box.b + ROW + A * (1 + s) + 10];
 	const r = oblique(o2, 1, ANGLE, K);
 	boxEdges(r, [-ROD, ROD], [0, A], [0, A]).forEach(([a, b], k) => S.path([a, b], { color: RULE, width: EDGE, layer: 0.8, cap: 'round', what: `the rod's edge ${k}` }));
 	// the rod's three visible faces, a pale tint of the page, so that it reads as one bar
@@ -151,25 +161,36 @@ export default async function () {
 	const inkBottom2 = Math.max(...L.slice(-1).map((l) => l.box.b), rodBottom);
 	const law2 = await placed('T^{xx} = -\\tau', r([0, 0, A / 2])[0], inkBottom2 + 9, 0.5, 0, INK);
 	L.push(law2);
+	if (BOOK) {
+		// the two laws on one line, under the lower of the two panels
+		const k = L.indexOf(law1);
+		L[k] = await placed('T^{xx} = +p', g([A / 2, 0, 0])[0] + 10, law2.box.t, 0.5, 0, INK);
+	}
 
 	// ================= the gas's dots =================
 	{
 		const box = { l: left, r: o1[0] + A + c * A + OUT + 6, t: t1.box.b + ROW, b: inkBottom1 + 2 };
 		const dots = [];
+		// each dot's opacity: 1 inside, falling smoothly to 0 over FADE points to the field's edges, in LEVELS steps
+		const fade = (x, y) => { const d = Math.min(x - box.l, box.r - x, y - box.t, box.b - y) / FADE; const t = Math.max(0, Math.min(1, d)); return t * t * (3 - 2 * t); };
 		const nx = Math.floor((box.r - box.l) / DOT_STEP), ny = Math.floor((box.b - box.t) / DOT_STEP);
 		for (let i = 0; i <= nx; i++) for (let j = 0; j <= ny; j++) {
 			const x = box.l + (i + 0.15 + 0.7 * hash(i, j)) * DOT_STEP, y = box.t + (j + 0.15 + 0.7 * hash(j + 17, i + 5)) * DOT_STEP;
 			if (x > box.r || y > box.b) continue;
 			const near_ = S.clearance({ l: x, r: x, t: y, b: y }).d < DOT_R + 1.6;
 			const onLabel = L.some((l) => x > l.box.l - LABEL_GAP - DOT_R && x < l.box.r + LABEL_GAP + DOT_R && y > l.box.t - LABEL_GAP - DOT_R && y < l.box.b + LABEL_GAP + DOT_R);
-			if (!near_ && !onLabel) dots.push([x, y]);
+			const level = Math.round(fade(x, y) * LEVELS);
+			if (!near_ && !onLabel && level > 0) dots.push([x, y, level]);
 		}
-		S.raw(`<path d="${dots.map(([x, y]) => `M${x.toFixed(2)},${y.toFixed(2)}h0`).join('')}" stroke="${FAINT}" stroke-width="${2 * DOT_R}" stroke-linecap="round" fill="none"/>`, 0.5);
-		for (const q of dots) S.mark([q], DOT_R, 'a dot of the gas');
-		check(dots.length > 120, `too few dots: ${dots.length}`);
+		for (let k = 1; k <= LEVELS; k++) {
+			const these = dots.filter((d) => d[2] === k);
+			if (these.length) S.raw(`<path d="${these.map(([x, y]) => `M${x.toFixed(2)},${y.toFixed(2)}h0`).join('')}" stroke="${FAINT}" stroke-opacity="${(k / LEVELS).toFixed(3)}" stroke-width="${2 * DOT_R}" stroke-linecap="round" fill="none"/>`, 0.5);
+		}
+		for (const q of dots) S.mark([q.slice(0, 2)], DOT_R, 'a dot of the gas');
+		check(dots.filter((d) => d[2] === LEVELS).length > 60, `too few dots: ${dots.length}`);
 	}
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums };
-	return finish(S, L, [220, 300]);
+	return finish(S, L, BOOK ? [380, 470] : [220, 300]);
 }

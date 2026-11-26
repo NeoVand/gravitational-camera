@@ -1,7 +1,7 @@
 // The tutorial, section 10.3 (tutorial/glow/why-matter-barely-glows.md), its fifth diagram: where a weight of friction
 // glows most. One panel on linear axes: across, x = hbar omega / k_B T from 0 to 10; the curve x^3 / (e^x - 1), thin
 // and neutral, its top at x = 2.821 marked by a dot and "1.421". Under it, four frictions of equal area (equal weights,
-// by section 4.5's sum), shaded in matter's pale gold with a thin outline in matter's colour: a narrow line at
+// by section 4.5's sum), shaded in a pale tint of matter's colour (tut-glow-lib.js FILL) with a thin outline in matter's colour: a narrow line at
 // x = 2.821, "equality / 100%"; silicon's line at x = 2.553 (520 cm^-1), "silicon / 98.5%"; diamond's line at
 // x = 6.546 (1333 cm^-1), "diamond's line / 28%"; and copper's electrons, Drude's 1 / (1 + omega^2 tau^2) with
 // omega tau = 0.959 x (tau = 2.5 x 10^-14 s at 293 K), "copper's electrons / 37.5%".

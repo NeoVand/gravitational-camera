@@ -21,7 +21,8 @@ const check = checker(name);
 const XR = 12;
 const PW = 172, UNIT = 77;               // the profiles: x from -12 to 12; points per unit
 const TOP = 1.06, BOTTOM = -0.2;
-const GAP = 26;                          // from the chart's right edge to the image
+const GAP = 38;                          // from the chart's right edge to the image: room for the x axis's name and
+                                         // clear air before the image's first number
 const BAR = 4.5, BAR_GAP = 6;            // the grey scale's width, and its distance from the image
 const DEEP_GREY = 0.9;                   // the image's opacity at the peak
 const EDGE = 0.4;
@@ -117,5 +118,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window.tutBesselAiry = { xEnd, stops: g.count, worst: g.worst };
-	return finish(S, L, [240, 340], defs);
+	return finish(S, L, [240, 355], defs);
 }

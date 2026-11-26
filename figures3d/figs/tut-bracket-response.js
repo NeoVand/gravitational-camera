@@ -8,9 +8,10 @@
 // beside its tip; dotted, the arrow's shadow on the level plane through the point, (L_x, L_y, 0), the same for both,
 // and the drop from the tip to it, L_z. Right, "turned by eps about x": the same two tops after the turn by eps =
 // 0.1 rad about the x axis through the point (a short axis and a curved arrow round it at each point), each arrow in
-// its old place pale and its new place solid, the top drawn in its new place; on the level plane, from the old
-// shadow's end, the change of L_y per radian, a short arrow along y: -L_z, that is -0.5 for the first top and +3 for
-// the second, named beside, off the geometry.
+// its old place pale and its new place solid, the top drawn in its new place; the change of L_y per radian, a short
+// arrow along y: -L_z, that is -0.5 for the first top, from the end of its old arrow's shadow on the level plane (the
+// shadow dotted), and +3 for the second, from its old arrow's tip, so that each stands at its own top's arrow; each
+// named beside, off the geometry.
 // Departures from the diagram's comment: the two short arrows are ink, not orange and blue, which the tutorial keeps
 // for a stretch and a squeeze; they are told apart by their directions and their direct labels. They show delta L_y /
 // eps, the first-order change per radian, -L_z, to the scale of L, because the change at the drawn 0.1 rad, -0.060
@@ -182,14 +183,16 @@ export default async function () {
 		const b = bodies[1][k], O = b.O, Lv = TOPS[k];
 		arrowL(b, Lv, `the old L ${k}`, true);
 		arrowL(b, b.L, `the new L ${k}`);
-		const foot = O.clone().add(v3(Lv[0], Lv[1], 0));
-		dotted(O, foot, [b], `the old shadow ${k}`, SHADOW * 0.8);
-		// the change of L_y per radian, -L_z, from the old shadow's end, along y
+		// the change of L_y per radian, -L_z, along y, drawn where it meets the top's own arrow: for the first top from
+		// the end of the old arrow's shadow, just under its tip (from the tip itself it would run back along the arrow,
+		// which is nearly parallel to y on the page); for the second from the old arrow's tip, far below its shadow
 		const rate = -Lv[2];
 		const e = 1e-7, exact = (turn(Lv, e)[1] - turn(Lv, -e)[1]) / (2 * e);
 		check(near(exact, rate, 1e-6), `the rate of L_y for top ${k}`);
-		const end = foot.clone().add(v3(0, rate, 0));
-		changes.push(S.arrow(foot, end, { color: INK, width: VEC, layer: 2.6, what: `the change ${k}` }));
+		const foot = O.clone().add(v3(Lv[0], Lv[1], 0)), tip = O.clone().add(v3(...Lv));
+		if (k === 0) dotted(O, foot, [b], `the old shadow ${k}`, SHADOW * 0.8);
+		const from = k === 0 ? foot : tip;
+		changes.push(S.arrow(from, from.clone().add(v3(0, rate, 0)), { color: INK, width: VEC, layer: 2.6, what: `the change ${k}` }));
 		// the turn: a short stretch of the x axis left of the point, and a curved arrow about it in the sense of a
 		// positive turn (y toward z)
 		const ax0 = O.clone().add(v3(GLYPH.reach[0], 0, 0)), ax1 = O.clone().add(v3(GLYPH.reach[1], 0, 0));

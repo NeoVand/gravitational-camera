@@ -7,7 +7,8 @@
 // Exact: each dA stands on the small sphere and points along -x/r, toward the origin, which is out of V (asserted:
 // a step along it leaves the tinted shell and enters the hole); the radii run from the origin to their spheres
 // (asserted). Schematic: the ratio of the two radii (epsilon is drawn far from small, L far from large) and the
-// arrows' length.
+// arrows' length. The printed book (figureLayout 'book') draws the same section smaller (the large sphere's radius 84
+// points, not 122), with its labels at their usual size.
 import { INK, DIM } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, HAIR, n2 } from './tut-pot-lib.js';
 import { TINT, EDGE } from './tut-gauss-lib.js';
@@ -16,12 +17,13 @@ import { ORIGIN_DOT } from './tut-vec-lib.js';
 const name = 'tut-grn-hole';
 const check = checker(name);
 
-const RL = 122;                      // the large sphere's radius, points
-const RE = 44;                       // the small sphere's radius, points
+const BOOK = globalThis.figureLayout === 'book';
+const RL = BOOK ? 84 : 122;          // the large sphere's radius, points
+const RE = BOOK ? 38 : 44;           // the small sphere's radius, points
 const ARROWS = [30, 90, 150, 210, 270, 330];   // where the dA stand, degrees from the right, anticlockwise
 const LABELLED = 90;                 // the one that carries dA
 const EPS_AT = 180, L_AT = 300;      // the radii's directions, degrees: between the dA, and not along one line
-const ARROW = 16;                    // a dA's length, points
+const ARROW = BOOK ? 12 : 16;        // a dA's length, points
 const ARROW_W = 0.5, ARROW_HEAD = 3.4;          // as tut-lap-green's normals
 const STEP = 0.25;                   // the circles' sampling, points along the curve
 
@@ -68,10 +70,11 @@ export default async function () {
 	const lMid = at((RE + RL) / 2, L_AT), off = [Math.cos(((L_AT - 90) * Math.PI) / 180), -Math.sin(((L_AT - 90) * Math.PI) / 180)];
 	L.push(await S.clear('L', ...lMid, off[0] > 0 ? 0 : 1, off[1] > 0 ? 0 : 1, off));
 	L.push(await S.clear('r > \\varepsilon', ...at((RE + RL) / 2, 45), 0.5, 0.5, [1, 0]));
-	// dA beside its arrow, on the right, level with the arrow's inner half (clear of the small sphere)
+	// dA beside its arrow, on the right, level with the arrow's inner half (clear of the small sphere; in the book's
+	// smaller hole, level with its head)
 	const a = arrows[LABELLED];
-	L.push(await S.clear('\\mathrm{d}\\boldsymbol{A}', a.A[0], a.A[1] + 0.68 * ARROW, 0, 0.5, [1, 0]));
+	L.push(await S.clear('\\mathrm{d}\\boldsymbol{A}', a.A[0], a.A[1] + (BOOK ? 0.95 : 0.68) * ARROW, 0, 0.5, [1, 0]));
 
 	S.checkAll(L);
-	return finish(S, L, [240, 340]);
+	return finish(S, L, BOOK ? [160, 240] : [240, 340]);
 }

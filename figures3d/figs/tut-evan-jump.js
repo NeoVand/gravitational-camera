@@ -5,7 +5,9 @@
 // it kC, so the slope jumps by -2kC = 4 pi G sigma~ across the sheet. A thin orange band at h = 0 marks the sheet.
 // Exact: the curve (sampled every quarter of a point, the corner itself a sample), the tangents' slopes (asserted
 // against numerical one-sided derivatives of the curve) and their difference. The horizontal axis is in units of |C|,
-// the vertical in units of 1/k; the horizontal scale is chosen for the drawing.
+// the vertical in units of 1/k; the horizontal scale is chosen for the drawing. The plot runs from 1.5 |C| on the
+// left, just room for the tangents' short runs past the corner and the jump's two lines, so that the curve is not
+// pushed into the right half.
 import { Sheet, ORIGIN, finish, checker, placed, near, n2, AXIS, HAIR, TICK } from './tut-pot-lib.js';
 import { Plot, xAxis, LABEL_GAP, NUM } from './tut-prob-lib.js';
 import { longest, INK, DIM, ACCENT, ACCENT2, CURVE } from './tut-fourier-lib.js';
@@ -29,14 +31,15 @@ function mathematics() {
 }
 
 // ---- the drawing (points) ------------------------------------------------------------------------------------------
-const PW = 206, PH = 140;
+const PW = 177, PH = 140;               // 118 points per |C|, 35 per 1/k
+const X0 = -1.5;                         // the plot's left edge, in |C|
 const BAND = 1.3;                        // the sheet's band, points thick
 
 export default async function () {
 	const nums = mathematics();
 	const S = new Sheet(name);
 	const L = [];
-	const P = new Plot({ left: ORIGIN - PW / 2, top: ORIGIN - PH / 2, w: PW, h: PH, x0: -1.75, x1: 0, y0: -HMAX, y1: HMAX });
+	const P = new Plot({ left: ORIGIN - PW / 2, top: ORIGIN - PH / 2, w: PW, h: PH, x0: X0, x1: 0, y0: -HMAX, y1: HMAX });
 	// a point of the curve on the page, its height h the parameter
 	const at = (h) => P.at(phi(h), h);
 
@@ -94,10 +97,12 @@ export default async function () {
 	L.push(...xl);
 	L.push(await placed('\\tilde\\Phi', P.left - 4, (xl[0].box.t + xl[0].box.b) / 2, 1, 0.5, DIM));
 
-	// ---- the jump, left of the corner, above the sheet
-	L.push(await S.clear('-2kC = 4\\pi G\\tilde\\sigma', P.X(C) - 6, y0 - BAND / 2 - LABEL_GAP - 1, 1, 1, [0, -1], { color: ACCENT2 }));
+	// ---- the jump, left of the corner, above the sheet and the tangents' runs past the corner, in two lines
+	const jump = await S.clear('\\begin{array}{r}-2kC\\\\ {}= 4\\pi G\\tilde\\sigma\\end{array}', P.X(C) - 6, y0 - BAND / 2 - LABEL_GAP - 1, 1, 1, [0, -1], { color: ACCENT2 });
+	check(jump.box.l >= P.left, 'the jump runs past the plot\'s left edge');
+	L.push(jump);
 
 	S.checkAll(L);
 	window.tutEvanJump = { ...nums, jump: nums.above - nums.below };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, [200, 340]);
 }

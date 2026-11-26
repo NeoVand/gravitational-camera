@@ -14,8 +14,9 @@
 // eps (exaggerated), and the rod's thickness. Pictorial: the stone, a picture from an image model
 // (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, as in figs/hair.js), clipped here to the exact
 // circle and to the rod's exact outline. The printed book (figureLayout 'book') sets the two side by side, the ball
-// left and the rod right, at the same scale, the two centres and the two rings level, the ball's name, dimension and
-// bar about it as on the site; the site keeps them stacked.
+// left and the rod right, at the same scale, in three rows across both: the two names level at the top, the two
+// centres and the two rings level in the middle, the two bars on one line at the bottom (the ball's dimension under
+// it, as on the site); the site keeps them stacked.
 import { INK, DIM, ACCENT, sprite } from '../lib.js';
 import { MARGIN, circle, outline, STEEL, SPRITES } from '../stone.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, HAIR, TICK, LINE, n2 } from './tut-pot-lib.js';
@@ -136,9 +137,11 @@ export default async function () {
 	for (const [x, c, w] of [[xc, STONE_INK, 'the ball\'s centre'], [xc + DISTANCE * K, DIM, 'the ring\'s centre']])
 		S.path([[x - 2, yA], [x + 2, yA], [x, yA], [x, yA - 2], [x, yA + 2]], { color: c, width: HAIR, layer: 4, cap: 'butt', what: w });
 	L.push(await placed('1\\,\\mathrm m', xc + (DISTANCE * K) / 2, yd - 2.6, 0.5, 1, DIM));
-	const { w: wA, r: rA } = await bar(xc, yd + 10, ball, 'the ball\'s bar');
-	// its name at the top left of the row (the book: above the ball, over its left edge)
-	const nameA = BOOK ? await placed('\\text{a ball of water}', xc - rb, yA - rb - 7, 0, 1, INK) : await placed('\\text{a ball of water}', xc - 0.85 * K, yA - rb, 0, 0, INK);
+	// its bar (the book: on the rod's bar's line, under the dashed circle)
+	const yBarA = BOOK ? yA + 0.85 * K + 9 : yd + 10;
+	const { w: wA, r: rA } = await bar(xc, yBarA, ball, 'the ball\'s bar');
+	// its name at the top left of the row (the book: over the ball's left edge, level with the rod's name)
+	const nameA = BOOK ? await placed('\\text{a ball of water}', xc - rb, yA - 0.85 * K, 0, 0, INK) : await placed('\\text{a ball of water}', xc - 0.85 * K, yA - rb, 0, 0, INK);
 
 	// ---- below (the book: at the right, its centre level with the ball's): the rod, its smallest sphere, its ring,
 	// its bar
@@ -172,6 +175,7 @@ export default async function () {
 	S.path([[xc + (ROD / 2 + 1.2) / Math.abs(Math.cos(a)) * Math.cos(a), yB - (ROD / 2 + 1.2) / Math.abs(Math.cos(a)) * Math.sin(a)], tip], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: 'the radius' });
 	L.push(await S.clear('0.85\\,\\mathrm m', xc + 0.55 * Rs * Math.cos(a), yB - 0.55 * Rs * Math.sin(a), 0.5, 0.5, [Math.sin(a), Math.cos(a)].map((v) => -v), { color: DIM }));
 	const { w: wB } = await bar(xc, yB + Rs + 9, -rod[0], 'the rod\'s bar');
+	check(!BOOK || near(yBarA, yB + Rs + 9, 1e-9), 'the book\'s two bars are not on one line');
 	check(near(wB / wA, -rod[0] / ball, 1e-12), 'the bars are not to one scale');
 
 	// ---- the names of the two bodies, at the top left of each row

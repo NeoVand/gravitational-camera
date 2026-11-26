@@ -10,8 +10,8 @@
 //  (c) a push: the impulses of the profile g = (x^2 - y^2)/2, along (x, -y): orange outward along x and blue inward
 //      along y (a true stretch and squeeze), and beside each body a grey bar of its energy gained, in the ratio
 //      2.06 : 3.43 (3 : 5). "2.06 : 3.43 x 10^-18 J".
-//  (d) one ripple: faint bands, the crests of cos(xi x) with |xi| R = pi, one metre apart and to scale, across both
-//      bodies, a crest through their centres. "1250 kg against 0; span e^pi = 23".
+//  (d) one ripple: crisp, lightly tinted bands, the crests of cos(xi x) with |xi| R = pi (where it is positive), one
+//      metre apart and to scale, across both bodies, a crest through their centres. "1250 kg against 0; span e^pi = 23".
 //  (e) the tonne's pass: its straight path at b = 1.5 m = 3R from each centre, to scale, a bead at the closest point,
 //      b dimensioned on the ball's. "4.55 : 4.70 x 10^-33 of its speed; inside 2.1 : 3.5 x 10^-34".
 //  (f) light: a flash on the same line, a thin dashed ray in the light role's colour. "the same reading at
@@ -73,7 +73,7 @@ const PULL = { from: 10, to: 2.4, head: 2.8, width: 0.5 };          // (a): the 
 const JIG = { len: 6.6, head: 2.4, width: 0.5 };                     // (b): the arrows of thermal motion
 const KICK = { from: 1.2, to: 10.2, head: 3.4, width: 0.75 };       // (c): the impulses, from and to the surface
 const BAR = { gap: 5.5, w: 3, top: 2 };                          // (c): the bars, beside the impulses; the shell's spans 2R - top
-const BAND_OPACITY = 0.16;                  // (d): the crests' shade, ink over everything
+const BAND_OPACITY = 0.09;                  // (d): the crests' flat tint, ink over everything
 const BEAD = 2.2;                           // (e): the tonne
 const PATH = { over: 6.5, width: 0.5, head: 3, dash: [2.2, 1.6] };   // (e), (f): the paths run this far past the body
 const SPIN = { inner: 0.56, width: 0.45, head: 2.5, band: 0.35, bandHead: 2 };   // (g): the inner arrows' radius (of R) and strokes; the outer part's, thinner, to keep to its band
@@ -353,18 +353,16 @@ export default async function () {
 
 	async function drawD(p) {
 		const [bc, sc] = bodies(p);
-		// the ripple cos(xi x), |xi| R = pi, shaded where it is positive, darkest on its crests: a crest through the
-		// centres and one a metre (2R) to each side, the shade fading to nothing half a metre from each crest
-		const wl = 2 * RB, top = bc[1] - RB - 3.5, bot = sc[1] + RB + 3.5, l = bc[0] - 1.25 * wl, r = bc[0] + 1.25 * wl;
-		const stops = [];
-		for (let i = 0; i <= 200; i++) {
-			const u = i / 200, xx = l + u * (r - l), c = Math.max(0, Math.cos((2 * Math.PI * (xx - bc[0])) / wl));
-			stops.push(`<stop offset="${u.toFixed(3)}" stop-color="${INK}" stop-opacity="${(BAND_OPACITY * c).toFixed(4)}"/>`);
+		// the ripple cos(xi x), |xi| R = pi: its crests, where it is positive, as crisp bands of one light tint, laid over
+		// the bodies so that they show across both: one through the centres and one a metre (2R) to each side, each half
+		// a metre wide
+		const wl = 2 * RB, top = bc[1] - RB - 3.5, bot = sc[1] + RB + 3.5;
+		for (const k of [-1, 0, 1]) {
+			const x0 = bc[0] + k * wl - wl / 4, x1 = bc[0] + k * wl + wl / 4;
+			check(near(Math.cos((2 * Math.PI * (x0 - bc[0])) / wl), 0, 1e-9) && near(Math.cos((2 * Math.PI * (x1 - bc[0])) / wl), 0, 1e-9), `(d): crest ${k} does not end where the ripple crosses zero`);
+			S.raw(`<path d="M${n2(x0)},${n2(top)}H${n2(x1)}V${n2(bot)}H${n2(x0)}Z" fill="${INK}" fill-opacity="${BAND_OPACITY}"/>`, 4);
 		}
-		DEFS.push(`<linearGradient id="${name}-ripple" gradientUnits="userSpaceOnUse" x1="${n2(l)}" y1="0" x2="${n2(r)}" y2="0">${stops.join('')}</linearGradient>`);
-		S.raw(`<path d="M${n2(l)},${n2(top)}H${n2(r)}V${n2(bot)}H${n2(l)}Z" fill="url(#${name}-ripple)"/>`, 4);
 		for (const k of [-1, 0, 1]) S.boxes.push({ box: { l: bc[0] + k * wl - wl / 4, r: bc[0] + k * wl + wl / 4, t: top, b: bot }, what: `(d)'s crest ${k}` });
-		check(near(Math.cos((2 * Math.PI * (l - bc[0])) / wl), 0, 1e-9) && near(Math.cos((2 * Math.PI * (r - bc[0])) / wl), 0, 1e-9), '(d): the shade does not end where the ripple crosses zero');
 		check(near(((2 * Math.PI) / (Math.PI / R) / R) * RB, wl), '(d): the crests are not a metre apart on the page');
 	}
 

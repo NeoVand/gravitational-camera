@@ -2,6 +2,8 @@
 // paper's steel ball of radius 10 cm, ringing in its lowest quadrupole mode, drawn at the two extremes of its swing,
 // one above the other; a metre away on its axis, the ring of twelve free steel beads of section 1.4's figure
 // (figs/tut-tides.js), drawn out by the part of the ball's tide that rises and falls with the swing.
+// The rows' centres 84 points apart. Under each column, on one line below the lower row, its own words: under the
+// balls, the exaggeration of their shape (in two lines, within the column), under the rings, the swing's note.
 // Exact: the ball's outline, the image of its circle under the trial shape u = (q/R)(-x/2, -y/2, z) of Appendix A
 // with z along the axis (here across the page, toward the ring): semi-axes R(1 + q/R) along the axis and
 // R(1 - q/2R) across it, for q = +-q_rms times 10^14, q_rms = 2.2 x 10^-16 m from (1/2) K q^2 = (1/2) k_B T with
@@ -28,7 +30,7 @@ const check = checker(name);
 // ---- the drawing (world points, y up; the panel's scale is one point per unit) -------------------------------
 const R = 24;                             // the ball's radius: 10 cm
 const PER_M = R / R_BALL;                 // points per metre, the same for the ball and the distance
-const ROWS = 100;                         // from the centre of the upper row to the lower one's
+const ROWS = 84;                          // from the centre of the upper row to the lower one's
 const R_RING = 30;                        // the undisturbed ring's radius (schematic)
 const BEAD = 2.5;
 const REACH = 6;                          // an arrow's length per unit of the table
@@ -122,14 +124,17 @@ export default async function () {
 	ink.mark([[up.X, up.Y - up.b], [up.X, y1]], DOT / 2, 'the ball\'s extension');
 	ink.mark([[up.X, up.Y]], COM_R, 'the ball\'s centre');
 
-	// ---- labels: the metre; the exaggeration, between the two balls; the note, between the rows
+	// ---- labels: the metre; under the balls' column the exaggeration, under the rings' the note, on one line below
+	// the lower row's lowest mark
 	const L = [];
 	L.push(await placed('\\text{1 m}', (up.X + RX) / 2, dimY - HAIR / 2 - LABEL_GAP, 0.5, 1, INK));
+	const lowest = Math.max(...ink.marks.flatMap((m) => m.pts.map((q) => q[1] + m.r)));
+	const under = lowest + 8;
 	const low = out[1];
-	const between = (up.Y + R + low.Y - Math.max(R, low.b)) / 2;
-	L.push(await placed('\\text{shape change} \\times 10^{14}', Math.min(up.X - up.a, low.X - R), between, 0, 0.5, INK));
-	// the note, between the two rings, beside the line that joins their centres
-	L.push(await placed('\\text{15 kHz}', RX - 6, between, 1, 0.5, INK));
+	// (in two lines, so that the words stand within the balls' column)
+	const sc = await placed('\\text{shape change}', low.X, under, 0.5, 0, INK);
+	L.push(sc, await placed('\\times 10^{14}', low.X, sc.box.b + 2.5, 0.5, 0, INK));
+	L.push(await placed('\\text{15 kHz}', RX, under, 0.5, 0, INK));
 
 	ink.checkAll(L);
 	window[name + '-numbers'] = { eps, ...nums, semi: out.map(({ a, b }) => [a, b]) };

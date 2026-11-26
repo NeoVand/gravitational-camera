@@ -3,7 +3,8 @@
 // 2.5's three bodies in their round case: the nugget, a ball of gold of radius 0.2 R at the centre; the flush, the gold
 // spread evenly through the ball; the skin, a band of gold from 0.95 R to R (t = 0.05 R). Under each, aligned with it,
 // its glow N(b) across the picture, if only the gold glows, from -R to R on the ball's own scale, each curve divided by
-// its own largest value (0 to 1, no numbers), a thin ink line over a pale fill of matter's light gold: the spot
+// its own largest value (0 to 1, no numbers), a thin ink line over a pale fill of matter's brown (the glow figures'
+// own fill, figs/tut-glow-lib.js, FILL: matter's colour of each theme, a fifth of it, mixed with the page): the spot
 // 2 sqrt(0.04 R^2 - b^2) for |b| < 0.2 R; the dome 2 sqrt(R^2 - b^2); the ring 2 [sqrt(R^2 - b^2) - sqrt((R - t)^2 - b^2)]
 // for |b| < R - t and 2 sqrt(R^2 - b^2) beyond, whose peaks at |b| = 0.95 R are sqrt(2R/t - 1) = 6.24 times its middle.
 // Named "spot", "dome" and "ring" under the curves.
@@ -26,6 +27,7 @@ import { INK, DIM } from '../lib.js';
 import { ballFace, stoneDefs, stone, rim, nugget, DEEPEST } from './tut-null-lib.js';
 import { circle as circlePath } from '../stone.js';
 import { chapter, spot, dome, ring, NUGGET, SKIN, SHADE } from './tut-abel-lib.js';
+import { FILL } from './tut-glow-lib.js';            // the pale fill under a curve, as the glow figures'
 
 const name = 'tut-abel-three-glows';
 const check = checker(name);
@@ -36,9 +38,6 @@ const PITCH = 200 * K;                     // from one column to the next
 const PH = 90 * K;                         // a chart's height
 const DROP = 17;                           // from a ball's foot to its chart's top
 const REACH = 1.12;                        // the axes' reach, in R
-// the pale fill under a curve: matter's dark-theme colour, its light gold (figs/tut-null-lib.js, GOLD_LIGHT), mixed
-// with the page, more of it in the light theme than in the dark
-const FILL = 'light-dark(color-mix(in srgb, #f1dc86 72%, #fffffe), color-mix(in srgb, #f1dc86 20%, #fffffe))';
 const FLUSH = DEEPEST / 2;                 // the flush's shade, section 2.5's uniform ball
 const BAND = DEEPEST;                      // the skin's shade
 

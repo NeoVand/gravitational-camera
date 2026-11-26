@@ -14,6 +14,9 @@
 // null space. The sources of the cell pushing, c -> infinity are the text's: 13.2 for the logarithm, and Alessandrini
 // and Mandache for its proof and its optimality. "Logarithmic beyond" is the comment's, the converse of the text's
 // "to about half a wavelength" (design/research/holography/thread1-elliptic-hyperbolic.md, increasing stability).
+// The sources name topics and people, never section numbers (the book and the site number the sections differently):
+// 2.5's null space is "the confined Laplacian", the text's name for it, and 13.2 is "Calderón", which takes the sources of that cell to two lines and
+// the first row from 42 to 50 points.
 // Exact: every entry against the chapter's text (tut-holo-lib.js asserts the sentences it draws from). Schematic: the
 // icons.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, n2 } from './tut-pot-lib.js';
@@ -25,7 +28,7 @@ const name = 'tut-holo-table';
 const check = checker(name);
 
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
-const COL = 122, ROW = [42, 60];                // the cells' width, the rows' heights
+const COL = 122, ROW = [50, 60];                // the cells' width, the rows' heights
 const HEAD_W = 40, HEAD_H = 20;                 // the row heads' column, the column heads' row
 const GRID = 0.4, ICON_W = 0.5, ARROW_W = 0.45;
 const BODY = 7.8, SRC = 6.8, HEAD = 8.5, NOTE = 7.2;
@@ -77,10 +80,10 @@ export default async function () {
 
 	// ---- the cells: [row, column, lines], each line [TeX, colour, size]
 	const cells = [
-		[0, 0, [['\\text{harmonic part only}', INK, BODY], ['\\text{null space }\\nabla^2\\psi', INK, BODY], ['\\text{section 2.5}', DIM, SRC]]],
+		[0, 0, [['\\text{harmonic part only}', INK, BODY], ['\\text{null space }\\nabla^2\\psi', INK, BODY], ['\\text{the confined Laplacian}', DIM, SRC]]],
 		[1, 0, [['\\text{light-cone transform only}', INK, BODY], ['\\text{null space }c^{-2}\\ddot\\psi - \\nabla^2\\psi', INK, BODY],
 			['\\text{Birkhoff; Devaney–Wolf;}', DIM, SRC], ['\\text{Bleistein–Cohen}', DIM, SRC]]],
-		[0, 1, [['\\text{all of }\\rho', INK, BODY], ['\\text{logarithmic stability}', INK, BODY], ['\\text{13.2; Alessandrini, Mandache}', DIM, SRC]]],
+		[0, 1, [['\\text{all of }\\rho', INK, BODY], ['\\text{logarithmic stability}', INK, BODY], ['\\text{Calderón;}', DIM, SRC], ['\\text{Alessandrini, Mandache}', DIM, SRC]]],
 		[1, 1, [['\\text{waves through the body:}', INK, BODY], ['|\\mathbf q| \\le 2\\omega/c\\text{;}', INK, BODY],
 			['\\text{H\\"{o}lder to }\\lambda/2\\text{,}', INK, BODY], ['\\text{logarithmic beyond}', INK, BODY], ['\\text{Stefanov–Uhlmann}', DIM, SRC]]]
 	];

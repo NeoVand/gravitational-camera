@@ -14,7 +14,8 @@
 //  (d) Section 7.7's crossover plot (tut-crossover) in miniature: r |E_zz| against r on log-log axes, the near law
 //      r^-5 and the wave's law r^-1 in ink at half weight, the all-zone curve in the curvature's colour, an open circle
 //      where the laws cross. "2930 km, in the plane".
-//  (e) The camera 10^4 km away on the axis, looking down: its ring face on (x right, y up), filled magenta, drawn at
+//  (e) The camera 10^4 km away on the axis, looking down: its ring face on (x right, y up), filled with the page's
+//      neutral tint, drawn at
 //      Omega (t - r/c) = 60 degrees; its stretch axis, an orange bar, at 0, 30 and 60 degrees (the earlier two paler);
 //      a curved arrow anticlockwise. "A = 1.7 x 10^-47, V/I = +1".
 //  (f) Section 5.4's power pattern, (1 + 6 cos^2 iota + cos^4 iota)/8, a polar curve about the dashed spin axis, and a
@@ -31,8 +32,8 @@
 // same sign, so that ring would be squeezed (or stretched) both ways at once, never stretched along the spin and
 // squeezed across it; in the plane through the line, E_xx = -(12/5) E_zz, and the ring does what the comment says. The
 // masses are the stone of 7.7's rotor (sprites/hair/ball-face.png, as tut-rotor-stress), not a flat fill of matter's
-// colour. (e)'s magenta (5.4's, the observer's: tut-pol-lib.js, MAGENTA) is a fill of opacity 0.22, paler than 5.4's
-// 0.12 + 0.4 V/I, so that the orange bars read on it.
+// colour. (e)'s ring is filled with the neutral LIGHT, not with 5.4's magenta for V/I (a pale pink in print, outside
+// the book's palette): V/I = +1 is read from its label, and the orange bars read on the neutral.
 // The gyroscopes of (c) stand in a panel of their own, beside the ring of (b). The ring of (b) carries arrows at its
 // four beads on the axes only: at the others the near tide (E_xx = 2.4 |E_zz|) pushes nearly along the ring, and
 // their short arrows crowd the beads; (h), whose pushes are all clearly out or in, keeps all twelve. The number of
@@ -58,7 +59,7 @@ import { graph, longest, CURVE } from './tut-fourier-lib.js';
 import { chapter, palette, CURV, FIELD, ACCENT, ACCENT2, G, C, exact, nearLaw, farLaw, X_CROSS, secondMoment, uHat, YEAR } from './tut-quadrupole-lib.js';
 import { HBAR } from './tut-einstein-lib.js';
 import { riemann } from './tut-linear-lib.js';
-import { circularShare, amplitudes, cameraAxes, MAGENTA_PAINT as MAGENTA, dashes, drawDashes } from './tut-pol-lib.js';
+import { circularShare, amplitudes, cameraAxes, dashes, drawDashes } from './tut-pol-lib.js';
 import { UNDISTURBED_W } from './tut-five-lib.js';
 
 const name = 'tut-read-v-capstone';
@@ -86,7 +87,6 @@ const RR = 22;                             // a ring's undisturbed radius
 const B_EPS = 0.16, B_REACH = 11.5;          // (b): the largest change of the ring, the arrows' points per unit
 const STRAIN = 0.36;                       // (e), (h): the drawn change for a strain A (5.4's H)
 const H_REACH = 14;                        // (h): the arrows' points per unit
-const FILL_OP = 0.22;                      // (e): the magenta's opacity
 const BAR = 0.9, BAR_HALF = 14.5;          // (e): the stretch bars, their half-length
 const BAR_OP = [0.35, 0.65, 1];
 const TURN = { r: 32, from: 18, to: 72, width: 0.7, head: 3.4 };     // (e): the curved arrow
@@ -517,7 +517,7 @@ export default async function () {
 	}
 
 	async function drawE(p) {
-		// face on, looking down the spin: x right, y up; the ring at the last moment, filled magenta
+		// face on, looking down the spin: x right, y up; the ring at the last moment, filled with the neutral tint
 		const c = [p.px + 40, p.cy + 2];
 		const last = (N.PHASES[2] * Math.PI) / 180;
 		// the strain in units of A at that moment: h = (cos 2a, sin 2a; sin 2a, -cos 2a) with the stretch axis at a
@@ -526,7 +526,7 @@ export default async function () {
 		const fp = ([x, y]) => [c[0] + RR * x, c[1] - RR * y];
 		const ring = Array.from({ length: 361 }, (_, k) => fp(image([Math.cos((2 * Math.PI * k) / 360), Math.sin((2 * Math.PI * k) / 360)])));
 		const d = 'M' + ring.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L') + 'Z';
-		S.raw(`<path d="${d}" fill="${MAGENTA}" fill-opacity="${FILL_OP}" stroke="none"/>`, 0);
+		S.raw(`<path d="${d}" fill="${LIGHT}" stroke="none"/>`, 0);
 		S.raw(`<path d="${d}" fill="none" stroke="${INK}" stroke-width="${RING.stroke}"/>`, 2);
 		S.mark(ring, RING.stroke / 2, 'the face-on ring');
 		// its semi-axes 1 +- STRAIN/2 along the stretch axis at 60 degrees

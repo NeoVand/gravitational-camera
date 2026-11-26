@@ -1,18 +1,16 @@
 // The tutorial, section 10.1 (tutorial/glow/black-body.md), its fourth diagram: a moving observer still sees a black
 // body, hotter ahead. Two discs side by side, the sky of a black body at the temperature T in the plane of the motion,
 // the observer a small ink dot at each centre and the motion to the right. Each disc's rim is filled with the
-// temperature seen in that direction, T(alpha') = T / gamma (1 - beta cos alpha'), on a sequential scale from neutral
-// (T/2) to crimson (2T). Left, "at rest": uniform at T, named "T" outside the rim. Right, "moving": the observer's
-// arrow, in the observer's colour, named "0.6c"; the rim 2T straight ahead, 0.8T at right angles to the motion in the
-// observer's frame and T/2 straight behind, named "2T", "0.8T" and "T/2" outside the rim, each at its direction. A
-// thin bar beside the right disc shows the scale from T/2 to 2T, ticked at T/2, 0.8T, T and 2T. The temperatures are
-// neutral, as the text's T is; the observer's colour marks the arrow alone; no orange or blue.
-// The scale: in each theme, in OKLab, from a neutral grey near the page (T/2) to a crimson (2T), light-dark(#960031,
-// #db2943), its lightness in equal steps and its chroma growing early (as s^0.6), so that its middle is rose, never
-// brown; graded in proportion to the logarithm of the temperature, so that T/2 and 2T lie equally far from T, as
-// section 6.3's bar of Doppler factors. Crimson, not orange: no colour of the scale
-// lies within 0.08 in OKLab of the stretch's orange, the site's accent or the squeeze's blue (the limit that
-// lib/tutorial/colour.ts sets for the roles), nor within 0.08 of the observer's colour (asserted, in both themes).
+// temperature seen in that direction, T(alpha') = T / gamma (1 - beta cos alpha'), on the paper's diverging scale.
+// Left, "at rest": uniform at T, named "T" outside the rim. Right, "moving": the observer's arrow, in the observer's
+// colour, named "0.6c"; the rim 2T straight ahead, 0.8T at right angles to the motion in the observer's frame and T/2
+// straight behind, named "2T", "0.8T" and "T/2" outside the rim, each at its direction. A thin bar beside the right
+// disc shows the scale from T/2 to 2T, ticked at T/2, 0.8T, T and 2T.
+// The scale: T'/T is the Doppler factor D, so the scale is the one section 6.3's sky of Doppler factors uses
+// (tut-aberration-lib.js, `shift`, the paper's `diverging`): the paper's blue ACCENT2 at 2T (hotter, blueshifted,
+// ahead), its orange ACCENT at T/2 (cooler, redshifted, behind), the neutral FAINT ink at T, each side mixed in sRGB in
+// proportion to the logarithm of the temperature, so that T/2 and 2T lie equally far from T. A hotter black body is
+// also a bluer one. (HOT and COOL name the two ends; swapping them is one line.)
 // Departures from the diagram's comment: the discs are named "at rest" and "moving" under them; the bar also carries
 // T (the left disc's colour) and 0.8T; the dot at each centre is the observer. The figure stays one drawing side by
 // side on a phone (about 330 points wide), as section 6.1's diagrams do.
@@ -20,7 +18,7 @@
 // value along the rim), the three named values (asserted against the chapter's text), the bar's ticks. Schematic: the
 // discs' size and the rim's width; the colours are a scale, not the glow's colour.
 import { Sheet, ORIGIN, finish, checker, placed, beside, LABEL_GAP, HAIR, VEC, n2 } from './tut-pot-lib.js';
-import { INK, DIM, RULE } from '../lib.js';
+import { INK, DIM, FAINT, RULE, ACCENT, ACCENT2 } from '../lib.js';
 import { chapter, palette, near, OBS, BETA, seen } from './tut-planck-lib.js';
 
 const name = 'tut-planck-moving';
@@ -38,38 +36,13 @@ const ARROW = 0.56 * R;                         // the motion's arrow
 const BAR = { w: 6, h: 1.5 * R, gap: 15, steps: 300 };
 const TITLE = 7;                                // from a disc's rim to its title's top
 
-// ---- the scale: neutral to crimson, in OKLab, per theme ----------------------------------------------------------
-const lin = (v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
-const gam = (v) => (v <= 0.0031308 ? 12.92 * v : 1.055 * v ** (1 / 2.4) - 0.055);
-function oklab(hex) {
-	const [r, g, b] = [1, 3, 5].map((i) => lin(parseInt(hex.slice(i, i + 2), 16) / 255));
-	const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
-	const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
-	const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
-	return [0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s, 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s, 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s];
-}
-function hexOf([L, a, b]) {
-	const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3, m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3, s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
-	const rgb = [4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s, -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s];
-	return '#' + rgb.map((v) => Math.round(gam(Math.min(1, Math.max(0, v))) * 255).toString(16).padStart(2, '0')).join('');
-}
-const distance = (p, q) => { const [a, b] = [oklab(p), oklab(q)]; return Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]); };
-const ENDS = { day: ['#d3cdc2', '#960031'], night: ['#3e3a34', '#db2943'] };
-const EASE = 0.6;                               // the crimson's chroma grows as s^EASE: rose in the middle, never brown
-// the colours a scale must keep away from (lib/tutorial/colour.ts, RESERVED, and app.css's --q-obs)
-const AWAY = {
-	day: { stretch: '#b0560a', accent: '#9a5212', 'accent-ink': '#86460d', squeeze: '#2a67ad', 'accent-2': '#2d5f8e', observer: '#9b2d7f' },
-	night: { stretch: '#e8a45a', squeeze: '#7fb4ff', 'accent-2': '#8fb6dd', observer: '#e26c8c' }
+// ---- the scale: the paper's diverging scale, blue hotter, orange cooler, neutral at T ------------------------------
+const HOT = ACCENT2, COOL = ACCENT;            // the paper's blue and orange (tut-aberration-lib.js, `shift`)
+/** The scale's colour at s from 0 (T/2) to 1 (2T): orange at 0, the neutral FAINT at 1/2, blue at 1. */
+const colour = (s) => {
+	const v = 2 * s - 1, end = v >= 0 ? HOT : COOL, p = +(Math.abs(v) * 100).toFixed(2);
+	return p === 0 ? FAINT : p === 100 ? end : `color-mix(in srgb, ${end} ${p}%, ${FAINT})`;
 };
-const LIMIT = 0.08;
-/** The scale's colour at s from 0 (T/2) to 1 (2T), in one theme. */
-const tone = (s, theme) => {
-	const [p, q] = ENDS[theme].map(oklab);
-	const C = Math.hypot(q[1], q[2]) * s ** EASE, h = Math.atan2(q[2], q[1]);
-	return hexOf([p[0] + s * (q[0] - p[0]), p[1] * (1 - s) + C * Math.cos(h), p[2] * (1 - s) + C * Math.sin(h)]);
-};
-/** The scale's colour at s, both themes. */
-const colour = (s) => `light-dark(${tone(s, 'day')}, ${tone(s, 'night')})`;
 /** The place on the scale of the temperature t = T' / T: log2 t from -1 to 1. */
 const place = (t) => (Math.log2(t) + 1) / 2;
 
@@ -79,21 +52,8 @@ export default async function () {
 	state(name, 'planck-moving', 'Look first at the right disc\'s rim: moving at $0.6c$ through a glow of one temperature, the observer sees a black body in every direction, twice as hot ahead and half as hot behind. The temperatures are exact; the colours are a scale, not the glow\'s real colour.');
 	check(near(BETA, 0.6, 0), 'the speed is not 0.6c');
 
-	// the scale keeps away from the reserved colours and the observer's, in both themes, everywhere along it
-	const least = {};
-	for (const theme of ['day', 'night']) {
-		for (let i = 0; i <= 200; i++) {
-			const c = tone(i / 200, theme);
-			for (const [k, v] of Object.entries(AWAY[theme])) {
-				const d = distance(c, v);
-				if (!(k in least) || d < least[k].d) least[k] = { d, theme, s: i / 200 };
-				check(d >= LIMIT, `the scale's colour at ${i / 200} (${theme}) is ${d.toFixed(3)} from the ${k}`);
-			}
-		}
-		// it is sequential: lightness runs one way (darker on the day page, lighter on the night page)
-		const Ls = Array.from({ length: 51 }, (_, i) => oklab(tone(i / 50, theme))[0]);
-		check(Ls.every((L, i) => i === 0 || (theme === 'day' ? L < Ls[i - 1] : L > Ls[i - 1])), `the ${theme} scale is not sequential`);
-	}
+	// the scale is the paper's: its ends the two accents, its middle (T itself) the neutral faint ink
+	check(colour(place(2)) === HOT && colour(place(0.5)) === COOL && colour(place(1)) === FAINT, 'the scale\'s ends and middle');
 
 	const S = new Sheet(name);
 	const L = [];
@@ -176,6 +136,6 @@ export default async function () {
 	}
 
 	S.checkAll(L);
-	window[name + '-numbers'] = { least, wedges: nRight, worst, ends: ENDS };
+	window[name + '-numbers'] = { wedges: nRight, worst };
 	return finish(S, L, [300, 345]);
 }

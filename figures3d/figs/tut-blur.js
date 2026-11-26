@@ -8,6 +8,10 @@
 // stack: its back half rises to the ground, sawn through the balls' centres, and its front half is cut down to a
 // ledge below the balls, which shows the section with the balls in it (a box sawn in half would put the sheets, which
 // are centred on the balls, half a sheet in front of it).
+// The view is turned only 4 degrees about the vertical (and tilted 15 degrees down), so that the line of the two balls,
+// level on the sawn face, runs level on the page (it falls by 1 degree): at a larger turn the face's level lines slope
+// on the page and the right-hand ball reads as the deeper. The sheets still lean enough, as parallelograms, to stack
+// in depth without overlapping on the page, and their right-hand corners stand over the block's.
 // Exact: the pattern on each sheet, the sum of the two balls' readings at that sheet's height, drawn as a relief
 // whose height is the reading, each sheet to its own greatest value (the reading falls as 1/h^3); its colour, the
 // sign of the reading, saturated as the square root of its size against that greatest value, one rule for every
@@ -98,7 +102,7 @@ function physics() {
 // ---- the drawing -----------------------------------------------------------------------------------------
 const W = 360;
 const SCALE = 60;                                   // points per separation (a first guess; fitted to the column)
-const TILT = 20, TURN = -24;                        // the view
+const TILT = 15, TURN = -4;                         // the view: degrees down, and round the vertical
 const GAP = 0.66, STEP = 0.6;                       // the lowest sheet above the ground, and the sheets' spacing (drawn)
 const RELIEF = 0.32;                                // the relief's greatest height on the glass sheets (drawn)
 const GLASS = 0.026;                                // the glass's thickness (drawn)
