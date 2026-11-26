@@ -57,7 +57,9 @@ export default async function () {
 	A.curve(curve, { color: ACCENT, width: 0.8, layer: 1 });
 	// the spin axis, and the angular velocity
 	A.curve([v3(0, -1.12, 0), v3(0, 1.12, 0)], { color: FAINT, width: 0.45, dash: [2, 2], layer: 2 });
-	A.label('\\boldsymbol{\\Omega}', v3(-0.07, 0.9, 0), { anchor: 'rc' });
+	// the letter in the open part of the lobe, midway between the axis and the outline at its height: about six
+	// points of air on either side
+	A.label('\\boldsymbol{\\Omega}', v3(-0.17, 0.74, 0), { anchor: 'cc' });
 	// the turning pair, its orbit seen from a little above, and its sense
 	const orbit = [];
 	for (let k = 0; k <= 80; k++) {

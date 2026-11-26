@@ -87,6 +87,9 @@ def hole_response_figure():
     assert abs(total - hr.sum_rule()) < 2e-4, (total, hr.sum_rule())
     assert f"{total:.3f}" == "0.345" and f"{hr.shell_radius():.2f}" == "1.02"
     assert f"{x[integrand.argmax()]:.2f}" == "0.40"            # the caption: where the integrand is greatest
+    # the text: three quarters of the sum from 0.3 < x < 0.6, where c / omega = r_s / 2x is 1.7 to 0.8 r_s
+    share = (np.interp(0.6, x, upto) - np.interp(0.3, x, upto)) / total
+    assert round(100 * share) == 74 and f"{1 / 0.6:.1f}" == "1.7" and f"{1 / 1.2:.1f}" == "0.8"
 
     radii = [hr.degree_shell_radius(l) for l in DEGREES]
     # the caption's numbers, pinned where they are drawn
