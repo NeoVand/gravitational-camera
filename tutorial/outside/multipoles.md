@@ -219,7 +219,7 @@ order of magnitude for a real person: a rod gives 5.6, and a real body, wider at
 the two.[^person]
 
 ![The person of 70 kg one metre from a ring of free balls, drawn to one scale as a ball of water of radius 0.256 m
-(above) and as an upright rod 1.7 m long (below). The orange bars are the stretches, 9.3 and
+and as an upright rod 1.7 m long. The orange bars are the stretches, 9.3 and
 $5.6\times10^{-9}\unit{s^{-2}}$. The dashed circle is the smallest sphere about the rod's centre that holds
 it.](tut-mul-rod){#fig:rod}
 

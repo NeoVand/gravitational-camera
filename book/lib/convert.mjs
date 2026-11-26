@@ -561,7 +561,7 @@ export function convertSection(ctx) {
 		st.firstDrawing ??= pdf;
 		st.figures++;
 		const out = [
-			RawB(opener ? `\\begin{gcopener}\n\\gcgraphic{${pdf}}` : `\\begin{figure}[tbp]\n\\centering\n\\gcgraphic{${pdf}}`),
+			RawB(`${opener ? '\\begin{gcopener}' : '\\begin{figure}[tbp]\n\\centering'}\n\\gcgraphic${ctx.figureScale?.(name) ? `[${ctx.figureScale(name)}]` : ''}{${pdf}}`),
 			Plain([Raw('\\caption{'), ...caption, Raw(`}\\label{${label}}`)]),
 			RawB(opener ? '\\end{gcopener}' : '\\end{figure}')
 		];

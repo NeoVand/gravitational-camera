@@ -282,7 +282,7 @@ tension adds $-E_{\rm light}$, so the box pulls with $E_{\rm light}/c^2$ (and th
 (Figure [](#fig:beam-and-box)). Pressure gravitates where it is, but a bound body's stresses add up to zero.
 
 ![Look first at the two rings: the beam and a line of matter of twice its energy over $c^2$ stretch a ring alike, when
-the bench that holds the laser and the absorber apart is far away. Below, the same light, sealed in a mirrored box,
+the bench that holds the laser and the absorber apart is far away. In a box of light, the same light, sealed in a mirrored box,
 pulls only with its energy over $c^2$, because the walls' tension cancels the light's pressure. The rings' deformation
 is exaggerated, and the tide's squeeze, at right angles to the page, is not
 drawn.](tut-stress-beam-box){#fig:beam-and-box}

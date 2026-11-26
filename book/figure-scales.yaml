@@ -1,0 +1,2 @@
+# The size at which a drawing of the tutorial is printed in the book, as a fraction of its own size, where the default
+# (0.85) makes it too large for what it shows. A drawing is still shrunk to the line and to 45% of the page's height.

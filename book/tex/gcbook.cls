@@ -312,6 +312,8 @@
 \numberwithin{figure}{chapter}
 \numberwithin{table}{chapter}
 \allowdisplaybreaks[1]
+% a page short of a figure or table that cannot break ends short, rather than spreading its lines apart
+\raggedbottom
 
 % ---- the margin -------------------------------------------------------------------------------------------------------
 % Side notes are numbered within each section; marginfix moves a note down, or onto the next page, rather than
@@ -390,15 +392,22 @@
 % A box inside a box (a gap note in a derivation) has no rules of its own, which would stack on its parent's: it is
 % set in from the left under its title.
 \newcounter{gc@boxdepth}
+% \gcjoinbox before a box that follows another at once: no rule of its own above it, the previous box's rule serves
+\newif\ifgc@joined
+\newcommand\gcjoinbox{\global\gc@joinedtrue}
 \newenvironment{gc@box}[3]
   {\stepcounter{gc@boxdepth}%
    \ifnum\value{gc@boxdepth}>1
      \par\addvspace{0.8\baselineskip}\begin{adjustwidth}{1.4em}{0pt}%
      \gc@boxtitle{#1}{#2}#3\@afterindentfalse\@afterheading
+   \else\ifgc@joined
+     \global\gc@joinedfalse
+     \par\vspace{-0.4\baselineskip}\nobreak
+     \gc@boxtitle{#1}{#2}#3\@afterindentfalse\@afterheading
    \else
      \par\addvspace{1.1\baselineskip}\gc@boxrule\nobreak\vspace{0.3\baselineskip}\nobreak
      \gc@boxtitle{#1}{#2}#3\@afterindentfalse\@afterheading
-   \fi}
+   \fi\fi}
   {\ifnum\value{gc@boxdepth}>1
      \par\end{adjustwidth}\addvspace{0.5\baselineskip}%
    \else

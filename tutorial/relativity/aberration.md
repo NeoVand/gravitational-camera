@@ -430,8 +430,8 @@ toward the body, at the distance $R_*$, and the principal null directions are $\
 $a = \obs{\vect\beta}\cdot\hat n_0$ and split $\hat n_0 = (a/\obs\beta)\,\hat\beta + \vect n_\perp$ along and across
 $\obs{\vect\beta}$.
 
-![Look first at the two velocity arrows: the pixel moves through the body's frame with $c\,\obs{\vect\beta}$ (above),
-so in the pixel's frame the body moves with $-c\,\obs{\vect\beta}$, the same speed the other way (below). The two pairs
+![Look first at the two velocity arrows: the pixel moves through the body's frame with $c\,\obs{\vect\beta}$,
+so in the pixel's frame the body moves with $-c\,\obs{\vect\beta}$, the same speed the other way. The two pairs
 of directions, $\pm\hat n_0$ at rest, lean toward the body's velocity, and their half sum is the body's velocity across
 the line to where it is now.](tut-aberration-frames){#fig:two-frames}
 

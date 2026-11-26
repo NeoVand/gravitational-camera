@@ -197,6 +197,8 @@ for (const id of sections) {
 }
 // a paper figure is printed once too, at its first place in the book
 const paperFigureHome = (fig) => paperFigs.get(fig)?.find((e) => included.has(e.sid))?.label;
+// the size a drawing is printed at, where the default (85% of its own) is too large for what it shows
+const figureScales = existsSync(path.join(BOOK, 'figure-scales.yaml')) ? (readYaml(path.join(BOOK, 'figure-scales.yaml')) ?? {}) : {};
 const converted = new Map();
 const counts = { exercises: 0, figures: 0 };
 await pool(sections, JOBS, async (id) => {
@@ -218,6 +220,7 @@ await pool(sections, JOBS, async (id) => {
 		paperFigureHome,
 		ownFigureHome: (name) => ownFigureHome.get(name),
 		figureAlias: (fid) => ownFigureAlias.get(`${id}|${fid}`),
+		figureScale: (name) => figureScales[name],
 		figurePdf: (name) => figurePdfs.get(name),
 		figureReferenced: (fid) => referencedFigures.has(fid),
 		glossary: termsBySection.get(id) ?? [],
@@ -230,6 +233,8 @@ await pool(sections, JOBS, async (id) => {
 	});
 	const out = {};
 	stdout = tabulars(stdout);
+	// a box straight after another shares its rule: the second opens without one of its own
+	stdout = stdout.replace(/(\\end\{gc(?:derivation|example|gap|history)\}\s*)(\\begin\{gc(?:derivation|example|gap|history)\})/g, '$1\\gcjoinbox$2');
 	const re = /^%%@@PART:([A-Z]+)@@$/gm;
 	let m;
 	let last;
@@ -247,7 +252,13 @@ log(`converted ${converted.size} sections: ${counts.figures} figures, ${counts.e
  * break, with the head first and the closing rule last.
  */
 function tabulars(tex) {
-	return tex.replace(/\\begin\{longtable\}\[\]\{(.*)\}\n([\s\S]*?)\\end\{longtable\}/g, (all, spec, body) => {
+	// the column spec runs over several lines when pandoc gives the columns widths: read it to its closing brace
+	return tex.replace(/\\begin\{longtable\}\[\]\{([\s\S]*?)\\end\{longtable\}/g, (all, rest) => {
+		let depth = 1;
+		let i = 0;
+		for (; i < rest.length && depth; i++) depth += rest[i] === '{' ? 1 : rest[i] === '}' ? -1 : 0;
+		let spec = rest.slice(0, i - 1);
+		const body = rest.slice(i).replace(/^\n/, '');
 		let head = '';
 		let foot = '';
 		let rows = body;
@@ -274,26 +285,38 @@ function tabulars(tex) {
 		const caption = head.match(/\\caption\{([\s\S]*?)\}\\tabularnewline/);
 		head = head.replace(/\\caption[\s\S]*?\\tabularnewline/, '');
 		const inner = `${head.trim()}\n${rows.trim()}\n${foot.trim()}`;
-		const tab = (sp) => `\\begin{tabular}{${sp}}\n${inner}\n\\end{tabular}`;
+		const tab = (sp, text = inner) => `\\begin{tabular}{${sp}}\n${text}\n\\end{tabular}`;
+		// at natural width a head cell is its words: pandoc's minipage of the line's width would fill the line
+		const unboxed = inner.replace(/\\begin\{minipage\}\[[a-z]\]\{\\linewidth\}\\(?:raggedright|raggedleft|centering)\s*([\s\S]*?)\s*\\end\{minipage\}/g, '$1');
 		// a table of wrapping columns is set at its natural width if that fits the line, and only otherwise wraps,
 		// with each column as wide as its longest entry asks
 		const cols = [...spec.matchAll(/>\{\\(raggedright|raggedleft|centering)\\arraybackslash\}p\{\(\\linewidth - (\d+)\\tabcolsep\) \* \\real\{([\d.]+)\}\}/g)];
 		let fit = `\\gcfittable{${tab(spec)}}{}`;
+		// a table of plain columns (l, c, r) wraps too, if it is wider than the line, rather than being shrunk
+		const plainCols = spec.replace(/@\{\}/g, '').replace(/\s+/g, '');
+		if (!cols.length && /^[lcr]+$/.test(plainCols) && plainCols.length > 1) {
+			const n = plainCols.length;
+			const para = { l: 'raggedright', c: 'centering', r: 'raggedleft' };
+			spec = `@{}${[...plainCols].map((a) => `>{\\${para[a]}\\arraybackslash}p{(\\linewidth - ${2 * n}\\tabcolsep) * \\real{0.1}}`).join('\n  ')}@{}`;
+			cols.push(...spec.matchAll(/p\{/g));
+		}
 		if (cols.length) {
 			const natural = spec.replace(/>\{\\(raggedright|raggedleft|centering)\\arraybackslash\}p\{[^{}]*\{[\d.]+\}\}/g, (m, a) => ({ raggedright: 'l', raggedleft: 'r', centering: 'c' })[a]);
 			const lengths = cols.map(() => 4);
-			for (const line of inner.split('\\\\')) {
+			for (const line of unboxed.split('\\\\')) {
 				const cells = line.replace(/\\(toprule|midrule|bottomrule)(\\noalign\{\})?/g, '').split(/(?<!\\)&/);
 				if (cells.length !== cols.length) continue;
 				cells.forEach((c, k) => {
 					const text = c.replace(/\\[a-zA-Z@]+/g, 'x').replace(/[{}$\\^_]/g, '').replace(/\s+/g, ' ').trim();
-					lengths[k] = Math.max(lengths[k], Math.min(text.length, 70));
+					// as wide as the entry asks, up to a long line's worth, and never narrower than its longest word
+					const word = Math.max(0, ...text.split(' ').map((w) => w.length));
+					lengths[k] = Math.max(lengths[k], Math.min(text.length, 70), 1.4 * word + 2);
 				});
 			}
 			const total = lengths.reduce((a, b) => a + b, 0);
 			let k = 0;
 			const wrapped = spec.replace(/\\real\{[\d.]+\}/g, () => `\\real{${(lengths[k++] / total).toFixed(4)}}`);
-			fit = `\\gcfittable{${tab(natural)}}{${tab(wrapped)}}`;
+			fit = `\\gcfittable{${tab(natural, unboxed)}}{${tab(wrapped)}}`;
 		}
 		return `${caption ? `{\\small ${caption[1]}}\\par\n` : ''}\\begin{center}\\small\n${fit}\n\\end{center}`;
 	});
@@ -387,10 +410,7 @@ ${cover}\frontmatter
 \input{front}
 \tableofcontents
 \bookunnumbered{Preface}{preface}{Preface}
-[Preface to come.]
-
-Margin notes marked {\scshape paper} give the places in the research paper \textcite{Mohsenvand2026} where a result
-of this book first appeared or is taken further: its sections, equations and figures.
+\input{preface}
 ${frontSections.join('\n')}
 \mainmatter
 ${main.join('\n')}

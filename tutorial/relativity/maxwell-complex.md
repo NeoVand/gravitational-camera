@@ -191,9 +191,9 @@ plane, round a circle or along a line through zero (Figure [](#fig:wave-amplitud
 along $-\hat k$, has $\vect m^*$ in place of $\vect m$, because for $-\hat k$ the pair $\vect e_1$, $-\vect e_2$ takes
 the place of $\vect e_1$, $\vect e_2$.
 
-![Look first at the two arrows above: in a light wave the electric field $\light{\vect E}$ and $c$ times the magnetic
+![Look first at the two arrows of one instant of a wave: in a light wave the electric field $\light{\vect E}$ and $c$ times the magnetic
 field, $c\light{\vect B}$, are equal in length, at right angles, and both across the direction of travel $\hat k$.
-Below, the one complex number $a = \sqrt2\,(\light E_1 - i\light E_2)$ holds the whole wave: it goes round a circle for
+In the complex plane, the one complex number $a = \sqrt2\,(\light E_1 - i\light E_2)$ holds the whole wave: it goes round a circle for
 circular polarization, the other way from the electric field because it is $\sqrt2$ times the conjugate of $\light E_1 +
 i\light E_2$, and to and fro on a line for linear polarization.](tut-maxwell-wave){#fig:wave-amplitude}
 
@@ -366,10 +366,10 @@ $$\begin{aligned}\cos(i\obs\eta) &= \frac{e^{-\obs\eta} + e^{\obs\eta}}{2} = \co
 So **a sensor that moves with rapidity $\obs\eta$ along $\hat u$ reads $\light{\vect F}$ as a sensor reads it whose axes
 are turned about $\hat u$ by the imaginary angle $i\obs\eta$.**
 
-![Look first at the two rules under the panels: they are the same rule, with the cosine and sine of the circle above
-and the hyperbolic cosine and sine of the hyperbola below, and with $i$ in front of $\sinh\obs\eta$. Putting $\theta =
+![Look first at the two rules under the panels: they are the same rule, with the cosine and sine of the circle
+and the hyperbolic cosine and sine of the hyperbola, and with $i$ in front of $\sinh\obs\eta$. Putting $\theta =
 i\obs\eta$ turns one into the other, because $\cos(i\obs\eta) = \cosh\obs\eta$ and $\sin(i\obs\eta) =
-i\sinh\obs\eta$. The dot below is the pixel's $0.6c$, $\obs\eta = \ln2$.](tut-maxwell-turn){#fig:imaginary-turn}
+i\sinh\obs\eta$. The dot on the hyperbola is the pixel's $0.6c$, $\obs\eta = \ln2$.](tut-maxwell-turn){#fig:imaginary-turn}
 
 **Step 3: the exponential.** Section
 [1.7](/tutorial/newton/hamilton/#every-quantity-generates-a-motion-and-a-symmetry-gives-a-constant) built a turn by the
@@ -592,7 +592,7 @@ Whatever its sources, light has only these two directions at a point, so one poi
 several. Two masses generally give gravity four separate directions, and section 9.4 shows that one round body never
 does.
 
-![Look first at the two dots below: a charge moving across the line of sight at 0.9 of the speed of light folds
+![Look first at the two dots on the moving charge's sphere: a charge moving across the line of sight at 0.9 of the speed of light folds
 light's two special directions toward its motion, from their places at rest (open circles), and their half sum is its
 velocity across the line over $c$, here 0.9. The directions are the roots $z = 0.9i \pm 0.436$ of $\vect
 m(z)\cdot\light{\vect F} = 0$.](tut-maxwell-sky){#fig:light-directions}
