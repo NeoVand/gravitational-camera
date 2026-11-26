@@ -461,10 +461,9 @@ $R = 0.1$ m and $\matter\rho = 7800\unit{kg\,m^{-3}}$ the surface glow is $6.3\t
 
 [^volume]: First shown in *The gravitational camera* (Mohsenvand 2026), as its equations [](/paper/#eq:surface-glow)
     and [](/paper/#eq:volume-surface), in [*Volume and surface
-    emission*](/paper/#par:volume-and-surface-emission); the sphere's surface glow is from [@SchaeferDehnen1981]. The
-    coefficient here, derived in section 10.3, corrects the paper's, which carries $\pi^2/24$ with the sound-speed ratio
-    inverted; with it the paper's prefactor 5.5 becomes 0.89, its $7\times10^8$ becomes $1.1\times10^8$ and its 30 nm
-    becomes about 170 nm.
+    emission*](/paper/#par:volume-and-surface-emission), where the coefficient is derived from the traction at the
+    surface and Kirchhoff's law, as in section 10.3. The $R^2T^2$ law is from [@DehnenRomeroSchaefer1984], whose sum
+    over the modes gives a coefficient six times smaller for steel, $(\pi^2/24)(1 + 3c_T/2c_L)$.
 
 [^thirty]: With diamond's own sound speeds, $c_T = 12.35$ and $c_L = 18.15\unit{km\,s^{-1}}$.
 

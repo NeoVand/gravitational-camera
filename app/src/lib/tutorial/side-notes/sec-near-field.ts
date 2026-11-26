@@ -212,7 +212,7 @@ export const notes: SideNote[] = [
 		anchor: 'par:the-positivity-of-mass',
 		text:
 			'The bar weighs 324 kg. The estimate $315 \\pm 20$ kg misses it by 9 kg, under half of one spread. At a ' +
-			'ratio of ten thousand the estimate is $328 \\pm 1$ kg, a little high because a bar is modelled as a ' +
+			'ratio of ten thousand the estimate is $327.6 \\pm 0.7$ kg, a little high because a bar is modelled as a ' +
 			'grid of points.',
 		chapter: '3.9',
 		section: 'non-negative-least-squares-keeps-only-the-masses-the-data-need'

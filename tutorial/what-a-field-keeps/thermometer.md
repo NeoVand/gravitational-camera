@@ -154,9 +154,10 @@ or $1.0175\,r_s$ to four places. To a changing quadrupolar tide a hole that does
 its own mass <!-- lint-allow: just --> just outside its horizon. **Check:** a uniform ball of radius $r_s$ has $\tfrac13\times\tfrac35\matter Mr_s^2 = 0.200\,\matter Mr_s^2$, and a thin shell at $r_s$ has
 $0.333\,\matter Mr_s^2$, the two lines of panel (b); the hole's sum is 3.5% above the shell's.
 
-Figure [](/paper/#fig:hole-response) shows this in three panels. Panel (a) is the hole's absorption at each rate of
-change, panel (b) its running total, which ends a little above a thin shell's and well above a uniform ball's, and
-panel (c) the radii that finer tides give, from 1.02 to 1.73 times the horizon's, rising toward 1.91. The steel ball of section 4.5 has the sum $0.13\unit{kg\,m^2}$, three fifths of a shell's.
+Figure [](/paper/#fig:hole-response) shows this in four panels. Panel (a) is the hole's absorption at each rate of
+change, panel (b) its running total, which ends a little above a thin shell's and well above a uniform ball's,
+panel (c) the radii that finer tides give, from 1.02 to 1.73 times the horizon's, rising toward 1.91, and panel (d)
+the test of positive mass that those radii fail, worked out below. The steel ball of section 4.5 has the sum $0.13\unit{kg\,m^2}$, three fifths of a shell's.
 
 {{paper fig:hole-response}}
 

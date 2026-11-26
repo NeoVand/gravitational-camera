@@ -11,7 +11,7 @@ depth: A
 ---
 
 A state of spin two is also a state of four spins one half that is unchanged when they are exchanged, and the Petrov
-types of a reading are then its classes of entanglement.[^first] The four spins are the four special directions of a
+types of a reading are then its families of entanglement.[^first] The four spins are the four special directions of a
 reading met in [section 0.4](/tutorial/evening/one-pixel/), and the spin two is the pattern of stretch of section 1.5b.
 What is a spin, and how can a reading's five complex numbers be four arrows on a sphere? We use the states of
 [section 8.1](/tutorial/quantum/states/) and the operators of [section 8.2](/tutorial/quantum/operators/).

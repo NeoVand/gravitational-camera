@@ -620,7 +620,7 @@ $(K/r^3)(12K\dot r^2/r^5)/(9K^2\dot r^2/r^8) = \tfrac43$, at every speed.
   quartic, and the types as their patterns.
 - R. Penrose and W. Rindler, *Spinors and Space-Time*, vol. 1 (Cambridge, 1984), sections 1.2 to 1.4: the sky as the
   complex plane, and boosts as Möbius maps.
-- On Majorana's representation [@Bruno2019] and the types as classes of entanglement [@BengtssonZyczkowski2017; @Kam2026].
+- On Majorana's representation [@Bruno2019] and the types as families of entanglement [@BengtssonZyczkowski2017; @Kam2026].
 :::
 
 [^fig]: First shown in *The gravitational camera* (Mohsenvand 2026), Sec. VIII, whose Fig. [](/paper/#fig:stars) draws
