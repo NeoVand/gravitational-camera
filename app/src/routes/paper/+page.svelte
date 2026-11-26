@@ -10,6 +10,7 @@
 	import { fitEquations, followHeadings } from '#lib/paper/reading.js';
 	import SiteHeader from '#lib/ui/SiteHeader.svelte';
 	import PaperMargin from '#lib/tutorial/PaperMargin.svelte';
+	import PaperGlosses from '#lib/paper/PaperGlosses.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -249,8 +250,11 @@
 		{/if}
 	</article>
 
-	{#if data.margin.length}
-		<PaperMargin notes={data.margin} {article} />
+	{#if data.margin.length || data.sideNotes.length}
+		<PaperMargin notes={data.margin} {article} sideNotes={data.sideNotes} />
+	{/if}
+	{#if data.glosses.length}
+		<PaperGlosses {article} cards={data.glosses} />
 	{/if}
 </div>
 

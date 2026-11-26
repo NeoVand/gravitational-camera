@@ -3,22 +3,33 @@
 	 * The paper's right margin, where the paper meets the tutorial: a note beside each anchor that a published
 	 * chapter gives the background for, at the height of the anchor, at 1240px and wider; a small chip after the
 	 * anchor's heading on narrower screens. Either opens a preview of the chapter on hover or focus.
+	 *
+	 * With side notes (side-notes/), each stands beside its paragraph in the same column,
+	 * the two kinds stacked together in the order of the text so that none overlaps another; on narrower screens each
+	 * folds into a "Note" after its paragraph (SideNoteFold.svelte).
 	 */
+	import { mount, unmount } from 'svelte';
 	import { resolve } from '$app/paths';
+	import SideNote from './SideNote.svelte';
+	import SideNoteFold from './SideNoteFold.svelte';
 	import type { MarginNote } from './paper-links';
+	import type { SideNoteView } from './side-notes/index';
 
 	interface Props {
 		notes: MarginNote[];
 		/** the article holding the paper's text, once it is in the page */
 		article?: HTMLElement;
+		/** the side notes beside the paragraphs, if any */
+		sideNotes?: SideNoteView[];
 	}
 
-	let { notes, article }: Props = $props();
+	let { notes, article, sideNotes = [] }: Props = $props();
 
 	/** Links in the notes are written from the site's root; on the published site it sits under a base path. */
 	const href = (path: string) => `${resolve('/')}${path.replace(/^\//, '')}`;
 
 	let tops: number[] = $state([]);
+	let sideTops: number[] = $state([]);
 
 	/** The note whose preview is open, and where the preview goes (in the window). */
 	type Preview = { index: number; left: number; top: number };
@@ -37,6 +48,15 @@
 		clearTimeout(closing);
 		if (soon) closing = window.setTimeout(() => (preview = null), 150);
 		else preview = null;
+	}
+
+	/** The last element of the paragraph at this anchor: past its parts continued after an equation. */
+	function lastPart(anchor: string): HTMLElement | null {
+		let last = document.getElementById(anchor);
+		if (last?.matches('h4')) last = last.nextElementSibling as HTMLElement | null;
+		while (last?.nextElementSibling?.matches('.equation, p.continued, .tutorial-chip'))
+			last = last.nextElementSibling as HTMLElement;
+		return last;
 	}
 
 	/**
@@ -66,25 +86,63 @@
 			return chip;
 		});
 
+		// each side note's fold goes after the whole of its paragraph
+		const folds = sideNotes.map((note) => {
+			const slot = document.createElement('div');
+			slot.className = 'side-fold-slot';
+			lastPart(note.anchor)?.after(slot);
+			return { slot, fold: mount(SideNoteFold, { target: slot, props: { note } }) };
+		});
+
 		const measure = () => {
 			const base = aside.getBoundingClientRect().top;
 			const els = Array.from(aside.querySelectorAll<HTMLElement>('.note'));
-			let below = -Infinity;
-			tops = notes.map((note, i) => {
-				const anchor = document.getElementById(note.anchor);
-				const at = anchor ? anchor.getBoundingClientRect().top - base : 0;
-				const top = Math.max(at, below);
-				below = top + (els[i]?.offsetHeight ?? 0) + 12;
-				return top;
+			const sides = Array.from(aside.querySelectorAll<HTMLElement>('.side'));
+			const at = (id: string) => {
+				const anchor = document.getElementById(id);
+				return anchor ? anchor.getBoundingClientRect().top - base : 0;
+			};
+			const margin = notes.map((note, i) => ({ side: false, i, at: at(note.anchor), el: els[i] }));
+			const height = (el?: HTMLElement) => el?.offsetHeight ?? 0;
+			// a side note goes level with its paragraph if it fits there; else below the first of the margin's
+			// notes within the paragraph after which it fits, or failing that below the last of them, so that the
+			// margin's notes stay level with their equations
+			const side = sideNotes.map((note, i) => {
+				const top = at(note.anchor);
+				const bottom = (lastPart(note.anchor)?.getBoundingClientRect().bottom ?? 0) - base;
+				const h = height(sides[i]) + 18;
+				const within = margin.filter((m) => m.at >= top && m.at < bottom);
+				const starts = [top, ...within.map((m) => m.at + height(m.el) + 12)];
+				const free = (y: number) =>
+					!margin.some((m) => m.at < y + h && m.at + height(m.el) + 12 > y);
+				return { side: true, i, at: starts.find(free) ?? starts[starts.length - 1], el: sides[i] };
 			});
+			// the two kinds stacked together in the order of their places
+			const items = [...margin, ...side];
+			if (sideNotes.length) items.sort((a, b) => a.at - b.at || Number(a.side) - Number(b.side));
+			const nextTops: number[] = [];
+			const nextSide: number[] = [];
+			let below = -Infinity;
+			for (const item of items) {
+				const top = Math.max(item.at, below);
+				below = top + (item.el?.offsetHeight ?? 0) + (item.side ? 18 : 12);
+				(item.side ? nextSide : nextTops)[item.i] = top;
+			}
+			tops = nextTops;
+			sideTops = nextSide;
 		};
 		measure();
 		const watch = new ResizeObserver(measure);
 		watch.observe(root);
+		for (const el of aside.querySelectorAll('.side')) watch.observe(el);
 		document.fonts?.ready.then(measure);
 		return () => {
 			watch.disconnect();
 			for (const chip of chips) chip.remove();
+			for (const { slot, fold } of folds) {
+				unmount(fold);
+				slot.remove();
+			}
 		};
 	};
 
@@ -109,6 +167,11 @@
 			<span class="label">{note.label}</span>
 			<span class="where">{note.chapter.short}, {note.chapter.id}</span>
 		</a>
+	{/each}
+	{#each sideNotes as note, i (note.anchor)}
+		<div class="side" style:top="{sideTops[i] ?? 0}px" data-side={i}>
+			<SideNote {note} />
+		</div>
 	{/each}
 </aside>
 
@@ -173,6 +236,23 @@
 	.note:focus-visible {
 		color: var(--text);
 		border-left-color: var(--accent);
+	}
+
+	/* a side note: the same hairline as the notes, a little wider, its text in the paper's serif */
+	.side {
+		position: absolute;
+		left: 0;
+		box-sizing: border-box;
+		width: min(15rem, 100%);
+		padding: 0.1rem 0 0.15rem 0.75rem;
+		border-left: 1px solid var(--line);
+	}
+
+	/* the folds of the side notes, put after their paragraphs by the effect above, for narrow screens only */
+	@media (min-width: 1240px) {
+		:global(.side-fold-slot) {
+			display: none;
+		}
 	}
 
 	/* the chips, put into the paper's text by the effect above */

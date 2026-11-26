@@ -67,6 +67,9 @@ export const load: PageServerLoad = () => {
 		margin: paperMargin(
 			fixturePaperLinks,
 			new Map([['X.1', marginChapter(sample, 'A sample', SAMPLE_HREF)]])
-		)
+		),
+		// the excerpt is the paper's text as rendered, without the side notes and glosses of the paper's own page
+		sideNotes: [],
+		glosses: []
 	};
 };
