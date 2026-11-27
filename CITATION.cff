@@ -10,9 +10,7 @@ authors:
 repository-code: "https://github.com/NeoVand/gravitational-camera"
 doi: 10.5281/zenodo.24572829
 url: "https://neovand.github.io/gravitational-camera/"
-license:
-  - MIT
-  - CC-BY-4.0
+license: MIT
 keywords:
   - gravitation
   - tidal tensor

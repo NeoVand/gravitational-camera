@@ -1,7 +1,7 @@
 {
   "title": "Gravitational Camera: A Thought Experiment (paper, reference implementation and site)",
   "upload_type": "software",
-  "description": "<p>The source of the paper \"Gravitational Camera: A Thought Experiment\", the Python reference implementation that produces and tests every number in it (<code>reference/gravcam</code>; the paper's Appendix B lists the module and the test for each result), the code that draws its figures, and the interactive site.</p><p>The site also carries a tutorial and a book; their text is not part of this archive, so the site's tutorial pages do not build from it, while the paper, its figures and the reference implementation do.</p><p>The code is under the MIT licence; the paper's text and figures are under CC BY 4.0.</p>",
+  "description": "<p>The source of the paper \"Gravitational Camera: A Thought Experiment\", the Python reference implementation that produces and tests every number in it (<code>reference/gravcam</code>; the paper's Appendix B lists the module and the test for each result), the code that draws its figures, and the interactive site.</p><p>The site also carries a tutorial and a book; their text is not part of this archive, so the site's tutorial pages do not build from it, while the paper, its figures and the reference implementation do.</p><p>The code is under the MIT licence. The paper's text and figures are the author's, with all rights reserved while the paper is under review.</p>",
   "creators": [
     {
       "name": "Mohsenvand, Mostafa",

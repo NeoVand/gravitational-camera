@@ -205,9 +205,9 @@ and deploys them to GitHub Pages.
 ## Licence
 
 The code (the reference implementation, the site, and the scripts that draw the figures) is under the MIT licence,
-[LICENSE](LICENSE). The paper's text and figures are under Creative Commons Attribution 4.0,
-[paper/LICENSE.md](paper/LICENSE.md). The tutorial and the book (`tutorial/`, `book/`) are not yet licensed: all
-rights are reserved. Material from others keeps its own terms.
+[LICENSE](LICENSE). The paper's text and figures are the author's, with all rights reserved while the paper is under
+review, [paper/LICENSE.md](paper/LICENSE.md). The tutorial and the book (`tutorial/`, `book/`) are not yet licensed:
+all rights are reserved. Material from others keeps its own terms.
 
 Releases are archived on Zenodo, [doi.org/10.5281/zenodo.24572829](https://doi.org/10.5281/zenodo.24572829) for all
 versions. The archived copy holds everything here but the text of the tutorial and of the book.
