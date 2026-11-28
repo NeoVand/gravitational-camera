@@ -29,7 +29,7 @@ STYLES = {
     "silica": (mf.ACCENT2, mf.DASH),
     "water": (mf.ACCENT, "-"),
 }
-NAMES = {"copper": "copper", "iron": "iron (bound)", "silicon": "silicon", "diamond": "diamond",
+NAMES = {"copper": "copper", "iron": "iron (upper bound)", "silicon": "silicon", "diamond": "diamond",
          "silica": "silica glass", "water": "water"}
 
 
@@ -46,8 +46,9 @@ def materials_figure():
     w = f * M.THZ
 
     fig = plt.figure(figsize=(mf.FULL, 2.55))
-    a = fig.add_axes([0.075, 0.17, 0.37, 0.76])
-    b = fig.add_axes([0.535, 0.17, 0.30, 0.76])
+    # both panels a little narrower than they could be, to leave room for the longest name in the legend
+    a = fig.add_axes([0.075, 0.17, 0.355, 0.76])
+    b = fig.add_axes([0.515, 0.17, 0.285, 0.76])
 
     # the band of heat at room temperature: where B_omega exceeds a tenth of its peak
     band = M.planck(w, T)

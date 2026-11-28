@@ -1313,7 +1313,7 @@ def locked_safe():
     letter(a_read, r"(f) what the pixels read, in $10^{-9}\,\mathrm{s^{-2}}$")
     a_read.text(-0.55, 2.4, r"$\mathcal{E}_{xz}$", color=ACCENT2, fontsize=7, ha="left", va="center")
     a_read.text(-1.65, -6.85, r"$\mathcal{E}_{zz}$", color=ACCENT, fontsize=7, ha="left", va="center")
-    a_read.text(-1.65, -1.05, "the gold alone", color=INK, fontsize=6.5, ha="left", va="center")
+    a_read.text(-1.65, -1.05, r"the gold alone, $\mathcal{E}_{zz}$", color=INK, fontsize=6.5, ha="left", va="center")
     a_read.text(1.65, 2.6, "dashed: no gold", color=DIM, fontsize=6.5, ha="right", va="center")
 
     print(f"  locked-safe: the gold's largest component along the row {np.abs(alone).max():.2e} s^-2; "
@@ -2050,7 +2050,8 @@ def ranging():
     for s in d["frequency"]:
         col = colours[s["iota"]]
         p = np.array(s["points"])
-        b.plot(p[:, 0], p[:, 1] / p[:, 0], "o-", ms=2.8, lw=0.6, color=col, mec="none",
+        # points only: joined, they would read as a prediction, and the only line here is the true distance
+        b.plot(p[:, 0], p[:, 1] / p[:, 0], "o", ms=2.8, color=col, mec="none",
                label=rf"$\iota = {s['iota']}^\circ$")
     b.legend(loc="upper right", handlelength=1.4, labelspacing=0.25, fontsize=7)
     b.set_xscale("log")
@@ -2413,6 +2414,16 @@ def silent_flows():
             sp.set_linewidth(0.4)
             sp.set_color(INK)
     axes[1].text(1.9, -1.88, r"$\mathcal{B} = 0$ outside", fontsize=7, ha="right", va="bottom", color=DIM)
+    # the key to the shading of both panels, in the empty corner of (b): four decades below the swirl's largest value
+    key = axes[1].inset_axes([-1.86, -1.62, 1.1, 0.11], transform=axes[1].transData, zorder=3)
+    key.imshow(np.linspace(-4, 0, 256)[None, :], cmap=ramp, vmin=-4, vmax=0, aspect="auto", extent=(0, 1, 0, 1))
+    key.set_xticks([]); key.set_yticks([])
+    for sp in key.spines.values():
+        sp.set_linewidth(0.4)
+        sp.set_color(INK)
+    axes[1].text(-1.86, -1.68, r"$10^{-4}$", fontsize=6.5, ha="left", va="top", color=DIM)
+    axes[1].text(-0.76, -1.68, r"$1$", fontsize=6.5, ha="right", va="top", color=DIM)
+    axes[1].text(-1.86, -1.47, r"$|\mathcal{B}|$ over the swirl's largest", fontsize=6.5, ha="left", va="bottom", color=DIM)
     fig.subplots_adjust(left=0.01, right=0.99, top=0.91, bottom=0.01, wspace=0.05)
     centre(fig)
     trim(fig)

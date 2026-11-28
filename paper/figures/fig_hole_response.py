@@ -149,7 +149,8 @@ def hole_response_figure():
     shown = hole <= TOP
     d.plot(av[shown], hole[shown], color=mf.ACCENT, lw=mf.CURVE, solid_capstyle="butt", zorder=3)
     d.plot([at], [least], "o", color=mf.ACCENT, ms=2.6, mew=0, zorder=4)
-    d.text(at, least - 0.35, rf"${least:.2f}$".replace("-", "{-}"), fontsize=7, color=mf.ACCENT, ha="center", va="top")
+    # the value above the point, inside the dip and clear of the axis below
+    d.text(at, least + 0.3, rf"${least:.2f}$".replace("-", "{-}"), fontsize=7, color=mf.ACCENT, ha="center", va="bottom")
     # each name to the right of its curve's right branch, at one height
     NAMES = 4.4
     for curve, name, colour in ((hole, "a black hole", mf.ACCENT), (ball, "a uniform ball", mf.DIM)):

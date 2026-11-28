@@ -55,8 +55,10 @@ export default async function () {
 	}
 	A.polygon(curve, { fill: `light-dark(${FILL}, ${FILL_NIGHT})`, layer: 0 });
 	A.curve(curve, { color: ACCENT, width: 0.8, layer: 1 });
-	// the spin axis, and the angular velocity
-	A.curve([v3(0, -1.12, 0), v3(0, 1.12, 0)], { color: FAINT, width: 0.45, dash: [2, 2], layer: 2 });
+	// the spin axis, with an arrowhead at the end the angular velocity points to (the pair below turns anticlockwise
+	// seen from there), since the colours of the ellipses depend on that sense
+	A.curve([v3(0, -1.12, 0), v3(0, 1.02, 0)], { color: FAINT, width: 0.45, dash: [2, 2], layer: 2 });
+	A.arrow(v3(0, 1.0, 0), v3(0, 1.12, 0), { color: FAINT, width: 0.45, head: 3.2, layer: 2 });
 	// the letter in the open part of the lobe, midway between the axis and the outline at its height: about six
 	// points of air on either side
 	A.label('\\boldsymbol{\\Omega}', v3(-0.17, 0.74, 0), { anchor: 'cc' });

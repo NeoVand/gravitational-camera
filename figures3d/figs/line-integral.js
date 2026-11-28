@@ -26,8 +26,14 @@ export default async function () {
 		const h = size[k], sp = s.span(1 - (ground - y) / h);
 		return [left[k] + sp[0] * width(s, h), left[k] + sp[1] * width(s, h)];
 	};
-	const seg = (x0, x1, y, dashed, color = ACCENT, w = 0.75) =>
-		`<path d="M${x0.toFixed(2)},${y.toFixed(2)}L${x1.toFixed(2)},${y.toFixed(2)}" stroke="${color}" stroke-width="${w}"${dashed ? ' stroke-dasharray="2.4 1.8"' : ''}/>`;
+	// A stretch of the line. Where a body hides it, it is dashed, on a pale band a little wider than itself, so that
+	// the dashes show against the wood, the iron and the cloth they cross.
+	const seg = (x0, x1, y, dashed, color = ACCENT, w = 0.75) => {
+		const d = `M${x0.toFixed(2)},${y.toFixed(2)}L${x1.toFixed(2)},${y.toFixed(2)}`;
+		return dashed
+			? `<path d="${d}" stroke="#fffffe" stroke-opacity="0.72" stroke-width="${(w + 1.3).toFixed(2)}"/><path d="${d}" stroke="${color}" stroke-width="${w}" stroke-dasharray="2.4 1.8"/>`
+			: `<path d="${d}" stroke="${color}" stroke-width="${w}"/>`;
+	};
 	const dot = (x, y, color) => `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="2.1" fill="${color}" stroke="#fffffe" stroke-width="0.4"/>`;
 	for (const [row, gravity] of [[0, false], [1, true]]) {
 		const ground = row * RH + RH - 6, y = ground - lineH;
