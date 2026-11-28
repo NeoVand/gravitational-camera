@@ -61,8 +61,8 @@ $$\int_0^{2\pi}\!\!\int_0^\pi \sin\vartheta\,\dd\vartheta\,\dd\varphi = 2\pi\tim
 the $4\pi$ steradians of section 1.3.
 
 ![The small box between $r$ and $r + \dd r$, $\vartheta$ and $\vartheta + \dd\vartheta$, $\varphi$ and
-$\varphi + \dd\varphi$: the faces of constant $r$ are orange, of constant $\vartheta$ blue, of constant $\varphi$
-grey.](tut-sph-box){#fig:spherical-box}
+$\varphi + \dd\varphi$, drawn far larger than it is, with its inner face on the sphere of radius $r$: the faces of
+constant $r$ are orange, of constant $\vartheta$ blue, of constant $\varphi$ grey.](tut-sph-box){#fig:spherical-box}
 
 ## The Laplacian splits into a part along the radius and a part on the sphere
 

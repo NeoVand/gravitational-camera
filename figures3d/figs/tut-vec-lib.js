@@ -245,12 +245,13 @@ async function inkOf(svg, w, h) {
 /** The panel's centre on the provisional page: draw with Panel({ x: ORIGIN, y: ORIGIN, w: 0, h: 0, ... }). */
 export const ORIGIN = CANVAS / 2;
 
-/** The figure, cropped to its ink with the margin M on every side; `width` its allowed range of widths. */
-export async function finish(name, panel, labels, width = [240, 300]) {
+/** The figure, cropped to its ink with the margin M on every side; `width` its allowed range of widths. `panel` is
+ * a panel or a list of panels; `canvas` the side of the provisional page, points, for a figure wider than one. */
+export async function finish(name, panel, labels, width = [240, 300], canvas = CANVAS) {
 	const check = checker(name);
-	const raw = await figure(CANVAS, CANVAS, [panel], labels.map((l) => Promise.resolve(l.svg)));
-	const ink = await inkOf(raw, CANVAS, CANVAS);
-	check(ink.l > 1 && ink.t > 1 && ink.r < CANVAS - 1 && ink.b < CANVAS - 1, 'the ink reaches the provisional page\'s edge');
+	const raw = await figure(canvas, canvas, [].concat(panel), labels.map((l) => Promise.resolve(l.svg)));
+	const ink = await inkOf(raw, canvas, canvas);
+	check(ink.l > 1 && ink.t > 1 && ink.r < canvas - 1 && ink.b < canvas - 1, 'the ink reaches the provisional page\'s edge');
 	const [head, rest] = [raw.slice(0, raw.indexOf('</defs>') + 7), raw.slice(raw.indexOf('</defs>') + 7, raw.lastIndexOf('</svg>'))];
 	const wrap = (W, H, dx, dy) => head.replace(/width="[^"]*" height="[^"]*" viewBox="[^"]*"/, `width="${W}pt" height="${H}pt" viewBox="0 0 ${W} ${H}"`) +
 		`<g transform="translate(${dx},${dy})">${rest}</g></svg>`;

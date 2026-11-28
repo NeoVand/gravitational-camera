@@ -54,8 +54,10 @@ and the three numbers $a_1$, $a_2$ and $a_3$ are its **components**. Each compon
 (Figure [](#fig:shadows)); a shadow that points west counts as negative. A component has the unit of the vector itself, so the
 components of a step are in metres.
 
-![The orange arrow along each axis is the shadow of $\vect a$ on it, found by dropping a dotted line from the tip at
-right angles to the axis. Its length is the component $a_1$, $a_2$ or $a_3$; here $a_3$ is negative.](tut-vec-shadows){#fig:shadows}
+![(a) An arrow $\vect a$ is the diagonal of a box whose edges run along the axes. The orange arrow on each axis is the
+shadow of $\vect a$ on it: the dotted line from the tip crosses a face of the box at right angles to the axis and meets
+the axis where the shadow ends. Its length is the component $a_1$, $a_2$ or $a_3$. (b) A level arrow $\vect b$ that
+points north and west: its shadow on the east axis points west, so $b_1$ is negative, and $b_3 = 0$.](tut-vec-shadows){#fig:shadows}
 
 The dot product of two vectors is $\vect a\cdot\vect b = |\vect a|\,|\vect b|\cos\vartheta$, where $\vartheta$ (a
 rounded form of the Greek letter theta) is the angle between them.  The unit vectors along the axes have
