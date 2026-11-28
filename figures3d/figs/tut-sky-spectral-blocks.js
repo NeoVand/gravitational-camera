@@ -3,21 +3,25 @@
 // helicity coordinates, rows w+ and w-*, columns their conjugate transposes, drawn as a square of four 5 x 5 blocks,
 // with a tick at every row and column on the square's top and left edges. Upper left C+, tinted in the sky's colour,
 // "C+: (1/2)(I + V): 25"; lower right C-*, tinted, "C-*: (1/2)(I - V): 25"; upper right C+-, split along its diagonal
-// by a staircase on the cells' edges into its symmetric part, the 15 cells on and above the diagonal, tinted, "C+-,
+// by a staircase on the cells' edges into its symmetric part, the 15 cells on and above the diagonal, striped, "C+-,
 // symmetric: Q - iU at degree 4: 18" and "checks: 12", and its antisymmetric part, the 10 cells below, in grey,
 // "antisymmetric: checks: 20"; lower left left blank, its text faint, "conjugate transpose of C+-: no new numbers". A
 // bar under the square, as wide as it and a hundred units long, in five pieces, 25, 25 and 18 tinted and 12 and 20
-// grey, with "25 + 25 + 18 = 68" under the first three in the sky's colour and "12 + 20 = 32" under the last two in
-// grey. The sky's colour is the curvature's, as in all of Part 9; no orange or blue.
-// Departures from the diagram's comment: the antisymmetric part is a grey tint, not a hatch, since a hatch's lines would
-// run under its label; the block names C+, C-* and C+- stand in the blocks over their labels, and the rows and columns
-// are named outside the square, so that the reader sees why the lower left block is the conjugate transpose of the upper
-// right; the symmetric part's 15 cells hold both its 18 numbers of the sky and its 12 checks, which are combinations
-// of entries, not cells, so its tint is the sky's and the 12 stands in grey beneath the 18.
+// grey, with "25 + 25 + 18 = 68" and "filled by the sky" under the first three in the sky's colour and "12 + 20 = 32"
+// and "checks: zero for any sky" under the last two in grey, ending at the bar's end. The sky's colour is the
+// curvature's, as in all of Part 9; no orange or blue.
+// Departures from the diagram's comment: the antisymmetric part is a grey tint, not a hatch, since a hatch's lines
+// would run under its label; the block names C+, C-* and C+- stand in the blocks over their labels, and the rows and
+// columns are named outside the square, so that the reader sees why the lower left block is the conjugate transpose of
+// the upper right; the symmetric part's 15 cells, 30 real numbers, hold both its 18 numbers of the sky and its 12
+// checks, which are combinations of entries, not cells, so it is striped along the diagonal in the sky's tint and the
+// checks' grey, the stripes 3 and 2 points wide, as 18 to 12 (asserted), and the 12 stands in grey beneath the 18; the
+// checks are named for what they are, zero for any sky, under the bar.
 // Exact: every count, computed in figs/tut-sky-lib.js as the rank of the span of the spectral matrices of single waves
 // from 500 random directions in four states of polarization (68 in all; 25, 25 and 18 in the blocks; 18 and 0 in the
 // symmetric and antisymmetric parts of C+-), asserted against the chapter's text; the pieces of the bar, in proportion
-// to the counts; the 15 and 10 cells of the two parts of C+-, counted on the page. Nothing is schematic.
+// to the counts; the 15 and 10 cells of the two parts of C+-, counted on the page; the stripes' widths, as 18 to 12.
+// Nothing is schematic.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, HAIR, TICK, n2 } from './tut-pot-lib.js';
 import { INK, DIM, FAINT } from '../lib.js';
 import { chapter, CURV } from './tut-sky-lib.js';
@@ -34,6 +38,7 @@ const HEAD_AIR = 3;                        // the names of the rows and columns 
 const BAR_AIR = 9, BAR_H = 9, BAR_GAP = 1.4;   // the bar under the square: its air, height, and the air between pieces
 const SUM_AIR = 3.2;                       // the sums under the bar
 const SKIP = 2;                            // between the lines of a block's text
+const STRIPE = [3, 2];                     // the symmetric part's stripes: the sky's and the checks' widths, as 18 to 12
 
 export default async function () {
 	const nums = await chapter(check);
@@ -55,7 +60,19 @@ export default async function () {
 	for (let i = 1; i <= 4; i++) { staircase.push([X(5 + i), Y(i)]); staircase.push([X(5 + i), Y(i + 1)]); }
 	const upper = [[X(5), Y(0)], [X(10), Y(0)], [X(10), Y(5)], ...staircase.slice().reverse()];
 	const lower = [[X(5), Y(1)], ...staircase.slice(1), [X(5), Y(5)]];
-	S.raw(`<path d="${poly(upper)}" fill="${CURV}" fill-opacity="${TINT}"/>`, 0);
+	// the symmetric part holds the sky's 18 and the 12 checks, which are combinations of its entries, not cells: it is
+	// striped along the diagonal in the two tints, their widths as 18 to 12
+	check(STRIPE[0] / STRIPE[1] === linear / symChecks, `the stripes ${STRIPE} are not as ${linear} to ${symChecks}`);
+	// the stripes as vector bands (x - y constant along them) over the block, clipped to the part, the sky's and the
+	// checks' side by side, each in its tint
+	const period = STRIPE[0] + STRIPE[1];
+	const ya = Y(0) - period, yz = Y(5) + period, sky = [], grey = [];
+	const band = (c0, c1) => poly([[c0 + ya, ya], [c0 + yz, yz], [c1 + yz, yz], [c1 + ya, ya]]);
+	for (let c = X(5) - Y(5) - 2 * period; c < X(10) - Y(0) + period; c += period * Math.SQRT2) {
+		sky.push(band(c, c + STRIPE[0] * Math.SQRT2));
+		grey.push(band(c + STRIPE[0] * Math.SQRT2, c + period * Math.SQRT2));
+	}
+	S.raw(`<clipPath id="${name}-sym"><path d="${poly(upper)}"/></clipPath><g clip-path="url(#${name}-sym)"><path d="${grey.join('')}" fill="${FAINT}" fill-opacity="${GREY}"/><path d="${sky.join('')}" fill="${CURV}" fill-opacity="${TINT}"/></g>`, 0);
 	S.raw(`<path d="${poly(lower)}" fill="${FAINT}" fill-opacity="${GREY}"/>`, 0);
 	// the cells of the two parts, counted: a cell's centre in the upper or lower polygon
 	const inside = (pts, [x, y]) => {
@@ -142,8 +159,9 @@ export default async function () {
 	const sum = (vs) => `${vs.join(' + ')} = ${vs.reduce((s, v) => s + v, 0)}`;
 	const s1 = sum([up, down, linear]), s2 = sum([symChecks, antiChecks]);
 	check(s1 === '25 + 25 + 18 = 68' && s2 === '12 + 20 = 32', `the sums ${s1}, ${s2}`);
-	L.push(await placed(s1, (x0 + skyEnd) / 2, yb + BAR_H + SUM_AIR, 0.5, 0, CURV));
-	L.push(await placed(s2, (skyEnd + X(10)) / 2, yb + BAR_H + SUM_AIR, 0.5, 0, DIM));
+	// the sums, and under them what they are: the sky's centred under its pieces, the checks' ending at the bar's end
+	L.push(group(await lines([[s1, CURV], ['\\text{filled by the sky}', CURV]], (x0 + skyEnd) / 2, yb + BAR_H + SUM_AIR, 0.5)));
+	L.push(group(await lines([[s2, DIM], ['\\text{checks: zero for any sky}', DIM]], X(10), yb + BAR_H + SUM_AIR, 1)));
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { sky: nums.sky, checks: nums.checks, cells: [nUp, nLow] };

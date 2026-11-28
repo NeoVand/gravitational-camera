@@ -157,7 +157,8 @@ two weighings suffice, as in section 13.1.
 So every ripple of the density is a finite recipe of pushes and weighings (Figure [](#fig:sixteen-weighings)).
 
 ![Look first at the counts under the columns: one complex ripple of the density needs four real integrals, each found
-from two squares by the polarization identity, and each square from two copies kicked both ways. The balances stand for
+by the polarization identity from two squares $A(f) = \int\matter\rho\,|\nabla f|^2\,\dd V$, and each square from
+the energies $E_+$ and $E_-$ that two copies gain when kicked both ways. The balances stand for
 weighings.](tut-sixteen-weighings){#fig:sixteen-weighings}
 
 ## This is Calderón's problem made linear, and in Newton's gravity the linear form is exact

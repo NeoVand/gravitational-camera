@@ -3,16 +3,17 @@
 // and the back half of the ball shows as a crescent above it. Left, rolls: the contours of the chapter's example
 // stream function chi = 4 K varpi^2 (1 - r^2 / R^2) / R^2 at 0.35, 0.65 and 0.9 of its greatest value K, one closed roll
 // in each half of the section, with arrowheads where each crosses the equator on its side nearer the axis (the matter
-// rises near the axis and sinks near the surface, as the stretch problem finds). A point P above the rolls drawn, in
-// the left half, and
-// the circle about the axis through it, drawn in the same view: its front half solid, in front of the section, its
-// back half dashed, behind it; the front half of the disc it spans lightly shaded. 2 pi chi(P) is the mass that
-// crosses that disc each second. Right, a swirl: the same section, the matter coming out of the page on one side of the
+// rises near the axis and sinks near the surface, as the stretch problem finds). A point P at the top of the outer
+// roll drawn (chi = 0.35 K), in the left half, and the circle about the axis through it, drawn in the same view: its
+// front half solid, in front of the section, its back half dashed, behind it; the front half of the disc it spans
+// lightly shaded. The circle meets the section again at the top of the mirrored roll. 2 pi chi(P) is the mass that
+// crosses that disc each second: named left of the ball, with a leader to the shaded disc. Right, a swirl: the same section, the matter coming out of the page on one side of the
 // axis (dots) and going into it on the other (crosses), for a swirl that turns anticlockwise seen from above.
 // Exact: the contours, drawn from the formula and checked against it at every point, and the flux they carry (the
-// stretch problem's, checked in figs/tut-flow-lib.js); P on its contour; the circle through P and the section's
+// stretch problem's, checked in figs/tut-flow-lib.js); P on its contour, and chi below chi(P) everywhere on the
+// disc's diameter in the section between the axis and P (both asserted); the circle through P and the section's
 // outline, the axis and the crescent from the view (a turn of TILT degrees about the horizontal); the sense of the
-// swirl's marks for Omega along +z. Chosen for the drawing: the three levels, the place of P, the swirl's marks and
+// swirl's marks for Omega along +z. Chosen for the drawing: the three levels, the contour P is on, the swirl's marks and
 // the view. Pictorial: the sawn face of the steel ball (sprites/hair/ball-face.png, as in section 2.5's figures),
 // clipped to the section's exact outline, and the back half lit as the paper's balls are, in the stone's mean colour.
 import { Panel, v3, INK, DIM } from '../lib.js';
@@ -28,13 +29,15 @@ const S = 52;                       // points per R
 const TILT = 18;                    // the view: the section seen this far from face on, from above (degrees)
 const APART = 2.62;                 // the two balls' centres apart
 const LEVELS = [0.35, 0.65, 0.9];    // the contours, in units of K
-const P_AT = [0.3, 0.74];           // P, in the left half: [varpi, z], above the rolls
+const P_ON = 0.35;                  // P, in the left half: the top of the contour at this level (the outermost drawn)
 const AXIS_OUT = 0.22;              // the axis beyond the ball, top and bottom
 const CONTOUR = 0.6;                // the contours' stroke
 const HEAD = 3.4;                   // an arrowhead on a contour: its length, points
 const SWIRL = [[0.52, 0.5], [0.6, 0], [0.52, -0.5]];   // the swirl's marks, [varpi, z]
 const MARK = 3.1;                   // their radius, points
 const DISC = 0.2;                   // the disc's shade
+const LEAD_GAP = 12;                // the flux's name ends this far left of the ball
+const LEAD_RISE = -6;               // and stands this far above the point of the disc its leader reaches
 
 /** The contour chi = c in the half-plane varpi > 0: [varpi, z] points round it, closed, anticlockwise in (varpi, z). */
 function contour(c, n = 360) {
@@ -50,7 +53,7 @@ function contour(c, n = 360) {
 
 export default async function () {
 	checkChapter(name);
-	const P = new Panel({ x: ORIGIN, y: ORIGIN, w: 0, h: 0, scale: S, tilt: TILT, turn: 0 });
+	const P = new Panel({ x: ORIGIN + 50, y: ORIGIN, w: 0, h: 0, scale: S, tilt: TILT, turn: 0 });   // room at the left for the flux's name
 	const ink = new Sheet(P, name);
 	const cos = Math.cos((TILT * Math.PI) / 180);
 	const face = await ballFace();
@@ -108,8 +111,10 @@ export default async function () {
 			}
 			// the matter rises near the axis: the flux on the inner crossing points up (J_z > 0)
 			// ---- P, on the middle contour, and its circle about the axis
-			const [wP, P_Z] = P_AT;
-			check(Math.hypot(wP, P_Z) < 1 && chi(wP, P_Z) > 0 && chi(wP, P_Z) < Math.min(...LEVELS), 'P is not inside the ball, above the rolls drawn');
+			// the top of the contour chi = P_ON, where it runs level: z = sqrt(1 - sqrt(c)), varpi^2 = (1 - z^2) / 2
+			const P_Z = Math.sqrt(1 - Math.sqrt(P_ON)), wP = Math.sqrt((1 - P_Z * P_Z) / 2);
+			check(LEVELS.includes(P_ON) && near(chi(wP, P_Z), P_ON, 1e-12), 'P is not on a drawn contour');
+			for (let i = 1; i < 100; i++) check(chi((wP * i) / 100, P_Z) < P_ON, 'the disc crosses the contour through P');
 			const ring = (t) => C.clone().add(v3(-wP * Math.cos(t), P_Z, wP * Math.sin(t)));   // t = 0 at P (left), t in (0, pi) in front
 			const front = Array.from({ length: 181 }, (_, i) => ring((i * Math.PI) / 180));
 			const back = Array.from({ length: 181 }, (_, i) => ring(Math.PI + (i * Math.PI) / 180));
@@ -121,10 +126,14 @@ export default async function () {
 			const pp = ink.at(sec(-wP, P_Z));
 			raw(`<circle cx="${n2(pp[0])}" cy="${n2(pp[1])}" r="1.15" fill="${STONE_INK}"/>`, 6);
 			ink.mark([pp], 1.15, 'P');
-			L.push(await placed('P', pp[0] - 1.15 - 2.4, pp[1], 1, 0.5, STONE_INK));
-			// what crosses the disc, beside the middle of its front half
-			const mid = ink.at(C.clone().add(v3(0, P_Z, wP / 2)));
-			L.push(await ink.label('2\\pi\\chi(P)\\ \\text{crosses}', [cx - S, mid[1]], [-1, 0], 3.2, INK));
+			L.push(await ink.label('P', pp, [-0.25, -1], 2.2, STONE_INK));
+			// what crosses the disc: named left of the ball, a leader from the name to the middle of the disc's front half
+			const mid = ink.at(C.clone().add(v3(-wP / 2, P_Z, wP / 2)));
+			const flux = await placed('2\\pi\\chi(P)\\ \\text{through the disc}', cx - S - LEAD_GAP, mid[1] - LEAD_RISE, 1, 0.5, INK);
+			const from = [flux.box.r + 2, (flux.box.t + flux.box.b) / 2];
+			raw(`<path d="M${n2(from[0])},${n2(from[1])}L${n2(mid[0])},${n2(mid[1])}" stroke="${INK}" stroke-width="${HAIR}" fill="none"/>`, 6);
+			raw(`<circle cx="${n2(mid[0])}" cy="${n2(mid[1])}" r="0.7" fill="${INK}"/>`, 6);
+			L.push(flux);
 		} else {
 			// ---- a swirl about +z, anticlockwise seen from above: out of the page (toward the viewer) on the left, in on the right
 			const omega = v3(0, 1, 0);
@@ -147,5 +156,5 @@ export default async function () {
 	}
 
 	ink.checkAll(L);
-	return finish(name, P, L, [240, 340]);
+	return finish(name, P, L, [240, 380]);
 }

@@ -3,9 +3,11 @@
 // with short arrows of the displacement u = (q/R)(-x/2, z) in that section, from the points of a square grid
 // inside it: orange where the arrow has an outward part (the bit moves away from the centre), blue where it has an
 // inward part. Over it, dashed, the ball's surface at the two ends of a swing, r = R(1 + 0.15 P2(cos theta)), taller,
-// "+q", and r = R(1 - 0.15 P2(cos theta)), flatter, "-q". Right, a vertical frequency axis from 0 to 16 kHz with
-// three notes: Rayleigh's bound 15.1 kHz, Lamb's exact 12.6 kHz and, in grey, the twist at 11.9 kHz, which moves no
-// mass; a small arrow down from the bound to the exact note, "the true note lies below".
+// "+q", and r = R(1 - 0.15 P2(cos theta)), flatter, "-q". Right, a vertical frequency axis "f (kHz)" from 10 kHz,
+// numbered 10, 12, 14, 16 on its left (the notes lie between 11 and 16 kHz, so an axis from 0 would leave its lower
+// three quarters empty; it starts at its lowest number, which is printed), with three notes: Rayleigh's bound 15.1 kHz,
+// Lamb's exact 12.6 kHz and, in grey, the twist at 11.9 kHz, which moves no mass; a small arrow down from the bound
+// to the exact note, "the true note lies below".
 // The diagram comment asked for orange "where the arrow points away from the equatorial plane" and blue "where it
 // points toward the axis"; but every arrow off the axes does both at once (u_z has the sign of z and u_x the sign of
 // -x), so the colours are given here by the sign of the outward part u . x = (q/R)(z^2 - x^2/2), the paper's orange
@@ -34,9 +36,11 @@ const KAPPA = 0.21;                       // an arrow's length per point of (-x/
 const MIN = 3.2;                          // the shortest arrow drawn, points
 const CLEAR = 1.6;                        // the least air between an arrow and an outline
 const AX = R * (1 + EPS / 2) + 26;        // the frequency axis's x, from the ball's centre
-const PER_KHZ = 11;                       // points per kHz
-const F0 = -88;                           // the axis's 0, points from the ball's centre (y up)
-const TOP = 16;                           // kHz
+const PER_KHZ = 20;                       // points per kHz
+const LO = 10, TOP = 16.6;                // the axis's ends, kHz
+const F_LO = -64;                         // the axis's foot, LO, points from the ball's centre (y up)
+const NUMS = [10, 12, 14, 16];            // the numbered ticks, kHz
+const NUM_TICK = 3;                       // a numbered tick, from the axis to the left
 const TICK = 9;                           // a note's tick, from the axis to the right
 const CROSS = 1.8;                        // no dash of an outline this near a crossing of the three curves
 const GAP = 3;                            // from a tick's end to its label
@@ -134,20 +138,26 @@ export default async function () {
 	L.push(await ink.label('-q', ink.at(v3(outlines[1].rr(Math.PI / 2), 0, 0)), [1, 0], 2.2, DIM));
 
 	// ---- the frequency axis, 0 to 16 kHz, and the three notes
-	const y = (f) => F0 + PER_KHZ * f;
-	ink.arrow(v3(AX, y(0), 0), v3(AX, y(TOP), 0), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the frequency axis' });
-	L.push(await ink.label('f', ink.at(v3(AX, y(TOP), 0)), [0, -1], 2.2, DIM));
+	const y = (f) => F_LO + PER_KHZ * (f - LO);
+	ink.arrow(v3(AX, y(LO), 0), v3(AX, y(TOP), 0), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the frequency axis' });
+	L.push(await ink.label('f\\ (\\text{kHz})', ink.at(v3(AX, y(TOP), 0)), [0, -1], 2.2, DIM));
+	// the numbered ticks, on the axis's left
+	for (const f of NUMS) {
+		ink.line(v3(AX - NUM_TICK, y(f), 0), v3(AX, y(f), 0), { color: DIM, width: HAIR, layer: 1, what: `the number tick at ${f}` });
+		check(near(ink.at(v3(AX, y(f), 0))[1] - ink.at(v3(AX, y(LO), 0))[1], -PER_KHZ * (f - LO), 1e-9), `the number tick at ${f} is not at its value`);
+		L.push(await placed(String(f), ink.at(v3(AX - NUM_TICK - 2.6, y(f), 0))[0], ink.at(v3(AX, y(f), 0))[1], 1, 0.5, DIM));
+	}
+	check(NUMS[0] === LO && [nums.rayleigh, nums.lamb, nums.twist].every((f) => f > LO && f < TOP), 'a note lies off the axis');
 	const notes = [
 		{ f: nums.rayleigh, src: '\\text{Rayleigh\'s bound, 15.1 kHz}', color: INK, shift: 0 },
 		{ f: nums.lamb, src: '\\text{Lamb, exact, 12.6 kHz}', color: INK, shift: -1 },
-		{ f: nums.twist, src: '\\text{twist, 11.9 kHz (moves no mass)}', color: DIM, shift: 1 },
-		{ f: 0, src: '0', color: DIM, shift: 0 }
+		{ f: nums.twist, src: '\\text{twist, 11.9 kHz (moves no mass)}', color: DIM, shift: 1 }
 	];
 	check(near(nums.rayleigh, kHz(ETA_RAYLEIGH), 0) && near(nums.lamb, kHz(ETA_LAMB), 0) && near(nums.twist, kHz(ETA_TWIST), 0), 'the notes');
 	const probes = [];
 	for (const n of notes) {
-		ink.line(v3(AX, y(n.f), 0), v3(AX + TICK, y(n.f), 0), { color: n.color, width: n.f ? 0.6 : HAIR, layer: 1, what: `the tick at ${n.f}` });
-		check(near(ink.at(v3(AX, y(n.f), 0))[1], ORIGIN - F0 - PER_KHZ * n.f, 1e-9) && near(ink.at(v3(AX, y(TOP), 0))[1] - ink.at(v3(AX, y(0), 0))[1], -PER_KHZ * TOP, 1e-9), `the tick at ${n.f} is not at its value`);
+		ink.line(v3(AX, y(n.f), 0), v3(AX + TICK, y(n.f), 0), { color: n.color, width: 0.6, layer: 1, what: `the tick at ${n.f}` });
+		check(near(ink.at(v3(AX, y(n.f), 0))[1], ORIGIN - F_LO - PER_KHZ * (n.f - LO), 1e-9) && near(ink.at(v3(AX, y(TOP), 0))[1] - ink.at(v3(AX, y(LO), 0))[1], -PER_KHZ * (TOP - LO), 1e-9), `the tick at ${n.f} is not at its value`);
 		probes.push(await placed(n.src, 0, 0, 0, 0.5, n.color));
 	}
 	// Lamb's label lifted and the twist's lowered, by the least that parts them by 2.4 points
@@ -164,8 +174,8 @@ export default async function () {
 	const down = ink.arrow(v3(ax, y(nums.rayleigh) - 1.6, 0), v3(ax, y(nums.lamb) + 1.6, 0), { color: INK, width: PUSH, head: PUSH_HEAD, layer: 2, what: 'the arrow down' });
 	check(down.u[1] > 0.999, 'the arrow does not point down');
 	const yR = ink.at(v3(AX, y(nums.rayleigh), 0))[1];
-	const top = L[L.length - 4].box.b, bottom = L[L.length - 3].box.t;
-	check(near(yR, (L[L.length - 4].box.t + L[L.length - 4].box.b) / 2, 1e-6), 'Rayleigh\'s label is not on its tick');
+	const top = L[L.length - 3].box.b, bottom = L[L.length - 2].box.t;
+	check(near(yR, (L[L.length - 3].box.t + L[L.length - 3].box.b) / 2, 1e-6), 'Rayleigh\'s label is not on its tick');
 	L.push(await placed('\\text{the true note lies below}', lx, (top + bottom) / 2, 0, 0.5, DIM));
 
 	ink.checkAll(L);

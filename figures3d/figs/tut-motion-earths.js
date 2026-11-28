@@ -1,8 +1,13 @@
 // The tutorial, section 1.6 (tutorial/newton/motion.md), its third diagram: two Earths that pull alike outside and
 // turn differently. Left, the Earth of two layers, cut open: a core of radius 3480 km and density 12,500 kg m^-3
 // inside a mantle of 4150 kg m^-3 out to 6371 km; right, the uniform Earth of 5513 kg m^-3, cut open the same way.
-// Around each, the same ring of arrows: the pull outside, which the two share. Exact: the two sections to scale (the
-// core's circle has radius 3480/6371 of the outer one, asserted in points); the densities, solved here from the
+// Around each, the same ring of arrows: the pull outside, which the two share, drawn at one distance. Two radii are
+// marked from the centres, each with its length, both pointing left: on the left Earth the core's, 3480 km (drawn
+// and labelled in a pale fixed colour, since it lies on the dark metal), and on the right Earth the whole Earth's,
+// 6371 km, the outer radius of both (marked there because the uniform stone leaves its label clear of any layer).
+// Exact: the two sections to scale (the core's circle has radius 3480/6371 of the outer one, asserted in points;
+// the two outer circles are drawn with one radius); the two radii end on their circles, and their labels lie inside
+// the core and inside the uniform Earth; the densities, solved here from the
 // mean density and the moment-of-inertia factor 0.3307 as the chapter does (12,505 and 4152, printed as the paper's
 // 12,500 and 4150), and the two moment-of-inertia factors, 0.3307 and 0.4, recomputed from them; the two masses,
 // equal to a part in 10^9, so that the pull GM/r^2 outside is the same at every distance (asserted at five); the
@@ -48,12 +53,14 @@ const massWithin = (layers, r) => {
 const pull = (layers, r) => (G * massWithin(layers, r)) / (r * 1e3) ** 2;
 
 // ---- the drawing (figure points, y down) ----------------------------------------------------------------------
-const A = 46;                            // points per Earth radius
+const A = 60;                            // points per Earth radius
 const GAP = 26;                          // between the two rings of arrows
 const FIELD = [1.17, 1.5];               // the arrows' heads and tails, in Earth radii
 const ARROWS = 24;
 const ARROW = 0.5, HEAD = 2.8;           // as the field's arrows of figs/hair.js
 const STONE_INK = '#3b3024';             // the sections' edges, drawn on the stone: fixed, so the site does not swap it
+const ON_METAL = '#f3eee5';              // the marks drawn on the dark metal of the core: fixed, for the same reason
+const DIM_LINE = 0.5, DIM_HEAD = 3.4;    // the radii's stroke and heads
 const SPRITES = '/figures3d/sprites/hair/';
 const SIZE = 8.5;
 
@@ -96,6 +103,28 @@ export default async function () {
 	}
 	check(near((q * A) / A, CORE / RADIUS, 1e-15), 'the core is not to scale');
 
+	// ---- the two radii, from the centres and pointing left: the core's on the left Earth, the whole Earth's on the
+	// right one; each length set above its radius
+	const R = [];
+	sh.raw(`<circle cx="${x1}" cy="${y1}" r="1" fill="${ON_METAL}"/><circle cx="${x2}" cy="${y2}" r="1" fill="${STONE_INK}"/>`, 2);
+	const coreR = sh.arrow([x1, y1], [x1 - q * A, y1], { color: ON_METAL, width: DIM_LINE, head: DIM_HEAD, layer: 2, what: 'the core\'s radius' });
+	const earthR = sh.arrow([x2, y2], [x2 - A, y2], { color: STONE_INK, width: DIM_LINE, head: DIM_HEAD, layer: 2, what: 'the Earth\'s radius' });
+	check(near(Math.hypot(coreR.B[0] - x1, coreR.B[1] - y1), (CORE / RADIUS) * A, 1e-9) && near(Math.hypot(earthR.B[0] - x2, earthR.B[1] - y2), A, 1e-9),
+		'a radius does not end on its circle');
+	// the core's length set flush with the centre, the room in the core being short; the Earth's centred on its radius
+	{
+		const svg = await tex('3480\\,\\mathrm{km}', [x1 + 0.5, y1 - 3.7], SIZE, 'rB', ON_METAL);
+		R.push({ src: '3480 km', svg, box: boxOf(svg), on: ['an Earth'], C: [x1, y1], within: q * A - 1.5 });
+	}
+	{
+		const svg = await tex('6371\\,\\mathrm{km}', [x2 - A / 2, y2 - 3.7], SIZE, 'cB', STONE_INK);
+		R.push({ src: '6371 km', svg, box: boxOf(svg), on: ['an Earth'], C: [x2, y2], within: A - 1.5 });
+	}
+	for (const l of R) {
+		const far = Math.max(...[[l.box.l, l.box.t], [l.box.r, l.box.t], [l.box.l, l.box.b], [l.box.r, l.box.b]].map(([x, y]) => Math.hypot(x - l.C[0], y - l.C[1])));
+		check(far <= l.within, `the label ${l.src} strays out of its circle`);
+	}
+
 	// ---- the pull outside: one list of arrows, drawn round both, each from its tail at FIELD[1] radii straight in
 	// toward the centre; the pull is the same for both at every distance outside, so one list serves both
 	const g = (r) => pull(uniform, r * RADIUS);
@@ -116,7 +145,7 @@ export default async function () {
 	const words = [[['core', '12{,}500'], ['mantle', '4150']], [['uniform', '5513']]];
 	const first = ORIGIN + FIELD[1] * A + 12;                            // the first baseline
 	const LEAD = 11.5, SPACE = 4.4;                                       // between baselines; between word and number
-	const L = [];
+	const L = [...R];
 	const set = async (src, x, y, anchor, color) => {
 		const svg = await tex(src, [x, y], SIZE, anchor, color);
 		return { src, svg, box: boxOf(svg) };
@@ -138,9 +167,9 @@ export default async function () {
 		const ink = span(placedTable);
 		check(near((ink.l + ink.r) / 2, centres[k][0], 0.05), `the table under Earth ${k} is not centred`);
 	}
-	check(L.every((l) => l.box.t > ORIGIN + FIELD[1] * A + 2.2), 'a label reaches the arrows');
+	check(L.slice(R.length).every((l) => l.box.t > ORIGIN + FIELD[1] * A + 2.2), 'a label of the tables reaches the arrows');
 
 	sh.checkAll(L);
 	window.tutMotionEarths = { q, core, mantle, M, g: g(1) };
-	return finish(sh, L, [240, 340]);
+	return finish(sh, L, [360, 420]);
 }

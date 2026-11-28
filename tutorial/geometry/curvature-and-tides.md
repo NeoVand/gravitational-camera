@@ -67,8 +67,9 @@ still comes home unturned (Figure [](#fig:carried-arrow)). The next section buil
 that is zero for the sheet and $1/a^2$ for the sphere.
 
 ![Look first at the two arrows at the start of each loop. On the sphere the arrow, never turned on the way, comes home
-turned by 90°, the area enclosed divided by $a^2$; on the flat sheet it comes home unturned, although its polar
-components change on the way and the Christoffel symbols are not zero.](tut-curvature-loops){#fig:carried-arrow}
+turned by 90°, the area enclosed divided by $a^2$ (the pale square lies flat against the sphere at the pole, in the
+plane of the two arrows); on the flat sheet it comes home unturned, although its polar components change on the way
+and the Christoffel symbols are not zero.](tut-curvature-loops){#fig:carried-arrow}
 
 ::: try {#carry-around}
 A sphere of radius $a$ and a loop on it whose corners you can drag; its sides are arcs of great circles. *Carry the

@@ -7,13 +7,14 @@
 // peaks at 1 exactly at omega0 for every Q; a dotted line at 1/2, a dot where each curve crosses it, at the half-power
 // points sqrt(1 + 1/4Q^2) -+ 1/2Q (for Q = 10, 0.9512 and 1.0512), and under the axis a dimension line for each Q
 // between its two half-power points, 1/Q long (0.333, 0.1, 0.033). A dotted line at omega / omega0 = 1 through the
-// three panels.
+// three panels. The top panel names its curves beside their peaks; the middle panel holds a key, a stroke of each
+// weight with its Q, which serves the two lower panels.
 // Exact: every curve, k chi = 1 / (1 - x^2 - i x / Q) (eq:chi with x = omega / omega0), the peaks and the
 // half-power points, asserted in tut-osc-lib.js, `cart`, and against the curves here. Each curve is sampled so that
-// no two neighbouring points are more than a quarter of a point apart, and is stopped where it would merge with a
-// horizontal axis (figs/tut-prob-lib.js, `merge`). Nothing is schematic.
+// no two neighbouring points are more than a quarter of a point apart, and runs the whole axis, from 0 to 2: where
+// the lag or the line is near 0 it lies along the horizontal axis, drawn over it. Nothing is schematic.
 import { Sheet, ORIGIN, finish, checker, placed, near, n2 } from './tut-pot-lib.js';
-import { Plot, xAxis, yAxis, dimension, merge, LABEL_GAP } from './tut-prob-lib.js';
+import { Plot, xAxis, yAxis, dimension, LABEL_GAP } from './tut-prob-lib.js';
 import { graph, longest } from './tut-fourier-lib.js';
 import { DIM, FAINT, ACCENT, ACCENT2, ZERO_LINE, ZERO_DASH } from './tut-bessel-lib.js';
 import { cart, kChi, modulus, argument, deg, line, halfPower } from './tut-osc-lib.js';
@@ -33,7 +34,8 @@ const GAP = 12;                                  // between panels
 const ENV_DASH = [1.8, 1.4], ENV = 0.45;         // the free mass's asymptote, as section 3.6's envelope
 const DOT_R = 1.05;
 const FIRST = 9, ROW = 10.5;                     // the widths' rows under the axis (figs/tut-measure-peak.js)
-const AIR = 1.4;                                 // a curve stops where less than this, points, would part it from an axis
+const KEY_X = 1.3, KEY_LEN = 14, KEY_ROW = 10.5;  // the middle panel's key: its strokes' left end (omega / omega0), length, rows
+const KEY_TOP = 110;                             // the key's upper row, degrees (under the curves there, all above 140)
 
 export default async function () {
 	const n = cart(check);
@@ -71,11 +73,8 @@ export default async function () {
 	for (const Q of QS) {
 		const f = (x) => deg(argument(kChi(x, Q)));
 		check(near(f(1), 90, 1e-12) && f(XMAX) < 180 && f(1e-6) > 0, `the lag of Q = ${Q}`);
-		// from where the lag first stands clear of the axis by AIR
-		const clear2 = merge(P2, WEIGHT[Q]) + (AIR / P2.h) * 180;
-		let a = 0;
-		while (f(a) < clear2) a += 1e-4;
-		const pts = graph(P2, f, a, XMAX);
+		// the whole curve, from the axis's left end, where the lag is 0 and the curve runs along the axis
+		const pts = graph(P2, f, 0, XMAX);
 		check(longest(pts) <= 0.2501, `the lag for Q = ${Q} is coarse`);
 		S.path(pts, { color: ACCENT, width: WEIGHT[Q], layer: 2, what: `the lag, Q = ${Q}` });
 	}
@@ -88,12 +87,9 @@ export default async function () {
 		check(near(f(1), 1, 1e-15), `the line of Q = ${Q} is not 1 at omega0`);
 		// m Gamma omega Im chi from the response itself: Im(k chi) x / Q, since k = m omega0^2 and Gamma = omega0 / Q
 		for (const x of [0.3, 0.97, 1.4]) check(near((kChi(x, Q)[1] * x) / Q, f(x), 1e-12), `the line of Q = ${Q} is not omega Im chi`);
-		// the stretch where it stands clear of the axis by AIR: one, around omega0
-		const clear3 = merge(P3, WEIGHT[Q]) + (AIR / P3.h) * LINE_TOP;
-		let a = 1, b = 1;
-		while (a > 0 && f(a) > clear3) a -= 1e-4;
-		while (b < XMAX && f(b) > clear3) b += 1e-4;
-		const pts = graph(P3, f, Math.max(0, a), Math.min(XMAX, b));
+		// the whole curve, from 0, where the line is 0, to the axis's right end
+		check(f(0) === 0, `the line of Q = ${Q} is not 0 at omega = 0`);
+		const pts = graph(P3, f, 0, XMAX);
 		check(longest(pts) <= 0.2501, `the line of Q = ${Q} is coarse`);
 		S.path(pts, { color: ACCENT, width: WEIGHT[Q], layer: 2, what: `the line, Q = ${Q}` });
 		const [lo, hi] = halfPower(Q);
@@ -128,6 +124,17 @@ export default async function () {
 	const x3 = 0.8, lowest3 = Math.min(...[0.7, 0.8, 0.9].map((x) => Math.log10(modulus(kChi(x, 3)))));
 	L.push(await S.clear('Q = 3', P1.X(x3), P1.Y(lowest3) + LABEL_GAP, 0.5, 0, [0, 1], { color: ACCENT }));
 	L.push(await S.clear('(\\omega_0/\\omega)^2', P1.X(1.75), P1.Y(Math.log10(1 / 1.75 ** 2)) + LABEL_GAP, 0.5, 0, [0, 1], { color: DIM }));
+
+	// ---- the middle panel's key: a stroke of each weight and its Q, in the empty corner under the curves' right
+	// halves, which there all stand above the key's top (checked); it names the weights of the two lower panels
+	const kx = P2.X(KEY_X), ky = P2.Y(KEY_TOP);
+	for (const Q of QS) for (let x = KEY_X; x <= XMAX; x += 0.01) check(P2.Y(deg(argument(kChi(x, Q)))) < ky - 8, `the key is not clear of the lag of Q = ${Q}`);
+	for (const [k, Q] of [30, 10, 3].entries()) {
+		const y = ky + k * KEY_ROW;
+		S.path([[kx, y], [kx + KEY_LEN, y]], { color: ACCENT, width: WEIGHT[Q], layer: 2, cap: 'butt', what: `the key's stroke for Q = ${Q}` });
+		L.push(await placed(`Q = ${Q}`, kx + KEY_LEN + LABEL_GAP + 1, y, 0, 0.5, ACCENT));
+	}
+	check(ky + 2 * KEY_ROW + 4 < P2.bottom, 'the key runs into the middle axis');
 
 	// ---- the widths, one row each under the axis, from half-power point to half-power point
 	const base = Math.max(...xl.map((l) => l.box.b));

@@ -7,7 +7,9 @@
 // joining them. A small open circle where the asymptotes cross, at r = 0.313 lambda, "0.313 lambda"; a vertical dotted
 // line at r = lambda / 2 pi = 0.159 lambda, "lambda / 2 pi".
 // Departures from the diagram's comment: the crossing is labelled "0.313 lambda", the chapter's figure, where the
-// comment had "0.31 lambda"; the vertical axis starts half a decade below 1, so that the wave's name fits under its
+// comment had "0.31 lambda"; the laws' names say what falls as r^-5 and as 1/r, "Newton's tide, |E_zz| prop. r^-5" and
+// "wave, |E_zz| prop. 1/r", since the axis plots r |E_zz|, along which the near law falls as r^-4 and the far law is
+// flat; the vertical axis starts half a decade below 1, so that the wave's name fits under its
 // line; the exact curve is named, "all-zone solution", in its colour, as the chapter names it.
 // Exact: every line, the circle and the dotted line (tut-quadrupole-lib.js, `chapter`: eq:plane-tide rebuilt from the
 // all-zone solution by finite differences, the bracket's squared size, the two limits, the crossing at (kr)^4 = 15,
@@ -114,9 +116,9 @@ export default async function () {
 	// ---- the names, beside their lines
 	{
 		// Newton's tide: at the top left, beside the curve where it is the near law
-		L.push(await S.clear('\\text{Newton’s tide, }r^{-5}', P.left + AXIS_STROKE / 2 + LABEL_GAP + 3, P.top + 1, 0, 0, [1, 0]));
+		L.push(await S.clear(`\\text{Newton’s tide, }|{\\color{${CURV}}\\mathcal E_{zz}}| \\propto r^{-5}`, P.left + AXIS_STROKE / 2 + LABEL_GAP + 3, P.top + 1, 0, 0, [1, 0]));
 	}
-	L.push(await S.clear('\\text{wave, }1/r', P.X(0.95), P.Y(lg(4)) + ASYMPTOTE / 2 + LABEL_GAP + 0.4, 1, 0, [0, 1]));
+	L.push(await S.clear(`\\text{wave, }|{\\color{${CURV}}\\mathcal E_{zz}}| \\propto 1/r`, P.X(0.95), P.Y(lg(4)) + ASYMPTOTE / 2 + LABEL_GAP + 0.4, 1, 0, [0, 1]));
 	{
 		// the all-zone solution, above-right of its curve where it leaves the near law
 		const t0 = -0.3;

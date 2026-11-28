@@ -220,7 +220,7 @@ plane. With $\hat n$ along the line from a pixel toward a source of waves, the p
 across that line, and it builds the sky as one pixel sees it (section [7.6](/tutorial/geometry/gravitational-waves/#one-projector-keeps-what-a-wave-can-carry)).[^kernel]
 
 ![The projector removes the part of $\vect\xi$ along $\hat n$ (dashed) and leaves $P\vect\xi$ (orange), which lies
-in the plane at right angles to $\hat n$.](tut-vec-projector){#fig:projector}
+in the plane at right angles to $\hat n$. The pale blue triangle stands upright on the plane.](tut-vec-projector){#fig:projector}
 
 ::: example
 ### The table of one mass

@@ -18,8 +18,9 @@
 // Under each panel its numbers, exactly the capstone table's; under the panels the time line at the camera, from the
 // collapse (under the star, -32,600 years) through a break to t = 0, the shell's arrival, and 10 s, its passing (a
 // thick stretch of the line in matter's colour), with the time's arrow; under that a logarithmic scale of tides from
-// 10^-44 to 10^-6 s^-2 with the weighing (along and across the line), the squeeze (blue) and the person's tide a
-// metre away.
+// 10^-44 to 10^-6 s^-2, its values marked by upright ticks standing on it: the weighing (two ticks, named "across" and
+// "along" the line beside them, "weighing" over both), the squeeze (blue) and the person's tide a metre away. Panel (a)
+// has no number: the chapter names no progenitor's mass.
 // Departures from the diagram's comment, where the chapter's text decides or the house's rings do: the solar masses
 // are the chapter's 0.168, not 0.17; in (c) the new outline is the solid one, as in every ring of the house, and the
 // outline of (a) is the dotted one, outside it along the line; in (b) the ring shows the squeeze alone, since it is
@@ -74,10 +75,10 @@ const NUM_PITCH = 11.6;                     // baseline to baseline within the n
 const AXIS_AIR = 9;                         // the lowest number to the time line
 const BREAK = 2.2, BREAK_LEN = 6;           // the time line's break: half its gap, its strokes' length
 const BAND = 2.6;                           // the shell's stretch of the time line
-const SCALE_AIR = 22;                       // the time line to the scale of tides
+const SCALE_AIR = 28;                       // the time line to the scale of tides
 const SCALE_X = 50;                         // the scale's left end, from the figure's left
 const DECADES = [-44, -6];
-const MARK_R = 1.05;                        // a mark on the scale
+const MARK_H = 10.5, MARK_W = 0.8;            // a mark on the scale: an upright tick standing on it
 const MINOR = 1.6;                          // a decade's tick, below the scale
 
 const CAPTION = 'Look first at the tinted panel: while the shell of neutrinos passes, its squeeze is a hundred billion times the change of tide it leaves. The tides on the scale are exact; the rings\' deformations and the balls\' step are exaggerated.';
@@ -334,14 +335,18 @@ export default async function () {
 	for (const m of marks) {
 		m.x = X(Math.log10(m.v));
 		check(m.x > xL + 3 && m.x < xR - 3, `${m.what} is off the scale`);
-		S.raw(`<circle cx="${n2(m.x)}" cy="${n2(yS)}" r="${MARK_R}" fill="${m.color}"/>`, 3);
-		S.mark([[m.x, yS]], MARK_R, m.what);
+		S.path([[m.x, yS + AXIS / 2], [m.x, yS - MARK_H]], { color: m.color, width: MARK_W, cap: 'butt', layer: 3, what: m.what });
 	}
-	check(marks[1].x - marks[0].x > 2 * MARK_R + 0.2, 'the two weighings\' marks touch');
-	const above = yS - MARK_R - LABEL_GAP - 0.4;
+	check(marks[1].x - marks[0].x > MARK_W + 1, 'the two weighings\' marks touch');
+	// the two weighings named beside their ticks, "across" left and "along" right, and "weighing" over both
+	const mid = yS - MARK_H + 3.6;
+	const across = await lab('\\text{across}', marks[0].x - MARK_W / 2 - LABEL_GAP - 0.3, mid, 1, 0.5);
+	const along = await lab('\\text{along}', marks[1].x + MARK_W / 2 + LABEL_GAP + 0.3, mid, 0, 0.5);
+	check(across.box.b < yS - AXIS / 2 - LABEL_GAP && along.box.b < yS - AXIS / 2 - LABEL_GAP, 'the weighings\' names reach the scale');
+	const above = Math.min(yS - MARK_H, across.box.t, along.box.t) - LABEL_GAP - 0.4;
 	await lab('\\text{weighing}', (marks[0].x + marks[1].x) / 2, above, 0.5, 1);
-	await lab('\\text{squeeze}', marks[2].x, above, 0.5, 1, ACCENT2);
-	await lab(`\\text{the person, 1 m: }${N.person}`, marks[3].x + 4, above, 1, 1);
+	await lab('\\text{squeeze}', marks[2].x, yS - MARK_H - LABEL_GAP - 0.4, 0.5, 1, ACCENT2);
+	await lab(`\\text{the person, 1 m: }${N.person}`, marks[3].x + 4, yS - MARK_H - LABEL_GAP - 0.4, 1, 1);
 	// the squeeze over the change of tide across the line
 	check(near(Math.log10(squeeze / weighAcross), 11.01, 0.01), 'the ratio is not 10^11');
 

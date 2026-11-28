@@ -4,12 +4,14 @@
 // its live figure (app/src/lib/hair/flow.ts, HiddenFlowDrawing.svelte) draw them. In each, the share of each radius in
 // the bracket for the hidden swirl at a = 2^(-1/5) R, the inner ball turning at +Omega: -r^(2n) inside a, an area
 // below the zero line in a grey, and +r^(2n) outside it, an area above the line in matter's colour, the two joined by
-// the jump at a. A thin vertical line at a through all three. Beside each plot its sum, 0, +0.221 and +0.389, in units
+// the jump at a. A thin vertical line at a through all three, named "a" at its top. Above the plots a key: "each
+// radius's share of the bracket (each plot to its own scale):", a grey swatch "inner ball, r < a, at +Omega" and a
+// swatch of matter's colour "the rest, at -Omega". Beside each plot its sum, 0, +0.221 and +0.389, in units
 // of M Omega R^(2n-2), outside the areas. Under the common axis, three small ticks at the zeros of the sums,
 // 2^(-1/5) = 0.871, 2^(-1/7) = 0.906 and 2^(-1/9) = 0.926, their labels "n = 2", "n = 3", "n = 4" set apart below them
 // and tied to them by hairlines, since the ticks stand 4 to 8 points apart.
 // Departures from the diagram's comment: the inner ball's and the shell's shares are a grey and matter's colour, not
-// orange and blue, which mean a stretch and a squeeze; the caption names them by their places, above and below the line.
+// orange and blue, which mean a stretch and a squeeze; the key names them.
 // Exact: every curve (r^(2n), both parts, the jump at a), a, the zeros, the sums (tut-brackets-lib.js asserts the
 // shares' integrals against the sums and these against the chapter's 0.389 and its closed forms). Schematic: each
 // plot's height, its own scale.
@@ -82,7 +84,23 @@ export default async function () {
 	// the column's head: what the sums are, and in what units
 	{
 		const P = plots[0].P;
-		L.push(await placed(`\\text{sum, in }{\\color{${MATTER}}M}\\Omega R^{2n-2}`, P.X(1) + 12, P.top - 3, 0, 1, DIM, 7.5));
+		const head = await placed(`\\text{sum, in }{\\color{${MATTER}}M}\\Omega R^{2n-2}`, P.X(1) + 12, P.top - 3, 0, 1, DIM, 7.5);
+		L.push(head);
+		// the line at a, named at its top
+		L.push(await placed('a', P.X(a), P.top - 1 - LABEL_GAP - 0.5, 0.5, 1, DIM));
+		// the key, a row above: what the areas are, a swatch for each
+		const row = head.box.t - 8, ky = row - 11;
+		const t0 = await placed('\\text{each radius\'s share of the bracket (each plot to its own scale):}', P.X(0), ky, 0, 0.5, DIM, 7.5);
+		L.push(t0);
+		const SW = [9, 5.5];
+		let x = P.X(0);
+		for (const [fill, op, src] of [[INK, INNER, '\\text{inner ball, } r < a\\text{, at } {+}\\Omega'], [MATTER, OUTER, '\\text{the rest, at } {-}\\Omega']]) {
+			S.raw(`<rect x="${n2(x)}" y="${n2(row - SW[1] / 2)}" width="${SW[0]}" height="${SW[1]}" fill="${fill}" fill-opacity="${op}"/>`, 0.5);
+			S.boxes.push({ box: { l: x, r: x + SW[0], t: row - SW[1] / 2, b: row + SW[1] / 2 }, what: `the swatch ${src}` });
+			const lab = await placed(src, x + SW[0] + LABEL_GAP + 0.6, row, 0, 0.5, INK, 7.5);
+			L.push(lab);
+			x = lab.box.r + 12;
+		}
 	}
 
 	// ---- the common axis of the radius, and the zeros of the sums under it

@@ -431,9 +431,11 @@ $1/\sqrt{3600}$ rad $= 0.95°$: a degree in half an hour.[^rate] The pixel sees 
 We follow the first image end to end, shell by shell from the crust in, with the Sun at an equinox
 (Figure [](#fig:read-ix-capstone)).
 
-![Look first at the bar: a lifetime's 35,800 gravitons, mostly from the lower mantle. The grazing lines place the
-boundaries whatever the frictions, and the line to the Sun's core passes between the kinks at 63° and 33°. Sizes of
-the Sun and distances schematic; every number from the capstone.](tut-read-ix-capstone){#fig:read-ix-capstone}
+![Look first at the bar: a lifetime's 35,800 gravitons, mostly from the lower mantle; its parts are the table's last
+column. The grazing lines place the boundaries whatever the frictions, and the line to the Sun's core passes between
+the kinks at 63° and 33°. Along the line at 33°, which grazes the core, a lifetime places the core's edge to 29 km, and
+the gravitons' colour, their mean energy, steps by a factor of five to twelve. Sizes of the Sun and distances
+schematic; every number from the capstone.](tut-read-ix-capstone){#fig:read-ix-capstone}
 
 **(a) Each shell's friction and glow.** A relaxing stiffness $\Delta\matter\mu$ sends at most
 $5.18\,G\Delta\matter\mu(\kB T)^2/\hbar^2c^5$ gravitons per second per cubic metre, and the placeholder sends $4\pi

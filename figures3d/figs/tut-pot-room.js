@@ -7,7 +7,11 @@
 // every position and size (the scene's frame has y up and the camera looking along -z, so x1 = x, x2 = -z, x3 = y);
 // the safes' steel, 5 cm; the line from the camera to each safe's middle, whose length in space,
 // sqrt(1.1^2 + 3.5^2 + 1.0^2) = 3.80 m, is printed (from above it is seen shortened to 3.67 m, since it also falls
-// 1.0 m); the straight-ahead 3.5 m. The camera is marked by a small ring at its place.
+// 1.0 m); the straight-ahead 3.5 m. The camera is marked by a small ring at its place, named in both views. In the
+// view from behind, a small + marks each safe's middle and the gold's (on the gold, in the page's colour), and the
+// heights 0.5 m and 0.13 m are measured to them (the caption says so). In the plan, the side walls' places,
+// x1 = -6.0 m and 6.0 m, run along the walls' inner faces halfway along, and the back wall's, x2 = 8.0 m, sits under
+// it.
 // The plan is a cutaway of the room alone: the floor is drawn where the room is, between the walls' inner faces
 // (x1 = -6.0 m to 6.0 m) and from the room's open side, x2 = 0, where the side walls end, to the back wall's inner
 // face, x2 = 8.0 m; the three walls are one U of plaster around it, their outer faces 0.3 m out. (The scene's floor
@@ -138,8 +142,15 @@ export default async function () {
 
 	// the walls' places, inside the room beside each; the view's name and the floor's, in the room's near corners
 	labels.push(await placed('x_2 = 8.0\\,\\mathrm{m}', X0, room.t + 3, 0.5, 0, DIM));
-	labels.push(await placed('x_1 = -6.0\\,\\mathrm{m}', room.l + 3.2, pl(0, 6)[1], 0, 0.5, DIM));
-	labels.push(await placed('x_1 = 6.0\\,\\mathrm{m}', room.r - 3.2, pl(0, 6)[1], 1, 0.5, DIM));
+	// the side walls' places run along their walls' inner faces, halfway along, both turned a quarter turn the same way
+	// (read from below), x the face's place and side the way into the room
+	const along = async (src, x, y, side) => {
+		const rot = -90, p = await placed(src, 0, 0, 0.5, 0.5, DIM), w = p.box.r - p.box.l, h = p.box.b - p.box.t;
+		const cx = x + (side * h) / 2;
+		return { src, svg: `<g transform="translate(${n2(cx)},${n2(y)}) rotate(${rot})">${p.svg}</g>`, box: { l: cx - h / 2, r: cx + h / 2, t: y - w / 2, b: y + w / 2 } };
+	};
+	labels.push(await along('x_1 = -6.0\\,\\mathrm{m}', room.l + 3.2, pl(0, lo(back, 1) / 2)[1], 1));
+	labels.push(await along('x_1 = 6.0\\,\\mathrm{m}', room.r - 3.2, pl(0, lo(back, 1) / 2)[1], -1));
 	labels.push(await placed('\\text{from above}', room.l + 3.2, room.t + 3, 0, 0, DIM));
 	labels.push(await placed('\\text{floor}', room.r - 3.2, room.b - 3, 1, 1, DIM));
 	for (const l of labels) l.on = ['the floor'];
@@ -166,6 +177,7 @@ export default async function () {
 	S.fill(rd(g2), g2, { color: GOLD, layer: 1.1, what: 'the gold from behind' });
 	const C2 = el(0, cam[2]);
 	ring(C2, 3);
+	labels.push(await beside('\\text{camera}', C2, [-1, 0], RING + 0.3 + 2.5, INK));
 
 	// the heights: the camera's, from the floor up the middle; the safes' middles', left of the left-hand safe; the gold's, right of the right-hand one
 	const dimV = (x, x3, what) => {
@@ -186,10 +198,13 @@ export default async function () {
 	labels.push(await placed('0.13\\,\\mathrm{m}', gDim.x + TICK + HAIR / 2 + LABEL_GAP + 0.2, (gDim.y0 + gDim.y1) / 2, 0, 0.5, INK));
 	// the view's name, from the slab's left end, level with the plan's (the two names on one line along the top)
 	labels.push(await placed('\\text{from behind the camera}', slab.l, room.t + 3, 0, 0, DIM));
-	// the middles: a small + at each safe's middle and the gold's
-	for (const [p, what] of [[el(-1.1, 0.5), 'the left middle'], [el(1.1, 0.5), 'the right middle']]) {
-		S.path([[p[0] - 2, p[1]], [p[0] + 2, p[1]]], { color: INK, width: HAIR, layer: 2, cap: 'butt', what });
-		S.path([[p[0], p[1] - 2], [p[0], p[1] + 2]], { color: INK, width: HAIR, layer: 2, cap: 'butt', what });
+	// the middles: a small + at each safe's middle (ink) and at the gold's (the page's colour, on the gold); the heights
+	// are measured to them
+	const gm = el(gold.c[0], gold.c[2]);
+	check(gm[1] - 1.6 > g2.t + 0.8 && gm[1] + 1.6 < g2.b - 0.8, 'the gold\'s + does not fit in the gold');
+	for (const [p, what, color, arm] of [[el(-1.1, 0.5), 'the left middle', INK, 2], [el(1.1, 0.5), 'the right middle', INK, 2], [gm, 'the gold\'s middle', PAGE, 1.6]]) {
+		S.path([[p[0] - arm, p[1]], [p[0] + arm, p[1]]], { color, width: HAIR * 1.4, layer: 2, cap: 'butt', what });
+		S.path([[p[0], p[1] - arm], [p[0], p[1] + arm]], { color, width: HAIR * 1.4, layer: 2, cap: 'butt', what });
 	}
 
 	// ---- the plan agrees with the paper's figure: the gold in the right-hand safe, both safes ahead of the camera

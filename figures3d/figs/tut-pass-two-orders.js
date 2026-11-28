@@ -1,21 +1,23 @@
 // The tutorial, section 13.1 (tutorial/what-a-field-keeps/push-and-pass.md), its first diagram: the two orders of one
 // pass. The pair of the paper's fig:passing side by side, as the paper's figs/ladder.js draws them cut open (the stone of
 // sprites/hair/shell.png, an octant removed): left, a thin shell of mass M and radius R/sqrt 2, inside the faint dotted
-// circle of radius R; right, M/2 at the centre of a shell of radius R that holds the other half, the iron point seen in
-// the cut. Each under its own copy of one pass at b = 1.5 R, seen from the side: a long straight path, a steel bead at
+// circle of radius R; right, M/2 at the centre of a shell of radius R that holds the other half, a small sphere in
+// matter's colour seen in the cut (not the paper's iron, which the passer's steel bead would be mistaken for). Each
+// body's radius R is named, "radius R", outside the dotted circle on the left and outside the body on the right. Each under its own copy of one pass at b = 1.5 R, seen from the side: a long straight path, a steel bead at
 // its start, that leaves bent toward the body, its straight line continued dashed and the angle between the two marked
 // by a thin arc. One label above both, "first order: the same", with "(angles exaggerated)". Below each body a bar of
 // the internal energy the pass leaves, in matter's colour, to one scale, with its value: 0.080 and 0.104 (units of
-// M C^2 / 2 R^2), and one label below both, "second order: different".
+// M C^2 / 2 R^2), and one label below both, "second order: different", with, dim, what the bars measure: "(energy
+// left inside, in units of M C^2/2R^2)".
 // Departures from the diagram's comment: none. The angle carries no symbol, since the chapter names it only in words.
 // Exact: the bars and their values (tut-pass-lib.js: the closed form for thin shells, asserted against the paper's
 // code, app/src/lib/hair/passing.ts, read out, and against the chapter's planar series), b = 1.5 R and the radii; the
 // path's shape for the drawn angle A, y(x) = b - (A/2)(x + sqrt(x^2 + b^2)), the straight-line (impulse) path of a
 // passer bent by a point mass, which both bodies are outside b; it is the same for both, as the text derives. Schematic:
 // the size of the angle, A = 0.16 rad against the steel ball's 1.9 x 10^-16 (the label and the caption say so).
-// Pictorial: the cut-open stone and the iron point (the paper's), the thickness of the skins, the bead.
+// Pictorial: the cut-open stone (the paper's), the central sphere, the thickness of the skins, the bead.
 import { INK, DIM, FAINT } from '../lib.js';
-import { STEEL, IRON, text, circle as circlePath } from '../stone.js';
+import { STEEL, text, circle as circlePath } from '../stone.js';
 import { stoneDefs, stone } from './tut-null-lib.js';
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, LINE, HAIR, VEC_HEAD, n2 } from './tut-pot-lib.js';
 import { dashed } from './tut-orb-lib.js';
@@ -36,6 +38,8 @@ const BEAD = 2.3;                          // the passer
 const RIM = 0.35;
 const BAR = 520, BAR_H = 6.2;              // points per unit of energy, a bar's thickness
 const BAR_GAP = 13;                        // from a body's bottom (at R) to its bar
+const RADIUS_AT = (215 * Math.PI) / 180;   // where the radius R is named, round each body
+const CORE = '#533f03';                    // the right body's central half-mass: matter's colour, not the passer's steel
 const caption = 'Look first at the two bars: one pass leaves 0.080 and 0.104, in units of $\\matter MC^2/2R^2$, inside two bodies that the pass bends by exactly the same angle. Left, a thin shell of radius $R/\\sqrt2$; right, half the mass at the centre of a shell of radius $R$. The bending is drawn much larger than it is, alike for both, and the cutaway bodies are pictures.';
 
 /** The path's height above the centre, in R, at x (in R) along it: the straight-line path bent by a point mass. */
@@ -66,10 +70,15 @@ export default async function () {
 		S.raw(stone(`${name}-${i}`, `${name}-shell`, cx, yc, r, circlePath(cx, yc, r), outer) +
 			`<path d="${circlePath(cx, yc, r)}" fill="none" stroke="${STONE_INK}" stroke-width="${RIM}"/>`, 1);
 		S.mark(Array.from({ length: 181 }, (_, k) => P(outer * Math.cos((k * Math.PI) / 90), outer * Math.sin((k * Math.PI) / 90))), RIM / 2, `body ${i}`);
-		if (b.shells.some(([, rr]) => rr === 0)) S.sphere([cx, yc], POINT * R, IRON, { spec: 0.45, shininess: 30, layer: 2 }, 'the point');
+		if (b.shells.some(([, rr]) => rr === 0)) S.sphere([cx, yc], POINT * R, CORE, { spec: 0.35, shininess: 30, layer: 2 }, 'the point');
 		if (outer < 1) {
 			S.raw(`<circle cx="${n2(cx)}" cy="${n2(yc)}" r="${R}" fill="none" stroke="${FAINT}" stroke-width="0.35" stroke-dasharray="1.1 1.7"/>`, 0.5);
 			S.mark(Array.from({ length: 181 }, (_, k) => P(Math.cos((k * Math.PI) / 90), Math.sin((k * Math.PI) / 90))), 0.2, `the circle R ${i}`);
+		}
+		// the radius R named, outside the dotted circle on the left and outside the body on the right, at one angle
+		{
+			const u = [Math.cos(RADIUS_AT), Math.sin(RADIUS_AT)], q = P(u[0], u[1]);
+			L.push(await S.clear('\\text{radius }R', q[0] + u[0] * (LABEL_GAP + 0.6), q[1] - u[1] * (LABEL_GAP + 0.6), 1, 0, [u[0], -u[1]], { color: DIM }));
 		}
 
 		// ---- the path: the curve, a bead at its start, a head at its end
@@ -116,7 +125,14 @@ export default async function () {
 		L.push(await placed(text('(angles exaggerated)'), x0 + wa + space, top, 0, 0, DIM));
 	}
 	const barBottom = yc + R + BAR_GAP + BAR_H;
-	L.push(await placed(text('second order: different'), ORIGIN, barBottom + 9, 0.5, 0, INK));
+	{
+		// "second order: different" and, dim, what the bars measure, on one baseline, centred together
+		const srcA = text('second order: different'), srcB = '\\vphantom{(}\\text{(energy left inside, in units of }MC^2/2R^2\\text{)}';
+		const a = await placed(srcA, 0, 0, 0, 0, INK), b = await placed(srcB, 0, 0, 0, 0, DIM);
+		const space = 4.2, wa = a.box.r - a.box.l, wb = b.box.r - b.box.l, x0 = ORIGIN - (wa + space + wb) / 2;
+		L.push(await placed(srcA, x0, barBottom + 9, 0, 0, INK));
+		L.push(await placed(srcB, x0 + wa + space, barBottom + 9, 0, 0, DIM));
+	}
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { energies: E, angle: ANGLE };

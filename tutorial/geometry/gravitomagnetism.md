@@ -316,7 +316,8 @@ it moves. The Earth has $L = 0.3307\,\matter MR^2\Omega = 5.86\times10^{33}\unit
 
 ![Look first at the right sphere. The magnetic part $\curv\tB_{nn}$ along the line to a spinning body has opposite signs
 over its two hemispheres and vanishes on its equator, while the stretch $\curv\tE_{nn}$ of a point mass is the same in
-every direction. The shading is schematic in strength.](tut-spin-dipole-sky){#fig:spin-dipole-sky}
+every direction; $\hat n$ points from a pixel toward the body. The shading is schematic in
+strength.](tut-spin-dipole-sky){#fig:spin-dipole-sky}
 
 ## The Earth's magnetic part weighs its core
 

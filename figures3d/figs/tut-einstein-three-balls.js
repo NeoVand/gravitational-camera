@@ -1,11 +1,12 @@
 // The tutorial, section 7.3 (tutorial/geometry/einstein-equation.md), its third diagram: three balls of free dust, each
 // drawn as a dashed circle (the start) and a solid ink outline a little later, with eight dots on the outline, the
 // images of eight places equally spaced round the circle. Inside water far from other masses (a faint blue-grey wash
-// fills the panel): the outline a smaller circle, with eight equal arrows in the curvature's colour from the start to
+// fills the panel; drawn otherwise, see below): the outline a smaller circle, with eight equal arrows in the curvature's colour from the start to
 // the dots; "volume shrinks, shape kept: Ricci". Beside a mass in empty space (a stone sphere at the panel's left
 // edge): the outline an ellipse longer along the line to the sphere, orange where it reaches outside the circle and
 // blue where it falls inside; "shape changes, volume kept: Weyl". Inside a neutrino beam (three thin lines in the
-// light role's colour crossing the panel behind the ball, the top one with an arrowhead and the name "beam"): the outline an ellipse
+// light role's colour crossing the panel behind the ball, the top one with an arrowhead and the name "beam"; drawn in
+// matter's colour, see below): the outline an ellipse
 // narrower across the beam (blue) and unchanged along it; "squeezed across the beam only: Ricci, from stress".
 // Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (as the
 // section 6.5 and 7.2 diagrams), so that their text stays readable on a phone. The ellipse beside the mass does not
@@ -16,20 +17,24 @@
 // if behind it, so that they do not cross its outline and dots. The exaggeration is stated under the panels. The
 // printed book (figureLayout 'book') sets the three panels side by side, each 132 points wide, with the balls' radius
 // 30 points, not 38, each sentence broken after its colon, and the ball beside the mass and its stone centred together
-// in their panel; the site keeps them stacked.
+// in their panel; the site keeps them stacked. The water's wash is the page's neutral tint (the paper's veil), with
+// four little waves in the rule's grey either side of the ball, not the comment's blue-grey, which is the squeeze's
+// tint in the other two panels and read as "squeezed everywhere". The beam's lines and its name are in matter's
+// colour, not the light role's: neutrinos are matter, though they move at nearly c.
 // Exact: each outline the image of the circle under 1 - EPS E / |E|, with |E| the tide's largest eigenvalue in size
 // and one EPS = 0.3 for all three (tut-einstein-lib.js): inside water E = (4 pi G rho / 3) delta, so the radius
 // becomes 0.7; beside the mass E = (G M / r^3) diag(-2, 1, 1), so 1.3 along the line and 0.85 across; in the beam
 // E = (4 pi G F / c^3)(delta - n n), so 0.7 across and 1 along (each tide asserted from eq:ricci-tide in the library);
 // the dots the images of their places (asserted on the outline); the arrows equal (asserted). Schematic: EPS (the
-// exaggeration), the balls' size, the sphere's size and distance, the beam's three lines. Pictorial: the stone, a
-// picture from an image model (sprites/hair/ball.png, as section 4.1's hero), clipped to its exact circle.
+// exaggeration), the balls' size, the sphere's size and distance, the beam's three lines, the water's waves.
+// Pictorial: the stone, a picture from an image model (sprites/hair/ball.png, as section 4.1's hero), clipped to its
+// exact circle.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP } from './tut-pot-lib.js';
-import { INK, DIM, sprite } from '../lib.js';
+import { INK, DIM, RULE, sprite } from '../lib.js';
 import { picture, circle as circlePath } from '../stone.js';
 import { STONE_INK } from './tut-orb-lib.js';
 import { RING, UNDISTURBED, UNDISTURBED_W, PUSH, PUSH_HEAD } from './tut-five-lib.js';
-import { chapter, palette, EPS, CURV, LIGHT, stack } from './tut-einstein-lib.js';
+import { chapter, palette, EPS, CURV, MATTER, stack } from './tut-einstein-lib.js';
 
 const name = 'tut-einstein-three-balls';
 const check = checker(name);
@@ -50,10 +55,12 @@ const ROW = 7;                             // a title to its drawing
 const UNDER = 6;                           // the drawing to its sentence
 const GAP = 16;                            // between the panels, stacked
 const PAD = 5;                             // the wash reaches this far beyond the panel's ink
-const WASH = '#dce7f3';                    // the second accent's faint tint (the site swaps it in each theme)
-const WASH_OPACITY = 0.7;
+const WASH = '#eeebe5';                    // the water: the page's neutral tint (the paper's veil), not the squeeze's blue
+const WASH_OPACITY = 1;
+const WAVE = { n: 2, len: 22, amp: 1.1, w: 0.55 };   // the water's little waves: periods, length, height, stroke
 const ORANGE = '#f3dfcb', BLUE = '#dce7f3';    // the accents' faint tints: the stretch and the squeeze
 const TINT_OPACITY = 1;
+const WAVES = [[-1.75, -0.55], [-1.45, 0.75], [1.75, -0.35], [1.5, 0.85]];   // the waves' middles, units of R from the ball's centre
 
 export default async function () {
 	const nums = chapter(check);
@@ -146,12 +153,12 @@ export default async function () {
 			// each line stops BEAM_CLEAR short of the ball's dashed circle on both sides: it passes behind the ball
 			for (const [j, f] of BEAM_Y.entries()) {
 				const yb = cy + f * R, half = Math.sqrt(R * R - (f * R) ** 2) + BEAM_CLEAR;
-				S.path([[xl, yb], [cx - half, yb]], { color: LIGHT, width: BEAM_W, cap: 'butt', layer: 0.5, what: `the beam's line ${j}, before the ball` });
-				if (j === 0) S.arrow([cx + half, yb], [xr, yb], { color: LIGHT, width: BEAM_W, head: BEAM_HEAD, layer: 0.5, what: 'the beam\'s top line' });
-				else S.path([[cx + half, yb], [xr, yb]], { color: LIGHT, width: BEAM_W, cap: 'butt', layer: 0.5, what: `the beam's line ${j}, after the ball` });
+				S.path([[xl, yb], [cx - half, yb]], { color: MATTER, width: BEAM_W, cap: 'butt', layer: 0.5, what: `the beam's line ${j}, before the ball` });
+				if (j === 0) S.arrow([cx + half, yb], [xr, yb], { color: MATTER, width: BEAM_W, head: BEAM_HEAD, layer: 0.5, what: 'the beam\'s top line' });
+				else S.path([[cx + half, yb], [xr, yb]], { color: MATTER, width: BEAM_W, cap: 'butt', layer: 0.5, what: `the beam's line ${j}, after the ball` });
 				for (const ex of [cx - half, cx + half]) check(S.clearance({ l: ex, r: ex, t: yb, b: yb }, (w) => w.startsWith('the beam')).d >= BEAM_CLEAR - 0.6, `the beam's line ${j} runs into the ball`);
 			}
-			L.push(await placed('\\text{beam}', xr - 1, cy + BEAM_Y[0] * R - 0.36 * BEAM_HEAD - LABEL_GAP - 0.5, 1, 1, LIGHT));
+			L.push(await placed('\\text{beam}', xr - 1, cy + BEAM_Y[0] * R - 0.36 * BEAM_HEAD - LABEL_GAP - 0.5, 1, 1, MATTER));
 		}
 
 		const underY = cy + R + UNDISTURBED_W / 2 + UNDER;
@@ -161,6 +168,12 @@ export default async function () {
 		if (p.key === 'water') {
 			const t = title.box.t - PAD, b = under.box.b + PAD;
 			S.raw(`<rect x="${(xl - PAD).toFixed(2)}" y="${t.toFixed(2)}" width="${(2 * HALF + 2 * PAD).toFixed(2)}" height="${(b - t).toFixed(2)}" rx="3" fill="${WASH}" fill-opacity="${WASH_OPACITY}"/>`, -1);
+			// a few little waves in the water, either side of the ball, in the rule's grey
+			for (const [j, [fx, fy]] of WAVES.entries()) {
+				const wx = cx + fx * R - WAVE.len / 2, wy = cy + fy * R;
+				const pts = Array.from({ length: 41 }, (_, i) => [wx + (WAVE.len * i) / 40, wy - WAVE.amp * Math.sin((2 * Math.PI * WAVE.n * i) / 40)]);
+				S.path(pts, { color: RULE, width: WAVE.w, cap: 'round', layer: -0.5, what: `a wave ${j}` });
+			}
 			y = b + GAP;
 			bottom = Math.max(bottom, b);
 		} else y = under.box.b + GAP;

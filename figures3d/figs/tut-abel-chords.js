@@ -5,13 +5,15 @@
 // the crust, in the upper mantle's. The camera, a small ink triangle on the circle's top, named "camera", and C; a
 // dashed line from it to the centre O, named "straight down", with R beside it. Three lines of sight from C, each
 // running to its exit point, at 11.1, 33.1 and 63.5 degrees from straight down, each tangent to one disc. On the
-// 33.1 degree line: the dotted perpendicular from O, its foot M with a right-angle mark, named b = R sin theta; the
-// angle theta, an arc at the camera; a dot on the chord halfway from M to the exit point, the segment from O to it
-// named r and the stretch of the chord from M to it named s.
+// 33.1 degree line: the dotted perpendicular from O, its foot M with a right-angle mark, named b; the angle theta, an
+// arc at the camera 42 points in radius from straight down to the line, named inside it; a dot on the chord halfway
+// from M to the exit point, the segment from O to it named r and the stretch of the chord from M to it named s.
 // Departures from the diagram's comment: the camera stands on the surface, so each line of sight is its chord from C
 // to the exit point, all of it drawn in the heavier stroke; the comment's thin line "across the whole planet" and its
-// heavier chord "inside the circle" are the same segment. The name b = R sin theta stands under OM, inside the
-// triangle OMC's neighbour OMD, since over OM the line at 11.1 degrees leaves no room for it. The scene is drawn at
+// heavier chord "inside the circle" are the same segment. The name b stands under OM, inside the triangle OMC's
+// neighbour OMD, since over OM the line at 11.1 degrees leaves no room for it; b = R sin theta is left to the caption
+// (under the planet, as it stood, it named nothing near it). The name theta stands inside its arc, between the 11.1
+// and 33.1 degree lines (beyond the arc it read as the angle between those two). The scene is drawn at
 // half a point per site pixel of the comment (the site shows a point as 1.9 of its pixels), so that the planet's radius
 // is 120 points.
 // Exact: the discs' radii, 120 r/R points (asserted, 46, 131 and 215 site pixels), the lines' angles arcsin(r/R)
@@ -32,7 +34,7 @@ const R = 240 * K;                         // the planet's radius, points
 const CHORD = 0.7;                         // a line of sight, inside the planet
 const MARK = 1.05;                         // the dot on the chord, radius
 const CAM = { h: 6.2, w: 6.4 };            // the camera: a triangle, its apex on C, pointing down
-const ARC = 30;                            // the angle's arc, points from C
+const ARC = 42;                            // the angle's arc, points from C
 const SHOWN = 1;                           // the line whose geometry is drawn: the core's, 33.1 degrees
 
 export default async function () {
@@ -101,9 +103,12 @@ export default async function () {
 		const c = P(C);
 		const arc = Array.from({ length: 121 }, (_, j) => { const g = (t * j) / 120; return [c[0] + ARC * Math.sin(g), c[1] + ARC * Math.cos(g)]; });
 		S.path(arc, { color: DIM, width: HAIR, layer: 1, what: 'the angle' });
-		// its name inside the wedge between the 11.1 and 33.1 degree lines, beyond the arc
+		// its name inside the arc, between the 11.1 and 33.1 degree lines, just in from the arc's end (beyond the arc
+		// it read as the angle between those two lines)
 		const g = (lines[0].t + t) / 2, u = [Math.sin(g), Math.cos(g)];
-		L.push(await S.clear('\\theta', c[0] + u[0] * (ARC + 3), c[1] + u[1] * (ARC + 3), 0.5, 0.5, u, { color: INK }));
+		const th = await placed('\\theta', 0, 0, 0.5, 0.5, INK), hh = (th.box.b - th.box.t) / 2, hw = (th.box.r - th.box.l) / 2;
+		const rr = ARC - LABEL_GAP - 0.3 - Math.hypot(hw * u[0], hh * u[1]) - 1;
+		L.push(await placed('\\theta', c[0] + u[0] * rr, c[1] + u[1] * rr, 0.5, 0.5, INK));
 	}
 
 	// ---- the names
@@ -119,11 +124,10 @@ export default async function () {
 	L.push(await S.clear('R', o[0] - LABEL_GAP - 0.5, P([0, 0.38])[1], 1, 0.5, [-1, 0], { color: INK }));
 	L.push(await S.clear('\\text{straight down}', o[0] - LABEL_GAP - 0.5, P([0, 0.72])[1], 1, 0.5, [-1, 0], { color: DIM }));
 	// b under the middle of OM, in the triangle OMD (over OM the line at 11.1 degrees and the core's boundary leave no
-	// room); b = R sin theta under the planet
+	// room); b = R sin theta is left to the caption
 	{
 		const mid = [(o[0] + m[0]) / 2, (o[1] + m[1]) / 2], side = [outward[1] < 0 ? -outward[1] : outward[1], Math.abs(outward[0])];
 		L.push(await S.clear('b', mid[0] + side[0] * (LABEL_GAP + 3), mid[1] + side[1] * (LABEL_GAP + 3), 0.5, 0.5, side, { color: INK }));
-		L.push(await placed('b = R\\sin\\theta', o[0], o[1] + R + 7, 0.5, 0, INK));
 	}
 	// r under the middle of OD; s beside the middle of MD, on the side away from O
 	{

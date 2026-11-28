@@ -4,14 +4,15 @@
 // two rows, four and three (as R11's capstone, figs/tut-read-vii-capstone.js), each panel with the ball above and the
 // shell below, drawn alike at one radius, and its numbers beneath it, the ball's before the shell's.
 //  (a) one time: grey arrows of pull, the same round both bodies; "ball" and "shell" named at the left.
-//      "1176 bits, both".
+//      "1176 bits, the same for both".
 //  (b) heat: a few short ink arrows of the parts' thermal motion in each (the same pattern of directions is not
 //      implied: they are drawn at fixed pseudo-random places). "tremor k_B T x 411 : 685 kg m^2".
 //  (c) a push: the impulses of the profile g = (x^2 - y^2)/2, along (x, -y): orange outward along x and blue inward
 //      along y (a true stretch and squeeze), and beside each body a grey bar of its energy gained, in the ratio
 //      2.06 : 3.43 (3 : 5). "2.06 : 3.43 x 10^-18 J".
 //  (d) one ripple: crisp, lightly tinted bands, the crests of cos(xi x) with |xi| R = pi (where it is positive), one
-//      metre apart and to scale, across both bodies, a crest through their centres. "1250 kg against 0; span e^pi = 23".
+//      metre apart and to scale, across both bodies, a crest through their centres. "1250 kg against 0; the exponentials
+//      span e^pi = 23".
 //  (e) the tonne's pass: its straight path at b = 1.5 m = 3R from each centre, to scale, a bead at the closest point,
 //      b dimensioned on the ball's. "4.55 : 4.70 x 10^-33 of its speed; inside 2.1 : 3.5 x 10^-34".
 //  (f) light: a flash on the same line, a thin dashed ray in the light role's colour. "the same reading at
@@ -19,8 +20,8 @@
 //  (g) the 1/c^2 bracket: the counter-turning ball, its inner part out to 2^(-1/5) R in the pale tone of matter's
 //      colour and its outer part in a deeper tone, small curved ink arrows turning each way, named +Omega and -Omega;
 //      the shell at rest. "0.111 M Omega R^4 / c^2 against 0".
-// Under each row, a thin grey arrow carries a panel's quantity into the next where the next reuses it: the profile g
-// from (b) to (c), and C from (e) to (f).
+// Under each row, a thin grey arrow carries a panel's quantity into the next where the next reuses it, named in words:
+// "the profile g" from (b) to (c), and "the pass's strength C" from (e) to (f).
 // The colours: the bodies in matter's colour (the ball's fill matter's light gold mixed with the page, as chapter
 // 4.2's and 10.1's fills, figs/tut-glow-lib.js; its edge and the shell's ring matter's colour); orange and blue only
 // for the stretch and the squeeze of (c); the light role's colour for (f)'s ray; everything else in ink and greys. In
@@ -161,16 +162,16 @@ async function numbers() {
 
 // ---- the numbers under the panels: exactly the chapter's (asserted in numbers()) ------------------------------------
 const NUMS = {
-	a: ['1176\\ \\text{bits,}', '\\text{both}'],
+	a: ['1176\\ \\text{bits,}', '\\text{the same}', '\\text{for both}'],
 	b: ['\\text{tremor } k_BT\\,\\times', '411 : 685\\ \\mathrm{kg\\,m^2}'],
 	c: ['2.06 : 3.43', '\\times10^{-18}\\ \\mathrm{J}'],
-	d: ['1250\\ \\mathrm{kg}\\text{ against 0;}', '\\text{span }e^{\\pi} = 23'],
+	d: ['1250\\ \\mathrm{kg}\\text{ against 0;}', '\\text{the exponentials}', '\\text{span }e^{\\pi} = 23'],
 	e: ['4.55 : 4.70\\times10^{-33}', '\\text{of its speed; inside}', '2.1 : 3.5\\times10^{-34}'],
 	f: ['\\text{the same reading}', '\\text{at }3.1\\times10^{23}\\ \\mathrm{J}'],
 	g: ['0.111\\,M\\Omega R^4/c^2', '\\text{against 0}']
 };
 // the quantities carried from one panel into the next: [from, to, the label]
-const CARRIED = [['b', 'c', 'g'], ['e', 'f', 'C']];
+const CARRIED = [['b', 'c', '\\text{the profile }g'], ['e', 'f', '\\text{the pass\'s strength }C']];
 
 export default async function () {
 	const N = await numbers();

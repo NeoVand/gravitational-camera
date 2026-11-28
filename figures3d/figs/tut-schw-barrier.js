@@ -7,11 +7,13 @@
 // the photon sphere dashed, and three exact rays from the left in the light role's colour, b = 0.8 b_c (ends on the
 // horizon), 1.0001 b_c (winds round the photon sphere: it sweeps 685 degrees, 505 more than a straight line, about one
 // and a half turns) and 1.6 b_c (bent by 46 degrees and leaving), each named at its left end by its b.
-// Departures from the diagram's comment: the rays are named "0.8 b_c", "1.0001 b_c" and "1.6 b_c" at their left ends;
+// Departures from the diagram's comment: the rays are named at their left ends with their fates in the left panel's
+// words, "0.8 b_c: falls in", "1.0001 b_c: winds" and "1.6 b_c: turns back"; the ray that falls in is dashed, so that
+// where the winding ray crosses it near the photon sphere a reader can follow each; the two that leave end in heads
+// where they leave the panel's window (r_s units, -3.5 to 2.7 across and -2.2 to 4.5 up), the other at the horizon;
 // the levels are drawn in the page's grey, the barrier in ink; the barrier's axis is named and its peak's height
 // ticked; the axis across starts at 0.5 r_s, so that the barrier, which leaves the horizon almost straight up, does not
-// run along the axis up; each ray stops at the edge of the panel's window (r_s units, -3.5 to 2.7 across and -2.2 to
-// 4.5 up), and the photon sphere's dashes are cut where a ray runs over them.
+// run along the axis up; and the photon sphere's dashes are cut where a ray runs over them.
 // Exact: the barrier and its peak (1.5 r_s, 4/27r_s^2, asserted), the levels 1/b^2 for the three b (0.8 b_c's above the
 // peak, 1.6 b_c's below it and crossing the barrier at 1.071 and 3.52 r_s on either side), the rays (the chapter's
 // orbit equation, integrated by the port in tut-schw-lib.js; the first integral checked along each; the first falls in,
@@ -35,6 +37,8 @@ const WIN = { x0: -3.5, x1: 2.7, y0: -2.2, y1: 4.5 };   // the plane's window, r
 const Q = PH / (WIN.y1 - WIN.y0);               // points per r_s in the plane: the window as tall as the plot
 const KS = [0.8, 1.0001, 1.6];                  // the rays' b over b_c
 const CURVE = 0.7, LEVEL = 0.5, RAY = 0.65, HALO = 0.6, LINE = 0.45, EDGE = 0.45;
+const HEAD = 3.4;                               // the heads where the rays leave the window
+const FALL_DASH = [2.6, 1.5];                   // the ray that falls in
 const caption = 'Look first at the peak: a ray whose level $1/b^2$ clears it falls into the hole, and one that meets it turns back. The rays are exact Schwarzschild rays.';
 
 export default async function () {
@@ -89,7 +93,11 @@ export default async function () {
 	}
 
 	// ---- right: the plane of the orbit, x to the right, y up, r_s units; the hole at (0, 0)
-	const winLeft = P.right + GAP + 38;             // the window's left edge (the rays' names stand left of it)
+	// the rays' names, each with its fate in the left panel's words, stand left of the window: it starts as far right
+	// of the plot as the longest needs
+	const rayNames = { 0.8: '0.8\\,b_c\\text{: falls in}', 1.0001: '1.0001\\,b_c\\text{: winds}', 1.6: '1.6\\,b_c\\text{: turns back}' };
+	const nameW = Math.max(...(await Promise.all(KS.map(async (k) => { const g = await placed(rayNames[k], 0, 0, 0, 0, INK); return g.box.r - g.box.l; }))));
+	const winLeft = P.right + GAP + nameW + LABEL_GAP + 0.4;   // the window's left edge
 	const O = [winLeft - WIN.x0 * Q, P.top + WIN.y1 * Q];
 	const at = ([x, y]) => [O[0] + x * Q, O[1] - y * Q];
 	const inWin = ([x, y]) => x >= WIN.x0 && x <= WIN.x1 && y >= WIN.y0 && y <= WIN.y1;
@@ -142,11 +150,25 @@ export default async function () {
 	}
 	for (const r of rays) {
 		const page = thin(r.pts.map(at));
+		// a ray that leaves the window ends in a head along its last direction; the one that falls in ends on the horizon
+		let body = page;
+		if (r.fate === 'infinity') {
+			const tip = page[page.length - 1];
+			let k = page.length - 1;
+			while (k > 0 && Math.hypot(page[k][0] - tip[0], page[k][1] - tip[1]) < HEAD) k--;
+			const base = page[k], d = [tip[0] - base[0], tip[1] - base[1]], l = Math.hypot(...d), u = [d[0] / l, d[1] / l], w = [-u[1], u[0]], hw = 0.36 * l;
+			let j = page.length - 1;
+			while (j > 0 && Math.hypot(page[j][0] - tip[0], page[j][1] - tip[1]) < 0.8 * l) j--;
+			body = page.slice(0, j + 1);
+			const tri = [tip, [base[0] + w[0] * hw, base[1] + w[1] * hw], [base[0] - w[0] * hw, base[1] - w[1] * hw]];
+			S.raw(`<path d="M${tri.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}Z" fill="${LIGHT}"/>`, 3.6);
+			S.mark([...tri, tri[0]], 0, `the head of ${r.k} b_c`);
+		}
 		S.path(page, { color: PAGE, width: RAY + 2 * HALO, layer: 3.4, cap: 'butt', what: `the halo of ${r.k} b_c` });
-		S.path(page, { color: LIGHT, width: RAY, layer: 3.5, cap: 'butt', what: `the ray of ${r.k} b_c` });
+		// the ray that falls in is dashed, so that where it meets the winding ray near the photon sphere the two are told apart
+		S.path(body, { color: LIGHT, width: RAY, layer: 3.5, cap: 'butt', dash: r.fate === 'horizon' ? FALL_DASH : null, what: `the ray of ${r.k} b_c` });
 	}
 	// the rays' names, at their left ends
-	const rayNames = { 0.8: '0.8\\,b_c', 1.0001: '1.0001\\,b_c', 1.6: '1.6\\,b_c' };
 	for (const r of rays) {
 		const [x, y] = at(r.pts[0]);
 		L.push({ ...(await placed(rayNames[r.k], x - LABEL_GAP - 0.4, y, 1, 0.5, INK)), on: [] });
@@ -154,5 +176,5 @@ export default async function () {
 
 	S.checkAll(L.map((l) => ({ ...l, on: [...(l.on ?? []), ...rays.map((r) => `the halo of ${r.k} b_c`)] })));
 	window[name + '-numbers'] = { Q, rays: rays.map((r) => ({ k: r.k, fate: r.fate, rMin: r.rMin, swept: (r.swept * 180) / Math.PI })) };
-	return finish(S, L, [300, 345]);
+	return finish(S, L, [300, 380]);
 }

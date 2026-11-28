@@ -1,17 +1,19 @@
 // The tutorial, section 2.3 (tutorial/outside/multipoles.md), its fourth diagram: the matter round a pixel, split as
 // the chapter splits it. A sphere round the pixel, coloured by the sign of the sky weight 1 - 3 cos^2 theta with which
 // E_zz takes the matter in each direction (theta from the z axis): orange where it is negative, in the two caps
-// within 54.7 degrees of the axis, blue where it is positive, in the band between. A quarter of it is cut away, so
-// that the two cut faces show the same weight inside, along each line of sight from the pixel, with the angle of
-// 54.7 degrees marked on one of them. At the centre, the small ball of radius r_min round the pixel, grey, whole. At
-// the right, the small ball drawn again by itself, with what it gives, (4 pi / 3) G rho_0 delta_ij, and an arrow to
-// the trace of that, 4 pi G rho_0.
+// within 54.7 degrees of the axis, blue where it is positive, in the band between. An eighth of it is cut away (the
+// octant above the equator facing the viewer), so that the three cut faces, two upright through the z axis and one in
+// the equator's plane, show the same weight inside, along each line of sight from the pixel, with the angle of 54.7
+// degrees marked on one of them. At the centre, the small ball of radius r_min round the pixel, grey, drawn whole in
+// front of the cut faces, which stop at its surface. At the right, the small ball drawn again by itself, with what it
+// gives, (4 pi / 3) G rho_0 delta_ij, and an arrow to the trace of that, 4 pi G rho_0.
 // Exact: the colours, by the sign of 1 - 3 cos^2 theta (asserted at the centre of every face of the meshes, the
 // zones meeting along the circles theta = arccos(1/sqrt 3) = 54.7 degrees and 125.3 degrees, which are drawn on the
-// sphere and as straight lines on the cut faces); the cut faces are planes through the z axis, coloured by the
-// direction of each point from the pixel, as the weight depends on the direction alone; the angle; the contact term's
-// trace, three times (4 pi / 3), and the chapter's numbers for air (asserted). Schematic: the small ball's radius
-// against the sphere's (the sphere stands for all the matter outside it, to any distance), the cut, and the view.
+// sphere and as straight lines on the cut faces); the cut faces are planes through the z axis and the equator's
+// plane, coloured by the direction of each point from the pixel, as the weight depends on the direction alone; the
+// angle; the contact term's trace, three times (4 pi / 3), and the chapter's numbers for air (asserted). Schematic:
+// the small ball's radius against the sphere's (the sphere stands for all the matter outside it, to any distance),
+// the cut, and the view.
 // The lighting is the studio's (lib.js); the two colours are laid over the page, so that on the site's dark theme
 // the sphere takes deep shades of them, as in the paper's figure on the sky integral (figs/sky-integral.js).
 import { Panel, THREE, v3, INK, DIM, ACCENT, ACCENT2 } from '../lib.js';
@@ -152,11 +154,9 @@ export default async function () {
 	const ang = arc(ink, v3(0, 0, 0), v3(0, 1, 0), dir(ZERO, cut0), 0.6, { color: INK, width: HAIR, layer: 1.7, what: 'the angle' });
 	check(near(ang.ang, ZERO, 1e-12), 'the arc is not 54.7 degrees');
 
-	// ---- the small ball round the pixel: the part of it in the wedge, above the equator's plane, over its sections
-	const IRON_LIGHT = { ambient: 0.42, key: 0.7, fill: 0.12, spec: 0.35, shininess: 30 };
-	P.mesh(surface((p, t) => dir(t, p).multiplyScalar(RMIN), cut0, cut1, 36, 0, Math.PI / 2, 24, (q) => q.clone().normalize(), true), IRON, { layer: 3, o: IRON_LIGHT });
-	for (const { phi, n } of walls) P.mesh(surface((r, t) => dir(t, phi).multiplyScalar(r), 0, RMIN, 4, 0, Math.PI / 2, 12, () => n, false), IRON, { layer: 2.5, o: { ...IRON_LIGHT, spec: 0, smooth: false } });
-	P.mesh(surface((r, p) => dir(Math.PI / 2, p).multiplyScalar(r), 0, RMIN, 4, cut0, cut1, 12, () => floorN, false), IRON, { layer: 2.5, o: { ...IRON_LIGHT, spec: 0, smooth: false } });
+	// ---- the small ball round the pixel, whole, in front of the cut faces (which stop at its surface): it is the
+	// region the sky integral leaves out, drawn as the ball at the right is drawn
+	P.sphere(v3(0, 0, 0), RMIN, IRON, { spec: 0.35, shininess: 30, layer: 3 });
 	ink.mark([ink.at(v3(0, 0, 0))], RMIN * SCALE, 'the small ball');
 	// the sphere's outline, for the label checks
 	ink.mark(Array.from({ length: 361 }, (_, k) => [ORIGIN + SCALE * Math.cos(k * deg), ORIGIN + SCALE * Math.sin(k * deg)]), 0.3, 'the sphere');

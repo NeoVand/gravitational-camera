@@ -1,13 +1,16 @@
 // The tutorial, section 11.4 (tutorial/black-holes/under-tides.md), its third diagram: the hole's response at every
 // frequency. One panel on logarithmic axes: across, x = GM omega / c^3 from 10^-2 to 3; up, Im chi in units of
-// M r_s^2 (GM/c^3)^2 from 10^-4 to 10. The response (5/64) Gamma_2 / x^5 from section 11.3's greybody table, thin solid
-// ink, rising, peaking at x = 0.39 (an ink dot, "x = 0.39"), then falling; the friction law (4/45) x dashed; the
+// M r_s^2 (GM/c^3)^2 from 10^-4 to 10^2. The response (5/64) Gamma_2 / x^5 from section 11.3's greybody table, thin
+// solid ink, rising, peaking at x = 0.39 (an ink dot, "x = 0.39"), then falling; the friction law (4/45) x dashed; the
 // asymptote (5/64)/x^5 dotted, meeting the curve at the right. Each line is named beside it.
 // Departures from the diagram's comment: the axis up starts at 10^-4, not 10^-3, so that the friction law, 8.9 x 10^-4
-// at x = 0.01, and the curve's left end stay in the panel; the laws are dashed and dotted in the page's dim grey, not in
-// an accent colour (tut-friction-lib.js: the figures' orange and blue mean a stretch and a squeeze, and the
-// interactive draws these laws neutral); the dot's label says "x = 0.39", so that it is not read as a height; the
-// asymptote is drawn only where it lies in the panel, from x = 0.38, where it leaves the top.
+// at x = 0.01, and the curve's left end stay in the panel, and ends at 10^2, not 10, so that the asymptote shows for a
+// decade above the peak before it meets the curve; the laws are dashed and dotted in the page's dim grey, not in an
+// accent colour (tut-friction-lib.js: the figures' orange and blue mean a stretch and a squeeze, and the interactive
+// draws these laws neutral); the dot's label says "x = 0.39", so that it is not read as a height; the asymptote is
+// drawn only where it lies in the panel, from x = 0.24, where it leaves the top, and is named at its upper end
+// "Gamma_2 = 1", the curve's own formula with every wave absorbed, rather than "(5/64)/x^5", so that the lines are named
+// in one notation, the chapter's, while the axes are in the reduced units.
 // Exact: the curve, from the table (tut-friction-lib.js, asserted number for number against the interactive's data and
 // read between its points as the interactive reads it), drawn on the table's x from 0.01 and, above 0.78, where the table
 // holds Gamma_2 at 1, as (5/64)/x^5 itself; the two laws; the peak, at the table's x of greatest Im chi; the units
@@ -22,7 +25,7 @@ const check = checker(name);
 
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
 const lg = Math.log10;
-const X0 = -2, X1 = lg(3), Y0 = -4.3, Y1 = 1;
+const X0 = -2, X1 = lg(3), Y0 = -4.3, Y1 = 2;
 const DX = 98, DY = 27;                         // points per decade
 const CURVE = 0.7, LAW = 0.55, DASH = [3, 2], DOT = 1.55;
 const caption = 'Look first at the left, where the solid curve, $5c^5\\Gamma_2/16G\\omega^5$, meets the dashed friction law $\\nu\\omega$: that is the box\'s limit. To the right the law fails, because the waves are no longer long against the hole. Curves exact.';
@@ -41,7 +44,7 @@ export default async function () {
 	const pow = (k) => (k === 0 ? '1' : k === 1 ? '10' : `10^{${k}}`);
 	const xl = await xAxis(S, P, { ticks: [-2, -1, 0, lg(3)], fmt: (t) => (near(t, lg(3), 1e-12) ? '3' : ['0.01', '0.1', '1'][t + 2]), what: 'the axis across' });
 	L.push(...xl);
-	L.push(...(await yAxis(S, P, { ticks: [-4, -3, -2, -1, 0, 1], fmt: pow, what: 'the axis up' })));
+	L.push(...(await yAxis(S, P, { ticks: [-4, -3, -2, -1, 0, 1, 2], fmt: pow, what: 'the axis up' })));
 	const below = Math.max(...xl.map((l) => l.box.b));
 	L.push(await placed('x = GM\\omega/c^3', P.X(-0.5), below + 4, 0.5, 0, DIM));
 	L.push(await placed('\\mathrm{Im}\\,\\chi\\ \\ \\text{(units of }Mr_s^2(GM/c^3)^2\\text{)}', P.left - 4, P.top - 9, 0, 1, DIM));
@@ -50,7 +53,7 @@ export default async function () {
 	check(lg(law(10 ** X0)) > Y0 + 0.5 && lg(law(10 ** X1)) < Y1 - 1, 'the friction law leaves the panel');
 	S.path([at(10 ** X0, law(10 ** X0)), at(10 ** X1, law(10 ** X1))], { color: DIM, width: LAW, dash: DASH, cap: 'butt', layer: 1.6, what: 'the friction law' });
 	const xTop = (5 / 64 / 10 ** Y1) ** (1 / 5);
-	check(near(tail(xTop), 10 ** Y1, 1e-12) && xTop > 0.37 && xTop < PEAK.x, `the asymptote enters at ${xTop}`);
+	check(near(tail(xTop), 10 ** Y1, 1e-12) && xTop > 0.23 && xTop < 0.24, `the asymptote enters at ${xTop}`);
 	check(lg(tail(10 ** X1)) > Y0 + 0.4, 'the asymptote leaves the panel at the bottom');
 	S.dots(at(xTop, tail(xTop)), at(10 ** X1, tail(10 ** X1)), { color: DIM, layer: 1.7, what: 'the asymptote' });
 
@@ -82,8 +85,9 @@ export default async function () {
 		L.push(await S.clear('\\text{friction law, }\\nu\\omega', q[0], q[1] - 2.2, 0.5, 1, [0, -1]));
 	}
 	{
-		const q = at(0.47, tail(0.47));
-		L.push(await S.clear('(5/64)/x^5', q[0] + 3, q[1], 0, 0.5, [1, 0]));
+		// the asymptote's name at its upper end: the same curve with every wave absorbed, Gamma_2 = 1
+		const q = at(0.27, tail(0.27));
+		L.push(await S.clear('\\Gamma_2 = 1', q[0] + 3, q[1], 0, 0.5, [1, 0]));
 	}
 
 	S.checkAll(L);

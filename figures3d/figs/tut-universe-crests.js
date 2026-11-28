@@ -1,11 +1,13 @@
 // The tutorial, section 12.2 (tutorial/sky/universe.md), its first diagram: two crests crossing an expanding universe.
 // Time t runs to the right, from the first crest's emission t_e to the second crest's arrival; upward, distance in
-// metres between galaxies (proper distance). The grid behind: five galaxies at rest among the expansion, at equal
-// comoving distances from the source, so their lines fan out as a(t), and upright lines at equal times. The source is
-// the bottom line, the observer the top one. A source emits two crests a period delta t_e apart (two short crest marks
-// in the light role's colour); each crosses to the observer along its exact path, distance a(t) times the comoving
-// distance covered, int c dt / a; they arrive delta t_0 apart. A short bracket under the source marks delta t_e, a long
-// one over the observer marks delta t_0 = 3 delta t_e.
+// metres between galaxies (proper distance), named "proper distance" at the left under an upward arrow. Behind: five
+// galaxies at rest among the expansion, at equal comoving distances from the source, so their faint lines fan out as
+// a(t); one is named "a galaxy at rest". The source is the bottom line, the observer the top one. A source emits two
+// crests a period delta t_e apart (two short crest marks across the paths, in the light role's colour); each crosses to
+// the observer along its exact path, distance a(t) times the comoving distance covered, int c dt / a; they arrive
+// delta t_0 apart. The paths are named "first crest" (over its path, the faint galaxy lines stopping short of the name
+// behind a patch of the band's tint) and "second crest" (under its path), in their colour. A short bracket under the
+// source marks delta t_e, a long one over the observer marks delta t_0 = 3 delta t_e.
 // The drawing's universe: a(t) proportional to t^{2/3} (matter alone), t_e = 1, delta t_e = 0.17. The arrival t_0 is
 // found by bisection so that the two crests cover the same comoving distance and arrive exactly 3 delta t_e apart; the
 // scale factor of each end is then its mean over the period, delta t / int dt / a (the text's "over which a hardly
@@ -34,11 +36,15 @@ const W = 240;                                // the time span drawn
 const TOP = 118;                              // the observer's height at the right end
 const PAD = [0.22, 0.28];                     // time drawn before t_e and after the second arrival
 const RAY = 0.8, GRID = 0.4, EDGE = 0.55;     // the paths, the grid, the source's and the observer's lines
-const CREST = 3.2, CREST_AT = 15;              // half a crest mark, and its distance along its path
+const CREST = 4.2, CREST_AT = 15;              // half a crest mark, and its distance along its path
+const NAME_AT = [1.75, 2.15];                 // where the two paths are named: the times of the names' anchors
+const GALAXY_AT = 0.97;                       // where the galaxy's name ends, a fraction of the way along the time span
 const AXIS_DROP = 16;                         // the time axis under the source
 const BRACKET_GAP = 3.4;                      // the observer's bracket over its line
 const BRACKET_DROP = 7;                       // the source's bracket under its line, room for its name
 const END = 2;                                // half a bracket's end
+const KNOCK = 1.4;                            // the tint's patch round the first crest's name, past its ink
+const UP_ARROW = 14;                          // the arrow over the upward direction's name
 const TINT = '#eeebe5';                       // the band (drawing.ts, THEME: a neutral tint of the page)
 const caption = 'Look first at the two brackets: the two crests cross the same comoving distance, so the time between them, and the wavelength, grows in proportion to the scale factor. The ratio 3 is chosen for the drawing; the microwave sky\'s is 1091.';
 
@@ -87,7 +93,6 @@ export default async function () {
 
 	// ---- the grid: galaxies at rest (proper distance a(t) times their comoving distance) and equal times
 	for (let k = 1; k < GALAXIES; k++) S.path(curve((t) => a(t) * (chi * k) / GALAXIES, tA, tB), { color: RULE, width: GRID, cap: 'butt', layer: 0.5, what: `the galaxy ${k}` });
-	for (let t = 1; t <= Math.floor(tB); t++) S.path([[X(t), Y(0)], [X(t), Y(a(t) * chi)]], { color: RULE, width: GRID, cap: 'butt', layer: 0.5, what: `the time ${t}` });
 	const source = [[X(tA), Y(0)], [X(tB), Y(0)]];
 	const observer = curve((t) => a(t) * chi, tA, tB);
 	// the band of space between them, tinted
@@ -110,6 +115,23 @@ export default async function () {
 		const L0 = Math.hypot(q[0] - p[0], q[1] - p[1]), n = [-(q[1] - p[1]) / L0, (q[0] - p[0]) / L0];
 		const c = pts[i];
 		S.path([[c[0] - n[0] * CREST, c[1] - n[1] * CREST], [c[0] + n[0] * CREST, c[1] + n[1] * CREST]], { color: LIGHT, width: RAY + 0.3, cap: 'round', layer: 2.5, what });
+	}
+	// the paths' names, in their colour: the first crest's above its path, the second's below its own
+	{
+		const p1 = [X(NAME_AT[0]), Y(a(NAME_AT[0]) * (eta(NAME_AT[0]) - eta(TE)))];
+		const p2 = [X(NAME_AT[1]), Y(a(NAME_AT[1]) * (eta(NAME_AT[1]) - eta(TE + DE)))];
+		// the first crest's name sits over two of the faint galaxy lines: they stop short of it, behind a patch of the tint
+		const first = await placed('\\text{first crest}', p1[0] - 0.5, p1[1] - LABEL_GAP - 0.8, 1, 1, LIGHT);
+		const kb = first.box;
+		S.raw(`<rect x="${n2(kb.l - KNOCK)}" y="${n2(kb.t - KNOCK)}" width="${n2(kb.r - kb.l + 2 * KNOCK)}" height="${n2(kb.b - kb.t + 2 * KNOCK)}" fill="${TINT}"/>`, 0.6);
+		first.on = Array.from({ length: GALAXIES - 1 }, (_, i) => `the galaxy ${i + 1}`);
+		L.push(first);
+		L.push(await S.clear('\\text{second crest}', p2[0], p2[1] + LABEL_GAP, 0, 0, [0.45, 1], { color: LIGHT }));
+	}
+	// one galaxy at rest named, above its line near the right end
+	{
+		const t = tA + GALAXY_AT * (tB - tA), q = [X(t), Y((a(t) * chi) / GALAXIES)];
+		L.push(await S.clear('\\text{a galaxy at rest}', q[0], q[1] - LABEL_GAP, 1, 1, [0, -1], { color: DIM }));
 	}
 
 	// ---- the brackets: delta t_e under the source, delta t_0 over the observer
@@ -141,9 +163,12 @@ export default async function () {
 			L.push(await placed(src, X(t), y + TICK + 2.4, 0.5, 0, DIM));
 		}
 		L.push(await placed('\\text{time}\\ t', X((tA + tB) / 2), y + TICK + 2.4, 0.5, 0, DIM));
-		// the upward direction's name, left of the band's left end, over the source's name
-		const up = await stack(['\\text{distance}', '\\text{between}', '\\text{galaxies}\\ \\uparrow'], X(tA) - LABEL_GAP - 0.6, Y(a(tA) * chi) - 9, 1, DIM);
+		// the upward direction: its name, left of the band's left end, over the source's name, and an arrow up over it
+		const up = await stack(['\\text{proper}', '\\text{distance}'], X(tA) - LABEL_GAP - 0.6, Y(a(tA) * chi) - 2, 1, DIM);
 		L.push(up);
+		const ux = (up.box.l + up.box.r) / 2;
+		const ar = S.arrow([ux, up.box.t - LABEL_GAP - 0.4], [ux, up.box.t - LABEL_GAP - 0.4 - UP_ARROW], { color: DIM, width: HAIR, head: 2.8, layer: 1, what: 'the upward direction' });
+		check(ar.head === 2.8, 'the upward arrow is too short for a whole head');
 	}
 
 	S.checkAll(L);

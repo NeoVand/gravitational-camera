@@ -4,7 +4,7 @@
 // behind, and the great circle z = 0, faint, solid in front and dashed behind. A stone body outside the sky along -x,
 // moving along +y, an arrow in the observer's colour, "v = 0.9c", drawn at the scale of the half sum. The two pairs at
 // rest, +-x, as open circles, two touching each; the aberrated pairs at (+-0.436, 0.9, 0) as filled dots in the
-// curvature's colour, two touching each, with thin ink paths from each open circle to its pair along the great circle;
+// curvature's colour, two touching each, with thin paths from each open circle to its pair along the great circle;
 // a thin dashed line between the two pairs. From the pixel, an arrow in the observer's colour to their midpoint,
 // (0, 0.9, 0), named "1/2(p+ + p-) = v_perp/c"; a thin ink arrow from the midpoint to the pair p+, named
 // "1/2(p+ - p-)", parallel to the dashed ink line from the pixel to the body's present position, named "n, now".
@@ -16,7 +16,12 @@
 // the paths are as fig:stars and section 6.6 draw them, and, as there, a thin dashed line joins the two pairs, so that
 // their midpoint, where the arrow from the pixel ends, can be seen as the middle of the two; the great circle z = 0 on
 // which the paths lie is drawn faint; the half sum's name is set on two lines, to fit between the arrow and the sky's
-// edge; the sky's outline is the page's rule colour, as in every sky of the tutorial.
+// edge; the sky's outline is the page's rule colour, as in every sky of the tutorial. The paths are drawn in the dim
+// grey, not ink, so that they cannot be read as the half difference's arrow; the two pairs are named p+ (left of its
+// dots, where no path runs) and p- (over its own); the half difference's name sits just over its short arrow, across
+// the faint great circle, on a patch of the veil's own tint that hides the circle's few points under the letters. A
+// key at the lower left, under the body, says what the open circles, the filled dots and the grey paths are, each with
+// a sample drawn as in the sky.
 // In the printed book (figureLayout 'book') the sky's radius is 92 points instead of 104, which keeps every pair at
 // least 3 points inside the outline (asserted), so that the drawing is not printed larger than it needs; the labels
 // keep their size.
@@ -29,11 +34,11 @@
 // orthographic view. Schematic: the body's distance on the page (1.5 sky radii, the chapter's 1.5 in the sky's unit)
 // is exact, its size is not; the sizes of the dots and the pixel. Pictorial: the stone, the picture of the published
 // tutorial figures (sprites/hair/ball-face.png) lit as a sphere by the studio of lib.js, as in tut-one-point-hero.js.
-import { Sheet, ORIGIN, finish, checker, near, n2, LABEL_GAP, VEC, VEC_HEAD } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, near, n2, placed, LABEL_GAP, VEC, VEC_HEAD } from './tut-pot-lib.js';
 import { dashed, STONE_INK } from './tut-orb-lib.js';
 import { INK, DIM, PAGE, sprite } from '../lib.js';
 import { MARGIN } from '../stone.js';
-import { sky, palette, CURV, STAR, STAR_STEP, STAR_EDGE, CIRCLE } from './tut-spin-lib.js';
+import { sky, palette, CURV, STAR, STAR_STEP, STAR_EDGE, CIRCLE, SKY, VEIL } from './tut-spin-lib.js';
 import { OBS } from './tut-quantum-lib.js';
 import { viewer } from './tut-maxwell-lib.js';
 import { STEEL } from './tut-five-lib.js';
@@ -53,7 +58,10 @@ const OPEN_W = STAR_EDGE + 0.1;            // an open circle's stroke
 const THIN = 0.55, THIN_HEAD = 3.6;        // the half difference's arrow
 const MID = 2.6;                           // the air at the midpoint between the half sum's tip and the lines that leave it
 const CLEAR = 1.2;                         // the air between a line's end and a dot, the pixel or the body
+const KEY_DROP = 12, KEY_PITCH = 11, KEY_TEXT = 4;   // the key: from the body's foot to its first row, row to row, sample to text
 
+// the veil's tint over the page, as one colour: SKY at the veil's opacity over white
+const VEILED = '#' + [1, 3, 5].map((i) => Math.round(VEIL * parseInt(SKY.slice(i, i + 2), 16) + (1 - VEIL) * 255).toString(16).padStart(2, '0')).join('');
 const rgbDot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 const unit3 = (v) => { const l = Math.hypot(...v); return v.map((x) => x / l); };
 const KEY = unit3([-0.55, 0.72, 0.62]), FILL = unit3([0.85, -0.15, 0.5]), HALF = unit3([KEY[0], KEY[1], KEY[2] + 1]);
@@ -82,7 +90,7 @@ export default async function () {
 	for (const side of [0, 1]) {
 		const pts = nums.track.map((t) => t.pairs[side].n);
 		check(pts.every((p) => near(p[2], 0, 1e-7)), 'a path is off the great circle');
-		K.runs(pts.map((p) => { const l = len(p); return p.map((x) => x / l); }), `the path ${side ? 'of p-' : 'of p+'}`, { color: INK, width: PATH, layer: 3, opacity: 1 });
+		K.runs(pts.map((p) => { const l = len(p); return p.map((x) => x / l); }), `the path ${side ? 'of p-' : 'of p+'}`, { color: DIM, width: PATH, layer: 3, opacity: 1 });
 	}
 	// ---- the open circles at rest, two touching each
 	const rest = nums.track[0].pairs.map((g) => g.n);
@@ -158,13 +166,49 @@ export default async function () {
 		L.push(await S.clear('\\begin{array}{l}\\tfrac12(\\hat p_+ + \\hat p_-)\\\\ {=}\\ \\boldsymbol v_{\\!\\perp}/c\\end{array}', m[0] + LABEL_GAP + 1.5, m[1] + 6, 0, 0.5, [1, 0], { color: OBS }));
 	}
 	{
-		const m = mid(hd);
-		// under the arrow, between the path of p+ and the half sum
-		L.push(await S.clear('\\tfrac12(\\hat p_+ - \\hat p_-)', C[0] - (VEC - 0.1) / 2 - LABEL_GAP - 0.6, m[1] + LABEL_GAP + 2, 1, 0, [0, 1]));
+		// above the short arrow, off its middle on the side away from the path of p+ (which runs below it)
+		const m = mid(hd), up = [-hd.u[1], hd.u[0]];
+		check(up[1] < 0, 'the half difference\'s label is not above its arrow');
+		// the faint great circle z = 0 runs just over the arrow; the name sits across it, on a patch of the veil's own
+		// tint that hides the circle's few points under the letters (the circle is a faint guide, the name is not)
+		const src = '\\tfrac12(\\hat p_+ - \\hat p_-)', faint = (w) => w.startsWith('the great circle z = 0');
+		let got = null;
+		for (let k = 0; k < 400 && !got; k++) {
+			const g = await placed(src, m[0] + up[0] * (1 + k * 0.05), m[1] + up[1] * (1 + k * 0.05), 0.5, 1);
+			if (S.clearance(g.box, faint).d >= LABEL_GAP + 0.2) got = g;
+		}
+		check(got, 'no room for the half difference\'s name');
+		const pad = 0.8, bx = got.box;
+		S.raw(`<rect x="${n2(bx.l - pad)}" y="${n2(bx.t - pad)}" width="${n2(bx.r - bx.l + 2 * pad)}" height="${n2(bx.b - bx.t + 2 * pad)}" fill="${VEILED}"/>`, 2.9);
+		got.on = S.marks.filter((q) => faint(q.what)).map((q) => q.what);
+		L.push(got);
+	}
+	{
+		// the two pairs named: p+ left of its dots (its path comes in from below), p- over its own
+		const qP = at(pairs[0].n), qM = at(pairs[1].n);
+		L.push(await S.clear('\\hat p_+', qP[0] - reach - LABEL_GAP - 0.4, qP[1], 1, 0.5, [-1, 0]));
+		L.push(await S.clear('\\hat p_-', qM[0], qM[1] - STAR - LABEL_GAP - 0.4, 0.5, 1, [0, -1]));
 	}
 	{
 		const m = [(line.a[0] + line.b[0]) / 2, (line.a[1] + line.b[1]) / 2];
 		L.push(await S.clear('\\hat n,\\ \\text{now}', m[0] + 6, m[1] + LABEL_GAP + 2, 0.5, 0, [0, 1]));
+	}
+
+	// ---- the key, at the lower left under the body: what the open circles, the dots and the grey paths are
+	{
+		const x0 = B[0] - BODY_R, rr = STAR + STAR_EDGE / 2;
+		let y = B[1] + BODY_R + KEY_DROP;
+		const rows = [['open', '\\text{a pair at rest}'], ['filled', `\\text{a pair at }${BODY.speed}c`], ['path', '\\text{its path as the speed rises}']];
+		for (const [kind, src] of rows) {
+			if (kind === 'path') S.path([[x0, y], [x0 + 2 * s + 2 * rr, y]], { color: DIM, width: PATH, layer: 3, cap: 'butt', what: 'the key\'s path' });
+			else for (const o of [rr, rr + 2 * s]) {
+				const q = [x0 + o, y];
+				S.raw(`<circle cx="${n2(q[0])}" cy="${n2(q[1])}" r="${STAR}" fill="${kind === 'open' ? PAGE : CURV}" stroke="${kind === 'open' ? CURV : PAGE}" stroke-width="${kind === 'open' ? OPEN_W : STAR_EDGE}"/>`, 5);
+				S.mark([q], rr, `the key's ${kind} dot`);
+			}
+			L.push(await placed(src, x0 + 2 * s + 2 * rr + KEY_TEXT, y, 0, 0.5, INK));
+			y += KEY_PITCH;
+		}
 	}
 
 	S.checkAll(L);

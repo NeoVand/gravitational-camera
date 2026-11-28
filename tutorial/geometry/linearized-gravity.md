@@ -383,7 +383,7 @@ matter count only for fast motion and for light. A beam of light has a momentum 
 $\field{\bar h}_{ij}$ is as large as its $\field{\bar h}_{00}$.
 
 ![Look first at the gaps: each step down the table, from energy to momentum to momentum flux, costs about one factor
-of $v/c$, eight orders of magnitude for a walking person. The hollow tick is the stress of bearing the person's weight
+of $v/c$, eight orders of magnitude for a walking person. The hollow bar is the stress of bearing the person's weight
 on a floor, five times the motion part. Logarithmic scale.](tut-linear-hierarchy){#fig:hierarchy}
 
 ## The field travels at the speed of light

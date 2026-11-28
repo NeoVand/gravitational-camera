@@ -1,6 +1,6 @@
 // The tutorial, section 13.6 (tutorial/what-a-field-keeps/algebra-of-moments.md), its third diagram: a history that
 // is not analytic. One plot, t from -1 to 3 across and A from 0 to 1 up: the exact curve A(t) = e^{-1/t^2} for t > 0
-// and 0 before, a thin solid stroke in ink; its Taylor series at t = 0, the flat line A = 0, dashed in a grey along the
+// and 0 before, a thin solid stroke in ink, labelled so ("A = e^{-1/t^2} for t > 0, 0 before"); its Taylor series at t = 0, the flat line A = 0, dashed in a grey along the
 // whole range; a small dot at t = 0, "every derivative zero", set in the empty part of the plot above and to the left
 // and tied to the dot by a hairline; two light markers, open circles on the curve, at t = 0.5 (A = 0.018) and t = 1
 // (A = 0.37), each with its value beside it. Below, a thin strip on the same time axis: a boundary reading drawn the
@@ -82,7 +82,7 @@ export default async function () {
 	// the names of the curve and of the series
 	{
 		const t = 1 / Math.sqrt(-Math.log(0.66));             // where the curve stands at 0.66
-		L.push(await S.clear('A = e^{-1/t^2}', P.X(t) - 3, P.Y(0.66), 1, 0.5, [-1, 0]));
+		L.push(await S.clear('A = e^{-1/t^2}\\text{ for } t > 0\\text{, 0 before}', P.X(t) - 3, P.Y(0.66), 1, 0.5, [-1, 0]));
 		L.push(await S.clear('\\text{its Taylor series at }t = 0', P.X(2.15), P.Y(0) - 1, 0.5, 1, [0, -1], { color: DIM }));
 	}
 

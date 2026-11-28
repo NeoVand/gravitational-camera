@@ -5,20 +5,23 @@
 // and so sits off them; under it "labels move, balls do not: curvature 0". Right, "a real wave" (plus polarized,
 // travelling out of the page), at its phase of largest stretch: the coordinate lines straight and even, the balls
 // moved from them, the lattice stretched along x (an orange tint behind the balls at the two ends of each row) and
-// squeezed along y (a blue tint at the ends of each column); under it "separations change: curvature != 0". In each
-// panel one small double-headed ink arrow between two neighbouring balls of the bottom row, named "proper
-// separation": one spacing on the left, longer on the right.
+// squeezed along y (a blue tint at the ends of each column); under it "separations change: curvature != 0", and under
+// that a key, a tinted ball beside each of "stretched along x" and "squeezed along y". In each panel one small
+// double-headed ink arrow between two neighbouring balls of the bottom row, named "proper separation": one spacing on
+// the left, longer on the right; on the right, under it and from the same left leader, a dashed bracket one spacing
+// long, "without the wave", so that the stretch shows against the undisturbed separation.
 // Departures from the diagram's comment: the two panels stand side by side at every width, each about 120 points
 // wide, so that one drawing about 255 points wide keeps its text readable on a phone; the notes stand under the
 // panels, in two lines each, not beside them. The double-headed arrow is a dimension line just under the grid, with
 // dotted leaders down from its two balls, since between the balls themselves it would lie along a coordinate line (on
 // the left every row of balls sits on its horizontal line). Each title has a second line in the faint ink, "a change
-// of coordinates" and "plus polarization, out of the page", the comment's own words for the two cases. The corner
-// balls, at the end of a row and of a column at once, carry no tint.
+// of coordinates" and "plus polarization, travelling out of the page", the comment's own words for the two cases (the
+// travelling said, since the wave, not the polarization, comes out of the page). The corner balls, at the end of a row
+// and of a column at once, carry no tint. The notes of the two panels stand at one height.
 // Exact: the left panel's lines, each the solution x of x + eps cos(kx + phase) = n a (asserted), with eps k = 0.55 < 1 so that
 // the labels stay in order (asserted), and the balls at x = n a, their separations one spacing a (asserted); the
 // right panel's balls at ((1 + h/2) x, (1 - h/2) y) of a plus wave of amplitude h at its largest stretch, the
-// separation along x (1 + h/2) a (asserted). The curvature of the two tables, zero and not zero, asserted in
+// separation along x (1 + h/2) a (asserted), the dashed bracket under it a (asserted). The curvature of the two tables, zero and not zero, asserted in
 // tut-linear-lib.js from 7.2's formula by finite differences, with the chapter's 2 eps k = 2 x 10^-3 for eps = 1 mm and
 // k = 1 m^-1. Schematic: the amplitudes, eps k = 0.55 and h = 0.36 (both exaggerated, as the caption says), the
 // wavelength of the relabelling (eight spacings), its phase (80 degrees, the one that keeps the balls farthest from the
@@ -49,6 +52,12 @@ const DIM_DROP = 7;                        // the dimension line stands this far
 const OVERSHOOT = 1.8;                     // a leader runs this far past the dimension line
 const TITLE_AIR = 5;                       // the titles to the grid
 const NOTE_AIR = 5.5;                      // the dimension line to the notes
+const REF_DROP = 11;                       // the dashed bracket without the wave stands this far under the dimension line
+const REF_DASH = [2, 1.3];                 // its dashes
+const TICK = 2.2;                          // half its end's tick
+const KEY_AIR = 4.5;                       // the notes to the key
+const KEY_GAP = 2.4;                       // a key's ball to its words
+const KEY_SEP = 10;                        // between the key's two items
 
 export default async function () {
 	const nums = chapter(check);
@@ -70,7 +79,7 @@ export default async function () {
 	const panels = [
 		{ key: 'gauge', cx: ORIGIN - EXTENT - GAP / 2, title: '\\text{pure gauge}', sub: '\\text{a change of coordinates}',
 			notes: ['\\text{labels move, balls do not:}', '\\text{curvature }0'] },
-		{ key: 'wave', cx: ORIGIN + EXTENT + GAP / 2, title: '\\text{a real wave}', sub: '\\text{plus polarization, out of the page}',
+		{ key: 'wave', cx: ORIGIN + EXTENT + GAP / 2, title: '\\text{a real wave}', sub: '\\text{plus polarization, travelling out of the page}',
 			notes: ['\\text{separations change:}', '\\text{curvature}\\neq0'] }
 	];
 	const out = {};
@@ -130,7 +139,11 @@ export default async function () {
 		// ---- the proper separation: a dimension line under the grid between the balls of the bottom row in PAIR
 		const [qa, qb] = PAIR.map((i) => balls[`${i},${N}`]);
 		const yd = cy + EXTENT + DIM_DROP;
-		for (const q of [qa, qb]) S.dots([q[0], q[1] + LEADER_CLEAR], [q[0], yd + OVERSHOOT], { color: DIM, layer: 1, what: `${what}'s leader at ${q[0].toFixed(1)}` });
+		// on the right a dashed bracket one spacing long under it, from the same left leader: the separation without the wave
+		const yr = yd + REF_DROP;
+		const lowest = p.key === 'wave' ? yr : yd;
+		S.dots([qa[0], qa[1] + LEADER_CLEAR], [qa[0], lowest + OVERSHOOT], { color: DIM, layer: 1, what: `${what}'s leader at ${qa[0].toFixed(1)}` });
+		S.dots([qb[0], qb[1] + LEADER_CLEAR], [qb[0], yd + OVERSHOOT], { color: DIM, layer: 1, what: `${what}'s leader at ${qb[0].toFixed(1)}` });
 		const mid = [(qa[0] + qb[0]) / 2, yd];
 		const left = S.arrow(mid, [qa[0], yd], { color: INK, width: PUSH, head: PUSH_HEAD, layer: 2, what: `${what}'s separation, left` });
 		const right = S.arrow(mid, [qb[0], yd], { color: INK, width: PUSH, head: PUSH_HEAD, layer: 2, what: `${what}'s separation, right` });
@@ -141,9 +154,39 @@ export default async function () {
 		out[p.key] = sep;
 		const name1 = await placed('\\text{proper separation}', qa[0] - LABEL_GAP - 1.2, yd, 1, 0.5, INK);
 		L.push(name1);
-
-		// ---- the notes, two lines as one label
-		L.push(await stack(p.notes, cx, Math.max(name1.box.b, yd + OVERSHOOT) + NOTE_AIR, 0.5, INK));
+		let bottom = Math.max(name1.box.b, lowest + OVERSHOOT);
+		if (p.key === 'wave') {
+			const [x0, x1] = [qa[0], qa[0] + A];
+			S.path([[x0, yr], [x1, yr]], { color: INK, width: PUSH, dash: REF_DASH, cap: 'butt', layer: 2, what: `${what}'s separation without the wave` });
+			for (const x of [x0, x1]) S.path([[x, yr - TICK], [x, yr + TICK]], { color: INK, width: PUSH, cap: 'butt', layer: 2, what: `${what}'s separation without the wave, its end at ${x.toFixed(1)}` });
+			check(near(x1 - x0, A, 1e-9) && qb[0] - x1 > 2, `${what}: the bracket without the wave is not one spacing, shorter than the wave's`);
+			const name2 = await placed('\\text{without the wave}', x0 - LABEL_GAP - 1.2, yr, 1, 0.5, DIM);
+			L.push(name2);
+			bottom = Math.max(bottom, name2.box.b, yr + TICK);
+		}
+		p.bottom = bottom;
+	}
+	// ---- the notes, two lines as one label, at one height under both panels; under the right one the tints' key
+	const notesTop = Math.max(...panels.map((p) => p.bottom)) + NOTE_AIR;
+	for (const p of panels) {
+		const notes = await stack(p.notes, p.cx, notesTop, 0.5, INK);
+		L.push(notes);
+		if (p.key === 'wave') {
+			// the key: a ball in each tint, then its words; the two items centred under the panel
+			const items = [[ACCENT, '\\text{stretched along }x'], [ACCENT2, '\\text{squeezed along }y']];
+			const ky = notes.box.b + KEY_AIR + HALO;
+			const probes = await Promise.all(items.map(([, t]) => placed(t, 0, 0, 0, 0.5, INK)));
+			const widths = probes.map((q) => 2 * HALO + KEY_GAP + q.box.r - q.box.l);
+			let x = p.cx - (widths[0] + KEY_SEP + widths[1]) / 2;
+			for (let k = 0; k < 2; k++) {
+				const c = [x + HALO, ky];
+				S.raw(`<circle cx="${c[0].toFixed(2)}" cy="${c[1].toFixed(2)}" r="${HALO}" fill="${items[k][0]}" fill-opacity="${TINT_OPACITY}"/>`, 1);
+				S.raw(`<circle cx="${c[0].toFixed(2)}" cy="${c[1].toFixed(2)}" r="${BALL}" fill="${OBS}"/>`, 3);
+				S.mark([c], HALO, `the key's ball ${k}`);
+				L.push(await placed(items[k][1], c[0] + HALO + KEY_GAP, ky, 0, 0.5, INK));
+				x += widths[k] + KEY_SEP;
+			}
+		}
 	}
 	check(out.wave > out.gauge && near(out.gauge, A, 1e-9), 'the two separations');
 	// the two panels do not meet

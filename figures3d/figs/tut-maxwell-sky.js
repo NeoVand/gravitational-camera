@@ -20,7 +20,11 @@
 // dashed line whose middle the arrow from the centre reaches, and the paths run dashed and veiled where they pass
 // behind. The arrow 0.9c is drawn at the same scale as the half sum, 0.9 of the sky's radius, so that the two can be
 // compared; the half sum's name is set on two lines, to fit between the arrow and the meridian. The meridian is the one
-// through the poles +-y and the direction (-0.27, 0, 0.96), which keeps clear of the arrows and the dots.
+// through the poles +-y and the direction (-0.27, 0, 0.96), which keeps clear of the arrows and the dots. So that a
+// reader can tell what is what, which the comment leaves to the caption, the charge's disc is named "charge" under it
+// and the centre's ring "sensor" under it, in both skies, and a key under the skies shows a dot, "light's two special
+// directions, on the sky round the sensor", and an open circle, "where they are when the charge is at rest" (one line
+// in the book, the second entry under the moving sky; two on the site).
 // Exact: the directions (the roots z = 0.9i +- 0.436 of m(z).F = 0 for F = E (-1, 0, 0.9i), and +-1 at rest, mapped to
 // the sky by the stereographic coordinate), their paths (the roots at every speed, asserted on z = 0), the half sum
 // (0, 0.9, 0) and the arrow 0.9c (asserted in tut-maxwell-lib.js), all in one orthographic view. Schematic: the
@@ -48,6 +52,8 @@ const LINE_DASH = [1.4, 1.6];              // the paper's dashed lines to the ch
 const BEHIND_DASH = [1.2, 1.6];            // and behind the sky
 const MERIDIAN = [-0.2672, 0, 0.9636];     // the meridian through +-y and this direction (normalized below)
 const ROW = 8, APART = 18;
+const KEY_AIR = 14, KEY_ROW = 14;          // the key: below the ink, and between its rows (on the site)
+const KEY_GAP = 4, KEY_APART = 18;         // a key's mark to its words, and one entry to the next (in the book)
 
 export default async function () {
 	const nums = chapter(check);
@@ -94,6 +100,10 @@ export default async function () {
 		// ---- the sensor
 		S.raw(`<circle cx="${o[0].toFixed(2)}" cy="${o[1].toFixed(2)}" r="${RING}" fill="${PAGE}" stroke="${INK}" stroke-width="0.6"/>`, 4);
 		S.mark([o], RING + 0.3, 'the sensor');
+		// their names: the charge under its disc, the sensor under its ring
+		const labels = [];
+		labels.push(await S.clear('\\text{charge}', body[0], body[1] + BODY + LABEL_GAP + 0.6, 0.5, 0, [0, 1], { color: INK }));
+		labels.push(await S.clear('\\text{sensor}', o[0], o[1] + RING + LABEL_GAP + 0.6, 0.5, 0, [0, 1], { color: INK }));
 
 		const star = (p, what) => {
 			const q = at(p);
@@ -113,11 +123,10 @@ export default async function () {
 			check(near(d[0][0], 1) && near(d[1][0], -1) && front(d[0]) && !front(d[1]), 'the directions at rest');
 			star(d[0], 'the direction +x');
 			star(d[1], 'the direction -x');
-			return [];
+			return labels;
 		}
 
 		// ---- moving at 0.9c: the paths, the open circles at rest, the dots, the half sum
-		const labels = [];
 		const steps = Array.from({ length: 181 }, (_, k) => (SPEED * k) / 180);
 		const track = steps.map(directions);
 		for (const side of [0, 1]) {
@@ -191,6 +200,28 @@ export default async function () {
 	const c2 = [left2 + 10 + R, BOOK ? c1[1] : t2.box.b + ROW + R];
 	check(!BOOK || near(t1.box.t, t2.box.t, 1e-9), 'the two titles are not on one line');
 	L.push(...await sky(c2, true));
+
+	// ---- the key, under the skies: a dot, light's two directions; an open circle, where they are at rest
+	{
+		const bottom = Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)), ...L.map((l) => l.box.b));
+		const entries = [
+			[true, '\\text{light\'s two special directions, on the sky round the sensor}'],
+			[false, '\\text{where they are when the charge is at rest}']
+		];
+		let x = left, y = bottom + KEY_AIR;
+		for (const [filled, src] of entries) {
+			const probe = await placed(src, 0, 0, 0, 0.5, INK);
+			const w = 2 * STAR + KEY_GAP + (probe.box.r - probe.box.l);
+			if (!BOOK && x > left) { x = left; y += KEY_ROW; }
+			// in the book the second entry stands under the moving sky, from its left edge
+			if (BOOK && x > left) x = Math.max(x, left2 + 10);
+			const q = [x + STAR, y];
+			S.raw(`<circle cx="${q[0].toFixed(2)}" cy="${q[1].toFixed(2)}" r="${STAR}" fill="${filled ? LIGHT : PAGE}" stroke="${filled ? PAGE : LIGHT}" stroke-width="${filled ? STAR_EDGE : STAR_EDGE + 0.1}"/>`, 5);
+			S.mark([q], STAR + STAR_EDGE / 2, `the key's ${filled ? 'dot' : 'circle'}`);
+			L.push(await placed(src, x + 2 * STAR + KEY_GAP, y, 0, 0.5, INK));
+			x += w + KEY_APART;
+		}
+	}
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, radius: R };

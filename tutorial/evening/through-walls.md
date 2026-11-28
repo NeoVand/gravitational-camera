@@ -92,8 +92,9 @@ in empty space.[^evanescent]
 For crests 10 cm apart seen from 10 cm, $kz = 2\pi$, so the signal is $e^{2\pi} = 535$ times weaker than at the slab.
 From 20 cm it is $e^{4\pi} = 2.9 \times 10^5$ times weaker, because doubling the height squares the factor.
 
-![Two ripples, one three times finer than the other, fade as they rise. At the pixels the coarse one stands above
-the noise and the fine one is lost. Heights stretched about ten times.](tut-ripples){#fig:ripples}
+![Two of the ripples that build the picture of a sandstone block with two iron balls in it, one three times finer than
+the other, fade as they rise. The top row is what the pixels read, the ripple plus a noise as wide as the grey band:
+the coarse ripple stands out of the noise and the fine one is lost. Heights stretched about ten times.](tut-ripples){#fig:ripples}
 
 ## The blur shrinks only with the number of digits of the sensitivity
 

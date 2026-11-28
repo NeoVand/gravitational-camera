@@ -1,18 +1,19 @@
 // The tutorial, section 11.1 (tutorial/black-holes/schwarzschild.md), its fifth diagram: a mass is a lens with a line
-// of foci, and its Einstein ring. Two panels side by side. Left, not to scale: a far source at the left (an open ink
-// circle on the axis, "source"), the mass M at the centre (an ink dot), the camera (a small ink square) on the axis at
-// the distance d to the right; parallel rays from the left at +-b_E, +-1.2 b_E and +-1.4 b_E, each turned toward the
-// axis at the mass by 2r_s/b, so that it crosses the axis at b^2/2r_s: the pair at b_E meets at the camera, the others
-// cross farther on, at 1.44 d and 1.96 d, marked by ticks on the line of foci. Dimensions: b_E (from the axis to the
-// upper ray, before the mass), d (from the mass to the camera) and b^2/2r_s (from the mass to the farthest crossing).
-// Right: two skies as discs in the page's faint tint, angles from the centre drawn in proportion. "at d": the mass at
-// the centre and the Einstein ring at sqrt(2r_s/d). "at 40 GM/c^2", out to 22 degrees: the shadow filled dark (7.27
-// degrees), the exact ring (20.2 degrees, solid) and the weak-field ring (18.1 degrees, dashed). Rays and rings in the
-// light role's colour; everything else in ink and the page's greys.
-// Departures from the diagram's comment: the source stands at the left end of the axis, and the rays come in parallel,
-// as from a source far away, to the left of the mass; the line of foci's crossings are ticked; the skies are named
-// under them; the numbers stand beside the circles they name ("sqrt(2r_s/d)" and "20.2" outside the solid rings, up and
-// to the right, "18.1" inside the dashed one, "7.27" under the shadow); the first sky's ring radius is schematic.
+// of foci, and its Einstein ring. Two panels side by side. Left, not to scale: a far source off the panel to the left
+// (named at the axis's left end, "source far away"), the mass M (an ink dot), the camera (a small ink square) on the
+// axis at the distance d to the right; parallel rays from the left at +-b_E, +-1.2 b_E and +-1.4 b_E, each turned
+// toward the axis at the mass by 2r_s/b, so that it crosses the axis at b^2/2r_s: the pair at b_E meets at the camera,
+// the others cross farther on, at 1.44 d and 1.96 d, marked by ticks on the line of foci. Dimensions: b_E (from the
+// axis to the upper ray, before the mass), d (from the mass to the camera) and b^2/2r_s (from the mass to the farthest
+// crossing). Right: two skies as discs in the page's faint tint, angles from the centre drawn in proportion. "at d":
+// the mass at the centre and the Einstein ring at sqrt(2r_s/d). "at 40 GM/c^2", out to 22 degrees: the shadow filled
+// dark (7.27 degrees), the exact ring (20.2 degrees, solid) and the weak-field ring (18.1 degrees, dashed). Rays and
+// rings in the light role's colour; everything else in ink and the page's greys.
+// Departures from the diagram's comment: the source is not drawn but named, "source far away", at the left end of the
+// axis, where the rays come in parallel, as from a source far away; the line of foci's crossings are ticked; the skies
+// are named under them; the numbers stand beside the circles they name ("sqrt(2r_s/d)" and "20.2" outside the solid
+// rings, up and to the right, "18.1" inside the dashed one, "7.27" under the shadow); the first sky's ring radius is
+// schematic.
 // Exact: in the left panel, the geometry of the thin lens it draws (each ray turned by 2r_s/b crosses the axis at
 // b^2/2r_s, so the crossings stand at (b/b_E)^2 d, asserted); in the second sky, the three radii in proportion to the
 // angles, which tut-schw-lib.js computes (the exact ring by the port of the chapter's integrator) and asserts against
@@ -20,7 +21,7 @@
 // sky's ring radius.
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, LABEL_GAP, HAIR, SIZE, n2 } from './tut-pot-lib.js';
 import { pathOf } from './tut-prob-lib.js';
-import { tex, INK, DIM, PAGE } from '../lib.js';
+import { tex, INK, DIM } from '../lib.js';
 import { chapter, palette, near, LIGHT, HOLE, DEG } from './tut-schw-lib.js';
 
 const name = 'tut-schw-ring';
@@ -31,7 +32,8 @@ const BE = 26;                                  // b_E on the page
 const D = 56;                                   // d on the page, so 2r_s = BE^2 / D
 const KS = [1, 1.2, 1.4];                       // the rays' b over b_E
 const IN = 46;                                  // the rays come in from this far left of the mass
-const SOURCE = 50;                              // the source, this far left of the mass
+const SOURCE = 4.5;                             // the source's name, this far left of the rays' and the axis's left end
+const SKIP = 1.8;                               // between the lines of the source's name
 const OUT = 118;                                // the rays and the axis run to this far right of the mass
 const SKY = { R: 33, gap: 14, apart: 10, field: 22, ring1: 0.88 };   // the skies: radius, from the left panel, between, field (deg), first ring
 const TINT = '#eeebe5';
@@ -56,16 +58,13 @@ export default async function () {
 
 	// ---- left: the axis, dotted, from the source to the right end
 	{
-		const a = [m[0] - SOURCE + 3, m[1]], z = [m[0] + OUT, m[1]];
+		const a = [m[0] - IN, m[1]], z = [m[0] + OUT, m[1]];
 		const n = Math.round((z[0] - a[0]) / DOT_STEP), step = (z[0] - a[0]) / n;
 		const dots = Array.from({ length: n + 1 }, (_, i) => [a[0] + i * step, a[1]]);
 		S.raw(`<path d="${dots.map(([x, y]) => `M${n2(x)},${n2(y)}h0`).join('')}" stroke="${DIM}" stroke-width="${DOT}" stroke-linecap="round" fill="none"/>`, 1);
 		S.mark([a, z], DOT / 2, 'the axis');
 	}
-	// the source, the mass, the camera
-	const src = [m[0] - SOURCE, m[1]];
-	S.raw(`<circle cx="${n2(src[0])}" cy="${n2(src[1])}" r="${n2(MASS - 0.3)}" fill="${PAGE}" stroke="${INK}" stroke-width="0.6"/>`, 3);
-	S.mark([src], MASS, 'the source');
+	// the mass, the camera; the source is far off the panel to the left, named at the axis's left end
 	S.raw(`<circle cx="${n2(m[0])}" cy="${n2(m[1])}" r="${MASS}" fill="${INK}"/>`, 3);
 	S.mark([m], MASS, 'the mass');
 	const cam = [m[0] + D, m[1]];
@@ -105,8 +104,18 @@ export default async function () {
 		dBase = dl.box.b;                       // d has no descender: its ink's bottom is its baseline
 		L.push(await dim(m[0] + cross(KS[2] * BE), m[1] + DIMS[1], 'b^2/2r_s'));
 	}
-	// the names: source and M
-	L.push(await placed('\\text{source}', src[0], src[1] + MASS + LABEL_GAP + 1, 0.5, 0, INK));
+	// the names: the source, far away, left of the axis's end and the rays' (two lines, right-aligned, centred on the
+	// axis), and M
+	{
+		const rows = ['\\text{source}', '\\text{far away}'];
+		const probe = [];
+		for (const r of rows) probe.push(await placed(r, 0, 0, 1, 0, INK));
+		const h = probe.reduce((t, p) => t + (p.box.b - p.box.t), 0) + SKIP;
+		const parts = [];
+		let t = m[1] - h / 2;
+		for (const r of rows) { const g = await placed(r, m[0] - IN - SOURCE, t, 1, 0, INK); parts.push(g); t = g.box.b + SKIP; }
+		L.push({ src: 'source far away', svg: parts.map((g) => g.svg).join(''), box: { l: Math.min(...parts.map((g) => g.box.l)), r: Math.max(...parts.map((g) => g.box.r)), t: parts[0].box.t, b: parts[1].box.b } });
+	}
 	L.push(await S.clear('M', m[0] + 2, m[1] - MASS - LABEL_GAP, 0, 1, [0.5, -0.87]));
 
 	// ---- right: the two skies
@@ -157,5 +166,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { twoRs, crossings: KS.map((k) => cross(k * BE) / D), shadow: shadow40 / DEG, ring: ring40 / DEG, weak: weak40 / DEG };
-	return finish(S, L, [300, 360]);
+	return finish(S, L, [300, 380]);
 }

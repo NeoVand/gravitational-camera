@@ -401,7 +401,8 @@ which we derive next from one particle.
 ![Look first at the two arrows from the source: $\hat N$ points to the camera and $\hat n'$ along one piece of the
 burst. The angle $\beta$ from $\hat N$ and the turn $\psi$ round $\hat N$, measured from $\vect e_1$, place $\hat n'$.
 A burst that is the same all round the axis $\hat z$ needs only the camera's angle $\theta$ and the emission's angle
-$\theta'$ from that axis. Schematic.](tut-memory-angles){#fig:memory-angles}
+$\theta'$ from that axis. The shaded disc stands across $\hat N$, in the plane of $\vect e_1$ and $\vect e_2$.
+Schematic.](tut-memory-angles){#fig:memory-angles}
 
 **One particle, exactly.** A particle of energy $\matter E$ leaves the origin at $t = 0$ with the velocity $\vect v =
 v\hat n'$, where for now $v < c$. By

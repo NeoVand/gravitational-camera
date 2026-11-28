@@ -7,11 +7,13 @@
 // arcsin(r/R), each named by its angle at the end of a dotted leader that carries it beyond the surface, as the
 // paper's figure carries its lines; a fourth, dashed, leaves 40 degrees from straight down toward the Sun's core at
 // the lower left, with a dot and the ground's number radiance where it leaves the Earth. Beside the lower half of the
-// cut, each shell's name, its share of the placeholder and its j_N (aligned on the times signs), under a header row,
-// joined to the shell's middle on the cut by a grey leader. Beside the upper half, a single bar split in the shells'
-// colours by their shares of a lifetime's count, under "35,800 in 80 years": the crust's 12 gravitons a tick over the
-// bar's left end, the inner core's 3.2% over its right end, the other three shares under their parts. The two tags of
-// the 33.1 degree line under its angle. Neutral ink otherwise: no orange or blue, which mean a stretch and a squeeze.
+// cut, each shell's name, its share of the placeholder, its j_N (aligned on the times signs) and its part of a
+// lifetime's count, under a header of two lines ("share of / placeholder", "j_N", "count"), joined to the shell's
+// middle on the cut by a grey leader. Beside the upper half, a single bar split in the shells' colours by their shares
+// of a lifetime's count, under "the count: 35,800 in 80 years": the crust's 12 gravitons a tick over the bar's left
+// end, the inner core's 3.2% over its right end, the other three shares under their parts, each the number in the
+// table's last column, so that the table's rows name the bar's parts. The two tags of the 33.1 degree line under its
+// angle, which the caption explains. Neutral ink otherwise: no orange or blue, which mean a stretch and a squeeze.
 // Departures from the diagram's comment, where the drawing decides: the shells' labels stand beside the lower half of
 // the cut, since the crust meets the cut only at its two ends and the camera stands on the upper one, so they read
 // from the crust in going up, from the Earth's bottom to its centre, and each also names its shell; the bar stands
@@ -50,7 +52,7 @@ const COLOURS = [PAPER_SHELLS.crust, PAPER_SHELLS.upper, PAPER_SHELLS.lower, PAP
 const EARTH = SHELLS[0][1];
 const GRAZED = [[2, '63.5'], [3, '33.1'], [4, '11.05']];       // the shell whose top each line grazes, its angle
 const SUN_ANGLE = 40;
-const CAPTION = 'Look first at the bar: a lifetime\'s 35,800 gravitons, mostly from the lower mantle. The grazing lines place the boundaries whatever the frictions, and the line to the Sun\'s core passes between the kinks at 63° and 33°. Sizes of the Sun and distances schematic; every number from the capstone.';
+const CAPTION = 'Look first at the bar: a lifetime\'s 35,800 gravitons, mostly from the lower mantle; its parts are the table\'s last column. The grazing lines place the boundaries whatever the frictions, and the line to the Sun\'s core passes between the kinks at 63° and 33°. Along the line at 33°, which grazes the core, a lifetime places the core\'s edge to 29 km, and the gravitons\' colour, their mean energy, steps by a factor of five to twelve. Sizes of the Sun and distances schematic; every number from the capstone.';
 
 // ---- the drawing (figure points, y down) ------------------------------------------------------------------------
 const R = 96;                     // the Earth's radius
@@ -215,7 +217,9 @@ export default async function () {
 		const shareW = Math.max(...(await Promise.all(SHELLS.map((s) => width(s[4])))));
 		const mant = SHELLS.map((s) => s[5].split('\\times')[0]), pow = SHELLS.map((s) => '{}\\times' + s[5].split('\\times')[1]);
 		const mantW = Math.max(...(await Promise.all(mant.map((m) => width(m)))));
-		const x0 = O[0] + LEAD, x1 = x0 + nameW + COL_GAP, xm = x1 + shareW + COL_GAP + mantW;
+		const powW = Math.max(...(await Promise.all(pow.map((m) => width(m)))));
+		const counts = SHELLS.map((s) => s[7].replace(' gravitons', ''));
+		const x0 = O[0] + LEAD, x1 = x0 + nameW + COL_GAP, xm = x1 + shareW + COL_GAP + mantW, xc = xm + powW + COL_GAP + 3;
 		// the rows' middles: at their shells' middles where they can be, the crust's and upper mantle's pair spread to
 		// PITCH about their two shells' middles, and each row above at least PITCH over the one below
 		const ys = mids.map((m) => P([0, m])[1]);
@@ -223,20 +227,28 @@ export default async function () {
 		const pair = (ys[0] + ys[1]) / 2;
 		rows[0] = Math.max(ys[0], pair + PITCH / 2); rows[1] = rows[0] - PITCH;
 		for (let k = 2; k < rows.length; k++) rows[k] = Math.min(ys[k], rows[k - 1] - PITCH);
+		const cells = [];
 		for (const [k, s] of SHELLS.entries()) {
 			const base = rows[k] + figH / 2;
-			L.push(await onBase(`\\text{${s[0]}}`, x0, base, 0, DIM));
-			L.push(await onBase(s[4], x1, base, 0, INK));
+			cells.push(await onBase(`\\text{${s[0]}}`, x0, base, 0, DIM));
+			cells.push(await onBase(s[4], x1, base, 0, INK));
 			const m = await tex(mant[k], [xm, base], SIZE, 'rB', INK), pw = await tex(pow[k], [xm, base], SIZE, 'lB', INK);
-			L.push({ src: mant[k], svg: m, box: boxOf(m) }, { src: pow[k], svg: pw, box: boxOf(pw) });
+			cells.push({ src: mant[k], svg: m, box: boxOf(m) }, { src: pow[k], svg: pw, box: boxOf(pw) });
+			cells.push(await onBase(counts[k], xc, base, 0, INK));
 			S.path([[O[0] + LINE / 2, ys[k]], [x0 - LABEL_GAP - 0.4, rows[k]]], { color: DIM, width: HAIR, layer: 2, cap: 'butt', what: `the leader of the ${s[0]}` });
 			check(Math.abs(rows[k] - ys[k]) < 6, `the row of the ${s[0]} is far from its shell`);
 		}
-		tableRight = Math.max(...L.slice(-20).map((g) => g.box.r));
-		const top = Math.min(...L.slice(-4).map((g) => g.box.t));
+		L.push(...cells);
+		tableRight = Math.max(...cells.map((g) => g.box.r));
+		// the header, two lines over the columns: "share of / placeholder" centred over its column, "j_N" over its
+		// column's times signs and "count" over its column, on the second line
+		const top = Math.min(...cells.slice(-5).map((g) => g.box.t));
 		const head = top - HEAD_DROP;
-		L.push(await onBase('\\text{share}', x1, head, 0, DIM));
-		L.push(await onBase('j_N', xm - mantW, head, 0, DIM));
+		L.push(await onBase('\\text{placeholder}', x1 + shareW / 2, head, 0.5, DIM));
+		L.push(await onBase('\\text{share of}', x1 + shareW / 2, head - BASE_PITCH, 0.5, DIM));
+		L.push(await onBase('j_N', xm, head, 0.5, DIM));
+		L.push(await onBase('\\text{count}', xc, head, 0, DIM));
+		check(counts.join() === '12,7.5\\%,62\\%,27\\%,3.2\\%', `the counts ${counts}`);
 	}
 
 	// ---- the bar beside the upper half: a lifetime's count, in the shells' colours ----------------------------------
@@ -252,7 +264,7 @@ export default async function () {
 		for (let k = 2; k < xs.length - 1; k++) S.path([[xs[k], y0], [xs[k], y0 + BAR.h]], { color: DIM, width: HAIR, layer: 1.2, cap: 'butt', what: `the bar's part ${k}` });
 		S.path([[x0, y0], [x0 + BW, y0], [x0 + BW, y0 + BAR.h], [x0, y0 + BAR.h]], { color: INK, width: HAIR, closed: true, cap: 'butt', layer: 1.3, what: 'the bar' });
 		S.path([[x0, y0 - BAR.tick], [x0, y0]], { color: INK, width: HAIR, layer: 1.3, cap: 'butt', what: 'the crust\'s tick' });
-		L.push(await onBase('\\text{35,800 in 80 years}', x0 + BW / 2, over, 0.5, INK));
+		L.push(await onBase('\\text{the count: 35,800 in 80 years}', x0 + BW / 2, over - BASE_PITCH, 0.5, INK));
 		L.push(await onBase('12', x0, over, 0.5, INK));
 		// the three wide parts named under the bar; the inner core's, 3.2%, over its end, as the crust's 12 over the other
 		for (let k = 1; k < share.length - 1; k++) L.push(await onBase(SHELLS[k][7], (xs[k] + xs[k + 1]) / 2, under, 0.5, INK));
@@ -261,7 +273,7 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { angles, jN, share, lifetime, sunChords };
-	return finish(S, L, [240, 345]);
+	return finish(S, L, [240, 380]);
 }
 
 /** A TeX label with its baseline at y and the point ax of its ink's width (0 left, 1 right) at x. */

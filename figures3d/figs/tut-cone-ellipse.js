@@ -10,8 +10,10 @@
 // outline and orange inside of the paper's fig:two-readings, because in the tutorial orange and blue mean a stretch
 // and a squeeze (tut-calderon-lib.js). The line is named "kappa = K"; the two points are joined by a dotted line at
 // the same K, so that the shrinking is read at one K.
-// Exact: the ellipse, the foci, both pairs, the cone's line, the points; the scales are equal, so the cone's line is
-// at 45 degrees. Nothing is schematic.
+// Both panels' axes are ticked at 1 and 2 m^-1 (the k_y axis's labels stand right of it, since the ellipse passes just
+// left of it at 1).
+// Exact: the ellipse, the foci, both pairs, the cone's line, the points, the ticks; the scales are equal, so the cone's
+// line is at 45 degrees. Nothing is schematic.
 import { Sheet, ORIGIN, finish, checker, placed, beside, n2, LABEL_GAP, AXIS, AXIS_HEAD, VEC, VEC_HEAD, LINE, HAIR, TICK } from './tut-pot-lib.js';
 import { TINT } from './tut-prob-lib.js';
 import { INK, DIM, FAINT } from '../lib.js';
@@ -23,12 +25,13 @@ const check = checker(name);
 
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
 const S1 = 50;                         // points per m^-1, both panels
-const LEFT = { x: [-0.62, 1.92], y: [-0.55, 2.62] };      // the left panel's axes, m^-1
+const LEFT = { x: [-0.62, 2.42], y: [-0.55, 2.62] };      // the left panel's axes, m^-1
 const RIGHT = { K: 2.62, kap: 2.62 };                     // the right panel's axes, m^-1
 const GAP = 20;                        // from the left panel's k_x name to the right panel's origin
 const DOT_R = 1.35;                    // a focus, a point
 const PALE_W = 0.5;                    // the pale pair
 const ELL_W = 0.6;                     // the ellipse and the cone's line
+const TICK_DROP = 3.6;                 // a tick's foot to its label, under the horizontal axes (clear of the ellipse at 1)
 const caption = 'Look first at the ellipse on the left: every wavevector $\\vect k$ on it, paired with $\\vect K - \\vect k$, reaches the same point of the transform, marked on the right inside the cone. On the cone itself the ellipse shrinks to the segment from $0$ to $\\vect K$. The two pairs drawn are examples.';
 
 export default async function () {
@@ -48,7 +51,15 @@ export default async function () {
 	S.arrow(A([0, LEFT.y[0]]), A([0, LEFT.y[1]]), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the k_y axis' });
 	L.push(await placed('k_x\\ (\\mathrm{m^{-1}})', A([LEFT.x[1], 0])[0] + LABEL_GAP + 0.4, OA[1], 0, 0.5, DIM));
 	L.push(await placed('k_y\\ (\\mathrm{m^{-1}})', OA[0] + AXIS_HEAD * 0.36 + LABEL_GAP + 0.4, A([0, LEFT.y[1]])[1], 0, 0.5, DIM));
-	// no ticks here: the ellipse crosses both axes near 1; the scale is the right panel's
+	// ticks at 1 and 2 on both axes, as on the right panel: under the k_x axis, and right of the k_y axis (left of it the
+	// ellipse passes close by 1)
+	for (const t of [1, 2]) {
+		const qx = A([t, 0]), qy = A([0, t]);
+		S.path([qx, [qx[0], qx[1] + TICK]], { color: DIM, width: HAIR, cap: 'butt', layer: 1, what: `the tick k_x = ${t}` });
+		L.push(await placed(String(t), qx[0], qx[1] + TICK + TICK_DROP, 0.5, 0, DIM));
+		S.path([qy, [qy[0] + TICK, qy[1]]], { color: DIM, width: HAIR, cap: 'butt', layer: 1, what: `the tick k_y = ${t}` });
+		L.push(await placed(String(t), qy[0] + TICK + LABEL_GAP + 0.2, qy[1], 0, 0.5, DIM));
+	}
 
 	// the ellipse, exactly
 	const ell = Array.from({ length: 721 }, (_, i) => A(onEllipse((i * Math.PI) / 360)));
@@ -92,7 +103,10 @@ export default async function () {
 	L.push(await placed('\\kappa\\ (\\mathrm{m^{-1}})', OB[0] + AXIS_HEAD * 0.36 + LABEL_GAP + 0.4, B([0, RIGHT.kap])[1], 0, 0.5, DIM));
 	for (const t of [1, 2]) {
 		S.path([B([t, 0]), [B([t, 0])[0], OB[1] + TICK]], { color: DIM, width: HAIR, cap: 'butt', layer: 1, what: `the tick K = ${t}` });
-		L.push(await placed(String(t), B([t, 0])[0], OB[1] + TICK + 2.4, 0.5, 0, DIM));
+		L.push(await placed(String(t), B([t, 0])[0], OB[1] + TICK + TICK_DROP, 0.5, 0, DIM));
+		const q = B([0, t]);
+		S.path([q, [q[0] - TICK, q[1]]], { color: DIM, width: HAIR, cap: 'butt', layer: 1, what: `the tick kappa = ${t}` });
+		L.push(await placed(String(t), q[0] - TICK - LABEL_GAP - 0.2, q[1], 1, 0.5, DIM));
 	}
 	// the cone's line, at 45 degrees since the scales are equal
 	const cone = [B([0, 0]), B([top, top])];
@@ -112,5 +126,5 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { K: KMOD, kappa: KAPPA, k2 };
-	return finish(S, L, [280, 360]);
+	return finish(S, L, [280, 380]);
 }

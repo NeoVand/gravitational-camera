@@ -9,8 +9,8 @@
 // and the drop from the tip to it, L_z. Right, "turned by eps about x": the same two tops after the turn by eps =
 // 0.1 rad about the x axis through the point (a short axis and a curved arrow round it at each point), each arrow in
 // its old place pale and its new place solid, the top drawn in its new place; the change of L_y per radian, a short
-// arrow along y: -L_z, that is -0.5 for the first top, from the end of its old arrow's shadow on the level plane (the
-// shadow dotted), and +3 for the second, from its old arrow's tip, so that each stands at its own top's arrow; each
+// arrow along y, heavier than the arrows L: -L_z, that is -0.5 for the first top, from the end of its old arrow's
+// shadow on the level plane (the shadow and the drop from the old tip to it dotted, as on the left), and +3 for the second, from its old arrow's tip, so that each stands at its own top's arrow; each
 // named beside, off the geometry.
 // Departures from the diagram's comment: the two short arrows are ink, not orange and blue, which the tutorial keeps
 // for a stretch and a squeeze; they are told apart by their directions and their direct labels. They show delta L_y /
@@ -40,6 +40,7 @@ const SHIFT = 70;                          // the left panel's points, left of t
 const BODY = [[0, 0], [0.34, 0.2], [0.44, 0.255], [0.5, 0.262], [0.55, 0.24], [0.6, 0.17], [0.625, 0.1], [0.635, 0.05], [0.635, 0.042], [0.84, 0.042], [0.85, 0.03], [0.855, 0]];   // the top: [along the axis, radius], J s on the page
 const SHINE = { ambient: 0.34, key: 0.78, fill: 0.16, wrap: 0.3, spec: 0.42, shininess: 26, steps: 140 };
 const PALE = 0.45;                         // the old arrows' opacity
+const CHANGE = 1.1;                         // the two short arrows' stroke, heavier than L's, so that the short one is seen
 const SHADOW = 0.5;                        // the dotted shadows and drops: their stroke's opacity (FAINT)
 const GLYPH = { at: -0.5, r: 0.26, from: -110, to: 195, head: 34, reach: [-0.8, -0.12] };   // the turn's axis and curved arrow
 const CAM = { w: 15, h: 10, round: 2, bump: [5, 2.3, 0.8], barrel: [2.6, 6.2], hood: [2.2, 8], gap: 26, lift: 16, below: 8, triad: 30 };   // the
@@ -190,9 +191,9 @@ export default async function () {
 		const e = 1e-7, exact = (turn(Lv, e)[1] - turn(Lv, -e)[1]) / (2 * e);
 		check(near(exact, rate, 1e-6), `the rate of L_y for top ${k}`);
 		const foot = O.clone().add(v3(Lv[0], Lv[1], 0)), tip = O.clone().add(v3(...Lv));
-		if (k === 0) dotted(O, foot, [b], `the old shadow ${k}`, SHADOW * 0.8);
+		if (k === 0) { dotted(O, foot, [b], `the old shadow ${k}`, SHADOW); dotted(foot, tip, [b], `the old drop ${k}`, SHADOW); }
 		const from = k === 0 ? foot : tip;
-		changes.push(S.arrow(from, from.clone().add(v3(0, rate, 0)), { color: INK, width: VEC, layer: 2.6, what: `the change ${k}` }));
+		changes.push(S.arrow(from, from.clone().add(v3(0, rate, 0)), { color: INK, width: CHANGE, layer: 2.6, what: `the change ${k}` }));
 		// the turn: a short stretch of the x axis left of the point, and a curved arrow about it in the sense of a
 		// positive turn (y toward z)
 		const ax0 = O.clone().add(v3(GLYPH.reach[0], 0, 0)), ax1 = O.clone().add(v3(GLYPH.reach[1], 0, 0));

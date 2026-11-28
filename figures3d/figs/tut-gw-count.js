@@ -1,11 +1,14 @@
 // The tutorial, section 7.6 (tutorial/geometry/gravitational-waves.md), its first diagram: of the ten amplitudes a_mu nu
 // of a plane wave travelling along z, harmonic gauge fixes the four with a time index, the leftover gauge removes the
 // four along z and the trace across it, and two remain. A 4 x 4 grid of square cells, rows and columns 0, 1, 2, 3 (3
-// along z, the direction of travel), each cell holding its amplitude a_mu nu in the field's colour. The seven cells of
-// row 0 and column 0 in a pale grey; a_13, a_31, a_23, a_32 and a_33 in a pale tint of the field's colour; a_12 and a_21
+// along z, the direction of travel), each cell holding its amplitude a_mu nu in the field's colour. On and above the
+// diagonal: the four cells of row 0 in a pale grey; a_13, a_23 and a_33 in a pale tint of the field's colour; a_12
 // outlined heavier in the field's colour; a_11 and a_22 split along a diagonal, their upper left in the tint (their sum
-// is removed) and their lower right outlined heavier (their difference is kept). Under the grid a legend of three
-// swatches, each with the amplitudes it holds, and the line "10 - 4 - 4 = 2".
+// is removed) and their lower right outlined heavier (their difference is kept). The six cells below the diagonal
+// repeat their mirror images (a_nu mu = a_mu nu): white, their labels in the faint ink, so that the coloured cells
+// count 4, 4 and 2 as the legend says (the comment coloured them too, which made seven grey cells for "(4)"). Under the
+// grid a legend of four swatches, each with the amplitudes it holds, the last the white cell, "below the diagonal, the
+// same again: a_nu mu = a_mu nu", and the line "10 - 4 - 4 = 2".
 // Departures from the diagram's comment: the indices are the chapter's 0, 1, 2, 3, not 0, x, y, z, with a note over
 // the grid that 3 is along z; the small "+" and "-" between a_11 and a_22 are not drawn in the grid, where the cells
 // meet only at a corner shared with a_12 and a_21, but written in the legend as a_11 + a_22 and a_11 - a_22, with
@@ -15,7 +18,8 @@
 // a_0nu + a_3nu = 0 have rank 4 and fix the amplitudes with a time index; the leftover gauge's four changes keep them
 // and span exactly a_13, a_23, a_33 and the trace a_11 + a_22 (an amplitude is tinted when the changes reach it
 // alone, split when they reach it only with another, outlined when they never reach it); the counts 4, 4 and 2 read
-// off the classes and asserted against the ranks; 10 - 4 - 4 = 2. Nothing is schematic.
+// off the classes and asserted against the ranks, and against the coloured area on and above the diagonal (a split
+// cell's halves a half each); 10 - 4 - 4 = 2. Nothing is schematic.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP } from './tut-pot-lib.js';
 import { INK, DIM, FAINT } from '../lib.js';
 import { chapter, palette, FIELD, PAIRS, count, rank } from './tut-gw-lib.js';
@@ -91,10 +95,15 @@ export default async function () {
 		check(Math.abs(area(ins)) < Math.abs(area(pts)) && Math.sign(area(ins)) === Math.sign(area(pts)), `${what}: the inset turned over`);
 		S.path(ins, { color: FIELD, width: HEAVY, closed: true, layer: 2, cap: 'butt', what });
 	};
+	// a cell below the diagonal (m > n) repeats its mirror above it, a_nm = a_mn: left white, its label faint, so
+	// that the coloured cells count 4, 4 and 2 (the two halves of a split pair count as one amplitude)
+	const mirror = (m, n) => m > n;
 	let cells = 0;
+	const area = { fixed: 0, removed: 0, left: 0 };
 	for (let m = 0; m < 4; m++) for (let n = 0; n < 4; n++) {
 		const c = cell(m, n), k = classOf(m, n);
 		cells++;
+		if (mirror(m, n)) continue;
 		if (k === 'fixed') S.raw(`<path d="${poly([[c.l, c.t], [c.r, c.t], [c.r, c.b], [c.l, c.b]])}" fill="${FAINT}" fill-opacity="${GREY}"/>`, 0);
 		if (k === 'removed') S.raw(`<path d="${poly([[c.l, c.t], [c.r, c.t], [c.r, c.b], [c.l, c.b]])}" fill="${FIELD}" fill-opacity="${TINT}"/>`, 0);
 		if (k === 'split') {
@@ -102,8 +111,10 @@ export default async function () {
 			heavy(lowTri(c), `a_${m}${n}'s left half`);
 		}
 		if (k === 'left') heavy([[c.l, c.t], [c.r, c.t], [c.r, c.b], [c.l, c.b]], `a_${m}${n}'s outline`);
+		if (k === 'split') { area.removed += 0.5; area.left += 0.5; } else area[k] += 1;
 	}
-	check(cells === 16 && [0, 1, 2, 3].flatMap((m) => [0, 1, 2, 3].map((n) => classOf(m, n))).filter((k) => k === 'fixed').length === 7, 'not seven grey cells');
+	check(cells === 16 && area.fixed === fixed && area.removed === removed && area.left === left,
+		`the coloured cells count ${area.fixed}, ${area.removed}, ${area.left}, not ${fixed}, ${removed}, ${left}`);
 	for (let i = 0; i <= 4; i++) {
 		S.path([[x0 + i * CELL, y0], [x0 + i * CELL, y0 + 4 * CELL]], { color: INK, width: GRID, cap: 'square', layer: 1, what: `the grid's column line ${i}` });
 		S.path([[x0, y0 + i * CELL], [x0 + 4 * CELL, y0 + i * CELL]], { color: INK, width: GRID, cap: 'square', layer: 1, what: `the grid's row line ${i}` });
@@ -116,7 +127,7 @@ export default async function () {
 		const c = cell(m, n);
 		let x = (c.l + c.r) / 2, y = (c.t + c.b) / 2;
 		if (classOf(m, n) === 'split') { const r = (CELL * (2 - Math.SQRT2)) / 2; x = c.l + r; y = c.t + r; }
-		L.push(await placed(a(m, n), x, y, 0.5, 0.5, INK));
+		L.push(await placed(mirror(m, n) ? `a_{${m}${n}}` : a(m, n), x, y, 0.5, 0.5, mirror(m, n) ? FAINT : INK));
 	}
 	// the indices
 	for (let i = 0; i < 4; i++) {
@@ -132,7 +143,8 @@ export default async function () {
 	const rows = [
 		{ key: 'fixed', text: `\\text{fixed by harmonic gauge (${fixed}): }${a(0, '\\nu')}` },
 		{ key: 'removed', text: `\\text{removed by the leftover gauge (${removed}): }${a(1, 3)}, ${a(2, 3)}, ${a(3, 3)}, ${a(1, 1)} + ${a(2, 2)}` },
-		{ key: 'left', text: `\\text{left, the two polarizations (${left}): }${a(1, 2)}, ${a(1, 1)} - ${a(2, 2)}` }
+		{ key: 'left', text: `\\text{left, the two polarizations (${left}): }${a(1, 2)}, ${a(1, 1)} - ${a(2, 2)}` },
+		{ key: 'mirror', text: `\\text{below the diagonal, the same again: }a_{\\nu\\mu} = a_{\\mu\\nu}` }
 	];
 	const texts = [];
 	for (const r of rows) texts.push(await placed(r.text, 0, 0, 0, 0.5, INK));
@@ -147,6 +159,7 @@ export default async function () {
 		if (r.key === 'left') heavy(box, 'the left swatch');
 		else S.path(box, { color: INK, width: GRID, closed: true, layer: 1, what: `the ${r.key} swatch` });
 		S.boxes.push({ box: { l: lx, r: lx + KEY.w, t: cy - KEY.h / 2, b: cy + KEY.h / 2 }, what: `the ${r.key} swatch` });
+		if (r.key === 'mirror') L.push({ ...(await placed('a', lx + KEY.w / 2, cy - 0.6, 0.5, 0.5, FAINT)), on: [`the ${r.key} swatch`] });
 		L.push(await placed(r.text, lx + KEY.w + KEY.air, cy, 0, 0.5, INK));
 		y = cy + Math.max(h, KEY.h) / 2 + KEY.skip;
 	}

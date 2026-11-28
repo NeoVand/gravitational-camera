@@ -1,15 +1,16 @@
 // The tutorial, section 12.2 (tutorial/sky/universe.md), its fifth diagram: a straight cosmic string, at rest and
-// moving. Left, the plane at right angles to the string (a dot), drawn flat as a tinted patch with a wedge of angle Delta
-// cut out above the string, its two edges glued: matching tick marks, one and two, on each edge at equal distances from
-// the string. The source behind lies on the cut, so it is drawn on both edges, at one distance from the string; two
+// moving, the panels titled "at rest" and "moving". Left, the plane at right angles to the string (a dot), drawn flat
+// as a tinted patch with a wedge of angle Delta cut out above the string, its two edges glued: matching tick marks, one
+// and two, on each edge at equal distances from the string, 4.2 points long. The source behind lies on the cut, so it is drawn on both edges, at one distance from the string; two
 // straight rays in the light role's colour, one passing each side of the string, meet at the observer in front, who sees
 // the source twice. Right, the same seen from above: the background along the top, the observer at the bottom, the
-// string between them moving to the right at v (the observer's colour), the plane it has swept, its wake, dashed to its
-// left. The rays from the background to the observer fill a fan: those passing left of the string cross the wake and
-// arrive warmer by delta T / T = 8 pi G mu gamma v / c^3 (the fan's left half tinted more strongly in the light role's
-// colour), those passing right of it arrive unchanged.
-// Departures from the diagram's comment: the angle Delta is marked by an arc across the wedge's mouth, named over it
-// with "exaggerated"; the two images are the source's two places on the cut edges, as the observer sees them along the
+// string between them moving to the right at v (in ink: the velocity is the string's), the plane it has swept, its
+// wake, dashed to its left. The rays from the background to the observer fill a fan: those passing left of the string
+// cross the wake and arrive warmer by delta T / T = 8 pi G mu gamma v / c^3 (the fan's left half tinted more strongly in
+// the light role's colour), those passing right of it arrive unchanged; each half is named inside it, under the
+// background ("warmer by / delta T/T = / 8 pi G mu gamma v / c^3", "unchanged").
+// Departures from the diagram's comment: the angle Delta is marked by an arc across the wedge, named over it inside
+// the wedge (the caption says the angle is exaggerated); the two images are the source's two places on the cut edges, as the observer sees them along the
 // two rays. In the right panel the rays are drawn as a fan (its edges and the ray through the string), so that the
 // velocity's arrow crosses no line.
 // Exact: the straight rays from the source's two places to the observer, which pass either side of the string; the
@@ -18,7 +19,7 @@
 import { Sheet, ORIGIN, finish, checker, placed, near, n2, LABEL_GAP, HAIR, VEC, VEC_HEAD } from './tut-pot-lib.js';
 import { INK, DIM, PAGE } from '../lib.js';
 import { dashed } from './tut-orb-lib.js';
-import { chapter, LIGHT, OBS, stack } from './tut-universe-lib.js';
+import { chapter, LIGHT } from './tut-universe-lib.js';
 
 const name = 'tut-universe-string';
 const check = checker(name);
@@ -29,15 +30,16 @@ const DS = 60, DO = 100;                // the source's distance behind the stri
 const HALF_W = 50;                      // the left patch's half-width
 const OVER = 16;                        // the patch beyond the source's places, upward
 const UNDER = 9;                        // the patch below the observer
-const RIGHT_W = 152;                    // the right panel's width
+const RIGHT_W = 190;                    // the right panel's width
 const BETWEEN = 26;                     // between the panels
 const BAND = 16;                        // the background's band
-const RAY = 0.75, EDGE = 0.45, GLUE = 3.0, GLUE_AT = [13, 29], GLUE_SEP = 1.2;
+const RAY = 0.75, EDGE = 0.45, GLUE = 4.2, GLUE_W = 0.55, GLUE_AT = [21, 34], GLUE_SEP = 1.6;
 const DOT = 1.7, RING = 2.4;            // the string's dot, the observer's ring
-const ARC_R = DS + 8;                   // the arc that marks Delta
+const ARC_R = DS - 17;                  // the arc that marks Delta, low enough in the wedge for its name over it
 const FAN = [-0.46, 0.46];              // the fan's edges at the background, as fractions of the panel's width from its middle
 const MID = 0.62;                       // where a ray's head stands along it
 const ARROW = 20;                       // the velocity's arrow
+const NAME_DROP = 6;                    // the halves' names under the background
 const TINT = '#eeebe5';
 const WARM = 0.2, COOL = 0.07;          // the fan's tints
 const caption = 'Look first at the glued edges: space is flat, but a ray on each side of the string reaches the observer, so a source behind is seen twice. Moving, the string leaves a warmer half of the sky behind it. The wedge\'s angle is exaggerated.';
@@ -74,7 +76,7 @@ export default async function () {
 			GLUE_AT.forEach((r, k) => {
 				for (let j = 0; j <= k; j++) {
 					const s = r + (j - k / 2) * GLUE_SEP, c = [str[0] + u[0] * s, str[1] + u[1] * s];
-					S.path([[c[0] - n[0] * GLUE / 2, c[1] - n[1] * GLUE / 2], [c[0] + n[0] * GLUE / 2, c[1] + n[1] * GLUE / 2]], { color: INK, width: HAIR, cap: 'butt', layer: 1, what: `a glue mark at ${r}` });
+					S.path([[c[0] - n[0] * GLUE / 2, c[1] - n[1] * GLUE / 2], [c[0] + n[0] * GLUE / 2, c[1] + n[1] * GLUE / 2]], { color: INK, width: GLUE_W, cap: 'butt', layer: 1, what: `a glue mark at ${r}` });
 				}
 			});
 		}
@@ -84,7 +86,12 @@ export default async function () {
 		const arc = Array.from({ length: 41 }, (_, i) => { const a = -half + (2 * half * i) / 40; return [str[0] + ARC_R * Math.sin(a), str[1] - ARC_R * Math.cos(a)]; });
 		S.path(arc, { color: DIM, width: HAIR, cap: 'butt', layer: 1, what: 'the arc of Delta' });
 		check(ARC_R < (yS - top) / Math.cos(half) - 2, 'the arc leaves the patch');
-		L.push(await placed('\\Delta\\text{, exaggerated}', lx, top - LABEL_GAP - 0.6, 0.5, 1, INK));
+		// Delta, named in the wedge's mouth over its arc
+		const dl = await placed('\\Delta', lx, str[1] - ARC_R - LABEL_GAP - 0.4, 0.5, 1, INK);
+		check(dl.box.t > top + 0.5, 'Delta\'s name leaves the wedge');
+		L.push(dl);
+		// the panel's title, over it
+		L.push(await placed('\\text{at rest}', lx, top - LABEL_GAP - 0.6, 0.5, 1, INK));
 	}
 	// the rays, straight from each place of the source to the observer, either side of the string
 	{
@@ -151,17 +158,27 @@ export default async function () {
 		// the string and its velocity
 		S.raw(`<circle cx="${n2(str2[0])}" cy="${n2(str2[1])}" r="${DOT}" fill="${INK}"/>`, 3);
 		S.mark([str2], DOT, 'the string, from above');
-		const v = S.arrow([str2[0] + DOT + 1.2, yS], [str2[0] + DOT + 1.2 + ARROW, yS], { color: OBS, width: VEC, head: VEC_HEAD, layer: 3, what: 'the velocity' });
-		L.push(await placed('v', (v.A[0] + v.B[0]) / 2, yS - VEC / 2 - LABEL_GAP - 0.4, 0.5, 1, OBS));
+		const v = S.arrow([str2[0] + DOT + 1.2, yS], [str2[0] + DOT + 1.2 + ARROW, yS], { color: INK, width: VEC, head: VEC_HEAD, layer: 3, what: 'the velocity' });
+		L.push(await placed('v', (v.A[0] + v.B[0]) / 2, yS - VEC / 2 - LABEL_GAP - 0.4, 0.5, 1, INK));
 		const sname = await placed('\\text{string}', str2[0] - LABEL_GAP - 0.6, yS - EDGE / 2 - LABEL_GAP - 0.8, 1, 1, INK);
 		L.push(sname);
 		// the velocity crosses no line: between the ray through the string and the fan's right edge
 		const edgeAt = rx + ((fr[0] - rx) * (yO - yS)) / (yO - bBot);
 		check(v.B[0] + 6 < edgeAt, 'the velocity reaches the fan\'s right edge');
-		// the two halves' names, over the background, on the line of the left panel's name
-		const yName = top - LABEL_GAP - 0.6;
-		L.push(await placed('\\text{warmer: }\\delta T/T = 8\\pi G\\mu\\gamma v/c^3', rx - 6, yName, 1, 1, INK));
-		L.push(await placed('\\text{unchanged}', rx + 12, yName, 0, 1, INK));
+		// the two halves' names, inside them under the background; the panel's title over it, on the left one's line
+		const yName = bBot + NAME_DROP;
+		const halfAt = (y) => (FAN[1] * RIGHT_W * (yO - y)) / (yO - bBot);      // the fan's half-width at the height y
+		const warm = [];
+		for (const src of ['\\text{warmer by}', '\\delta T/T =', '8\\pi G\\mu\\gamma v/c^3']) {
+			const y = warm.length ? warm.at(-1).box.b + 2.4 : yName;
+			warm.push(await placed(src, rx - halfAt(y + 8) / 2 - 1, y, 0.5, 0, INK));
+		}
+		const un = await placed('\\text{unchanged}', rx + halfAt(yName + 8) / 2, yName, 0.5, 0, INK);
+		const inside = (l, sg) => [l.box.l, l.box.r].every((x) => sg * (x - rx) > 1.5 && Math.abs(x - rx) < halfAt(l.box.b) - 1.5);
+		const bad = [...warm.map((l) => [l, -1]), [un, 1]].filter(([l, sg]) => !inside(l, sg));
+		check(!bad.length, `the halves' names leave their halves: ${bad.map(([l]) => l.src).join(', ')}`);
+		L.push(...warm, un);
+		L.push(await placed('\\text{moving}', rx, top - LABEL_GAP - 0.6, 0.5, 1, INK));
 		await ring(O2);
 	}
 

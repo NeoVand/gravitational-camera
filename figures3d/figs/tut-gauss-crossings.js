@@ -9,7 +9,8 @@
 // finds the same number of crossings with the same signs (the sign of the outward normal dotted with the cone's
 // direction), +, -, + for m1 and -, + for m2, alternating, the first and last out for m1; each patch is the arc of
 // S between the cone's two edges; each normal is at right angles to S. Schematic: the shape of S, the places of the
-// masses, and the cones' width (8 degrees).
+// masses, and the cones' width (10 degrees). The masses are named in matter's colour, as in the caption; each sign
+// stands beside its patch, the last of m1's inside its cone, below the normal, clear of the figure's corner.
 import { INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, AXIS, HAIR, n2 } from './tut-pot-lib.js';
 import { IRON, TINT, EDGE, BALL } from './tut-gauss-lib.js';
@@ -23,16 +24,17 @@ const CONTROL = [
 	[150, 4], [182, 0], [206, 14], [214, 50], [214, 90], [206, 118], [180, 136], [120, 140], [60, 138], [22, 126],
 	[4, 98], [0, 66], [2, 40]
 ];
-const M1 = [36, 46];                     // the mass inside, points
+const M1 = [24, 48];                     // the mass inside, points
 const M2 = [106, 54];                    // the mass outside, in the notch
 const DIR1 = -9, DIR2 = 95;              // the cones' middle lines, degrees from the page's x axis (y down)
-const HALF = 4;                          // half the cones' width, degrees
+const HALF = 5;                          // half the cones' width, degrees
 const BEYOND = 16;                       // how far each cone runs past its last crossing, points
 const PATCH = 1.5;                       // a patch's stroke
 const NORMAL = 13;                       // a normal's length, points
 const NORMAL_HEAD = 4.2;
 const SC = 1.2;                         // points per unit of CONTROL
 const SIGN = 11;                         // the signs' size
+const MATTER = 'light-dark(#533f03, #f1dc86)';   // matter's colour of each theme (tut-null-lib.js), for the masses' names
 
 /** A point and the tangent of the periodic cubic B-spline through CONTROL, segment i, parameter t in [0, 1]. */
 function spline(i, t) {
@@ -113,8 +115,8 @@ export default async function () {
 
 	const L = [];
 	const cones = [
-		{ m: m1, dir: DIR1, signs: [1, -1, 1], who: 'm1', side: [0, -1] },
-		{ m: m2, dir: DIR2, signs: [-1, 1], who: 'm2', side: [1, 0] }
+		{ m: m1, dir: DIR1, signs: [1, -1, 1], who: 'm1', side: [[0, -1], [0, -1], [0, 1]] },
+		{ m: m2, dir: DIR2, signs: [-1, 1], who: 'm2', side: [[1, 0], [1, 0]] }
 	];
 	for (const c of cones) {
 		const mid = crossings(c.m, c.dir), lo = crossings(c.m, c.dir - HALF), hi = crossings(c.m, c.dir + HALF);
@@ -158,15 +160,15 @@ export default async function () {
 
 	// ---- labels: each sign beside its patch, on the side of the normal turned a quarter; the masses; S
 	for (const c of cones) {
-		for (const x of c.mid) {
+		for (const [k, x] of c.mid.entries()) {
 			const color = x.sign > 0 ? ACCENT : ACCENT2;
-			// beside the patch, off the cone to the side c.side and off S along the normal
-			const dx = x.normal[0] + c.side[0], dy = x.normal[1] + c.side[1], l = Math.hypot(dx, dy);
+			// beside the patch, off the cone's middle line to the side c.side[k] and off S along the normal
+			const dx = x.normal[0] + c.side[k][0], dy = x.normal[1] + c.side[k][1], l = Math.hypot(dx, dy);
 			L.push(await S.clear(x.sign > 0 ? '+' : '-', x.p[0], x.p[1], 0.5, 0.5, [dx / l, dy / l], { color, size: SIGN }));
 		}
 	}
-	L.push(await S.clear('m_1', m1[0], m1[1] + BALL, 0.5, 0, [0, 1], { color: INK }));
-	L.push(await S.clear('m_2', m2[0] - BALL, m2[1], 1, 0.5, [-1, 0], { color: INK }));
+	L.push(await S.clear('m_1', m1[0], m1[1] + BALL, 0.5, 0, [0, 1], { color: MATTER }));
+	L.push(await S.clear('m_2', m2[0] - BALL, m2[1], 1, 0.5, [-1, 0], { color: MATTER }));
 	const sAt = at([4, 112]);
 	L.push(await S.clear('S', sAt[0], sAt[1], 1, 0.5, [-1, 0], { color: INK }));
 

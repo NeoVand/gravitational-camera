@@ -1,7 +1,7 @@
 // The tutorial, section 7.2 (tutorial/geometry/curvature-and-tides.md), its first diagram: an arrow carried without
 // turning round a loop, on a sphere and on a flat sheet labelled in polar coordinates. Two panels, one above the other
 // (side by side in the book).
-// Above, "sphere": a sphere of radius a seen obliquely, the North Pole tilted toward the reader by 28 degrees and
+// Above, "sphere": a sphere of radius a seen obliquely, the North Pole tilted toward the reader (52 degrees: see below) and
 // longitude 45 degrees east facing the reader; its thin ink outline, the equator and the meridians of 0 and 90 degrees
 // east (their visible parts); the octant loop, pole -> equator along 0 degrees -> along the equator to 90 degrees east
 // -> back to the pole, in the curvature's colour, heavier. Short arrows in the observer's colour, tangent to the
@@ -18,17 +18,23 @@
 // (figureLayout 'book') they stand side by side, the sphere at the left and the sheet at the right, their centres
 // level and their titles on one line, both drawn 1.12 times larger (the sphere's radius and the sheet's points per
 // unit; strokes, heads, the hair and the labels unchanged) so that the pair fills the text width. The pole is tilted
-// toward the reader by 28 degrees, not 25, so that the arc of 90 degrees at the pole opens wide enough to carry its
-// label. An arrow drawn at a place on a leg of the loop would lie on the leg itself, since it points along it (south on
-// a meridian; along the first leg on the sheet): each such arrow, and the pair at the start, is drawn a hair (OFF)
-// inside the loop, parallel to the leg, so that the loop stays visible beside it; the arrow at the corner on the
+// toward the reader by 52 degrees, not the comment's 25: the two arrows at the pole are 90 degrees apart in its tangent
+// plane, and seen nearly edge-on (at 28 degrees they stood 130 degrees apart on the page) they contradicted their
+// label; at 52 degrees they stand 103 degrees apart, and a pale square tile in the curvature's colour, which the
+// comment does not draw, lies in the pole's tangent plane with a corner at the pole and its sides along the legs'
+// directions there, so that the corner reads as a square's corner seen obliquely (the small patch round the point
+// that looks flat). An arrow drawn at a place on a leg of the loop would lie on the leg itself, since it points along it (south on
+// a meridian; along the first leg on the sheet): each such arrow is drawn a hair (OFF) inside the loop, parallel to
+// the leg, so that the loop stays visible beside it, and the pair at the pole a little less (POLE_OFF, the least that
+// keeps them clear of the legs, which bend toward them); the arrow at the corner on the
 // equator is moved the same hair east of the meridian below it. On the sheet the fixed direction is that of the first
 // leg, as on the sphere the arrow starts pointing ahead.
 // Exact: the sphere's outline, equator and meridians (each point projected, the hidden parts left out where they turn
 // away), the octant, the arrows' directions (due south, the direction that carrying without turning gives, asserted in
 // tut-curvature-lib.js by integrating the transport equation round the octant: 90.0 degrees at home, the area pi a^2/2
-// over a^2), the sheet's grid and loop, and on it the arrow's unchanging direction (asserted the same by integrating
-// the transport with Gamma^r_thth = -r and Gamma^th_rth = 1/r). Schematic: the arrows' length and the hair OFF.
+// over a^2), the tile (a square in the pole's tangent plane, asserted), the sheet's grid and loop, and on it the arrow's unchanging direction (asserted the same by integrating
+// the transport with Gamma^r_thth = -r and Gamma^th_rth = 1/r). Schematic: the arrows' length, the hairs OFF and
+// POLE_OFF, the tile's size.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, VEC, VEC_HEAD, HAIR } from './tut-pot-lib.js';
 import { INK, RULE } from '../lib.js';
 import { chapter, palette, OBS, CURV, south, onSphere } from './tut-curvature-lib.js';
@@ -40,13 +46,15 @@ const DEG = Math.PI / 180;
 const BOOK = globalThis.figureLayout === 'book';
 const SCALE = BOOK ? 1.12 : 1;             // the book's panels, side by side, drawn a little larger to fill the text width
 const A = 82 * SCALE;                      // the sphere's radius, points
-const ELEV = 28;                           // the pole's tilt toward the reader, degrees
+const ELEV = 52;                           // the pole's tilt toward the reader, degrees
 const FACE = 45;                           // the longitude that faces the reader, degrees
 const LINE = 0.45;                         // the sphere's outline, equator and meridians; the sheet's grid
 const LOOP = 0.95;                         // the loops
 const ARROW = 0.3;                         // an arrow's length on the sphere, units of a
 const OFF = 5.0;                           // an arrow on a leg is drawn this far inside the loop, points
+const POLE_OFF = 4.7;                      // the pole's two arrows: the least hair that keeps them off the legs (asserted below)
 const ARC = 0.13;                          // the arc at the pole, its radius in units of a
+const TILE = 0.36, TILE_OPACITY = 0.1;     // the pole's tangent tile: its side (units of a) and its tint
 const DASH = [1.6, 1.1];                   // the starting arrow's dashes
 const U = 26 * SCALE;                      // the sheet's points per unit of r
 const SHEET_ARROW = 0.66;                  // an arrow's length on the sheet, units of r
@@ -121,9 +129,9 @@ export default async function () {
 		return Math.abs((o[0] - c[0]) * g[1] - (o[1] - c[1]) * g[0]) / Math.hypot(...g);
 	};
 	let lo = 0, hi = 0.5;
-	for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (fromLeg(m) < OFF) lo = m; else hi = m; }
+	for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (fromLeg(m) < POLE_OFF) lo = m; else hi = m; }
 	const d = hi;
-	check(near(fromLeg(d), OFF, 1e-9), 'the pole\'s point is not a hair from the legs');
+	check(near(fromLeg(d), POLE_OFF, 1e-9), 'the pole\'s point is not a hair from the legs');
 	const pole = sph(d, 45 * DEG);
 	// at the pole, the start points toward longitude 0 and comes home toward 90 (the lib's octant(): home = (0, 1, 0))
 	const startDir = [1, 0, 0], homeDir = nums.turn && [0, 1, 0];
@@ -145,6 +153,14 @@ export default async function () {
 		drawn.push({ A: a, B: b, L: Lp, what: 'the starting arrow' });
 	}
 	drawn.push({ ...arrow3(pole, t1, { what: 'the returning arrow' }), what: 'the returning arrow' });
+	// the pole's tangent plane: a pale square tile with a corner at the pole and its sides along the two legs'
+	// directions there, so that the corner of 90 degrees, seen obliquely, reads as a square's
+	{
+		const c = [0, 0, 1], e0 = [1, 0, 0], e1 = [0, 1, 0];
+		check(near(dot(e0, e1), 0, 1e-15) && near(dot(e0, c), 0, 1e-15) && near(dot(e1, c), 0, 1e-15), 'the tile is not a square in the pole\'s tangent plane');
+		const q = [c, c.map((v, i) => v + TILE * e0[i]), c.map((v, i) => v + TILE * (e0[i] + e1[i])), c.map((v, i) => v + TILE * e1[i])].map(P);
+		S.raw(`<path d="M${q.map(([x, y]) => `${x.toFixed(2)},${y.toFixed(2)}`).join('L')}Z" fill="${CURV}" fill-opacity="${TILE_OPACITY}" stroke="${CURV}" stroke-opacity="0.35" stroke-width="${HAIR}" stroke-linejoin="round"/>`, 1.5);
+	}
 	// the arc between them, in the pole's tangent plane
 	const arcPts = Array.from({ length: 91 }, (_, i) => { const c = Math.cos(i * DEG), s = Math.sin(i * DEG); return P(pole.map((v, j) => v + ARC * (c * t0[j] + s * t1[j]))); });
 	S.path(arcPts, { color: INK, width: HAIR, layer: 3, what: 'the arc of 90 degrees' });

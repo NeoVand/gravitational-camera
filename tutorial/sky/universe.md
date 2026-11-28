@@ -216,7 +216,9 @@ The bosons hold 28 states and the fermions 90, so $g_{*s} = 28 + \tfrac78\cdot90
 [](#fig:universe-gstar)). The graviton is not counted: it had already stopped interacting, as the next section shows.
 
 ![Look first at the hatched ends: each fermion state counts seven eighths of a boson's. The hot Standard Model counts
-106.75; today's photons and neutrinos count 3.91. Every length is a count.](tut-universe-gstar){#fig:universe-gstar}
+106.75; today's photons and neutrinos count 3.91. The neutrinos are cooler than the photons: of their seven eighths
+they keep $(T_\nu/T_\gamma)^3 = 4/11$, solid, and the rest is outlined. Every length is a
+count.](tut-universe-gstar){#fig:universe-gstar}
 
 ## Gravitons parted first and kept a colder share of the heat
 
@@ -263,10 +265,10 @@ $$\boxed{\;T_g = \Bigl(\frac{3.91}{106.75}\Bigr)^{1/3}T_\gamma = 0.3321\times2.7
 make the glow colder: $T_g$ falls as $g_{*s}^{-1/3}$ of the hot count, because more species at the start leave the
 gravitons a smaller share of the entropy. Doubling the count to 213.5 gives 0.718 K.
 
-![Look first at the flat graviton line: it parted near the Planck temperature and missed every step. Each step of the
-photon line is an annihilation, its height set by the count before and after. The ends are exact; the steps' places are
-schematic, their heights from the counts. Lines that share a value are drawn side by
-side.](tut-universe-temperatures){#fig:universe-temperatures}
+![Look first at the flat graviton line: it parted near the Planck temperature and missed every step. Each step is an
+annihilation, its height set by the count before and after. Where the species share a value they share one ink line,
+and each leaves it where its value parts. The ends are exact; the steps' places are schematic, their heights from the
+counts.](tut-universe-temperatures){#fig:universe-temperatures}
 
 **Inflation** is a proposed period of very fast early expansion, by a factor of $e^{60}$ or more in length (stated).
 Coming after the gravitons decoupled, it would have grown every volume by at least $e^{180}$ and thinned them to

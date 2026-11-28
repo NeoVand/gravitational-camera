@@ -93,7 +93,9 @@ $$\sym{solid-angle}{\dd\Omega} = \frac{\cos\alpha\,\dd A}{r^2} = \frac{\hat{\vec
 
 ![A flat patch of area $\dd A$ at the distance $r$ from the point $O$, its normal tilted by $\alpha$ from the line of
 sight $\hat{\vect x}$. Moved along the thin cone toward $O$, it lands on the unit sphere as its shadow $\dd\Omega$
-(orange); the dashed square is the cross-section $\cos\alpha\,\dd A$ that faces $O$.](tut-gauss-solid-angle){#fig:solid-angle}
+(orange). The pale blue face, hinged on the patch's near edge and at right angles to $\hat{\vect x}$, is the
+cross-section $\cos\alpha\,\dd A$ that faces $O$: the patch's far edge carried along $\hat{\vect x}$ (dashed) onto
+it. Parts hidden behind the patch are dotted.](tut-gauss-solid-angle){#fig:solid-angle}
 
 We keep the sign of $\cos\alpha$: the solid angle is negative when the patch's normal points toward the
 point.[^omega]

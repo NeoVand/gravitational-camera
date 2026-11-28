@@ -126,7 +126,8 @@ the whole room to scale.
 
 ![The room of the locked safe, to scale. Left, seen from above: the floor (tinted), the three walls, the two steel
 safes and, in the right-hand one, the gold (orange). Right, the camera and safes seen from behind, three times as large;
-each line from the camera to a safe's middle is 3.8 m long.](tut-pot-room){#fig:room}
+a + marks the middle of each safe and of the gold, and the heights are measured to it. Each line from the camera to a
+safe's middle is 3.8 m long.](tut-pot-room){#fig:room}
 
 The table gives the size of each part's pull at the camera.[^cubes] The floor is the largest, being heavy and close.
 

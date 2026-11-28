@@ -1,7 +1,8 @@
 // The tutorial, section 5.3 (tutorial/waves/diffraction.md), its fourth diagram: sources in step blur more than
 // sources out of step. One chart: across, the angle across the image in units of lambda/D, from -2.5 to 2.5; up, the
 // image divided by its largest value, from 0 to 1. Two equal sources at +-0.6, 1.2 lambda/D apart, seen by a row
-// aperture, whose amplitude pattern is sin x / x with x = pi D theta / lambda (section 3.6's slit). Thin grey: the
+// aperture, whose amplitude pattern is sin x / x with x = pi D theta / lambda (section 3.6's slit). The vertical axis
+// is named "image / its peak" over its top. Thin grey: the
 // image of each source alone, sinc^2; solid ink: the pair out of step, sinc^2(theta - 0.6) + sinc^2(theta + 0.6), whose
 // middle dips to 0.50 of its peaks, marked by a short level tick named "dip"; dashed ink: the pair in step,
 // (sinc(theta - 0.6) + sinc(theta + 0.6))^2, one peak in the middle. Two small triangles under the axis at +-0.6, named
@@ -68,7 +69,10 @@ export default async function () {
 	L.push(...xl);
 	const last = xl[xl.length - 1];
 	L.push(await placed('\\theta/(\\lambda/D)', P.right + 4, last.box.t, 0, 0, DIM));
-	L.push(...(await yAxis(S, P, { ticks: [0, 0.5, 1], fmt: String, from: BOTTOM, to: 1, what: 'the image axis' })));
+	const yl = await yAxis(S, P, { ticks: [0, 0.5, 1], fmt: String, from: BOTTOM, to: 1, what: 'the image axis' });
+	L.push(...yl);
+	// the axis's name, over its top, left-aligned with its numbers
+	L.push(await S.clear('\\text{image / its peak}', Math.min(...yl.map((l) => l.box.l)), yl[yl.length - 1].box.t - 4, 0, 1, [0, -1], { color: DIM }));
 
 	// ---- the sources: upright triangles under the axis at +-0.6, named between them
 	for (const c of [-HALF_SEP, HALF_SEP]) {

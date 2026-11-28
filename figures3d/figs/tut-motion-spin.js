@@ -1,13 +1,16 @@
 // The tutorial, section 1.6 (tutorial/newton/motion.md), its second diagram: a rigid body turning about a fixed
 // axis. A round slab (a short upright cylinder, drawn in true 3D, an orthographic view tilted as lib.js's Panel
 // does) turns about the vertical axis through its centre with the angular velocity Omega, drawn as an arrow along
-// the axis (plain ink: the spin of a body, not of a frame). Four points of the slab lie on its top face along the
-// radius that points toward the viewer, at the distances s = 0, R/3, 2R/3 and R from the axis; each moves on the
-// circle of radius s about the axis (thin grey), and its velocity v = Omega x x is drawn as an arrow from it. Exact:
-// every velocity is computed as the cross product Omega x x of the point's position (from the axis's foot on the
-// top face), the arrows are asserted to be tangent to their circles, at right angles to the axis, and in length in
-// proportion to s, in 3D and as drawn (they are all parallel to the page, so the view shortens none of them); the
-// point on the axis has none. The circles are circles in 3D, sampled every half point (their chords stray from them
+// the axis (plain ink: the spin of a body, not of a frame). Four points of the slab lie on its top face along one
+// radius, drawn as a hairline, at the distances s = 0, R/3, 2R/3 and R from the axis; each moves on the circle of
+// radius s about the axis (thin grey), and its velocity v = Omega x x is drawn as an arrow from it. The radius
+// points toward the viewer's right front, PHI from the line of sight, so that on the page it runs off to the lower
+// right, plainly apart from the axis (a radius straight toward the viewer would fall on the axis's own line, and the
+// points would seem to sit on the axis). Exact: every velocity is computed as the cross product Omega x x of the
+// point's position (from the axis's foot on the top face), the arrows are asserted to be tangent to their circles,
+// at right angles to the axis and to the radius, and in length in proportion to s, in 3D and as drawn (they are all
+// parallel, so the view shortens all of them alike); the radius is asserted to stand at least 15 degrees off the
+// axis on the page; the point on the axis has none. The circles are circles in 3D, sampled every half point (their chords stray from them
 // by less than a thousandth of a point). Schematic: the slab's proportions and the scale of the arrows.
 import { Panel, v3, INK, DIM, FAINT } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, HAIR, AXIS, VEC, VEC_HEAD } from './tut-vec-lib.js';
@@ -18,6 +21,7 @@ const H = 0.26;                            // its thickness
 export const OMEGA = 0.62;                 // the arrows' length per unit of distance from the axis (Omega times the
                                            // time the arrows stand for), units per unit
 const AT = [0, 1 / 3, 2 / 3, 1];           // the points, as fractions of R
+const PHI = (40 * Math.PI) / 180;          // the radius's direction: from the line of sight toward the viewer's right
 const AXIS_UP = 0.62, AXIS_DOWN = 0.24;    // the axis, past the top and bottom faces
 const TILT = 24;                           // the view, degrees
 const S = 122;                             // points per unit
@@ -65,27 +69,35 @@ export default async function () {
 	const foot = v3(0, top, 0);
 	const drawn = [];
 	for (const f of AT) {
-		const p = v3(0, top, f * R);
+		const p = v3(f * R * Math.sin(PHI), top, f * R * Math.cos(PHI));
 		const x = p.clone().sub(foot);
 		const v = Omega.clone().cross(x);
 		check(near(v.length(), OMEGA * f * R, 1e-12), `the velocity at ${f} is not Omega s`);
 		check(near(v.dot(up), 0, 1e-12) && near(v.dot(x), 0, 1e-12), `the velocity at ${f} is not tangent to its circle`);
-		check(f === 0 ? v.length() === 0 : v.clone().normalize().dot(right) > 1 - 1e-12, `the velocity at ${f} does not point to the right`);
+		check(f === 0 ? v.length() === 0 : v.dot(right) > 0, `the velocity at ${f} does not point to the right`);
 		if (f > 0) drawn.push({ f, ...ink.arrow(p, p.clone().add(v), { color: INK, width: VEC, head: VEC_HEAD, layer: 3, what: `the velocity at ${f}` }) });
 		ink.dot(p, { what: `the point at ${f}` });
 	}
 	// as drawn: lengths in proportion to s, every head at most two fifths of its arrow
 	for (const d of drawn) check(near(d.L / drawn[drawn.length - 1].L, d.f, 1e-9), `the arrow at ${d.f} is not in proportion to s as drawn`);
 
-	// ---- the radius toward the viewer: a hairline from the axis to the rim, beneath the points
-	ink.line(foot, v3(0, top, R), { color: DIM, width: HAIR, layer: 0.5, what: 'the radius' });
+	// ---- the radius: a hairline from the axis to the rim, beneath the points; on the page it stands well off the
+	// axis's line
+	const rim = v3(R * Math.sin(PHI), top, R * Math.cos(PHI));
+	ink.line(foot, rim, { color: DIM, width: HAIR, layer: 0.5, what: 'the radius' });
+	{
+		const a = ink.at(foot), b = ink.at(rim), c = ink.at(v3(0, top + 1, 0));
+		const r = unit(b[0] - a[0], b[1] - a[1]), ax = unit(c[0] - a[0], c[1] - a[1]);
+		check(Math.abs(r[0] * ax[0] + r[1] * ax[1]) < Math.cos((15 * Math.PI) / 180), 'the radius lies along the axis on the page');
+	}
 
 	// ---- labels
 	const sc = (p) => ink.at(p);
 	const L = [];
 	L.push(await ink.label('\\boldsymbol\\Omega', [omegaArrow.B[0], omegaArrow.B[1] + 4], unit(1, 0), 2.6, INK));
 	const last = drawn[drawn.length - 1];
-	L.push(await ink.label('\\boldsymbol v', [(last.A[0] + last.B[0]) / 2, last.A[1]], unit(0, 1), 2.4, INK));
+	// v beyond the rim arrow's head, off the slab, along the arrow
+	L.push(await ink.label('\\boldsymbol v', last.B, unit(last.B[0] - last.A[0], last.B[1] - last.A[1]), 2.2, INK));
 	void omegaArrow; void AXIS;
 
 	ink.checkAll(L);

@@ -3,10 +3,12 @@
 // 10^3, each cell counted in units of 324 kg) on a log scale against their rank, one dot each: the 17 above one, which
 // the cut keeps, in the first accent; the rest in neutral ink, and those below numpy's rank tolerance (s_1 x 605 x the
 // machine epsilon, 2.8 x 10^-10), lost in the computer's rounding, in its pale tint. The line at one is the noise.
-// Beneath, on the same horizontal axis, the noise in the mass found in the right-hand safe when the first k patterns
-// are kept, one dot for each k up to 111, the last gain above the rounding: 1.1 kg at k = 5, 243 kg at k = 17 and
+// Beneath, on a horizontal axis numbered like the first (rank i above, patterns kept k below, both 1 to 231 with 17
+// marked), the noise in the mass found in the right-hand safe when the first k patterns are kept, on a log axis ticked
+// up to 10^12 kg, one dot for each k up to 111, the last gain above the rounding: 1.1 kg at k = 5, 243 kg at k = 17 and
 // 1.1 x 10^11 kg at k = 111; right of that last dot, level with it, a note says why the dots stop there: beyond it
-// the gains are lost in rounding. A dotted line between the 17th and 18th ranks marks the cut through both.
+// the gains are lost in rounding. A dotted line between the 17th and 18th ranks marks the cut through both, broken where it
+// crosses the rank axis.
 // Exact: every gain and every noise, computed here from the repository's model (tut-svd-lib.js: the design matrix of
 // reference/gravcam/inversion.py, its singular values by Jacobi rotations) and asserted against the reference's numpy
 // run and the chapter's numbers (2080, 1480, 960, 440, 330; 17 above one, 12 above ten; 0.08 at 25 and 9 x 10^-4 at
@@ -23,10 +25,10 @@ const check = checker(name);
 
 const W = 262;                 // the charts' width, points
 const H1 = 100, H2 = 78;       // their heights
-const GAP = 22;                // from the gains' axis to the noise chart's top
+const GAP = 38;                // from the gains' axis to the noise chart's top: room for its numbers
 const DOTR = 0.62;             // a dot's radius
 const S_RANGE = [-14.6, 3.8];  // log10 of the gains' axis
-const N_RANGE = [-1.3, 11.5];    // log10 of the noise's axis, kg
+const N_RANGE = [-1.3, 12.6];  // log10 of the noise's axis, kg
 const LINE = 0.55;             // the noise's line
 const rel = (a, b, tol) => Math.abs(a - b) <= tol * Math.abs(b);
 
@@ -78,32 +80,40 @@ export default async function () {
 		dot(Q.X(k), Q.Y(y), k <= kept ? ACCENT2 : ACCENT2, `the noise at ${k}`);
 	}
 
-	// ---- the cut: round dots down from the gains' top to the k axis, leaving out those that would touch a data dot, so
-	// that the line passes the 17th dots with air on either side
-	const centres = S.marks.filter((m) => /^(gain|the noise at) /.test(m.what)).map((m) => m.pts[0]);
-	const DOT = 0.6, STEP = 1.6, AIR = 0.6;
-	const n = Math.round((Q.bottom - DOT / 2 - 0.8 - (P.top + 4)) / STEP);
-	const cut = Array.from({ length: n + 1 }, (_, i) => [xc, P.top + 4 + (i * (Q.bottom - DOT / 2 - 0.8 - (P.top + 4))) / n])
-		.filter((q) => centres.every((c) => Math.hypot(q[0] - c[0], q[1] - c[1]) >= DOTR + DOT / 2 + AIR));
-	S.raw(`<path d="${cut.map(([x, y]) => `M${x.toFixed(2)},${y.toFixed(2)}h0`).join('')}" stroke="${DIM}" stroke-width="${DOT}" stroke-linecap="round" fill="none"/>`, 0.5);
-	for (const q of cut) S.mark([q], DOT / 2, 'the cut');
-
 	// ---- the axes
 	const pow = (t) => (t === 0 ? '1' : `10^{${t}}`);
 	// the cut stands where a tick at 17 would; it is numbered without one
 	const ticks = [1, 50, 100, 150, 200, 231];
-	await xAxis(S, P, { ticks, fmt: () => null, from: -1, to: 232, what: 'the rank axis' });
-	L.push(...await xAxis(S, Q, { ticks, from: -1, to: 232, what: 'the k axis' }));
-	L.push(await placed(`${kept}`, Q.X(kept), L[L.length - 1].box.t, 0.5, 0, DIM));
-	check(near(L[L.length - 1].box.t, L[L.length - 2].box.t, 1e-9), 'the number 17 is not on the others\' line');
-	const kl = L.find((l) => l.src === '231');
+	// both horizontal axes are numbered alike, so that the reader sees one scale: the gain of rank i above, the noise
+	// with the first k patterns kept below, i and k counted the same way
+	const named = [];
+	for (const [R, what, nm] of [[P, 'the rank axis', '\\text{rank}\\ i'], [Q, 'the k axis', '\\text{kept}\\ k']]) {
+		const nums = await xAxis(S, R, { ticks, from: -1, to: 232, what });
+		nums.push(await placed(`${kept}`, R.X(kept), nums[0].box.t, 0.5, 0, DIM));
+		check(near(nums[nums.length - 1].box.t, nums[0].box.t, 1e-9), `the number 17 is not on the others' line (${what})`);
+		const kl = nums.find((l) => l.src === '231');
+		named.push(await placed(nm, kl.box.r + 4, (kl.box.t + kl.box.b) / 2, 0, 0.5, DIM));
+		L.push(...nums);
+	}
+	L.push(...named);
+	const top17 = L.find((l) => l.src === `${kept}`);
+	// ---- the cut: round dots down from the gains' top to the k axis, leaving out those that would touch a data dot, so
+	// that the line passes the 17th dots with air on either side, and those on the rank axis and its 17
+	const centres = S.marks.filter((m) => /^(gain|the noise at) /.test(m.what)).map((m) => m.pts[0]);
+	const DOT = 0.6, STEP = 1.6, AIR = 0.6;
+	const n = Math.round((Q.bottom - DOT / 2 - 0.8 - (P.top + 4)) / STEP);
+	const cut = Array.from({ length: n + 1 }, (_, i) => [xc, P.top + 4 + (i * (Q.bottom - DOT / 2 - 0.8 - (P.top + 4))) / n])
+		.filter((q) => centres.every((c) => Math.hypot(q[0] - c[0], q[1] - c[1]) >= DOTR + DOT / 2 + AIR))
+		// and a gap where it crosses the rank axis and its number 17
+		.filter((q) => q[1] < P.bottom - 1.2 || q[1] > top17.box.b + 2.6);
+	S.raw(`<path d="${cut.map(([x, y]) => `M${x.toFixed(2)},${y.toFixed(2)}h0`).join('')}" stroke="${DIM}" stroke-width="${DOT}" stroke-linecap="round" fill="none"/>`, 0.5);
+	for (const q of cut) S.mark([q], DOT / 2, 'the cut');
+
 	L.push(...await yAxis(S, P, { ticks: [-12, -8, -4, 0], fmt: pow, what: 'the gain axis' }));
-	L.push(...await yAxis(S, Q, { ticks: [0, 4, 8], fmt: pow, what: 'the noise axis' }));
-	// the axes' names: at the top of each vertical axis, and at the right end of each horizontal one
+	L.push(...await yAxis(S, Q, { ticks: [0, 4, 8, 12], fmt: pow, what: 'the noise axis' }));
+	// the vertical axes' names, at their tops
 	L.push(await placed('s_i', P.left, P.top - LABEL_GAP - 1, 0.5, 1, DIM));
 	L.push(await placed('\\text{noise, kg}', Q.left, Q.top - LABEL_GAP - 1, 0.5, 1, DIM));
-	L.push(await placed('i', kl.box.r + 4, P.bottom, 0, 0.5, DIM));
-	L.push(await placed('k', kl.box.r + 4, (kl.box.t + kl.box.b) / 2, 0, 0.5, DIM));
 
 	// ---- the marks: the noise's line, and the noise at the cut
 	L.push(await S.clear('\\text{noise}', P.X(231), P.Y(0) - LABEL_GAP - 0.3, 1, 1, [0, -1], { color: ACCENT2 }));

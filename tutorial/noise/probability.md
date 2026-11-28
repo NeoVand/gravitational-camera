@@ -105,8 +105,8 @@ $$P(Z > 3) = 1.35\times10^{-3},$$
 about one reading in 740 (Figure [](#fig:tails)).
 
 ![The standard Gaussian density, with the bands within one, two and three standard deviations of the mean shaded in
-blue, the colour of the noise. The tail beyond $Z = 3$ is the thin blue sliver, of area $P(Z > 3) = 1.35\times10^{-3}$;
-the dashed curve is the density there drawn twenty times taller.](tut-prob-tails){#fig:tails}
+blue, the colour of the noise. The tail beyond $Z = 3$, of area $P(Z > 3) = 1.35\times10^{-3}$, is too thin to see at
+this scale; it is filled in full blue drawn twenty times taller.](tut-prob-tails){#fig:tails}
 
 These tails decide how often a camera is wrong. Gold lies in one of two safes 3.5 m away, at a signal-to-noise
 ratio of 10 (the gold's largest tide against the noise averaged over a patch 3.5 m square). The real array is a metre
@@ -256,7 +256,7 @@ feels, and only the difference can find it (Figure [](#fig:shared)).
 ![Two accelerometers on one table share a large shaking, so their readings $a_1$ and $a_2$ move together, and plotted
 against each other (right) they lie close to a line, with the correlation $r = 0.98$. Their difference keeps only the
 two own noises (the blue band, one standard deviation wide on either side) about the steady signal $g_1 - g_2$ in
-orange. The units are arbitrary, and the sizes are chosen so that all three can be seen.](tut-prob-shared){#fig:shared}
+orange; the dashed line under it is zero. The units are arbitrary, and the sizes are chosen so that all three can be seen.](tut-prob-shared){#fig:shared}
 
 **Zero covariance does not mean independence.** Let $x$ be Gaussian with mean zero and let $y = x^2$. Then $y$ is fixed by $x$, yet
 

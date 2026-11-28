@@ -1,11 +1,13 @@
 // The tutorial, section 6.4 (tutorial/relativity/energy-and-momentum.md), its second diagram: two lumps that stick.
 // Two panels, "before" over "after". Before: two small round lumps in matter's colour on a thin line, each with an
 // arrow in the observer's colour toward the centre, named "0.6c"; under them one bar for the pair, to scale, made of
-// two solid segments of one unit of mc^2 each in matter's colour, named "rest energy mc^2" once, and two hatched
-// segments of 0.25 each, named "energy of motion 0.25mc^2" once, 2.5 in all; the readout of the totals. After:
-// one larger lump at the centre, no arrow, with a faint warm halo meaning heat, and one solid bar of 2.5 in matter's
-// colour, named "rest energy Mc^2, M = 2.5m"; the same readout. A thin dotted line at 2.5 runs across both panels from
-// one bar to the other and shows that the totals agree, and a thin dotted line at 2 is named "2m, Newton's mass".
+// two solid segments of one unit of mc^2 each in matter's colour, named "rest energy, each mc^2" once, and two hatched
+// segments of 0.25 each, named "energy of motion, each 0.25mc^2" once, 2.5 in all (without "each" the names read as
+// the totals of their segments); the readout of the totals. After: one larger lump at the centre, no arrow, with a
+// faint warm halo, named "heat" in the accent beside it, and one solid bar of 2.5 in matter's colour, named "rest
+// energy Mc^2, M = 2.5m"; the same readout. A thin dotted line at 2.5 runs across both panels from one bar to the
+// other and shows that the totals agree, named "2.5mc^2" beside it halfway, and a thin dotted line at 2 is named "2m,
+// Newton's mass".
 // Departures from the diagram's comment: the panels are stacked, "before" over "after", at every width, so that the
 // figure is narrow enough to keep its text large on a phone (a drawing is shown at most 1.9 site pixels to the point
 // and shrinks with a narrower column); so the bars lie along the page, one over the other at
@@ -108,8 +110,8 @@ export default async function () {
 	solid(...before[1], bar1, [true, true], 'the second rest energy');
 	hatched(...before[2], bar1, [true, true], 'the first energy of motion');
 	hatched(...before[3], bar1, [true, false], 'the second energy of motion');
-	L.push(await S.clear(`\\text{energy of motion } ${motion}mc^2`, X(BEFORE) + LABEL_GAP + 0.4, bar1 + BAR / 2, 0, 0.5, [1, 0], { color: MATTER }));
-	const rest1 = await S.clear('\\text{rest energy } mc^2', X(0), bar1 + BAR + LABEL_GAP + 0.4, 0, 0, [0, 1], { color: MATTER });
+	L.push(await S.clear(`\\text{energy of motion, each } ${motion}mc^2`, X(BEFORE) + LABEL_GAP + 0.4, bar1 + BAR / 2, 0, 0.5, [1, 0], { color: MATTER }));
+	const rest1 = await S.clear('\\text{rest energy, each } mc^2', X(0), bar1 + BAR + LABEL_GAP + 0.4, 0, 0, [0, 1], { color: MATTER });
 	L.push(rest1);
 	const read1 = await placed(READOUT, X(0), rest1.box.b + ROW + 1, 0, 0, INK);
 	L.push(read1);
@@ -132,6 +134,10 @@ export default async function () {
 	S.raw(`<circle cx="0" cy="0" r="${reach.toFixed(3)}" fill="url(#${name}-heat)" transform="translate(${centre.toFixed(2)},${cy2.toFixed(2)})"/>`, 2.5);
 	S.mark([[centre, cy2]], reach, 'the halo');
 	S.raw(`<circle cx="${centre.toFixed(2)}" cy="${cy2.toFixed(2)}" r="${LUMP_AFTER.toFixed(3)}" fill="${MATTER}"/>`, 3);
+	S.mark([[centre, cy2]], LUMP_AFTER, 'the lump after');
+	// the halo named: the energy of motion is now heat
+	const heat = await placed('\\text{heat}', centre + reach + LABEL_GAP, cy2, 0, 0.5, ACCENT);
+	L.push(heat);
 	const bar2 = track2 + ROW + 4;
 	solid(0, AFTER, bar2, [false, false], 'the rest energy after');
 	L.push(await S.clear(`\\text{rest energy } Mc^2,\\ M = ${total}m`, X(AFTER) + LABEL_GAP + 0.4, bar2 + BAR / 2, 0, 0.5, [1, 0], { color: MATTER }));
@@ -141,7 +147,9 @@ export default async function () {
 	S.dots([X(NEWTON), bar1 + BAR + CLEAR], [X(NEWTON), bar2 - CLEAR], { color: DIM, layer: 1, what: 'the line at 2' });
 	const tail = S.dots([X(NEWTON), bar2 + BAR + CLEAR], [X(NEWTON), bar2 + BAR + CLEAR + 5], { color: DIM, layer: 1, what: 'the line at 2, below' });
 	check(near(X(NEWTON) - X(0), 2 * U, 1e-9) && near(X(BEFORE) - X(0), 2.5 * U, 1e-9), 'the dotted lines are not at 2 and 2.5');
-	check(centre + half < X(NEWTON) - 4 && centre + reach < X(NEWTON) - 4, 'the line or the halo after reaches the dotted line at 2');
+	check(centre + half < X(NEWTON) - 4 && centre + reach < X(NEWTON) - 4 && heat.box.r < X(NEWTON) - 4, 'the line, the halo or its name after reaches the dotted line at 2');
+	// the line at 2.5 named, beside it, halfway down between the bars
+	L.push(await S.clear(`${total}mc^2`, X(BEFORE) + LABEL_GAP + 0.6, (bar1 + BAR + bar2) / 2, 0, 0.5, [1, 0], { color: DIM }));
 	const newton = await placed(`${NEWTON}m,\\ \\text{Newton's mass}`, X(NEWTON), tail.pts[tail.pts.length - 1][1] + 0.3 + LABEL_GAP + 0.2, 0.5, 0, INK);
 	L.push(newton);
 	const read2 = await placed(READOUT, X(0), newton.box.b + ROW + 1, 0, 0, INK);

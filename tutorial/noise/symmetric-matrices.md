@@ -489,7 +489,7 @@ same way, it leaves 177 kg of noise and 707 kg of the prior's doubt, or $\sqrt{1
 $\pm730$ kg of the opening, a little better than the sharp cut.
 The prior alone would give $\sqrt{12}\times324 = 1120$ kg.
 
-![Above, the safe's 231 whitened gains on a log scale, largest first: the 17 above the line at one (orange) are the
+![Above, the safe's 231 whitened gains $s_i$ on a log scale against their rank $i$, largest first: the 17 above the line at one (orange) are the
 patterns the cut keeps, and those below about $3\times10^{-10}$ (pale) are lost in rounding. Below, the noise in the
 mass found in the right-hand safe when the first $k$ patterns are kept, from 1.1 kg at $k = 5$ through 243 kg at
 $k = 17$ (dotted) to $10^{11}$ kg at $k = 111$.](tut-svd-tsvd){#fig:svd-tsvd}

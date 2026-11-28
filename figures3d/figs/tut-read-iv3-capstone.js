@@ -9,7 +9,8 @@
 // their row: the first row's foot is that of (a) and (b), the second's that of (h).
 //  (a) The body. A section of the ball, a disc of radius 10 cm in the steel ball's grey, holding 36 atoms at seeded
 //      places, each with an arrow along two seeded standard normal deviates; beside it the ball's mass,
-//      32.9 kg, its number of iron atoms, 3.5 x 10^26, and their root mean square speed, sqrt(3 k_B T / m) = 366 m/s.
+//      32.9 kg, its number of iron atoms, 3.5 x 10^26 "atoms", and their root mean square speed, sqrt(3 k_B T / m),
+//      "rms speed 366 m s^-1" (on two lines on the site, where the words stand beside the disc).
 //  (b) Its note. Left: a section through the axis with Appendix A's displacement u = (q/R)(-x/2, z) at twelve points on
 //      a circle of half the radius, every 30 degrees (orange where u has an outward part, within 54.7 degrees of the
 //      axis; blue round the equator), as tut-elastic-trial. Right: a frequency scale from 11 to 16 kHz with the twist
@@ -18,7 +19,8 @@
 //  (c) Its jitter. The Gaussian exp(-q^2 / 2 q_rms^2) of the swing of the poles against q in 10^-16 m, with
 //      q_rms = sqrt(k_B T / K) = 2.16 x 10^-16 m for K = 3 mu V / R^2 and mu = rho c_T^2; the two points +-q_rms
 //      marked by thin verticals up to the curve.
-//  (d) Its tide. Log-log axes, r from 0.1 to 10 m and the tide from 10^-30 to 10^-19 s^-2; the tide on the axis,
+//  (d) Its tide. Titled "tide on the axis, s^-2" on the letter's line, as (c), (e) and (f) are. Log-log axes, r from
+//      0.1 to 10 m and the tide from 10^-30 to 10^-19 s^-2; the tide on the axis,
 //      36 G M R q_rms / 5 r^5 = 3.41 x 10^-25 (r / 1 m)^-5 s^-2, in the tide's orange; dots at 0.2 m (1.07 x 10^-21)
 //      and 1 m (3.41 x 10^-25); a slope triangle from 2 to 5 m, "r^-5".
 //  (e) What the tremor holds. Two bars, <Qdot_xy^2> = k_B T int rho (x^2 + y^2) dV for the ball, 2/5 M R^2 k_B T =
@@ -31,8 +33,8 @@
 //      area under each in a light neutral grey; over all frequencies both areas are k_B T / K. The Q values are
 //      chosen for the drawing; the window holds 90% and 97% of the two areas.
 //  (h) The thermometer. The shell drive of tut-fd-thermometer: a circle whose stroke is orange where mass is added and
-//      blue where it is removed, its weight |n.D.n| for D = diag(-1/2, -1/2, 1) (a neutral hairline where the weight
-//      is small); at its centre the pixel, a ring of twelve beads; the steel ball outside at the right;
+//      blue where it is removed, its weight |n.D.n| for D = diag(-1/2, -1/2, 1) (the shell's own line, in ink, where
+//      the weight is small); at its centre the pixel, a ring of twelve beads; the steel ball outside at the right;
 //      T = omega S_yy / 2 k_B Im chi_yy = 300 K, which the oscillator's spectrum and response return at every frequency.
 // Exact: every number above, computed here and asserted against the chapter's. Schematic: the atoms' places and the
 // arrows' scale in (a), the arrows' scale in (b), the sizes and places in (h).
@@ -163,10 +165,12 @@ export default async function () {
 		const low = since();
 		const la = await letter('a', x, top);
 		const mant = N.atoms.toPrecision(2).split('e+')[0], expo = N.atoms.toPrecision(2).split('e+')[1];
-		const words = [`${N.M.toFixed(1)}\\ \\mathrm{kg}`, `${mant}\\times10^{${expo}}\\ \\text{atoms}`, `${N.speed.toFixed(0)}\\ \\mathrm{m\\,s^{-1}}`];
-		const probes = [];
-		for (const w of words) probes.push(await placed(w, 0, 0, 0, 0, INK, SIZE));
-		const wordsW = Math.max(...probes.map((p) => p.box.r - p.box.l));
+		// the speed named: on one line in the book, on two beside the disc on the site
+		const speed = [`\\text{rms speed}`, `${N.speed.toFixed(0)}\\ \\mathrm{m\\,s^{-1}}`];
+		const words = [`${N.M.toFixed(1)}\\ \\mathrm{kg}`, `${mant}\\times10^{${expo}}\\ \\text{atoms}`, ...(BOOK ? [speed.join('\\ ')] : speed)];
+		// set as one left-aligned array, so that the baselines are evenly spaced whatever each line's powers
+		const block = `\\begin{array}{l}${words.join('\\\\[1.5pt]')}\\end{array}`;
+		const blockP = await placed(block, 0, 0, 0, 0, INK, SIZE), blockW = blockP.box.r - blockP.box.l;
 		const RD = 37;                                           // the disc's radius, points (10 cm)
 		const cA = BOOK ? [x + CW / 2 + 4, la.b + BELOW_LETTER + RD] : [x + 3 + RD, top + RD + 1];
 		S.raw(`<circle cx="${n2(cA[0])}" cy="${n2(cA[1])}" r="${RD}" fill="${STEEL}" fill-opacity="0.28" stroke="${STEEL}" stroke-width="0.6"/>`, 0);
@@ -174,12 +178,12 @@ export default async function () {
 		if (BOOK) {
 			// under the disc, a block of lines centred on it
 			check(cA[0] - RD > la.r + 3, 'the letter (a) is on the ball');
-			await lines(words, cA[0] - wordsW / 2, cA[1] + RD + 8);
+			L.push(await placed(block, cA[0] - blockW / 2, cA[1] + RD + 4, 0, 0, INK, SIZE));
 		} else {
-			// left-aligned at the right of the column, the middle line level with the disc's centre
-			const xWords = x + CW - wordsW;
+			// left-aligned at the right of the column, the block's middle level with the disc's centre
+			const xWords = x + CW - blockW;
 			check(xWords - (cA[0] + RD) > 8, 'the words crowd the ball');
-			await lines(words, xWords, cA[1] - PITCH);
+			L.push(await placed(block, xWords, cA[1], 0, 0.5, INK, SIZE));
 		}
 		// the atoms: 36 places at least DMIN apart within the disc, and an arrow from each along two standard normal
 		// deviates, STEM points long plus ARROW points per unit of their size (schematic); the first seed whose arrows
@@ -316,6 +320,8 @@ export default async function () {
 		const CW = width(x);
 		const low = since();
 		const ld = await letter('d', x, top);
+		// its title on the letter's line, as those of (c), (e) and (f): the quantity and its unit
+		L.push(await placed('\\text{tide on the axis},\\ \\mathrm{s^{-2}}', ld.r + 6, (ld.t + ld.b) / 2, 0, 0.5, DIM, SIZE));
 		const YLD = 25, ptop = ld.b + BELOW_LETTER + 3;
 		const BELOW = TICK + NUM + Math.max(...await Promise.all(['0.1\\ \\mathrm m', '1\\ \\mathrm m', '10\\ \\mathrm m'].map(tall)));
 		const PD = new Plot({ left: x + YLD, top: ptop, w: CW - YLD - 9, h: bottom ? bottom - BELOW - ptop : 66, x0: -1, x1: 1, y0: -30, y1: -19 });
@@ -445,13 +451,13 @@ export default async function () {
 		const CW = width(x);
 		const low = since();
 		const lh = await letter('h', x, top);
-		const A = 31, WEIGHT = 2.4, BASE = 0.45, NS = 3600;
+		const A = 31, WEIGHT = 2.4, BASE = 0.5, NS = 3600;
 		// the shell's centre: 4 points in from the column's left on the site; in the book the shell and the ball centred
 		// in the column, whose ink runs from the shell's left to the ball's right, 2 A + 1.5 WEIGHT + 10 + 0.84 A
 		const span = 2 * A + 1.5 * WEIGHT + 10 + 0.84 * A;
 		const O = [(BOOK ? x + (CW - span) / 2 + WEIGHT / 2 : x + 4 + 3) + A, lh.b + BELOW_LETTER + WEIGHT + A];
 		const at = (psi, r = A) => [O[0] + r * Math.sin(psi), O[1] - r * Math.cos(psi)];
-		S.path(Array.from({ length: 721 }, (_, k) => at((k * Math.PI) / 360)), { color: DIM, width: BASE, layer: 1, what: 'the shell' });
+		S.path(Array.from({ length: 721 }, (_, k) => at((k * Math.PI) / 360)), { color: INK, width: BASE, layer: 1, what: 'the shell' });
 		const w = (psi) => WEIGHT * Math.abs(pattern(psi));
 		const bands = [];
 		let run = null;

@@ -12,8 +12,11 @@
 // a picture from an image model (design/prompts/tut-person-sprite.json, cut out by
 // design/tut_person_sprite.py). The dimension runs below the ring from the centre of mass, marked on the body
 // with the quartered circle, to the ring's centre, marked +; marks on the stone are drawn in a fixed dark ink.
-// Layout: one row, the person (90 pt to the metre, so 157.5 pt tall), the ring, and the table on the ring's long
-// axis to its right, centred in height on the line to the person; the figure is as wide as these need.
+// In profile the hanging arm covers the hip, so the mark falls on the sleeve; it is named "centre of mass" at the
+// left margin, level with it, a hairline leading from the name through the body's back to the mark, so that it does
+// not read as a mark on the arm. Layout: one row, the name, the person (90 pt to the metre, so 157.5 pt tall) LEAD
+// to its right, the ring, and the table on the ring's long axis to its right, centred in height on the line to the
+// person; the figure is as wide as these need.
 import { Panel, v3, figure, sprite, tex, ellipsePoints, INK, DIM, FAINT, ACCENT, ACCENT2, PAGE } from '../lib.js';
 
 // ---- the physics --------------------------------------------------------------------------------------
@@ -44,6 +47,7 @@ const COM_R = 2.5;                  // the radius of the centre of mass's mark
 const DOT = 0.55, DOT_STEP = 1.5;   // the extensions' dots: their size and spacing
 const HAIRSPACE = 0.8;              // the least air between a dot and anything else
 const STONE_INK = '#3b3024';        // marks on the stone: fixed, not a palette colour, so the site does not swap it
+const LEAD = 5;                     // between the name of the centre of mass and the body's back, points
 const TABLE_GAP = 14;               // between the right-hand orange arrow's tip and the table's ink
 const SIZE = 8.5;                   // labels
 const LABEL_GAP = 2.4;              // between the dimension line and the bottom of its label's ink, above it
@@ -104,12 +108,17 @@ export default async function () {
 	const person = await sprite('/figures3d/sprites/tut-person.png');
 	const ink = await spriteInk(person);
 	const px = (STATURE * K) / (ink.b - ink.t);                       // points per pixel of the sprite
-	const sx = M - ink.l * px, sy = M - ink.t * px;                   // the sprite's top left corner
+	// the name of the centre of mass stands at the left margin, level with it, LEAD clear of the body's back; the
+	// person stands to its right. First the body's back at that height with the sprite's ink at the margin, then the
+	// shift that puts the back LEAD right of the name.
+	const comName = await placed('\\text{centre of mass}', 0, 0, 0, 0.5);
+	const nameW = comName.box.r - comName.box.l;
+	const sy = M - ink.t * px;                                         // the sprite's top
 	const H = M + STATURE * K + M;
 	const soles = H - M;
 	const axisY = soles - COM * STATURE * K;                          // the centre of mass's height: the ring's axis
-	// the centre of mass: halfway through the body at that height
-	/** The body's back and front (figure points) at the height y. */
+	/** The body's back and front (figure points) at the height y, the sprite's left edge at x0. */
+	let sx = M - ink.l * px;
 	const across = (y) => {
 		const row = Math.round((y - sy) / px - 0.5);
 		let front = -1, back = -1;
@@ -117,7 +126,15 @@ export default async function () {
 		check(back >= 0, 'no body at the height ' + y);
 		return [sx + back * px, sx + front * px];
 	};
+	sx += M + nameW + LEAD - across(axisY)[0];                        // the sprite's left edge
+	check(near(across(axisY)[0], M + nameW + LEAD, 1e-9), 'the body\'s back is not LEAD clear of the name');
+	// the centre of mass: halfway through the body at that height
 	const comX = across(axisY).reduce((a, b) => a + b) / 2;
+	const name = await placed('\\text{centre of mass}', M, axisY, 0, 0.5);
+	check(near(name.box.l, M, 0.02), 'the name is not at the left margin');
+	// no part of the body comes nearer the name than LEAD, above or below the line
+	for (let y = Math.floor(name.box.t) - 3; y <= Math.ceil(name.box.b) + 3; y += 0.25) check(across(y)[0] >= name.box.r + LEAD - 0.6, 'the body comes too near the name of the centre of mass');
+	check(name.box.t >= M && name.box.b <= H - M, 'the name reaches past the margins');
 
 	// ---- the ring, one metre from the centre of mass, level with it
 	const cx = comX + DISTANCE * K, cy = axisY;
@@ -223,6 +240,7 @@ export default async function () {
 	/** The whole dimension in one colour. */
 	const dimension = (c) =>
 		`<path d="M${n2(comX)},${n2(dimY)}H${n2(cx)}${tick(comX)}${tick(cx)}" stroke="${c}" stroke-width="${HAIR}" fill="none"/>` +
+		`<path d="M${n2(name.box.r + HAIRSPACE + 1)},${n2(cy)}H${n2(comX - COM_R - HAIRSPACE)}" stroke="${c}" stroke-width="${HAIR}" fill="none"/>` +
 		`<path d="${comDots}${ringDots}" stroke="${c}" stroke-width="${DOT}" stroke-linecap="round" fill="none"/>` +
 		`<path d="M${n2(cx - PLUS)},${n2(cy)}H${n2(cx + PLUS)}M${n2(cx)},${n2(cy - PLUS)}V${n2(cy + PLUS)}" stroke="${c}" stroke-width="${HAIR}" fill="none"/>` +
 		`<path d="${quarters(comX, cy, COM_R)}" fill="${c}"/>` +
@@ -268,5 +286,5 @@ export default async function () {
 	window.tutTides = ({ H: +H.toFixed(2), comX: +comX.toFixed(2), cx: +cx.toFixed(2), cy: +cy.toFixed(2), dimY: +dimY.toFixed(2), ring: ringBox, table: table.box, label: one.box,
 		arrows: arrows.map((a) => ({ k: a.k, L: +len(a).toFixed(3), head: a.head })) });
 
-	return figure(W, +H.toFixed(2), [page], [one.svg, table.svg]);
+	return figure(W, +H.toFixed(2), [page], [one.svg, table.svg, name.svg]);
 }

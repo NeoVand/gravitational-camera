@@ -2,7 +2,8 @@
 // halves share. Two accelerometers on one shaking table read a1 = g1 + u + n1 and a2 = g2 + u + n2: the same large
 // shaking u in both, and each its own small noise. Left, over four seconds, the two traces one above the other and,
 // under them on the same scale, their difference a1 - a2 = (g1 - g2) + n1 - n2: a quiet trace about the steady
-// signal g1 - g2 (orange), with the band of one standard deviation of its noise about it (blue). Right, a1 against
+// signal g1 - g2 (orange), with the band of one standard deviation of its noise about it (blue), and its zero, a
+// faint dashed line under it; each trace named at its left, level with it. Right, a1 against
 // a2, every sample a dot: a thin cloud along a line of slope one, with the correlation r printed beside it.
 // Exact, from the draws (seed 7): the shaking, a sum of eight sines of frequencies between 0.6 and 3 Hz with seeded
 // amplitudes and phases, scaled so that its sample standard deviation is 1; the own noises, white, each scaled to the
@@ -75,12 +76,14 @@ export default async function () {
 	S.raw(`<path d="${pathOf([[X(0), sig - UNIT * sdD], [X(T), sig - UNIT * sdD], [X(T), sig + UNIT * sdD], [X(0), sig + UNIT * sdD]])}" fill="${NOISE}" fill-opacity="0.2"/>`, 0.2);
 	S.path([[X(0), sig], [X(T), sig]], { color: SIGNAL, width: MARK, layer: 2.5, cap: 'butt', what: 'the signal' });
 
-	// ---- the three traces, and a faint zero line under each
+	// ---- the three traces, and a faint dashed zero line under the difference's (the caption names it)
 	S.path([[X(0), D.zero], [X(T), D.zero]], { color: DIM, width: 0.3, layer: 0.5, cap: 'butt', dash: [1.2, 1.6], what: 'the zero of a1 - a2' });
 	for (const row of rows) {
 		S.path(t.map((s, i) => [X(s), row.zero - UNIT * row.v[i]]), { color: INK, width: DATA, layer: 2, what: `the trace ${row.name}` });
 	}
-	for (const row of rows) L.push(await placed(row.name, X(0) - LABEL_GAP - 2.4, row.zero, 1, 0.5, INK));
+	// each trace's name at its left, level with the trace: a1 and a2 at their zero lines, about which they swing; the
+	// difference at g1 - g2, about which it stays
+	for (const row of rows) L.push(await placed(row.name, X(0) - LABEL_GAP - 2.4, row === D ? sig : row.zero, 1, 0.5, INK));
 
 	// ---- the time axis, under the difference
 	const P = { X, bottom: D.zero + UNIT * 1.6 };

@@ -8,7 +8,10 @@
 // overlaps <e_R|e_L> = 1 (from 0 to 1), 0.5 (from 0.25 to 0.75) and 0 (flat at 1/2). Ink lines; no orange or blue.
 // Departures from the diagram's comment: the places are named L and R above their traps, and the ball at L is the solid
 // one and the record |e_L> the solid ellipse, so that each branch is drawn in one manner; the first plot alone names its
-// axes and numbers its ends; the others carry the same ticks and name only their own extremes.
+// axes and numbers its ends; the others carry the same ticks, name their axes P_R and phi again (the same axes) and
+// number only their own extremes. The wall is named, "wall", under it. Each record's name has a thin ink leader to its
+// own ring, met between two beads where that ring is the outer one (asserted): |e_L> to the solid ring near its top,
+// |e_R> to the dashed ring at its right.
 // Exact: the fringes, P_R = (1/2)(1 + cos theta cos phi) with the overlap cos theta, asserted against the four-entry
 // state through the second mirror at every drawn point (tut-quantum-lib.js, `recordPR`), and their extremes 0 and 1,
 // 0.25 and 0.75, and 1/2; the rings, the images of a circle under 1 - eps T, T = diag(-2, 1) (the tide of a point mass
@@ -36,6 +39,8 @@ const EPS = { L: 0.05, R: 0.12 };          // the rings' strains (exaggerated)
 const BEAD = 1.7;
 const PIXEL_GAP = 34;                      // from the wall to the pixel's centre
 const BRACKET = { width: 0.5, hook: 2.2, off: 4 };
+const LEAD = { L: 75, R: -15, len: 9 };     // the records' leaders: where each meets its ring (degrees from the line), and their reach
+const LEAD_AIR = 2.6;                      // a leader stops this far short of its name's anchor
 // ---- the fringes
 const PW = 66, PH = 30, PLOT_GAP = 26;     // each plot's size, and the air between them
 const STRIP = 20;                          // from the scene's lowest mark to the plots' tops
@@ -80,6 +85,7 @@ export default async function () {
 			`<rect x="${n2(wl)}" y="${n2(wt)}" width="${WALL.w}" height="${WALL.h}" fill="none" stroke="${DIM}" stroke-width="${AXIS}"/>`, 1);
 		S.mark([[wl, wt], [wr, wt], [wr, wb], [wl, wb], [wl, wt]], AXIS / 2, 'the wall');
 		S.boxes.push({ box: { l: wl, r: wr, t: wt, b: wb }, what: 'the wall' });
+		L.push(await placed('\\text{wall}', (wl + wr) / 2, wb + AXIS / 2 + LABEL_GAP + 0.4, 0.5, 0, INK));
 	}
 
 	// ---- the pixel: the ring of twelve beads under each record, 1 - eps T with T = diag(-2, 1) along the line
@@ -110,8 +116,23 @@ export default async function () {
 		ell[key] = { a, b };
 	}
 	check(ell.R.a > ell.L.a && ell.L.b > ell.R.b, 'the rings do not part as drawn');
-	L.push(await S.clear('|e_L\\rangle', px, y - ell.L.b - BEAD - LABEL_GAP, 0.5, 1, [0, -1]));
-	L.push(await S.clear('|e_R\\rangle', px + ell.R.a + BEAD + LABEL_GAP, y, 0, 0.5, [1, 0]));
+	// each record's name with a leader to its own ring, between two beads, where that ring is the outer one: |e_L> to
+	// the solid ring above, |e_R> to the dashed ring at the right
+	const onRing = (key, deg) => { const t = (deg * Math.PI) / 180; return [px + ell[key].a * Math.cos(t), y - ell[key].b * Math.sin(t)]; };
+	const lead = async (src, key, deg, end, ax, ay) => {
+		const q = onRing(key, deg), other = onRing(key === 'L' ? 'R' : 'L', deg);
+		check(Math.hypot(q[0] - px, q[1] - y) > Math.hypot(other[0] - px, other[1] - y), `the leader to ${key} does not meet its ring where it is outside`);
+		const lab = await placed(src, end[0], end[1], ax, ay, INK);
+		const u = [end[0] - q[0], end[1] - q[1]], l = Math.hypot(...u);
+		const from = [q[0] + (u[0] / l) * 0.9, q[1] + (u[1] / l) * 0.9], to = [end[0] - (u[0] / l) * LEAD_AIR, end[1] - (u[1] / l) * LEAD_AIR];
+		S.path([from, to], { color: INK, width: HAIR, cap: 'butt', layer: 4, what: `the leader to ${key}` });
+		L.push(lab);
+	};
+	{
+		const qL = onRing('L', LEAD.L), qR = onRing('R', LEAD.R);
+		await lead('|e_L\\rangle', 'L', LEAD.L, [qL[0] + LEAD.len * 0.55, qL[1] - LEAD.len], 0, 1);
+		await lead('|e_R\\rangle', 'R', LEAD.R, [qR[0] + LEAD.len, qR[1] + LEAD.len * 0.75], 0, 0);
+	}
 
 	// ---- the distance r: a dimension line above the wall, from the middle of the places to the pixel's centre
 	const ry = wt - 9;
@@ -148,11 +169,16 @@ export default async function () {
 				const twoPi = L.find((l) => l.src === '2\\pi').box;
 				L.push(await placed('\\phi', twoPi.r + LABEL_GAP + 1, (twoPi.t + twoPi.b) / 2, 0, 0.5, DIM));
 			}
-		} else if (i === 1) {
+		} else {
+			// the same axes as the first: their names again, not their numbers
+			L.push(await S.clear('P_R', P.X(0), P.Y(1) - 6, 0.5, 1, [0, -1]));
+			L.push(await placed('\\phi', P.X(2 * Math.PI) + LABEL_GAP + 1, P.Y(0), 0, 0.5, DIM));
+		}
+		if (i === 1) {
 			check(hi.toFixed(2) === '0.75' && lo.toFixed(2) === '0.25', 'overlap 0.5');
 			L.push(await S.clear('0.75', P.X(2 * Math.PI) + CURVE / 2 + LABEL_GAP, P.Y(hi), 0, 0.5, [1, 0], { color: DIM }));
 			L.push(await S.clear('0.25', P.X(Math.PI), P.Y(lo) - CURVE / 2 - LABEL_GAP, 0.5, 1, [0, -1], { color: DIM }));
-		} else {
+		} else if (i === 2) {
 			check(hi === 0.5 && lo === 0.5, 'overlap 0');
 			L.push(await S.clear('1/2', P.X(2 * Math.PI) + CURVE / 2 + LABEL_GAP, P.Y(0.5), 0, 0.5, [1, 0], { color: DIM }));
 		}

@@ -1,24 +1,26 @@
 // The tutorial, section 3.9 (tutorial/noise/positivity.md), its first diagram: non-negative least squares with two
-// cells. The plane of the two cell masses m1 (across) and m2 (up), drawn to one scale on both axes; the quarter where
-// both are positive in the site's neutral tint. The misfit f(m) = |y - A m|^2 of the chapter's example,
-// A = [[1, 0.6], [0.6, 1]] and y = (1, 0.3), has elliptic contours about the best signed scene (1.28, -0.47), outside
-// the quarter (open circle, in the first accent, the colour of the linear image in the chapter's interactive figure).
-// The best positive scene (0.87, 0) lies on the edge m2 = 0 (filled dot, in matter's colour, the colour of the
-// positive image there), where the contour f = 0.066 touches the m1 axis (drawn darker than the others). From it a
-// short arrow points downhill, along minus the slopes (0, 0.28): straight down, out of the quarter, into negative m2. The
-// window runs from -0.4 to 2.95 across and -2.12 to 1.2 up, so that it holds every contour whole, with air about it
-// (asserted): the bowl is shown entire, nothing is clipped by the frame.
+// cells. The plane of the two cell masses m1 (across) and m2 (up), drawn to one scale on both axes (60 pt a unit), as a
+// chart: two scales at the window's left and foot, ticked and numbered (m1 at 0, 1, 2; m2 at -2, -1, 0, 1) clear of
+// the bowl, and the lines m1 = 0 and m2 = 0 across the window, the edges of the quarter where both are positive, which
+// is in the site's neutral tint. The misfit f(m) = |y - A m|^2 of the chapter's example, A = [[1, 0.6], [0.6, 1]] and
+// y = (1, 0.3), has elliptic contours about the best signed scene (1.28, -0.47), outside the quarter (open circle, in
+// the first accent, the colour of the linear image in the chapter's interactive figure). The best positive scene
+// (0.87, 0) lies on the edge m2 = 0 (filled dot, in matter's colour, the colour of the positive image there), where the
+// contour f = 0.066 touches the line m2 = 0 (drawn darker than the others). Each point's label carries its coordinates
+// on a second line. From the positive minimum a short arrow points downhill, along minus the slopes (0, 0.28): straight
+// down, out of the quarter, into negative m2. The window runs from -0.4 to 2.95 across and -2.12 to 1.2 up, so that it
+// holds every contour whole, with air about it (asserted): the bowl is shown entire, nothing is clipped by the frame.
 // Exact: the contours f = 0.066 s^2 for s = 1, 2.1 and 3.2, each the closed form m* + sqrt(f) A^{-1}(cos t, sin t)
-// (A^T A = A^2), sampled every fifth of a point, cut only where it passes behind the
-// label "best signed" (set beside its ring in the direction that cuts least) and where the touching contour runs within
-// 0.55 pt of the m1 axis (where the two strokes overlap); the two minima and the slopes, from the chapter's formulas
-// and asserted against its numbers (1.28, -0.47; 0.87; 2.72 m1 - 2.36; (-0.13, 0.22); +0.28;
-// 0.066); the touching contour's tangency at (0.87, 0) and the slope at right angles to the axis there. Schematic: the
-// arrow's length (it is drawn shorter than the slope, so that it stays inside the touching contour), the choice of
-// the contours (f0 times 1, 2.1^2 and 3.2^2) and of the window, chosen so that every contour is whole and the label
-// "best positive" crosses none.
+// (A^T A = A^2), sampled every fifth of a point, cut only where they pass behind the two points' labels ("best
+// positive" above its dot, slid along the line to where it cuts least; "best signed" beside its ring in the direction
+// that cuts least) and where the touching contour runs within 0.55 pt of the line m2 = 0 (where the two strokes
+// overlap); no contour comes near a scale's number (asserted); the two minima and the slopes, from the chapter's
+// formulas and asserted against its numbers (1.28, -0.47; 0.87; 2.72 m1 - 2.36; (-0.13, 0.22); +0.28; 0.066), and the
+// coordinates printed; the touching contour's tangency at (0.87, 0) and the slope at right angles to the line there.
+// Schematic: the arrow's length (it is drawn shorter than the slope, so that it stays inside the touching contour), the
+// choice of the contours (f0 times 1, 2.1^2 and 3.2^2) and of the window, chosen so that every contour is whole.
 import { INK, DIM, FAINT, ACCENT } from '../lib.js';
-import { Sheet, ORIGIN, finish, checker, near, placed, AXIS, AXIS_HEAD, VEC, LABEL_GAP } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, near, placed, AXIS, VEC, LABEL_GAP, HAIR, TICK } from './tut-pot-lib.js';
 import { longest } from './tut-fourier-lib.js';
 import { MATTER } from './tut-null-lib.js';
 
@@ -58,31 +60,54 @@ function mathematics() {
 }
 
 // ---- the drawing (points) -----------------------------------------------------------------------------------------
-const U = 85;                                // points per unit of mass, on both axes
+const U = 60;                                // points per unit of mass, on both axes
 const WIN = { x: [-0.4, 2.95], y: [-2.12, 1.2] };  // the window: it holds every contour whole, with air about it
-const REACH = 0.13;                          // the axes run this far past the window, units
+const OUT = 0.1;                             // the scales stand this far outside the window, units
 const AIR = 0.05;                            // the least room, units, between a contour and the window's edge
 const TINT = '#eeebe5';                      // the site's neutral tint of the page (drawing.ts THEME)
 const SCALES = [1, 2.1, 3.2];                // the contours, f = f0 s^2
 const LINE = 0.5, LINE_TOUCH = 0.6;          // the contours' strokes
 const NEAR = 0.55;                           // points: the touching contour is left out this near the axis
 const DOT = 2.1, RING = 2.3, RING_W = 0.6;   // the positive minimum's dot; the signed minimum's ring
-const DOWN = 0.15;                           // the arrow's length, units (schematic)
+const DOWN = 0.18;                           // the arrow's length, units (schematic)
 const CUT = LABEL_GAP + 0.4;                 // a contour stops this far from a label
+const NUM = 2.4;                             // from a tick's end to its number
 
 export default async function () {
 	const n = mathematics();
+	// the two points' labels carry their coordinates, as the chapter gives them
+	const POS = `\\begin{array}{c}\\text{best positive}\\\\(${n.pos[0].toFixed(2)}, ${n.pos[1].toFixed(0)})\\end{array}`;
+	const SIGNED = `\\begin{array}{c}\\text{best signed}\\\\(${n.signed[0].toFixed(2)}, ${n.signed[1].toFixed(2)})\\end{array}`;
+	check(POS.includes('(0.87, 0)') && SIGNED.includes('(1.28, -0.47)'), 'the coordinates printed are not the chapter\'s');
 	const S = new Sheet(name);
 	const at = ([x, y]) => [ORIGIN + U * x, ORIGIN - U * y];
 	const L = [];
 
-	// ---- the quarter, and the axes over it
+	// ---- the quarter; the lines m1 = 0 and m2 = 0, its edges, across the window; and the two scales, at the window's
+	// left and foot, as a chart's axes, ticked and numbered, so that the coordinates can be read off clear of the bowl
 	const q0 = at([0, 0]), q1 = at([WIN.x[1], WIN.y[1]]);
 	S.raw(`<rect x="${q0[0]}" y="${q1[1]}" width="${q1[0] - q0[0]}" height="${q0[1] - q1[1]}" fill="${TINT}"/>`, 0);
-	S.arrow(at([WIN.x[0], 0]), at([WIN.x[1] + REACH, 0]), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the m1 axis' });
-	S.arrow(at([0, WIN.y[0]]), at([0, WIN.y[1] + REACH]), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the m2 axis' });
-	L.push(await placed('m_1', at([WIN.x[1] + REACH, 0])[0] + 2.4, q0[1], 0, 0.5, MATTER));
-	L.push(await placed('m_2', q0[0], at([0, WIN.y[1] + REACH])[1] - 2.4, 0.5, 1, MATTER));
+	const [xa, ya] = at([WIN.x[0] - OUT, WIN.y[0] - OUT]);          // the scales' axes, page
+	const [xr, yt] = at([WIN.x[1], WIN.y[1]]);
+	S.path([[xa, q0[1]], [xr, q0[1]]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: 'the line m2 = 0' });
+	S.path([[q0[0], ya], [q0[0], yt]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: 'the line m1 = 0' });
+	S.path([[xa, ya], [xr, ya]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: 'the m1 scale' });
+	S.path([[xa, ya], [xa, yt]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: 'the m2 scale' });
+	const nums = [];
+	for (const t of [0, 1, 2]) {
+		const x = at([t, 0])[0];
+		S.path([[x, ya], [x, ya + 2 * TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the m1 scale's tick at ${t}` });
+		nums.push(await placed(`${t}`, x, ya + 2 * TICK + NUM, 0.5, 0, DIM));
+	}
+	for (const t of [-2, -1, 0, 1]) {
+		const y = at([0, t])[1];
+		S.path([[xa, y], [xa - 2 * TICK, y]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the m2 scale's tick at ${t}` });
+		nums.push(await placed(t < 0 ? `-${-t}` : `${t}`, xa - 2 * TICK - NUM, y, 1, 0.5, DIM));
+	}
+	const n2r = nums.find((g) => g.src === '2');
+	L.push(await placed('m_1', xr + 4, (n2r.box.t + n2r.box.b) / 2, 0, 0.5, MATTER));
+	L.push(await placed('m_2', xa, yt - LABEL_GAP - 1, 0.5, 1, MATTER));
+	L.push(...nums);
 
 	// ---- the two minima and the arrow
 	const ps = at(n.signed), pp = at(n.pos);
@@ -110,13 +135,12 @@ export default async function () {
 	// it stands clearest of the contours
 	let bp = null;
 	for (let ax = 0.3; ax <= 0.9 + 1e-9; ax += 0.02) {
-		const g = await placed('\\text{best positive}', pp[0], pp[1] - DOT - LABEL_GAP - 0.6, ax, 1, MATTER);
+		const g = await placed(POS, pp[0], pp[1] - DOT - LABEL_GAP - 0.6, ax, 1, MATTER);
 		const a = air(g.box);
 		if (!bp || a > bp.a) bp = { a, g };
 	}
-	check(bp.a >= CUT, `"best positive" cuts a contour (${bp.a} pt)`);
 	L.push(bp.g);
-	const probe = await placed('\\text{best signed}', 0, 0, 0.5, 0.5, ACCENT);
+	const probe = await placed(SIGNED, 0, 0, 0.5, 0.5, ACCENT);
 	const hw = (probe.box.r - probe.box.l) / 2, hh = (probe.box.b - probe.box.t) / 2;
 	let best = null;
 	for (let extra = 0; extra <= 0; extra += 0.5) for (let deg = 0; deg < 360; deg += 2) {
@@ -127,8 +151,9 @@ export default async function () {
 		const a = air(b);
 		if (!best || a > best.a) best = { a, c, deg, extra };
 	}
-	L.push(await placed('\\text{best signed}', best.c[0], best.c[1], 0.5, 0.5, ACCENT));
-	const boxes = L.slice(2).map((l) => l.box);
+	L.push(await placed(SIGNED, best.c[0], best.c[1], 0.5, 0.5, ACCENT));
+	const boxes = L.slice(2).filter((l) => !nums.includes(l)).map((l) => l.box);
+	for (const g of nums) { const d = Math.min(...coarse.map((p) => toBox(g.box, p))); check(d >= CUT, `a contour passes near the number ${g.src} (${d} pt)`); }
 
 	// ---- the contours
 	for (const s of SCALES) {
@@ -190,5 +215,5 @@ export default async function () {
 	S.checkAll(L);
 	void DIM;
 	window.tutPosNnls = { label: best, signed: n.signed, pos: n.pos, f0: n.f0, slope: n.g };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, [200, 340]);
 }

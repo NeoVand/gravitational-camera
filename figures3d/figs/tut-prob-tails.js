@@ -1,9 +1,10 @@
 // The tutorial, section 3.1 (tutorial/noise/probability.md), its second diagram: the tails of the Gaussian. The
 // standard Gaussian density p(Z) = exp(-Z^2/2) / sqrt(2 pi), with the bands within one, two and three standard
-// deviations of the mean shaded in the noise's colour (blue), one over another, and named under the axis by their
-// probabilities, 68.3%, 95.4% and 99.73%; and the one-sided tail beyond Z = 3 filled in full blue under the true
-// curve (a sliver, p(3) = 0.0044), named by its area, P(Z > 3) = 1.35 x 10^-3, with the density over Z >= 3 drawn
-// again twenty times taller as a dashed curve, from 20 p(3) = 0.089 falling to the right, so that its shape shows.
+// deviations of the mean shaded in the noise's colour (blue), one over another, in three even steps (0.18, 0.34 and
+// 0.50 of the blue), and named under the axis by their probabilities, 68.3%, 95.4% and 99.73%. The one-sided tail
+// beyond Z = 3, a sliver under the true curve (p(3) = 0.0044, under a point tall), is drawn twenty times taller and
+// filled in full blue, from 20 p(3) = 0.089 falling to the right, named "tail x 20"; its true area,
+// P(Z > 3) = 1.35 x 10^-3, is named under the axis as the bands are, by a line from Z = 3 toward larger Z.
 // Exact: the curve (sampled every quarter of a point along its length), the bands' edges, the tail, and the four
 // probabilities, computed here (the series of erf and the continued fraction of the Mills ratio, tut-prob-lib.js)
 // and asserted against the numbers the chapter prints. Nothing is schematic; the magnification is exactly 20.
@@ -23,7 +24,8 @@ export const MAG = 20;                  // the tail's magnification
 const ZMAX = 4;
 const W = 248, H = 104;                 // the data rectangle: Z from -4 to 4, p from 0 to 0.42
 const PMAX = 0.42;
-const SHADE = 0.13;                     // each band's opacity of the blue; they lie one over another
+const SHADE = [0.24, 0.2, 0.18];        // the bands' opacities of the blue, within 1, 2 and 3; they lie one over another,
+                                        // so that the three show as 0.18, 0.34 and 0.50, in even steps
 const ROW = 11.5;                       // the bands' names: from one row to the next
 const FIRST = 8.5;                      // the first row, this far under the numbers' line
 
@@ -62,19 +64,22 @@ export default async function () {
 	const L = [];
 
 	// ---- the bands, under the curve, one over another
-	for (const k of BANDS) {
+	for (const [i, k] of BANDS.entries()) {
 		const pts = [P.at(-k, 0), ...graph(P, gauss, -k, k), P.at(k, 0)];
-		S.raw(`<path d="${pathOf(pts)}" fill="${NOISE}" fill-opacity="${SHADE}"/>`, 0.2);
+		S.raw(`<path d="${pathOf(pts)}" fill="${NOISE}" fill-opacity="${SHADE[i]}"/>`, 0.2);
 	}
-	// ---- the tail beyond 3, at true scale and magnified
-	// the true tail: the fill under the curve itself, beyond 3
+	const shown3 = BANDS.map((_, i) => 1 - SHADE.slice(i).reduce((q, a) => q * (1 - a), 1));
+	check(shown3.every((v, i) => near(v, [0.5, 0.34, 0.18][i], 0.005)), `the bands show as ${shown3}`);
+	// ---- the tail beyond 3: at true scale a sliver under the curve, p(3) = 0.0044, too thin to see; drawn instead
+	// twenty times taller, from 20 p(3) = 0.089 falling to the right, and filled in full blue
 	check(gauss(3).toFixed(4) === '0.0044', `p(3) is ${gauss(3)}, not 0.0044`);
-	S.raw(`<path d="${pathOf([P.at(3, 0), ...graph(P, gauss, 3, ZMAX), P.at(ZMAX, 0)])}" fill="${NOISE}"/>`, 0.3);
-	// the magnified density, over Z >= 3 only: from 20 p(3) = 0.089, falling to the right
+	check(P.Y(0) - P.Y(gauss(3)) < 1.2, 'the true tail is not a sliver');
 	const big = (z) => MAG * gauss(z);
 	check(big(3).toFixed(3) === '0.089' && big(ZMAX) < big(3) / 20, `20 p(3) is ${big(3)}`);
-	check(P.Y(0) - P.Y(gauss(3)) < 1.2, 'the true tail is not a sliver');
-	S.path(graph(P, big, 3, ZMAX), { color: DIM, width: 0.45, layer: 1.5, dash: [1.6, 1.2], what: 'the magnified curve' });
+	const tailPts = graph(P, big, 3, ZMAX);
+	S.fill(pathOf([P.at(3, 0), ...tailPts, P.at(ZMAX, 0)]), { l: P.X(3), r: P.X(ZMAX), t: P.Y(big(3)), b: P.Y(0) }, { color: NOISE, layer: 0.3, what: 'the tail, twenty times taller', solid: false });
+	S.mark(tailPts, 0.3, 'the tail, twenty times taller');
+	S.mark([P.at(3, 0), P.at(3, big(3))], 0.3, 'the tail\'s left edge');
 
 	// ---- the curve itself
 	S.path(graph(P, gauss, -ZMAX, ZMAX), { color: INK, width: CURVE, layer: 2, what: 'the Gaussian' });
@@ -99,8 +104,8 @@ export default async function () {
 	}
 
 	// ---- the tail's names
-	// beside the magnified curve, above and to its right
-	L.push(await S.clear(`\\times ${MAG}`, P.X(3.3), P.Y(big(3.3)), 0, 1, [0.6, -0.8], { color: DIM }));
+	// over the magnified tail, above and to its right
+	L.push(await S.clear(`\\text{tail} \\times ${MAG}`, P.X(3.3), P.Y(big(3.3)), 0, 1, [0.6, -0.8], { color: NOISE }));
 	// the tail's area, named as the bands are: a line from Z = 3 toward larger Z, on the first row
 	const y1 = base + FIRST;
 	S.path([[P.X(3), y1 - END], [P.X(3), y1 + END]], { color: NOISE, width: DIM_LINE, layer: 3, cap: 'butt', what: 'the tail\'s start' });

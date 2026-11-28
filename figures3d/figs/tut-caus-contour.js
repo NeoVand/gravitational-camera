@@ -1,6 +1,7 @@
 // The tutorial, section 4.5 (tutorial/response/causality.md), its second diagram: the loop of the box that derives the
 // Kramers-Kronig relation. The complex omega' plane on one scale in both directions, the real axis from -2.8 to 2.8
-// ("Re omega") and the imaginary axis from -0.5 to 2.8 ("Im omega"), frequencies in units of omega_0. The upper half
+// ("Re omega'") and the imaginary axis from -0.5 to 2.8 ("Im omega'"), frequencies in units of omega_0: the plane of
+// the integration variable omega', on whose real axis the fixed real omega is a point. The upper half
 // plane lightly shaded and named "chi holomorphic". The cart's two poles for Q = 3 (Gamma = omega_0/3,
 // omega_d = 0.986 omega_0), as crosses in the colour of 4.1's swing at +-omega_d - i Gamma/2 = +-0.986 - 0.167i, each
 // named by its value under it (the names are an addition to the diagram's comment, so that the crosses are read as the
@@ -58,8 +59,8 @@ export default async function () {
 	// ---- the axes
 	const re = S.arrow(at([RE[0], 0]), at([RE[1], 0]), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the real axis' });
 	const im = S.arrow(at([0, IM[0]]), at([0, IM[1]]), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the imaginary axis' });
-	L.push(await placed('\\mathrm{Re}\\,\\omega', re.B[0] + LABEL_GAP + 0.4, re.B[1], 0, 0.5, DIM));
-	L.push(await placed('\\mathrm{Im}\\,\\omega', im.B[0], im.B[1] - LABEL_GAP - 0.4, 0.5, 1, DIM));
+	L.push(await placed("\\mathrm{Re}\\,\\omega'", re.B[0] + LABEL_GAP + 0.4, re.B[1], 0, 0.5, DIM));
+	L.push(await placed("\\mathrm{Im}\\,\\omega'", im.B[0], im.B[1] - LABEL_GAP - 0.4, 0.5, 1, DIM));
 
 	// ---- the loop: its four pieces in data points, each sampled finely enough on the page
 	const STEP = 0.25 / SCALE;

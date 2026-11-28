@@ -7,10 +7,11 @@
 // strokes in ink, "kick g, read h" solid and "kick h, read g" dotted, each timeline of the key drawn in its curve's
 // stroke; the gap between them shaded. Above, at the true scale, where the two run as one straight line, labelled with
 // the first term of the series, its tau axis along its top at zero response; below, the same less that first term,
-// forty times higher: the two parabolas, their half sum dashed, the shaded gap and, at tau = 0.02, a bar across it
-// labelled tau^2 {Q_h, Q_g}, off the curves; its own tau axis numbered along its bottom, its height numbered 0 and
-// 0.001 in the upper panel's units, its quantity "delta Q / eps - tau int rho grad g . grad h dV" and "x40" inside at
-// its top left.
+// forty times higher: the two parabolas, their half sum dashed and named "half sum" inside the gap, the shaded gap
+// and, at tau = 0.02, a bar across it labelled tau^2 {Q_h, Q_g}, off the curves; its own tau axis numbered along its
+// bottom, far enough under the lower curve's end that the bar and the axis's tau keep apart, its height numbered 0
+// and 0.001 in the upper panel's units (true values), its quantity "delta Q / eps - tau int rho grad g . grad h dV"
+// and "(drawn 40 times higher than above)" inside at its top left.
 // Departures from the diagram's comment: the two orders are told apart by their strokes and by direct labels in ink,
 // not by orange and blue, which mean a stretch and a squeeze; the timelines in the same two strokes serve as the key,
 // set above the plots as their title rather than beside them, where they left the figure lopsided.
@@ -34,7 +35,7 @@ const W = 178;                             // the plots' width
 const T1 = 0.02;                           // tau at the right
 const Q0 = -0.12, H = 104;                 // the upper plot: the response at its bottom, its height
 const ZOOM = 40;                           // the lower plot's heights, against the upper's
-const LO = [-0.0009, 0.00155];             // the lower plot's range of the rest (response less tau S)
+const LO = [-0.00112, 0.0019];             // the lower plot's range of the rest (response less tau S)
 const GAP = 22;                            // between the two plots
 const CURVE = 0.6;                         // the two responses
 const DOTS = [0.001, 1.55];                // the dotted curve: dots of the stroke's width, this far apart
@@ -130,10 +131,17 @@ export default async function () {
 	check(LO_TICKS.every((q) => q > LO[0] && q < LO[1]), 'a lower tick is outside its plot');
 	Sh.path(ts.map((t) => Bp.at(t, half(t))), { color: DIM, width: HALF, dash: HALF_DASH, cap: 'butt', layer: 1.5, what: 'the half sum' });
 	pair(Bp, () => 0, 'below');
+	// the dashed line named, inside the gap above it, near the right
+	{
+		const t = 0.0168, hl = await placed('\\text{half sum}', Bp.X(t), Bp.Y(half(t)) - LABEL_GAP - 2.4, 0.5, 1, DIM);
+		check(hl.box.t > Bp.Y(up(t)) + 1.5, 'the half sum\'s name leaves the gap');
+		L.push(hl);
+	}
 	// its quantity, inside at the top left, as the upper panel's is inside at its bottom left; forty times higher
 	const titleB = await placed(`\\delta ${Q('Q')}/\\epsilon\\;{-}\\;${first}`, left + 4, Bp.top + 1, 0, 0, INK);
 	L.push(titleB);
-	L.push(await placed(`{\\times}${ZOOM}`, left + 4, titleB.box.b + LABEL_GAP + 1.2, 0, 0, DIM));
+	L.push(await placed(`\\text{(drawn ${ZOOM} times higher than above)}`, left + 4, titleB.box.b + LABEL_GAP + 1.2, 0, 0, DIM));
+	check(ZOOM === 40, 'the words say forty times higher');
 	// the gap's width at tau = 0.02: a bar just past the curves' ends, the bracket's label beside it
 	{
 		const x = Bp.X(T1) + 3.4, a = Bp.Y(up(T1)), b = Bp.Y(down(T1));

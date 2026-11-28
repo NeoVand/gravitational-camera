@@ -16,6 +16,10 @@
 // name runs into a bar or the axis's numbers, and every leader starts at its bar's outer end, the names of the left
 // side right-aligned in one column. The gram in two places and the ball's thermal tremor lie 0.37 decades (3.9 pt)
 // apart, so their dots stand side by side and their names hang from leaders, the first above and the second below.
+// Each instrument's bar runs on, at the same weight, between the axis's numbers to the axis itself, so that it reads
+// as a place on the scale and not as a mark floating beside the numbers (each lies 0.7 decades or more from the
+// nearest number); the dotted bar likewise. The distance of the two is named "reading the masses' separation", as in
+// section 8.6's tut-sql-pixel.
 // The one drawing serves the phone and the book: every label is at the size of every other label.
 // Exact: every place on the axis. The pixel's tides, the person's, the gradiometer's, the ratio 9.5 x 10^16 and the
 // pair's fall in 3.9 x 10^3 s are section 8.6's (figs/tut-sql-lib.js, computed and asserted against 8.6's text); the
@@ -120,18 +124,22 @@ export default async function () {
 
 	// ---- the instruments: bars left of the axis, their inner ends BAR_AIR from its numbers
 	const xIn = numLeft - BAR_AIR, xOut = xIn - BAR;
-	const bar = (v, what, o = {}) => S.path([[xOut, y(v)], [xIn, y(v)]], { color: INK, width: BAR_W, cap: 'butt', layer: 2, what, ...o });
+	// each bar runs on, as a line of the same weight, between the axis's numbers to the axis itself, so that it is a
+	// place on the scale (every instrument's height lies at least 0.7 decades from the nearest number)
+	const xA = A - AXIS / 2;
+	const bar = (v, what, o = {}) => S.path([[xOut, y(v)], [xA, y(v)]], { color: INK, width: BAR_W, cap: 'butt', layer: 2, what, ...o });
 	bar(grad, 'the gradiometer\'s bar');
 	bar(pix, 'the pixel\'s bar');
 	// the distance of the two: a hairline 1.3 pt above, joined to the pixel's bar at its outer end
-	S.path([[xIn, y(pix2)], [xOut, y(pix2)], [xOut, y(pix)]], { color: DIM, width: HAIR, cap: 'butt', layer: 2, what: 'the bracket of the distance of the two' });
+	S.path([[xA, y(pix2)], [xOut, y(pix2)], [xOut, y(pix)]], { color: DIM, width: HAIR, cap: 'butt', layer: 2, what: 'the bracket of the distance of the two' });
 	check(y(pix) - y(pix2) > (BAR_W + HAIR) / 2 + 0.3, 'the two bars of the pixel touch');
 	// the averaged pixel, dotted
 	{
-		const n = Math.round((BAR - BAR_DOT) / BAR_DOT_STEP), step = (BAR - BAR_DOT) / n;
+		const len = xA - xOut - BAR_DOT;
+		const n = Math.round(len / BAR_DOT_STEP), step = len / n;
 		const d = Array.from({ length: n + 1 }, (_, k) => `M${n2(xOut + BAR_DOT / 2 + k * step)},${n2(y(avg))}h0`).join('');
 		S.raw(`<path d="${d}" stroke="${INK}" stroke-width="${BAR_DOT}" stroke-linecap="round" fill="none"/>`, 2);
-		S.mark([[xOut, y(avg)], [xIn, y(avg)]], BAR_DOT / 2, 'the averaged pixel\'s dotted bar');
+		S.mark([[xOut, y(avg)], [xA, y(avg)]], BAR_DOT / 2, 'the averaged pixel\'s dotted bar');
 	}
 
 	/** Lines right- (side -1) or left-aligned (side 1) at x, on baselines from `base`; returns them as one label (the
@@ -178,8 +186,8 @@ export default async function () {
 		['\\text{the gram pixel at the}', INK],
 		['\\text{standard quantum limit,}', INK],
 		[`\\text{one second, }${NUM_TEX.pix}\\text{;}`, INK],
-		[`${NUM_TEX.pix2}\\text{ for the}`, DIM],
-		['\\text{distance of the two}', DIM]
+		[`${NUM_TEX.pix2}\\text{ reading}`, DIM],
+		['\\text{the masses\' separation}', DIM]
 	], xOut + HAIR / 2, y(pix) + BAR_W / 2 + 0.8, 16, 1, -1, 'the pixel\'s leader')));
 	L.push(...(await centred([['\\text{the gram pixel in}', INK], ['10^3\\text{ s stretches over}', INK], ['\\text{the age of the universe,}', INK], [NUM_TEX.avg, INK]], xL, y(avg), -1)));
 
@@ -202,7 +210,7 @@ export default async function () {
 
 	// ---- the dashed line from the one-second pixel's bar across to the right, and its name above it at the right
 	const right = Math.max(...L.filter((g) => g.box.l > A).map((g) => g.box.r));
-	S.path([[xIn + 1.2, y(pix)], [right, y(pix)]], { color: DIM, width: HAIR, dash: DASH, cap: 'butt', layer: 1, what: 'the dashed line' });
+	S.path([[A + AXIS / 2 + 1.2, y(pix)], [right, y(pix)]], { color: DIM, width: HAIR, dash: DASH, cap: 'butt', layer: 1, what: 'the dashed line' });
 	{
 		const g = await placed('\\text{one second at the SQL}', right, y(pix) - HAIR / 2 - LABEL_GAP - 0.4, 1, 1, DIM);
 		L.push(g);

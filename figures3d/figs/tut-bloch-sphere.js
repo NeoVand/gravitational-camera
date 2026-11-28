@@ -9,15 +9,18 @@
 // Departures from the diagram's comment: the two arrows' vertical plane is at the azimuth 140 degrees, not 30, so that
 // it faces the reader (75 degrees round from the line of sight) and the angle between them shows near its size, and
 // so that the mixture's arrow, toward (x + z)/2, falls on the other side of the z axis from them; at phi = 30 the two
-// arrows would be foreshortened to half their length and the mixture's lie between them. Because that plane faces the
-// reader, an arc on the sphere between the tips would run along the outline, so the arc is drawn outside the sphere,
-// at 1.18 radii, joined to the tips by dotted extension lines, as a dimension is. The equator is solid in front and
-// dashed behind, as 6.6's sky draws its great circles, so that front and back can be told apart. The mixture's name
-// is set at the left, on a thin leader from its dot.
+// arrows would be foreshortened to half their length and the mixture's lie between them. The angle between the arrows
+// is marked at the centre, as an angle between two vectors is: an arc in their plane at 0.36 radii, from one arrow to
+// the other, with "60 degrees" inside it; the overlap is set right of the sphere, level with it. The view is from 28
+// degrees above the equator, high enough that the equator opens into an ellipse and the x and y axes, perpendicular,
+// meet on the page at about 120 degrees rather than nearly opposite. The equator is solid in front and dashed behind,
+// as 6.6's sky draws its great circles, so that front and back can be told apart. The z axis's lower half runs dashed
+// from the centre to the south pole, which lies behind, under the veil, as a larger dot named beside it; the note on
+// opposite points is set under the sphere. The mixture's name is set at the left, on a thin leader from its dot.
 // Exact: every point (the directions, the states' overlap cos^2 30 = (1 + n1.n2)/2 = 0.75, the mixture's
-// b = tr(rho sigma) = (1/2, 0, 1/2) of length 0.71, all asserted in tut-spin-lib.js against the chapter's text) and
-// the view, an orthographic one from 17 degrees above the equator. Schematic: the axes' and the arc's reach, the
-// dots' sizes.
+// b = tr(rho sigma) = (1/2, 0, 1/2) of length 0.71, all asserted in tut-spin-lib.js against the chapter's text), the
+// angle's arc (its ends asserted to lie on the two arrows) and the view, an orthographic one from 28 degrees above the
+// equator. Schematic: the axes' and the arc's reach, the dots' sizes.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, VEC, VEC_HEAD, AXIS, AXIS_HEAD, HAIR, n2 } from './tut-pot-lib.js';
 import { INK, DIM, PAGE } from '../lib.js';
 import { chapter, palette, near, rad, dir, dot, len, view, sky, THETA1, THETA2, APART } from './tut-spin-lib.js';
@@ -26,11 +29,11 @@ const name = 'tut-bloch-sphere';
 const check = checker(name);
 
 const R = 74;                        // the sphere's radius, points
-const AZ = 65, EL = 17;              // the view: the camera's azimuth from x toward y, and its height, degrees
+const AZ = 65, EL = 28;              // the view: the camera's azimuth from x toward y, and its height, degrees
 const PHI = AZ + 75;                 // the azimuth of the two arrows' vertical plane
 const AX = 1.42;                     // the axes' reach, in radii
-const ARC = 1.18, ARC_W = 0.5;       // the dimension arc: its radius, its stroke
-const POLE = 1.5;                    // a pole's dot
+const ARC = 0.36, ARC_W = 0.5;       // the angle's arc at the centre: its radius, its stroke
+const POLE = 1.5, SOUTH = 2;         // a pole's dot; the south pole's, larger, since the veil pales it
 const OPEN = 1.9, OPEN_W = 0.6;      // the mixture's open dot
 
 export default async function () {
@@ -50,7 +53,7 @@ export default async function () {
 
 	// ---- behind: the equator's back half, the south pole; then the veil and the outline
 	K.equator();
-	const south = K.dot([0, 0, -1], POLE, { fill: INK, stroke: 'none', width: 0, what: 'the south pole' });
+	const south = K.dot([0, 0, -1], SOUTH, { fill: INK, stroke: 'none', width: 0, what: 'the south pole' });
 	check(!front([0, 0, -1]) && front([0, 0, 1]), 'the poles do not lie as drawn');
 	K.veil();
 
@@ -65,14 +68,18 @@ export default async function () {
 	// ---- the two states, and the arc between them
 	const a1 = S.arrow(C, at(d1), { color: INK, width: VEC, head: VEC_HEAD, layer: 3, what: '|n1>' });
 	const a2 = S.arrow(C, at(d2), { color: INK, width: VEC, head: VEC_HEAD, layer: 3, what: '|n2>' });
-	const inPlane = (t) => dir(t, PHI).map((c) => c * ARC);
-	const arcPts = Array.from({ length: 241 }, (_, k) => at(inPlane(THETA1 + (APART * k) / 240)));
+	// the angle between them, marked at the centre: an arc in their plane, from one arrow to the other
+	const inPlane = (t, r) => dir(t, PHI).map((c) => c * r);
+	const arcPts = Array.from({ length: 241 }, (_, k) => at(inPlane(THETA1 + (APART * k) / 240, ARC)));
 	S.path(arcPts, { color: INK, width: ARC_W, layer: 2, cap: 'butt', what: 'the arc' });
-	for (const [t, A] of [[THETA1, a1], [THETA2, a2]]) {
-		const e = at(inPlane(t)), u = [(e[0] - A.B[0]), (e[1] - A.B[1])], l = Math.hypot(...u);
-		S.dots(A.B, e, { color: DIM, clear0: 2.2, clear1: 0, layer: 1.5, what: `the extension at ${t}` });
-		check(l > 6, 'an extension line is too short');
+	for (const [P, A] of [[arcPts[0], a1], [arcPts[240], a2]]) {
+		// each end of the arc lies on its arrow's line
+		const u = [P[0] - C[0], P[1] - C[1]], cr = u[0] * A.u[1] - u[1] * A.u[0];
+		check(Math.abs(cr) < 1e-9, 'an end of the angle\'s arc is off its arrow');
 	}
+
+	// the south pole's half of the z axis, inside the sphere: dashed, under the veil's tint
+	S.path([C, at([0, 0, -1])], { color: DIM, width: HAIR, layer: 1.1, dash: [1.6, 1.6], cap: 'butt', what: 'the z axis below' });
 
 	// ---- the mixture: a grey arrow to b, ending at a small open dot
 	const q = at(b);
@@ -88,23 +95,24 @@ export default async function () {
 	await lab('x', tips.x.B[0] - LABEL_GAP - 0.6, tips.x.B[1], 1, 0.5, DIM);
 	await lab('y', tips.y.B[0] + LABEL_GAP + 0.4, tips.y.B[1] + 1.2, 0, 0.5, DIM);
 	await lab('z', tips.z.B[0], tips.z.B[1] - LABEL_GAP - 0.4, 0.5, 1, DIM);
-	L.push(await S.clear('|{\\uparrow}\\rangle', north[0] - 3.2, north[1] - 3, 1, 1, [-0.6, -0.8]));
-	const down = await lab('|{\\downarrow}\\rangle', south[0], C[1] + R + LABEL_GAP + 0.6, 0.5, 0);
+	L.push(await S.clear('|{\\uparrow}\\rangle', north[0] - POLE - 1, north[1], 1, 0.5, [-1, 0]));
+	const down = await S.clear('|{\\downarrow}\\rangle', south[0] + SOUTH + 1, south[1], 0, 0.5, [1, 0]);
+	L.push(down);
 	{
-		// |n1> just left of its head, inside the sphere; |n2> under the end of the arc
+		// |n1> just left of its head, inside the sphere; |n2> just above its arrow, left of its head
 		const t = a1.B;
 		L.push(await S.clear('|\\hat n_1\\rangle', t[0] - 3, t[1] - 1, 1, 0.5, [-1, 0]));
-		const s = at(inPlane(THETA2));
-		L.push(await S.clear('|\\hat n_2\\rangle', s[0], s[1] + 3, 0.5, 0, [0, 1]));
+		const s = a2.B;
+		L.push(await S.clear('|\\hat n_2\\rangle', s[0] - 5, s[1] - 2, 1, 1, [0, -1]));
 	}
 	{
-		// 60 degrees outside the arc's middle; the overlap beside it, right of the whole arc
-		const m = at(inPlane(THETA1 + APART / 2)), u = [m[0] - C[0], m[1] - C[1]], l = Math.hypot(...u);
-		const deg60 = await S.clear('60^\\circ', m[0] + (u[0] / l) * 3, m[1] + (u[1] / l) * 3, 0, 1, [u[0] / l, u[1] / l]);
+		// 60 degrees inside the angle, beyond the arc's middle; the overlap right of the sphere, level with it
+		const m = at(inPlane(THETA1 + APART / 2, ARC)), u = [m[0] - C[0], m[1] - C[1]], l = Math.hypot(...u);
+		const deg60 = await S.clear('60^\\circ', m[0] + (u[0] / l) * 2, m[1] + (u[1] / l) * 2, 0, 0.5, [u[0] / l, u[1] / l]);
 		L.push(deg60);
 		check((Math.cos(rad(APART / 2)) ** 2).toFixed(2) === '0.75', 'the printed overlap');
-		const right = Math.max(...arcPts.map((p) => p[0]), deg60.box.l);
-		const f1 = await S.clear('|\\langle\\hat n_1|\\hat n_2\\rangle|^2', right + LABEL_GAP + 1, deg60.box.b + 3.4, 0, 0, [1, 0]);
+		const right = C[0] + R, mid = (deg60.box.t + deg60.box.b) / 2;
+		const f1 = await S.clear('|\\langle\\hat n_1|\\hat n_2\\rangle|^2', right + LABEL_GAP + 2, mid - 1.3, 0, 1, [1, 0]);
 		L.push(f1);
 		L.push(await S.clear('= \\cos^2 30^\\circ = 0.75', f1.box.l + 4, f1.box.b + 2.6, 0, 0, [1, 0]));
 	}
@@ -117,8 +125,8 @@ export default async function () {
 		await lab('|\\mathbf b| = 0.71', x1 - LABEL_GAP - 0.4, t1.box.b + 2.6, 1, 0);
 	}
 	{
-		// the note on |down>'s line, left of it, below the sphere
-		L.push(await placed('\\text{opposite points are orthogonal states}', down.box.l - 9, (down.box.t + down.box.b) / 2, 1, 0.5));
+		// the note below the sphere, centred under it
+		L.push(await placed('\\text{opposite points are orthogonal states}', C[0], C[1] + R + LABEL_GAP + 3, 0.5, 0));
 	}
 
 	S.checkAll(L);

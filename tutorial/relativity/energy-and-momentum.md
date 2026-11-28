@@ -68,9 +68,9 @@ multiply by $-c^2$:
 $$\boxed{\;E^2 = |\vect p|^2c^2 + \matter m^2c^4\;} \label{eq:shell}$$
 
 Each term is the square of an energy, in $\mathrm{J^2}$. Every body satisfies [](#eq:shell) at every speed and for
-every observer, so all observers compute the same rest mass. Plotted as $E$ against $|\vect
-p|c$, the allowed points lie on one branch of a hyperbola (Figure [](#fig:mass-shell)), and in the four dimensions of
-$(E/c, \vect p)$ they form a surface called the **mass shell**.
+every observer, so all observers compute the same rest mass. For motion along $z$, plotted as $E$
+against $p_zc$, the allowed points lie on one branch of a hyperbola (Figure [](#fig:mass-shell)), and in the four
+dimensions of $(E/c, \vect p)$ they form a surface called the **mass shell**.
 
 ![Look first at the two dots: a body at rest and the same body at $0.6c$ lie on one hyperbola, $E^2 - |\vect
 p|^2c^2 = \matter m^2c^4$. Light, with no rest mass, lies on the dashed lines, which the hyperbola never

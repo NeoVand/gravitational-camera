@@ -1,7 +1,8 @@
 // The tutorial, section 5.3 (tutorial/waves/diffraction.md), its first diagram: delaying and adding the records of
 // many pixels points the array. Two panels. Left: a row of six pixels (small squares, ink) b = lambda/3 apart along a
 // horizontal line, the origin at the left-hand pixel, p = 0 to 5; the straight crests of a plane wave (two of them,
-// faint), arriving at 30 degrees from the normal; the unit vector n from the middle of the row toward the source, along
+// grey, the lower named "crest" at its lower end), arriving at 30 degrees from the normal; the unit vector n from the
+// middle of the row toward the source, along
 // the normal to the crests, named "n (toward the source)", with the normal (dotted) and the angle of 30 degrees; from
 // each pixel a dashed segment (first accent) at right angles to the crests back to the crest that passes the origin,
 // its length n.x_p = p b sin 30 degrees, named at the first and the last pixel. Right: the six records, stacked from
@@ -30,7 +31,7 @@ import { Sheet, ORIGIN, finish, checker, placed, near, toBox, HAIR, LABEL_GAP, A
 import { Plot, pathOf } from './tut-prob-lib.js';
 import { graph, longest, CURVE } from './tut-fourier-lib.js';
 import { INK, DIM, ACCENT, ZERO_LINE, ZERO_DASH } from './tut-bessel-lib.js';
-import { RULE } from '../lib.js';
+import { FAINT } from '../lib.js';
 import { chapter, PIXELS, SPACING, THETA, delay } from './tut-das-lib.js';
 
 const name = 'tut-das-delays';
@@ -104,7 +105,7 @@ export default async function () {
 				if (good && start === null) start = i;
 				if (!good && start !== null) {
 					const p0 = at(start), p1 = at(i - 1);
-					if (Math.hypot(p1[0] - p0[0], p1[1] - p0[1]) >= PIECE) { S.path([p0, p1], { color: RULE, width: CREST_W, layer: 0.5, cap: 'butt', what: `the crest ${m}` }); pieces++; }
+					if (Math.hypot(p1[0] - p0[0], p1[1] - p0[1]) >= PIECE) { S.path([p0, p1], { color: FAINT, width: CREST_W, layer: 0.5, cap: 'butt', what: `the crest ${m}` }); pieces++; }
 					start = null;
 				}
 			}
@@ -160,6 +161,12 @@ export default async function () {
 	{
 		const o = P([0, 0]);
 		L.push(await S.clear('p = 0', o[0] + 2, o[1] - SQ / 2 - LABEL_GAP - 0.4, 1, 1, [0, -1], { color: DIM }));
+	}
+
+	// the lower crest's name, beyond its lower end, along it
+	{
+		const { b } = crests.find((c) => c.m === 0), u = [along[0], -along[1]];
+		L.push(await S.clear('\\text{crest}', b[0] + u[0] * (LABEL_GAP + 0.4), b[1] + u[1] * (LABEL_GAP + 0.4), 0, 0, u, { color: DIM }));
 	}
 
 	drawCrests();

@@ -46,7 +46,7 @@ const LEAVES = {
 	I: { lines: [['\\text{three different}', INK], ['\\text{eigenvalues}', INK], ['\\text{two masses}', DIM], ['(\\lambda - w_1)(\\lambda - w_2)(\\lambda - w_3)', INK]], rest: true },
 	D: { lines: [['\\text{one mass}', DIM], ['(\\lambda - w)(\\lambda + 2w)', INK]], rest: true },
 	II: { lines: [['\\text{a mass with a wave}', DIM], ['\\text{along its line}', DIM], ['(\\lambda - w)^2(\\lambda + 2w)', INK]] },
-	III: { lines: [[`${W}^3 = 0\\text{, rank }2`, INK], ['\\text{the paper\'s rows}', DIM], ['(0, 0, 1),\\ (0, 0, i),\\ (1, i, 0)', DIM], ['\\lambda^3', INK]] },
+	III: { lines: [[`${W}^3 = 0\\text{, rank }2`, INK], ['\\text{for example, the rows}', DIM], ['(0, 0, 1),\\ (0, 0, i),\\ (1, i, 0)', DIM], ['\\lambda^3', INK]] },
 	N: { lines: [['\\text{rank }1', INK], ['\\text{one wave}', DIM], ['\\lambda^2', INK]] },
 	O: { lines: [['\\text{no field}', DIM], ['\\lambda', INK]], rest: true }
 };

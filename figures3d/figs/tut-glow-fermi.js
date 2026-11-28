@@ -8,9 +8,11 @@
 // circle) into a hollow beside it (inside the circle). Matter's colour for the electrons; ink and the page's greys for
 // the rest; no orange or blue.
 // Departures from the diagram's comment: each panel is named under it, the third "collisions, time tau", which names its
-// arrows too; the axes and k_F are named in the left panel only; each bulge sends an arrow into both hollows beside it,
-// so that the picture keeps the shear's mirror symmetries; the ellipse keeps the disc's area, as a shear keeps the
-// number of electrons; the panels stay in a row on a phone, the figure being one drawing.
+// arrows too; the axes and k_F are named in the left panel only, and there too, once, the tint and the dashed circle,
+// "occupied" by a grey leader ending in a dot inside the tint and "lowest states" by one ending on the circle, so that
+// the middle panel's bulge and hollow read as occupied states above and below the lowest; each bulge sends an arrow
+// into both hollows beside it, so that the picture keeps the shear's mirror symmetries; the ellipse keeps the disc's
+// area, as a shear keeps the number of electrons; the panels stay in a row on a phone, the figure being one drawing.
 // Exact: the signs (delta E = -4 E_F n_x n_y u_xy, lowered along k_x = k_y, asserted in tut-glow-lib.js), the ellipse's
 // axes along the diagonals and its area, and each arrow's ends (outside the circle and inside the bulge, inside the
 // circle and outside the hollow, from raised to lowered states). Exaggerated, as the caption says: the distortion.
@@ -29,6 +31,8 @@ const REACH = 41;                               // the axes' half-length
 const U = 0.2;                                  // the strain, exaggerated: the map 1 - u, u = [[0, U], [U, 0]] ...
 const DASHES = [2.4, 2], DASH_W = 0.5;
 const EDGE = 0.55;                              // the ellipse's outline
+const LEAD_DOT = 0.9;                           // the dot at the end of the leader into the tint
+const LEADS = { x: 33, y: 33, tint: (150 * Math.PI) / 180, edge: (215 * Math.PI) / 180 };   // the two names' right ends (left of and above or below the centre) and their leaders' ends
 const ARC = { out: 1.13, in: 0.86, from: 14, to: 74, width: 0.55, head: 3.2 };   // the arrows: their ends' radii (k_F) and angles off the bulge
 const caption = 'Look first at the middle panel: a sudden shear raises the energy of electrons moving along one diagonal and lowers it along the other, so the occupied states are no longer the lowest. Collisions move electrons from the raised states to the lowered ones in a time $\\tau$, and the energy they release is the stiffness that relaxes. The distortion is exaggerated.';
 
@@ -78,6 +82,21 @@ export default async function () {
 		L.push({ ...(await S.clear('k_F', (c[0] + e[0]) / 2 + 1.5, (c[1] + e[1]) / 2 + 1.5, 0, 0, [0.57, 0.82])), on: [] });
 		L.push(await placed('k_x', c[0] + REACH + LABEL_GAP, c[1], 0, 0.5, DIM));
 		L.push(await placed('k_y', c[0], c[1] - REACH - LABEL_GAP, 0.5, 1, DIM));
+		// the tint and the dashed circle named once, at the left, each by a leader: "occupied" into the tint at the upper
+		// left, "lowest states" to the circle at the lower left
+		const leader = async (src, end, at) => {
+			const g = await placed(src, at[0], at[1], 1, 0.5, INK);
+			const from = [g.box.r + LABEL_GAP + HAIR / 2 + 0.1, at[1]];
+			S.path([from, end], { color: DIM, width: HAIR, layer: 2.5, cap: 'butt', what: `the leader of ${src}` });
+			return g;
+		};
+		// a small dot ends the leader that points into the tint, so that it is not read as a second radius
+		const inTint = page([0.55 * Math.cos(LEADS.tint), 0.55 * Math.sin(LEADS.tint)], c);
+		const onEdge = page([Math.cos(LEADS.edge) * (1 + DASH_W / 2 / KF), Math.sin(LEADS.edge) * (1 + DASH_W / 2 / KF)], c);
+		L.push(await leader('\\text{occupied}', inTint, [c[0] - LEADS.x, c[1] - LEADS.y]));
+		S.raw(`<circle cx="${n2(inTint[0])}" cy="${n2(inTint[1])}" r="${LEAD_DOT}" fill="${DIM}"/>`, 2.5);
+		S.mark([inTint], LEAD_DOT, 'the dot of the leader of occupied');
+		L.push(await leader('\\text{lowest states}', onEdge, [c[0] - LEADS.x, c[1] + LEADS.y]));
 	}
 	// ---- middle: just after the shear
 	{

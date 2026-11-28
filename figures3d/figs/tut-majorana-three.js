@@ -11,13 +11,15 @@
 // |b| = 0.4 (b = P/u, which the caption states once), not "P/u"; the spheres stand side by side at every width (the
 // site shows one drawing at every width; at 390 px each is still about 100 px across). The wave's stars are named k,
 // the direction of travel the comment names. The faint z axis runs from pole to pole, stopping short of the stars.
+// A key under the spheres explains the two ways the stars are drawn, with a sample of each drawn as the spheres draw
+// it: two touching dots, "stars at one point, drawn touching", and a dot under the veil, "a star behind the sphere".
 // Exact: every star, the root of the quartic m(z)^T W m(z) of each reading mapped by n(z) (a root lost from the top a
 // star at the south pole), and every arrow, P/u from the reading's E and B, both computed and asserted in
 // tut-spin-lib.js against the chapter's text, and P/u checked against the Bloch vector of one spin of the symmetric
 // state built from the stars; the view, orthographic, from 17 degrees above the equator. Schematic: the dots' sizes.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, VEC, VEC_HEAD, n2 } from './tut-pot-lib.js';
 import { INK, RULE, PAGE } from '../lib.js';
-import { chapter, palette, near, len, view, sky, CURV, STAR, STAR_STEP, STAR_EDGE } from './tut-spin-lib.js';
+import { chapter, palette, near, len, view, sky, CURV, STAR, STAR_STEP, STAR_EDGE, SKY, VEIL } from './tut-spin-lib.js';
 
 const name = 'tut-majorana-three';
 const check = checker(name);
@@ -27,6 +29,7 @@ const GAP = 12;                      // between two spheres' outlines
 const AZ = -70, EL = 17;             // the view: the camera's azimuth from x toward y, and its height, degrees
 const AXIS_W = 0.4, AXIS_OPACITY = 0.8;
 const OPEN = 1.9, OPEN_W = 0.6;      // the open circle at the centre for b = 0
+const KEY_DROP = 11, KEY_TEXT = 3.5, KEY_SEP = 16;   // the key: below the spheres' bottoms, a sample to its text, between the two
 const TITLES = ['\\text{one wave}', '\\text{one body at rest}', '\\text{a body and a wave}'];
 
 export default async function () {
@@ -90,6 +93,33 @@ export default async function () {
 		}
 		// ---- the title, over the sphere
 		L.push(await placed(TITLES[i], C[0], C[1] - R - 7, 0.5, 1, INK));
+	}
+
+	// ---- the key, under the spheres: two touching dots, "two stars at one point"; a veiled dot, "a star behind the
+	// sphere", each drawn as the spheres draw them
+	{
+		const y = ORIGIN + R + KEY_DROP, s = STAR * STAR_STEP, rr = STAR + STAR_EDGE / 2;
+		const texts = ['\\text{stars at one point, drawn touching}', '\\text{a star behind the sphere}'];
+		const widths = [];
+		for (const t of texts) { const l = await placed(t, 0, 0, 0, 0.5, INK); widths.push(l.box.r - l.box.l); }
+		const samples = [2 * s + 2 * rr, 2 * rr];
+		const total = samples[0] + KEY_TEXT + widths[0] + KEY_SEP + samples[1] + KEY_TEXT + widths[1];
+		let x = ORIGIN - total / 2;
+		const dot = (q, what) => {
+			S.raw(`<circle cx="${n2(q[0])}" cy="${n2(q[1])}" r="${STAR}" fill="${CURV}" stroke="${PAGE}" stroke-width="${STAR_EDGE}"/>`, 5);
+			S.mark([q], rr, what);
+		};
+		dot([x + rr, y], 'the key\'s pair, left');
+		dot([x + rr + 2 * s, y], 'the key\'s pair, right');
+		x += samples[0] + KEY_TEXT;
+		L.push(await placed(texts[0], x, y, 0, 0.5, INK));
+		x += widths[0] + KEY_SEP;
+		// the star behind: its dot under a veil of exactly its size, with no rim, since the page round it is bare
+		S.raw(`<circle cx="${n2(x + rr)}" cy="${n2(y)}" r="${STAR}" fill="${CURV}"/>`, 5);
+		S.raw(`<circle cx="${n2(x + rr)}" cy="${n2(y)}" r="${STAR}" fill="${SKY}" fill-opacity="${VEIL}"/>`, 6);
+		S.mark([[x + rr, y]], STAR, 'the key\'s star behind');
+		x += samples[1] + KEY_TEXT;
+		L.push(await placed(texts[1], x, y, 0, 0.5, INK));
 	}
 
 	S.checkAll(L);

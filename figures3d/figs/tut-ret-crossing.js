@@ -1,11 +1,14 @@
 // The tutorial, section 5.2 (tutorial/waves/retarded-waves.md), its second diagram: where the near part and the wave
 // part of the slope cross. Log-log axes: kr from 0.01 to 100 across, with a second scale above in units of the
-// wavelength, r/lambda = kr/2pi; and the size of each part relative to k^2 up, from 10^-2 to 10^4. The near part
+// wavelength, r/lambda = kr/2pi; and the size of each part up, from 10^-2 to 10^4, named upright beside its numbers,
+// "relative size of each part" (the slope's parts in units of k^2 |b|/4 pi, the tide's in units of k^3 |b|/4 pi, as the
+// caption says). The near part
 // 1/(kr)^2, in the second accent as the paper's fig:regimes colours the near field, and the wave part 1/kr, in the
 // first accent as it colours the wave zone, both solid, crossing at kr = 1, marked by a dot and by a thin upright line
 // above it to the top scale, named "r = lambda/2pi". The tide's two terms that fall faster than 1/r, taken together,
-// |2/(kr)^3 - 2i/(kr)^2| relative to k^3, dotted in the second accent; its wave term, 1/kr relative to k^3, is the
-// same line as the slope's wave part. The dotted curve crosses it at kr = sqrt(2 + 2 sqrt 2) = 2.2, marked by a short
+// |2/(kr)^3 - 2i/(kr)^2| relative to k^3, dashed in the second accent, as heavy as the solid lines; its wave term, 1/kr
+// relative to k^3, is the
+// same line as the slope's wave part. The dashed curve crosses it at kr = sqrt(2 + 2 sqrt 2) = 2.2, marked by a short
 // tick across the crossing. The near zone, kr < 1, lightly shaded in the pale second accent, the shading fading out
 // across the crossing (from kr = 10^-0.5 to 10^0.5, by a raised cosine), and named; the wave zone named.
 // Departure from the diagram's comment: the comment drew the tide's near term 2/(kr)^3 alone, crossing the wave term
@@ -31,7 +34,7 @@ const FADE = 0.5;                          // the shading fades out from log10 k
 const SHADE = 0.7;                         // the shading's opacity inside the near zone
 const AIR = 1.4;                           // a curve stops where it would come nearer than this to an axis
 const MARK = 3.0;                          // half the length of the tick across the tide's crossing
-const TIDE_DOT = [0.01, 1.5];              // the dotted curve: round dots of the curve's width every 1.5 pt
+const TIDE_DASH = [2.6, 1.6];              // the tide's dashed curve
 const lg = Math.log10;
 
 export default async function () {
@@ -66,7 +69,7 @@ export default async function () {
 	const lines = [
 		{ key: 'near', f: curve(nearPart), color: ACCENT2, dash: null },
 		{ key: 'wave', f: curve(wavePart), color: ACCENT, dash: null },
-		{ key: 'tide', f: curve(tideNear), color: ACCENT2, dash: TIDE_DOT }
+		{ key: 'tide', f: curve(tideNear), color: ACCENT2, dash: TIDE_DASH }
 	];
 	const drawn = {};
 	for (const { key, f, color, dash } of lines) {
@@ -74,7 +77,7 @@ export default async function () {
 		const pts = graph(P, f, a, b);
 		check(longest(pts) <= 0.2501, `the ${key} line is coarse`);
 		check(pts.every(([px, py]) => py >= P.top + AIR && py <= P.bottom - AIR && px >= P.left - 1e-9 && px <= P.right + 1e-9), `the ${key} line leaves the chart`);
-		S.path(pts, { color, width: CURVE, layer: 2, dash, cap: dash ? 'round' : 'butt', what: `the ${key} line` });
+		S.path(pts, { color, width: CURVE, layer: 2, dash, cap: 'butt', what: `the ${key} line` });
 		drawn[key] = { a, b };
 	}
 	// the near part enters at the left edge, the wave part spans the chart; the near part is 10^4 at kr = 0.01
@@ -125,16 +128,21 @@ export default async function () {
 	L.push(await S.clear('\\text{near part, } 1/r^2', P.X(0.48), P.Y(-1.2), 1, 0, [-0.45, 0.89], { color: ACCENT2 }));
 	L.push(await S.clear('\\text{wave part, } 1/r', P.X(1.95), P.Y(-1.4), 1, 1, [0, -1], { color: ACCENT }));
 	{
-		// the tide's name, to the right of its dotted curve
+		// the tide's name, to the right of its dashed curve
 		const yName = 2.3, f = curve(tideNear);
 		let x = X[0];
 		while (f(x) > yName) x += 1e-5;
 		L.push(await S.clear('\\text{tide}', P.X(x) + LABEL_GAP + 0.4, P.Y(yName), 0, 0.5, [1, 0], { color: ACCENT2 }));
 	}
 	{
-		// the axis's name, over the top scale's numbers, with the tide's unit
-		const highest = Math.min(...L.map((l) => l.box.t));
-		L.push(await placed('\\text{size}/k^2\\ \\ (\\text{tide}/k^3)', P.left - 18, highest - 3, 0, 1, DIM));
+		// the axis's name, upright beside its numbers and centred on the chart's height (over the top scale it read as
+		// the name of that scale)
+		const yl = L.filter((l) => l.box.r <= P.left && l.box.t >= P.top - 1);
+		const lab = await placed('\\text{relative size of each part}', 0, 0, 0.5, 0.5, DIM);
+		const w = lab.box.r - lab.box.l, h = lab.box.b - lab.box.t;
+		const cx = Math.min(...yl.map((l) => l.box.l)) - 4 - h / 2, cy = (P.top + P.bottom) / 2;
+		check(w < P.h, 'the axis\'s name is longer than the axis');
+		L.push({ src: lab.src, svg: `<g transform="translate(${n2(cx)},${n2(cy)}) rotate(-90)">${lab.svg}</g>`, box: { l: cx - h / 2, r: cx + h / 2, t: cy - w / 2, b: cy + w / 2 } });
 	}
 
 	S.checkAll(L);

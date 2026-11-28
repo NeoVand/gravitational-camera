@@ -1,6 +1,7 @@
 // The tutorial, section 5.3 (tutorial/waves/diffraction.md), its second diagram: gaps between pixels make copies of
 // the image. One chart: across, sin theta from -1 to 1, ticks every 0.25, with the matching angles -90, -30, 0, 30 and
-// 90 degrees on a second scale along the top; up, the beam pattern |A|^2/N^2 from 0 to 1. Two curves for a row of
+// 90 degrees on a second scale along the top; up, the beam pattern |A|^2/N^2 from 0 to 1, its name upright beside the
+// vertical axis's numbers (set over the top scale, it read as that scale's name). Two curves for a row of
 // eight pixels steered straight ahead: pixels lambda/2 apart (solid, ink), its main lobe's first zeros at +-0.25 and
 // its largest side lobes 0.0525 at +-0.36; and pixels 2 lambda apart (dashed, dim grey), its main lobe four times
 // narrower, first zeros at +-0.0625, and its grating lobes of full height at sin theta = +-0.5 and +-1, each named by
@@ -12,7 +13,7 @@
 // side lobes and grating lobes (asserted there and against the marks here), the top scale (asserted to be the sines of
 // its angles) and the dimension. Every curve is sampled so that no two neighbouring points are more than a quarter of a
 // point apart. Nothing is schematic.
-import { Sheet, ORIGIN, finish, checker, placed, near, HAIR, TICK, AXIS as AXIS_STROKE } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, placed, near, n2, HAIR, TICK, AXIS as AXIS_STROKE } from './tut-pot-lib.js';
 import { Plot, xAxis, yAxis, dimension, LABEL_GAP, NUM } from './tut-prob-lib.js';
 import { graph, longest, CURVE } from './tut-fourier-lib.js';
 import { DASH, INK, DIM } from './tut-bessel-lib.js';
@@ -21,7 +22,7 @@ import { chapter, pattern } from './tut-das-lib.js';
 const name = 'tut-das-lobes';
 const check = checker(name);
 
-const PW = 286, PH = 112;                  // the chart, points
+const PW = 276, PH = 112;                  // the chart, points
 const BOTTOM = -0.025, TOP = 1.13;         // the chart's range up: the axis a little below zero, room over the peaks
 const BAR_AT = 1.07;                       // the dimension line's height
 const KEY = 11;                            // the key's sample lines, points
@@ -71,8 +72,13 @@ export default async function () {
 	const yl = await yAxis(S, P, { ticks: [0, 0.5, 1], fmt: (t) => (t === 0.5 ? '0.5' : String(t)), from: BOTTOM, to: 1, x: P.left - OFF, what: 'the pattern axis' });
 	L.push(...yl);
 	{
-		const highest = Math.min(...L.map((l) => l.box.t));
-		L.push(await placed('|\\mathcal A|^2/N^2', P.left - OFF - 20, highest - 3, 0, 1, DIM));
+		// the axis's name, upright beside its numbers and centred on the axis from 0 to 1 (over the top scale it read as
+		// the name of that scale)
+		const lab = await placed('|\\mathcal A|^2/N^2', 0, 0, 0.5, 0.5, DIM);
+		const w = lab.box.r - lab.box.l, h = lab.box.b - lab.box.t;
+		const cx = Math.min(...yl.map((l) => l.box.l)) - 4 - h / 2, cy = (P.Y(0) + P.Y(1)) / 2;
+		check(cy - w / 2 > P.top + 2, 'the axis\'s name reaches the top scale');
+		L.push({ src: lab.src, svg: `<g transform="translate(${n2(cx)},${n2(cy)}) rotate(-90)">${lab.svg}</g>`, box: { l: cx - h / 2, r: cx + h / 2, t: cy - w / 2, b: cy + w / 2 } });
 	}
 
 	// ---- the orders of the grating lobes, beside each peak at the same height, on its side toward the middle

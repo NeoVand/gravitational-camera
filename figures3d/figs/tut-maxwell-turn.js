@@ -16,11 +16,15 @@
 // the comment asks, the turn at the left and the boost at the right, the two origins level, both y axes from -1.75 to
 // 1.75, the titles on one line above and the rules on one line below, at 55 points per unit (the site's 50) so that the
 // pair fills the text width. The axes are named x and y, and the turned axes x' and y'; the dot on the circle is in
-// the observer's colour, as the turned axis through it is.
-// Exact: the circle and the hyperbola (sampled finely, every point asserted on its curve), the angle of 35 degrees,
+// the observer's colour, as the turned axis through it is. So that the two letters of the rules can be found in the
+// panels, a thin arc at the turn's origin from x to x' is named theta, and the dot on the hyperbola is named
+// "eta = ln 2" in the observer's colour. The boost's panel has no turned axes: the boost is not a turn of the plane
+// across u-hat by a real angle, and the hyperbola only plots cosh eta and sinh eta.
+// Exact: the circle and the hyperbola (sampled finely, every point asserted on its curve), the angle of 35 degrees
+// (and the arc of theta, from x to x', asserted),
 // the point (1.25, 0.75) for eta = ln 2 (asserted in tut-maxwell-lib.js with cos(i eta) = cosh eta and
 // sin(i eta) = i sinh eta), the shadows, the two panels at one scale. Nothing is schematic.
-import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, VEC } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, VEC, HAIR } from './tut-pot-lib.js';
 import { DASH, DOT } from './tut-bessel-lib.js';
 import { THIN } from './tut-fourier-lib.js';
 import { dashed } from './tut-orb-lib.js';
@@ -38,6 +42,7 @@ const NEW = 1.3;                           // the turned axes' length
 const POINT = DOT + 0.55;                  // the dot, radius
 const HEAVY = 1.3;                         // the heavier arc
 const U_RING = 3.2;                        // u-hat: the small circle's radius, points
+const ANGLE_R = 17;                        // the arc of theta at the origin, its radius, points
 const SHADOW = 0.45;                       // the dashed shadows
 const ROW = 6, APART = 16;
 
@@ -45,7 +50,7 @@ const rad = Math.PI / 180;
 const fmt = (v) => String(+v.toFixed(2));
 
 /** One panel at the origin O: the axes, the curve, the heavier arc, the dot, its shadows and their names. */
-async function panel(S, O, { xl = XL, xr, yr, curve, arc, point, names, newAxes, footAnchor = 0.5, footDir = [0, 1], yAbove = false }) {
+async function panel(S, O, { xl = XL, xr, yr, curve, arc, point, names, newAxes, footAnchor = 0.5, footDir = [0, 1], yAbove = false, dotName = null }) {
 	const L = [];
 	const at = ([x, y]) => [O[0] + x * U, O[1] - y * U];
 	const xA = S.arrow(at([xl, 0]), at([xr, 0]), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the x axis' });
@@ -64,6 +69,11 @@ async function panel(S, O, { xl = XL, xr, yr, curve, arc, point, names, newAxes,
 	const p = at(point);
 	S.raw(`<circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${POINT}" fill="${OBS}"/>`, 4);
 	S.mark([p], POINT, 'the dot');
+	// the dot's parameter, above it and to its left, clear of the curve
+	if (dotName) {
+		const u = [-Math.SQRT1_2, -Math.SQRT1_2];
+		L.push(await S.clear(dotName, p[0] + u[0] * (POINT + 2), p[1] + u[1] * (POINT + 2), 1, 1, u, { color: OBS }));
+	}
 	// the shadows: down to the x axis, across to the y axis, stopping short of the dot
 	const fx = at([point[0], 0]), fy = at([0, point[1]]);
 	dashed(S, [p[0], p[1] + POINT + 0.8], fx, { color: DIM, width: SHADOW, dash: DASH, layer: 1.2, what: 'the shadow on x' });
@@ -101,6 +111,12 @@ export default async function () {
 		S.mark([O], U_RING + AXIS / 2, 'u-hat');
 		const w = [-Math.SQRT1_2, Math.SQRT1_2];
 		L.push(await S.clear('\\hat u', O[0] + w[0] * (U_RING + 3), O[1] + w[1] * (U_RING + 3), 1, 0, w, { color: INK }));
+		// the angle theta at the origin, from x to x': a thin arc, named
+		const arc = Array.from({ length: 71 }, (_, k) => { const t = (THETA * rad * k) / 70; return [O[0] + ANGLE_R * Math.cos(t), O[1] - ANGLE_R * Math.sin(t)]; });
+		S.path(arc, { color: INK, width: HAIR, layer: 2, cap: 'butt', what: 'the angle theta' });
+		check(near(Math.atan2(O[1] - arc[70][1], arc[70][0] - O[0]) / rad, THETA, 1e-9), 'the arc does not reach x\'');
+		const m = THETA / 2 * rad, u = [Math.cos(m), -Math.sin(m)];
+		L.push(await S.clear('\\theta', O[0] + u[0] * (ANGLE_R + 2.5), O[1] + u[1] * (ANGLE_R + 2.5), 0, 0.5, u, { color: INK }));
 		return L;
 	}
 	const ruleTurn = "\\mathbf F'_\\perp = \\cos\\theta\\,\\mathbf F_\\perp - \\sin\\theta\\,\\hat u\\times\\mathbf F";
@@ -113,7 +129,8 @@ export default async function () {
 	for (const [x, y] of [...branch, ...arcH]) check(near(x * x - y * y, 1, 1e-12), 'a point is off the hyperbola');
 	check(branch[0][0] < XR_BOOST - 0.15, 'the hyperbola reaches past the x axis');
 	// the hyperbola's ends lie beyond the y axis's: name nothing there; the u-hat of the turn's panel stands for both
-	const boostOpts = { xl: XL_BOOST, xr: XR_BOOST, yr: YR_BOOST, curve: branch, arc: arcH, point: [ch, sh], names: [`\\cosh\\eta = ${fmt(ch)}`, `\\sinh\\eta = ${fmt(sh)}`], newAxes: false, footAnchor: 0 };
+	const boostOpts = { xl: XL_BOOST, xr: XR_BOOST, yr: YR_BOOST, curve: branch, arc: arcH, point: [ch, sh], names: [`\\cosh\\eta = ${fmt(ch)}`, `\\sinh\\eta = ${fmt(sh)}`], newAxes: false, footAnchor: 0, dotName: '\\eta = \\ln 2' };
+	check(near(ETA, Math.log(2), 1e-15), 'eta is not ln 2');
 	const ruleBoost = "\\mathbf F'_\\perp = \\cosh\\eta\\,\\mathbf F_\\perp - i\\sinh\\eta\\,\\hat u\\times\\mathbf F";
 	/** The lowest point of the ink so far. */
 	const bottom = () => Math.max(...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)), ...L.map((l) => l.box.b));

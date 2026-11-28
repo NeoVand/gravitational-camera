@@ -508,8 +508,9 @@ far below the $(A/\ell_P^2)^{3/4}$ that stable matter can hold ('t Hooft, stated
 hole. "Sparse" is about what can be read, not what is there.
 
 ![Look first at how close the two curves stay: pushing passes looking between $10^3$ and $10^6$ and beats it by a
-factor of about twelve only at the ceiling. Dashed: the law $0.073(L/\Lambda)^3$ that pushing approaches. The
-curves are counted; the discs are drawn to scale.](tut-cells-vs-snr){#fig:cells-vs-snr}
+factor of about twelve only at the ceiling. Dashed: the law $0.073(L/\Lambda)^3$ that pushing approaches. Each disc
+is the stone, of radius $a$, in section, cut into cubes of side $d$, one for each cell that pushing reads there, to
+scale; at the two ceilings the cubes are too fine to draw. The curves are counted.](tut-cells-vs-snr){#fig:cells-vs-snr}
 
 **The black hole.** A hole at rest shows seven numbers at one time, its mass, spin and place
 ([11.2](/tutorial/black-holes/spin/#a-hole-at-rest-shows-seven-numbers-and-nothing-of-what-fell-in)), so at most $7\log_2\SNR$ bits: about 1450 for 13.7's 0.905 K hole,

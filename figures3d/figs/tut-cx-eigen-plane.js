@@ -8,12 +8,15 @@
 // greys only.
 // Departures from the diagram's comment: each strip's label stands above its strip at the left, not beside it, so that
 // one drawing about 290 points wide gives the strips the whole width and keeps its text readable on a phone; the
-// comment's "(Fig. stars)" prints the paper's figure number, read from paper/main.aux, as the site does, and the
-// label says "in its units, x2"; the third strip reads "a pixel moving through that room", since its points are the
+// comment's "(Fig. stars)" is left out, since the printed book names no paper and its figure numbers differ from the
+// site's, and the label says "drawn x2"; the third strip reads "a pixel moving through that room", since its points are the
 // second strip's; the sum is written "Sum w = 0" in the page's dim ink at the size of every label, not smaller, so
 // that it stays readable on a phone; the angle 0.299 rad is drawn as an arc from the real axis to the dashed line and
 // named; "in units of GM/r^3" stands under the last axis. Two equal eigenvalues are drawn as two dots touching along
-// the line they lie on. A tick is left out where a dot covers it or nearly touches it.
+// the line they lie on. A tick is left out where a dot covers it or nearly touches it. On the three strips the zero is
+// a longer ink tick across the line (2.4 points above it, 3.8 below), in one column over the last panel's imaginary
+// axis, and the other integers keep their short grey ticks down, so that each strip's dots can be read against zero
+// and seen to balance about it.
 // Exact: every point (tut-cxsym-lib.js: the pair's eigenvalues, the roots of eq:cubic, asserted against the chapter's
 // -0.537, 0.135, 0.402; the moving pixel's, the roots for Lambda W Lambda^T at 0.6c, asserted equal to the room's;
 // the spinning body's from w = -J/I, eq:repeated, asserted against 0.941 + 0.290i and -1.88 - 0.58i, its phase
@@ -38,6 +41,7 @@ const PITCH = 25;                          // strip line to strip line
 const DASH = [2.4, 1.8];                   // the dashed line (tut-vec-lib.js's DASH)
 const ARC = 0.42;                          // the arc of the phase, units
 const NUM = 2.4;                           // from a tick's end to its number (tut-prob-lib.js)
+const ZERO_UP = 2.4, ZERO_DOWN = 3.8;      // the zero's tick on a strip, above and below its line
 
 export default async function () {
 	const nums = await chapter(check);
@@ -45,14 +49,10 @@ export default async function () {
 	const L = [];
 	const xs = ORIGIN;                     // the page's x of Re w = 0
 	const X = (re) => xs + re * U;
-	const aux = await (await fetch('/paper/main.aux')).text();
-	const figNo = aux.match(/\\newlabel\{fig:stars\}\{\{(\d+)\}/)?.[1];
-	check(figNo === '23', `fig:stars is Figure ${figNo}`);
-
 	const one = [cx(1), cx(1), cx(-2)];
 	const strips = [
 		{ key: 'one mass', label: '\\text{one mass}', pts: one, double: [0, 1] },
-		{ key: 'two masses', label: `\\text{two masses (the paper's Figure ${figNo}), in its units, }{\\times}2`, pts: nums.pairW.map((z) => scale(z, SPREAD)), sum: nums.pairW },
+		{ key: 'two masses', label: '\\text{two masses, drawn }{\\times}2', pts: nums.pairW.map((z) => scale(z, SPREAD)), sum: nums.pairW },
 		{ key: 'moving', label: `\\text{a pixel moving through that room: }{\\color{${DIM}}\\text{unchanged by the motion}}`, pts: nums.movedW.map((z) => scale(z, SPREAD)), sum: nums.movedW, hollow: true },
 		{ key: 'spinning', label: '\\text{a spinning body (exaggerated)}', pts: nums.spinW, double: [0, 1], plane: true }
 	];
@@ -96,8 +96,12 @@ export default async function () {
 			S.path([[X(X0), y], [X(X1) - AXIS_HEAD, y]], { color: DIM, width: AXIS, cap: 'butt', layer: 1, what: `${what}'s line` });
 		}
 		const ticks = [];
+		if (!st.plane) {
+			// the zero, a longer tick across the line, on every strip
+			S.path([[xs, y - ZERO_UP], [xs, y + ZERO_DOWN]], { color: INK, width: HAIR, cap: 'butt', layer: 1.2, what: `${what}'s zero` });
+		}
 		for (const t of [-2, -1, 0, 1, 2]) {
-			if (st.plane && t === 0) continue;
+			if (t === 0) continue;
 			const x = X(t);
 			if (pts.some(([px, py]) => Math.abs(px - x) < R + 2.6 && Math.abs(py - y) < R + TICK)) continue;
 			S.path([[x, y], [x, y + TICK]], { color: DIM, width: HAIR, cap: 'butt', layer: 1, what: `${what}'s tick at ${t}` });
@@ -153,8 +157,7 @@ export default async function () {
 		check(lab.box.b < Math.min(...pts.map((p) => p[1])) - R - LABEL_GAP, `${what}: the label reaches its points`);
 		y += k === 2 ? PITCH + Y1 * U + 4 : PITCH;
 	}
-	check(out['one mass'].ticks.join() === '-1,0,2', `the first strip's ticks ${out['one mass'].ticks}`);
-
+	check(out['one mass'].ticks.join() === '-1,2', `the first strip's ticks ${out['one mass'].ticks}`);
 	S.checkAll(L);
 	window[name + '-numbers'] = { pair: nums.pairW, moved: nums.movedW, spin: nums.spinW, phase };
 	return finish(S, L, [260, 340]);

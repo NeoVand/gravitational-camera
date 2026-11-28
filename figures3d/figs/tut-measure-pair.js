@@ -5,7 +5,8 @@
 // single mass's shifted by +-delta/2. They lie nearly on top of each other. Right: their difference, the pair's less
 // the single mass's, drawn ten times taller (in points per unit) than the profiles, for delta = 0.3 z and, beneath it
 // on its own axis and the same scale, for delta = 0.15 z: a trough over the masses between two low ridges, the shape
-// of d''(x) delta^2 / 8, about four times smaller when delta is halved (3.88 times at x = 0).
+// of d''(x) delta^2 / 8, about four times smaller when delta is halved (3.88 times at x = 0). Each numbered x axis has
+// its name, x/z, past its end, clear of its last number.
 // Exact: every curve (sampled every quarter of a point), asserted against the second-order Taylor form at x = 0
 // (within 5%: 4.1% off at 0.3 z, 1.0% at 0.15 z) and the ratio of the two differences there (within 4% of 4). Nothing
 // is schematic; the magnification is exactly 10.
@@ -25,6 +26,7 @@ const GAPV = 7;                          // between the two differences' charts
 const XMAX = 3;
 const RANGES = [[-1.4, 0.6], [-0.42, 0.2]];                 // the differences, times MAG
 const DASH = [2.2, 1.4];
+const NAME_GAP = 4;                      // from the end of an x axis to its name
 const INSET = 0.12;                      // the curves stop this far (x/z) inside the charts, clear of the y axes and their ticks at 0
 
 const pair = (x, dl) => 0.5 * (datum(x - dl / 2) + datum(x + dl / 2));
@@ -70,7 +72,9 @@ export default async function () {
 		if (xnum) {
 			L.push(...xl);
 			const last = xl[xl.length - 1];
-			L.push(await placed('x/z', last.box.r + 4, (last.box.t + last.box.b) / 2, 0, 0.5, DIM));
+			// the axis's name past its end, well clear of the last number (which stands a unit short of the end)
+			check(P.right + NAME_GAP - last.box.r > 3 * NAME_GAP, 'the axis\'s name crowds its last number');
+			L.push(await placed('x/z', P.right + NAME_GAP, (last.box.t + last.box.b) / 2, 0, 0.5, DIM));
 		}
 		L.push(...(await yAxis(S, P, { ticks, fmt, what: `${what}'s y axis` })));
 	}

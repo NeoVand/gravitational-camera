@@ -2,9 +2,11 @@
 // transform. Both panels in one orthographic view (turned and tilted alike), the axis nu across the page in both.
 // Left: a lumpy body at rest, three Gaussian lumps of density, drawn as the stone (lit by the studio over the sawn
 // stone's colours, tut-pass-lib.js) out to one surface of equal density; a bundle of parallel null rays along one
-// direction n_1 (down the page), thin lines in the light role's colour, hidden where the body is in front of them;
-// below the body, the plane of the wave's front, a pale tint, and on it the energy that crosses the front, N = c^2
-// Sigma, as a height map of ridge lines in matter's colour, each ray ending on it. A short arrow beside the bundle
+// direction n_1 (down the page), thin lines of one weight in a green halfway between the light role's two shades (so
+// that, thin, they print green, not black, and read on the stone and on the page alike), hidden where the body or a
+// nearer ridge is in front of them; below the body, the plane of the wave's front, a pale tint, and on it the energy
+// that crosses the front, N = c^2 Sigma, as a height map of ridge lines in matter's colour, each ray ending on it at
+// a small dot of its colour, at its height above its foot (the dot left out where a nearer ridge hides it). A short arrow beside the bundle
 // names n_1; a short arrow nu, the axis of the great circle of directions on which n_1 lies.
 // Right: wavevector space, the same axis nu through its origin: for each of three directions n_1, n_2, n_3 of the great
 // circle (0, 60 and 120 degrees about nu), the slice xi.n_i = 0, a translucent rectangle through the origin containing
@@ -46,10 +48,11 @@ const THETA = [0, 60, 120], SWEEP = 150;        // the directions about nu, degr
 const KW = 1.35, KH = 0.95;                     // a slice's half-width along nu and half-height across it
 const SL = 46, SK = 44;                         // points per unit, left and right
 const APART = 176;                              // between the panels' origins
-const RAY_W = 0.4, RIDGE_W = 0.42, SLICE_LINE = 0.45, SLICE_FILL = 0.1;
+const RAY_W = 0.5, FOOT = 0.95, RIDGE_W = 0.42, SLICE_LINE = 0.45, SLICE_FILL = 0.1;
 const caption = 'Look first at the slices on the right: each direction of waves gives the transform of the energy that crosses its front on one slice, and the directions of one great circle fill every wavevector. The body and its projection are computed; the rays are drawn sparse for clarity.';
 
-const LIGHT_ON_STONE = LIGHT.match(/light-dark\((#[0-9a-f]{6}),/)[1];
+// the rays' green: halfway between the light role's two shades, the same in both themes
+const RAY = (() => { const [a, b] = LIGHT.match(/#[0-9a-f]{6}/g); return '#' + [1, 3, 5].map((i) => Math.round((parseInt(a.slice(i, i + 2), 16) + parseInt(b.slice(i, i + 2), 16)) / 2).toString(16).padStart(2, '0')).join(''); })();
 const nu = new THREE.Vector3(1, 0, 0);
 const dir = (deg) => { const a = (deg * Math.PI) / 180; return new THREE.Vector3(0, -Math.cos(a), Math.sin(a)); };
 const rho = (x, y, z) => LUMPS.reduce((s, l) => s + l.m * Math.exp(-((x - l.c[0]) ** 2 + (y - l.c[1]) ** 2 + (z - l.c[2]) ** 2) / (2 * l.s * l.s)), 0);
@@ -93,7 +96,6 @@ export default async function () {
 	const colours = await stoneColours();
 	const pic = await stonePicture(`${name}-body`, B, VL, { reach, size: 1.05, colours, px: 5 });
 	S.raw(pic.svg, 6);
-	S.raw(`<clipPath id="${name}-on"><path d="${pic.d}"/></clipPath>`, 0.1);
 	S.mark(pic.outline, 0.2, 'the body');
 
 	// ---- the plane and the height map, ridge lines from the back to the front, each hiding what lies behind it
@@ -141,6 +143,7 @@ export default async function () {
 		return false;
 	};
 	const onBody = (q) => insidePolygon(pic.outline, q);
+	let feet = 0;
 	for (const x of RAYS_X) for (const z of RAYS_Z) {
 		const foot = surface(x, z);
 		const p0 = new THREE.Vector3(x, RAY_TOP, z), p1 = new THREE.Vector3(x, foot, z);
@@ -152,20 +155,27 @@ export default async function () {
 				const pts = run.map((p) => VL.at(p));
 				// in front of the body where it crosses its outline, else among the ridges
 				const front = pts.some((q) => onBody(q));
-				S.path(pts, { color: LIGHT, width: RAY_W, layer: front ? 7 : 5, cap: 'butt', what: `the ray at ${x}, ${z}` });
-				// where it crosses the stone, again in the light role's light-theme colour, fixed, so that it reads on the
-				// stone in both themes
-				if (front) S.raw(`<path d="M${pts.map(([px, py]) => `${n2(px)},${n2(py)}`).join('L')}" fill="none" stroke="${LIGHT_ON_STONE}" stroke-width="${RAY_W}" clip-path="url(#${name}-on)"/>`, 7.1);
+				S.path(pts, { color: RAY, width: RAY_W, layer: front ? 7 : 5, cap: 'butt', what: `the ray at ${x}, ${z}` });
 			}
 			run = [];
 		};
+		let footSeen = false;
 		for (let k = 0; k <= n; k++) {
 			const p = p0.clone().lerp(p1, k / n);
 			if (hiddenByBody(p) || (k < n && hiddenBySurface(p))) { flush(); continue; }
 			run.push(p);
+			if (k === n) footSeen = run.length > 1;
 		}
 		flush();
+		// the ray's end on the height map, where it is seen
+		if (footSeen) {
+			const q = VL.at(p1);
+			S.raw(`<circle cx="${n2(q[0])}" cy="${n2(q[1])}" r="${FOOT}" fill="${RAY}"/>`, 5.1);
+			S.mark([q], FOOT, `the foot of the ray at ${x}, ${z}`);
+			feet++;
+		}
 	}
+	check(feet >= 6, `only ${feet} rays' ends are seen`);
 
 	// ---- n_1 beside the bundle, and nu
 	{

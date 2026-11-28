@@ -181,9 +181,10 @@ $\mathrm{kg\,m^{-2}}$, has by the same steps the potential
 $-(2\pi G\matter\sigma_1/k)\cos(\vect k\cdot\vect a)\,e^{-k|h|}$, the size $A$ of [](#eq:fade).
 
 ![The transformed potential of one ripple, $\tilde{\field\Phi} = C\,e^{-k|h|}$, against the height $h$ drawn upward,
-has a sharp corner at the sheet, which is marked in orange. Its slope is $-kC$ on the upper side of the sheet and
-$kC$ on the lower side, so the slope jumps by $-2kC = 4\pi G\tilde{\matter\sigma}$ across the sheet. The horizontal
-scale is chosen for the drawing.](tut-evan-jump){#fig:evan-jump}
+has a sharp corner at the sheet, which is marked in orange. Its tangents there, of slope $\partial_h\tilde{\field\Phi} =
+-kC$ on the upper side of the sheet and $kC$ on the lower side, meet the axis $\tilde{\field\Phi} = 0$ at $h = \pm1/k$;
+the angle between them is the jump of the slope across the sheet, $-2kC = 4\pi G\tilde{\matter\sigma}$. The
+horizontal scale is chosen for the drawing.](tut-evan-jump){#fig:evan-jump}
 
 **A number.** Section 1.3 treats the floor of the locked safe's room as a sheet of $720\unit{kg\,m^{-2}}$. Across it the
 slope jumps by $4\pi G\matter\sigma = 6.0 \times 10^{-7}\unit{m\,s^{-2}}$, twice the pull of an endless sheet of the

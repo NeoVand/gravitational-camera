@@ -274,8 +274,9 @@ The terms in $d$, the dipole's, cancel exactly, and the terms in $d^2$, the quad
 tide's, since $\mathrm{m^3\,kg^{-1}\,s^{-2}}$ times $\mathrm{kg\,m^2}$ over $\mathrm{m^5}$ is $\mathrm{s^{-2}}$.
 :::
 
-![Look first at the two rings, the pixel's two possible readings. The more they differ, the smaller their overlap
-$\langle e_R|e_L\rangle$ and the shallower the fringes. The difference is hugely exaggerated.](tut-mass-two-places){#fig:mass-two-places}
+![Look first at the two rings, the pixel's two possible readings outside the wall: solid with the mass at $L$, dashed
+with it at $R$. The more they differ, the smaller their overlap $\langle e_R|e_L\rangle$ and the shallower the fringes.
+The difference is hugely exaggerated.](tut-mass-two-places){#fig:mass-two-places}
 
 Now let anything outside the wall, such as a pixel's masses, end in the state $\sym{record-state}{|e_L\rangle}$ if the
 mass is at $L$ and $|e_R\rangle$ if it is at $R$, each of length one (Figure [](#fig:mass-two-places)). The rule for two

@@ -107,7 +107,7 @@ export default async function () {
 		const q = B.at(hole.T, hole.C / 1e40);
 		check(near(hawking(HOLE), hole.T, 1e-15), 'the dot\'s temperature');
 		dot(q, 'the hole\'s dot');
-		const a = await S.clear('\\text{the paper\'s hole,}', q[0] + DOT + LABEL_GAP + 1, q[1] + DOT + LABEL_GAP + 2, 0, 0, [0.6, 0.8]);
+		const a = await S.clear('\\text{the 0.905 K hole,}', q[0] + DOT + LABEL_GAP + 1, q[1] + DOT + LABEL_GAP + 2, 0, 0, [0.6, 0.8]);
 		const b = await placed('-1.35\\times10^{40}\\ \\text{J/K}', a.box.l, a.box.b + 3.2, 0, 0, INK);
 		L.push(a, b);
 	}

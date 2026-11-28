@@ -139,8 +139,8 @@ c_m|\sqrt{\langle T_m|T_m\rangle}$ of its part $\curv c_mT_m$ over the reading's
 tables are orthogonal. The section on overlaps finds the share of the weight 2, $\cos^4(30°) = 0.56$.
 
 ![Look first at the middle panel: a wave seen along its own direction fills one extreme bar. Tilted, the same wave
-fills all five, yet its reading is still a square of rank one; a mass on the axis fills only the middle bar. Heights
-computed.](tut-spin-weight-bars){#fig:spin-weight-bars}
+fills all five, yet its reading is still a square of rank one; a mass on the axis fills only the middle bar. Each
+height is a weight's share, and the squares of the five add to one. Heights computed.](tut-spin-weight-bars){#fig:spin-weight-bars}
 
 ## Light's wave is the vector itself: spin one against spin two
 

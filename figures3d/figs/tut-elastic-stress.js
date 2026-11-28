@@ -4,7 +4,9 @@
 // opaque: the three edges that meet at the corner farthest from the viewer are hidden. On its face normal to x, tinted, three arrows
 // from the face's centre: T_xx along x, out of the face (orange, a tension), and T_yx along y and T_zx along z, lying
 // in the face. On the face normal to y, the arrow T_xy along x, as long as T_yx; a small tick across each of the two
-// marks their equal lengths, and the line "T_xy = T_yx" under the cube says it.
+// marks their equal lengths, and the line "T_xy = T_yx" under the cube says it. The labels T_yx and T_xy sit above the
+// middle of their own shafts, each on its own face and away from the edge the faces share, so that neither can be
+// read as the other's; T_zx to the left of its head.
 // Exact: the cube's edges lie along the axes and are equal; the visible faces are those whose outward normals +x, +y
 // and +z point toward the viewer, and the hidden edges those at the far corner (asserted); each arrow starts at its
 // face's centre and runs along its axis, the in-face arrows at right angles to the face's normal and ending inside the
@@ -20,7 +22,7 @@ const name = 'tut-elastic-stress';
 const check = checker(name);
 
 const A = 1;                              // the cube's side, units
-const T_XX = 0.62, T_YX = 0.4, T_ZX = 0.3; // the arrows' lengths, units (schematic); T_xy = T_yx
+const T_XX = 0.78, T_YX = 0.43, T_ZX = 0.38; // the arrows' lengths, units (schematic); T_xy = T_yx
 const TILT = 20, TURN = -55;              // the view, degrees
 const S = 110;                            // points per unit
 const TICK = 2.2;                         // half an equal-length tick, points
@@ -101,9 +103,16 @@ export default async function () {
 	const L = [];
 	const lxx = await ink.label('T_{xx}', txx.B, unit(-1, 0), 2.2, ACCENT);
 	L.push(lxx, await placed('\\text{tension}', (lxx.box.l + lxx.box.r) / 2, lxx.box.b + 2.6, 0.5, 0, ACCENT));
-	L.push(await ink.label('T_{yx}', tyx.B, unit(-0.35, 1), 2.2, INK));
-	L.push(await ink.label('T_{zx}', tzx.B, unit(0, -1), 2.2, INK));
-	L.push(await ink.label('T_{xy}', txy.B, unit(0.35, 1), 2.2, INK));
+	// T_yx and T_xy above their own shafts, at the middle, each on its own face and away from the edge the faces share
+	const above = (a, f) => {
+		const q = [a.A[0] + a.u[0] * (a.L - a.head) * f, a.A[1] + a.u[1] * (a.L - a.head) * f];
+		const w = a.u[0] > 0 ? [a.u[1], -a.u[0]] : [-a.u[1], a.u[0]];
+		check(w[1] < 0, 'a label meant above its arrow is not');
+		return [q, w];
+	};
+	L.push(await ink.label('T_{yx}', ...above(tyx, 0.62), 2.2, INK));
+	L.push(await ink.label('T_{zx}', [tzx.B[0], tzx.B[1] + tzx.head], unit(-1, 0), 2.2, INK));
+	L.push(await ink.label('T_{xy}', ...above(txy, 0.5), 2.2, INK));
 	for (const { tip, t, d } of tips) {
 		const s = ink.at(tip), o = ink.at(O);
 		L.push(await ink.label(t, s, unit(s[0] - o[0], s[1] - o[1]), 2.2, DIM));

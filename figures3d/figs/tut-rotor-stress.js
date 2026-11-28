@@ -6,27 +6,31 @@
 // end, "rod's tension". Below, three glyphs in a row joined by "+" and "=": a bar along w-hat (the masses' table), a
 // bar along u-hat (the rod's), and the two crossed, each with its table under it, the last "(1/2) I-double-dot".
 // No orange or blue, which mean stretch and squeeze in the tutorial's figures.
-// Departures from the diagram's comment: the glyph row stands under the rotor, not beside it, so that one drawing
-// about 250 points wide keeps its text readable on a phone. The tables are printed once, under the glyphs
-// ("(1/2) m Omega^2 d^2 w w", "-(1/2) m Omega^2 d^2 u u", "(1/2) I-double-dot"), and the rotor's labels name the parts
-// ("masses", "rod's tension"), so that no formula is printed twice. A negative table is a hollow bar, a positive one
-// a solid bar, so that the crossed glyph keeps the rod's sign without colour; the minus sign stands in the rod's
-// table under its glyph. The two velocity arrows point opposite ways, +w-hat at the mass at +(d/2) u-hat and -w-hat at
-// the other, as the masses move; the flux w w is the same for both. The rod is itself the heavier bar.
+// Departures from the diagram's comment: the glyph row stands right of the rotor as a column, so that one drawing
+// about 265 points wide keeps its text readable on a phone. The tables are printed once, beside the glyphs
+// ("(1/2) m Omega^2 d^2 w w", "-(1/2) m Omega^2 d^2 u u", "(1/2) I-double-dot"), each with its name under it in the dim
+// ink ("the masses' momentum flux", "the rod's tension", "the sum"), so that each glyph is named where it stands; on
+// the rotor only the rod's inward heads are named, "tension", and the velocities carry no name (the comment's
+// "masses" at a velocity's tip named neither). A negative table is a hollow bar, a positive one a solid bar, so that
+// the crossed glyph keeps the rod's sign without colour; a key under the column says so ("a bar is a table along it:
+// solid positive, hollow negative"), and the minus sign stands in the rod's table. u-hat is a thin ink arrow beyond the
+// + stone, along the rod; w-hat names the + stone's velocity, which is along it. The two velocity arrows point opposite
+// ways, +w-hat at the mass at +(d/2) u-hat and -w-hat at the other, as the masses move; the flux w w is the same for
+// both. The rod is itself the heavier bar.
 // Exact: the directions u-hat and w-hat at the drawn instant, Omega t = -30 degrees, so that u-hat is 60 degrees from
 // x (asserted); w-hat is u-hat turned anticlockwise by 90 degrees, du/dt = Omega w (the sense of the curved arrow);
 // the three tables, (1/2) m Omega^2 d^2 (w w - u u) against half the second derivative of I = (1/2) m d^2 u u at
 // every instant tried (tut-quadrupole-lib.js); each glyph's bar along the drawn u-hat or w-hat, its length the size
-// of its table, the same for both (asserted). Schematic: the sizes and the arrows' lengths.
+// of its table, the same for both (asserted); u-hat's arrow along the rod (asserted). Schematic: the sizes and the arrows' lengths.
 // Pictorial: the stones, a picture from an image model (sprites/hair/ball-face.png, as tut-earth-two-bars), clipped
 // to their exact circles.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, VEC, VEC_HEAD, AXIS, AXIS_HEAD } from './tut-pot-lib.js';
-import { INK, PAGE, sprite } from '../lib.js';
+import { INK, DIM, PAGE, sprite } from '../lib.js';
 import { picture, circle as circlePath } from '../stone.js';
 import { STONE_INK } from './tut-orb-lib.js';
 import { turning } from './tut-flow-lib.js';
 import { odot, ODOT } from './tut-gw-lib.js';
-import { chapter, palette, MATTER, uHat, wHat, massFlux, rodFlux } from './tut-quadrupole-lib.js';
+import { chapter, palette, stack, MATTER, uHat, wHat, massFlux, rodFlux } from './tut-quadrupole-lib.js';
 
 const name = 'tut-rotor-stress';
 const check = checker(name);
@@ -47,6 +51,10 @@ const ROW_STEP = 31;                       // between the glyphs' centres, down 
 const COL_AIR = 16;                        // the rotor's rightmost label to the operators
 const OP_W = 9;                            // an operator's room, left of a glyph's ink
 const TABLE_AIR = 5;                       // a glyph's ink to its table
+const NAME_LIFT = 5.5;                     // a table stands this far above its glyph's centre, its name under it
+const NAME_AIR = 2.4;                      // a table to its name
+const KEY_AIR = 4;                         // the column's lowest ink to the key under it
+const U_FROM = RS + 1.3, U_LEN = 10;       // u-hat's arrow: from the + stone's centre, and its length
 
 const m = `{\\color{${MATTER}}m}`;
 
@@ -116,15 +124,15 @@ export default async function () {
 
 	// ---- the rotor's names
 	{
-		// u-hat beyond the + stone, along the rod; w-hat at the + velocity's tip
-		const c = at(HR + RS, u);
-		L.push(await S.clear('\\hat u', c[0] + u[0] * 4.5, c[1] + u[1] * 4.5, 0.5, 0.5, u));
+		// u-hat: a thin arrow beyond the + stone, along the rod; w-hat at the + velocity's tip (the velocity is along it)
+		const c = at(HR + RS + U_FROM - RS, u), e = at(HR + U_FROM + U_LEN, u);
+		const ua = S.arrow(c, e, { color: INK, width: AXIS, head: AXIS_HEAD, layer: 3, what: 'u-hat' });
+		check(near(ua.u[0], u[0], 1e-12) && near(ua.u[1], u[1], 1e-12), 'u-hat\'s arrow is not along the rod');
+		L.push(await S.clear('\\hat u', e[0] + u[0] * 4.5, e[1] + u[1] * 4.5, 0.5, 0.5, u));
 		const tip = vel[0].B;
 		L.push(await S.clear('\\hat w', tip[0] + w[0] * 4, tip[1] + w[1] * 4, 0.5, 0.5, w));
-		// "masses" right of the - velocity's tip; "rod's tension" right of the rod's middle
-		const tip2 = vel[1].B;
-		L.push(await S.clear('\\text{masses}', tip2[0] + LABEL_GAP + 1, tip2[1], 0, 0.5, [1, 0]));
-		L.push(await S.clear('\\text{rod’s tension}', O[0] + 9, O[1] + 4, 0, 0.5, [1, 0]));
+		// "tension" right of the rod's middle, where its inward heads are
+		L.push(await S.clear('\\text{tension}', O[0] + 9, O[1] + 4, 0, 0.5, [1, 0]));
 	}
 
 	// ---- the glyphs, a column right of the rotor: w w, + (-u u), = (1/2) I-double-dot, each bar along the drawn direction
@@ -160,7 +168,18 @@ export default async function () {
 		`-\\tfrac12${m}\\Omega^2d^2\\,\\hat u\\hat u`,
 		`\\tfrac12{\\color{${MATTER}}\\ddot I}`
 	];
-	for (const [i, src] of names.entries()) L.push(await placed(src, tx, gy[i], 0, 0.5, INK));
+	// each table with its name under it, in the dim ink
+	const said = ['\\text{the masses’ momentum flux}', '\\text{the rod’s tension}', '\\text{the sum}'];
+	for (const [i, src] of names.entries()) {
+		const t = await placed(src, tx, gy[i] - NAME_LIFT, 0, 0.5, INK);
+		L.push(t);
+		L.push(await placed(said[i], tx, t.box.b + NAME_AIR, 0, 0, DIM));
+	}
+	// the key to the bars, under the column
+	{
+		const low = Math.max(...L.filter((l) => l.box.l >= ox - 1).map((l) => l.box.b), gy[2] + GLYPH * Math.max(Math.abs(u[1]), Math.abs(w[1])) + BAR);
+		L.push(await stack(['\\text{a bar is a table along it:}', '\\text{solid positive, hollow negative}'], ox, low + KEY_AIR, 0, DIM));
+	}
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { u: u3, w: w3, Tm, Tr };

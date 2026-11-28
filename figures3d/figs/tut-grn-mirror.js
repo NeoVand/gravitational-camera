@@ -1,7 +1,8 @@
 // The tutorial, section 2.4 (tutorial/outside/greens-functions.md), its third diagram: the half-space above a plane
 // and its Poisson kernel. Left: the plane, edge-on, as a horizontal line; a point x at the height z above it and its
 // mirror image x* at the depth z below, joined by a dashed vertical line; a point y on the plane, joined to both by
-// two lines of one length, each crossed by one tick, the mark of equal lengths. Right: the kernel
+// two lines of one length, each crossed by one tick, the mark of equal lengths; the distance a along the plane from
+// the foot of x to y, the plot's variable, named over that stretch. Right: the kernel
 // P_z(a) = z / 2 pi (a^2 + z^2)^(3/2), for z = 0.5 m and z = 1 m, on one pair of axes, a from -3 to 3 m; each peak,
 // 1 / 2 pi z^2 = 0.64 and 0.16 m^-2, ticked on the kernel's axis and joined to it by a dotted line; each full width at
 // half height, 2 z sqrt(2^(2/3) - 1) = 0.77 and 1.53 m, drawn as a line from flank to flank at that height and named under it.
@@ -142,6 +143,11 @@ export default async function () {
 	L.push(await placed('\\boldsymbol{y}', Y[0] + 1.5, Y[1] + LINE / 2 + LABEL_GAP + 0.6, 0, 0));
 	L.push(await S.clear('z', X[0] - 1, (X[1] + foot[1]) / 2, 1, 0.5, [-1, 0], { color: DIM }));
 	L.push(await S.clear('z', X[0] - 1, (Xs[1] + foot[1]) / 2, 1, 0.5, [-1, 0], { color: DIM }));
+	// a, the plot's variable: the distance along the plane from the foot of x to y, named over the middle of that
+	// stretch, inside the triangle of x, its foot and y
+	const aLab = await S.clear('a', (foot[0] + Y[0]) / 2, foot[1] - LINE / 2 - LABEL_GAP - 0.2, 0.5, 1, [0, -1], { color: DIM });
+	check(aLab.box.b < foot[1] && aLab.box.l > foot[0] && aLab.box.r < Y[0], 'the name a is not over the stretch from the foot of x to y');
+	L.push(aLab);
 
 	S.checkAll(L);
 	return finish(S, L, [240, 340]);

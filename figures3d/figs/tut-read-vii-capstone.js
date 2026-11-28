@@ -2,14 +2,19 @@
 // one hole of section 11.3's equilibrium mass followed as the camera's lens in seven small panels, (a) to (g), the
 // rows of the chapter's capstone table, in two rows, four and three, joined in reading order by thin grey arrows (the
 // fourth to the fifth by a return arrow out at the right, back along the gap between the rows), each panel with its
-// numbers beneath it.
-//  (a) mass: the hole, a dot (11.1's near-black disc with an ink edge), beside the Moon's disc in matter's colour.
+// numbers beneath it. The two rows are equally wide (the second's panels widened to fill it), their panel names the
+// chapter's table's.
+//  (a) mass: the hole, a dot (11.1's near-black disc with an ink edge), named "hole", beside the Moon's disc in
+//      matter's colour, named "Moon".
 //      "1.356 x 10^23 kg, 0.905 K".
 //  (b) lens: a logarithmic wavelength scale, 5 um to 20 cm, ticked at the decades; the energy per unit frequency of
 //      the glow of matter at 293 K and of the graviton sky at 0.905 K, x^3 / (e^x - 1) with x = hc / lambda k_B T, each
 //      scaled to its own peak (so peaking at 17.4 um and 5.6 mm, sections 10.1's and 11.3's peaks at 2.82 k_B T); the
 //      waves shorter than 4 pi r_s = 2.53 mm, which the hole focuses, shaded in the page's tint, the cut-off an ink
-//      line. "r_s = 0.201 mm; above 118 GHz".
+//      line named "4 pi r_s = 2.53 mm" under the scale, the scale named lambda at its end. Above the shading, on a line
+//      of their own, the two bands are named "focused" and "not focused" either side of the cut-off line, which runs
+//      up between them; each spectrum is named over its hump ("warm glow", "graviton sky"). "r_s = 0.201 mm; above
+//      118 GHz".
 //  (c) orbit: the camera (a small ink square, as 11.1's) on a circle round the hole, a curved arrow for its motion and
 //      a grey radius. "26.3 km, 8.9 s".
 //  (d) view: rays from a far source above (in the light role's colour, as 11.1's), passing the hole at b_E on either
@@ -21,7 +26,8 @@
 //  (f) costs: the tide against the distance, log-log, 10 km to 10^5 km and 10^-12 to 10^2 s^-2: the hole's 2GM/r^3
 //      in ink, the person's 2Gm/(1 m)^3 for 70 kg dashed in grey, the camera at 26.3 km where the hole's is 1 s^-2, a
 //      grey double arrow from the person's tide up to the camera (a factor of 1.07 x 10^8), and an open circle where
-//      the two are equal. "10^8 x the person's tide, out to 12,470 km".
+//      the two are equal; the axes named "tide (s^-2)" and r, each with two outward ticks named at their decades
+//      (10^2 and 10^4 km; 10^-8 and 1). "10^8 x the person's tide, out to 12,470 km".
 //  (g) adds: five pixels, their records led into one sum, the computed lens. "classically nothing; a quantum image
 //      from counts".
 // The colours, as sections 11.1's and 11.3's figures (figs/tut-schw-*.js, figs/tut-hawking-*.js): the hole's fill
@@ -36,7 +42,7 @@
 // Exact: every number (computed here with the chapter's M = 1.356 x 10^23 kg and asserted against its text); the
 // wavelength scale, the two spectra, their peaks and the cut-off in (b); the geometry of the rays in (d) (each turned
 // at the hole's plane straight to the camera); the radii of (e) for the exaggerated a; every line, point and the
-// double arrow of (f). Schematic: the sizes of the hole, the Moon, the orbit, the camera and the pixels; the
+// double arrow and the ticks of (f). Schematic: the sizes of the hole, the Moon, the orbit, the camera and the pixels; the
 // proportions of (d) (b_E against d); the annulus's width, eight times too large.
 import { tex, INK, DIM, PAGE } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, n2, near, HAIR, AXIS, LABEL_GAP } from './tut-pot-lib.js';
@@ -60,11 +66,11 @@ const SIZE = 9.6;                           // every label and number: about 9 p
 const GUT = 12;                             // between the panels: an arrow with a whole head
 const ROWS = [
 	[['a', 'mass', 68], ['b', 'lens', 128], ['c', 'orbit', 64], ['d', 'view', 80]],
-	[['e', 'gathers', 76], ['f', 'costs', 120], ['g', 'adds', 100]]
+	[['e', 'gathers', 84], ['f', 'costs', 152], ['g', 'adds', 116]]
 ];
-const DH = 58;                              // a panel's drawing, its height under the letter
+const DH = 62;                              // a panel's drawing, its height under the letter
 const LETTER_AIR = 3;                       // the letter's foot to the drawing's room
-const NUM_AIR = 5;                          // the lowest mark of a row to its numbers' caps
+const NUM_AIR = 6;                          // the lowest mark of a row to its numbers' caps
 const NUM_PITCH = 12;                       // baseline to baseline within a number
 const ROW_AIR = 20;                         // the lowest number of the first row to the second row's letters
 const HEAD = 3.6;                           // the grey arrows' heads
@@ -75,16 +81,16 @@ const HOLE_R = 2.6, EDGE = 0.45;            // the hole: its radius on the page 
 const CAMERA = 4.2;                         // the camera's square, as 11.1's
 const RAY = 0.6, LINE = 0.55, DOT = 0.5, DOT_STEP = 1.6;
 const MOON_R = 15;                          // (a)
-const DEC = 23, LAMBDA = [5e-6, 0.2], HUMP = 15.5, FLOOR = 0.06, BAND = 40.5;   // (b): points per decade, the scale's ends (m), a spectrum's height, where it stops (of its peak), the shading's height
+const DEC = 23, LAMBDA = [5e-6, 0.2], HUMP = 15.5, FLOOR = 0.06, BAND = 31;   // (b): points per decade, the scale's ends (m), a spectrum's height, where it stops (of its peak), the shading's height
 const TICK = 2.5;                           // (b): the decades' ticks, below the scale
 const ORBIT = 21;                           // (c): the orbit's radius
 const SPIN = { r: 25.5, from: -20, to: 26, width: 0.6, head: 3.4 };   // (c): the camera's motion, degrees anticlockwise from the right
 const CAM_AT = -35;                         // (c): the camera's place on the orbit, degrees anticlockwise from the right
 const VIEW = { be: 19, hole: -12, cam: 25, arc: 13 };                 // (d): b_E, the hole's and the camera's heights from the centre, theta_E's arc
 const RING = 22, EXAGGERATE = 8;           // (e): b_E on the page, and the factor on a
-const PLOT = { left: 12, right: 12, top: -17, bottom: 21, x: [4, 8], y: [-12, 2] };   // (f): from the panel's sides and centre; log10 ranges (m, s^-2)
+const PLOT = { left: 27, right: 9, top: -18, bottom: 14, x: [4, 8], y: [-12, 2] };   // (f): from the panel's sides and centre; log10 ranges (m, s^-2)
 const DASH = [2.2, 1.6];
-const PIXELS = { x: 24, step: 8, side: 3.6, sum: 70, r: 7.5 };      // (g)
+const PIXELS = { x: 31, step: 8, side: 3.6, sum: 79, r: 7.5 };      // (g)
 const FILL = '#eeebe5';                     // the neutral tint of the page (drawing.ts THEME)
 const CAPTION = 'Look first at the arrows: each panel\'s number feeds the next. The wavelengths of (b) and the tides of (f) are drawn to scale; the annulus\'s width is exaggerated eight times, and the other sizes are schematic.';
 
@@ -269,7 +275,7 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name] = { N, W, panels: panels.map((p) => ({ key: p.key, px: p.px, w: p.w })) };
-	return finish(S, L, [350, 390]);
+	return finish(S, L, [350, 400]);
 
 	// ======================================================================================================================
 	// the seven drawings, each in its panel's room (p.px to p.px + p.w, p.top to p.bot), about p.cy
@@ -280,6 +286,7 @@ export default async function () {
 		S.mark(circlePts(mc, MOON_R), 0, 'the Moon');
 		check(mc[0] - MOON_R - (hc[0] + HOLE_R) >= 10, '(a): the hole sits on the Moon');
 		L.push(await lbl('\\text{Moon}', mc[0], mc[1] + MOON_R + LABEL_GAP + 0.3, 0.5, 0));
+		L.push(await lbl('\\text{hole}', hc[0], hc[1] + HOLE_R + EDGE / 2 + LABEL_GAP + 0.3, 0.5, 0));
 	}
 
 	async function drawB(p) {
@@ -312,14 +319,21 @@ export default async function () {
 		const peakOf = (pts) => pts.reduce((a, q) => (q[1] < a[1] ? q : a));
 		check(Math.abs(peakOf(glow)[0] - xOf(N.peak(ROOM))) < 0.3 && Math.abs(peakOf(sky)[0] - xOf(N.peak(GRAVITON_SKY))) < 0.3, '(b): the spectra do not peak at 17.4 um and 5.6 mm');
 		check(peakOf(glow)[0] < xc && peakOf(sky)[0] > xc, '(b): the peaks are not on either side of the cut-off');
-		// the names: the scale's 10 um and the cut-off below it; "focused" in the shading, at the cut-off; the spectra
+		// the names: under the scale its 10 um and the cut-off, 4 pi r_s = 2.53 mm, and lambda at its end; above the shading,
+		// on the room's first line, "focused" over the band and "not focused" beyond the cut-off; on the second, each
+		// spectrum's name over its hump
 		const under = Y + TICK + LABEL_GAP + 0.5;
 		L.push(await lbl('10\\ \\mathrm{\\mu m}', xOf(1e-5), under, 0.5, 0));
-		L.push(await lbl('2.53\\ \\mathrm{mm}', xc, under, 0.5, 0));
-		const foc = await lbl('\\text{focused}', xc - LABEL_GAP - 0.4, top + 2.6, 1, 0);
-		L.push(foc);
+		L.push(await lbl('4\\pi r_s = 2.53\\ \\mathrm{mm}', xc, under, 0.5, 0));
+		L.push(await lbl('\\lambda', X1 + LABEL_GAP + 0.6, Y, 0, 0.5));
+		const head = top - LABEL_GAP - 0.3;
+		const foc = await lbl('\\text{focused}', (X0 + xc) / 2, head, 0.5, 1);
+		const nof = await lbl('\\text{not focused}', xc + LABEL_GAP + 0.6, head, 0, 1);
+		check(foc.box.t >= p.top - 0.01 && foc.box.r <= xc - LABEL_GAP && nof.box.r <= p.px + p.w, '(b): the bands\' names do not fit');
+		L.push(foc, nof);
+		S.path([[xc, top], [xc, head - (foc.box.b - foc.box.t)]], { color: INK, width: LINE, cap: 'butt', layer: 2.5, what: '(b)\'s cut-off, above the band' });
 		L.push(await clr('\\text{warm glow}', X0 + 2.6, Y - HUMP - LABEL_GAP, 0, 1, [0, -1]));
-		L.push(await lbl('\\text{graviton sky}', xc + LABEL_GAP + 0.4, top + 2.6, 0, 0));
+		L.push(await clr('\\text{graviton sky}', xc + LABEL_GAP + 0.6, Y - HUMP - LABEL_GAP, 0, 1, [0, -1]));
 	}
 
 	async function drawC(p) {
@@ -407,8 +421,20 @@ export default async function () {
 		check(near(tide(N.equal), N.person, 1e-20), '(f): the circle is not where the tides are equal');
 		S.raw(`<circle cx="${n2(eq[0])}" cy="${n2(eq[1])}" r="1.9" fill="${PAGE}" stroke="${INK}" stroke-width="${LINE}"/>`, 3);
 		S.mark(circlePts(eq, 1.9), LINE / 2, 'the tides\' meeting');
+		// two ticks on each axis, outward, named: 10^2 and 10^4 km along r, 10^-8 and 1 s^-2 up the tide
+		for (const [r0k, src] of [[1e5, '10^2\\ \\mathrm{km}'], [1e7, '10^4\\ \\mathrm{km}']]) {
+			const x = xOf(r0k);
+			S.path([[x, yb], [x, yb + TICK]], { color: INK, width: HAIR, cap: 'butt', layer: 2, what: `(f)'s tick at ${r0k} m` });
+			L.push(await lbl(src, x, yb + TICK + LABEL_GAP + 0.3, 0.5, 0));
+		}
+		for (const [t0, src] of [[1e-8, '10^{-8}'], [1, '1']]) {
+			const y = yOf(t0);
+			S.path([[xl - TICK, y], [xl, y]], { color: INK, width: HAIR, cap: 'butt', layer: 2, what: `(f)'s tick at ${t0} s^-2` });
+			L.push(await lbl(src, xl - TICK - LABEL_GAP - 0.3, y, 1, 0.5));
+		}
+		check(near(yOf(1e-8) - yOf(1), 8 * (yb - yt) / (PLOT.y[1] - PLOT.y[0]), 1e-9) && near(xOf(1e7) - xOf(1e5), (xr - xl) / 2, 1e-9), '(f): the ticks are not at their decades');
 		// the names: the axes, the two tides
-		L.push(await lbl('\\text{tide}', xl, yt - LABEL_GAP - 0.3, 0.5, 1));
+		L.push(await lbl('\\text{tide }(\\mathrm{s^{-2}})', xl, yt - LABEL_GAP - 0.3, 0.5, 1));
 		L.push(await lbl('r', xr + LABEL_GAP + 0.3, yb, 0, 0.5));
 		const along = [xOf(r1) - xOf(r0), yOf(tide(r1)) - yOf(tide(r0))], ln = Math.hypot(...along);
 		const nrm = [-along[1] / ln, along[0] / ln].map((v) => -v);   // up and to the right of the line

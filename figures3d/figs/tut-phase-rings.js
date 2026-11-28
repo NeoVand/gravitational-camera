@@ -1,8 +1,9 @@
 // The tutorial, section 8.3 (tutorial/quantum/quanta.md), its second diagram: one state per area 2 pi hbar. Chapter
 // 1.7's phase plane in the scaled axes x / x_zp across and p / m omega x_zp up, so that the ellipses are circles: thin
 // grey axes with ticks at 0, +-2 and +-4. The bands owned by the levels n = 0, 1, 2, 3, between the circles of radius
-// 2 sqrt n and 2 sqrt(n + 1) in these units (the central disc of radius 2 for n = 0), shaded alternately lighter and
-// light grey with no outline (the outermost band light, so that its edge shows against the page). On each band, the classical orbit of its level, the circle of radius sqrt(2(2n + 1))
+// 2 sqrt n and 2 sqrt(n + 1) in these units (the central disc of radius 2 for n = 0), shaded alternately pale and deep
+// grey with no outline, strongly enough that the bands stay distinct in print (the outermost band deep, so that its
+// edge shows against the page). On each band, the classical orbit of its level, the circle of radius sqrt(2(2n + 1))
 // at the energy (n + 1/2) hbar omega, as a thin ink line. Each band labelled outside the drawing, "n = 0" to "n = 3";
 // "area 2 pi hbar" once, for the n = 1 band; the n = 0 orbit labelled "encloses pi hbar". Ink and the page's neutral
 // greys only; no orange or blue.
@@ -33,7 +34,7 @@ const BOOK = globalThis.figureLayout === 'book';
 const U = BOOK ? 18 : 22;                // points per scaled unit, on both axes (smaller in the printed book)
 const FRAME = 4.6;                       // the axes at u = -4.6 and w = -4.6
 const ORBIT_W = 0.55;                    // an orbit's stroke
-const SHADE = [0.2, 0.42];               // the bands' opacities of the rule's grey: lighter (n even), light (n odd)
+const SHADE = [0.2, 0.85];               // the bands' opacities of the rule's grey: pale (n even), deep (n odd)
 const LEADER_END = 4.35;                 // the leaders end at u = 4.35 (the right) or w = 4.35 (above)
 const HEIGHTS = [-1.3, 0.1, 1.5, 2.9];   // the band labels' leaders, w for n = 0 to 3
 const AREA_U = -1.2;                     // the "area" leader's u
@@ -54,7 +55,7 @@ export default async function () {
 	};
 	const arcs = (r) => `M${n2(C[0] + r * U)},${n2(C[1])}A${n2(r * U)},${n2(r * U)} 0 1 0 ${n2(C[0] - r * U)},${n2(C[1])}A${n2(r * U)},${n2(r * U)} 0 1 0 ${n2(C[0] + r * U)},${n2(C[1])}Z`;
 
-	// ---- the bands, alternately light and lighter, with no outline
+	// ---- the bands, alternately pale and deep, with no outline
 	for (const n of BANDS) {
 		const [a, b] = edges(n);
 		check(near(areaInHbar(Math.PI * (b * b - a * a)), 2 * Math.PI, 1e-14), `the band ${n} is not 2 pi hbar`);

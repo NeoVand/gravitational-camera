@@ -2,9 +2,13 @@
 // through each other. Five copies of the line, stacked from the top at the instants t = -2, -1, 0, 1, 2 in units of
 // w/c, w the pulses' width, over one shared x axis. A Gaussian hump u_R(x - ct) = A e^{-(x - ct)^2 / 2w^2} starts at
 // the left and moves right (orange, dashed), and the equal dip -u_R(x + ct) starts at the right and moves left (blue,
-// dashed); their sum, the line itself, is drawn bold. Each dashed pulse is drawn only where both pulses are large
-// enough to be seen apart: where the other is small the sum is that pulse, and a dashed copy would lie on it; where
-// the pulse itself is small, it would run along the line's level at rest as a second line. At t = 0 the sum
+// dashed); their sum, the line itself, is drawn bold. Each dashed pulse is drawn only in the middle three rows, while
+// the pulses overlap, and there only where both pulses are large enough to be seen apart: where the other is small the
+// sum is that pulse, and a dashed copy would lie on it; where the pulse itself is small, it would run along the line's
+// level at rest as a second line. At t = +-2 the pulses are apart (each below 1e-3 of A at the other's peak, asserted)
+// and the rule would leave only two short dashed scraps near x = 0, read as stray marks, so none is drawn there.
+// The rows are equally spaced, as the instants are, ROW_AIR points more than the closest pair (t = -1 and 0, and 0
+// and 1) need, so that equal steps in time look equal and every row stands in clear air. At t = 0 the sum
 // is flat, and short upright arrows show its velocity, -2c u_R'(x): up on the right half, ahead of the hump, and down
 // on the left half. At t = 1 and 2 the hump is on the right and the dip on the left, unchanged. Each row's level at
 // rest is dotted where the line has left it.
@@ -55,7 +59,9 @@ const PULSE_DASH = [2.2, 1.4];
 const PART = (BOLD + THIN) / 2 + 0.7;     // a dashed pulse is drawn only where it and the other are this far from zero
 const ARROWS = [0.3, 0.6, 0.9, 1.2, 1.5];      // the velocity arrows at x = +-these
 const SPEED = 12.5;                       // points per unit of x e^{-x^2/2} (the velocity in units of 2cA/w)
-const ROW_GAP = 4;                        // the least air between neighbouring rows' ink
+const ROW_GAP = 4;                        // from the last row's ink to the x axis
+const ROW_AIR = 9;                        // the least air between neighbouring rows' ink, at the closest pair
+const OVERLAP = [-1, 0, 1];               // the rows whose dashed pulses are drawn
 const INSIDE = 1.4;                       // an arrow ends at least this far inside its dashed pulse
 
 export default async function () {
@@ -92,12 +98,20 @@ export default async function () {
 		return { up, down };
 	};
 	const R = TIMES.map(reach);
-	const ys = [ORIGIN - 2 * AMP * 2];
-	for (let r = 1; r < TIMES.length; r++) {
-		let need = 0;
-		for (let i = 0; i < R[r].up.length; i++) need = Math.max(need, R[r - 1].down[i] + R[r].up[i]);
-		ys.push(ys[r - 1] + need + ROW_GAP);
+	// the reach of each row's ink counts its dashed pulses only in the rows that draw them
+	for (const [r, t] of TIMES.entries()) if (!OVERLAP.includes(t)) {
+		const n = R[r].up.length;
+		for (let i = 0; i < n; i++) {
+			const x = -XMAX + (2 * XMAX * i) / (n - 1);
+			R[r].up[i] = Math.max(0, sum(x, t)) * AMP + BOLD / 2; R[r].down[i] = -Math.min(0, sum(x, t)) * AMP + BOLD / 2;
+		}
 	}
+	// equal steps: the largest that any neighbouring pair needs, plus ROW_AIR
+	let step = 0;
+	for (let r = 1; r < TIMES.length; r++) for (let i = 0; i < R[r].up.length; i++) step = Math.max(step, R[r - 1].down[i] + R[r].up[i]);
+	step += ROW_AIR;
+	const ys = TIMES.map((_, r) => ORIGIN - 2 * step + r * step);
+	check(ys.every((y, r) => !r || near(y - ys[r - 1], step, 1e-9)), 'the rows are not equally spaced');
 
 	// ---- the rows
 	for (const [r, t] of TIMES.entries()) {
@@ -112,6 +126,7 @@ export default async function () {
 		if (off.length) S.path([P.at(off[0], 0), P.at(off[off.length - 1], 0)], { color: DIM, width: ZERO_LINE, dash: ZERO_DASH, cap: 'butt', layer: 1, what: `the level at rest at t = ${t}` });
 		check(t !== 0 || off.length === 0, 'the line at t = 0 has left its level');
 		for (const [f, g, color, what] of [[hump, dip, ACCENT, 'the hump'], [dip, hump, ACCENT2, 'the dip']]) {
+			if (!OVERLAP.includes(t)) continue;
 			for (const [a, b] of parts(f, g, t)) {
 				const pts = graph(P, (x) => f(x, t), a, b);
 				check(longest(pts) <= 0.2501, `${what} at t = ${t} is sampled too coarsely`);

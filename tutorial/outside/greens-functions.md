@@ -291,8 +291,9 @@ $\curv{\tE}_{ij} = \partial_i\partial_j\field\Phi$, in $\mathrm{s^{-2}}$. Among 
 $\curv d = -\curv{\tE}_{zz}$, the vertical component with its sign changed so that a mass below gives a positive
 bump.
 
-![Left: a point $\vect x$ at the height $z$ above the plane and its mirror image $\vect x^*$ below it. Right: the
-kernel $P_z$ for $z = 0.5$ and $1\unit{m}$: doubling the height divides the peak by four, from 0.64 to
+![Left: a point $\vect x$ at the height $z$ above the plane, its mirror image $\vect x^*$ below it, and a point $\vect y$
+of the plane at the distance $a$ along it from the foot of $\vect x$. Right: the kernel $P_z$ against $a$ for $z = 0.5$
+and $1\unit{m}$: doubling the height divides the peak by four, from 0.64 to
 $0.16\unit{m^{-2}}$, and doubles the width at half height, from 0.77 to 1.53 m.](tut-grn-mirror){#fig:grn-mirror}
 
 ## On a sphere, Kelvin's image gives the potential inside and the skin of balayage

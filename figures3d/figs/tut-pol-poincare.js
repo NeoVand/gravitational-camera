@@ -1,15 +1,18 @@
 // The tutorial, section 5.4 (tutorial/waves/polarization.md), its fifth diagram: Poincare's sphere, twice, side by
 // side and alike: the same size (52 points to the unit), the same view and the same names, the left for the
 // gravitational wave and the right for light, each named under it. Each a sphere of radius 1 in light perspective (a
-// camera 9 radii away, 22 degrees above the equator, 35 degrees round from Q toward -U): its outline, the equator and
+// camera 9 radii away, 22 degrees above the equator, 30 degrees round from Q toward -U): its outline, the equator and
 // the vertical axis, thin and grey; the axes Q/I (toward the viewer and right), U/I (right and back) and V/I (up),
 // named at their tips. The north pole named "anticlockwise, circular", the south pole "clockwise, circular", the
 // equator "linear". The point P of the rotor seen at iota = 75 degrees, (Q, U, V)/I = (0.62, 0, 0.785), filled; the
-// circle of latitude through it, dashed. On the left, P', hollow, where a turn of the axes by theta = 22.5 degrees
+// circle of latitude through it. The equator and the latitude are drawn as seen: solid where they face the camera,
+// dashed where they pass behind the sphere (a point p of the sphere faces the camera when p . c > 1/D, c the unit
+// vector to the camera). On the left, P', hollow, where a turn of the axes by theta = 22.5 degrees
 // carries it, round the vertical by -4 theta = -90 degrees to (0, -0.62, 0.785); a curved arrow along the latitude from
 // P to P', named -4 theta. On the right, its image P'' after the same turn, carried by -2 theta = -45 degrees to (0.44,
 // -0.44, 0.785), the arrow named -2 theta. Each arrow runs on the sphere's near face, in front of the vertical axis: a
-// halo of the page's colour cuts the axis where the arrow crosses it (on the right, its head lies on the axis).
+// halo of the page's colour cuts the axis where the arrow crosses it. (From 35 degrees round, light's image P'' stood
+// just left of the axis and the arrow's head lay on it; from 30 it stands about 8 points left of it, the head 3.)
 // The projection is the comment's light perspective, made exact (each sphere seen from its own camera, so that its
 // outline is a circle); the axes reach 1.45, so that U/I's head clears the outline.
 // Exact: the outlines (the sphere's tangent circle, D / sqrt(D^2 - 1) radii, asserted), the equator, the latitude
@@ -25,7 +28,7 @@ const check = checker(name);
 
 const S1 = 52;                            // points per unit at each sphere's centre, both
 const DIST = 9;                           // each camera's distance, in radii
-const AZ = 35, EL = 22;                   // the view: degrees round from Q toward -U, and above the equator
+const AZ = 30, EL = 22;                   // the view: degrees round from Q toward -U, and above the equator
 const GAP = 174;                          // between the spheres' centres, points
 const AX = 1.45;                          // the axes' reach
 const OUT = 0.5;                          // the outlines, equator and vertical axis
@@ -67,7 +70,28 @@ export default async function () {
 		ink.curve(outline.map(world), { color: DIM, width: OUT, layer: 1, what: `${sp.key}: the outline` });
 		// ---- the equator, the vertical axis (and on the large sphere, the Q and U axes)
 		const ring = (h, r, n = 720) => Array.from({ length: n + 1 }, (_, k) => { const t = (2 * Math.PI * k) / n; return [r * Math.cos(t), r * Math.sin(t), h]; });
-		ink.curve(ring(0, 1).map((p) => pr(...p)), { color: FAINT, width: OUT, layer: 1, what: `${sp.key}: the equator` });
+		// a circle on the sphere drawn as seen: its near part solid, its far part (behind the sphere) dashed
+		const seen = ([q, u, w]) => qu(q, u, w).dot(toward) > 1 / DIST;
+		const asSeen = (pts, { color, width, layer, what, skip = () => false }) => {
+			const fl = pts.map(seen), n = pts.length - 1;             // the last point is the first
+			const k0 = fl.findIndex((f, i) => i > 0 && f !== fl[i - 1]);
+			check(k0 > 0, `${what}: wholly near or wholly far`);
+			const runs = [];
+			for (let j = 0, cur = null; j <= n; j++) {
+				const i = (k0 + j) % n, F2 = F(...pts[i]);
+				if (j === n) { cur.pts.push(F2); break; }                 // back where it began: the last run ends there
+				if (!cur || cur.near !== fl[i]) { if (cur) cur.pts.push(F2); cur = { near: fl[i], pts: [F2] }; runs.push(cur); } else cur.pts.push(F2);
+			}
+			for (const r of runs) {
+				if (!r.near) { drawDashes(ink, dashes(r.pts, { dash: DASH, closed: false, skip }), { color, width, layer, what: what + ', far' }); continue; }
+				// the near part, solid, broken where `skip` holds
+				let piece = [];
+				const flush = () => { if (piece.length > 1) ink.curve(piece.map(world), { color, width, layer, what: what + ', near' }); piece = []; };
+				for (const q of r.pts) { if (skip(q)) flush(); else piece.push(q); }
+				flush();
+			}
+		};
+		asSeen(ring(0, 1), { color: FAINT, width: OUT, layer: 1, what: `${sp.key}: the equator` });
 		{
 			ink.line(pr(0, 0, -1), pr(0, 0, 0), { color: FAINT, width: OUT, layer: 1, what: 'the vertical axis, below' });
 			for (const [k, d] of [['Q', [1, 0, 0]], ['U', [0, 1, 0]], ['V', [0, 0, 1]]]) {
@@ -109,9 +133,9 @@ export default async function () {
 		}
 		// the turn is clockwise seen from above (toward -U from Q): the arc's angle falls
 		check(s1 < s0 && a1 < 0, `${sp.key}: the arc does not run toward -U`);
-		const full = Array.from({ length: 721 }, (_, k) => at((2 * Math.PI * k) / 720));
 		const onArc = (q) => arcPts.some((p) => Math.hypot(p[0] - q[0], p[1] - q[1]) < ARC + 1.2) || Math.hypot(q[0] - Pf[0], q[1] - Pf[1]) < PT + 1 || Math.hypot(q[0] - If[0], q[1] - If[1]) < PT + 1;
-		drawDashes(ink, dashes(full, { dash: DASH, skip: onArc }), { color: DIM, width: LAT, layer: 2, what: `${sp.key}: the latitude` });
+		asSeen(Array.from({ length: 721 }, (_, k) => [r * Math.cos((2 * Math.PI * k) / 720), r * Math.sin((2 * Math.PI * k) / 720), h]), { color: DIM, width: LAT, layer: 2, what: `${sp.key}: the latitude`, skip: onArc });
+		check(seen([r, 0, h]) && seen([img.Q, img.U, img.V]), `${sp.key}: P or its image is on the far side`);
 		// P, filled; its image, hollow
 		raw(`<circle cx="${n2(Pf[0])}" cy="${n2(Pf[1])}" r="${PT}" fill="${INK}"/>`, 3);
 		raw(`<circle cx="${n2(If[0])}" cy="${n2(If[1])}" r="${PT - 0.25}" fill="none" stroke="${INK}" stroke-width="0.5"/>`, 3);
@@ -135,7 +159,7 @@ export default async function () {
 		// each point's name below it and outward, between the latitude and the equator, clear of the arc
 		L.push(await ink.label('P', sp.Pf, [0.6, 0.8], 2.4, INK, 8.5));
 		// (light's image is just left of the vertical axis: its name above it and outward, inside the latitude)
-		L.push(await ink.label(sp.image, sp.If, sp.key === 'wave' ? [-0.6, 0.8] : [-0.5, -0.87], 2.4, INK, 8.5));
+		L.push(await ink.label(sp.image, sp.If, sp.key === 'wave' ? [-0.94, -0.34] : [-0.5, -0.87], 2.4, INK, 8.5));
 		// the turn over its arc: where the arc crosses the vertical axis, just over it and right of the axis
 		const q = sp.arcPts.reduce((a, b) => (Math.abs(b[0] - cx) < Math.abs(a[0] - cx) ? b : a));
 		let l, dy = 0;

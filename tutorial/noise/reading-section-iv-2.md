@@ -365,14 +365,18 @@ sharp. Sharp images need waves.
 We follow the safe from the first readings to the limit of what any camera could see.
 
 ![The locked safe in six panels. (a) The gold's own reading $\curv{\tE}_{xx}$ along a row of pixels, in
-$10^{-10}\unit{s^{-2}}$, against the noise of one reading at $\SNR = 10^3$ (thin band) and 10 (wide band); below, the two
-safes' scores at $\SNR = 10$, 1.81 noise standard deviations apart, with the 18.3% beyond the midline shaded. (b) The
-scene from above: the orange wedge is this array's blur, 32.4°; the grey lines bound the 24.0° blur of a wide array.
-(c) The whitened gains, largest first: 17 of the 231 stand above the noise (blue line). (d) The Cramér–Rao ellipse of a
+$10^{-10}\unit{s^{-2}}$, against the noise of one reading at $\SNR = 10^3$ (the narrow band, $\pm0.35$) and 10 ($\pm35$,
+wider than the chart, so its tint fills it); below, the two safes' scores $t$ at $\SNR = 10$, 1.81 noise standard
+deviations apart, coloured as in section 3.3 (orange for the gold in the left safe, blue for the right), with the
+18.3% beyond the midline shaded. (b) The scene from above: the orange wedge is this array's blur, 32.4°; the grey
+lines bound the 24.0° blur of a wide array. (c) The whitened gains, largest first: 17 of the 231 stand above the noise
+(blue line); the smallest 113 are below what double precision resolves and are not drawn. (d) The Cramér–Rao ellipse of a
 point of gold, 25 kg by 9.1 cm; below, the mass the positive image finds in the right safe over 3000 draws, mean 315 kg
 (orange), true 324 kg (dashed). (e) The 38 bits of a patch: one for the safe (dark), four for the mass (orange). (f) The
 bar's face, 30 cm by 14 cm, drawn at the quantum ceiling by a wide array (left, blur 9 cm) and by this array (right,
-13 cm), with the true outline in a hairline.](tut-read-iv2-capstone){#fig:read-iv2-capstone}
+13 cm), with the true outline in a hairline. The wide array's blur has a ring below zero 8 to 14 cm from its centre,
+which takes most from the middle of the bar, so its image of the even bar is brightest about 8 cm either side of the
+middle: the two lobes are one bar.](tut-read-iv2-capstone){#fig:read-iv2-capstone}
 
 **(a) Find the safe.** With the room and the safes subtracted, the gold's largest recorded reading on the metre-wide
 array is $4.1\times10^{-10}\unit{s^{-2}}$, in the component $\curv{\tE}_{yz}$. A pixel does not record $\curv{\tE}_{zz}$, though it would reach $7.8\times10^{-10}\unit{s^{-2}}$ in magnitude at the

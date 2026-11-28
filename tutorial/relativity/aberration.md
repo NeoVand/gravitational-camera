@@ -342,7 +342,7 @@ $\arccos\obs\beta$ about the direction behind.[^room]
 ![Look first at the dashed circle: it holds the forward half of the sky in both panels. At rest it is at $90°$ from
 the direction of motion; for an observer moving through the stars' frame at $0.9c$ every star that lay inside it is
 seen within $25.8°$ of straight ahead, and blueshifted, while the stars behind spread out over the rest of the sky,
-and those seen more than $51.2°$ from straight ahead are redshifted. The projection keeps areas, so the crowding is the
+and those seen more than $51.2°$ from straight ahead, outside the dotted circle, are redshifted. The projection keeps areas, so the crowding is the
 true crowding of the sky.](tut-aberration-sky){#fig:moving-sky}
 
 ::: try {#moving-sky}
@@ -431,9 +431,10 @@ $a = \obs{\vect\beta}\cdot\hat n_0$ and split $\hat n_0 = (a/\obs\beta)\,\hat\be
 $\obs{\vect\beta}$.
 
 ![Look first at the two velocity arrows: the pixel moves through the body's frame with $c\,\obs{\vect\beta}$,
-so in the pixel's frame the body moves with $-c\,\obs{\vect\beta}$, the same speed the other way. The two pairs
-of directions, $\pm\hat n_0$ at rest, lean toward the body's velocity, and their half sum is the body's velocity across
-the line to where it is now.](tut-aberration-frames){#fig:two-frames}
+so in the pixel's frame the body moves with $-c\,\obs{\vect\beta}$, the same speed the other way. In the body's frame
+the body stands at $R_*\hat n_0$ from the pixel and the two directions are $\pm\hat n_0$; in the pixel's frame, where
+$\pm\hat n_0$ are drawn again in grey, they become $\hat p_\pm$, both leaning toward the body's velocity, and their
+half sum is the body's velocity across the line to where it is now.](tut-aberration-frames){#fig:two-frames}
 
 **The directions.** A principal null direction is a direction of travel, so it enters [](#eq:ray-boost) as $\hat k$. The
 pair $\pm\hat n_0$ holds both senses of the line: light from the body travels to the pixel along $-\hat n_0$, and light

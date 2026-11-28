@@ -292,7 +292,7 @@ fixes $\matter\rho_h$ completely, and is blind to the rest (Figure [](#fig:null-
 
 ![The split drawn as geometry: the family $\mathcal N$ as a plane, and the family $\mathcal H$ as a line at right
 angles to it. A density $\matter\rho$ is its shadow $\matter\rho_h$ on the line plus a member of $\mathcal N$ (dashed).
-Every density in the lighter plane $\matter\rho_h + \mathcal N$ has the same outside, and $\matter\rho_h$ is the
+Every density in the darker, upper plane $\matter\rho_h + \mathcal N$ has the same outside, and $\matter\rho_h$ is the
 shortest arrow to that plane; the families have infinitely many dimensions, and the arrows are chosen for the
 drawing.](tut-null-split){#fig:null-split}
 

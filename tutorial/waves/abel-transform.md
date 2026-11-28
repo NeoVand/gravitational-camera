@@ -121,8 +121,9 @@ The glow measures friction and temperature, not mass, so these pictures show the
 the steel.
 
 ![Look first at the right-hand curve: a thin glowing skin is faint through the middle and bright at the rim, where the
-line runs along the skin. The three bodies of section 2.5 with the nugget at the centre, if only the gold glows; each
-curve is scaled to its own maximum, and the skin is drawn $0.05R$ thick (its rim is then 6.2 times as bright as its
+line runs along the skin. The three bodies of section 2.5 with the nugget at the centre, if only the gold glows. Under
+each, $N$ is the brightness of the line of sight at the impact parameter $b$; each curve is scaled to its own maximum,
+and the skin is drawn $0.05R$ thick (its rim is then 6.2 times as bright as its
 middle; for $0.01R$, 14 times).](tut-abel-three-glows){#fig:abel-three-glows}
 
 ## The transform can be undone

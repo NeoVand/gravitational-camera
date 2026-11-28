@@ -1,37 +1,40 @@
 // The tutorial, reading section R9b (tutorial/one-point/reading-section-viii-2.md), its second diagram: the capstone's
 // desk, seen from above. A desk, a rounded rectangle in the page's neutral tint; at its centre the pixel, a ring, with
 // its six neighbours b = 10 cm away: four as dots in the page, and the pair along the vertical, out of and into the
-// page, as the dot in the pixel's ring; a bracket "b = 10 cm". To the left, 3 m away on a thin dimension line along
-// the line of sight ("3 m" under it), the person, the stone figure of Part 1 (sprites/tut-person.png, as
-// figs/tut-sql-pixel.js draws it), "70 kg" over its head, with a short arrow in matter's colour above the line for a
-// walk of 1.4 m/s across the line of sight, "1.4 m/s" over the arrow. To the upper right, 3 m away on a second
-// dimension line ("3 m" on its lower right, outside the desk), the rotor in matter's colour: its circle, the bar and
-// its two masses, and a curved arrow for its turn, "2 x 1 kg, 12 cm, 50 turns/s" over it. Above the desk, the passing
-// wave in the curvature's colour: three parallel fronts and an arrow along its travel, "100 Hz, h = 10^-21, rho = 12"
-// to the left of the fronts. Beside the pixel a short arrow in ink, the pixel's own velocity on a cart, across the
-// line to the person. The readings the capstone gives stand apart from the scene, in order, each step led once by its
-// letter in a small circle (a second line of a step is indented under the first): (a) the person's rho; (b) the
-// pixel's velocity on a cart; (c) the range and mass with the neighbours, and alone; (d) two people on one line; (e)
-// the rotor against the wave; (f) the amplitude's error, 12% with the rotor fitted, not 8.3%; (g) the direction's,
-// 6.8 degrees, not 4.8; (h) what tells the person from two standing waves. On the site they stand under the scene in
-// two columns, (a) to (d) at the left and (e) to (h) at the right; in the printed book (figureLayout 'book') in one
-// column at the scene's right, its middle level with the scene's, so that the figure is wide and low on the page. Ink
-// and greys, matter's colour and the curvature's; no orange or blue.
+// page, as the dot in the pixel's ring; a bracket "b = 10 cm". To the left, 3 m away on a thin dimension line along the
+// line of sight, from the person to the pixel's ring through the left neighbour, a tick at each end ("3 m" under it),
+// the person, the stone figure of Part 1 (sprites/tut-person.png, as figs/tut-sql-pixel.js draws it), "70 kg" over its
+// head, with a short arrow in matter's colour above the line for a walk of 1.4 m/s across the line of sight, "1.4 m/s"
+// over the arrow. To the upper right, 3 m away on a second dimension line from the pixel's ring to the rotor's circle,
+// a tick at each end ("3 m" on its lower right, outside the desk), the rotor in matter's colour: its circle, the bar
+// and its two masses, and a curved arrow for its turn, "2 x 1 kg, 12 cm, 50 turns/s" over it. Above the desk, the
+// passing wave in the curvature's colour: three parallel fronts and an arrow along its travel, "100 Hz, h = 10^-21, rho
+// = 12" to the left of the fronts. Beside the pixel, above the line to the person, a short arrow in ink, the pixel's
+// own velocity on a cart, across that line. Each step's letter in a small circle stands in the scene beside what it
+// reads: (a) and (d) before "70 kg", (e) before the rotor's numbers, (f) and (g) before the wave's, (b) beside the
+// cart's arrow, (c) beside the lower neighbour, (h) under "b = 10 cm". The readings the capstone gives stand apart from
+// the scene, in order, each step led once by its letter (a second line of a step is indented under the first): (a) the
+// person's rho; (b) the pixel's velocity on a cart; (c) the range and mass with the neighbours, and alone; (d) two
+// people on one line; (e) the rotor against the wave; (f) the amplitude's error, 12% with the rotor fitted, not 8.3%;
+// (g) the direction's, 6.8 degrees, not 4.8; (h) what tells the person from two standing waves. On the site they stand
+// under the scene in two columns, (a) to (d) at the left and (e) to (h) at the right; in the printed book (figureLayout
+// 'book') in one column at the scene's right, its middle level with the scene's, so that the figure is wide and low on
+// the page. Ink and greys, matter's colour and the curvature's; no orange or blue.
 // Departures from the diagram's comment, where the chapter's text decides: the rotor stands to the upper right and the
 // wave comes from the upper right, not the rotor to the lower right, because the capstone's step (e) fixes both: the
-// rotor turns in the plane of the page with the pixel in it at 30 degrees from x, and the wave comes from
-// (-0.45, -0.35, 0.82); with x to the left along the line to the person (step (h)), y down the page and z out of it,
-// the rotor lies 30 degrees above the line to the right and the wave comes from 37.9 degrees above it on the same side,
-// and from above the desk. The person's numbers print rho = 4.24 x 10^6, as the text does; steps (d) and (h) have
-// their own lines, since every step gives a number; the readings are gathered in columns rather than set beside their
-// objects, where they crowded the scene; the cart's arrow is in ink, since Part 9's figures use no observer's colour;
-// the caption gives the capstone's numbers and does not name the letters.
+// rotor turns in the plane of the page with the pixel in it at 30 degrees from x, and the wave comes from (-0.45,
+// -0.35, 0.82); with x to the left along the line to the person (step (h)), y down the page and z out of it, the rotor
+// lies 30 degrees above the line to the right and the wave comes from 37.9 degrees above it on the same side, and from
+// above the desk. The person's numbers print rho = 4.24 x 10^6, as the text does; steps (d) and (h) have their own
+// lines, since every step gives a number; the readings are gathered in columns rather than set beside their objects,
+// where they crowded the scene, and only their letters stand in the scene; the cart's arrow is in ink, since Part 9's
+// figures use no observer's colour; the caption gives the capstone's numbers and does not name the letters.
 // Exact: every number, recomputed here from G, c, the masses, distances and noise of the capstone and asserted against
 // its text; the rotor's 99 and 35.5 from the two masses' Newtonian tides at 100 Hz (Fourier component over a turn) and
 // the wave's transverse traceless part for the stated direction, which also fixes the side of x on which the rotor
 // stands (+30 degrees gives 35.5, -30 gives 41.4); the directions on the page of the person, the rotor and the wave's
-// travel, in the frame above. Schematic: every distance and size (3 m and 10 cm are not to one scale), the wave's
-// place (a plane wave has none), the rotor's phase and sense of turning, the arrows' lengths. Pictorial: the person.
+// travel, in the frame above. Schematic: every distance and size (3 m and 10 cm are not to one scale), the wave's place
+// (a plane wave has none), the rotor's phase and sense of turning, the arrows' lengths. Pictorial: the person.
 import { tex, INK, DIM, FAINT, sprite } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, near, n2, HAIR, TICK, LABEL_GAP, SIZE } from './tut-pot-lib.js';
 import { CURV, palette } from './tut-metric-lib.js';
@@ -156,8 +159,11 @@ const ROTOR_R = 12, MASS_R = 2.1, BAR = 0.8, TURN_R = 16, TURN_SPAN = 64, TURN_F
 const FRONT = 24, FRONT_GAP = 6, FRONT_W = 0.6, WAVE_AT = [22, -66], WAVE_ARROW = 15;
 const ARROW_W = 0.6, ARROW_HEAD = 3.4;
 const SMALL = 7;                   // the circled letters
+const CART = { dx: 8, from: 3, len: 15 };   // the cart's arrow: left of the pixel, from above the line to the person, up
+const DIM_AIR = 0.8;               // a dimension's end from the ring or circle it ends on
 const DISC = 3.5;                  // their circles' radius
 const DISC_GAP = 2.4;              // from a circle to its line
+const DISC_STEP = 1.2;             // between two circles side by side in the scene
 const LEAD = 10.6;                 // between the baselines of a reading's lines
 const STEP_GAP = 2.6;              // and more between two readings
 const DESK_EDGE = 0.45;
@@ -208,11 +214,9 @@ export default async function () {
 		S.path([[a, y - hook], [a, y], [b, y], [b, y - hook]], { color: DIM, width: HAIR, cap: 'butt', what: 'the bracket b' });
 		L.push(await placed('b = 10\\ \\mathrm{cm}', b + 2.6, y + HAIR / 2 + LABEL_GAP + 0.2, 0, 0, INK));
 	}
-	// the pixel's own velocity on a cart: across the line to the person, beside the ring
-	{
-		const x = O[0] - 7.2;
-		S.arrow([x, O[1] + 9.5], [x, O[1] - 9.5], { color: INK, width: ARROW_W, head: ARROW_HEAD, layer: 4, what: 'the cart\'s arrow' });
-	}
+	// the pixel's own velocity on a cart: across the line to the person, beside the ring, above that line so that the
+	// person's dimension runs clear of it
+	const cart = S.arrow([O[0] - CART.dx, O[1] - CART.from], [O[0] - CART.dx, O[1] - CART.from - CART.len], { color: INK, width: ARROW_W, head: ARROW_HEAD, layer: 4, what: 'the cart\'s arrow' });
 
 	// ---- the person, 3 m along +x, facing the pixel
 	const P = at(personDir, D);
@@ -229,11 +233,13 @@ export default async function () {
 	const walkX = body.r + 5;
 	const walk = S.arrow([walkX, P[1] - WALK_FROM], [walkX, P[1] - WALK_FROM - WALK_LEN], { color: MATTER, width: ARROW_W, head: ARROW_HEAD, layer: 4, what: 'the walk' });
 	L.push(await placed('1.4\\ \\mathrm{m/s}', walkX - 1.5, walk.B[1] - LABEL_GAP - 0.6, 0, 1, INK));
-	// the dimension along the line of sight, from the person's front to the left neighbour, "3 m" under it
+	// the dimension along the line of sight, from the person's front to the pixel's ring, through the left neighbour
+	// (which stands on that line), a tick at each end; "3 m" under it
 	{
-		const y = O[1], a = walkX + 4.5, b = nbs[1][0] - NB_R - 1.6;
+		const y = O[1], a = walkX + 4.5, b = O[0] - RING - RING_W / 2 - DIM_AIR;
 		S.path([[a, y], [b, y]], { color: DIM, width: HAIR, cap: 'butt', what: 'the person\'s dimension' });
-		S.path([[a, y - TICK], [a, y + TICK]], { color: DIM, width: HAIR, cap: 'butt', what: 'a tick of the person\'s dimension' });
+		for (const x of [a, b]) S.path([[x, y - TICK], [x, y + TICK]], { color: DIM, width: HAIR, cap: 'butt', what: 'a tick of the person\'s dimension' });
+		check(cart.A[1] < y - HAIR / 2 - 2, 'the cart\'s arrow reaches the person\'s dimension');
 		L.push(await placed('3\\ \\mathrm m', (a + dk.l) / 2, y + HAIR / 2 + LABEL_GAP + 0.4, 0.5, 0, INK));
 	}
 	L.push(await placed('70\\ \\mathrm{kg}', P[0], body.t - LABEL_GAP - 0.6, 0.5, 1, INK));
@@ -265,15 +271,15 @@ export default async function () {
 	}
 	// the rotor's dimension, along the line of sight from the pixel's ring to the circle
 	{
-		const a = at(rotorDir, NB + 4), b = at(rotorDir, D - ROTOR_R - 2);
+		const a = at(rotorDir, RING + RING_W / 2 + DIM_AIR), b = at(rotorDir, D - ROTOR_R - HAIR / 2 - DIM_AIR);
 		S.path([a, b], { color: DIM, width: HAIR, cap: 'butt', what: 'the rotor\'s dimension' });
 		const nrm = [rotorDir[1], -rotorDir[0]];                       // across the line, toward the upper left
 		const tick = (q) => S.path([[q[0] - nrm[0] * TICK, q[1] - nrm[1] * TICK], [q[0] + nrm[0] * TICK, q[1] + nrm[1] * TICK]], { color: DIM, width: HAIR, cap: 'butt', what: 'a tick of the rotor\'s dimension' });
-		tick(b);
+		tick(a); tick(b);
 		// "3 m" on the lower right of the line, at the middle of its part outside the desk, as the person's is under its line
 		const out = (O[1] - dk.t) / -rotorDir[1];                       // where the line leaves the desk, through its top
 		check(at(rotorDir, out)[0] < dk.r, 'the rotor\'s line does not leave the desk through its top');
-		const m = at(rotorDir, (out + D - ROTOR_R - 2) / 2), side = [-nrm[0], -nrm[1]];
+		const m = at(rotorDir, (out + D - ROTOR_R) / 2), side = [-nrm[0], -nrm[1]];
 		L.push(await S.clear('3\\ \\mathrm m', m[0] + side[0] * (HAIR / 2 + LABEL_GAP), m[1] + side[1] * (HAIR / 2 + LABEL_GAP), 0, 0, side, { color: INK }));
 	}
 
@@ -296,6 +302,21 @@ export default async function () {
 	L.push(rLab);
 	const wLab = await S.clear(`100\\ \\mathrm{Hz},\\ h = 10^{-21},\\ \\rho = ${WAVE.rho}`, Wc[0] - FRONT / 2, Wc[1] - FRONT_GAP, 1, 0.5, [-1, 0]);
 	L.push(wLab);
+	// the steps' letters in the scene, each beside what its step reads: (a) and (d) before the person's mass, (e) before
+	// the rotor's numbers, (f) and (g) before the wave's, (b) beside the cart's arrow, (c) beside a neighbour, (h) under
+	// the bracket b
+	{
+		const mid = (g) => (g.box.t + g.box.b) / 2;
+		const before = (g, n) => g.box.l - LABEL_GAP - (n - 1) * (2 * DISC + DISC_STEP) - DISC - 0.4;
+		const kg = L.find((g) => g.src.startsWith('70'));
+		L.push(await discs('ad', before(kg, 2), mid(kg)));
+		L.push(await discs('b', cart.A[0] - LABEL_GAP - 0.36 * ARROW_HEAD - DISC - 0.4, (cart.A[1] + cart.B[1]) / 2));
+		L.push(await discs('c', nbs[2][0] + NB_R + LABEL_GAP + DISC + 0.6, nbs[2][1]));
+		L.push(await discs('e', before(rLab, 1), mid(rLab)));
+		L.push(await discs('fg', before(wLab, 2), mid(wLab)));
+		const bl = L.find((g) => g.src.startsWith('b = 10'));
+		L.push(await discs('h', (bl.box.l + bl.box.r) / 2, bl.box.b + LABEL_GAP + DISC + 0.6));
+	}
 	// the readings, step by step, each led by its letter: one column at the right in the book, two under the scene on
 	// the site (a to d, the person and the desk; e to h, the wave)
 	const steps = [
@@ -327,10 +348,11 @@ export default async function () {
 		const probe = await column(steps, 0, 0), h = probe.box.b - probe.box.t;
 		L.push(await column(steps, sceneR + COLUMN_GAP, (sceneT + body.b) / 2 - h / 2 - probe.box.t));
 	} else {
-		// two columns under the scene: a to d from the person's left, e to h ending at the scene's right
+		// two columns under the scene: a to d from the scene's left, e to h ending at the scene's right
 		const top = Math.max(body.b, dk.b) + ROWS_GAP;
-		const left = await column(steps.slice(0, 4), body.l - 1, 0), right = await column(steps.slice(4), 0, 0);
-		L.push(await column(steps.slice(0, 4), body.l - 1, top - left.box.t));
+		const sceneL = Math.min(body.l, ...L.map((l) => l.box.l));
+		const left = await column(steps.slice(0, 4), sceneL, 0), right = await column(steps.slice(4), 0, 0);
+		L.push(await column(steps.slice(0, 4), sceneL + (sceneL - left.box.l), top - left.box.t));
 		L.push(await column(steps.slice(4), sceneR - right.box.r, top - right.box.t));
 	}
 
@@ -353,6 +375,19 @@ async function stepLine(S, step, src, x, y) {
 		svg = `<circle cx="${n2(cx)}" cy="${n2(xh)}" r="${DISC}" fill="none" stroke="${DIM}" stroke-width="${HAIR}"/><g transform="translate(${n2(dx)},${n2(dy)})">${lt}</g>` + svg;
 	}
 	return { src, svg, box: { l: x - HAIR / 2, r: box.r, t: Math.min(box.t, xh - DISC - HAIR / 2), b: Math.max(box.b, xh + DISC + HAIR / 2) } };
+}
+
+/** The circled letters of `steps` in a row, the first circle's centre at (cx, cy), as one label. */
+async function discs(steps, cx, cy) {
+	let svg = '';
+	for (const [k, step] of [...steps].entries()) {
+		const x = cx + k * (2 * DISC + DISC_STEP);
+		const lt = await tex(`\\text{${step}}`, [0, 0], SMALL, 'lB', DIM);
+		const lb = boxOf(lt);
+		svg += `<circle cx="${n2(x)}" cy="${n2(cy)}" r="${DISC}" fill="none" stroke="${DIM}" stroke-width="${HAIR}"/><g transform="translate(${n2(x - (lb.l + lb.r) / 2)},${n2(cy - (lb.t + lb.b) / 2)})">${lt}</g>`;
+	}
+	const r = DISC + HAIR / 2, n = steps.length;
+	return { src: `(${steps})`, svg, box: { l: cx - r, r: cx + (n - 1) * (2 * DISC + DISC_STEP) + r, t: cy - r, b: cy + r } };
 }
 
 /** Where a sprite has ink (alpha at least half): [left, right, top, bottom] in pixels. */

@@ -11,7 +11,10 @@
 // 10^13, since at 10^13 each bell (three standard deviations either side) would be wider than the centimetre between
 // the balls; "1 g" is written under the balls of the first row only; the stretch is written E xi tau^2 / 2, with a
 // slash, since a built-up half is too small to read on a phone (as in section 8.3's tut-occupation); the one person,
-// standing between the two rows, serves both.
+// standing between the two rows, serves both. The strip's names say what each number reads: "gradiometer, 0.02
+// eotvos in 1 s" (the unit E named in full), "the SQL pixel, one mass" (the chapter's one-mass estimate), and, for the
+// bracket's top, "reading the masses' separation" (both masses' spreads, sqrt 2 more). The stretch arrows are 16 points
+// long, long enough to read in print; the rows' lines start far enough left to carry the left one.
 // Exact: sigma_0, sigma_SQL and the three tides (tut-sql-lib.js, asserted against the chapter's text); the bells'
 // widths in proportion, sigma_SQL / sigma_0 = sqrt 2, at the stated magnification of the drawn centimetre; the strip's
 // marks. Schematic: the balls' size, the person's size and distance, the arrows' length. Pictorial: the person
@@ -32,15 +35,15 @@ const MAG = 4e12;                        // the bells' magnification against the
 const BALL = 3.4;                        // a ball's radius (schematic)
 const BELL_H = 13, BELL_GAP = 2.2, BELL_REACH = 3;   // a bell's height, its baseline above the ball, its half-width in sigma
 const ROWS = 62;                         // from the first row's line to the second's
-const LINE_W = 0.4;
+const LINE_W = 0.4, LINE_START = 24;   // the rows' lines, and how far left of the left ball they start
 const STATURE = 84;                      // the person's height on the page (schematic)
 const PERSON_AT = 70;                    // from the right ball to the person's axis
-const ARROW = 9, ARROW_W = 0.6, ARROW_HEAD = 3.4, ARROW_TAIL = 1.2;
+const ARROW = 16, ARROW_W = 0.75, ARROW_HEAD = 4.4, ARROW_TAIL = 1.2;
 const RES = 600;                         // the person's picture, pixels tall
 // ---- the strip
 const lg = Math.log10;
 const S0 = -15, S1 = -8, DEC = 19.5;     // decades, points per decade
-const STRIP_GAP = 34;                    // from the person's right edge to the strip
+const STRIP_GAP = 29;                    // from the person's right edge to the strip
 const MARK = 6;                          // a mark's length right of the strip
 const M_W = 0.55;
 
@@ -91,7 +94,7 @@ export default async function () {
 	check(BELL_REACH * rows[1].sigma * 2 < D - 6, 'the bells of a row touch');
 	check(near(rows[0].sigma / perPt, 2.296e-16, 1e-3) && near(rows[1].sigma / perPt, 3.2475e-16, 1e-3), 'the bells\' spreads');
 	for (const r of rows) {
-		S.path([[x1 - 16, r.y], [xp - 14, r.y]], { color: DIM, width: LINE_W, layer: 1, cap: 'butt', what: `the line of row ${r.key}` });
+		S.path([[x1 - LINE_START, r.y], [xp - 14, r.y]], { color: DIM, width: LINE_W, layer: 1, cap: 'butt', what: `the line of row ${r.key}` });
 		for (const x of [x1, x2]) {
 			S.sphere([x, r.y], BALL, STEEL, { spec: 0.6, shininess: 36, layer: 3 }, `a ball of row ${r.key}`);
 			// the bell: e^{-u^2/2} over u in sigma, from -BELL_REACH to BELL_REACH
@@ -109,9 +112,6 @@ export default async function () {
 	L.push(await S.clear(`\\sigma_{\\rm SQL} = 3.25\\times10^{-16}\\ \\mathrm m`, mid, y2 - BALL - BELL_GAP - BELL_H - LABEL_GAP - 1, 0.5, 1, [0, -1]));
 	// the masses, under the first row's balls
 	for (const x of [x1, x2]) L.push(await placed('1\\ \\mathrm g', x, y1 + BALL + LABEL_GAP + 0.6, 0.5, 0, INK));
-	// the times, at the left of each row
-	L.push(await S.clear('t = 0', x1 - 18, y1, 1, 0.5, [-1, 0]));
-	L.push(await S.clear('t = 1\\ \\mathrm s', x1 - 18, y2, 1, 0.5, [-1, 0]));
 
 	// ---- the stretch: an orange arrow on each ball of the second row, outward along the line
 	for (const [x, s] of [[x1, -1], [x2, 1]]) {
@@ -119,6 +119,9 @@ export default async function () {
 		S.arrow(a, b, { color: ACCENT, width: ARROW_W, head: ARROW_HEAD, layer: 4, what: 'a stretch arrow' });
 	}
 	L.push(await S.clear(`${E}\\xi\\tau^2/2`, mid, y2 + LABEL_GAP + 1, 0.5, 0, [0, 1]));
+	// the times, at the left of each row, clear of the line and the arrows
+	L.push(await S.clear('t = 0', x1 - LINE_START - 2, y1, 1, 0.5, [-1, 0]));
+	L.push(await S.clear('t = 1\\ \\mathrm s', x1 - LINE_START - 2, y2, 1, 0.5, [-1, 0]));
 
 	// ---- the person, standing between the rows, facing the balls
 	const person = await sprite('/figures3d/sprites/tut-person.png');
@@ -139,7 +142,7 @@ export default async function () {
 		S.path([[mid, y], [xp, y]], { color: DIM, width: HAIR, cap: 'butt', layer: 2, what: 'the dimension' });
 		for (const x of [mid, xp]) S.path([[x, y - TICK], [x, y + TICK]], { color: DIM, width: HAIR, cap: 'butt', layer: 2, what: 'a tick of the dimension' });
 		L.push(await placed('1\\ \\mathrm m', (mid + xp) / 2, y + HAIR / 2 + LABEL_GAP + 0.3, 0.5, 0, INK));
-		const note = await placed(`\\text{spreads magnified }4\\times10^{12}\\text{ times}`, x1 - 16, L[L.length - 1].box.b + 6, 0, 0, DIM);
+		const note = await placed(`\\text{spreads magnified }4\\times10^{12}\\text{ times}`, x1 - LINE_START, L[L.length - 1].box.b + 6, 0, 0, DIM);
 		L.push(note);
 		check(near((rows[0].sigma / s0) * (XI / D), MAG, 1e-12), 'the magnification');
 	}
@@ -176,12 +179,12 @@ export default async function () {
 		return [first, second];
 	};
 	L.push(...(await two('the person,', '9.3\\times10^{-9}', yP)));
-	L.push(...(await two('gradiometer, 0.02 E in 1 s,', '2\\times10^{-11}', yG)));
-	L.push(...(await two('the distance of the two,', '9.2\\times10^{-14}', y9 - 1.5, -1, DIM)));
-	L.push(...(await two('the SQL pixel,', '6.5\\times10^{-14}', y6 + 1.5, 1)));
+	L.push(...(await two('gradiometer, 0.02 e\\"otv\\"os in 1 s,', '2\\times10^{-11}', yG)));
+	L.push(...(await two('reading the masses\' separation,', '9.2\\times10^{-14}', y9 - 1.5, -1, DIM)));
+	L.push(...(await two('the SQL pixel, one mass,', '6.5\\times10^{-14}', y6 + 1.5, 1)));
 	check((personTide() / 1e-9).toFixed(1) === '9.3' && (pixelTide() / 1e-14).toFixed(1) === '6.5' && (pixelTide(true) / 1e-14).toFixed(1) === '9.2', 'the strip\'s numbers');
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { sigma0: s0, sql, tides: [personTide(), GRADIOMETER, pixelTide(), pixelTide(true)] };
-	return finish(S, L, [280, 340]);
+	return finish(S, L, [280, 350]);
 }

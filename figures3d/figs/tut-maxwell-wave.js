@@ -16,15 +16,20 @@
 // (figureLayout 'book') they stand side by side as the comment asks, the wave at the left and the amplitude at the
 // right, the real axis on one line with e1, the titles on one line, and the two scales chosen so that Im a reaches as
 // high above Re a as e2 above e1 (72 points per E0 in the wave and 46.6 in the amplitude; the site's 78 and 42).
-// The z axis's head points out of the page,
-// toward the reader, since k = e1 x e2 with e1 to the right and e2 up; the axis runs into the picture behind the
-// origin, up and to the left, the one side where it crosses neither the arrows nor the right-angle mark. The dot on
+// The comment's z axis is not drawn: in an oblique view with no box its slanted line read as lying in the page, with E
+// and cB not at right angles to it. The direction of travel k-hat, out of the page toward the reader since
+// k = e1 x e2 with e1 to the right and e2 up, is drawn as a dot in a small circle at the origin, named "k-hat, out of
+// the page" in the open quarter below and left (as u-hat in section 6.6's tut-maxwell-turn); the axes and the arrows
+// start at its rim. The way E turns in the circular wave, which the comment does not draw, is a thin arc with a head
+// above E, coming round to it clockwise, named "circular" as the circle of a is, so that the caption's "the other way
+// from the electric field" can be seen. The dot on
 // the circle is the instant of the upper panel (E at 30 degrees above e1 is wt = -30 degrees, a at 30 degrees below the
 // real axis), so the two panels show one wave at one instant; it is named "a", and the ends of the segment are named
 // -sqrt2 E0 and sqrt2 E0, so that the radius can be read.
 // Exact: the arrows' directions and lengths (cB = k x E asserted in tut-maxwell-lib.js, with F = a m), the circle's
-// radius sqrt2 E0 at the same scale as the segment's ends, the eight steps of wt and the dot at the drawn instant.
-// Schematic: the slant of the z axis (an oblique view), the scales of the two panels (each its own).
+// radius sqrt2 E0 at the same scale as the segment's ends, the eight steps of wt and the dot at the drawn instant, the
+// sense of E's turn (clockwise, asserted from E1 + i E2 = E0 e^{-i wt}) against a's (anticlockwise, asserted).
+// Schematic: the scales of the two panels (each its own), the arc's radius and span.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, VEC, VEC_HEAD, HAIR, RIGHT } from './tut-pot-lib.js';
 import { DASH, DOT } from './tut-bessel-lib.js';
 import { THIN } from './tut-fourier-lib.js';
@@ -36,8 +41,8 @@ const check = checker(name);
 
 const U = globalThis.figureLayout === 'book' ? 72 : 78;   // points per unit of E0, the upper panel (the book's: see A)
 const AX = 1.3;                            // the axes e1 and e2, units
-const Z_BACK = 0.42, Z_FRONT = 0.62;       // the z axis behind and in front of the origin, units
-const Z_ANGLE = 150;                       // the z axis's direction into the picture, degrees from e1
+const K_RING = 3.4;                        // k-hat, out of the page: the small circle's radius, points
+const TURN_R = 0.74, TURN_FROM = -36, TURN_SPAN = 28;  // E's turn: its radius (units), its start (degrees below E: above it) and its span
 const REACH = 1.42;                        // the lower panel's axes, in units of the radius
 const BOOK = globalThis.figureLayout === 'book';
 // points per unit of E0, the lower panel: the circle's radius is sqrt2 A; in the book, where the panels stand side by
@@ -65,30 +70,57 @@ export default async function () {
 	L.push(t1);
 	const O = [ORIGIN - 20, t1.box.b + ROW + 14 + AX * U];
 	const at = (deg, len) => [O[0] + dir(deg)[0] * len * U, O[1] + dir(deg)[1] * len * U];
-	const e1 = S.arrow(O, at(0, AX), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the axis e1' });
-	const e2 = S.arrow(O, at(90, AX), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the axis e2' });
-	const zb = at(Z_ANGLE, Z_BACK);
-	S.path([zb, O], { color: INK, width: AXIS, layer: 1, cap: 'butt', what: 'the z axis behind' });
-	const kh = S.arrow(O, at(Z_ANGLE + 180, Z_FRONT), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the z axis in front' });
+	// k-hat out of the page, toward the reader: a dot in a small circle at the origin (k = e1 x e2 with e1 to the right
+	// and e2 up); the axes and the arrows start at its rim
+	const rim = (deg) => [O[0] + dir(deg)[0] * (K_RING + 0.6), O[1] + dir(deg)[1] * (K_RING + 0.6)];
+	const e1 = S.arrow(rim(0), at(0, AX), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the axis e1' });
+	const e2 = S.arrow(rim(90), at(90, AX), { color: INK, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the axis e2' });
+	S.raw(`<circle cx="${O[0].toFixed(2)}" cy="${O[1].toFixed(2)}" r="${K_RING}" fill="none" stroke="${INK}" stroke-width="${AXIS}"/><circle cx="${O[0].toFixed(2)}" cy="${O[1].toFixed(2)}" r="0.9" fill="${INK}"/>`, 3);
+	S.mark([O], K_RING + AXIS / 2, 'k-hat');
 	L.push(await placed('\\mathbf e_1', e1.B[0] + LABEL_GAP + 1.2, e1.B[1], 0, 0.5, INK));
 	L.push(await placed('\\mathbf e_2', e2.B[0], e2.B[1] - LABEL_GAP - 1.2, 0.5, 1, INK));
-	L.push(await S.clear('\\hat k', kh.B[0] + 1.5, kh.B[1] + 1.5, 0, 0, [0.5, 0.87], { color: INK }));
+	{
+		const w = [-Math.SQRT1_2, Math.SQRT1_2];
+		L.push(await S.clear('\\hat k\\text{, out of the page}', O[0] + w[0] * (K_RING + 3), O[1] + w[1] * (K_RING + 3), 1, 0, w, { color: INK }));
+	}
 
 	// E at 30 degrees; cB = k x E, a quarter turn anticlockwise, the same length
 	const E = [Math.cos(E_ANGLE * rad), Math.sin(E_ANGLE * rad)];
 	const cB = [-E[1], E[0]];                          // k x E with k = e1 x e2
 	check(near(Math.hypot(...cB), 1) && near(E[0] * cB[0] + E[1] * cB[1], 0), 'cB is not E turned a quarter');
-	const Ea = S.arrow(O, [O[0] + E[0] * U, O[1] - E[1] * U], { color: LIGHT, width: VEC, head: VEC_HEAD, layer: 3, what: 'the arrow E' });
-	const Ba = dashedArrow(S, O, [O[0] + cB[0] * U, O[1] - cB[1] * U], { color: LIGHT, width: VEC, head: VEC_HEAD, dash: DASH, layer: 3, what: 'the arrow cB' });
-	check(near(Ea.L, Ba.L, 1e-9) && near(Ea.L, E0 * U, 1e-9), 'E and cB are not the same length');
+	// each from the origin, drawn from the rim of k-hat's circle
+	const from = (v) => [O[0] + v[0] * (K_RING + 0.6), O[1] - v[1] * (K_RING + 0.6)];
+	const Ea = S.arrow(from(E), [O[0] + E[0] * U, O[1] - E[1] * U], { color: LIGHT, width: VEC, head: VEC_HEAD, layer: 3, what: 'the arrow E' });
+	const Ba = dashedArrow(S, from(cB), [O[0] + cB[0] * U, O[1] - cB[1] * U], { color: LIGHT, width: VEC, head: VEC_HEAD, dash: DASH, layer: 3, what: 'the arrow cB' });
+	check(near(Ea.L, Ba.L, 1e-9) && near(Ea.L + K_RING + 0.6, E0 * U, 1e-9), 'E and cB are not the same length');
 	{
-		// the right-angle mark between them
-		const u = [E[0], -E[1]], w = [cB[0], -cB[1]], s = RIGHT + 0.6;
+		// the right-angle mark between them, outside k-hat's circle
+		const u = [E[0], -E[1]], w = [cB[0], -cB[1]], s = K_RING + RIGHT;
 		const p = [O[0] + u[0] * s, O[1] + u[1] * s], q = [O[0] + w[0] * s, O[1] + w[1] * s];
 		S.path([p, [p[0] + w[0] * s, p[1] + w[1] * s], q], { color: INK, width: HAIR, layer: 2.5, cap: 'butt', what: 'the right-angle mark' });
 	}
 	L.push(await S.clear('\\mathbf E', Ea.B[0] + 2, Ea.B[1] - 2, 0, 1, [0.5, -0.87], { color: LIGHT }));
 	L.push(await S.clear('c\\mathbf B = \\hat k\\times\\mathbf E', Ba.B[0] - 3, Ba.B[1], 1, 0.5, [-1, 0], { color: LIGHT }));
+	// the way E turns in the circular wave, E1 + i E2 = E0 e^{-i wt}: its angle -wt falls, so it turns clockwise on the
+	// page; a thin arc with a head, above E, coming round to it, named "circular" as the circle of a is
+	{
+		const turn = -1;                           // d(angle of E)/d(wt): E1 + i E2 = E0 e^{-i wt}
+		check(near(Math.atan2(Math.sin(-(WT0 + 1) * rad), Math.cos(-(WT0 + 1) * rad)) / rad - E_ANGLE, turn, 1e-9), 'E does not turn clockwise');
+		const a0 = E_ANGLE - TURN_FROM, a1 = a0 + turn * TURN_SPAN, R0 = TURN_R * U;
+		const pt = (deg) => [O[0] + Math.cos(deg * rad) * R0, O[1] - Math.sin(deg * rad) * R0];
+		const hd = VEC_HEAD - 0.6, back = a1 - (turn * hd) / R0 / rad;
+		const arc = Array.from({ length: 61 }, (_, k) => pt(a0 + ((back - a0) * k) / 60));
+		S.path(arc, { color: LIGHT, width: VEC - 0.15, layer: 2.5, cap: 'butt', what: 'the turn of E' });
+		const tip = pt(a1), b = pt(back), u = [(tip[0] - b[0]) / hd, (tip[1] - b[1]) / hd], w = [-u[1], u[0]], hw = 0.36 * hd;
+		const p = [b[0] + w[0] * hw, b[1] + w[1] * hw], q = [b[0] - w[0] * hw, b[1] - w[1] * hw];
+		S.raw(`<path d="M${tip[0].toFixed(2)},${tip[1].toFixed(2)}L${p[0].toFixed(2)},${p[1].toFixed(2)}L${q[0].toFixed(2)},${q[1].toFixed(2)}Z" fill="${LIGHT}"/>`, 2.5);
+		S.mark([tip, p, q, tip], 0, 'the turn of E\'s head');
+		// clockwise on the page: the head points the way the angle falls
+		check(Math.sin(a1 * rad) * u[0] + Math.cos(a1 * rad) * u[1] > 0.9, 'the head of E\'s turn does not point clockwise');
+		// its name above its start
+		const m = pt(a0);
+		L.push(await S.clear('\\text{circular}', m[0], m[1] - LABEL_GAP - 0.6, 0.5, 1, [0, -1], { color: LIGHT }));
+	}
 
 	// ---- the lower panel: the amplitude a in the complex plane
 	// on the site below the upper panel; in the book at its right, the real axis level with e1 and the title on the

@@ -5,8 +5,8 @@
 // from the unrounded radii), solid ink, its least value, -2.04 at a = 4.335, a dot; the uniform ball with the hole's mass
 // and m_1, radius 1.3135 r_s, solid grey, least +0.1398 at a = 1.2324, nowhere below zero; the step absorber with
 // b = b_c (its unrounded radii 0.66826, 1.22608, 1.45907 r_s), ink dashed, least -1.787 at a = 5.060, a dot. Each curve
-// stops where it leaves the top; the ball is named above where it leaves, the hole beside its right branch and the
-// step absorber at its right end.
+// stops where it leaves the top; the ball is named beside its right branch, low enough to stand apart from the axis's
+// name, the hole beside its right branch and the step absorber at its right end.
 // Departures from the diagram's comment: the region below zero is a pale tint of matter's colour, not the paper's pale
 // blue, since it is where the mass would have to be negative and blue means a squeeze in the tutorial's figures; the
 // hole's parabola is ink, not orange, told from the step absorber's by its weight and stroke; the axis up starts at
@@ -29,7 +29,7 @@ const A0 = 0, A1 = 9, Y0 = -3.4, Y1 = 14;
 const DX = 25, DY = 13;                         // points per unit
 const HEAVY = 0.75, CURVE = 0.55, DASH = [3, 2], DOT_R = 1.45;
 const VEIL = 0.16;                              // the region's opacity
-const caption = 'Look first at the two dips into the shaded region: the hole\'s sums and the step absorber\'s fall below zero, which no positive mass can do; the ball\'s curve stays above. Curves exact, from the unrounded radii of panel (c) of Figure [](/paper/#fig:hole-response).';
+const caption = 'Look first at the two dips into the shaded region: the hole\'s sums and the step absorber\'s fall below zero, which no positive mass can do; the ball\'s curve stays above. Curves exact, from the unrounded radii.';
 
 export default async function () {
 	const { state } = await chapter(check);
@@ -108,7 +108,12 @@ export default async function () {
 	L.push(await placed('\\text{no positive mass}', P.X(0.3), P.Y(-1.7), 0, 0.5, INK));
 
 	// ---- the curves' names, at their ends: above the top where they leave it, the step absorber's at its right end
-	L.push(await S.clear(`\\text{uniform ball, } R = ${BALL_R.toFixed(2)}\\,r_s`, P.X(ball.ts[0]) - 2, P.top - LABEL_GAP - 1.2, 0, 1, [1, 0], { color: DIM }));
+	{
+		// the ball's, beside its right branch, well under the axis's name
+		const y = 8.5, a = (BALL_M[1] + Math.sqrt(BALL_M[1] ** 2 - BALL_M[0] * (BALL_M[2] - y))) / BALL_M[0];
+		check(Math.abs(test(BALL_M, a) - y) < 1e-9, 'the ball\'s name is not at its curve');
+		L.push(await S.clear(`\\begin{array}{l}\\text{uniform ball,}\\\\ R = ${BALL_R.toFixed(2)}\\,r_s\\end{array}`, P.X(a), P.Y(y), 0, 0.5, [1, 0], { color: DIM }));
+	}
 	{
 		const y = 11, a = (HOLE_M[1] + Math.sqrt(HOLE_M[1] ** 2 - HOLE_M[0] * (HOLE_M[2] - y))) / HOLE_M[0];
 		L.push(await S.clear('\\text{hole}', P.X(a), P.Y(y), 0, 0.5, [1, 0]));

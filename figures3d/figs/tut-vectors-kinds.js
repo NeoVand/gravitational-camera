@@ -1,22 +1,24 @@
 // The tutorial, section 6.2 (tutorial/relativity/spacetime-vectors.md), its first diagram: the three kinds of
 // four-vector, sorted by the sign of a.a. One square panel, units of light-seconds at one scale on both axes, so that
 // light runs at 45 degrees: the room's axes in thin ink, x across and ct upward, each from -1.6 to 1.6, named at their
-// ends; the light cone of the origin, the two lines x = +-ct, thin and dashed in the light role's colour, the upper
-// right one named "light"; the inside of the cone, |x| < |ct|, filled with the page's faint neutral tint. A small ink
+// ends, with ticks at +-1 numbered in grey (x's under it, ct's left of it); the light cone of the origin, the two lines
+// x = +-ct, thin and dashed in the light role's colour, the upper right one named "light"; the inside of the cone, |x|
+// < |ct|, filled with the page's faint neutral tint. A small ink
 // dot at the origin, the flash A. Three arrows from A: in the observer's colour to (x, ct) = (0.75, 1.25), along the
 // worldline of a clock at 0.6c, named "time-like, a.a = -1"; in the light role's colour to (1.25, 1.25), on the cone,
-// named "null, a.a = 0"; in ink to (1, 0), ending at a small ink dot, the flash B, named "space-like, a.a = +1". The
+// named "null, a.a = 0"; in the paper's blue to (1, 0), ending at a small ink dot, the flash B, named "space-like,
+// a.a = +1" in blue under B's number. (Drawn in ink along the ink x axis, only its head showed.) The
 // values of a.a are in light-seconds squared.
 // The panel is drawn at 68 points to the light-second, section 6.1's scale (218 points for its 3.2 light-seconds,
 // about the comment's 520 site pixels at 1.9 pixels to the point, less the room the names take).
 // Exact: every line (the light lines at 45 degrees on the page, asserted), the three arrows' ends (asserted in
 // tut-vectors-lib.js with their a.a), the flashes. Nothing is schematic.
-import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, VEC, VEC_HEAD } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, VEC, VEC_HEAD, HAIR, TICK } from './tut-pot-lib.js';
 import { Plot, TINT } from './tut-prob-lib.js';
 import { dashed } from './tut-orb-lib.js';
 import { DASH, DOT } from './tut-bessel-lib.js';
 import { THIN } from './tut-fourier-lib.js';
-import { INK } from '../lib.js';
+import { INK, DIM, ACCENT2 } from '../lib.js';
 import { chapter, palette, OBS, LIGHT, KINDS, square } from './tut-vectors-lib.js';
 
 const name = 'tut-vectors-kinds';
@@ -26,6 +28,8 @@ const U = 68;                              // points per light-second
 const R = 1.6;                             // the axes run from -R to R
 const EVENT = DOT + 0.25;                  // a flash's dot, radius (section 6.1's)
 const FILL = 0.65;                         // the inside of the cone: the opacity of the page's tint
+const SPACE = ACCENT2;                     // the space-like arrow: the paper's blue, so that it shows along the x axis
+const NUM = 7.5;                           // the ticks' numbers
 
 /** The distance from the point q to the segment ab. */
 function toSegment(q, a, b) {
@@ -60,7 +64,16 @@ export default async function () {
 	const time = S.arrow(o, tips.time, { color: OBS, width: VEC, head: VEC_HEAD, layer: 3, what: 'the time-like arrow' });
 	const nul = S.arrow(o, tips.null, { color: LIGHT, width: VEC, head: VEC_HEAD, layer: 3, what: 'the null arrow' });
 	// the space-like arrow ends with its point on B's dot
-	const space = S.arrow(o, [tips.space[0] - EVENT, tips.space[1]], { color: INK, width: VEC, head: VEC_HEAD, layer: 3, what: 'the space-like arrow' });
+	const space = S.arrow(o, [tips.space[0] - EVENT, tips.space[1]], { color: SPACE, width: VEC, head: VEC_HEAD, layer: 3, what: 'the space-like arrow' });
+
+	// ---- ticks at +-1 light-second on both axes, numbered (x = 1 under B, ct = +-1 left of the axis)
+	const ticks = [];
+	for (const v of [-1, 1]) {
+		const [xx, xy] = at([v, 0]), [tx, ty] = at([0, v]);
+		S.path([[xx, xy - TICK], [xx, xy + TICK]], { color: INK, width: HAIR + 0.1, layer: 1.1, cap: 'butt', what: `the x tick at ${v}` });
+		S.path([[tx - TICK, ty], [tx + TICK, ty]], { color: INK, width: HAIR + 0.1, layer: 1.1, cap: 'butt', what: `the ct tick at ${v}` });
+		ticks.push(['x', v, xx, xy], ['ct', v, tx, ty]);
+	}
 	check(near(tips.null[0] - o[0], o[1] - tips.null[1], 1e-9), 'the null arrow is not at 45 degrees');
 
 	// ---- the light cone, x = +-ct, at 45 degrees on the page; no dash under the null arrow or A's dot
@@ -95,8 +108,16 @@ export default async function () {
 	L.push(await S.clear('\\text{time-like, } a\\cdot a = -1', time.B[0], time.B[1] - 5, 0.5, 1, [-1, 0], { color: OBS, gap: 3.6 }));
 	// null: to the right of its point, under the light line
 	L.push(await S.clear('\\text{null, } a\\cdot a = 0', nul.B[0] + 4, nul.B[1] + 3, 0, 0, [1, 0], { color: LIGHT }));
-	// space-like: under the x axis, centred under B, clear of the lower light line
-	L.push(await S.clear('\\text{space-like, } a\\cdot a = +1', tips.space[0], tips.space[1] + LABEL_GAP + 1, 0.5, 0, [0, 1], { color: INK }));
+	// the ticks' numbers: under the x axis, left of the ct axis
+	let under1 = 0;
+	for (const [k, v, x, y] of ticks) {
+		const src = v < 0 ? '-1' : '1';
+		const l = k === 'x' ? await placed(src, x, y + TICK + LABEL_GAP + 0.5, 0.5, 0, DIM, NUM) : await placed(src, x - TICK - LABEL_GAP - 0.5, y, 1, 0.5, DIM, NUM);
+		L.push(l);
+		if (k === 'x' && v === 1) under1 = l.box.b;
+	}
+	// space-like: under the x axis, centred under B and its number, clear of the lower light line
+	L.push(await S.clear('\\text{space-like, } a\\cdot a = +1', tips.space[0], under1 + LABEL_GAP + 0.6, 0.5, 0, [0, 1], { color: SPACE }));
 
 	// the printed values of a.a are the vectors' own
 	check(near(square(KINDS.time), -1, 1e-14), 'the time-like label');

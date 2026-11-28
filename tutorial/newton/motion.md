@@ -69,9 +69,10 @@ inside a body can move it (Figure [](#fig:parts)). A body with no outside force 
 **conservation of momentum**.
 
 ![A body of five parts joined by springs, drawn at three equal intervals of time. Each spring pulls on its two parts
-with forces of equal size in opposite directions, such as $\vect F_{ab}$ and $\vect F_{ba}$; the parts move on wavy
-paths, while the centre of mass, the quartered circle, moves along the dotted straight line by equal steps. The
-masses, springs and arrow scale are chosen for the drawing.](tut-motion-parts){#fig:parts}
+with forces of equal size in opposite directions, drawn in orange beside the spring at the first instant, such as
+$\vect F_{ab}$ and $\vect F_{ba}$; the parts move on the wavy pale paths, while the centre of mass, the quartered
+circle, moves along the dotted straight line by equal steps. The masses,
+springs and arrow scale are chosen for the drawing.](tut-motion-parts){#fig:parts}
 
 ## Work changes kinetic energy, and a steady field keeps the energy fixed
 
@@ -142,10 +143,10 @@ which we take as the origin, with the **angular velocity** $\sym{angular-velocit
 vector along the axis whose length is the angle turned per second, in radians per second. Each point then moves with
 velocity $\vect v = \vect\Omega\times\vect x$ (Figure [](#fig:spin)).
 
-![A slab turning about a vertical axis with the angular velocity $\vect\Omega$. Each marked point moves on a circle
-about the axis with the velocity $\vect v = \vect\Omega\times\vect x$, along the circle and in proportion to the
-distance from the axis; the point on the axis does not move. The slab's shape and the arrow scale are chosen for the
-drawing.](tut-motion-spin){#fig:spin}
+![A slab turning about a vertical axis with the angular velocity $\vect\Omega$. Each marked point, on one radius
+of the top face, moves on a circle about the axis with the velocity $\vect v = \vect\Omega\times\vect x$, along the
+circle and in proportion to the distance from the axis; the point on the axis does not move. The slab's shape and
+the arrow scale are chosen for the drawing.](tut-motion-spin){#fig:spin}
 
 For one part of mass $\matter m$ the angular momentum is $\matter m\,\vect x\times(\vect\Omega\times\vect x)$. The rule
 of section 1.1, $\vect a\times(\vect b\times\vect c) = \vect b\,(\vect a\cdot\vect c) - \vect c\,(\vect a\cdot\vect b)$,
@@ -224,8 +225,8 @@ whose line of sight grazes the core, 33° from straight down.[^p-core]
 
 ![The two Earths of section 1.3, cut through the centre and drawn to scale: on the left, a core of radius 3480 km
 inside a mantle out to 6371 km, with the densities that this section finds; on the right, the uniform Earth. The
-arrows outside are the pull, the same for both at every distance. The stone and the metal are pictures, and their
-shades show only which layer is denser.](tut-motion-earths){#fig:earths}
+arrows outside are the pull at one distance; at every distance outside, it is the same for both. The stone and the
+metal are pictures, and their shades show only which layer is denser.](tut-motion-earths){#fig:earths}
 
 We write $q = R_{\rm c}/R = 0.5462$ and $\matter{\bar\rho} = 5513\unit{kg\,m^{-3}}$ for the mean density. The mass is
 $\tfrac43\pi$ times $\matter\rho_{\rm c}R_{\rm c}^3 + \matter\rho_{\rm m}(R^3 - R_{\rm c}^3)$, and it must equal
@@ -453,11 +454,12 @@ $-\obs\Omega^2/2\pi G = -12.7\unit{kg\,m^{-3}}$ for the Earth's rate: a negative
 air. When the balls move, the Coriolis term adds $-2\obs{\vect\Omega}\times\dot{\vect\xi}$, which turns the ring
 rather than stretching it.
 
-![Four free balls let go at rest on a turning table, seen from outside (left) and from the table (right); the painted
-arrow shows how far the table has turned. From outside, the two balls off the axis move on straight lines while the
-table turns beneath them; from the table they drift apart across the axis on curves, and the two balls on the axis
-stay where they are. The orange arrows are each ball's initial acceleration as the turning observer measures it,
-$\obs\Omega^2\vect x_\perp$ away from the axis; their length is schematic.](tut-motion-frame){#fig:frame}
+![Four free balls let go at rest on a turning table, seen from outside (left) and from the table (right); open
+circles mark where the balls were let go, and filled balls where they are later. The painted arrow shows how far the
+table has turned. From outside, the two balls off the axis move on straight lines while the table turns beneath them;
+from the table they drift apart across the axis on curves, and the two balls on the axis stay where they are. The
+orange arrows are each ball's initial acceleration as the turning observer measures it, $\obs\Omega^2\vect x_\perp$
+away from the axis; their length is schematic.](tut-motion-frame){#fig:frame}
 
 For the Earth's turning, $\obs\Omega^2 = (7.29 \times 10^{-5}\unit{s^{-1}})^2 = 5.3 \times 10^{-9}\unit{s^{-2}}$. That
 is 31,000 times the Moon's tide at the Earth, $1.7 \times 10^{-13}\unit{s^{-2}}$, and 57 per cent of the person's

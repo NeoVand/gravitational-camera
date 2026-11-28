@@ -1,16 +1,18 @@
-// The tutorial, section 6.4 (tutorial/relativity/energy-and-momentum.md), its first diagram: the mass shell. One
-// panel, units of mc^2 at one scale on both axes: |p|c across from -2.0 to 2.0 and E upward from 0 to 2.4, thin ink,
-// named "pc/mc^2" (p in bold: the momentum along one line, negative for the other direction) and "E/mc^2". The two
-// light lines E = +-pc, thin and dashed in the light role's colour, named "light, E = |p|c" once, beside the upper
-// right one. The upper branch of the hyperbola E^2 - p^2 c^2 = m^2 c^4 from pc = -1.9 to 1.9, a thin stroke in
-// matter's colour, named "m > 0" near its upper right end, off the curve. Two dots on it in matter's colour: at
-// (0, 1), named "at rest, E = mc^2", and at (0.75, 1.25), named "0.6c"; from the second, thin dotted segments across
-// to the E axis and down to the pc axis, with the values 1.25 and 0.75 at their ends.
+// The tutorial, section 6.4 (tutorial/relativity/energy-and-momentum.md), its first diagram: the mass shell. One panel,
+// units of mc^2 at one scale on both axes: p_z c across from -2.0 to 2.0 and E upward from 0 to 2.4, thin ink, named
+// "p_z c/mc^2" (the momentum along one line, the z axis, negative for the other direction; it was "pc" with p in bold,
+// a vector over a signed range) and "E/mc^2". The two light lines E = +-p_z c, thin and dashed in the light role's
+// colour, named "light, E = |p_z|c" once, beside the upper right one. The upper branch of the hyperbola E^2 - p_z^2 c^2
+// = m^2 c^4 from p_z c = -1.9 to 1.9, a thin stroke in matter's colour, named "m > 0" near its upper right end, off the
+// curve. Two dots on it in matter's colour: at (0, 1), named "at rest, E = mc^2", and at (0.75, 1.25), named "0.6c";
+// from the second, thin dotted segments across to the E axis and down to the p_z c axis, with the values 1.25 and 0.75
+// at their ends.
 // Departures from the diagram's comment: the axes carry numbers, as section 6.1's and 6.2's do, so that the units of
 // mc^2 can be read: -2, -1, 0, 1 and 2 across and 2 upward. At E = 1 there is neither tick nor number, since the dot
-// "at rest" sits on the axis there and its label says E = mc^2. The name of the dot at rest stands in two lines in
-// the bowl under the hyperbola's vertex, left of the E axis, the one place near the dot that no line crosses. The
-// light lines run from the origin to the panel's edges, (+-2, 2).
+// "at rest" sits on the axis there and its label says E = mc^2; a tick there would lie along the hyperbola's flat
+// vertex, and its number, beside the axis, would sit on the curve (it passes within 0.3 points of it). The name of the
+// dot at rest stands in two lines in the bowl under the hyperbola's vertex, left of the E axis, the one place near the
+// dot that no line crosses. The light lines run from the origin to the panel's edges, (+-2, 2).
 // Exact: the light lines at 45 degrees on the page (asserted), the hyperbola (sampled so that no two neighbouring
 // points are more than a quarter of a point apart, every point asserted on it), the dots on it, and the dotted
 // segments' ends at E = 1.25 and pc = 0.75 (asserted in tut-momentum-lib.js with 1.25^2 - 0.75^2 = 1). Nothing is
@@ -62,7 +64,7 @@ export default async function () {
 		S.path([[u, v], [u - TICK, v]], { color: DIM, width: HAIR, cap: 'butt', what: 'the E tick at 2' });
 		L.push(await placed('2', u - TICK - NUM, v, 1, 0.5, DIM));
 	}
-	L.push(await placed('\\boldsymbol{p}c/mc^2', xA.B[0] - 2, xA.B[1] - LABEL_GAP - 3, 1, 1, INK));
+	L.push(await placed('p_zc/mc^2', xA.B[0] - 2, xA.B[1] - LABEL_GAP - 3, 1, 1, INK));
 	L.push(await placed('E/mc^2', eA.B[0] + LABEL_GAP + 2, eA.B[1] + 1, 0, 0, INK));
 
 	// ---- the light lines, E = |p|c, at 45 degrees on the page
@@ -110,7 +112,7 @@ export default async function () {
 		L.push(await S.clear('m > 0', ex - 4, ey - 1, 1, 1, [-1, 0], { color: MATTER }));
 		// light: under the upper right light line, inside the panel
 		const q = at([0.95, 0.95]);
-		L.push(await S.clear('\\text{light, } E = |\\boldsymbol{p}|c', q[0], q[1], 0, 0, [0.7071, 0.7071], { color: LIGHT }));
+		L.push(await S.clear('\\text{light, } E = |p_z|c', q[0], q[1], 0, 0, [0.7071, 0.7071], { color: LIGHT }));
 	}
 
 	S.checkAll(L);

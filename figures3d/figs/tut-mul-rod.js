@@ -1,9 +1,12 @@
 // The tutorial, section 2.3 (tutorial/outside/multipoles.md), its second diagram: the person one metre from a ring
 // of free beads, drawn twice. Above, as section 1.4 drew it, a ball of water of 70 kg, of radius 0.256 m; below, as a
 // uniform thin rod of the same mass, 1.7 m long and upright. Each has its ring of eight beads one metre from its
-// centre, level with it, in the plane of the page, drawn out by its own tide; under each, an orange bar for the size
-// of the stretch along the line to the ring, 9.3 and 5.6 x 10^-9 s^-2, to one scale. About the rod's centre a dashed
-// circle of radius 0.85 m, the smallest sphere that holds the rod, through its two ends; the ring lies just outside it.
+// centre, level with it, in the plane of the page, drawn out by its own tide. Under each body and its ring, two rows:
+// a dimension line of 1 m from the body's centre to the ring's; under it an orange bar for the size of the stretch
+// along the line to the ring, 9.3 and 5.6 x 10^-9 s^-2, to one scale, from the body's centre (the rod hides the
+// bar's first points), named "stretch" with its value under it. About the rod's centre a dashed circle of radius
+// 0.85 m, the smallest sphere that holds the rod, through its two ends, its radius drawn up and to the left; the ring
+// lies just outside it, and the rod's rows lie inside it.
 // Exact: the ball's radius, (3 M / 4 pi rho)^(1/3) for water, and the rod's length, the circle's radius and the
 // distance of one metre, all to one scale (asserted in points); the tides, the ball's (GM/r^3) diag(-2, 1, 1) and the
 // rod's from the point-mass tide summed over its length (the closed forms, checked against Simpson's rule): -5.63,
@@ -14,9 +17,8 @@
 // eps (exaggerated), and the rod's thickness. Pictorial: the stone, a picture from an image model
 // (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, as in figs/hair.js), clipped here to the exact
 // circle and to the rod's exact outline. The printed book (figureLayout 'book') sets the two side by side, the ball
-// left and the rod right, at the same scale, in three rows across both: the two names level at the top, the two
-// centres and the two rings level in the middle, the two bars on one line at the bottom (the ball's dimension under
-// it, as on the site); the site keeps them stacked.
+// left and the rod right, at the same scale, the two centres and the two rings level, each body's name over it; the
+// site keeps them stacked, the two names at the left.
 import { INK, DIM, ACCENT, sprite } from '../lib.js';
 import { MARGIN, circle, outline, STEEL, SPRITES } from '../stone.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, HAIR, TICK, LINE, n2 } from './tut-pot-lib.js';
@@ -62,9 +64,12 @@ const ROD = 6;                      // the rod's thickness, points (schematic)
 const BAR = 3.6;                    // a bar's height
 const PER = 11.2;                   // a bar's length per 10^-9 s^-2
 const RING_W = 0.5;                 // the rings' stroke
-const GAP_ROWS = 30;                // from the ball's bar to the top of the dashed circle
+const GAP_ROWS = 22;                // the site: from the ball's stretch to the top of the dashed circle
+const BAR_DROP = 8;                 // from a dimension line to the top of its bar
+const VALUE_DROP = 3;               // from a bar to the top of its words
+const NAME_GAP = 6;                 // from a name's baseline to the top of its body
 const BOOK = globalThis.figureLayout === 'book';
-const GAP_SIDE = 16;                // the book: from the ball's bar's value to the dashed circle's left
+const GAP_SIDE = 16;                // the book: from the ball's rows to the dashed circle's left
 
 
 /** The stone, embedded once: an <image> of unit size in the figure's defs, and each body a <use> of it, scaled and
@@ -113,40 +118,40 @@ export default async function () {
 		}
 		return { l: cx - R * ax - BEAD, r: cx + R * ax + BEAD, t: cy - R * az - BEAD, b: cy + R * az + BEAD };
 	};
-	/** An orange bar from xc, its top at y, for the stretch s (s^-2), and its value at its right. */
-	const bar = async (xc, y, s, what) => {
-		const w = (s / UNIT) * PER;
-		S.fill(`M${n2(xc)},${n2(y)}h${n2(w)}v${BAR}h${n2(-w)}Z`, { l: xc, r: xc + w, t: y, b: y + BAR }, { color: ACCENT, layer: 2, what });
-		const value = await placed(`${(s / UNIT).toFixed(1)}\\times10^{-9}\\,\\mathrm{s^{-2}}`, xc + w + 4, y + BAR / 2, 0, 0.5, INK);
+	/** Under a body at (xc, y0) and its ring, the two rows that measure them: the distance, a dimension line from the
+	 * body's centre to the ring's, its value above it; under it, the stretch, an orange bar from the body's centre
+	 * (behind the body, which hides its first points), named, its value under it. Returns the rows' extent. */
+	const rows = async (xc, y0, ringBox, s, what, { from = xc } = {}) => {
+		const yd = ringBox.b + 9;
+		S.path([[xc, yd], [xc + DISTANCE * K, yd]], { color: DIM, width: HAIR, layer: 4, cap: 'butt', what: `${what}: the dimension` });
+		for (const x of [xc, xc + DISTANCE * K]) S.path([[x, yd - TICK], [x, yd + TICK]], { color: DIM, width: HAIR, layer: 4, cap: 'butt', what: `${what}: a tick of the dimension` });
+		check(near(DISTANCE * K, 120, 1e-12), 'the distance is not one metre');
+		L.push(await placed('1\\,\\mathrm m', xc + (DISTANCE * K) / 2, yd - 2.6, 0.5, 1, DIM));
+		const yb = yd + BAR_DROP, w = (s / UNIT) * PER;
+		S.fill(`M${n2(xc)},${n2(yb)}h${n2(w)}v${BAR}h${n2(-w)}Z`, { l: from, r: xc + w, t: yb, b: yb + BAR }, { color: ACCENT, layer: 0, what: `${what}: the bar` });
+		const value = await placed(`\\text{stretch } ${(s / UNIT).toFixed(1)}\\times10^{-9}\\,\\mathrm{s^{-2}}`, from, yb + BAR + VALUE_DROP, 0, 0, INK);
 		L.push(value);
-		return { w, r: value.box.r };
+		return { w, r: Math.max(xc + w, value.box.r, ringBox.r), b: value.box.b };
 	};
+	/** A small + at a centre. */
+	const centre = (x, y, c, w) => S.path([[x - 2, y], [x + 2, y], [x, y], [x, y - 2], [x, y + 2]], { color: c, width: HAIR, layer: 4, cap: 'butt', what: w });
 
-	// ---- above (the book: at the left): the ball, its ring, the distance, its bar
+	// ---- above (the book: at the left): the ball, its ring, the distance, its stretch
 	const yA = ORIGIN - (BOOK ? 50 : 150), rb = RADIUS * K;
 	let xc = xA;
-	S.raw(stoneUse(STONE, 'tut-mul-rod-ball', face, xc, yA, rb, circle(xc, yA, rb)) + outline(xc, yA, rb, 0.35, STONE_INK), 0);
+	S.raw(stoneUse(STONE, 'tut-mul-rod-ball', face, xc, yA, rb, circle(xc, yA, rb)) + outline(xc, yA, rb, 0.35, STONE_INK), 1);
 	S.mark([[xc, yA]], rb, 'the ball');
 	const ringA = ring(xc + DISTANCE * K, yA, -ball / UNIT, ball / 2 / UNIT, 'the ball\'s ring');
-	check(near(xc + DISTANCE * K - xc, 120, 1e-12), 'the distance is not one metre');
-	// the distance: a dimension line below both, ticks at the ball's centre and the ring's, its value above it
-	const yd = Math.max(yA + rb, ringA.b) + 9;
-	S.path([[xc, yd], [xc + DISTANCE * K, yd]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: 'the dimension' });
-	for (const x of [xc, xc + DISTANCE * K]) S.path([[x, yd - TICK], [x, yd + TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: 'a tick of the dimension' });
-	// the centres, marked with a small + on the ball and at the ring
-	for (const [x, c, w] of [[xc, STONE_INK, 'the ball\'s centre'], [xc + DISTANCE * K, DIM, 'the ring\'s centre']])
-		S.path([[x - 2, yA], [x + 2, yA], [x, yA], [x, yA - 2], [x, yA + 2]], { color: c, width: HAIR, layer: 4, cap: 'butt', what: w });
-	L.push(await placed('1\\,\\mathrm m', xc + (DISTANCE * K) / 2, yd - 2.6, 0.5, 1, DIM));
-	// its bar (the book: on the rod's bar's line, under the dashed circle)
-	const yBarA = BOOK ? yA + 0.85 * K + 9 : yd + 10;
-	const { w: wA, r: rA } = await bar(xc, yBarA, ball, 'the ball\'s bar');
-	// its name at the top left of the row (the book: over the ball's left edge, level with the rod's name)
-	const nameA = BOOK ? await placed('\\text{a ball of water}', xc - rb, yA - 0.85 * K, 0, 0, INK) : await placed('\\text{a ball of water}', xc - 0.85 * K, yA - rb, 0, 0, INK);
+	centre(xc, yA, STONE_INK, 'the ball\'s centre');
+	centre(xc + DISTANCE * K, yA, DIM, 'the ring\'s centre');
+	const A = await rows(xc, yA, { ...ringA, b: Math.max(yA + rb, ringA.b) }, ball, 'the ball');
+	// its name: the book, over the ball's left edge; the site, at the top left of the row, over the rod's name
+	const nameA = BOOK ? await placed('\\text{a ball of water}', xc - rb, yA - rb - NAME_GAP, 0, 1, INK) : await placed('\\text{a ball of water}', xc - 0.85 * K, yA - rb, 0, 0, INK);
 
 	// ---- below (the book: at the right, its centre level with the ball's): the rod, its smallest sphere, its ring,
-	// its bar
-	if (BOOK) xc = Math.max(rA, xc + DISTANCE * K + RING * K + 10) + GAP_SIDE + 0.85 * K;
-	const yB = BOOK ? yA : yd + 10 + BAR + GAP_ROWS + 0.85 * K, h = (LENGTH / 2) * K;
+	// the distance, its stretch
+	if (BOOK) xc = Math.max(A.r, nameA.box.r) + GAP_SIDE + 0.85 * K;
+	const yB = BOOK ? yA : A.b + GAP_ROWS + 0.85 * K, h = (LENGTH / 2) * K;
 	const rodPath = `M${n2(xc - ROD / 2)},${n2(yB - h)}H${n2(xc + ROD / 2)}V${n2(yB + h)}H${n2(xc - ROD / 2)}Z`;
 	S.raw(stoneUse(STONE, 'tut-mul-rod-rod', face, xc, yB, 1.08 * h, rodPath) + `<path d="${rodPath}" fill="none" stroke="${STONE_INK}" stroke-width="0.35"/>`, 1);
 	S.boxes.push({ box: { l: xc - ROD / 2, r: xc + ROD / 2, t: yB - h, b: yB + h }, what: 'the rod' });
@@ -168,17 +173,17 @@ export default async function () {
 	}
 	check(left >= 2 && left <= 6, `${left} dashes left out at the rod's ends`);
 	check(ringB.l - (xc + Rs) > 2.5, `the ring is ${(ringB.l - xc - Rs).toFixed(2)} pt from the dashed circle`);
-	for (const [x, c, w] of [[xc, STONE_INK, 'the rod\'s centre'], [xc + DISTANCE * K, DIM, 'the ring\'s centre below']])
-		S.path([[x - 2, yB], [x + 2, yB], [x, yB], [x, yB - 2], [x, yB + 2]], { color: c, width: HAIR, layer: 4, cap: 'butt', what: w });
-	// the circle's radius, from the rod's edge down and to the left to the circle, labelled
-	const a = (215 * Math.PI) / 180, tip = [xc + Rs * Math.cos(a), yB - Rs * Math.sin(a)];
+	centre(xc, yB, STONE_INK, 'the rod\'s centre');
+	centre(xc + DISTANCE * K, yB, DIM, 'the ring\'s centre below');
+	// the distance and the stretch, inside the dashed circle; the stretch's words start at the rod's right face
+	const B = await rows(xc, yB, ringB, -rod[0], 'the rod', { from: xc + ROD / 2 + 2.5 });
+	check(near(B.w / A.w, -rod[0] / ball, 1e-12), 'the bars are not to one scale');
+	// the circle's radius, from the rod's edge up and to the left to the circle, labelled
+	const a = (145 * Math.PI) / 180, tip = [xc + Rs * Math.cos(a), yB - Rs * Math.sin(a)];
 	S.path([[xc + (ROD / 2 + 1.2) / Math.abs(Math.cos(a)) * Math.cos(a), yB - (ROD / 2 + 1.2) / Math.abs(Math.cos(a)) * Math.sin(a)], tip], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: 'the radius' });
-	L.push(await S.clear('0.85\\,\\mathrm m', xc + 0.55 * Rs * Math.cos(a), yB - 0.55 * Rs * Math.sin(a), 0.5, 0.5, [Math.sin(a), Math.cos(a)].map((v) => -v), { color: DIM }));
-	const { w: wB } = await bar(xc, yB + Rs + 9, -rod[0], 'the rod\'s bar');
-	check(!BOOK || near(yBarA, yB + Rs + 9, 1e-9), 'the book\'s two bars are not on one line');
-	check(near(wB / wA, -rod[0] / ball, 1e-12), 'the bars are not to one scale');
+	L.push(await S.clear('0.85\\,\\mathrm m', xc + 0.55 * Rs * Math.cos(a), yB - 0.55 * Rs * Math.sin(a), 0.5, 0.5, [Math.sin(a), Math.cos(a)], { color: DIM }));
 
-	// ---- the names of the two bodies, at the top left of each row
+	// ---- the names of the two bodies, at the top left of each
 	L.push(nameA);
 	L.push(await placed('\\text{a rod}', xc - Rs, yB - Rs, 0, 0, INK));
 

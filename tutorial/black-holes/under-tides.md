@@ -115,8 +115,9 @@ only by friction (Charalambous, Dubovsky and Ivanov, 2021 [@CharalambousDubovsky
 black hole that does not turn exactly 0. **Meaning:** a steady tide passes a hole as if nothing were there to yield
 (Figure [](#fig:tide-no-bulge)).
 
-![Look first at the two strips: the stone's potential has a part that falls as $r^{-3}$, its reply, and the hole's has
-none. The bulge is exaggerated; the curves are exact.](tut-tide-no-bulge){#fig:tide-no-bulge}
+![Look first at the two strips: the Earth's potential has a part that falls as $r^{-3}$, its reply, and the hole's has
+none. Beside each body a ring of free beads shows the tide itself, stretching along the line to the Moon and squeezing
+across it. The bulge is exaggerated; the curves are exact.](tut-tide-no-bulge){#fig:tide-no-bulge}
 
 ## A changing tide loses energy through the horizon
 

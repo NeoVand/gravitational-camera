@@ -13,12 +13,15 @@
 //      Fresnel zone ends; height up, from 0 to 3.2 m. The array, a thick segment at distance 0 from 0.75 to 2.25 m. The
 //      three boxes, 0.7 m deep and 0.95 m tall, their front faces at 4.15 m, centred at 2.555, 1.515 and 0.475 m (the
 //      steel grey of the beads, figs/tut-five-lib.js), all read from the scene file. Dotted lines from the array's
-//      centre to the three pairs' centres. Step (a): a bar 10 cm long. Step (b): the near zone of the middle pair, a
+//      centre to the three pairs' centres. Step (a): a train of four waves, each 10 cm long, named lambda = 10 cm
+//      beside it (a single bar 10 cm long, 4 points, read as a letter: with end ticks an H, without them a minus
+//      sign). Step (b): the near zone of the middle pair, a
 //      circle of radius lambda/2pi = 1.59 cm about its centre, drawn in a round inset magnified twenty times, with
 //      lines from its place in the box. Step (c): the front from the middle pair through the array's centre against the
 //      flat front there (the array's own line, from which it differs by 2.5 mm at the rims: 0.11 pt): at every height
 //      of the array the difference of path |p - s| - (r - (p - c).u) is drawn ten times larger, along the ray from the
-//      array's point p to the pair s; at the lower rim it is drawn as a thicker segment, the gap, and named.
+//      array's point p to the pair s, and named "front (x10)" at its upper end; at the lower rim the difference is drawn
+//      as a thicker segment, the gap, and named.
 //  (b) The camera's view: azimuth (about the vertical, positive to the right) from -20 to 20 degrees across and
 //      elevation (above the horizontal plane through the camera) from -22 to 22 degrees up, on a pale ground (the
 //      page's neutral tint, #eeebe5) in a thin frame, where the paper's panel (b) is dark. The front faces of the boxes
@@ -42,9 +45,10 @@
 // plane of the page would be seen; in fact its balls lie side by side across the line of sight, one behind the other
 // in a side view, so the dots are schematic, as the turning arrows are. The dark ring is a circle on the sky; in
 // azimuth and elevation it is 2.7% wider than tall at the top spot's elevation.
-// Exact: every length in (a) but the arrows' and dots' shapes, the gap's ten times and the inset's twenty times (both
-// to scale at that magnification); every angle and the whole picture in (b). Schematic: the turning arrows (their
-// sense on the page follows the camera's: clockwise for the top pair, anticlockwise for the middle one) and the dots.
+// Exact: every length in (a) but the arrows' and dots' shapes and the wave train's height, the gap's ten times and the
+// inset's twenty times (both to scale at that magnification); every angle and the whole picture in (b). Schematic: the
+// turning arrows (their sense on the page follows the camera's: clockwise for the top pair, anticlockwise for the
+// middle one) and the dots.
 import { INK, DIM, RULE, ACCENT, ACCENT2, LETTER } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, n2, HAIR, AXIS, TICK, LABEL_GAP } from './tut-pot-lib.js';
 import { NUM } from './tut-prob-lib.js';
@@ -76,6 +80,7 @@ const YL = 21;                             // from the column's left to the axes
 const OFF = 5;                             // (a): the height axis stands this far left of the array
 const ARRAY_W = 1.6;                       // the array's stroke
 const FRONT = 0.7, GAP_W = HAIR + 0.25;    // the front and the gap (figs/tut-das-fresnel.js)
+const WAVES = 4, WAVE_A = 1.5, WAVE_W = 0.6; // the wavelength's train: its waves, amplitude (points) and stroke
 const EXAG = 10, MAG = 20;                 // the gap's exaggeration, the inset's magnification
 const RIN = 18;                            // the inset's radius, points
 const DEG = BOOK ? 4.4 : 6.4;              // (b): points per degree
@@ -293,14 +298,22 @@ export default async function () {
 	S.path([gA, gB], { color: ACCENT, width: GAP_W + 0.35, layer: 2.6, cap: 'butt', what: 'the gap' });
 	const gl = await S.clear(`\\text{${(N.gapLow * 100).toFixed(1)} cm of path, ${N.phase.toFixed(1)} rad}`, X(0) + 2, gB[1] + LABEL_GAP + 1.5, 0, 0, [0, 1], { color: ACCENT });
 	L.push(gl);
+	// the front named at its upper end, beyond it
+	{
+		const e = fpts[fpts.length - 1];
+		L.push(await S.clear('\\text{front} \\ (\\times 10)', e[0] + LABEL_GAP + 0.6, e[1], 0, 0.5, [1, 0], { color: ACCENT }));
+	}
 
-	// step (a): the wavelength, a bar 10 cm long, under the gap's name
-	const yb = gl.box.b + 7.5, b0 = [X(0.05), yb], b1 = [X(0.05 + N.lambda), yb];
-	check(near(b1[0] - b0[0], 0.1 * SCALE, 1e-9), 'the bar is not 10 cm');
-	S.path([b0, b1], { color: INK, width: HAIR + 0.15, layer: 3, cap: 'butt', what: 'the bar' });
-	for (const e of [b0, b1]) S.path([[e[0], e[1] - TICK], [e[0], e[1] + TICK]], { color: INK, width: HAIR + 0.15, layer: 3, cap: 'butt', what: 'the bar\'s end' });
-	L.push(await placed('\\lambda = 10\\ \\mathrm{cm}', b1[0] + LABEL_GAP + 1, yb, 0, 0.5, INK, SIZE));
-	check(yb + TICK + 3 < Y(0), 'the bar reaches the floor');
+	// step (a): the wavelength, a train of WAVES waves, each 10 cm long to scale, before its name, both under the gap's
+	// name (a single bar 10 cm long, 4 points, read as a letter: with end ticks an H, without them a minus sign)
+	const lam0 = await placed('\\lambda = 10\\ \\mathrm{cm}', 0, 0, 0, 0.5, INK, SIZE);
+	const yb = gl.box.b + 4.5 + (lam0.box.b - lam0.box.t) / 2, w0 = X(0) + 2, per = N.lambda * SCALE;
+	check(near(per, 0.1 * SCALE, 1e-9), 'a wave is not 10 cm');
+	const train = Array.from({ length: WAVES * 48 + 1 }, (_, i) => [w0 + (per * i) / 48, yb - WAVE_A * Math.sin((2 * Math.PI * i) / 48)]);
+	check(longest(train) <= 0.25, 'the train is coarse');
+	S.path(train, { color: INK, width: WAVE_W, layer: 3, cap: 'butt', what: 'the train' });
+	L.push(await placed('\\lambda = 10\\ \\mathrm{cm}', w0 + WAVES * per + LABEL_GAP + 1, yb, 0, 0.5, INK, SIZE));
+	check(yb + 8 < Y(0), 'the train reaches the floor');
 
 	// step (b): the near zone of the middle pair, in a round inset magnified twenty times
 	const mb = N.boxes[1];

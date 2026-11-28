@@ -413,8 +413,9 @@ Inside the second dark ring, at 7.016, it is 0.910.
 
 ![Left, the amplitude $2J_1(x)/x$ (orange) and the intensity, its square, against $x$. Both vanish at the first dark
 ring, $x = \pm3.832$, and they fall to one half at $\pm2.215$ and $\pm1.616$; the rings of the intensity, at most 1.75%
-of its peak, are too faint to show on this scale. Right, the intensity across the plane on a logarithmic grey scale
-from $10^{-4}$ to 1, which shows its rings, with the first dark ring circled.](tut-bessel-airy){#fig:airy}
+of its peak, are too faint to show on this scale. Right, the intensity across the plane, bright on a dark ground as a
+star is seen, on a logarithmic grey scale from $10^{-4}$ (black) to 1 (white), which shows its rings, with the first
+dark ring circled.](tut-bessel-airy){#fig:airy}
 
 ::: try {#round-pupil}
 Panel (a) is an opening in a screen: a disc of radius $R$ or a slit of half-width $R$. Panel (b) is its pattern across

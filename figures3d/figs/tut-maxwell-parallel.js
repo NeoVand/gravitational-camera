@@ -7,13 +7,16 @@
 // axis, a straight double arrow parallel to it in the observer's colour, named "boost along n-hat: no change". At the
 // left, faint, a straight arrow across the axis in the observer's colour, named "boost across n-hat: E and B change".
 // Under the panel the readout "F = w n-hat, F.F = w^2 (the same for every observer)".
-// Departure from the diagram's comment: the panel is drawn at about 255 points across, the width of the chapter's
+// Departures from the diagram's comment: the panel is drawn at about 245 points across, the width of the chapter's
 // other diagrams, rather than the comment's 520 site pixels (260 points at the tutorial's half a point to the pixel):
-// the three names need the width. The names of the moves are set in the observer's colour at full strength, and only
-// the arrow across the axis is faint, so that its name stays legible.
+// the three names need the width. The arrow across the axis is not faint and not at the far left: it is drawn in the
+// observer's colour at full strength, dashed (the one move that changes the fields), up from the axis just left of the
+// common point of E and cB, so that it stands by the fields it changes, its name above it; a faint tint of the colour
+// would vanish in print.
 // Exact: the lengths of E and cB, 1 and 0.6, at one scale; the moves' effect (a boost along n and a turn about n
-// leave F = w n as it is, a boost across n does not, and F.F = w^2 is kept: asserted in tut-maxwell-lib.js).
-// Schematic: the circular arrow's size and slant, the moves' arrows' lengths, the arrows' offsets above the axis.
+// leave F = w n as it is, a boost across n does not, and F.F = w^2 is kept: asserted in tut-maxwell-lib.js); the
+// arrow across at right angles to the axis (asserted). Schematic: the circular arrow's size and slant, the moves'
+// arrows' lengths and places, the arrows' offsets above the axis.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, VEC, VEC_HEAD } from './tut-pot-lib.js';
 import { DASH } from './tut-bessel-lib.js';
 import { INK } from '../lib.js';
@@ -24,14 +27,13 @@ const check = checker(name);
 
 const U = 100;                             // points per unit of field
 const E_LEN = 1, CB_LEN = 0.6;
-const LEFT = -128, RIGHT = 112;            // the axis, points from the arrows' common point's x
+const LEFT = -120, RIGHT = 112;            // the axis, points from the panel's centre
 const START = -48;                         // the arrows' common point, points from the panel's centre
 const UP_E = 3.4, UP_CB = 8.6;             // the arrows' heights above the axis, points
 const RING = { x: 86, ry: 21, rx: 7.5 };  // the circular arrow: its centre on the axis and its semi-axes, points
 const MOVE = 1.0;                          // the moves' strokes
 const ALONG = { y: 15, x0: -84, x1: -6 };  // the double arrow below the axis
-const ACROSS = { x: -100, h: 24 };         // the arrow across the axis, at the left
-const FAINT_OBS = 0.5;                     // its opacity
+const ACROSS = { x: -62, h: 30 };          // the arrow across the axis, beside the fields' common point
 
 export default async function () {
 	const nums = chapter(check);
@@ -86,17 +88,14 @@ export default async function () {
 		L.push(await S.clear('\\text{boost along } \\hat n\\text{: no change}', m[0], y + LABEL_GAP + 1, 0.5, 0, [0, 1], { color: OBS }));
 	}
 
-	// ---- the boost across the axis, faint, at the left
+	// ---- the boost across the axis: a dashed arrow in the observer's colour, up from the axis just left of the
+	// fields' common point, its name above it
 	{
-		const a = [x(ACROSS.x), O[1] + ACROSS.h], b = [x(ACROSS.x), O[1] - ACROSS.h];
-		const hd = VEC_HEAD, u = [0, -1], w = [1, 0], hw = 0.36 * hd, s1 = [b[0], b[1] + hd * 0.8], base = [b[0], b[1] + hd];
-		S.raw(`<g opacity="${FAINT_OBS}"><path d="M${a[0]},${a[1]}L${s1[0]},${s1[1].toFixed(2)}" stroke="${OBS}" stroke-width="${MOVE}" fill="none"/>` +
-			`<path d="M${b[0]},${b[1]}L${base[0] + w[0] * hw},${base[1].toFixed(2)}L${base[0] - w[0] * hw},${base[1].toFixed(2)}Z" fill="${OBS}"/></g>`, 2);
-		S.mark([a, s1], MOVE / 2, 'the boost across');
-		S.mark([b, [base[0] + hw, base[1]], [base[0] - hw, base[1]], b], 0, 'the boost across\'s head');
-		S.arrows.push({ L: 2 * ACROSS.h, head: hd, what: 'the boost across' });
-		check(u[1] === -1, 'the arrow across points up');
-		L.push(await S.clear('\\text{boost across } \\hat n\\text{: } \\mathbf E \\text{ and } \\mathbf B \\text{ change}', b[0] - 4, b[1] - 1, 0, 1, [0, -1], { color: OBS }));
+		const a = [x(ACROSS.x), O[1] - AXIS / 2 - 1.2], b = [x(ACROSS.x), O[1] - ACROSS.h];
+		const ar = dashedArrow(S, a, b, { color: OBS, width: MOVE, head: VEC_HEAD, dash: DASH, layer: 2, what: 'the boost across' });
+		check(near(ar.u[0], 0, 1e-12) && ar.u[1] === -1, 'the arrow across is not at right angles to the axis');
+		check(x(START) - x(ACROSS.x) >= 10 && x(START) - x(ACROSS.x) <= 18, 'the arrow across is not beside the fields');
+		L.push(await S.clear('\\text{boost across } \\hat n\\text{: } \\mathbf E \\text{ and } \\mathbf B \\text{ change}', b[0] - 4, b[1] - LABEL_GAP - 0.6, 0, 1, [0, -1], { color: OBS }));
 	}
 
 	// ---- the readout

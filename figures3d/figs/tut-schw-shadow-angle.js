@@ -4,31 +4,33 @@
 // the hole's centre, the direction of the hole, on to the left; the cone of the shadow, bounded by its one edge, the
 // ray with b = b_c: it leaves the camera at +-alpha_h from that line and, traced back, runs over (and under) the hole
 // to the axis on the far side, which it reaches at 1.577 r_s, just outside the photon sphere, where its two halves
-// meet; the cone is filled with the page's faint tint and its edge drawn whole from the camera (the upper half lies
-// under the drawn ray, which leaves the camera beside it); arcs at the camera named "alpha_h" (below) and "psi"
-// (above). One exact ray in the light role's colour, arriving at the camera from above just outside the cone: traced
-// back, it winds once round the photon sphere and leaves to the left, where its straight asymptote is parallel to the
-// line to the hole; there its impact parameter is marked by a perpendicular from that line to the asymptote, named "b".
-// The ray: b = 1.00090 b_c, chosen so that, traced back from the camera, it sweeps exactly 540 degrees and its
-// asymptote is parallel to the line to the hole (asserted); then psi = 17.70 degrees against alpha_h = 17.69 degrees:
-// any ray bent round the photon sphere is seen within a degree or two of the cone's edge from 8 r_s.
+// meet; the cone is filled with the page's faint tint and its edge drawn whole from the camera; arcs at the camera
+// named "alpha_h" (below, to the cone's edge) and "psi" (above, to the ray, crossing the cone's upper edge on the way).
+// One exact ray in the light role's colour, arriving at the camera from above well outside the cone: traced back, it
+// bends round the hole, passing it at 4.16 r_s, and leaves to the left, where its straight asymptote, dotted, is
+// parallel to the line to the hole; there its impact parameter is marked by a perpendicular from that line to the
+// asymptote, named "b". The ray: the one whose trace back sweeps exactly 180 degrees (11.1's exact ring, here seen from
+// 8 r_s), so that its asymptote is parallel to the line to the hole (asserted); b = 4.77 r_s = 1.84 b_c, psi = 33.93
+// degrees against alpha_h = 17.69 degrees, so that the two angles are seen to differ: psi is any ray's angle, alpha_h
+// the value it takes at b = b_c.
 // The angles: the drawing is the plane (r cos phi, r sin phi), in which a camera's radial ruler is stretched by
 // 1/sqrt(1 - r_s/r), so a direction at psi on the camera's sky is drawn at arctan(tan psi / sqrt(1 - r_s/r)); the
-// arcs are drawn so (18.82 degrees for alpha_h), which is the drawn direction of the b_c ray at the camera (asserted),
-// so the arcs end on the cone's edge.
+// arcs are drawn so: 18.82 degrees for alpha_h, the drawn direction of the b_c ray at the camera, so that its arc ends
+// on the cone's edge, and 35.7 degrees for psi, the drawn direction of the ray, on which its arc ends (both asserted).
 // Departures from the diagram's comment: the cone is drawn as the region its directions sweep, bounded by the b_c rays
 // themselves rather than by their straight tangents, so that it has one edge from the camera to the far side of the
-// hole (straight edges beside the curved ray read as a broken edge); the photon sphere's dashes are cut where the ray
-// runs over them; the direction of the hole is drawn as a dotted line; the camera is not named.
+// hole (straight edges beside the curved ray read as a broken edge); the direction of the hole and the ray's asymptote
+// are drawn as dotted lines, the asymptote from the panel's left edge to over the hole's centre; the camera is not
+// named. The photon sphere's dashes would be cut where a ray ran over them; none does.
 // Exact: the ray and the cone's edge (the chapter's orbit equation, by the port in tut-schw-lib.js; the edge stays
 // outside the photon sphere and crosses the far axis at 1.577 r_s, asserted), alpha_h (the chapter's arcsine, and
 // the edge between rays that end on the horizon and rays that escape, asserted), b (the perpendicular from the hole's
-// centre to the asymptote, the ray within 0.3 points of it at the mark), the hole, the photon sphere and the camera's
-// distance. Schematic: the camera's size.
+// centre to the asymptote, the ray within 1.5 points under it at the mark and closing on it), the hole, the photon
+// sphere and the camera's distance. Schematic: the camera's size.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, HAIR, n2 } from './tut-pot-lib.js';
 import { pathOf } from './tut-prob-lib.js';
 import { INK, DIM } from '../lib.js';
-import { chapter, palette, near, LIGHT, HOLE, BC, RS, DEG, rayFrom, shadowRadius, firstIntegral, thin } from './tut-schw-lib.js';
+import { chapter, palette, near, LIGHT, HOLE, BC, RS, DEG, rayFrom, shadowRadius, firstIntegral, thin, exactRing, impactOf } from './tut-schw-lib.js';
 
 const name = 'tut-schw-shadow-angle';
 const check = checker(name);
@@ -38,6 +40,7 @@ const K = 20;                                   // points per r_s
 const R_CAM = 8;                                // the camera, r_s
 const X_LEFT = -6;                              // the ray and the line to the hole stop here
 const MARK_X = -5.4;                            // where b is marked
+const ASYM_END = 0;                             // the asymptote, dotted, runs from X_LEFT to here
 const CAMERA = 4.2;                             // the camera's square, its side
 const TINT = '#eeebe5';                         // the page's neutral tint (drawing.ts)
 const ARC = { alpha: 44, psi: 56 };             // the arcs' radii at the camera
@@ -59,14 +62,12 @@ export default async function () {
 	const theta = drawn(alpha);
 	check((theta / DEG).toFixed(2) === '18.82', `the cone's edge is drawn at ${theta / DEG}`);
 
-	// ---- the ray: b chosen so that it sweeps 540 degrees, its asymptote parallel to the line to the hole
-	const sweep = (k) => rayFrom(r, Math.asin(Math.min(1, ((k * BC) / r) * f)), { step: 1e-3, maxPhi: 20 * Math.PI }).phi;
-	let lo = 1.0005, hi = 1.002;
-	for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (sweep(m) > 3 * Math.PI) lo = m; else hi = m; }
-	const k = (lo + hi) / 2, b = k * BC, psi = Math.asin((b / r) * f);
+	// ---- the ray: seen well outside the cone, at the psi whose ray, traced back, sweeps exactly 180 degrees to far away,
+	// so that its asymptote is parallel to the line to the hole (section 11.1's exact ring, seen from 8 r_s)
+	const psi = exactRing(r, 1e-4), b = impactOf(r, psi), k = b / BC;
 	const ray = rayFrom(r, psi, { step: 1e-3, keep: true, maxPhi: 20 * Math.PI });
-	check(ray.fate === 'infinity' && Math.abs(ray.phi - 3 * Math.PI) < 1e-9, `the ray sweeps ${ray.phi}`);
-	check(k.toFixed(5) === '1.00090' && (psi / DEG).toFixed(2) === '17.70' && psi > alpha, `the ray: b = ${k} b_c, psi = ${psi / DEG}`);
+	check(ray.fate === 'infinity' && Math.abs(ray.phi - Math.PI) < 1e-6, `the ray sweeps ${ray.phi / DEG} degrees`);
+	check((psi / DEG).toFixed(2) === '33.93' && (b / RS).toFixed(2) === '4.77' && k.toFixed(2) === '1.84' && (ray.rMin / RS).toFixed(2) === '4.16', `the ray: b = ${k} b_c, psi = ${psi / DEG}, r_min = ${ray.rMin / RS}`);
 	check(firstIntegral(ray.points, b) < 1e-5, 'the first integral along the ray');
 	const pts = ray.points.map(([x, y]) => [x / RS, y / RS]);
 	check(near(pts[0][0], R_CAM, 1e-12) && near(pts[0][1], 0, 1e-12), 'the ray does not start at the camera');
@@ -74,7 +75,7 @@ export default async function () {
 		// it leaves the camera along its drawn direction: up and toward the hole at drawn(psi)
 		const q = pts.find(([x, y]) => Math.hypot(x - R_CAM, y) > 0.02);
 		const a = Math.atan2(q[1], R_CAM - q[0]);
-		check(Math.abs(a - drawn(psi)) < 2e-3, `the ray leaves the camera at ${a / DEG}, not ${drawn(psi) / DEG}`);
+		check(Math.abs(a - drawn(psi)) < 2e-3 && (drawn(psi) / DEG).toFixed(1) === '35.7', `the ray leaves the camera at ${a / DEG}, not ${drawn(psi) / DEG}`);
 		// and the b_c ray (alpha_h) leaves along the cone's edge
 		const e = rayFrom(r, alpha, { step: 1e-4, keep: true, maxPhi: 0.01 }).points.map(([x, y]) => [x / RS, y / RS]);
 		const q2 = e.find(([x, y]) => Math.hypot(x - R_CAM, y) > 0.02);
@@ -87,10 +88,10 @@ export default async function () {
 	const drawnRay = [...pts.slice(0, iEnd), end];
 	const bRs = b / RS;
 	{
-		// far to the left the ray runs along its asymptote y = b
+		// far to the left the ray comes in along its asymptote y = b, closing on it from below
 		const at = drawnRay.find(([x], i) => i > 10 && x < MARK_X);
-		check(Math.abs(at[1] - bRs) * K < 0.3, `the ray is ${(bRs - at[1]) * K} pt from its asymptote at the mark`);
-		check(drawnRay.every(([x, y]) => Math.abs(y) < 2.8), 'the ray leaves the panel');
+		check(at[1] < bRs && (bRs - at[1]) * K < 1.5, `the ray is ${(bRs - at[1]) * K} pt from its asymptote at the mark`);
+		check(drawnRay.every(([x, y]) => y > -0.1 && y < bRs + 1e-9), 'the ray leaves the band between the line to the hole and its asymptote');
 	}
 
 	// ---- the page
@@ -151,10 +152,19 @@ export default async function () {
 		return S.clear(src, cam[0] + (rad + 1.5) * u[0], cam[1] + (rad + 1.5) * u[1], side[0], side[1], u);
 	};
 	L.push({ ...(await arcAt(ARC.alpha, 0, -theta, '\\alpha_h', [0.5, 0])), on: ['the cone\'s edge -1'] });
-	L.push(await arcAt(ARC.psi, 0, drawn(psi), '\\psi', [0.5, 1]));
-
-	// ---- b: a perpendicular from the line to the hole up to the asymptote, far to the left
+	// psi's name just outside its arc, between the cone's upper edge and the ray, which the arc crosses in turn
 	{
+		const t = (theta + drawn(psi)) / 2, u = [-Math.cos(t), -Math.sin(t)];
+		const pts2 = Array.from({ length: 61 }, (_, i) => { const a = (drawn(psi) * i) / 60; return [cam[0] - ARC.psi * Math.cos(a), cam[1] - ARC.psi * Math.sin(a)]; });
+		S.path(pts2, { color: INK, width: HAIR, layer: 4, cap: 'butt', what: 'the arc psi' });
+		L.push(await S.clear('\\psi', cam[0] + (ARC.psi + 2) * u[0], cam[1] + (ARC.psi + 2) * u[1], 0.5, 0.5, u));
+	}
+
+	// ---- the asymptote, dotted, from the left edge to over the hole; b, a perpendicular from the line to the hole up to
+	// it, far to the left
+	{
+		const a = at([X_LEFT, bRs]), z = at([ASYM_END, bRs]);
+		S.dots(a, z, { color: DIM, layer: 1.2, what: 'the asymptote' });
 		const x = at([MARK_X, 0])[0], y0 = O[1], y1 = O[1] - bRs * K;
 		S.path([[x, y0], [x, y1]], { color: INK, width: HAIR, layer: 4, cap: 'butt', what: 'b' });
 		// no end strokes: it ends on the two lines it spans, which are its ends

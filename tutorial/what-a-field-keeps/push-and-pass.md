@@ -286,8 +286,9 @@ passes gives the density; for a black hole it gives what the hole absorbs, set b
 
 ![Look first at the three slices on the right: each direction of paths gives the density's transform on one plane of
 wavevectors, and as the direction turns round the great circle, the planes turn about its axis and fill the space.
-Left, the body, three bundles of paths in directions of one great circle, and the projected mass for one of them. The
-body's shape and the spacing of the paths are chosen for the drawing.](tut-pass-slice){#fig:pass-slice}
+Left, the body, three bundles of paths in directions of one great circle, and the projected mass for one of them, the
+body's mass summed along lines in that direction, as along the dotted one. The body's shape and the spacing of the
+paths are chosen for the drawing.](tut-pass-slice){#fig:pass-slice}
 
 ## A mass held for an instant leaves energy through a kernel that is not harmonic
 

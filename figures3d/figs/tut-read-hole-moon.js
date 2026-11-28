@@ -11,14 +11,17 @@
 //  Below, "(d) the sums" at the left, and under each body a short line with a tick at each degree's shell radius: the
 //  hole's five, 1.0175, 1.4555, 1.6100, 1.6868 and 1.7324 r_s, on a line from r_s to 2 r_s, with the limit
 //  (3 sqrt3 / e) r_s = 1.9116 r_s dashed; the moon's three, R_m [3/(2l + 1)]^(1/(2l - 2)) for l = 2, 3, 4, on a line
-//  from R_m/2 to R_m, with its surface dashed; the first tick and the dashed one numbered; "fails the test" |
-//  "passes the test" above.
+//  from R_m/2 to R_m, with its surface dashed; each line's ends named beside it, "r_s" and "2r_s", "R_m/2" and "R_m";
+//  under it the first tick numbered, "1.02 r_s" and "0.775 R_m", and the dashed one, "1.91 r_s" and "surface";
+//  "fails the test of positive mass" | "passes the test of positive mass" above (no section number, which differs between site and book).
+//  The head's row is named in the names' column, as (d) is: "the bodies", and under it "not to scale".
 // The colours: matter's colour for the moon's disc only (the moon's side); the hole's fill fixed dark, as 11.1's;
 // everything else in ink and the page's greys. Orange and blue, a stretch and a squeeze, are not used: nothing here is
 // stretched or squeezed.
 // Departures from the diagram's comment, where the chapter's text decides: rows (a) to (c) and (e) to (g) are left to
-// the chapter's table, which the figure repeated word for word; (d)'s tags are "fails the test" and "passes the test",
-// and the dashed lines are numbered "1.91 r_s" and "R_m"; each body's line has its own scale, given by its two numbers,
+// the chapter's table, which the figure repeated word for word; (d)'s tags are "fails the test of positive mass" and
+// "passes the test of positive mass", and the dashed lines are named "1.91 r_s" and "surface"; each body's line has its
+// own scale, given by its two numbers,
 // and the ticks are to scale along it, so the caption says so instead of calling them schematic; the caption's "too
 // slowly at the third step", which the chapter does not say, becomes "fail it".
 // Exact: every number, the table's included (the figure checks the chapter's table though it draws only (d)), computed
@@ -49,7 +52,7 @@ const CELLS = 2.8e5;                      // (g): 13.8's count for the moon
 // ---- the drawing (figure points, y down) ------------------------------------------------------------------------
 const SIZE = 9.6;                         // every label: R11's and R13's capstones
 const NW = 62;                            // the names' column: "not to scale" and (d)'s name
-const CW = 128;                           // each body's column
+const CW = 140;                           // each body's column
 const GUT = 10;                           // between the columns
 const LEAD = 12;                          // baseline to baseline within a tag
 const D_GAP = 13;                         // the head's ink to (d)'s
@@ -57,11 +60,11 @@ const R_HOLE = 8.5, R_MOON = 14;          // the discs' radii (not to scale)
 const RING = 0.6, EDGE = 0.6;             // the horizon's ring, the moon's edge
 const BELL = { w: 30, h: 15, width: 0.6 };// the tide's bell: its width (six standard deviations) and height
 const ARROW = { head: 3.6, air: 2.6 };    // the arrows from the tide: their heads, and their air at each end
-const AXIS = { len: 100, width: 0.45 };   // (d): each body's line
+const AXIS = { len: 84, width: 0.45 };    // (d): each body's line, its ends named beside it
 const TICK = { h: 3.6, width: 0.6 };      // (d): half a tick, its stroke
 const LIMIT = { h: 5.4, width: 0.5, dash: [1.4, 1.1] };   // (d): the dashed limit, half its height
 const PALE = 'light-dark(color-mix(in srgb, #f1dc86 72%, #fffffe), color-mix(in srgb, #f1dc86 20%, #fffffe))';   // matter's pale fill (R13's ball)
-const CAPTION = 'Look first at row (d): the moon\'s shell radii climb toward its surface and pass the test of positive mass, while the hole\'s climb toward $1.91\\,r_s$ and fail it. The numbers are exact and the ticks are to scale along each line; the discs are not to scale.';
+const CAPTION = 'The hole and the moon under one tide of about a second, and row (d) of the table below as two rulers of shell radii: the moon\'s climb toward its surface and pass the test of positive mass, while the hole\'s climb toward $1.91\\,r_s$ and fail it. The numbers are exact and the ticks are to scale along each line; the discs are not to scale.';
 
 /** The numbers, computed and checked against the chapter's text. */
 async function numbers() {
@@ -235,8 +238,9 @@ export default async function () {
 		L.push(g);
 		check(g.box.l > Math.min(a.A[0], a.B[0]) && g.box.r < Math.max(a.A[0], a.B[0]), `"${word}" overhangs its arrow`);
 	}
-	// not to scale: in the names' column, level with the discs
-	L.push(await lbl('\\text{not to scale}', X0, cy, 0, 0.5, DIM));
+	// the row's name, in the names' column, level with the discs: "the bodies", and under it "not to scale"
+	L.push(await lbl('\\text{the bodies}', X0, cy - 2.2, 0, 1, INK));
+	L.push(await lbl('\\text{not to scale}', X0, cy + 2.2, 0, 0, DIM));
 	headB = Math.max(...L.map((g) => g.box.b));
 
 	// ---- (d), the one row of the table that is a picture: under each body, its line of shells ----------------------
@@ -258,10 +262,10 @@ export default async function () {
 		const radii = hole ? HOLE_RADII : N.moonRadii, lim = hole ? N.limit : 1;
 		const xa = cx - AXIS.len / 2, X = (r) => xa + ((r - r0) / (r1 - r0)) * AXIS.len;
 		// the test's word on the first line
-		const tg = await atBase(`\\text{${hole ? 'fails the test' : 'passes the test'}}`, cx, base);
+		const tg = await atBase(`\\text{${hole ? 'fails the test of positive mass' : 'passes the test of positive mass'}}`, cx, base);
 		L.push(tg); inColumn(tg, cx, `(d)'s ${who} word`);
 		// the two lines level: under the lower of the two words' ink (the moon's, whose p descends)
-		const low0 = (await atBase('\\text{passes the test}', cx, base)).box.b;
+		const low0 = (await atBase('\\text{passes the test of positive mass}', cx, base)).box.b;
 		check(tg.box.b <= low0 + 0.01, '(d): the hole\'s word descends below the moon\'s');
 		const ya = low0 + LABEL_GAP + 0.6 + LIMIT.h;
 		S.path([[xa, ya], [xa + AXIS.len, ya]], { color: INK, width: AXIS.width, cap: 'butt', layer: 1, what: `(d)'s ${who} line` });
@@ -281,7 +285,12 @@ export default async function () {
 		// the numbers under the first tick and the limit, their caps LABEL_GAP below the dashes' foot
 		const nb = ya + LIMIT.h + LABEL_GAP + 0.4 + (probe.box.b - probe.box.t);
 		let low = 0;
-		for (const [x, s] of [[X(radii[0]), hole ? '1.02' : '0.775'], [xl, hole ? '1.91\\,r_s' : 'R_{\\rm m}']]) {
+		// the line's ends, named beside it on its level
+		for (const [x, s, ax] of [[xa, hole ? 'r_s' : 'R_{\\rm m}/2', 1], [xa + AXIS.len, hole ? '2r_s' : 'R_{\\rm m}', 0]]) {
+			const g = await lbl(s, x + (ax ? -1 : 1) * (LABEL_GAP + 1), ya, ax, 0.5);
+			L.push(g); inColumn(g, cx, `(d)'s ${who} end ${s}`);
+		}
+		for (const [x, s] of [[X(radii[0]), hole ? '1.02\\,r_s' : '0.775\\,R_{\\rm m}'], [xl, hole ? '1.91\\,r_s' : '\\text{surface}']]) {
 			const g = await atBase(s, x, nb);
 			L.push(g); inColumn(g, cx, `(d)'s ${who} number ${s}`);
 			low = Math.max(low, g.box.b);

@@ -21,10 +21,10 @@ among ripples across a plane. Figure [](#fig:white-noise) draws both for white n
 every frequency.
 
 ![Top, white noise in time, in arbitrary units: a record $n(t)$ over two seconds; its spectrum $S(\omega)$, the same at
-every frequency, negative and positive, with the band from $-\omega$ to $\omega$ shaded; and its autocorrelation $C(t)$,
+every frequency, negative and positive, with the band from $-\omega_1$ to $\omega_1$ shaded; and its autocorrelation $C(t)$,
 a single spike at zero lag of area $S(0)$. Bottom, the noise of an array of $11\times11$ pixels, each reading drawn from one Gaussian (orange above zero, blue
-below), and beside it the mean of $|\tilde n(\vect k)|^2$, a column on each wavevector of the array, the same on every
-one (16,000 simulated maps agree within 3%). The trace never repeats, but its spectrum is flat, and so is the map's.](tut-noise-hero){#fig:white-noise}
+below), and beside it the mean of $|\tilde n(\vect k)|^2$, a column on each wavevector $(k_x, k_y)$ of the array, with
+$\vect k = 0$ in the middle, of the same height $AN_0$ on every one (16,000 simulated maps agree within 3%). The trace never repeats, but its spectrum is flat, and so is the map's.](tut-noise-hero){#fig:white-noise}
 
 ::: plain
 Noise can be split into steady oscillations of every frequency. Its spectrum says how strong each is on average.

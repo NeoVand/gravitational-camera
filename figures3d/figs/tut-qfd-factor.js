@@ -8,7 +8,8 @@
 // value in its label. Ink and greys only.
 // Departures from the diagram's comment: the axis up runs from 0.4, not 0.8, so that the empty band under the
 // classical line, which the factor never enters, holds the steel ball's arrow and label and the classical line's
-// name; the ball has an arrow but no dot, since its point lies off the axis; the curves' names sit beside them.
+// name; the ball has an arrow but no dot, since its point lies off the axis; the curves' names sit beside them, each
+// in the axis's own terms: "classical" for the line at 1, "zero point, hbar omega / 2 k_B T" for the line u.
 // Exact: the curve, from u coth u (asserted against hbar coth(hbar omega / 2 k_B T) / (2 k_B T / omega) in SI, and at
 // the five values the comment gives, in tut-qfd-lib.js), the two lines, silicon's point and the ball's value.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, n2 } from './tut-pot-lib.js';
@@ -78,7 +79,7 @@ export default async function () {
 	L.push(await placed('\\hbar\\omega/k_BT = 2.4\\times10^{-9}', ax, ball1.box.b + 3.2, 0, 0, INK));
 
 	// ---- the lines' names: the classical line's under it at the right, the zero point's under it at the right
-	L.push(await placed('\\text{classical, } 2k_BT/\\omega', P.right, one + LABEL_GAP + 1.2, 1, 0, DIM));
+	L.push(await placed('\\text{classical}', P.right, one + LABEL_GAP + 1.2, 1, 0, DIM));
 	{
 		const nrm = [DY, DX].map((v) => v / Math.hypot(DX, DY));   // away from the line, down and to the right
 		const q = P.at(1.05, lg(zeroPoint(10 ** 1.05)));

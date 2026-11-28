@@ -354,7 +354,7 @@ these remove $1 + 3 + 6$, and $5 + 5 + 0 = 10$ remain, the Weyl tensor's: the fi
 and the five of a symmetric trace-free $\curv\tB$, each one of section 1.5's tables of five (Figure
 [](#fig:twenty-split)).
 
-![Look first at the colours: Einstein's equation fixes ten of the twenty curvature numbers from the energy and stress
+![Look first at the two rows: Einstein's equation fixes ten of the twenty curvature numbers from the energy and stress
 at the point (the trace of the tide, the antisymmetric part of the magnetic part, and the six of the curvature of
 space), and leaves the Weyl tensor's ten, five in $\curv\tE$ and five in $\curv\tB$.](tut-einstein-twenty){#fig:twenty-split}
 

@@ -5,7 +5,11 @@
 // page where it is zero, with a thin ink contour at zero. Left, "point mass, E_nn = -2GM/r^3": orange all over. Right,
 // "spin dipole, B_nn = 6G(L.n)/cr^4", n from the sphere toward the body: orange over the northern hemisphere, blue over
 // the southern, the zero contour on the equator, and the spin axis L as an ink arrow through the body. Under the right
-// sphere: "B_nn vanishes on the equator, where the pixel reads B_xz"; under the left one, the key to the two tints.
+// sphere: "B_nn vanishes on the equator, where the pixel reads B_xz"; under the left one, the key to the two tints. On
+// each sphere one pixel (an ink dot on its near side, north of the equator) with n-hat, an ink arrow from it toward the
+// body, since the sign on each hemisphere depends on n pointing toward the body. Both spheres darken a little toward
+// their rims (a radial shading in ink, the same on both), and the left one shows its equator as a thin dim line over its
+// front half, for the eye only, so that it reads as a sphere like the right one and not as a flat disc.
 // Departures from the diagram's comment: the spheres are seen a little from above (12 degrees), not exactly from the
 // side, so that the equator shows as an ellipse and the zero contour as the front half of it; the body is drawn over
 // the tints, as if seen through them, so that the tints can be strong (at most 0.75 opaque, so that they read as the
@@ -14,10 +18,12 @@
 // Exact: the tint's sign at every place on the sphere and the zero contour, the equator, from B_nn = 6G(L.n)/cr^4
 // (asserted against eq:spin-dipole in tut-gravitomag-lib.js); the bands of tint are the zones between the latitudes
 // 0, 4.5, 9, ... 90 degrees, each in its exact projection (asserted on the sphere), and each zone's tint is the same
-// strength at the same |B_nn| in either hemisphere. Schematic in strength: the tint's opacity, proportional to |B_nn| at
-// the zone's middle latitude, to a maximum, and on the left uniform at that maximum. Pictorial: the stone, a picture
+// strength at the same |B_nn| in either hemisphere; n-hat's picture points from its pixel's picture at the body's
+// centre, the picture of -P (the pixel on the near side, asserted). Schematic in strength: the tint's opacity, proportional to |B_nn| at
+// the zone's middle latitude, to a maximum, and on the left uniform at that maximum; the rims' darkening; the pixel's
+// place and n-hat's length. Pictorial: the stone, a picture
 // from an image model (sprites/hair/ball.png), clipped to its exact circle; its size.
-import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, VEC, VEC_HEAD } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, placed, beside, near, LABEL_GAP, VEC, VEC_HEAD } from './tut-pot-lib.js';
 import { INK, DIM, RULE, ACCENT, ACCENT2, sprite } from '../lib.js';
 import { picture, circle as circlePath } from '../stone.js';
 import { STONE_INK } from './tut-orb-lib.js';
@@ -38,6 +44,11 @@ const RB = 11;                             // the body's radius
 const AXIS_BELOW = 0.42, AXIS_ABOVE = 0.66;    // the spin axis's ends, in sphere radii from the centre
 const APART = 22;                          // between the spheres
 const ROW = 7, UNDER = 7;
+const EQUATOR = 0.35;                      // the left sphere's equator, dim (for the eye only)
+const PIX = [40, 22];                      // the pixel drawn: latitude and longitude, degrees (on the near side)
+const PIX_R = 1.3;                         // its dot
+const N_LEN = 20;                          // n-hat's arrow, points
+const LIMB = 0.2;                          // the rim's darkening: the ink's opacity at the rim
 
 export default async function () {
 	const nums = chapter(check);
@@ -132,6 +143,30 @@ export default async function () {
 			check(near(ax.u[0], 0, 1e-12) && ax.u[1] < 0, 'the spin axis is not up the page');
 			labels.push(await placed('\\boldsymbol L', Bp[0] + 0.36 * VEC_HEAD + LABEL_GAP + 0.8, Bp[1] + 3.2, 0, 0.5, INK));
 		}
+		if (!spin) {
+			// the equator, for the eye only: a thin dim line over its front half (here nothing changes sign on it)
+			const eq = cap(c, 1e-9);
+			S.path(eq.arc, { color: DIM, width: EQUATOR, layer: 3, cap: 'butt', what: `${what}'s equator` });
+		}
+		// ---- the sphere's shading, the same on both: a darkening toward the rim
+		S.raw(`<circle cx="${c[0].toFixed(2)}" cy="${c[1].toFixed(2)}" r="${R}" fill="url(#${name}-limb)"/>`, 2.6);
+		// ---- one pixel on the sphere, at P, and n-hat from it toward the body
+		{
+			const P = view(onSphere(PIX[0] * DEG, PIX[1] * DEG));
+			check(P[2] > 0, `${what}: the pixel is on the far side`);
+			const at = (q) => [c[0] + q[0] * R, c[1] - q[1] * R];
+			const p0 = at(P), toward = [c[0] - p0[0], c[1] - p0[1]], len = Math.hypot(...toward), u = toward.map((t) => t / len);
+			// n-hat is -P in 3D: its picture points from P's picture straight at the body's centre
+			check(len > N_LEN + RB + 4, `${what}: n-hat reaches the body`);
+			S.raw(`<circle cx="${p0[0].toFixed(2)}" cy="${p0[1].toFixed(2)}" r="${PIX_R}" fill="${INK}"/>`, 4);
+			S.mark([p0], PIX_R, `${what}'s pixel`);
+			const a0 = [p0[0] + u[0] * (PIX_R + 0.8), p0[1] + u[1] * (PIX_R + 0.8)], a1 = [p0[0] + u[0] * N_LEN, p0[1] + u[1] * N_LEN];
+			S.arrow(a0, a1, { color: INK, width: VEC, head: VEC_HEAD, layer: 4, what: `${what}'s n-hat` });
+			// the name below the arrow's middle, on the side away from the body's axis
+			const m = [(a0[0] + a1[0]) / 2, (a0[1] + a1[1]) / 2], w = [-u[1], u[0]];
+			const side = w[1] > 0 ? w : w.map((t) => -t);
+			labels.push(await beside('\\hat{\\boldsymbol n}', m, side, LABEL_GAP + 0.8, INK));
+		}
 		S.raw(`<circle cx="${c[0].toFixed(2)}" cy="${c[1].toFixed(2)}" r="${R}" fill="none" stroke="${RULE}" stroke-width="${OUTLINE}"/>`, 3);
 		S.mark(Array.from({ length: 361 }, (_, k) => [c[0] + R * Math.cos((k * Math.PI) / 180), c[1] + R * Math.sin((k * Math.PI) / 180)]), OUTLINE / 2, `${what}'s outline`);
 		return labels;
@@ -170,5 +205,7 @@ export default async function () {
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, radius: R, tilt: TILT };
-	return finish(S, L, [220, 300]);
+	const limb = `<radialGradient id="${name}-limb" cx="0.5" cy="0.5" r="0.5"><stop offset="0.55" stop-color="${INK}" stop-opacity="0"/>` +
+		`<stop offset="1" stop-color="${INK}" stop-opacity="${LIMB}"/></radialGradient>`;
+	return finish(S, L, [220, 300], limb);
 }

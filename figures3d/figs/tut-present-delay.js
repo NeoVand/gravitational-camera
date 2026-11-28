@@ -12,23 +12,29 @@
 // runs along that line to the pair, not beside it: a pair's tide has its stretch axis along the pair's line only where
 // the pair points at the pixel or lies across the line to it (in the plane its quadrupole part has
 // tan 2 theta = -(16/19) tan 2 phi, so elsewhere its axis turns the other way from the pair's). The pair's orbit is
-// drawn as a thin circle, and the solid pair is named too, "present positions". The arc marking the angle carries a
+// drawn as a thin circle, and the solid pair is named too, "present positions"; a curved ink arrow just outside the
+// orbit, at its top, anticlockwise, "Omega", gives the sense of the orbit, so that the hollow pair reads as where the
+// masses were. The pixel's ring is drawn without freeRing's pale ring of half a cycle later (it is taken out again
+// after freeRing draws it): a wave's tide reverses, Newton's tide of the pair never does. Of the ring's axes only the
+// stretch axis is drawn, in orange, and the pixel's name says so in two lines, "pixel; the orange line / is its
+// stretch axis" (the blue squeeze axis, unexplained, is left out; the blue arrows show the squeeze). The dotted
+// retarded line stops 84 points from the pair's centre, so that the frame has no empty lower right. The arc marking the angle carries a
 // head, the sense of the turning, so that "turned back" reads without a separate curved arrow. The line of type is
 // set on three lines, so that the drawing stays narrow.
 // Exact: the ring's table, Newton's tide of two equal point masses at the drawn present places at the pixel's drawn
 // place (each (G m / rho^3)(delta - 3 n n)), computed and asserted diagonal with its stretch along the line to the
 // pair; each bead and arrow its image under that table (tut-gw-lib.js); the arc's span exactly the angle between the
-// two lines; Omega r / c = k r / 2 with k = 2 Omega / c (tut-quadrupole-lib.js). Exaggerated: the angle (at k r = 0.1 it
+// two lines; the orbit's sense, anticlockwise, the sense in which the retarded places lag (asserted); Omega r / c = k r / 2 with k = 2 Omega / c (tut-quadrupole-lib.js). Exaggerated: the angle (at k r = 0.1 it
 // is 0.05 rad, 2.9 degrees), the ring's strain, the sizes and the distance.
 // Pictorial: the stones, a picture from an image model (sprites/hair/ball-face.png, as tut-rotor-stress), clipped to
 // their exact circles.
-import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, HAIR } from './tut-pot-lib.js';
-import { INK, DIM, PAGE, sprite } from '../lib.js';
+import { Sheet, ORIGIN, finish, checker, placed, beside, near, LABEL_GAP, HAIR } from './tut-pot-lib.js';
+import { INK, DIM, RULE, PAGE, sprite } from '../lib.js';
 import { picture, circle as circlePath } from '../stone.js';
 import { STONE_INK, dashed } from './tut-orb-lib.js';
 import { turning } from './tut-flow-lib.js';
 import { freeRing } from './tut-gw-lib.js';
-import { chapter, palette, stack, ACCENT, ACCENT2, C } from './tut-quadrupole-lib.js';
+import { chapter, palette, stack, ACCENT, C } from './tut-quadrupole-lib.js';
 
 const name = 'tut-present-delay';
 const check = checker(name);
@@ -46,7 +52,8 @@ const AXIS_ARM = 8;                        // half an arm of the ring's stretch 
 const AXIS_W = 0.6;
 const ARC_R = 60;                          // the angle's arc, about the pair's centre
 const ARC_W = 0.5, ARC_HEAD = 3.4;
-const RET_TO = 112;                        // the dotted line's far end, from the pair's centre
+const RET_TO = 84;                         // the dotted line's far end, from the pair's centre
+const SPIN = { off: 4.5, from: 62, to: 118 };  // the orbit's sense: its arc's distance outside the orbit, and its span (degrees)
 const LINE_W = 0.55;                       // the dashed line
 const AIR = 2.4;                           // a line's end to the mark it stops at
 const TEXT_AIR = 9;                        // the lowest mark to the line of type
@@ -84,6 +91,19 @@ export default async function () {
 		check(gap > 1.5, `the retarded mass ${k} touches the present one (${gap.toFixed(2)} pt)`);
 	}
 
+	// ---- the sense of the orbit: a curved arrow just outside it, at its top, anticlockwise, "Omega"
+	{
+		const t = turning(O[0], O[1], HS + SPIN.off, (SPIN.from * Math.PI) / 180, (SPIN.to * Math.PI) / 180, INK, { width: ARC_W, head: ARC_HEAD });
+		S.raw(t.svg, 3);
+		S.mark(t.pts, ARC_W / 2, 'the orbit\'s sense');
+		S.mark(t.head, 0, 'the orbit\'s sense\'s head');
+		S.arrows.push({ L: t.len, head: t.hd, what: 'the orbit\'s sense' });
+		// anticlockwise, as the retarded places, turned back by alpha, lag the present ones
+		check(SPIN.to > SPIN.from && retarded[0][1] > present[0][1], 'the orbit\'s sense disagrees with the retarded places');
+		const mid = (((SPIN.from + SPIN.to) / 2) * Math.PI) / 180;
+		L.push(await beside('\\Omega', at(HS + SPIN.off, mid), dir(mid), LABEL_GAP + 0.6, INK));
+	}
+
 	// ---- the pixel: Newton's tide of the two masses at their present places, in the plane's axes (e_1 right, e_2 up)
 	const E = [[0, 0], [0, 0]];
 	for (const c of present) {
@@ -93,13 +113,24 @@ export default async function () {
 	check(Math.abs(E[0][1]) < 1e-15 * Math.abs(E[0][0]) && E[0][0] < 0 && E[1][1] > 0 && near(E[0][0] / E[1][1], -2, 1e-12), `the pixel's tide ${E}`);
 	const T = E.map((row) => row.map((v) => v / Math.abs(E[0][0])));
 	// the beads stand 15 degrees off the axes, so that none sits where the push is along the ring (tan^2 = 2, 54.7 degrees)
+	const before = { items: S.P.items.length, marks: S.marks.length };
 	const ring = freeRing(S, check, { c: P, R, T, eps: EPS, phase: Math.PI / 12, reach: REACH, what: 'the pixel' });
+	// freeRing also draws the ring of half a cycle later (the table's opposite, pale beads and pale dashes): a wave's
+	// tide reverses, Newton's tide of the pair never does, so here it is taken out again
+	{
+		const pale = (it) => (it.kind === 'sphere' && it.o?.opacity === 0.3) || (it.kind === 'raw' && it.svg.includes(`stroke="${RULE}"`));
+		const fresh = S.P.items.slice(before.items);
+		const gone = fresh.filter(pale).length;
+		S.P.items.splice(before.items, fresh.length, ...fresh.filter((it) => !pale(it)));
+		const marks = S.marks.slice(before.marks);
+		S.marks.splice(before.marks, marks.length, ...marks.filter((k) => !k.what.includes('pale')));
+		check(gone >= 12 + 20 && marks.filter((k) => k.what.includes('pale bead')).length === 12, `the pale ring: ${gone} items taken out`);
+	}
 	check(ring.arrows.filter((r) => r.out > 0).every((r) => Math.abs(Math.cos(Math.atan2(ring.beads[r.k].xi[1], ring.beads[r.k].xi[0]))) > 0.7), 'an outward arrow stands off the stretch axis');
 	// the stretch axis (orange) along the line to the pair, the squeeze axis (blue) across it
 	S.path([[P[0] - AXIS_ARM, P[1]], [P[0] + AXIS_ARM, P[1]]], { color: ACCENT, width: AXIS_W, cap: 'butt', layer: 2, what: 'the stretch axis' });
-	S.path([[P[0], P[1] - AXIS_ARM], [P[0], P[1] + AXIS_ARM]], { color: ACCENT2, width: AXIS_W, cap: 'butt', layer: 2, what: 'the squeeze axis' });
 	const ringLow = Math.max(...ring.beads.map((b) => b.p[1] + 2.7), ...ring.arrows.map((r) => Math.max(r.from[1], r.to[1])));
-	L.push(await S.clear('\\text{pixel}', P[0], ringLow + LABEL_GAP + 0.5, 0.5, 0, [0, 1]));
+	L.push(await stack(['\\text{pixel; the orange line}', '\\text{is its stretch axis}'], P[0], ringLow + LABEL_GAP + 0.8, 0.5, INK));
 
 	// ---- the dashed line from the pixel along the present line, to the near stone; the dotted retarded line
 	// it runs into the stretch axis, a dash left out wherever it would come near a bead, an arrow or a ring

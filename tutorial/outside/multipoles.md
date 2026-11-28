@@ -328,8 +328,9 @@ degree-two part, an array the other columns of the last section, and section 2.5
 one of these readings.
 
 ![The sphere round the pixel coloured by the sky weight $1 - 3\cos^2\vartheta$ of $\curv{\tE}_{zz}$: orange where it is
-negative, within 54.7° of the $z$ axis, blue where positive. The grey ball of radius $r_{\min}$ is drawn again at the
-right with its contact term.](tut-mul-contact){#fig:contact}
+negative, within 54.7° of the $z$ axis, blue where positive; an eighth of the sphere is cut away to show the weight
+inside. The grey ball of radius $r_{\min}$ round the pixel, drawn whole, is drawn again at the right with its contact
+term.](tut-mul-contact){#fig:contact}
 
 ::: try {#multipoles}
 Predict first: bring the ring of readout from $3R$ to $1.5R$. How many more degrees rise above the noise? The figure

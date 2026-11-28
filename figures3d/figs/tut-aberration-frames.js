@@ -2,12 +2,16 @@
 // panels (one above the other on the site, side by side in the book), at one scale, with beta = 0.6 along x and n0
 // at 60 degrees from x; the x axis is drawn turned 8 degrees up from the horizontal, so that the velocities point
 // "right and slightly up" and "left and slightly down", as the comment asks. Above (left), "body's frame": the pixel as
-// a small ring of twelve ink dots (section 6.1's) at the lower left, the body as a dot in matter's colour R* n0 from
-// it, at the upper right; from the pixel an arrow in the observer's colour along beta, named "c beta", two ink arrows
-// along +-n0, named "+n0" and "-n0", and a thin dashed ink line on to the body, named "R* n0". Below (right), "pixel's
+// a small ring of twelve ink dots (section 6.1's) at the lower left, named "pixel", the body as a dot in matter's
+// colour R* n0 from it, at the upper right, named "body"; from the pixel an arrow in the observer's colour along beta,
+// named "c beta", two ink arrows along +-n0, named "+n0" and "-n0", and a thin dashed ink line on to the body, named
+// "R* n0". Below (right), "pixel's
 // frame": the pixel at rest at the lower left, the body at its present position r = R*(a/(gamma beta) beta^ + n_perp),
 // closer along the motion by the factor gamma, with an arrow in the observer's colour from it, named "v = -c beta"; a
-// thin dashed ink line from the pixel to it, named "r, present position"; from the pixel the aberrated directions p+
+// thin dashed ink line from the pixel to it, named "r, present position" three quarters of the way along; the pixel
+// and the body named as above; from the pixel the rest directions +-n0 again, thin faint grey arrows one unit long,
+// named "+n0" and "-n0" in grey, so that the lean of p+ and p- from them toward v is seen in the one panel (solid, not
+// dashed: +n0 runs 5 degrees from the dashed r); and the aberrated directions p+
 // and p- (eq:proof-stars), arrows in the observer's colour, both leaning toward -beta, and their half sum, a short
 // thick arrow named "v_perp/c", whose tip is the middle of a dotted chord between the tips of p+ and p-.
 // Departures from the diagram's comment: on the site the panels are stacked at every width (as section 6.2's
@@ -24,7 +28,7 @@ import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, VEC, VEC_HEAD 
 import { dashed } from './tut-orb-lib.js';
 import { DASH } from './tut-bessel-lib.js';
 import { THIN } from './tut-fourier-lib.js';
-import { INK, DIM } from '../lib.js';
+import { INK, DIM, FAINT } from '../lib.js';
 import { chapter, palette, OBS, MATTER, BETA, GAMMA, frames, rad } from './tut-aberration-lib.js';
 
 const name = 'tut-aberration-frames';
@@ -43,6 +47,8 @@ const CHORD = 0.6, CHORD_STEP = 1.8;       // the dotted chord: its dots and the
 const APART = 20;                          // the site's: the air between the upper panel's ink and the lower's title
 const BESIDE = 34;                         // the book's: the air between the left panel's ink and the right's
 const TITLE = 18;                          // the air between a title and its panel's highest point
+const GHOST = { width: 0.5, head: 3.4 };
+const R_NAME = 0.75;                       // r's name, this far along it (clear of the faint +n0's name, under it)   // the rest directions +-n0 in the pixel's frame, faint
 
 export default async function () {
 	const nums = chapter(check);
@@ -100,6 +106,8 @@ export default async function () {
 		L.push(await off('+\\hat n_0', plus(o1, [np.d[0] * 0.55, np.d[1] * 0.55]), [-right[0], -right[1]], INK));
 		L.push(await off('-\\hat n_0', nm.B, nm.u, INK));
 		L.push(await off('c\\boldsymbol\\beta', plus(o1, [beta1.d[0] * 0.55, beta1.d[1] * 0.55]), [-beta1.u[1], beta1.u[0]], OBS));
+		L.push(await off('\\text{pixel}', o1, [-1, 0], DIM));
+		L.push(await off('\\text{body}', b1, [1, 0], DIM));
 		return { bottom: nm.B[1], top: b1[1] - BODY };
 	}
 
@@ -116,6 +124,9 @@ export default async function () {
 		// the dashed line from the pixel to the body
 		const ru = unit(rPage);
 		dashed(S, plus(o2, [ru[0] * (ring + CLEAR), ru[1] * (ring + CLEAR)]), plus(b2, [-ru[0] * (BODY + CLEAR), -ru[1] * (BODY + CLEAR)]), { color: INK, width: THIN, dash: DASH, what: 'r' });
+		// the rest directions +-n0, faint, from the same pixel, so that the lean of p+ and p- from them is seen
+		const gp = ray(o2, F.n0, { color: FAINT, width: GHOST.width, head: GHOST.head, what: 'the ghost +n0' });
+		const gm = ray(o2, [-F.n0[0], -F.n0[1]], { color: FAINT, width: GHOST.width, head: GHOST.head, what: 'the ghost -n0' });
 		// the two directions, the chord between their tips and the half sum
 		const pp = ray(o2, F.plus, { color: OBS, what: 'p+' });
 		const pm = ray(o2, F.minus, { color: OBS, what: 'p-' });
@@ -128,12 +139,17 @@ export default async function () {
 		const half = ray(o2, F.half, { color: OBS, width: THICK, head: THICK_HEAD, what: 'the half sum' });
 		check(Math.hypot(...F.half).toFixed(3) === '0.545' && near(F.half[0], F.vPerp[0], 1e-15) && near(F.half[1], F.vPerp[1], 1e-15), 'the half sum is not v_perp/c');
 		const n = [-ru[1], ru[0]];                        // the normal to r on the side away from p+
-		L.push(await off('\\boldsymbol r,\\ \\text{present position}', plus(o2, [rPage[0] * 0.5, rPage[1] * 0.5]), n[0] > 0 ? n : [-n[0], -n[1]], INK));
+		L.push(await off('\\boldsymbol r,\\ \\text{present position}', plus(o2, [rPage[0] * R_NAME, rPage[1] * R_NAME]), n[0] > 0 ? n : [-n[0], -n[1]], INK));
 		L.push(await off('\\boldsymbol v = -c\\boldsymbol\\beta', plus(b2, [vel.d[0] * 0.5, vel.d[1] * 0.5]), [0.14, -0.99], OBS));
 		L.push(await off('\\hat p_+', pp.B, pp.u, OBS));
 		L.push(await off('\\hat p_-', pm.B, pm.u, OBS));
 		// the half sum's name beyond its tip, outside the chord
 		L.push(await off('\\boldsymbol v_\\perp/c', half.B, half.u, OBS));
+		// the rest directions' names beyond their tips, on the side away from p+ and p-
+		L.push(await off('+\\hat n_0', gp.B, [1, 0], FAINT));
+		L.push(await off('-\\hat n_0', gm.B, gm.u, FAINT));
+		L.push(await off('\\text{pixel}', o2, [1, 0.35].map((v) => v / Math.hypot(1, 0.35)), DIM));
+		L.push(await off('\\text{body}', b2, [1, 0], DIM));
 	}
 
 	const S = new Sheet(name);

@@ -4,13 +4,16 @@
 // paths in ink, each straight before and after the front: (1) slow matter at rest, (2) light along +z, a 45-degree line
 // behind the front that never meets it, (3) light along -z, a -45-degree line; (1) and (3) cross where H = 0, so that they
 // are continuous here, and a dot marks each crossing. A dashed copy of (1) crosses where H > 0: its far part starts
-// shifted by H/2 in z and in ct along the front, the jump of v by H, named so. Right, the place x across the front, taken
+// shifted by H/2 in z and in ct along the front, the jump of v = ct + z by H, named "v = ct + z / jumps by H" on two lines. Right, the place x across the front, taken
 // along gradH: the same three paths, with the same heights (the dashed copy is left out: its shift is along the front,
 // which this diagram does not show); there the kinks are seen, slow matter and light against the front turning toward
-// +x_perp, light with the front never turning. Each path is named beside it: "slow matter" and "light along -z" left of
-// their first parts, "light along +z" above its end; at each kink its kick (1/2) q gradH, an arrow along +x whose tip
-// is on the kink, with "q = mc" or "q = 2E/c" left of its tail; "q = 0" under the end of light along +z; and under the
-// x axis gradH from x = 0, all four to one scale.
+// +x_perp, light with the front never turning. Light along +z stands at a negative x_perp, left of the others, so that
+// the two turned paths' upper ends have the top to themselves. Each path is named at its upper end, as on the left:
+// "light along +z" over its end, "light along -z" left of the end of its turned part and "slow matter" right of the
+// end of its own, on one baseline, so that the two turned parts, which run close together near the top, are told
+// apart; at each kink its kick (1/2) q gradH, an arrow along +x whose tip is on the kink, with "q = mc" or "q = 2E/c"
+// left of its tail; "q = 0" under the first end of light along +z; and under the x axis gradH from x = 0, all four to
+// one scale.
 // Departures from the diagram's comment: the kinks out of the plane of z and ct are drawn in a second diagram of
 // x_perp and ct, which shares the first's heights, rather than by an arrow across the first, so that each kink is a
 // true angle in the page; the side panel's plane of the front is replaced by that diagram, the kicks drawn at the kinks
@@ -35,19 +38,18 @@ const check = checker(name);
 // ---- the events (units: z, ct and x_perp alike) -------------------------------------------------------------------
 const U = 58;                                  // points per unit, both diagrams, both axes
 const BOTTOM = -1.45, TOP = 1.45;              // the paths' ends in ct
-const ZL = [-1.62, 1.62], XL = [-1.22, 1.3];  // the diagrams' widths: z, x_perp (room on the left for the names)
+const ZL = [-1.62, 1.62], XL = [-1.9, 0.95];  // the diagrams' widths: z, x_perp (room on the left for the names)
 const GAP = 30;                                // between the diagrams, points
 const Z1 = -0.95;                              // (1) slow matter at z = Z1, x_perp = 0
 const BEHIND = 0.62;                           // (2) light along +z: ct = z + BEHIND, at x_perp = X2
-const X2 = 1.08;
+const X2 = -1.32;
 const Z3 = 0.62, START3 = -0.25;               // (3) light along -z crosses at z = ct = Z3, x_perp = 0; starts at ct = START3
 const XC = 2 / 3, ZC = -0.28;                  // the copy of (1): x_perp = XC, crossing at z = ct = ZC
 const COPY = [0.72, 0.72];                     // its lengths in ct before and after the front (a short copy)
 const FRONT_W = 1.5;                           // the front's stroke
 const DOT_R = 1.15;                            // a crossing
 const KS = 1.55;                               // the arrows: units of x_perp per unit of gradH and of momentum (mc)
-const NAME_CT = { mat: -1.2, ag: 0.17 };       // right: the heights of the kinked paths' names, beside their first parts
-const caption = 'Look first at the two kinks on the right: slow matter and light running against the front turn, while light riding with it does not. Left, the paths against $z$: they cross the front where the profile is zero, and where it is not, the dashed path shows the far part shifted along the front. Right, the same paths against the place $x$ across the front, taken along $\\nabla H$, and under them $\\nabla H$ and the kicks $\\tfrac12q\\nabla H$ to one scale. Kinks drawn for one value of $\\nabla H$, exaggerated.';
+const caption = 'Look first at the two kinks on the right: slow matter and light running against the front turn, while light riding with it does not. Left, the paths against $z$: they cross the front where the profile is zero, and where it is not, the dashed path shows the far part shifted along the front. Right, the same paths against the place $x$ across the front, taken along $\\nabla H$, each kick $\\tfrac12q\\nabla H$ drawn at its kink and $\\nabla H$ under the axis, to one scale. Kinks drawn for one value of $\\nabla H$, exaggerated.';
 
 export default async function () {
 	const { state, kicks } = await chapter(check);
@@ -142,18 +144,21 @@ export default async function () {
 	}
 	{
 		const q = A(pc.zct.after[0]);
-		L.push(await S.clear('\\Delta v = H', q[0] + LABEL_GAP + 2.5, q[1] + 2, 0, 0.5, [1, 0], { color: INK }));
+		L.push(await S.clear('\\begin{array}{l}v = ct + z\\\\\\text{jumps by }H\\end{array}', q[0] + LABEL_GAP + 2.5, q[1] + 2, 0, 0.5, [1, 0], { color: INK }));
 	}
 
 	// ---- right: at each kink its kick (1/2) q gradH, an arrow along +x ending on the kink, to one scale with gradH;
-	// q left of the arrow's tail, and the path's name beside its first part
-	for (const [p, k, lab, nm, ct] of [[p1, mat, 'q = mc', '\\text{slow matter}', NAME_CT.mat], [p3, ag, 'q = 2E/c', '\\text{light along }{-z}', NAME_CT.ag]]) {
+	// q left of the arrow's tail, and the path's name at its upper end: light along -z's to the left, slow matter's to
+	// the right, on one baseline
+	const nameBase = A([0, TOP])[1] - LABEL_GAP - 2;
+	check(B(p3.xct.after[1])[0] < B(p1.xct.after[1])[0] - 4, 'the turned paths\' ends are not apart, light along -z on the left');
+	for (const [p, k, lab, nm, side] of [[p1, mat, 'q = mc', '\\text{slow matter}', 1], [p3, ag, 'q = 2E/c', '\\text{light along }{-z}', -1]]) {
 		const q = B(p.xct.before[1]);
 		const tip = q[0] - DOT_R - 0.3, tail = tip - KS * U * k.kick;
 		S.arrow([tail, q[1]], [tip, q[1]], { color: INK, width: VEC, head: VEC_HEAD, layer: 3, what: `the kick ${lab}` });
 		L.push(await placed(lab, tail - LABEL_GAP - 1.2, q[1], 1, 0.5, INK));
-		check(ct > p.xct.before[0][1] && ct < p.xct.before[1][1], `the name ${nm} is not beside its path's first part`);
-		L.push(await placed(nm, q[0] - LINE / 2 - LABEL_GAP - 1.2, B([0, ct])[1], 1, 0.5, INK));
+		const end = B(p.xct.after[1]), svg = await tex(nm, [end[0] + side * 2.4, nameBase], SIZE, side > 0 ? 'lB' : 'rB', INK);
+		L.push({ src: nm, svg, box: boxOf(svg) });
 	}
 	check(near(mat.kick, 0.15) && near(ag.kick, 0.3) && wit.kick === 0, 'the kicks are not 0.15, 0 and 0.3');
 	{

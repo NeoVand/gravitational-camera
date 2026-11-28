@@ -3,7 +3,8 @@
 // of axes in the horizontal plane: east and north (blue), and the same axes turned by 45 degrees to north-east and
 // north-west (orange). On the first set the arrow lies along the east axis, so its shadows are 1 and 0; on the
 // turned set a dotted line falls from its tip at right angles onto each axis, and its shadows, the orange arrows,
-// are 0.707 along north-east and 0.707 the negative way along north-west. Exact: the turn (45 degrees, asserted
+// are 0.707 along north-east and 0.707 the negative way along north-west. The blue components are printed too: 1
+// under the arrow, and 0 at the origin beside the north axis, where the shadow on north shrinks to a point. Exact: the turn (45 degrees, asserted
 // on the page), the arrow's length (one unit, S points), the feet of the perpendiculars (asserted at right angles,
 // and at 0.707 S points from the origin on the page), the signs, and the length of the arrow, the same in both
 // sets: 1^2 + 0^2 = 0.707^2 + 0.707^2. Nothing is schematic.
@@ -85,6 +86,8 @@ export default async function () {
 	const midAt = (p, f = 0.5) => sc(p.clone().multiplyScalar(f));
 	L.push(await ink.label('\\boldsymbol a', midAt(a, 0.62), unit(0, -1), 2.6, INK));
 	L.push(await ink.label('1', midAt(a, 0.62), unit(0, 1), 2.6, ACCENT2));
+	// the shadow on the north axis has no length: its 0, blue, at the origin, in the corner between the north axis and the north-east one
+	L.push(await ink.label('0', sc(O), [Math.cos(3 * Math.PI / 8), -Math.sin(3 * Math.PI / 8)], 2.4, ACCENT2));
 	L.push(await ink.label('0.707', midAt(feet[0]), unit(-1, -1), 2.4, ACCENT));
 	L.push(await ink.label('-0.707', midAt(feet[1]), unit(-1, 1), 2.4, ACCENT));
 	const mid = Math.PI / 2 + t / 2;

@@ -14,14 +14,16 @@
 // drawn to one scale; the picture of the stone mapped by the same linear map as the outline (an orthographic view
 // of a linear deformation is the same linear map of the view), and clipped to the exact ellipse; the ring as in
 // section 1.4, from that table (figs/tut-five-lib.js, `ring`). Schematic: the ring's size against the metre, and its
-// strain (exaggerated far more than the ball's). Pictorial: the stone, a picture from an image model
-// (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, as in figs/hair.js). Marks on the stone are
-// drawn in a fixed dark ink, and change colour exactly where they cross the stone's edge.
+// strain (exaggerated far more than the ball's). Pictorial: the ball's picture, the stone from an image model
+// (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, as in figs/hair.js), turned here to a cool
+// steel grey near the beads' (`steeled`: its luminance mapped to grey), since the ball is steel. Marks on the ball are
+// drawn in a fixed dark grey, and change colour exactly where they cross the ball's edge. Both rows mark their centres
+// alike: the ball's centre of mass by the quartered circle, the ring's by a +; the upper row's carry the extensions
+// of the dimension.
 import { Panel, v3, sprite, INK, DIM } from '../lib.js';
 import { MARGIN } from '../stone.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, n2, HAIR, DOT, DOT_STEP, HAIRSPACE } from './tut-vec-lib.js';
 import { ring, UNDISTURBED, UNDISTURBED_W, TICK } from './tut-five-lib.js';
-import { STONE_INK } from './tut-orb-lib.js';
 import { ball, Q_RMS, R_BALL, BLOW_UP, trial } from './tut-osc-lib.js';
 
 const name = 'tut-osc-hero';
@@ -41,6 +43,30 @@ const PLUS = 2.2;                         // half the arms of the + at the ring'
 const DIM_GAP = 7;                        // the dimension line, this far above the highest mark of the upper row
 const LABEL_GAP = 2.4;
 const SPRITE = '/figures3d/sprites/hair/ball.png';
+const STEEL_MID = 0.57;                   // the steel's grey at the picture's median luminance
+const STEEL_GAIN = 1.15;                  // its contrast against the picture's
+const STEEL_INK = '#2b2e33';              // marks on the steel, and its rim: a fixed dark grey, not swapped
+
+// The stone's picture turned to steel: each pixel's luminance L, mapped about the picture's median (0.685) to a cool
+// grey near the beads' STEEL, with a little more contrast; the alpha kept.
+async function steeled(href) {
+	const img = new Image();
+	img.src = href;
+	await img.decode();
+	const c = document.createElement('canvas');
+	c.width = img.width; c.height = img.height;
+	const ctx = c.getContext('2d');
+	ctx.drawImage(img, 0, 0);
+	const d = ctx.getImageData(0, 0, c.width, c.height);
+	const px = d.data;
+	for (let i = 0; i < px.length; i += 4) {
+		const L = (0.2126 * px[i] + 0.7152 * px[i + 1] + 0.0722 * px[i + 2]) / 255;
+		const v = STEEL_MID + STEEL_GAIN * (L - 0.685);
+		[0.965, 1, 1.045].forEach((t, k) => { px[i + k] = Math.max(0, Math.min(255, Math.round(255 * v * t))); });
+	}
+	ctx.putImageData(d, 0, 0);
+	return c.toDataURL('image/png');
+}
 
 const ellipse = (cx, cy, a, b) => `M${n2(cx - a)},${n2(cy)}a${n2(a)},${n2(b)} 0 1,0 ${n2(2 * a)},0a${n2(a)},${n2(b)} 0 1,0 ${n2(-2 * a)},0Z`;
 
@@ -54,7 +80,8 @@ export default async function () {
 	const raw = (svg, layer) => P.items.push({ kind: 'raw', layer, depth: 0, svg });
 	const art = await sprite(SPRITE);
 	const reach = art.w / (art.w - 2 * MARGIN);         // the sprite's half-width in units of its exact circle's radius
-	raw(`<defs><image id="${name}-stone" class="art" href="${art.href}" x="${n2(-R * reach)}" y="${n2(-R * reach)}" width="${n2(2 * R * reach)}" height="${n2(2 * R * reach)}" preserveAspectRatio="none"/></defs>`, -2);
+	const steel = await steeled(art.href);
+	raw(`<defs><image id="${name}-stone" class="art" href="${steel}" x="${n2(-R * reach)}" y="${n2(-R * reach)}" width="${n2(2 * R * reach)}" height="${n2(2 * R * reach)}" preserveAspectRatio="none"/></defs>`, -2);
 
 	const bx = -120, rx = bx + PER_M * 1;               // the ball's centre and the ring's, a metre apart on the axis
 	check(near(rx - bx, 10 * R, 1e-9), 'the ring is not ten radii, a metre, from the ball');
@@ -75,13 +102,13 @@ export default async function () {
 		raw(`<clipPath id="${inside}"><path d="${shape}"/></clipPath>` +
 			`<clipPath id="${outside}"><path clip-rule="evenodd" d="M0,0H${2 * ORIGIN}V${2 * ORIGIN}H0Z${shape}"/></clipPath>` +
 			`<g clip-path="url(#${inside})"><use href="#${name}-stone" transform="translate(${n2(X)},${n2(Y)}) scale(${(a / R).toFixed(6)},${(b / R).toFixed(6)})"/></g>`, 0);
-		raw(`<path d="${shape}" fill="none" stroke="${STONE_INK}" stroke-width="${RIM}"/>`, 0.7);
+		raw(`<path d="${shape}" fill="none" stroke="${STEEL_INK}" stroke-width="${RIM}"/>`, 0.7);
 		ink.mark(Array.from({ length: 361 }, (_, k) => [X + a * Math.cos((k * Math.PI) / 180), Y + b * Math.sin((k * Math.PI) / 180)]), RIM / 2, `row ${i}: the ball`);
 		// the undisturbed sphere's outline, dashed: a whole number of dashes; in the page's dim ink off the stone and
 		// the stone's ink on it
 		const C = 2 * Math.PI * R, n = Math.round(C / (UNDISTURBED[0] + UNDISTURBED[1])), period = C / n, on = (UNDISTURBED[0] * period) / (UNDISTURBED[0] + UNDISTURBED[1]);
 		const circle = (c) => `<path d="M${n2(X + R)},${n2(Y)}a${R},${R} 0 1,1 ${-2 * R},0a${R},${R} 0 1,1 ${2 * R},0" fill="none" stroke="${c}" stroke-width="${UNDISTURBED_W}" stroke-dasharray="${on.toFixed(4)} ${(period - on).toFixed(4)}" stroke-dashoffset="${(on / 2).toFixed(4)}"/>`;
-		raw(`<g clip-path="url(#${outside})">${circle(DIM)}</g><g clip-path="url(#${inside})">${circle(STONE_INK)}</g>`, 0.8);
+		raw(`<g clip-path="url(#${outside})">${circle(DIM)}</g><g clip-path="url(#${inside})">${circle(STEEL_INK)}</g>`, 0.8);
 		ink.mark(Array.from({ length: 361 }, (_, k) => [X + R * Math.cos((k * Math.PI) / 180), Y + R * Math.sin((k * Math.PI) / 180)]), UNDISTURBED_W / 2, `row ${i}: the undisturbed ball`);
 
 		// ---- the ring, a metre away on the axis, under the table diag(-2, 1) times the sign of q
@@ -120,9 +147,15 @@ export default async function () {
 		.map((y) => `M${n2(up.X)},${n2(y)}h0`).join('');
 	// the extension runs off the stone only: on it, the edge of the picture's cut rises from the centre to the top
 	raw(`<g clip-path="url(#${name}-out0)"><path d="${dots}" stroke="${INK}" stroke-width="${DOT}" stroke-linecap="round" fill="none"/></g>` +
-		`<path d="${quarters(up.X, up.Y, COM_R)}" fill="${STONE_INK}"/><circle cx="${n2(up.X)}" cy="${n2(up.Y)}" r="${COM_R}" fill="none" stroke="${STONE_INK}" stroke-width="${HAIR}"/>`, 2);
+		`<path d="${quarters(up.X, up.Y, COM_R)}" fill="${STEEL_INK}"/><circle cx="${n2(up.X)}" cy="${n2(up.Y)}" r="${COM_R}" fill="none" stroke="${STEEL_INK}" stroke-width="${HAIR}"/>`, 2);
 	ink.mark([[up.X, up.Y - up.b], [up.X, y1]], DOT / 2, 'the ball\'s extension');
 	ink.mark([[up.X, up.Y]], COM_R, 'the ball\'s centre');
+	// the lower row's centres, marked as the upper's (without the extensions, which belong to the dimension)
+	const lo = out[1], [LX, LY] = ink.at(v3(rx, rows[1].y));
+	raw(`<path d="${quarters(lo.X, lo.Y, COM_R)}" fill="${STEEL_INK}"/><circle cx="${n2(lo.X)}" cy="${n2(lo.Y)}" r="${COM_R}" fill="none" stroke="${STEEL_INK}" stroke-width="${HAIR}"/>` +
+		`<path d="M${n2(LX - PLUS)},${n2(LY)}H${n2(LX + PLUS)}M${n2(LX)},${n2(LY - PLUS)}V${n2(LY + PLUS)}" stroke="${INK}" stroke-width="${HAIR}" fill="none"/>`, 2);
+	ink.mark([[lo.X, lo.Y]], COM_R, 'the lower ball\'s centre');
+	ink.mark([[LX - PLUS, LY], [LX + PLUS, LY]], HAIR / 2, 'the lower ring\'s centre');
 
 	// ---- labels: the metre; under the balls' column the exaggeration, under the rings' the note, on one line below
 	// the lower row's lowest mark

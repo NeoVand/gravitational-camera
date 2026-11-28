@@ -17,7 +17,11 @@
 // edges; all three of the gas's arrows have one length on the page, so that the front one clears its face. The rod's
 // three visible faces carry a pale tint of the page and its edges are lighter than the cube's, so that it reads as one
 // bar with the cube marked on it; the tension's arrows start just outside the rod's outline, level with its axis. The
-// inward arrow's name stands in two lines under the rod, below that arrow.
+// inward arrows' name stands in two lines centred under the rod, since it says what both of them show (the left one as
+// momentum along -x crossing toward +x, which is the same flow). Under both panels a key, which the comment does not
+// draw: a sample of the brown arrow and "each arrow on a face: the way the momentum along the face's outward normal
+// crosses it" (two lines on the site), so that the rod's inward arrows are not read as forces pushing on the cube. The
+// gas's dots are 1.3 points across, so that they hold in print.
 // Exact: the cube's edges (a cabinet projection, the receding edges at 30 degrees and half length; the same cube in
 // both panels, asserted), each arrow along its face's outward normal and starting at its centre (gas), or ending at
 // it and pointing inward (rod) (asserted), no arrow on the rod's side faces; the signs +p and -tau (asserted in
@@ -39,13 +43,15 @@ const ROD = globalThis.figureLayout === 'book' ? 56 : 66;   // the rod's half le
 const PULL = 20;                           // the tension's arrows
 const AIR = 1.6;                           // between the rod's outline and a tension's arrow
 const EDGE = 0.45;                         // the cube's edges
-const DOT_R = 0.55, DOT_STEP = 8.2;        // the gas's dots: radius and spacing
+const DOT_R = 0.65, DOT_STEP = 8.2;        // the gas's dots: radius and spacing
 const ROW = 6;                             // a title to its panel's ink
 const GAP = 16;                            // the upper panel's ink to the lower panel's title
 const BOOK = globalThis.figureLayout === 'book';
 const BESIDE = 22;                         // the book's: the gas panel's ink to the rod panel's title
 const FADE = 20;                           // the gas's dots fade out over this width at the field's edges, points
 const LEVELS = 6;                          // the fade's steps of opacity
+const KEY_AIR = 11;                        // from the panels' ink to the key
+const KEY_ARROW = 18;                      // the key's sample arrow
 
 /** A pseudo-random number in [0, 1) from two integers (fixed, so the dots do not move between renders). */
 const hash = (i, j) => { const s = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -155,9 +161,10 @@ export default async function () {
 		pull[side] = S.arrow(from, [from[0] + side * PULL, end[1]], { color: DIM, width: VEC, head: VEC_HEAD, layer: 2, what: `the pull at ${side}` });
 	}
 	L.push(await S.clear('\\text{tension } \\tau', pull[1].B[0] + LABEL_GAP + 0.6, pull[1].B[1], 0, 0.5, [1, 0], { color: DIM }));
-	// the name of the right arrow, under the rod
+	// the name of the two inward arrows, centred under the rod (and the cube): both say the one thing, the left
+	// one as momentum along -x crossing toward +x
 	const rodBottom = r([0, 0, 0])[1];
-	L.push(await lines(S, ['\\text{momentum along } {+x}', '\\text{flows toward } {-x}'], (inward[1].A[0] + inward[1].B[0]) / 2, rodBottom + LABEL_GAP + 2.5, 0.5, 0, [0, 1], MATTER, L));
+	L.push(await lines(S, ['\\text{momentum along } {+x}', '\\text{flows toward } {-x}'], r([0, 0, A / 2])[0], rodBottom + LABEL_GAP + 2.5, 0.5, 0, [0, 1], MATTER, L));
 	const inkBottom2 = Math.max(...L.slice(-1).map((l) => l.box.b), rodBottom);
 	const law2 = await placed('T^{xx} = -\\tau', r([0, 0, A / 2])[0], inkBottom2 + 9, 0.5, 0, INK);
 	L.push(law2);
@@ -188,6 +195,20 @@ export default async function () {
 		}
 		for (const q of dots) S.mark([q.slice(0, 2)], DOT_R, 'a dot of the gas');
 		check(dots.filter((d) => d[2] === LEVELS).length > 60, `too few dots: ${dots.length}`);
+	}
+
+	// ================= the key =================
+	// under both panels: a sample of the brown arrow, and what every one of them means
+	{
+		const inkBottom = Math.max(...L.map((l) => l.box.b), ...S.marks.flatMap((m) => m.pts.map((p) => p[1] + m.r)));
+		const keyText = BOOK
+			? ['\\text{each arrow on a face: the way the momentum along the face\'s outward normal crosses it}']
+			: ['\\text{each arrow on a face: the way the momentum}', '\\text{along the face\'s outward normal crosses it}'];
+		const y = inkBottom + KEY_AIR, x = left + KEY_ARROW + 5;
+		const k = await lines(S, keyText, x, y, 0, 0, [0, 1], MATTER, L);
+		L.push(k);
+		const ya = k.box.t + 4.6;                    // level with the first line's middle
+		S.arrow([left, ya], [left + KEY_ARROW, ya], { color: MATTER, width: THICK, head: THICK_HEAD, layer: 3, what: 'the key\'s arrow' });
 	}
 
 	S.checkAll(L);

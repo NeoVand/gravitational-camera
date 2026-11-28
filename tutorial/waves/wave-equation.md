@@ -109,8 +109,8 @@ moves up, and the half behind it moves down. A moment later both shapes emerge u
 
 ![Look first at the middle line: the sum is flat but moving, up ahead of the hump and down behind it. A hump moving
 right (orange, dashed) and an equal dip moving left (blue, dashed) add to the bold line. Time runs down the page in
-steps of $w/c$, where $w$ is the pulses' width. The dashed pulses are drawn only where they overlap; elsewhere the
-bold line is the one pulse alone. Exact sums of two Gaussian pulses; the arrows' scale is chosen for the
+steps of $w/c$, where $w$ is the pulses' width. The dashed pulses are drawn only in the middle three lines, where
+they overlap; elsewhere the bold line is one pulse alone. Exact sums of two Gaussian pulses; the arrows' scale is chosen for the
 drawing.](tut-wave-pulses){#fig:wave-pulses}
 
 ## A plane wave is a turning number that travels

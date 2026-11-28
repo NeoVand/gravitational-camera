@@ -2,12 +2,15 @@
 // Left: the Maxwell element drawn across the page, a zigzag spring (mu_inf) joined end to end with a dashpot (eta_0),
 // an open cylinder of oil with a piston and its rod; the left end on a hatched wall, as section 1.7's cart
 // (figs/tut-ham-phase.js), the right end carrying a small arrow, the shear. Right: two charts on one axis of t/tau
-// from -0.5 to 4. Above, the shear u/u_0, thin and grey, stepping from 0 to 1 at t = 0 and staying there; below, the
+// from -0.5 to 3.5. Above, the shear u/u_0, thin and grey, stepping from 0 to 1 at t = 0 and staying there; below, the
 // stress T/T(0), solid in the first accent, jumping to 1 at t = 0 and falling as e^{-t/tau}, with a short tick
 // across it at t/tau = 1, where it is 1/e = 0.368, labelled tau = eta_0/mu_inf. The two are drawn in separate charts,
 // rather than in one as the diagram's comment had it, because there the shear's step would lie on the stress's jump
-// and its zero on the axis. Each line is stopped where it would merge with its horizontal axis (figs/tut-prob-lib.js,
-// `merge`), so the zero before t = 0 is the axis itself.
+// and its zero on the axis. Each line would be stopped where it would merge with its horizontal axis
+// (figs/tut-prob-lib.js,
+// `merge`), so the zero before t = 0 is the axis itself; the axis ends at t/tau = 3.5 so that the stress, 0.030 there,
+// still clears its axis and runs the whole width of the chart, as the shear above does (asserted): on an axis to 4 it
+// stopped short of the end.
 // Exact: the stress, T(t)/T(0) = e^{-t/tau}, asserted here to solve eq:relax, dT/dt + T/tau = 2 mu du/dt, for the held
 // shear (the step taken by the spring alone, T(0) = 2 mu u_0), and the point (1, 1/e). Schematic: the drawing of the
 // element (the spring's coils, the dashpot's size). The curve is sampled so that no two neighbouring points are more
@@ -21,7 +24,7 @@ import { chapter } from './tut-visc-lib.js';
 const name = 'tut-visc-maxwell';
 const check = checker(name);
 
-const T0 = -0.5, T1 = 4;                   // t / tau
+const T0 = -0.5, T1 = 3.5;                   // t / tau
 const PW = 150, STRIP = 24, PH = 74, GAP = 12;   // the charts: width, the shear's height, the stress's, between them
 const SHEAR = 0.6;                         // the shear's line, thin and grey (fainter than the axes)
 const AIR = 1.4;
@@ -59,6 +62,7 @@ export default async function () {
 	const clear = merge(PT, CURVE) + (AIR / PT.h) * (PT.y1 - PT.y0);
 	let b = T1;
 	while (stress(b) < clear) b -= 1e-4;
+	check(b === T1, 'the stress stops short of the chart\'s end');
 	const decay = graph(PT, stress, 0, b);
 	check(longest(decay) <= 0.2501, 'the stress is coarse');
 	S.path([[PT.X(0), PT.bottom - (CURVE + AXIS) / 2], ...decay], { color: ACCENT, width: CURVE, layer: 2, what: 'the stress' });
@@ -69,12 +73,12 @@ export default async function () {
 	L.push(await S.clear('\\tau = \\eta_0/\\mu_\\infty', ex + 1.5, ey - MARK - LABEL_GAP, 0, 1, [1, -0.4], { color: DIM }));
 
 	// the axes
-	const ticks = [0, 1, 2, 3, 4];
+	const ticks = [0, 1, 2, 3];
 	await xAxis(S, PS, { ticks, fmt: () => null, what: 'the shear\'s axis' });
 	const xl = await xAxis(S, PT, { ticks, what: 'the t axis' });
 	L.push(...xl);
 	const last = xl[xl.length - 1];
-	L.push(await S.clear('t/\\tau', last.box.r + 5, (last.box.t + last.box.b) / 2, 0, 0.5, [1, 0], { color: DIM }));
+	L.push(await S.clear('t/\\tau', Math.max(last.box.r + 5, PT.X(T1) + 3), (last.box.t + last.box.b) / 2, 0, 0.5, [1, 0], { color: DIM }));
 	L.push(...(await yAxis(S, PS, { ticks: [0, 1], fmt: (t) => (t ? '\\tilde u_0' : '0'), what: 'the shear\'s y axis' })));
 	L.push(...(await yAxis(S, PT, { ticks: [0, Math.exp(-1), 1], fmt: (t) => (t === 0 ? '0' : t === 1 ? '1' : '1/e'), what: 'the stress\'s y axis' })));
 	L.push(await S.clear('\\text{shear}', PS.X(1.6), PS.Y(1) + LABEL_GAP + 0.3, 0, 0, [0, 1], { color: DIM }));

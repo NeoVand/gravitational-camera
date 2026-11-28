@@ -196,9 +196,9 @@ $kr = \sqrt2$.[^tide]
 at 1 kHz it is 48 km. Halve the frequency, and the edge moves twice as far out.
 
 ![Look first at the crossing of the two solid lines: the near part (blue) falls faster and wins inside $\lambda/2\pi$,
-the wave part (orange) wins outside. The tide's two terms that fall faster than $1/r$, taken together and dotted, cross
-their wave term, which is the same line as the slope's, a little farther out, at $kr = 2.2$. Lines
-exact.](tut-ret-crossing){#fig:ret-crossing}
+the wave part (orange) wins outside. The tide's two terms that fall faster than $1/r$, taken together and dashed, cross
+their wave term, which is the same line as the slope's, a little farther out, at $kr = 2.2$. The sizes are in units of
+$k^2|\tilde b|/4\pi$ for the slope and $k^3|\tilde b|/4\pi$ for the tide. Lines exact.](tut-ret-crossing){#fig:ret-crossing}
 
 {{paper fig:regimes}}
 

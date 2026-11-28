@@ -106,9 +106,10 @@ The block $C_{+-}$ is **complex symmetric**, because $\mathbf q\mathbf q^{\maths
 [](#fig:sky-spectral-blocks)), and the two tables of section 9.5 are $C_I = C_+ + C_-$ and $C_V = C_+ - C_-$.
 
 ![Look first at the bar under the square: a sky of independent waves fills $25 + 25 + 18 = 68$ of the hundred real
-numbers of one pixel's spectral matrix and leaves $12 + 20 = 32$ at zero. In $C_{+-}$ the 15 entries on and above the
-diagonal stand for its symmetric part, which the sky reaches in only nine complex combinations, and the 10 below it for
-its antisymmetric part, which no sky reaches. Counts exact.](tut-sky-spectral-blocks){#fig:sky-spectral-blocks}
+numbers of one pixel's spectral matrix and leaves $12 + 20 = 32$ at zero, so those 32 are checks on the data. In
+$C_{+-}$ the 15 entries on and above the diagonal stand for its symmetric part, which the sky reaches in only nine
+complex combinations, and the 10 below it for its antisymmetric part, which no sky reaches. The symmetric part is
+striped because its 30 real numbers are shared, 18 of the sky to 12 checks. Counts exact.](tut-sky-spectral-blocks){#fig:sky-spectral-blocks}
 
 ## The pixel sees the sky only up to degree four: 68 numbers
 

@@ -182,9 +182,10 @@ opposite to the forward one's,
 $\matter{\vect J}(\vect x) = \int\matter{\tilde{\vect J}}(\vect\xi)\,e^{-i\vect\xi\cdot\vect x}\,\dd^3\xi/(2\pi)^3$,
 gives $\matter{\vect J}$ itself. So a flow with no magnetic field outside is read from outside as the density is.
 
-![Look first at the two dashed arrows: the bracket of Calderón's pair reads the part of the flow's transform at right
-angles to $\vect\xi$, one component for each position of $\vect\eta$, and the rate of change of the density reads the
-part along $\vect\xi$. The lengths are chosen for the drawing.](tut-flow-transverse){#fig:flow-transverse}
+![Look first at the two dashed lines: the bracket of Calderón's pair reads the part of the flow's transform at right
+angles to $\vect\xi$, the dashed arrow in the plane, one component for each position of $\vect\eta$, and the rate of
+change of the density reads the part along $\vect\xi$, the dashed line that rises from that arrow's tip to the tip of
+$\matter{\tilde{\vect J}}$. The lengths are chosen for the drawing.](tut-flow-transverse){#fig:flow-transverse}
 
 ## Every silent flow is read by Calderón's pair
 

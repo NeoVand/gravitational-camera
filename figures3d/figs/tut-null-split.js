@@ -3,8 +3,10 @@
 // the harmonic densities H, at right angles to it, both drawn in true 3D (an orthographic view, turned and tilted as
 // lib.js's Panel does, as section 1.1's figs/tut-vec-projector.js). An arrow rho from the origin, its shadow rho_h on
 // the line, and the dashed segment from rho_h to rho, the part in N, parallel to the plane, with a right-angle mark at
-// rho_h. Through rho_h a second, lighter plane parallel to N, the set rho_h + N of densities with the same outside;
-// two more arrows from the origin to points of it, in grey, longer than rho_h, which is the shortest. The two planes
+// rho_h. Through rho_h a second, darker plane parallel to N, the set rho_h + N of densities with the same outside;
+// two more arrows from the origin to points of it, in grey, longer than rho_h, which is the shortest. Every arrow runs
+// from N up to the upper plane, so the upper plane, translucent, is drawn over them and veils the parts of them (and
+// of the line H) seen through it; the part in N lies in it and is drawn over it. The two planes
 // have one extent, the upper the lower lifted straight up (so they read as parallel, one above the other), centred on
 // the line H; N in the page's pale tint edged in the rule's colour, rho_h + N in a darker tint edged in the faint ink,
 // so that it holds in print.
@@ -30,7 +32,8 @@ const H_SPAN = [-0.42, 1.5];                 // the line H, world y
 const TINT = '#eeebe5';                       // the site's neutral tint of the page (drawing.ts THEME)
 const UPPER_TINT = `color-mix(in srgb, ${INK} 12%, ${TINT})`;   // the second plane, the same tint darkened (the site's
                                               // ink and tint, so that it follows the theme)
-const UPPER_OPACITY = 0.72;
+const UPPER_OPACITY = 0.5;
+const UNDER = -2.5;                           // the layer of what lies between the planes: over N, under the upper one
 const EDGE = 0.45;                            // the planes' edges
 
 export default async function () {
@@ -64,13 +67,18 @@ export default async function () {
 
 	// ---- the line H: below the plane N dashed (seen through it), above it solid
 	ink.line(v3(0, H_SPAN[0], 0), O, { color: FAINT, width: 0.5, dash: DASH, layer: 0, what: 'the line H below N' });
-	ink.line(O, v3(0, H_SPAN[1], 0), { color: INK, width: 0.5, layer: 1, what: 'the line H' });
+	// between the two planes (under the upper one, which veils it where it lies behind it on the page), then above
+	ink.line(O, rhoH, { color: INK, width: 0.5, layer: UNDER, what: 'the line H between the planes' });
+	ink.line(rhoH, v3(0, H_SPAN[1], 0), { color: INK, width: 0.5, layer: 1, what: 'the line H' });
 
-	// ---- the arrows: two more points of the upper plane in grey, rho_h and rho in matter's colour, the part in N dashed
-	for (const [k, q] of others.entries()) ink.arrow(O, q, { color: FAINT, width: 0.5, head: VEC_HEAD * 0.85, layer: 2, what: `another arrow ${k}` });
+	// ---- the arrows, all between the two planes, ending on the upper one: drawn under it, so that it veils the parts
+	// seen through it; two more points of the upper plane in grey, rho_h and rho in matter's colour; the part in N,
+	// dashed, lies in the upper plane, over it
+	for (const [k, q] of others.entries()) ink.arrow(O, q, { color: FAINT, width: 0.5, head: VEC_HEAD * 0.85, layer: UNDER, what: `another arrow ${k}` });
 	ink.line(rhoH, rho, { color: DIM, width: 0.55, dash: DASH, layer: 2, what: 'the part in N' });
-	ink.arrow(O, rho, { color: MATTER, width: VEC, head: VEC_HEAD, layer: 3, what: 'rho' });
-	ink.arrow(O, rhoH, { color: MATTER, width: VEC * 1.15, head: VEC_HEAD, layer: 3, what: 'rho_h' });
+	ink.arrow(O, rho, { color: MATTER, width: VEC, head: VEC_HEAD, layer: UNDER + 0.1, what: 'rho' });
+	ink.arrow(O, rhoH, { color: MATTER, width: VEC * 1.15, head: VEC_HEAD, layer: UNDER + 0.1, what: 'rho_h' });
+	for (const q of [rho, rhoH, ...others]) check(near(q.y, rhoH.y, 1e-12) && q.y > 0, 'an arrow does not run from N up to the upper plane');
 	ink.dot(O);
 	ink.right(rhoH, v3(0, 1, 0), n.clone().normalize(), { what: 'the right angle at rho_h' });
 

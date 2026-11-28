@@ -39,6 +39,14 @@
 // their short arrows crowd the beads; (h), whose pushes are all clearly out or in, keeps all twelve. The number of
 // (h) is the mathematics': A/2 = 8.35 x 10^-48, which is 8.4 x 10^-48 to two figures, not the 8.3 the comment and
 // the chapter had (corrected in the chapter).
+// So that a reader can tell what each panel shows without the text: each letter carries a short title, "(a) the
+// rotor", "(b) a pixel at 10 m", "(c) two gyroscopes", "(d) the two laws", "(e) far, on the axis", "(f) power
+// pattern", "(g) gravitons", "(h) far, in the plane"; each number begins with the word that says what it is
+// ("wavelength", "tide", "magnetic part", "the laws cross at", "strain", "circular:", "energy flux", "one graviton
+// every", "strain", "linear:"); the laws of (d) are named "Newton" and "wave", not r^-5 and r^-1 (the axis is
+// r |E_zz|, along which they fall as r^-4 and r^0), its plot 46 points tall, so that its axis's name clears the
+// title; and under the panels a key in the dim ink names the marks they share, "dashed circles: undisturbed; pale
+// rings, in (b) and (h): half a cycle later; paler bars, in (e): the stretch axis a little earlier".
 // Exact: every number (asserted against the chapter's text); the near tide's three entries and the magnetic part from
 // the all-zone solution (the paper's eq:multipole, M = L = 0) by 7.2's linearized curvature and finite differences,
 // with B_ij = (1/2) eps_ipq R_pq0j checked on a moving point mass against 7.5's formula; the direction of every
@@ -91,10 +99,12 @@ const BAR = 0.9, BAR_HALF = 14.5;          // (e): the stretch bars, their half-
 const BAR_OP = [0.35, 0.65, 1];
 const TURN = { r: 32, from: 18, to: 72, width: 0.7, head: 3.4 };     // (e): the curved arrow
 const GYRO = { x: [21, 63], axle: 14, axleW: 0.7, disc: [11.5, 3.6], line: 0.45, tick: [0.5, 0.95], turn: 12 };
-const PLOT = { left: 15, w: 58, top: -30, h: 52, x: [Math.log10(0.02), 1], y: [-0.5, 6] };
+const PLOT = { left: 15, w: 58, top: -22, h: 46, x: [Math.log10(0.02), 1], y: [-0.5, 6] };
 const RING_D = 1.9, RING_DW = 0.55;        // (d): the open circle
 const POLAR = 31;                          // (f): points per unit of the pattern
 const LIGHT = '#eeebe5';                   // a neutral tint of the page (drawing.ts THEME)
+const TITLES = { a: 'the rotor', b: 'a pixel at 10 m', c: 'two gyroscopes', d: 'the two laws', e: 'far, on the axis', f: 'power pattern', g: 'gravitons', h: 'far, in the plane' };
+const KEY_AIR = 9;                         // the second row's lowest number to the key under the panels
 
 const lg = Math.log10;
 const rel = (a, b, tol) => Math.abs(a - b) <= tol * Math.max(Math.abs(b), 1e-300);
@@ -278,6 +288,13 @@ export default async function () {
 		const g = await tex(src, [x - (probe.l + probe.r) / 2, y], SIZE, 'lB', color);
 		return { src, svg: g, box: boxOf(g) };
 	};
+	/** Lines of DIM text, each left-aligned at x, the first's top at y, at the figure's size. */
+	const stackAt = async (srcs, x, y) => {
+		const parts = [];
+		let t = y;
+		for (const src of srcs) { const q = await placed(src, x, t, 0, 0, DIM, SIZE); parts.push(q); t = q.box.b + 1.8; }
+		return { src: srcs.join(' '), svg: parts.map((q) => q.svg).join(''), box: { l: x, r: Math.max(...parts.map((q) => q.box.r)), t: y, b: parts[parts.length - 1].box.b } };
+	};
 	const widthOf = async (src) => { const b = boxOf(await tex(src, [0, 0], SIZE, 'lB', INK)); return b.r - b.l; };
 	const lbl = (src, x, y, ax, ay, color = INK) => placed(src, x, y, ax, ay, color, SIZE);
 	const clr = (src, x, y, ax, ay, dir, color = INK) => S.clear(src, x, y, ax, ay, dir, { color, size: SIZE });
@@ -349,7 +366,7 @@ export default async function () {
 		for (const p of panels.filter((q) => q.row === row)) {
 			p.py = py; p.cy = cy; p.cx = p.px + PW / 2;
 			p.m0 = marksFrom(); p.b0 = S.boxes.length; p.l0 = L.length; p.numLabels = [];
-			const letter = await lbl(`\\text{(${p.key})}`, p.px, py, 0, 0);
+			const letter = await lbl(`\\text{(${p.key}) ${TITLES[p.key]}}`, p.px, py, 0, 0);
 			L.push(letter);
 			await DRAW[p.key](p);
 			p.m1 = marksFrom(); p.b1 = S.boxes.length; p.l1 = L.length;
@@ -401,6 +418,13 @@ export default async function () {
 		check(Math.min(...xs) >= p.px - 0.5 && Math.max(...xs) <= p.px + PW + 0.5, `(${p.key}) leaves its column: ${Math.min(...xs) - p.px}, ${Math.max(...xs) - p.px - PW}`);
 	}
 
+	// ---- the key to the marks the panels share, under them, in the dim ink
+	{
+		const low = rowsDone[1].lowest;
+		L.push(await stackAt(['\\text{dashed circles: undisturbed; pale rings, in (b) and (h): half a cycle later;}',
+			'\\text{paler bars, in (e): the stretch axis a little earlier}'], x0, low + KEY_AIR));
+	}
+
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...N, n7: undefined, panels: panels.map((p) => ({ key: p.key, lines: p.lines })) };
 	return finish(S, L, [340, 375]);
@@ -436,7 +460,7 @@ export default async function () {
 		S.path([[sx, yd], [sx + SINE.w, yd]], { color: DIM, width: HAIR, cap: 'butt', what: 'the wavelength' });
 		for (const x of [sx, sx + SINE.w]) S.path([[x, yd - 2.2], [x, yd + 2.2]], { color: DIM, width: HAIR, cap: 'butt', what: 'the wavelength\'s end' });
 		check(sx - (O[0] + HR + RS) >= 4, 'the wave touches the rotor');
-		p.num = [`\\lambda = ${N.lamKm}\\ \\mathrm{km}`];
+		p.num = ['\\text{wavelength}', `\\lambda = ${N.lamKm}\\ \\mathrm{km}`];
 	}
 
 	async function drawB(p) {
@@ -455,7 +479,7 @@ export default async function () {
 		const a = S.arrow([left, y], [p.px + 1, y], { color: DIM, width: HAIR + 0.1, head: 3.2, layer: 2, what: 'the way to the rotor' });
 		check(a.L >= 10, 'the arrow to the rotor is too short');
 		L.push(await clr('10\\ \\mathrm{m}', (p.px + 1 + left) / 2, y - 1.6 - LABEL_GAP, 0.5, 1, [0, -1]));
-		p.num = [`{\\color{${CURV}}\\mathcal E_{zz}} =`, `${sci(N.Ezz, 2)}\\,\\mathrm{s^{-2}}`];
+		p.num = ['\\text{tide}', `{\\color{${CURV}}\\mathcal E_{zz}} =`, `${sci(N.Ezz, 2)}\\,\\mathrm{s^{-2}}`];
 	}
 
 	async function drawC(p) {
@@ -479,7 +503,7 @@ export default async function () {
 		S.path([[g0, yd], [g1, yd]], { color: DIM, width: HAIR, cap: 'butt', layer: 1, what: 'the gyroscopes\' dimension' });
 		for (const g of [g0, g1]) S.path([[g, yd - 2.2], [g, yd + 2.2]], { color: DIM, width: HAIR, cap: 'butt', layer: 1, what: 'the dimension\'s end' });
 		L.push(await lbl('1\\ \\mathrm{m}', (g0 + g1) / 2, yd + 2.2 + LABEL_GAP + 0.4, 0.5, 0));
-		p.num = [`|{\\color{${CURV}}\\mathcal B}| =`, `${sci(N.Bsize, 1)}\\,\\mathrm{s^{-2}}`];
+		p.num = ['\\text{magnetic part}', `|{\\color{${CURV}}\\mathcal B}| =`, `${sci(N.Bsize, 1)}\\,\\mathrm{s^{-2}}`];
 	}
 
 	async function drawD(p) {
@@ -511,9 +535,10 @@ export default async function () {
 		L.push(await lbl('r', P.right + LABEL_GAP + 0.6, P.bottom, 0, 0.5, DIM));
 		L.push(await lbl(`r|{\\color{${CURV}}\\mathcal E_{zz}}|`, P.left - 1.5, P.top - LABEL_GAP - 0.2, 0, 1, DIM));
 		// the laws' names, beside their lines
-		L.push(await clr('r^{-5}', P.left + AXIS / 2 + LABEL_GAP + 9, P.top + 1, 0, 0, [1, 0]));
-		L.push(await clr('r^{-1}', P.right, P.Y(lg(4)) - CURVE / 4 - LABEL_GAP - 0.4, 1, 1, [0, -1]));
-		p.num = [`${N.crossKm}\\ \\mathrm{km},`, '\\text{in the plane}'];
+		// named by their physics, not by r^-5 and r^-1: the axis is r |E_zz|, along which they fall as r^-4 and r^0
+		L.push(await clr('\\text{Newton}', P.left + AXIS / 2 + LABEL_GAP + 9, P.top + 1, 0, 0, [1, 0]));
+		L.push(await clr('\\text{wave}', P.right, P.Y(lg(4)) - CURVE / 4 - LABEL_GAP - 0.4, 1, 1, [0, -1]));
+		p.num = ['\\text{the laws cross}', `\\text{at }${N.crossKm}\\ \\mathrm{km},`, '\\text{in the plane}'];
 	}
 
 	async function drawE(p) {
@@ -554,7 +579,7 @@ export default async function () {
 			check(Math.min(...ring.map((q) => Math.hypot(q[0] - e[0], q[1] - e[1]))) > RING.bead + BAR / 2 + 0.8, `the bar at ${deg} degrees reaches the ring`);
 		}
 		curved(c, TURN, INK, 'the turning of the pattern');
-		p.num = [`{\\color{${FIELD}}A} = ${sci(N.A, 1)},`, `V/I = +${N.viAxis}`];
+		p.num = ['\\text{strain}', `{\\color{${FIELD}}A} = ${sci(N.A, 1)},`, '\\text{circular:}', `V/I = +${N.viAxis}`];
 	}
 
 	async function drawF(p) {
@@ -584,7 +609,7 @@ export default async function () {
 			S.arrow([q[0] + dx, q[1]], [q[0] + dx, q[1] - 17], { color: INK, width: 0.55, head: 3.2, layer: 3, what: 'a flux arrow' });
 		}
 		check(q[0] - 11 - 6 > O[0] + POLAR * Math.max(...pts.map((pt) => (pt[0] - O[0]) / POLAR)), 'the square touches the pattern');
-		p.num = [`${sci(N.flux, 1)}`, '\\mathrm{W\\,m^{-2}}'];
+		p.num = ['\\text{energy flux}', `${sci(N.flux, 1)}`, '\\mathrm{W\\,m^{-2}}'];
 	}
 
 	async function drawG(p) {
@@ -607,7 +632,7 @@ export default async function () {
 		hand(90, R - 5.5, 0.7);
 		hand(150, R - 8, 1.1);
 		S.raw(`<circle cx="${n2(k[0])}" cy="${n2(k[1])}" r="1.1" fill="${INK}"/>`, 3);
-		p.num = [`${N.years.toFixed(1)}\\text{ years}`];
+		p.num = ['\\text{one graviton}', `\\text{every }${N.years.toFixed(1)}\\text{ years}`];
 	}
 
 	async function drawH(p) {
@@ -623,7 +648,7 @@ export default async function () {
 		// half the change of (e)'s ring: semi-axes 1 +- STRAIN/4
 		const ys = r.ring.map((q) => q[1]);
 		check(near((Math.max(...ys) - Math.min(...ys)) / (2 * RR), 1 + STRAIN / 4, 1e-4), 'the edge-on ring is not half as changed as the face-on one');
-		p.num = [`{\\color{${FIELD}}h_+} = {\\color{${FIELD}}A}/2`, `= ${sci(N.A / 2, 1)},`, `V/I = ${N.viEdge === 0 ? 0 : N.viEdge.toFixed(0)}`];
+		p.num = ['\\text{strain}', `{\\color{${FIELD}}h_+} = {\\color{${FIELD}}A}/2`, `= ${sci(N.A / 2, 1)},`, '\\text{linear:}', `V/I = ${N.viEdge === 0 ? 0 : N.viEdge.toFixed(0)}`];
 	}
 }
 

@@ -18,6 +18,12 @@
 // length, which leaves room under N-hat, beyond the circle, for N-hat's name. Where a line passes in front of another
 // it is cut clear of it by a halo of the page's colour: N-hat in front of the circle at one crossing and behind it at
 // the other, n' in front of the circle where it leaves it and in front of the arc of theta (each decided by depth).
+// Depth cues, so that the construction reads in 3D and not only in the code: the circle is filled as a disc with a
+// faint tint (the faint ink at 0.13); N-hat, from where the circle hides it to the centre, lies behind the disc and is
+// drawn there as a hidden line, dashed, under the tint; N-hat from the centre on and n' from where it pierces the
+// disc's plane lie in front of it and are drawn over the tint, as are e_1, e_2, the dashed radius and the arc of psi,
+// which lie in it; a small right-angle mark at the centre, drawn in space in the plane of N-hat and e_1, says that
+// e_1 is at right angles to N-hat although the projection opens the angle.
 // In the printed book (figureLayout 'book') the drawing is smaller, 118 points per unit length instead of 150, so that
 // it is not printed larger than it needs; there e_1 and e_2 are 0.34 long instead of 0.28, the arc of beta has the
 // radius 0.24 instead of 0.29 and the arc of psi 0.27 instead of 0.2, and e_2's name stands below its tip, so that the
@@ -27,7 +33,8 @@
 // sin(theta) e_1, cos(theta') = cos(theta) cos(beta) + sin(theta) sin(beta) cos(psi), psi the turn from e_1 toward
 // e_2 of n's part across N-hat); e_2 points toward the reader; each arc lies in the plane of its two directions, at its
 // own radius about the source or the circle's centre (asserted); the arcs measure 40, 35, 115 and theta' = 81.2
-// degrees (asserted). Schematic: the lengths, the camera's distance and the camera itself (a rounded body, a round lens toward the source
+// degrees (asserted); the right-angle mark's two sides along N-hat and e_1 (asserted at right angles), and the
+// parts of N-hat and n' drawn in front of the disc in front of its plane (asserted by depth). Schematic: the lengths, the camera's distance and the camera itself (a rounded body, a round lens toward the source
 // and a viewfinder, drawn here: the paper's camera, figures3d/sprites/camera.png, is an engraving, not a glyph in the
 // observer's colour). N-hat's name reaches past the camera, so that the camera never stands at the figure's edge.
 import { Sheet, ORIGIN, finish, checker, placed, near, n2, LABEL_GAP, VEC, VEC_HEAD, AXIS, AXIS_HEAD, HAIR } from './tut-pot-lib.js';
@@ -57,6 +64,10 @@ const TP_AT = 0.5;                         // where theta's name stands along it
 const N_AT = 0.62;                         // where n's name stands along its shaft, a fraction of its length
 const HALO = 1.6;                          // the page's colour each side of a line that passes in front
 const THIN = 0.5;                          // the circle and the dashed lines
+const DISC = 0.13;                         // the disc's tint: the faint ink at this opacity
+const TINT_LAYER = 3.55, ABOVE = 3.7;      // the disc's tint over N-hat and the halos, and what is drawn over the tint
+const SQ = 0.055;                          // a right-angle mark's side, in space
+const HIDDEN = [2.2, 1.5];                 // N-hat's dashes behind the disc
 
 export default async function () {
 	chapter(check);
@@ -114,6 +125,7 @@ export default async function () {
 				S.raw(`<path d="M${piece.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}" stroke="${INK}" stroke-width="${THIN}" fill="none" stroke-linecap="butt"/>`, 3.6);
 			}
 			S.crossings = [...(S.crossings ?? []), front];
+			S.crossAt = [...(S.crossAt ?? []), { front, q }];
 		}
 		check(S.crossings.includes('N-hat') && S.crossings.includes('circle'), `the crossings: ${S.crossings}`);
 	}
@@ -171,9 +183,9 @@ export default async function () {
 
 	// ---- e_1 and e_2 from the circle's centre, the dashed radius, and the arc of psi
 	const cP = P(C3);
-	const a1 = S.arrow(cP, P(comb([1, C3], [AX, e1])), { color: INK, width: AXIS + 0.1, head: AXIS_HEAD, layer: 3, what: 'e_1' });
-	const a2 = S.arrow(cP, P(comb([1, C3], [AX, e2])), { color: INK, width: AXIS + 0.1, head: AXIS_HEAD, layer: 3, what: 'e_2' });
-	dashed(S, cP, P(crossing), { color: DIM, width: THIN, layer: 2, dash: [1.6, 1.2], what: 'the radius' });
+	const a1 = S.arrow(cP, P(comb([1, C3], [AX, e1])), { color: INK, width: AXIS + 0.1, head: AXIS_HEAD, layer: ABOVE, what: 'e_1' });
+	const a2 = S.arrow(cP, P(comb([1, C3], [AX, e2])), { color: INK, width: AXIS + 0.1, head: AXIS_HEAD, layer: ABOVE, what: 'e_2' });
+	dashed(S, cP, P(crossing), { color: DIM, width: THIN, layer: ABOVE, dash: [1.6, 1.2], what: 'the radius' });
 	const arc3 = (C, a, b, r, n = 240) => {
 		const ang = angle(a, b), w = (() => { const v = comb([1, b], [-dot(a, b), a]); const l = Math.sqrt(dot(v, v)); return v.map((x) => x / l); })();
 		const pts = Array.from({ length: n + 1 }, (_, k) => { const t = (ang * k) / n; return comb([1, C], [r * Math.cos(t), a], [r * Math.sin(t), w]); });
@@ -183,7 +195,31 @@ export default async function () {
 	const across = (() => { const v = comb([1, crossing], [-1, C3]); return v.map((x) => x / rho); })();
 	const psiArc = arc3(C3, e1, across, ARC.psi);
 	check(near(psiArc.ang, psi, 1e-12), 'the arc of psi');
-	S.path(psiArc.pg, { color: DIM, width: HAIR, layer: 2, what: 'the arc of psi' });
+	S.path(psiArc.pg, { color: DIM, width: HAIR, layer: ABOVE, what: 'the arc of psi' });
+
+	// ---- the disc inside the circle, a faint tint over what lies behind its plane (N-hat from the source to the
+	// centre), under what lies in it or in front of it: N-hat and n' are drawn again over it from where they pierce
+	// its plane; and a small right-angle mark at the centre, drawn in space, N-hat to e_1
+	{
+		S.raw(`<path d="M${circle.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}Z" fill="${FAINT}" fill-opacity="${DISC}"/>`, TINT_LAYER);
+		// N-hat behind the disc, from where the circle hides it to the centre: a hidden line, dashed
+		{
+			const enter = S.crossAt.find((c) => c.front === 'circle').q;
+			check(enter[0] < cP[0] && near(enter[1], O[1], 1e-9), 'the circle does not hide N-hat left of the centre');
+			const x0 = enter[0] + HALO + THIN, x1 = cP[0];
+			S.raw(`<path d="M${n2(x0)},${n2(O[1])}L${n2(x1)},${n2(O[1])}" stroke="${PAGE}" stroke-width="${VEC + 0.6}" stroke-linecap="butt"/>`, 3.05);
+			dashed(S, [x0, O[1]], [x1, O[1]], { color: INK, width: VEC, layer: 3.06, dash: HIDDEN, what: 'N-hat behind the disc' });
+		}
+		check(depth(tipN) > depth(C3) && depth(tipP) > depth(crossing) && depth([0, 0, 0]) < depth(C3), 'the arrows do not leave the disc toward the reader');
+		S.arrow(cP, P(tipN), { color: INK, width: VEC, head: VEC_HEAD, layer: ABOVE, what: 'N-hat, in front of the disc' });
+		S.arrow(P(crossing), P(tipP), { color: INK, width: VEC, head: VEC_HEAD, layer: ABOVE, what: 'n\', in front of the disc' });
+		const corner = (a, b, what) => {
+			const q = [comb([1, C3], [SQ, a]), comb([1, C3], [SQ, a], [SQ, b]), comb([1, C3], [SQ, b])].map(P);
+			S.path(q, { color: INK, width: HAIR, cap: 'butt', layer: ABOVE, what });
+			check(near(dot(a, b), 0, 1e-14), `${what}: not a right angle in space`);
+		};
+		corner(N, e1, 'the right angle of N-hat and e_1');
+	}
 
 	// ---- z-hat, faint and dashed, through the source
 	const zA = P(z.map((v) => Z_REACH[0] * v)), zB = P(z.map((v) => Z_REACH[1] * v));

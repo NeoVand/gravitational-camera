@@ -11,7 +11,9 @@
 // shows as an ellipse and the zero contour as its front half; the bodies are drawn over the veil and the tints (7.5
 // veils its stone), so that the hole stays black and the stone keeps its light in both themes; the spin axis is drawn
 // as in 7.5 but broken where it passes behind the body, so that it reads alike over the dark hole and the stone; the
-// two spheres stay side by side on a phone, the figure being one drawing.
+// two spheres stay side by side on a phone, the figure being one drawing; each title has a third line that defines its
+// angle or direction, "theta the pixel's angle from J" and "n from the pixel toward the ball", so that the two signs,
+// - and +, are seen to agree (L.n = -J cos theta).
 // Exact: the tint's sign at every place on both spheres and the zero contour, the equator, from the chapter's
 // B_nn = -6GJ cos theta / cr^4 and from 7.5's eq:spin-dipole (asserted equal at every place in tut-kerr-lib.js and
 // again here); the bands of tint are the zones between the latitudes 0, 4.5, 9, ... 90 degrees, each in its exact
@@ -141,8 +143,8 @@ export default async function () {
 
 	// ---- the two spheres, their titles above and the key below
 	const titles = [
-		['\\text{spinning hole,}', '\\mathcal B_{nn} = -6GJ\\cos\\vartheta/cr^4'],
-		['\\text{spinning ball,}', '\\mathcal B_{nn} = 6G(\\boldsymbol L\\cdot\\hat{\\boldsymbol n})/cr^4']
+		['\\text{spinning hole,}', '\\mathcal B_{nn} = -6GJ\\cos\\vartheta/cr^4\\text{,}', '\\vartheta\\text{ the pixel\'s angle from }J'],
+		['\\text{spinning ball,}', '\\mathcal B_{nn} = 6G(\\boldsymbol L\\cdot\\hat{\\boldsymbol n})/cr^4\\text{,}', '\\hat{\\boldsymbol n}\\text{ from the pixel toward the ball}']
 	];
 	const top = ORIGIN - 140;
 	const c0 = [ORIGIN - R - APART / 2, 0], c1 = [ORIGIN + R + APART / 2, 0];

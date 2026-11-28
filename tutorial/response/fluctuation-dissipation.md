@@ -585,8 +585,10 @@ $\mathrm{Re}\,\chi_{yy}$ and nothing to $\mathrm{Im}\,\chi_{yy}$, which is all t
 modes are at different temperatures reads as an average of its temperatures, weighted by where it
 dissipates.[^unequal]
 
-![Mass is moved to make a pattern of degree two, which pushes on exactly what the pixel reads. Pattern exact; sizes and
-the inset schematic.](tut-fd-thermometer){#fig:thermometer}
+![Mass is moved on a shell round the pixel, added round its equator and removed at its poles, to make a pattern of
+degree two, which pushes on exactly what the pixel reads. The inset shows the pixel's spectrum $S_{yy}$ and
+$2\kB T\,\mathrm{Im}\,\chi_{yy}/\omega$ lying on it, at the body's temperature $T$: their ratio gives $T$. Pattern exact;
+sizes and the inset schematic.](tut-fd-thermometer){#fig:thermometer}
 
 **A black hole.** A black hole answers a slow tide with pure friction, $\mathrm{Im}\,\chi = \nu\omega$ (section 11.4),
 and its quadrupole trembles with a flat spectrum $S_Q$; the scale of the quadrupole cancels in $T$.[^scale] The

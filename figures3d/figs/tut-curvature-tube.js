@@ -17,7 +17,12 @@
 // Departures from the diagram's comment: the drawing is one picture at every width, about 340 points wide (the site
 // shows a drawing at most 1.9 pixels to the point), not cropped to a square on a phone. The comment's "the ring
 // undisturbed" is not set as a label, since the comment allows no other text than its four labels; the caption names
-// the dashed circles. The cube, the falling frame, is drawn twice, at the bottom and at the top: it rises with the
+// the dashed circles. But a key under the column, beyond the comment's labels, names the two pairs of worldlines in
+// the accents' colours, a short line of each colour with "along the line to the mass: they spread" (orange) and
+// "across it: they close in" (blue), and those four worldlines are drawn heavier than the other eight, so that the
+// orange pair, which runs along the tube's outline, holds in print. The step in y is drawn 0.45 up per unit (not
+// 0.3), so that the top's ellipse and its dashed circle are seen less obliquely and the squeeze across the line to
+// the mass, which lies in the depth of the picture, shows. The cube, the falling frame, is drawn twice, at the bottom and at the top: it rises with the
 // central worldline, so at the top its upright edges lean with that worldline, and its slices stay the same square.
 // Beads mark the balls at the bottom and at the top. The tube's outline is not drawn as a line: the glass darkens
 // toward it. With the line to the mass across the page, the two orange worldlines run along the outline, one on each
@@ -57,10 +62,12 @@ const N = 12;                              // the balls
 // ---- the view ------------------------------------------------------------------------------------------------------
 // an oblique parallel projection: x across the page, the time t straight up it, and a step away from the viewer (+y)
 // drawn OBL[0] across and OBL[1] up per unit; so every slice t = const is drawn at one level, the mass's and the ring's
-const OBL = [0.14, 0.3], SCALE = 160;
+const OBL = [0.14, 0.45], SCALE = 160;
 // ---- the marks, points -------------------------------------------------------------------------------------------------
 const BEAD = 2.5, BEAD_RIM = 0.3;          // a bead's radius and rim
 const WORLD = 0.6;                         // a worldline's stroke
+const WORLD_KEY = 0.95;                    // the four in the accents', which the key names
+const KEY_AIR = 12, KEY_ROW = 11, KEY_LINE = 14;   // the key: under the mass's name, its rows, its sample lines
 const RIM_LINE = 0.5;                      // the ellipse at the top, the dashed circles
 const SIL = 0.4;                           // the tube's outline, as a mark that labels keep clear of
 const CUBE_LINE = 0.4;                     // the cube's edges
@@ -313,7 +320,7 @@ export default async function () {
 		const color = k === 0 || k === 6 ? ACCENT : k === 3 || k === 9 ? ACCENT2 : OBS;
 		// the two along the line to the mass run along the tube's outline (asserted below): drawn as the outline, at
 		// full strength, not veiled by the glass that darkens toward it
-		edge(sampled((t) => ball(a, t * H), 600), color, WORLD, `the worldline ${k}`, { outline: k === 0 || k === 6 });
+		edge(sampled((t) => ball(a, t * H), 600), color, color === OBS ? WORLD : WORLD_KEY, `the worldline ${k}`, { outline: k === 0 || k === 6 });
 	}
 	// the central worldline and the cubes
 	edge(sampled((t) => [centreX(t * H), 0, t * H], 600), FAINT, CENTRE_LINE, 'the central worldline', { beadsHide: false });
@@ -400,6 +407,15 @@ export default async function () {
 	{
 		const X = P(MASS)[0], Y = Math.max(...ring(0).map((p) => P(p)[1]));
 		L.push(await S.clear('\\text{mass}', X, Y + STONE_RIM / 2 + LABEL_GAP + 0.4, 0.5, 0, [0, 1]));
+	}
+	// ---- the key, under the column: the two pairs of worldlines in the accents' colours
+	{
+		const x = L[0].box.l, y0 = L[L.length - 1].box.b + KEY_AIR;
+		for (const [j, [color, src]] of [[ACCENT, '\\text{along the line to the mass: they spread}'], [ACCENT2, '\\text{across it: they close in}']].entries()) {
+			const y = y0 + j * KEY_ROW;
+			S.path([[x, y], [x + KEY_LINE, y]], { color, width: WORLD_KEY, cap: 'butt', layer: 7, what: `the key's line ${j}` });
+			L.push(await placed(src, x + KEY_LINE + LABEL_GAP + 1.4, y, 0, 0.5, INK));
+		}
 	}
 	{
 		// beside the tube's outline on the right, at two thirds of the height

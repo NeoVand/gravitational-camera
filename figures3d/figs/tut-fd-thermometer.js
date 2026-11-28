@@ -4,12 +4,16 @@
 // surface density, delta sigma proportional to -n.D.n for D = diag(-1/2, -1/2, 1), in this section -(cos^2 theta -
 // sin^2 theta / 2) with theta from z: the first accent (orange) where mass is added, around the equator (+1/2 there),
 // the second (blue) where it is removed, at the poles (-1), its weight 3 |delta sigma| points (from 3 at the poles to
-// 1.5 at the equator) over a neutral hairline of 0.5, which alone shows where the weight would fall below it, around
-// the zeros cos^2 theta = 1/3 (theta = 54.7 degrees and its mirror images), so that the drawn weight runs from 0.5 to
-// 3. A body, a disc in the steel ball's grey of radius 0.3 a, its centre at 2a on the x axis. Two arrows between the
+// 1.5 at the equator) over the shell's own line, in ink, 0.6 points, which alone shows where the weight would fall
+// below it, around the zeros cos^2 theta = 1/3 (theta = 54.7 degrees and its mirror images), so that the drawn weight
+// runs from 0.6 to 3 (a paler, thinner line there read as a gap in the circle). A body, a disc in the steel ball's grey
+// of radius 0.3 a, its centre at 2a on the x axis. Two arrows between the
 // shell and the body: from the shell to the body, "push: energy -f D:E"; from the body to the pixel, "reading: y =
 // D:E", passing over the shell through a gap of the page's colour. A small inset at the lower right: one resonance
-// line, S_yy solid and 2 k_B T Im chi_yy / omega as dots on it, "ratio -> T". Exact: the pattern (its values, its zeros
+// line, S_yy solid and 2 k_B T Im chi_yy / omega as dots on it, with a key to the right of its peak naming the two.
+// Names: "pixel" under the ring, "body" over the disc, "shell" outside the shell at its upper left, and, inside it,
+// "mass removed" in blue under the top pole and "mass added" in orange by the left equator. Exact: the pattern (its
+// values, its zeros
 // at 54.7 degrees, its degree two and the drive energy -f D:E, asserted in figs/tut-fd-lib.js, `chapter`; the drawn
 // weight asserted against 3 |delta sigma| along the shell), the ring's radius a/10, the body's radius and place.
 // Schematic: the inset (a cart's line with Q = 5 and its dots, no units), the arrows' places.
@@ -24,7 +28,7 @@ const name = 'tut-fd-thermometer';
 const check = checker(name);
 
 const A = 80;                             // the shell's radius a, points
-const BASE = 0.5;                         // the neutral hairline under the pattern
+const BASE = 0.6;                         // the shell's own line, in ink, under the pattern
 const WEIGHT = 3;                         // the pattern's weight per unit of |delta sigma| (the poles' -1 gives 3)
 const N = 3600;                           // samples round the shell
 const BEAD = 1.35;                        // a bead of the pixel's ring
@@ -46,7 +50,7 @@ export default async function () {
 
 	// ---- the shell: the neutral hairline, then the pattern's bands where 3 |delta sigma| >= 0.5
 	const circle = Array.from({ length: 721 }, (_, k) => at((k * Math.PI) / 360));
-	S.path(circle, { color: DIM, width: BASE, layer: 1, what: 'the shell' });
+	S.path(circle, { color: INK, width: BASE, layer: 1, what: 'the shell' });
 	const w = (psi) => WEIGHT * Math.abs(pattern(psi));
 	const bands = [];
 	let run = null;
@@ -62,11 +66,12 @@ export default async function () {
 	if (bands.length === 5 && bands[0].sign === bands[4].sign) { bands[0].psis = [...bands[4].psis.map((p) => p - 2 * Math.PI), ...bands[0].psis]; bands.pop(); }
 	check(bands.length === 4, `the pattern has ${bands.length} bands, not four`);
 	check(bands.filter((b) => b.sign > 0).length === 2 && bands.filter((b) => b.sign < 0).length === 2, 'not two orange and two blue bands');
-	// each band's ends: where 3 |v| = 0.5, |v| = 1/6, that is cos^2 = 2/9 (orange) or 4/9 (blue); the zero between them
+	// each band's ends: where 3 |v| = BASE, v = 1/2 - 3/2 cos^2 = +-BASE/3, that is cos^2 = (1/2 - BASE/3) / (3/2)
+	// (orange) or (1/2 + BASE/3) / (3/2) (blue); the zero between them
 	const deg = (r) => (r * 180) / Math.PI;
 	for (const b of bands) {
 		const ends = [b.psis[0], b.psis[b.psis.length - 1]].map((p) => Math.abs(Math.cos(p)) ** 2);
-		const want = b.sign > 0 ? 2 / 9 : 4 / 9;
+		const want = (0.5 - (b.sign * BASE) / 3) / 1.5;
 		for (const c of ends) check(Math.abs(c - want) < 3e-3, `a band ends at cos^2 = ${c}, not ${want}`);
 	}
 	for (const b of bands) {
@@ -133,9 +138,28 @@ export default async function () {
 	S.raw(dots.map(([x, yy]) => `<circle cx="${n2(x)}" cy="${n2(yy)}" r="${DOT}" fill="${INK}"/>`).join(''), 3);
 	for (const d of dots) S.mark([d], DOT, 'an inset dot');
 	L.push(await S.clear('\\omega', I.right + 3, I.bottom, 0, 0.5, [1, 0], { color: DIM }));
-	L.push(await S.clear('\\text{ratio} \\to T', I.X(1.13) + 3, I.Y(Q_INSET * 0.62), 0, 0.5, [1, 0]));
+	// the inset's key, to the right of its peak: a stretch of line for S_yy, a dot for 2 k_B T Im chi_yy / omega
+	{
+		const kx = I.X(1.16) + 3, ky = I.Y(Q_INSET * 0.78), KEY = 10, STEP = 11;
+		S.path([[kx, ky], [kx + KEY, ky]], { color: INK, width: 0.6, layer: 2, cap: 'butt', what: 'the key\'s line' });
+		const dk = [kx + KEY / 2, ky + STEP];
+		S.raw(`<circle cx="${n2(dk[0])}" cy="${n2(dk[1])}" r="${DOT}" fill="${INK}"/>`, 3);
+		S.mark([dk], DOT, 'the key\'s dot');
+		L.push(await placed('S_{yy}', kx + KEY + LABEL_GAP + 0.4, ky, 0, 0.5, INK));
+		L.push(await placed('2k_BT\\,\\mathrm{Im}\\,\\chi_{yy}/\\omega', kx + KEY + LABEL_GAP + 0.4, ky + STEP, 0, 0.5, INK));
+	}
+
+	// ---- the names: the pixel, the body, the shell and its two colours
+	L.push(await placed('\\text{pixel}', O[0], O[1] + r + BEAD + LABEL_GAP + 0.6, 0.5, 0, INK));
+	L.push(await placed('\\text{body}', B[0], B[1] - RB - LABEL_GAP - 0.6, 0.5, 1, INK));
+	{
+		const t = -Math.PI / 4, q = at(t, A + WEIGHT * Math.abs(pattern(t)) / 2);
+		L.push(await S.clear('\\text{shell}', q[0] - LABEL_GAP, q[1] - LABEL_GAP, 1, 1, [-Math.SQRT1_2, -Math.SQRT1_2], { color: INK }));
+	}
+	L.push(await S.clear('\\text{mass removed}', O[0], O[1] - A + WEIGHT / 2, 0.5, 0, [0, 1], { color: ACCENT2 }));
+	L.push(await S.clear('\\text{mass added}', O[0] - A + w(Math.PI / 2) / 2, O[1], 0, 0.5, [1, 0], { color: ACCENT }));
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { zero: deg(ZERO), bands: bands.map((b) => [deg(b.psis[0]), deg(b.psis[b.psis.length - 1])]) };
-	return finish(S, L, [240, 340]);
+	return finish(S, L, [240, 380]);
 }

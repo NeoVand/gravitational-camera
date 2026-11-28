@@ -5,7 +5,8 @@
 // ends in a bar of its count, the rows' counted lengths laid end to end: the bosons' 28 and the fermions' 78.75, with
 // g*s = 28 + 78.75 = 106.75 at the foot. Then today's short group on the same scale: the photons' 2, and the neutrinos'
 // 6 drawn full length with the hatched eighth, the counted 6 x 7/8 x 4/11 = 1.91 solid and the rest of the seven eighths
-// in outline; g*s = 2 + 1.91 = 3.91 at its foot.
+// in outline (the caption says why: (T_nu/T_gamma)^3 = 4/11); g*s = 2 + 1.91 = 3.91 at its foot. Each row is named as
+// the table names it ("photon" in both groups).
 // Departures from the diagram's comment: the fermions' rows carry their arithmetic, "72 x 7/8 = 63", and today's
 // neutrinos theirs; each group's sum is a bar of its own, so that the running sums are lengths too; the table stays in
 // the chapter, and the figure follows it.
@@ -28,11 +29,11 @@ const NAME_AIR = 5;                    // a name's right end to the bars' start
 const NUM_AIR = 3.2;                   // a bar's end to its number
 const TITLE_AIR = 3.4;                 // a group's title to its first bar
 const SOLID = 0.5, GREY = 0.34;        // the fills' opacities: matter's and the bosons' ink
-const HATCH = 0.35, HATCH_STEP = 1.25; // the eighth's hatching
+const HATCH = 0.45, HATCH_STEP = 1.05; // the eighth's hatching: dense and dark enough to show on the neutrinos' 2 pt
 const OUTLINE = 0.4;                   // a fermion bar's outline
 const SEAM = 0.45;                     // the page's gap between the parts of a sum
 const TICK_UP = 2.6;                   // the 7/8 tick above the quarks' bar
-const caption = 'Look first at the hatched ends: each fermion state counts seven eighths of a boson\'s. The hot Standard Model counts 106.75; today\'s photons and neutrinos count 3.91. Every length is a count.';
+const caption = 'Look first at the hatched ends: each fermion state counts seven eighths of a boson\'s. The hot Standard Model counts 106.75; today\'s photons and neutrinos count 3.91. The neutrinos are cooler than the photons: of their seven eighths they keep $(T_\\nu/T_\\gamma)^3 = 4/11$, solid, and the rest is outlined. Every length is a count.';
 
 export default async function () {
 	const { state } = await chapter(check);
@@ -133,7 +134,7 @@ export default async function () {
 	// ---- today
 	await title('\\text{today}');
 	block(0, 2, y, INK, GREY, 'today\'s photons');
-	await nameOf('\\text{photons}', y);
+	await nameOf('\\text{photon}', y);
 	await number('2', 2, y);
 	rows.photonsToday = y;
 	y += PITCH;

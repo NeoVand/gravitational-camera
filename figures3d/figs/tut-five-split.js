@@ -10,9 +10,11 @@
 // page against the spheroid's own outline); the beads, the images of twelve equally spaced places; the arrows,
 // -T xi at the beads on the axes, at one scale for both balls (each blue arrow of the left ball is as long as each
 // blue arrow of the right one, and each orange arrow twice that); the tables, printed as they are used. Exaggerated:
-// eps. Schematic: the view.
+// eps. Schematic: the view. Each ball has a title over it ("the trace part", "the person's table"), the two on one
+// baseline, its table under it; between the tables, once for both, the axes x (to the right) and y (up), drawn in
+// the balls' own view (z, toward us, would fall on y's line, and the balls are alike about x, so it is left out).
 import { Panel, v3, INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
-import { Sheet, ORIGIN, finish, checker, near, placed, HAIR } from './tut-vec-lib.js';
+import { Sheet, ORIGIN, finish, checker, near, placed, HAIR, AXIS, AXIS_HEAD } from './tut-vec-lib.js';
 import { TINT, cameraAxes } from './tut-gauss-lib.js';
 import { ring, TAIL, UNDISTURBED_W } from './tut-five-lib.js';
 
@@ -28,6 +30,9 @@ const BEAD = 0.075;                       // a bead's radius, units (tidal.js)
 const REACH = 0.25;                       // units of arrow per unit of |T xi|
 const GAP = 34;                           // points of air between the two drawings
 const TABLE_DROP = 10;                    // points from the lower ball's ink down to the top of its table
+const TITLE_GAP = 7;                      // points from the bottom of a title's ink down to the ball's highest ink
+const TITLES = ['\\text{the trace part}', '\\text{the person\'s table}'];
+const AXES = 0.42;                        // the axes' arrows, units long
 const name = 'tut-five-split';
 const check = checker(name);
 
@@ -97,6 +102,22 @@ export default async function () {
 		const x = ink.at(k ? cR : cL)[0];
 		labels.push(await placed(`\\begin{pmatrix}${T.map((r) => r.map(z).join('&')).join('\\\\')}\\end{pmatrix}`, x, low + TABLE_DROP, 0.5, 0, INK));
 	}
+	// ---- a title over each ball, their baselines on one line
+	const high = Math.min(...drawn.flatMap((r) => [...r.loop.map((q) => ink.at(q)[1] - BEAD * S), ...r.arrows.map((a) => ink.at(a.to)[1])]),
+		...[cL, cR].map((c) => ink.at(c)[1] - S - UNDISTURBED_W / 2));
+	// (both have a descender, the p, so the bottoms of their ink are on their common baseline's level)
+	for (const [k, t] of TITLES.entries()) labels.push(await placed(t, ink.at(k ? cR : cL)[0], high - TITLE_GAP, 0.5, 1, INK));
+	// ---- the axes, once for both, in the middle between the tables: x to the right, y up, from one origin, in the
+	// same view as the balls (z, toward us, falls on y's line, so it is left out: the balls are alike about x)
+	const tableTop = low + TABLE_DROP, tableMid = (tableTop + Math.max(...labels.slice(0, 2).map((l) => l.box.b))) / 2;
+	const yw = -(tableMid + (AXES * S * Math.cos((TILT * Math.PI) / 180)) / 2 - ORIGIN) / (S * Math.cos((TILT * Math.PI) / 180));
+	const O = v3(-AXES / 2, yw, 0);
+	check(near(ink.at(O)[0], ORIGIN - (AXES * S) / 2, 1e-9), 'the axes are not centred between the balls');
+	const ax = ink.arrow(O, O.clone().add(v3(AXES, 0, 0)), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 2, what: 'the x axis' });
+	const ay = ink.arrow(O, O.clone().add(v3(0, AXES, 0)), { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 2, what: 'the y axis' });
+	check(near(ax.u[1], 0, 1e-12) && near(ay.u[0], 0, 1e-12), 'x is not across the page or y not up it');
+	labels.push(await ink.label('x', ax.B, [1, 0], 2.2, DIM));
+	labels.push(await ink.label('y', ay.B, [0, -1], 2.2, DIM));
 	ink.checkAll(labels);
 	window[name + '-volumes'] = vol;
 	return finish(name, P, labels, [240, 340]);

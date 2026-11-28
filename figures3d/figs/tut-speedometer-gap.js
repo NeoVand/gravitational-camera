@@ -8,7 +8,9 @@
 // over the gap 14.0 between the stretch and the squeezes, "across: read", and a dashed bracket over the zero gap between
 // the two squeezes, "along the line: blind". Orange and blue only for the stretch and the squeezes.
 // Departures from the diagram's comment: the panels stay side by side at every width, one drawing about 336 points
-// wide, so that a phone shows the same figure; the axes' names stand under them, on one baseline. The right panel is a
+// wide, so that a phone shows the same figure; the gap's name stands under its axis, and the two vertical axes, sigma_v
+// and the tide, are named over their tops on one baseline (the tide's axis runs from -11.5 to 11.5, ticked at -10 to 10,
+// so that its name clears the words over the squeezes). The right panel is a
 // level diagram: each eigenvalue is a short bar in a column of its own, the two equal squeezes side by side at their
 // value and the stretch in a third column at its own; the solid bracket stands right of the stretch, a dotted line
 // carrying the squeezes' level to its top; the dashed bracket joins the middles of the two squeezes' bars over them,
@@ -32,7 +34,7 @@ const PW = BOOK ? 220 : 140, PH = BOOK ? 128 : 120;   // the left plot (the book
 const GAP = BOOK ? 52 : 46;                              // from the left plot's right edge to the right panel's axis
 const LINE_W = 0.6;                           // the line
 const DOT = 1.6;                              // a dot's radius
-const T0 = -11.5, T1 = 9;                     // the right axis, 10^-9 s^-2
+const T0 = -11.5, T1 = 11.5;                    // the right axis, 10^-9 s^-2
 const BAR = 1.6, BAR_LEN = BOOK ? 18 : 16, BAR_IN = 4;  // an eigenvalue's bar: stroke, length, air from the axis
 const COL_GAP = 6;                            // between the bars' columns
 const BRACKET = 6;                            // from the stretch's bar to the bracket
@@ -99,7 +101,7 @@ export default async function () {
 	// ---- the right panel: the person's three eigenvalues
 	const Xa = P.right + GAP;
 	const Q = new Plot({ left: Xa, top: P.top, w: 1, h: PH, x0: 0, x1: 1, y0: T0, y1: T1 });
-	const ql = await yAxis(S, Q, { ticks: [-10, -5, 0, 5], fmt: String, what: 'the tide axis' });
+	const ql = await yAxis(S, Q, { ticks: [-10, -5, 0, 5, 10], fmt: String, what: 'the tide axis' });
 	L.push(...ql);
 	const u = 1e-9;
 	const stretch = person.stretch / u, squeeze = person.squeeze / u;
@@ -139,11 +141,12 @@ export default async function () {
 		check(person.along === 0 && near(person.stretch + 2 * person.squeeze, 0, 1e-24), 'the two squeezes are not equal');
 	}
 
-	// ---- the axes' names, under them, on one baseline
-	const foot = Math.max(...xl.map((q) => q.box.b), ...ql.map((q) => q.box.b)) + NAME_DROP;
+	// ---- the axes' names: the gap's under its axis
+	const foot = Math.max(...xl.map((q) => q.box.b)) + NAME_DROP;
 	L.push(await placed('\\text{gap }|\\lambda_b - \\lambda_c|\\ (\\mathrm{s^{-2}})', P.left + PW / 2, foot, 0.5, 0, DIM));
-	L.push(await placed('\\text{tide }(10^{-9}\\ \\mathrm{s^{-2}})', Xa, foot, 0.5, 0, DIM));
+	// the two vertical axes named over their tops, on one baseline, each starting just right of its axis
 	L.push(await placed('\\sigma_v\\ (\\mathrm{m/s})', P.left + 4, P.top - LABEL_GAP, 0, 1, DIM));
+	L.push(await placed('\\text{tide }(10^{-9}\\ \\mathrm{s^{-2}})', Xa + 4, P.top - LABEL_GAP, 0, 1, DIM));
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { sigmaAt: nums.sigmaAt, person };

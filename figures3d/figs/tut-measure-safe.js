@@ -2,10 +2,14 @@
 // between two scenes. Top row: the array's expected readings of one component, E_xz in the chapter's frame (x to the
 // right, y up, z toward the scene), with the gold in the left safe (hypothesis A) and in the right (B), and their
 // difference, each an 11 x 11 plate of pixels on one diverging scale: orange for a positive reading and blue for a
-// negative one, the tint deepening in proportion to the reading up to its deepest at a fifth of sigma_n (SNR = 10).
-// Bottom: the one number that decides, t = e.(y - (f_A + f_B)/2) in units of sigma_n, a unit Gaussian about +D/2 when
-// A is true and about -D/2 when B is, D = 1.81 apart; the decision line at t = 0, and beyond it on each side the tail
-// in which the rule answers wrongly, P(Z > D/2) = 18.3%, named by an arrow from the line.
+// negative one, the tint deepening in proportion to the reading up to its deepest at a fifth of sigma_n (SNR = 10);
+// each plate named in ink (bold f, as in the text) with, under its name, where the gold is ("gold left", "gold right",
+// "difference"). Bottom: the one number that decides, t = e.(y - (f_A + f_B)/2) in units of sigma_n, a unit Gaussian
+// about +D/2 when A is true and about -D/2 when B is, D = 1.81 apart, each bell in its hypothesis's colour (A, the left
+// safe, orange; B, the right, blue; the capstone, tut-read-iv2-capstone, uses the same) and named with its letter and
+// its safe ("A, gold left" on the right-hand bell, since the chapter's t puts A at +D/2); the decision line at t = 0,
+// and beyond it on each side the tail in which the rule answers wrongly, P(Z > D/2) = 18.3%, named by an arrow from the
+// line.
 // Exact: the predictions, computed here by the port of the repository's model (tut-measure-lib.js: read_box of
 // reference/gravcam/inversion.py), asserted against the reference's D = 1.8111554511736525, its largest difference
 // of one reading (0.186 sigma_n, under a fifth) and one reading of E_xz; the share of D^2 carried by E_xz (82%); the
@@ -30,7 +34,8 @@ const LINE_TOP = 0.43;                       // the decision line's top
 const ROW = 9;                               // the arrows' row, under the numbers
 const REACH = 1.7;                           // the arrows' length, in units of sigma_n
 const GAP_ROWS = 20;
-const AIR = 0.7;                             // the least air between a bell's stroke and the axis's                         // from the plates' labels to the chart's top
+const AIR = 0.7;                             // the least air between a bell's stroke and the axis's
+const SUB_GAP = LABEL_GAP + 0.6;            // from a plate's name to the line under it that says where the gold is
 
 const tint = (v) => (Math.abs(v) < 1e-12 ? null : { color: v > 0 ? ACCENT : ACCENT2, opacity: Math.min(1, Math.abs(v) / VMAX) * DEEP });
 
@@ -60,26 +65,33 @@ export default async function () {
 	const L = [];
 
 	// ---- the three plates
+	// each named in ink (its tint is its readings' sign, not a hypothesis's colour), and under the name, where the gold is
 	const maps = [
-		{ m: fA, src: 'f_A', color: ACCENT, what: 'the left safe\'s plate' },
-		{ m: fB, src: 'f_B', color: ACCENT2, what: 'the right safe\'s plate' },
-		{ m: diff, src: 'f_A - f_B', color: INK, what: 'the difference\'s plate' }
+		{ m: fA, src: '\\mathbf f_A', sub: 'gold left', what: 'the left safe\'s plate' },
+		{ m: fB, src: '\\mathbf f_B', sub: 'gold right', what: 'the right safe\'s plate' },
+		{ m: diff, src: '\\mathbf f_A - \\mathbf f_B', sub: 'difference', what: 'the difference\'s plate' }
 	];
 	const y0 = ORIGIN - 90;
 	const views = maps.map((_, k) => new View({ turn: TURN, tilt: TILT, scale: SCALE, o: [ORIGIN + (k - 1) * PITCH, y0] }));
 	maps.forEach((p, k) => plate(S, views[k], R, { n: PIX, tile: (i, j) => tint(p.m[i][j]), what: p.what }));
 	const under = (V) => Math.max(...[[-0.5, -0.5, -0.025], [0.5, -0.5, -0.025], [0.5, 0.5, -0.025]].map((q) => V.at(q)[1]));
 	const yl = Math.max(...views.map(under)) + LABEL_GAP + 3;
-	for (const [k, p] of maps.entries()) L.push(await placed(p.src, views[k].at([0, 0])[0], yl, 0.5, 0, p.color));
+	for (const [k, p] of maps.entries()) {
+		const g = await placed(p.src, views[k].at([0, 0])[0], yl, 0.5, 0, INK);
+		L.push(g, await placed(`\\text{${p.sub}}`, views[k].at([0, 0])[0], g.box.b + SUB_GAP, 0.5, 0, DIM));
+	}
 
 	// ---- the bells
 	const base = Math.max(...L.map((l) => l.box.b));
 	const P = new Plot({ left: ORIGIN - W / 2, top: base + GAP_ROWS, w: W, h: H, x0: -TMAX, x1: TMAX, y0: 0, y1: YMAX });
 	// a bell stops where it comes within AIR points of the axis, so that it never runs along it
 	const cut = Math.sqrt(-2 * Math.log((merge(P, CURVE) + (AIR / H) * YMAX) * Math.sqrt(2 * Math.PI)));
+	// each hypothesis in its own colour, the same in the capstone (tut-read-iv2-capstone): the left safe's orange, the
+	// right's blue. By the chapter's t, A (the gold in the left safe) lies at +D/2, on the right, so each bell is named
+	// with its safe as well as its letter.
 	const bells = [
-		{ c: half, color: ACCENT, src: 'A', tail: [-TMAX, 0], side: 1 },
-		{ c: -half, color: ACCENT2, src: 'B', tail: [0, TMAX], side: -1 }
+		{ c: half, color: ACCENT, src: 'A', name: 'A\\text{, gold left}', tail: [-TMAX, 0], side: 1 },
+		{ c: -half, color: ACCENT2, src: 'B', name: 'B\\text{, gold right}', tail: [0, TMAX], side: -1 }
 	];
 	for (const b of bells) {
 		const f = (t) => gauss(t - b.c);
@@ -104,7 +116,7 @@ export default async function () {
 	// the hypotheses' names, beside their bells' outer flanks
 	for (const b of bells) {
 		const t = b.c + b.side * 1.25;
-		L.push(await S.clear(b.src, P.X(t) + b.side * 2, P.Y(gauss(t - b.c)), b.side > 0 ? 0 : 1, 0.5, [b.side, 0], { color: b.color }));
+		L.push(await S.clear(b.name, P.X(t) + b.side * 2, P.Y(gauss(t - b.c)), b.side > 0 ? 0 : 1, 0.5, [b.side, 0], { color: b.color }));
 	}
 	// the axis
 	const xl = await xAxis(S, P, { ticks: [-4, -2, 0, 2, 4], fmt: (t) => (t < 0 ? `-${-t}` : `${t}`), what: 'the t axis' });

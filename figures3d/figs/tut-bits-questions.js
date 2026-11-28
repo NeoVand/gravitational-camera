@@ -1,8 +1,9 @@
 // The tutorial, section 3.8 (tutorial/noise/bits.md), its first diagram: four yes-or-no questions find one of sixteen
 // places. Each row is one question, "in the left half?", asked of the list of places that remain, drawn as numbered
-// squares: the half the answer keeps in the first accent (its pale tint, an orange outline, the number in ink), the
-// half it discards faint (a pale hairline outline, the number in the faint ink). The list goes 16, 8, 4, 2, and the
-// last row is the one place left, 11; beside it, "four questions, log2 16 = 4 bits".
+// squares, with its answer, "no" or "yes", in ink between the question and the list: the half the answer keeps in the
+// first accent (its pale tint, an orange outline, the number in ink), the half it discards faint (a pale hairline
+// outline, the number in the faint ink). The list goes 16, 8, 4, 2, and the last row is the one place left, 11;
+// beside it, "four questions, log2 16 = 4 bits".
 // Exact: the halvings (each row is the kept half of the row above, in order; the answers no, yes, no, yes lead to 11),
 // the count of questions, log2 16 = 4. Schematic: the place that holds the gold, 11, chosen so that the answers mix.
 import { Sheet, ORIGIN, finish, checker, placed, n2, HAIR } from './tut-pot-lib.js';
@@ -33,10 +34,11 @@ function mathematics() {
 
 // ---- the drawing (points) -----------------------------------------------------------------------------------------
 const SIDE = 13.5;                  // a square
-const PITCH = 16.5;                 // square to square along a row
+const PITCH = 16;                   // square to square along a row
 const ROW = 19.5;                   // row to row
 const STROKE = 0.55;                // a kept square's outline (as the reading maps' boxes were)
-const LABEL_TO_ROW = 7;             // from the question's ink to the first square
+const LABEL_TO_ROW = 7;             // from the answer's column to the first square
+const Q_TO_A = 4.5;                 // from the question's ink to its answer
 const PALE = '#f3dfcb';             // drawing.ts, THEME: the pale tint of the first accent
 
 export default async function () {
@@ -45,8 +47,11 @@ export default async function () {
 	const L = [];
 	const q = await placed('\\text{in the left half?}', 0, 0, 0, 0.5, DIM);
 	const qw = q.box.r - q.box.l;
-	const width = qw + LABEL_TO_ROW + (N - 1) * PITCH + SIDE;
-	const x0 = ORIGIN - width / 2, sx = x0 + qw + LABEL_TO_ROW, y0 = ORIGIN - 60;
+	const a = await placed('\\text{yes}', 0, 0, 0, 0.5, INK);
+	const aw = a.box.r - a.box.l;
+	const es = await placed('\\text{es}', 0, 0, 0, 0, INK), no = await placed('\\text{no}', 0, 0, 0, 0, INK);                                   // the answers' column, as wide as the wider answer
+	const width = qw + Q_TO_A + aw + LABEL_TO_ROW + (N - 1) * PITCH + SIDE;
+	const x0 = ORIGIN - width / 2, ax = x0 + qw + Q_TO_A, sx = ax + aw + LABEL_TO_ROW, y0 = ORIGIN - 60;
 
 	const square = async (x, y, k, kept, what) => {
 		const d = `M${n2(x)},${n2(y)}h${SIDE}v${SIDE}h${-SIDE}Z`;
@@ -60,7 +65,14 @@ export default async function () {
 
 	for (const [i, r] of rows.entries()) {
 		const y = y0 + i * ROW;
-		L.push(await placed('\\text{in the left half?}', x0, y + SIDE / 2, 0, 0.5, DIM));
+		const qi = await placed('\\text{in the left half?}', x0, y + SIDE / 2, 0, 0.5, DIM);
+		L.push(qi);
+		// the answer: yes keeps the left half, no the right; it must agree with the half drawn kept. It stands on the
+		// question's baseline (the question has no descender, so its ink's foot is the baseline): its x-height top,
+		// measured on letters without a descender, goes that far above it
+		check(r.yes === (r.kept[0] === r.list[0]), `the answer to question ${i + 1} disagrees with the half kept`);
+		const xh = (r.yes ? es : no).box;
+		L.push(await placed(r.yes ? '\\text{yes}' : '\\text{no}', ax, qi.box.b - (xh.b - xh.t), 0, 0, INK));
 		for (const [j, k] of r.list.entries()) await square(sx + j * PITCH, y, k, r.kept.includes(k), `square ${k} of row ${i + 1}`);
 	}
 	const yl = y0 + rows.length * ROW;

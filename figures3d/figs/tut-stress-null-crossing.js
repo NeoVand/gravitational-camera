@@ -5,15 +5,16 @@
 // matter's colour, named "particle, v_z = 0.4c", with a filled dot where the ray meets it. Along the ray, a thin
 // bracket between the points level with the two meetings of the dotted rays with the worldline, named
 // "dl = du/(1 - v_z/c)"; on the z axis, a bracket of the same du between the dotted rays' feet, named "du".
-// Departures from the diagram's comment: the ray's bracket runs parallel to the ray, 11 points to its left, so that
-// its ends stay level with the meetings, and two short, faint, level ties run from the dotted rays' meetings with the
-// worldline to its ends: the bracket's ends stand at the meetings' ct, the ray's parameter l = ct. The meetings carry
-// small open rings. The bracket's name stands in the empty corner beyond the upper dotted ray; the ray's name stands
-// at its upper end, right of the panel.
+// Departures from the diagram's comment: the bracket of dl stands on the ct axis, not along the ray, since the ray's
+// parameter is l = ct: a bracket along the ray is sqrt2 times as long as the dl it names, and its level ends had to be
+// tied to the meetings across the ray. It stands left of the axis, as du's stands below the z axis, from ct = 0.5 to
+// 1.5, named "dl"; dotted level ties run from the meetings, marked by small open rings, to the axis. The rule
+// "dl = du/(1 - v_z/c)" stands in the empty corner over the rays, at the upper left; the ray's name stands at its
+// upper end, right of the panel.
 // Exact: the ray and the dotted rays at 45 degrees on the page and du = 0.6 apart along z (asserted), the worldline's
-// slope 2.5 (asserted), the crossing at (z, ct) = (1.45, 1), the meetings at ct = 0.5 and 1.5, so that the ray's
-// bracket spans dl = 1.0 = 0.6/(1 - 0.4) (asserted on the page and in tut-stress-lib.js). Nothing is schematic.
-import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, LINE, HAIR } from './tut-pot-lib.js';
+// slope 2.5 (asserted), the crossing at (z, ct) = (1.45, 1), the meetings at ct = 0.5 and 1.5, so that the bracket on
+// the ct axis spans dl = 1.0 = 0.6/(1 - 0.4) (asserted on the page and in tut-stress-lib.js). Nothing is schematic.
+import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, LINE, HAIR, TICK } from './tut-pot-lib.js';
 import { Plot } from './tut-prob-lib.js';
 import { measure } from './tut-rad-lib.js';
 import { DOT } from './tut-bessel-lib.js';
@@ -29,7 +30,8 @@ const U0 = -0.45;                          // the ray u = ct - z = u0
 const Z0 = 1.05;                           // the particle's z at ct = 0
 const POINT = DOT + 0.45;                  // the crossing's dot, radius
 const RING = 1.5, RING_W = 0.4;            // the meetings' open rings
-const SHIFT = 11;                          // the ray's bracket, this far left of the ray, points
+const BESIDE = 6.5;                        // the ct axis's bracket, this far left of the axis
+const RULE_AT = [0.14, 1.95];              // the rule dl = du/(1 - v_z/c): its left end, middle, in (z, ct)
 const BELOW = 6.5;                         // the z axis's bracket, this far below the axis
 const RAY = 0.7;                           // the ray's stroke
 
@@ -84,23 +86,19 @@ export default async function () {
 	// each meeting is on its dotted ray
 	for (const [m, u] of [[lo, U0 - HALF_DU], [hi, U0 + HALF_DU]]) check(near(m[1] - m[0], u, 1e-12), 'a meeting is off its ray');
 
-	// ---- the bracket along the ray, SHIFT to its left (so its ends stay level with the meetings), from ct = 0.5 to
-	// 1.5; the level ties from the meetings to its ends
-	const onRay = (ct) => at([ct - U0, ct]);
-	const e0 = onRay(lo[1]), e1 = onRay(hi[1]);
-	const b0 = [e0[0] - SHIFT, e0[1]], b1 = [e1[0] - SHIFT, e1[1]];
-	measure(S, b0, b1, { color: INK, layer: 2.5, what: 'the ray\'s bracket' });
-	check(near(b1[1] - b0[1], -stretch(du) * U, 1e-9) && near(b1[0] - b0[0], stretch(du) * U, 1e-9), 'the ray\'s bracket does not span dl = 1.0 of ct along the ray');
+	// ---- the meetings, marked by small rings, and dotted level ties from them to the ct axis, where a bracket left of
+	// the axis spans dl = 1.0 of ct, from ct = 0.5 to 1.5: the ray's parameter is l = ct
+	const xb = o[0] - BESIDE;
+	const b0 = [xb, at([0, lo[1]])[1]], b1 = [xb, at([0, hi[1]])[1]];
+	measure(S, b0, b1, { color: INK, layer: 2.5, what: 'the ct axis\'s bracket' });
+	check(near(b0[1] - b1[1], stretch(du) * U, 1e-9) && near(b0[1] - b1[1], (hi[1] - lo[1]) * U, 1e-9), 'the ct axis\'s bracket does not span dl = 1.0 of ct');
 	for (const [m, e, what] of [[lo, b0, 'the lower tie'], [hi, b1, 'the upper tie']]) {
 		const q = at(m);
-		check(near(q[1], e[1], 1e-9), `${what} is not level`);
-		// from the meeting's ring to the bracket's end, level: the meetings stand at the bracket's ct
-		const s = Math.sign(e[0] - q[0]);
-		S.path([[q[0] + s * (RING + 0.9), q[1]], [e[0] - s * (HAIR + 0.6), e[1]]], { color: DIM, width: HAIR, layer: 1.8, cap: 'butt', what });
+		check(near(q[1], e[1], 1e-9), `${what} is not level with the bracket's end`);
+		S.dots([q[0] - RING - 1.1, q[1]], [o[0] + AXIS / 2 + 1.2, q[1]], { color: DIM, layer: 1.8, what });
 		S.raw(`<circle cx="${q[0].toFixed(2)}" cy="${q[1].toFixed(2)}" r="${RING}" fill="none" stroke="${MATTER}" stroke-width="${RING_W}"/>`, 3);
 		S.mark([q], RING + RING_W / 2, `${what}'s ring`);
 	}
-	const n = [-Math.SQRT1_2, -Math.SQRT1_2];          // the page's normal to the ray, up and to the left
 
 	// ---- the crossing's dot
 	{
@@ -120,8 +118,9 @@ export default async function () {
 
 	// ---- the names
 	{
-		const m = [(b0[0] + b1[0]) / 2, (b0[1] + b1[1]) / 2];
-		L.push(await lines(S, ['d\\ell = du/(1 - v_z/c)'], m[0] + n[0] * 3, m[1] + n[1] * 3, 1, 1, n, INK, L));
+		L.push(await placed('d\\ell', xb - TICK - LABEL_GAP - 0.4, (b0[1] + b1[1]) / 2, 1, 0.5, INK));
+		// the rule, in the empty corner over the rays
+		L.push(await placed('d\\ell = \\dfrac{du}{1 - v_z/c}', ...at([RULE_AT[0], RULE_AT[1]]), 0, 0.5, INK));
 		const end = rays[U0].B;
 		L.push(await lines(S, ['\\text{ray,}', 'u = u_0'], end[0] + LABEL_GAP + 1.2, end[1], 0, 0.5, [0, -1], INK, L));
 		const top = at(world(T1));

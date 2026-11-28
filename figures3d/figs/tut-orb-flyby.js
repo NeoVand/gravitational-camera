@@ -7,7 +7,8 @@
 // kick, which points along b - s. The path's stretch behind the plane and the body's outline behind it are dashed.
 // Right, the sideways pull on that part per unit mass against time, B G mu / (B^2 + V^2 t^2)^(3/2), a bell of height
 // G mu / B^2 at the moment of closest approach, with its area shaded: 2 G mu / B V, the kick. The dashed rectangle has
-// the same height and the same area, so its width is the duration 2B/V. Exact: the scene of the paper's tonne and
+// the same height and the same area, so its width is the duration 2B/V. The plot's axes: time, with a tick at 0, the
+// moment of closest approach, and the sideways pull, named, rising from the time axis's left end. Exact: the scene of the paper's tonne and
 // steel ball, to one scale (the ball's radius 0.5 m, the path 1.5 m from its centre); the right angles (path and
 // plane, B and the path, the dotted line and the plane), asserted in 3D; the bell, sampled every quarter of a point
 // along its length, in units of B/V across and G mu / B^2 up; its area, which the plot shows out to 3.4 B/V on either
@@ -50,9 +51,10 @@ const PART_R = 2.3;                       // the part, a small steel bead, point
 const PT = 1.15;                          // a marked point of the plane, radius in points
 const XU = 20, YU = 76;                   // the plot: points per B/V across and per G mu / B^2 up
 const XMAX = 3.4;                         // the bell is drawn out to this many B/V either side
-const AXIS_OVER = [0, 0.75];              // the time axis runs this far past the bell's ends, units of B/V
+const AXIS_OVER = [0.4, 0.75];            // the time axis runs this far past the bell's ends, units of B/V
+const PULL_TOP = 1.32;                    // the pull's axis rises this high, units of G mu / B^2
 const GAP = 16;                           // points between the 3D view's ink and the plot's
-const DIM_DROP = 8;                       // the duration's dimension line, this far under the axis
+const DIM_DROP = 15;                      // the duration's dimension line, this far under the axis (the 0 lies between)
 const name3 = (s) => `the 3D view: ${s}`;
 
 export default async function () {
@@ -207,7 +209,7 @@ export default async function () {
 	// ---- the plot, beside the view, its ink (from the top of the bell to the duration's label) centred on the plane's
 	const inkRight = Math.max(...quad.map((q) => q[0]), pathEnd.B[0]);
 	const midY = (Math.max(...quad.map((q) => q[1])) + Math.min(...quad.map((q) => q[1]))) / 2;
-	const base = midY - (-YU + DIM_DROP + TICK + 2.4 + 6) / 2;
+	const base = midY - (-YU * PULL_TOP + DIM_DROP + TICK + 2.4 + 6) / 2;
 	const x0 = inkRight + GAP + (XMAX + AXIS_OVER[0]) * XU;          // the bell's centre
 	const at = (x, y) => [x0 + x * XU, base - y * YU];
 	// the bell, every quarter of a point along its length
@@ -235,9 +237,12 @@ export default async function () {
 		return Math.abs(x) <= XMAX && Math.abs(q[1] - at(x, bell(x))[1]) < (LINE + 0.15) / 2 + gap;
 	};
 	for (let i = 0; i < 3; i++) dashed(S, corner[i], corner[i + 1], { clash: onBell, color: DIM, width: HAIR + 0.05, layer: 1, what: `the rectangle's side ${i}` });
-	// the time axis
+	// the time axis, and the pull's axis rising from its left end; a tick at t = 0, the closest approach
 	const ax0 = at(-XMAX - AXIS_OVER[0], 0), ax1 = at(XMAX + AXIS_OVER[1], 0);
-	S.arrow(ax0, ax1, { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the time axis' });
+	S.arrow([ax0[0] - AXIS / 2, ax0[1]], ax1, { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the time axis' });
+	const ay1 = at(-XMAX - AXIS_OVER[0], PULL_TOP);
+	S.arrow(ax0, ay1, { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 1, what: 'the pull\'s axis' });
+	S.path([at(0, 0), [at(0, 0)[0], base + TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: 'the tick at t = 0' });
 	// the duration: a dimension line under the axis from -1 to 1
 	const dy = base + DIM_DROP;
 	S.path([[at(-1, 0)[0], dy], [at(1, 0)[0], dy]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: 'the duration' });
@@ -262,8 +267,10 @@ export default async function () {
 	L.push(await lab('2G\\mu/BV', x0, at(0, 0.3)[1], 0.5, 0.5, [0, 1], ACCENT, ['the area']));
 	L.push(await lab('2B/V', x0, dy + TICK + 2.4, 0.5, 0, [0, 1], INK));
 	L.push(await lab('t', ax1[0] - 1.5, base - 3, 1, 1, [0, -1], DIM));
+	L.push(await lab('0', x0, base + TICK + 1.6, 0.5, 0, [0, 1], DIM));
+	L.push(await lab('\\text{sideways pull}', ay1[0] + 4, ay1[1] + 0.5, 0, 0, [1, 0], DIM));
 	// the area's label lies inside the rectangle, clear of its sides
-	const areaLabel = L[L.length - 3];
+	const areaLabel = L.find((l) => l.src === '2G\\mu/BV');
 	check(areaLabel.box.l > corner[0][0] + 2.15 && areaLabel.box.r < corner[3][0] - 2.15 && areaLabel.box.t > corner[1][1] + 2.15, `the area's label does not fit inside the rectangle: ${(areaLabel.box.r - areaLabel.box.l).toFixed(2)} pt in ${(corner[3][0] - corner[0][0]).toFixed(2)}`);
 
 	S.checkAll(L);

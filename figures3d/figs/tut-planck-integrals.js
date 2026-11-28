@@ -4,10 +4,11 @@
 // dot, with a dotted line down to the axis and its x under the axis, 1.594 (n = 2) and 2.821 (n = 3), and its height
 // beside the dot, 0.648 and 1.421; the curve n = 1 starts at 1 and only falls, with no dot. Ink and the page's greys
 // only: no orange or blue.
-// Departures from the diagram's comment: the areas are named in a key at the upper right, "n = 1, area pi^2/6 =
-// 1.645" and so on, beside a sample of each curve's weight, rather than at the curves' right ends, since at x = 12
-// the three curves lie within a point of the axis and of one another (their values there are 7 x 10^-5, 9 x 10^-4
-// and 0.011); the key also names n, which the curves need. The axis across is ticked and numbered at 0, 4, 8 and 12
+// Departures from the diagram's comment: each curve is named on the plot, "n = 1" just right of its start at 1,
+// "n = 2" and "n = 3" beside their falling sides, since the three weights alone are hard to tell apart in print; the
+// areas are listed at the upper right, "the area under each curve:" and "n = 3: pi^4/15 = 6.494" and so on, rather
+// than at the curves' right ends, since at x = 12 the three curves lie within a point of the axis and of one another
+// (their values there are 7 x 10^-5, 9 x 10^-4 and 0.011). The axis across is ticked and numbered at 0, 4, 8 and 12
 // only, so that the peaks' positions can stand under it at their own places; the axis up is named x^n/(e^x - 1). Every
 // curve and its shaded area run the whole axis, from x = 0 to 12, the tails lying just above the axis.
 // Exact: every curve, the peaks (the roots of x = n (1 - e^{-x}), asserted maxima), their heights and the areas
@@ -28,8 +29,10 @@ const WEIGHT = { 1: 0.4, 2: 0.8, 3: 1.3 };    // the three curves' strokes: thin
 const FILL = 0.055;                             // each area's opacity of ink
 const DOT = 1.55;                               // a peak's dot
 const DROP = [0, 1.6];                          // the dotted line from a peak to the axis
-const KEY_LINE = 15, PITCH = 12.5;              // the key's samples and baseline to baseline
-const KEY_AT = [5.15, 1.43];                    // the key's first row: its sample's left end and its height, in units
+const PITCH = 12.5;                             // the list of areas: baseline to baseline
+const KEY_AT = [5.6, 1.43];                     // the list's first row: its left end and its middle, in units
+// the curves' names: [n, x on the curve, then the name's lower left corner this far right and down of the curve there]
+const NAMED = [[1, 0.06, 3, -2], [2, 3.5, 3, -2], [3, 5.4, 3, -2]];
 
 const AREA_TEX = { 1: '\\pi^2/6 = 1.645', 2: '2\\zeta(3) = 2.404', 3: '\\pi^4/15 = 6.494' };
 
@@ -94,14 +97,21 @@ export default async function () {
 	const base = Math.max(...all.map((l) => l.box.b));
 	L.push(await placed('x = \\hbar\\omega/k_BT', P.X((X0 + X1) / 2), base + 4, 0.5, 0, DIM));
 
-	// ---- the key
+	// ---- each curve named on the plot beside its falling side: n = 1 just right of its start at 1, n = 2 and n = 3
+	// right of their falling sides
+	for (const [n, x, dx, dy] of NAMED) {
+		const q = P.at(x, bose(n, x));
+		L.push(await S.clear(`n = ${n}`, q[0] + dx, q[1] + dy, 0, 1, [0.6, -0.8]));
+	}
+
+	// ---- the areas under the curves, in a list at the upper right
 	{
 		const x = P.X(KEY_AT[0]);
 		let y = P.Y(KEY_AT[1]);
+		L.push(await placed('\\text{the area under each curve:}', x, y, 0, 0.5, INK));
 		for (const n of [3, 2, 1]) {
-			S.path([[x, y], [x + KEY_LINE, y]], { color: INK, width: WEIGHT[n], layer: 2, cap: 'butt', what: `the key's line n = ${n}` });
-			L.push(await placed(`n = ${n}\\text{, area } ${AREA_TEX[n]}`, x + KEY_LINE + LABEL_GAP + 1, y, 0, 0.5, INK));
 			y += PITCH;
+			L.push(await placed(`n = ${n}\\text{: } ${AREA_TEX[n]}`, x, y, 0, 0.5, INK));
 		}
 	}
 

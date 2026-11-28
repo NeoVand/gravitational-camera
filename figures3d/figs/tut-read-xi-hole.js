@@ -6,27 +6,31 @@
 // the right, back along the gap between the rows; each panel with its numbers beneath it.
 //  (a) the sky: a thermometer standing in a uniform glow. "0.905 K; 0.929 K seen".
 //  (b) its gravitons: three wavelengths of the seen sky's mean wavelength, 5.74 mm, a dimension over the middle one.
-//      "3.87 x 10^14 per s, m^2, sr; lambda = 5.74 mm".
+//      "3.87 x 10^14 gravitons per s, m^2, sr; lambda = 5.74 mm".
 //  (c) the hole: its capture disc, 2 sqrt(27) GM/c^2 = 1.05 cm across, in the page's tint with a grey edge, and in it
-//      the horizon, r_s = 2GM/c^2, 11.1's near-black disc with an ink edge. "T_H = 0.0905 K; disc 1.05 cm across".
+//      the horizon, r_s = 2GM/c^2, 11.1's near-black disc with an ink edge; "capture disc" named over the disc,
+//      "horizon" under it with a leader up through the disc to the hole. "T_H = 0.0905 K; disc 1.05 cm across".
 //  (d) the shadow: the camera's sky about the hole's direction as a disc of directions, out to 23 degrees, in the glow;
 //      the shadow from rest, 7.27 degrees in radius, the near-black disc; dashed inside it, the falling camera's,
 //      5.80 degrees. "7.27 deg; 5.80 deg falling".
 //  (e) the ring: the same sky and shadow, the Einstein ring dashed at 20.2 degrees. "20.2 deg".
-//  (f) how dark: two discs on the glow, darkened by the depth weighed in energy, 93%, and counted, 82%.
+//  (f) how dark: two discs on the glow, darkened by the depth weighed in energy, 93%, and counted, 82%, each named under
+//      it on the glow, "energy" and "count".
 //      "93% by energy; 82% by count".
 //  (g) with spin: the hole turning (an ink arrow round it) and the mode l = m = 2 turning with it (two arrows, half a
 //      turn apart). "10.3 times the sky at 43.6 GHz".
-//  (h) how deep: the hole, the camera at r (a dimension) and the thermometer at the camera. "r = 40 GM/c^2 from 2.6%".
-//  (i) counting: two pixels back to back, gravitons arriving at each from opposite directions. "g2 = 2; 2 + 1/n only
-//      if born in inflation".
+//  (h) how deep: the hole, the camera at r (a dimension) and the thermometer at the camera. "r = 40 GM/c^2, read from
+//      the sky seen 2.6% warmer".
+//  (i) counting: two pixels back to back, gravitons arriving at each from opposite directions. "g2 = 2 if thermal;
+//      2 + 1/n only if born in inflation".
 // The colours: gravitons and the glow in the field's colour (12.2's, figs/tut-universe-*.js), the glow as a wash of it;
 // the Einstein ring in the light role's colour (11.1's rings, figs/tut-schw-ring.js); the hole 11.1's fixed near-black
 // disc with an ink edge, which the site does not swap; the falling shadow's dashes on it a fixed pale grey, likewise
 // not swapped, so that they show on the near-black in both themes; everything else in ink and the page's greys.
 // Orange and blue, which mean a stretch and a squeeze, are not used.
 // Departures from the diagram's comment, where the chapter's text decides: the numbers printed are exactly the
-// table's, 3.87 x 10^14 and 5.74 mm in (b), not 3.9 x 10^14 and 5.7 mm; (b) draws the wavelength and not a square
+// table's, 3.87 x 10^14 and 5.74 mm in (b), not 3.9 x 10^14 and 5.7 mm, with the words the table's terse cells
+// leave out ("gravitons" in (b), "read from the sky seen ... warmer" in (h), "if thermal" in (i)); (b) draws the wavelength and not a square
 // metre, since a square metre cannot stand at the wavelength's scale; (i) prints the table's second entry, 2 + 1/n
 // only if born in inflation; three rows of three, not one strip; the caption writes GM/c^2 as the chapter does.
 // The printed book (figureLayout 'book') keeps the three rows of three but makes each panel 128 points wide, not 104,
@@ -79,7 +83,7 @@ const OUT = 7;                              // the return arrows run this far ri
 const DROP_X = 11;                          // and come down this far left of the next row's first
 const LINE = 0.55, EDGE = 0.45, WAVE = 0.6; // a drawn outline, the hole's ink edge, a graviton's line
 const GLOW = 0.2;                           // the glow: the field's colour washed over the page
-const MM = 4;                               // (b), (c): points per millimetre
+const MM = 3.5;                             // (b), (c): points per millimetre
 const DEG_PT = BOOK ? 1.3 : 1.5;            // (d), (e): points per degree
 const SKY = 23;                             // (d), (e): the disc of directions, degrees from the hole's direction
 const PALE = '#ddd8cd';                     // the falling shadow's dashes on the near-black: fixed, not swapped
@@ -387,6 +391,11 @@ export default async function () {
 		S.mark(circlePts(c, rc), HAIR / 2, 'the capture disc');
 		hole(c, rh, '(c)\'s hole');
 		check(near(rc / rh, Math.sqrt(27) / 2, 1e-9), '(c): the disc and the horizon are not to scale');
+		// the two circles named: the capture disc over it, the horizon under it with a leader up through the disc
+		L.push(await lbl('\\text{capture disc}', c[0], c[1] - rc - HAIR / 2 - LABEL_GAP - 0.3, 0.5, 1));
+		const hz = await lbl('\\text{horizon}', c[0], c[1] + rc + HAIR / 2 + LABEL_GAP + 0.3, 0.5, 0);
+		L.push(hz);
+		S.path([[c[0], hz.box.t - LABEL_GAP - 0.2], [c[0], c[1] + rh + EDGE / 2 + 0.8]], { color: DIM, width: HAIR, cap: 'butt', layer: 2, what: 'the horizon\'s leader' });
 	}
 
 	async function skyDisc(p, what) {
@@ -410,12 +419,16 @@ export default async function () {
 	}
 
 	async function drawF(p) {
-		const gw = 74, gh = 40, rr = 13, dx = 18;
+		const gw = 74, gh = BOOK ? 56 : 58, rr = 13, dx = 18, up = 5;
 		glowRect(p.cx - gw / 2, p.cy - gh / 2, gw, gh);
 		for (const [s, d, w] of [[-1, N.dE, 'energy'], [1, N.dN, 'count']]) {
-			const c = [p.cx + s * dx, p.cy];
+			const c = [p.cx + s * dx, p.cy - up];
 			S.raw(`<path d="${circ(c, rr)}" fill="${HOLE}" fill-opacity="${d.toFixed(2)}"/>`, 2);
 			S.mark(circlePts(c, rr), 0, `the disc weighed in ${w}`);
+			// each disc named under it, on the glow
+			const nm = await placedBase(`\\text{${w}}`, c[0], c[1] + rr + LABEL_GAP + 7.2);
+			check(nm.box.b <= p.cy + gh / 2 - 2, `(f): the name ${w} leaves the glow`);
+			L.push(nm);
 		}
 		check(2 * dx - 2 * rr >= 8 && gw / 2 - dx - rr >= 6, '(f): the discs crowd');
 	}
@@ -466,20 +479,21 @@ export default async function () {
 // ---- the numbers under the panels: exactly the table's (asserted in numbers()) --------------------------------------
 const NUMS_SITE = {
 	a: ['0.905\\ \\mathrm{K};', '0.929\\ \\mathrm{K}\\text{ seen}'],
-	b: ['3.87\\times10^{14}', '\\text{per s, m}^2\\text{, sr;}', '\\lambda = 5.74\\ \\mathrm{mm}'],
+	b: ['3.87\\times10^{14}\\text{ gravitons}', '\\text{per s, m}^2\\text{, sr;}', '\\lambda = 5.74\\ \\mathrm{mm}'],
 	c: ['T_H = 0.0905\\ \\mathrm{K};', '\\text{disc }1.05\\ \\mathrm{cm}\\text{ across}'],
 	d: ['7.27^\\circ;', '5.80^\\circ\\text{ falling}'],
 	e: ['20.2^\\circ'],
 	f: ['93\\%\\text{ by energy;}', '82\\%\\text{ by count}'],
 	g: ['10.3\\text{ times the sky}', '\\text{at }43.6\\ \\mathrm{GHz}'],
-	h: ['r = 40\\,GM/c^2', '\\text{from }2.6\\%'],
-	i: ['g^{(2)} = 2;', '2 + 1/\\bar n\\text{ only if}', '\\text{born in inflation}']
+	h: ['r = 40\\,GM/c^2\\text{, read}', '\\text{from the sky}', '\\text{seen }2.6\\%\\text{ warmer}'],
+	i: ['g^{(2)} = 2\\text{ if thermal;}', '2 + 1/\\bar n\\text{ only if}', '\\text{born in inflation}']
 };
 // the book's wider panels: the same words in fewer lines
 const NUMS = !BOOK ? NUMS_SITE : {
 	...NUMS_SITE,
-	b: ['3.87\\times10^{14}', '\\text{per s, m}^2\\text{, sr; }\\lambda = 5.74\\ \\mathrm{mm}'],
+	b: ['3.87\\times10^{14}\\text{ gravitons}', '\\text{per s, m}^2\\text{, sr; }\\lambda = 5.74\\ \\mathrm{mm}'],
 	d: ['7.27^\\circ\\text{; }5.80^\\circ\\text{ falling}'],
 	f: ['93\\%\\text{ by energy; }82\\%\\text{ by count}'],
-	i: ['g^{(2)} = 2\\text{; }2 + 1/\\bar n', '\\text{only if born in inflation}']
+	h: ['r = 40\\,GM/c^2\\text{, read from}', '\\text{the sky seen }2.6\\%\\text{ warmer}'],
+	i: ['g^{(2)} = 2\\text{ if thermal; }2 + 1/\\bar n', '\\text{only if born in inflation}']
 };

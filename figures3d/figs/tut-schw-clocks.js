@@ -6,10 +6,10 @@
 // named "infinity". A thin ink line at r = r_s, "horizon", and a dashed one at r = 1.5 r_s, "photon sphere"; a
 // faint dotted line at 1, the far value of both curves.
 // Departures from the diagram's comment: the axis across starts at 0.5 r_s, so that the clock rate, which leaves the
-// horizon straight up, does not run along the vertical axis; the horizon's line stops where the clock rate comes
-// within 2 points of it, so that the two never run side by side; the curve runs on along itself for 7.5 points past
-// 2 and ends in a head, named "infinity" at its tip (the comment's "-> infinity" is the head and its name); the
-// dotted line at 1 is added.
+// horizon straight up, does not run along the vertical axis; the horizon's line runs whole, from the axis up to the
+// names, and the clock rate leaves its foot and rises close beside it at first, as it does; the curve runs on along
+// itself for 7.5 points past 2 and ends in a head, named "infinity" at its tip (the comment's "-> infinity" is the head
+// and its name); the dotted line at 1 is added.
 // Exact: both curves (asserted reciprocal, 1/2 and 2 at 4r_s/3, 1 far away), the cut at 4r_s/3, the head's direction
 // (the curve's tangent at its tip), the lines at r_s and 1.5 r_s. Schematic: nothing.
 import { Sheet, ORIGIN, finish, checker, placed, boxOf, LABEL_GAP, SIZE } from './tut-pot-lib.js';
@@ -29,7 +29,6 @@ const CURVE = 0.7;                              // the two curves
 const LINE = 0.45;                              // the horizon's and the photon sphere's lines
 const TOP = 2.32;                               // the lines run up to here, their names above
 const ARROW = { len: 7.5, head: 3 };            // the arrow at the cut
-const FLOOR = 2;                                // the horizon's line stops this far (points) from the clock rate
 const DOT = 0.5, DOT_STEP = 1.6;                // the dotted line at 1
 const caption = 'Look first at the horizon line: there a clock at rest stops, as seen from far away, and the push needed to hold it grows without limit. Both curves are exact for the Schwarzschild metric.';
 
@@ -100,15 +99,10 @@ export default async function () {
 	for (const x of [1.01, 2, 4, 6]) check(near(rate(x) * push(x), 1, 1e-14), `the curves are not reciprocal at ${x}`);
 	check(rate(X1) < 1 && push(X1) > 1 && push(X1) - 1 < 0.1, 'the curves do not close on 1');
 
-	// ---- the horizon, solid, down to where the clock rate comes within FLOOR of it; the photon sphere, dashed
+	// ---- the horizon, solid, from the axis up to the names' line, the clock rate leaving its foot; the photon sphere,
+	// dashed
 	{
-		// the clock rate's distance from the line x = 1, in points, at the height y: (x(y) - 1) DX, x(y) = 1/(1 - y^2)
-		const gapAt = (y) => (1 / (1 - y * y) - 1) * DX;
-		let lo = 0, hi = 1;
-		for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (gapAt(m) < FLOOR + CURVE / 2 + LINE / 2) lo = m; else hi = m; }
-		const yEnd = (lo + hi) / 2;
-		check(yEnd > 0.1 && yEnd < 0.3, `the horizon's line stops at ${yEnd}`);
-		S.path([[P.X(1), P.Y(yEnd)], [P.X(1), P.Y(TOP)]], { color: INK, width: LINE, layer: 2, cap: 'butt', what: 'the horizon' });
+		S.path([[P.X(1), P.Y(0)], [P.X(1), P.Y(TOP)]], { color: INK, width: LINE, layer: 2, cap: 'butt', what: 'the horizon' });
 		// the two names on one baseline: "horizon" over its line, "photon sphere" beside the top of its dashed line,
 		// which runs up to the middle of the names' small letters
 		const base = P.Y(TOP) - LABEL_GAP - LINE / 2 - 0.1;

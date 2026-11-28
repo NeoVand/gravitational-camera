@@ -3,7 +3,7 @@
 // H_2, an arrow "grad^2, x 0" down to 0: the factors 2j(2l + 2j + 1) for l = 2 and j = 2, 1, 0. Right: grad h . grad g
 // = d_i h d_i g, an arrow "grad^2, x 2" down to d_i d_k h d_i d_k g, an arrow "grad^2, x 2" down to d_i d_k d_l h
 // d_i d_k d_l g, and, g being a cubic, an arrow "grad^2" down to 0, beside it "g has no fourth derivatives". The rows of
-// the two columns share their heights; the two zeros, set larger, share one baseline. Thin single strokes, all in ink.
+// the two columns share their heights; the two zeros, set at the size of every other expression, share one baseline. Thin single strokes, all in ink.
 // Departures from the diagram's comment: the final zeros are in ink, not in the blue of the paper's squeeze, which
 // the tutorial keeps for a squeeze; both columns' first lines are boxed, not the left one alone, since both are where
 // a column starts.
@@ -22,7 +22,6 @@ const PAD_X = 5, PAD_Y = 3.6;              // a box's ink to its outline
 const OUTLINE = HAIR + 0.1;                // a box's outline (tut-linear-steps)
 const ROUND = 2;                           // its corners
 const CLEAR = 3.2;                         // from an expression's ink to an arrow's end
-const ZERO = 11;                           // the zeros' size
 const caption = 'Look first at the two zeros at the bottom. On the left, each Laplacian lowers the power of $r$ by two and multiplies by a number, until $r^4H_2$ is gone after three steps. On the right, each Laplacian adds one derivative to each factor of $\\nabla h\\cdot\\nabla g$, until the derivatives of a cubic tide run out.';
 
 export default async function () {
@@ -60,8 +59,8 @@ export default async function () {
 				ends[k] = b;
 			}
 		}
-		// the zero, larger, its middle on the last row's
-		const z = await placed('0', col.x, y(3), 0.5, 0.5, INK, ZERO);
+		// the zero, at the size of the rest and on the same strut, in the row below the last expression
+		const z = await placed(strut + '0', col.x, y(3), 0.5, 0.5, INK);
 		L.push(z);
 		ends.push(z.box);
 		col.ends = ends;

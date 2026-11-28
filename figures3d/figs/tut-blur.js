@@ -8,18 +8,23 @@
 // stack: its back half rises to the ground, sawn through the balls' centres, and its front half is cut down to a
 // ledge below the balls, which shows the section with the balls in it (a box sawn in half would put the sheets, which
 // are centred on the balls, half a sheet in front of it).
-// The view is turned only 4 degrees about the vertical (and tilted 15 degrees down), so that the line of the two balls,
-// level on the sawn face, runs level on the page (it falls by 1 degree): at a larger turn the face's level lines slope
-// on the page and the right-hand ball reads as the deeper. The sheets still lean enough, as parallelograms, to stack
-// in depth without overlapping on the page, and their right-hand corners stand over the block's.
+// The view is turned only 2.5 degrees about the vertical (and tilted 15 degrees down), so that the line of the two
+// balls, level on the sawn face, runs level on the page (it falls by 0.65 degree): at a larger turn the face's level
+// lines slope on the page, the right-hand ball reads as the deeper, and at the height 1 the right-hand peak, as the
+// lower. The sheets still lean enough, as parallelograms, to stack in depth without overlapping on the page, and their
+// right-hand corners stand over the block's. The sheets are spaced so that no relief reaches the sheet above it on the
+// page, nor the lowest sheet the block (asserted, with a gap of at least CLEAR), and a sheet's back edge is left out
+// where its relief rises in front of it. Each sheet carries its height h beside its back right corner.
 // Exact: the pattern on each sheet, the sum of the two balls' readings at that sheet's height, drawn as a relief
 // whose height is the reading, each sheet to its own greatest value (the reading falls as 1/h^3); its colour, the
 // sign of the reading, saturated as the square root of its size against that greatest value, one rule for every
 // sheet, mixing from the clear glass's own tint at zero toward the accent; the places of the balls under the dashed
-// lines and of the peaks over them; and the heights, in units of the balls' separation: 0.25, 0.55 and 1 for the
-// sheets and 2 for the pixels. The two peaks merge into one, with no dip between them, at the height 1 / (2 t) =
-// 1.2844 separations, where t^2 = (27 - sqrt 665) / 8 makes the second derivative of one ball's reading along a line
-// zero (Sparrow's criterion, section 3.7, step 7). The pixels are a flat plate of 24 by 16, each tile coloured by the
+// lines (vertical, over the balls), and of the peaks: over the balls at the heights 0.25 and 0.55, closed in to
+// x = +-0.410 at the height 1, where the middle still stands 0.906 of the peaks (a dip of 9%, which the relief shows);
+// and the heights, in units of the balls' separation: 0.25, 0.55 and 1 for the sheets and 2 for the pixels. The two
+// peaks merge into one, with no dip between them, at the height 1 / (2 t) = 1.2844 separations, where
+// t^2 = (27 - sqrt 665) / 8 makes the second derivative of one ball's reading along a line zero (Sparrow's criterion,
+// section 3.7, step 7). The pixels are a flat plate of 24 by 16, each tile coloured by the
 // same rule by its own reading: the bump at the tile's centre and that pixel's noise, white, of spread exactly a
 // tenth of the bump's greatest value (one draw, seed 1, set to mean 0 and spread 1 over the 384 pixels). What tells
 // two balls from one is smaller than that noise: over the array, the reading of the best-fitting single ball (its
@@ -27,7 +32,7 @@
 // Schematic: the vertical spacing of the sheets (drawn evenly spaced) and the depth of the balls, the size of the
 // balls, the height of the relief, the thickness of the glass, and the heights of the block and of its ledge.
 import { Panel, v3, sprite, THREE, INK, DIM, PAGE } from '../lib.js';
-import { IRON, text, n2 } from '../stone.js';
+import { IRON, n2 } from '../stone.js';
 
 // ---- the physics: lengths in units of the balls' separation -------------------------------------------------
 export const BALLS = [-0.5, 0.5];                     // the balls' places along x, at one depth
@@ -37,6 +42,7 @@ export const TILE = 3.2 / PX;                         // a pixel's side
 export const HX = (PX * TILE) / 2, HZ = (PZ * TILE) / 2;   // a sheet's half-width and half-depth
 export const NOISE = 0.1;                             // the pixels' noise, in units of the bump's greatest value
 export const DETAIL = 0.075;                          // what tells two balls from one at the pixels (asserted)
+export const PEAK1 = 0.410;                           // where the peaks stand at the height 1 (asserted)
 
 /** The reading of one ball (G m = 1) a distance rho to the side and h above it. */
 export const one = (rho, h) => (2 * h * h - rho * rho) / Math.pow(rho * rho + h * h, 2.5);
@@ -76,7 +82,13 @@ function physics() {
 	if (Math.abs(MERGE - 1.2844) > 5e-5) throw new Error('the merge height is not 1.2844: ' + MERGE);
 	const [h1, h2, h3, h4] = HEIGHTS;
 	if (!(reading(0, 0, h1) < 0)) throw new Error('the lowest sheet is not blue between its peaks');
-	if (!(h3 < MERGE && dip(h3) < 0.95 && dip(h2) < 0.5)) throw new Error('the middle sheets do not show two peaks');
+	if (!(h3 < MERGE && dip(h2) < 0.5)) throw new Error('the middle sheets do not show two peaks');
+	// at the height 1 the midpoint stands 0.906 of the peaks (2.0035 against 2.2115, G m = 1), and the peaks have
+	// closed in from over the balls (x = 0.5) to x = 0.410; on the two lower sheets they stand over the balls
+	const peak = (h) => { let x0 = 0, v0 = -Infinity; for (let x = 0; x <= HX; x += 1e-4) { const v = reading(x, 0, h); if (v > v0) { v0 = v; x0 = x; } } return x0; };
+	if (Math.abs(dip(h3) - 0.906) > 5e-4 || Math.abs(reading(0, 0, h3) - 2.0035) > 5e-4 || Math.abs(greatest(h3) - 2.2115) > 5e-4) throw new Error('the dip at the height 1: ' + dip(h3));
+	if (Math.abs(peak(h3) - PEAK1) > 1e-3) throw new Error('the peaks at the height 1 stand at ' + peak(h3));
+	if (!(Math.abs(peak(h1) - 0.5) < 2e-3 && Math.abs(peak(h2) - 0.5) < 2e-3)) throw new Error('the lower peaks are not over the balls');
 	if (!(h4 > MERGE)) throw new Error('the pixels do not see one bump');
 	// the honest point: the bump stands above the noise, and what tells two balls from one does not; the single ball
 	// that fits best over the array, by least squares in its mass and its depth, and its largest miss there
@@ -102,9 +114,10 @@ function physics() {
 // ---- the drawing -----------------------------------------------------------------------------------------
 const W = 360;
 const SCALE = 60;                                   // points per separation (a first guess; fitted to the column)
-const TILT = 15, TURN = -4;                         // the view: degrees down, and round the vertical
-const GAP = 0.66, STEP = 0.6;                       // the lowest sheet above the ground, and the sheets' spacing (drawn)
-const RELIEF = 0.32;                                // the relief's greatest height on the glass sheets (drawn)
+const TILT = 15, TURN = -2.5;                         // the view: degrees down, and round the vertical
+const GAP = 0.66, STEP = 0.80;                    // the lowest sheet above the ground, and the sheets' spacing (drawn)
+const CLEAR = 0.05;                                 // the least gap on the page, in separations, between a relief and the sheet above
+const RELIEF = 0.42;                                // the relief's greatest height on the glass sheets (drawn)
 const GLASS = 0.026;                                // the glass's thickness (drawn)
 const DEPTH = 0.3, BALL = 0.085;                    // the balls' depth below the ground and their radius (drawn)
 const BASE = 0.72;                                  // the block's height
@@ -113,7 +126,7 @@ const K = 3;                                        // pixels per point of the r
 const SS = 2;                                       // rendered at twice that, then halved
 const CUT = '#2b2418';                              // ink on the stone, which stays pale in both themes
 const MARGIN = 2;
-const FONT = 7.5;
+const FONT = 8.5;
 
 export default async function () {
 	physics();
@@ -223,6 +236,29 @@ async function build(scale) {
 		L.relief = L.array ? 0 : RELIEF;
 		L.surface = (x, z) => v3(x, L.y + L.relief * L.exact(x, z), z);
 	}
+	// no relief reaches the sheet above it on the page, nor the lowest sheet the block: every point of a relief lies at
+	// least CLEAR below the lower outline of the next sheet's glass (its front and side edges, on its underside)
+	{
+		const lower = (L, px) => {                       // the lowest page point (largest y) of a sheet's underside at px
+			const c = [[-HX, HZ], [HX, HZ], [HX, -HZ], [-HX, -HZ]].map(([x, z]) => P.at(v3(x, L.y - GLASS, z)));
+			let y = -Infinity;
+			for (let k = 0; k < 4; k++) {
+				const [a, b] = [c[k], c[(k + 1) % 4]];
+				if ((px - a[0]) * (px - b[0]) <= 0 && a[0] !== b[0]) y = Math.max(y, a[1] + ((b[1] - a[1]) * (px - a[0])) / (b[0] - a[0]));
+			}
+			return y;
+		};
+		const below = [{ pts: [[-HX, -HZ], [HX, -HZ], [HX, HZ], [-HX, HZ]].map(([x, z]) => v3(x, 0, z)) }, ...levels.slice(0, -1).map((L) => {
+			const pts = [];
+			for (let i = 0; i <= 160; i++) for (let j = 0; j <= 100; j++) pts.push(L.surface(-HX + (2 * HX * i) / 160, -HZ + (2 * HZ * j) / 100));
+			return { pts };
+		})];
+		below.forEach((b, i) => {
+			let gap = Infinity;
+			for (const q of b.pts) { const [x, y] = P.at(q), l = lower(levels[i], x); if (l > -Infinity) gap = Math.min(gap, y - l); }
+			if (!(gap / scale >= CLEAR)) throw new Error(`the sheet at the height ${levels[i].h} touches what lies below it: ${(gap / scale).toFixed(3)}`);
+		});
+	}
 	const relief = await glRenderer();
 
 	let layer = 2;
@@ -255,9 +291,23 @@ async function build(scale) {
 		});
 		const top = (pts) => pts.map(([x, z]) => L.surface(x, z));
 		const under = (pts) => pts.map(([x, z]) => L.surface(x, z).add(v3(0, -GLASS, 0)));
-		// the far edges lie under the relief, which hides them where it rises in front of them (the flat plate of the
-		// pixels hides nothing of its own edges)
-		draw(`<path d="${path([...top(back), ...top(left).slice(1)])}" fill="none" stroke="${DIM}" stroke-width="0.4" stroke-linejoin="round" stroke-linecap="round"/>`, layer + (L.array ? 0.3 : 0.05));
+		// the far edges lie under the relief, which hides them where it rises in front of them: the back edge is left
+		// out wherever the relief's outline on the page stands above it (its translucent colour would let it show
+		// through as a stray line across the peaks); the flat plate of the pixels hides nothing of its own edges
+		const far = [...top(back), ...top(left).slice(1)].map((q) => P.at(q));
+		let shown = far.map(() => true);
+		if (!L.array) {
+			const BIN = 0.25, sky = new Map();             // the relief's highest point on the page, per quarter-point column
+			for (let i = 0; i <= 420; i++) for (let j = 0; j <= 280; j++) {
+				const [x, y] = P.at(L.surface(-HX + (2 * HX * i) / 420, -HZ + (2 * HZ * j) / 280)), k = Math.round(x / BIN);
+				if (!(sky.get(k) <= y)) sky.set(k, y);
+			}
+			// (the back edge only: the left edge, steep on the page, lies beside the relief, never behind it)
+			shown = far.map(([x, y], k) => k > n || !(sky.get(Math.round(x / BIN)) < y - 0.3));
+		}
+		let d = '';
+		far.forEach((q, k) => { if (shown[k]) d += (k > 0 && shown[k - 1] ? 'L' : 'M') + q.map(n2).join(','); });
+		draw(`<path d="${d}" fill="none" stroke="${DIM}" stroke-width="0.4" stroke-linejoin="round" stroke-linecap="round"/>`, layer + (L.array ? 0.3 : 0.05));
 		if (!L.array) draw(relief(P, L, (x, z) => colour(L.exact(x, z))), layer + 0.1);
 		else {
 			// the pixels: a mosaic, each tile the colour of its own reading (the bump at its centre and its noise), by
@@ -281,9 +331,13 @@ async function build(scale) {
 		layer += 1;
 	});
 
-	// ---- the label, beside the array's right corner (the noise is named in the caption)
-	const r = P.at(levels[3].surface(HX, -HZ));
-	P.label(text('pixels'), [r[0] + 4, r[1]], { size: FONT, anchor: 'lc', color: INK });
+	// ---- the labels: each sheet's height, in units of the balls' separation, beside its back right corner, the
+	// rightmost point of it on the page (the noise is named in the caption)
+	levels.forEach((L) => {
+		const r = P.at(v3(HX, L.y, -HZ));
+		const h = `h = ${L.h}`;
+		P.label(L.array ? `\\vphantom{(}\\text{pixels, }${h}` : `\\vphantom{(}${h}`, [r[0] + 4, r[1]], { size: FONT, anchor: 'lc', color: INK });
+	});
 
 	// ---- the drawing, on a page FW by FH, and the width of the labels beside it
 	const out = P.render('tut-blur-p');

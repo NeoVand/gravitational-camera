@@ -6,7 +6,8 @@
 // bench a second, identical ring the same distance above a thin line in matter's colour, named "line of 2P/c^3 per
 // metre", drawn out alike. Below: a closed rectangle with doubled (mirrored) walls, six short arrows in the light
 // role's colour inside pointing six ways, named "pressure U/3 each way"; small arrows in matter's colour along the
-// walls, pointing inward, named "tension"; beside the box a bar of height 1 named "E/c^2" and, in faint outline, a bar
+// walls, pointing inward, named "tension" (drawn otherwise: see below); beside the box a bar of height 1 named "E/c^2"
+// and, in faint outline, a bar
 // of height 2 named "2E/c^2, the free beam's", crossed by a thin dotted line at 1.
 // Departures from the diagram's comment: on the site the panels are stacked at every width, so that the figure stays
 // narrow and its text large on a phone, and so the bars stand beside the box, not under it. In the printed book
@@ -23,15 +24,18 @@
 // angles to the page and is not drawn (the comment's blue squeeze along the beam would be wrong). The tide's
 // eigenvalues stand beside the upper ring, not under it, where there is no room between the ring and the beam. The
 // dimension line stands left of each ring, its top level with the ring's centre, marked + and joined to it by a dotted
-// extension (section 1.4's figure). The tension's arrows lie along each wall, outside it, in pairs pointing toward the
-// wall's middle, as the rod's arrows of the chapter's first diagram point toward its cube: momentum along the wall
-// flowing inward. The pressure is written "U/3" for the comment's "(1/3)U", whose small fraction would be hard to read
-// on a phone. The bar of 2E/c^2 is named in three lines beside its top.
+// extension (section 1.4's figure). Under the eigenvalues, in three faint lines, the directions they belong to, "toward
+// the beam, out of the page, along it", so that the squeeze 1, which the page cannot show, is at least named. The
+// tension's arrows lie along each wall, outside it, in pairs from the wall's middle outward, grey, as the rod's
+// "tension" of the chapter's first diagram: the pull that stretches the wall (inward arrows in matter's colour, the
+// momentum flux, read as a squeeze). The pressure is written "U/3" for the comment's "(1/3)U", whose small fraction
+// would be hard to read on a phone. The bar of 2E/c^2 is named in three lines beside its top, and the bars' baseline
+// is named under it, "the mass each pulls with" (two lines on the site).
 // Exact: the rings' table diag(0, -1) in (along the beam, toward it), from the line's Hessian (-1, 1, 0) x
 // 2 G lambda / b^2 found by differences in tut-stress-lib.js; each ring the image of its circle under 1 - eps T, one
 // eps for both, so that the two are alike (asserted bead by bead); the two distances b equal (asserted); the bars'
 // heights 1 and 2 in one unit and the dotted line at 1 (asserted); the six pressure arrows equal and 60 degrees apart
-// (asserted). Schematic: eps (exaggerated, as the caption says), the rings' size against b, the arrows' lengths, the
+// (asserted); each tension's arrow along its wall and pointing away from the wall's middle (asserted). Schematic: eps (exaggerated, as the caption says), the rings' size against b, the arrows' lengths, the
 // laser, absorber and bench, and the break in the bench's struts, which says "far away".
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, VEC, VEC_HEAD, LINE, HAIR, DOT, DOT_STEP } from './tut-pot-lib.js';
 import { measure } from './tut-rad-lib.js';
@@ -145,6 +149,8 @@ export default async function () {
 	// the tide's eigenvalues, beside the ring
 	const tideName = await placed('(-1,\\,1,\\,0)\\times\\dfrac{4GP}{c^3b^2}', c1[0] + R + BEAD + 16, c1[1], 0, 0.5, INK);
 	L.push(tideName);
+	// the order of the three eigenvalues, under them: the squeeze, out of the page, is named, not drawn
+	L.push(await lines(S, ['\\text{toward the beam,}', '\\text{out of the page,}', '\\text{along it}'], tideName.box.l, tideName.box.b + 4, 0, 0, [0, 1], DIM, L));
 	// the bench: struts down from the laser and the absorber, each broken, and the bench between them
 	const yBench = yBeam + DROP;
 	for (const [x, what] of [[x0 - BOX[0] / 2, 'the laser\'s strut'], [x1 + BOX[0] / 2, 'the absorber\'s strut']]) {
@@ -205,16 +211,19 @@ export default async function () {
 	rays.forEach((a, k) => check(near(a.L, RAY, 1e-9) && near(a.u[0], Math.cos((k * Math.PI) / 3), 1e-12) && near(-a.u[1], Math.sin((k * Math.PI) / 3), 1e-12), `the light's arrow ${k}`));
 	check(star[0] - RAY - 2.4 - VEC_HEAD > bx + WALL + 2 && star[1] - RAY > by + WALL + 2, 'the star reaches the walls');
 	L.push(await lines(S, ['\\text{pressure}', '\\mathcal U/3 \\text{ each way}'], star[0] + RAY + 10, star[1], 0, 0.5, [1, 0], LIGHT, L));
-	// the walls' tension: on each wall, outside it, two arrows along it pointing to its middle
+	// the walls' tension: on each wall, outside it, two grey arrows along it from its middle outward, the pull that
+	// stretches the wall (the rod's "tension" of the chapter's first diagram)
 	const mx = bx + BOX_W / 2, my = by + BOX_H / 2;
 	const tens = [];
-	for (const [wall, a0, a1] of [
+	for (const [wall, a1, a0] of [
 		['top', [bx + BOX_W * 0.2, by - TEN_OFF], [mx - 6, by - TEN_OFF]], ['top', [bx + BOX_W * 0.8, by - TEN_OFF], [mx + 6, by - TEN_OFF]],
 		['bottom', [bx + BOX_W * 0.2, by + BOX_H + TEN_OFF], [mx - 6, by + BOX_H + TEN_OFF]], ['bottom', [bx + BOX_W * 0.8, by + BOX_H + TEN_OFF], [mx + 6, by + BOX_H + TEN_OFF]],
 		['left', [bx - TEN_OFF, by + BOX_H * 0.12], [bx - TEN_OFF, my - 5]], ['left', [bx - TEN_OFF, by + BOX_H * 0.88], [bx - TEN_OFF, my + 5]],
 		['right', [bx + BOX_W + TEN_OFF, by + BOX_H * 0.12], [bx + BOX_W + TEN_OFF, my - 5]], ['right', [bx + BOX_W + TEN_OFF, by + BOX_H * 0.88], [bx + BOX_W + TEN_OFF, my + 5]]
-	]) tens.push(S.arrow(a0, a1, { color: MATTER, width: VEC, head: VEC_HEAD - 0.6, layer: 3, what: `the ${wall} wall's tension` }));
-	L.push(await S.clear('\\text{tension}', bx + BOX_W * 0.8 + 2, by - TEN_OFF, 0, 0.5, [0, -1], { color: MATTER }));
+	]) tens.push(S.arrow(a0, a1, { color: DIM, width: VEC, head: VEC_HEAD, layer: 3, what: `the ${wall} wall's tension` }));
+	// outward: each arrow points away from its wall's middle
+	for (const [j, t] of tens.entries()) check((t.B[0] - mx) * t.u[0] + (t.B[1] - my) * t.u[1] > 0 && (Math.abs(t.u[0]) === 1 || Math.abs(t.u[1]) === 1), `the tension's arrow ${j} does not pull outward along its wall`);
+	L.push(await S.clear('\\text{tension}', bx + BOX_W * 0.8 + LABEL_GAP + 0.6, by - TEN_OFF, 0, 0.5, [0, -1], { color: DIM }));
 	// the bars, beside the box, on one baseline level with the box's bottom (in the book: under the box, the pair
 	// and its name centred on the box, on a baseline level with the line of matter)
 	const BARS_W = 2 * BAR + 9, NAME_W = 36;      // the pair of bars; their name at the right, about
@@ -229,6 +238,8 @@ export default async function () {
 	check(near(base - (base - BOX_BAR * UNIT), UNIT, 1e-12) && near(base - (base - BEAM_BAR * UNIT), 2 * UNIT, 1e-12), 'the bars\' heights are not 1 and 2 units');
 	L.push(await placed('E/c^2', b1 + BAR / 2, base - BOX_BAR * UNIT - LABEL_GAP - 0.6, 0.5, 1, MATTER));
 	L.push(await lines(S, ['2E/c^2,', '\\text{the free}', '\\text{beam\'s}'], b2 + BAR + LABEL_GAP + 1, base - BEAM_BAR * UNIT, 0, 0, [0, 1], DIM, L));
+	// what the bars measure, under their baseline
+	L.push(await lines(S, BOOK ? ['\\text{the mass each pulls with}'] : ['\\text{the mass}', '\\text{each pulls with}'], (b1 + b2 + BAR) / 2, base + LINE / 2 + LABEL_GAP + 0.4, 0.5, 0, [0, 1], DIM, L));
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums, table: T };

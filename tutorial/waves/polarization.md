@@ -342,8 +342,8 @@ equator the linear ones, and by [](#eq:stokes-turn) a turn of the axes carries t
 $-4\theta$ while its height $V/I$ stays (Figure [](#fig:pol-poincare)).
 
 ![The Stokes parameters of a fully polarized wave as a point on a sphere of radius 1, $(Q/I, U/I, V/I)$: Poincaré's
-sphere. Look first at the dashed circle: turning the camera's axes by $\theta$ carries the point round the vertical by
-$-4\theta$ for a gravitational wave (left) and by $-2\theta$ for light (right), while its height $V/I$ stays. The poles
+sphere. Look first at the small circle near the top: turning the camera's axes by $\theta$ carries the point round the
+vertical by $-4\theta$ for a gravitational wave (left) and by $-2\theta$ for light (right), while its height $V/I$ stays. The poles
 are the two circular polarizations, the equator the linear ones. The point is the rotor seen at $\iota = 75°$, the turn
 $\theta = 22.5°$.](tut-pol-poincare){#fig:pol-poincare}
 

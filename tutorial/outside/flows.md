@@ -241,8 +241,9 @@ It vanishes on the axis and on the surface, and its contours make one roll in ea
 (Figure [](#fig:flow-stream) and the stretch problem below).
 
 ![A ball cut in half through its axis. Left, rolls: the contours of the example $\chi$ at 0.35, 0.65 and 0.9 of its
-greatest value $K$, along which the matter rises near the axis and sinks near the surface; $2\pi\chi(P)$ is the mass per
-second through the shaded disc bounded by the circle through $P$. Right, a swirl: the matter comes out of the page on
+greatest value $K$, along which the matter rises near the axis and sinks near the surface; $P$ lies on the outer roll,
+and $2\pi\chi(P)$ is the mass per second through the shaded disc bounded by the circle about the axis through $P$.
+Right, a swirl: the matter comes out of the page on
 one side of the axis and goes into it on the other.](tut-flow-stream){#fig:flow-stream}
 
 The two parts can be written with two functions of position, $T$ and $P$, as[^TP]

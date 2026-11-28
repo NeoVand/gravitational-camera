@@ -4,16 +4,19 @@
 // along the line to the mass and squeezed across it, orange crescents at its two ends and blue ones at its top and
 // bottom, twelve free balls as ink dots on it), the stone mass to the right on the same line with its velocity arrow
 // in ink, and above the ring two small gyroscopes (discs with an axle, axles parallel, seen a little from above). In
-// (a) the velocity points up the page and each gyroscope has a short curved arrow in the curvature's colour, in
-// opposite senses: "turn relative to one another, B != 0". In (b) it points left, at the pixel; no curved arrows,
+// (a) the velocity points up the page and each gyroscope shows its axle a moment later, tilted and dashed in the
+// curvature's colour, with a short curved arrow in that colour from the upright axle's tip to the tilted one, the two
+// in opposite senses: "the axles turn relative to one another, B != 0". (The comment's curved arrows centred on the
+// axles' tops read as the gyroscopes spinning; starting at the tip and ending at a tilted axle they read as the axles
+// turning.) In (b) it points left, at the pixel; no curved arrows,
 // "B = 0". Under each panel |B|/|E| = sqrt 3 v_perp / c, with v_perp = v and v_perp = 0.
 // Departures from the diagram's comment: the panels are stacked at every width, not side by side at 1440 px (as the
 // section 7.3 and 7.4 diagrams), so that their text stays readable on a phone. The two gyroscopes stand side by side
 // along the line to the mass, 1 m apart (a dimension line names it), not one above and one below the ring: by
 // eq:gyro-pair, delta Omega = B xi / c, and for this mass (n = x, v = y) B has only its xz and zx entries, so a pair
 // separated up the page, along v, does not turn at all (asserted in tut-gravitomag-lib.js); a pair along the line to
-// the mass turns relative to one another about the axis out of the page, so each curved arrow turns in the page, about
-// that axis, not about the line joining them (the right one anticlockwise, asserted from the sign of B_zx). The
+// the mass turns relative to one another about the axis out of the page, so each axle tilts in the page, about that
+// axis, not about the line joining them (the right one anticlockwise, asserted from the sign of B_zx). The
 // exaggeration is stated under the panels, as in tut-einstein-three-balls. The printed book (figureLayout 'book') sets
 // the two panels side by side, (a) left and (b) right, with the same drawing in each, and the note under both on one
 // line, a hairline in the rule's colour between them so that (a)'s stone is not read as (b)'s; the site keeps them
@@ -21,7 +24,7 @@
 // Exact: the outline the image of the circle under 1 - EPS E / |E| with E = (G M / r^3) diag(-2, 1) along and across
 // the line, EPS = 0.3 (section 7.3's), the same in both panels because E does not depend on the velocity; the senses of
 // the curved arrows, from B xi / c; B = 0 in (b), and the ratio sqrt 3 v_perp / c (asserted in the library for every
-// direction of v). Schematic: the sizes and distances, the arrows' lengths, the angle each curved arrow sweeps.
+// direction of v). Schematic: the sizes and distances, the arrows' lengths, the tilt drawn (40 degrees) and so the angle each curved arrow sweeps.
 // Pictorial: the stone, a picture from an image model (sprites/hair/ball.png, as tut-einstein-three-balls), clipped to
 // its exact circle.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, VEC, VEC_HEAD, HAIR, TICK } from './tut-pot-lib.js';
@@ -48,8 +51,9 @@ const AXLE = 9.5;                          // half an axle
 const AXLE_W = 0.7;
 const DISC = [7, 2.2];                   // a disc's half-axes, across and along its axle
 const DISC_LINE = 0.45;
-const TURN_R = AXLE + 3.2;                 // a curved arrow's radius about its gyroscope's centre
-const TURN_SWEEP = 80;                     // degrees, centred on the axle's top
+const TURN_R = AXLE + 2.6;                 // a curved arrow's radius about its gyroscope's centre: just past the axle's tip
+const TILT = 40;                           // degrees: the axle a moment later, and the curved arrow's sweep from the upright axle
+const LATER_DASH = [1.6, 1.1];             // the axle a moment later
 const TURN_W = 0.7, TURN_HEAD = 3.6;
 const DIM_Y = 4.2;                         // the dimension line under the axles' feet
 const ROW = 7;                             // a title to its drawing
@@ -144,13 +148,18 @@ export default async function () {
 			S.boxes.push({ box: { l: gx - DISC[0], r: gx + DISC[0], t: gy - DISC[1], b: gy + DISC[1] }, what: `${gw}'s disc` });
 			S.path([[gx, gy - DISC[1]], [gx, gy - AXLE]], { color: INK, width: AXLE_W, cap: 'round', layer: 3, what: `${gw}'s axle, above` });
 			if (p.key === 'across') {
-				// relative to the pixel's frame the pair turns by +-delta Omega / 2: the right one anticlockwise (turn_z > 0)
+				// relative to the pixel's frame the pair turns by +-delta Omega / 2: the right one anticlockwise (turn_z > 0).
+				// The axle a moment later, tilted by TILT in that sense, dashed; a curved arrow from the upright axle's tip to it.
 				const sense = (j === 1 ? 1 : -1) * Math.sign(turn[2]);
-				const mid = Math.PI / 2, half = (TURN_SWEEP * Math.PI) / 360;
-				const t = turning(gx, gy, TURN_R, mid - sense * half, mid + sense * half, CURV, { width: TURN_W, head: TURN_HEAD });
+				const mid = Math.PI / 2, tilt = (TILT * Math.PI) / 180, th = mid + sense * tilt;
+				const later = [gx + AXLE * Math.cos(th), gy - AXLE * Math.sin(th)];
+				const from = [gx + (DISC[1] + 1.2) * Math.cos(th), gy - (DISC[1] + 1.2) * Math.sin(th)];
+				S.path([from, later], { color: CURV, width: AXLE_W, dash: LATER_DASH, cap: 'butt', layer: 3, what: `${gw}'s axle a moment later` });
+				const t = turning(gx, gy, TURN_R, mid, th, CURV, { width: TURN_W, head: TURN_HEAD });
 				S.raw(t.svg, 4);
 				S.mark(t.pts, TURN_W / 2, `${gw}'s turn`);
 				S.mark(t.head, 0, `${gw}'s turn's head`);
+				check(Math.sign(th - mid) === sense && t.len - t.hd > 4, `${gw}: the curved arrow`);
 				drawn.push({ panel: p.key, gyro: j, sense });
 			}
 		}
@@ -163,7 +172,7 @@ export default async function () {
 		}
 		// the gyroscopes' sentence, right of the pair
 		const say = p.key === 'across'
-			? ['\\text{turn relative to}', '\\text{one another, }\\mathcal B \\neq 0']
+			? ['\\text{the axles turn relative}', '\\text{to one another, }\\mathcal B \\neq 0']
 			: ['\\mathcal B = 0'];
 		const st = await placed(say[0], 0, 0, 0, 0, INK);
 		const sh = st.box.b - st.box.t;

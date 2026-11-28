@@ -10,15 +10,18 @@
 // its far wall and 4 for the person: 0.950, 0.047, 0.0024, 0.0001 and 0.000006, the last three drawn as hairlines,
 // "only the near layer shows". (c) "the gravitational glow, tau ~ 10^-30": the line is solid all the way; each bar is
 // that body's j l, the illustrative values door 0.1, each steel wall 0.15, the hot block 3.0 (the first accent, the
-// paper's orange for the hottest glow) and the person 0.4, and a bar at the right edge, their sum 3.8, "the pixel:
-// the sum". The bodies are named once, in (a), and the hot block in (c), over its bar.
+// paper's orange for the hottest glow) and the person 0.4, each value printed over its bar (the small bars are only
+// a point or two tall), and under the pixel a bar of their sum, 3.8, named "the sum". The bodies are named once, in
+// (a), and the hot block in (c), over its bar. (The sum's bar stood at the right edge, across the panel from the
+// pixel whose reading it is; it now stands under the pixel, and the baselines of all three panels start there.)
 // Departures from the diagram's comment: the comment's k = 0 to 3 ran door, furnace wall, block, person and left out
 // the furnace's far wall, which the line also crosses; with it, k = 3 is the far wall (0.0001) and the person is
 // k = 4 (0.000006), and both are hairlines. The bodies are named, and the panels' titles carry their letters, since
 // the caption refers to (c). The scene is drawn at half a point per site pixel of the comment.
 // Exact: the shares of (b) (asserted, and asserted to add, with the fifth, to 1 - e^{-15}), the bars' heights in
-// proportion to them, the sum in (c) (asserted to be 3.8). Schematic: the bodies' shapes and sizes, the bars' widths,
-// the values of (c), which are illustrative, as in the paper's Figure fig:line-integral, and the fading of the line
+// proportion to them, the sum in (c) (asserted to be 3.8, and the printed values asserted to add to it). Schematic: the
+// bodies' shapes and sizes, the bars' widths, the values of (c), which are illustrative, as in the paper's Figure
+// fig:line-integral, and the fading of the line
 // in (b).
 import { Sheet, ORIGIN, finish, checker, placed, near, HAIR, LINE, LABEL_GAP } from './tut-pot-lib.js';
 import { pathOf } from './tut-prob-lib.js';
@@ -41,7 +44,8 @@ const PERSON = [470, 520, LY - 40, LY + 38], ROUND = 14;
 const BASE = 154;                          // the bars' baseline
 const BARH = 34;                           // a bar of the panel's largest value
 const BAR = 12;                            // a bar's width
-const TOTAL = [602, 626];                  // the sum's bar in (c)
+const TOTAL = [X_PIXEL - 12, X_PIXEL + 12]; // the sum's bar in (c), under the pixel
+const NUM = 7.5;                           // the values over the bars of (c)
 const LINE_W = 0.7;                        // the line of sight
 const FADE = [130, 220];                   // (b): where the line fades
 
@@ -96,7 +100,7 @@ export default async function () {
 
 		// ---- the bars, on a baseline
 		const [, yb] = at(p, 0, BASE);
-		S.path([[xOf(DOOR[0] - 14), yb], [xOf(X_END), yb]], { color: RULE, width: HAIR, layer: 0.5, cap: 'butt', what: `the baseline (${kind})` });
+		S.path([[xOf(TOTAL[0] - 6), yb], [xOf(X_END), yb]], { color: RULE, width: HAIR, layer: 0.5, cap: 'butt', what: `the baseline (${kind})` });
 		const bar = (cx, v, scale, color = INK, w = BAR) => {
 			const hpt = Math.max(K * BARH * (v / scale), HAIR);
 			const box = { l: xOf(cx - w / 2), r: xOf(cx + w / 2), t: yb - hpt, b: yb };
@@ -117,12 +121,22 @@ export default async function () {
 		} else {
 			const total = Object.values(GLOWS).reduce((s, x) => s + x, 0);
 			check(near(total, 3.8, 1e-12), 'the sum is not 3.8');
-			for (const k of ['door', 'near', 'far', 'person']) bar(centres[k], GLOWS[k], total);
+			// each bar to scale, its value printed over it (the small ones are only a point or two tall)
+			const small = {};
+			for (const k of ['door', 'near', 'far', 'person']) small[k] = bar(centres[k], GLOWS[k], total);
 			const hot = bar(centres.block, GLOWS.block, total, ACCENT, BLOCK[1] - BLOCK[0] - 8);
 			const sum = bar((TOTAL[0] + TOTAL[1]) / 2, total, total, INK, TOTAL[1] - TOTAL[0]);
 			check(near(sum.box.b - sum.box.t, K * BARH, 1e-12) && near((hot.box.b - hot.box.t) / (sum.box.b - sum.box.t), 3 / 3.8, 1e-12), 'the bars are not in proportion');
-			L.push(await S.clear('\\text{the pixel: the sum}', sum.box.l - LABEL_GAP - 1, (sum.box.t + sum.box.b) / 2, 1, 0.5, [-1, 0], { color: INK }));
-			L.push(await S.clear('\\text{hot block}', (hot.box.l + hot.box.r) / 2, hot.box.t - LABEL_GAP - 0.4, 0.5, 1, [0, -1], { color: ACCENT }));
+			const fmt = (v) => (v === 0.15 ? '0.15' : v.toFixed(1));
+			for (const k of ['door', 'near', 'far', 'person']) {
+				const b = small[k].box;
+				L.push(await placed(fmt(GLOWS[k]), (b.l + b.r) / 2, b.t - LABEL_GAP - 0.6, 0.5, 1, DIM, NUM));
+			}
+			L.push(await S.clear('\\text{hot block, } 3.0', (hot.box.l + hot.box.r) / 2, hot.box.t - LABEL_GAP - 0.4, 0.5, 1, [0, -1], { color: ACCENT }));
+			// the sum under the pixel, its value over it and its name over that, as the hot block's
+			L.push(await placed('3.8', (sum.box.l + sum.box.r) / 2, sum.box.t - LABEL_GAP - 0.6, 0.5, 1, INK, NUM));
+			L.push(await S.clear('\\text{the sum}', (sum.box.l + sum.box.r) / 2, L[L.length - 1].box.t - LABEL_GAP - 0.3, 0.5, 1, [0, -1], { color: INK }));
+			check(near(['door', 'near', 'far', 'person'].reduce((s, k) => s + +fmt(GLOWS[k]), +fmt(GLOWS.block)), 3.8, 1e-12) && fmt(total) === '3.8', 'the printed values do not add to the sum');
 		}
 
 		// ---- the title, at the panel's top left

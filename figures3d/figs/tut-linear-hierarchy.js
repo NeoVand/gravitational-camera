@@ -1,20 +1,21 @@
 // The tutorial, section 7.4 (tutorial/geometry/linearized-gravity.md), its third diagram: the sizes of the entries of the
 // field a metre from the 70 kg person walking at 1.4 m s^-1, three bars on a logarithmic axis from 10^-44 to 10^-24:
 // "h_00, from the energy" 1.0 x 10^-25; "hbar_0i, from the momentum" 9.7 x 10^-34; "hbar_ij, its motion part
-// rho v_i v_j" 4.5 x 10^-42. The bars solid in the field's colour, the longest darkest. Under the third bar a small
-// hollow tick at the stress of standing on a floor, about 2 x 10^-41. Between consecutive bars a small bracket from the
+// rho v_i v_j" 4.5 x 10^-42. The bars solid in the field's colour, the longest darkest. Under the third bar a hollow
+// bar (an outline in the field's colour) from 10^-44 to the stress of standing on a floor, about 2 x 10^-41. Between consecutive bars a small bracket from the
 // right end of one to the right end of the next, named "x 2v/c" and "x v/c"; v/c = 4.7 x 10^-9 printed once below the
 // axis. Each bar's value right of its end, never on a bar.
 // Departures from the diagram's comment: each bar's name stands above its bar, not left of it (as section 7.3's
 // tut-einstein-traces), so that one drawing about 280 points wide gives the twenty decades the whole width and keeps
-// its text readable on a phone. The hollow tick stands on a line of its own just under the third bar, not on the bar's
-// line, because the third bar's value, printed right of its end, would cover it there (the tick is less than a decade
-// beyond the bar's end); its name reads "with the stress of standing on a floor, about 2 x 10^-41", the comment's words
-// and the chapter's number. Each bracket is a step: a short hook down from the upper bar's end, a line across to above
+// its text readable on a phone. The comment's hollow tick is drawn as a whole hollow bar on a line of its own just under
+// the third bar, from the axis's start like the others, so that it reads as a length on the scale and not as a key: on
+// the third bar's own line the third bar's value, printed right of its end, would cover it (the stress is less than a
+// decade beyond the bar's end); its value and name read "about 2 x 10^-41, from the stress of standing on a floor", the
+// chapter's number and the comment's words. Each bracket is a step: a short hook down from the upper bar's end, a line across to above
 // the lower bar's end, a short hook down to it, its name right of the upper hook. The axis is named "the entry a metre
 // from a 70 kg person walking at 1.4 m s^-1", with "logarithmic; v/c = 4.7 x 10^-9" under it.
 // Exact: every bar's length, log10 of its entry on the axis (tut-linear-lib.js: h_00 = 2GM/c^2 r, |hbar_0i| =
-// 4GMv/c^3 r and the motion part (4G/c^4 r) M v^2, each asserted against the chapter's printed value); the tick at
+// 4GMv/c^3 r and the motion part (4G/c^4 r) M v^2, each asserted against the chapter's printed value); the hollow bar's end at
 // (4G/c^4 r) M g z_cm with g = 9.8 m s^-2 and z_cm = 1 m, 2.3 x 10^-41, the chapter's "about 2 x 10^-41" (asserted to one
 // figure), five times the motion part (asserted); each bracket spans exactly the gap between the two ends, log10 2v/c
 // and log10 v/c (asserted); the axis's ticks one a decade. Nothing is schematic.
@@ -34,8 +35,8 @@ const STEP_AIR = 3.4;                      // the bracket's line to the bar unde
 const HOOK_CLEAR = 0.8;                    // a hook stops this far from its bar
 const ROW_AIR = 5.2;                       // a bar to the next bar's name
 const BRACKET_W = HAIR + 0.1;
-const TICK_W = 2.2, TICK_LINE = 0.5;       // the hollow tick: its width and outline
-const TICK_AIR = 3.4;                      // the third bar to the hollow tick under it
+const HOLLOW_LINE = 0.6;                   // the hollow bar's outline
+const TICK_AIR = 3.4;                      // the third bar to the hollow bar under it
 const MINOR = 1.6;                         // a decade's tick, down from the axis
 const AXIS_AIR = 6;                        // the last mark to the axis
 
@@ -90,17 +91,18 @@ export default async function () {
 		check(dn.nameLab.box.r < dn.end - LABEL_GAP || dn.nameLab.box.b < y - LABEL_GAP, `the bracket ${i + 1} crosses a name`);
 	}
 
-	// ---- the hollow tick under the third bar: the stress of standing on a floor
+	// ---- the hollow bar under the third bar: the stress of standing on a floor, on the same scale from 10^-44
 	const third = rows[2];
 	const lgS = Math.log10(p.stress), xs = X(lgS);
 	check(p.stress.toExponential(0) === '2e-41' && Math.round(p.stress / p.motion) === 5, `the stress ${p.stress}`);
-	check(xs > third.end + 2 * TICK_W, 'the tick is not beyond the third bar');
-	// the tick's line stands under the third bar, its name clear of the third bar's value
-	const tickSrc = '\\text{with the stress of standing on a floor, about }2\\times10^{-41}';
+	check(xs > third.end + 2 * HOLLOW_LINE, 'the hollow bar does not reach beyond the third bar');
+	check(near(xs - x0, (lgS - LO) * PER, 1e-9), 'the hollow bar\'s length');
+	// its row stands under the third bar, its value clear of the third bar's value
+	const tickSrc = '\\text{about }2\\times10^{-41}\\text{, from the stress of standing on a floor}';
 	const probe = await placed(tickSrc, 0, 0, 0, 0.5, INK);
-	const tt = Math.max(third.top + BAR_H + TICK_AIR, third.value.box.b + LABEL_GAP + 0.3 - probe.box.t - BAR_H / 2), o = TICK_LINE / 2;
-	S.path([[xs - TICK_W / 2 + o, tt + o], [xs + TICK_W / 2 - o, tt + o], [xs + TICK_W / 2 - o, tt + BAR_H - o], [xs - TICK_W / 2 + o, tt + BAR_H - o]], { color: FIELD, width: TICK_LINE, closed: true, cap: 'butt', layer: 2, what: 'the hollow tick' });
-	const tickLab = await placed(tickSrc, xs + TICK_W / 2 + LABEL_GAP + 0.6, tt + BAR_H / 2, 0, 0.5, INK);
+	const tt = Math.max(third.top + BAR_H + TICK_AIR, third.value.box.b + LABEL_GAP + 0.3 - probe.box.t - BAR_H / 2), o = HOLLOW_LINE / 2;
+	S.path([[x0 + o, tt + o], [xs - o, tt + o], [xs - o, tt + BAR_H - o], [x0 + o, tt + BAR_H - o]], { color: FIELD, width: HOLLOW_LINE, closed: true, cap: 'butt', layer: 2, what: 'the hollow bar' });
+	const tickLab = await placed(tickSrc, xs + LABEL_GAP + 0.6, tt + BAR_H / 2, 0, 0.5, INK);
 	L.push(tickLab);
 
 	// ---- the axis: a line from 10^-44 to 10^-24, a tick each decade, longer and named every fourth

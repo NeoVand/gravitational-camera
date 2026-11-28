@@ -1,9 +1,13 @@
 // The tutorial, section 4.4 (tutorial/response/viscosity.md), its fourth diagram: the ceiling of a metal's friction.
-// Re eta = mu tau / (1 + omega^2 tau^2) against the collision time tau on a logarithmic axis from 10^-16 to 10^-12 s,
+// Re eta = mu tau / (1 + omega^2 tau^2) against the collision time tau on a logarithmic axis numbered 10^-16 to 10^-12
+// s,
 // at the glow's peak at 293 K, omega = 1.082 x 10^14 s^-1, for copper's free electrons, mu = 2 n E_F / 5 with
 // n = 8.47 x 10^28 m^-3 and E_F = 7.03 eV (38.15 GPa; the diagram's comment printed 38.1), on a linear axis from 0
-// to 2 x 10^-4 Pa s; one curve in the second accent, copper's colour in the paper's fig:materials (it ends 2 pt above
-// the axis at both ends of the chart, so nothing of it merges with the axis). Its peak, mu/2omega = 1.76 x 10^-4 Pa s at tau = 1/omega = 9.24 x 10^-15 s, marked by a
+// to 2 x 10^-4 Pa s, numbered 0, 1, 2; one curve in the second accent, copper's colour in the paper's fig:materials.
+// The tau axis runs a quarter decade past 10^-16 and 10^-12 on either side, so that the 0 at the foot of the vertical
+// axis has room beside 10^-16, and the curve stops near 10^-16 and 10^-12, where less than AIR would part it from the
+// axis (asserted), so that nothing of it merges with the axis. Its peak, mu/2omega = 1.76 x 10^-4 Pa s at tau = 1/omega
+// = 9.24 x 10^-15 s, marked by a
 // dotted line across the chart, named at its right end, and a short upright tick across the curve with "omega tau =
 // 1" above it; copper's own tau = 2.5 x 10^-14 s marked by a dot on the curve at 1.15 x 10^-4 Pa s (omega tau = 2.71,
 // 65% of the ceiling).
@@ -20,7 +24,7 @@ import { chapter, byTau, CU_MU, CU_TAU, W_PEAK } from './tut-visc-lib.js';
 const name = 'tut-visc-ceiling';
 const check = checker(name);
 
-const X = [-16, -12];                      // log10 tau (s)
+const X = [-16.25, -11.75];                // log10 tau (s): numbered from -16 to -12, a quarter decade more each side
 const Y = [0, 2];                          // Re eta, 10^-4 Pa s
 const PW = 228, PH = 118;
 const MARK = 2.6;                          // half the length of the tick across the peak (figs/tut-osc-ringdown.js)
@@ -45,7 +49,7 @@ export default async function () {
 	let a = X[0], b = X[1];
 	while (f(a) < clear) a += 1e-4;
 	while (f(b) < clear) b -= 1e-4;
-	check(b - a > 3.9, `the curve stops at ${a} and ${b}`);
+	check(Math.abs(a + 16) < 0.1 && Math.abs(b + 12) < 0.1, `the curve stops at ${a} and ${b}`);
 	const pts = graph(P, f, a, b);
 	check(longest(pts) <= 0.2501, 'the curve is coarse');
 	S.path(pts, { color: ACCENT2, width: CURVE, layer: 2, what: 'the curve' });
@@ -68,7 +72,7 @@ export default async function () {
 	L.push(...xl);
 	const last = xl[xl.length - 1];
 	L.push(await S.clear('\\tau\\ (\\mathrm{s})', last.box.r + 5, (last.box.t + last.box.b) / 2, 0, 0.5, [1, 0], { color: DIM }));
-	L.push(...(await yAxis(S, P, { ticks: [0, 1, 2], fmt: (t) => (t === 0 ? null : String(t)), what: 'the eta axis' })));   // the zero is the tau axis itself; its number would touch 10^-16
+	L.push(...(await yAxis(S, P, { ticks: [0, 1, 2], what: 'the eta axis' })));
 	L.push(await S.clear('\\mathrm{Re}\\,\\eta\\ (10^{-4}\\,\\mathrm{Pa\\,s})', P.left + 4.5, P.top - LABEL_GAP, 0, 1, [0, -1], { color: DIM }));
 
 	S.checkAll(L);

@@ -238,8 +238,9 @@ stably, at a point of empty space, by gravity alone: **Earnshaw's theorem**. Fig
 which empty space allows, beside a peak, which it forbids.
 
 ![Two membranes over a disc of radius 1. On the left, the harmonic saddle $u = x^2 - y^2$ takes its largest value, 1,
-and its smallest, $-1$, on the rim. On the right, the bump $u = 1 - r^2$, with Laplacian $-4$, has its largest value
-at the centre, which no harmonic function can do.](tut-lap-membranes){#fig:saddle}
+and its smallest, $-1$, on the rim; the circle is the level $u = 0$, and the verticals from the four marked points show
+the highs above it and the lows below it. On the right, the bump $u = 1 - r^2$, with Laplacian $-4$, has its largest
+value at the centre, which no harmonic function can do.](tut-lap-membranes){#fig:saddle}
 
 The same principle governs the camera's picture of an interior. The least assuming picture of a body is the part
 $\matter\rho_h$ of its density that the field outside can see, and it is harmonic inside the body (section 2.5). By

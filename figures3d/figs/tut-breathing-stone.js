@@ -1,7 +1,8 @@
 // The tutorial, section 13.8 (tutorial/what-a-field-keeps/holography.md), its first diagram: a stone that turns from a
 // ball into a shell and back, and what its monopole outside shows. Left, the stone in section at three times along a
-// short time axis running down: t = 0, a uniform ball; T/4, a thick shell; T/2, a thin shell; each cut away and tinted
-// in matter's colour by its density, the thin shell a solid ring; outward arrows in the thick shell's hollow for the
+// short time axis running down: t = 0, a uniform ball; T/4, a thick shell; T/2, a thin shell; each cut away, all three
+// in one fill of matter's colour, since they are one stone and only its shape changes, the thin shell a narrow annulus
+// edged in ink like the thick one; outward arrows in the thick shell's hollow for the
 // round motion, which is fastest then and at rest at 0 and T/2. Right, two stacked plots against the retarded time
 // (t - r/c)/T over two cycles, the monopole Phi_0 at r = 10a in units of G M / a, in the field's colour: above,
 // "scalar theory", the boxed -(G/r)[M + Iddot_r(t - r/c)/6c^2] for I_r = M a^2 (0.8 - 0.2 cos wt), its ripple
@@ -15,9 +16,9 @@
 // thick shell is the one with I_r = 0.8 M a^2 at T/4, of inner radius 0.7625 a; the arrows of the motion are drawn at
 // T/4 only, where the matter moves, the stone being at rest at 0 and T/2.
 // Exact: the curve (tut-holo-lib.js: Iddot_r by differences of I_r, the ripple's size), the flat line, the three
-// shells' radii and densities (I_r = 0.6, 0.8 and 1 M a^2, the chapter's 0.6 against 1), the three bars and their sum
+// shells' radii (I_r = 0.6, 0.8 and 1 M a^2, the chapter's 0.6 against 1), the three bars and their sum
 // (asserted against the chapter's 1 + 1/3 - 4/3 = 0 and Blanchet and Damour's factors). Schematic: the arrows' length,
-// the tints' strengths (in the order of the densities), the stones' size against the plots.
+// the thin shell's drawn thickness, the stones' size against the plots.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, HAIR, AXIS, TICK, n2 } from './tut-pot-lib.js';
 import { Plot, xAxis, yAxis, TINT } from './tut-prob-lib.js';
 import { INK, DIM, FAINT } from '../lib.js';
@@ -32,8 +33,8 @@ const T0 = 0, T1 = 2, Y0 = -0.13, Y1 = -0.07;  // retarded time / T; Phi_0 in G 
 const R_AT = 10;                                // r / a
 const STONE = 15;                               // the stones' radius, points
 const STONE_X = 78;                             // from the stones' centres to the plots' left edge
-const CURVE = 0.8, EDGE = 0.45, RING = 1.6;
-const TINT_BALL = 0.2;                          // the ball's tint; the thick shell's is scaled by its density
+const CURVE = 0.8, EDGE = 0.45, RING = 1.4;      // the thin shell's drawn thickness
+const FILL = 0.3;                               // the stone's one fill: matter's colour, this opaque
 const BAR = { w: 26, step: 52, unit: 36, top: 62 };   // bars: width, spacing, points per unit, from the plots' bottom
 const SMALL = 7.2;
 const caption = 'Look first at the bars: in Einstein\'s theory the three terms of order $1/c^2$ cancel, so the breathing stone sends nothing, while a scalar theory sees its $\\int\\matter\\rho\\,r^2\\,\\dd V$. The ripple is magnified $10^{12}$ times, for a stone of radius 10 cm that swings once a millisecond; the shapes are exact.';
@@ -78,20 +79,19 @@ export default async function () {
 	check(phases.every((p, k) => Math.abs(IR(p) - [0.6, 0.8, 1][k]) < 1e-12) && Math.abs(shellIR(THICK) - 0.8) < 1e-12, 'the stones\' I_r');
 	for (let k = 0; k < 3; k++) {
 		const cy = ys[k], what = `the stone ${k}`;
-		if (k === 0) S.raw(`<circle cx="${n2(cx)}" cy="${n2(cy)}" r="${STONE}" fill="${MATTER}" fill-opacity="${TINT_BALL}"/>`, 1);
+		// one fill for all three: the same stone, only its shape changes; a shell is the disc less its hollow
+		const ri = [0, THICK * STONE, STONE - RING][k];
+		const fi = ri && ri - 0.2;              // the fill runs under the inner edge's hairline, leaving no seam
+		const hollow = ri ? `M${n2(cx - fi)},${n2(cy)}a${n2(fi)},${n2(fi)} 0 1,0 ${n2(2 * fi)},0a${n2(fi)},${n2(fi)} 0 1,0 ${n2(-2 * fi)},0Z` : '';
+		S.raw(`<path d="M${n2(cx - STONE)},${n2(cy)}a${STONE},${STONE} 0 1,0 ${2 * STONE},0a${STONE},${STONE} 0 1,0 ${-2 * STONE},0Z${hollow}" fill="${MATTER}" fill-opacity="${FILL}" fill-rule="evenodd"/>`, 1);
+		if (ri) S.raw(`<circle cx="${n2(cx)}" cy="${n2(cy)}" r="${n2(ri)}" fill="none" stroke="${INK}" stroke-width="${HAIR * 0.8}"/>`, 1.3);
 		if (k === 1) {
-			const ri = THICK * STONE, density = 1 / (1 - THICK ** 3);
-			const fi = ri - 0.2;                // the tint runs under the inner edge's hairline, leaving no seam
-			check(density.toFixed(2) === '1.80', `the thick shell's density ${density}`);
-			S.raw(`<path d="M${n2(cx - STONE)},${n2(cy)}a${STONE},${STONE} 0 1,0 ${2 * STONE},0a${STONE},${STONE} 0 1,0 ${-2 * STONE},0ZM${n2(cx - fi)},${n2(cy)}a${n2(fi)},${n2(fi)} 0 1,0 ${n2(2 * fi)},0a${n2(fi)},${n2(fi)} 0 1,0 ${n2(-2 * fi)},0Z" fill="${MATTER}" fill-opacity="${n2(TINT_BALL * density)}" fill-rule="evenodd"/>`, 1);
-			S.raw(`<circle cx="${n2(cx)}" cy="${n2(cy)}" r="${n2(ri)}" fill="none" stroke="${INK}" stroke-width="${HAIR * 0.8}"/>`, 1.3);
 			// the motion: outward arrows in the hollow
 			for (const a of [45, 135, 225, 315]) {
 				const u = [Math.cos((a * Math.PI) / 180), -Math.sin((a * Math.PI) / 180)];
 				S.arrow([cx + u[0] * 0.22 * STONE, cy + u[1] * 0.22 * STONE], [cx + u[0] * (ri - 1.6), cy + u[1] * (ri - 1.6)], { color: INK, width: 0.45, head: 2.6, what: `the motion ${a}` });
 			}
 		}
-		if (k === 2) S.raw(`<circle cx="${n2(cx)}" cy="${n2(cy)}" r="${n2(STONE - RING / 2)}" fill="none" stroke="${MATTER}" stroke-width="${RING}"/>`, 1.1);
 		S.raw(`<circle cx="${n2(cx)}" cy="${n2(cy)}" r="${STONE}" fill="none" stroke="${INK}" stroke-width="${EDGE}"/>`, 1.3);
 		S.boxes.push({ box: { l: cx - STONE - EDGE, r: cx + STONE + EDGE, t: cy - STONE - EDGE, b: cy + STONE + EDGE }, what });
 	}

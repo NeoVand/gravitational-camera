@@ -4,12 +4,15 @@
 // behind, and a point at the angle alpha from the direction of motion lies sin(alpha/2) of the rim's radius out, so
 // that equal areas of sky get equal areas of disc. Above, "at rest": 400 stars, small ink dots, equally spaced in area
 // (a Fibonacci lattice on the sphere, which the projection turns into a sunflower), and the circle alpha = 90 degrees,
-// the boundary of the forward half, thin and dashed, named "90 degrees". Below, "at 0.9c": the same stars moved by cos
-// alpha' = (cos alpha + beta)/(1 + beta cos alpha), each keeping its azimuth, and each coloured by its Doppler factor
+// the boundary of the forward half, thin and dashed, named "90 degrees" in a key under the disc. Below, "at 0.9c": the
+// same stars moved by cos alpha' = (cos alpha + beta)/(1 + beta cos alpha), each keeping its azimuth, and each coloured
+// by its Doppler factor
 // 1/[gamma(1 - beta cos alpha')] on the paper's diverging scale (tut-aberration-lib.js, `shift`), blue above 1 and
 // orange below, with a colour bar at its right from 0.23 to 4.36, the factors straight behind and straight ahead,
-// e^{-+eta}; the image of the circle alpha = 90 degrees, at alpha' = 25.8 degrees, thin and dashed, named "25.8
-// degrees".
+// e^{-+eta}; the image of the circle alpha = 90 degrees, at alpha' = 25.8 degrees, thin and dashed, and the circle
+// where the factor is 1, alpha' = arccos((1 - 1/gamma)/beta) = 51.2 degrees, dotted, where the stars turn from blue to
+// orange (the stars near it, of factors near 1, are greys and pale browns too close to tell apart); a key under the
+// disc names them "25.8 degrees" and "51.2 degrees: omega'/omega = 1", each after a sample of its line.
 // Departures from the diagram's comment: on the site the panels are stacked at every width, not side by side at
 // 1440 px (as section 6.2's tut-vectors-gradient): side by side each disc would be about 150 points across and would be
 // shrunk on a phone, where the crowded stars ahead would merge. In the printed book (figureLayout 'book') they stand
@@ -18,11 +21,13 @@
 // colour bar is graded in proportion to the logarithm of the factor, so that a factor and its inverse lie equally far
 // from 1, and is ticked at 0.23, 0.5, 1, 2 and 4.36. The middle of the scale, a factor of 1, is the neutral faint ink
 // rather than the page's colour, which the paper's scale uses, so that the stars there are still seen. The stars are
-// too close for a name to sit among them, so each dashed circle is named outside its disc, with a thin leader to the
-// circle, at the azimuth where the leader passes farthest from the stars.
+// too close for a name to sit among them, so the circles are named in keys under the discs: a leader from the small
+// circle at 0.9c to a name outside the rim crosses a star at every azimuth (the stars crowd just outside it), and so
+// ran through the star field.
 // Exact: every star's place on both discs (the lattice, the projection and eq:source-angle, asserted star by star),
-// its colour (eq:doppler-seen, asserted against gamma(1 + beta cos alpha)), the two circles' radii, R sin 45 degrees
-// and R sin 12.9 degrees, and the bar's ticks. Schematic: the dots' size.
+// its colour (eq:doppler-seen, asserted against gamma(1 + beta cos alpha)), the three circles' radii, R sin 45
+// degrees, R sin 12.9 degrees and R sin 25.6 degrees (the factor asserted 1 on the last), and the bar's ticks.
+// Schematic: the dots' size.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, HAIR, TICK, SIZE, boxOf } from './tut-pot-lib.js';
 import { DASH } from './tut-bessel-lib.js';
 import { THIN } from './tut-fourier-lib.js';
@@ -33,15 +38,16 @@ const name = 'tut-aberration-sky';
 const check = checker(name);
 
 const R = 92;                              // a disc's radius, points
-const STAR = 0.65;                         // a star's radius, points
+const STAR = 0.8;                          // a star's radius, points
 const APART = 18;                          // the site's: the air between the upper disc and the lower panel's title, points
 const BOOK = globalThis.figureLayout === 'book';
 const BESIDE = 26;                         // the book's: the air between the two discs' rims, points
 const BAR = { w: 5.5, h: 1.5 * R, gap: 16 }; // the colour bar: its width, its height, its air from the lower disc
 const STEPS = 90;                          // the bar's bands
 const TICKS = [[Math.exp(-ETA_SKY), '0.23'], [0.5, '0.5'], [1, '1'], [2, '2'], [Math.exp(ETA_SKY), '4.36']];
-const LEADER = 0.35;                       // a leader's stroke
-const REACH = 9;                           // a leader's length outside the rim, points
+const SAMPLE = 15, KEY_GAP = 3, KEY_SEP = 14; // the key under a disc: a line's sample, its air before its name, between entries
+const KEY_DROP = 9;                        // from a disc's foot to its key's middle, points
+const DOTTED = { r: 0.42, step: 2.1 };     // the dotted circle: its dots' radius and spacing, points
 
 /** A dashed circle of radius r about c: a whole number of dashes, evenly spaced. */
 function circle(S, c, r, what) {
@@ -50,6 +56,18 @@ function circle(S, c, r, what) {
 		const t0 = (2 * Math.PI * k) / n, pts = Array.from({ length: 7 }, (_, j) => { const t = t0 + (on * j) / 6; return [c[0] + r * Math.cos(t), c[1] - r * Math.sin(t)]; });
 		S.path(pts, { color: INK, width: THIN, layer: 4, cap: 'butt', what: `${what}, dash ${k}` });
 	}
+}
+
+/** A dotted circle of radius r about c: a whole number of round dots, evenly spaced. */
+function dottedCircle(S, c, r, what) {
+	const n = Math.round((2 * Math.PI * r) / DOTTED.step);
+	let d = '';
+	for (let k = 0; k < n; k++) {
+		const t = (2 * Math.PI * k) / n, p = [c[0] + r * Math.cos(t), c[1] - r * Math.sin(t)];
+		d += `<circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${DOTTED.r}" fill="${INK}"/>`;
+		S.mark([p], DOTTED.r, `${what}, dot ${k}`);
+	}
+	S.raw(d, 4);
 }
 
 export default async function () {
@@ -72,7 +90,7 @@ export default async function () {
 	}
 
 	/** One panel: its title at the top, its disc under it. Returns the disc's centre and its bottom. */
-	async function panel(top, title, stars, colour, ring, ringName, what, x = x0) {
+	async function panel(top, title, stars, colour, rings, what, x = x0) {
 		// in the book the two titles stand side by side, on one baseline at `top`, the discs 7 points under it
 		let t, c;
 		if (BOOK) {
@@ -90,39 +108,51 @@ export default async function () {
 			S.raw(`<circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${STAR}" fill="${colour(stars[i])}"/>`, 3);
 			S.mark([p], STAR, `${what}: a star`);
 		});
-		// the circle, and its name outside the rim along the azimuth whose leader passes farthest from the stars
-		const r = R * disc(ring);
-		circle(S, c, r, `${what}: the circle`);
-		let best = { d: -1 };
-		for (let a = 25; a <= 65; a += 0.25) {
-			const u = [Math.cos(rad(a)), -Math.sin(rad(a))];
-			let d = Infinity;
-			for (const p of pts) {
-				const s = Math.max(r, Math.min(R, (p[0] - c[0]) * u[0] + (p[1] - c[1]) * u[1]));
-				d = Math.min(d, Math.hypot(p[0] - c[0] - u[0] * s, p[1] - c[1] - u[1] * s));
-			}
-			if (d > best.d) best = { d, a, u };
+		// each circle, and its name in a key under the disc: a sample of its line and its angle (a leader from the
+		// small circle at 0.9c to a name outside the rim must cross the crowded stars just outside it at every azimuth)
+		const keys = [];
+		for (const { angle, label, dotted } of rings) {
+			const r = R * disc(angle);
+			(dotted ? dottedCircle : circle)(S, c, r, `${what}: the circle ${label}`);
+			keys.push({ label, dotted, l: await placed(label, 0, 0, 0, 0.5, INK) });
 		}
-		const { u } = best;
-		const start = [c[0] + u[0] * (r + THIN), c[1] + u[1] * (r + THIN)], end = [c[0] + u[0] * (R + REACH), c[1] + u[1] * (R + REACH)];
-		S.raw(`<path d="M${start[0].toFixed(2)},${start[1].toFixed(2)}L${end[0].toFixed(2)},${end[1].toFixed(2)}" stroke="${DIM}" stroke-width="${LEADER}" fill="none"/>`, 4);
-		S.mark([[c[0] + u[0] * (R + 0.5), c[1] + u[1] * (R + 0.5)], end], LEADER / 2, `${what}: the leader`);
-		L.push(await placed(ringName, end[0] + LABEL_GAP + 0.4, end[1] - 0.4, 0, 1, INK));
-		window[`${name}-leader-${what}`] = { azimuth: best.a, air: best.d - STAR };
-		return { c, bottom: c[1] + R };
+		const width = keys.reduce((w, k) => w + SAMPLE + KEY_GAP + (k.l.box.r - k.l.box.l), 0) + KEY_SEP * (keys.length - 1);
+		let kx = c[0] - width / 2;
+		const ky = c[1] + R + KEY_DROP;
+		for (const k of keys) {
+			if (k.dotted) {
+				const n = Math.round(SAMPLE / DOTTED.step);
+				let d = '';
+				for (let j = 0; j <= n; j++) { const q = [kx + DOTTED.r + ((SAMPLE - 2 * DOTTED.r) * j) / n, ky]; d += `<circle cx="${q[0].toFixed(2)}" cy="${q[1].toFixed(2)}" r="${DOTTED.r}" fill="${INK}"/>`; S.mark([q], DOTTED.r, `${what}: the key's dots`); }
+				S.raw(d, 4);
+			} else {
+				// three dashes and the gaps between them, the circle's pattern stretched to the sample's length
+				const f = SAMPLE / (3 * DASH[0] + 2 * DASH[1]);
+				for (let j = 0; j < 3; j++) { const a = j * (DASH[0] + DASH[1]) * f; S.path([[kx + a, ky], [kx + a + DASH[0] * f, ky]], { color: INK, width: THIN, layer: 4, cap: 'butt', what: `${what}: the key's dash` }); }
+			}
+			const l = await placed(k.label, kx + SAMPLE + KEY_GAP, ky, 0, 0.5, INK);
+			L.push(l);
+			kx = l.box.r + KEY_SEP;
+		}
+		const bottom = Math.max(...L.slice(-keys.length).map((l) => l.box.b));
+		return { c, bottom };
 	}
 
 	// ---- above, at rest: all ink; the circle alpha = 90 degrees
 	// (in the book: at the left, the moving sky at its right, the colour bar at the right of both)
-	const up = await panel(BOOK ? ORIGIN - R - 20 : ORIGIN - 2 * R - 40, '\\text{at rest}', STARS, () => INK, rad(90), '90^\\circ', 'at rest', BOOK ? ORIGIN - R - BESIDE / 2 - 20 : x0);
+	const up = await panel(BOOK ? ORIGIN - R - 20 : ORIGIN - 2 * R - 40, '\\text{at rest}', STARS, () => INK, [{ angle: rad(90), label: '90^\\circ' }], 'at rest', BOOK ? ORIGIN - R - BESIDE / 2 - 20 : x0);
 	// ---- below, at 0.9c: coloured by the Doppler factor; the circle's image at alpha' = 25.8 degrees
 	const cone = seen(rad(90), BETA_SKY);
 	check((cone * 180 / Math.PI).toFixed(1) === '25.8' && near(cone * 180 / Math.PI, nums.cone, 1e-12), `the cone ${cone}`);
 	check(near(disc(cone), Math.sqrt((1 - BETA_SKY) / 2), 1e-15), 'the cone\'s circle does not hold a twentieth of the disc');
 	const factor = (s) => doppler(s.alpha, BETA_SKY);
+	// where the factor is 1, between blue ahead and orange behind: cos alpha' = (1 - 1/gamma)/beta, 51.2 degrees
+	const even = Math.acos((1 - 1 / GAMMA_SKY) / BETA_SKY);
+	check((even * 180 / Math.PI).toFixed(1) === '51.2' && near(doppler(even, BETA_SKY), 1, 1e-12), `the redshift's edge ${even}`);
+	const rings = [{ angle: cone, label: '25.8^\\circ' }, { angle: even, label: "51.2^\\circ\\!:\\ \\omega'/\\omega = 1", dotted: true }];
 	const down = BOOK
-		? await panel(ORIGIN - R - 20, '\\text{at } 0.9c', moved, (s) => shift(factor(s)), cone, '25.8^\\circ', 'at 0.9c', up.c[0] + 2 * R + BESIDE)
-		: await panel(up.bottom + APART, '\\text{at } 0.9c', moved, (s) => shift(factor(s)), cone, '25.8^\\circ', 'at 0.9c');
+		? await panel(ORIGIN - R - 20, '\\text{at } 0.9c', moved, (s) => shift(factor(s)), rings, 'at 0.9c', up.c[0] + 2 * R + BESIDE)
+		: await panel(up.bottom + APART, '\\text{at } 0.9c', moved, (s) => shift(factor(s)), rings, 'at 0.9c');
 	if (BOOK) check(near(up.c[1], down.c[1], 1e-9), `the two discs are not on one level: ${up.c[1]}, ${down.c[1]}`);
 	moved.forEach((m, i) => check(near(factor(m), GAMMA_SKY * (1 + BETA_SKY * Math.cos(STARS[i].alpha)), 1e-12), `star ${i}'s factor`));
 	const factors = moved.map(factor);

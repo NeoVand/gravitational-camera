@@ -27,8 +27,9 @@ reads, $\curv{\tE}_{xz}$, with the gold in the left safe ($\mathbf f_A$) and in 
 difference, orange where positive and blue where negative, on one scale whose full tint would be a fifth of
 $\sigma_n$; this component carries 82% of $D^2$. In all, the 605
 readings differ by $D = 1.81$ noise standard deviations, so that, projected on their difference, the choice between
-the safes is a choice between two bells of unit width, and the shaded tails beyond the midline, 18.3% on each side,
-are the wrong answers.](tut-measure-safe){#fig:safe}
+the safes is a choice between two bells of unit width, orange for the gold in the left safe and blue for the right
+(the number $t$ defined below is positive when the gold is in the left safe, so that bell lies on the right), and the shaded
+tails beyond the midline, 18.3% on each side, are the wrong answers.](tut-measure-safe){#fig:safe}
 
 ::: plain
 To measure something, the camera compares what it read with what each possible scene would have produced. The scene
@@ -179,8 +180,8 @@ $1/\sqrt F$. Figure [](#fig:peak) draws the peak for the depth of one mass.
 
 ![The log-likelihood of the depth $\theta$ of one mass whose mass is known, averaged over the noise, for three
 strengths $\mathcal R$ of the whole pattern; here $F = 5\mathcal R^2/z^2$, as found below. Each curve has fallen by
-one half at $\theta - \theta_0 = \pm1/\sqrt F$ (the blue dots), and the widths marked under the axis, $0.149z$,
-$0.045z$ and $0.015z$, shrink in proportion to $1/\mathcal R$.](tut-measure-peak){#fig:peak}
+one half at $\theta - \theta_0 = \pm1/\sqrt F$ (the blue dots), and the half-widths marked under the axis,
+$\pm0.149z$, $\pm0.045z$ and $\pm0.015z$, shrink in proportion to $1/\mathcal R$.](tut-measure-peak){#fig:peak}
 
 **The bound.** We assume that **the estimator is unbiased** and that **the readings that can occur are the same
 whatever $\theta$ is**: $\theta$ changes how probable each reading is, not which are possible.

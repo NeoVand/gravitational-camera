@@ -333,8 +333,8 @@ for any body $R_\ell$ tends to the radius of its outermost mass, which high powe
 
 ![Look first at the rings crowding toward the dashed circle: each degree of tide answers like a shell of the hole's
 mass at its own radius, and the radii tend to $(3\sqrt3/e)\,r_s$, between the photon sphere and the critical impact
-parameter. Grey ticks: the step absorber's radii, lower and climbing to the same limit. Radii
-exact.](tut-hole-shells){#fig:hole-shells}
+parameter. Below, on the same scale, the radii of a different body, the step absorber: lower, and climbing to the same
+limit. Radii exact.](tut-hole-shells){#fig:hole-shells}
 
 **What sets the shares.** Whatever the tide, what a hole gains is set by its mass and spin alone. A wave of degree
 $\ell$ and order $m$ round a turning hole obeys Teukolsky's equation, the turning hole's counterpart of the
@@ -405,7 +405,7 @@ crossing the Earth loses about $10^{-30}$ of its energy (chapters
 to a gravitational wave. **Meaning:** one tide lets the hole be drawn as a shell, and three allow no drawing.
 
 ![Look first at the two dips into the shaded region: the hole's sums and the step absorber's fall below zero, which
-no positive mass can do; the ball's curve stays above. Curves exact, from the unrounded radii of panel (c) of Figure [](/paper/#fig:hole-response).](tut-hankel-test){#fig:hankel-test}
+no positive mass can do; the ball's curve stays above. Curves exact, from the unrounded radii.](tut-hankel-test){#fig:hankel-test}
 
 ## The friction would make the hole yield like a liquid, yet its Love number is zero
 

@@ -9,7 +9,8 @@
 // Departures from the diagram's comment: the panels stand side by side at every width (the site shows one drawing; at
 // 390 px each panel is still about 110 px across), as section 8.4's three spheres do; the axis's name is written once,
 // under the three panels, and the scale's 0, 0.5 and 1 once, on the left of the first; the third panel's name is set
-// in two lines.
+// in two lines. The scale is named "share", the chapter's word, over its top; each panel's rank is written under it as
+// "reading of rank 3" or "reading of rank 1", so that it says what has the rank.
 // Exact: every bar, from the reading itself (a mass's tide on the axis; a plane wave's E + iB along z, and along the
 // direction 60 degrees from z in the xz plane), its five components on the tables T_m about z (figs/tut-spin-two-lib.js,
 // which asserts the tables, their turns and lengths, the shares and the ranks against the chapter's text and its try
@@ -66,10 +67,15 @@ export default async function () {
 		}
 		// ---- the axes: m along the foot, the scale on the first panel only
 		L.push(...(await xAxis(S, P, { ticks: WEIGHTS, fmt: (t) => `${t}`, what: `panel ${i}'s m axis` })));
-		if (i === 0) L.push(...(await yAxis(S, P, { ticks: [0, 0.5, 1], fmt: (t) => (t === 0.5 ? '0.5' : `${t}`), what: 'the scale' })));
+		if (i === 0) {
+			const nums = await yAxis(S, P, { ticks: [0, 0.5, 1], fmt: (t) => (t === 0.5 ? '0.5' : `${t}`), what: 'the scale' });
+			L.push(...nums);
+			// the scale's name, over its top, as the book's other plots name their axis up
+			L.push(await placed('\\text{share}', Math.min(...nums.map((l) => l.box.l)), P.top - 9, 0, 1, DIM));
+		}
 		// ---- the rank, under the numbers
 		const under = P.bottom + TICK + NUM + 8.6;
-		L.push(await placed(`\\text{rank }${p.rank}`, P.X(0), under + 3, 0.5, 0, INK));
+		L.push(await placed(`\\text{reading of rank }${p.rank}`, P.X(0), under + 3, 0.5, 0, INK));
 
 		// ---- the sketch: the pixel, the axis z up from it, and the source
 		const base = [sx(P), top - SKETCH_GAP], tip = [base[0], base[1] - SKETCH];

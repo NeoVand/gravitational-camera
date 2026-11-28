@@ -21,10 +21,11 @@ The answer to the guiding question is short. Fine detail fades with distance exp
 fade at all. So each factor of ten in sensitivity buys only a fixed small step in the finest detail that survives, and
 the sharpness grows with the logarithm of the sensitivity rather than with the sensitivity itself.
 
-![Two iron balls buried side by side, and what a flat sheet of sensors would record of them at four heights:
-orange where the tide stretches, blue where it squeezes. A quarter of the balls' separation above them, the two
-peaks stand apart; higher up they spread and close in, and above 1.28 separations they merge, so the pixels at two
-separations see one broad bump. Each tile of the pixels is coloured by its own reading, and the noise added to each
+![Two iron balls buried side by side, and what a flat sheet of sensors would record of them at four heights $h$,
+given beside the sheets in units of the balls' separation: orange where the tide stretches, blue where it squeezes.
+The dashed lines rise from the balls. At $h = 0.25$ the two peaks stand apart over the balls; higher up they spread
+and close in, at $h = 1$ the middle still lies 9% below them, and above $h = 1.28$ they merge, so the pixels at
+$h = 2$ see one broad bump. Each tile of the pixels is coloured by its own reading, and the noise added to each
 tile is a tenth of the bump's height, larger than anything that would tell two balls from one. Each sheet is drawn
 to its own scale, since the signal weakens eightfold each time the height doubles; the sheets' spacing, the balls'
 depth and size and the height of the relief are not to scale.](tut-blur){#fig:sheets}

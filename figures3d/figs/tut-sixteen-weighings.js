@@ -1,12 +1,13 @@
 // The tutorial, section 13.2 (tutorial/what-a-field-keeps/calderon.md), its second diagram: the sixteen weighings of
-// one Fourier component, as a tree drawn left to right. The root, "one Fourier component", with the complex number
-// int rho grad h_+ . grad h_- under its name; two branches, its real and its imaginary part; four nodes, the real
+// one Fourier component, as a tree drawn left to right. The root, "one Fourier component" (in two lines), with the
+// complex number int rho grad h_+ . grad h_- under its name; two branches, its real and its imaginary part; four nodes, the real
 // integrals int rho grad u_+ . grad u_- and int rho grad v_+ . grad v_- under the real part, int rho grad u_+ . grad v_-
 // and int rho grad v_+ . grad u_- under the imaginary part; eight nodes, the squares A(a + b) and A(a - b) of each
 // integral's two profiles; sixteen leaves, E_+ and E_- under each square, each a small balance of one make. Thin single
 // strokes, neutral; rho in matter's colour, as in the chapter's equations. A count under each column: 1, 2, 4, 8, 16.
 // Departures from the diagram's comment: the squares are named with their profiles (A(u_+ + u_-) for the first, and so
-// on), not as A(a + b) and A(a - b) alone.
+// on), not as A(a + b) and A(a - b) alone. The caption defines A and E_+, E_-, as the chapter does; the leaves stand
+// 12.8 points apart, so that the sixteen balances do not crowd.
 // Exact: the tree, its labels and its counts (tut-calderon-lib.js, which checks the expansion into four integrals and
 // the polarization identity, and the chapter's 4 x 2 x 2 = 16). Pictorial: the balances, which stand for weighings.
 import { Sheet, ORIGIN, finish, checker, placed, n2, LABEL_GAP, HAIR } from './tut-pot-lib.js';
@@ -18,13 +19,14 @@ const name = 'tut-sixteen-weighings';
 const check = checker(name);
 
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
-const PITCH = 11.2;                    // between two leaves
+const PITCH = 12.8;                    // between two leaves
 const STUB = 6;                        // a spine to its children's labels
 const AIR = 2.6;                       // a label's ink to its connector
 const COL_GAP = 13;                    // the widest label of a column to the next column
+const LEAF_GAP = 19;                   // and to the leaves, which need more room for their sixteen stubs
 const TREE_W = 0.45;                   // the connectors
 const COUNT_GAP = 9;                   // the last leaf's ink to the counts
-const caption = 'Look first at the counts under the columns: one complex ripple of the density needs four real integrals, each found from two squares by the polarization identity, and each square from two copies kicked both ways. The balances stand for weighings.';
+const caption = 'Look first at the counts under the columns: one complex ripple of the density needs four real integrals, each found by the polarization identity from two squares $A(f) = \\int\\matter\\rho\\,|\\nabla f|^2\\,\\dd V$, and each square from the energies $E_+$ and $E_-$ that two copies gain when kicked both ways. The balances stand for weighings.';
 
 const rho = `{\\color{${MATTER}}\\rho}`;
 /** A balance: a foot, a post, a beam and two pans on strings, its foot's centre at (x, y), drawn in INK. */
@@ -57,7 +59,7 @@ export default async function () {
 	const rowY = (i) => y0 + i * PITCH;
 	const plus = (a, b) => `A(${a} + ${b})`, minus = (a, b) => `A(${a} - ${b})`;
 	const cols = [
-		[{ src: `\\begin{array}{l}\\text{one Fourier component}\\\\[1pt]\\textstyle\\int${rho}\\,\\nabla h_+\\cdot\\nabla h_-\\end{array}`, row: 7.5 }],
+		[{ src: `\\begin{array}{l}\\text{one Fourier}\\\\[-2pt]\\text{component}\\\\[1pt]\\textstyle\\int${rho}\\,\\nabla h_+\\cdot\\nabla h_-\\end{array}`, row: 7.5 }],
 		[{ src: text('real part'), row: 3.5, parent: 0 }, { src: text('imaginary part'), row: 11.5, parent: 0 }],
 		INTEGRALS.map((g, i) => ({ src: `\\textstyle\\int${rho}\\,\\nabla ${g.a}\\cdot\\nabla ${g.b}`, row: 1.5 + 4 * i, parent: g.part === 're' ? 0 : 1 })),
 		INTEGRALS.flatMap((g, i) => [{ src: plus(g.a, g.b), row: 4 * i + 0.5, parent: i }, { src: minus(g.a, g.b), row: 4 * i + 2.5, parent: i }]),
@@ -90,7 +92,7 @@ export default async function () {
 			}
 		}
 		placedCols.push({ x, nodes });
-		x = Math.max(...nodes.map((n) => n.r)) + COL_GAP + STUB;
+		x = Math.max(...nodes.map((n) => n.r)) + (c === cols.length - 2 ? LEAF_GAP : COL_GAP) + STUB;
 		void c;
 	}
 

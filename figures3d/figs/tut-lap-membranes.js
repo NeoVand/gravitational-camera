@@ -3,13 +3,18 @@
 // turned and tilted as lib.js's Panel does, each surface lit by the studio of the paper's figures, with a net of the
 // lines of constant x and of constant y drawn on it). Left, the saddle u = x^2 - y^2, harmonic: its largest value, 1,
 // at the two points (+-1, 0) of the rim and its smallest, -1, at (0, +-1), all four marked, one of each labelled.
-// Right, the bump u = 1 - r^2, whose Laplacian is -4: its peak, 1, at the centre, marked "not allowed in empty
-// space" by a thin leader (the peak lies inside the bump's outline on the page). Exact: both surfaces (a polar mesh
-// of NR rings by NT sectors, its vertices on the surface), the net and the rims (on the surfaces), the four extremes
-// of the saddle on the rim (asserted the largest and smallest values over the disc) and the bump's peak; the
-// Laplacians, 0 and -4 (asserted by differences). Chosen for the drawing: the view, the net's spacing and the height
-// scale H, small enough that every face of both meshes faces the viewer, so that nothing of either surface hides
-// another part of it (asserted) and each rim and every line of the net is seen whole.
+// Under it, the level u = 0 (the circle of radius 1 in the plane of the disc), named, and a vertical from each of the
+// four marked points to that level, so that the two highs are seen above it and the two lows below it; the view puts
+// the highs to the left and right and the lows near and far. Right, the bump u = 1 - r^2, whose Laplacian is -4: its
+// rim is its level u = 0; its peak, 1, at the centre, with the vertical down to the disc's centre, marked "not
+// allowed in empty space" by a thin leader (the peak lies inside the bump's outline on the page). The level and the
+// verticals are solid where seen and dashed where the membrane hides them (a point is hidden if its line of sight to
+// the viewer crosses the membrane). Exact: both surfaces (a polar mesh of NR rings by NT sectors, its vertices on the
+// surface, its faces painted from the farthest to the nearest), the net and the rims (on the surfaces), the level,
+// the verticals (vertical, of length H u, asserted), the four extremes of the saddle on the rim (asserted the largest
+// and smallest values over the disc) and the bump's peak; the Laplacians, 0 and -4 (asserted by differences). Chosen
+// for the drawing: the view, the net's spacing and the height scale H, as large as it can be while every face of both
+// meshes faces the viewer (2H < tan TILT, asserted), so that each rim and every line of the net is seen whole.
 import { Panel, THREE, v3, tex, shadeNormal, INK, DIM, FAINT } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, boxOf, SIZE, HAIR } from './tut-vec-lib.js';
 import { cameraAxes, TINT } from './tut-gauss-lib.js';
@@ -24,13 +29,16 @@ const laplacian = (f, x, y, h = 1e-3) => (f(x + h, y) + f(x - h, y) + f(x, y + h
 
 // ---- the drawing ----------------------------------------------------------------------------------------------------
 const S = 64;                       // points per unit of the disc's radius
-const TILT = 40, TURN = 12;         // the view, degrees
-const H = 0.36;                     // height on the page per unit of u, in units of the radius
+const TILT = 45, TURN = -8;         // the view, degrees: the saddle's highs and lows lie on the diagonals of the page
+const H = 0.49;                      // height per unit of u, in units of the radius (2H just under tan TILT)
 const APART = 2.36;                 // the two discs' centres, this far apart across the page
 const NR = 18, NT = 96;             // the mesh: rings and sectors
 const NET = [-0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75];   // the lines of constant x and of constant y drawn on each membrane
 const NET_W = 0.3;                  // their stroke
 const RIM = 0.55;                   // the rims' stroke
+const LEVEL_W = 0.4;                // the level u = 0 and the heights over it: hairlines
+const LEVEL_DASH = [2.2, 1.6];      // their stretches hidden by the membrane
+const RIM_DASH = [2.4, 1.8];        // the rim's
 const PT = 1.35;                    // a marked point's dot
 const LEAD = 5;                     // the words over the bump stand this far above its far rim
 const LINE_GAP = 10.5;              // between their two baselines
@@ -68,6 +76,40 @@ export default async function () {
 		{ f: bump, c: flat.clone().multiplyScalar(APART / 2), what: 'the bump' }
 	];
 	const world = (p, x, y) => p.c.clone().addScaledVector(X, x).addScaledVector(Y, y).addScaledVector(U, H * p.f(x, y));
+	// a point is hidden by the membrane if the line of sight from it to the viewer crosses the membrane: over the disc,
+	// the height along that line passes the surface's (every face faces the viewer, so the membrane is a single sheet
+	// on the page and nothing else can hide it)
+	const toward = cameraAxes(P)[2];
+	const hidden = (p, q) => {
+		let last = null;
+		for (let t = 1e-4; t < 3; t += 2e-3) {
+			const r = q.clone().addScaledVector(toward, t).sub(p.c);
+			const x = r.dot(X), y = r.dot(Y);
+			if (x * x + y * y >= 1) { last = null; continue; }
+			const g = Math.sign(r.dot(U) - H * p.f(x, y));
+			if (last !== null && g !== last) return true;
+			last = g;
+		}
+		return false;
+	};
+	// a curve in runs, solid where seen and dashed where hidden, each run sharing its end point with the next
+	// (`dash` null: the hidden runs are left out)
+	const seenAndHidden = (p, pts, what, { color = DIM, width = LEVEL_W, layer = 1.5, dash = LEVEL_DASH } = {}) => {
+		let run = [pts[0]], state = hidden(p, pts[0]);
+		const flush = () => {
+			if (run.length < 2) return;
+			if (state && !dash) return;
+			if (state) P.curve(run, { color, width: width * 0.8, layer: 0.25, dash, cap: 'butt' });
+			else P.curve(run, { color, width, layer });
+			ink.mark(run.map((q) => ink.at(q)), width / 2, what);
+		};
+		for (let i = 1; i < pts.length; i++) {
+			const st = hidden(p, pts[i]);
+			run.push(pts[i]);
+			if (st !== state) { flush(); run = [pts[i]]; state = st; }
+		}
+		flush();
+	};
 
 	for (const p of panels) {
 		// ---- the membrane: a polar mesh, every vertex on the surface
@@ -87,30 +129,38 @@ export default async function () {
 		g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
 		g.setIndex(idx);
 		g.computeVertexNormals();
-		// every face faces the viewer: nothing of the surface hides another part of it
+		// every face faces the viewer (the steepest slope of the drawn surface, 2H, is less steep than the line of
+		// sight), so nothing of the surface turns its underside to the viewer, and the rim is seen whole
 		const flatG = g.toNonIndexed(), fp = flatG.attributes.position;
 		let back = 0;
 		for (let k = 0; k < fp.count; k += 3) {
 			const C = [0, 1, 2].map((m) => P.cam(new THREE.Vector3().fromBufferAttribute(fp, k + m)));
-			const z = new THREE.Vector3().subVectors(C[1], C[0]).cross(new THREE.Vector3().subVectors(C[2], C[0])).z;
-			if (z <= 0) back++;
+			if (new THREE.Vector3().subVectors(C[1], C[0]).cross(new THREE.Vector3().subVectors(C[2], C[0])).z <= 0) back++;
 		}
-		check(back === 0, `${p.what}: ${back} faces turn away from the viewer`);
-		// and the steepest slope of the drawn surface, 2H, is less steep than the line of sight
-		check(2 * H < Math.tan((TILT * Math.PI) / 180), 'the surface is steeper than the line of sight');
+		check(back === 0 && 2 * H < Math.tan((TILT * Math.PI) / 180), `${p.what}: ${back} faces turn away from the viewer`);
 		P.items.push({ kind: 'raw', layer: 0, depth: 0, svg: membrane(P, g) });
 
-		// ---- the rim, one closed curve on the surface
+		// ---- the rim, one closed curve on the surface: solid where seen, dashed where the membrane hides it
 		const rim = Array.from({ length: 721 }, (_, k) => { const t = (2 * Math.PI * k) / 720; return world(p, Math.cos(t), Math.sin(t)); });
-		ink.curve(rim, { color: INK, width: RIM, layer: 1, what: `${p.what}'s rim` });
-		// ---- the net: lines of constant x and of constant y across the disc, on the surface (every face faces the
-		// viewer, so they are seen whole)
+		check(rim.every((q) => !hidden(p, q)), `${p.what}: the membrane hides part of its rim`);
+		seenAndHidden(p, rim, `${p.what}'s rim`, { color: INK, width: RIM, layer: 1, dash: RIM_DASH });
+		// ---- the net: lines of constant x and of constant y across the disc, on the surface, where they are seen
 		for (const c of NET) {
 			const e = Math.sqrt(1 - c * c);
-			const n = 160;
+			const n = 200;
 			const along = (f) => Array.from({ length: n + 1 }, (_, k) => f(-e + (2 * e * k) / n));
-			ink.curve(along((t) => world(p, c, t)), { color: FAINT, width: NET_W, layer: 0.5, what: `${p.what}'s line x = ${c}` });
-			ink.curve(along((t) => world(p, t, c)), { color: FAINT, width: NET_W, layer: 0.5, what: `${p.what}'s line y = ${c}` });
+			seenAndHidden(p, along((t) => world(p, c, t)), `${p.what}'s line x = ${c}`, { color: FAINT, width: NET_W, layer: 0.5, dash: null });
+			seenAndHidden(p, along((t) => world(p, t, c)), `${p.what}'s line y = ${c}`, { color: FAINT, width: NET_W, layer: 0.5, dash: null });
+		}
+		// ---- the level u = 0 (the flat disc under the membrane) and the heights of the marked points over it: solid
+		// where seen, dashed where the membrane hides them
+		const level = Array.from({ length: 721 }, (_, k) => { const t = (2 * Math.PI * k) / 720; return p.c.clone().addScaledVector(X, Math.cos(t)).addScaledVector(Y, Math.sin(t)); });
+		if (p.f === saddle) { seenAndHidden(p, level, `${p.what}'s level u = 0`); p.level = level; }
+		const feet = p.f === saddle ? [[1, 0], [-1, 0], [0, 1], [0, -1]] : [[0, 0]];
+		for (const [x, y] of feet) {
+			const n = 240, foot = p.c.clone().addScaledVector(X, x).addScaledVector(Y, y), top = world(p, x, y);
+			seenAndHidden(p, Array.from({ length: n + 1 }, (_, k) => top.clone().lerp(foot, k / n)), `${p.what}'s height at ${x},${y}`);
+			check(near(top.clone().sub(foot).dot(U), H * p.f(x, y), 1e-12) && top.clone().sub(foot).cross(U).length() < 1e-12, `${p.what}: the height at ${x},${y} is not vertical or not u`);
 		}
 		// the surface's outline on the page, for the labels: the rim and the points of the mesh
 		p.screen = [];
@@ -137,6 +187,9 @@ export default async function () {
 	const hiP = world(sad, 1, 0), loP = world(sad, 0, -1);
 	L.push(await ink.label('u = 1', ink.at(hiP), away(sad, hiP), 2.4, INK));
 	L.push(await ink.label('u = -1', ink.at(loP), away(sad, loP), 2.4, INK));
+	// the level u = 0, named below and to the right of it, where it lies outside the membrane
+	const se = sad.level.map((q) => ink.at(q)).reduce((a, q) => (q[0] + q[1] > a[0] + a[1] ? q : a));
+	L.push(await ink.label('u = 0', se, [Math.SQRT1_2, Math.SQRT1_2], 2.4, DIM));
 	// the bump: the words above it, in two lines, centred over the peak; a thin leader from the peak up to them (the
 	// peak lies inside the bump's outline on the page, below its far rim, so no label can sit beside it)
 	const peak = ink.at(world(bum, 0, 0));
@@ -186,7 +239,10 @@ function membrane(P, g) {
 		const c = shadeNormal(night, n, { ...LIGHT, ...LIGHT_NIGHT, steps: 0 }).getHex();
 		return '#' + [16, 8, 0].map((k) => Math.min(255, 3 * Math.round(((c >> k) & 255) / 3)).toString(16).padStart(2, '0')).join('');
 	};
-	const groups = new Map();
+	// the faces from the farthest to the nearest (a painter's order: each membrane is a graph over the disc, seen
+	// from above, so a nearer face is never hidden by a farther one), each with a hairline of its own colour that
+	// closes the seams between neighbours; runs of faces of one colour share a path
+	const faces = [];
 	const pt = (p) => P.at(p).map((v) => v.toFixed(2)).join(',');
 	for (let i = 0; i < pos.count; i += 3) {
 		const V = [0, 1, 2].map((k) => new THREE.Vector3().fromBufferAttribute(pos, i + k));
@@ -195,7 +251,13 @@ function membrane(P, g) {
 		n.transformDirection(P.rot).normalize();
 		if (n.z < 0) n.negate();
 		const fill = `light-dark(${hex(shadeNormal(day, n, LIGHT))}, ${dark(n)})`;
-		groups.set(fill, (groups.get(fill) ?? '') + `M${V.map(pt).join('L')}Z`);
+		faces.push({ fill, d: `M${V.map(pt).join('L')}Z`, z: V.reduce((z, v) => z + P.cam(v).z, 0) / 3 });
 	}
-	return [...groups].map(([fill, d]) => `<path d="${d}" fill="${fill}" stroke="${fill}" stroke-width="0.18" stroke-linejoin="round"/>`).join('');
+	faces.sort((a, b) => a.z - b.z);
+	const out = [];
+	for (const f of faces) {
+		if (out.length && out[out.length - 1].fill === f.fill) out[out.length - 1].d += f.d;
+		else out.push({ ...f });
+	}
+	return out.map(({ fill, d }) => `<path d="${d}" fill="${fill}" stroke="${fill}" stroke-width="0.18" stroke-linejoin="round"/>`).join('');
 }

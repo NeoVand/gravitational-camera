@@ -7,8 +7,9 @@
 // below the zero line up to it, and the time before the blow, t < 0, is lightly shaded; on the left it is named
 // "before the blow". The time axis is at the foot of each chart and the zero line dotted across it, as in 4.1's
 // ring-down (figs/tut-osc-ringdown.js), rather than the time axis at zero as the diagram's comment had it, because
-// there the axis's numbers would fall on the response's lower swings; on the right the zero line stops where the
-// kernel's tail comes down onto it. The axis's name is set once, after the right chart, and the kernel's numbers on
+// there the axis's numbers would fall on the response's lower swings. On both charts the zero line runs the whole
+// width, under the curve: on the right the kernel's tail comes down onto it and lies over it (a zero line stopped where
+// the tail meets it read as a broken line). The axis's name is set once, after the right chart, and the kernel's numbers on
 // the left chart only.
 // Exact: both curves (the impulse response asserted to solve the cart's law of motion after the blow from rest with
 // unit velocity, to be zero before it, and to transform to 4.1's chi(omega); the even kernel asserted to be even and
@@ -62,15 +63,11 @@ export default async function () {
 		const shade = { l: P.left, r: P.X(0), t: P.top, b: P.bottom };
 		S.fill(pathOf([[shade.l, shade.t], [shade.r, shade.t], [shade.r, shade.b], [shade.l, shade.b]]), shade, { color: TINT, layer: 0.1, what: `the ${key} shade` });
 		// ---- the zero line, the curve
-		// (on the right stopped where the kernel's tail comes down onto it, so that the two never run as one line)
+		// (across the whole chart, under the curve; on the right the kernel's tail comes down onto it, at the left edge
+		// it stands clear)
 		const parts = (t) => AMP * f(t) - (CURVE + ZERO_LINE) / 2 >= AIR;
-		let end = T1;
-		if (key === 'even') {
-			check(parts(T0), 'the even kernel merges with the zero line at the left edge');
-			end = 0;
-			while (parts(end)) end += 1e-4;
-		}
-		S.path([[P.left, P.Y(0)], [P.X(end), P.Y(0)]], { color: DIM, width: ZERO_LINE, layer: 0.5, cap: 'butt', dash: ZERO_DASH, what: `the ${key} zero line` });
+		if (key === 'even') check(parts(T0), 'the even kernel merges with the zero line at the left edge');
+		S.path([[P.left, P.Y(0)], [P.right, P.Y(0)]], { color: DIM, width: ZERO_LINE, layer: 0.5, cap: 'butt', dash: ZERO_DASH, what: `the ${key} zero line` });
 		const pts = key === 'causal' ? [...graph(P, f, T0, 0), ...graph(P, f, 0, T1).slice(1)] : graph(P, f, T0, T1);
 		check(longest(pts) <= 0.2501, `the ${key} curve has a step of ${longest(pts)} pt`);
 		S.path(pts, { color, width: CURVE, layer: 2, what: `the ${key} curve` });

@@ -8,7 +8,8 @@
 // and the panel shows two curves and the line rather than three curves and a line beneath them. The inset stands at
 // the upper right, over the place where the curves have met, rather than near the origin, since its range, 0.01 of an
 // optical depth, is a fiftieth of a point on the panel's scale, and the space under the rising curve is too low for
-// it; it is square, so that n_omega = tau nbar runs at 45 degrees, and its name stands beside it. Its ramp is the exact
+// it; it is square, so that n_omega = tau nbar runs at 45 degrees; its axes are named, tau and n_omega / nbar, and its
+// name beside it says what it shows, "a thin slab: the lower curve near 0, magnified". Its ramp is the exact
 // curve 1 - e^{-tau}, which differs from tau by less than tau^2 / 2 (a quarter of a point at its top), and is named
 // "n_omega ~ tau nbar". The axes are named "optical depth tau" and "n_omega / nbar(T)".
 // Exact: the two curves and the line (the solution of dn/ds = alpha (nbar - n), asserted against a Runge-Kutta
@@ -68,7 +69,8 @@ export default async function () {
 	{
 		const I = new Plot({ left: P.X(INSET.at[0]), top: P.Y(INSET.at[1]) - INSET.w, w: INSET.w, h: INSET.w, x0: 0, x1: INSET.tau, y0: 0, y1: INSET.tau });
 		const fmt = (t) => (t === 0 ? '0' : '0.01');
-		L.push(...(await xAxis(S, I, { ticks: [0, INSET.tau], fmt, what: 'the inset\'s axis across' })));
+		const ixl = await xAxis(S, I, { ticks: [0, INSET.tau], fmt, what: 'the inset\'s axis across' });
+		L.push(...ixl);
 		L.push(...(await yAxis(S, I, { ticks: [0, INSET.tau], fmt: (t) => (t === 0 ? null : '0.01'), what: 'the inset\'s axis up' })));
 		const pts = graph(I, (t) => relax(0, t), 0, INSET.tau, 0.2);
 		S.path(pts, { color: INK, width: CURVE, layer: 2.2, what: 'the inset\'s ramp' });
@@ -76,7 +78,18 @@ export default async function () {
 		const off = Math.max(...pts.map(([x, y]) => Math.abs(y - I.Y(I.x0 + ((x - I.left) / I.w) * INSET.tau))));
 		check(off < 0.25, `the inset's curve is ${off} pt from a straight ramp`);
 		L.push(await S.clear('n_\\omega \\approx \\tau\\bar n', I.X(0.0008), I.Y(0.0058), 0, 1, [0, -1]));
-		L.push(await placed('\\text{a thin slab}', I.right + 3 * LABEL_GAP, I.top, 0, 0, INK));
+		// its axes named: tau across, under the middle of its axis, between its numbers and on their baseline (none of
+		// them descends); n_omega / nbar up, left of its axis at its middle
+		L.push(await placed('\\tau', I.X(INSET.tau / 2), Math.max(...ixl.map((l) => l.box.b)), 0.5, 1, DIM));
+		L.push(await placed('n_\\omega/\\bar n', I.left - 4, I.Y(INSET.tau / 2), 1, 0.5, DIM));
+		// its name, at its right: what it shows
+		{
+			const rows = ['\\text{a thin slab:}', '\\text{the lower curve}', '\\text{near 0, magnified}'];
+			const parts = [];
+			let t = I.top;
+			for (const src of rows) { const g = await placed(src, I.right + 3 * LABEL_GAP, t, 0, 0, INK); parts.push(g); t = g.box.b + 2; }
+			L.push({ src: rows.join(' / '), svg: parts.map((g) => g.svg).join(''), box: { l: Math.min(...parts.map((g) => g.box.l)), r: Math.max(...parts.map((g) => g.box.r)), t: parts[0].box.t, b: parts[2].box.b } });
+		}
 		check(I.top > P.top, 'the inset leaves the panel');
 		// the inset stands clear of the curve from 2 nbar beneath it
 		check(I.bottom + 14 < P.Y(relax(2, INSET.at[0])), `the inset's numbers reach the falling curve`);

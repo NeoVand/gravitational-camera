@@ -4,15 +4,18 @@
 // 2200 km and 8.8 s, and a dashed line for two white dwarfs of 0.6, with a dot at section 1.8's pair turning every ten
 // minutes, 113,000 km apart with 244,000 years (7.7 x 10^12 s) left; both of slope 1/4. Each line is grey where the
 // formula is out of its range: the black holes' below 3 (r_s1 + r_s2) = 532 km, the interactive figure's lower end; the
-// white dwarfs' below 20,800 km, where two dwarfs of the chapter's 10,400 km touch. At the black holes' dot, a thin
-// upright line from their 2200 km to their reduced wavelength lambda/2 pi = 5500 km, "near zone ends".
+// white dwarfs' below 20,800 km, where two dwarfs of the chapter's 10,400 km touch. The two dots are 3.2 pt across.
+// From the black holes' dot, a thin upright arrow from their 2200 km up to their reduced wavelength lambda/2 pi =
+// 5500 km, and from its head a dotted leader left to the d axis, under the words "near zone ends at / lambda/2 pi =
+// 5500 km".
 // The lines and the dots in ink: the time left is neutral in the chapter's equations.
 // Departures from the diagram's comment: the reduced wavelength is drawn at the paper's pair, as a distance from it
 // beside its separation (2.5 times it, as the chapter says), not as a tick on the line at a separation of 5500 km,
 // where the pair would have another wavelength; the white dwarfs' line is grey below their contact, as the black
 // holes' is below its cut-off, so the caption speaks of the grey ends.
 // Exact: both lines and the dots (tut-stars-lib.js: 8.8 s, 113,000 km, 244,000 years and 7.7 x 10^12 s, 5500 km and
-// 532 km asserted against the chapter and the interactive's checks); the slope 1/4 (asserted in points); the contact,
+// 532 km asserted against the chapter and the interactive's checks); the slope 1/4 (asserted in points); the near
+// zone's arrow, from 2200 to 5500 km on the d axis (asserted in points); the contact,
 // twice the white dwarf's radius from the polytrope. Schematic: nothing.
 import { Sheet, ORIGIN, finish, checker, placed, near, n2, LABEL_GAP, HAIR } from './tut-pot-lib.js';
 import { Plot, xAxis, yAxis } from './tut-prob-lib.js';
@@ -28,8 +31,8 @@ const check = checker(name);
 const W = 272, H = 150;
 const X0 = -3, X1 = 14, Y0 = 1, Y1 = 6;          // log10 s, log10 km
 const MAIN = 0.75, THIN = 0.45;
-const END = 2.2;                                 // half the near zone's end tick
-const NEAR_REACH = 18;                           // how far right of it the words "near zone ends" reach
+const DOT_R = 1.6;                               // the two dots' radius: 2.7 pt across in print
+const NEAR_HEAD = 2.8;                           // the near zone's arrow: its head
 const NAME = 7;
 const LEADING = 2.6;                             // between two lines of one label
 const caption = 'Look first at the dot at 2200 km: the pair of black holes has 8.8 seconds left, and each halving of the separation cuts the time sixteen times. The white-dwarf pair on the dashed line has 244,000 years. Lines from the quadrupole formula, exact for Newton\'s orbit; the grey ends are outside its range.';
@@ -91,20 +94,25 @@ export default async function () {
 	check(Math.round(dw / 1e6) === 113 && Math.round(tw / YEAR / 1000) === 244 && tw.toExponential(1) === '7.7e+12', 'the white dwarfs\' dot');
 	const dDwarf = at(tw, dw / 1e3);
 	for (const [p, what] of [[dHole, 'the black holes\' dot'], [dDwarf, 'the white dwarfs\' dot']]) {
-		S.raw(`<circle cx="${n2(p[0])}" cy="${n2(p[1])}" r="${DOT}" fill="${INK}"/>`, 4);
-		S.mark([p], DOT, what);
+		S.raw(`<circle cx="${n2(p[0])}" cy="${n2(p[1])}" r="${DOT_R}" fill="${INK}"/>`, 4);
+		S.mark([p], DOT_R, what);
 	}
 
 	// ---- the near zone of the paper's pair: from its 2200 km up to lambda/2 pi
 	const lam = reduced() / 1e3;
 	check(Math.round(lam / 100) * 100 === 5500, `lambda / 2 pi = ${lam}`);
 	const top = at(tb, lam);
-	const foot = [dHole[0], dHole[1] - DOT - 0.9];
-	S.path([foot, top], { color: INK, width: THIN, layer: 3, cap: 'butt', what: 'the near zone' });
-	S.path([[top[0] - END, top[1]], [top[0] + END, top[1]]], { color: INK, width: THIN, layer: 3, cap: 'butt', what: 'the near zone\'s end' });
-	const lamLabel = await S.clear('\\lambda/2\\pi', top[0] - END - LABEL_GAP - 0.4, top[1], 1, 0.5, [-1, 0], { color: INK });
-	L.push(lamLabel);
-	L.push(await S.clear('\\text{near zone ends}', top[0] + NEAR_REACH, lamLabel.box.t - LABEL_GAP - 0.3, 1, 1, [0, -1], { color: INK }));
+	// an arrow from the dot up to lambda / 2 pi, and a dotted leader from its head to the d axis
+	const foot = [dHole[0], dHole[1] - DOT_R - 0.5];
+	const ar = S.arrow(foot, top, { color: INK, width: THIN, head: NEAR_HEAD, layer: 3, what: 'the near zone' });
+	check(ar.head === NEAR_HEAD, 'the near zone\'s arrow is too short for a whole head');
+	check(near(Math.log10(lam / (HOLES.d / 1e3)), (dHole[1] - top[1]) / (H / (Y1 - Y0)), 1e-9), 'the dimension does not span 2200 to 5500 km');
+	S.dots([P.left, top[1]], [top[0], top[1]], { color: DIM, clear0: 1.2, clear1: 1, layer: 2, what: 'the near zone\'s leader' });
+	{
+		const value = await placed('\\lambda/2\\pi = 5500\\text{ km}', P.left + 3, top[1] - LABEL_GAP - 0.5, 0, 1, INK);
+		const words = await placed('\\text{near zone ends at}', value.box.l, value.box.t - LEADING, 0, 1, INK);
+		L.push(value, words);
+	}
 
 	// ---- the labels
 	L.push(await S.clear('2200\\text{ km}, 8.8\\text{ s}', dHole[0] + LABEL_GAP + 1.4, dHole[1] + 1.2, 0, 0, [0.3, 1], { color: INK }));
@@ -123,7 +131,7 @@ export default async function () {
 		L.push(await S.clear('0.6 + 0.6\\,M_\\odot', pd[0], pd[1] + LABEL_GAP, 0.5, 0, [0.24, 1], { color: INK }));
 	}
 	window[name + '-numbers'] = { tb, tw, years: tw / YEAR, dw, lam, cut: cutoff(), contact, tContact: tau(contact * 1e3, DWARFS.m, DWARFS.m) };
-	void holes; void dwarfs; void HAIR; void M_SUN;
+	void holes; void dwarfs; void HAIR; void M_SUN; void DOT;
 
 	S.checkAll(L);
 	return finish(S, L, [280, 360]);

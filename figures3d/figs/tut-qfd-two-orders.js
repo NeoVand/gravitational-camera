@@ -1,28 +1,30 @@
 // The tutorial, section 8.7 (tutorial/quantum/quantum-fluctuation.md), its second diagram: the two orders of a
 // correlation. One panel: across, omega / omega_0 from -2 to 2; up, spectral density in units of hbar Im chi(omega_0),
 // from 0 to 3.4. One cart with a narrow line, chi = c^2 / (omega_0^2 - omega^2 - i Gamma omega) with Gamma = 0.08
-// omega_0 (Q = 12.5), at k_B T = hbar omega_0. Three thin curves: S(omega) = 2 hbar (nbar + 1) Im chi, solid ink, 3.164
-// at +omega_0 and 1.164 at -omega_0; S-bar(omega) = hbar coth(hbar omega / 2 k_B T) Im chi, dashed ink, 2.164 at both;
-// the classical 2 k_B T Im chi / omega, dotted grey, 2.0 at both. "absorption" and "emission" beside the two peaks; the
-// two solid peak tops carried by dotted leaders to a bracket at omega = 0, named by their ratio, exp(hbar omega_0 /
-// k_B T) = 2.72. An inset with the same axes at k_B T = 0.1 hbar omega_0, "nearly at absolute zero": the solid peak at
-// -omega_0 gone (9 x 10^-5), the dashed ones at 1, the solid one at +omega_0 at 2 and the dotted ones at 0.2. Ink and
-// greys only.
+// omega_0 (Q = 12.5), at k_B T = hbar omega_0. Two thin curves: S(omega) = 2 hbar (nbar + 1) Im chi, solid ink, 3.164
+// at +omega_0 and 1.164 at -omega_0; S-bar(omega) = hbar coth(hbar omega / 2 k_B T) Im chi, dashed ink, 2.164 at both.
+// "absorption" and "emission" beside the two peaks; the two solid peak tops carried by dotted leaders to a bracket at
+// omega = 0, named by their ratio, exp(hbar omega_0 / k_B T) = 2.72. An inset with the same axes at k_B T = 0.1 hbar
+// omega_0, "nearly at absolute zero": the solid peak at -omega_0 gone (9 x 10^-5), the dashed ones at 1, the solid one
+// at +omega_0 at 2. Ink and greys only.
 // Departures from the diagram's comment: the unit up is hbar Im chi at omega_0, where the heights are the ones the
 // comment gives (the curves' maxima, a hair inside +-omega_0, are within 0.3 per cent of them, and the bracket marks
 // the heights at +-omega_0, whose ratio is e exactly); the ratio is written exp(hbar omega_0 / k_B T), so that no
 // script sits inside a script, too small on a phone; "absorption" and "emission" stand beside the peaks' tops rather
 // than over them, and the inset sits at the upper left rather than the upper right, since over each peak the space
-// is taken by the other curves' taller tops and by the key; a key names the three curves; the inset also draws the
-// dotted classical curve, at 0.2. Each curve is left out where it is within 1.5 pt of the axis, so that the three
-// never run along the axis as a band (between the peaks they fall to 0.013).
+// is taken by the other curve's taller top and by the key; a key names the two curves. The comment's third curve, the
+// classical 2 k_B T Im chi / omega (2.0 at +-omega_0, 0.2 in the inset), is not drawn: at k_B T = hbar omega_0 it lies
+// inside the dashed peaks, 2.0 under 2.16, and cannot be found in print, and the caption does not use it (the
+// quantum factor over the classical is the previous figure's subject). Each curve is left out where it is within
+// 0.9 pt of the axis, so that the two never run along the axis as a band (between the peaks they fall to 0.013); at
+// that clearance their tails meet the axis's line to the eye, as curves that fall to zero should.
 // Exact: every curve (S(-omega) = e^{-hbar omega / k_B T} S(omega), S(omega) - S(-omega) = 2 hbar Im chi and the average
 // S-bar are asserted at 600 frequencies at both temperatures in tut-qfd-lib.js), the heights and the ratio.
 import { Sheet, ORIGIN, finish, checker, placed, LABEL_GAP, HAIR, n2 } from './tut-pot-lib.js';
 import { Plot, xAxis, yAxis } from './tut-prob-lib.js';
 import { graph, longest } from './tut-fourier-lib.js';
 import { INK, DIM, FAINT } from '../lib.js';
-import { chapter, palette, near, spec, specBar, classical, WARM, COLD } from './tut-qfd-lib.js';
+import { chapter, palette, near, spec, specBar, WARM, COLD } from './tut-qfd-lib.js';
 
 const name = 'tut-qfd-two-orders';
 const check = checker(name);
@@ -30,23 +32,22 @@ const check = checker(name);
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
 const X0 = -2, X1 = 2, Y0 = 0, Y1 = 3.4;
 const UNIT = 72, DY = 50;                // points per unit across and up
-const W_LINE = 0.6, W_DOT = 0.8;
-const DASH = [3, 2], DOTS = [0, 1.7];
+const W_LINE = 0.6;
+const DASH = [3, 2];
 const END = 2.2;                         // half the bracket's end strokes
 const KEY_LINE = 13, PITCH = 12.5;
-const CLEAR = 1.5;                       // a curve is left out where it is nearer the axis than this, points
+const CLEAR = 0.9;                       // a curve is left out where it is nearer the axis than this, points
 const INSET = { w: 96, h: 30, x1: 2.3 };  // the inset's plot, points, and its range up
 
 const STYLES = {
 	solid: { color: INK, width: W_LINE, layer: 2.2, cap: 'round' },
-	dashed: { color: INK, width: W_LINE, layer: 2, dash: DASH, cap: 'butt' },
-	dotted: { color: FAINT, width: W_DOT, layer: 1.8, dash: DOTS, cap: 'round' }
+	dashed: { color: INK, width: W_LINE, layer: 2, dash: DASH, cap: 'butt' }
 };
 
 /** The three curves on the plot P at k_B T = t hbar omega_0, each drawn only where it stands clear of the axis. */
 function curves(S, P, t, tag) {
 	const out = {};
-	for (const [key, f] of [['dotted', classical], ['dashed', specBar], ['solid', spec]]) {
+	for (const [key, f] of [['dashed', specBar], ['solid', spec]]) {
 		const style = STYLES[key];
 		const floor = (CLEAR / P.h) * (P.y1 - P.y0);
 		const pts = graph(P, (x) => f(x, t), X0, X1, 0.2);
@@ -99,7 +100,7 @@ export default async function () {
 	// ---- the warm cart's curves
 	const warm = curves(S, P, WARM, 'warm');
 	const holds = (runs, x, Pl) => runs.some((r) => r[0][0] < Pl.X(x) && r[r.length - 1][0] > Pl.X(x));
-	check(['solid', 'dashed', 'dotted'].every((k) => holds(warm[k], 1, P) && holds(warm[k], -1, P)), 'a warm curve has not both peaks');
+	check(['solid', 'dashed'].every((k) => holds(warm[k], 1, P) && holds(warm[k], -1, P)), 'a warm curve has not both peaks');
 	const hp = spec(1, WARM), hm = spec(-1, WARM);
 	check(hp.toFixed(3) === '3.164' && hm.toFixed(3) === '1.164' && near(hp / hm, Math.E, 1e-12), 'the solid heights');
 	check(P.Y(hp) > P.top + 8, 'the solid peak reaches the top');
@@ -117,13 +118,13 @@ export default async function () {
 		xl0 = (a + b) / 2;
 	}
 	S.dots([P.X(xl0) - reach - W_LINE / 2, yTop], [bx + END + reach / 2, yTop], { color: FAINT, what: 'the upper leader' });
-	// the lower leader starts clear of the taller dashed and dotted peaks that rise through its height
+	// the lower leader starts clear of the taller dashed peak that rises through its height
 	let xf;
 	{
 		let a = -1, b = -0.8;
 		for (let i = 0; i < 80; i++) { const m = (a + b) / 2; if (specBar(m, WARM) > hm) a = m; else b = m; }
 		xf = (a + b) / 2;
-		check(classical(xf, WARM) < hm && near(specBar(xf, WARM), hm, 1e-9), 'the dashed flank');
+		check(near(specBar(xf, WARM), hm, 1e-9), 'the dashed flank');
 	}
 	S.dots([P.X(xf) + reach + W_LINE / 2, yBot], [bx - END - reach / 2, yBot], { color: FAINT, what: 'the lower leader' });
 	S.path([[bx, yTop], [bx, yBot]], { color: INK, width: HAIR, layer: 2.5, cap: 'butt', what: 'the bracket' });
@@ -143,7 +144,7 @@ export default async function () {
 	{
 		const x = P.X(1.17);
 		let y = P.Y(2.55);
-		for (const [key, src] of [['solid', 'S(\\omega)'], ['dashed', '\\bar S(\\omega)'], ['dotted', '\\text{classical}']]) {
+		for (const [key, src] of [['solid', 'S(\\omega)'], ['dashed', '\\bar S(\\omega)']]) {
 			S.path([[x, y], [x + KEY_LINE, y]], { ...STYLES[key], layer: 2, what: `the key's ${key} line` });
 			L.push(await placed(src, x + KEY_LINE + LABEL_GAP + 1, y, 0, 0.5, INK));
 			y += PITCH;
@@ -157,14 +158,14 @@ export default async function () {
 		L.push(...(await xAxis(S, I, { ticks: [-2, -1, 0, 1, 2], fmt: (t) => (Math.abs(t) === 1 ? minus(t) : null), what: 'the inset\'s axis across' })));
 		L.push(...(await yAxis(S, I, { ticks: [0, 1, 2], fmt: String, what: 'the inset\'s axis up' })));
 		const cold = curves(S, I, COLD, 'cold');
-		check(['dashed', 'dotted'].every((k) => holds(cold[k], 1, I) && holds(cold[k], -1, I)) && holds(cold.solid, 1, I), 'a cold curve has lost a peak');
+		check(holds(cold.dashed, 1, I) && holds(cold.dashed, -1, I) && holds(cold.solid, 1, I), 'a cold curve has lost a peak');
 		check(cold.solid.every((r) => r.every(([x]) => x > I.X(0))), 'the cold emission has not vanished');
-		check(near(specBar(1, COLD), 1, 1e-4) && near(spec(1, COLD), 2, 1e-4) && near(classical(1, COLD), 0.2, 1e-12), 'the cold heights');
+		check(near(specBar(1, COLD), 1, 1e-4) && near(spec(1, COLD), 2, 1e-4), 'the cold heights');
 		L.push(await placed('\\text{nearly at absolute zero}', I.left - 3, I.top - LABEL_GAP - 2, 0, 1, INK));
 		check(I.bottom + 16 < P.Y(specBar(-1, WARM)), `the inset reaches down to the dashed peak: ${I.bottom + 16 - P.Y(specBar(-1, WARM))}`);
 	}
 
 	S.checkAll(L);
-	window[name + '-numbers'] = { warm: [hp, hm, specBar(1, WARM), classical(1, WARM)], cold: [spec(1, COLD), spec(-1, COLD), specBar(1, COLD)] };
+	window[name + '-numbers'] = { warm: [hp, hm, specBar(1, WARM)], cold: [spec(1, COLD), spec(-1, COLD), specBar(1, COLD)] };
 	return finish(S, L, [260, 340]);
 }

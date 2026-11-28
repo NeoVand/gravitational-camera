@@ -40,7 +40,7 @@ that remain. With $N$ equally likely cases the number of questions is $\log_2N$,
 give $N$; here $\log_2N = \ln N/\ln2$, and $\ln$ is the natural logarithm.
 
 ![Four questions find one place among sixteen. Each asks whether the place lies in the left half of the list that
-remains; the answer keeps one half, in orange, and discards the other, drawn faint, so the list shrinks from 16 to 8,
+remains; the answer, written beside it, keeps one half, in orange, and discards the other, drawn faint, so the list shrinks from 16 to 8,
 4, 2 and 1. Every one of the sixteen places is found by the same four questions.](tut-bits-questions){#fig:questions}
 
 When the cases are not equally likely, fewer questions are needed on average, because a good questioner asks first about

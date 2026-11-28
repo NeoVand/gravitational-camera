@@ -16,8 +16,10 @@
 // is shown in orange on the ring of beads, where the tide acts on free bodies; the bodies carry no colour of their own,
 // the stone being stone and the hole dark. The strips' axes are logarithmic, so that r^2 and r^-3 are straight lines
 // of slopes 2 and -3 and the reply, a hundredth of the tide at 2R, shows; both strips share one scale up, the tide's
-// r^2 part being 1 at r = R (or r_s), and both number it. Each panel has a short name with its k_2. The
-// two panels stay side by side on a phone, the figure being one drawing.
+// r^2 part being 1 at r = R (or r_s), which the axis's name says, "potential, r^2 = 1 at r = R" (or r_s), and both
+// number it. Each panel has a short name with its k_2. The ring is named over it, "free beads", in grey, and is drawn
+// larger than tut-tides' (14 points, the blue arrows 8 long), so that the squeeze's arrows show in print. The two
+// panels stay side by side on a phone, the figure being one drawing.
 // Exact: the strips' curves (tut-friction-lib.js: r^2 and r^-3 solve Laplace's equation for degree two, H = r(r - r_s)
 // solves Hinderer's, and the reply is k_2 = 0.30 times the tide at r = R); the hole's disc is round and of radius r_s
 // on the page, the Earth's undeformed radius; the beads' arrows are -E xi for the tide diag(1, 1, -2), the orange
@@ -37,19 +39,19 @@ const check = checker(name);
 const lg = Math.log10;
 const R = 21;                                   // the Earth's undeformed radius and the hole's r_s, on the page
 const APART = 192;                              // between the panels' centres
-const BODY = 12, RING = -51;                    // the body's and the ring's centres, right of the panel's centre
-const RING_R = 12.5;                              // the ring's radius
+const BODY = 12, RING = -54;                    // the body's and the ring's centres, right of the panel's centre
+const RING_R = 14;                              // the ring's radius
 const BEAD = 2.9, BEAD_COLOUR = '#868b92', BEAD_LOOK = { spec: 0.6, shininess: 36 };   // tut-tides' beads
-const ARROW = { width: 0.55, head: 3.2, tail: 1.3, blue: 5.6 };                       // tut-tides' arrows
+const ARROW = { width: 0.55, head: 3.2, tail: 1.3, blue: 8 };                         // tut-tides' arrows, the blue lengthened
 const MOON = { gap: 7, len: 22 };               // the arrow to the Moon: from the body's side, its length
 const EDGE = 0.45, STONE_EDGE = 0.4;            // the hole's edge, the stone's
 const RING_LINE = 0.4, RING_DASH = [1.6, 1.4];  // the ring, dashed
-const TITLE = 10;                               // from a panel's name to the tallest body
+const TITLE = 18;                               // from a panel's name to the tallest body (the ring's name between)
 // the strips: log10 of r/R across, of the potential up
 const SX0 = lg(2), SX1 = lg(8), SY0 = -4, SY1 = 2;
 const STRIP_W = 122, STRIP_H = 58, STRIP_IN = 4, STRIPS = 22;   // the strip's frame, its left from the panel's left, its top under the bodies
 const THIN = 0.6;
-const caption = 'Look first at the two strips: the stone\'s potential has a part that falls as $r^{-3}$, its reply, and the hole\'s has none. The bulge is exaggerated; the curves are exact.';
+const caption = 'Look first at the two strips: the Earth\'s potential has a part that falls as $r^{-3}$, its reply, and the hole\'s has none. Beside each body a ring of free beads shows the tide itself, stretching along the line to the Moon and squeezing across it. The bulge is exaggerated; the curves are exact.';
 
 export default async function () {
 	const { state } = await chapter(check);
@@ -114,6 +116,8 @@ export default async function () {
 			if (u !== 0) check(d[0] === u && d[1] === 0, 'a stretch arrow does not point out along the axis');
 			else check(d[0] === 0 && Math.sign(d[1]) === v, 'a squeeze arrow does not point in');
 		}
+		// the ring named over it: the tide acting on free bodies
+		L.push(await placed('\\text{free beads}', rc[0], rc[1] - RING_R - BEAD - LABEL_GAP - 0.6, 0.5, 1, DIM));
 		const [, , up, down] = arrows;
 		check(Math.abs(up.B[1] - down.B[1]) >= 2, 'the squeeze arrows meet');
 
@@ -125,7 +129,7 @@ export default async function () {
 		L.push(...yl);
 		const below = Math.max(...xl.map((l) => l.box.b));
 		L.push(await placed(isHole ? 'r/r_s' : 'r/R', P.X((SX0 + SX1) / 2), below + 3, 0.5, 0, DIM));
-		L.push(await placed('\\text{potential}', P.left - 4, P.top - 7, 0, 1, DIM));
+		L.push(await placed(isHole ? '\\text{potential, }r^2 = 1\\text{ at }r = r_s' : '\\text{potential, }r^2 = 1\\text{ at }r = R', P.left - 4, P.top - 7, 0, 1, DIM));
 		const curve = (f, n = 200) => Array.from({ length: n + 1 }, (_, i) => { const x = SX0 + ((SX1 - SX0) * i) / n; return P.at(x, lg(f(10 ** x))); });
 		const inside = (pts) => pts.every(([, y]) => y >= P.top - 1e-9 && y <= P.bottom + 1e-9);
 		if (isHole) {

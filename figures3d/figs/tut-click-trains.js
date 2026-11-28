@@ -5,11 +5,12 @@
 // exponentially distributed), with a coherence time of a tenth of the axis, so that the clicks come in bunches with
 // gaps between. Rows 3 and 4, the pair source's two detectors: one more thermal train, each of its clicks given to both
 // detectors, so that each row alone is bunched like row 2 and every tick of row 3 has one directly below it in row 4;
-// thin grey vertical hairlines join a few of the pairs. A short bracket under row 2, one coherence time long, labelled
+// thin grey vertical lines join the pairs. A short bracket under row 2, one coherence time long, labelled
 // "coherence time". Labels at the left of the rows, off the ticks. Ink and the page's greys only.
 // Departures from the diagram's comment: the left labels are set in two lines ("steady" over "(coherent)", "pair
 // source," over "detector 1"), so that the axes keep most of the width and one drawing serves every width, at the
-// same tick density; the hairlines join the pairs that stand clear of their neighbours, where a hairline can be seen.
+// same tick density; the joining lines, in the dim grey, join every pair, all forty (where two clicks lie closer than a
+// line's width their lines merge, as their ticks do). A short arrow under the last axis, at its right end, named "time", says which way time runs on all four.
 // The coherence time is a tenth of the axis, not the comment's fortieth: at a fortieth, one click per coherence time,
 // the thermal row barely differs from the steady one; at a tenth, four clicks per coherence time, its bunches and gaps
 // are unmistakable (the caption calls the coherence time schematic).
@@ -19,9 +20,9 @@
 // law; its correlation's area, the coherence time; counted in short windows, g2 = 1, 2 and g2_12 = 2 + 1/nbar). The
 // bracket is the coherence time, the area under |g1|^2. Schematic, as the caption says: the rates and the coherence
 // time against the axis.
-import { Sheet, ORIGIN, finish, checker, placed, AXIS, HAIR, LABEL_GAP, n2 } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, placed, AXIS, AXIS_HEAD, LABEL_GAP, n2 } from './tut-pot-lib.js';
 import { dimension, upper } from './tut-prob-lib.js';
-import { INK, DIM, FAINT } from '../lib.js';
+import { INK, DIM } from '../lib.js';
 import { chapter, palette, CLICKS, intensity, clicksGiven } from './tut-counting-lib.js';
 
 const name = 'tut-click-trains';
@@ -31,10 +32,10 @@ const check = checker(name);
 const LA = 252;                          // an axis's length
 const TH = 9;                            // a click's tick, standing on its axis
 const TICK_W = 0.5;
+const JOIN_W = 0.45;                     // the lines joining partner clicks
+const TIME = 0.14;                       // the time arrow's length, as a fraction of the axis
 const ROWS = [0, 31, 68, 92];            // the axes' heights, from the first
 const TRIALS = 151;                      // samples of each law, from which the typical one is drawn
-const JOINS = 5;                         // hairlines between the pair's rows
-const CLEAR = 3;                         // a joined pair stands this far (points) from its neighbours
 const TAU = 1 / 10;                      // the coherence time, as a fraction of the axis (schematic)
 const DT = TAU / 100;                    // the field's grid
 const EXPECT = 300;                      // independent samples of the thermal law for the expected number of close pairs
@@ -87,11 +88,13 @@ export default async function () {
 
 	// ---- the hairlines between the pair's rows, at pairs clear of their neighbours, spread along the axis
 	{
-		const free = pair.filter((t, k) => (k === 0 || (t - pair[k - 1]) * LA > CLEAR) && (k === pair.length - 1 || (pair[k + 1] - t) * LA > CLEAR));
-		check(free.length >= JOINS, `only ${free.length} pairs stand clear`);
-		const pick = Array.from({ length: JOINS }, (_, j) => free[Math.round((j * (free.length - 1)) / (JOINS - 1))]);
+		// every pair: where two clicks lie closer than a line's width, their lines merge, as their ticks do
 		const ya = y0 + ROWS[2] + AXIS / 2 + 1.2, yb = y0 + ROWS[3] - TH - 1.2;
-		for (const t of pick) S.path([[X(t), ya], [X(t), yb]], { color: FAINT, width: HAIR, layer: 1.5, cap: 'butt', what: 'a hairline' });
+		const d = pair.map((t) => `M${n2(X(t))},${n2(ya)}V${n2(yb)}`).join('');
+		S.raw(`<path d="${d}" stroke="${DIM}" stroke-width="${JOIN_W}" fill="none"/>`, 1.5);
+		for (const t of pair) S.mark([[X(t), ya], [X(t), yb]], JOIN_W / 2, 'a joining line');
+		const free = pair;
+		window[name + '-joined'] = free.length;
 	}
 
 	// ---- the coherence time, under the densest bunch of row 2
@@ -108,6 +111,13 @@ export default async function () {
 		dimension(S, a, b, y, { color: DIM, width: 0.5, what: 'the coherence time' });
 		const right = b + LABEL_GAP + 1 + 60 < X(1);
 		L.push(await placed('\\text{coherence time}', right ? b + LABEL_GAP + 1 : a - LABEL_GAP - 1, y, right ? 0 : 1, 0.5, INK));
+	}
+
+	// ---- time runs to the right: a short arrow under the last axis, at its right end, named "time"
+	{
+		const y = y0 + ROWS[3] + 7, a = X(1 - TIME), b = X(1);
+		S.arrow([a, y], [b, y], { color: DIM, width: AXIS, head: AXIS_HEAD, layer: 2, what: 'the time arrow' });
+		L.push(await placed('\\text{time}', a - LABEL_GAP - 0.6, y, 1, 0.5, DIM));
 	}
 
 	// ---- the labels, at the left of the rows

@@ -11,18 +11,21 @@
 // 1440, so that its text stays readable on a phone. The lower clock's worldline lies along the time axis, since it is
 // at height 0, and the axis runs on past it to its head; the height axis carries ticks at 0 and h, named so, which
 // the comment does not draw, so that the upper clock's height can be read. The clocks' names stand at the right,
-// between the two worldlines and beyond the second flash; "same Delta t" stands between the worldlines left of the
-// first flash. The brackets' names are in the observer's colour, as the clocks' own times are in the chapter.
+// between the two worldlines and beyond the second flash. "Same Delta t" names a thin grey double arrow from the first
+// flash to the second halfway up, between the two brackets, rather than standing alone at the left: the second flash
+// is the first moved by Delta t, so the arrow is the brackets' length. The brackets' names are in the observer's
+// colour, as the clocks' own times are in the chapter.
 // Exact: the second flash is the first moved along t by Delta t (asserted at every point), each flash starts and ends
 // on the worldlines (asserted), and the two brackets have the same length on the page, each with its ends at the
-// dots' times (asserted). Schematic: the flashes' shape. In these coordinates light climbs faster where the potential
+// dots' times (asserted), as the double arrow between the flashes halfway up has (asserted). Schematic: the flashes' shape. In these coordinates light climbs faster where the potential
 // is higher (dz/dt = c (1 + 2 Phi/c^2) to first order), so each flash steepens as it rises; the bend is exaggerated
 // and the axes carry no scale.
-import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, LINE, HAIR, TICK } from './tut-pot-lib.js';
+import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, LINE, HAIR, TICK, VEC_HEAD } from './tut-pot-lib.js';
 import { NUM } from './tut-prob-lib.js';
 import { longest } from './tut-fourier-lib.js';
 import { DOT } from './tut-bessel-lib.js';
 import { INK, DIM } from '../lib.js';
+import { doubleArrow } from './tut-maxwell-lib.js';
 import { chapter, palette, OBS, LIGHT } from './tut-metric-lib.js';
 
 const name = 'tut-metric-clocks';
@@ -111,12 +114,16 @@ export default async function () {
 	const upper = await placed('\\Delta\\tau_{\\rm upper} = \\bigl(1 + \\Phi(h)/c^2\\bigr)\\,\\Delta t', (arr[0][0] + arr[1][0]) / 2, yu - BRACKET / 2 - LABEL_GAP - 0.6, 0.5, 1, OBS);
 	L.push(lower, upper);
 
-	// ---- "same Delta t", between the worldlines left of the first flash, level with its middle
+	// ---- "same Delta t": a thin double arrow between the two flashes halfway up, from one to the other, named above
+	// its middle; the second flash is the first moved by Delta t, so the arrow is Delta t long at every height
 	{
-		const mid = (y0 + yh) / 2;
-		const left = x0 + AXIS / 2 + LABEL_GAP + 1.2;
-		const lab = await placed('\\text{same } \\Delta t', left, mid, 0, 0.5, INK);
-		L.push(lab);
+		const u = Math.log(1 + 0.5 * (Math.exp(BEND) - 1)) / BEND;      // shape(u) = 1/2
+		check(near(shape(u), 0.5, 1e-12), 'the arrow is not halfway up');
+		const y = y0 - H * shape(u), a = [x0 + T1 + CLIMB * u, y], b = [a[0] + DT, y];
+		const ar = doubleArrow(S, [a[0] + LINE / 2 + 0.5, y], [b[0] - LINE / 2 - 0.5, y], { color: DIM, width: BRACKET, head: VEC_HEAD - 1, layer: 2, what: 'the arrow of Delta t' });
+		check(near(b[0] - a[0], DT, 1e-12), 'the arrow between the flashes is not Delta t');
+		L.push(await placed('\\text{same } \\Delta t', (a[0] + b[0]) / 2, y - BRACKET / 2 - 0.36 * (VEC_HEAD - 1) - LABEL_GAP - 0.4, 0.5, 1, INK));
+		void ar;
 	}
 
 	// ---- the clocks' names, at the right, between the worldlines and beyond the second flash

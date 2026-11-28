@@ -4,12 +4,14 @@
 // (a) beside (b), (c) beside (d), then (e) and (f) each across the whole width; and the printed book's, as wide as the
 // text, (a) (b) (c) in a row, the gains' axis level with the scores', then (d) beside (e) over (f).
 //  (a) Find the safe. Above: the gold's own E_xx along the row of pixels of panel (f) of fig:locked-safe (3.5 m long,
-//      at the camera), in 10^-10 s^-2 against x from -1.75 to 1.75 m (orange, named over its peak), peaking at 4.1 at
-//      x = 1.1 m; around zero the noise sigma_n of one reading at SNR 10^3, +-0.35 (blue, named "10^3"), and at SNR 10,
-//      +-35 (the blue tint, named "SNR 10"); the vertical axis runs from -40 to 40 so that the wide band fits. Below:
-//      the two safes' scores as two unit Gaussians (section 3.3's colours: blue for the left safe, orange for the
-//      right, each named beside its outer flank), their centres D = 1.81 apart, the midline dashed and the tail of each
-//      beyond it in its tint, 18.3% each.
+//      at the camera), in 10^-10 s^-2 (the unit over the axis, beside the letter) against x from -1.75 to 1.75 m ("m"
+//      past the axis's end), orange, named under its peak, peaking at 4.1 at x = 1.1 m; the axis runs from -5 to 5 so
+//      that the signal shows. Around zero the noise sigma_n of one reading at SNR 10^3, +-0.35, a band of the blue
+//      halfway to white ("10^3: +-0.35"), and at SNR 10, +-35, wider than the chart, so its blue tint fills the chart
+//      ("SNR 10: +-35"). Below: the two safes' scores t/sigma_n (the name past the axis's end) as two unit Gaussians in
+//      section 3.3's colours (fig:safe): orange for the gold in the left safe, at +D/2 since the chapter's t is positive
+//      for it, and blue for the right, at -D/2, each named "gold left" or "gold right" beside its outer flank; their
+//      centres D = 1.81 apart, the midline dashed and the tail of each beyond it in its tint, 18.3% each.
 //  (b) See the blur. A plan from above, to scale, the camera at the foot looking up the page, its right to the right:
 //      the camera's array as a bar 1 m wide; the two safes, squares 0.8 m wide with walls of 5 cm of steel (in the
 //      steel ball's grey), centred 2.2 m apart, their centres 3.5 m from it, and the gold, 30 cm across and 40 cm deep,
@@ -20,24 +22,28 @@
 //      angle beside it), and that blur's arc of 1.98 m at 3.5 m, its length over it; both blurs are wider than the
 //      1.4 m gap between the safes. The safes and the gold lie over the wedges' lines.
 //  (c) Fail to weigh it. The whitened gains of section 3.4 (the locked safe's design matrix over the noise at
-//      SNR 10^3, times the gold's mass) on a logarithmic scale, largest first; the 17 above one in orange ("17 kept"),
-//      the rest pale; the line at one in the noise's blue ("noise"). Only the 118 above 10^-10 are drawn: the other 113
-//      of the 231 lie below it, where double precision cannot resolve them.
+//      SNR 10^3, times the gold's mass) on a logarithmic scale against their rank, largest first ("whitened gain" over
+//      the axis, "rank" past the other's end); the 17 above one in orange ("17 kept"), the rest pale; the line at one
+//      in the noise's blue ("noise"). Only the 118 above 10^-10 are drawn: the other 113 of the 231 lie below it, where
+//      double precision cannot resolve them, and a note in the empty corner says so ("113 more, lost in rounding").
 //  (d) Weigh it by positivity. The histogram of the mass the positive image finds in the right safe over 3000 draws
 //      of the noise (figs/tut-read-iv2-lib.js), in 10 kg bins from 40 kg to the bin that holds the highest draw, so that
 //      every draw is held, counted on a logarithmic scale so that the single draws of the long tail show; their mean,
 //      315 kg (orange, its value beside it), and the true 324 kg (dashed). Above it, on axes of its own, the Cramer-Rao
 //      ellipse of a point of gold at SNR 10^3: the error in mass across (kg) and in depth up (cm), one standard
 //      deviation, ticked at +-25 kg and +-9.1 cm, leaning along "farther and heavier" (correlation 0.996), in section
-//      3.3's blue. The units at the ends of the axes.
+//      3.3's blue. The units at the ends of the axes: cm over the vertical one, kg past each horizontal one's end, in the
+//      row of its numbers, as (a)'s and (c)'s names are.
 //  (e) Count the bits. A bar of 38 cells, one per bit of a patch at SNR 10^3 (eq:capacity-integral, 37.9): the first
-//      cell, the safe (one bit), in ink; the next four, the mass (log2(324/20) = 4.0 bits), in orange; the rest pale;
-//      "safe", "mass" and "38 bits" under them.
+//      cell, the safe (one bit), in ink; the next four, the mass (log2(324/20) = 4.0 bits), in orange; the rest in the
+//      rule's grey, as (c)'s pale dots; "safe", "mass" and "38 bits" under them on one baseline.
 //  (f) The quantum ceiling. The bar's face, 30 cm by 14 cm as the camera sees it, drawn twice: blurred by the Wiener
 //      point spread at the ceiling SNR = 1.2 x 10^71 (full width 1.49 degrees, 9 cm at 3.5 m), and by the same pattern
 //      widened to this array's 2.09 degrees, 13 cm, each named under it with its blur. Each image's opacity is its
 //      value against the face's own (the paper's maps: orange above zero, blue below), one RGBA image each, clear at
 //      its edges; the face's true outline in a hairline. At 2.5 points per centimetre on the site and 3.3 in the book.
+//      The wide array's image is brightest about 8 cm either side of the bar's middle, 17% above the middle (asserted):
+//      its point spread is ringed, below zero from 8 to 14 cm out, and the ring takes most from the middle.
 // Exact: every number above, recomputed here and asserted against the chapter and against the reference code's
 // numbers (figs/tut-read-iv2-lib.js): the gold's readings by the prism formulas (figs/tut-measure-lib.js), the gains by
 // Jacobi rotations (figs/tut-svd-lib.js), the bits (figs/tut-bits-lib.js), the point spreads as Hankel transforms of
@@ -204,6 +210,10 @@ const BELOW_LETTER = 4;         // from a letter's bottom to its panel's highest
 const YL = 22;                  // the room for the vertical axes' numbers, left of a chart
 const WORD = 7.5;               // the words that name things inside the panels
 const UNIT = 14;                // the room right of (d)'s two charts for their unit, kg
+const UNIT_A = 22;              // the room right of (a)'s two charts for their axes' names, m and t/sigma_n
+const UNIT_C = 26;              // and right of (c)'s, for rank
+const A_RANGE = 5;              // (a)'s readings axis, from -5 to 5 (10^-10 s^-2)
+const BLUE_MID = '#95b3d6';     // the second accent halfway to white: the narrow band, deeper than the wide band's tint
 
 export default async function () {
 	const N = numbers();
@@ -214,36 +224,54 @@ export default async function () {
 	const letter = async (l, x, y) => { const g = await placed(`\\text{(${l})}`, x, y, 0, 0, INK, LETTER); L.push(g); return g.box; };
 	// the lowest ink drawn since a mark: of the labels and of the marks
 	const since = () => { const l = L.length, m = S.marks.length; return () => Math.max(...L.slice(l).map((g) => g.box.b), ...S.marks.slice(m).flatMap((k) => k.pts.map((p) => p[1] + k.r))); };
+	// an x axis's name, in the row of its numbers, past the axis's end and clear of its last number, inside the column
+	// that ends at `edge`
+	const xName = async (src, P, labels, edge) => {
+		const row = labels.filter((g) => g && g.box && g.box.t > P.bottom);
+		const y = row.length ? (Math.min(...row.map((g) => g.box.t)) + Math.max(...row.map((g) => g.box.b))) / 2 : P.bottom + 6;
+		const g = await placed(src, Math.max(P.right + LABEL_GAP + 1, ...row.map((l) => l.box.r + 4)), y, 0, 0.5, DIM, WORD);
+		check(g.box.r <= edge + 0.01, `the axis's name ${src} leaves its column`);
+		L.push(g);
+		return g;
+	};
 	const word = async (src, x, y, ax, ay, color = INK) => { const g = await placed(`\\text{${src}}`, x, y, ax, ay, color, WORD); L.push(g); return g; };
 
 	// ---- (a) find the safe: E_xx along the row against the two bands; below, the two safes' scores
 	const panelA = async (x, top) => {
 		const low = since();
 		const la = await letter('a', x, top);
-		const P1 = new Plot({ left: x + YL, top: la.b + BELOW_LETTER + 2, w: CW - YL, h: 56, x0: -1.75, x1: 1.75, y0: -40, y1: 40 });
-		const band = (v, color, what) => S.fill(pathOf([P1.at(P1.x0, v), P1.at(P1.x1, v), P1.at(P1.x1, -v), P1.at(P1.x0, -v)]), { l: P1.left, r: P1.right, t: P1.Y(v), b: P1.Y(-v) }, { color, layer: 0, what, solid: false });
-		band(N.sig1, BLUE_TINT, 'the band at 10');
-		band(N.sig3, ACCENT2, 'the band at 10^3');
+		// the readings' unit, over their axis, level with the letter
+		L.push(await placed('10^{-10}\\,\\mathrm{s^{-2}}', x + YL, (la.t + la.b) / 2, 0, 0.5, DIM, WORD));
+		const P1 = new Plot({ left: x + YL, top: la.b + BELOW_LETTER + 2, w: CW - YL - UNIT_A, h: 56, x0: -1.75, x1: 1.75, y0: -A_RANGE, y1: A_RANGE });
+		// the noise at 10, +-35, is wider than the chart: its tint fills it; the noise at 10^3, +-0.35, a deeper band
+		check(N.sig1 > 5 * A_RANGE && 2 * N.sig3 * (P1.h / (2 * A_RANGE)) > 3, 'the bands against the chart');
+		S.fill(pathOf([P1.at(P1.x0, P1.y1), P1.at(P1.x1, P1.y1), P1.at(P1.x1, P1.y0), P1.at(P1.x0, P1.y0)]), { l: P1.left, r: P1.right, t: P1.top, b: P1.bottom }, { color: BLUE_TINT, layer: 0, what: 'the band at 10', solid: false });
+		S.fill(pathOf([P1.at(P1.x0, N.sig3), P1.at(P1.x1, N.sig3), P1.at(P1.x1, -N.sig3), P1.at(P1.x0, -N.sig3)]), { l: P1.left, r: P1.right, t: P1.Y(N.sig3), b: P1.Y(-N.sig3) }, { color: BLUE_MID, layer: 0, what: 'the band at 10^3' });
 		const exx = graph(P1, N.exx, -1.75, 1.75, 0.2);
 		check(longest(exx) <= 0.2 + 1e-9, 'E_xx is sampled too coarsely');
+		check(exx.every(([, y]) => y > P1.top + 2), 'E_xx reaches the chart\'s top');
 		S.path(exx, { color: ACCENT, width: CURVE, layer: 2, what: 'E_xx' });
-		L.push(...await yAxis(S, P1, { ticks: [-40, 0, 40], fmt: (t) => String(t), what: 'the readings axis' }));
-		L.push(...await xAxis(S, P1, { ticks: [-1.5, -1, -0.5, 0, 0.5, 1, 1.5], fmt: (t) => (Number.isInteger(t) ? String(t) : null), what: 'the row axis' }));
+		L.push(...await yAxis(S, P1, { ticks: [-4, 0, 4], fmt: (t) => (t < 0 ? `-${-t}` : String(t)), what: 'the readings axis' }));
+		const rl = await xAxis(S, P1, { ticks: [-1.5, -1, -0.5, 0, 0.5, 1, 1.5], fmt: (t) => (Number.isInteger(t) ? String(t) : null), what: 'the row axis' });
+		L.push(...rl);
+		await xName('\\mathrm m', P1, rl, x + CW);
 		// the peak stands above the narrow band and inside the wide one
 		check(N.exx(1.1) > 10 * N.sig3 && N.exx(1.1) < N.sig1 / 8, 'the peak against the bands');
-		// their names: the wide band's in its upper left corner, the narrow band's under it at the left, the reading's
-		// over its peak
-		const nb = await placed('\\text{SNR } 10', P1.left + 3, P1.Y(N.sig1) + 2.5, 0, 0, ACCENT2, WORD);
+		// the names: the wide band's in the upper left corner, the narrow band's under it at the left, the reading's
+		// under its peak
+		const nb = await placed(`\\text{SNR } 10{:}\\ {\\pm}${N.sig1.toFixed(0)}`, P1.left + 3, P1.top + 2.5, 0, 0, ACCENT2, WORD);
 		nb.on = ['the band at 10'];
 		L.push(nb);
-		const n3 = await placed('10^3', P1.X(-1.6), P1.Y(-N.sig3) + LABEL_GAP + 0.6, 0, 0, ACCENT2, WORD);
+		const n3 = await placed(`10^3{:}\\ {\\pm}${N.sig3.toFixed(2)}`, P1.left + 3, P1.Y(-N.sig3) + LABEL_GAP + 0.6, 0, 0, ACCENT2, WORD);
 		n3.on = ['the band at 10'];
 		L.push(n3);
-		const ex = await placed('E_{xx}', P1.X(1.1), P1.Y(N.exx(1.1)) - LABEL_GAP - 0.6, 0.5, 1, ACCENT, WORD);
+		const ex = await placed('E_{xx}', P1.X(1.1), P1.Y(N.exx(1.1)) + LABEL_GAP + 1.2, 0.5, 0, ACCENT, WORD);
 		ex.on = ['the band at 10'];
 		L.push(ex);
 		const P2 = new Plot({ left: P1.left, top: low() + 8, w: P1.w, h: 30, x0: -4, x1: 4, y0: 0, y1: 0.42 });
 		const half = N.D / 2, cut = merge(P2, CURVE);
+		// the safes in section 3.3's colours (fig:safe): the left safe orange, the right blue; by the chapter's t the gold
+		// in the left safe scores about +D/2, so the orange bell stands on the right
 		for (const [mu, color, tint, side] of [[-half, ACCENT2, BLUE_TINT, 1], [half, ACCENT, ORANGE_TINT, -1]]) {
 			const f = (z) => gauss(z - mu);
 			// where the curve stands clear of the axis
@@ -255,16 +283,20 @@ export default async function () {
 			const tail = side > 0 ? graph(P2, f, 0, b, 0.2) : graph(P2, f, a, 0, 0.2);
 			const poly = side > 0 ? [P2.at(0, 0), ...tail, P2.at(b, 0)] : [P2.at(a, 0), ...tail, P2.at(0, 0)];
 			S.fill(pathOf(poly), { l: 0, r: 0, t: 0, b: 0 }, { color: tint, layer: 0, what: 'a tail', solid: false });
-			S.path(pts, { color, width: CURVE, layer: 2, what: side > 0 ? 'the left score' : 'the right score' });
+			S.path(pts, { color, width: CURVE, layer: 2, what: side > 0 ? 'the right safe\'s score' : 'the left safe\'s score' });
 			check(near(upper(Math.abs(mu)), N.wrong, 1e-12), 'the tail is not the share of wrong choices');
 		}
 		S.path([P2.at(0, 0), P2.at(0, 0.42)], { color: INK, width: HAIR, layer: 2, dash: DASH, cap: 'butt', what: 'the midline' });
 		// the scores' names, each beside its curve's outer flank at half its height
-		for (const [mu, src, color, s] of [[-half, 'left', ACCENT2, -1], [half, 'right', ACCENT, 1]]) {
+		for (const [mu, src, color, s] of [[-half, 'gold right', ACCENT2, -1], [half, 'gold left', ACCENT, 1]]) {
 			const z = mu + s * Math.sqrt(2 * Math.log(2)), [px, py] = P2.at(z, gauss(z - mu));
-			L.push(await S.clear(`\\text{${src}}`, px + s * (LABEL_GAP + 1.2), py, s > 0 ? 0 : 1, 0.5, [s, 0], { color, size: WORD }));
+			const g = await S.clear(`\\text{${src}}`, px + s * (LABEL_GAP + 1.2), py, s > 0 ? 0 : 1, 0.5, [s, 0], { color, size: WORD });
+			check(g.box.l >= x - 0.01 && g.box.r <= x + CW + 0.01, `the name ${src} leaves its column`);
+			L.push(g);
 		}
-		L.push(...await xAxis(S, P2, { ticks: [-4, -3, -2, -1, 0, 1, 2, 3, 4], fmt: (t) => (t % 2 === 0 ? String(t) : null), what: 'the score axis' }));
+		const sl = await xAxis(S, P2, { ticks: [-4, -3, -2, -1, 0, 1, 2, 3, 4], fmt: (t) => (t % 2 === 0 ? String(t) : null), what: 'the score axis' });
+		L.push(...sl);
+		await xName('t/\\sigma_n', P2, sl, x + CW);
 		return { bottom: low(), axis: P2.bottom };
 	};
 
@@ -348,10 +380,11 @@ export default async function () {
 		S.raw(`<path d="${pathOf(ell)}" fill="${ACCENT2}" fill-opacity="0.12" stroke="${ACCENT2}" stroke-width="0.5"/>`, 2);
 		S.mark(ell, 0.25, 'the ellipse');
 		L.push(...await yAxis(S, E, { ticks: [-sz, 0, sz], fmt: (t) => (t === 0 ? '0' : (t < 0 ? '-' : '') + Math.abs(t).toFixed(1)), what: 'the depth error axis' }));
-		L.push(...await xAxis(S, E, { ticks: [-sm, 0, sm], fmt: (t) => (t === 0 ? '0' : (t < 0 ? '-' : '') + Math.abs(t).toFixed(0)), what: 'the mass error axis' }));
+		const el = await xAxis(S, E, { ticks: [-sm, 0, sm], fmt: (t) => (t === 0 ? '0' : (t < 0 ? '-' : '') + Math.abs(t).toFixed(0)), what: 'the mass error axis' });
+		L.push(...el);
 		// the units of its two axes, beside their ends
 		await word('cm', E.left + 3, E.top, 0, 0, DIM);
-		await word('kg', E.right + LABEL_GAP + 1, E.bottom, 0, 0.5, DIM);
+		await xName('\\mathrm{kg}', E, el, x + CW);
 		// the histogram, in 10 kg bins from 40 kg, on a logarithmic count
 		const BIN = 10, lo = 40, nb = Math.ceil((N.max - lo) / BIN);
 		const hi = lo + nb * BIN;
@@ -383,8 +416,9 @@ export default async function () {
 		// the mean's value, left of its line at the top
 		L.push(await S.clear(`${N.mean.toFixed(0)}`, P4.X(N.mean) - LABEL_GAP - 0.6, P4.Y(P4.y1) + 1, 1, 0, [-1, 0], { color: ACCENT, size: WORD }));
 		L.push(...await yAxis(S, P4, { ticks: [0, 1, 2, 3], fmt: (t) => (t === 0 ? '1' : t === 1 ? '10' : `10^{${t}}`), what: 'the count axis' }));
-		L.push(...await xAxis(S, P4, { ticks: [50, 100, 150, 200, 250, 300], fmt: (t) => (t % 100 === 0 ? String(t) : null), what: 'the mass axis' }));
-		await word('kg', P4.right + LABEL_GAP + 1, P4.bottom, 0, 0.5, DIM);
+		const ml = await xAxis(S, P4, { ticks: [50, 100, 150, 200, 250, 300], fmt: (t) => (t % 100 === 0 ? String(t) : null), what: 'the mass axis' });
+		L.push(...ml);
+		await xName('\\mathrm{kg}', P4, ml, x + CW);
 		return { bottom: low(), chartTop, axis: P4.bottom, counts };
 	};
 
@@ -400,7 +434,9 @@ export default async function () {
 		const shown = N.gains.filter((g) => g > LOW);
 		check(shown.length === 118 && N.gains.length - shown.length === 113, `${shown.length} gains above 10^-10`);
 		check(N.gains[117] - LOW > 1e-11 && LOW - N.gains[118] > 1e-11, 'a gain is too near 10^-10 to count');
-		const P3 = new Plot({ left: x + YL, top: chartTop, w: CW - YL, h: axis - chartTop, x0: 0, x1: 232, y0: -10.3, y1: 4 });
+		const P3 = new Plot({ left: x + YL, top: chartTop, w: CW - YL - UNIT_C, h: axis - chartTop, x0: 0, x1: 232, y0: -10.3, y1: 4 });
+		// the gains' name over their axis, level with the letter (the rank's, past its axis's end, below)
+		L.push(await placed('\\text{whitened gain}', x + YL, (lc.t + lc.b) / 2, 0, 0.5, DIM, WORD));
 		S.path([P3.at(P3.x0, 0), P3.at(P3.x1, 0)], { color: ACCENT2, width: MARK, layer: 1, cap: 'butt', what: 'the line at one' });
 		// the dots of each colour as one shape, so that where they overlap the pale ones do not darken
 		const DOTR = 0.75, dots = { kept: '', rest: '' };
@@ -413,10 +449,18 @@ export default async function () {
 		S.raw(`<path d="${dots.kept}" fill="${ACCENT}"/>`, 3);
 		S.mark(shown.map((g, i) => P3.at(i + 1, lg(g))), DOTR, 'the gains');
 		L.push(...await yAxis(S, P3, { ticks: [4, 0, -4, -8], fmt: (t) => (t === 0 ? '1' : `10^{${t}}`), what: 'the gains axis' }));
-		L.push(...await xAxis(S, P3, { ticks: [1, 17, 50, 100, 118, 150, 200, 231], fmt: (t) => ([1, 17, 118, 231].includes(t) ? String(t) : null), from: 0, what: 'the index axis' }));
+		const il = await xAxis(S, P3, { ticks: [1, 17, 50, 100, 118, 150, 200, 231], fmt: (t) => ([17, 118, 231].includes(t) ? String(t) : null), from: 0, what: 'the index axis' });
+		L.push(...il);
+		await xName('\\text{rank}', P3, il, x + CW);
 		// the names: the line at one is the noise; the 17 above it are kept
 		L.push(await S.clear('\\text{noise}', P3.X(228), P3.Y(0) - LABEL_GAP - 0.6, 1, 1, [0, -1], { color: ACCENT2, size: WORD }));
 		L.push(await S.clear('\\text{17 kept}', P3.X(20) + LABEL_GAP + 1, P3.Y(lg(shown[8])), 0, 0.5, [1, 0], { color: ACCENT, size: WORD }));
+		// the 113 not drawn, said in the empty space right of the falling dots (the sheet's checks keep it clear of them)
+		const mid = (P3.X(shown.length) + P3.right) / 2;
+		const r1 = await placed(`\\text{${N.gains.length - shown.length} more,}`, mid, P3.Y(-5.6), 0.5, 1, DIM, WORD);
+		const r2 = await placed('\\text{lost in rounding}', mid, r1.box.b + LABEL_GAP + 0.4, 0.5, 0, DIM, WORD);
+		check(r2.box.r <= x + CW, 'the note on rounding leaves its column');
+		L.push(r1, r2);
 		return { P3 };
 	};
 
@@ -429,16 +473,19 @@ export default async function () {
 		const ct = (le.t + le.b) / 2 - CH / 2;
 		for (let i = 0; i < N.bits; i++) {
 			const l = bl + i * pitch, r = l + pitch - CGAP;
-			const color = i === 0 ? INK : i <= N.mass ? ACCENT : '#eeebe5';
+			const color = i === 0 ? INK : i <= N.mass ? ACCENT : RULE;
 			S.fill(`M${n2(l)},${n2(ct)}H${n2(r)}V${n2(ct + CH)}H${n2(l)}Z`, { l, r, t: ct, b: ct + CH }, { color, layer: 1, what: 'a bit' });
 		}
 		// the names under the cells: the safe's, the mass's, and the patch's count at the right
-		const under = ct + CH + LABEL_GAP + 0.6;
-		const ms = await word('mass', bl + pitch + (N.mass * pitch - CGAP) / 2, under, 0.5, 0, ACCENT);
-		// the safe's under its cell, or as near it as the mass's name allows
+		// on one baseline (none of the three names has a descender, so their ink ends on it), the tallest's top
+		// LABEL_GAP + 0.6 under the cells
 		const probe = await placed('\\text{safe}', 0, 0, 0.5, 0, INK, WORD), half = (probe.box.r - probe.box.l) / 2;
-		await word('safe', Math.min(bl + (pitch - CGAP) / 2, ms.box.l - LABEL_GAP - 0.6 - half), under, 0.5, 0);
-		await word(`${N.bits} bits`, x + w, under, 1, 0, DIM);
+		const base = ct + CH + LABEL_GAP + 0.6 + (probe.box.b - probe.box.t);
+		const ms = await word('mass', bl + pitch + (N.mass * pitch - CGAP) / 2, base, 0.5, 1, ACCENT);
+		// the safe's under its cell, or as near it as the mass's name allows
+		const sf = await word('safe', Math.min(bl + (pitch - CGAP) / 2, ms.box.l - LABEL_GAP - 0.6 - half), base, 0.5, 1);
+		const nb = await word(`${N.bits} bits`, x + w, base, 1, 1, DIM);
+		check(Math.max(...[ms, sf, nb].map((g) => g.box.t)) > ct + CH + LABEL_GAP, 'a name under the bits touches them');
 		return { bottom: low() };
 	};
 
@@ -470,6 +517,18 @@ export default async function () {
 		const ratio = N.wideC / N.smallC;                  // the small camera's pattern is the wide one's widened by 1 / ratio
 		const images = [img(N.psfC, 1), img(N.psfC, ratio)];
 		const peak = Math.max(...images.flatMap((m) => [...m.v]));
+		// the wide array's image of the even bar is brightest either side of its middle, not at it: its point spread is
+		// ringed, below zero from about 8 to 14 cm out at 3.5 m, and the ring, lying on the bar, takes more from its
+		// middle than from near its ends (the caption: 17% brighter about 8 cm either side of the middle)
+		{
+			const ps = (cm) => N.psfC(cm / (DEPTH * 100));
+			check(ps(7) > 0 && ps(8) < 0 && ps(14) < 0 && ps(15) > 0, 'the wide point spread\'s ring is not from 8 to 14 cm');
+			const m = images[0], row = (m.ny - 1) / 2, mid = (m.nx - 1) / 2;
+			check(Number.isInteger(row) && Number.isInteger(mid), 'the image has no middle pixel');
+			const along = [...Array(m.nx).keys()].map((a) => m.v[row * m.nx + a]);
+			const top = Math.max(...along), at = Math.abs(along.indexOf(top) - mid) * STEP;
+			check((top / along[mid]).toFixed(2) === '1.17' && at >= 7 && at <= 9, `the wide image's lobes: ${top / along[mid]} at ${at} cm`);
+		}
 		const edge = Math.max(...images.flatMap((m) => { const o = []; for (let a = 0; a < m.nx; a++) o.push(Math.abs(m.v[a]), Math.abs(m.v[(m.ny - 1) * m.nx + a])); for (let b = 0; b < m.ny; b++) o.push(Math.abs(m.v[b * m.nx]), Math.abs(m.v[b * m.nx + m.nx - 1])); return o; }));
 		check(edge / peak < 0.9 * FLOOR, `the images do not fade out by their edges (${edge / peak})`);
 		const DEEP = 0.85;                                 // the strongest opacity, at the images' greatest value

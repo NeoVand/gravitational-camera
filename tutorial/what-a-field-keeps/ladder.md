@@ -141,7 +141,7 @@ against $r^{2j}H_\ell$ with $j < m$, and $j$ is the moment's **rung**: a row of 
 [](/paper/#fig:ladder). A reading at one time holds the rung $j = 0$ alone, the multipole moments of section 2.3
 (Figure [](#fig:ladder-rungs)).
 
-![Look first at the bands: each degree of tide adds one floor, one more power of $r^2$, to every column of angular
+![Look first at the bands: each degree $m$ of tide adds one floor, one more power of $r^2$, to every column of angular
 patterns. The bead in the colour of matter, $\int\matter\rho\,r^4$, is the first at which the two bodies of the opening
 differ. The dashed diagonals collect the moments that a held mass reaches at one power of its distance. The number of
 beads in a cell is exact; the spacing is chosen for the drawing.](tut-ladder-rungs){#fig:ladder-rungs}

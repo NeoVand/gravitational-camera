@@ -4,17 +4,22 @@
 // Left: a lumpy stone body of uniform density (its surface r(u) = 1 plus two low harmonics and a few smooth knobs, lit
 // by the studio over the sawn stone's colours, tut-pass-lib.js), the great circle of directions at right angles to nu
 // drawn faint round it, nu a short arrow up from its top; three bundles of parallel paths along three directions n_1,
-// n_2, n_3 of that circle, 60 degrees apart, each a ribbon of three paths beside the body, named at its start; for n_1,
-// the plane across it beyond the body, a translucent sheet carrying the projected mass Sigma (the length of the body
-// along each path through it) in matter's colour, the three paths of n_1 ending on it.
+// n_2, n_3 of that circle, 60 degrees apart, each a ribbon of three paths beside the body (the passers go by it, not
+// through it), named at its start, each path with a head at its end; for n_1, the plane across it beyond the body, a
+// translucent sheet carrying the projected mass Sigma (the length of the body along each line through it) in matter's
+// colour, the three paths of n_1 ending on it, their heads' tips well inside its edges (the sheet 3.5 body radii
+// across, the ribbon below and to the side away from the body, where the body hides none of the ends); a dotted line
+// along n_1 through the body's centre to the middle of the sheet, the line along which Sigma sums the mass, cut where
+// the body hides it. The paths of n_2 and n_3 stop short of the sheet, of the other bundles and of nu (drawn first).
 // Right: wavevector space, the same axis nu through its origin: for each n_i the slice k.n_i = 0, a translucent
 // rectangle through the origin, nu its middle line, in the grey of its bundle and named k.n_i = 0; a fourth, dashed,
-// for the slices that turning n round the circle sweeps through every k.
+// for the slices that turning n round the circle sweeps through every k, named "as n turns".
 // Departures from the diagram's comment: the bundles and the slices are told apart by their names and by three greys
 // of the page's ink, since the colours that are not neutral are kept for matter (Sigma), and orange and blue mean a
 // stretch and a squeeze.
-// Exact: every n_i at right angles to nu; each path parallel to its n_i and clear of the body (asserted along it); the
-// sheet at right angles to n_1; Sigma, the body's chord along n_1 through each point of the sheet (on steps of 0.005 of
+// Exact: every n_i at right angles to nu; each path parallel to its n_i and clear of the body (asserted along it); each
+// path of n_1 ending on the sheet, inside its edges (asserted); the sheet at right angles to n_1; the dotted line along
+// n_1 through the body's centre and the sheet's; Sigma, the body's chord along n_1 through each point of the sheet (on steps of 0.005 of
 // the body's size); each slice the plane through the origin at right angles to its n_i, so containing nu (asserted
 // point by point); what the body hides of each path and of the circle, found along each line of sight, and what runs
 // in front of the stone drawn in its fixed ink. Schematic, as the caption says: the body's shape, the number and
@@ -32,12 +37,15 @@ const check = checker(name);
 const TURN = -40, TILT = 34;                  // the view, degrees
 const PHI = [0, 60, 120];                     // the three directions on the great circle, degrees from x toward z
 const SWEEP = 150;                            // the fourth slice, dashed
-const RIBBON = [250, 115, 345], SPACING = 0.36;   // each bundle's three paths: where, about its direction (degrees), and how far apart
+const RIBBON = [305, 140, 345], SPACING = 0.36;   // each bundle's three paths: where, about its direction (degrees), and how far apart
 const GREYS = [INK, DIM, FAINT];
 const HALF = 2.15;                            // a path starts this far before the body's centre,
 const DOWN = [null, 1.45, 1.25];              // and ends this far after it (the first on the sheet)
-const RHO = [1.62, 2.12, 1.62];                // each ribbon's middle path: its distance from the axis through the centre along n
-const SHEET_AT = 1.95, SHEET = 1.45;          // the sheet: its distance along n_1, its half-side
+const RHO = [1.45, 1.62, 1.62];                // each ribbon's middle path: its distance from the axis through the centre along n
+const SHEET_AT = 1.95, SHEET = 1.75;          // the sheet: its distance along n_1, its half-side
+const SHEET_IN = 0.15;                        // each path of n_1 ends at least this far inside the sheet's edges
+const PATH_HEAD = 3.2;                        // a path's head
+const PROJ_STEP = 1.6, PROJ_DOT = 0.6, PROJ_FROM = 2.1;       // the dotted line of projection along n_1: its dots' spacing and size
 const CIRCLE = 1.62;                          // the great circle drawn round the body
 const AXIS_TOP = 1.7;                         // nu's tip
 const KH = 0.95, KW = 1.25, K_AXIS = [-1.3, 1.75];   // a slice's half-height and width, the axis in wavevector space
@@ -48,7 +56,7 @@ const END_AIR = 12;                           // a path's end, clear of the body
 const END_GAP = 5;                            // a path's end, clear of the sheet and the other bundles (points)
 const SHORTEST = 7;                           // a visible stretch of a path shorter than this is left out (points)
 const DEEP = 0.78;                            // Sigma's greatest opacity
-const caption = 'Look first at the three slices on the right: each direction of paths gives the density\'s transform on one plane of wavevectors, and as the direction turns round the great circle, the planes turn about its axis and fill the space. Left, the body, three bundles of paths in directions of one great circle, and the projected mass for one of them. The body\'s shape and the spacing of the paths are chosen for the drawing.';
+const caption = 'Look first at the three slices on the right: each direction of paths gives the density\'s transform on one plane of wavevectors, and as the direction turns round the great circle, the planes turn about its axis and fill the space. Left, the body, three bundles of paths in directions of one great circle, and the projected mass for one of them, the body\'s mass summed along lines in that direction, as along the dotted one. The body\'s shape and the spacing of the paths are chosen for the drawing.';
 
 const nu = new THREE.Vector3(0, 1, 0);
 const dir = (deg) => { const a = (deg * Math.PI) / 180; return new THREE.Vector3(Math.cos(a), 0, Math.sin(a)); };
@@ -207,6 +215,21 @@ export default async function () {
 		line(pts, { color: FAINT, width: HAIR, what: 'the great circle', step: 0.4 / SL });
 	}
 
+	// ---- nu, a short arrow up from the body's top
+	{
+		// it starts where the axis leaves the body's outline on the page, a little clear of it, so that nothing of it lies
+		// on the stone
+		let h = rad(0, 1, 0);
+		while (!clearOfBody(VL.at(new THREE.Vector3(0, h, 0)), 0.9)) h += 0.002;
+		const a = VL.at(new THREE.Vector3(0, h, 0)), b = VL.at(new THREE.Vector3(0, AXIS_TOP, 0));
+		check(b[1] < a[1] - 9, 'nu is too short');
+		S.arrow(a, b, { color: INK, width: VEC, head: VEC_HEAD, layer: 6, what: 'nu' });
+		const nl = await S.clear('\\hat\\nu', b[0] + LABEL_GAP, b[1] + 1.5, 0, 0.5, [1, 0]);
+		nl.on = ['nu\'s name'];
+		L.push(nl);
+		S.boxes.push({ box: nl.box, what: 'nu\'s name' });
+	}
+
 	// ---- the bundles
 	const ends = [];
 	for (const [i, n] of ns.entries()) {
@@ -233,10 +256,10 @@ export default async function () {
 			check(Math.abs(t) < 3.4, 'a path cannot end clear of the body');
 			return t;
 		};
-		/** A path of the second or third bundle stops short of the sheet and of the other bundles, by END_GAP on the page:
+		/** A path of the second or third bundle stops short of the sheet, of the other bundles and of nu, by END_GAP on the page:
 		 * where it first comes that near them, after its start a. */
 		const short = (off, a, t1) => {
-			const clear = (q) => !insidePolygon(grownQuad, q) && S.clearance({ l: q[0], r: q[0], t: q[1], b: q[1] }, (wh) => !/^bundle /.test(wh) || wh === `bundle ${i + 1}`).d >= END_GAP;
+			const clear = (q) => !insidePolygon(grownQuad, q) && S.clearance({ l: q[0], r: q[0], t: q[1], b: q[1] }, (wh) => !(/^bundle /.test(wh) && wh !== `bundle ${i + 1}`) && !/^nu/.test(wh)).d >= END_GAP;
 			let t = a;
 			while (t < t1 && clear(VL.at(off.clone().add(n.clone().multiplyScalar(t + 0.02))))) t += 0.02;
 			return t;
@@ -253,14 +276,41 @@ export default async function () {
 			const p0 = off.clone().add(n.clone().multiplyScalar(a)), p1 = off.clone().add(n.clone().multiplyScalar(b));
 			line([p0, p1], { color: GREYS[i], width: PATH_W, what: `bundle ${i + 1}` });
 			ends.push({ i, deg, p0, p1, n });
+			// the path's head at its end (for n_1, its tip on the sheet, well inside its edges)
+			check(!hiddenByBody(p1), `path ${k} of bundle ${i + 1}: its end is hidden`);
 			if (i === 0) {
-				// where the path meets the sheet, unless the body hides it
-				const q = VL.at(p1);
-				if (!hiddenByBody(p1)) {
-					S.raw(`<circle cx="${n2(q[0])}" cy="${n2(q[1])}" r="0.85" fill="${INK}"/>`, 1.3);
-					S.mark([q], 0.85, 'a path\'s end on the sheet');
-				}
+				const w0 = p1.clone().sub(C0);
+				check(Math.abs(w0.dot(e1)) <= SHEET - SHEET_IN && Math.abs(w0.dot(e2)) <= SHEET - SHEET_IN && near(w0.dot(n1), 0, 1e-12), 'a path of n_1 does not end on the sheet');
 			}
+			{
+				const q1 = VL.at(p1), q0 = VL.at(p1.clone().sub(n.clone().multiplyScalar(0.2)));
+				const L0 = Math.hypot(q1[0] - q0[0], q1[1] - q0[1]), u = [(q1[0] - q0[0]) / L0, (q1[1] - q0[1]) / L0];
+				const ar = S.arrow([q1[0] - u[0] * (PATH_HEAD / 0.4 + 0.5), q1[1] - u[1] * (PATH_HEAD / 0.4 + 0.5)], q1, { color: GREYS[i], width: PATH_W, head: PATH_HEAD, layer: behindSheet(p1.clone().sub(n.clone().multiplyScalar(0.05))) ? 0.6 : 5.1, what: `bundle ${i + 1}'s head` });
+				check(ar.head === PATH_HEAD, 'a path\'s head is cut short');
+			}
+		}
+	}
+
+	// ---- the projection along n_1 that makes Sigma: a dotted line through the body's centre along n_1, out of the body
+	// to the middle of the sheet (where the body hides it, left out; behind the sheet, under it)
+	{
+		const from = n1.clone().multiplyScalar(-PROJ_FROM), to = C0.clone();
+		const n = 2000, runs = { front: [], behind: [] };
+		let last = null;
+		for (let k = 0; k <= n; k++) {
+			const p = from.clone().lerp(to, k / n);
+			if (hiddenByBody(p)) { last = null; continue; }
+			const q = VL.at(p);
+			if (insidePolygon(pic.outline, q)) { last = null; continue; }
+			if (last && Math.hypot(q[0] - last[0], q[1] - last[1]) < PROJ_STEP) continue;
+			(behindSheet(p) ? runs.behind : runs.front).push(q);
+			last = q;
+		}
+		check(runs.front.length + runs.behind.length >= 8, 'the line of projection is too short to show');
+		for (const [k, pts] of Object.entries(runs)) {
+			if (!pts.length) continue;
+			S.raw(`<path d="${pts.map(([x, y]) => `M${n2(x)},${n2(y)}h0`).join('')}" stroke="${DIM}" stroke-width="${PROJ_DOT}" stroke-linecap="round" fill="none"/>`, k === 'behind' ? 0.6 : 5);
+			S.mark(pts, PROJ_DOT / 2, 'the line of projection');
 		}
 	}
 
@@ -278,18 +328,6 @@ export default async function () {
 		const mids = quadMids();
 		const m = mids.reduce((a, b) => (b[0] > a[0] ? b : a));
 		L.push(await S.clear('\\Sigma_{\\hat n_1}', m[0] + LABEL_GAP + 0.5, m[1], 0, 0.5, [1, 0], { color: MATTER }));
-	}
-
-	// ---- nu, a short arrow up from the body's top
-	{
-		// it starts where the axis leaves the body's outline on the page, a little clear of it, so that nothing of it lies
-		// on the stone
-		let h = rad(0, 1, 0);
-		while (!clearOfBody(VL.at(new THREE.Vector3(0, h, 0)), 0.9)) h += 0.002;
-		const a = VL.at(new THREE.Vector3(0, h, 0)), b = VL.at(new THREE.Vector3(0, AXIS_TOP, 0));
-		check(b[1] < a[1] - 9, 'nu is too short');
-		S.arrow(a, b, { color: INK, width: VEC, head: VEC_HEAD, layer: 6, what: 'nu' });
-		L.push(await S.clear('\\hat\\nu', b[0] + LABEL_GAP, b[1] + 1.5, 0, 0.5, [1, 0]));
 	}
 
 	// ---- wavevector space
@@ -329,6 +367,11 @@ export default async function () {
 		for (let i = 0; i < 3; i++) {
 			const c = halves.filter((h) => h.i === i).map((h) => VK.at(h.pts[3])).reduce((a, b) => (b[1] > a[1] ? b : a));
 			L.push(await S.clear(`\\boldsymbol k\\cdot\\hat n_${i + 1} = 0`, c[0], c[1] + LABEL_GAP + 0.5, 0.5, 0, [0, 1], { color: GREYS[i], size: 7.5 }));
+		}
+		// the dashed slice named at its highest outer corner: the slices that turning n round the circle sweeps
+		{
+			const c = halves.filter((h) => h.dashed).map((h) => VK.at(h.pts[2])).reduce((a, b) => (b[1] < a[1] ? b : a));
+			L.push(await S.clear('\\text{as }\\hat n\\text{ turns}', c[0], c[1] - LABEL_GAP - 0.5, 0.5, 1, [0, -1], { color: DIM, size: 7.5 }));
 		}
 		// the axis through the origin
 		const a = VK.at(nu.clone().multiplyScalar(K_AXIS[0])), b = VK.at(nu.clone().multiplyScalar(K_AXIS[1]));

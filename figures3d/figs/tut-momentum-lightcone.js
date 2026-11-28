@@ -1,35 +1,34 @@
-// The tutorial, section 6.4 (tutorial/relativity/energy-and-momentum.md), its third diagram: light-cone components.
-// One panel, units of mc at one scale on both axes. The ordinary axes, p_z across from -2.4 to 2.4 and E/c upward
-// from 0 to 2.6, thin and faint, named "p_z" and "E/c". Over them the light-cone axes, two thick ink arrows at 45
-// degrees from the origin: along (p_z, E/c) ~ (-1, 1), named "q = E/c - p_z", and along (1, 1), named "E/c + p_z";
-// these are also the light lines, so beyond the arrows' heads they run on, dashed in the light role's colour, to the
-// panel's edges. The mass shell with p_perp = 0, the upper branch of (E/c)^2 - p_z^2 = m^2 c^2, a thin stroke in
-// matter's colour, from corner to corner; in the new axes the rectangular hyperbola q (E/c + p_z) = m^2 c^2. Three
-// dots on it in matter's colour: at rest (0, 1), named "rest, q = mc"; at 0.6c along +z (0.75, 1.25), named
-// "0.6c, q = mc/2"; at 0.6c along -z (-0.75, 1.25), named "q = 2mc". From the dot at 0.6c along +z, two thin dotted
-// lines parallel to the light-cone axes down to each axis, where "x2" stands on the E/c + p_z axis and "x1/2" on the
-// q axis. A curved arrow in the observer's colour beside the hyperbola from the rest dot to the dot at 0.6c, named
-// "boost, eta = ln 2".
-// Departures from the diagram's comment: the panel is not square, since at one scale on both axes the comment's
-// ranges, 4.8 across and 2.6 upward, make it 1.85 times as wide as tall. Each light-cone axis carries two ticks,
-// outward from it so that the dotted lines meet the axis and not a tick: at the rest dot's value, mc, named so, and at
-// the foot of the dotted line, named x2 or x1/2, so that the factors are read from the rest dot's values; each name
-// stands level with its tick, away from the cone. The light-cone axes are thick ink up to their heads at 3.2 mc and
-// dashed in the light role's colour beyond, out to the panel's edge: the "first quadrant of the new axes" is the
-// region above both lines, so within the panel the two rays are its edges, and the dashed part is where each leaves
-// the stretch used as an axis. The names of the rest dot and the dot at 0.6c along +z stand in two lines, the first in the bowl under the
-// hyperbola's vertex, the second above its dot, over the boost's name; "q = 2mc" stands above its dot. These are the
-// only places near each dot that no line crosses. The boost's name stands in two lines right of the E/c axis. The
-// boost's arrow runs 4.5 points outside the hyperbola, not on it, so that both can be seen.
+// The tutorial, section 6.4 (tutorial/relativity/energy-and-momentum.md), its third diagram: light-cone components. One
+// panel, units of mc at one scale on both axes. The ordinary axes, p_z across from -2.4 to 2.4 and E/c upward from 0 to
+// 2.6, thin and faint, named "p_z" and "E/c". Over them the light-cone axes, two arrows at 45 degrees from the origin,
+// each one continuous line in the light role's colour with one head: along (p_z, E/c) ~ (-1, 1), named "q = E/c - p_z"
+// and under that "light along -z", and along (1, 1), named "E/c + p_z" and under that "light along +z: q = 0"; these
+// axes are also light's lines (asserted: q = 0 on the one, E/c + p_z = 0 on the other). The mass shell with p_perp = 0,
+// the upper branch of (E/c)^2 - p_z^2 = m^2 c^2, a thin stroke in matter's colour, from corner to corner; in the new
+// axes the rectangular hyperbola q (E/c + p_z) = m^2 c^2. Three dots on it in matter's colour: at rest (0, 1), named
+// "rest, q = mc"; at 0.6c along +z (0.75, 1.25), named "0.6c, q = mc/2"; at 0.6c along -z (-0.75, 1.25), named "q =
+// 2mc". From the dot at 0.6c along +z, two thin dotted lines parallel to the light-cone axes down to each axis, where
+// "x2" stands on the E/c + p_z axis and "x1/2" on the q axis. A curved arrow in the observer's colour beside the
+// hyperbola from the rest dot to the dot at 0.6c, named "boost, eta = ln 2".
+// Departures from the diagram's comment: the panel is not square, since at one scale on both axes the comment's ranges,
+// 4.8 across and 2.6 upward, make it 1.85 times as wide as tall. Each light-cone axis carries two ticks, outward from
+// it so that the dotted lines meet the axis and not a tick: at the rest dot's value, mc, named so, and at the foot of
+// the dotted line, named x2 or x1/2, so that the factors are read from the rest dot's values; each name stands level
+// with its tick, away from the cone. The light-cone axes end at their heads at 3.2 mc. (They were thick ink to their
+// heads and ran on beyond them dashed in light's colour, so that an axis seemed to change style for no reason and light
+// seemed to lie only beyond the head, although light along +z is the axis q = 0 itself.) The names of the rest dot and
+// the dot at 0.6c along +z stand in two lines, the first in the bowl under the hyperbola's vertex, the second above its
+// dot, over the boost's name; "q = 2mc" stands above its dot. These are the only places near each dot that no line
+// crosses. The boost's name stands in two lines right of the E/c axis. The boost's arrow runs 4.5 points outside the
+// hyperbola, not on it, so that both can be seen.
 // Exact: the light-cone axes at 45 degrees on the page (asserted), the hyperbola (sampled so that no two neighbouring
 // points are more than a quarter of a point apart, every point asserted on it and on q (E/c + p_z) = 1), the dots on
 // it, the dotted lines parallel to the axes and their feet at E/c + p_z = 2 and q = 1/2 (asserted, and in
 // tut-momentum-lib.js against e^{+-ln 2}). The boost's arrow is schematic in its offset only.
 import { Sheet, ORIGIN, finish, checker, placed, near, LABEL_GAP, AXIS, AXIS_HEAD, VEC, VEC_HEAD, LINE, HAIR, TICK } from './tut-pot-lib.js';
 import { Plot } from './tut-prob-lib.js';
-import { graph, longest, THIN } from './tut-fourier-lib.js';
-import { dashed } from './tut-orb-lib.js';
-import { DASH, DOT } from './tut-bessel-lib.js';
+import { graph, longest } from './tut-fourier-lib.js';
+import { DOT } from './tut-bessel-lib.js';
 import { INK, DIM, FAINT } from '../lib.js';
 import { chapter, palette, OBS, LIGHT, MATTER, shell, REST, ALONG, AGAINST, q, qbar, fromCone, ETA, BETA } from './tut-momentum-lib.js';
 
@@ -85,15 +84,16 @@ export default async function () {
 	L.push(await placed('p_z', pA.B[0] - 1, pA.B[1] - LABEL_GAP - 2.5, 1, 1, DIM));
 	L.push(await placed('E/c', eA.B[0] + LABEL_GAP + 2, eA.B[1] + 1, 0, 0, DIM));
 
-	// ---- the light-cone axes, thick ink to REACH, then the light lines dashed to the panel's edge
+	// ---- the light-cone axes: each one continuous line in light's colour from the origin to its head at REACH, for
+	// each is also light's line (q = 0 is light along +z; E/c + p_z = 0 is light along -z)
 	const cone = {};
 	for (const [key, s] of [['qbar', 1], ['q', -1]]) {
 		// q = 0 along (1, 1): the axis of E/c + p_z; E/c + p_z = 0 along (-1, 1): the axis of q
 		const head = s > 0 ? fromCone(0, REACH) : fromCone(REACH, 0);
 		check(near(Math.abs(head[0]), REACH / 2, 1e-15) && near(head[1], REACH / 2, 1e-15), 'a head is off its axis');
-		const A = S.arrow(o, at(head), { color: INK, width: VEC, head: VEC_HEAD, layer: 2.2, what: `the ${key} axis` });
+		const A = S.arrow(o, at(head), { color: LIGHT, width: VEC, head: VEC_HEAD, layer: 2.2, what: `the ${key} axis` });
 		check(near(Math.abs(A.B[0] - o[0]), o[1] - A.B[1], 1e-9), 'a light-cone axis is not at 45 degrees');
-		dashed(S, [A.B[0] + s * 1.2 / Math.SQRT2, A.B[1] - 1.2 / Math.SQRT2], at([s * X, X]), { color: LIGHT, width: THIN, dash: DASH, layer: 0.5, what: `the light line ${s}` });
+		check(s > 0 ? near(q(head), 0, 1e-15) : near(qbar(head), 0, 1e-15), `the ${key} axis is not light's line`);
 		cone[key] = A;
 	}
 	/** The page point of the value v along a light-cone axis. */
@@ -190,9 +190,12 @@ export default async function () {
 		L.push(await lines(S, ['q = 2mc'], g[0], g[1] - POINT - LABEL_GAP, 0.5, 1, [0, -1], MATTER));
 		L.push(await lines(S, ['0.6c,', 'q = mc/2'], m[0], m[1] - POINT - LABEL_GAP, 0.5, 1, [0, -1], MATTER, L));
 	}
-	// the axes' names, beside their heads, outside the cone
-	L.push(await S.clear('E/c + p_z', cone.qbar.B[0] + 2, cone.qbar.B[1] + LABEL_GAP, 0, 0, [0.7071, 0.7071], { color: INK }));
-	L.push(await S.clear('q = E/c - p_z', cone.q.B[0] - 2, cone.q.B[1] + LABEL_GAP, 1, 0, [-0.7071, 0.7071], { color: INK }));
+	// the axes' names, beside their heads, outside the cone, each over its name as light's line
+	for (const [A, s, name1, name2] of [[cone.qbar, 1, 'E/c + p_z', '\\text{light along } {+z}\\text{:}\\ q = 0'], [cone.q, -1, 'q = E/c - p_z', '\\text{light along } {-z}']]) {
+		const a = await S.clear(name1, A.B[0] + s * 2, A.B[1] + LABEL_GAP, s > 0 ? 0 : 1, 0, [s * 0.7071, 0.7071], { color: INK });
+		const b = await placed(name2, s > 0 ? a.box.l : a.box.r, a.box.b + LINE_SKIP + 0.6, s > 0 ? 0 : 1, 0, LIGHT);
+		L.push(a, b);
+	}
 
 	S.checkAll(L);
 	window[name + '-numbers'] = { ...nums };

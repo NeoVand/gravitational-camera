@@ -4,11 +4,13 @@
 // dark ring at x = +-3.832, where both vanish, by dots on the zero line; the half maxima, +-2.215 for the amplitude and
 // +-1.616 for the intensity, by dots on the half line, numbered on the right. The intensity is drawn only where it
 // stands clear of the zero line: its rings, at most 1.75% of the peak, would run along it. Right, the intensity as an
-// image in the plane, x_1 and x_2 from -12 to 12, on a logarithmic grey scale from 10^-4 (the page) to 1 (ink), so that
-// the rings show, with the first dark ring circled (orange) at x = 3.832; beside it, the grey scale.
+// image in the plane, x_1 and x_2 from -12 to 12, printed positive as a star is seen, bright on a dark ground: a
+// logarithmic grey scale from 10^-4 and below (the ground, the ink kept out of the site's theming) to 1 (white), so that the rings show bright and the
+// dark rings dark, with the first dark ring circled (orange) at x = 3.832; ticked at -12, -6, 0, 6 and 12 like the
+// chart; beside it, the grey scale.
 // Exact: both profiles (tut-bessel-lib.js), the zeros and half maxima (bisection), asserted against the chapter's
-// numbers; the image, a radial gradient whose opacity is (log10 I + 4) / 4 times DEEP_GREY, clipped below 10^-4,
-// within 0.003 of exact everywhere (asserted); the circle. Each curve is sampled every quarter of a point along its
+// numbers; the image, a white radial gradient over the ink ground whose opacity is (log10 I + 4) / 4, clipped below
+// 10^-4, within 0.003 of exact everywhere (asserted); the circle. Each curve is sampled every quarter of a point along its
 // length. Nothing is schematic.
 import { Sheet, ORIGIN, finish, checker, placed, near, HAIR, TICK } from './tut-pot-lib.js';
 import { Plot, xAxis, yAxis, merge, LABEL_GAP, NUM } from './tut-prob-lib.js';
@@ -24,12 +26,16 @@ const TOP = 1.06, BOTTOM = -0.2;
 const GAP = 38;                          // from the chart's right edge to the image: room for the x axis's name and
                                          // clear air before the image's first number
 const BAR = 4.5, BAR_GAP = 6;            // the grey scale's width, and its distance from the image
-const DEEP_GREY = 0.9;                   // the image's opacity at the peak
+const BRIGHT = 1;                        // the white's opacity at the peak
+const WHITE = '#ffffff';
+// the image's ground: the ink, written one unit off so that the site does not theme it (drawing.ts maps the exact ink to
+// the text's colour, light in the dark theme); the picture stays positive, dark ground and white light, in both themes
+const GROUND = '#1c1a17';
 const EDGE = 0.4;
-const RING = 0.45;                       // the circle's stroke
+const RING = 0.6;                        // the circle's stroke
 const LOG0 = -4;                         // the image's floor: 10^-4
 
-const grey = (I) => DEEP_GREY * Math.max(0, Math.min(1, (Math.log10(I) - LOG0) / -LOG0));
+const grey = (I) => BRIGHT * Math.max(0, Math.min(1, (Math.log10(I) - LOG0) / -LOG0));
 
 export default async function () {
 	const n = mathematics(name);
@@ -72,24 +78,27 @@ export default async function () {
 	const [cx, cy] = M.at(0, 0);
 	const s = H / (2 * XR);
 	const Rg = XR * Math.SQRT2 + 0.05;
-	const g = stops((t) => grey(I(t * Rg)), () => INK, [], TOL);
+	const g = stops((t) => grey(I(t * Rg)), () => WHITE, [], TOL);
 	check(g.worst < 2 * TOL, `the image is ${g.worst} off`);
 	defs += `<radialGradient id="${name}-image" gradientUnits="userSpaceOnUse" cx="${n2(cx)}" cy="${n2(cy)}" r="${n2(Rg * s)}" fx="${n2(cx)}" fy="${n2(cy)}">${g.svg}</radialGradient>`;
+	// the ground, ink, and over it the white of the light
+	S.raw(`<rect x="${n2(M.left)}" y="${n2(M.top)}" width="${n2(H)}" height="${n2(H)}" fill="${GROUND}"/>`, 0.4);
 	S.raw(`<rect x="${n2(M.left)}" y="${n2(M.top)}" width="${n2(H)}" height="${n2(H)}" fill="url(#${name}-image)"/>`, 0.5);
 	S.boxes.push({ box: { l: M.left, r: M.right, t: M.top, b: M.bottom }, what: 'the image' });
 	S.path([[M.left, M.top], [M.right, M.top], [M.right, M.bottom], [M.left, M.bottom]], { color: DIM, width: EDGE, closed: true, layer: 1.2, cap: 'butt', what: 'the image\'s outline' });
 	const rr = n.z1[0] * s;
 	S.raw(`<circle cx="${n2(cx)}" cy="${n2(cy)}" r="${n2(rr)}" fill="none" stroke="${ACCENT}" stroke-width="${RING}"/>`, 2);
 	// the image's ticks along its bottom
-	for (const t of [-XR, 0, XR]) {
+	for (const t of [-XR, -6, 0, 6, XR]) {
 		const x = M.X(t);
 		S.path([[x, M.bottom], [x, M.bottom + TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the image's tick at ${t}` });
 		L.push(await placed(t < 0 ? `-${-t}` : `${t}`, x, M.bottom + TICK + NUM, 0.5, 0, DIM));
 	}
 	// the grey scale: opacity linear in log10 I, from the floor at the bottom to 1 at the top
 	const bx = M.right + BAR_GAP;
-	defs += `<linearGradient id="${name}-scale" gradientUnits="userSpaceOnUse" x1="0" y1="${n2(M.bottom)}" x2="0" y2="${n2(M.top)}"><stop offset="0" stop-color="${INK}" stop-opacity="0"/><stop offset="1" stop-color="${INK}" stop-opacity="${DEEP_GREY}"/></linearGradient>`;
-	check(near(grey(1), DEEP_GREY, 1e-12) && near(grey(1e-4), 0, 1e-12) && near(grey(1e-2), DEEP_GREY / 2, 1e-12), 'the grey scale is not linear in log10 I');
+	defs += `<linearGradient id="${name}-scale" gradientUnits="userSpaceOnUse" x1="0" y1="${n2(M.bottom)}" x2="0" y2="${n2(M.top)}"><stop offset="0" stop-color="${WHITE}" stop-opacity="0"/><stop offset="1" stop-color="${WHITE}" stop-opacity="${BRIGHT}"/></linearGradient>`;
+	check(near(grey(1), BRIGHT, 1e-12) && near(grey(1e-4), 0, 1e-12) && near(grey(1e-2), BRIGHT / 2, 1e-12), 'the grey scale is not linear in log10 I');
+	S.raw(`<rect x="${n2(bx)}" y="${n2(M.top)}" width="${BAR}" height="${n2(H)}" fill="${GROUND}"/>`, 0.9);
 	S.raw(`<rect x="${n2(bx)}" y="${n2(M.top)}" width="${BAR}" height="${n2(H)}" fill="url(#${name}-scale)" stroke="${DIM}" stroke-width="${EDGE}"/>`, 1);
 	S.boxes.push({ box: { l: bx, r: bx + BAR, t: M.top, b: M.bottom }, what: 'the grey scale' });
 	for (const [e, src] of [[0, '1'], [-2, '10^{-2}'], [-4, '10^{-4}']]) {

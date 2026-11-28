@@ -2,14 +2,17 @@
 // error. Against the ratio s on a logarithmic axis from 0.01 to 100: the weight H = s^2 / (1 + s^2) with which the best
 // linear guess keeps the reading (neutral ink); the error it leaves, 1/(1 + s^2) (first accent, orange); and the error
 // of the naive guess y/T, 1/s^2 (second accent, blue, dashed), both in units of the prior's variance and on the same
-// vertical axis, which stops at 3. Dots at s = 1/3 (H = 0.1), s = 1 (H = 1/2, where the weight and the best guess's
-// error cross, and the naive guess's error equals the prior's variance) and s = 3 (H = 0.9).
-// Exact: the three curves (sampled every quarter of a point along their length, and drawn only where they stand clear
-// of the horizontal axis; the naive guess's error enters at the top of the axis, at 3) and the dots, asserted against
-// the chapter's numbers (0.1, 1/2, 0.9; the errors 1/2 and 1 at s = 1; 0.57 and 0.43 for the 17th pattern, s = 1.14).
+// vertical axis, which stops at 3 and is named at its top for both readings (the weight H; the error over the prior's
+// variance sigma_x^2). The horizontal axis stands a little below zero, so that every curve runs the axis's whole
+// numbered span, from s = 0.01 to 100, clear of it, flattening onto the level of the tick at 0. Dots at s = 1/3
+// (H = 0.1), s = 1 (H = 1/2, where the weight and the best guess's error cross, and the naive guess's error equals the
+// prior's variance) and s = 3 (H = 0.9).
+// Exact: the three curves (sampled every quarter of a point along their length, from s = 0.01 to 100; the naive
+// guess's error from where it enters at the top of the axis, at 3) and the dots, asserted against the chapter's numbers
+// (0.1, 1/2, 0.9; the errors 1/2 and 1 at s = 1; 0.57 and 0.43 for the 17th pattern, s = 1.14).
 // Nothing is schematic.
 import { Sheet, ORIGIN, finish, checker, placed, near } from './tut-pot-lib.js';
-import { Plot, xAxis, yAxis, merge, LABEL_GAP } from './tut-prob-lib.js';
+import { Plot, xAxis, yAxis, LABEL_GAP } from './tut-prob-lib.js';
 import { graph, longest, INK, DIM, ACCENT, ACCENT2, CURVE } from './tut-fourier-lib.js';
 
 const name = 'tut-wiener-weight';
@@ -35,7 +38,8 @@ function mathematics() {
 }
 
 // ---- the drawing (points) -----------------------------------------------------------------------------------------
-const PW = 262, PH = 120;                                   // s from 10^-2.15 to 100; 0 to 3
+const PW = 262, PH = 124;                                   // s from 10^-2.15 to 100; a little below 0 to 3
+const LIFT = 0.12;                                          // the horizontal axis stands this far below zero
 const L0 = -2.15;                                           // the axis starts a little left of 0.01, clear of the vertical axis's numbers
 const DASH = [2.2, 1.4];
 const DOT = 1.05;
@@ -44,9 +48,8 @@ export default async function () {
 	mathematics();
 	const S = new Sheet(name);
 	const L = [];
-	const P = new Plot({ left: ORIGIN - PW / 2, top: ORIGIN - PH / 2, w: PW, h: PH, x0: L0, x1: 2, y0: 0, y1: TOP });
+	const P = new Plot({ left: ORIGIN - PW / 2, top: ORIGIN - PH / 2, w: PW, h: PH, x0: L0, x1: 2, y0: -LIFT, y1: TOP });
 	const of = (f) => (l) => f(10 ** l);
-	const clear = merge(P, CURVE);
 	// where a falling (or rising) function of l crosses the value v, by bisection
 	const cross = (f, v, a, b) => {
 		const up = f(b) > f(a);
@@ -54,12 +57,11 @@ export default async function () {
 		return (a + b) / 2;
 	};
 
-	// ---- the curves, each stopped where it would merge with the horizontal axis; the best guess's error starts at
-	// s = 0.01, clear of the vertical axis and its tick at 1
-	const lH = cross(of(weight), clear, L0, 0);
-	const lB = cross(of(best), clear, 0, 2);
-	const lN = cross(of(naive), clear, 0, 2);
+	// ---- the curves, each over the axis's whole numbered span, s = 0.01 to 100 (the naive guess's error from where it
+	// enters at the top); the horizontal axis stands below zero, so none of them meets it
+	const lH = -2, lB = 2, lN = 2;
 	const lTop = cross(of(naive), TOP, L0, 0);
+	check(P.Y(0) <= P.bottom - (CURVE + 0.45) / 2 - 3, 'the level of zero is not clear of the horizontal axis');
 	check(near(naive(10 ** lTop), TOP, 1e-9), 'the naive error does not enter at the top');
 	const curves = [
 		[of(weight), lH, 2, { color: INK }, 'the weight H'],
@@ -91,6 +93,8 @@ export default async function () {
 	const last = xl[xl.length - 1];
 	L.push(await placed('s', last.box.r + 4, (last.box.t + last.box.b) / 2, 0, 0.5, DIM));
 	L.push(...(await yAxis(S, P, { ticks: [0, 1, 2, 3], what: 'the vertical axis' })));
+	// its name, at its top: the weight, and the errors in units of the prior's variance
+	L.push(await placed('\\text{weight}\\ H;\\ \\text{error}/\\sigma_x^2', P.left - 9, P.top - 6.5, 0, 1, DIM));
 
 	// ---- the dots' values
 	L.push(await S.clear('0.1', d0[0] - LABEL_GAP - 1, d0[1], 1, 1, [0, -1], { color: INK }));

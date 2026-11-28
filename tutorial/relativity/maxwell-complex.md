@@ -192,9 +192,10 @@ along $-\hat k$, has $\vect m^*$ in place of $\vect m$, because for $-\hat k$ th
 the place of $\vect e_1$, $\vect e_2$.
 
 ![Look first at the two arrows of one instant of a wave: in a light wave the electric field $\light{\vect E}$ and $c$ times the magnetic
-field, $c\light{\vect B}$, are equal in length, at right angles, and both across the direction of travel $\hat k$.
-In the complex plane, the one complex number $a = \sqrt2\,(\light E_1 - i\light E_2)$ holds the whole wave: it goes round a circle for
-circular polarization, the other way from the electric field because it is $\sqrt2$ times the conjugate of $\light E_1 +
+field, $c\light{\vect B}$, are equal in length, at right angles, and both across the direction of travel $\hat k$,
+which points out of the page. In the complex plane, the one complex number $a = \sqrt2\,(\light E_1 - i\light E_2)$
+holds the whole wave: it goes round a circle for circular polarization (the pale dots are its places every eighth of a
+period), the other way from the electric field because it is $\sqrt2$ times the conjugate of $\light E_1 +
 i\light E_2$, and to and fro on a line for linear polarization.](tut-maxwell-wave){#fig:wave-amplitude}
 
 **Gravity's wave, for comparison.** Section 1.5b read gravity's wave in the same way:

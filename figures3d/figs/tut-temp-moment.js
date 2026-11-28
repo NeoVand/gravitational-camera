@@ -13,7 +13,8 @@
 // of the ticks. A sample: the velocities, seeded Gaussian draws with the variance k_BT/m of the chapter's eq:maxwell
 // (the heavier masses' smaller by sqrt 2); the first seed is taken whose arrows and ticks clear the other dots, the
 // grey arrows and the axes, part from each other by 18 degrees, and give the far mass a velocity that counts strongly
-// and the central one a fast velocity that barely counts.
+// and the central one a fast velocity that barely counts: its arrow at least 1.4 times as long as any other, its tick
+// short but visible (1.5 points at least), every other tick at least 3 points.
 import { INK, DIM, FAINT, ACCENT, ACCENT2 } from '../lib.js';
 import { Sheet, ORIGIN, finish, checker, near, placed, n2, AXIS, AXIS_HEAD } from './tut-pot-lib.js';
 import { normals } from './tut-prob-lib.js';
@@ -38,6 +39,8 @@ const VEL = 0.26;                              // the velocity arrows: units of 
 const VEL_W = 0.55, VEL_HEAD = 3.4;
 const TICK_K = 0.11;                           // the ticks: units of the plane per unit of v . grad(xy), v in sigma_v
 const TICK_W = 1.1;
+const FASTEST = 1.3;                           // the central mass's speed against any other's, at least
+const MIN_TICK = 2.5, MIN_TICK_C = 1.2;          // the shortest ticks, points: any other mass's, the central one's
 const AX = 3.05;                               // the axes reach this far
 
 /** The places: a lump of twelve masses spread about the origin as the atoms of a solid are, six of mass 1 and six of
@@ -66,7 +69,15 @@ function sample(seed) {
 	const gh = (d) => { const q = grad(d.x, d.y); return Math.abs(dot(d.v, q)) / (Math.hypot(...d.v) * Math.hypot(...q)); };
 	if (gh(far) < 0.6 || Math.hypot(...far.v) < 0.7) return null;                       // the far one counts strongly
 	if (Math.hypot(...centre.v) < 1.2) return null;                                       // the central one moves, but barely counts
+	// and moves fastest: its arrow clearly the longest, FASTEST times any other's
+	if (dots.some((d) => d !== centre && Math.hypot(...centre.v) < FASTEST * Math.hypot(...d.v))) return null;
 	if (dots.some((d) => Math.hypot(...d.v) * VEL * U < 5)) return null;                  // every arrow long enough to read
+	// every tick long enough to see beside its dot: MIN_TICK points, and the central one's (which barely counts) at
+	// least MIN_TICK_C
+	for (const d of dots) {
+		const len = Math.abs(dot(d.v, grad(d.x, d.y))) * TICK_K * U;
+		if (len < (d === centre ? MIN_TICK_C : MIN_TICK)) return null;
+	}
 	// each velocity arrow and tick (units of the plane) clears the other dots by 2 pt and the axes by 4 pt
 	for (const d of dots) {
 		const vl = Math.hypot(...d.v), vu = [d.v[0] / vl, d.v[1] / vl];
@@ -122,8 +133,8 @@ export default async function () {
 	}
 	// ---- the velocities: the first seed that meets the drawing's needs
 	let seed = 1, smp = null;
-	for (; seed < 100000 && !(smp = sample(seed)); seed++);
-	check(smp, 'no seed below 100000 gives a sample');
+	for (; seed < 1000000 && !(smp = sample(seed)); seed++);
+	check(smp, 'no seed below 1000000 gives a sample');
 	console.log(`seed ${seed}`);
 	const { dots, far, centre, fieldSegs } = smp;
 	check(dots.filter((d) => d.m === 1).length === 6 && dots.filter((d) => d.m === 2).length === 6, 'not six of each mass');

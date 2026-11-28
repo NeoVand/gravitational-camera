@@ -5,16 +5,17 @@
 // its glow N(b) across the picture, if only the gold glows, from -R to R on the ball's own scale, each curve divided by
 // its own largest value (0 to 1, no numbers), a thin ink line over a pale fill of matter's brown (the glow figures'
 // own fill, figs/tut-glow-lib.js, FILL: matter's colour of each theme, a fifth of it, mixed with the page): the spot
-// 2 sqrt(0.04 R^2 - b^2) for |b| < 0.2 R; the dome 2 sqrt(R^2 - b^2); the ring 2 [sqrt(R^2 - b^2) - sqrt((R - t)^2 - b^2)]
-// for |b| < R - t and 2 sqrt(R^2 - b^2) beyond, whose peaks at |b| = 0.95 R are sqrt(2R/t - 1) = 6.24 times its middle.
-// Named "spot", "dome" and "ring" under the curves.
+// 2 sqrt(0.04 R^2 - b^2) for |b| < 0.2 R; the dome 2 sqrt(R^2 - b^2); the ring 2 [sqrt(R^2 - b^2) - sqrt((R - t)^2 -
+// b^2)] for |b| < R - t and 2 sqrt(R^2 - b^2) beyond, whose peaks at |b| = 0.95 R are sqrt(2R/t - 1) = 6.24 times its
+// middle. Named "spot", "dome" and "ring" under the curves.
 // Departures from the diagram's comment: the bodies are drawn as section 2.5 draws these balls (figs/tut-null-lib.js),
 // the sawn face of its steel ball with the gold in matter's colour over it (the nugget lit, the flush and the skin a
 // shade), rather than in flat grey and gold, so that they are recognizably the same three bodies; each is named over
 // it ("nugget", "flush", "skin"). Each chart's axes stand a little outside -R and R (at 1.12 R), with ticks at -R, 0
-// and R, so that the ring's steep flanks at +-R do not run along the vertical axis; the curves' "N" is named once, on
-// the first. The comment's site pixels are drawn at half a point each: balls of radius 40 points, 100 points apart,
-// charts 45 points tall.
+// and R, so that the ring's steep flanks at +-R do not run along the vertical axis; the ticks are numbered -R, 0 and R
+// (7.5 points, dim), and the curves' "N" is named once, at the top of the first chart's vertical axis, and "b" once,
+// at the right end of the last chart's horizontal axis; each curve's name stands under its numbers. The comment's site
+// pixels are drawn at half a point each: balls of radius 40 points, 100 points apart, charts 45 points tall.
 // Exact: the three curves (each closed form asserted in tut-abel-lib.js against the sum of the glow along the chord),
 // each scaled to its own largest value (asserted, and the ring's middle at 1/6.24 of its height, asserted in points),
 // sampled so that no two neighbouring points are more than a quarter of a point apart; the nugget's radius and the
@@ -40,6 +41,7 @@ const DROP = 17;                           // from a ball's foot to its chart's 
 const REACH = 1.12;                        // the axes' reach, in R
 const FLUSH = DEEPEST / 2;                 // the flush's shade, section 2.5's uniform ball
 const BAND = DEEPEST;                      // the skin's shade
+const NUM = 7.5;                           // the ticks' numbers
 
 export default async function () {
 	const nums = chapter(check);
@@ -89,11 +91,19 @@ export default async function () {
 		// the axes, a little outside the ball's edges, with ticks at -R, 0 and R under the horizontal one
 		const xl = x - REACH * R, xr = x + REACH * R;
 		S.path([[xl, P.bottom], [xr, P.bottom]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: `the ${body.glow}'s b axis` });
-		for (const b of [-1, 0, 1]) S.path([[P.X(b), P.bottom], [P.X(b), P.bottom + TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the ${body.glow}'s tick at ${b}` });
+		let numbers = -Infinity;                           // the foot of the ticks' numbers
+		for (const b of [-1, 0, 1]) {
+			S.path([[P.X(b), P.bottom], [P.X(b), P.bottom + TICK]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the ${body.glow}'s tick at ${b}` });
+			const l = await placed(['-R', '0', 'R'][b + 1], P.X(b), P.bottom + TICK + LABEL_GAP + 0.4, 0.5, 0, DIM, NUM);
+			L.push(l);
+			numbers = Math.max(numbers, l.box.b);
+		}
 		S.path([[xl, P.bottom], [xl, P.top]], { color: DIM, width: AXIS, layer: 1, cap: 'butt', what: `the ${body.glow}'s N axis` });
 		S.path([[xl, P.top], [xl - TICK, P.top]], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the ${body.glow}'s tick at 1` });
-		L.push(await placed(`\\text{${body.glow}}`, x, P.bottom + TICK + LABEL_GAP + 1.2, 0.5, 0, INK));
+		L.push(await placed(`\\text{${body.glow}}`, x, numbers + LABEL_GAP + 1.6, 0.5, 0, INK));
 		if (k === 0) L.push(await S.clear('N', xl, P.top - LABEL_GAP - 1, 0.5, 1, [0, -1], { color: DIM }));
+		// the horizontal axis named once, at the right end of the last
+		if (k === bodies.length - 1) L.push(await S.clear('b', xr + LABEL_GAP + 0.4, P.bottom, 0, 0.5, [1, 0], { color: DIM }));
 	}
 
 	S.checkAll(L);

@@ -7,11 +7,18 @@
 // a fifth of RISE = LAMBDA ln 2 / (2 pi): over the climb the coarse ripple keeps exactly a half, and the fine one,
 // fading three times as fast, the cube of that, an eighth; at each height the fine one is weaker than the coarse
 // by e^(-2 pi h (3 - 1) / LAMBDA), a quarter at the top. The top line is at the pixels, where the noise has a fixed
-// size, drawn as a band A/4 to either side of the line: the coarse ripple stands twice the noise, the fine one half.
-// Each crest is filled pale orange and each trough pale blue, between the curve and its own (undrawn) middle line.
-// Exact: the amplitudes, the wavelengths and the noise band's width, all on one scale. Schematic: the vertical
-// spacing of the lines (RISE is a ninth of the coarse wavelength; the lines are drawn farther apart than that so
-// that each can be seen), the balls, the block, and the speckle within the noise band (which marks its width).
+// size, drawn as a pale band A/4 to either side of the line over each stack: the coarse ripple stands twice the
+// noise, the fine one half. The top line is drawn as the pixels read it: at each pixel's middle, the ripple there
+// plus a noise drawn uniformly at random within the band, the readings dotted and joined by straight lines. The
+// coarse ripple shows through the noise and the fine one is lost in it. The draw is a fixed one, checked to be fair:
+// its noise averages within a twentieth of the band's half-width over each stack, and the readings correlate with
+// the coarse ripple above 0.9 and with the fine one below 0.2. Below the top line, each crest is filled pale orange
+// and each trough pale blue, between the curve and its own (undrawn) middle line. The block is the slab whose
+// picture the ripples build, the two iron balls the masses buried in it (the caption names them).
+// Exact: the amplitudes, the wavelengths and the noise band's width, all on one scale, and each reading's noise
+// within the band. Schematic: the vertical spacing of the lines (RISE is a ninth of the coarse wavelength; the lines
+// are drawn farther apart than that so that each can be seen), the balls, the block, and the particular draw of
+// the noise.
 import { Panel, v3, figure, sprite, INK, DIM, FAINT } from '../lib.js';
 import { IRON, text, n2 } from '../stone.js';
 
@@ -67,23 +74,41 @@ export default async function () {
 	const draw = (svg, layer = 0) => P.items.push({ kind: 'raw', layer, depth: 0, svg });
 	let defs = '';
 
-	// ---- the noise band at the pixels: a pale band of a fixed width, speckled
+	// ---- the noise band at the pixels: a pale band of a fixed width over each stack, under the readings
 	const yTop = lineY(LINES - 1), half = NOISE * A;
-	draw(`<rect x="${n2(X0)}" y="${n2(yTop - half)}" width="${n2(right - X0)}" height="${n2(2 * half)}" fill="#eeebe5"/>`, 0);
-	let seed = 7;
+	for (const s of stacks) draw(`<rect x="${n2(s.x)}" y="${n2(yTop - half)}" width="${n2(STACK)}" height="${n2(2 * half)}" fill="#e6e2da"/>`, 0);
+	let seed = 370;                                   // a draw whose noise averages nearly zero over each stack (checked below)
 	const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
-	let dots = '';
-	for (let i = 0; i < 900; i++) {
-		const x = X0 + 0.4 + rnd() * (right - X0 - 0.8), y = yTop - half + 0.35 + rnd() * (2 * half - 0.7);
-		dots += `<circle cx="${n2(x)}" cy="${n2(y)}" r="0.28"/>`;
-	}
-	draw(`<g fill="${FAINT}">${dots}</g>`, 0.1);
-
 	// ---- the pixels
 	const n = Math.round((right - X0) / PIX), pix = (right - X0) / n;
 	let tiles = '';
 	for (let i = 0; i < n; i++) tiles += `<rect x="${n2(X0 + i * pix)}" y="${n2(PIX_TOP)}" width="${n2(pix)}" height="${n2(PIX)}"/>`;
 	draw(`<g fill="#eeebe5" stroke="${DIM}" stroke-width="0.3">${tiles}</g>`, 0);
+
+	// ---- what the pixels read: at each pixel's middle, the ripple at the top line plus a noise of fixed size, drawn
+	// uniformly at random within the band (a half-width A/4); the readings joined by straight lines
+	const readings = [];
+	for (const s of stacks) {
+		const k = (2 * Math.PI * s.m) / LAMBDA, mid = s.x + STACK / 2, a = A * amplitude(s.m, LINES - 1);
+		const pts = [];
+		for (let i = 0; i < n; i++) {
+			const x = X0 + (i + 0.5) * pix;
+			if (x < s.x || x > s.x + STACK) continue;
+			const e = half * (2 * rnd() - 1);
+			if (!(Math.abs(e) <= half)) throw new Error('a reading\'s noise outside the band');
+			pts.push([x, yTop - a * Math.cos(k * (x - mid)) - e]);   // the reading e above the ripple
+		}
+		// this draw is a fair one: its noise averages within a twentieth of the band's half-width over the stack; the
+		// readings follow the coarse ripple (correlation above 0.9) and not the fine one (below 0.2)
+		const cs = pts.map(([x]) => Math.cos(k * (x - mid))), rs = pts.map(([, y]) => yTop - y);
+		const mean = rs.reduce((u, r, i) => u + r - a * cs[i], 0) / pts.length;
+		const cor = rs.reduce((u, r, i) => u + r * cs[i], 0) / Math.sqrt(rs.reduce((u, r) => u + r * r, 0) * cs.reduce((u, c) => u + c * c, 0));
+		if (Math.abs(mean) > half / 20) throw new Error(`the noise over the ${s.name} stack averages ${mean}`);
+		if (s.m === 1 ? !(cor > 0.9) : !(Math.abs(cor) < 0.2)) throw new Error(`the ${s.name} readings: correlation ${cor}`);
+		readings.push(pts);
+		draw(`<path d="M${pts.map(([x, y]) => `${n2(x)},${n2(y)}`).join('L')}" fill="none" stroke="${INK}" stroke-width="0.5" stroke-linejoin="round"/>` +
+			`<g fill="${INK}">${pts.map(([x, y]) => `<circle cx="${n2(x)}" cy="${n2(y)}" r="0.75"/>`).join('')}</g>`, 2);
+	}
 
 	// ---- the ripples
 	const rows = [];                                  // every line but the top one (which lies in the noise band), to check
@@ -109,7 +134,7 @@ export default async function () {
 			// trough pale blue, one closed path each (along the curve from one zero to the next, back along the middle);
 			// a crest or trough lies between two zeros, and the stack begins and ends at a crest
 			const halfWaves = Math.round((2 * STACK * s.m) / LAMBDA);
-			for (let w = 0; w <= halfWaves; w++) {
+			for (let w = 0; w <= halfWaves && j < LINES - 1; w++) {          // the top line has no tints: it is drawn as read
 				const xa = s.x + (STACK * Math.max(0, w - 0.5)) / halfWaves, xb = s.x + (STACK * Math.min(halfWaves, w + 0.5)) / halfWaves;
 				const m = Math.max(2, Math.ceil((xb - xa) / 2)), X = Array.from({ length: m + 1 }, (_, i) => xa + ((xb - xa) * i) / m);
 				let d = Math.abs(f(xa) - y0) > 1e-9 ? `M${n2(xa)},${n2(y0)}L${n2(xa)},${n2(f(xa))}` : `M${n2(xa)},${n2(y0)}`;
@@ -122,7 +147,7 @@ export default async function () {
 				draw(`<path d="${d}Z" fill="${PALE[crest ? 0 : 1]}"/>`, 1);
 			}
 			if (j < LINES - 1) rows.push({ x0: s.x, x1: s.x + STACK, y0, a, f });
-			draw(`<path d="${curve}" fill="none" stroke="${INK}" stroke-width="0.5"/>`, 2);
+			if (j < LINES - 1) draw(`<path d="${curve}" fill="none" stroke="${INK}" stroke-width="0.5"/>`, 2);   // the top line is drawn as read, above
 		}
 		P.label(text(s.name), [mid, lineY(0) + A + 4.5], { size: FONT, anchor: 'ct' });
 	}

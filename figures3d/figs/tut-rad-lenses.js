@@ -4,14 +4,20 @@
 // from y = -80 to 80 and a curved face x = 60 + 24 (1 - y^2/6400), so that R = 80 and h = 24 (exaggerated). Five rays
 // (thin ink) at y = 0, +-40 and +-70 run level to the curved face, which they leave at x = 84, 78 and 65.6, and then
 // straight to F = (284, 0), a dot named F. Two crests of the arriving wave, upright segments (dim) at x = 20 and 40,
-// and two crests of the leaving wave, arcs about F, drawn between the two outer rays. Dimension lines (dim, a short
-// stroke across each end): R from the axis to the rim and a from the axis to the lower outer ray, on one upright line
-// left of the rays; h across the lens at y = -20; f from the curved face's vertex to F. The lower outer ray, from the
+// named "crests" under them, and two crests of the leaving wave, arcs about F, drawn between the two outer rays.
+// Dimension lines (dim, a short stroke across each end): R from the axis to the rim and a from the axis to the lower
+// outer ray, on one upright line
+// left of the rays; h across the lens at y = 10, just over the axis, from the flat face to x = 84 (the face there
+// lies 0.375 site pixels, 0.18 points, short of that: within its outline's stroke; asserted under a fifth of a point;
+// at y = -20, as before, h's line ran 1.5 site pixels past the face and measured the lens away from its axis); f
+// from the curved face's vertex to F. The lower outer ray, from the
 // lens to F, is named f + a^2/2f. Under the panel, f = R^2/2(n - 1)h. Right, "a mass as a lens": a dot of mass M
 // (matter's colour) on the axis at x = 40; three rays at b = 30, 45 and 60 over the axis and their mirror images under
 // it run level to x = 40 and then straight through the axis at x = 40 + b^2/15 = 100, 175 and 280, each crossing
-// marked by a tick; a dimension line from the mass to the farthest crossing is named f(b). Under the panel,
-// f = b^2/2r_s.
+// marked by a tick; a dimension line from the mass to the farthest crossing is named f(b), and one from the axis up
+// to that pair's upper ray, at x = -12 left of the rays as R and a are in the left panel, is named b (the formula
+// under the panel uses it). Under the panel, f = b^2/2r_s. The lens's axis ends at x = 306, short of its panel's end,
+// to leave b's line and name room between the panels.
 // Departures from the diagram's comment: the comment's panels, 340 site pixels (179 points) each, are together wider
 // than the site's 340 points; they stay side by side at 0.47 points to its pixel, so that the lens and the mass can be
 // compared at one height. At that size the comment's places for the labels fail: R, between the crest at x = 40 and
@@ -19,9 +25,11 @@
 // line at y = -20, has 9.8 points between that line and the ray at -40 for a letter that needs 10.6; and f + a^2/2f,
 // between the rays at +40 and +70, has 6 points of room for a label 9 points tall. So R and a are measured on one
 // upright line at x = -12, left of the rays (R up to the rim; a down to the lower outer ray, a = 70), h is named
-// beyond the lens's vertex, F to the right of the focus, and the lower outer ray carries f + a^2/2f under it, where
-// nothing else is drawn. The arcs have the radii 160 and 90 (the comment's 180 and 110 put the larger arc within
-// 10 points of the lens's vertex, too close for h's name). The mass's f(b) is a dimension line under the rays, as f is
+// beyond the lens's vertex, its foot level with the top of its line's end tick (beside its line, at 10 site pixels
+// over the axis, it would crowd the ray on the axis), F to the right of the focus, and the lower outer ray carries
+// f + a^2/2f under it, where nothing else is drawn. The arcs have the radii 160 and 90 (the comment's 180 and 110 put
+// the larger arc within 10 points of the lens's vertex, too close for h's name). The mass's f(b) is a dimension line
+// under the rays, as f is
 // in the left panel, since under the farthest tick the rays leave 15 points for a label that needs 18; the rays end
 // where they leave the panel's height, +-80, or at x = 330, whichever comes first (the ray at b = 30 would reach -115
 // at x = 330).
@@ -53,8 +61,9 @@ const HALF = 80;                           // the panels' half-height: the lens'
 const CRESTS_IN = [20, 40];                // the arriving wave's crests
 const ARCS = [160, 90];                    // the leaving wave's crests, radii about F
 const RAY = HAIR + 0.1;                    // a ray's stroke
+const LENS_END = 306;                      // where the lens's axis ends
 const DIMX = -12;                          // the upright dimension line of R and a
-const H_AT = -20;                          // the dimension line of h
+const H_AT = 10;                           // the dimension line of h, just over the axis
 const F_AT = -100;                         // the dimension line of f
 const DOT_R = 6;                           // the mass's dot, site pixels
 
@@ -68,7 +77,8 @@ export default async function () {
 	const dist = (p, a, b) => Math.abs((b[0] - a[0]) * (a[1] - p[1]) - (a[0] - p[0]) * (b[1] - a[1])) / Math.hypot(b[0] - a[0], b[1] - a[1]);
 
 	// ---- the axes
-	for (const [P, k] of [[A, 'lens'], [B, 'mass']]) S.path([P([0, 0]), P([WIDTH, 0])], { color: DIM, width: AXIS, dash: ZERO_DASH, layer: 0.5, cap: 'butt', what: `the axis (${k})` });
+	// (the lens's axis stops at LENS_END, short of the panel's end, to leave the mass's b room between the panels)
+	for (const [P, k, end] of [[A, 'lens', LENS_END], [B, 'mass', WIDTH]]) S.path([P([0, 0]), P([end, 0])], { color: DIM, width: AXIS, dash: ZERO_DASH, layer: 0.5, cap: 'butt', what: `the axis (${k})` });
 
 	// ---- the thin lens: its outline, the flat face and the curved one sampled finely
 	const F = [LENS.F, 0];
@@ -95,6 +105,7 @@ export default async function () {
 	}
 	// ---- the crests: upright before the lens, arcs about F after it, between the outer rays
 	for (const x of CRESTS_IN) S.path([A([x, -HALF]), A([x, HALF])], { color: DIM, width: HAIR, layer: 1, cap: 'butt', what: `the crest at ${x}` });
+	check(near(LENS.flat + LENS.h - face(H_AT), LENS.h * (H_AT / LENS.R) ** 2, 1e-12) && K * (LENS.flat + LENS.h - face(H_AT)) < 0.2, 'h\'s line runs past the face by more than a fifth of a point');
 	{
 		const outer = [face(70), 70];
 		const half = Math.atan2(70, F[0] - outer[0]);
@@ -133,6 +144,8 @@ export default async function () {
 		check(dist([x1, 0], [MASS.x, s * b], [xe, ye]) < 1e-9 && xe > x1, `the ray at b = ${s * b} does not cross at ${x1}`);
 		S.path([B([0, s * b]), B([MASS.x, s * b]), B([xe, ye])], { color: INK, width: RAY, layer: 3, cap: 'butt', what: `the ray at b = ${s * b}` });
 	}
+	// b for the farthest pair, from the axis up to its ray, left of the rays, as R and a in the left panel
+	measure(S, B([DIMX, 0]), B([DIMX, IMPACTS[2]]), { color: DIM, what: 'b' });
 	// f(b) for the farthest pair, from the mass to its crossing, as f in the left panel
 	measure(S, B([MASS.x, F_AT]), B([crossing(IMPACTS[2]), F_AT]), { color: DIM, what: 'f(b)' });
 	for (const b of IMPACTS) { const [x, y] = B([crossing(b), 0]); S.path([[x, y - TICK], [x, y + TICK]], { color: INK, width: HAIR + 0.1, layer: 3.5, cap: 'butt', what: `the tick at ${crossing(b)}` }); }
@@ -146,8 +159,12 @@ export default async function () {
 		L.push(await S.clear('R', x - LABEL_GAP - 0.4, y, 1, 0.5, [-1, 0], { color: DIM }));
 		const [x2, y2] = A([DIMX, -35]);
 		L.push(await S.clear('a', x2 - LABEL_GAP - 0.4, y2, 1, 0.5, [-1, 0], { color: DIM }));
+		// h beyond the lens's vertex, its foot level with the top of its line's end tick (beside the line it would
+		// crowd the ray on the axis)
 		const [x3, y3] = A([face(0), H_AT]);
-		L.push(await S.clear('h', x3 + LABEL_GAP + 0.6, y3, 0, 0.5, [1, 0], { color: DIM }));
+		L.push(await S.clear('h', x3 + LABEL_GAP + 0.6, y3 - TICK, 0, 1, [1, 0], { color: DIM }));
+		// the arriving crests named under them
+		{ const [xc, yc] = A([(CRESTS_IN[0] + CRESTS_IN[1]) / 2, -HALF]); L.push(await S.clear('\\text{crests}', xc, yc + LABEL_GAP + 0.4, 0.5, 0, [0, 1], { color: DIM })); }
 		const [x4, y4] = A([(face(0) + F[0]) / 2, F_AT]);
 		L.push(await S.clear('f', x4, y4 + TICK + LABEL_GAP, 0.5, 0, [0, 1], { color: DIM }));
 		const [x5, y5] = A(F);
@@ -159,6 +176,8 @@ export default async function () {
 	{
 		const [x, y] = B([(MASS.x + crossing(IMPACTS[2])) / 2, F_AT]);
 		L.push(await S.clear('f(b)', x, y + TICK + LABEL_GAP, 0.5, 0, [0, 1], { color: DIM }));
+		const [xb, yb] = B([DIMX, IMPACTS[2] / 2]);
+		L.push(await S.clear('b', xb - LABEL_GAP - 0.4, yb, 1, 0.5, [-1, 0], { color: DIM }));
 		const [xm, ym] = B([MASS.x, 0]);
 		L.push(await S.clear('M', xm - K * DOT_R - LABEL_GAP, ym - LABEL_GAP - 0.7, 1, 1, [-1, 0], { color: INK }));
 	}

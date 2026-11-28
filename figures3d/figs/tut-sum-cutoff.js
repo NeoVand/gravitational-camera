@@ -1,9 +1,10 @@
 // The tutorial, section 13.7 (tutorial/what-a-field-keeps/thermometer.md), its first diagram: where the hole's sum
 // comes from. One panel on logarithmic axes: across, x = GM omega / c^3 from 0.01 to 3; up, the integrand of the sum,
-// (5/32 pi) Gamma_2 / x^4, in units of M r_s^2, from 10^-6 to 3 (the axis starts a little below 10^-6, so that its
+// (5/32 pi) Gamma_2 / x^4, in units of M r_s^2, from 10^-6 to 25 (the axis starts a little below 10^-6, so that its
 // numbers clear those across). The integrand from the Regge-Wheeler Gamma_2, thin solid ink, its peak, 1.34 at
 // x = 0.40, an ink dot; Page's line (5/32 pi)(256/225) x^2 dashed, which the curve leaves as it rises; the swallowing
-// tail (5/32 pi) x^-4 dotted, which the curve joins near x = 0.6. The band 0.3 <= x <= 0.6, which holds 74% of the sum,
+// tail (5/32 pi) x^-4 dotted, from where it enters at the top (x = 0.21), so that it is seen as a line of its own
+// for more than a decade above the peak before the curve joins it near x = 0.6, and named there. The band 0.3 <= x <= 0.6, which holds 74% of the sum,
 // a pale neutral tint, its share printed in it. At x = 1/8 pi a tick on the axis, numbered, and a faint dotted rule up
 // to the words "friction law and classical tremor hold to the left". Each line is named beside it.
 // Departures from the diagram's comment: the band is the page's neutral tint, not the paper's pale orange, which in
@@ -26,7 +27,7 @@ const check = checker(name);
 
 // ---- the drawing (points) ----------------------------------------------------------------------------------------
 const lg = Math.log10;
-const X0 = -2, X1 = lg(3), Y0 = -6.3, Y1 = lg(3);
+const X0 = -2, X1 = lg(3), Y0 = -6.3, Y1 = lg(25);
 const DX = 98, DY = 26;                         // points per decade
 const CURVE = 0.7, LAW = 0.55, DASH = [3, 2], DOT_R = 1.55;
 const SMALL = 7;                                // the words at 1/8 pi
@@ -53,14 +54,14 @@ export default async function () {
 	}
 
 	// ---- the axes, with the tick at 1/8 pi among the numbers
-	const pow = (k) => (k === 0 ? '1' : `10^{${k}}`);
+	const pow = (k) => (k === 0 ? '1' : k === 1 ? '10' : `10^{${k}}`);
 	const xl = await xAxis(S, P, {
 		ticks: [-2, lg(EDGE), -1, 0, lg(3)],
 		fmt: (t) => (near(t, lg(3), 1e-12) ? '3' : near(t, lg(EDGE), 1e-12) ? '1/8\\pi' : ['0.01', '0.1', '1'][t + 2]),
 		what: 'the axis across'
 	});
 	L.push(...xl);
-	L.push(...(await yAxis(S, P, { ticks: [-6, -5, -4, -3, -2, -1, 0], fmt: pow, what: 'the axis up' })));
+	L.push(...(await yAxis(S, P, { ticks: [-6, -5, -4, -3, -2, -1, 0, 1], fmt: pow, what: 'the axis up' })));
 	const below = Math.max(...xl.map((l) => l.box.b));
 	L.push(await placed('x = GM\\omega/c^3', P.X(-0.5), below + 4, 0.5, 0, DIM));
 	L.push(await placed('\\text{integrand of the sum (units of }Mr_s^2\\text{)}', P.left - 4, P.top - 9, 0, 1, DIM));
@@ -69,7 +70,7 @@ export default async function () {
 	check(lg(pageLine(10 ** X0)) > Y0 && lg(pageLine(10 ** X1)) < Y1, 'Page\'s line leaves the panel');
 	S.path([at(10 ** X0, pageLine(10 ** X0)), at(10 ** X1, pageLine(10 ** X1))], { color: DIM, width: LAW, dash: DASH, cap: 'butt', layer: 1.6, what: 'Page\'s line' });
 	const xTop = (K / 10 ** Y1) ** (1 / 4);
-	check(near(tail(xTop), 10 ** Y1, 1e-12) && xTop > 0.35 && xTop < PEAK.x, `the tail enters at ${xTop}`);
+	check(near(tail(xTop), 10 ** Y1, 1e-12) && xTop < 0.25 && tail(0.3) > 4 * integrand(0.3), `the tail enters at ${xTop}`);
 	S.dots(at(xTop, tail(xTop)), at(10 ** X1, tail(10 ** X1)), { color: DIM, layer: 1.7, what: 'the tail' });
 
 	// ---- the integrand, on the grid's points
@@ -115,8 +116,11 @@ export default async function () {
 		L.push(lab);
 	}
 	{
-		const q = at(0.47, tail(0.47));
-		L.push(await S.clear('\\Gamma_2 = 1,\\ \\propto x^{-4}', q[0] + 3, q[1], 0, 0.5, [1, 0]));
+		// right of the dotted tail where it stands alone above the peak
+		const q = at(0.29, tail(0.29));
+		check(tail(0.29) > 5 * integrand(0.29), 'the tail\'s name is not where the tail stands alone');
+		const lab = await placed('\\Gamma_2 = 1,\\ \\propto x^{-4}', q[0] + LABEL_GAP + 5.4, q[1], 0, 0.5, INK);
+		L.push({ ...lab, on: ['the band'] });
 	}
 
 	S.checkAll(L);

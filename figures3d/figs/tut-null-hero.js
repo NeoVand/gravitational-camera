@@ -12,7 +12,9 @@
 // factors 100/84 and 68/84); A = pi G R^2 rho0 / 3 = 5.5 x 10^-9 J/kg (asserted); the shading, a radial gradient of 64
 // stops following rho(r) (asserted at the stops). Schematic: the arrows' common scale. Pictorial: the sawn face of the
 // steel ball, a picture from an image model (design/prompts/hair-sprites.json, cut out by design/hair_sprites.py, as
-// in section 2.4's figs/tut-grn-kelvin.js), clipped to the exact circles; the shading over it is in a fixed colour.
+// in section 2.4's figs/tut-grn-kelvin.js), clipped to the exact circles, under a white wash (WASH) so that the stone
+// recedes and the density's shade, in a fixed colour over it, runs from pale (the first ball's empty centre) to dark
+// (the third ball's core).
 import { INK, DIM, FAINT } from '../lib.js';
 import { Sheet, ORIGIN, placed, finish, checker, near, LABEL_GAP, n2 } from './tut-pot-lib.js';
 import { BALLS, MASS, G, R_BALL, RHO0, massOf, inertiaOf, pullOf, ballFace, stoneDefs, stone, rim, radialVeil, SHADE, MATTER, DEEPEST, STONE_INK } from './tut-null-lib.js';
@@ -28,6 +30,7 @@ const AT = [1.5, 2];                      // the pull's places, radii
 const LONG = 0.4;                         // the arrow at 1.5 R, radii; the one at 2 R is (1.5 / 2)^2 of it
 const ARROW = 0.5, HEAD = 2.8;            // as the pull of figs/tut-motion-earths.js
 const KEY_W = 7, KEY_H = 66, KEY_GAP = 16;
+const WASH = 0.65;                        // a white wash over the stone, under the shade, so that the empty centre is pale
 const PRINTED = ['0.157', '0.132', '0.106'];
 const NAMES = ['\\rho_0 + \\delta\\rho', '\\rho_0', '\\rho_0 - \\delta\\rho'];
 const alphaOf = (rho) => (DEEPEST / 2) * rho;   // the shade of the density rho (units of rho0)
@@ -56,6 +59,7 @@ export default async function () {
 	centres.forEach(([x, y], k) => {
 		const rho = BALLS[k].rho;
 		S.raw(stone(`${name}-stone${k}`, `${name}-face`, x, y, R), 0);
+		S.raw(`<path d="M${n2(x - R)},${n2(y)}a${R},${R} 0 1,0 ${2 * R},0a${R},${R} 0 1,0 ${-2 * R},0Z" fill="#ffffff" fill-opacity="${WASH}"/>`, 0.25);
 		if (k === 1) S.raw(`<path d="M${n2(x - R)},${n2(y)}a${R},${R} 0 1,0 ${2 * R},0a${R},${R} 0 1,0 ${-2 * R},0Z" fill="${SHADE}" fill-opacity="${alphaOf(1).toFixed(4)}"/>`, 0.5);
 		else S.raw(radialVeil(`${name}-shade${k}`, x, y, R, (u) => alphaOf(rho(u))), 0.5);
 		S.raw(rim(x, y, R), 0.7);
@@ -100,6 +104,7 @@ export default async function () {
 	const kx = centres[2][0] + R + KEY_GAP, top = ORIGIN - KEY_H / 2;
 	const keyShape = `M${n2(kx)},${n2(top)}h${KEY_W}v${KEY_H}h${-KEY_W}Z`;
 	S.raw(stone(`${name}-key`, `${name}-face`, kx + KEY_W / 2, ORIGIN, R, keyShape), 0);
+	S.raw(`<path d="${keyShape}" fill="#ffffff" fill-opacity="${WASH}"/>`, 0.25);
 	const stops = Array.from({ length: 9 }, (_, j) => `<stop offset="${j / 8}" stop-color="${SHADE}" stop-opacity="${alphaOf(2 * (1 - j / 8)).toFixed(4)}"/>`);
 	S.raw(`<linearGradient id="${name}-scale" gradientUnits="userSpaceOnUse" x1="0" y1="${n2(top)}" x2="0" y2="${n2(top + KEY_H)}">${stops.join('')}</linearGradient>` +
 		`<path d="${keyShape}" fill="url(#${name}-scale)"/><path d="${keyShape}" fill="none" stroke="${STONE_INK}" stroke-width="${0.35}"/>`, 0.5);

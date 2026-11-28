@@ -396,7 +396,7 @@ crossing moves: on the axis of the orbit the two laws cross at $0.21\lambda$, an
 measured by $|\curv\tE|$, at $0.40\lambda$.[^section-xi]
 
 ![Look first at the open circle: in the plane of the orbit, the near law and the wave law of $\curv\tE_{zz}$ cross at
-0.313 of a wavelength, twice the reduced wavelength $\lambda/2\pi$, and the exact field of the all-zone solution runs
+0.313 of a wavelength, about twice the reduced wavelength $\lambda/2\pi$, and the exact field of the all-zone solution runs
 from one law to the other. Lines exact.](tut-crossover){#fig:crossover}
 
 **Two black holes.** Two black holes of $30\,M_\odot$ each, 2200 km apart, turn by Kepler's law at $\Omega =

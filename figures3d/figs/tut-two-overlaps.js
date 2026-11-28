@@ -9,6 +9,9 @@
 // 47.0 and 65.5 stand, each centred on its drop: 65.5 lies too near the tick 60 for both to share one row, and inside
 // the plot they crowded the axis and gravity's 0.063. The plot is a little wider than the site's other plots of the
 // chapter (300 points) so that the drop at 65.5 clears the number 60 beside it.
+// The angle axis stands 0.05 below the overlap's zero (6.6 points), and the zero is a dotted line across with its
+// number on the scale, so that both curves run the whole way to 180 degrees, where they reach zero, along a line of
+// their own: drawn down onto the angle axis, they would vanish into it near 120 and 150 degrees and seem to end there.
 // Exact: both curves (sampled every quarter of a point along their length), the dots, the crossings at one half and
 // every printed number, computed in figs/tut-spin-two-lib.js (the overlaps from the null vectors themselves, at every
 // 7.5 degrees, and the half widths by bisection and in closed form) and asserted against the chapter's text. Nothing
@@ -24,19 +27,22 @@ import { chapter, light, gravity, rad, OVERLAPS, WIDTHS } from './tut-spin-two-l
 const name = 'tut-two-overlaps';
 const check = checker(name);
 
-const PW = 300, PH = 132;                 // the plot, points
+const LIFT = 0.05;                        // the angle axis stands this far below zero, so that the curves' tails show
+const PW = 300, PH = 132 * (1 + LIFT);    // the plot, points (132 from zero to one)
 const GUIDE = 0.35;                       // the dotted half-height guides
 
 export default async function () {
 	const nums = await chapter(check);
 	const S = new Sheet(name);
 	const L = [];
-	const P = new Plot({ left: ORIGIN - PW / 2, top: ORIGIN - PH / 2, w: PW, h: PH, x0: 0, x1: 180, y0: 0, y1: 1 });
+	const P = new Plot({ left: ORIGIN - PW / 2, top: ORIGIN - PH / 2, w: PW, h: PH, x0: 0, x1: 180, y0: -LIFT, y1: 1 });
 	const f = { light: (d) => light(rad(d)), gravity: (d) => gravity(rad(d)) };
 
 	// ---- the axes
 	L.push(...(await xAxis(S, P, { ticks: [0, 30, 60, 90, 120, 150, 180], fmt: (t) => `${t}^\\circ`, what: 'the angle axis' })));
-	L.push(...(await yAxis(S, P, { ticks: [0, 0.25, 0.5, 0.75, 1], fmt: (t) => (t === 0 ? null : `${t}`), what: 'the overlap axis' })));
+	L.push(...(await yAxis(S, P, { ticks: [0, 0.25, 0.5, 0.75, 1], fmt: (t) => `${t}`, what: 'the overlap axis' })));
+	// the zero of the overlap, a dotted line across, above the angle axis: both curves run down to it at 180 degrees
+	S.path([P.at(0, 0), P.at(180, 0)], { color: DIM, width: GUIDE, layer: 0.5, cap: 'butt', dash: ZERO_DASH, what: 'the zero line' });
 	// the half widths' numbers, a row under the axis's own, each centred on its drop
 	const under = Math.max(...L.map((l) => l.box.b));
 	const half = { gravity: nums.widths.gravity, light: nums.widths.light };
@@ -59,13 +65,11 @@ export default async function () {
 	// ---- the curves: light dashed, gravity solid
 	const pts = { light: graph(P, f.light, 0, 180), gravity: graph(P, f.gravity, 0, 180) };
 	for (const k of ['light', 'gravity']) check(longest(pts[k]) <= 0.2501, `the ${k} curve is not fine`);
-	// each curve stops where it would merge with the axis (it reaches zero only at 180 degrees)
-	const merge = ((CURVE + 0.45) / 2 / PH);
-	const end = (k) => { let x = 180; while (f[k](x) < merge) x -= 0.05; return x; };
+	// each curve runs the whole way, to zero at 180 degrees, where it meets the zero line (which it lies along at the
+	// end, well clear of the angle axis below)
+	check(near(f.light(180), 0, 1e-15) && near(f.gravity(180), 0, 1e-15), 'a curve is not zero at 180 degrees');
 	for (const k of ['light', 'gravity']) {
-		const e = end(k);
-		const line = graph(P, f[k], 0, e);
-		S.path(line, { color: INK, width: CURVE, layer: 2, cap: 'butt', dash: k === 'light' ? DASH : null, what: `the ${k} curve` });
+		S.path(pts[k], { color: INK, width: CURVE, layer: 2, cap: 'butt', dash: k === 'light' ? DASH : null, what: `the ${k} curve` });
 	}
 
 	// ---- the dots and their values: light's above and right of its curve, gravity's below and left of its own
@@ -83,7 +87,7 @@ export default async function () {
 		L.push(await S.clear(l, xl + DOT + LABEL_GAP + 0.4, yl - DOT - LABEL_GAP - 0.4, 0, 1, [0.6, -0.8]));
 		// at 90 degrees gravity's value stands left of its dot, just above the axis; at 30 and 60, below and left of it (at 60,
 		// between its curve and the drop at its half width)
-		L.push(d === 90 ? await S.clear(g, xg - DOT - LABEL_GAP - 0.4, P.bottom - 2.8, 1, 1, [-1, 0])
+		L.push(d === 90 ? await S.clear(g, xg - DOT - LABEL_GAP - 0.4, P.Y(0) - 2.8, 1, 1, [-1, 0])
 				: await S.clear(g, xg - DOT - LABEL_GAP - 0.4, yg + DOT + LABEL_GAP + 0.4, 1, 0, [-0.6, 0.8]));
 	}
 
